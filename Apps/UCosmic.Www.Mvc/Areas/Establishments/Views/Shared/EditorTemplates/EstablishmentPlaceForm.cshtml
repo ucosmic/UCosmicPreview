@@ -1,0 +1,39 @@
+﻿@model UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms.EstablishmentForm.LocationForm.EstablishmentPlaceForm
+@using (Html.BeginCollectionItem("Location.Places"))
+{
+    <div class="est-loc-place" data-app-remove-input-id="@Html.IdFor(m => m.IsDeleted)">
+        <div class="not-deleted">
+            <div style="float: right; margin-left: 5px;">
+                <a href="#" class="remove-button">
+                    <img alt="remove place icon" src="@Links.content.icons.deletes.delete_hot_16_png" title="Remove this place" />
+                </a>
+            </div>
+            <div class="info">
+                <strong>@Model.OfficialName</strong>
+                @if (!string.IsNullOrWhiteSpace(Model.PlaceType))
+                { 
+                    <span>(@Model.PlaceType)</span> 
+                }
+            </div>
+        </div>
+        <div class="is-deleted no-display">
+            <div class="info" style="text-decoration: line-through; color: #999;">
+                <strong>@Model.OfficialName</strong>
+                @if (!string.IsNullOrWhiteSpace(Model.PlaceType))
+                { 
+                    <span>(@Model.PlaceType)</span> 
+                }
+            </div>
+            <div class="is-deleting" style="font-size: 0.8em;">
+                This place will not be part of the location when saved. <a href="#" class="remove-undo-button">
+                    Undo</a>
+            </div>
+        </div>
+        <div class="hidden-input">
+            @Html.EditorFor(m => m.OfficialName)
+            @Html.EditorFor(m => m.PlaceType)
+            @Html.EditorFor(m => m.IsDeleted)
+            @Html.EditorFor(m => m.RevisionId)
+        </div>
+    </div>
+}

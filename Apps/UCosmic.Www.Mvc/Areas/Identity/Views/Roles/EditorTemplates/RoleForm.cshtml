@@ -1,0 +1,126 @@
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.Roles.RoleForm
+<div id="role_form_editor" data-ucosmic-entity-id="@Model.EntityId">
+    <fieldset>
+        <legend>Basic Role Info</legend>
+        <p>
+            Paragraph to be determined.
+        </p>
+        <table class="form">
+            <tbody>
+                <tr>
+                    <th class="label no-wrap">
+                        @Html.LabelFor(m => m.Name)
+                        *
+                    </th>
+                    <td class="value">
+                        <div class="input">
+                            @Html.DisplayFor(m => m.Name)
+                            @Html.HiddenFor(m => m.Name)
+                        </div>
+                        <div class="model-validator">
+                            @Html.ValidationMessageFor(m => m.Name)
+                            @Html.ValidationMessageFor(m => Model)
+                        </div>
+                    </td>
+                    <td class="info">
+                        <div class="p">
+                            <i>(required, 200 characters max)</i>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="label no-wrap">
+                        @Html.LabelFor(m => m.Description)
+                        *
+                    </th>
+                    <td class="value">
+                        <div class="input three-rows">
+                            @Html.EditorFor(m => m.Description)
+                        </div>
+                        <div class="p">
+                            TBD
+                        </div>
+                        <div class="model-validator">
+                            @Html.ValidationMessageFor(m => m.Description)
+                        </div>
+                    </td>
+                    <td class="info">
+                        <div class="p">
+                            <i>(required, 4000 characters max)</i>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>Members</legend>
+        <p>
+            Members are displayed in the box below, and will be visible to the public.
+        </p>
+        <table class="page page-50-50">
+            <tbody>
+                <tr>
+                    <td class="left">
+                        <div>
+                            @Html.ValidationMessageFor(m => m.Grants)
+                        </div>
+                        <ul id="members_list" class="listbox" 
+                            data-ucosmic-autocomplete-url="@Url.Action(MVC.Identity.Roles.AutoCompleteUserName())"
+                            data-ucosmic-add-url="@Url.Action(MVC.Identity.Roles.AddUserName())"
+                        >
+                            <li class="member empty"><b>[No Members]</b></li>
+                            @foreach (var grant in Model.Grants)
+                            {
+                                @Html.EditorFor(m => grant)
+                            }
+                        </ul>
+                    </td>
+                    <td class="center">
+                    </td>
+                    <td class="right">
+                        <div class="two-rows MemberSearch-field">
+                            <textarea id="member_search" rows="2" cols="1"></textarea>
+                            <div class="autocomplete-menu">
+                            </div>
+                        </div>
+                        <p>
+                            To add a new member, begin typing in the text box above.
+                        </p>
+                        <p>
+                            As you type, UCosmic will search for matching people and display them below the
+                            text box.
+                        </p>
+                        <p>
+                            When the correct match appears, click to add it as a participant in this agreement.
+                        </p>
+                        <p>
+                            If UCosmic can't find the member you're looking for, please <a href="mailto:data@ucosmic.com?subject=Missing Member(s)">
+                                let us know</a>.
+                        </p>
+                        <p>
+                            To remove a member, click its red <i>remove </i>icon.
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <div class="hidden-input">
+        @Html.EditorFor(m => m.EntityId)
+        @Html.EditorFor(m => m.ReturnUrl)
+    </div>
+</div>
+<div id="role_form_edit">
+    <div>
+        <input id="save_changes_submit_button" type="submit" value="Save Changes" />
+        @if (!Request.IsAjaxRequest())
+        {
+            <a id="cancel_submit_button" href="@Model.ReturnUrl">Cancel</a>
+        }
+        else
+        {
+            <input id="cancel_submit_button" type="reset" value="Cancel" />
+        }
+    </div>
+</div>

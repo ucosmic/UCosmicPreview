@@ -1,0 +1,90 @@
+﻿@using UCosmic.Www.Mvc.Areas.Identity.Mappers
+@using UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
+@model ConfirmEmailForm
+@{
+    ViewBag.Title = "Confirm your email address";
+    Layout = MVC.Shared.Views.layout;
+}
+@section Styles {
+    <style type="text/css">
+        fieldset {
+            min-height: 300px;
+        }
+    </style>
+}
+<div class="wrap-960 split-form">
+    <div class="left">
+        <fieldset>
+            <legend>
+                @if (!Model.IsUrlConfirmation)
+                {
+                    <text>Enter Confirmation Code</text>
+                }
+                else
+                {
+                    <text>Confirm with URL</text>
+                }
+            </legend>
+            @if (!Model.IsUrlConfirmation)
+            {
+                <p>
+                    When you receive your confirmation email, it will contain a secret Confirmation
+                    Code.
+                </p>
+                <p>
+                    Copy and paste that code into the text box below ownership and click the <strong>Confirm
+                        Email Address</strong> button.
+                </p>
+            }
+            else
+            {
+                <p>
+                    As a safeguard against the URL that was sent to you, your email address still has
+                    not yet been confirmed.
+                </p>
+                <p>
+                    Your confirmation code is ready. Please click the <strong>Confirm Email Address</strong>
+                    button below to proceed.
+                </p>
+            }
+            @using (Html.BeginForm(MVC.Identity.SignUp.ActionNames.ConfirmEmail,
+                    MVC.Identity.SignUp.Name,
+                    new { area = MVC.Identity.Name, httpMethod = "POST" }))
+            {
+                @Html.AntiForgeryToken(SignUpRouteMapper.ConfirmEmail.RouteForPost)
+                @Html.EditorForModel()
+            }
+            <p>
+                After confirming, your next step will be to create a password.
+            </p>
+        </fieldset>
+    </div>
+    <div class="right">
+        @if (!Model.IsUrlConfirmation)
+        {
+            <h2>
+                ...or confirm with URL</h2>
+            <p>
+                When you receive your confirmation email, it will also have a URL in it.
+            </p>
+            <p>
+                You can click that URL or copy and paste it into your browser to confirm ownership.
+            </p>
+            <p>
+                If you have already used the URL to confirm ownership and set up a password, you
+                can safely close this page.
+            </p>
+        }
+        else
+        {
+            <p>
+                The web page you used to sign up and send the confirmation email may still be open
+                in another tab or window.
+            </p>
+            <p>
+                After you confirm your email address and create a password, you can safely close
+                that page.
+            </p>
+        }
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<UCosmic.Www.Mvc.Areas.Identity.Models.Roles.RoleSearchResult>
+@{
+    ViewBag.Title = "Browse role authorizations";
+}
+<h2>
+    @ViewBag.Title
+</h2>
+@if (Model.Any())
+{
+    <table class="list">
+        <thead>
+            <tr>
+                <th>
+                    Role Name
+                </th>
+                <th>
+                    Description
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="no-wrap">
+                        <a href="@Url.Action(MVC.Identity.Roles.Form(item.Slug, Request.RawUrl))">@Html.DisplayFor(m => item.Name)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Description)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

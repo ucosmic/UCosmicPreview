@@ -1,0 +1,44 @@
+﻿@using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ConfigurationForms
+@model InstitutionalAgreementStatusValueForm
+@{
+    if (Html.ViewContext.FormContext == null)
+    { // make sure unobtrusive data-val attributes appear in form elements
+        Html.ViewContext.FormContext = new FormContext();
+    }
+}
+<li class="allowed-status appender">
+    @using (Html.BeginCollectionItem("AllowedStatusValues"))
+    {
+        var addingDisplay = (!Model.IsAdded) ? "display:none;" : string.Empty;
+        var editingDisplay = (Model.IsAdded) ? "display:none;" : string.Empty;
+        <div class="editor" style="@editingDisplay">
+            <div class="value" style="@addingDisplay">
+                @Html.EditorFor(m => m.Text)
+                <input type="hidden" class="last" value="@Model.Text" />
+            </div>
+            <div class="validate">
+                @Html.ValidationMessageFor(m => m.Text)
+            </div>
+            <div class="actions" style="padding-left: 3px;">
+                <span class="add"><a href="#">Add</a></span> <span class="edit" style="@addingDisplay">
+                    <a href="#">Save</a></span> <span class="cancel" style="@addingDisplay">| <a href="#">
+                        Cancel</a></span>
+            </div>
+        </div>
+        <div class="reader" style="@addingDisplay">
+            <div class="value mimic-textbox">
+                @Model.Text
+            </div>
+            <div class="actions" style="padding-left: 3px;">
+                <span class="edit"><a href="#">Edit</a></span> | <span class="remove"><a href="#">Remove</a></span>
+            </div>
+        </div>
+        <div class="hidden-input">
+            @Html.EditorFor(m => m.Id)
+            @Html.EditorFor(m => m.ConfigurationId)
+            <span class="is-added">
+                @Html.EditorFor(m => m.IsAdded)
+            </span>
+        </div>
+    }
+</li>

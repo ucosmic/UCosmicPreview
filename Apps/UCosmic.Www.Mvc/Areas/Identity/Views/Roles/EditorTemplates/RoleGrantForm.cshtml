@@ -1,0 +1,27 @@
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.Roles.RoleForm.RoleGrantForm
+@{
+    var liDisplay = (Model.IsDeleted) ? "display:none;" : null;
+}
+<li class="member" style="@liDisplay">
+    <div class="role-member">
+        <div>
+            <div style="float: right; margin-left: 5px;">
+                <a href="#" class="remove-button">
+                    <img src="@Url.Content(Links.content.icons.deletes.delete_hot_16_png)" 
+                    alt="remove member icon" title="Remove this member" /></a>
+            </div>
+            <b>@Html.DisplayFor(m => m.User.UserName)</b>
+        </div>
+    </div>
+    @using (Html.BeginCollectionItem("Grants"))
+    {
+        <div class="hidden-input">
+            <div class="is-deleted">
+                @Html.EditorFor(m => m.IsDeleted)
+            </div>
+            <div class="entity-id">
+                @Html.EditorFor(m => m.User.EntityId)
+            </div>
+        </div>
+    }
+</li>

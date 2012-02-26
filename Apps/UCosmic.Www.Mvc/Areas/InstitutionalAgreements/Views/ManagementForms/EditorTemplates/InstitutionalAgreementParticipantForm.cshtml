@@ -1,0 +1,40 @@
+﻿@using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
+@model InstitutionalAgreementParticipantForm
+@{
+    var deletedDisplay = Model.IsDeleted ? "display:none;" : string.Empty;
+}
+<li class="participant" style="@deletedDisplay">
+    <div class="institutional-agreement-participant">
+        <div>
+            <div style="float: right; margin-left: 5px;">
+                <a href="#" class="remove-button" data-establishment-id="@Model.EstablishmentEntityId">
+                    <img src="@Url.Content(Links.content.icons.deletes.delete_hot_16_png)" alt="remove participant icon" title="Remove this participant" /></a>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.EstablishmentTranslatedNameText) && Model.EstablishmentTranslatedNameText != Model.EstablishmentOfficialName)
+            {
+                <b>@Html.DisplayFor(m => m.EstablishmentTranslatedNameText)</b>
+                <br />
+                <span style="font-size: 0.85em;">(@Html.DisplayFor(m => m.EstablishmentOfficialName))</span>
+            }
+            else
+            {
+                <b>@Html.DisplayFor(m => m.EstablishmentOfficialName)</b>
+            }
+        </div>
+    </div>
+    <div class="hidden-input">
+        @using (Html.BeginCollectionItem("Participants"))
+        {
+            @Html.EditorFor(m => m.Id)
+            <div class="entity-id">
+                @Html.EditorFor(m => m.EstablishmentEntityId)
+            </div>
+            <div class="is-deleted">
+                @Html.EditorFor(m => m.IsDeleted)
+            </div>
+            @Html.EditorFor(m => m.IsOwner)
+            @Html.HiddenFor(m => m.EstablishmentOfficialName)
+            @Html.HiddenFor(m => m.EstablishmentTranslatedNameText)
+        }
+    </div>
+</li>

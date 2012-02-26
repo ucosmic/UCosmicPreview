@@ -1,0 +1,26 @@
+﻿@model IEnumerable<UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch.EstablishmentInfo>
+@{
+    ViewBag.Title = "Institutional Agreements";
+    Layout = MVC.Shared.Views.layout;
+}
+<div class="wrap-960">
+    <h2>
+        Choose an institution
+    </h2>
+    <p>
+        Please click an institution to see its agreements, or <a href="@Url.Action(MVC.Identity.SignIn.SignIn(Request.RawUrl))">
+            sign in to have UCosmic determine your institution automatically</a>.
+    </p>
+    <ul style="font-size: 19px;">
+        @foreach (var establishment in Model)
+        {
+            <li style="margin-bottom: 1em;"><a href="@Url.Action(MVC.Common.Skins.Change(
+                establishment.WebsiteUrl,
+                Url.Action(MVC.InstitutionalAgreements.PublicSearch.Index(establishment.WebsiteUrl))))">
+                @Html.DisplayFor(m => establishment.OfficialName)
+            </a>
+                @Html.Action(MVC.InstitutionalAgreements.PublicSearch.GetChildEstablishmentsWithAgreements(establishment.EntityId))
+            </li>
+        }
+    </ul>
+</div>

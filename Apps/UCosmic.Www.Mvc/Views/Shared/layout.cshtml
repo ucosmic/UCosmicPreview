@@ -1,0 +1,260 @@
+﻿@using UCosmic
+@using UCosmic.Www.Mvc.Areas.Identity.Models.SignIn
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - UCosmic</title>
+    <link href="@Url.Content(Links.content.themes.@base.jquery_ui_all_css)?v=9" rel="stylesheet" />
+    @Html.Action(MVC.Common.Skins.Apply())
+    @if (IsSectionDefined("Styles"))
+    { 
+        @RenderSection("Styles")
+    }
+</head>
+<body data-ucosmic-ajax-error-log-url="@Url.Action(MVC.Common.Errors.LogAjaxError())" 
+    data-ucosmic-ajax-error-log-message="An unknown error has occurred.
+    @*maintain line break in message*@
+If this continues, please notify info@ucosmic.org.">
+    <div id="ucosmic" class="debug ucosmic">
+        <div class="hat row">
+            @Html.Partial(MVC.Common.Navigation.Views.top_tabs)
+        </div>
+        <div class="head row">
+            <div class="left col">
+                @if (IsSectionDefined("HeadLeft"))
+                {
+                    @RenderSection("HeadLeft", false)
+                }
+            </div>
+            <div class="center col">
+                @Html.Partial(MVC.Identity.SignIn.Views.nav, new SignInNavInfo
+                {
+                    IsSignedIn = Request.IsAuthenticated,
+                    IsImpersonator = User.IsInRole(RoleName.AuthenticationAgent),
+                    WasSignedInAs = Session.WasSignedInAs(),
+                })
+                @if (!IsSectionDefined("HeadCenter"))
+                {
+                    <h1>@ViewBag.Title</h1>
+                }
+                else
+                {
+                    @RenderSection("HeadCenter", false)
+                }
+            </div>
+            <div class="right col">
+                @Html.Action(MVC.Common.Skins.Logo())
+            </div>
+        </div>
+        <div class="neck row">
+            @Html.Partial(MVC.Shared.Views.feedback_message)
+        </div>
+        <div class="shadow">
+        </div>
+        <div class="torso row">
+            <div class="left col">
+                <div class="scroll-y col">
+                    Here is my column. <a href="#">Hide it now</a>.
+                </div>
+            </div>
+            <div class="center col">
+                <div class="stretch scroll-y scroll-x">
+                    <div id="body" class="body stretch">
+                        @RenderBody()
+                        @*<br>
+                        <div class="pull-in no-display">
+                            <div class="text-box input">
+                                <input type="text" value="This is a normal text box. It just queries yall for content which cannot be contained with a short width."
+                                    class="text-box single-line">
+                            </div>
+                            <br>
+                            <div class="bold text-box input">
+                                <input type="text" value="This is a bold text box. It just queries yall for content which cannot be contained with a short width."
+                                    class="text-box single-line">
+                            </div>
+                            <br>
+                            <div class="combobox">
+                                <div class="text-box input">
+                                    <input type="text" value="This is a down arrow text box. It just queries yall for content which cannot be contained with a short width."
+                                        class="text-box single-line">
+                                </div>
+                                <a class="text-box down-arrow">
+                                    <img class="text-box down-arrow" alt="" src="/content/icons/transparent.png">
+                                </a>
+                            </div>
+                            <br>
+                            <div class="button-sized text-box input">
+                                <input type="text" value="Toying with this button-sized text box. It just queries yall for content which cannot be contained with a short width."
+                                    class="text-box single-line">
+                            </div>
+                            <br>
+                            <div class="button-sized combobox">
+                                <div class="text-box input">
+                                    <input type="text" value="This is a down arrow text box. It just queries yall for content which cannot be contained with a short width."
+                                        class="text-box single-line">
+                                </div>
+                                <a class="text-box down-arrow">
+                                    <img class="text-box down-arrow" alt="" src="/content/icons/transparent.png">
+                                </a>
+                            </div>
+                            <br>
+                            <h1>
+                                Heading 1
+                            </h1>
+                        </div>
+                        <p class="no-display">
+                            Here’s some content which can scroll vertically, but only if it really needs to,
+                            because it might catch the end and wrap down.</p>
+                        <div class="no-display">
+                            <p style="width: 450px;">
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                            <p>
+                                Here’s some content which can scroll vertically</p>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+            <div class="right col">
+                <div class="scroll-y col">
+                    @if (IsSectionDefined("TorsoRight"))
+                    {
+                        @RenderSection("TorsoRight")
+                    }
+@*@Html.Partial(MVC.Common.Skins.Views.sample_right_column_a)*@
+                </div>
+            </div>
+        </div>
+        <div class="feet row">
+            @Html.Partial(MVC.Common.Navigation.Views.consortium_footer)
+        </div>
+        <div class="no-display">
+            @Html.Partial(MVC.Common.Navigation.Views.not_implemented_dialog, ViewData)
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="@Links.scripts.jquery_1_7_1_js" type="text/javascript"></script>
+
+<script src="@Links.scripts.jquery_ui_1_8_17_js" type="text/javascript"></script>
+
+<script src="@Links.scripts.jquery_validate_js" type="text/javascript"></script>
+
+<script src="@Links.scripts.jquery_validate_unobtrusive_js" type="text/javascript"></script>
+
+@Html.Partial(MVC.Shared.Views.google_maps_api_script)
+
+<script src="@Links.scripts.ucosmic_js" type="text/javascript"></script>
+
+@Html.Partial(MVC.Shared.Views.uservoice_widget_script)
+@Html.Partial(MVC.Shared.Views.google_analytics_script)
+@if (IsSectionDefined("Scripts"))
+{ 
+    @RenderSection("Scripts")
+}

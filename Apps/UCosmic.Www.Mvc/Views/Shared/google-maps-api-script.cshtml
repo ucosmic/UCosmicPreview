@@ -1,0 +1,11 @@
+﻿@if (ViewBag.GoogleMapsApiScript != null)
+{
+    if (Request.IsSecureConnection || string.Equals(Request.Headers["X-Forwarded-Proto"], "https", StringComparison.OrdinalIgnoreCase))
+    {
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"> </script>
+    }
+    else
+    {
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"> </script>
+    }
+}

@@ -1,0 +1,1251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{88C2ED63-E921-4E88-AD86-0D835A400C0E}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UCosmic.Www.Mvc</RootNamespace>
+    <AssemblyName>UCosmic.Www.Mvc</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\ucosmic\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SlowCheetahTargets Condition=" '$(SlowCheetahTargets)'=='' ">$(LOCALAPPDATA)\Microsoft\MSBuild\SlowCheetah\v1\SlowCheetah.Transforms.targets</SlowCheetahTargets>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PublishToPreview|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\packages\AutoMapper.2.0.0\lib\net40-client\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah, Version=1.2.14318.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\elmah.corelibrary.1.2.1\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Contrib.Mvc">
+      <HintPath>..\..\packages\Elmah.Contrib.Mvc.1.0\lib\net40\Elmah.Contrib.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationServer.Caching.Client, Version=101.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WindowsAzure.Caching.1.6.0.0\lib\net35-full\Microsoft.ApplicationServer.Caching.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationServer.Caching.Core, Version=101.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WindowsAzure.Caching.1.6.0.0\lib\net35-full\Microsoft.ApplicationServer.Caching.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.DistributedCache, Version=101.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WindowsAzure.Caching.1.6.0.0\lib\net35-full\Microsoft.Web.DistributedCache.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\..\packages\Mvc2Futures.2.0.50217.0\lib\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Unpackaged\Microsoft.WindowsAzure.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Unpackaged\Microsoft.WindowsAzure.ServiceRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Unpackaged\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsFabric.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\WindowsAzure.Caching.1.6.0.0\lib\net35-full\Microsoft.WindowsFabric.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsFabric.Data.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\WindowsAzure.Caching.1.6.0.0\lib\net35-full\Microsoft.WindowsFabric.Data.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NGeo">
+      <HintPath>..\..\packages\NGeo.1.3.1\lib\net40\NGeo.dll</HintPath>
+    </Reference>
+    <Reference Include="PKCS12ProtectedConfigurationProvider, Version=1.0.0.0, Culture=neutral, PublicKeyToken=34da007ac91f901d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\Unpackaged\PKCS12ProtectedConfigurationProvider.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Pluralize">
+      <HintPath>..\..\packages\Pluralizer.0.2.1\lib\net40\Pluralize.dll</HintPath>
+    </Reference>
+    <Reference Include="Pluralize.Mvc">
+      <HintPath>..\..\packages\Pluralizer.Mvc.0.2.2\lib\net40\Pluralize.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server Compact Edition\v4.0\Desktop\System.Data.SqlServerCe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\..\packages\System.Web.Providers.Core.1.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Unity.Mvc3">
+      <HintPath>..\..\packages\Unity.Mvc3.1.1\lib\Unity.Mvc3.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
+    <Compile Include="Areas\Common\Controllers\ErrorsController.cs" />
+    <Compile Include="Areas\Common\Controllers\FeaturesController.cs" />
+    <Compile Include="Areas\Common\Controllers\HealthController.cs" />
+    <Compile Include="Areas\Common\Controllers\NavigationController.cs" />
+    <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Models\Password\ForgotPasswordEmailAttribute.cs" />
+    <Compile Include="Areas\Identity\Models\Roles\NoDuplicateGrantsAttribute.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsRouteMapper.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsModelMapper.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Mappers\PublicSearchModelMapper.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Mappers\PublicSearchRouteMapper.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Mappers\ManagementFormsModelMapper.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Mappers\ManagementFormsRouteMapper.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\AllowedContactTypeAttribute.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\AllowedStatusAttribute.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\AllowedTypeAttribute.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\AtLeastOneOwnerAttribute.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\PublicSearch\AgreementInfo.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\PublicSearch\EstablishmentInfo.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\PublicSearch\SearchResults.cs" />
+    <Compile Include="Common.ErrorsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common.FeaturesController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common.HealthController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common.NavigationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common.QaController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common.SkinsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Establishments.ManagementFormsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Establishments.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Establishments.SupplementalFormsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.EmailConfirmationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.PasswordController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.RolesController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.Saml2Controller.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.SelfController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.SignInController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.SignUpController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InstitutionalAgreements.ConfigurationFormsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InstitutionalAgreements.ManagementFormsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InstitutionalAgreements.PublicSearchController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InstitutionalAgreements.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IReturnUrl.cs" />
+    <Compile Include="Controllers\NullLayoutOnAjaxRequestAttribute.cs" />
+    <Compile Include="Controllers\OpenTopTabAttribute.cs" />
+    <Compile Include="Areas\Common\Controllers\QaController.cs" />
+    <Compile Include="Areas\Common\Mappers\QaRouteMapper.cs" />
+    <Compile Include="Areas\Common\Mappers\SkinsRouteMapper.cs" />
+    <Compile Include="Areas\Establishments\Mappers\ManagementFormsModelMapper.cs" />
+    <Compile Include="Areas\Establishments\Mappers\ManagementFormsRouteMapper.cs" />
+    <Compile Include="Controllers\RedirectToRawUrlAttribute.cs" />
+    <Compile Include="Areas\Common\Controllers\SkinsController.cs" />
+    <Compile Include="Areas\Common\Models\Features\FeaturePreview.cs" />
+    <Compile Include="Areas\Common\Models\Navigation\HorizontalTabsInfo.cs" />
+    <Compile Include="Areas\Common\Models\Skins\ApplySkinInfo.cs" />
+    <Compile Include="Areas\Common\Models\Skins\LogoInfo.cs" />
+    <Compile Include="Areas\Common\Mappers\NavigationRouteMapper.cs" />
+    <Compile Include="Areas\Common\Mappers\ErrorsRouteMapper.cs" />
+    <Compile Include="Areas\Common\Mappers\FeaturesRouteMapper.cs" />
+    <Compile Include="Areas\Common\Mappers\HealthRouteMapper.cs" />
+    <Compile Include="Areas\Establishments\Controllers\ManagementFormsController.cs" />
+    <Compile Include="Areas\Establishments\Controllers\SupplementalFormsController.cs" />
+    <Compile Include="Areas\Establishments\EstablishmentsAreaRegistration.cs" />
+    <Compile Include="Areas\Establishments\Models\ManagementForms\EstablishmentForm.cs" />
+    <Compile Include="Areas\Establishments\Models\ManagementForms\EstablishmentSearchResult.cs" />
+    <Compile Include="Areas\Identity\Mappers\SelfModelMapper.cs" />
+    <Compile Include="Areas\Identity\Mappers\Saml2RouteMapper.cs" />
+    <Compile Include="Areas\Identity\Mappers\SelfRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Mappers\RolesModelMapper.cs" />
+    <Compile Include="Areas\Identity\Mappers\RolesRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Mappers\PasswordModelMapper.cs" />
+    <Compile Include="Areas\Identity\Mappers\PasswordRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Mappers\EmailConfirmationModelMapper.cs" />
+    <Compile Include="Areas\Identity\Mappers\EmailConfirmationRouteMapper.cs" />
+    <Compile Include="Controllers\TryAuthorizeAttribute.cs" />
+    <Compile Include="Controllers\AuthorizeForImpersonationAttribute.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignInController.cs" />
+    <Compile Include="Areas\Identity\Controllers\RolesController.cs" />
+    <Compile Include="Areas\Identity\Controllers\EmailConfirmationController.cs" />
+    <Compile Include="Areas\Identity\Controllers\PasswordController.cs" />
+    <Compile Include="Areas\Identity\Controllers\Saml2Controller.cs" />
+    <Compile Include="Areas\Identity\Controllers\SelfController.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignUpController.cs" />
+    <Compile Include="Areas\Identity\IdentityAreaRegistration.cs" />
+    <Compile Include="Areas\Identity\Mappers\SignInRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Models\SignIn\SignInAsForm.cs" />
+    <Compile Include="Areas\Identity\Models\SignIn\SignInForm.cs" />
+    <Compile Include="Areas\Identity\Models\SignIn\SignInNavInfo.cs" />
+    <Compile Include="Areas\Identity\Models\Roles\RoleForm.cs" />
+    <Compile Include="Areas\Identity\Models\Roles\RoleSearchResult.cs" />
+    <Compile Include="Areas\Identity\Models\EmailConfirmation\ConfirmEmailForgotPasswordForm.cs" />
+    <Compile Include="Areas\Identity\Models\Password\ChangePasswordForm.cs" />
+    <Compile Include="Areas\Identity\Models\Password\ForgotPasswordForm.cs" />
+    <Compile Include="Areas\Identity\Models\Password\ResetPasswordForm.cs" />
+    <Compile Include="Areas\Identity\Models\Self\AffiliationForm.cs" />
+    <Compile Include="Areas\Identity\Models\Self\ChangeEmailSpellingForm.cs" />
+    <Compile Include="Areas\Identity\Models\Self\EmailInfo.cs" />
+    <Compile Include="Areas\Identity\Models\Self\PersonForm.cs" />
+    <Compile Include="Areas\Identity\Models\SignUp\ConfirmDeniedPage.cs" />
+    <Compile Include="Areas\Identity\Models\SignUp\ConfirmEmailForm.cs" />
+    <Compile Include="Areas\Identity\Models\SignUp\CreateDeniedPage.cs" />
+    <Compile Include="Areas\Identity\Models\SignUp\CreatePasswordForm.cs" />
+    <Compile Include="Areas\Identity\Models\SignUp\SendEmailForm.cs" />
+    <Compile Include="Areas\Identity\Mappers\SignUpRouteMapper.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Controllers\ConfigurationFormsController.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Controllers\ManagementFormsController.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Controllers\PublicSearchController.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\InstitutionalAgreementsAreaRegistration.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ConfigurationForms\InstitutionalAgreementConfigurationForm.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ConfigurationForms\InstitutionalAgreementContactTypeValueForm.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ConfigurationForms\InstitutionalAgreementStatusValueForm.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ConfigurationForms\InstitutionalAgreementTypeValueForm.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementBrowseView.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementContactForm.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementDeriveTitleInput.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementFileForm.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementFileInfo.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementForm.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementMappedSearchResult.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementMapSearchResult.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementParticipantForm.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementParticipantMarker.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementSearchResult.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementUmbrellaOption.cs" />
+    <Compile Include="Areas\RecruitmentAgencies\RecruitmentAgenciesAreaRegistration.cs" />
+    <Compile Include="Controllers\AutoMapperAttribute.cs" />
+    <Compile Include="Helpers\BeginCollectionItemHtml.cs" />
+    <Compile Include="Controllers\ReturnUrlReferrerAttribute.cs" />
+    <Compile Include="Helpers\GroupedSelectList.cs" />
+    <Compile Include="Helpers\NullDisplayCssClassHtml.cs" />
+    <Compile Include="Helpers\RadioButtonsHtml.cs" />
+    <Compile Include="Helpers\GroupedSelectExtensions.cs" />
+    <Compile Include="Mappers\AutoMapperConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\EnforceHttpsAttribute.cs" />
+    <Compile Include="Helpers\ExtensionMethods.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Mappers\DefaultModelMapper.cs" />
+    <Compile Include="Mappers\DefaultRouteMapper.cs" />
+    <Compile Include="Mappers\RawUrlCatchallConstraint.cs" />
+    <Compile Include="Models\AllowedFileExtensionsAttribute.cs" />
+    <Compile Include="Models\AutoCompleteOption.cs" />
+    <Compile Include="Models\FileExtensionRequiredAttribute.cs" />
+    <Compile Include="Models\FileNameRequiredAttribute.cs" />
+    <Compile Include="Helpers\GroupedSelectListItem.cs" />
+    <Compile Include="Models\JQueryAjaxException.cs" />
+    <Compile Include="Models\NoDuplicateValuesAttribute.cs" />
+    <Compile Include="Models\RequiredIfAttribute.cs" />
+    <Compile Include="Models\UserVoiceLink.cs" />
+    <Compile Include="Mappers\RequiredIfPresentConstraint.cs" />
+    <Compile Include="Mappers\NonEmptyGuidConstraint.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecruitmentAgencies.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UnitOfWorkAttribute.cs" />
+    <Compile Include="Helpers\WebConfig.cs" />
+    <Compile Include="Helpers\WebRole.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\saml\identity-providers\idp-test.shib.umn.edu.xml" />
+    <Content Include="App_Data\saml\identity-providers\idp.testshib.org.xml" />
+    <Content Include="App_Data\saml\identity-providers\login.uc.edu.xml" />
+    <Content Include="App_Data\saml\identity-providers\wif-saml2-sample.xml" />
+    <Content Include="App_Data\saml\service-providers\development.xml" />
+    <Content Include="App_Data\saml\service-providers\emulation.xml" />
+    <Content Include="App_Data\saml\service-providers\wif\development.xml" />
+    <Content Include="App_Data\saml\service-providers\wif\emulation.xml" />
+    <Content Include="App_Data\saml\service-providers\wif\preview.xml" />
+    <Content Include="app_offline.html" />
+    <Content Include="content\icons\cancels\cancel-disabled-hover-16.png" />
+    <Content Include="content\icons\cancels\cancel-disabled-hover-24.png" />
+    <Content Include="content\icons\cancels\cancel-disabled-opaque-16.png" />
+    <Content Include="content\icons\cancels\cancel-disabled-opaque-24.png" />
+    <Content Include="content\icons\files\ms-excel-16.png" />
+    <Content Include="content\icons\files\ms-pwoerpoint-16.png" />
+    <Content Include="content\icons\files\ms-word-16.png" />
+    <Content Include="content\icons\files\openoffice-spreadsheet-16.png" />
+    <Content Include="content\icons\files\openoffice-type-16.png" />
+    <Content Include="content\icons\files\pdf-16.png" />
+    <Content Include="content\icons\files\unknown-16.png" />
+    <Content Include="content\icons\warning\warning-16.png" />
+    <Content Include="content\images\agreements-private-info-250.jpg" />
+    <Content Include="content\images\agreements-private-info-900.jpg" />
+    <Content Include="content\images\agreements-private-search-250.jpg" />
+    <Content Include="content\images\agreements-private-search-900.jpg" />
+    <Content Include="content\images\agreements-protected-info-250.jpg" />
+    <Content Include="content\images\agreements-protected-info-900.jpg" />
+    <Content Include="content\images\agreements-protected-search-250.jpg" />
+    <Content Include="content\images\agreements-protected-search-900.jpg" />
+    <Content Include="content\images\agreements-public-info-250.jpg" />
+    <Content Include="content\images\agreements-public-info-900.jpg" />
+    <Content Include="content\images\agreements-public-search-250.jpg" />
+    <Content Include="content\images\agreements-public-search-900.jpg" />
+    <Content Include="content\images\index-card.png" />
+    <Content Include="content\images\ipad-photo.jpg" />
+    <Content Include="content\skins\default\head-row-shadow.png" />
+    <Content Include="content\skins\screen-ie8.css" />
+    <Content Include="content\skins\www.uc.edu\head-row-bg.png" />
+    <Content Include="scripts\common\releases.js" />
+    <Content Include="scripts\identity\person-form.js" />
+    <Content Include="scripts\identity\roles-form.js" />
+    <Content Include="Areas\InstitutionalAgreements\Views\Shared\EditorTemplates\_ReadMe.txt" />
+    <Content Include="content\icons\animated_globe\animated-globe-slow-48.gif" />
+    <Content Include="content\icons\cancels\cancel-hot-12.png" />
+    <Content Include="content\icons\cancels\cancel-hot-16.png" />
+    <Content Include="content\icons\cancels\cancel-hot-24.png" />
+    <Content Include="content\icons\checkmarks\checkmark-green-16.png" />
+    <Content Include="content\icons\deletes\delete-hot-16.png" />
+    <Content Include="content\icons\keys\key-vertical-16.png" />
+    <Content Include="content\icons\loaders\win7-wait-16.gif" />
+    <Content Include="content\icons\maps\drag_cross_67_16.png" />
+    <Content Include="content\icons\maps\drop-marker-hot-31.png" />
+    <Content Include="content\icons\maps\drop-marker-norm-31.png" />
+    <Content Include="content\icons\maps\marker_sprite.png" />
+    <Content Include="content\icons\maps\new-raised-marker.png" />
+    <Content Include="content\icons\transparent.png" />
+    <Content Include="content\icons\users\user-black-16.png" />
+    <Content Include="content\images\map-screenshot-2011-12-b.gif" />
+    <Content Include="content\jquery.bubblepopup.v2.3.1.css" />
+    <Content Include="content\skins\default\button-gradient-active.gif" />
+    <Content Include="content\skins\default\button-gradient-hover.gif" />
+    <Content Include="content\skins\default\button-gradient.gif" />
+    <Content Include="content\skins\default\drop-arrow-button-sized.png" />
+    <Content Include="content\skins\default\drop-arrow.png" />
+    <Content Include="content\skins\default\head-logo.png" />
+    <Content Include="content\skins\map-panes.css" />
+    <Content Include="content\skins\screen.css" />
+    <Content Include="content\skins\www.lehigh.edu\head-logo.png" />
+    <Content Include="content\skins\www.lehigh.edu\map-panes.css" />
+    <Content Include="content\skins\www.lehigh.edu\screen.css" />
+    <Content Include="content\skins\www.suny.edu\head-logo.png" />
+    <Content Include="content\skins\www.suny.edu\map-panes.css" />
+    <Content Include="content\skins\www.suny.edu\screen.css" />
+    <Content Include="content\skins\www.uc.edu\head-h1-ingot.png" />
+    <Content Include="content\skins\www.uc.edu\head-logo.png" />
+    <Content Include="content\skins\www.uc.edu\map-panes.css" />
+    <Content Include="content\skins\www.uc.edu\screen.css" />
+    <Content Include="content\skins\www.umn.edu\head-logo.png" />
+    <Content Include="content\skins\www.umn.edu\map-panes.css" />
+    <Content Include="content\skins\www.umn.edu\screen.css" />
+    <Content Include="content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="content\themes\base\jquery-ui.css" />
+    <Content Include="content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="content\themes\base\jquery.ui.all.css" />
+    <Content Include="content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="content\themes\base\jquery.ui.base.css" />
+    <Content Include="content\themes\base\jquery.ui.button.css" />
+    <Content Include="content\themes\base\jquery.ui.core.css" />
+    <Content Include="content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="content\themes\base\jquery.ui.slider.css" />
+    <Content Include="content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="content\themes\base\jquery.ui.theme.css" />
+    <Content Include="content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="content\themes\base\minified\jquery.ui.all.min.css" />
+    <Content Include="content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="content\themes\base\minified\jquery.ui.base.min.css" />
+    <Content Include="content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-azure\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-black\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-blue\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-green\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-grey\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-orange\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-violet\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\all-yellow\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\azure\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\black\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\blue\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\green\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\grey\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\orange\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\violet\top-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\bottom-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\bottom-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\bottom-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\ie\bottom-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\ie\bottom-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\ie\bottom-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\ie\middle-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\ie\middle-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\ie\tail-bottom.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\ie\tail-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\ie\tail-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\ie\tail-top.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\ie\top-left.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\ie\top-middle.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\ie\top-right.gif" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\middle-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\middle-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\tail-bottom.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\tail-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\tail-right.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\tail-top.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\top-left.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\top-middle.png" />
+    <Content Include="content\themes\jquerybubblepopup-theme\yellow\top-right.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="content\Site.css" />
+    <Content Include="robots.txt" />
+    <Content Include="scripts\identity\sign-up-send-email-form.js" />
+    <Content Include="scripts\institutional-agreements\configuration-form.js" />
+    <Content Include="scripts\institutional-agreements\public-search.js" />
+    <Content Include="scripts\jquery-1.7.1-vsdoc.js" />
+    <Content Include="scripts\jquery-1.7.1.js" />
+    <Content Include="scripts\jquery-1.7.1.min.js" />
+    <Content Include="scripts\jquery-ui-1.8.17.js" />
+    <Content Include="scripts\jquery-ui-1.8.17.min.js" />
+    <Content Include="scripts\jquery.bubblepopup.v2.3.1.min.js" />
+    <Content Include="scripts\jquery.pwdMeter.js" />
+    <Content Include="scripts\jquery.pwdMeter.min.js" />
+    <Content Include="scripts\jquery.simplemodal-1.4.1.js" />
+    <Content Include="scripts\jquery.simplemodal.1.4.1.min.js" />
+    <Content Include="scripts\jquery.tinywatermark-3.1.0.js" />
+    <Content Include="scripts\jquery.tinywatermark-3.1.0.min.js" />
+    <Content Include="scripts\jquery.unobtrusive-app.js" />
+    <Content Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="scripts\modernizr-2.0.6-development-only.js" />
+    <Content Include="scripts\test.html" />
+    <Content Include="scripts\ucosmic.js" />
+    <Content Include="Areas\InstitutionalAgreements\Views\PublicSearch\_no-context.cshtml" />
+    <Content Include="Areas\Common\Views\Features\february-2012-preview-2.cshtml" />
+    <None Include="startup\sql\DevelopmentData.sql" />
+    <None Include="startup\sql\ElmahSqlSetup.sql" />
+    <None Include="startup\sql\PlacesData.sql" />
+    <None Include="startup\sql\PlaceNamesDataA.sql" />
+    <None Include="startup\sql\PlacesGeoAltNamesDataA.sql" />
+    <None Include="startup\sql\LanguagesData.sql" />
+    <None Include="startup\sql\old\PlaceNamesDataB.sql" />
+    <None Include="startup\sql\old\PlaceNamesDataC.sql" />
+    <None Include="startup\sql\old\PlaceNamesDataD.sql" />
+    <None Include="startup\sql\old\PlaceNamesDataE.sql" />
+    <None Include="startup\sql\old\PlaceNamesDataF.sql" />
+    <None Include="startup\sql\old\PlacesGeoAltNamesDataB.sql" />
+    <None Include="startup\sql\old\PlacesGeoAltNamesDataC.sql" />
+    <None Include="startup\sql\old\PlacesGeoAltNamesDataD.sql" />
+    <None Include="startup\sql\old\PlacesGeoAltNamesDataE.sql" />
+    <None Include="startup\sql\old\PlacesGeoAltNamesDataF.sql" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\MicrosoftAjax.js" />
+    <Content Include="scripts\MicrosoftAjax.debug.js" />
+    <Content Include="scripts\MicrosoftMvcAjax.js" />
+    <Content Include="scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="scripts\MicrosoftMvcValidation.js" />
+    <Content Include="scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+      <TransformOnBuild>true</TransformOnBuild>
+    </Content>
+    <Content Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\mail\" />
+    <Folder Include="Areas\Common\Views\Shared\" />
+    <Folder Include="Areas\RecruitmentAgencies\Controllers\" />
+    <Folder Include="Areas\RecruitmentAgencies\Models\" />
+    <Folder Include="Areas\RecruitmentAgencies\Views\Shared\" />
+    <Folder Include="content\mail\" />
+    <Folder Include="content\themes\api\consortium\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\Week.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\Search.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\PhoneNumber.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\Month.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\DateTime-Local.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\Color.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Common\Views\Errors\bad-request.cshtml" />
+    <Content Include="Areas\Common\Views\Errors\file-upload-too-large.cshtml" />
+    <Content Include="Areas\Common\Views\Errors\not-authorized.cshtml" />
+    <Content Include="Areas\Common\Views\Errors\not-found.cshtml" />
+    <Content Include="Areas\Common\Views\Features\december-2011-preview-1.cshtml" />
+    <Content Include="Areas\Common\Views\Features\december-2011-preview-2.cshtml" />
+    <Content Include="Areas\Common\Views\Features\preview-1.cshtml" />
+    <Content Include="Areas\Common\Views\Features\preview-2.cshtml" />
+    <Content Include="Areas\Common\Views\Features\preview-3.cshtml" />
+    <Content Include="Areas\Common\Views\Features\preview-4.cshtml" />
+    <Content Include="Areas\Common\Views\Features\releases-css.cshtml" />
+    <Content Include="Areas\Common\Views\Health\run-db-seeder.cshtml" />
+    <Content Include="Areas\Common\Views\Health\run-establishment-hierarchy.cshtml" />
+    <Content Include="Areas\Common\Views\Health\run-establishment-import.cshtml" />
+    <Content Include="Areas\Common\Views\Health\run-imager.cshtml" />
+    <Content Include="Areas\Common\Views\Health\run-institutional-agreement-hierarchy.cshtml" />
+    <Content Include="Areas\Common\Views\Health\sample-cached-page.cshtml" />
+    <Content Include="Areas\Common\Views\Navigation\consortium-footer.cshtml" />
+    <Content Include="Areas\Common\Views\Features\releases-nav.cshtml" />
+    <Content Include="Areas\Common\Views\Navigation\horizontal-tabs.cshtml" />
+    <Content Include="Areas\Common\Views\Navigation\not-implemented-dialog.cshtml" />
+    <Content Include="Areas\Common\Views\Navigation\top-tabs.cshtml" />
+    <Content Include="Areas\Common\Views\Skins\apply.cshtml" />
+    <Content Include="Areas\Common\Views\Skins\logo.cshtml" />
+    <Content Include="Areas\Common\Views\Skins\sample-right-column-a.cshtml" />
+    <Content Include="Areas\Common\Views\Skins\sample-nav.cshtml" />
+    <Content Include="Areas\Common\Views\Skins\sample.cshtml" />
+    <Content Include="Areas\Common\Views\Web.config" />
+    <Content Include="Areas\Common\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Establishments\Views\ManagementForms\add.cshtml" />
+    <Content Include="Areas\Establishments\Views\ManagementForms\browse.cshtml" />
+    <Content Include="Areas\Establishments\Views\ManagementForms\edit.cshtml" />
+    <Content Include="Areas\Establishments\Views\ManagementForms\EditorTemplates\EstablishmentForm.cshtml" />
+    <Content Include="Areas\Establishments\Views\ManagementForms\EditorTemplates\EstablishmentNameForm.cshtml" />
+    <Content Include="Areas\Establishments\Views\Shared\EditorTemplates\EstablishmentPlaceForm.cshtml" />
+    <Content Include="Areas\Establishments\Views\Shared\EditorTemplates\EstablishmentPlacesForm.cshtml" />
+    <Content Include="Areas\Establishments\Views\ManagementForms\location-map-help.cshtml" />
+    <Content Include="Areas\Establishments\Views\SupplementalForms\locate.cshtml" />
+    <Content Include="Areas\Establishments\Views\Web.config" />
+    <Content Include="Areas\Establishments\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Identity\Views\SignIn\nav.cshtml" />
+    <Content Include="Areas\Identity\Views\SignIn\sign-in-as.cshtml" />
+    <Content Include="Areas\Identity\Views\SignIn\sign-in.cshtml" />
+    <Content Include="Areas\Identity\Views\SignIn\sign-on-status.cshtml" />
+    <Content Include="Areas\Identity\Views\SignIn\sign-out.cshtml" />
+    <Content Include="Areas\Identity\Views\Roles\browse.cshtml" />
+    <Content Include="Areas\Identity\Views\Roles\form.cshtml" />
+    <Content Include="Areas\Identity\Views\Roles\EditorTemplates\RoleForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Roles\EditorTemplates\RoleGrantForm.cshtml" />
+    <Content Include="Areas\Identity\Views\EmailConfirmation\confirm-password-reset.cshtml" />
+    <Content Include="Areas\Identity\Views\EmailConfirmation\EditorTemplates\ConfirmEmailForgotPasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Views\EmailConfirmation\EditorTemplates\ConfirmEmailForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Password\change-password.cshtml" />
+    <Content Include="Areas\Identity\Views\Password\old-create-password-expired.cshtml" />
+    <Content Include="Areas\Identity\Views\Password\old-create-password.cshtml" />
+    <Content Include="Areas\Identity\Views\Password\EditorTemplates\ChangePasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Password\EditorTemplates\CreatePasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Password\EditorTemplates\ForgotPasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Password\EditorTemplates\ResetPasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\StrengthMeteredPassword.cshtml" />
+    <Content Include="Areas\Identity\Views\Password\forgot-password.cshtml" />
+    <Content Include="Areas\Identity\Views\Password\reset-password-expired.cshtml" />
+    <Content Include="Areas\Identity\Views\Password\reset-password.cshtml" />
+    <Content Include="Areas\Identity\Views\Saml2\Artifact.cshtml" />
+    <Content Include="Areas\Identity\Views\Saml2\ComponentSpaceSignOn.cshtml" />
+    <Content Include="Areas\Identity\Views\Saml2\Index.cshtml" />
+    <Content Include="Areas\Identity\Views\Saml2\Metadata.cshtml" />
+    <Content Include="Areas\Identity\Views\Saml2\Post.cshtml" />
+    <Content Include="Areas\Identity\Views\Saml2\Redirect.cshtml" />
+    <Content Include="Areas\Identity\Views\Saml2\SignOffSuccess.cshtml" />
+    <Content Include="Areas\Identity\Views\Saml2\SignOnSuccess.cshtml" />
+    <Content Include="Areas\Identity\Views\Self\change-email-spelling-modal.cshtml" />
+    <Content Include="Areas\Identity\Views\Self\change-email-spelling.cshtml" />
+    <Content Include="Areas\Identity\Views\Self\DisplayTemplates\AffiliationInfo.cshtml" />
+    <Content Include="Areas\Identity\Views\Self\DisplayTemplates\EmailInfo.cshtml" />
+    <Content Include="Areas\Identity\Views\Self\edit-affiliation.cshtml" />
+    <Content Include="Areas\Identity\Views\Self\EditorTemplates\AffiliationForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Self\EditorTemplates\ChangeEmailSpellingForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Self\EditorTemplates\PersonForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Self\me.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignInForm.cshtml" />
+    <Content Include="Areas\Identity\Views\SignUp\confirm-denied.cshtml" />
+    <Content Include="Areas\Identity\Views\SignUp\confirm-email.cshtml" />
+    <Content Include="Areas\Identity\Views\SignUp\create-denied.cshtml" />
+    <Content Include="Areas\Identity\Views\SignUp\create-password.cshtml" />
+    <Content Include="Areas\Identity\Views\SignUp\EditorTemplates\ConfirmEmailForm.cshtml" />
+    <Content Include="Areas\Identity\Views\SignUp\EditorTemplates\CreatePasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Views\SignUp\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Areas\Identity\Views\SignUp\EditorTemplates\SendEmailForm.cshtml" />
+    <Content Include="Areas\Identity\Views\SignUp\send-email.cshtml" />
+    <Content Include="Areas\Identity\Views\SignUp\sign-in.cshtml" />
+    <Content Include="Areas\Identity\Views\Web.config" />
+    <Content Include="Areas\Identity\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ConfigurationForms\add.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ConfigurationForms\edit.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ConfigurationForms\EditorTemplates\InstitutionalAgreementConfigurationForm.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ConfigurationForms\EditorTemplates\InstitutionalAgreementContactTypeValueForm.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ConfigurationForms\EditorTemplates\InstitutionalAgreementStatusValueForm.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ConfigurationForms\EditorTemplates\InstitutionalAgreementTypeValueForm.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ManagementForms\add-contact.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ManagementForms\post.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ManagementForms\browse.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ManagementForms\edit.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ManagementForms\EditorTemplates\InstitutionalAgreementContactForm.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ManagementForms\EditorTemplates\InstitutionalAgreementFileForm.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ManagementForms\EditorTemplates\InstitutionalAgreementForm.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ManagementForms\EditorTemplates\InstitutionalAgreementParticipantForm.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ManagementForms\expires-on-help.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ManagementForms\form-custom-css.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ManagementForms\_browse-by-map.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\ManagementForms\_browse.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\PublicSearch\index.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\Shared\EditorTemplates\ContactTypeComboBox.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\Shared\EditorTemplates\StatusComboBox.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\Shared\EditorTemplates\TypeComboBox.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\Web.config" />
+    <Content Include="Areas\InstitutionalAgreements\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\RecruitmentAgencies\Views\Web.config" />
+    <Content Include="Areas\RecruitmentAgencies\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Common\Views\Qa\mail-files-names.cshtml" />
+    <Content Include="Areas\Establishments\Views\ManagementForms\form.cshtml" />
+    <Content Include="Areas\Common\Views\Features\releases.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\PublicSearch\info.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\PublicSearch\no-context.cshtml" />
+    <Content Include="Areas\Common\Views\Features\february-2012-preview-1.cshtml" />
+    <Content Include="Areas\InstitutionalAgreements\Views\PublicSearch\css.cshtml" />
+    <Content Include="Areas\Common\Views\Features\faculty-staff-module.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Common\Views\Features\requirements.cshtml" />
+    <Content Include="Areas\Common\Views\Features\gherkin.cshtml" />
+    <Content Include="Areas\Common\Views\Features\alumni-module.cshtml" />
+    <Content Include="Areas\Common\Views\Features\students-module.cshtml" />
+    <Content Include="Areas\Common\Views\Features\travel-module.cshtml" />
+    <Content Include="Areas\Common\Views\Features\representatives-module.cshtml" />
+    <Content Include="Areas\Common\Views\Features\corporate-engagement-module.cshtml" />
+    <Content Include="Areas\Common\Views\Features\global-press-module.cshtml" />
+    <Content Include="Areas\Common\Views\Features\requirements-css.cshtml" />
+    <Content Include="content\docs\travel-module-overview-2007.pdf" />
+    <None Include="content\kml\establishment-import.kml" />
+    <None Include="content\kml\establishment-import.tsv" />
+    <None Include="elmah.axd" />
+    <None Include="startup\disableTimeout.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="startup\installMvc3.cmd" />
+    <None Include="T4MVC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.cs</LastGenOutput>
+    </None>
+    <Content Include="Views\Shared\feedback-message.cshtml" />
+    <Content Include="Views\Shared\google-analytics-script.cshtml" />
+    <Content Include="Views\Shared\google-maps-api-script.cshtml" />
+    <Content Include="Views\Shared\layout.cshtml" />
+    <Content Include="Views\Shared\password-meter.cshtml" />
+    <Content Include="Views\Shared\uservoice-link.cshtml" />
+    <Content Include="Views\Shared\uservoice-widget-script.cshtml" />
+    <Content Include="Views\Shared\return-url-cancel-link.cshtml" />
+    <Content Include="Views\Shared\form-submitted-spinner.cshtml" />
+    <Content Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </Content>
+    <None Include="T4MVC.tt.settings.t4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UCosmic.Api\UCosmic.Api.csproj">
+      <Project>{F35CDDB3-8277-48E1-9350-E947B41593FC}</Project>
+      <Name>UCosmic.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UCosmic.Domain\UCosmic.Domain.csproj">
+      <Project>{77D96E4B-A424-4F8C-B773-8D1528EE99A0}</Project>
+      <Name>UCosmic.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UCosmic.Impl\UCosmic.Impl.csproj">
+      <Project>{1CF30064-FA30-4231-B2F9-3CD513B29E67}</Project>
+      <Name>UCosmic.Impl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>36093</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1976/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+</Project>

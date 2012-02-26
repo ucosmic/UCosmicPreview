@@ -1,0 +1,221 @@
+﻿@using UCosmic
+@model UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch.AgreementInfo
+@{
+    var title = string.Format("{0}: ", Model.Type);
+    title = Model.Owners.Aggregate(title, (current, owner) => string.Format("{0} {1}, ", current, owner.OfficialName));
+    title = Model.Partners.Aggregate(title, (current, partner) => string.Format("{0} {1}, ", current, partner.TranslatedName));
+    ViewBag.Title = title.Substring(0, title.Length - 2);
+    Layout = "~/Views/Shared/layout.cshtml";
+    Layout = (ViewBag.NullLayout == null) ? Layout : null;
+    ViewBag.GoogleMapsApiScript = new object();
+}
+@section Styles
+{
+    @Html.Partial(MVC.InstitutionalAgreements.PublicSearch.Views.css)
+}
+@section HeadCenter
+{
+    <h1>
+        Institutional agreement details
+    </h1>
+}
+<div id="institutional_agreement_displayer" class="wrap-960">
+    <div class="map-right">
+        @if (Model.Partners.Length > 0)
+        {
+            <div class="push-down">
+                @foreach (var partner in Model.Partners)
+                {
+                    <div>
+                        @foreach (var place in partner.Location.DistinctPlaces)
+                        {
+                            if (!place.IsContinent)
+                            {
+                            <span style="font-size: 9px;">&gt;&gt;</span>
+                            }
+                            <span>@place.OfficialName</span>
+                        }
+                    </div>
+                }
+            </div>
+                var zoomLevel = (Model.Partners.Length == 1) ? Model.Partners[0].Location.GoogleMapZoomLevel.ToInvariantString() : string.Empty;
+                var center = (Model.Partners.Length == 1) ? string.Format("{0},{1}", Model.Partners[0].Location.CenterLatitude, @Model.Partners[0].Location.CenterLongitude) : string.Empty;
+            <div class="u-map-google" data-ucosmic-map-zoom="@zoomLevel" data-ucosmic-map-zoom-scroll-wheel="false"
+                 data-ucosmic-map-center="@center"
+                 data-ucosmic-map-bounds-north-east="@Model.MapBoundingBox.Northeast.Latitude,@Model.MapBoundingBox.Northeast.Longitude"
+                 data-ucosmic-map-bounds-south-west="@Model.MapBoundingBox.Southwest.Latitude,@Model.MapBoundingBox.Southwest.Longitude"
+                 data-ucosmic-map-bounds-fit="if-no-zoom"
+                >
+                <div class="u-map-canvas">
+                </div>
+                <div class="u-map-markers no-display">
+                    @foreach (var partner in Model.Partners)
+                    {
+                        <div data-ucosmic-map="marker" 
+                             data-ucosmic-map-center="@partner.Location.CenterLatitude,@partner.Location.CenterLongitude" 
+                             data-ucosmic-map-title="@partner.TranslatedName">
+                        </div>
+                    }
+                </div>
+            </div>
+                    if (User.IsInRole(RoleName.EstablishmentLocationAgent))
+                    {
+            <div >
+                @foreach (var partner in Model.Partners)
+                {
+                    <br />
+                    <a href="@Url.Action(MVC.Establishments.SupplementalForms.Locate(partner.EntityId, Request.RawUrl))">@partner.TranslatedName
+                        location</a>
+                }
+            </div>
+                    }
+        }
+    </div>
+    <h2>@Html.DisplayFor(m => m.Type)</h2>
+    @foreach (var partner in Model.Partners)
+    {
+        <h3>@Html.DisplayFor(m => partner.TranslatedName)</h3>
+    }
+    @foreach (var owner in Model.Owners)
+    {
+        <h3>@Html.DisplayFor(m => owner.OfficialName)</h3>
+    }
+    <div class="agreement-dates">
+        <span class="bold">@Html.DisplayFor(m => m.StartsOn)</span>
+        @if (Model.IsAffiliate)
+        {
+            <span>-</span>
+            <span class="bold">
+                @Html.DisplayFor(m => m.ExpiresOn)
+            </span>
+            if (Model.IsExpirationEstimated)
+            {
+            <span>(expiration date is estimated)</span>
+            }
+        }
+    </div>
+    @if (Model.IsAffiliate)
+    {
+        <div class="agreement-auto-renew">
+            @if (!Model.IsAutoRenew.HasValue)
+            {
+                <span>Auto renew is unknown or open ended.</span>
+            }
+            else if (Model.IsAutoRenew.Value)
+            {
+                <span>This agreement is auto-renewable.</span>
+            }
+            else
+            {
+                <span>This agreement is not auto-renewable.</span>
+            }
+            @if (Model.IsManager)
+            {
+                <span class="agreement-status">Status: is <span class="bold">@Model.Status</span>
+                </span>
+            }
+        </div>
+    }
+    @if (Model.UmbrellaEntityId.HasValue)
+    {
+        <div class="agreement-umbrella">
+            Falls under an <a href="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.Info(Model.UmbrellaEntityId.Value))">
+                Umbrella @Model.UmbrellaType</a>
+        </div>
+    }
+    @if (!string.IsNullOrWhiteSpace(Model.Description) && Model.IsAffiliate)
+    {
+        <div class="agreement-description">
+            @Model.Description
+        </div>
+    }
+    @if (Model.IsAffiliate)
+    {
+        <div class="agreement-contacts">
+            @foreach (var contact in Model.Contacts)
+            {
+                <div class="agreement-contact">
+                    <span class="bold">@contact.Type</span> <span>@contact.Person.DisplayName</span>
+                    @if (Model.IsManager && !string.IsNullOrWhiteSpace(contact.Person.DefaultEmail))
+                    {
+                        <a href="mailto:@contact.Person.DefaultEmail">@contact.Person.DefaultEmail</a>
+                    }
+                </div>
+            }
+        </div>
+        <div class="agreement-files">
+            <ul>
+                @foreach (var file in Model.Files)
+                {
+                    <li>
+                        <div>
+                            @if (file.Name.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <img src="@Url.Content(Links.content.icons.files.pdf_16_png)" alt="PDF icon"/>
+                            }
+                            else if (file.Name.EndsWith(".doc", StringComparison.OrdinalIgnoreCase) || file.Name.EndsWith(".docx", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <img src="@Url.Content(Links.content.icons.files.ms_word_16_png)" alt="Microsoft Word icon"/>
+                            }
+                            else if (file.Name.EndsWith(".xls", StringComparison.OrdinalIgnoreCase) || file.Name.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <img src="@Url.Content(Links.content.icons.files.ms_excel_16_png)" alt="Microsoft Excel icon"/>
+                            }
+                            else if (file.Name.EndsWith(".ppt", StringComparison.OrdinalIgnoreCase) || file.Name.EndsWith(".pptx", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <img src="@Url.Content(Links.content.icons.files.ms_pwoerpoint_16_png)" alt="Microsoft PowerPoint icon"/>
+                            }
+                            else if (file.Name.EndsWith(".odt", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <img src="@Url.Content(Links.content.icons.files.openoffice_type_16_png)" alt="OpenOffice Type icon"/>
+                            }
+                            else if (file.Name.EndsWith(".ods", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <img src="@Url.Content(Links.content.icons.files.openoffice_spreadsheet_16_png)" alt="OpenOffice Spreadshhet icon"/>
+                            }
+                            else
+                            {
+                                <img src="@Url.Content(Links.content.icons.files.unknown_16_png)" alt="file icon"/>
+                            }
+                            @if (file.Name.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <a href="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.DisplayFile(file.EntityId, file.Name))" target="_blank">
+                                    <span class="bold">@file.Name</span></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.DownloadFile(file.EntityId, file.Name))" target="_blank">
+                                    <span class="bold">@file.Name</span></a>
+                            }
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+    @if (!Request.IsAuthenticated || !Model.IsAffiliate)
+    {
+        <div class="agreement-public">
+            If you have an email address at one of the following domains, please <a href="@Url.Action(MVC.Identity.SignIn.SignIn(Request.RawUrl))">
+                sign in to view additional information about this agreement</a>.
+            <ul>
+                @foreach (var emailDomain in Model.DistinctEmailDomains)
+                {
+                    <li><span>username</span><span class="bold">@emailDomain</span> </li>
+                }
+            </ul>
+        </div>
+    }
+    <div class="agreement-management">
+        @if (Model.IsManager)
+        {
+            <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Post(Model.EntityId))" class="button-sized">
+                Edit this agreement</a>
+        }
+        @if (Request.IsAjaxRequest())
+        {
+            <a href="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.Info(Model.EntityId))" class="button-sized" target="_blank">
+                View in separate window</a>
+        }
+    </div>
+</div>

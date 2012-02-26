@@ -1,0 +1,91 @@
+﻿<p class="nt">
+    Deployed 12/16/2011
+</p>
+<p>
+    What can I do in the December 2011 Preview that I couldn't do in Preview 4?
+</p>
+<hr />
+<section id="feature1">
+    <h3>
+        Find more partner institutions when adding institutional agreements
+    </h3>
+    <p>
+        <strong>In order to</strong> catalog who my institutional agreement partners are,
+        <br />
+        <strong>As a</strong> manager of institutional agreement data,
+        <br />
+        <strong>I want to</strong> associate my partner institutions with my institutional
+        agreements.
+    </p>
+    <p>
+        Until now, UCosmic has only had a database of about 150 institutions that were initially
+        imported for testing purposes. This has made it difficult to add real agreements,
+        unless the partner was one of these 150.
+    </p>
+    <p>
+        As of this deployment, UCosmic's institutional database is more than doubling to
+        over 350 institutions. Along with the data, we are also deploying some internal
+        code that will allow us to continue importing new institution data on a weekly basis.
+        The College Board has shared its database of US institutions with us, and combined
+        with UC's database of non-US institutions, we now have a fairly exhaustive list
+        to incorporate.
+    </p>
+    <p>
+        One of our developers is dedicated to researching the raw data and creating import
+        scripts. These scripts will then be used to add new institutions to UCosmic each
+        week. Our goal is to import 200 to 300 new institutions every Friday, now through
+        March 2012.
+    </p>
+    <h4>
+        Why don't you import all of the institutions from the raw data right now?
+    </h4>
+    <p>
+        In order to plot institutional agreements on an interactive web map, UCosmic needs
+        to know the latitude and longitude of each partner institution. Unfortunately, this
+        is not in either UC's or the College Board's raw data. If the map feature was to
+        be deployed without any geospatial information in the database, it would appear
+        anemic and non-functional. UCosmic would simply not know where to put place markers
+        on the map.
+    </p>
+    <p>
+        Going through the raw data to add geospatial information also allows us to improve
+        the data. During the Spring 2011 stakeholder meetings, it was pointed out that UC's
+        prototype had a pretty big flaw: it only recorded a single name for an institution,
+        and it was usually an English translation. Part of our research process involves
+        making sure that UCosmic knows the native name of an institution, as well as an
+        English translation, when they are different.
+    </p>
+    <h4>
+        How are you prioritizing which institutions are imported before others? What if
+        I still can't find my agreement partners?
+    </h4>
+    <p>
+        The University of Minnesota has provided us with a spreadsheet of their current
+        institutional agreement partners. These, along with a spreadsheet of UC's partners,
+        was used to determine priority for the first import. After that, we are simply going
+        through the raw data alphabetically by institution name.
+    </p>
+    <p>
+        If you would like to provide us with a list of your agreement partners, we will
+        be happy to prioritize them in the raw data. If you are ever having trouble finding
+        a partner when adding an agreement, please please please <a href="mailto:data@ucosmic.com?Subject=Missing Agreement Participant(s)">
+            let us know</a>.
+    </p>
+    <h4>
+        <strong>Is this the only new thing with this deployment?</strong>
+    </h4>
+    <p>
+        We are still working on the agreement maps feature, and hope to have it deployed
+        by the end of the year. However, since the institutional data import code is ready
+        now, we saw no reason to delay deploying it. We changed the name of this deployment
+        from Preview 5 to the December 2011 Preview 1, because we hope there will be a December
+        2011 Preview 2 before the new year.
+    </p>
+    <p>
+        If you haven't already, please start adding institutional agreements. This way,
+        when the agreement maps feature is deployed, you will be able to use it and provide
+        feedback without having to wait for your agreement partners to be researched and
+        imported.
+    </p>
+    <hr />
+</section>

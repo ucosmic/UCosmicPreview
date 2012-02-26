@@ -1,0 +1,151 @@
+﻿/* hyperlinks */
+.ucosmic a:link {
+    color: #7a0019;
+}
+.ucosmic a:visited {
+    color: #7a0019;
+}
+.ucosmic a:hover {
+    text-decoration: none;
+}
+.ucosmic a:active {
+    color: #7a0019;
+}
+.ucosmic a.visitable:visited {
+    color: #7a0019;
+}
+.ucosmic a.visitable:active {
+    color: #7a0019;
+}
+
+
+
+/* jquery ui-dialog re-theme */
+.ucosmic.modal.ui-dialog .ui-dialog-titlebar {
+    background-color: #7a0019;
+    color: #ffcc33;
+}
+
+
+
+/* text boxes */
+.ucosmic > .head > .center .search.row .input.col .text-box.input {
+    border-color: #fff;
+    background-color: #fff;
+}
+.ucosmic > .head > .center .search.row .input.col .combobox a.down-arrow, .ucosmic > .head > .center .search.row .input.col .emptybox a.empty-icon {
+    background-color: #fff;
+    border-color: #fff;
+}
+.ucosmic > .head > .center .search.row .input.col .button-sized.combobox a.down-arrow:hover, .ucosmic > .head > .center .search.row .input.col .button-sized .combobox a.down-arrow:hover {
+    background-color: #fff;
+}
+.ucosmic .input-validation-error .text-box.input {
+    background: #7a0019;
+}
+/* validation */
+.ucosmic input[type=text].input-validation-error, .ucosmic input[type=password].input-validation-error, .ucosmic input[type=email].input-validation-error, .ucosmic input[type=date].input-validation-error, .ucosmic textarea.input-validation-error {
+    color: #ffcc33;
+}
+.ucosmic .input-validation-error input[type=text].watermark {
+    color: #ffcc33;
+}
+.ucosmic .input-validation-error input[type=text].focused.watermark {
+    color: #ddd;
+}
+.ucosmic .validation-summary-errors
+{
+    border-color: #7a0019;
+    background-color: #7a0019;
+}
+.ucosmic span.field-validation-error {
+    border: solid 1px #ffcc33;
+    color: #7a0019;
+}
+
+
+
+/* hat 33px tall */
+.ucosmic .top-tabs {
+    border-bottom-color: #fff;
+    background-color: #fff;
+}
+.ucosmic .top-tabs a:hover, .ucosmic .top-tabs a.open {
+    background-color: #7a0019;
+    color: #ffcc33;
+    border-color: #fff;
+    border-bottom-color: #7a0019;
+    padding: 2px 8px 0;
+}
+.ucosmic .top-tabs a.docked {
+    background-color: #7a0019;
+    color: #ffcc33;
+    border-color: #7a0019;
+    padding: 2px 8px 0;
+}
+.ucosmic .top-tabs a.open.has-sub {
+    color: #ffcc33;
+}
+.ucosmic .top-tabs .sub-nav {
+    border-color: #ffcc33;
+    background-color: #7a0019;
+}
+.ucosmic .top-tabs .sub-nav a {
+    color: #ffcc33;
+    border-color: transparent;
+    border-left-color: #ffcc33;
+    padding: 1px 6px 1px 10px;
+}
+
+
+
+/* head 77px tall */
+.ucosmic > .head {
+    background-color: #7a0019;
+    border-bottom: 0;
+    height: 77px;
+}
+.ucosmic > .head a:link, .ucosmic > .head a:visited, .ucosmic > .head a:hover, .ucosmic > .head a:active {
+    color: #ffcc33;
+}
+.ucosmic > .head > .center > h1 {
+    color: #ffcc33;
+}
+.ucosmic > .head > .right .logo-box {
+    padding-top: 7.5px;
+}
+.ucosmic > .head > .center > .identity {
+    color: #ffcc33;
+}
+.ucosmic > .head ul.ui-autocomplete a:link, .ucosmic > .head ul.ui-autocomplete a:visited, .ucosmic > .head ul.ui-autocomplete a:hover, .ucosmic > .head ul.ui-autocomplete a:active {
+    color: #000;
+}
+
+
+
+/* layout skeleton */
+.ucosmic > .torso {
+    top: 111px;
+}
+.ucosmic > .torso > .center {
+    border-top: 0;
+    border-bottom: 0;
+}
+.ucosmic > .torso > .right > div {
+    border-bottom: 0;
+}
+
+
+
+/* footer bar 33px tall */
+.ucosmic > .feet > .footer {
+    border-top: solid 1px #ffcc33;
+    background: #ffcc33;
+}
+.ucosmic > .feet > .footer a {
+    color: #7a0019;
+}
+.ucosmic > .feet > .footer a.button-sized {
+    border-top: 0;
+    border-bottom: 0;
+}

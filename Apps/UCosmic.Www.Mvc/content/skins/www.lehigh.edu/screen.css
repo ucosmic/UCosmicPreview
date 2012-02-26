@@ -1,0 +1,87 @@
+﻿/* hyperlinks */
+.ucosmic a:link {
+    color: #4E75BB;
+}
+.ucosmic a:visited {
+    color: #4E75BB;
+}
+.ucosmic a:hover {
+    color: #355080;
+    text-decoration: none;
+}
+.ucosmic a:active {
+    color: #355080;
+}
+.ucosmic a.visitable:visited {
+    color: #4E75BB;
+}
+.ucosmic a.visitable:active {
+    color: #355080;
+}
+
+
+
+/* jquery ui-dialog re-theme */
+.ucosmic.modal.ui-dialog .ui-dialog-titlebar {
+    background-color: #502d0e;
+    color: #d6d3bd;
+}
+
+
+
+/* hat 33px tall */
+.ucosmic .top-tabs {
+    border-bottom-color: #502d0e;
+    background-color: #502d0e;
+}
+.ucosmic .top-tabs a {
+    color: #d6d3bd;
+}
+.ucosmic .top-tabs a:hover, .ucosmic .top-tabs a.open {
+    color: #502d0e;
+    border-color: #502d0e;
+    border-bottom-color: #fff;
+    padding: 2px 8px 0;
+}
+.ucosmic .top-tabs a.docked {
+    color: #502d0e;
+    border-color: #fff;
+    padding: 2px 8px 0;
+}
+.ucosmic .top-tabs a.open.has-sub {
+    color: #502d0e;
+}
+.ucosmic .top-tabs .sub-nav {
+    border-color: #502d0e;
+}
+.ucosmic .top-tabs .sub-nav a, .ucosmic .top-tabs .sub-nav a:hover {
+    color: #4E75BB;
+    border-color: transparent;
+    border-left-color: #d6d3bd;
+    padding: 1px 6px 1px 10px;
+}
+
+
+/* head 77px tall */
+.ucosmic > .head {
+    border-bottom-color: #502d0e;
+}
+.ucosmic > .head > .center > h1 {
+    color: #502d0e;
+}
+
+
+
+/* layout skeleton */
+
+
+
+/* footer bar 33px tall */
+.ucosmic > .feet > .footer {
+    background-color: #341c07;
+    border-top: solid 1px #341c07;
+}
+.ucosmic > .feet > .footer a {
+    color: #d6d3bd;
+    border-top: 0;
+}

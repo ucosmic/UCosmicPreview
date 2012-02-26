@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Uploaded File Too Large";
+    Layout = MVC.Shared.Views.layout;
+}
+<div class="wrap-960">
+    <p>
+        The size of the file you tried to upload exceeded the maximum file size allowed
+        on this server.
+    </p>
+    @if (ViewBag.Path != null)
+    {
+        <p>
+            You can <a href="@ViewBag.Path">click here to try again with a smaller file</a>.
+        </p>
+    }
+</div>

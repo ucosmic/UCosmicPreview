@@ -1,0 +1,933 @@
+﻿html {
+    height: 100%;
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 0.625em;
+}
+body {
+    height: 100%;
+    margin: 0;
+    font-size: 1.3em;
+}
+.ucosmic {
+    color: #333;
+}
+.single-line {
+}
+
+
+
+/* headings */
+.ucosmic h1, .ucosmic h2, .ucosmic h3, .ucosmic h4, .ucosmic h5, .ucosmic h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+.ucosmic h1 {
+    font-size: 2.077em;
+}
+.ucosmic h2 {
+    font-size: 1.923em;
+}
+.ucosmic h3 {
+    font-size: 1.769em;
+}
+.ucosmic h4 {
+    font-size: 1.615em;
+}
+.ucosmic h5 {
+    font-size: 1.461em;
+}
+.ucosmic h6 {
+    font-size: 1.307em;
+}
+
+
+
+/* paragraphs & lists */
+.ucosmic p, .ucosmic div.p, .ucosmic span.p, .ucosmic ol.p, .ucosmic ul.p {
+    font-size: 1.2em;
+    margin: 1em 0;
+    line-height: 1.4em;
+}
+.ucosmic ul.flush-left, .ucosmic ol.flush-left {
+    padding: 0 0 0 25px;
+}
+.ucosmic ul.br li, .ucosmic ol.br li {
+    margin-bottom: 1em;
+}
+.ucosmic .font-11 {
+    font-size: 1.1em;
+}
+.ucosmic .ok {
+    color: #090;
+}
+
+
+/* hyperlinks */
+.ucosmic a, .ucosmic a {
+    outline: none;
+}
+.ucosmic a:link {
+    color: #009ee0;
+}
+.ucosmic a:visited {
+    color: #009ee0;
+}
+.ucosmic a:hover {
+    text-decoration: none;
+}
+.ucosmic a:active {
+    color: #090;
+}
+.ucosmic a.visitable:visited {
+    color: #909;
+}
+.ucosmic a.visitable:active {
+    color: #090;
+}
+.ucosmic a.hover-underlines:link {
+    text-decoration: none;
+}
+.ucosmic a.hover-underlines:visited {
+    text-decoration: none;
+}
+.ucosmic a.hover-underlines:hover {
+    text-decoration: underline;
+}
+.ucosmic a.no-underline:link, .ucosmic a.no-underline:visited, .ucosmic a.no-underline:hover, .ucosmic a.no-underline:active {
+    text-decoration: none !important;
+}
+a > img {
+    text-decoration: none;
+    border: 0;
+}
+img {
+    vertical-align: middle;
+}
+
+
+
+/* jquery ui-dialog re-theme */
+.ui-widget-overlay {
+    background: #000;
+    opacity: .5;
+    cursor: wait;
+}
+.ucosmic.ui-widget {
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 1em;
+}
+.ucosmic.modal.ui-dialog {
+    margin: 0 20px 0 8px;
+    padding: 0;
+    border: 0;
+    max-width: 1000px;
+    min-width: 600px;
+    overflow: visible;
+    border-radius: 10px 10px 0 10px;
+    -moz-border-radius: 10px 10px 0 10px;
+    color: #333;
+}
+.ucosmic.ui-dialog.w620 {
+    max-width: 620px;
+    min-width: 620px;
+    width: 620px;
+}
+.ucosmic.modal.ui-dialog .ui-dialog-titlebar {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom: solid 1px #ccc;
+    border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    background: #004c93;
+    color: #fff;
+    cursor: default;
+}
+.ucosmic.modal.ui-dialog .ui-dialog-titlebar .ui-dialog-title {
+    margin: 0;
+    padding: 8px 10px 5px;
+    font-size: 1.461em;
+    font-weight: normal;
+    display: inline-block;
+    vertical-align: top;
+}
+.ucosmic.modal.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close, .ucosmic.modal.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close.ui-state-hover {
+    margin: 0 -24px 0 0;
+    padding: 0;
+    border: 0;
+    position: relative;
+    float: right;
+    top: auto;
+    right: auto;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+}
+.ucosmic.modal.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-icon {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: url('../icons/cancels/cancel-hot-24.png') 0 0;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: -11px;
+    left: -13px;
+}
+.ucosmic.modal.ui-dialog .ui-dialog-content {
+    margin: 0;
+    padding: 0;
+    max-height: 480px;
+}
+
+
+
+/* buttons */
+.ucosmic input[type=submit], .ucosmic input[type=reset], .ucosmic input[type=button], .ucosmic button[type=submit], .ucosmic button[type=reset], .ucosmic button[type=button] {
+    padding: 4px 10px 4px;
+    margin: 0;
+    border: solid 1px #ccc;
+    font-size: 16px;
+    line-height: 20px; /* ff line-height cannot be changed */
+    background: green;
+    background: url('default/button-gradient.gif') center center repeat-x;
+    cursor: pointer;
+    display: inline-block;
+    height: 33px;
+    outline: none;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.ucosmic input[type=submit]:hover, .ucosmic input[type=reset]:hover, .ucosmic input[type=button]:hover, .ucosmic button[type=submit]:hover, .ucosmic button[type=reset]:hover, .ucosmic button[type=button]:hover {
+    background-image: url('default/button-gradient-hover.gif');
+}
+.ucosmic input[type=submit]:active, .ucosmic input[type=reset]:active, .ucosmic input[type=button]:active, .ucosmic button[type=submit]:active, .ucosmic button[type=reset]:active, .ucosmic button[type=button]:active {
+    background-image: url('default/button-gradient-active.gif');
+}
+.ucosmic input[type=submit][disabled=disabled], .ucosmic input[type=reset][disabled=disabled], .ucosmic input[type=button][disabled=disabled], .ucosmic button[type=submit][disabled=disabled], .ucosmic button[type=reset][disabled=disabled], .ucosmic button[type=button][disabled=disabled] {
+    cursor: default;
+    color: #999;
+    background-image: url('default/button-gradient.gif');
+}
+.ucosmic a.button-sized {
+    display: inline-block;
+    vertical-align: top;
+    height: 31px;
+    line-height: 31px;
+    font-size: 1.3em;
+    border: solid 1px transparent;
+    padding: 0 10px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.ucosmic a.button-sized:hover {
+    background: transparent;
+    border-color: transparent;
+}
+
+
+
+/* text box inputs */
+.ucosmic input[type=text], .ucosmic input[type=password], .ucosmic input[type=email], .ucosmic input[type=date], .ucosmic textarea {
+    font-family: Arial, Verdana, sans-serif;
+    padding: 2px 0 2px;
+    margin: 0;
+    border: 0;
+    font-size: 16px;
+    width: 100%;
+    background: transparent;
+    outline: none;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+/* watermarking */
+.ucosmic .input span.watermark {
+    position: absolute;
+    font-size: 16px;
+    padding: 2px 0 0px 1px;
+    display: block;
+    line-height: 20px;
+    outline: none;
+    height: 20px;
+}
+.ucosmic .input span.watermark {
+    color: #777;
+}
+.ucosmic .input span.focused.watermark {
+    color: #aaa;
+}
+/* validation */
+.ucosmic input[type=text].input-validation-error, .ucosmic input[type=password].input-validation-error, .ucosmic input[type=email].input-validation-error, .ucosmic input[type=date].input-validation-error, .ucosmic textarea.input-validation-error {
+    color: #fff;
+}
+.ucosmic .input-validation-error .input span.watermark {
+    color: #fff;
+}
+.ucosmic .input-validation-error .input span.focused.watermark {
+    color: #ddd;
+}
+
+/* standard text box wrappers */
+.ucosmic .text-box.input {
+    border: solid 1px;
+    border-color: #999 #ccc #ccc #999;
+    /* padding: 2px 0 3px 5px; */
+    padding: 0 0 0 5px;
+    background: transparent;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    height: 24px;
+}
+.ucosmic .bold.text-box.input {
+    padding: 3px 0 2px 5px;
+}
+.ucosmic .bold.text-box.input input {
+    font-weight: bold;
+}
+/* validation */
+.ucosmic .input-validation-error .text-box.input {
+    background: #c00;
+}
+
+/* button sized text box */
+.ucosmic .button-sized.text-box.input, .ucosmic .button-sized .text-box.input {
+    height: 31px;
+    padding: 0 0 0 6px;
+}
+.ucosmic .button-sized.text-box.input > input, .ucosmic .button-sized .text-box.input > input {
+    height: 25px;
+    font-size: 20px;
+    line-height: 25px;
+    padding: 3px 0 3px;
+}
+.ucosmic .button-sized.text-box.input > input, .ucosmic .button-sized .text-box.input > span.watermark {
+    height: 25px;
+    font-size: 20px;
+    line-height: 25px;
+    padding: 2px 0 0 1px;
+}
+
+/* standard combobox */
+.ucosmic .combobox, .ucosmic .emptybox {
+    position: relative;
+    height: 29px;
+}
+.ucosmic .combobox .text-box.input, .ucosmic .emptybox .text-box.input {
+    position: absolute;
+    left: 0;
+    right: 20px;
+    border-right-color: transparent;
+    /* border-right-width: 0; */
+    border-radius: 5px 0 0 5px;
+    -moz-border-radius: 5px 0 0 5px;
+}
+.ucosmic .combobox a.down-arrow {
+    position: absolute;
+    display: block;
+    right: 0;
+    height: 24px;
+    width: 19px;
+    border: solid 1px;
+    border-color: #999 #ccc #ccc transparent;
+    border-radius: 0 5px 5px 0;
+    -moz-border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    background: url('default/drop-arrow.png') 5px center no-repeat transparent;
+}
+.ucosmic .combobox a.down-arrow:hover {
+    background-color: #edf4fa;
+    border-left-color: #ccc;
+}
+.ucosmic .emptybox a.empty-icon {
+    position: absolute;
+    display: block;
+    right: 0;
+    height: 24px;
+    width: 19px;
+    border: solid 1px;
+    border-color: #999 #ccc #ccc transparent;
+    border-radius: 0 5px 5px 0;
+    -moz-border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    background: url('../icons/cancels/cancel-disabled-opaque-16.png') no-repeat transparent;
+}
+.ucosmic .emptybox a.down-arrow:hover {
+    background-image: url('../icons/cancels/cancel-disabled-hover-16.png');
+}
+.ucosmic .autocomplete-menu ul {
+    z-index: 200 !important;
+}
+
+/* button-sized combobox */
+.ucosmic .button-sized.combobox, .ucosmic .button-sized .combobox, .ucosmic.button-sized .emptybox {
+    height: 33px;
+}
+.ucosmic .button-sized.combobox .text-box.input, .ucosmic .button-sized .combobox .text-box.input {
+    right: 26px;
+}
+.ucosmic .button-sized .emptybox .text-box.input {
+    right: 30px;
+}
+.ucosmic .button-sized.combobox a.down-arrow, .ucosmic .button-sized .combobox a.down-arrow {
+    height: 31px;
+    width: 25px;
+    background-image: url('default/drop-arrow-button-sized.png');
+    background-position: 5px 0px;
+}
+.ucosmic .button-sized.combobox a.down-arrow:hover, .ucosmic .button-sized .combobox a.down-arrow:hover {
+    background-color: transparent;
+    border-left: 0;
+}
+.ucosmic .button-sized .emptybox a.empty-icon {
+    height: 31px;
+    width: 29px;
+    background-image: url('../icons/cancels/cancel-disabled-opaque-24.png');
+    background-position: 2px 4px;
+}
+.ucosmic .button-sized .emptybox a.empty-icon:hover {
+    background-image: url('../icons/cancels/cancel-disabled-hover-24.png');
+}
+
+/* other input elements */
+.ucosmic .input .check-box.input {
+    font-size: 1.1em;
+}
+.ucosmic .text-area.input {
+    border: solid 1px;
+    border-color: #999 #ccc #ccc #999;
+    padding: 2px 0 1px 5px;
+    background: transparent;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+
+/* generic pane rules */
+.ucosmic .row, .ucosmic .col, .ucosmic .stretch {
+    position: absolute; /* overflow: hidden; */
+}
+.ucosmic .row, .ucosmic .stretch {
+    left: 0;
+    right: 0;
+}
+.ucosmic .col, .ucosmic .stretch {
+    top: 0;
+    bottom: 0;
+}
+.ucosmic .flex > .left {
+    left: 0;
+}
+.ucosmic .flex > .right {
+    right: 0;
+}
+.ucosmic .scroll-x {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.ucosmic .scroll-y {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+/* hat 33px tall */
+.ucosmic > .hat {
+    top: 0;
+    height: 33px;
+}
+.ucosmic .top-tabs {
+    height: 33px;
+    border-bottom: solid 0px #ccc;
+    background: #004c93;
+}
+.ucosmic .top-tabs > .left {
+    margin: 2px 0 0 3px;
+}
+.ucosmic .top-tabs > .right {
+    margin: 2px 15px 0 0;
+}
+.ucosmic .top-tabs ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.ucosmic .top-tabs li {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    float: left;
+    line-height: 27px;
+    vertical-align: top;
+}
+.ucosmic .top-tabs a {
+    position: relative;
+    display: inline-block;
+    clear: left;
+    padding: 1px 8px 1px;
+    border: solid 1px transparent;
+    z-index: 1000;
+    border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    color: #fff;
+}
+.ucosmic .top-tabs a:hover, .ucosmic .top-tabs a.open, .ucosmic .top-tabs a.docked {
+    border-color: #ccc;
+    border-bottom: solid 2px #fff;
+    background: #fff;
+    color: #009ee0;
+}
+.ucosmic .top-tabs a.docked {
+    color: #555;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+.ucosmic .top-tabs a.open.has-sub {
+    color: #555;
+    font-weight: normal;
+    cursor: pointer;
+    text-decoration: none;
+}
+.ucosmic .top-tabs a.docked.has-sub {
+    font-weight: bold;
+    cursor: pointer;
+}
+.ucosmic .top-tabs .sub-nav {
+    position: absolute;
+    margin: 0;
+    padding: 3px;
+    border: solid 1px #ccc;
+    border-top: 0;
+    z-index: 999;
+    background: #fff;
+    border-radius: 0 0 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+    white-space: nowrap;
+}
+.ucosmic .top-tabs .sub-nav li {
+    float: none;
+}
+.ucosmic .top-tabs .right .sub-nav {
+    right: -10px;
+}
+.ucosmic .top-tabs .sub-nav a {
+    border-radius: 0;
+    -moz-border-radius: 0;
+    border-color: transparent;
+    border-left-color: #eee;
+    padding-left: 10px;
+    padding-right: 6px;
+    color: #009ee0;
+}
+.ucosmic .top-tabs .sub-nav a:hover {
+    border-color: transparent;
+    border-left-color: #eee;
+}
+.ucosmic .top-tabs .sub-nav li:first-child a {
+    padding-left: 8px;
+    border-color: transparent;
+}
+.ucosmic .top-tabs .sub-nav li:last-child a {
+    padding-right: 8px;
+}
+
+
+
+/* neck feedback message ribbon */
+.ucosmic > .neck > .feedback-position {
+    display: none;
+    position: relative;
+    top: 100px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    z-index: 900;
+    width: 100%;
+    text-align: center;
+}
+.ucosmic > .neck > .feedback-position > .feedback-box {
+    margin: -2px auto 0;
+    padding: 3px 8px 3px 5px;
+    border: solid 1px #ffc345;
+    text-align: left;
+    background: #fffd8b;
+    color: #555;
+    display: inline-block;
+    max-width: 550px;
+    vertical-align: top;
+}
+.ucosmic > .shadow {
+    position:absolute;
+    background: url('default/head-row-shadow.png') top left repeat-x transparent;
+    top:110px;
+    z-index:100;
+    width:100%;
+    opacity:.7;
+    height: 8px;
+}
+
+
+/* head 77px tall */
+.ucosmic > .head {
+    height: 76px;
+    top: 33px;
+    border-bottom: solid 1px #004C93;
+}
+.ucosmic > .head > .left {
+    width: 384px;
+    margin-left: -384px;
+}
+.ucosmic > .head > .center {
+    left: 0;
+    right: 384px;
+}
+.ucosmic > .head > .center > .identity {
+    position: absolute;
+    top: 0;
+    margin: 10px 0 0 20px;
+    font-size: 15px;
+}
+.ucosmic > .head > .center > h1 {
+    position: absolute;
+    bottom: 0;
+    margin: 0 0 10px 20px;
+    text-shadow: 0 0 1px #999;
+    color: #004c93;
+}
+.ucosmic > .head > .center .search.row {
+    min-width: 610px;
+    max-width: 800px;
+    margin-top: 33px;
+    top: 0;
+}
+.ucosmic > .head > .center .search.row .input.col {
+    left: 0;
+    right: 200px;
+    margin: 0 10px 0 20px;
+}
+.ucosmic > .head > .center .search.row .buttons.col {
+    width: 200px;
+    right: 0;
+}
+.ucosmic > .head > .right {
+    width: 384px;
+    right: 0;
+}
+.ucosmic > .head > .right .logo-box {
+    text-align: center;
+}
+
+
+
+/* layout skeleton */
+.ucosmic > .torso {
+    top: 110px;
+    bottom: 24px;
+}
+.ucosmic > .torso > .left, .ucosmic > .torso > .left > div {
+    /* width: 382px; */ /* margin-left: -384px; */
+    display: none;
+}
+.ucosmic > .torso > .center {
+    left: 0;
+    right: 0;
+    border-top: solid 1px transparent;
+}
+.ucosmic .body {
+    min-width: 960px;
+}
+.ucosmic > .torso > .right, .ucosmic > .torso > .right > div {
+    display: none;
+}
+.ucosmic > .torso > .right > div {
+    border: solid 1px #ccc;
+    border-right-color: transparent;
+    border-bottom: 0;
+}
+#ucosmic > div {
+    min-width: 980px;
+}
+.ucosmic .wrap-960 {
+    width: 940px;
+    margin: 2em 0 0 20px;
+    padding: 0;
+}
+.ucosmic .wrap-960.split-form, .ucosmic .wrap-960 .split-form {
+    position: relative;
+}
+.ucosmic .wrap-960.split-form > .left, .ucosmic .wrap-960 .split-form > .left {
+    width: 455px;
+    position: absolute;
+    left: 0;
+}
+.ucosmic .wrap-960.split-form > .right, .ucosmic .wrap-960 .split-form > .right {
+    position: absolute;
+    left: 485px;
+}
+
+
+/* footer bar 33px tall */
+.ucosmic > .feet {
+    bottom: 0;
+    height: 24px;
+}
+.ucosmic > .feet > .footer {
+    background: #838687;
+    border-top: solid 1px #838687;
+}
+.ucosmic > .feet > .footer a {
+    border-top: 0;
+    color: #fff;
+    font-size: 12px;
+    display: inline-block;
+    padding: 0 10px;
+    height: 23px;
+    line-height: 23px;
+}
+
+
+/* form layout */
+.ucosmic fieldset {
+    border: 1px solid #999;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.ucosmic legend {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+.ucosmic .field {
+    padding: 0 0 2em;
+}
+.ucosmic .field.no-bottom {
+    padding-bottom: 0;
+}
+.ucosmic .field > .label {
+    display: block;
+}
+.ucosmic .field > .label label {
+    font-weight: bold;
+    font-size: 1.3em;
+    display: block;
+    padding: 1px 3px;
+    color: #555;
+}
+.ucosmic .field > .label label:after {
+    content: ':';
+}
+.ucosmic .field > .label.focused label {
+    color: #000;
+}
+.ucosmic .field > .input {
+    width: 425px;
+}
+.ucosmic .field .messages .bottom.callout.border {
+    position: relative;
+    width: 0;
+    border-bottom: 0;
+    border-top: solid 6px transparent;
+    border-left: solid 6px transparent;
+    border-right: solid 6px transparent;
+    margin: -1px 0 -5px 8px;
+}
+.ucosmic .field .messages .bottom.callout.border > .bottom.callout.bg {
+    position: relative;
+    left: -5px;
+    top: -6px;
+    border-bottom: 0;
+    border-top: solid 5px transparent;
+    border-left: solid 5px transparent;
+    border-right: solid 5px transparent;
+}
+.ucosmic .field .messages .top.callout.border {
+    position: relative;
+    width: 0;
+    border-top: 0;
+    border-bottom: solid 6px transparent;
+    border-left: solid 6px transparent;
+    border-right: solid 6px transparent;
+    margin: -5px 0 0 8px;
+    top: 1px;
+}
+.ucosmic .field .messages .top.callout.border > .top.callout.bg {
+    position: relative;
+    left: -5px;
+    top: 6px;
+    border-top: 0;
+    border-bottom: solid 5px transparent;
+    border-left: solid 5px transparent;
+    border-right: solid 5px transparent;
+}
+.ucosmic .field .messages {
+    opacity: 0.8;
+}
+.ucosmic .field .messages.focused {
+    opacity: 1;
+}
+
+/* invalid form field */
+.ucosmic .field.input-validation-error .messages .bottom.callout.border {
+    border-top-color: #FFC345;
+}
+.ucosmic .field.input-validation-error .messages .bottom.callout.border > .bottom.callout.bg {
+    border-top-color: #FFFD8B;
+}
+.ucosmic .field.input-validation-error .messages .top.callout.border {
+    border-bottom-color: #FFC345;
+}
+.ucosmic .field.input-validation-error .messages .top.callout.border > .top.callout.bg {
+    border-bottom-color: #FFFD8B;
+}
+.ucosmic .messages span.field-validation-error {
+    display: inline-block;
+    padding: 2px 8px 2px 25px;
+    border: solid 1px #FFC345;
+    color: #c00;
+    font-weight: bold;
+    background: url('../icons/warning/warning-16.png') 6px 2px no-repeat #FFFD8B;
+}
+.ucosmic .validation-summary-errors {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2em;
+    border: solid 1px #c00;
+    background: #c00;
+    margin: 1em 0;
+    padding: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+.ucosmic .validation-summary-errors ul {
+    list-style: url('../icons/warning/warning-16.png');
+    padding: 0 0 0 25px;
+}
+.ucosmic .validation-summary-valid {
+    display: none;
+}
+
+
+
+/* password meter styles */
+.pwdMeter .neutral {
+    padding: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: default;
+    color: #fff;
+    background: #c00;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.pwdMeter .weak {
+    background: #f60;
+}
+.pwdMeter .medium {
+    color: #000;
+    background: #ff3;
+}
+.pwdMeter .strong {
+    background: #0c0;
+}
+.pwdMeter .verystrong {
+    background: #090;
+}
+
+
+
+/* webkit scrollbars */
+.ucosmic ::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+}
+.ucosmic ::-webkit-scrollbar-button {
+    background-color: transparent;
+    height: 0;
+    width: 0;
+}
+.ucosmic ::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+}
+.ucosmic ::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border: 4px solid #fff;
+}
+.ucosmic ::-webkit-scrollbar-thumb:hover {
+    background-color: #999;
+}
+
+
+
+/* debug styles */
+.ucosmic.debug > .head {
+}
+.ucosmic.debug > .torso {
+}
+.ucosmic.debug > .torso > .left {
+}
+.ucosmic.debug > .torso > .left ::-webkit-scrollbar-thumb {
+}
+.ucosmic.debug > .torso > .center {
+}
+.ucosmic.debug > .torso > .right {
+}
+.ucosmic.debug > .feet {
+}
+
+
+
+/* should not be overridden */
+.ucosmic .inline-block {
+    display: inline-block;
+}
+.ucosmic .no-display {
+    display: none;
+}
+.ucosmic .align-top {
+    vertical-align: top;
+}
+.ucosmic .pull-top {
+    margin-top: 0;
+    padding-top: 0;
+}
+.ucosmic .pull-bottom {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.ucosmic .pull-in {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.ucosmic .push-left {
+    margin-left: 1em;
+}
+.ucosmic .push-down {
+    margin-bottom: 1em;
+}
+.ucosmic .pull-down {
+    margin-top: 1em;
+}
+.ucosmic .bold {
+    font-weight: bold;
+}
+.ucosmic .floats > .left {
+    float: left;
+}
+.ucosmic .floats > .right, .ucosmic .float-right {
+    float: right;
+}
+.ucosmic .floats > .right.push-5 {
+    margin-left: 5px;
+}
+.ucosmic .clear {
+    clear: both;
+}
+
+

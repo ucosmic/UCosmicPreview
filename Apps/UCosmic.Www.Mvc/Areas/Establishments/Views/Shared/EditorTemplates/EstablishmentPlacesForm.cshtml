@@ -1,0 +1,11 @@
+﻿@model IEnumerable<UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms.EstablishmentForm.LocationForm.EstablishmentPlaceForm>
+<ul class="listbox">
+    @if (Model != null)
+    {
+        foreach (var place in Model)
+        {
+            var noDisplay = (place.IsEarth) ? "no-display" : string.Empty;
+        <li class="@noDisplay">@Html.EditorFor(m => place)</li>
+        }
+    }
+</ul>

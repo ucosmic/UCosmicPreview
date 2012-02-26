@@ -1,0 +1,19 @@
+﻿@using UCosmic.Www.Mvc.Areas.Identity.Controllers
+@model UCosmic.Www.Mvc.Areas.Identity.Models.Roles.RoleForm
+@{
+    ViewBag.Title = "Edit Roles";
+}
+<h2>
+    @ViewBag.Title
+</h2>
+@using (Html.BeginForm<RolesController>(c => c.Put(null)))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    @Html.EditorForModel()
+}
+@section Scripts
+{
+
+    <script src="@Links.scripts.identity.roles_form_js" type="text/javascript"></script>
+
+}

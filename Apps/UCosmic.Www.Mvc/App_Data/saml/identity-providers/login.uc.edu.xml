@@ -1,0 +1,42 @@
+﻿<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" entityID="https://login.uc.edu/idp/shibboleth">
+    <IDPSSODescriptor protocolSupportEnumeration="urn:mace:shibboleth:1.0 urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+        <Extensions>
+            <shibmd:Scope regexp="false">uc.edu</shibmd:Scope>
+            <mdui:UIInfo xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui">
+                <mdui:DisplayName xml:lang="en">University of Cincinnati Main Campus</mdui:DisplayName>
+                <mdui:InformationURL xml:lang="en">
+                    https://www.uc.edu/kb/display/IDM/Federated+Central+Login+Service
+                </mdui:InformationURL>
+                <mdui:PrivacyStatementURL xml:lang="en">
+                    http://www.uc.edu/content/dam/uc/trustees/docs/rules_10/10-43-11.pdf
+                </mdui:PrivacyStatementURL>
+                <mdui:Logo height="153" width="270" xml:lang="en">
+                    https://login.uc.edu/idp/images/UC_logo-incommon-official.png
+                </mdui:Logo>
+            </mdui:UIInfo>
+        </Extensions>
+        <KeyDescriptor use="signing">
+            <ds:KeyInfo>
+                <ds:X509Data>
+                    <!--
+Serial No. 11271836013311236177, expires on Sun Feb 28 13:01:17 2021 GMT
+-->
+                    <ds:X509Certificate>
+                        MIIEKjCCAxKgAwIBAgIJAJxtmyIj3xhRMA0GCSqGSIb3DQEBBQUAMGsxCzAJBgNV BAYTAlVTMQ0wCwYDVQQIEwRPaGlvMRMwEQYDVQQHEwpDaW5jaW5uYXRpMSEwHwYD VQQKExhVbml2ZXJzaXR5IG9mIENpbmNpbm5hdGkxFTATBgNVBAMTDGxvZ2luLnVj LmVkdTAeFw0xMTAzMDMxMzAxMTdaFw0yMTAyMjgxMzAxMTdaMGsxCzAJBgNVBAYT AlVTMQ0wCwYDVQQIEwRPaGlvMRMwEQYDVQQHEwpDaW5jaW5uYXRpMSEwHwYDVQQK ExhVbml2ZXJzaXR5IG9mIENpbmNpbm5hdGkxFTATBgNVBAMTDGxvZ2luLnVjLmVk dTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKOeU/o2gXXhUB2/4s2O tvB/xqU8Fv+ZtEK/GwUF3hLesy2vjdxZsQEp3K8aX/kP1MaF9BdLxapKjx5f6Wgo GgRpAcWX5LK2uUTh0WU1a/T0rhlBWopo7Tkm6GjKbJTwmNaGpEd+gaq3de08TPY3 895JP1yEUyh3IXec/HVrYu578FYyy3wgJeu7UzIEUdeV/AFCKKxqO/9rvbE+ZHs+ VfLiCxS4t/0d4beJvESp6ulk65YVT4bO93LDAPtvX5gZyouGSl+y9DEQC/nGab7l ATzaeKcSZMS1Eh3FUk8u7nQgSe0XzoF6UbuS6e9IKAL+gcisesVYVe97JC6KR37Q Gb8CAwEAAaOB0DCBzTAdBgNVHQ4EFgQUJv5Rl+63hKD6wDuNUT/gMLyZ5vQwgZ0G A1UdIwSBlTCBkoAUJv5Rl+63hKD6wDuNUT/gMLyZ5vShb6RtMGsxCzAJBgNVBAYT AlVTMQ0wCwYDVQQIEwRPaGlvMRMwEQYDVQQHEwpDaW5jaW5uYXRpMSEwHwYDVQQK ExhVbml2ZXJzaXR5IG9mIENpbmNpbm5hdGkxFTATBgNVBAMTDGxvZ2luLnVjLmVk dYIJAJxtmyIj3xhRMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADggEBAHTW wmpkE07WOCU5QJzgD4L8Dus7OS+zQBdDjLKWr/O58x7D1403jqO3Mkdbnl/UfOzC gNSDgI4RiPU3j+bno9SSItQOmP5l76EGP4AcgdRWrbRWiY1M2oo/oSNR86hMwU3e fXSiTxglybvsqv2EWthrRBuB+wXtWQZp3v8mWJoBdVV3G2aRV8dMF3NtKFGxix2V mNpv1J6ljYmNk1SPlcSItGCcOg2ylIvsOC+CnyTHWudNOudvXzB5jJSxX0ub8hso Sg4vYkZirCjQaD1elzGSCq8B6FsnILF3Y9Nx1ug9A8lwEySuE+JmE3bw/94jAoYS 0UnF4sqtFZqr6SDxYQ4=
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+        <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding" Location="https://login.uc.edu/idp/profile/SAML1/SOAP/ArtifactResolution" index="1"/>
+        <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://login.uc.edu/idp/profile/SAML2/SOAP/ArtifactResolution" index="2"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://login.uc.edu/idp/profile/SAML2/POST/SSO"/>
+        <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://login.uc.edu/idp/profile/Shibboleth/SSO"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://login.uc.edu/idp/profile/SAML2/Redirect/SSO"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://login.uc.edu/idp/profile/SAML2/POST-SimpleSign/SSO"/>
+    </IDPSSODescriptor>
+    <AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">...</AttributeAuthorityDescriptor>
+    <Organization>...</Organization>
+    <ContactPerson contactType="technical">...</ContactPerson>
+    <ContactPerson contactType="administrative">...</ContactPerson>
+    <ContactPerson contactType="support">...</ContactPerson>
+</EntityDescriptor>

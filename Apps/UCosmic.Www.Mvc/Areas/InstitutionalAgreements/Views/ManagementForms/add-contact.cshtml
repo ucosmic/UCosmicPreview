@@ -1,0 +1,39 @@
+﻿@using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
+@model InstitutionalAgreementContactForm
+@{
+    var deletedDisplay = Model.IsDeleted ? "display:none;" : string.Empty;
+}
+<li class="agreement-contact" style="@deletedDisplay">
+    @using (Html.BeginCollectionItem("Contacts"))
+    {
+        <div>
+            <div style="float: right; margin-left: 5px;">
+                <a href="#" class="remove-button" data-contact-type-and-display-name="@Model.Type @Model.Person.DisplayName">
+                    <img src="@Url.Content(Links.content.icons.deletes.delete_hot_16_png)" alt="remove contact icon" title="Remove this contact" /></a>
+            </div>
+            <span class="type-and-name"><b>@Model.Type</b> <span>@Model.Person.DisplayName</span></span>
+            @if (!string.IsNullOrWhiteSpace(Model.Person.DefaultEmail))
+            {
+                <br />
+                <a href="mailto:@Model.Person.DefaultEmail">@Model.Person.DefaultEmail</a>
+            }
+        </div>
+        <div class="hidden-input">
+            <div class="entity-id">
+                @Html.EditorFor(m => m.EntityId)
+            </div>
+            <div class="is-deleted">
+                @Html.EditorFor(m => m.IsDeleted)
+            </div>
+            @Html.HiddenFor(m => m.Person.DefaultEmail)
+            @Html.HiddenFor(m => m.Person.DisplayName)
+            @Html.HiddenFor(m => m.Person.EntityId)
+            @Html.HiddenFor(m => m.Person.FirstName)
+            @Html.HiddenFor(m => m.Person.LastName)
+            @Html.HiddenFor(m => m.Person.MiddleName)
+            @Html.HiddenFor(m => m.Person.Salutation)
+            @Html.HiddenFor(m => m.Person.Suffix)
+            @Html.HiddenFor(m => m.Type)
+        </div>
+    }
+</li>

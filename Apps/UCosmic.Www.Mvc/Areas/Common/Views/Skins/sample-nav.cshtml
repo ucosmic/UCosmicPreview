@@ -1,0 +1,24 @@
+﻿<h3>
+    Choose a skin
+</h3>
+<ul style="margin-top: 0; padding-left: 20px; font-size: 1.3em;">
+    <li><a href="@Url.Action(MVC.Common.Skins.Change("default", Request.RawUrl))">Default
+        skin</a> </li>
+    <li><a href="@Url.Action(MVC.Common.Skins.Change("www.suny.edu", Request.RawUrl))">SUNY
+        skin</a> </li>
+    <li><a href="@Url.Action(MVC.Common.Skins.Change("www.uc.edu", Request.RawUrl))">UC
+        skin</a> </li>
+    <li><a href="@Url.Action(MVC.Common.Skins.Change("www.umn.edu", Request.RawUrl))">UMN
+        skin</a> </li>
+    <li><a href="@Url.Action(MVC.Common.Skins.Change("www.lehigh.edu", Request.RawUrl))">
+        Lehigh skin</a> </li>
+</ul>
+<h3>
+    Choose a layout sample
+</h3>
+<ul style="margin-top: 0; padding-left: 20px; font-size: 1.3em;">
+    <li><a href="@Url.Action(MVC.Common.Skins.Sample())">Full width (no maps or columns)</a>
+    </li>
+    <li><a href="@Url.Action(MVC.Common.Skins.Sample("map"))">Sample map with right data column</a>
+    </li>
+</ul>

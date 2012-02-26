@@ -1,0 +1,35 @@
+﻿<EntityDescriptor ID="_ad1b0fbf-cad4-4fe5-ac59-ee2138a69ad5" entityID="urn:samples:identityprovider" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+    <IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <KeyDescriptor use="signing">
+            <!-- CN = WIF Samples - Identity Provider Signing Certificate -->
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <X509Data>
+                    <X509Certificate>
+                        MIIDeTCCAmGgAwIBAgIQ/wlFjD9vP5lCPfHJw9ItrjANBgkqhkiG9w0BAQQFADA+
+                        MTwwOgYDVQQDEzNXSUYgU2FtcGxlcyAtIElkZW50aXR5IFByb3ZpZGVyIFNpZ25p
+                        bmcgQ2VydGlmaWNhdGUwHhcNMTAxMDAyMDAyNTUzWhcNMzYwMTAxMDcwMDAwWjA+
+                        MTwwOgYDVQQDEzNXSUYgU2FtcGxlcyAtIElkZW50aXR5IFByb3ZpZGVyIFNpZ25p
+                        bmcgQ2VydGlmaWNhdGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCr
+                        dbl6TLqCnhNFJu2L+3ZQp8DKFVjikHoqtBOJ2QwtCcO2kGUF19KWtf9J1yf4nZBk
+                        NP6rhPfZ9KGjiZp+6akO3G0ilqDzHdcG4U+0EgPSqNIpfl3XMfvNxMeDwHUgDxVB
+                        qIBbYoAJdTXI3A2sJHXN0H28SA+yu+RpJ5m6DL91LmTv6TiOcU4SFNkjATLI7TfZ
+                        SJLlwpx7m8S0UAdE4ispqj6jdqfIJ9pCEZHIOgVSgvVo8SctYtMXfs0NDHACguI9
+                        PlLtEpVCoW8YpjZzZs1PCE7a/pa71rJLRtmEqY8IDjaGEr1p1hzJTBe5E58+qglj
+                        iErRmKaIgzS1tbGsVDoNAgMBAAGjczBxMG8GA1UdAQRoMGaAEMVKWIqPO/YYDH2P
+                        bz9dT4uhQDA+MTwwOgYDVQQDEzNXSUYgU2FtcGxlcyAtIElkZW50aXR5IFByb3Zp
+                        ZGVyIFNpZ25pbmcgQ2VydGlmaWNhdGWCEP8JRYw/bz+ZQj3xycPSLa4wDQYJKoZI
+                        hvcNAQEEBQADggEBAJvfDujQ8ANw+EyXqSfnK8t+46yoTd0tztMvl5ZJ+b7u+i/f
+                        i+bqAPR7jveW0qGu/QM7Gi9DeL8W3muefCeTEpZA46SayaaYIrlEg3BTfrucy6Ys
+                        eLK8nRvPI+Y8BWKGwC3RzfZgJNAY3ACusLH1bFNNo8SIxHe1txPqHGnSVp10u6Hs
+                        ZF+hv84aLSiA95n83ullsGMYoDgL0nJ3jfe7faldGIdhtD7HmLiFdxb+Kc5OtzgY
+                        LOae1DIjti4fT4fTCpve4UCFjgJL9ONYVD2rD/U1bZ8FwxrPFs29IOZ7T+iXOp0t
+                        haqIhfJV2Pb7FEck/v3EEb0MKFU/rx7DebiovJE=
+                    </X509Certificate>
+                </X509Data>
+            </KeyInfo>
+        </KeyDescriptor>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://localhost:6010/IdentityProvider/saml/redirect/slo" ResponseLocation="http://localhost:6010/IdentityProvider/saml/redirect/sloresponse"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost:6010/IdentityProvider/saml/post/slo" ResponseLocation="http://localhost:6010/IdentityProvider/saml/post/sloresponse"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://localhost:6010/IdentityProvider/saml/redirect/sso"/>
+    </IDPSSODescriptor>
+</EntityDescriptor>

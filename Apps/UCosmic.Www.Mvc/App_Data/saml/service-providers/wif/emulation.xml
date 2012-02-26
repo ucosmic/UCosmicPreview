@@ -1,0 +1,53 @@
+﻿<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://preview.ucosmic.com/saml/2/metadata/emulation">
+    <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" WantAssertionsSigned="true" AuthnRequestsSigned="true">
+        <md:KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:KeyName>saml.ucosmic.dev</ds:KeyName>
+                <ds:X509Data>
+                    <ds:X509SubjectName>
+                        CN=saml.ucosmic.dev
+                    </ds:X509SubjectName>
+                    <ds:X509Certificate>
+                        MIICAzCCAXCgAwIBAgIQkVXAsUmwzb5IwIXYdItyFDAJBgUrDgMCHQUAMBsxGTAX
+                        BgNVBAMTEHNhbWwudWNvc21pYy5kZXYwHhcNMTIwMTE0MTkxNjQzWhcNMzkxMjMx
+                        MjM1OTU5WjAbMRkwFwYDVQQDExBzYW1sLnVjb3NtaWMuZGV2MIGfMA0GCSqGSIb3
+                        DQEBAQUAA4GNADCBiQKBgQC5qOK3ZZySAjiEe0v5Ngn4CEw6S8v88hZHP6uR2ywx
+                        fzSj1NwFHGR64J5AuGegpQKZodqeo6yiUzkEuYASdg6tsCMxd8urS1frXasnijxY
+                        mhnU57cuymu1cno/C770WEZ0NNiptn+uvb54AuYQ8ZgUgZLY06A5O9X2usj7lWEy
+                        OQIDAQABo1AwTjBMBgNVHQEERTBDgBA1LYE8L9Fr2M+kyRtj937YoR0wGzEZMBcG
+                        A1UEAxMQc2FtbC51Y29zbWljLmRldoIQkVXAsUmwzb5IwIXYdItyFDAJBgUrDgMC
+                        HQUAA4GBAFmxuvMWrGeoKQ+62vUvzmxCbooh9vGJTVPJLBfMOyxn4etH6zbheCBz
+                        1jGsnf+KY13Hz/y1lYb/hztZSnpVT1ljFzfEb38xzakmhNIWx2Jm/WzdTX9Xzi26
+                        /L5t8i/vUf9XDZGDO66Is0ag+Uc+QhoqX4uioNhOIItDDnQhk72l
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:KeyDescriptor use="encryption">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:KeyName>saml.ucosmic.dev</ds:KeyName>
+                <ds:X509Data>
+                    <ds:X509SubjectName>
+                        CN=saml.ucosmic.dev
+                    </ds:X509SubjectName>
+                    <ds:X509Certificate>
+                        MIICAzCCAXCgAwIBAgIQkVXAsUmwzb5IwIXYdItyFDAJBgUrDgMCHQUAMBsxGTAX
+                        BgNVBAMTEHNhbWwudWNvc21pYy5kZXYwHhcNMTIwMTE0MTkxNjQzWhcNMzkxMjMx
+                        MjM1OTU5WjAbMRkwFwYDVQQDExBzYW1sLnVjb3NtaWMuZGV2MIGfMA0GCSqGSIb3
+                        DQEBAQUAA4GNADCBiQKBgQC5qOK3ZZySAjiEe0v5Ngn4CEw6S8v88hZHP6uR2ywx
+                        fzSj1NwFHGR64J5AuGegpQKZodqeo6yiUzkEuYASdg6tsCMxd8urS1frXasnijxY
+                        mhnU57cuymu1cno/C770WEZ0NNiptn+uvb54AuYQ8ZgUgZLY06A5O9X2usj7lWEy
+                        OQIDAQABo1AwTjBMBgNVHQEERTBDgBA1LYE8L9Fr2M+kyRtj937YoR0wGzEZMBcG
+                        A1UEAxMQc2FtbC51Y29zbWljLmRldoIQkVXAsUmwzb5IwIXYdItyFDAJBgUrDgMC
+                        HQUAA4GBAFmxuvMWrGeoKQ+62vUvzmxCbooh9vGJTVPJLBfMOyxn4etH6zbheCBz
+                        1jGsnf+KY13Hz/y1lYb/hztZSnpVT1ljFzfEb38xzakmhNIWx2Jm/WzdTX9Xzi26
+                        /L5t8i/vUf9XDZGDO66Is0ag+Uc+QhoqX4uioNhOIItDDnQhk72l
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://127.0.0.1/ServiceProvider/saml/post/ac" index="1" isDefault="true" />
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://127.0.0.1/ServiceProvider/saml/redirect/ac" index="2" />
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://127.0.0.1/ServiceProvider/saml/artifact/ac" index="3" />
+    </md:SPSSODescriptor>
+</md:EntityDescriptor>

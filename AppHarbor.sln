@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCosmic.Www.Mvc", "Apps\UCosmic.Www.Mvc\UCosmic.Www.Mvc.csproj", "{88C2ED63-E921-4E88-AD86-0D835A400C0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCosmic.Domain.CodeFacts", "Tests\UCosmic.Domain.CodeFacts\UCosmic.Domain.CodeFacts.csproj", "{2CBFC05F-55F0-435F-BB4D-10097AA8194A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCosmic.Api", "Apps\UCosmic.Api\UCosmic.Api.csproj", "{F35CDDB3-8277-48E1-9350-E947B41593FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCosmic.Domain", "Apps\UCosmic.Domain\UCosmic.Domain.csproj", "{77D96E4B-A424-4F8C-B773-8D1528EE99A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCosmic.Impl", "Apps\UCosmic.Impl\UCosmic.Impl.csproj", "{1CF30064-FA30-4231-B2F9-3CD513B29E67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCosmic.Www.Mvc.CodeFacts", "Tests\UCosmic.Www.Mvc.CodeFacts\UCosmic.Www.Mvc.CodeFacts.csproj", "{50609C51-07A4-4387-8C91-AF9E77B539B9}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs15
+		SccProjectUniqueName0 = Apps\\UCosmic.Www.Mvc\\UCosmic.Www.Mvc.csproj
+		SccProjectName0 = Apps/UCosmic.Www.Mvc
+		SccLocalPath0 = Apps\\UCosmic.Www.Mvc
+		SccProjectUniqueName1 = Tests\\UCosmic.Domain.CodeFacts\\UCosmic.Domain.CodeFacts.csproj
+		SccProjectName1 = Tests/UCosmic.Domain.CodeFacts
+		SccLocalPath1 = Tests\\UCosmic.Domain.CodeFacts
+		SccProjectUniqueName2 = Apps\\UCosmic.Api\\UCosmic.Api.csproj
+		SccProjectName2 = Apps/UCosmic.Api
+		SccLocalPath2 = Apps\\UCosmic.Api
+		SccProjectUniqueName3 = Apps\\UCosmic.Domain\\UCosmic.Domain.csproj
+		SccProjectName3 = Apps/UCosmic.Domain
+		SccLocalPath3 = Apps\\UCosmic.Domain
+		SccProjectUniqueName4 = Apps\\UCosmic.Impl\\UCosmic.Impl.csproj
+		SccProjectName4 = Apps/UCosmic.Impl
+		SccLocalPath4 = Apps\\UCosmic.Impl
+		SccProjectUniqueName5 = Tests\\UCosmic.Www.Mvc.CodeFacts\\UCosmic.Www.Mvc.CodeFacts.csproj
+		SccProjectName5 = Tests/UCosmic.Www.Mvc.CodeFacts
+		SccLocalPath5 = Tests\\UCosmic.Www.Mvc.CodeFacts
+		SccLocalPath6 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88C2ED63-E921-4E88-AD86-0D835A400C0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88C2ED63-E921-4E88-AD86-0D835A400C0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88C2ED63-E921-4E88-AD86-0D835A400C0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88C2ED63-E921-4E88-AD86-0D835A400C0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CBFC05F-55F0-435F-BB4D-10097AA8194A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CBFC05F-55F0-435F-BB4D-10097AA8194A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CBFC05F-55F0-435F-BB4D-10097AA8194A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CBFC05F-55F0-435F-BB4D-10097AA8194A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F35CDDB3-8277-48E1-9350-E947B41593FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F35CDDB3-8277-48E1-9350-E947B41593FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F35CDDB3-8277-48E1-9350-E947B41593FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F35CDDB3-8277-48E1-9350-E947B41593FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77D96E4B-A424-4F8C-B773-8D1528EE99A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77D96E4B-A424-4F8C-B773-8D1528EE99A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77D96E4B-A424-4F8C-B773-8D1528EE99A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77D96E4B-A424-4F8C-B773-8D1528EE99A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CF30064-FA30-4231-B2F9-3CD513B29E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CF30064-FA30-4231-B2F9-3CD513B29E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CF30064-FA30-4231-B2F9-3CD513B29E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CF30064-FA30-4231-B2F9-3CD513B29E67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50609C51-07A4-4387-8C91-AF9E77B539B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50609C51-07A4-4387-8C91-AF9E77B539B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50609C51-07A4-4387-8C91-AF9E77B539B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50609C51-07A4-4387-8C91-AF9E77B539B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

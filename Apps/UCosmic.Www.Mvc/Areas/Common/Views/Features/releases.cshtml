@@ -1,0 +1,25 @@
+﻿@{
+    Layout = MVC.Shared.Views.layout;
+}
+@section Styles 
+{
+    @Html.Partial(MVC.Common.Features.Views.releases_css)
+}
+@section Scripts
+{
+
+    <script type="text/javascript" src="@Url.Content(Links.scripts.common.releases_js)"></script>
+
+}
+<div class="wrap-960">
+    <div class="righty">
+        @Html.Action(MVC.Common.Features.ReleasesNav())
+    </div>
+    <h2 class="nb no-display">
+        @ViewBag.Title
+    </h2>
+    @Html.Partial((string)ViewBag.ViewName)
+    <br />
+    <br />
+    <br />
+</div>

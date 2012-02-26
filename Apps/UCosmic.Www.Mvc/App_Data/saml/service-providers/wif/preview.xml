@@ -1,0 +1,69 @@
+﻿<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://preview.ucosmic.com/saml/2/metadata">
+    <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" WantAssertionsSigned="true" AuthnRequestsSigned="true">
+        <md:KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:KeyName>preview.ucosmic.com</ds:KeyName>
+                <ds:X509Data>
+                    <ds:X509SubjectName>
+                        CN=preview.ucosmic.com, OU=The UCosmic Consortium, O=State University of New York, L=New York, S=New York, C=US
+                    </ds:X509SubjectName>
+                    <ds:X509Certificate>
+                        MIIDhjCCAvOgAwIBAgIQi/Qogh0e4I5HQ4faOnyNSDAJBgUrDgMCHQUAMIGZMQsw
+                        CQYDVQQGEwJVUzERMA8GA1UECBMITmV3IFlvcmsxETAPBgNVBAcTCE5ldyBZb3Jr
+                        MSUwIwYDVQQKExxTdGF0ZSBVbml2ZXJzaXR5IG9mIE5ldyBZb3JrMR8wHQYDVQQL
+                        ExZUaGUgVUNvc21pYyBDb25zb3J0aXVtMRwwGgYDVQQDExNwcmV2aWV3LnVjb3Nt
+                        aWMuY29tMB4XDTEyMDExNDIyMzUwMloXDTM5MTIzMTIzNTk1OVowgZkxCzAJBgNV
+                        BAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazERMA8GA1UEBxMITmV3IFlvcmsxJTAj
+                        BgNVBAoTHFN0YXRlIFVuaXZlcnNpdHkgb2YgTmV3IFlvcmsxHzAdBgNVBAsTFlRo
+                        ZSBVQ29zbWljIENvbnNvcnRpdW0xHDAaBgNVBAMTE3ByZXZpZXcudWNvc21pYy5j
+                        b20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALmI/aprfJ4p2o/Fqpc6RjPT
+                        +WF4+EwmjcXQc9eQGLIbkWlCy5hJgpgaxUgs0zWjJhVbU2Ptm39kvJbaLVVLruJo
+                        duIjhuAU6I/XphPU8HAzY4PJxxufXQXvoo9/LEM01pzGbsAeJXCmkONGihCFP/cn
+                        Yk3MzGIkQRYjdgd/t5eJAgMBAAGjgdQwgdEwgc4GA1UdAQSBxjCBw4AQZN0XCY5O
+                        IIFBOfB47o4pjKGBnDCBmTELMAkGA1UEBhMCVVMxETAPBgNVBAgTCE5ldyBZb3Jr
+                        MREwDwYDVQQHEwhOZXcgWW9yazElMCMGA1UEChMcU3RhdGUgVW5pdmVyc2l0eSBv
+                        ZiBOZXcgWW9yazEfMB0GA1UECxMWVGhlIFVDb3NtaWMgQ29uc29ydGl1bTEcMBoG
+                        A1UEAxMTcHJldmlldy51Y29zbWljLmNvbYIQi/Qogh0e4I5HQ4faOnyNSDAJBgUr
+                        DgMCHQUAA4GBAIv7zQXbedxSDQKhTYgXzsw/FwY/P8s9fqxrfDbpOA/F+tqrpQuy
+                        o5tW76dUn7lccF+NPmIcfcXtVjV5plE+mscVDd8E0VeqPcvus8TNkM8wsyFrEXbz
+                        gm8u0bvszcXDvr00c1ftDy2+GAX/S/Ko7FuGGhqlYlJV72g9NX0MHzq1
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:KeyDescriptor use="encryption">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:KeyName>preview.ucosmic.com</ds:KeyName>
+                <ds:X509Data>
+                    <ds:X509SubjectName>
+                        CN=preview.ucosmic.com, OU=The UCosmic Consortium, O=State University of New York, L=New York, S=New York, C=US
+                    </ds:X509SubjectName>
+                    <ds:X509Certificate>
+                        MIIDhjCCAvOgAwIBAgIQi/Qogh0e4I5HQ4faOnyNSDAJBgUrDgMCHQUAMIGZMQsw
+                        CQYDVQQGEwJVUzERMA8GA1UECBMITmV3IFlvcmsxETAPBgNVBAcTCE5ldyBZb3Jr
+                        MSUwIwYDVQQKExxTdGF0ZSBVbml2ZXJzaXR5IG9mIE5ldyBZb3JrMR8wHQYDVQQL
+                        ExZUaGUgVUNvc21pYyBDb25zb3J0aXVtMRwwGgYDVQQDExNwcmV2aWV3LnVjb3Nt
+                        aWMuY29tMB4XDTEyMDExNDIyMzUwMloXDTM5MTIzMTIzNTk1OVowgZkxCzAJBgNV
+                        BAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazERMA8GA1UEBxMITmV3IFlvcmsxJTAj
+                        BgNVBAoTHFN0YXRlIFVuaXZlcnNpdHkgb2YgTmV3IFlvcmsxHzAdBgNVBAsTFlRo
+                        ZSBVQ29zbWljIENvbnNvcnRpdW0xHDAaBgNVBAMTE3ByZXZpZXcudWNvc21pYy5j
+                        b20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALmI/aprfJ4p2o/Fqpc6RjPT
+                        +WF4+EwmjcXQc9eQGLIbkWlCy5hJgpgaxUgs0zWjJhVbU2Ptm39kvJbaLVVLruJo
+                        duIjhuAU6I/XphPU8HAzY4PJxxufXQXvoo9/LEM01pzGbsAeJXCmkONGihCFP/cn
+                        Yk3MzGIkQRYjdgd/t5eJAgMBAAGjgdQwgdEwgc4GA1UdAQSBxjCBw4AQZN0XCY5O
+                        IIFBOfB47o4pjKGBnDCBmTELMAkGA1UEBhMCVVMxETAPBgNVBAgTCE5ldyBZb3Jr
+                        MREwDwYDVQQHEwhOZXcgWW9yazElMCMGA1UEChMcU3RhdGUgVW5pdmVyc2l0eSBv
+                        ZiBOZXcgWW9yazEfMB0GA1UECxMWVGhlIFVDb3NtaWMgQ29uc29ydGl1bTEcMBoG
+                        A1UEAxMTcHJldmlldy51Y29zbWljLmNvbYIQi/Qogh0e4I5HQ4faOnyNSDAJBgUr
+                        DgMCHQUAA4GBAIv7zQXbedxSDQKhTYgXzsw/FwY/P8s9fqxrfDbpOA/F+tqrpQuy
+                        o5tW76dUn7lccF+NPmIcfcXtVjV5plE+mscVDd8E0VeqPcvus8TNkM8wsyFrEXbz
+                        gm8u0bvszcXDvr00c1ftDy2+GAX/S/Ko7FuGGhqlYlJV72g9NX0MHzq1
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://preview.ucosmic.com/ServiceProvider/saml/post/ac" index="1" isDefault="true" />
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://preview.ucosmic.com/ServiceProvider/saml/redirect/ac" index="2" />
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://preview.ucosmic.com/ServiceProvider/saml/artifact/ac" index="3" />
+    </md:SPSSODescriptor>
+</md:EntityDescriptor>

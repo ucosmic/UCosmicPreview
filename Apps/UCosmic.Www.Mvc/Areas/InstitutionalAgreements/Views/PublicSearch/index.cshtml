@@ -1,0 +1,209 @@
+﻿@using UCosmic
+@using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
+@model UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch.SearchResults
+@{
+    ViewBag.Title = "Search Institutional Agreements";
+    Layout = "~/Views/Shared/layout.cshtml";
+    ViewBag.GoogleMapsApiScript = new object();
+
+}
+@section Styles
+{
+    @Html.Action(MVC.Common.Skins.Apply("map-panes"))
+    @Html.Partial(MVC.InstitutionalAgreements.PublicSearch.Views.css)
+}
+@section Scripts
+{
+
+    <script type="text/javascript" src="@Url.Content(Links.scripts.institutional_agreements.public_search_js)"></script>
+
+}
+@section HeadCenter
+{
+    @*<div class="button-sized search row">
+        <div class="input col">
+            <div class="combobox">
+                <div class="text-box input" data-ucosmic-watermark="true" data-ucosmic-watermark-text="Type a country, city, or institution name"
+                    data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
+                    data-ucosmic-trim-input="true">
+                    <input class="single-line text-box" data-ucosmic-focus="true" type="text" id="Keyword"
+                        name="Keyword" value="" />
+                </div>
+                <a class="down-arrow" data-ucosmic-not-implemented="true">
+                    <img src="@Url.Content(Links.content.icons.transparent_png)" alt="" />
+                    <span class="no-display">Saved searches</span> </a>
+            </div>
+        </div>
+        <div class="buttons col">
+            <input type="submit" value="Search" data-ucosmic-not-implemented="true" />
+            <span class="no-display"><a href="#" class="button-sized" data-ucosmic-not-implemented="true">
+                Advanced search</a></span>
+        </div>
+    </div>*@
+    @using (Html.BeginForm<PublicSearchController>(c => c.Index(Model.ContextEstablishment.WebsiteUrl, null), FormMethod.Get))
+    {
+        <div class="button-sized search row">
+            <div class="input col">
+                <div class="emptybox">
+                    <div class="text-box input" data-ucosmic-watermark="true" data-ucosmic-watermark-text="Type a country, city, or institution name"
+                         data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
+                         data-ucosmic-trim-input="true" data-ucosmic-autocomplete="true" 
+                         data-ucosmic-autocomplete-url="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.AutoCompleteKeyword(Model.ContextEstablishment.WebsiteUrl, null))">
+                        @Html.EditorFor(m => m.Keyword)
+                        <div class="autocomplete-menu">
+                        </div>
+                    </div>
+                    <a class="text-box empty-icon">
+                        <img src="@Url.Content(Links.content.icons.transparent_png)" alt="" />
+                        <span class="no-display">Clear this text box</span> </a>
+                </div>
+            </div>
+            <div class="buttons col">
+                <input type="submit" value="Search" />
+                <span class="no-display"><a href="#" class="button-sized" data-ucosmic-not-implemented="true">
+                                             Advanced search</a></span>
+            </div>
+        </div>
+    }
+}
+<div id="institutional_agreement_mapper">
+    @{
+        var zoomLevel = (Model.Establishments.Length == 1) ? Model.Establishments[0].Location.GoogleMapZoomLevel.ToInvariantString() : string.Empty;
+        var center = (Model.Establishments.Length == 1) ? string.Format("{0},{1}", Model.Establishments[0].Location.CenterLatitude, @Model.Establishments[0].Location.CenterLongitude) : string.Empty;
+        if ((Model.MapBoundingBox.Northeast.Latitude == 90 && Model.MapBoundingBox.Northeast.Longitude == 180 && Model.MapBoundingBox.Southwest.Latitude == -90 && Model.MapBoundingBox.Southwest.Longitude == -180) || string.IsNullOrWhiteSpace(Model.Keyword))
+        {
+            zoomLevel = "2";
+            center = "25.8,11.9";
+        }
+    }
+    <div class="u-map-google u-map-google" data-ucosmic-map-zoom="@zoomLevel" data-ucosmic-map-zoom-scroll-wheel="false"
+        data-ucosmic-map-center="@center"
+        data-ucosmic-map-bounds-north-east="@Model.MapBoundingBox.Northeast.Latitude,@Model.MapBoundingBox.Northeast.Longitude"
+        data-ucosmic-map-bounds-south-west="@Model.MapBoundingBox.Southwest.Latitude,@Model.MapBoundingBox.Southwest.Longitude"
+        data-ucosmic-map-bounds-fit="if-no-zoom"
+    >
+        <div class="u-map-canvas">
+        </div>
+        <div class="u-map-markers no-display">
+            @foreach (var marker in Model.Establishments)
+            {
+                <div data-ucosmic-map="marker" 
+                     data-ucosmic-map-center="@marker.Location.CenterLatitude,@marker.Location.CenterLongitude" 
+                     data-ucosmic-map-title="@marker.OfficialThenTranslatedName">
+                    @*<div data-ucosmic-map="info-window" data-ucosmic-size-width="400" style="padding-right: 20px;">
+                    <strong>@marker.ForEstablishmentTranslatedName</strong> 
+                    @if (!marker.ForEstablishmentTranslatedName.Equals(marker.ForEstablishmentOfficialName))
+                    {
+                        <span>(@marker.ForEstablishmentOfficialName)</span>
+                    }
+                    @if (User.IsInRole(RoleName.EstablishmentLocationAgent))
+                    {
+                        <span>[<a href="@Url.Action(MVC.Establishments.SupplementalForms.Locate(marker.ForEstablishmentEntityId, Request.Url.PathAndQuery))">Relocate</a>]</span>
+                    }
+                    <ul style="margin-top: 0; padding-top: 0;">
+                        @foreach (var agreement in marker.Agreements)
+                        {
+                            <li><a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Post(agreement.EntityId))">@Html.DisplayFor(m => agreement.Title)</a>
+                            </li>
+                        }
+                    </ul>
+                </div>*@
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section TorsoRight
+{
+    <div id="institutional_agreements_enumerator">
+        <div class="results-header">
+            @if (Model.HierarchySelectList.Length > 1)
+            {
+                using (Html.BeginForm(
+                    MVC.InstitutionalAgreements.PublicSearch.ActionNames.ChangeOwner, 
+                    MVC.InstitutionalAgreements.PublicSearch.Name, 
+                    FormMethod.Get 
+                ))
+                {
+                    <div>
+                        @Html.DropDownListFor(m => m.EstablishmentUrl, Model.HierarchySelectList, new
+                            {
+                                onchange = "$(this).closest('form').submit()",
+                                style = "width: 100%;"
+                            })
+                    </div>
+                    <div class="hidden-input">
+                        @Html.HiddenFor(m => m.Keyword)
+                    </div>
+                }
+            }
+            @if (Model.Agreements.Length > 0)
+            {
+                <h2>@Html.Pluralize("{0|_} {0|agreement} with {1|_} {1|institution}",
+                      Model.Agreements.Length, Model.Establishments.Length)
+                    in @Model.CountryCount
+                    @if (Model.CountryCount == 1)
+                    {
+                        <text>country</text>
+                    }
+                    else
+                    {
+                        <text>countries</text>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(Model.Keyword))
+                    {
+                        <text>matching the search term &quot;@Model.Keyword&quot;</text>
+                    }
+                </h2>
+            }
+            else if (string.IsNullOrWhiteSpace(Model.Keyword))
+            {
+                <h2>@Model.ContextEstablishment.OfficialName has no agreements.</h2>
+            }
+            else
+            {
+                <h2>@Model.ContextEstablishment.OfficialName has no agreements matching the search term
+                    &quot;@Model.Keyword&quot;.</h2>
+            }
+            @if (Model.IsSupervisor || Model.IsManager)
+            {
+                <div style="text-align: center">
+                    <br />
+                    <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Post(null as Guid?))">
+                        Add a new agreement</a> <span>|</span> <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Browse())">
+                                                                   Go to admin view</a>
+                    @if (Model.IsSupervisor)
+                    {
+                        <br />
+                        <br />
+                        <a href="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.Edit())">Configure
+                            module</a> 
+                    }
+                </div>
+            }
+        </div>
+        @if (Model.Agreements.Length > 0)
+        {
+            <ul class="results-bar">
+                @foreach (var agreement in Model.Agreements)
+                {
+                    <li><a href="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.Info(agreement.EntityId))" data-ucosmic-dialog="960">
+                        <div>
+                            @foreach (var partner in agreement.Partners)
+                            {
+                                <div class="agreement-partner">
+                                    @partner.TranslatedName
+                                </div>
+                            }
+                        </div>
+                        <div class="agreement-type">
+                            @agreement.Type @Html.DisplayFor(m => agreement.StartsOn)
+                        </div>
+                    </a></li>
+                }
+            </ul>
+        }
+    </div>
+    <div id="dialog_landing" style="display: none;">
+    </div>
+}

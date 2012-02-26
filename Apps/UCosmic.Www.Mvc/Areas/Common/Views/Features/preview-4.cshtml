@@ -1,0 +1,250 @@
+﻿<p class="nt">
+    Deployed 10/22/2011
+</p>
+<p>
+    What can I do in Preview 4 that I couldn't do in Preview 3?
+</p>
+<hr />
+<section id="feature1">
+    <h3>
+        Configure the institutional agreements module for your organization
+    </h3>
+    <p>
+        <strong>In order to</strong> standardize the institutional agreement language within
+        my organization,
+        <br />
+        <strong>As a</strong> supervisor of institutional agreement data,
+        <br />
+        <strong>I want to</strong> control the allowable options for some agreement data
+        fields.
+    </p>
+    <p>
+        Christopher Stordalen at the University of Minnesota requested this feature using
+        <a href="http://ucosmic.uservoice.com" target="_blank">our new Feedback and Support
+            site</a>. You can <a href="http://ucosmic.uservoice.com/forums/133860-ucosmic-futures/suggestions/2244443-i-want-the-ability-to-set-the-agreement-type-val"
+                target="_blank">view his feature request and add your own comments here</a>.
+        Not everyone has access to this feature, since it has the potential to be abused.
+        If you do not already have access, please <a href="http://ucosmic.uservoice.com/forums/133860-ucosmic-futures/suggestions/2244443-i-want-the-ability-to-set-the-agreement-type-val"
+            target="_blank">add a comment to the feature request</a> and tell us how you
+        plan to use it.
+    </p>
+    <h4>
+        What can I do?
+    </h4>
+    <p>
+        This feature allows you to control three form fields that appear your institutional
+        agreement data is entered. They already look and behave somewhat like drop down
+        menus, but are actually text boxes. As text boxes, they allow users to enter any
+        (reasonably short) text. Choosing an option from the drop down is not required,
+        but hastens data entry for common, repeated values:
+    </p>
+    <ul>
+        <li>Agreement type
+            <ul class="nt">
+                <li>Activity Agreement</li>
+                <li>Institutional Collaboration Agreement</li>
+                <li>Memorandum of Understanding</li>
+            </ul>
+        </li>
+        <li>Current status
+            <ul class="nt">
+                <li>Active</li>
+                <li>Dead</li>
+                <li>Inactive</li>
+                <li>Unknown</li>
+            </ul>
+        </li>
+        <li>Contact type (when adding contacts to the agreement)
+            <br />
+            <em>* This has also changed in Preview 4, in response to <a href="http://ucosmic.uservoice.com/forums/133860-ucosmic-futures/suggestions/2245741-i-suggest-modifying-the-language-in-international-"
+                target="_blank">this feature request</a>.</em>
+            <ul class="nt">
+                <li>Partner Principal</li>
+                <li>Partner Secondary</li>
+                <li>Home Principal</li>
+                <li>Home Secondary</li>
+            </ul>
+        </li>
+    </ul>
+    <p>
+        For each of these three fields, you can do two things:
+    </p>
+    <ol>
+        <li>Control (add / edit / delete) which options appear in the respective drop down menu,
+            and</li>
+        <li>Either require users to choose one of the options you specified in #1 above, or
+            allow them to enter custom text.</li>
+    </ol>
+    <h4>
+        What are its limitations?
+    </h4>
+    <p>
+        <em>Changing the configuration does not affect agreements that already exist</em>.
+        Suppose you created an option, &quot;UNM Principal&quot; for the Contact type field.
+        Later, you entered 3 agreement contacts before you realized that it should have
+        been spelled &quot;UMN Principal&quot;. After you go back and correct the configuration,
+        your three agreement contacts will not be affected - they will still be &quot;UNM
+        Principal&quot;.
+    </p>
+    <p>
+        This is by design. If you would like to see a new feature allowing you to synchronize
+        existing data after making changes to configuration, please click the Feedback &amp;
+        Support button on this page to share your thoughts.
+    </p>
+    <h4>
+        <strong>How can I use it?</strong>
+    </h4>
+    <ol class="br">
+        <li>Click the Agreements link in the top horizontal nav to access the institutional
+            agreements home page. </li>
+        <li>At the top, next to the <a href="#" onclick="return false">Add a new agreement</a>
+            link, click the new <a href="#" onclick="return false">Configure module</a> link.
+        </li>
+        <li>You will see a page indicating that your organization's module configuration has
+            not yet been set up. Click the <a href="#" onclick="return false">Click here to set
+                it up now</a> link to proceed. <em>(Don't worry, you will only see this page once before
+                    you create your configuration - after it is created, clicking this link will take
+                    you directly to a page allowing you to change the configuration.)</em>
+        </li>
+        <li>Read the instructions on the page for each of the three sections, and when finished,
+            click the <strong>Create Configuration</strong> button at the bottom of the page.
+        </li>
+        <li>Go back to the institutional agreements homepage, and click to add or edit an agreement.
+            You will see that these 3 fields now behave according to your configuration.
+        </li>
+    </ol>
+    <hr />
+</section>
+<section id="feature2">
+    <h3>
+        Indicate that an institutional agreement does not have a fixed expiration date.
+    </h3>
+    <p>
+        <strong>In order to</strong> accommodate institutional agreements without contractual
+        expiration dates,
+        <br />
+        <strong>As a</strong> manager of institutional agreement data,
+        <br />
+        <strong>I want to</strong> indicate whether the required expiration date is estimated.
+    </p>
+    <p>
+        Alena Rodick at the State University of New York <a href="http://ucosmic.uservoice.com/forums/133860-ucosmic-futures/suggestions/2244063-i-want-to-be-able-to-add-agreements-that-don-t-hav"
+            target="_blank">requested this feature</a>. When adding an institutional agreement
+        to UCosmic, the <strong>Expiration date</strong> field is required. However, many
+        of SUNY's exchange agreements do not have contractual expiration dates, and there
+        was no way to indicate this in the data.
+    </p>
+    <h4>
+        Why is the Expiration date required?</h4>
+    <p>
+        Expiration dates are required because of another expectation our stakeholders have
+        of UCosmic: The ability to be notified when agreements are nearing expiration, or
+        are otherwise becoming stale. In effect, the Expiration date field serves two purposes:
+    </p>
+    <ol>
+        <li>To reflect the actual expiration date printed on the signed document, and </li>
+        <li>To help UCosmic determine when to notify administrators that the agreement should
+            be reviewed.</li>
+    </ol>
+    <p>
+        Because there are really two meanings behind this piece of information, it really
+        requires two form fields. We could have made Expiration date optional, and added
+        another date field for the notification feature. However, we have decided to take
+        a slightly different approach.
+    </p>
+    <h4>
+        What can I do?</h4>
+    <p>
+        There are two parts to this feature:</p>
+    <ol class="br">
+        <li>A new checkbox, below the expiration date field, which reads:
+            <br />
+            <input type="checkbox" id="IsExpirationEstimated" />
+            <label for="IsExpirationEstimated">
+                This expiration date is estimated (agreement should be reviewed by this date).</label>
+        </li>
+        <li>A <a href="#" onclick="return false">Help</a> link to the left of the Expiration
+            date field. Clicking it will show a &quot;popup bubble&quot; with the following
+            text:
+            <blockquote>
+                <p>
+                    Although many institutional agreements will have expiration dates, some do not.
+                    The reason expiration date is required in UCosmic has to do with automatic review
+                    features. As long as every agreement has a non-blank expiration date, UCosmic can
+                    provide timely notifications when agreements are growing stale and should be reviewed.
+                    If there was an agreement with a blank expiration date, UCosmic would not know when
+                    to notify you to review it.
+                </p>
+                <p>
+                    To indicate that an agreement does not have an actual expiration date, check the
+                    "This expiration date is estimated" checkbox. Choose a date when it would be appropriate
+                    to notify administrators that this agreement is growing stale and should be reviewed.
+                    Then, enter that date into the expiration date textbox. If you would like to see
+                    an alternate solution to these cases, click the "Feedback" button on this page and
+                    tell us your idea.
+                </p>
+            </blockquote>
+        </li>
+    </ol>
+    <p>
+        You can begin using this feature immediately. If you have any additional comments
+        to make about it, please <a href="http://ucosmic.uservoice.com/forums/133860-ucosmic-futures/suggestions/2244063-i-want-to-be-able-to-add-agreements-that-don-t-hav"
+            target="_blank">share them here</a>.
+    </p>
+    <hr />
+</section>
+<section id="feature3">
+    <h3>
+        Reset a forgotten password
+    </h3>
+    <p>
+        <strong>In order to</strong> sign into UCosmic,
+        <br />
+        <strong>As a</strong> user with a forgotten password,
+        <br />
+        <strong>I want to</strong> reset my password using my email address.
+    </p>
+    <p>
+        Nothing fancy here, just catching up with a basic feature we left out of the first
+        three previews. Forget your password and try it out!
+    </p>
+    <hr />
+</section>
+<section id="previews321" class="no-display">
+    <h3>
+        Preview 3 Feature Summary (deployed 9/8/2011)
+    </h3>
+    <ul>
+        <li>Add principals, secondaries, and other contacts to institutional agreements.</li>
+        <li>Upload &amp; attach more types of files to institutional agreements:
+            <ul style="margin-top: 0; padding-top: 0;">
+                <li>OpenDocument Word Processing &amp; Spreadsheets (.odt &amp; .ods files)</li>
+                <li>Microsoft Excel Worksheets (.xls &amp; .xlsx files)</li>
+                <li>Microsoft PowerPoint Presentations (.ppt &amp; .pptx files)</li>
+                <li>You can still upload PDF &amp; Microsoft Word documents (.pdf, .doc, &amp; .docx
+                    files)</li>
+            </ul>
+        </li>
+        <li>Change your password.</li>
+        <li>Change the spelling of your email address.</li>
+    </ul>
+    <h3>
+        Preview 2 Feature Summary (deployed 7/14/2011)
+    </h3>
+    <ul>
+        <li>Upload &amp; attach PDF or Microsoft Word files to institutional agreements.</li>
+        <li>Control agreement hierarchies (agreements that fall under other umbrella or parent
+            agreements).</li>
+    </ul>
+    <h3>
+        Preview 1 Feature Summary (deployed 6/14/2011)
+    </h3>
+    <ul>
+        <li>Sign up &amp; create a user account.</li>
+        <li>Sign in &amp; sign out.</li>
+        <li>Manage personal info (name &amp; affiliation).</li>
+        <li>View a list of institutional agreements.</li>
+        <li>Add / create institutional agreements.</li>
+        <li>Edit / update institutional agreements.</li>
+    </ul>
+</section>

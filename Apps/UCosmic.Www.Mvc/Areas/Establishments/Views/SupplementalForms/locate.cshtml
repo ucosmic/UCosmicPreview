@@ -1,0 +1,136 @@
+﻿@using UCosmic
+@model UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms.EstablishmentForm
+@{
+    ViewBag.Title = string.Format("Locate {0}", Model.OfficialName);
+}
+@section Scripts {
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+}
+<h2>
+    @Model.OfficialName
+    @if (Model.HasTranslatedName)
+    {
+        <br />
+        <span style="font-weight: normal; font-size: smaller">(@Model.TranslatedName)</span>
+    }
+</h2>
+@if (!Model.Location.HasPlaceMark)
+{
+    <p>
+        UCosmic does not know where <em>@Model.TranslatedName</em> is located. To help us
+        locate it, please do the following:
+    </p>
+    <ol class="p">
+        <li>Use the + and - buttons or double-click on the map to zoom in and find the location.<br />
+            <br />
+        </li>
+        <li>Click the
+            <img src="@Links.content.icons.maps.drop_marker_norm_31_png" alt="add placemark"
+			title="Add a placemark" />
+            icon in the upper-left section of the map to add a placemark.<br />
+            <br />
+        </li>
+        <li>Drag & drop the placemark to the appropriate location on the map.</li>
+    </ol>
+}
+@if (!string.IsNullOrWhiteSpace(Model.ReturnUrl) && (!Model.Location.HasPlaceMark || User.IsInRole(RoleName.EstablishmentLocationAgent)))
+{
+<p>
+    If you are unable to locate <em>@Model.TranslatedName</em>, you can <a href="/@Model.ReturnUrl">
+        click here to return to what you were doing</a>.
+</p>
+}
+<br />
+<div id="est_loc_map" class="u-map-google" 
+    data-ucosmic-map-zoom="@(Model.Location.GoogleMapZoomLevel ?? 2)" 
+    data-ucosmic-map-bounds-fit="if-low-zoom"
+    data-ucosmic-map-zoom-scroll-wheel="false"
+    data-ucosmic-map-center="@(Model.Location.CenterLatitude ?? 25.8),@(Model.Location.CenterLongitude ?? 11.9)" 
+    data-ucosmic-map-bounds-north-east="@Model.Location.BoundingBoxNortheastLatitude,@Model.Location.BoundingBoxNortheastLongitude"
+    data-ucosmic-map-bounds-south-west="@Model.Location.BoundingBoxSouthwestLatitude,@Model.Location.BoundingBoxSouthwestLongitude"
+    data-ucosmic-map-zoom-input="@Html.IdFor(m => m.Location.GoogleMapZoomLevel)"
+    data-ucosmic-map-lat-input="@Html.IdFor(m => m.Location.CenterLatitude)"
+    data-ucosmic-map-lng-input="@Html.IdFor(m => m.Location.CenterLongitude)"
+    data-ucosmic-map-north-input="@Html.IdFor(m => m.Location.BoundingBoxNortheastLatitude)"
+    data-ucosmic-map-east-input="@Html.IdFor(m => m.Location.BoundingBoxNortheastLongitude)"
+    data-ucosmic-map-south-input="@Html.IdFor(m => m.Location.BoundingBoxSouthwestLatitude)"
+    data-ucosmic-map-west-input="@Html.IdFor(m => m.Location.BoundingBoxSouthwestLongitude)">
+    <div class="u-map-canvas" style="height: 600px;">
+    </div>
+    @if (!Model.Location.HasPlaceMark || User.IsInRole(RoleName.EstablishmentLocationAgent))
+    {
+        <div class="u-map-controls no-display" style="margin-top: 7px;" data-ucosmic-map-position="top_left">
+            <div data-ucosmic-map-control="marker" data-ucosmic-map-center="@Model.Location.CenterLatitude,@Model.Location.CenterLongitude">
+                <img src="@Links.content.icons.maps.drop_marker_norm_31_png" alt="Add a placemark"
+				    title="Add a placemark" class="unselectable" data-ucosmic-map-control="create-marker" 
+                    data-ucosmic-img-src="@Links.content.icons.maps.new_raised_marker_png" 
+                    data-ucosmic-size-width="52" data-ucosmic-size-height="61"
+                    data-ucosmic-map-origin-x="0" data-ucosmic-map-origin-y="0"
+                    data-ucosmic-map-anchor-x="10" data-ucosmic-map-anchor-y="10" 
+                    data-ucosmic-map-offset-y="43" data-ucosmic-map-href="@Url.Action(MVC.Establishments.SupplementalForms.FindPlaces())" />
+                <img src="@Links.content.icons.maps.drop_marker_hot_31_png" alt="Remove placemark"
+				    title="Remove placemark" class="unselectable" data-ucosmic-map-control="destroy-marker"
+                    data-ucosmic-confirm="Remove this placemark?" />
+                <div class="no-display" data-ucosmic-map="info-window" data-ucosmic-size-width="400"
+                    style="padding-right: 20px;">
+                    <div>
+                        <strong>Is this where <em>@Model.TranslatedName</em> is located?</strong>
+                    </div>
+                    @if (!User.IsInRole(RoleName.EstablishmentLocationAgent))
+                    {
+                        <p>
+                            <span style="color: #c00;">You can set this location once, but you do not have privileges
+                                to change it afterward.</span>
+                        </p>
+                    }
+                    else
+                    {
+                        <br />
+                    }
+                    @using (Html.BeginForm(MVC.Establishments.SupplementalForms.ActionNames.Locate,
+                        MVC.Establishments.SupplementalForms.Name,
+                        new { area = MVC.Establishments.Name, httpMethod = "POST" }, FormMethod.Post))
+                    {
+                        <input type="submit" value="Yes, save location" /> 
+                        <span data-ucosmic-form-submitting="hide"><em>If not, keep dragging the marker.</em></span>
+                        <span class="no-display" data-ucosmic-form-submitting="show">
+                            <img alt="spinning wait icon" src="@Url.Content(Links.content.icons.loaders.win7_wait_16_gif)" />
+                            <em>Working, please wait...</em> </span>
+                        <div class="hidden-input">
+                            @Html.HiddenFor(m => m.RevisionId)
+                            @Html.HiddenFor(m => m.EntityId)
+                            @Html.HiddenFor(m => m.ReturnUrl)
+                            @Html.HiddenFor(m => m.OfficialName)
+                            @Html.HiddenFor(m => m.TranslatedName)
+                            @Html.HiddenFor(m => m.Location.CenterLatitude)
+                            @Html.HiddenFor(m => m.Location.CenterLongitude)
+                            @Html.HiddenFor(m => m.Location.GoogleMapZoomLevel)
+                            @Html.HiddenFor(m => m.Location.BoundingBoxNortheastLatitude)
+                            @Html.HiddenFor(m => m.Location.BoundingBoxNortheastLongitude)
+                            @Html.HiddenFor(m => m.Location.BoundingBoxSouthwestLatitude)
+                            @Html.HiddenFor(m => m.Location.BoundingBoxSouthwestLongitude)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="u-map-markers no-display">
+            <div data-ucosmic-map="marker" data-ucosmic-map-center="@Model.Location.CenterLatitude,@Model.Location.CenterLongitude" 
+                data-ucosmic-map-title="@Model.OfficialThenTranslatedName">
+                <div data-ucosmic-map="info-window" data-ucosmic-size-width="400" style="padding-right: 20px;">
+                    <strong>@Model.TranslatedName</strong>
+                    @if (Model.HasTranslatedName)
+                    {
+                        <br />
+                        <span>(@Model.OfficialName)</span>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

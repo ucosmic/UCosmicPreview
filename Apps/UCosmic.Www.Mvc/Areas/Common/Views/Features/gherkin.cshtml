@@ -1,0 +1,187 @@
+﻿@using UCosmic.Www.Mvc.Models
+@{
+    var viewBag = (dynamic)ViewData["ViewBag"];
+    viewBag.Title = "Help with UCosmic Feature Requirements";
+}
+<p>
+    UCosmic features are written as <a href="http://en.wikipedia.org/wiki/User_story"
+        target="_blank">User Stories</a>. Some advantages of specifying requirements
+    with user stories include:
+</p>
+<ul class="p br">
+    <li>They are written in plain English, and should be understandable by the end users.
+        (In fact, good user stories should be written <em>by</em> the stakeholders and end
+        users, with a bit of assistance from developers.) </li>
+    <li>They are brief and easier to digest than lengthy requirements documents that outline
+        an entire system end-to-end. If an idea cannot be expressed on a standard 3 x 5
+        index card, it is considered too long, and should be broken out into more than one
+        user story. </li>
+    <li>They provide a basis for testing whether or not a feature is acceptable for production
+        use once developed. UCosmic uses <a href="http://specflow.org/" target="_blank">special
+            software</a> that transforms user stories into automatable tests that either
+        <span style="color: #090; font-weight: bold">pass</span> or <span style="color: #c00;
+            font-weight: bold">fail</span> when executed in a development environment.
+    </li>
+</ul>
+<p>
+    That last bullet means user stories define both the beginning and the end of a development
+    cycle. Because they use plain English to describe a required behavior, they serve
+    as human-readable system documentation. However because they can also be read (and
+    executed) by a machine, they are a form of code. By executing them to deliver a
+    pass/fail result, UCosmic user stories also serve as an automatable <a href="http://en.wikipedia.org/wiki/Acceptance_testing#User_acceptance_testing"
+        target="_blank">user acceptance testing</a> suite.
+</p>
+<br />
+<hr />
+<br />
+<h2>
+    Anatomy of a Feature Request (User Story Card)
+</h2>
+<p>
+    A user story &quot;card&quot; should answer the questions <strong>Why?</strong>
+    <strong>Who?</strong> and <strong>What?</strong> in that order. Let's look at an
+    example:
+</p>
+<div id="feature2" class="user-story-card">
+    <h3>
+        Search Institutional Agreements by Contact Name
+    </h3>
+    <p>
+        <strong>In order to</strong> quickly find institutional agreements associated with
+        a specific person,
+        <br />
+        <strong>As an</strong> anonymous person browsing the web,
+        <br />
+        <strong>I want to</strong> search institutional agreements by a known contact's
+        first and/or last name.
+    </p>
+</div>
+<p>
+    There are 4 components to this and every user story card:
+</p>
+<ol class="p br">
+    <li>The title serves as a brief summary of the feature and a way to identify it.
+    </li>
+    <li>The <strong>In order to</strong> line articulates which business goal the stakeholder
+        wants to achieve. This is considered to be the most important part of the story
+        because it defines the value of the feature, and can be used to prioritize feature
+        requests for development.</li>
+    <li>The <strong>As a(n)</strong> line communicates which groups of users will be able
+        to access the feature. It summarizes security-related aspects such as <a href="http://en.wikipedia.org/wiki/Authentication#Authentication_vs._authorization"
+            target="_blank">authentication</a>, <a href="http://en.wikipedia.org/wiki/Authorization"
+                target="_blank">authorization</a>, and <a href="http://en.wikipedia.org/wiki/Access_control"
+                    target="_blank">access control</a>.</li>
+    <li>The <strong>I want to</strong> line describes an action that a user will take to
+        achieve the goal. It is often very similar to the title, though it sometimes provides
+        a bit more detail.</li>
+</ol>
+<p>
+    Note how the above user story is short and focused. UCosmic stakeholders also want
+    to be able to search for institutional agreements by country, institution, and other
+    fields, but those features exist as separate user stories. Though they are related,
+    keeping them separate allows developers to deliver more commonly used &amp; higher
+    priority search features more quickly, so stakeholders can begin taking advantage
+    of them sooner.
+</p>
+<br />
+<hr />
+<br />
+<h2>
+    Examples, Scenarios, and Steps
+</h2>
+<p>
+    The questions <strong>When?</strong> <strong>Where?</strong> and <strong>How?</strong>
+    also need to be answered, and the best way to describe these aspects of a feature
+    is with examples. <a href="https://ucosmic.uservoice.com/forums/133860-institutional-agreements/suggestions/2560644-more-search-criteria-and-display-in-agreements"
+        target="_blank">This feature was requested by Lehigh University</a>, so let's
+    pick them. In our example, suppose there are 3 institutional agreements over which
+    to search: (I've chosen fictional agreements, but real agreements would be better
+    examples)
+</p>
+<p>
+    <pre style="padding: 0; margin: 0; font-size: 15px;">
+Given the following Lehigh institutional agreements:
+| Partner        | Home Principal   | Home Secondary | Partner Principal | Partner Secondary |
+|----------------|------------------|----------------|-------------------|-------------------|
+| Test partner 1 | Mohamed El-Asser | Gary Lutz      | Gustav Eldebran   | Vladimir Estoff   |
+| Test partner 2 | Marcus Byrons    | Alex Dorn      | Aziz Mohamed      | Patrick Sanderson |
+| Test partner 3 | Aaron Patrick    | Debra Nyby     | Maria Sanchez     | Alexis Fiero      |
+    </pre>
+</p>
+<p>
+    This example data provides a basis for writing down example behaviors that describe
+    how the feature will ultimately work. Behaviors are grouped into scenarios, and
+    each scenario consists of a number of steps. Let's examine a scenario for this feature:
+</p>
+<p>
+    <strong>Given</strong> I am not signed in
+    <br />
+    and I have navigated to Lehigh's "Search Institutional Agreements" page
+    <br />
+    <strong>When</strong> I type "Mohamed" into the keyword search text box
+    <br />
+    and I click the Search button
+    <br />
+    <strong>Then</strong> I should see an agreement with "Test partner 1" in the results
+    list
+    <br />
+    and I should see an agreement with "Test partner 2" in the results list
+    <br />
+    but I should not see an agreement with "Test partner 3" in the results list
+</p>
+<p>
+    <strong>Important: <em>when creating feature requests, you don't have to be this technical</em>.</strong>
+    However a developer will ultimately formulate your requests into the above format,
+    which is a programming language called <a href="http://en.wikipedia.org/wiki/Behavior_Driven_Development#Application_examples_in_the_Gherkin_language"
+        target="_blank">Gherkin</a>. It is what makes these steps executable by a machine.
+</p>
+<p>
+    If a particular nuance of how a feature ultimately works is important to achieving
+    your business goal, please describe it in terms of preconditions (state of the system
+    before an action is taken), actions, and expected outcomes when you deem necessary.
+    But do not feel like you should be pigeonholed into the technical format above.
+    Something along the lines of the following would suffice:
+</p>
+<blockquote style="font-size: 16px; font-style: italic;">
+    UCosmic should match keyword searches with an agreement contact's first or last
+    name.
+</blockquote>
+<p>
+    A developer can take a requirement like this and write out the appropriate scenarios
+    and steps that define such a behavior. However, broad and general terms leave a
+    lot of room for interpretation. <em>The less freedom you want to allow developers to
+        have when writing scenarios, the more detailed examples you should provide in your
+        feature requests</em>.
+</p>
+<br />
+<hr />
+<br />
+<h2>
+    Where do feature requests come from?
+</h2>
+<p>
+    Many user stories and feature scenarios are determined based on existing functionality
+    in the <a href="https://www.uc.edu/webapps/ucosmic" target="_blank">University of Cincinnati's
+        prototype UCosmic system</a>. However you are free to submit new ideas and bug
+    reports at any time by clicking the @Html.Partial(MVC.Shared.Views.uservoice_link, new UserVoiceLink(Request, ViewData))
+    link at the bottom of every page.
+</p>
+<p>
+    The feedback &amp; support site consists of 9 different forums; one for each of
+    the 8 modules, plus 1 general forum for everything else. The @Html.Partial(MVC.Shared.Views.uservoice_link, new UserVoiceLink(Request, ViewData))
+    link at the bottom of each page is contextual, meaning clicking it will funnel your
+    feedback into the appropriate forum depending on which tab is selected at the top
+    of the page.
+</p>
+<p>
+    A couple of UCosmic modules, namely <a href="@Url.Action(MVC.Common.Features.Requirements("alumni"))">
+        Alumni</a> and <a href="@Url.Action(MVC.Common.Features.Requirements("travel"))">Travel</a>,
+    were never implemented in the University of Cincinnati prototype. Other pieces of
+    the puzzle, including many components of the <a href="@Url.Action(MVC.Common.Features.Requirements("students"))">
+        Students module</a>, require business process change to occur before they can
+    become reality. Before work can begin on these kinds of features, we will need a
+    critical mass of active participants ready and willing to drive development forward.
+</p>
+<br />
+<hr />
+<br />

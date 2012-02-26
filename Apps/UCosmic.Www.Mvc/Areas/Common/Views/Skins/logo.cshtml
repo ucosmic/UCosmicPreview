@@ -1,0 +1,6 @@
+﻿@model UCosmic.Www.Mvc.Areas.Common.Models.Skins.LogoInfo
+<div class="logo-box">
+    <a href="@Model.Href">
+        <img src="@Url.Content(string.Format("~/content/skins/{0}/head-logo.png", Model.SkinName))" alt="logo image" />
+    </a>
+</div>

@@ -1,0 +1,83 @@
+﻿@*@using UCosmic
+@using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
+@model IEnumerable<InstitutionalAgreementSearchResult>
+@{
+    ViewBag.Title = "Browse institutional agreements";
+}
+<h2>
+    Browse institutional agreements
+</h2>
+<p>
+    <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Post(null as Guid?))">Add a new agreement</a> 
+    @if (Roles.GetRolesForUser().Contains(RoleName.InstitutionalAgreementSupervisor))
+    {
+        <span>|</span>
+        <a href="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.Edit())">Configure module</a>
+    }
+</p>
+@if (Model.Any())
+{
+    <table class="list">
+        <thead>
+            <tr>
+                <th style="width: 50%;">
+                    Summary description
+                </th>
+                <th>
+                    Status
+                </th>
+                <th class="no-wrap">
+                    Starts on
+                </th>
+                <th class="no-wrap">
+                    Expires on
+                </th>
+                <th style="max-width: 30%;">
+                    Files
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Edit(item.EntityId, Request.RawUrl))">@Html.DisplayFor(m => item.Title)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.StartsOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.ExpiresOn)
+                    </td>
+                    <td>
+                        @if (item.Files != null && item.Files.Count > 0)
+                        {
+                            foreach (var file in item.Files)
+                            {
+                            <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.DisplayFile(file.EntityId, file.Name))" 
+                                    target="_blank">@file.Name</a>
+                            <br />
+                            }                            
+                        }
+                        else
+                        {
+                            <span>[No files]</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>
+        You have no institutional agreements. <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Post(null as Guid?))">
+            Click here to add your first one</a>.
+    </p>
+}
+*@

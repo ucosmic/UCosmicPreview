@@ -1,0 +1,785 @@
+﻿@using UCosmic
+@using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
+@model InstitutionalAgreementForm
+<div>
+    @Html.ValidationSummary(false, "Please correct the following and try again:")
+</div>
+<div id="institutional_agreement_editor">
+    <fieldset>
+        <legend>Participants</legend>
+        <p>
+            Participants are displayed in the box below, and will be visible to the public.
+        </p>
+        <table class="page page-50-50">
+            <tbody>
+                <tr>
+                    <td class="left">
+                        <div>
+                            @Html.ValidationMessageFor(m => m.Participants)
+                        </div>
+                        <ul id="participants_list" class="listbox">
+                            <li class="participant empty"><b>[No Participants]</b></li>
+                            @foreach (var participant in Model.Participants)
+                            {
+                                @Html.EditorFor(m => participant, MVC.InstitutionalAgreements.ManagementForms.Views.EditorTemplates.InstitutionalAgreementParticipantForm)
+                            }
+                        </ul>
+                        @*<select id="participant_establishment_ids" multiple="multiple">
+                            @foreach (var participant in Model.Participants)
+                            {
+                                <option value="@participant.EstablishmentEntityId" selected="selected">@participant.EstablishmentEntityId</option>
+                            }
+                        </select>*@
+                    </td>
+                    <td class="center">
+                    </td>
+                    <td class="right">
+                        <div class="two-rows ParticipantSearch-field">
+                            <textarea id="participant_search" rows="2" cols="1"></textarea>
+                            <div class="autocomplete-menu">
+                            </div>
+                        </div>
+                        <p>
+                            To add a new participant, begin typing in the text box above.
+                        </p>
+                        <p>
+                            As you type, UCosmic will search for matching establishments and display them below
+                            the text box.
+                        </p>
+                        <p>
+                            When the correct match appears, click to add it as a participant in this agreement.
+                        </p>
+                        <p>
+                            If UCosmic can't find the participant you're looking for, please <a href="mailto:data@ucosmic.com?subject=Missing Agreement Participant(s)">
+                                let us know</a>.
+                        </p>
+                        <p>
+                            To remove a participant, click its red <i>remove participant</i> icon.
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>Basic Info</legend>
+        <p>
+            Enter agreement type & summary description below. Additional notes are optional,
+            and will only be visible to users at your institution.
+        </p>
+        <table class="form">
+            <tbody>
+                <tr>
+                    <th class="label no-wrap">
+                        @Html.LabelFor(m => m.Umbrella.EntityId)
+                    </th>
+                    <td class="value">
+                        <div class="input">
+                            @Html.DropDownListFor(m => m.Umbrella.EntityId, Model.Umbrella.Options,
+                                ModelMetadata.FromLambdaExpression(m => m.Umbrella.EntityId, ViewData).NullDisplayText)
+                        </div>
+                        <div class="p">
+                            Indicate whether this agreement falls under an umbrella or parent agreement.
+                        </div>
+                        <div class="model-validator">
+                            @Html.ValidationMessageFor(m => m.Umbrella.EntityId)
+                        </div>
+                    </td>
+                    <td class="info">
+                        <div class="p">
+                            <i>(optional, public visibility)</i>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="label no-wrap">
+                        @Html.LabelFor(m => m.Type)
+                        *
+                    </th>
+                    <td class="value">
+                        <div class="input combobox @Html.IdFor(m => m.Type)-field">
+                            @Html.EditorFor(m => m.Type)
+                        </div>
+                        <div class="p">
+                            Select from the drop-down list of pre-existing agreement types or enter a custom
+                            one in the text box above.
+                        </div>
+                        <div class="model-validator">
+                            @Html.ValidationMessageFor(m => m.Type)
+                        </div>
+                    </td>
+                    <td class="info">
+                        <div class="p">
+                            <i>(required, public visibility, 150 characters max)</i>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="label no-wrap">
+                        @Html.LabelFor(m => m.Title)
+                        *
+                    </th>
+                    <td class="value">
+                        <div class="input three-rows">
+                            @Html.EditorFor(m => m.Title)
+                        </div>
+                        <div class="input">
+                            @Html.EditorFor(m => m.IsTitleDerived)
+                            @Html.LabelFor(m => m.IsTitleDerived)
+                        </div>
+                        <div class="p">
+                            The summary description will help you locate and identify this agreement in other
+                            drop-down menus.
+                        </div>
+                        <div class="model-validator">
+                            @Html.ValidationMessageFor(m => m.Title)
+                        </div>
+                    </td>
+                    <td class="info">
+                        <div class="p">
+                            <i>(required, public visibility, 500 characters max)</i>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="label no-wrap">
+                        @Html.LabelFor(m => m.Description)
+                    </th>
+                    <td class="value">
+                        <div class="input five-rows">
+                            @Html.EditorFor(m => m.Description)
+                        </div>
+                        <div class="p">
+                            Optionally enter additional notes with more information about this agreement.
+                        </div>
+                        <div class="model-validator">
+                            @Html.ValidationMessageFor(m => m.Description)
+                        </div>
+                    </td>
+                    <td class="info">
+                        <div class="p">
+                            <i>(optional, protected visibility, 4000 characters max)</i>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>Effective Dates & Current Status</legend>
+        <p>
+            Enter details about the agreement's start date, expiration date, auto-renew and
+            current status below.
+        </p>
+        <table class="form">
+            <tbody>
+                <tr class="two-fields">
+                    <th class="label no-wrap" rowspan="2">
+                        @Html.LabelFor(m => m.StartsOn)
+                        *
+                    </th>
+                    <td class="value" rowspan="2">
+                        <div class="input datepicker">
+                            @Html.EditorFor(m => m.StartsOn)
+                        </div>
+                        <div class="p">
+                            If there is no exact start or effective date for this agreement, enter an approximate
+                            date.
+                        </div>
+                        <div class="p">
+                            <i>(required, public visibility)</i>
+                        </div>
+                        <div class="model-validator">
+                            @Html.ValidationMessageFor(m => m.StartsOn)
+                        </div>
+                    </td>
+                    <th class="label no-wrap">
+                        @Html.LabelFor(m => m.ExpiresOn)
+                        *
+                        <br />
+                        <a href="#" class="expires-on-help">Help</a>
+                    </th>
+                    <td class="value">
+                        <div id="ExpirationDate" class="input datepicker">
+                            @Html.EditorFor(m => m.ExpiresOn)
+                        </div>
+                        <div class="p">
+                            The expiration date may determine when you are notified to review this agreement.
+                        </div>
+                        <div class="p">
+                            <i>(required, protected visibility)</i>
+                        </div>
+                        <div class="model-validator">
+                            @Html.ValidationMessageFor(m => m.ExpiresOn)
+                        </div>
+                        <div class="expires-on-help no-display">
+                            <div class="help-bubblepop">@Html.Partial(MVC.InstitutionalAgreements.ManagementForms.Views.expires_on_help)
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td>@Html.EditorFor(m => m.IsExpirationEstimated)
+                                </td>
+                                <td>@Html.LabelFor(m => m.IsExpirationEstimated)
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+                        <br />
+                    </td>
+                </tr>
+                <tr class="two-fields">
+                    <th class="label no-wrap">
+                        @Html.LabelFor(m => m.IsAutoRenew)
+                    </th>
+                    <td class="value">
+                        <div>
+                            @Html.RadioButtonFor(m => m.IsAutoRenew, true.ToInvariantString(),
+                                    new
+                                    {
+                                        id = string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), true.ToInvariantString()),
+                                    })
+                            <label for="@string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), true.ToInvariantString())">
+                                This agreement is auto-renewable.
+                            </label>
+                        </div>
+                        <div>
+                            @Html.RadioButtonFor(m => m.IsAutoRenew, false.ToInvariantString(),
+                                    new
+                                    {
+                                        id = string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), false.ToInvariantString()),
+                                    })
+                            <label for="@string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), false.ToInvariantString())">
+                                This agreement is <b>not</b> auto-renewable.
+                            </label>
+                        </div>
+                        <div>
+                            @if (Model.IsAutoRenew.HasValue)
+                            {
+                                @Html.RadioButtonFor(m => m.IsAutoRenew, string.Empty,
+                                    new
+                                    {
+                                        id = string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), "null"),
+                                    }) 
+                            }
+                            else
+                            {
+                                @Html.RadioButtonFor(m => m.IsAutoRenew, string.Empty,
+                                    new
+                                    {
+                                        id = string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), "null"),
+                                        @checked = "checked",
+                                    }) 
+                            }
+                            <label for="@string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), "null")">
+                                Auto renew is unknown or open ended.
+                            </label>
+                        </div>
+                        <div class="p">
+                            <i>(protected visibility)</i>
+                        </div>
+                    </td>
+                    <th class="label no-wrap">
+                        @Html.LabelFor(m => m.Status)
+                        *
+                    </th>
+                    <td class="value">
+                        <div class="input combobox @Html.IdFor(m => m.Status)-field">
+                            @Html.EditorFor(m => m.Status)
+                        </div>
+                        <div class="p">
+                            Select from the drop-down list of pre-existing agreement statuses or enter a custom
+                            one in the text box above. <i>(required, private visibility, 50 characters max)</i>
+                        </div>
+                        <div class="model-validator">
+                            @Html.ValidationMessageFor(m => m.Status)
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>Contacts</legend>
+        <p>
+            Agreement contacts are displayed in the box below, and will have protected visibility.
+        </p>
+        <table class="page page-50-50">
+            <tbody>
+                <tr>
+                    <td class="left">
+                        <ul id="contacts_list" class="listbox">
+                            <li class="agreement-contact empty"><b>[No Contacts]</b></li>
+                            @foreach (var contact in Model.Contacts)
+                            {
+                                @Html.Partial(MVC.InstitutionalAgreements.ManagementForms.Views.add_contact, contact)
+                            }
+                        </ul>
+                    </td>
+                    <td class="center">
+                    </td>
+                    <td class="right">
+                        <div class="add-contact">
+                            <a href="#" class="add-contact">Add Contact</a> &nbsp; <span id="adding_contact"
+                                style="display: none;">
+                                <img src="@Url.Content(Links.content.icons.loaders.win7_wait_16_gif)" alt="spinning wheel" class="add-contact" />
+                                One moment please...</span>
+                        </div>
+                        <p>
+                            To add a contact for this agreement, click Add Contact above.
+                        </p>
+                        <p>
+                            A new window will pop up prompting you for more information. (Don't worry though,
+                            you won't lose what you've already entered.)
+                        </p>
+                        <p>
+                            You can add as many contacts as you like.
+                        </p>
+                        <p>
+                            To remove a contact, click its red <em>remove contact</em> icon.
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>File Attachments</legend>
+        <p>
+            File attachments are displayed in the box below, and will have protected visibility.
+        </p>
+        <table class="page page-50-50">
+            <tbody>
+                <tr>
+                    <td class="left">
+                        <ul id="file_attachments" class="listbox">
+                            <li class="file-attachment empty"><b>[No File Attachments]</b></li>
+                            @foreach (var file in Model.Files)
+                            {
+                                @Html.EditorFor(m => file)
+                            }
+                        </ul>
+                    </td>
+                    <td class="center">
+                    </td>
+                    <td class="right">
+                        <ul id="file_upload">
+                        </ul>
+                        <p>
+                            To attach a file to this agreement, click the button above and choose a file to
+                            upload from your computer.
+                        </p>
+                        <p>
+                            After you choose the file it will appear in the box to the left. Repeat this process
+                            to attach additional files.
+                        </p>
+                        <p>
+                            To remove a file attachment, click its red <i>remove file</i> icon.
+                        </p>
+                        <p>
+                            Each file attachment must be 25 MB (megabytes) or smaller. You may only upload PDF,
+                            Microsoft Office, and Open Document files with a pdf, doc, docx, odt, xls, xlsx,
+                            ods, ppt, or pptx extension.
+                        </p>
+                        <p>
+                            If you are uploading large files and/or have a slow Internet connection, please
+                            be patient while the upload completes.
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <div id="modal_box">
+    </div>
+    <div class="hidden-input">
+        @Html.EditorFor(m => m.RevisionId)
+        @Html.EditorFor(m => m.EntityId)
+        @Html.EditorFor(m => m.ReturnUrl)
+    </div>
+</div>
+<div>
+    @Html.ValidationSummary(false, "Please correct the following and try again:")
+</div>
+<div>
+    @{
+        var submitValue = (Model.IsNew) ? "Add Agreement" : "Save Changes";
+    }
+    <input id="agreement_form_submit" type="submit" value="@submitValue" />
+    @if (!Request.IsAjaxRequest())
+    {
+        <a href="@Model.ReturnUrl">Cancel</a>
+    }
+    else
+    {
+        <input type="reset" value="Cancel" />
+    }
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var agreementId = $('#@Html.IdFor(m => m.RevisionId)').val();
+        var typeId = '@Html.IdFor(m => m.Type)';
+        var startsId = '@Html.IdFor(m => m.StartsOn)';
+        var expiresId = '@Html.IdFor(m => m.ExpiresOn)';
+        var statusId = '@Html.IdFor(m => m.Status)';
+        var titleId = '@Html.IdFor(m => m.Title)';
+        var isTitleDerivedId = '@Html.IdFor(m => m.IsTitleDerived)';
+
+        var expiresOnBubbleOpts = {
+            mouseOver: 'hide',      // Hide mouseOver event to stop Bubble Popup from showing on mouseOver on ExpirationDate
+            mouseOut: 'hide',
+            alwaysVisible: false,
+            position: 'top',
+            align: 'middle',
+            tail: { align: 'middle' },
+            innerHtml: $('div.expires-on-help').html(),
+            themeName: 'azure',
+            themePath: '@Url.Content(Links.content.themes.jquerybubblepopup_theme.Url())'
+        };
+
+        $('#' + expiresId).CreateBubblePopup(expiresOnBubbleOpts);
+
+        $('a.expires-on-help').click(function () {
+
+            $('#' + expiresId).IsBubblePopupOpen() ? $('#' + expiresId).HideBubblePopup() : $('#' + expiresId).ShowBubblePopup(expiresOnBubbleOpts);
+
+            $('#' + expiresId).FreezeBubblePopup();
+
+            // when the "Close this popup" link is clicked, hide the bubble popup
+            $('.help-bubblepop .close-help').click(function () {
+                $('#' + expiresId).HideBubblePopup(); return false;
+            });
+            return false;
+        });
+
+        // modal form for contacts
+        $('a.add-contact').click(function () {
+            $('#adding_contact').show();
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action(MVC.InstitutionalAgreements.ManagementForms.AddContact())',
+                data: {
+                    agreementId: (agreementId == 0) ? null : agreementId
+                },
+                cache: false,
+                success: function (html) {
+                    if (!html) return;
+                    $('#modal_box').html(html);
+                    $.validator.unobtrusive.parse($("#modal_box form"));
+                    $('#modal_box').modal({
+                        closeHTML: '<a class="modalCloseImg simplemodal-close" title="Cancel"><span style="visibility:hidden;">Close</span></a>',
+                        position: [20, 0],
+                        onOpen: function (dialog) {
+                            dialog.overlay.fadeIn(250, function () {
+                                dialog.data.show(0, function () {
+                                    dialog.container.fadeIn(250);
+                                });
+                            });
+                        },
+                        onClose: function (dialog) {
+                            dialog.container.fadeOut(250, function () {
+                                dialog.data.hide(0, function () {
+                                    dialog.overlay.fadeOut(250, function () {
+                                        $.modal.close();
+                                        $('#modal_box').empty();
+                                    });
+                                });
+                            });
+                        }
+                    });
+                },
+                complete: function () {
+                    $('#adding_contact').hide();
+                }
+            });
+            return false;
+        });
+
+        // remove contact
+        $('li.agreement-contact a.remove-button').live('click', function () {
+            //$(this).parents('li.agreement-contact:first').remove();
+            //showHideEmptyContacts();
+            //return false;
+            var li = $(this).parents('li');
+            li.find('.is-deleted input').val(true);
+            li.slideUp(200, function () {
+                showHideEmptyContacts();
+                autoTitle();
+            });
+            return false;
+        });
+
+        // empty contacts
+        function showHideEmptyContacts() {
+            //if ($('#contacts_list').children('li.agreement-contact').length > 1) {
+            //    $('#contacts_list li.empty').hide();
+            //}
+            //else {
+            //    $('#contacts_list li.empty').show();
+            //}
+            if ($('#contacts_list').find('li.agreement-contact .hidden-input .is-deleted input[value="False"]').length > 0
+                || $('#contacts_list').find('li.agreement-contact .hidden-input .is-deleted input[value="false"]').length > 0) {
+                $('#contacts_list li.empty').slideUp(200);
+            }
+            else {
+                $('#contacts_list li.empty').fadeIn(200);
+            }
+        }
+        showHideEmptyContacts();
+
+        function getExcludedParticipantIds() {
+            var excludeEntityIds = [];
+            $('#participants_list li .entity-id input').each(function () {
+                var isDeleted = $(this).parents('li').find('.is-deleted input').val();
+                if (isDeleted && isDeleted !== 'False') return;
+                var excludeEntityId = $(this).val();
+                if ($.inArray(excludeEntityId, excludeEntityIds) < 0)
+                    excludeEntityIds.push(excludeEntityId);
+            });
+            return excludeEntityIds;
+        }
+
+        // add participant
+        $('#participant_search').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action(MVC.InstitutionalAgreements.ManagementForms.AutoCompleteEstablishmentNames())',
+                    dataType: 'json',
+                    traditional: true,
+                    data: {
+                        term: request.term,
+                        excludeEstablishmentIds: getExcludedParticipantIds()
+                    },
+                    success: function (data) {
+                        if (!$('#participant_search').val()) {
+                            return null;
+                        }
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.label,
+                                value: item.value
+                            };
+                        }));
+                        return null;
+                    }
+                });
+            },
+            minLength: 3,
+            appendTo: '.ParticipantSearch-field .autocomplete-menu',
+            focus: function () {
+                // do not change the text box value
+                return false;
+            },
+            select: function (event, ui) {
+                $(this).val('');
+                $.ajax({
+                    url: '@Url.Action(MVC.InstitutionalAgreements.ManagementForms.AddParticipant())',
+                    data: {
+                        agreementId: agreementId,
+                        establishmentId: ui.item.value
+                    },
+                    cache: false,
+                    success: function (html) {
+                        if (!html) return;
+                        $('#participants_list li.empty').hide();
+                        $('#participants_list').append(html);
+                        autoTitle();
+                    }
+                });
+                return false;
+            }
+        });
+
+        // remove participant
+        $('li.participant a.remove-button').live('click', function () {
+            //var establishmentId = $(this).attr('data-establishment-id');
+            //$('#participant_establishment_ids').children('option[value="' + establishmentId + '"]').remove();
+            //$(this).parents('li.participant:first').remove();
+            //showHideEmptyParticipants();
+            //autoTitle();
+            //return false;
+            var li = $(this).parents('li');
+            li.find('.is-deleted input').val(true);
+            li.slideUp(200, function () {
+                showHideEmptyParticipants();
+                autoTitle();
+            });
+            return false;
+        });
+
+        // empty participants
+        function showHideEmptyParticipants() {
+            //if ($('#participants_list').children('li.participant').length > 1) {
+            //    $('#participants_list li.empty').hide();
+            //}
+            //else {
+            //    $('#participants_list li.empty').show();
+            //}
+            if ($('#participants_list').find('li.participant .hidden-input .is-deleted input[value="False"]').length > 0
+                || $('#participants_list').find('li.participant .hidden-input .is-deleted input[value="false"]').length > 0) {
+                $('#participants_list li.empty').slideUp(200);
+            }
+            else {
+                $('#participants_list li.empty').fadeIn(200);
+            }
+        }
+        showHideEmptyParticipants();
+
+        // attach file
+        function newFileAttachment() {
+            $.ajax({
+                url: '@Url.Action(MVC.InstitutionalAgreements.ManagementForms.AttachFile())',
+                data: {
+                    agreementId: (agreementId == 0) ? null : agreementId
+                },
+                cache: false,
+                success: function (html) {
+                    if (!html) return;
+                    $('#file_upload').append(html);
+                }
+            });
+            return false;
+        };
+        newFileAttachment();
+
+        function getFileNameFromPath(strFilepath) {
+            var regEx = new RegExp(/([^\/\\]+)$/);
+            var strName = regEx.exec(strFilepath);
+            if (strName == null) {
+                return null;
+            }
+            else {
+                return strName[0];
+            }
+        }
+
+        function isValidFileExtension(fileName) {
+            if (fileName) {
+                var indexOfExtension = fileName.lastIndexOf('.');
+                if (indexOfExtension >= 0) {
+                    var fileExt = fileName.substr(fileName.lastIndexOf('.') + 1).toLowerCase();
+                    return (fileExt == 'pdf' || fileExt == 'doc' || fileExt == 'docx' || fileExt == 'odt'
+                        || fileExt == 'xls' || fileExt == 'xlsx' || fileExt == 'ods'
+                        || fileExt == 'ppt' || fileExt == 'pptx');
+                }
+                return false;
+            }
+            return false;
+        }
+
+        $('#file_upload input[type="file"]').live('change', function () {
+            var fileName = $(this).val();
+            fileName = getFileNameFromPath(fileName);
+            if (isValidFileExtension(fileName)) {
+                var li = $(this).parents('li.file-attachment');
+                $('#file_attachments').append($('#file_upload li'));
+                $('#file_attachments li.empty').hide();
+                li.find('.file-chosen .file-name').html(fileName);
+                li.find('.file-chosen a.remove-button').attr('data-file-name', fileName);
+                li.find('.file-chooser').hide();
+                li.find('.file-chosen').show();
+                newFileAttachment();
+            }
+            else {
+                $(this).parents('.file-chooser').find('.file-ext-invalid').show();
+                $(this).val('');
+            }
+        });
+
+        // remove file
+        $(document).on('click', 'li.file-attachment a.remove-button', function () {
+            var li = $(this).parents('li');
+            li.find('.is-deleted input').val(true);
+            //$(this).parents('li.file-attachment:first').remove();
+            li.slideUp(200, function () {
+                showHideEmptyFiles();
+            });
+            return false;
+        });
+
+        // empty files
+        function showHideEmptyFiles() {
+            //if ($('#file_attachments').children('li.file-attachment').length > 1) {
+            //    $('#file_attachments li.empty').hide();
+            //}
+            //else {
+            //    $('#file_attachments li.empty').show();
+            //}
+            if ($('#file_attachments').find('li.file-attachment .is-deleted input[value=False]').length > 0
+                || $('#file_attachments').find('li.file-attachment .is-deleted input[value=false]').length > 0) {
+                $('#file_attachments li.empty').slideUp(200);
+            }
+            else {
+                $('#file_attachments li.empty').fadeIn(200);
+            }
+        }
+        showHideEmptyFiles();
+
+        // remove whitespace from textboxes
+        $('#institutional_agreement_editor input[type=text], #institutional_agreement_editor textarea').blur(function () {
+            $(this).val($.trim($(this).val()));
+        });
+
+        // datepickers for date fields
+        $('#' + startsId + ', #' + expiresId).datepicker();
+
+
+        // derive agreement title
+        var originalTitle = $('#' + titleId).val();
+        function updateOriginalTitle() {
+            originalTitle = $(this).val();
+        }
+        // user entry updates the original title
+        $('#' + titleId).keyup(updateOriginalTitle);
+        $('#' + titleId).keydown(updateOriginalTitle);
+        $('#' + titleId).keypress(updateOriginalTitle);
+        if ($('#' + isTitleDerivedId).is(':checked')) {
+            $('#' + titleId).attr('readonly', 'readonly');
+        }
+        function autoTitle(fromCheckbox) {
+            $('#' + titleId).removeAttr('readonly');
+            if ($('#' + isTitleDerivedId).is(':checked')) {
+                $('#' + titleId).attr('readonly', 'readonly');
+                $.ajax({
+                    url: '@Url.Action(MVC.InstitutionalAgreements.ManagementForms.DeriveTitle())',
+                    dataType: 'json', // JSON get request
+                    traditional: true,
+                    data: {
+                        IsTitleDerived: true,
+                        Type: $('#' + typeId).val(),
+                        Status: $('#' + statusId).val(),
+                        ParticipantEstablishmentIds: getExcludedParticipantIds()
+                    },
+                    success: function (model) {
+                        $('#' + titleId).val($.trim(model.Title));
+                    }
+                });
+            }
+            else if (fromCheckbox && originalTitle) {
+                $('#' + titleId).val(originalTitle);
+            }
+        }
+        $('#' + isTitleDerivedId).click(function () {
+            autoTitle(true);
+        });
+        $('#' + typeId + ', #' + statusId).keyup(autoTitle).change(autoTitle);
+
+        // disable button after submit
+        $('form.institutional-agreement').submit(function () {
+            var isValid = $(this).valid(); // validate the form
+            if (isValid) {
+                $(this).find('input[type="submit"]').attr('disabled', 'disabled');
+                return true;
+            }
+            return false;
+        });
+
+    });
+
+</script>
+

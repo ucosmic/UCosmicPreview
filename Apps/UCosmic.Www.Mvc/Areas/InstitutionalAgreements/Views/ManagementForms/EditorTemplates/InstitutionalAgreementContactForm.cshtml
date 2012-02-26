@@ -1,0 +1,501 @@
+﻿@using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
+@model InstitutionalAgreementContactForm
+@using (Html.BeginForm(MVC.InstitutionalAgreements.ManagementForms.AddContact(null as InstitutionalAgreementContactForm), FormMethod.Post, new { id = "agreement_contact" }))
+{
+    <table class="page page-50-50">
+        <tbody>
+            <tr>
+                <td class="left">
+                    <fieldset>
+                        <legend>Add an institutional agreement contact</legend>
+                        <br />
+                        <table class="form half-form">
+                            <tbody>
+                                <tr>
+                                    <th class="label">
+                                        @Html.LabelFor(m => m.Type) *
+                                    </th>
+                                    <td class="value">
+                                        <div class="input combobox ContactType-field">
+                                            @Html.EditorFor(m => m.Type, MVC.InstitutionalAgreements.Shared.Views.EditorTemplates.ContactTypeComboBox)
+                                        </div>
+                                        <div class="p" style="display: none;">
+                                            Select the contact type, or enter a custom one in the box above.
+                                        </div>
+                                        <div class="model-validator ContactType-field">
+                                            @Html.ValidationMessageFor(m => m.Type)
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="model-validator ContactType-field">
+                                            @Html.ValidationMessageFor(m => m.Type)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="label">
+                                        @Html.LabelFor(m => m.Person.DefaultEmail)
+                                    </th>
+                                    <td class="value">
+                                        <div class="input @Html.IdFor(m => m.Person.DefaultEmail)-field">
+                                            @Html.EditorFor(m => m.Person.DefaultEmail)
+                                            <div class="autocomplete-menu">
+                                            </div>
+                                        </div>
+                                        <div class="model-validator @Html.IdFor(m => m.Person.DefaultEmail)-field">
+                                            @Html.ValidationMessageFor(m => m.Person.DefaultEmail)
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="model-validator @Html.IdFor(m => m.Person.DefaultEmail)-field">
+                                            @Html.ValidationMessageFor(m => m.Person.DefaultEmail)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="contact-extra-field" style="display: none;">
+                                    <th class="label">
+                                        @Html.LabelFor(m => m.Person.Salutation)
+                                    </th>
+                                    <td class="value">
+                                        <div class="input combobox @Html.IdFor(m => m.Person.Salutation)-field">
+                                            @Html.EditorFor(m => m.Person.Salutation)
+                                            <div class="autocomplete-menu">
+                                            </div>
+                                        </div>
+                                        <div class="model-validator">
+                                            @Html.ValidationMessageFor(m => m.Person.Salutation)
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="model-validator">
+                                            @Html.ValidationMessageFor(m => m.Person.Salutation)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="label">
+                                        @Html.LabelFor(m => m.Person.FirstName) *
+                                    </th>
+                                    <td class="value">
+                                        <div class="input @Html.IdFor(m => m.Person.FirstName)-field">
+                                            @Html.EditorFor(m => m.Person.FirstName)
+                                            <div class="autocomplete-menu">
+                                            </div>
+                                        </div>
+                                        <div class="model-validator @Html.IdFor(m => m.Person.FirstName)-field">
+                                            @Html.ValidationMessageFor(m => m.Person.FirstName)
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="model-validator @Html.IdFor(m => m.Person.FirstName)-field">
+                                            @Html.ValidationMessageFor(m => m.Person.FirstName)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="contact-extra-field" style="display: none;">
+                                    <th class="label">
+                                        @Html.LabelFor(m => m.Person.MiddleName)
+                                    </th>
+                                    <td class="value">
+                                        <div class="input @Html.IdFor(m => m.Person.MiddleName)-field">
+                                            @Html.EditorFor(m => m.Person.MiddleName)
+                                        </div>
+                                        <div class="model-validator">
+                                            @Html.ValidationMessageFor(m => m.Person.MiddleName)
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="model-validator">
+                                            @Html.ValidationMessageFor(m => m.Person.MiddleName)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="label">
+                                        @Html.LabelFor(m => m.Person.LastName) *
+                                    </th>
+                                    <td class="value">
+                                        <div class="input @Html.IdFor(m => m.Person.LastName)-field">
+                                            @Html.EditorFor(m => m.Person.LastName)
+                                            <div class="autocomplete-menu">
+                                            </div>
+                                        </div>
+                                        <div class="model-validator @Html.IdFor(m => m.Person.LastName)-field">
+                                            @Html.ValidationMessageFor(m => m.Person.LastName)
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="model-validator @Html.IdFor(m => m.Person.LastName)-field">
+                                            @Html.ValidationMessageFor(m => m.Person.LastName)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="contact-extra-field" style="display: none;">
+                                    <th class="label">
+                                        @Html.LabelFor(m => m.Person.Suffix)
+                                    </th>
+                                    <td class="value">
+                                        <div class="input combobox @Html.IdFor(m => m.Person.Suffix)-field">
+                                            @Html.EditorFor(m => m.Person.Suffix)
+                                            <div class="autocomplete-menu">
+                                            </div>
+                                        </div>
+                                        <div class="model-validator">
+                                            @Html.ValidationMessageFor(m => m.Person.Suffix)
+                                        </div>
+                                    </td>
+                                    <td class="info">
+                                        <div class="model-validator">
+                                            @Html.ValidationMessageFor(m => m.Person.Suffix)
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        @Html.EditorFor(m => m.Person.EntityId)
+                        <input id="contact_add_personid" type="hidden" value="" />
+                        <input id="contact_add_next" type="button" value="Add Contact" />
+                        <input id="contact_add_cancel" type="button" value="Cancel" class="simplemodal-close" />
+                    </fieldset>
+                </td>
+                <td class="center">
+                </td>
+                <td class="right">
+                    <div class="contact-step-0">
+                        <p>
+                            First select a <em>@Html.LabelFor(m => m.Type)</em> or enter a custom one in the
+                            text box provided.
+                        </p>
+                        <p>
+                            Next, begin entering the contact's <em>@Html.LabelFor(m => m.Person.DefaultEmail)</em>,
+                            <em>@Html.LabelFor(m => m.Person.FirstName)</em>, and <em>@Html.LabelFor(m => m.Person.LastName)</em>.
+                            Note that the <em>@Html.LabelFor(m => m.Person.DefaultEmail)</em> is not required.
+                        </p>
+                        <p>
+                            As you type, UCosmic will search to see if the person is already in the system.
+                            Matches will appear in a drop-down list below the text box.
+                        </p>
+                        <p>
+                            If you see the contact you're looking for, click it to automatically populate all
+                            text boxes and then click the <em>Add Contact</em> button.
+                        </p>
+                        <p>
+                            Otherwise, continue filling out the text boxes manually and then click the <i>Add Contact</i>
+                            button when you are finished.
+                        </p>
+                    </div>
+                    <div class="contact-step-1" style="display: none;">
+                        <p>
+                            To add this person as a contact, click the <i>Add Contact</i> button.
+                        </p>
+                        <p class="contact-add-reset">
+                            <a href="#">Click here to clear your selection and try again</a> if you accidentally
+                            selected the wrong person.
+                        </p>
+                    </div>
+                    <div class="contact-step-2" style="display: none;">
+                        <p>
+                            There is already a person in UCosmic with the email address <b class="contact-email-value">
+                            </b>.
+                        </p>
+                        <p>
+                            To add this person as a contact, click the <i>Add Contact</i> button.
+                        </p>
+                        <p class="contact-add-reset">
+                            <a href="#">Click here to clear your selection and try again</a> if you accidentally
+                            selected the wrong person.
+                        </p>
+                    </div>
+                    <p class="contact-extra-hidden">
+                        <a href="#">Click here to show additional textboxes</a> for <i>@Html.LabelFor(m => m.Person.Salutation)</i>,
+                        <i>@Html.LabelFor(m => m.Person.MiddleName)</i>, and <i>@Html.LabelFor(m => m.Person.Suffix)</i>.
+                    </p>
+                    <p class="contact-extra-shown" style="display: none;">
+                        <a href="#">Click here to hide additional textboxes</a> for <i>@Html.LabelFor(m => m.Person.Salutation)</i>,
+                        <i>@Html.LabelFor(m => m.Person.MiddleName)</i>, and <i>@Html.LabelFor(m => m.Person.Suffix)</i>.
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <script type="text/javascript">
+        $(function () {
+
+            //var typeId = '@Html.IdFor(m => m.Type)';
+            var personEntityId = '@Html.IdFor(m => m.Person.EntityId)', loadPersonEntityId = '@Model.Person.EntityId';
+            var salutationId = '@Html.IdFor(m => m.Person.Salutation)', userSalutation = '@Model.Person.Salutation';
+            var firstNameId = '@Html.IdFor(m => m.Person.FirstName)', userFirstName = '@Model.Person.FirstName';
+            var middleNameId = '@Html.IdFor(m => m.Person.MiddleName)', userMiddleName = '@Model.Person.MiddleName';
+            var lastNameId = '@Html.IdFor(m => m.Person.LastName)', userLastName = '@Model.Person.LastName';
+            var suffixId = '@Html.IdFor(m => m.Person.Suffix)', userSuffix = '@Model.Person.Suffix';
+            var emailId = '@Html.IdFor(m => m.Person.DefaultEmail)', userEmail = '@Model.Person.DefaultEmail';
+            var extraComboBoxesInitialized = false;
+
+            function updateUserValue(input) {
+                var inputId = input.attr('id');
+                var userValue = input.val();
+                if (inputId == salutationId) {
+                    userSalutation = userValue;
+                } else if (inputId == firstNameId) {
+                    userFirstName = userValue;
+                } else if (inputId == middleNameId) {
+                    userMiddleName = userValue;
+                } else if (inputId == lastNameId) {
+                    userLastName = userValue;
+                } else if (inputId == suffixId) {
+                    userSuffix = userValue;
+                } else if (inputId == emailId) {
+                    userEmail = userValue;
+                }
+            }
+
+            var userEntrySelector = '#' + salutationId + ', #' + firstNameId + ', #' + middleNameId
+                + ', #' + lastNameId + ', #' + suffixId + ', #' + emailId;
+            $(userEntrySelector).keyup(function () {
+                updateUserValue($(this));
+            });
+
+            // combobox for agreement contact type
+            //$('form#agreement_contact #' + typeId).cosmobox({
+            //    source: '@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.AgreementContactTypeOptions())',
+            //    buttonTitle: 'Show examples',
+            //    appendTo: 'form#agreement_contact .ContactType-field .autocomplete-menu',
+            //    focused: function () {
+            //    },
+            //    selected: function () {
+            //    }
+            //});
+
+            $('form#agreement_contact input[data-app-combobox="true"]').each(function () {
+                var url = $(this).data('app-combobox-url');
+                if (url) {
+                    $(this).attr('disabled', 'disabled');
+
+                    var typeOptions = {
+                        source: [],
+                        strict: true,
+                        error: false,
+                        buttonTitle: ''
+                    };
+                    $.ajax({
+                        url: url,
+                        dataType: 'json',
+                        async: false,
+                        success: function (data) {
+                            typeOptions = data;
+                        },
+                        error: function () {
+                            typeOptions.error = true;
+                        }
+                    });
+
+                    if (!typeOptions.error) {
+                        $(this).cosmobox({
+                            source: typeOptions.source,
+                            buttonTitle: typeOptions.buttonTitle,
+                            readonly: typeOptions.strict,
+                            appendTo: '.ContactType-field .autocomplete-menu'
+                        });
+                        $(this).removeAttr('disabled');
+                    }
+                }
+            });
+            
+            function initExtraComboBoxes() {
+                if (extraComboBoxesInitialized) return;
+                $('#' + salutationId).cosmobox({
+                    source: '@Url.Action(MVC.Identity.Self.AutoCompleteNameSalutations())',
+                    buttonTitle: 'Show examples',
+                    appendTo: '.' + salutationId + '-field .autocomplete-menu',
+                    focused: function () {
+                    },
+                    selected: function () {
+                        updateUserValue($('#' + salutationId));
+                    }
+                });
+                $('#' + suffixId).cosmobox({
+                    source: '@Url.Action(MVC.Identity.Self.AutoCompleteNameSuffixes())',
+                    buttonTitle: 'Show examples',
+                    appendTo: '.' + suffixId + '-field .autocomplete-menu',
+                    focused: function () {
+                    },
+                    selected: function () {
+                        updateUserValue($('#' + suffixId));
+                    }
+                });
+                extraComboBoxesInitialized = true;
+            }
+
+            $('.contact-extra-hidden a').click(function () {
+                $('tr.contact-extra-field').show();
+                $(this).parent().hide();
+                $('.contact-extra-shown').show();
+                $('.simplemodal-container').css({ height: '' });
+                initExtraComboBoxes();
+                return false;
+            });
+
+            $('.contact-extra-shown a').click(function () {
+                $('tr.contact-extra-field').hide();
+                $(this).parent().hide();
+                $('.contact-extra-hidden').show();
+                $('.simplemodal-container').css({ height: '' });
+                return false;
+            });
+
+            // autocomplete name fields
+            autoCompleteNameInput(firstNameId, 'FirstName', null, "{FirstName} {LastName}");
+            autoCompleteNameInput(lastNameId, 'LastName', null, "{LastName}, {FirstName}");
+            autoCompleteNameInput(emailId, 'DefaultEmail', null, "{FirstName} {LastName}");
+
+            function autoCompleteNameInput(inputId, targetTerm, targetOrder, labelFormat) {
+                $('#' + inputId).autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: '@Url.Action(MVC.Identity.Self.AutoCompletePersonName())',
+                            data: {
+                                term: request.term,
+                                termTarget: targetTerm,
+                                orderTarget: targetOrder
+                            },
+                            dataType: 'json',
+                            traditional: true,
+                            cache: false,
+                            success: function (data) {
+                                if (!$('#' + inputId).val()) {
+                                    return null;
+                                }
+                                response($.map(data, function (item) {
+                                    var label = labelFormat;
+                                    label = label.replace('{FirstName}', item.FirstName);
+                                    label = label.replace('{LastName}', item.LastName);
+                                    if (item.DefaultEmail) {
+                                        label = label + ' (' + item.DefaultEmail + ')';
+                                    }
+                                    return {
+                                        label: label,
+                                        value: item.EntityId
+                                    };
+                                }));
+                                return null;
+                            }
+                        });
+                    },
+                    minLength: 1,
+                    appendTo: '.' + inputId + '-field .autocomplete-menu',
+                    cache: false,
+                    focus: function () {
+                        return false; // do not change the text box value
+                    },
+                    select: function (event, ui) {
+                        $(this).val('');
+                        $.ajax({
+                            url: '@Url.Action(MVC.Identity.Self.PersonInfoById())',
+                            data: {
+                                personId: ui.item.value
+                            },
+                            dataType: 'json',
+                            traditional: true,
+                            cache: false,
+                            success: function (data) {
+                                if (!data) {
+                                    return;
+                                }
+                                applyExistingPerson(data, 1);
+                            }
+                        });
+                        return false;
+                    }
+                });
+            }
+
+            $('.contact-add-reset a').click(function () {
+                $('#' + personEntityId).val(loadPersonEntityId);
+                $('#' + salutationId).removeAttr('readonly').val(userSalutation);
+                $('#' + firstNameId).removeAttr('readonly').val(userFirstName);
+                $('#' + middleNameId).removeAttr('readonly').val(userMiddleName);
+                $('#' + lastNameId).removeAttr('readonly').val(userLastName);
+                $('#' + suffixId).removeAttr('readonly').val(userSuffix);
+                $('#' + emailId).removeAttr('readonly').val(userEmail);
+                $('form#agreement_contact tr.contact-extra-field .combobox button').removeAttr('disabled');
+                var stepToHide = ($('.contact-step-1').is(':visible')) ? '.contact-step-1' : '.contact-step-2';
+                $(stepToHide).fadeOut(200, function () {
+                    $('.contact-step-0').fadeIn(200, function () {
+                        if ($('.contact-extra-shown').is(':visible')) {
+                            $('tr.contact-extra-field').show();
+                            $('.simplemodal-container').css({ height: '' });
+                        }
+                    });
+                });
+                return false;
+            });
+
+            $('#contact_add_next').click(function () {
+                var isValid = $(this).parents('form').valid(); // validate the form
+                if (isValid && checkExistingEmail()) {
+                    var form = $(this).parents('form');
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action(MVC.InstitutionalAgreements.ManagementForms.AddContact())',
+                        data: form.serialize(),
+                        success: function (html) {
+                            if (html != '') {
+                                $('#contacts_list li.empty').hide();
+                                $('#contacts_list').append(html);
+                                $.modal.close();
+                            }
+                        }
+                    });
+                }
+                return false;
+            });
+
+            $('#' + emailId).change(function () {
+                checkExistingEmail();
+            });
+
+            function checkExistingEmail() {
+                var isValid = false;
+                $.ajax({
+                    url: '@Url.Action(MVC.Identity.Self.PersonInfoByEmail())',
+                    data: {
+                        email: $('#' + emailId).val()
+                    },
+                    async: false,
+                    dataType: 'json',
+                    traditional: true,
+                    cache: false,
+                    success: function (data) {
+                        if (data && data.EntityId != $('#' + personEntityId).val()) {
+                            applyExistingPerson(data, 2);
+                        }
+                        else {
+                            isValid = true;
+                        }
+                    }
+                });
+                return isValid;
+            }
+
+            function applyExistingPerson(data, stepNumber) {
+                if (!data) return;
+                $('#' + personEntityId).val(data.EntityId);
+                $('#' + salutationId).val(data.Salutation).attr('readonly', 'readonly');
+                $('#' + firstNameId).val(data.FirstName).attr('readonly', 'readonly');
+                $('#' + middleNameId).val(data.MiddleName).attr('readonly', 'readonly');
+                $('#' + lastNameId).val(data.LastName).attr('readonly', 'readonly');
+                $('#' + suffixId).val(data.Suffix).attr('readonly', 'readonly');
+                $('#' + emailId).val(data.DefaultEmail).attr('readonly', 'readonly');
+                $('form#agreement_contact tr.contact-extra-field .combobox button').attr('disabled', 'disabled');
+                $('form#agreement_contact').valid();
+                $('.contact-email-value').html(userEmail);
+                $('.contact-step-0').fadeOut(200, function () {
+                    $('.contact-step-' + stepNumber).fadeIn(200);
+                });
+            }
+
+        });
+
+    </script>
+}

@@ -1,0 +1,23 @@
+﻿@using UCosmic.Www.Mvc.Models
+@{
+    Layout = MVC.Shared.Views.layout;
+    ViewData["ViewBag"] = ViewBag;
+    var viewName = (string)ViewBag.ViewName;
+}
+@section Styles 
+{
+    @Html.Partial(MVC.Common.Features.Views.requirements_css)
+}
+<div class="wrap-960">
+    @if (viewName != "gherkin")
+    {
+        <p>
+            @Html.Partial(MVC.Shared.Views.uservoice_link, new UserVoiceLink(Request, ViewData) { Text = "Contribute" })
+            | <a href="@Url.Action(MVC.Common.Features.Requirements())">Learn More</a>
+        </p>
+    }
+    @Html.Partial(viewName, ViewData)
+    <br />
+    <br />
+    <br />
+</div>

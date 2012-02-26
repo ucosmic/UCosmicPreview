@@ -1,0 +1,38 @@
+﻿@using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ConfigurationForms
+@model InstitutionalAgreementConfigurationForm
+@{
+    ViewBag.Title = "Institutional Agreement Module Configuration";
+}
+@section Scripts
+{
+
+    <script type="text/javascript" src="@Url.Content(Links.scripts.institutional_agreements.configuration_form_js)"></script>
+
+}
+<h2>
+    @ViewBag.Title
+</h2>
+@if (Model.RevisionId == 0)
+{   
+    <p>
+        The Institutional Agreement Module Configuration for <strong>@Model.ForEstablishmentOfficialName</strong>
+        has not yet been set up. <a href="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.Add())">
+            Click here to set it up now</a>.
+    </p>
+}
+else
+{
+    using (Html.BeginForm(MVC.InstitutionalAgreements.ConfigurationForms.Edit()))
+    {
+    <div>
+        @Html.ValidationSummary(false, "Please correct the following and try again:")
+    </div>
+    @Html.EditorForModel()
+    <div>
+        @Html.ValidationSummary(false, "Please correct the following and try again:")
+    </div>
+    <div>
+        <input id="save_changes_submit_button" type="submit" value="Save Changes" />
+    </div>
+    }
+}

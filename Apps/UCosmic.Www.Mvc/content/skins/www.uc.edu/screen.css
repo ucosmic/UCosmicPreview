@@ -1,0 +1,126 @@
+﻿/* hyperlinks */
+.ucosmic a:link {
+    color: #e00122;
+}
+.ucosmic a:visited {
+    color: #e00122;
+}
+.ucosmic a:hover {
+    text-decoration: none;
+}
+.ucosmic a:active {
+    color: #e00122;
+}
+.ucosmic a.visitable:visited {
+    color: #e00122;
+}
+.ucosmic a.visitable:active {
+    color: #e00122;
+}
+
+
+
+/* jquery ui-dialog re-theme */
+.ucosmic.modal.ui-dialog .ui-dialog-titlebar {
+    background-color: #000;
+}
+
+
+
+/* text boxes */
+.ucosmic > .head > .center .search.row .input.col .text-box.input {
+    border-color: #fff;
+    background-color: #fff;
+}
+.ucosmic > .head > .center .search.row .input.col .combobox a.down-arrow, .ucosmic > .head > .center .search.row .input.col .emptybox a.empty-icon {
+    background-color: #fff;
+    border-color: #fff;
+}
+.ucosmic > .head > .center .search.row .input.col .button-sized.combobox a.down-arrow:hover, .ucosmic > .head > .center .search.row .input.col .button-sized .combobox a.down-arrow:hover {
+    background-color: #fff;
+}
+.ucosmic .input-validation-error .text-box.input {
+    background: #e00122;
+}
+/* validation */
+.ucosmic input[type=text].input-validation-error, .ucosmic input[type=password].input-validation-error, .ucosmic input[type=email].input-validation-error, .ucosmic input[type=date].input-validation-error, .ucosmic textarea.input-validation-error {
+    color: #fff;
+}
+.ucosmic .input-validation-error input[type=text].watermark {
+    color: #fff;
+}
+
+
+
+/* hat 33px tall */
+.ucosmic .top-tabs {
+    border-bottom-color: #fff;
+    background-color: #fff;
+}
+.ucosmic .top-tabs a:hover, .ucosmic .top-tabs a.open {
+    background-color: #000;
+    color: #fff;
+    border-color: #fff;
+    border-bottom-color: #000;
+    padding: 2px 8px 0;
+}
+.ucosmic .top-tabs a.docked {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+    padding: 2px 8px 0;
+}
+.ucosmic .top-tabs a.open.has-sub {
+    color: #fff;
+}
+.ucosmic .top-tabs .sub-nav {
+    border-color: #fff;
+    background-color: #000;
+}
+.ucosmic .top-tabs .sub-nav a, .ucosmic .top-tabs .sub-nav a:hover {
+    color: #fff;
+    border-color: transparent;
+    border-left-color: #e00122;
+    padding: 1px 6px 1px 10px;
+}
+
+
+/* head 77px tall */
+.ucosmic > .head {
+    color: #000;
+    background: url('head-row-bg.png') -20px top no-repeat #000;
+    border-bottom: 0;
+    height: 77px;
+}
+.ucosmic > .head > .center > .identity {
+    color: #fff;
+}
+.ucosmic > .head > .center > .identity a {
+    color: #fff;
+    text-shadow: 1px 1px 0px #000;
+}
+.ucosmic > .head > .center > .identity .pipe {
+    color: #e00122;
+}
+.ucosmic > .head > .center > h1 {
+    color: #fff;
+    background: url('head-h1-ingot.png') 1px bottom no-repeat;
+    padding-bottom: 3px;
+    margin: 3px 0 7px 20px;
+    text-shadow: 3px 3px 5px #000;
+}
+
+
+
+/* layout skeleton */
+.ucosmic > .torso > .right > div {
+    border-bottom: 0;
+}
+
+
+
+/* footer bar 33px tall */
+.ucosmic > .feet > .footer {
+    background: #e00122;
+    border-top-color: #e00122;
+}

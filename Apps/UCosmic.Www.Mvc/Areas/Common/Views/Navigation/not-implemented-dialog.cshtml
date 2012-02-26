@@ -1,0 +1,16 @@
+﻿@using UCosmic.Www.Mvc.Models
+<div data-ucosmic-dialog="not-implemented" title="This feature has not yet been implemented">
+    <div class="pull-in">
+        <div class="no-display" data-ucosmic-text-format="title">
+            The <strong><em>{0}</em></strong> {1} has not yet been implemented.
+        </div>
+        <p>
+            You've clicked a link or button that has been designed into the UCosmic layout,
+            but currently has no functionality.
+        </p>
+        <p>
+            If you would like to see this implemented, please vote for it
+            @Html.Partial(MVC.Shared.Views.uservoice_link, new UserVoiceLink(Request, ViewData) { Text = "in the uservoice forum", Dialog = "close", TextAfter = "." })
+        </p>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Not Authorized";
+    Layout = MVC.Shared.Views.layout;
+}
+<div class="wrap-960">
+    <h2>
+        You are not authorized to view this page.</h2>
+    @if (ViewBag.Url != null)
+    {
+        <p>
+            Your user account <strong>@User.Identity.Name</strong> is not authorized to view
+            the page located at <strong>/@ViewBag.Url</strong>.
+        </p>
+    }
+</div>

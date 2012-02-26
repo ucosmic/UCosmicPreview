@@ -1,0 +1,666 @@
+﻿@using Microsoft.Web.Mvc
+@using UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms
+@model EstablishmentForm
+<div>
+    @Html.ValidationSummary(false, "Please correct the following and try again:")
+</div>
+<div id="establishment_editor" data-configuration-id="@Html.IdFor(m => m.EntityId)">
+    <fieldset>
+        <legend>Establishment Info</legend>
+        <table class="form">
+            <tbody>
+                <tr>
+                    <th class="label no-wrap">
+                        @Html.LabelFor(m => m.OfficialName)
+                    </th>
+                    <td class="value">
+                        <div class="value">
+                            @Html.EditorFor(m => m.OfficialName)
+                        </div>
+                        <div class="model-validator">
+                            @Html.ValidationMessageFor(m => m.OfficialName)
+                        </div>
+                    </td>
+                    <td class="info">
+                        <div class="p">
+                            <i>(required, public visibility)</i>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="label no-wrap">
+                        @Html.LabelFor(m => m.WebsiteUrl)
+                    </th>
+                    <td class="value">
+                        <div class="value">
+                            @Html.EditorFor(m => m.WebsiteUrl)
+                        </div>
+                    </td>
+                    <td class="info">
+                        <div class="p">
+                            <i>(required, public visibility)</i>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    @Html.EditorFor(m => m.IsMember)
+                                </td>
+                                <td>
+                                    @Html.LabelFor(m => m.IsMember)
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="p">
+                            <i>(Select the checkbox if the establishment is a member) </i>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="label no-wrap">
+                        @Html.LabelFor(m => m.Type.RevisionId)
+                    </th>
+                    <td class="value">
+                        <div class="value">
+                            @Html.GroupedDropDownListFor(m => m.Type.RevisionId, Model.Type.Options,
+                                Model.Type.RevisionId.HasValue
+                                     ? null
+                                     : ModelMetadata.FromLambdaExpression(m => Model.Type.RevisionId, ViewData).NullDisplayText)
+                        </div>
+                        <div class="model-validator">
+                            @Html.ValidationMessageFor(m => m.Type.RevisionId)
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    @*<fieldset>
+        <legend>Email Domain</legend>
+        <table class="page page-50-50">
+            <tbody>
+                <tr>
+                    <td class="left">
+                        <ul id="participants_list" style="list-style: none; margin: 0; padding: 0; border: solid 1px #666;
+                            min-height: 60px; max-height: 300px; overflow-y: scroll;">
+                            @if (Model.EmailDomains != null)
+                            {
+                                foreach (var domain in Model.EmailDomains)
+                                {
+                                <li>
+                                    @Html.EditorFor(m => domain.Value)
+                                </li>
+                                }
+                            }
+                        </ul>
+                    </td>
+                    <td class="center">
+                    </td>
+                    <td class="right">
+                        <div class="p">
+                            <i>(Add or Edit Email Domain of the Establishment) </i>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>*@
+    <fieldset>
+        <legend>Alternate Names</legend>
+        <table class="page page-50-50">
+            <tbody>
+                <tr>
+                    <td class="left">
+                        <br />
+                        <ul id="alternate_names_list" class="listbox" data-value-type="@typeof(EstablishmentForm.EstablishmentNameForm)"
+                            data-new-value-url="@Url.Action(MVC.Establishments.ManagementForms.NewName())" 
+                            @* data-validate-duplicate-url="@Url.Action(MVC.Establishments.ManagementForms.ValidateDuplicateOption())"*@>
+                            @if (Model.Names != null)
+                            {
+                                foreach (var alternateName in Model.Names)
+                                {
+                                @Html.EditorFor(m => alternateName, MVC.Establishments.ManagementForms.Views.EditorTemplates.EstablishmentNameForm)
+                                }
+                            }
+                        </ul>
+                    </td>
+                    <td class="center">
+                    </td>
+                    <td class="right">
+                        <div class="p">
+                            <i>(Add or Edit Alternate Name of the Establishment) </i>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>Location</legend>
+        <p>
+            Use the map below to locate this establishment. The continent, country, state /
+            province, etc, will be determined automatically.
+        </p>
+        @{
+            const string noDisplay = "no-display";
+        }
+        <table class="page page-50-50">
+            <tbody>
+                <tr>
+                    <td class="left">
+                        <div id="est_loc_map" class="u-map-google" style="height: 320px;" 
+                             data-ucosmic-map="google" data-ucosmic-map-type-id="roadmap"
+                             data-ucosmic-map-center="@(Model.Location.CenterLatitude ?? 25.8),@(Model.Location.CenterLongitude ?? 11.9)"
+                             data-ucosmic-map-zoom="@Model.Location.GoogleMapZoomLevel"
+                             data-ucosmic-map-zoom-scroll-wheel="false"
+                             data-ucosmic-map-bounds-north-east="@Model.Location.BoundingBoxNortheastLatitude,@Model.Location.BoundingBoxNortheastLongitude"
+                             data-ucosmic-map-bounds-south-west="@Model.Location.BoundingBoxSouthwestLatitude,@Model.Location.BoundingBoxSouthwestLongitude"
+                             data-ucosmic-map-bounds-fit="if-no-zoom"
+                             data-ucosmic-map-zoom-input="@Html.IdFor(m => m.Location.GoogleMapZoomLevel)"
+                             data-ucosmic-map-lat-input="@Html.IdFor(m => m.Location.CenterLatitude)"
+                             data-ucosmic-map-lng-input="@Html.IdFor(m => m.Location.CenterLongitude)"
+                             data-ucosmic-map-north-input="@Html.IdFor(m => m.Location.BoundingBoxNortheastLatitude)"
+                             data-ucosmic-map-east-input="@Html.IdFor(m => m.Location.BoundingBoxNortheastLongitude)"
+                             data-ucosmic-map-south-input="@Html.IdFor(m => m.Location.BoundingBoxSouthwestLatitude)"
+                             data-ucosmic-map-west-input="@Html.IdFor(m => m.Location.BoundingBoxSouthwestLongitude)">
+                            <div style="height: 100%;" class="u-map-canvas">
+                                @* map will render here *@
+                            </div>
+                            <div class="u-map-controls no-display" style="margin-top: 7px;" data-ucosmic-map-position="top_left">
+                                <div data-ucosmic-map-control="marker" data-ucosmic-map-center="@Model.Location.CenterLatitude,@Model.Location.CenterLongitude">
+                                    <img src="@Links.content.icons.maps.drop_marker_norm_31_png" alt="Add a placemark"
+                                         title="Add a placemark" class="unselectable" data-ucosmic-map-control="create-marker" 
+                                         data-ucosmic-img-src="@Links.content.icons.maps.new_raised_marker_png" 
+                                         data-ucosmic-size-width="52" data-ucosmic-size-height="61"
+                                         data-ucosmic-map-origin-x="0" data-ucosmic-map-origin-y="0"
+                                         data-ucosmic-map-anchor-x="10" data-ucosmic-map-anchor-y="10" 
+                                         data-ucosmic-map-offset-y="43" data-ucosmic-map-href="@Url.Action(MVC.Establishments.SupplementalForms.FindPlaces())" />
+                                    <img src="@Links.content.icons.maps.drop_marker_hot_31_png" alt="Remove placemark"
+                                         title="Remove placemark" class="unselectable" data-ucosmic-map-control="destroy-marker"
+                                         data-ucosmic-confirm="Remove this placemark?" />
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="center">
+                    </td>
+                    <td class="right">
+                        @{
+                            var helpDisplay = noDisplay;
+                            var placesDisplay = noDisplay;
+                            if (Model.Location.HasPlaceMark) { placesDisplay = string.Empty; }
+                            else { helpDisplay = string.Empty; }
+                        }
+                        <div id="est_loc_views">
+                            <div class="help @helpDisplay">
+                                @Html.Partial(MVC.Establishments.ManagementForms.Views.location_map_help)
+                            </div>
+                            <div class="places @placesDisplay">
+                                @Html.EditorFor(m => m.Location.Places)
+                            </div>
+                            <div class="wait no-display">
+                                <img alt="animated image" src="@Links.content.icons.animated_globe.animated_globe_slow_48_gif" />
+                                <strong style="margin-left: 10px;">One Moment Please...</strong>
+                                <p>
+                                    Please wait while geographic information for this location is downloaded.
+                                </p>
+                                <p>
+                                    If this takes longer than 30 seconds, please <a href="#" class="cancel">cancel</a>
+                                    and try again.
+                                </p>
+                            </div>
+                            <div class="no-results no-display" data-app-modal-width="450" data-app-modal-height="auto">
+                                <strong style="color: #c00;">Location details could not be found</strong>
+                                <p>
+                                    No geographic information could be found for the placemark on the map. Please <a
+                                        href="#" class="simplemodal-close">close this dialog</a> and try again.
+                                </p>
+                                <p>
+                                    If you think there should be geographic information for this location, please <a
+                                        href="https://ucosmic.uservoice.com" target="_blank">tell us</a>.
+                                </p>
+                                <input type="button" class="simplemodal-close" value="OK" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        @{
+            var devOnlyDisplay = noDisplay;
+            if (!WebConfig.IsDeployedToCloud) { devOnlyDisplay = string.Empty; }
+        }
+        <div id="est_loc_dev" class="@devOnlyDisplay">
+            <br />
+            <a href="#" class="show">Show geospatial fields</a> <a href="#" class="hide no-display">
+                Hide geospatial fields</a>
+            <br />
+            <div class="dev no-display">
+                <table class="page">
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="width: 33%;">
+                                Center latitude
+                            </th>
+                            <th colspan="2" style="width: 34%;">
+                                Center longitude
+                            </th>
+                            <th colspan="2" style="width: 33%;">
+                                Google maps zoom level
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                @Html.EditorFor(m => m.Location.CenterLatitude)
+                            </td>
+                            <td colspan="2">
+                                @Html.EditorFor(m => m.Location.CenterLongitude)
+                            </td>
+                            <td colspan="2">
+                                @Html.EditorFor(m => m.Location.GoogleMapZoomLevel)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="page">
+                    <thead>
+                        <tr>
+                            <th colspan="3" style="width: 50%;">
+                                Bounding box north
+                            </th>
+                            <th colspan="3" style="width: 50%;">
+                                Bounding box south
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">
+                                @Html.EditorFor(m => m.Location.BoundingBoxNortheastLatitude)
+                            </td>
+                            <td colspan="3">
+                                @Html.EditorFor(m => m.Location.BoundingBoxSouthwestLatitude)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="page">
+                    <thead>
+                        <tr>
+                            <th colspan="3" style="width: 50%;">
+                                Bounding box west
+                            </th>
+                            <th colspan="3" style="width: 50%;">
+                                Bounding box east
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3" style="width: 50%;">
+                                @Html.EditorFor(m => m.Location.BoundingBoxSouthwestLongitude)
+                            </td>
+                            <td colspan="3" style="width: 50%;">
+                                @Html.EditorFor(m => m.Location.BoundingBoxNortheastLongitude)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div>
+    @Html.ValidationSummary(false, "Please correct the following and try again:")
+</div>
+<div class="hidden-input">
+    @Html.EditorFor(m => m.EntityId)
+    @Html.EditorFor(m => m.RevisionId)
+</div>
+<div>
+    @{
+        var submitValue = (Model.IsNew) ? "Add Establishment" : "Save Changes";
+    }
+    <input id="establishment_form_submit" type="submit" value="@submitValue" />
+    <input type="reset" value="Cancel" />
+</div>
+<script type="text/javascript">
+    $(function () {
+        var isPlaceLookupCanceled = false;
+
+        // show appropriate view to the right of the map
+        function showLocationView(which) {
+            // hide all views
+            $('#est_loc_views').children().each(function () {
+                $(this).hide();
+            });
+
+            // show the requested view 
+            $('#est_loc_views .' + which).show();
+
+            // empty the places view if not showing
+            if (which !== 'places') {
+                $('#est_loc_views .places').empty();
+            }
+        }
+
+        // request place nodes based on lat/lng
+        function loadPlaceLookup(map) {
+            var marker = map.controls.marker;
+            showLocationView('wait'); // show wait view
+            marker.setOptions({ draggable: false }); // make marker not draggable
+            $.ajax({
+                url: map.controls.unobtrusive.getCreateMarkerHref(),
+                cache: false,
+                data: {
+                    latitude: marker.getPosition().lat(),
+                    longitude: marker.getPosition().lng()
+                },
+                complete: function () {
+                    marker.setOptions({ draggable: true }); // make marker draggable
+                },
+                error: function () {
+                    showLocationView('help'); // show help view
+                },
+                success: function (html) {
+                    if (isPlaceLookupCanceled) { // abort if user canceled
+                        isPlaceLookupCanceled = false; // reset for next cancel
+                        return; // do not process any more of this function
+                    }
+                    if (html) { // place(s) was/were returned
+                        $('#est_loc_views .places').empty().append(html); // inject partial view
+                        showLocationView('places'); // show partial view
+                    }
+                    else { // no places were returned
+                        showLocationView('help'); // show help view
+                        var jNoResults = $('#est_loc_views .no-results');
+                        jNoResults.modal(); // show modal no results dialog
+
+                        // adjust no results modal dialog dimensions
+                        var modalWidth = jNoResults.data('app-modal-width'),
+                            modalHeight = jNoResults.data('app-modal-height');
+                        if (typeof (modalWidth) === 'number')
+                            $.modal.update(null, modalWidth);
+                        if (typeof (modalHeight) === 'string')
+                            $('#simplemodal-container').css({ height: modalHeight });
+                    }
+                }
+            });
+        };
+
+        // cancel the place lookup request
+        function cancelPlaceLookup() {
+            isPlaceLookupCanceled = true; // set variable for ajax success check
+            var map = $.ucosmic.maps.find($('#est_loc_map'));
+            if (map.controls.marker) {
+                map.controls.marker.setOptions({ draggable: true }); // make marker draggable
+            }
+            showLocationView('help'); // show help view
+        }
+
+        $('#est_loc_map').on('marker_created marker_dragend', function (e, map) {
+            loadPlaceLookup(map);
+        });
+
+        $('#est_loc_map').on('marker_destroyed', function () {
+            cancelPlaceLookup();
+        });
+
+        $('#est_loc_map').on('marker_destroyed', function () {
+            cancelPlaceLookup();
+        });
+
+        $('#est_loc_views .wait a.cancel').on('click', function () {
+            cancelPlaceLookup();
+            return false;
+        });
+
+        // remove place
+        $('#est_loc_views .places').on('click', 'ul li a.remove-button', function () {
+            var isDeletedField = $(this).parents('.est-loc-place').data('app-remove-input-id');
+            $('#' + isDeletedField).val(true); // mark field to indicate removal
+            $(this).parents('.est-loc-place').find('.not-deleted').hide();
+            $(this).parents('.est-loc-place').find('.is-deleted').show();
+            return false; // prevent clicks from scrolling to top of page
+        });
+
+        // undo remove place
+        $('#est_loc_views .places').on('click', 'ul li a.remove-undo-button', function () {
+            var isDeletedField = $(this).parents('.est-loc-place').data('app-remove-input-id');
+            $('#' + isDeletedField).val(false); // mark field to indicate non-removal
+            $(this).parents('.est-loc-place').find('.is-deleted').hide();
+            $(this).parents('.est-loc-place').find('.not-deleted').show();
+            return false; // prevent clicks from scrolling to top of page
+        });
+
+        // show / hide geospatial fields for development
+        $('#est_loc_dev a').click(function () {
+            $('#est_loc_dev .dev').slideToggle(function () {
+                $('#est_loc_dev .show').toggle();
+                $('#est_loc_dev .hide').toggle();
+            });
+            return false;
+        });
+
+    });
+
+    // return all elements needed to operate on appender LI
+    function getAppenderItems(jqThis) {
+        if (!jqThis || jqThis.length < 1)
+            return null;
+        var li = jqThis.parents('li.appender');
+        return {
+            li: li,
+            ul: li.parents('ul'),
+            editor: li.find('.editor'),
+            editorValue: li.find('.editor .value'),
+            editorInput: li.find('.editor .value textarea'),
+            editorInputLang: li.find('.editor .value select option:selected'),
+            editorInputFormerOrCurrent: li.find('.editor .value input[type="radio"]:checked'),
+            editorText: li.find('.editor .value input[type="hidden"].htext'),
+            editorLangText: li.find('.editor .value input[type="hidden"].hlangtext'),
+            editorError: li.find('.editor .validate span[data-valmsg-replace="true"]'),
+            editorAdd: li.find('.editor .actions .add'),
+            editorEdit: li.find('.editor .actions .edit'),
+            editorCancel: li.find('.editor .actions .cancel'),
+            reader: li.find('.reader'),
+            readerValue: li.find('.reader .value .text'),
+            readerLangValue: li.find('.reader .value .lang'),
+            readerFormerOrCurrent: li.find('.reader .value .formerorcurrent'),
+            hiddenIsAdded: li.find('.hidden-input .is-added input[type="hidden"]'),
+            form: li.parents('form'),
+            comboBox: li.parents('fieldset').find('.combobox input[type="text"]'),
+            radios: li.parents('fieldset').find('input[type="radio"].option-restriction')
+        };
+    }
+
+    // click to add
+    $('#establishment_editor ul.listbox li.appender .editor .actions .add a').live('click', function () {
+        var items = getAppenderItems($(this));
+        if (!items.editorValue.is(':visible')) { // show editor if not visible
+            items.editorValue.slideDown(200); // slide down effect for editor
+            items.editorCancel.fadeIn(200); // fade in effect for cancel button
+            items.hiddenIsAdded.val('True'); // enforce validation
+            items.editorInput.focus(); // put focus in the text box
+        }
+        else { // otherwise if valid, process add
+            if (saveAppenderValue(items))
+                loadNewAppender(items);
+        }
+        return false;
+    });
+
+    // operation for both the add and edit actions
+    function saveAppenderValue(items) {
+        if (items.editorInput.valid()) { // validate the input
+           var duplicatesValidation = validateDuplicateOption(items); // special duplicates validation
+               if (duplicatesValidation.IsValid) {
+                items.editorText.val(items.editorInput.val()); // store the user value in the hidden field
+                items.readerValue.html(items.editorInput.val()); // show the user input in the reader
+                items.editorLangText.val(items.editorInputLang.text()); // store the user value in the hidden field
+                items.readerLangValue.html(items.editorInputLang.text()); // show the user input in the reader
+                items.readerFormerOrCurrent.html(items.editorInputFormerOrCurrent.val() == "True" ? "Former Name" : "Current Name"); // show the user input in the reader
+                items.editor.hide(); // hide the editor
+                items.reader.show(); // show the reader
+                //                items.readerValue.removeClass('mimic-textbox').addClass('mimic-textbox-changed')
+                //                        .switchClass('mimic-textbox-changed', 'mimic-textbox', 2000); // animation effect
+                alphabetize(items);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // collect text values in the list
+    function getTextValues(items) {
+        var values = new Array(), index = 0;
+        items.ul.find('li .editor').each(function () { // iterate over each LI editor element
+            var liItems = getAppenderItems($(this)); // get the widget's items
+            values[index++] = liItems.editorInput.val(); // store the user input in array
+        });
+        return values;
+    }
+
+    // validation to prevent entering of duplicate items
+    function validateDuplicateOption(items) {
+        // get all of the text that has already been entered
+        var values = getTextValues(items);
+        var validationResults = { // initialize the validation results
+            IsValid: true,
+            ErrorMessage: null
+        };
+        //return validationResults; // for testing server-side validation
+
+        var url = items.ul.attr('data-validate-duplicate-url'); // get ajax url from html ul tag attribute
+        var name = items.ul.attr('data-value-type');
+        $.ajax({ // perform validation on server
+            url: url,
+            dataType: 'json',
+            traditional: true,
+            async: false,
+            data: {
+                name: name,
+                values: values
+            },
+            success: function (data) {
+                validationResults = data; // store server results
+                if (!data.IsValid) { // show error to user if invalid
+                    items.editorError.empty(); // remove other error messages
+                    items.editorError.append($('<span></span>') // append the new error message
+                                .text(data.ErrorMessage)
+                                .attr('for', items.editorInput.attr('id'))
+                                .attr('generated', 'true'));
+                    items.editorError.removeClass('field-validation-valid'); // show the error message
+                    items.editorError.addClass('field-validation-error'); // show the error message
+                }
+            },
+            error: function () {
+                validationResults = {
+                    IsValid: false,
+                    ErrorMessage: 'An unexpected error occurred, please try again.'
+                };
+            }
+        });
+
+        return validationResults;
+    }
+    // fade in a new empty option item
+    function loadNewAppender(items) {
+        var establishmentId = $('#establishment_editor').attr('data-configuration-id');
+        var url = items.ul.attr('data-new-value-url'); // get ajax url from html ul tag attribute
+        $.ajax({
+            url: url,
+            cache: false,
+            data: {
+                establishmentId: establishmentId
+            },
+            success: function (html) {
+                items.ul.prepend(html); // append the new li to the ul
+                li = items.ul.find('li.appender .hidden-input .is-added input[value="False"]').parents('li.appender');
+                li.hide(); // locate & hide the newly added li
+                li.slideDown(200, function () { // fade in the newly added li
+                    items.form.removeData('validator'); // enforce unobtrusive validation
+                    items.form.removeData('unobtrusiveValidation');
+                    $.validator.unobtrusive.parse(items.form);
+                });
+            }
+        });
+    }
+     function alphabetize(items) {
+            var ul = items.ul, lis = ul.find('li'), vals = [];
+            lis.each(function () {
+                $(this).attr('data-current-text', $(this).find('.editor .value textarea').val());
+                vals.push($(this).attr('data-current-text'));
+            });
+            vals.sort(function (a, b) {
+                var compA = a.toUpperCase(), compB = b.toUpperCase();
+                return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
+            });
+            for (var i = 0; i < lis.length; i++)
+                ul.append(ul.find('li[data-current-text="' + vals[i] + '"]').get());
+      }
+     
+    // click to cancel editor
+    $('#establishment_editor ul.listbox li.appender .editor .actions .cancel a').live('click', function () {
+        var items = getAppenderItems($(this));
+        if (items.editorAdd.is(':visible')) { // cancel the add
+            items.editorValue.slideUp(200); // slide up effect for editor
+            items.editorCancel.fadeOut(200); // fade out effect for cancel button
+            items.hiddenIsAdded.val('False'); // enforce validation
+        }
+        else if (items.editorEdit.is(':visible')) { // cancel the edit
+            items.editor.hide(); // hide the editor
+            items.reader.show(); // show the reader
+        }
+        items.editorInput.val(items.editorText.val()); // restore the last value from hidden field
+        //            items.editorInput.valid(); // remove validation errors
+        return false;
+    });
+    // click to edit
+    $('#establishment_editor ul.listbox li.appender .reader .actions .edit a, '
+        + '#establishment_editor ul.listbox li.appender .reader .value').live('click', function () {
+            var items = getAppenderItems($(this));
+            items.editorAdd.hide(); // hide the add button
+            items.editorEdit.show(); // show the edit button
+            items.reader.hide(); // hide the reader
+            items.editor.show(); // show the editor
+            items.editorInput.focus(); // put focus in the text box
+            items.editorInput.select(); // select text in the text box
+            return false;
+        });
+
+    // click to save edit
+    $('#establishment_editor ul.listbox li.appender .editor .actions .edit a').live('click', function () {
+        var items = getAppenderItems($(this));
+        saveAppenderValue(items);
+        return false;
+    });
+
+    // click to remove
+    $('#establishment_editor ul.listbox li.appender .reader .actions .remove a').live('click', function () {
+        var items = getAppenderItems($(this));
+        items.li.slideUp(200, function () { // animate the removal
+            items.li.remove(); // remove actual html/dom element
+        });
+        return false;
+    });
+    // remove empty items before submitting forms
+    $('#establishment_editor').parents('form').submit(function () {
+        $(this).find('ul.listbox').each(function () { // for each listbox in the form
+             var li = $(this).find('li.appender .hidden-input .is-added input[value="False"]').parents('li.appender');
+            li.remove(); // find and remove the add-new li element so that model state is valid
+            @ViewData.ModelState.IsValid // revise ModelState after remove empty item
+        });
+    });
+</script>

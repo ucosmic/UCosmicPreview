@@ -1,0 +1,24 @@
+﻿@model UCosmic.Www.Mvc.Areas.Common.Models.Skins.ApplySkinInfo
+@if (string.IsNullOrWhiteSpace(Model.SkinFile))
+{
+    <link href="@Url.Content("~/content/skins/screen.css")?v=9" type="text/css" rel="stylesheet" />
+@* ReSharper disable Html.DeadCode *@
+@* ReSharper disable Html.PathError *@
+    <!--[if lte IE 8]>
+    <link href="@Url.Content("~/content/skins/screen-ie8.css")?v=9" type="text/css" rel="stylesheet" />
+    <![endif]-->
+@* ReSharper restore Html.DeadCode *@
+@* ReSharper restore Html.PathError *@
+    if (!string.IsNullOrWhiteSpace(Model.SkinName))
+    {
+    <link href="@(Url.Content(string.Format("~/content/skins/{0}/screen.css", Model.SkinName)))?v=9" rel="stylesheet" />
+    }
+}
+else
+{
+    <link href="@Url.Content(string.Format("~/content/skins/{0}.css", Model.SkinFile))?v=9" type="text/css" rel="stylesheet" />
+    if (!string.IsNullOrWhiteSpace(Model.SkinName))
+    {
+    <link href="@(Url.Content(string.Format("~/content/skins/{0}/{1}.css", Model.SkinName, Model.SkinFile)))?v=9" rel="stylesheet" />
+    }
+}

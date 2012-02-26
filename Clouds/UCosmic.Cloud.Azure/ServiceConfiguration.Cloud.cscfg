@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="UCosmic.Cloud.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="1" osVersion="*">
+  <Role name="UCosmic.Www.Mvc">
+    <Instances count="2" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="UCosmic.Www.Mvc.DeployedToEmulator" value="false" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="UCosmicBriarhill" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEFzOVJeaQ629SXXfvVxam9swDQYJKoZIhvcNAQEBBQAEggEAscHAFVtvWoYFV29/JEvuxRgOTI6JlmmWi7Iyxk9tzPMcnRHLUKjU55k1jUM3D/McZ7e1BiWldcLF9IjOkP3RlolVADzkRqLckk34nkkUBdJRCIxaduBFQexe3jn9xRVSUxtd0scfb+h1vwXA95jrb1uot4PYJhArca83g10LKlK04EP7KFIa3aZFnE9z6kFLevTqR40xUD1vEP6Ad+CsbV0fHj4k+CHSn6kWADhw/TMf/Z6wHKxXza0CodvoaacH5wWdGOZAbAihd5BGJhwgdLDTB2yDdAtyvV3fNDh+JXd3YJpu136juJlT0mqu/kumsuP75VpU+HFDl7vqy3nivTAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECEvc14SXKv0cgBDb244WJoZrjVFJIIPgUCgu" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2013-01-21T23:59:59.0000000-05:00" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="preview.ucosmic.com" thumbprint="431DB9C5ECE7481886846C992976A08BF25D52BE" thumbprintAlgorithm="sha1" />
+      <Certificate name="azureconfig" thumbprint="9975FCFAF342D1FB73631EB5A1CD9BCEF1F102F6" thumbprintAlgorithm="sha1" />
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="9E21695B886500C2741862969E555BB59BBF906C" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

@@ -1,0 +1,12 @@
+﻿@model UCosmic.Www.Mvc.Areas.Common.Models.Navigation.HorizontalTabsInfo
+<ul id="menu">
+    @if (Model.DisplayAgreementsTab)
+    {
+        <li><a href="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.Index("my"))">Agreements</a></li>
+    }
+    @if (Model.DisplayProfileTab)
+    {
+        <li><a href="@Url.Action(MVC.Identity.Self.Me())">My Page</a></li>
+    }
+    <li><a href="/">Home</a></li>
+</ul>

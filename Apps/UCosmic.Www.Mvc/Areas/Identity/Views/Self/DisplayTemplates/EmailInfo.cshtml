@@ -1,0 +1,38 @@
+﻿@using UCosmic.Www.Mvc.Areas.Identity.Models.Self
+@model EmailInfo
+<div class="email-address" data-entity-id="@Model.EntityId">
+    <div class="email-details email-info">
+        <span id="@Model.EntityId" class="email-value">@Model.Value</span>
+        @if (Model.IsConfirmed)
+        {
+            <span class="email-confirmed">
+                <img src="@Url.Content(@Links.content.icons.checkmarks.checkmark_green_16_png)" alt="checkmark" />
+                Confirmed</span>
+        }
+        else
+        {
+            <span class="email-unconfirmed">Unconfirmed</span>                                
+        }
+        @if (Model.IsDefault)
+        {
+            <span class="email-primary">
+                <img src="@Url.Content(@Links.content.icons.users.user_black_16_png)" alt="key" />
+                Primary</span>
+        }
+    </div>
+    <div class="email-actions email-info">
+        @Html.ActionLink("Change spelling", MVC.Identity.Self.ActionNames.ChangeEmailSpelling, new { entityId = Model.EntityId }, new { @class = "email-action edit-email" })
+        @if (!Model.IsConfirmed)
+        {
+            <a href="#" class="email-action email-confirm not-implemented">Send confirmation email</a>
+        }
+        else if (!Model.IsDefault)
+        {
+            <a href="#" class="email-action email-make-primary not-implemented">Make primary</a>
+        }
+        @if (!Model.IsDefault)
+        {
+            <a href="#" class="email-action email-remove not-implemented">Remove</a>
+        }
+    </div>
+</div>

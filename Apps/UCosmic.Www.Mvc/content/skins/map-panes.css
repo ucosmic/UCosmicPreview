@@ -1,0 +1,15 @@
+﻿.ucosmic > .torso {
+    top: 110px;
+}
+.ucosmic > .torso > .center {
+    right: 374px;
+    border-top-color: #ccc;
+}
+.ucosmic > .torso > .right, .ucosmic > .torso > .right > div {
+    width: 372px;
+    right: 0;
+    display: block;
+}
+.ucosmic .body {
+    min-width: 600px;
+}

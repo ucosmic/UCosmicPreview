@@ -1,0 +1,84 @@
+﻿@using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
+@model InstitutionalAgreementFileForm
+@{
+    var deletedDisplay = Model.IsDeleted ? "display:none;" : string.Empty;
+}
+<li class="file-attachment" style="@deletedDisplay">
+    <div>
+        @using (Html.BeginCollectionItem("Files"))
+        {
+            if (Model.RevisionId == 0 && !Model.IsDeleted)
+            {
+            <div class="file-chooser">
+                <div>
+                    <input type="file" id="@Html.IdFor(m => m.PostedFile)" name="@Html.NameFor(m => m.PostedFile)" />
+                </div>
+                <div class="file-ext-invalid" style="display: none;">
+                    <span class="field-validation-error">You may only upload PDF, Microsoft Office, and
+                        Open Document files with a pdf, doc, docx, odt, xls, xlsx, ods, ppt, or pptx extension.</span>
+                </div>
+            </div>
+            <div class="file-chosen" style="display: none;">
+                <div style="float: right; margin-left: 5px;">
+                    <a href="#" class="remove-button">
+                        <img src="@Url.Content(Links.content.icons.deletes.delete_hot_16_png)" alt="remove file attachment icon" title="Remove this file" /></a>
+                </div>
+                <b class="file-name"></b>
+                <div class="p" style="font-size: 0.9em; font-style: italic;">
+                    Will be uploaded during next save.
+                </div>
+            </div>
+            <div class="hidden-input">
+                <div class="is-deleted">
+                    @Html.EditorFor(m => m.IsDeleted)
+                </div>
+            </div>
+            }
+            else
+            {
+            <div class="file-chosen">
+                <div style="float: right; margin-left: 5px;">
+                    <a href="#" class="remove-button" data-file-name="@Model.Name">
+                        <img src="@Url.Content(Links.content.icons.deletes.delete_hot_16_png)" alt="remove file attachment icon" title="Remove this file" /></a>
+                </div>
+                <b class="file-name">@Model.Name</b>
+            </div>
+                if (Model.RevisionId != 0)
+                {
+            <div class="p" style="font-weight: normal; font-size: 0.9em;">
+                <a href="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.DisplayFile(Model.EntityId, Model.Name))"
+                target="_blank">View this file</a> | <a href="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.DownloadFile(Model.EntityId, Model.Name))">
+                    Download this file</a>
+            </div>
+                }
+            <div class="hidden-input">
+                @Html.EditorFor(m => m.RevisionId)
+                <div class="is-deleted">
+                    @Html.EditorFor(m => m.IsDeleted)
+                </div>
+                @Html.EditorFor(m => m.EntityId)
+                @Html.EditorFor(m => m.Name)
+            </div>
+            }
+@*
+        <img id="myImage" src="" alt="" style="display: none;" /><br />
+        <input type="button" value="Find size" onclick="findSize()" />
+        <script type="text/javascript">
+            function findSize() {
+                if ($.browser.msie) {
+                    var a = document.getElementById('@Html.IdFor(m => m.PostedFile)').value;
+                    alert(a);
+                    $('#myImage').attr('src', a);
+                    var imgbytes = document.getElementById('myImage').fileSize;
+                    alert(imgbytes);
+                } else {
+                    var fileInput = $('#@Html.IdFor(m => m.PostedFile)')[0];
+                    var bytes = fileInput.files[0].fileSize;
+                    alert(bytes);
+                }
+            }
+        </script>
+*@
+        }
+    </div>
+</li>

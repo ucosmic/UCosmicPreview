@@ -1,0 +1,52 @@
+﻿@{
+    Layout = MVC.Shared.Views.layout;
+    Layout = "~/Views/Shared/layout.cshtml";
+    if (ViewBag.SampleContent.ToString().Equals("map", StringComparison.OrdinalIgnoreCase))
+    {
+        ViewBag.GoogleMapsApiScript = new object();
+    }
+}
+@section Styles
+{
+    @if (ViewBag.SampleContent.ToString().Equals("map", StringComparison.OrdinalIgnoreCase))
+    {
+        @Html.Action(MVC.Common.Skins.Apply("map-panes"))
+    }
+}
+@section Scripts
+{
+    @if (ViewBag.SampleContent.ToString().Equals("map", StringComparison.OrdinalIgnoreCase))
+    {
+        <script type="text/javascript">
+            $(function () {
+                var map = new google.maps.Map(document.getElementById('body'), {
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    center: new google.maps.LatLng(0.0, 0.0),
+                    zoom: 2,
+                    scrollwheel: false
+                });
+            });
+        </script>
+    }
+}
+@section TorsoRight
+{
+    @if (ViewBag.SampleContent.ToString().Equals("map", StringComparison.OrdinalIgnoreCase))
+    {
+        <div class="pull-in">
+            <br>
+            <h2>(Map Data Column)</h2>
+            <br>
+            @Html.Partial(MVC.Common.Skins.Views.sample_nav)
+        </div>
+    }
+}
+<h2 class="no-display">
+    @ViewBag.Title
+</h2>
+@if (!ViewBag.SampleContent.ToString().Equals("map", StringComparison.OrdinalIgnoreCase))
+{
+    <div class="wrap-960">
+        @Html.Partial(MVC.Common.Skins.Views.sample_nav)
+    </div>
+}

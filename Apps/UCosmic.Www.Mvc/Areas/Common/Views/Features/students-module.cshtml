@@ -1,0 +1,163 @@
+﻿@using UCosmic.Www.Mvc.Models
+@{
+    var viewBag = (dynamic)ViewData["ViewBag"];
+    viewBag.Title = "Students Feature Requirements";
+}
+<p>
+    There are 4 components to the Students module:
+</p>
+<ol class="p">
+    <li><strong>Graduate Student Feeder Institutions</strong>: Planned October - December
+        2012</li>
+    <li><strong>Student Destination Countries for Education Abroad</strong>: Tentatively
+        planned June - October 2014</li>
+    <li><strong>Incoming Exchange Student Feeder Institutions</strong> Tentatively planned
+        June - October 2014</li>
+    <li><strong>Student Organizations &amp; Activities with International Focus</strong>
+        Tentatively planned October - December 2014</li>
+</ol>
+<hr />
+<h2>
+    Graduate Student Feeder Institutions
+</h2>
+<p>
+    The Graduate Student Feeder Institution features will be based on the <a href="http://www.uc.edu/webapps/ucosmic/institutions/feeders.aspx"
+        target="_blank">University of Cincinnati prototype</a>, and are planned for
+    incremental releases between October and December, 2012.
+</p>
+<p>
+    <strong>Important: <em>These features may require changes that affect your institution's
+        student information system and graduate admissions confirmation processes</em></strong>.
+    At the University of Cincinnati, we discovered that transcripts received from non-US
+    institutions were coded as <strong>999998</strong> in our student information system.
+    This was due to the fact that the system used <strong>CEEB codes</strong> (also
+    called Designated Indicator or DI codes by the College Board) to identify degree-granting
+    institutions. The problem was, official CEEB/DI codes did not exist for thousands
+    of non-US institutions.
+</p>
+<p>
+    UC's solution was to create &quot;fake&quot; codes for non-US institutions - we
+    sometimes call these &quot;pseudo-CEEB codes&quot; or &quot;UCosmic codes&quot;.
+    Like official CEEB/DI codes, UCosmic codes are 6 characters long. However unlike
+    official CEEB/DI codes, not all of the 6 characters are numeric. Instead, the first
+    2 characters of every code corresponds to the <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2"
+        target="_blank">ISO-3166-1 alpha-2 country code</a> where the institution is
+    located. For example Tsinghua University's code is CN0845, and Ludwig-Maximillians
+    University in Munich is coded as DE0009.
+</p>
+<p>
+    The College board is a UCosmic Consortium member, and is committed to expanding
+    its code set to include non-US secondary and post-secondary institutions. However
+    before that goal is achieved, there will be a transitional period during which interim
+    identifiers are still necessary. UCosmic can provide a data feed including official
+    DI codes when they exist, and pseudo-CEEB codes when they do not exist, so that
+    student information systems can share information with UCosmic.
+</p>
+<p>
+    <strong>A critical mass of at least three consortium members willing to serve as example
+        adopters of this module will be needed before development can proceed</strong>.
+    In order to participate, you must get your IT department involved. We will require
+    least one example each of Banner, Oracle / PeopleSoft, and a third custom / homegrown
+    system. Banner and Oracle / PeopleSoft integrations can then serve as examples for
+    other members who use those systems. The third integration can serve as an example
+    for members who do not use these more common systems.
+</p>
+<p>
+    Please volunteer to participate in this module by @Html.Partial(MVC.Shared.Views.uservoice_link, new UserVoiceLink(Request, ViewData) { Text = "clicking this link" })
+    and creating a post titled &quot;I want to participate in development of the Graduate
+    Student Feeder Institutions module&quot;. In the body, please state the name of
+    your institution, and what kind of system you use to track transcripts for student
+    application and admission purposes.
+</p>
+<div id="feature_a_1" class="user-story-card">
+    <h3>
+        View Graduate Student Feeder Institutions by Term
+    </h3>
+    <p>
+        <strong>In order to</strong> plan an international strategy,
+        <br />
+        <strong>As an</strong> international office,
+        <br />
+        <strong>I want to</strong> discover where an institution's new graduate students
+        are receiving their undergraduate degrees for a particular term.
+    </p>
+</div>
+<div id="feature_a_2" class="user-story-card">
+    <h3>
+        View Graduate Student Feeder Institutions by College &amp; Program
+    </h3>
+    <p>
+        <strong>In order to</strong> plan an international strategy,
+        <br />
+        <strong>As an</strong> international office,
+        <br />
+        <strong>I want to</strong> discover which colleges and programs my institution's
+        new graduate students are enrolling in.
+    </p>
+</div>
+<div id="feature_a_3" class="user-story-card">
+    <h3>
+        Provide Graduate Student Feeder Institution data to UCosmic
+    </h3>
+    <p>
+        <strong>In order to</strong> provide Graduate Student Feeder Institution features,
+        <br />
+        <strong>As</strong> UCosmic,
+        <br />
+        <strong>I want to</strong> discover graduate student feeder institution information
+        that is stored in an external system.
+    </p>
+</div>
+<div id="feature_a_4" class="user-story-card" class="user-story-card">
+    <h3>
+        Provide Standard Institution Identifiers to External Systems
+    </h3>
+    <p>
+        <strong>In order to</strong> provide Graduate Student Feeder Institution features,
+        <br />
+        <strong>As a</strong> student information system,
+        <br />
+        <strong>I want to</strong> identify non-US degree-granting academic institutions
+        with a standard, non-transient code.
+    </p>
+</div>
+<hr />
+<h2>
+    Student Destination Countries for Education Abroad
+</h2>
+<p>
+    The Student Destination Countries for Education Abroad features will be based on
+    the <a href="http://www.uc.edu/webapps/ucosmic/students/abroad.aspx" target="_blank">
+        University of Cincinnati prototype</a>, and are tentatively planned for incremental
+    releases between June and October 2014.
+</p>
+<p>
+    <em>User Stories to be articulated</em>
+</p>
+<hr />
+<h2>
+    Incoming Exchange Student Feeder Institutions
+</h2>
+<p>
+    The Incoming Exchange Student Feeder Institutions features will be based on the
+    <a href="http://www.uc.edu/webapps/ucosmic/students/exchange_in.aspx" target="_blank">
+        University of Cincinnati prototype</a>, and are tentatively planned for incremental
+    releases between June and October 2014.
+</p>
+<p>
+    <em>User Stories to be articulated</em>
+</p>
+<hr />
+<h2>
+    Student Organizations &amp; Activities with International Focus
+</h2>
+<p>
+    The Student Organizations &amp; Activities with International Focus features will
+    be based on the <a href="http://www.uc.edu/webapps/ucosmic/students/sald/default.aspx"
+        target="_blank">University of Cincinnati prototype</a>, and are tentatively
+    planned for incremental releases between October and December 2014.
+</p>
+<p>
+    <em>User Stories to be articulated</em>
+</p>
+<hr />

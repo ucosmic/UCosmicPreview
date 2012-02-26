@@ -1,0 +1,36 @@
+﻿@using UCosmic.Www.Mvc.Areas.Common.Models.Features
+@model IEnumerable<FeaturePreview>
+<p>
+    If this is your first time at UCosmic.com, please <a href="@Url.Action(MVC.Identity.SignUp.SendEmail())">
+        sign up</a>.
+</p>
+<p>
+    If you are already signed up, <a href="@Url.Action(MVC.Identity.SignIn.SignIn())">
+        sign in</a>.
+</p>
+<p>
+    For more information about the UCosmic software project, please visit the <a href="http://www.ucosmic.org">
+        UCosmic Consortium at www.ucosmic.org</a>.
+</p>
+<p>
+    <a href="#" class="others">View features for other previews</a>
+</p>
+<ul class="others no-display">
+    @foreach (var previewFeature in Model)
+    {
+        <li>
+            @if (previewFeature.IsCurrentlyViewed)
+            {
+                <span>@previewFeature.Name</span>
+            }
+            else
+            {
+                <a href="@Url.Action(MVC.Common.Features.Releases(previewFeature.Version))">@previewFeature.Name</a>
+            }
+            @if (previewFeature.IsLatest)
+            {
+                <span class="is-new">New!</span>
+            }
+        </li>
+    }
+</ul>

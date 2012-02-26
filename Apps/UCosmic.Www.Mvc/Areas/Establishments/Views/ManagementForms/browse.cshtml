@@ -1,0 +1,44 @@
+﻿@using UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms
+@model IEnumerable<EstablishmentSearchResult>
+@{
+    ViewBag.Title = "Browse establishments";
+}
+<h2>
+    Browse establishments
+</h2>
+<p>
+    <a href="@Url.Action(MVC.Establishments.ManagementForms.Form())">Add a new establishment</a>
+</p>
+@if (Model.Any())
+{
+    <table class="list">
+        <thead>
+            <tr>
+                <th style="width: 50%;">
+                    Official Name
+                </th>
+                <th>
+                    Website URL
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action(MVC.Establishments.ManagementForms.Form(item.EntityId))"> @Html.DisplayFor(m => item.OfficialName)</a>
+                    </td>
+                    <td>
+                       @Html.DisplayFor(m => item.WebsiteUrl)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>
+    </p>
+}

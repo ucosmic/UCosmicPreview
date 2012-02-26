@@ -1,0 +1,38 @@
+﻿@*@using UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms
+@model EstablishmentForm
+@{
+    ViewBag.Title = "Edit establishments";
+}
+@section Scripts {
+
+    <script src="@Url.Content(Links.scripts.jquery_simplemodal_1_4_1_js)" type="text/javascript"></script>
+
+    @if (Request.IsSecureConnection)
+    {
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    }
+    else
+    {
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    }
+}
+<h2>
+    Edit establishments
+</h2>
+@using (Html.BeginForm(MVC.Establishments.ManagementForms.ActionNames.Edit,
+    MVC.Establishments.ManagementForms.Name,
+    new { area = MVC.Establishments.Name, httpMethod = "POST" }, FormMethod.Post
+    ))
+{
+    @Html.EditorForModel()
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('section#main input[type="reset"]').click(function () {
+            window.document.location = '@Url.Action(MVC.Establishments.ManagementForms.Browse())';
+        });
+    });
+</script>
+
+*@

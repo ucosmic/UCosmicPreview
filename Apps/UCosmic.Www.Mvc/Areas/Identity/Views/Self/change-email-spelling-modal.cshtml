@@ -1,0 +1,52 @@
+﻿@using UCosmic.Www.Mvc.Areas.Identity.Models.Self
+@model ChangeEmailSpellingForm
+<div class="wrap-960">
+    <h2>
+        My <i>@Model.Value</i> Email Address
+    </h2>
+    <div class="split-form">
+        <div class="left">
+            @using (Html.BeginForm(
+                MVC.Identity.Self.ActionNames.ChangeEmailSpelling,
+                MVC.Identity.Self.Name,
+                new
+                {
+                    area = MVC.Identity.Name,
+                    httpMethod = "POST"
+                },
+                FormMethod.Post,
+                new
+                {
+                    @class = "email-respell",
+                    data_entity_id = Model.EntityId
+                }
+            ))
+            {
+                <fieldset>
+                    <legend>Change Email Spelling</legend>
+                    <p>
+                        Use the form below to change the spelling of your email address.
+                    </p>
+                    @Html.EditorForModel()
+                </fieldset>
+            }
+        </div>
+        <div class="right">
+            <p>
+                Email addresses are case-insensitive. You can use this form to capitalize or uncapitalize
+                letters in your email address.
+            </p>
+            <p>
+                For example, you can change your email from first.last@domain.edu to First.Last@domain.edu.
+            </p>
+            <p>
+                Use the form on the left to change the spelling of your email address and click
+                the <b>Save Changes</b> button.
+            </p>
+            <p>
+                If you do not want to change the spelling of your email address, click the <b>Cancel</b>
+                button.
+            </p>
+        </div>
+    </div>
+</div>

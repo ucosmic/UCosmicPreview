@@ -1,0 +1,114 @@
+﻿<EntityDescriptor entityID="https://idp-test.shib.umn.edu/idp/shibboleth"
+                  xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+                  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+                  xmlns:shibmd="urn:mace:shibboleth:metadata:1.0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <IDPSSODescriptor protocolSupportEnumeration="urn:mace:shibboleth:1.0 urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+
+        <Extensions>
+            <shibmd:Scope regexp="false">umn.edu</shibmd:Scope>
+        </Extensions>
+
+        <KeyDescriptor>
+            <ds:KeyInfo>
+                <ds:X509Data>
+                    <ds:X509Certificate>
+                        MIIDPzCCAiegAwIBAgIUB96haZ9kT49/axfKJnGrMrxtzR0wDQYJKoZIhvcNAQEF
+                        BQAwIDEeMBwGA1UEAxMVaWRwLXRlc3Quc2hpYi51bW4uZWR1MB4XDTA4MDcyMTE5
+                        NDc1MFoXDTI4MDcyMTE5NDc1MFowIDEeMBwGA1UEAxMVaWRwLXRlc3Quc2hpYi51
+                        bW4uZWR1MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApqjaJ0CGVBZr
+                        uM5HlOnsWUX4kVZCVB/QNn8MTI4GTuD7XhUr4P8kSSx7Lz/pzy/SHEOU1zt2e7lQ
+                        OnwyQRsHyuRuGZafM9RtuaSn3Vp1xvXYXUiRD7aHGA5mmFikgDzMWrRIxVnXD3mX
+                        2KyLBlOwpBb8vqWPzKonAsqGSlJTKGN+7i3iBfUsoByitPh6ChEgwFenmArb6dvI
+                        X4bkEE3W+OBZK9/iy7UNvvGoVk7azxFVzTV1nvkowd9ucmHB+lsrOGLEzY0EbJHK
+                        rsxShrn0vueWg0tb6Hr3QDmKaSqiLEQDpUwpz/NyqKu7uoQwdl/h8kC1yqEspdPA
+                        NYTGo1jucwIDAQABo3EwbzBOBgNVHREERzBFghVpZHAtdGVzdC5zaGliLnVtbi5l
+                        ZHWGLGh0dHBzOi8vaWRwLXRlc3Quc2hpYi51bW4uZWR1L2lkcC9zaGliYm9sZXRo
+                        MB0GA1UdDgQWBBQKcann2iiMEwTxP/ai4DIns5ReWTANBgkqhkiG9w0BAQUFAAOC
+                        AQEAFUptvQQzop+28/jePAKko0fgHpdlGmXS/Q9ybr+Hvhfog82uA95mZCLUI7VJ
+                        Uhd8H6NcVf+tcSZw4Pbedi2l0f9Xn1x/f51pD2ANEy0cXIi20hSX+v7W2hSeqqSI
+                        vtiRg4rdgUEsRdtEFpWgOqcHGAPi+/Tp+nF2aDoYbO58QAjN5MvMpDrKLdxAUjUJ
+                        j10fCG6lCglr+Wr86xBrIFPuk8gYdN31yiHMI0obu0gIv6gGhCEVroDzM9ow7+an
+                        FpwRu8kQfFa1WMCf34ijMLHrIn0Izltzxmoqoei2rJFfIlLzytn/2IHZsnDZI+9a
+                        P2r0TEwjhEwXobbIKrSp50KUQw==
+
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+
+        </KeyDescriptor>
+
+        <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding"
+                                   Location="https://idp-test.shib.umn.edu:8443/idp/profile/SAML1/SOAP/ArtifactResolution"
+                                   index="1"/>
+
+        <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
+                                   Location="https://idp-test.shib.umn.edu:8443/idp/profile/SAML2/SOAP/ArtifactResolution"
+                                   index="2"/>
+
+        <NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+
+        <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest"
+                             Location="https://idp-test.shib.umn.edu/idp/profile/Shibboleth/SSO" />
+
+
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+                             Location="https://idp-test.shib.umn.edu/idp/profile/SAML2/POST/SSO" />
+
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign"
+                             Location="https://idp-test.shib.umn.edu/idp/profile/SAML2/POST-SimpleSign/SSO" />
+
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+                             Location="https://idp-test.shib.umn.edu/idp/profile/SAML2/Redirect/SSO" />
+    </IDPSSODescriptor>
+
+    <AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+
+        <Extensions>
+            <shibmd:Scope regexp="false">umn.edu</shibmd:Scope>
+        </Extensions>
+
+        <KeyDescriptor>
+            <ds:KeyInfo>
+                <ds:X509Data>
+
+                    <ds:X509Certificate>
+                        MIIDPzCCAiegAwIBAgIUB96haZ9kT49/axfKJnGrMrxtzR0wDQYJKoZIhvcNAQEF
+                        BQAwIDEeMBwGA1UEAxMVaWRwLXRlc3Quc2hpYi51bW4uZWR1MB4XDTA4MDcyMTE5
+                        NDc1MFoXDTI4MDcyMTE5NDc1MFowIDEeMBwGA1UEAxMVaWRwLXRlc3Quc2hpYi51
+                        bW4uZWR1MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApqjaJ0CGVBZr
+                        uM5HlOnsWUX4kVZCVB/QNn8MTI4GTuD7XhUr4P8kSSx7Lz/pzy/SHEOU1zt2e7lQ
+                        OnwyQRsHyuRuGZafM9RtuaSn3Vp1xvXYXUiRD7aHGA5mmFikgDzMWrRIxVnXD3mX
+                        2KyLBlOwpBb8vqWPzKonAsqGSlJTKGN+7i3iBfUsoByitPh6ChEgwFenmArb6dvI
+                        X4bkEE3W+OBZK9/iy7UNvvGoVk7azxFVzTV1nvkowd9ucmHB+lsrOGLEzY0EbJHK
+                        rsxShrn0vueWg0tb6Hr3QDmKaSqiLEQDpUwpz/NyqKu7uoQwdl/h8kC1yqEspdPA
+                        NYTGo1jucwIDAQABo3EwbzBOBgNVHREERzBFghVpZHAtdGVzdC5zaGliLnVtbi5l
+                        ZHWGLGh0dHBzOi8vaWRwLXRlc3Quc2hpYi51bW4uZWR1L2lkcC9zaGliYm9sZXRo
+                        MB0GA1UdDgQWBBQKcann2iiMEwTxP/ai4DIns5ReWTANBgkqhkiG9w0BAQUFAAOC
+                        AQEAFUptvQQzop+28/jePAKko0fgHpdlGmXS/Q9ybr+Hvhfog82uA95mZCLUI7VJ
+                        Uhd8H6NcVf+tcSZw4Pbedi2l0f9Xn1x/f51pD2ANEy0cXIi20hSX+v7W2hSeqqSI
+                        vtiRg4rdgUEsRdtEFpWgOqcHGAPi+/Tp+nF2aDoYbO58QAjN5MvMpDrKLdxAUjUJ
+                        j10fCG6lCglr+Wr86xBrIFPuk8gYdN31yiHMI0obu0gIv6gGhCEVroDzM9ow7+an
+                        FpwRu8kQfFa1WMCf34ijMLHrIn0Izltzxmoqoei2rJFfIlLzytn/2IHZsnDZI+9a
+                        P2r0TEwjhEwXobbIKrSp50KUQw==
+
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+
+        <AttributeService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding"
+                          Location="https://idp-test.shib.umn.edu:8443/idp/profile/SAML1/SOAP/AttributeQuery" />
+
+        <AttributeService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
+                          Location="https://idp-test.shib.umn.edu:8443/idp/profile/SAML2/SOAP/AttributeQuery" />
+
+        <NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+    </AttributeAuthorityDescriptor>
+
+</EntityDescriptor>

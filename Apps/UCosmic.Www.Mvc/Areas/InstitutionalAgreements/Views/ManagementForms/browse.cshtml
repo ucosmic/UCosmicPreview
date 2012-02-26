@@ -1,0 +1,139 @@
+﻿@using UCosmic
+@using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
+@model InstitutionalAgreementBrowseView
+@{
+    ViewBag.Title = "Browse institutional agreements";
+}
+@section Scripts {
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+}
+<h2>
+    Browse institutional agreements
+</h2>
+<p>
+    <span style="float: right; font-weight: bold;">
+        @Html.Pluralize("{0|_} {0|agreement} with {1|_} {1|institution} in {2|_} {country}",
+            Model.TableResults.Count, Model.ParticipantMarkers.Count, Model.CountryCount)
+    </span><a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Post(null as Guid?))">Add
+        a new agreement</a>
+    @if (User.IsInRole(RoleName.InstitutionalAgreementSupervisor))
+    {
+        <span>|</span>
+        <a href="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.Edit())">Configure
+            module</a>
+    }
+</p>
+@if (Model.UnlocatedParticipants.Count > 0)
+{
+    <div style="padding: 1em; border: solid 1px #c00;">
+        <strong style="color: #c00;">You have some agreements that could not be plotted on the
+            map, because UCosmic does not know where the partner is located. Use the links below
+            to help locate them.</strong>
+        <ul>
+            @foreach (var participant in Model.UnlocatedParticipants)
+            {
+                <li><a href="@Url.Action(MVC.Establishments.SupplementalForms.Locate(participant.ForEstablishmentEntityId, Request.Url.PathAndQuery))">@participant.EstablishmentTranslatedThenOfficialName</a></li>
+            }
+        </ul>
+    </div>
+    <br />
+}
+<div class="u-map-google" data-ucosmic-map-zoom="2" data-ucosmic-map-zoom-scroll-wheel="false"
+    data-ucosmic-map-center="25.8,11.9">
+    <div class="u-map-canvas" style="height: 600px; border: solid 1px black;">
+    </div>
+    <div class="u-map-markers no-display">
+        @foreach (var marker in Model.ParticipantMarkers)
+        {
+            <div data-ucosmic-map="marker" data-ucosmic-map-center="@marker.CenterLatitude,@marker.CenterLongitude" data-ucosmic-map-title="@marker.EstablishmentTranslatedThenOfficialName">
+                <div data-ucosmic-map="info-window" data-ucosmic-size-width="400" style="padding-right: 20px;">
+                    <strong>@marker.ForEstablishmentTranslatedName</strong> 
+                    @if (!marker.ForEstablishmentTranslatedName.Equals(marker.ForEstablishmentOfficialName))
+                    {
+                        <span>(@marker.ForEstablishmentOfficialName)</span>
+                    }
+                    @if (User.IsInRole(RoleName.EstablishmentLocationAgent))
+                    {
+                        <span>[<a href="@Url.Action(MVC.Establishments.SupplementalForms.Locate(marker.ForEstablishmentEntityId, Request.Url.PathAndQuery))">Relocate</a>]</span>
+                    }
+                    <ul style="margin-top: 0; padding-top: 0;">
+                        @foreach (var agreement in marker.Agreements)
+                        {
+                            <li><a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Post(agreement.EntityId))">@Html.DisplayFor(m => agreement.Title)</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@if (Model.TableResults.Count > 0)
+{
+    <br />
+    <br />
+    <table class="list">
+        <thead>
+            <tr>
+                <th style="width: 50%;">
+                    Summary description
+                </th>
+                <th>
+                    Status
+                </th>
+                <th class="no-wrap">
+                    Starts on
+                </th>
+                <th class="no-wrap">
+                    Expires on
+                </th>
+                <th style="max-width: 30%;">
+                    Files
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.TableResults)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Post(item.EntityId))">@Html.DisplayFor(m => item.Title)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.StartsOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.ExpiresOn)
+                    </td>
+                    <td>
+                        @if (item.Files != null && item.Files.Count > 0)
+                        {
+                            foreach (var file in item.Files)
+                            {
+                            <a href="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.DisplayFile(file.EntityId, file.Name))" 
+                                target="_blank">@file.Name</a>
+                            <br />
+                            }
+                        }
+                        else
+                        {
+                            <span>[No files]</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>
+        You have no institutional agreements. <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Post(null as Guid?))">
+            Click here to add your first one</a>.
+    </p>
+}

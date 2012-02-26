@@ -1,0 +1,93 @@
+﻿/* hyperlinks */
+
+
+
+/* jquery ui-dialog re-theme */
+
+
+
+/* text boxes */
+.ucosmic > .head > .center .search.row .input.col .text-box.input {
+    border-color: #fff;
+    background-color: #fff;
+}
+.ucosmic > .head > .center .search.row .input.col .combobox a.down-arrow, .ucosmic > .head > .center .search.row .input.col .emptybox a.empty-icon {
+    background-color: #fff;
+    border-color: #fff;
+}
+.ucosmic > .head > .center .search.row .input.col .button-sized.combobox a.down-arrow:hover, .ucosmic > .head > .center .search.row .input.col .button-sized .combobox a.down-arrow:hover {
+    background-color: #fff;
+}
+
+
+
+/* hat 33px tall */
+.ucosmic .top-tabs {
+    background-color: #fff;
+    border-bottom-color: #fff;
+}
+.ucosmic .top-tabs a {
+    color: #009ee0;
+}
+.ucosmic .top-tabs a:hover, .ucosmic .top-tabs a.open {
+    background-color: #01589c;
+    color: #fff;
+    border-color: #fff;
+    border-bottom-color: transparent;
+    padding: 2px 8px 0;
+}
+.ucosmic .top-tabs a.docked {
+    background-color: #01589c;
+    color: #fff;
+    border-color: #01589c;
+    border-bottom-color: transparent;
+    padding: 2px 8px 0;
+}
+.ucosmic .top-tabs a.open.has-sub {
+    color: #fff;
+}
+.ucosmic .top-tabs .sub-nav {
+    border-color: #fff;
+    background-color: #01589c;
+}
+.ucosmic .top-tabs .sub-nav a {
+    color: #fff;
+    border-left-color: #fff;
+    padding: 1px 6px 1px 10px;
+}
+
+
+
+/* head 77px tall */
+.ucosmic > .head {
+    background-color: #01589c;
+    height: 77px;
+    border-bottom: 0;
+}
+.ucosmic > .head a:link, .ucosmic > .head a:visited, .ucosmic > .head a:hover, .ucosmic > .head a:active {
+    color: #fff;
+}
+.ucosmic > .head > .center > .identity {
+    color: #fff;
+}
+.ucosmic > .head > .center > h1 {
+    color: #fff;
+}
+
+
+
+/* layout skeleton */
+.ucosmic > .torso {
+    top: 111px;
+}
+.ucosmic > .torso > .center {
+    border-top: 0;
+    border-bottom: 0;
+}
+.ucosmic > .torso > .right > div {
+    border-bottom: 0;
+}
+
+
+
+/* footer bar 33px tall */

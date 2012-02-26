@@ -1,0 +1,78 @@
+﻿@using UCosmic.Www.Mvc.Models
+@{
+    var viewBag = (dynamic)ViewData["ViewBag"];
+    viewBag.Title = "Alumni Feature Requirements";
+}
+<p>
+    Tentatively planned June - October 2012
+</p>
+<p>
+    The University of Cincinnati investigated creating an alumni module in 2006, as
+    a candidate for one of the very first modules to be developed. However we discovered
+    that alumni data was not very easy to get into UCosmic. Your institution may have
+    policies which aim to prevent unauthorized parties from contacting alumni members.
+    <strong>Before requesting features for this module, please check with your foundation
+        and/or Alumni Association to discover what policies may exist regarding sharing
+        of alumni information with you and UCosmic</strong>. Report what you discover
+    to the @Html.Partial(MVC.Shared.Views.uservoice_link, new UserVoiceLink(Request, ViewData) { Text = "Feedback & Support forum" }).
+</p>
+<hr />
+<h2>
+    Basic Alumni User Story
+</h2>
+<p>
+    Nearly 6 years later in 2012, there is a different lens through which to view the
+    original problem:
+</p>
+<div id="feature_a_1" class="user-story-card">
+    <h3>
+        Find Alumni by Country
+    </h3>
+    <p>
+        <strong>In order to</strong> plan an international strategy,
+        <br />
+        <strong>As an</strong> international office,
+        <br />
+        <strong>I want to</strong> discover and connect with my institution's with alumni
+        around the world.
+    </p>
+</div>
+<p>
+    Six years ago, the only way to get enough reliable information into UCosmic to achieve
+    the above goal was from an internal system used for fundraising purposes. Today,
+    it is not uncommon for professionals to advertise their education information in
+    social apps such as Facebook and LinkedIn. UC's Alumni Association is already leveraging
+    the social graph with a <a href="http://www.facebook.com/UCAlumniAssociation" target="_blank">
+        Facebook page for UC Alums</a>.
+</p>
+<p>
+    It is possible to use Application Programming Interfaces (API's) from systems like
+    Facebook and LinkedIn to help UCosmic connect you with alumni around the world.
+    There is also an underlying corollary with the Faculty Pedigree component of the
+    Faculty &amp; Staff module. Consider an employee at Lehigh University who graduated
+    with a PhD from Edinburgh Napier University. When she enters her faculty pedigree
+    information for Lehigh, Edinburgh Napier can now use the same data for its Alumni
+    module.
+</p>
+<hr />
+<h2>
+    Data Feed versus Promotion of Awareness + Incentive to Participate
+</h2>
+<p>
+    It is not possible for UCosmic to &quot;scan&quot; social sites like Facebook and
+    LinkedIn for relevant data. People must explicitly allow UCosmic access to their
+    information. There is an incentive for doing this in the Faculty Pedigree piece:
+    By connecting UCosmic with a Facebook or LinkedIn account, the employee does not
+    have to re-enter any data in UCosmic. Whenever they update their profile in the
+    3rd party site, those changes can be picked up automatically by UCosmic.
+</p>
+<p>
+    Some Foundations and Alumni Associations may be willing to share enough data with
+    UCosmic to avoid the need for integration with popular 3rd party sites. When this
+    is the case, the information feeds to UCosmic can be made transparent to the alumni
+    themselves. Other international offices may need to promote awareness and provide
+    additional incentive for alumni to share their alumni status with UCosmic. <strong>Please
+        consider these issues carefully</strong>, and provide your input to UCosmic's
+    @Html.Partial(MVC.Shared.Views.uservoice_link, new UserVoiceLink(Request, ViewData) { Text = "Feedback & Support forum" }).
+</p>
+<hr />
