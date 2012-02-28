@@ -27,7 +27,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
+                var constraints = new { httpMethod = new HttpMethodConstraint("GET", "POST") };
                 context.MapRoute(null, Route, defaults, constraints);
             }
         }

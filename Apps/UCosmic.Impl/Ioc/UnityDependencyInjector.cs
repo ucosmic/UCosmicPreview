@@ -8,25 +8,25 @@ namespace UCosmic
 {
     public class UnityDependencyInjector : IInjectDependencies
     {
-        private readonly IUnityContainer _container;
+        internal readonly IUnityContainer Container;
 
         public UnityDependencyInjector()
         {
-            _container = new UnityContainer().LoadConfiguration();
+            Container = new UnityContainer().LoadConfiguration();
         }
 
         public object GetService(Type serviceType)
         {
             try
             {
-                if (!_container.IsRegistered(serviceType))
+                if (!Container.IsRegistered(serviceType))
                 {
                     if (serviceType.IsAbstract || serviceType.IsInterface)
                     {
                         return null;
                     }
                 }
-                return _container.Resolve(serviceType);
+                return Container.Resolve(serviceType);
 
             }
             catch (Exception)
@@ -39,7 +39,7 @@ namespace UCosmic
         {
             try
             {
-                return _container.ResolveAll(serviceType);
+                return Container.ResolveAll(serviceType);
             }
             catch (Exception)
             {

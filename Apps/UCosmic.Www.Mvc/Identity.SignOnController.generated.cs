@@ -23,9 +23,6 @@ using T4MVC;
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public partial class SignOnController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public SignOnController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected SignOnController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -82,6 +79,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public override System.Web.Mvc.ActionResult SignOn(string returnUrl) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.SignOn);
             callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult SignOn(UCosmic.Www.Mvc.Areas.Identity.Models.SignOn.SignOnForm model) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.SignOn);
+            callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
 

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Elmah.Contrib.Mvc;
+using FluentValidation.Mvc;
 using UCosmic.Domain;
 using UCosmic.Orm;
 using UCosmic.Seeders;
@@ -29,6 +30,12 @@ namespace UCosmic.Www.Mvc
 
             // setup dependency injection
             SetupDependencyInjection();
+
+            // set up fluent validation
+            FluentValidationModelValidatorProvider.Configure(provider =>
+            {
+                provider.ValidatorFactory = new UnityValidatorFactory();
+            });
 
             // configure automapper
             AutoMapperConfig.Configure();
