@@ -187,8 +187,13 @@
     <Compile Include="Areas\Common\Controllers\HealthController.cs" />
     <Compile Include="Areas\Common\Controllers\NavigationController.cs" />
     <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Mappers\SignOnModelMapper.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\Saml2IntegrationInfo.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignOnController.cs" />
+    <Compile Include="Areas\Identity\Mappers\SignOnRouteMapper.cs" />
     <Compile Include="Areas\Identity\Models\Password\ForgotPasswordEmailAttribute.cs" />
     <Compile Include="Areas\Identity\Models\Roles\NoDuplicateGrantsAttribute.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\SignOnForm.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsRouteMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsModelMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\PublicSearchModelMapper.cs" />
@@ -251,6 +256,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Identity.SignInController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.SignOnController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Identity.SignUpController.generated.cs">
@@ -945,6 +953,9 @@
     <Content Include="scripts\ucosmic.js" />
     <Content Include="Areas\InstitutionalAgreements\Views\PublicSearch\_no-context.cshtml" />
     <Content Include="Areas\Common\Views\Features\february-2012-preview-2.cshtml" />
+    <Content Include="Areas\Identity\Views\SignOn\sign-on.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnForm.cshtml" />
+    <Content Include="Areas\Identity\Views\SignOn\providers.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<UCosmic.Www.Mvc.Areas.Identity.Models.SignOn.Saml2IntegrationInfo>
+@{
+    ViewBag.Title = "UCosmic Sign On Providers";
+    Layout = MVC.Shared.Views.layout;
+}
+<div class="wrap-960">
+    <p>
+        If your email address looks similar to one below, you already have a UCosmic account.
+        <a href="@Url.Action(MVC.Identity.SignOn.SignOn())">Click here to sign on</a>.
+    </p>
+    <ul style="list-style: none; margin: 0; padding: 0; font-size: 21px; font-weight: bold;">
+        @foreach (var item in Model)
+        {
+            <li style="margin: 0 0 20px 0; padding: 0;">
+                <div>
+                    @Html.DisplayFor(m => item.OfficialName):
+                    <ul style="display: inline-block; list-style: none; margin: 0; padding: 0; font-size: 17px">
+                        @foreach (var emailDomain in item.EmailDomains)
+                        {
+                            <li style="display: inline-block;">
+                                <div style="background-color: #ccc; padding: 2px 5px; border-radius: 5px; -moz-border-radius: 5px;">
+                                    <span style="font-weight: normal;">username</span>@Html.DisplayFor(m => emailDomain.Value)
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

@@ -28,6 +28,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             SelfModelMapper.RegisterProfiles();
 
             Saml2RouteMapper.RegisterRoutes(context);
+            SignOnRouteMapper.RegisterRoutes(context);
+            SignOnModelMapper.RegisterProfiles();
 
             //// default route
             //context.MapRoute(
