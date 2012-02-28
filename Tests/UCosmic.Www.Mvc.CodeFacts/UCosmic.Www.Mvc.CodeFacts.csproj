@@ -106,11 +106,13 @@
     <Compile Include="Areas\Common\Mappers\FeaturesRouteMapperFacts.cs" />
     <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapperFacts.cs" />
     <Compile Include="Areas\Establishments\Mappers\ManagementFormsRouteMapperFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignInControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignUpControllerFacts.cs" />
     <Compile Include="Areas\Identity\Mappers\ManagementFormsRouteMapperFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\CreatePasswordFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\SendEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\ConfirmEmailFormFacts.cs" />
+    <Compile Include="Etc\ReuseMock.cs" />
     <Compile Include="Models\AutoMapperConfigFacts.cs" />
     <Compile Include="Etc\ExtensionMethods.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistrationFacts.cs" />

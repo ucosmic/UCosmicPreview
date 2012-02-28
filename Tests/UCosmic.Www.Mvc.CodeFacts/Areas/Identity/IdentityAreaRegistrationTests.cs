@@ -61,19 +61,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             action.DefaultAreaRoutes(MVC.Identity.Name).ShouldMapToNothing();
         }
 
-        [TestMethod]
-        public void Route_Identity_Authentication_SignOnStatus_IsSetUp()
-        {
-            Expression<Func<SignInController, ActionResult>> action = 
-                controller => controller.SignOnStatus();
-            const string routeUrl = "sign-on-status.partial.html";
-            var url = routeUrl.ToAppRelativeUrl();
-
-            url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
-            url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            action.DefaultAreaRoutes(MVC.Identity.Name).ShouldMapToNothing();
-        }
-
         #endregion
         #region Email Confirmation
 

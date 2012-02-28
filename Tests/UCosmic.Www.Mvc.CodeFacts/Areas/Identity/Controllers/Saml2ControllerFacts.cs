@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Web;
 using ComponentSpace.SAML2;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using MvcContrib.TestHelper;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
-using System.Web;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -50,7 +49,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var http = new WebRequestHttpConsumer();
                 var config = new DotNetConfigurationManager();
                 var controller = new Saml2Controller(samlMetadata, http, config, samlServiceProvider.Object, entityQueries.Object);
-                var builder = new TestControllerBuilder();
+                var builder = ReuseMock.TestControllerBuilder();
                 builder.InitializeController(controller);
                 SAML.HttpContext = controller.ControllerContext.HttpContext;
                 //var result = controller.ComponentSpaceSignOn("someone@umn.edu", null);

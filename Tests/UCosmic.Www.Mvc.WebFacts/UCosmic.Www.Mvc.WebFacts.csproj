@@ -100,7 +100,7 @@
     </Compile>
     <Compile Include="AppConfig.cs" />
     <Compile Include="Areas\Common\CommonSteps.cs" />
-    <Compile Include="Areas\Common\Features\Navigation.feature.cs">
+    <Compile Include="Areas\Common\Navigation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Navigation.feature</DependentUpon>
@@ -121,7 +121,12 @@
     </Compile>
     <Compile Include="Areas\Identity\AuthorizationSteps.cs" />
     <Compile Include="Areas\Identity\Events\SignUpEvents.cs" />
-    <Compile Include="Areas\Identity\Features\SignUp.feature.cs">
+    <Compile Include="Areas\Identity\SamlSignOn.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SamlSignOn.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Identity\SignUp.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SignUp.feature</DependentUpon>
@@ -204,7 +209,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Areas\Common\Features\Navigation.feature">
+    <None Include="Areas\Common\Navigation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Navigation.feature.cs</LastGenOutput>
     </None>
@@ -216,7 +221,11 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AuthorizationR04.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\Identity\Features\SignUp.feature">
+    <None Include="Areas\Identity\SamlSignOn.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SamlSignOn.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\Identity\SignUp.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SignUp.feature.cs</LastGenOutput>
     </None>

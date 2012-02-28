@@ -1078,7 +1078,7 @@
     <Content Include="Areas\Identity\Views\SignIn\nav.cshtml" />
     <Content Include="Areas\Identity\Views\SignIn\sign-in-as.cshtml" />
     <Content Include="Areas\Identity\Views\SignIn\sign-in.cshtml" />
-    <Content Include="Areas\Identity\Views\SignIn\sign-on-status.cshtml" />
+    <Content Include="Areas\Identity\Views\SignIn\_sign-on-status.cshtml" />
     <Content Include="Areas\Identity\Views\SignIn\sign-out.cshtml" />
     <Content Include="Areas\Identity\Views\Roles\browse.cshtml" />
     <Content Include="Areas\Identity\Views\Roles\form.cshtml" />
