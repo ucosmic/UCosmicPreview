@@ -32,7 +32,9 @@ namespace T4MVC.Identity {
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{
                 public readonly string SignInForm = "SignInForm";
-                public readonly string SignOnForm = "SignOnForm";
+                public readonly string SignOnBeginForm = "SignOnBeginForm";
+                public readonly string SignOnEmailAddress = "SignOnEmailAddress";
+                public readonly string SignOnPassword = "SignOnPassword";
                 public readonly string StrengthMeteredPassword = "StrengthMeteredPassword";
             }
         }

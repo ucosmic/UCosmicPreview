@@ -10,6 +10,7 @@ using UCosmic.Domain;
 using UCosmic.Orm;
 using UCosmic.Seeders;
 using UCosmic.Www.Mvc.Mappers;
+using FluentValidation;
 
 namespace UCosmic.Www.Mvc
 {
@@ -29,13 +30,10 @@ namespace UCosmic.Www.Mvc
             ViewEngines.Engines.Add(new RazorViewEngine());
 
             // setup dependency injection
-            SetupDependencyInjection();
+            SetUpDependencyInjection();
 
             // set up fluent validation
-            FluentValidationModelValidatorProvider.Configure(provider =>
-            {
-                provider.ValidatorFactory = new UnityValidatorFactory();
-            });
+            SetUpFluentValidation();
 
             // configure automapper
             AutoMapperConfig.Configure();
@@ -75,13 +73,20 @@ namespace UCosmic.Www.Mvc
             // NOTE: Default route mappings are disabled. Allow only explicitly-defined routes.
         }
 
-        private static void SetupDependencyInjection()
+        private static void SetUpDependencyInjection()
         {
             // use unity for the infrastructure injector
             DependencyInjector.SetInjector(new UnityDependencyInjector());
 
             // use infrastructure injector for MVC-specific injection
             DependencyResolver.SetResolver(new MvcDependencyResolver());
+        }
+
+        private static void SetUpFluentValidation()
+        {
+            FluentValidationModelValidatorProvider.Configure(
+                provider => { provider.ValidatorFactory = new UnityValidatorFactory(); });
+            ValidatorOptions.CascadeMode = CascadeMode.StopOnFirstFailure;
         }
 
         private static void SeedDb()

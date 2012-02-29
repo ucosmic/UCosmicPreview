@@ -1,4 +1,4 @@
-﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.SignOn.SignOnForm
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.SignOn.SignOnBeginForm
 @{
     ViewBag.Title = "Sign on to UCosmic";
     Layout = MVC.Shared.Views.layout;
@@ -25,7 +25,7 @@
         @using (Html.BeginForm())
         {
             <fieldset>
-                <legend>Sign On Step 1</legend>
+                <legend>Begin Sign On</legend>
                 <br />
                 @Html.EditorForModel()
                 <br />

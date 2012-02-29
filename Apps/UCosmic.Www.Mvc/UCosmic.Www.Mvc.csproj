@@ -199,7 +199,9 @@
     <Compile Include="Areas\Identity\Mappers\SignOnRouteMapper.cs" />
     <Compile Include="Areas\Identity\Models\Password\ForgotPasswordEmailAttribute.cs" />
     <Compile Include="Areas\Identity\Models\Roles\NoDuplicateGrantsAttribute.cs" />
-    <Compile Include="Areas\Identity\Models\SignOn\SignOnForm.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\SignOnBeginForm.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\SignOnEmailAddressValidator.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\SignOnBeginFormValidator.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsRouteMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsModelMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\PublicSearchModelMapper.cs" />
@@ -960,8 +962,10 @@
     <Content Include="Areas\InstitutionalAgreements\Views\PublicSearch\_no-context.cshtml" />
     <Content Include="Areas\Common\Views\Features\february-2012-preview-2.cshtml" />
     <Content Include="Areas\Identity\Views\SignOn\sign-on.cshtml" />
-    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnBeginForm.cshtml" />
     <Content Include="Areas\Identity\Views\SignOn\providers.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnEmailAddress.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnPassword.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />

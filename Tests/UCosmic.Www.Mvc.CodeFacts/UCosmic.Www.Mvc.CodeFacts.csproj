@@ -60,6 +60,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=3.2.0.0, Culture=neutral, PublicKeyToken=a82054b837897c66, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentValidation.3.2.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Moq">
@@ -108,7 +111,11 @@
     <Compile Include="Areas\Establishments\Mappers\ManagementFormsRouteMapperFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignInControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignUpControllerFacts.cs" />
-    <Compile Include="Areas\Identity\Mappers\ManagementFormsRouteMapperFacts.cs" />
+    <Compile Include="Areas\Identity\Mappers\RolesRouteMapperFacts.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\Saml2IntegrationInfoFacts.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\SignOnBeginFormFacts.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\SignOnBeginFormValidatorFacts.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\SignOnEmailAddressValidatorRulesFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\CreatePasswordFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\SendEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\ConfirmEmailFormFacts.cs" />
@@ -119,10 +126,6 @@
     <Compile Include="Areas\Establishments\EstablishmentsAreaRegistrationFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\Saml2ControllerFacts.cs" />
     <Compile Include="Areas\Identity\IdentityAreaRegistrationTests.cs" />
-    <Compile Include="Areas\Identity\Models\Authentication\SignInFormTests.cs" />
-    <Compile Include="Areas\Identity\Models\Password\ChangePasswordFormTests.cs" />
-    <Compile Include="Areas\Identity\Models\Password\ForgotPasswordFormTests.cs" />
-    <Compile Include="Areas\Identity\Models\Password\ResetPasswordFormTests.cs" />
     <Compile Include="Areas\InstitutionalAgreements\InstitutionalAgreementAreaRegistrationTests.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\ConfigurationForms\InstitutionalAgreementConfigurationFormTests.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\ConfigurationForms\InstitutionalAgreementContactTypeValueFormTests.cs" />
@@ -143,7 +146,6 @@
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\Establishments\Controllers\" />
     <Folder Include="Areas\Establishments\Models\" />
-    <Folder Include="Areas\Identity\Models\Self\" />
     <Folder Include="Areas\InstitutionalAgreements\Controllers\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 using UCosmic.Www.Mvc.Mappers;
 
@@ -20,10 +16,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
 
         // ReSharper disable UnusedMember.Global
 
-        public static class SignOn
+        public static class Begin
         {
             public const string Route = "sign-on";
-            private static readonly string Action = MVC.Identity.SignOn.ActionNames.SignOn;
+            private static readonly string Action = MVC.Identity.SignOn.ActionNames.Begin;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };

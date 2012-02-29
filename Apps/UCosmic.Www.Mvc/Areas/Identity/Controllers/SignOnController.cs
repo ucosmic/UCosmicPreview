@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using UCosmic.Domain;
@@ -26,19 +27,23 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [HttpGet]
         [ActionName("sign-on")]
         [OpenTopTab(TopTabName.Home)]
-        public virtual ActionResult SignOn(string returnUrl)
+        public virtual ActionResult Begin(string returnUrl)
         {
-            var model = new SignOnForm();
+            var model = new SignOnBeginForm();
             return View(model);
         }
 
         [HttpPost]
         [ActionName("sign-on")]
         [OpenTopTab(TopTabName.Home)]
-        public virtual ActionResult SignOn(SignOnForm model)
+        public virtual ActionResult Begin(SignOnBeginForm model)
         {
             if (ModelState.IsValid)
             {
+                if (model.EmailAddress.EndsWith("@testshib.org", StringComparison.OrdinalIgnoreCase))
+                {
+                    // return page with info on SAML SSO next step
+                }
                 
             }
             return View(model);
