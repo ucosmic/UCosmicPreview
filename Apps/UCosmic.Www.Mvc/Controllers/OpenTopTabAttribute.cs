@@ -6,7 +6,7 @@ namespace UCosmic.Www.Mvc.Controllers
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class OpenTopTabAttribute : ActionFilterAttribute
     {
-        private readonly string _name;
+        public string TabName { get; private set; }
         private const string KeyFormat = "{0}TopTabCssClass";
         private const string CssClass = "docked";
         private const string UvScriptKey = "UvScript";
@@ -14,14 +14,14 @@ namespace UCosmic.Www.Mvc.Controllers
         public const string UvDefaultHref = "https://ucosmic.uservoice.com/forums/150533-general-feedback-support";
         public const string UvDefaultScript = "kKkVzX4Nj95jXT74LBo3VQ";
 
-        public OpenTopTabAttribute(string name)
+        public OpenTopTabAttribute(string tabName)
         {
-            _name = name;
+            TabName = tabName;
         }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            OpenTopTab(filterContext.Controller.ViewData, _name);
+            OpenTopTab(filterContext.Controller.ViewData, TabName);
         }
 
         public static void OpenTopTab(ViewDataDictionary viewData, string name)

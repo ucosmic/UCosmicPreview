@@ -27,9 +27,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [HttpGet]
         [ActionName("sign-on")]
         [OpenTopTab(TopTabName.Home)]
-        public virtual ActionResult Begin(string returnUrl)
+        public virtual ViewResult Begin(string returnUrl)
         {
-            var model = new SignOnBeginForm();
+            var model = new SignOnBeginForm { ReturnUrl = returnUrl };
             return View(model);
         }
 
@@ -44,7 +44,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     // return page with info on SAML SSO next step
                 }
-                
+
             }
             return View(model);
         }
@@ -58,7 +58,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public virtual ActionResult Saml2Integrations()
         {
             // make sure context is not tracked
-            var query = _queryEntities.ApplyInsertOrUpdate(_queryEntities.Establishments, 
+            var query = _queryEntities.ApplyInsertOrUpdate(_queryEntities.Establishments,
                 With<Establishment>.DefaultCriteria().ForInsertOrUpdate(false));
 
             // find establishments with a valid saml2 metadata url
