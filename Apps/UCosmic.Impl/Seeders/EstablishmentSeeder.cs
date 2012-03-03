@@ -384,7 +384,7 @@ namespace UCosmic.Seeders
                 #region Manipal
 
                 officialName = "Manipal Education";
-                EnsureEstablishment(officialName, true, null, GetUniversitySystem(), "www.manipalglobal.edu", null);
+                EnsureEstablishment(officialName, true, null, GetUniversitySystem(), "www.manipalglobal.com", null);
                 var manipalGlobal = Context.Establishments.ByOfficialName(officialName);
 
                 var manipalEdu = EnsureEstablishment("Manipal University", true, manipalGlobal, GetUniversity(), "www.manipal.edu", "@manipal.edu");
