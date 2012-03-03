@@ -57,10 +57,6 @@
   <ItemGroup>
     <Folder Include="Profiles" />
   </ItemGroup>
-  <ItemGroup>
-    <PublishProfile Include="Profiles\UCosmicPreviewStagingWebDeploy.azurePubxml" />
-    <PublishProfile Include="Profiles\UCosmicPreviewStagingInstances.azurePubxml" />
-  </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
