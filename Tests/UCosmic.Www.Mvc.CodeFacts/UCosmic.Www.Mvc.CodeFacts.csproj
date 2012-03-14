@@ -110,6 +110,7 @@
     <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapperFacts.cs" />
     <Compile Include="Areas\Establishments\Mappers\ManagementFormsRouteMapperFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignInControllerFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignOnControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignUpControllerFacts.cs" />
     <Compile Include="Areas\Identity\Mappers\RolesRouteMapperFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignOn\Saml2IntegrationInfoFacts.cs" />
