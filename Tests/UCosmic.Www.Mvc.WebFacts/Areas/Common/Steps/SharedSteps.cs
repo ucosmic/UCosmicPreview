@@ -116,6 +116,15 @@ namespace UCosmic.Www.Mvc.Areas.Common.Steps
             }
         }
 
+        [Given(@"I saw a 404 Not Found page")]
+        [When(@"I see a 404 Not Found page")]
+        [Then(@"I should see a 404 Not Found page")]
+        public void See404NotFoundPage()
+        {
+            Browsers.ForEach(browser => browser.WaitUntil(b => b.FindElement(By.Id("not_found_404")),
+                "@Browser did not arrive at the HTTP 404 Not Found page."));
+        }
+
         #endregion
         #region Hyperlinks
 
@@ -133,6 +142,22 @@ namespace UCosmic.Www.Mvc.Areas.Common.Steps
                 // ensure the link is visible
                 browser.WaitUntil(b => link.Displayed,
                     string.Format("A hyperlink with text '{0}' was not displayed using @Browser.", linkText));
+            });
+        }
+
+        [Given(@"I did not see a ""(.*)"" link")]
+        [When(@"I do not see a ""(.*)"" link")]
+        [Then(@"I should not see a ""(.*)"" link")]
+        public void DoNotSeeLinkWithText(string linkText)
+        {
+            Browsers.ForEach(browser =>
+            {
+                // try to locate the element
+                var link = browser.TryFindElement(By.LinkText(linkText));
+
+                // ensure the link is not visible
+                browser.WaitUntil(b => link == null || !link.Displayed,
+                    string.Format("A hyperlink with text '{0}' was unexpectedly displayed using @Browser.", linkText));
             });
         }
 

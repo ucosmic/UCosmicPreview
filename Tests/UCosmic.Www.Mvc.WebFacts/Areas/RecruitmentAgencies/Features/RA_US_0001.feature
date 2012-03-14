@@ -1,12 +1,12 @@
 ﻿@RepsModule
-Feature: US15 - Search Recruitment Agency directory
+Feature: RA_US_0001 - Search Recruitment Agency directory
     In order to find nearby recruitment agencies who are partnered with my choice institutions,
     As a prospective international student,
     I want to search online for my choice institutions' partner recruitment agencies.
-    
+
 #Saibal -- uncomment this feature to test with it. Currently it is inconclusive.
 
-#Background: 
+#Background:
 #    Given the following Recruitment Agencies
 #
 #@CurrentIteration

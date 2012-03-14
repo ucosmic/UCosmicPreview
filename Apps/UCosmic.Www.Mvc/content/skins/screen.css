@@ -929,5 +929,8 @@ img {
 .ucosmic .clear {
     clear: both;
 }
+#not_found_404 {
+    display: none;
+}
 
 

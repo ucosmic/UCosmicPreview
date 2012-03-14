@@ -185,11 +185,28 @@
       <DependentUpon>ManagementFormsR04.feature</DependentUpon>
     </Compile>
     <Compile Include="Areas\InstitutionalAgreements\ManagementFormsSteps.cs" />
-    <Compile Include="Areas\RecruitmentAgencies\Features\US15.feature.cs">
+    <Compile Include="Areas\RecruitmentAgencies\Features\RA_US_0001.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>US15.feature</DependentUpon>
+      <DependentUpon>RA_US_0001.feature</DependentUpon>
     </Compile>
+    <Compile Include="Areas\RecruitmentAgencies\Features\RA_US_0002.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RA_US_0002.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\RecruitmentAgencies\Features\RA_US_0003.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RA_US_0003.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\RecruitmentAgencies\Features\RA_US_0004.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RA_US_0004.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\RecruitmentAgencies\TentativeDomainModel\NotificationEmailAddress.cs" />
+    <Compile Include="Areas\RecruitmentAgencies\TentativeDomainModel\RecruitmentAgencyConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpecFlow\ScenarioEvents.cs" />
     <Compile Include="SpecFlow\StepDefinitionBase.cs" />
@@ -260,10 +277,25 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ManagementFormsR04.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\RecruitmentAgencies\Features\US15.feature">
+    <None Include="Areas\RecruitmentAgencies\Features\RA_US_0001.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>US15.feature.cs</LastGenOutput>
+      <LastGenOutput>RA_US_0001.feature.cs</LastGenOutput>
     </None>
+    <None Include="Areas\RecruitmentAgencies\Features\RA_US_0002.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RA_US_0002.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\RecruitmentAgencies\Features\RA_US_0002_scribble_A.pdf" />
+    <None Include="Areas\RecruitmentAgencies\Features\RA_US_0003.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RA_US_0003.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\RecruitmentAgencies\Features\RA_US_0003_scribble_A.pdf" />
+    <None Include="Areas\RecruitmentAgencies\Features\RA_US_0004.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RA_US_0004.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\RecruitmentAgencies\Features\RA_US_0004_scribble_A.pdf" />
     <None Include="FileUploads\.WordDocument1.doc" />
     <None Include="FileUploads\ExcelWorkbook1.xls" />
     <None Include="FileUploads\ExcelWorkbook1.xlsx" />

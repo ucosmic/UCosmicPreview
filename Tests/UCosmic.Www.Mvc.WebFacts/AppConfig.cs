@@ -204,6 +204,7 @@ namespace UCosmic.Www.Mvc
 
         private static readonly Dictionary<string, string> TitleToUrl = new Dictionary<string, string>
         {
+            { "Home", Home },
             { "Sign Up", SignUp },
             { "Sign Up Confirm Email", SignUpConfirmEmail },
             { "Sign Up Create Password", SignUpCreatePassword },
