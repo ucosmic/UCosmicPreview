@@ -101,7 +101,6 @@ namespace UCosmic.Seeders
                     Parent = eduGlobalHeaqdquarters,
                     Type = GetRecruitmentAgency(),
                     OfficialName = "EduGlobal Changchun",
-                    WebsiteUrl = "www.eduglobalchina.com",
                     Location = new EstablishmentLocation
                     {
                         Center = new Coordinates { Latitude = latitude, Longitude = longitude, },
@@ -145,10 +144,10 @@ namespace UCosmic.Seeders
             {
                 #region EIC Beijing (HQ)
 
-                latitude = 39.905983;
-                longitude = 116.459373;
+                latitude = 39.9059830001;
+                longitude = 116.4593730001;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                Debug.Assert(result.WoeId != null);
+                Debug.Assert(result.WoeId.HasValue);
                 place = placeFactory.FromWoeId(result.WoeId.Value);
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
@@ -200,7 +199,6 @@ namespace UCosmic.Seeders
                     Parent = eicHeaqdquarters,
                     Type = GetRecruitmentAgency(),
                     OfficialName = "EIC Group Changsha",
-                    WebsiteUrl = "www.eic.org.cn",
                     Location = new EstablishmentLocation
                     {
                         Center = new Coordinates { Latitude = latitude, Longitude = longitude, },
@@ -296,7 +294,6 @@ namespace UCosmic.Seeders
                     Parent = canachieveHeadquarters,
                     Type = GetRecruitmentAgency(),
                     OfficialName = "Can Achieve Group Nanjing",
-                    WebsiteUrl = "www.can-achieve.com.cn",
                     Location = new EstablishmentLocation
                     {
                         Center = new Coordinates { Latitude = latitude, Longitude = longitude, },
@@ -335,7 +332,6 @@ namespace UCosmic.Seeders
                     Parent = canachieveHeadquarters,
                     Type = GetRecruitmentAgency(),
                     OfficialName = "Can Achieve Group Guangzhou",
-                    WebsiteUrl = "www.can-achieve.com.cn",
                     Location = new EstablishmentLocation
                     {
                         Center = new Coordinates { Latitude = latitude, Longitude = longitude, },

@@ -52,12 +52,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string Begin = "sign-on";
+            public readonly string Saml2Post = "post";
             public readonly string Saml2Integrations = "providers";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Begin = "sign-on";
+            public const string Saml2Post = "post";
             public const string Saml2Integrations = "providers";
         }
 
@@ -85,6 +87,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public override System.Web.Mvc.ActionResult Begin(UCosmic.Www.Mvc.Areas.Identity.Models.SignOn.SignOnBeginForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Begin);
             callInfo.RouteValueDictionary.Add("model", model);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Saml2Post() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Saml2Post);
             return callInfo;
         }
 

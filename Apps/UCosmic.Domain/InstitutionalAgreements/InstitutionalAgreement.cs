@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
@@ -48,12 +47,8 @@ namespace UCosmic.Domain.InstitutionalAgreements
             set { _offspring = value; }
         }
 
-        [Required]
-        [StringLength(500)]
         public string Title { get; set; }
 
-        [Required]
-        [StringLength(150)]
         public string Type { get; set; }
 
         public DateTime StartsOn { get; set; }
@@ -63,13 +58,10 @@ namespace UCosmic.Domain.InstitutionalAgreements
         [DefaultValue(false)]
         public bool IsExpirationEstimated { get; set; }
 
-        [StringLength(4000)]
         public string Description { get; set; }
 
         public bool? IsAutoRenew { get; set; }
 
-        [Required]
-        [StringLength(50)]
         public string Status { get; set; }
 
         private ICollection<InstitutionalAgreementParticipant> _participants;

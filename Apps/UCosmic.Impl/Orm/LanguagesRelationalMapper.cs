@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
 using UCosmic.Domain.Languages;
 
 namespace UCosmic.Orm
@@ -12,15 +11,15 @@ namespace UCosmic.Orm
             modelBuilder.Configurations.Add(new LanguageNameOrm());
         }
 
-        private class LanguageOrm : EntityTypeConfiguration<Language>
+        private class LanguageOrm : RevisableEntityTypeConfiguration<Language>
         {
             internal LanguageOrm()
             {
                 ToTable(typeof(Language).Name, DbSchemaName.Languages);
 
-                Property(p => p.TwoLetterIsoCode).IsFixedLength();
-                Property(p => p.ThreeLetterIsoCode).IsFixedLength();
-                Property(p => p.ThreeLetterIsoBibliographicCode).IsFixedLength();
+                Property(p => p.TwoLetterIsoCode).IsRequired().IsFixedLength().HasMaxLength(2);
+                Property(p => p.ThreeLetterIsoCode).IsRequired().IsFixedLength().HasMaxLength(3);
+                Property(p => p.ThreeLetterIsoBibliographicCode).IsRequired().IsFixedLength().HasMaxLength(3);
 
                 Property(p => p.TwoLetterIsoCode).IsUnicode(false);
                 Property(p => p.ThreeLetterIsoCode).IsUnicode(false);
@@ -28,13 +27,11 @@ namespace UCosmic.Orm
             }
         }
 
-        private class LanguageNameOrm : EntityTypeConfiguration<LanguageName>
+        private class LanguageNameOrm : RevisableEntityTypeConfiguration<LanguageName>
         {
             internal LanguageNameOrm()
             {
                 ToTable(typeof(LanguageName).Name, DbSchemaName.Languages);
-
-                Property(p => p.AsciiEquivalent).IsUnicode(false);
 
                 // has one language it is the name for
                 HasRequired(d => d.NameForLanguage)
@@ -47,6 +44,9 @@ namespace UCosmic.Orm
                     .WithMany()
                     .Map(d => d.MapKey("TranslationToLanguageId"))
                     .WillCascadeOnDelete(false);
+
+                Property(p => p.Text).IsRequired().HasMaxLength(150);
+                Property(p => p.AsciiEquivalent).IsUnicode(false).HasMaxLength(150);
             }
         }
     }

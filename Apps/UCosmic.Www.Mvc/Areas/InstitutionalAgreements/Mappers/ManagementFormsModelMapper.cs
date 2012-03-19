@@ -19,6 +19,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
         }
 
         // ReSharper disable UnusedMember.Local
+        // ReSharper disable ClassNeverInstantiated.Local
 
         private class EntityToInstitutionalAgreementSearchResultProfile : Profile
         {
@@ -141,7 +142,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             {
                 CreateMap<InstitutionalAgreementDeriveTitleInput, InstitutionalAgreement>()
                     .ForMember(e => e.Umbrella, opt => opt.Ignore())
-                    //.ForMember(e => e.UmbrellaRevisionId, opt => opt.Ignore())
                     .ForMember(e => e.Ancestors, opt => opt.Ignore())
                     .ForMember(e => e.Children, opt => opt.Ignore())
                     .ForMember(e => e.Offspring, opt => opt.Ignore())
@@ -176,17 +176,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                 ;
             }
         }
-
-        //private class EntityFromInstitutionalAgreementParticipantFormProfile : Profile
-        //{
-        //    protected override void Configure()
-        //    {
-        //        CreateMap<InstitutionalAgreementParticipantForm, InstitutionalAgreementParticipant>()
-        //            .ForMember(e => e.Agreement, opt => opt.Ignore())
-        //            .ForMember(e => e.Establishment, opt => opt.Ignore())
-        //        ;
-        //    }
-        //}
 
         private class EntityToInstitutionalAgreementContactFormProfile : Profile
         {
@@ -230,7 +219,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                                 }
                             }))
                     .ForMember(e => e.RevisionId, opt => opt.Ignore())
-                    .ForMember(e => e.UserId, opt => opt.Ignore())
                     .ForMember(e => e.User, opt => opt.Ignore())
                     .ForMember(e => e.Affiliations, opt => opt.Ignore())
                     .ForMember(e => e.CreatedOnUtc, opt => opt.Ignore())
@@ -245,58 +233,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             }
         }
 
-        //private class EntityFromInstitutionalAgreementContactFormProfile : Profile
-        //{
-        //    protected override void Configure()
-        //    {
-        //        CreateMap<InstitutionalAgreementContactForm, InstitutionalAgreementContact>()
-        //            .ForMember(e => e.Person, opt => opt.ResolveUsing<InstitutionalAgreementContactFormToContactPersonResolver>())
-        //            .ForMember(e => e.Agreement, opt => opt.Ignore())
-        //            .ForMember(e => e.CreatedOnUtc, opt => opt.Ignore())
-        //            .ForMember(e => e.CreatedByPrincipal, opt => opt.Ignore())
-        //            .ForMember(e => e.UpdatedOnUtc, opt => opt.Ignore())
-        //            .ForMember(e => e.UpdatedByPrincipal, opt => opt.Ignore())
-        //            .ForMember(e => e.Version, opt => opt.Ignore())
-        //            .ForMember(e => e.IsCurrent, opt => opt.Ignore())
-        //            .ForMember(e => e.IsArchived, opt => opt.Ignore())
-        //            .ForMember(e => e.IsDeleted, opt => opt.Ignore())
-        //        ;
-        //    }
-
-        //    //private class InstitutionalAgreementContactFormToContactPersonResolver : ValueResolver<InstitutionalAgreementContactForm, Person>
-        //    //{
-        //    //    protected override Person ResolveCore(InstitutionalAgreementContactForm source)
-        //    //    {
-        //    //        if (source.PersonId == 0)
-        //    //        {
-        //    //            var person = new Person
-        //    //            {
-        //    //                EntityId = source.PersonEntityId,
-        //    //                FirstName = source.PersonFirstName,
-        //    //                IsDisplayNameDerived = true,
-        //    //                LastName = source.PersonLastName,
-        //    //                MiddleName = source.PersonMiddleName,
-        //    //                Salutation = source.PersonSalutation,
-        //    //                Suffix = source.PersonSuffix,
-        //    //                Emails = new List<EmailAddress>(),
-        //    //            };
-        //    //            person.DisplayName = person.DeriveDisplayName();
-        //    //            if (!string.IsNullOrWhiteSpace(source.PersonDefaultEmail))
-        //    //            {
-        //    //                person.Emails.Add(new EmailAddress
-        //    //                {
-        //    //                    Value = source.PersonDefaultEmail,
-        //    //                    Person = person,
-        //    //                    IsDefault = true,
-        //    //                });
-        //    //            }
-        //    //            return person;
-        //    //        }
-        //    //        return null;
-        //    //    }
-        //    //}
-        //}
-
         private class EntityToInstitutionalAgreementFileFormProfile : Profile
         {
             protected override void Configure()
@@ -306,27 +242,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                 ;
             }
         }
-
-        //private class EntityFromInstitutionalAgreementFileFormProfile : Profile
-        //{
-        //    protected override void Configure()
-        //    {
-        //        CreateMap<InstitutionalAgreementFileForm, InstitutionalAgreementFile>()
-        //            .ForMember(e => e.Agreement, opt => opt.Ignore())
-        //            .ForMember(e => e.Content, opt => opt.Ignore())
-        //            .ForMember(e => e.Length, opt => opt.Ignore())
-        //            .ForMember(e => e.MimeType, opt => opt.Ignore())
-        //            .ForMember(e => e.CreatedOnUtc, opt => opt.Ignore())
-        //            .ForMember(e => e.CreatedByPrincipal, opt => opt.Ignore())
-        //            .ForMember(e => e.UpdatedOnUtc, opt => opt.Ignore())
-        //            .ForMember(e => e.UpdatedByPrincipal, opt => opt.Ignore())
-        //            .ForMember(e => e.Version, opt => opt.Ignore())
-        //            .ForMember(e => e.IsCurrent, opt => opt.Ignore())
-        //            .ForMember(e => e.IsArchived, opt => opt.Ignore())
-        //            .ForMember(e => e.IsDeleted, opt => opt.Ignore())
-        //        ;
-        //    }
-        //}
 
         private class LooseFileIntoInstitutionalAgreementFileFormProfile : Profile
         {
@@ -347,5 +262,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
         }
 
         // ReSharper restore UnusedMember.Local
+        // ReSharper restore ClassNeverInstantiated.Local
     }
 }

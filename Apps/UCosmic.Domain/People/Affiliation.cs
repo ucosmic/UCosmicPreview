@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using UCosmic.Domain.Establishments;
+﻿using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Domain.People
 {
@@ -11,7 +10,6 @@ namespace UCosmic.Domain.People
         public int EstablishmentId { get; set; }
         public virtual Establishment Establishment { get; set; }
 
-        [StringLength(500)]
         public string JobTitles { get; set; }
 
         public bool IsDefault { get; set; }

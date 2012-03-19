@@ -1,0 +1,35 @@
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.Saml2Metadata.Saml2EntityDescriptorModel
+@{
+    Layout = null;
+}
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://develop.ucosmic.com/sign-on/saml/2">
+    <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" WantAssertionsSigned="true" AuthnRequestsSigned="true">
+        <md:KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:KeyName>saml.ucosmic.dev</ds:KeyName>
+                <ds:X509Data>
+                    <ds:X509SubjectName>
+                        @Model.SigningX509SubjectName
+                    </ds:X509SubjectName>
+                    <ds:X509Certificate>
+                        @Model.SigningX509Certificate
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:KeyDescriptor use="encryption">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:KeyName>saml.ucosmic.dev</ds:KeyName>
+                <ds:X509Data>
+                    <ds:X509SubjectName>
+                        @Model.EncryptionX509SubjectName
+                    </ds:X509SubjectName>
+                    <ds:X509Certificate>
+                        @Model.EncryptionX509Certificate
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://develop.ucosmic.com/sign-on/saml/2/post" index="1" />
+    </md:SPSSODescriptor>
+</md:EntityDescriptor>

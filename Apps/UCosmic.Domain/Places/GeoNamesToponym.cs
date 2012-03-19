@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace UCosmic.Domain.Places
 {
@@ -12,7 +11,6 @@ namespace UCosmic.Domain.Places
 
         public const int EarthGeoNameId = 6295630;
 
-        [Key]
         public int GeoNameId { get; set; }
 
         public string FeatureCode { get; set; }
@@ -33,45 +31,32 @@ namespace UCosmic.Domain.Places
 
         public Coordinates Center { get; set; }
 
-        [Required, StringLength(200)]
         public string Name { get; set; }
 
-        [Required, StringLength(200)]
         public string ToponymName { get; set; }
 
         public virtual ICollection<GeoNamesAlternateName> AlternateNames { get; set; }
 
-        [StringLength(2)]
         public string ContinentCode { get; set; }
 
-        [StringLength(2)]
         public string CountryCode { get; set; }
 
-        [StringLength(200)]
         public string CountryName { get; set; }
 
-        [StringLength(15)]
         public string Admin1Code { get; set; }
 
-        [StringLength(200)]
         public string Admin1Name { get; set; }
 
-        [StringLength(15)]
         public string Admin2Code { get; set; }
 
-        [StringLength(200)]
         public string Admin2Name { get; set; }
 
-        [StringLength(15)]
         public string Admin3Code { get; set; }
 
-        [StringLength(200)]
         public string Admin3Name { get; set; }
 
-        [StringLength(15)]
         public string Admin4Code { get; set; }
 
-        [StringLength(200)]
         public string Admin4Name { get; set; }
 
         public long? Population { get; set; }

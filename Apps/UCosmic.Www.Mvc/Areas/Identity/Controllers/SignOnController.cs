@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using UCosmic.Domain;
-using UCosmic.Domain.Establishments;
-using UCosmic.Www.Mvc.Areas.Identity.Models.SignOn;
-using UCosmic.Www.Mvc.Controllers;
 using AutoMapper;
+using UCosmic.Www.Mvc.Areas.Identity.Models.SignOn;
+using UCosmic.Www.Mvc.Areas.Identity.Services;
+using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -14,11 +12,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
     {
         #region Construction & DI
 
-        private readonly IQueryEntities _queryEntities = null;
+        private readonly SignOnServices _services;
 
-        public SignOnController(IQueryEntities queryEntities)
+        public SignOnController(SignOnServices services)
         {
-            _queryEntities = queryEntities;
+            _services = services;
         }
 
         #endregion
@@ -42,11 +40,70 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 if (model.EmailAddress.EndsWith("@testshib.org", StringComparison.OrdinalIgnoreCase))
                 {
-                    // return page with info on SAML SSO next step
+                    var samlSignOn = _services.Establishments.GetSamlSignOnFor(model.EmailAddress);
+                    _services.Saml2ServiceProvider.SendAuthnRequest(samlSignOn.SsoLocation, samlSignOn.SsoBinding.AsSaml2SsoBinding(),
+                        _services.Configuration.SamlServiceProviderEntityId, model.ReturnUrl, HttpContext);
+                    return new EmptyResult();
                 }
 
             }
             return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("post")]
+        public virtual ActionResult Saml2Post()
+        {
+            var samlResponse = _services.Saml2ServiceProvider.ReceiveSamlResponse(Saml2SsoBinding.HttpPost, HttpContext);
+
+            // Check that response is from a valid issuer
+            var isTrustedIssuer = _services.Establishments.IsIssuerTrusted(samlResponse.IssuerNameIdentifier);
+            if (!isTrustedIssuer) throw new InvalidOperationException(string.Format(
+                "Issuer '{0}' does not appear to be trusted.", samlResponse.IssuerNameIdentifier));
+
+            // Verify the response's signature.
+            if (!samlResponse.VerifySignature())
+                throw new InvalidOperationException("The SAML response signature failed to verify.");
+
+            var subjectNameIdentifier = samlResponse.SubjectNameIdentifier;
+            var eduPrincipalPersonName = samlResponse.GetAttributeValueByFriendlyName(SamlAttributeFriendlyName.EduPersonPrincipalName);
+
+            var user = _services.Users.GetOrCreate(eduPrincipalPersonName, true, subjectNameIdentifier);
+            _services.UserSigner.SignOn(user.UserName);
+
+            return Redirect(GetReturnUrl(samlResponse.RelayResourceUrl));
+        }
+
+        [NonAction]
+        private string GetReturnUrl(string suggestedReturnUrl)
+        {
+            suggestedReturnUrl = !string.IsNullOrWhiteSpace(suggestedReturnUrl)
+                ? suggestedReturnUrl
+                : _services.UserSigner.DefaultSignedOnUrl;
+
+            // return URL should not lead to the following pages:
+            var invalidReturnUrls = new[]
+            {
+                Url.Action(MVC.Identity.SignIn.SignIn()),               // back to sign in
+                Url.Action(MVC.Identity.SignOn.Begin()),                // back to sign on
+                Url.Action(MVC.Identity.SignIn.SignOut()),              // over to sign out
+                Url.Action(MVC.Identity.SignUp.SendEmail()),            // over to sign up
+                "/sign-up/confirm-email/",                              // sign up email confirmation
+                "/confirm-password-reset/t-",                           // password reset email confirmation
+                Url.Action(MVC.Identity.Password.ForgotPassword()),     // over to password reset
+                "/"                                                     // sign in from root should go to default url
+            };
+
+            //// foreach conversion to linq expression
+            //foreach (var invalidReturnUrl in invalidReturnUrls)
+            //{
+            //    if (suggestedReturnUrl.StartsWith(invalidReturnUrl, StringComparison.OrdinalIgnoreCase))
+            //        return _identityFacade.UserSigner.DefaultSignedInUrl;
+            //}
+            return invalidReturnUrls.Any(invalidReturnUrl => 
+                suggestedReturnUrl.StartsWith(invalidReturnUrl, StringComparison.OrdinalIgnoreCase)) 
+                    ? _services.UserSigner.DefaultSignedOnUrl 
+                    : suggestedReturnUrl;
         }
 
         #endregion
@@ -57,18 +114,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [OpenTopTab(TopTabName.Home)]
         public virtual ActionResult Saml2Integrations()
         {
-            // make sure context is not tracked
-            var query = _queryEntities.ApplyInsertOrUpdate(_queryEntities.Establishments,
-                With<Establishment>.DefaultCriteria().ForInsertOrUpdate(false));
-
-            // find establishments with a valid saml2 metadata url
-            query = query.Where(e =>
-                e.SamlSignOn != null &&
-                e.SamlSignOn.MetadataUrl != null &&
-                e.SamlSignOn.MetadataUrl.Length > 0
-            ).OrderBy(e => e.OfficialName);
-
-            var models = Mapper.Map<IEnumerable<Saml2IntegrationInfo>>(query.ToList());
+            var models = Mapper.Map<Saml2IntegrationInfo[]>
+                (_services.Establishments.GetSaml2Integrations());
             return View(models);
         }
 

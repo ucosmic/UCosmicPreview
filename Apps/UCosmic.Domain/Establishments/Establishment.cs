@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
 using System.Security.Principal;
@@ -17,7 +16,6 @@ namespace UCosmic.Domain.Establishments
             PartnerContactInfo = new EstablishmentContactInfo();
         }
 
-        [Required, StringLength(500)]
         public string OfficialName { get; set; }
 
         public virtual ICollection<EstablishmentName> Names { get; set; }
@@ -42,7 +40,6 @@ namespace UCosmic.Domain.Establishments
             }
         }
 
-        [StringLength(200)]
         public string WebsiteUrl { get; set; }
 
         public virtual ICollection<EstablishmentUrl> Urls { get; set; }
@@ -55,7 +52,6 @@ namespace UCosmic.Domain.Establishments
 
         public virtual ICollection<EstablishmentNode> Offspring { get; set; }
 
-        [Required]
         public virtual EstablishmentLocation Location { get; set; }
 
         public virtual EstablishmentSamlSignOn SamlSignOn { get; set; }

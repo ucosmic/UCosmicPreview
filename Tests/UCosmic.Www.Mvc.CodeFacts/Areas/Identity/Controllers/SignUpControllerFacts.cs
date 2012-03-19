@@ -2839,7 +2839,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 // arrange
                 var token = Guid.NewGuid();
-                const string defaultSignInUrl = "default sign in url";
                 var model = new CreatePasswordForm
                 {
                     Password = "password",
@@ -2880,7 +2879,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var memberSigner = new Mock<ISignMembers>();
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value))).Returns(false);
                 memberSigner.Setup(m => m.SignUp(emailAddress.Value, model.Password));
-                memberSigner.Setup(p => p.DefaultSignedInUrl).Returns(defaultSignInUrl);
                 var commander = new Mock<ICommandObjects>();
                 var controller = new SignUpController(entityQueries.Object, commander.Object, null, null, memberSigner.Object);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;

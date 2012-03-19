@@ -7,7 +7,7 @@ namespace UCosmic.Seeders
 {
     public abstract class BasePersonSeeder : UCosmicDbSeeder
     {
-        protected Person EnsurePerson(string emails, string firstName, string lastName, Establishment employedBy)
+        protected Person EnsurePerson(string emails, string firstName, string lastName, Establishment employedBy, bool registerUser = true)
         {
             var emailsExploded = emails.Explode(";").ToArray();
             var defaultEmail = emailsExploded.First();
@@ -18,10 +18,7 @@ namespace UCosmic.Seeders
                 FirstName = firstName,
                 LastName = lastName,
                 DisplayName = string.Format("{0} {1}", firstName, lastName),
-                User = new User
-                {
-                    UserName = defaultEmail,
-                }
+                User = UserFactory.Create(defaultEmail, registerUser),
             };
             Context.People.Add(person);
             Context.SaveChanges();

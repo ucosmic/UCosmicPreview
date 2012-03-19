@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ComponentModel.DataAnnotations;
 
 namespace UCosmic.Domain.Places
 {
     public class GeoNamesFeature : Entity
     {
-        [Key]
-        [StringLength(5)]
         public string Code { get; set; }
 
-        [Required]
         public string ClassCode { get; set; }
+
         public virtual GeoNamesFeatureClass Class { get; set; }
 
-        [Required]
-        [StringLength(200)]
         public string Name { get; set; }
 
         public override string ToString()

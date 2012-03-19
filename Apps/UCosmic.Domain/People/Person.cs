@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading;
 using UCosmic.Domain.Establishments;
@@ -26,23 +25,16 @@ namespace UCosmic.Domain.People
 
         public bool IsDisplayNameDerived { get; set; }
 
-        [Required]
-        [StringLength(200)]
         public string DisplayName { get; set; }
 
-        [StringLength(50)]
         public string Salutation { get; set; }
 
-        [StringLength(100)]
         public string FirstName { get; set; }
 
-        [StringLength(100)]
         public string MiddleName { get; set; }
 
-        [StringLength(100)]
         public string LastName { get; set; }
 
-        [StringLength(50)]
         public string Suffix { get; set; }
 
         public string DeriveDisplayName()
@@ -53,7 +45,6 @@ namespace UCosmic.Domain.People
         #endregion
         #region User
 
-        public int? UserId { get; set; }
         public virtual User User { get; set; }
 
         #endregion

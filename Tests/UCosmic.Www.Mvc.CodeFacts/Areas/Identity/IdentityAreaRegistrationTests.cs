@@ -24,7 +24,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             MVC.Identity.Name.DefaultAreaRoutes(MVC.Identity.Roles.Name).ShouldMapToNothing();
             MVC.Identity.Name.DefaultAreaRoutes(MVC.Identity.EmailConfirmation.Name).ShouldMapToNothing();
             MVC.Identity.Name.DefaultAreaRoutes(MVC.Identity.Password.Name).ShouldMapToNothing();
-            MVC.Identity.Name.DefaultAreaRoutes(MVC.Identity.Saml2.Name).ShouldMapToNothing();
             MVC.Identity.Name.DefaultAreaRoutes(MVC.Identity.Self.Name).ShouldMapToNothing();
             MVC.Identity.Name.DefaultAreaRoutes(MVC.Identity.SignUp.Name).ShouldMapToNothing();
         }

@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using UCosmic.Domain.People;
+﻿using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.InstitutionalAgreements
 {
     public class InstitutionalAgreementContact : RevisableEntity
     {
-        [Required]
-        [StringLength(150)]
         public string Type { get; set; }
 
         public virtual InstitutionalAgreement Agreement { get; set; }

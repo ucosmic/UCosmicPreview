@@ -19,7 +19,7 @@ namespace UCosmic.Orm
             modelBuilder.Configurations.Add(new InstitutionalAgreementFileOrm());
         }
 
-        private class InstitutionalAgreementConfigurationOrm : EntityTypeConfiguration<InstitutionalAgreementConfiguration>
+        private class InstitutionalAgreementConfigurationOrm : RevisableEntityTypeConfiguration<InstitutionalAgreementConfiguration>
         {
             internal InstitutionalAgreementConfigurationOrm()
             {
@@ -39,11 +39,15 @@ namespace UCosmic.Orm
             {
                 ToTable(typeof(InstitutionalAgreementTypeValue).Name, DbSchemaName.InstitutionalAgreements);
 
+                HasKey(p => p.Id);
+
                 // has one configuration
                 HasRequired(d => d.Configuration)
                     .WithMany(p => p.AllowedTypeValues)
                     .HasForeignKey(d => d.ConfigurationId)
                     .WillCascadeOnDelete();
+
+                Property(p => p.Text).IsRequired().HasMaxLength(150);
             }
         }
 
@@ -53,11 +57,15 @@ namespace UCosmic.Orm
             {
                 ToTable(typeof(InstitutionalAgreementStatusValue).Name, DbSchemaName.InstitutionalAgreements);
 
+                HasKey(p => p.Id);
+
                 // has one configuration
                 HasRequired(d => d.Configuration)
                     .WithMany(p => p.AllowedStatusValues)
                     .HasForeignKey(d => d.ConfigurationId)
                     .WillCascadeOnDelete();
+
+                Property(p => p.Text).IsRequired().HasMaxLength(50);
             }
         }
 
@@ -67,15 +75,19 @@ namespace UCosmic.Orm
             {
                 ToTable(typeof(InstitutionalAgreementContactTypeValue).Name, DbSchemaName.InstitutionalAgreements);
 
+                HasKey(p => p.Id);
+
                 // has one configuration
                 HasRequired(d => d.Configuration)
                     .WithMany(p => p.AllowedContactTypeValues)
                     .HasForeignKey(d => d.ConfigurationId)
                     .WillCascadeOnDelete();
+
+                Property(p => p.Text).IsRequired().HasMaxLength(150);
             }
         }
 
-        private class InstitutionalAgreementOrm : EntityTypeConfiguration<InstitutionalAgreement>
+        private class InstitutionalAgreementOrm : RevisableEntityTypeConfiguration<InstitutionalAgreement>
         {
             internal InstitutionalAgreementOrm()
             {
@@ -120,6 +132,10 @@ namespace UCosmic.Orm
                     .HasForeignKey(d => d.AncestorId)
                     .WillCascadeOnDelete(false);
 
+                Property(p => p.Title).IsRequired().HasMaxLength(500);
+                Property(p => p.Type).IsRequired().HasMaxLength(150);
+                Property(p => p.Status).IsRequired().HasMaxLength(50);
+                Property(p => p.Description).IsMaxLength();
             }
         }
 
@@ -149,7 +165,7 @@ namespace UCosmic.Orm
             }
         }
 
-        private class InstitutionalAgreementContactOrm : EntityTypeConfiguration<InstitutionalAgreementContact>
+        private class InstitutionalAgreementContactOrm : RevisableEntityTypeConfiguration<InstitutionalAgreementContact>
         {
             internal InstitutionalAgreementContactOrm()
             {
@@ -160,10 +176,12 @@ namespace UCosmic.Orm
                     .WithMany()
                     .Map(m => m.MapKey("PersonId"))
                     .WillCascadeOnDelete(true);
+
+                Property(p => p.Type).IsRequired().HasMaxLength(150);
             }
         }
 
-        private class InstitutionalAgreementFileOrm : EntityTypeConfiguration<InstitutionalAgreementFile>
+        private class InstitutionalAgreementFileOrm : RevisableEntityTypeConfiguration<InstitutionalAgreementFile>
         {
             internal InstitutionalAgreementFileOrm()
             {

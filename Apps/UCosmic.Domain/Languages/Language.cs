@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
 
@@ -8,16 +7,10 @@ namespace UCosmic.Domain.Languages
 {
     public class Language : RevisableEntity
     {
-        [Required]
-        [StringLength(2, MinimumLength = 2)]
         public string TwoLetterIsoCode { get; set; }
 
-        [Required]
-        [StringLength(3, MinimumLength = 3)]
         public string ThreeLetterIsoCode { get; set; }
 
-        [Required]
-        [StringLength(3, MinimumLength = 3)]
         public string ThreeLetterIsoBibliographicCode { get; set; }
 
         public virtual ICollection<LanguageName> Names { get; set; }

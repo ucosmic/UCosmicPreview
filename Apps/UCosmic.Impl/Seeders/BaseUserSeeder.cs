@@ -31,10 +31,10 @@ namespace UCosmic.Seeders
             // ReSharper restore UnusedVariable
 
             // ensuring person will ensure user
-            var person = EnsurePerson(emails, firstName, lastName, establishment);
+            var person = EnsurePerson(emails, firstName, lastName, establishment, true);
 
             // make user registered and confirm all email addresses
-            person.User.IsRegistered = true;
+            //person.User.IsRegistered = true;
             foreach (var email in emailsExploded)
                 person.Emails.Current().ByValue(email).IsConfirmed = true;
 

@@ -24,6 +24,9 @@ namespace UCosmic.Orm
             {
                 ToTable(typeof(GeoNamesTimeZone).Name, DbSchemaName.Places);
 
+                HasKey(p => p.Id);
+
+                Property(p => p.Id).HasMaxLength(50);
                 Property(p => p.Id).IsUnicode(false);
             }
         }
@@ -35,7 +38,10 @@ namespace UCosmic.Orm
                 ToTable(typeof(GeoNamesFeatureClass).Name, DbSchemaName.Places);
 
                 // map primary key as char
-                Property(p => p.Code).IsUnicode(false).IsFixedLength();
+                HasKey(p => p.Code);
+                Property(p => p.Code).HasMaxLength(1).IsUnicode(false).IsFixedLength();
+
+                Property(p => p.Name).IsRequired().HasMaxLength(200);
             }
         }
 
@@ -46,13 +52,17 @@ namespace UCosmic.Orm
                 ToTable(typeof(GeoNamesFeature).Name, DbSchemaName.Places);
 
                 // map primary key as varchar
-                Property(p => p.Code).IsUnicode(false);
+                HasKey(p => p.Code);
+                Property(p => p.Code).IsUnicode(false).HasMaxLength(5);
 
                 // Feature * <---> 1 FeatureClass
                 HasRequired(d => d.Class)
                     .WithMany()
                     .HasForeignKey(d => d.ClassCode)
                     .WillCascadeOnDelete(false);
+
+                Property(e => e.ClassCode).IsRequired();
+                Property(e => e.Name).IsRequired().HasMaxLength(200);
             }
         }
 
@@ -62,16 +72,25 @@ namespace UCosmic.Orm
             {
                 ToTable(typeof(GeoNamesToponym).Name, DbSchemaName.Places);
 
+                HasKey(p => p.GeoNameId);
                 Property(p => p.GeoNameId) // do not generate geoname id
                     .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
+                Property(p => p.Name).IsRequired().HasMaxLength(200);
+                Property(p => p.ToponymName).IsRequired().HasMaxLength(200);
+
                 // map ascii && fixed length properties
-                Property(p => p.ContinentCode).IsUnicode(false).IsFixedLength();
-                Property(p => p.CountryCode).IsUnicode(false).IsFixedLength();
-                Property(p => p.Admin1Code).IsUnicode(false);
-                Property(p => p.Admin2Code).IsUnicode(false);
-                Property(p => p.Admin3Code).IsUnicode(false);
-                Property(p => p.Admin4Code).IsUnicode(false);
+                Property(p => p.ContinentCode).IsUnicode(false).IsFixedLength().HasMaxLength(2);
+                Property(p => p.CountryCode).IsUnicode(false).IsFixedLength().HasMaxLength(2);
+                Property(p => p.CountryName).HasMaxLength(200);
+                Property(p => p.Admin1Code).IsUnicode(false).HasMaxLength(15);
+                Property(p => p.Admin1Name).HasMaxLength(200);
+                Property(p => p.Admin2Code).IsUnicode(false).HasMaxLength(15);
+                Property(p => p.Admin2Name).HasMaxLength(200);
+                Property(p => p.Admin3Code).IsUnicode(false).HasMaxLength(15);
+                Property(p => p.Admin3Name).HasMaxLength(200);
+                Property(p => p.Admin4Code).IsUnicode(false).HasMaxLength(15);
+                Property(p => p.Admin4Name).HasMaxLength(200);
 
                 // Toponym * <---> 0..1 TimeZone
                 HasOptional(d => d.TimeZone)
@@ -109,27 +128,34 @@ namespace UCosmic.Orm
             {
                 ToTable(typeof(GeoNamesCountry).Name, DbSchemaName.Places);
 
+                HasKey(p => p.GeoNameId);
                 Property(p => p.GeoNameId) // do not generate geoname id
                     .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
                 // map ascii && fixed length properties
                 Property(p => p.ContinentCode).IsUnicode(false).IsFixedLength();
-                Property(p => p.Code).IsUnicode(false).IsFixedLength();
-                Property(p => p.IsoAlpha3Code).IsUnicode(false).IsFixedLength();
-                Property(p => p.FipsCode).IsUnicode(false).IsFixedLength();
-                Property(p => p.AreaInSqKm).IsUnicode(false);
-                Property(p => p.CurrencyCode).IsUnicode(false).IsFixedLength();
-
-                // Country 0..1 <---> 1 Toponym
-                HasRequired(d => d.AsToponym)
-                    .WithOptional(p => p.AsCountry)
-                    .WillCascadeOnDelete();
+                Property(p => p.Code).IsUnicode(false).IsFixedLength().IsRequired().HasMaxLength(2);
+                Property(p => p.Name).IsRequired().HasMaxLength(200);
+                Property(p => p.ContinentCode).IsRequired().HasMaxLength(2);
+                Property(p => p.ContinentName).IsRequired().HasMaxLength(200);
+                Property(p => p.IsoNumericCode).IsRequired();
+                Property(p => p.IsoAlpha3Code).IsUnicode(false).IsFixedLength().IsRequired().HasMaxLength(3);
+                Property(p => p.FipsCode).IsUnicode(false).IsFixedLength().HasMaxLength(2);
+                Property(p => p.AreaInSqKm).IsUnicode(false).HasMaxLength(15);
+                Property(p => p.CapitalCityName).HasMaxLength(200);
+                Property(p => p.CurrencyCode).IsUnicode(false).IsFixedLength().HasMaxLength(3);
+                Property(p => p.Languages).HasMaxLength(150);
 
                 // rename complex type properties
                 Property(p => p.BoundingBox.Northeast.Latitude).HasColumnName("NorthLatitude");
                 Property(p => p.BoundingBox.Northeast.Longitude).HasColumnName("EastLongitude");
                 Property(p => p.BoundingBox.Southwest.Latitude).HasColumnName("SouthLatitude");
                 Property(p => p.BoundingBox.Southwest.Longitude).HasColumnName("WestLongitude");
+
+                // Country 0..1 <---> 1 Toponym
+                HasRequired(d => d.AsToponym)
+                    .WithOptional(p => p.AsCountry)
+                    .WillCascadeOnDelete();
             }
         }
 
@@ -159,11 +185,16 @@ namespace UCosmic.Orm
             {
                 ToTable(typeof(GeoNamesAlternateName).Name, DbSchemaName.Places);
 
+                HasKey(p => p.AlternateNameId);
+
                 // (AlternateName) * <---> 1 (Toponym)
                 HasRequired(d => d.Toponym)
                     .WithMany(p => p.AlternateNames)
                     .HasForeignKey(d => d.GeoNameId)
                     .WillCascadeOnDelete();
+
+                Property(p => p.Language).HasMaxLength(10);
+                Property(p => p.Name).HasMaxLength(200).IsRequired();
             }
         }
     }

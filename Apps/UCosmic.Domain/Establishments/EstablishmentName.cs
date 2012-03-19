@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.ComponentModel.DataAnnotations;
 using UCosmic.Domain.Languages;
 using System.Collections.Generic;
 
@@ -9,7 +8,6 @@ namespace UCosmic.Domain.Establishments
     {
         public virtual Establishment ForEstablishment { get; set; }
 
-        [StringLength(15)]
         public string TranslationToHint { get; set; }
 
         public virtual Language TranslationToLanguage { get; set; }
@@ -18,8 +16,6 @@ namespace UCosmic.Domain.Establishments
 
         public bool IsOfficialName { get; set; }
 
-        [Required]
-        [StringLength(500)]
         public string Text
         {
             get { return _text; }
@@ -41,7 +37,6 @@ namespace UCosmic.Domain.Establishments
         }
         private string _text;
 
-        [StringLength(250)]
         public string AsciiEquivalent { get; private set; }
 
         public override string ToString()

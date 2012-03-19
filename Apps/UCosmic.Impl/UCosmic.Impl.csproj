@@ -44,8 +44,7 @@
     <Reference Include="AutoMapper, Version=2.0.0.232, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoMapper.2.0.0\lib\net40-client\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="ComponentSpace.SAML2, Version=2.4.0.6, Culture=neutral, PublicKeyToken=7c51d97b3a0a8ff9, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ComponentSpace.SAML2">
       <HintPath>..\..\Etc\ComponentSpace.SAML2.dll</HintPath>
     </Reference>
     <Reference Include="Elmah">
@@ -88,6 +87,7 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Etc\DotNetFormsAuthentication.cs" />
     <Compile Include="Ioc\UnityValidatorFactory.cs" />
     <Compile Include="Orm\FilesRelationalMapper.cs" />
     <Compile Include="Orm\EstablishmentsRelationalMapper.cs" />
@@ -101,6 +101,7 @@
     <Compile Include="Etc\DotNetConfigurationManager.cs" />
     <Compile Include="Email\MvcEmailSender.cs" />
     <Compile Include="Orm\LanguagesRelationalMapper.cs" />
+    <Compile Include="Orm\RevisableEntityTypeConfiguration.cs" />
     <Compile Include="Saml\ComponentSpaceSaml2Response.cs" />
     <Compile Include="Saml\PublicSamlCertificateStorage.cs" />
     <Compile Include="Etc\WebRequestHttpConsumer.cs" />
@@ -113,7 +114,7 @@
     <Compile Include="Etc\AuthorizationProvider.cs" />
     <Compile Include="Saml\ComponentSpaceSaml2ServiceProvider.cs" />
     <Compile Include="Email\SmtpEmailSender.cs" />
-    <Compile Include="Etc\DotNetMembershipSigner.cs" />
+    <Compile Include="Etc\DotNetMembershipProvider.cs" />
     <Compile Include="Seeders\BaseEstablishmentSeeder.cs" />
     <Compile Include="Seeders\BasePersonSeeder.cs" />
     <Compile Include="Seeders\BaseRoleSeeder.cs" />

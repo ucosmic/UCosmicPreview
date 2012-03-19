@@ -48,7 +48,6 @@
       <HintPath>..\..\packages\NGeo.1.3.1\lib\net40\NGeo.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ServiceModel" />
@@ -75,6 +74,8 @@
     <Compile Include="Files\LooseFile.cs" />
     <Compile Include="Files\FileFinder.cs" />
     <Compile Include="Identity\RoleChanger.cs" />
+    <Compile Include="Identity\UserFacade.cs" />
+    <Compile Include="Identity\UserFactory.cs" />
     <Compile Include="Identity\UserFinder.cs" />
     <Compile Include="Identity\UserQuery.cs" />
     <Compile Include="Identity\RoleFinder.cs" />
@@ -113,7 +114,7 @@
     <Compile Include="Establishments\EstablishmentName.cs" />
     <Compile Include="Establishments\EstablishmentNode.cs" />
     <Compile Include="Establishments\EstablishmentSamlSignOn.cs" />
-    <Compile Include="Establishments\EstablishmentSamlSignOnLiaison.cs" />
+    <Compile Include="Establishments\EstablishmentFacade.cs" />
     <Compile Include="Establishments\EstablishmentType.cs" />
     <Compile Include="Establishments\EstablishmentUrl.cs" />
     <Compile Include="InstitutionalAgreements\InstitutionalAgreement.cs" />

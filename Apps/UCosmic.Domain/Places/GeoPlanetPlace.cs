@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace UCosmic.Domain.Places
 {
@@ -19,7 +18,6 @@ namespace UCosmic.Domain.Places
 
         public const int EarthWoeId = 1;
 
-        [Key]
         public int WoeId { get; set; }
 
         public virtual GeoPlanetPlace Parent { get; set; }
@@ -32,10 +30,8 @@ namespace UCosmic.Domain.Places
 
         public virtual Place Place { get; set; }
 
-        [Required, StringLength(200)]
         public string EnglishName { get; set; }
 
-        [Required, StringLength(200)]
         public string Uri { get; set; }
 
         public Coordinates Center { get; set; }
@@ -43,10 +39,9 @@ namespace UCosmic.Domain.Places
         public BoundingBox BoundingBox { get; set; }
 
         public int AreaRank { get; set; }
+        
         public int PopulationRank { get; set; }
 
-
-        [StringLength(50)]
         public string Postal { get; set; }
 
         public GeoPlanetAdmin Country { get; set; }

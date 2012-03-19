@@ -26,7 +26,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
 
                 // model to entity
                 CreateMap<PersonForm, Person>()
-                    .ForMember(target => target.UserId, opt => opt.Ignore())
                     .ForMember(target => target.User, opt => opt.Ignore())
                     .ForMember(target => target.Emails, opt => opt.Ignore())
                     .ForMember(target => target.Affiliations, opt => opt.Ignore())

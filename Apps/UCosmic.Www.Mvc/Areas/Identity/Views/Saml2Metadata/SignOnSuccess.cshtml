@@ -1,0 +1,5 @@
+﻿success2
+@foreach (var key in Request.ServerVariables.AllKeys)
+{
+  <div>Request.ServerVariables["@key"] = @Request.ServerVariables[key]</div>
+}

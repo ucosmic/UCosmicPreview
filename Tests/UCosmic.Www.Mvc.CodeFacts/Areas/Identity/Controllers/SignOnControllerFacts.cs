@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 using UCosmic.Www.Mvc.Areas.Identity.Models.SignOn;
+using UCosmic.Www.Mvc.Areas.Identity.Services;
 using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
@@ -18,7 +19,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void Extends_BaseController()
             {
-                var controller = new SignOnController(null);
+                var services = CreateSignOnServices();
+                var controller = new SignOnController(services);
                 controller.ShouldImplement<BaseController>();
             }
         }
@@ -64,7 +66,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void ReturnsView_WhenReturnUrlArg_IsNull()
             {
-                var controller = new SignOnController(null);
+                var services = CreateSignOnServices();
+                var controller = new SignOnController(services);
 
                 var result = controller.Begin(null as string);
 
@@ -81,7 +84,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsView_WhenReturnUrlArg_IsEmptyString()
             {
                 var returnUrl = string.Empty;
-                var controller = new SignOnController(null);
+                var services = CreateSignOnServices();
+                var controller = new SignOnController(services);
 
                 var result = controller.Begin(returnUrl);
 
@@ -98,7 +102,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsView_WhenReturnUrlArg_IsNonEmptyString()
             {
                 const string returnUrl = "/path/to/resource";
-                var controller = new SignOnController(null);
+                var services = CreateSignOnServices();
+                var controller = new SignOnController(services);
 
                 var result = controller.Begin(returnUrl);
 
@@ -153,7 +158,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void ReturnsView_WhenModelState_IsInvalid()
             {
-                var controller = new SignOnController(null);
+                var services = CreateSignOnServices();
+                var controller = new SignOnController(services);
                 controller.ModelState.AddModelError("SomeProperty", "SomeMessage");
                 var model = new SignOnBeginForm { EmailAddress = "invalid email" };
 
@@ -171,5 +177,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 form.ReturnUrl.ShouldEqual(model.ReturnUrl);
             }
         }
+
+        private static SignOnServices CreateSignOnServices()
+        {
+            return new SignOnServices(null, null, null, null, null, null, null);
+        }
+
     }
 }

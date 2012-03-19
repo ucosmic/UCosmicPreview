@@ -1,27 +1,26 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Identity
 {
     public class User : RevisableEntity
     {
-        public User()
+        protected internal User()
         {
-            _grants = new List<RoleGrant>();
+            // ReSharper disable DoNotCallOverridableMethodsInConstructor
+            Grants = Grants ?? new List<RoleGrant>();
+            // ReSharper restore DoNotCallOverridableMethodsInConstructor
         }
 
-        [Required]
-        [StringLength(256)]
-        public string UserName { get; set; }
+        public string UserName { get; protected internal set; }
 
-        public bool IsRegistered { get; set; }
+        public string Saml2SubjectNameId { get; protected internal set; }
 
-        private ICollection<RoleGrant> _grants;
-        public virtual ICollection<RoleGrant> Grants
-        {
-            get { return _grants; }
-            set { _grants = value; }
-        }
+        public bool IsRegistered { get; protected internal set; }
+
+        public virtual ICollection<RoleGrant> Grants { get; protected internal set; }
+
+        public virtual Person Person { get; protected internal set; }
     }
 
 }

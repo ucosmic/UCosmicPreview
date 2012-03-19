@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using UCosmic.Domain.Email;
 
@@ -15,7 +14,6 @@ namespace UCosmic.Domain.People
             ExpiresOnUtc = DateTime.UtcNow.AddHours(2);
         }
 
-        [Key] // email confirmations should not be revisable
         public int Id { get; set; }
 
         public int EmailAddressId { get; set; }
@@ -23,11 +21,8 @@ namespace UCosmic.Domain.People
 
         public Guid Token { get; set; }
 
-        [StringLength(15)]
         public string SecretCode { get; set; }
 
-        [Required]
-        [StringLength(20)]
         public string Intent { get; set; }
 
         public DateTime IssuedOnUtc { get; set; }

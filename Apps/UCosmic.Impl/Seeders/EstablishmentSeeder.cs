@@ -44,12 +44,13 @@ namespace UCosmic.Seeders
                         WebsiteUrl = "www.testshib.org",
                         Location = new EstablishmentLocation(),
                         Type = GetGenericBusiness(),
+                        Names = new[]
+                        {
+                            new EstablishmentName { IsOfficialName = true, Text = "TestShib2" }
+                        },
                         EmailDomains = new Collection<EstablishmentEmailDomain>
                         {
-                            new EstablishmentEmailDomain
-                            {
-                                Value = "@testshib.org",
-                            }
+                            new EstablishmentEmailDomain { Value = "@testshib.org", }
                         },
                         SamlSignOn = new EstablishmentSamlSignOn
                         {
@@ -104,7 +105,7 @@ namespace UCosmic.Seeders
                 if (!est.Location.Center.HasValue)
                 {
                     var result = _placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                    Debug.Assert(result.WoeId != null);
+                    if (!result.WoeId.HasValue) return;
                     var place = _placeFactory.FromWoeId(result.WoeId.Value);
                     var places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                     places.Add(place);

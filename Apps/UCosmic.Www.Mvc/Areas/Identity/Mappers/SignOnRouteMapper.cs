@@ -28,9 +28,21 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             }
         }
 
+        public static class Saml2Post
+        {
+            public const string Route = "sign-on/saml/2/post";
+            private static readonly string Action = MVC.Identity.SignOn.ActionNames.Saml2Post;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
         public static class Saml2Integrations
         {
-            public const string Route = "sign-on/providers";
+            public const string Route = "sign-on/saml/2/providers";
             private static readonly string Action = MVC.Identity.SignOn.ActionNames.Saml2Integrations;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {

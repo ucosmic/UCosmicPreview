@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using UCosmic.Domain.Languages;
+﻿using UCosmic.Domain.Languages;
 
 namespace UCosmic.Domain.Places
 {
@@ -10,14 +8,10 @@ namespace UCosmic.Domain.Places
 
         public virtual Language TranslationToLanguage { get; set; }
 
-        [StringLength(10)]
         public string TranslationToHint { get; set; }
 
-        [DefaultValue(false)]
         public bool IsPreferredTranslation { get; set; }
 
-        [Required]
-        [StringLength(200)]
         public string Text
         {
             get { return _text; }
@@ -42,7 +36,6 @@ namespace UCosmic.Domain.Places
         }
         private string _text;
 
-        [StringLength(250)]
         public string AsciiEquivalent { get; private set; }
 
         public override string ToString()

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
@@ -12,29 +11,20 @@ namespace UCosmic.Domain.Email
         public int? EstablishmentId { get; set; }
         public virtual Establishment Establishment { get; set; }
 
-        [Required]
-        [StringLength(150)]
         public string Name { get; set; }
 
         public string Instructions { get; set; }
 
-        [Required]
-        [StringLength(250)]
         public string SubjectFormat { get; set; }
 
-        [StringLength(256)]
         public string FromAddress { get; set; }
 
-        [StringLength(150)]
         public string FromDisplayName { get; set; }
 
-        [StringLength(256)]
         public string ReplyToAddress { get; set; }
 
-        [StringLength(150)]
         public string ReplyToDisplayName { get; set; }
 
-        [Required]
         public string BodyFormat { get; set; }
 
         public EmailMessage ComposeMessageTo(EmailAddress to, IDictionary<string, string> variables, IManageConfigurations config)
