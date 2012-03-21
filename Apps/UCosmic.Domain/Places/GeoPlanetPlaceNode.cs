@@ -1,6 +1,6 @@
 ﻿namespace UCosmic.Domain.Places
 {
-    public class GeoPlanetPlaceNode
+    public class GeoPlanetPlaceNode : Entity
     {
         public int AncestorId { get; set; }
         public virtual GeoPlanetPlace Ancestor { get; set; }

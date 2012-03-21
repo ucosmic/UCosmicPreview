@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 using UCosmic.Domain.Email;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Identity;
@@ -44,6 +46,9 @@ namespace UCosmic.Domain
             where TEntity : Entity;
 
         IQueryable<TEntity> ApplyEagerLoading<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
+            where TEntity : Entity;
+
+        IQueryable<TEntity> EagerLoad<TEntity>(IQueryable<TEntity> query, Expression<Func<TEntity, object>> expression)
             where TEntity : Entity;
     }
 }

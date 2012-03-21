@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using AutoMapper;
 using UCosmic.Domain.Identity;
 using UCosmic.Www.Mvc.Areas.Identity.Models.Roles;
 using UCosmic.Www.Mvc.Mappers;
@@ -21,6 +22,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             {
                 CreateMap<Role, RoleForm>()
                     .ForMember(target => target.ReturnUrl, opt => opt.Ignore())
+                    .ForMember(d => d.Grants, o => o.MapFrom(s => s.Grants.OrderBy(g => g.User.UserName)))
                 ;
                 CreateMap<RoleGrant, RoleForm.RoleGrantForm>();
                 CreateMap<User, RoleForm.RoleGrantForm.UserForm>();
@@ -44,7 +46,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
         {
             protected override void Configure()
             {
-                CreateMap<Role, RoleSearchResult>();
+                CreateMap<Role, RoleSearchResult>()
+                    .ForMember(d => d.Slug, o => o.ResolveUsing(s => s.Name.Replace(" ", "-").ToLower()))
+                ;
             }
         }
 

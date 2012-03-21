@@ -4,7 +4,7 @@ using UCosmic.Domain.Email;
 
 namespace UCosmic.Domain.People
 {
-    public class EmailMessage
+    public class EmailMessage : Entity
     {
         public EmailMessage()
         {

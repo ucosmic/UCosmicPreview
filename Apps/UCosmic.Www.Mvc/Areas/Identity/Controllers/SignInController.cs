@@ -131,7 +131,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     "/sign-up/confirm-email/",                              // sign up email confirmation
                     "/confirm-password-reset/t-",                           // password reset email confirmation
                     Url.Action(MVC.Identity.Password.ForgotPassword()),     // over to password reset
-                    "/"                                                     // sign in from root should go to default url
                 };
                 //// foreach conversion to linq expression
                 //foreach (var invalidReturnUrl in invalidReturnUrls)
@@ -142,6 +141,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 return invalidReturnUrls.All(invalidReturnUrl => 
                     !returnUrl.StartsWith(invalidReturnUrl, StringComparison.OrdinalIgnoreCase));
             }
+
+            // sign in from root should go to default url
+            if (returnUrl == "/") return false;
 
             return true;
         }

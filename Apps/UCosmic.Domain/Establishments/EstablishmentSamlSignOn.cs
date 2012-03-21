@@ -2,7 +2,7 @@
 
 namespace UCosmic.Domain.Establishments
 {
-    public class EstablishmentSamlSignOn
+    public class EstablishmentSamlSignOn : Entity
     {
         public int Id { get; set; }
 

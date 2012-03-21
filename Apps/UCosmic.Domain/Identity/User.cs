@@ -14,7 +14,7 @@ namespace UCosmic.Domain.Identity
 
         public string UserName { get; protected internal set; }
 
-        public string Saml2SubjectNameId { get; protected internal set; }
+        public string SubjectNameId { get; protected internal set; }
 
         public bool IsRegistered { get; protected internal set; }
 

@@ -9,6 +9,7 @@ using UCosmic.Www.Mvc.Areas.Establishments;
 using UCosmic.Www.Mvc.Areas.Identity;
 using UCosmic.Www.Mvc.Areas.InstitutionalAgreements;
 using UCosmic.Www.Mvc.Areas.RecruitmentAgencies;
+using UCosmic.Www.Mvc.Mappers;
 
 namespace UCosmic.Www.Mvc
 {
@@ -40,6 +41,7 @@ namespace UCosmic.Www.Mvc
             RouteTable.Routes.Clear();
             AreaRegistration.RegisterAllAreas();
             MvcApplication.RegisterRoutes(RouteTable.Routes);
+            AutoMapperConfig.Configure();
         }
         private static class AreaRegistration
         {

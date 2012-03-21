@@ -5,7 +5,7 @@ using UCosmic.Domain.Email;
 
 namespace UCosmic.Domain.People
 {
-    public class EmailConfirmation
+    public class EmailConfirmation : Entity
     {
         public EmailConfirmation()
         {

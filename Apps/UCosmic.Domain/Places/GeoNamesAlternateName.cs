@@ -1,6 +1,6 @@
 ﻿namespace UCosmic.Domain.Places
 {
-    public class GeoNamesAlternateName
+    public class GeoNamesAlternateName : Entity
     {
         public long AlternateNameId { get; set; }
 

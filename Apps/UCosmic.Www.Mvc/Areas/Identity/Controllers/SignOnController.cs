@@ -51,6 +51,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         }
 
         [HttpPost]
+        [UnitOfWork]
         [ActionName("post")]
         public virtual ActionResult Saml2Post()
         {
@@ -91,7 +92,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 "/sign-up/confirm-email/",                              // sign up email confirmation
                 "/confirm-password-reset/t-",                           // password reset email confirmation
                 Url.Action(MVC.Identity.Password.ForgotPassword()),     // over to password reset
-                "/"                                                     // sign in from root should go to default url
             };
 
             //// foreach conversion to linq expression
@@ -100,10 +100,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             //    if (suggestedReturnUrl.StartsWith(invalidReturnUrl, StringComparison.OrdinalIgnoreCase))
             //        return _identityFacade.UserSigner.DefaultSignedInUrl;
             //}
-            return invalidReturnUrls.Any(invalidReturnUrl => 
-                suggestedReturnUrl.StartsWith(invalidReturnUrl, StringComparison.OrdinalIgnoreCase)) 
+            var returnUrl = invalidReturnUrls.Any(invalidReturnUrl => 
+                suggestedReturnUrl.StartsWith(invalidReturnUrl, StringComparison.OrdinalIgnoreCase)) ||
+                    suggestedReturnUrl == "/" // sign in from root should go to default url
                     ? _services.UserSigner.DefaultSignedOnUrl 
                     : suggestedReturnUrl;
+
+            return returnUrl;
         }
 
         #endregion

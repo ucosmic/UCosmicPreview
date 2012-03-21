@@ -77,7 +77,6 @@
     <Compile Include="Email\RandomSecretCreatorFacts.cs" />
     <Compile Include="Email\EmailTemplateFacts.cs" />
     <Compile Include="Establishments\InstitutionInfoFacts.cs" />
-    <Compile Include="Establishments\EstablishmentCategoryFacts.cs" />
     <Compile Include="Establishments\EstablishmentEmailDomainFacts.cs" />
     <Compile Include="Establishments\EstablishmentNameFacts.cs" />
     <Compile Include="Establishments\EstablishmentChangerFacts.cs" />

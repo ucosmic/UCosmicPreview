@@ -20,7 +20,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             protected override void Configure()
             {
                 // entities to models
-                CreateMap<Person, PersonForm>();
+                CreateMap<Person, PersonForm>()
+                    .ForMember(d => d.UserId, o => o.Ignore())
+                ;
                 CreateMap<Affiliation, PersonForm.AffiliationInfo>();
                 CreateMap<Establishment, PersonForm.AffiliationInfo.EstablishmentInfo>();
 

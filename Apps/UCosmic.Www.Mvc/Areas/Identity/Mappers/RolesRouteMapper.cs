@@ -30,36 +30,25 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
 
         public static class Form
         {
-            public static readonly string[] Routes = new[] { "roles/{roleNameSlug}/edit/then-go-to/{*returnUrl}", "roles/{roleNameSlug}/edit" };
+            public const string Route = "roles/{slug}/edit";
             private static readonly string Action = MVC.Identity.Roles.ActionNames.Form;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
-                var defaultsWithReturnUrl = new
+                var defaults = new
                 {
                     area, controller, action = Action,
                 };
-                var constraintsWithReturnUrl = new
-                {
-                    httpMethod = new HttpMethodConstraint("GET"),
-                    returnUrl = new RawUrlCatchallConstraint(),
-                };
-                var defaultsWithoutReturnUrl = new
-                {
-                    area, controller, action = Action,
-                    returnUrl = string.Format("/{0}", Browse.Route)
-                };
-                var constraintsWithoutReturnUrl = new
+                var constraints = new
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
                 };
-                context.MapRoute(null, Routes[0], defaultsWithReturnUrl, constraintsWithReturnUrl);
-                context.MapRoute(null, Routes[1], defaultsWithoutReturnUrl, constraintsWithoutReturnUrl);
+                context.MapRoute(null, Route, defaults, constraints);
             }
         }
 
         public static class Put
         {
-            public const string Route = "roles/{roleNameSlug}";
+            public const string Route = "roles/{slug}";
             private static readonly string Action = MVC.Identity.Roles.ActionNames.Put;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {

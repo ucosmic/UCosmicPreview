@@ -1,19 +1,22 @@
-﻿
-using UCosmic.Domain.Establishments;
+﻿using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Domain.Identity
 {
     public class RoleGrant : RevisableEntity
     {
-        public virtual User User { get; set; }
-
-        public virtual Role Role { get; set; }
-
-        public virtual Establishment ForEstablishment { get; set; }
-
-        internal int Revoke(ICommandObjects commander)
+        protected internal RoleGrant()
         {
-            commander.Delete(this);
+        }
+
+        public virtual User User { get; protected internal set; }
+
+        public virtual Role Role { get; protected internal set; }
+
+        public virtual Establishment ForEstablishment { get; protected internal set; }
+
+        protected internal int Revoke(ICommandEntities commander)
+        {
+            commander.Purge(this);
             return 1;
         }
     }

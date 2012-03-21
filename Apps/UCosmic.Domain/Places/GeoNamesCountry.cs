@@ -1,6 +1,6 @@
 ﻿namespace UCosmic.Domain.Places
 {
-    public class GeoNamesCountry
+    public class GeoNamesCountry : Entity
     {
         public GeoNamesCountry()
         {

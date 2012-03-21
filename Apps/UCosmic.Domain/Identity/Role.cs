@@ -1,54 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace UCosmic.Domain.Identity
 {
     public class Role : RevisableEntity
     {
-        protected Role()
+        #region Construction
+
+        private ICollection<RoleGrant> _grants;
+
+        protected internal Role()
         {
+            _grants = _grants ?? new Collection<RoleGrant>();
         }
 
-        public Role(string name)
+        #endregion
+        #region Scalars
+
+        public string Name { get; protected internal set; }
+
+        public string Description { get; protected internal set; }
+
+        #endregion
+        #region Collections
+
+        public virtual ICollection<RoleGrant> Grants
         {
-            Name = name;
+            get { return _grants; }
+            protected internal set { _grants = value; }
         }
 
-        public string Name { get; protected set; }
+        #endregion
+        #region Operations
 
-        public string Slug { get { return Name.Replace(" ", "-").ToLower(); } }
-
-        public string Description { get; set; }
-
-        public virtual ICollection<RoleGrant> Grants { get; set; }
-
-        internal int RevokeUser(Guid userEntityId, ICommandObjects commander)
+        public int RevokeUser(Guid userEntityId, ICommandEntities commander)
         {
-            var grant = Grants.SingleOrDefault(g => g.User.EntityId == userEntityId);
+            var grant = Grants.ByUser(userEntityId);
             return (grant != null) ? grant.Revoke(commander) : 0;
         }
 
-        internal int GrantUser(Guid userEntityId, UserFinder userFinder)
+        public int GrantUser(Guid userEntityId, IQueryEntities query)
         {
-            var grant = Grants.SingleOrDefault(g => g.User.EntityId == userEntityId);
+            var grant = Grants.ByUser(userEntityId);
             if (grant != null) return 0;
 
-            var user = userFinder.FindOne(By<User>.EntityId(userEntityId).ForInsertOrUpdate());
+            var user = query.Users.By(userEntityId);
+            if (user == null)
+                throw new InvalidOperationException(string.Format(
+                    "Unable to find User with EntityId '{0}'.", userEntityId));
+
             Grants.Add(new RoleGrant { User = user, });
             return 1;
         }
-    }
 
-    public static class RoleExtensions
-    {
-        public static Role ByName(this IEnumerable<Role> query, string name)
-        {
-            return (query != null)
-                ? query.Current().SingleOrDefault(r =>
-                    r.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
-                : null;
-        }
-
+        #endregion
     }
 }

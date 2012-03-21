@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
-using UCosmic.Domain;
-using UCosmic.Domain.Identity;
+using UCosmic.Www.Mvc.Areas.Identity.Mappers;
 using UCosmic.Www.Mvc.Areas.Identity.Models.Roles;
+using UCosmic.Www.Mvc.Areas.Identity.Services;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Models;
 
@@ -17,16 +17,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
     {
         #region Construction & DI
 
-        private readonly UserFinder _users;
-        private readonly RoleFinder _roles;
-        private readonly RoleChanger _roleChanger;
+        private readonly RolesServices _services;
 
-
-        public RolesController(IQueryEntities entityQueries, ICommandObjects objectCommander)
+        public RolesController(RolesServices services)
         {
-            _users = new UserFinder(entityQueries);
-            _roles = new RoleFinder(entityQueries);
-            _roleChanger = new RoleChanger(objectCommander, entityQueries);
+            _services = services;
         }
 
         #endregion
@@ -35,22 +30,22 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [ActionName("browse")]
         public virtual ActionResult Browse()
         {
-            var entities = _roles.FindMany(With<Role>.DefaultCriteria());
-            var models = Mapper.Map<IEnumerable<RoleSearchResult>>(entities);
+            var entities = _services.Roles.Get();
+            var models = Mapper.Map<RoleSearchResult[]>(entities);
             return View(models);
         }
 
         [HttpGet]
         [ActionName("form")]
-        public virtual ActionResult Form(string roleNameSlug, string returnUrl)
+        [ReturnUrlReferrer(RolesRouteMapper.Browse.Route)]
+        public virtual ActionResult Form(string slug)
         {
-            if (!string.IsNullOrWhiteSpace(roleNameSlug))
+            if (!string.IsNullOrWhiteSpace(slug))
             {
-                var entity = _roles.FindOne(RoleBy.Slug(roleNameSlug));
+                var entity = _services.Roles.GetBySlug(slug);
                 if (entity != null)
                 {
                     var model = Mapper.Map<RoleForm>(entity);
-                    model.ReturnUrl = returnUrl;
                     return View(model);
                 }
             }
@@ -58,6 +53,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         }
 
         [HttpPut]
+        [UnitOfWork]
         [ActionName("put")]
         public virtual ActionResult Put(RoleForm model)
         {
@@ -65,7 +61,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var changes = _roleChanger.Change(User, model.EntityId, model.Description, 
+                    var changes = _services.Roles.Update(User, model.EntityId, model.Description, 
                         model.Grants.Where(g => g.IsDeleted).Select(g => g.User.EntityId), 
                         model.Grants.Where(g => !g.IsDeleted).Select(g => g.User.EntityId)
                     );
@@ -86,10 +82,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [AutoMapper(typeof(IEnumerable<AutoCompleteOption>))]
         public virtual JsonResult AutoCompleteUserName(string term, List<Guid> excludeUserEntityIds)
         {
-            var entities = _users.FindMany(
-                UsersWith.AutoCompleteTerm(term, excludeUserEntityIds)
-                    .OrderBy(e => e.UserName)
-            );
+            var entities = _services.Users.AutoComplete(term, excludeUserEntityIds);
             return Json(entities);
         }
 
@@ -97,11 +90,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [ActionName("add-username")]
         public virtual ActionResult AddUserName(Guid userEntityId)
         {
-            var user = _users.FindOne(By<User>.EntityId(userEntityId));
+            var user = _services.Users.Get(userEntityId);
             if (user != null)
             {
                 var model = Mapper.Map<RoleForm.RoleGrantForm>(user);
-                return PartialView(GetEditorTemplateViewName(Area, Name, 
+                return PartialView(GetEditorTemplateViewName(Area, Name,
                     Views.EditorTemplates.RoleGrantForm), model);
             }
             return HttpNotFound();

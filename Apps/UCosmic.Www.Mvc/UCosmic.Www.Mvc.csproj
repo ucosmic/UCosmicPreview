@@ -204,6 +204,7 @@
     <Compile Include="Areas\Identity\Models\SignOn\SignOnBeginForm.cs" />
     <Compile Include="Areas\Identity\Models\SignOn\SignOnEmailAddressValidator.cs" />
     <Compile Include="Areas\Identity\Models\SignOn\SignOnBeginFormValidator.cs" />
+    <Compile Include="Areas\Identity\Services\RolesServices.cs" />
     <Compile Include="Areas\Identity\Services\SignOnServices.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsRouteMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsModelMapper.cs" />

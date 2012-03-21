@@ -1,6 +1,6 @@
 ﻿namespace UCosmic.Domain.InstitutionalAgreements
 {
-    public abstract class InstitutionalAgreementFieldValue
+    public abstract class InstitutionalAgreementFieldValue : Entity
     {
         public int Id { get; set; }
 

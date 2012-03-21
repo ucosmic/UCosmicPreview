@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UCosmic.Www.Mvc.Mappers;
 
 namespace UCosmic.Www.Mvc.Models
 {
@@ -14,7 +13,6 @@ namespace UCosmic.Www.Mvc.Models
             [TestMethod]
             public void ConfigurationIsValid()
             {
-                AutoMapperConfig.Configure();
                 Mapper.AssertConfigurationIsValid();
             }
         }

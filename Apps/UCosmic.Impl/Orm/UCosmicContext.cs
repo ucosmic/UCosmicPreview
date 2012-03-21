@@ -1,6 +1,9 @@
+using System;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
+using System.Linq.Expressions;
 using UCosmic.Domain;
 using UCosmic.Domain.Email;
 using UCosmic.Domain.Establishments;
@@ -13,7 +16,7 @@ using UCosmic.Domain.Files;
 
 namespace UCosmic.Orm
 {
-    public class UCosmicContext : DbContext, IUnitOfWork, IQueryEntities
+    public class UCosmicContext : DbContext, IUnitOfWork, ICommandEntities
     {
         public UCosmicContext()
         {
@@ -95,6 +98,41 @@ namespace UCosmic.Orm
             InstitutionalAgreementsRelationalMapper.AddConfigurations(modelBuilder);
         }
 
+        public void Create(Entity entity)
+        {
+            var entry = Entry(entity);
+            entry.State = EntityState.Added;
+        }
+
+        public void Update(Entity entity)
+        {
+            var entry = Entry(entity);
+            entry.State = EntityState.Modified;
+        }
+
+        public void Purge(Entity entity)
+        {
+            var entry = Entry(entity);
+            entry.State = EntityState.Deleted;
+        }
+
+        public IQueryable<TEntity> EagerLoad<TEntity>(IQueryable<TEntity> query, Expression<Func<TEntity, object>> expression)
+            where TEntity : Entity
+        {
+            if (query != null && expression != null)
+                query = query.Include(expression);
+            return query;
+        }
+
+        public IQueryable<TEntity> ApplyEagerLoading<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
+            where TEntity : Entity
+        {
+            if (query != null && criteria != null && criteria.ToBeEagerLoaded != null && criteria.ToBeEagerLoaded.Count > 0)
+                query = criteria.ToBeEagerLoaded.Aggregate(query, (lastInclude, nextInclude) =>
+                    lastInclude.Include(nextInclude));
+            return query;
+        }
+
         public TEntity FindByPrimaryKey<TEntity>(IQueryable<TEntity> entitiyQuery, params object[] primaryKeyValues)
             where TEntity : Entity
         {
@@ -107,15 +145,6 @@ namespace UCosmic.Orm
         {
             if (query != null && criteria != null && criteria.IsForInsertOrUpdate)
                 return query.AsNoTracking();
-            return query;
-        }
-
-        public IQueryable<TEntity> ApplyEagerLoading<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
-            where TEntity : Entity
-        {
-            if (query != null && criteria != null && criteria.ToBeEagerLoaded != null && criteria.ToBeEagerLoaded.Count > 0)
-                query = criteria.ToBeEagerLoaded.Aggregate(query, (lastInclude, nextInclude) =>
-                    lastInclude.Include(nextInclude));
             return query;
         }
     }

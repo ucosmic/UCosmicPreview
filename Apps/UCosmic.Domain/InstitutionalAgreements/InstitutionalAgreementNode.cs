@@ -1,6 +1,6 @@
 ﻿namespace UCosmic.Domain.InstitutionalAgreements
 {
-    public class InstitutionalAgreementNode
+    public class InstitutionalAgreementNode : Entity
     {
         public int AncestorId { get; set; }
         public virtual InstitutionalAgreement Ancestor { get; set; }

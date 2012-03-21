@@ -56,12 +56,15 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Api\RevisableEntityFacade.cs" />
     <Compile Include="Api\Entity.cs" />
     <Compile Include="Api\EntityFinder.cs" />
+    <Compile Include="Api\ICommandEntities.cs" />
     <Compile Include="Api\ICommandObjects.cs" />
     <Compile Include="Api\IUnitOfWork.cs" />
     <Compile Include="Api\EntityQueryCriteria.cs" />
     <Compile Include="Api\RevisableEntityFinder.cs" />
+    <Compile Include="Api\RevisableEntityQueries.cs" />
     <Compile Include="Api\RevisableEntityQueryCriteria.cs" />
     <Compile Include="Email\EmailTemplateQuery.cs" />
     <Compile Include="Email\EmailTemplateFinder.cs" />
@@ -73,13 +76,12 @@
     <Compile Include="Files\FileFactory.cs" />
     <Compile Include="Files\LooseFile.cs" />
     <Compile Include="Files\FileFinder.cs" />
-    <Compile Include="Identity\RoleChanger.cs" />
+    <Compile Include="Identity\UserQueries.cs" />
+    <Compile Include="Identity\RoleGrantQueries.cs" />
+    <Compile Include="Identity\RoleFacade.cs" />
+    <Compile Include="Identity\RoleQueries.cs" />
     <Compile Include="Identity\UserFacade.cs" />
     <Compile Include="Identity\UserFactory.cs" />
-    <Compile Include="Identity\UserFinder.cs" />
-    <Compile Include="Identity\UserQuery.cs" />
-    <Compile Include="Identity\RoleFinder.cs" />
-    <Compile Include="Identity\RoleQuery.cs" />
     <Compile Include="InstitutionalAgreements\InstitutionalAgreementChanger.cs" />
     <Compile Include="InstitutionalAgreements\InstitutionalAgreementQuery.cs" />
     <Compile Include="Languages\LanguageQuery.cs" />

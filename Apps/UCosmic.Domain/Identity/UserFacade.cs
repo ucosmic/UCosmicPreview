@@ -1,39 +1,80 @@
-﻿using UCosmic.Domain.Establishments;
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Identity
 {
-    public class UserFacade
+    public class UserFacade : RevisableEntityFacade<User>
     {
-        private readonly UserFinder _userFinder;
         private readonly EstablishmentFinder _establishmentFinder;
         private readonly PersonFinder _personFinder;
-        private readonly ICommandObjects _objectCommander;
 
-        public UserFacade(ICommandObjects objectCommander, UserFinder userFinder, EstablishmentFinder establishmentFinder, PersonFinder personFinder)
+        public UserFacade(ICommandEntities entities
+            , EstablishmentFinder establishmentFinder
+            , PersonFinder personFinder
+        ) : base(entities)
         {
-            _userFinder = userFinder;
             _establishmentFinder = establishmentFinder;
             _personFinder = personFinder;
-            _objectCommander = objectCommander;
         }
 
-        public User GetOrCreate(string userName, bool isRegistered, string saml2SubjectNameId = null)
+        public virtual IEnumerable<User> Get(params Expression<Func<User, object>>[] eagerLoads)
         {
-            var saveChanges = false;
+            return Get(Entities.Users, eagerLoads);
+        }
 
+        public User Get(string name, params Expression<Func<User, object>>[] eagerLoads)
+        {
+            if (name == null) throw new ArgumentNullException("name");
+            var query = EagerLoad(Entities.Users, eagerLoads);
+            var user = query.By(name);
+            return user;
+        }
+
+        public User Get(Guid entityId, params Expression<Func<User, object>>[] eagerLoads)
+        {
+            return Get(Entities.Users, entityId, eagerLoads);
+        }
+
+        public User Get(int revisionId, params Expression<Func<User, object>>[] eagerLoads)
+        {
+            return Get(Entities.Users, revisionId, eagerLoads);
+        }
+
+        public User GetBySubjectNameId(string subjectNameId, params Expression<Func<User, object>>[] eagerLoads)
+        {
+            var query = EagerLoad(Entities.Users, eagerLoads);
+            var user = query.BySubjectNameId(subjectNameId);
+            return user;
+        }
+
+        public IEnumerable<User> AutoComplete(string term, IEnumerable<Guid> excludeEntityIds)
+        {
+            if (term == null) throw new ArgumentNullException("term");
+
+            var query = Entities.Users
+                .Exclude(excludeEntityIds)
+                .AutoComplete(term)
+                .OrderBy(u => u.UserName)
+            ;
+            return query;
+        }
+
+        public User GetOrCreate(string userName, bool isRegistered, string subjectNameId = null)
+        {
             // first see if user exists
-            var user = _userFinder.FindOne(UserBy.UserName(userName))
-                ?? _userFinder.FindOne(UserBy.Saml2SubjectNameId(saml2SubjectNameId).ForInsertOrUpdate());
+            var user = Get(userName) ?? Get(subjectNameId);
 
             if (user == null)
             {
-                saveChanges = true;
                 user = new User
                 {
                     UserName = userName,
                     IsRegistered = isRegistered,
-                    Saml2SubjectNameId = saml2SubjectNameId,
+                    SubjectNameId = subjectNameId,
                     Person = _personFinder.FindOne(PersonBy.EmailAddress(userName))
                                 ?? PersonFactory.Create(userName),
                 };
@@ -45,25 +86,16 @@ namespace UCosmic.Domain.Identity
                 var email = user.Person.Emails.ByValue(userName);
                 if (isRegistered && !email.IsConfirmed) email.IsConfirmed = true;
 
-                _objectCommander.Insert(user);
+                Entities.Create(user);
             }
 
             // make sure user has correct registration
             if (!isRegistered.Equals(user.IsRegistered))
-            {
                 user.IsRegistered = isRegistered;
-                saveChanges = true;
-            }
 
             // make sure user has correct subject name id
-            if (!string.IsNullOrWhiteSpace(saml2SubjectNameId) && !saml2SubjectNameId.Equals(user.Saml2SubjectNameId))
-            {
-                user.Saml2SubjectNameId = saml2SubjectNameId;
-                saveChanges = true;
-            }
-
-            if (saveChanges)
-                _objectCommander.SaveChanges();
+            if (!string.IsNullOrWhiteSpace(subjectNameId) && !subjectNameId.Equals(user.SubjectNameId))
+                user.SubjectNameId = subjectNameId;
 
             return user;
         }

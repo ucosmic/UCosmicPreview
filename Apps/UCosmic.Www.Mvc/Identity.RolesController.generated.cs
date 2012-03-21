@@ -108,10 +108,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Form(string roleNameSlug, string returnUrl) {
+        public override System.Web.Mvc.ActionResult Form(string slug) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Form);
-            callInfo.RouteValueDictionary.Add("roleNameSlug", roleNameSlug);
-            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
+            callInfo.RouteValueDictionary.Add("slug", slug);
             return callInfo;
         }
 

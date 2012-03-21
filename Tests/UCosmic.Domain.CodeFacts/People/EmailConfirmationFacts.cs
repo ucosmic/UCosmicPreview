@@ -1,8 +1,6 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
-using System.Linq.Expressions;
 
 namespace UCosmic.Domain.People
 {
@@ -20,16 +18,6 @@ namespace UCosmic.Domain.People
                 var entity = new EmailConfirmation { Id = value };
                 entity.ShouldNotBeNull();
                 entity.Id.ShouldEqual(value);
-            }
-
-            [TestMethod]
-            public void HasKeyAttribute()
-            {
-                Expression<Func<EmailConfirmation, int>> property = p => p.Id;
-                var attributes = property.GetAttributes<EmailConfirmation, int, KeyAttribute>();
-                attributes.ShouldNotBeNull();
-                attributes.Length.ShouldEqual(1);
-                attributes[0].ShouldBeType<KeyAttribute>();
             }
         }
 
