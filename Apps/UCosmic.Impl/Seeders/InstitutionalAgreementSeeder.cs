@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Orm;
 
@@ -25,7 +24,7 @@ namespace UCosmic.Seeders
 
                 Context = context;
 
-                var uc = Context.Establishments.ByEmailDomain("@uc.edu");
+                var uc = Context.Establishments.Single(e => e.EmailDomains.Any(d => d.Value.Equals("@uc.edu", StringComparison.OrdinalIgnoreCase)));
 
                 Context.InstitutionalAgreements.ToList().ForEach(a =>
                 {

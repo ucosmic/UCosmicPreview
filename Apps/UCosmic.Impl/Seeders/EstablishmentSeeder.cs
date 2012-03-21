@@ -52,13 +52,8 @@ namespace UCosmic.Seeders
                         {
                             new EstablishmentEmailDomain { Value = "@testshib.org", }
                         },
-                        SamlSignOn = new EstablishmentSamlSignOn
-                        {
-                            EntityId = "https://idp.testshib.org/idp/shibboleth",
-                            MetadataUrl = "https://idp.testshib.org/idp/shibboleth",
-                            CreatedOn = DateTime.UtcNow,
-                        }
                     };
+                    testshib.SetSamlSignOn("https://idp.testshib.org/idp/shibboleth", "https://idp.testshib.org/idp/shibboleth");
                     context.Establishments.Add(testshib);
                     context.SaveChanges();
                 }

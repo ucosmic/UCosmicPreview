@@ -45,7 +45,7 @@ namespace UCosmic.Domain.Identity
         public IEnumerable<Role> GetGrantedTo(string userName, params Expression<Func<Role, object>>[] eagerLoads)
         {
             var query = EagerLoad(Entities.Roles, eagerLoads);
-            return query.ByGrantedTo(userName);
+            return query.GrantedTo(userName);
         }
 
         public Role CreateOrUpdate(string name, string description)

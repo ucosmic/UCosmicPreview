@@ -11,7 +11,7 @@ namespace UCosmic.Domain.Identity
             return queryable.SingleOrDefault(r => r.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
-        internal static IEnumerable<Role> ByGrantedTo(this IQueryable<Role> queryable, string userName)
+        internal static IEnumerable<Role> GrantedTo(this IQueryable<Role> queryable, string userName)
         {
             return queryable.Where(r => r.Grants.Any(g => g.User.UserName.Equals(userName, StringComparison.OrdinalIgnoreCase)));
         }

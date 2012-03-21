@@ -7,9 +7,8 @@ namespace UCosmic
     {
         private readonly IInjectDependencies _dependencyInjector;
 
-        public UnityValidatorFactory()
+        public UnityValidatorFactory(UnityDependencyInjector unity)
         {
-            var unity = new UnityDependencyInjector();
             var validators = AssemblyScanner.FindValidatorsInAssembly(Assembly.GetCallingAssembly());
             validators.ForEach(validator => unity.Container.RegisterType(validator.InterfaceType, validator.ValidatorType, null, null));
             _dependencyInjector = unity;

@@ -16,6 +16,7 @@ using System.Runtime.InteropServices;
 [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 [assembly: InternalsVisibleTo("UCosmic.Domain.CodeFacts")]
 [assembly: InternalsVisibleTo("UCosmic.Www.Mvc.CodeFacts")]
+[assembly: InternalsVisibleTo("UCosmic.Www.Mvc.WebFacts")]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("3e516b19-87b2-4b92-a7e0-33d2a7da40d8")]
