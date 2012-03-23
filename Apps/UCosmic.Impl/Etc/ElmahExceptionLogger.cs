@@ -6,7 +6,9 @@ using Elmah;
 
 namespace UCosmic
 {
+    // ReSharper disable ClassNeverInstantiated.Global
     public class ElmahExceptionLogger : ILogExceptions
+    // ReSharper restore ClassNeverInstantiated.Global
     {
         private readonly IManageConfigurations _config;
 

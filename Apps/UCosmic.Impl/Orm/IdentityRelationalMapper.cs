@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
 using UCosmic.Domain.Identity;
 
 namespace UCosmic.Orm

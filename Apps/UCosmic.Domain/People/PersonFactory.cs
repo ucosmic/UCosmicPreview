@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Domain.People
 {

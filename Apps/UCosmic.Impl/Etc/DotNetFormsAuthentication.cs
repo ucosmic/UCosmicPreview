@@ -2,7 +2,9 @@
 
 namespace UCosmic
 {
+    // ReSharper disable ClassNeverInstantiated.Global
     public class DotNetFormsAuthentication : ISignUsers
+    // ReSharper restore ClassNeverInstantiated.Global
     {
         public string DefaultSignedOnUrl
         {

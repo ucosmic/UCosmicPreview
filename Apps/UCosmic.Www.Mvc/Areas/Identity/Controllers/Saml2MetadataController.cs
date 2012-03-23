@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Web.Mvc;
 using UCosmic.Www.Mvc.Areas.Identity.Models.Saml2Metadata;
 

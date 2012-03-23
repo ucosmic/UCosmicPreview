@@ -5,6 +5,7 @@ namespace UCosmic
 {
     // ReSharper disable UnusedMember.Global
     public class PrivateSamlCertificateStorage : IStoreSamlCertificates
+    // ReSharper restore UnusedMember.Global
     {
         private readonly IManageConfigurations _config;
 
@@ -38,5 +39,4 @@ namespace UCosmic
             }
         }
     }
-    // ReSharper restore UnusedMember.Global
 }

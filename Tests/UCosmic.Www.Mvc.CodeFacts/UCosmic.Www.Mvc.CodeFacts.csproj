@@ -120,6 +120,7 @@
     <Compile Include="Areas\Identity\Models\SignUp\CreatePasswordFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\SendEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\ConfirmEmailFormFacts.cs" />
+    <Compile Include="Etc\AuthorizationProviderFacts.cs" />
     <Compile Include="Etc\ReuseMock.cs" />
     <Compile Include="Models\AutoMapperConfigFacts.cs" />
     <Compile Include="Etc\ExtensionMethods.cs" />

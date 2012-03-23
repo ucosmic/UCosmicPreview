@@ -88,8 +88,9 @@
     <Reference Include="Microsoft.Web.DistributedCache, Version=101.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\Etc\Microsoft.Web.DistributedCache.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\..\packages\Mvc2Futures.2.0.50217.0\lib\Microsoft.Web.Mvc.dll</HintPath>
@@ -129,6 +130,12 @@
     </Reference>
     <Reference Include="Pluralize.Mvc">
       <HintPath>..\..\packages\Pluralizer.Mvc.0.2.2\lib\net40\Pluralize.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector">
+      <HintPath>..\..\packages\SimpleInjector.1.4.0.12049\lib\net35\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Extensions">
+      <HintPath>..\..\packages\SimpleInjector.Extensions.1.4.1.12070\lib\net35\SimpleInjector.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Services.Client" />
@@ -182,11 +189,16 @@
     <Reference Include="Unity.Mvc3">
       <HintPath>..\..\packages\Unity.Mvc3.1.1\lib\Unity.Mvc3.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Helpers\SimpleInjectorMVC3.cs" />
+    <Compile Include="Helpers\SimpleInjectorMVC3Extensions.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Common\Controllers\ErrorsController.cs" />
     <Compile Include="Areas\Common\Controllers\FeaturesController.cs" />
@@ -1010,6 +1022,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\mail\" />
+    <Folder Include="App_Start\" />
     <Folder Include="Areas\Common\Views\Shared\" />
     <Folder Include="Areas\RecruitmentAgencies\Controllers\" />
     <Folder Include="Areas\RecruitmentAgencies\Models\" />

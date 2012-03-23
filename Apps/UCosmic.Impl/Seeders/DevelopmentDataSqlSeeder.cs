@@ -4,9 +4,9 @@ using UCosmic.Orm;
 
 namespace UCosmic.Seeders
 {
-    // ReSharper disable UnusedMember.Global
+    // ReSharper disable ClassNeverInstantiated.Global
     public class DevelopmentDataSqlSeeder : NonContentFileSqlDbSeeder
-    // ReSharper restore UnusedMember.Global
+    // ReSharper restore ClassNeverInstantiated.Global
     {
 
         protected override IEnumerable<string> SqlScripts

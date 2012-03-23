@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using NGeo.GeoNames;
 using NGeo.Yahoo.GeoPlanet;
@@ -60,9 +59,9 @@ namespace UCosmic.Seeders
             }
         }
 
-        // ReSharper disable UnusedMember.Global
+        // ReSharper disable MemberCanBePrivate.Global
         public class EstablishmentDecember2011Preview2Seeder : BaseEstablishmentSeeder
-        // ReSharper restore UnusedMember.Global
+        // ReSharper restore MemberCanBePrivate.Global
         {
             private PlaceFactory _placeFactory;
             private IConsumePlaceFinder _placeFinderClient;

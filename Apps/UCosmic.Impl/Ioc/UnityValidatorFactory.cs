@@ -1,22 +1,17 @@
-﻿using System;
+﻿using System.Reflection;
 using FluentValidation;
-using System.Reflection;
+
 namespace UCosmic
 {
-    public class UnityValidatorFactory : ValidatorFactoryBase
+    // ReSharper disable UnusedMember.Global
+    public class UnityValidatorFactory : FluentValidatorFactory
+    // ReSharper restore UnusedMember.Global
     {
-        private readonly IInjectDependencies _dependencyInjector;
-
-        public UnityValidatorFactory(UnityDependencyInjector unity)
+        public UnityValidatorFactory(UnityDependencyInjector injector)
+            : base(injector)
         {
             var validators = AssemblyScanner.FindValidatorsInAssembly(Assembly.GetCallingAssembly());
-            validators.ForEach(validator => unity.Container.RegisterType(validator.InterfaceType, validator.ValidatorType, null, null));
-            _dependencyInjector = unity;
-        }
-
-        public override IValidator CreateInstance(Type validatorType)
-        {
-            return _dependencyInjector.GetService(validatorType) as IValidator;
+            validators.ForEach(validator => injector.Container.RegisterType(validator.InterfaceType, validator.ValidatorType, null, null));
         }
     }
 }

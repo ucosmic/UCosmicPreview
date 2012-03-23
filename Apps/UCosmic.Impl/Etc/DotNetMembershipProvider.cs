@@ -2,7 +2,9 @@
 
 namespace UCosmic
 {
+    // ReSharper disable ClassNeverInstantiated.Global
     public class DotNetMembershipProvider : ISignMembers
+    // ReSharper restore ClassNeverInstantiated.Global
     {
         public bool IsSignedUp(string userName)
         {

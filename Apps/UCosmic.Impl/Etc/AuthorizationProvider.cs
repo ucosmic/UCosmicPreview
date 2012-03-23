@@ -9,9 +9,10 @@ namespace UCosmic
     {
         private readonly RoleFacade _roles;
 
-        public AuthorizationProvider()
+        public AuthorizationProvider(RoleFacade roles)
         {
-            _roles = DependencyInjector.Current.GetService<RoleFacade>();
+            if (roles == null) throw new ArgumentNullException("roles");
+            _roles = roles;
         }
 
         public override string[] GetRolesForUser(string userName)

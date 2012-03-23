@@ -89,8 +89,8 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
         {
             if (EmailExcerptStart != null && EmailExcerptEnd != null)
             {
-                var secretCodeStart = message.IndexOf(EmailExcerptStart, System.StringComparison.Ordinal) + EmailExcerptStart.Length;
-                var secretCodeEnd = message.Substring(secretCodeStart).IndexOf(EmailExcerptEnd, System.StringComparison.Ordinal);
+                var secretCodeStart = message.IndexOf(EmailExcerptStart, StringComparison.Ordinal) + EmailExcerptStart.Length;
+                var secretCodeEnd = message.Substring(secretCodeStart).IndexOf(EmailExcerptEnd, StringComparison.Ordinal);
                 var secretCode = message.Substring(secretCodeStart, secretCodeEnd);
                 return secretCode;
             }

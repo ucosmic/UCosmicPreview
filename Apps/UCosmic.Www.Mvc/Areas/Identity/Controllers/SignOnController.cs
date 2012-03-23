@@ -2,11 +2,9 @@
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
-using UCosmic.Domain;
 using UCosmic.Www.Mvc.Areas.Identity.Models.SignOn;
 using UCosmic.Www.Mvc.Areas.Identity.Services;
 using UCosmic.Www.Mvc.Controllers;
-using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -15,14 +13,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         #region Construction & DI
 
         private readonly SignOnServices _services;
-        private readonly IHandleCommands<DoSomethingCommand> _handler;
 
-        public SignOnController(SignOnServices services
-            , IHandleCommands<DoSomethingCommand> handler
-        )
+        public SignOnController(SignOnServices services)
         {
             _services = services;
-            _handler = handler;
         }
 
         #endregion
@@ -33,13 +27,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [OpenTopTab(TopTabName.Home)]
         public virtual ViewResult Begin(string returnUrl)
         {
-            var command = new DoSomethingCommand
-                          {
-                              OfficialName = "test",
-                              WebsiteUrl = "test",
-                          };
-            _handler.Handle(command);
-
             var model = new SignOnBeginForm { ReturnUrl = returnUrl };
             return View(model);
         }

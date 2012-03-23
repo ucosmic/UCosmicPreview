@@ -5,7 +5,9 @@ using ComponentSpace.SAML2.Metadata;
 
 namespace UCosmic
 {
+    // ReSharper disable ClassNeverInstantiated.Global
     public class ComponentSpaceSaml2MetadataParser : IParseSaml2Metadata
+    // ReSharper restore ClassNeverInstantiated.Global
     {
         public string GetEntityDescriptor(string fromEntitiesDescriptorXml, string forEntityId)
         {
@@ -26,7 +28,7 @@ namespace UCosmic
                 //    if (ssoEndpoint != null) serviceLocation = ssoEndpoint.Location;
                 //    break;
                 //}
-                foreach (var ssoEndpoint in allowedBindings.Select(allowedBinding => 
+                foreach (var ssoEndpoint in allowedBindings.Select(allowedBinding =>
                     ExtractIdpSsoServiceEndpointByBinding(fromEntityDescriptorXml, allowedBinding)))
                 {
                     if (ssoEndpoint != null) serviceLocation = ssoEndpoint.Location;
@@ -116,8 +118,8 @@ namespace UCosmic
             var idpSsoDescriptor = entityDescriptor.IDPSSODescriptors.FirstOrDefault();
 
             // only return the 
-            return (idpSsoDescriptor != null) 
-                ? idpSsoDescriptor.SingleSignOnServices.FirstOrDefault(d => d.Location == location) 
+            return (idpSsoDescriptor != null)
+                ? idpSsoDescriptor.SingleSignOnServices.FirstOrDefault(d => d.Location == location)
                 : null;
         }
     }

@@ -82,16 +82,8 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 Links.content.kml.establishment_import_kml)));
             var establishmentRows = new EstablishmentRows(Server.MapPath(string.Format("~{0}",
                 Links.content.kml.establishment_import_tsv)));
-            //var context = (UCosmicContext)DependencyInjector.Current.GetService<IUnitOfWork>();
-            //var config = DependencyInjector.Current.GetService<IManageConfigurations>();
-            //var commander = DependencyInjector.Current.GetService<ICommandObjects>();
-            //var placeFinder = DependencyInjector.Current.GetService<IConsumePlaceFinder>();
-            //var geoPlanet = DependencyInjector.Current.GetService<IConsumeGeoPlanet>();
-            //var geoNames = DependencyInjector.Current.GetService<IConsumeGeoNames>();
             var placeFactory = new PlaceFactory(_entityQueries, _objectCommander, _geoPlanet, _geoNames, _config);
-            //var en = context.Languages.Single(l => l.TwoLetterIsoCode.Equals("en", StringComparison.OrdinalIgnoreCase));
             var en = new LanguageFinder(_entityQueries).FindOne(LanguageBy.IsoCode("en"));
-            //var university = context.EstablishmentTypes.Single(t => t.EnglishName.Equals("University", StringComparison.OrdinalIgnoreCase));
             var university = new EstablishmentTypeFinder(_entityQueries).FindOne(EstablishmentTypeBy.EnglishName("University"));
 
             foreach (var placeMark in placeMarks)

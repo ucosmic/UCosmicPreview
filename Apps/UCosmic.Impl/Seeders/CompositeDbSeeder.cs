@@ -17,9 +17,9 @@ namespace UCosmic.Seeders
     // / end of the script, respectively. 
 
 
-    // ReSharper disable UnusedMember.Global
+    // ReSharper disable ClassNeverInstantiated.Global
     public class CompositeDbSeeder : ISeedDb
-    // ReSharper restore UnusedMember.Global
+    // ReSharper restore ClassNeverInstantiated.Global
     {
         public void Seed(UCosmicContext context)
         {

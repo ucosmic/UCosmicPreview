@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 using UCosmic.Domain.Email;

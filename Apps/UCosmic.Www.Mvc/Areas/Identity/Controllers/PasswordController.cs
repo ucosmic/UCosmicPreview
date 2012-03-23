@@ -138,8 +138,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         var message = _emailsComposer.ComposeEmail(EmailTemplateName.PasswordResetConfirmation,
                             null, confirmation.GetMessageVariables(_config)); // TODO: GetMessageVariables into extension method
                         email.Messages.Add(message);
-                        //var unitOfWork = DependencyInjector.Current.GetService<IUnitOfWork>();
-                        //unitOfWork.SaveChanges();
                         _objectCommander.SaveChanges();
                         _emailsSender.Send(message);
                         return RedirectToAction(MVC.Identity.EmailConfirmation.ConfirmForPasswordReset(confirmation.Token, null));

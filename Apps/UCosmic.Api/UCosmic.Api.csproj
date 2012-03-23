@@ -60,7 +60,6 @@
     <Compile Include="Etc\ISignUsers.cs" />
     <Compile Include="Ioc\DependencyInjector.cs" />
     <Compile Include="Ioc\DependencyInjectorExtensions.cs" />
-    <Compile Include="Ioc\IInjectDependencies.cs" />
     <Compile Include="Etc\ILogExceptions.cs" />
     <Compile Include="Config\IManageConfigurations.cs" />
     <Compile Include="Etc\RoleName.cs" />

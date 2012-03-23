@@ -1,11 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using FluentValidation.Attributes;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
 {
-    [Validator(typeof(SignOnBeginFormValidator))]
     public class SignOnBeginForm : IReturnUrl
     {
         public const string EmailAddressRequiredMessage = "Email Address is required.";
@@ -17,11 +15,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
         [UIHint("SignOnEmailAddress")]
         [Display(Name = EmailAddressDisplayName, Prompt = EmailAddressWatermark)]
         public string EmailAddress { get; set; }
-
-        //[DataType(DataType.Password)]
-        //[UIHint("SignOnPassword")]
-        //[Display(Name = "Password", Prompt = "Enter your password")]
-        //public string Password { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public string ReturnUrl { get; set; }

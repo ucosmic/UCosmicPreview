@@ -14,7 +14,7 @@ namespace UCosmic.Www.Mvc.WebDriver
         public static void InitializeTestSuite(TestContext testContext)
         {
             // use unity for dependency injection
-            DependencyInjector.SetInjector(new UnityDependencyInjector());
+            DependencyInjector.Set(new UnityDependencyInjector());
 
             // for the Chrome driver to start, chromedriver.exe should automatically copy from
             // the test project to /bin/Debug during build.
