@@ -9,7 +9,12 @@ namespace UCosmic.Domain.Identity
 {
     public class RoleFacade : RevisableEntityFacade<Role>
     {
-        public RoleFacade(ICommandEntities entities) : base(entities)
+        internal RoleFacade() : base(null)
+        {
+        }
+
+        public RoleFacade(ICommandEntities entities)
+            : base(entities)
         {
         }
 
