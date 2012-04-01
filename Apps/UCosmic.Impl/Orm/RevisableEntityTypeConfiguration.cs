@@ -13,7 +13,7 @@ namespace UCosmic.Orm
             Property(p => p.CreatedOnUtc).IsRequired();
             Property(p => p.CreatedByPrincipal).HasMaxLength(256);
             Property(p => p.UpdatedByPrincipal).HasMaxLength(256);
-            Property(p => p.Version).IsRowVersion();
+            Property(p => p.Version).IsConcurrencyToken(true).IsRowVersion();
         }
     }
 }
