@@ -3,11 +3,11 @@ using System;
 
 namespace UCosmic
 {
-    public abstract class FluentValidatorFactory : ValidatorFactoryBase
+    public class FluentValidatorFactory : ValidatorFactoryBase
     {
         private IServiceProvider Injector { get; set; }
 
-        protected FluentValidatorFactory(IServiceProvider injector)
+        public FluentValidatorFactory(IServiceProvider injector)
         {
             Injector = injector;
         }

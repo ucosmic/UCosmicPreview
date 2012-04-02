@@ -95,16 +95,10 @@ namespace UCosmic.Www.Mvc
 
         private static void SetUpFluentValidation()
         {
-            //FluentValidationModelValidatorProvider.Configure(
-            //    provider =>
-            //    {
-            //        provider.ValidatorFactory = new UnityValidatorFactory((UnityDependencyInjector)DependencyInjector.Current);
-            //    }
-            //);
             FluentValidationModelValidatorProvider.Configure(
                 provider =>
                 {
-                    provider.ValidatorFactory = new SimpleValidatorFactory((SimpleDependencyInjector)DependencyInjector.Current);
+                    provider.ValidatorFactory = new FluentValidatorFactory(DependencyInjector.Current);
                 }
             );
             ValidatorOptions.CascadeMode = CascadeMode.StopOnFirstFailure;

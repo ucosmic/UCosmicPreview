@@ -2,10 +2,12 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Security;
+using FluentValidation;
 using NGeo.GeoNames;
 using NGeo.Yahoo.GeoPlanet;
 using NGeo.Yahoo.PlaceFinder;
 using SimpleInjector;
+using SimpleInjector.Extensions;
 using UCosmic.Domain;
 using UCosmic.Orm;
 using UCosmic.Seeders;
@@ -14,14 +16,14 @@ namespace UCosmic
 {
     public class SimpleDependencyInjector : IServiceProvider
     {
-        public readonly Container Container;
+        private readonly Container _container;
 
         public SimpleDependencyInjector()
         {
-            Container = Bootstrap();
+            _container = Bootstrap();
         }
 
-        internal Container Bootstrap()
+        internal static Container Bootstrap()
         {
             var container = new Container();
 
@@ -51,9 +53,10 @@ namespace UCosmic
             //container.Register<ISeedDb, BrownfieldDbSeeder>();
 
             // register 1 DbContext for all implemented interfaces
-            container.RegisterPerWebRequest<IUnitOfWork, UCosmicContext>();
-            container.Register(() => (IQueryEntities)container.GetInstance<IUnitOfWork>());
-            container.Register(() => (ICommandEntities)container.GetInstance<IUnitOfWork>());
+            container.RegisterPerWebRequest<UCosmicContext>();
+            container.Register<IUnitOfWork>(container.GetInstance<UCosmicContext>);
+            container.Register<IQueryEntities>(container.GetInstance<UCosmicContext>);
+            container.Register<ICommandEntities>(container.GetInstance<UCosmicContext>);
 
             // other interfaces related to DbContext
             container.Register<ICommandObjects, ObjectCommander>();
@@ -87,6 +90,8 @@ namespace UCosmic
             //container.RegisterOpenGenericDecorator(typeof(IHandleCommands<>),
             //    typeof(SomeCommandHandlerDecorator<>));
 
+            container.RegisterManyForOpenGeneric(typeof(IValidator<>), assemblies);
+
             // verify container
             container.Verify();
 
@@ -95,7 +100,7 @@ namespace UCosmic
 
         public object GetService(Type serviceType)
         {
-            return ((IServiceProvider)Container).GetService(serviceType);
+            return ((IServiceProvider)_container).GetService(serviceType);
         }
     }
 }

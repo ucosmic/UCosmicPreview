@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Web;
 using SimpleInjector;
 
@@ -7,6 +8,7 @@ namespace UCosmic
 {
     public static class SimpleHttpContextLifestyleExtensions
     {
+        [DebuggerStepThrough]
         public static void RegisterPerWebRequest<TService, TImplementation>(
             this Container container)
             where TService : class
@@ -16,24 +18,49 @@ namespace UCosmic
             container.RegisterPerWebRequest(instanceCreator);
         }
 
-        private static void RegisterPerWebRequest<TService>(
+        // ReSharper disable MemberCanBePrivate.Global
+        [DebuggerStepThrough]
+        public static void RegisterPerWebRequest<TService>(
             this Container container,
             Func<TService> instanceCreator) where TService : class
         {
             var creator = new PerWebRequestInstanceCreator<TService>(instanceCreator);
             container.Register(creator.GetInstance);
         }
+        // ReSharper restore MemberCanBePrivate.Global
 
+        [DebuggerStepThrough]
+        public static void RegisterPerWebRequest<TConcrete>(this Container container)
+            where TConcrete : class
+        {
+            container.Register<TConcrete>();
+
+            container.ExpressionBuilt += (sender, e) =>
+            {
+                if (e.RegisteredServiceType != typeof (TConcrete)) return;
+
+                var transientInstanceCreator = Expression.Lambda<Func<TConcrete>>(
+                    e.Expression, new ParameterExpression[0]).Compile();
+
+                var creator = new PerWebRequestInstanceCreator<TConcrete>(
+                    transientInstanceCreator);
+
+                e.Expression = Expression.Call(Expression.Constant(creator),
+                    creator.GetType().GetMethod("GetInstance"));
+            };
+        }
+
+        [DebuggerStepThrough]
         public static void DisposeInstance<TService>() where TService : class
         {
             object key = typeof(PerWebRequestInstanceCreator<TService>);
-            var context = HttpContext.Current;
-            if (context == null || !context.Items.Contains(key)) return;
 
             var instance = HttpContext.Current.Items[key] as IDisposable;
-            context.Items.Remove(key);
-            if (instance == null) return;
-            instance.Dispose();
+
+            if (instance != null)
+            {
+                instance.Dispose();
+            }
         }
 
         private sealed class PerWebRequestInstanceCreator<T> where T : class
@@ -46,7 +73,7 @@ namespace UCosmic
             }
 
             [DebuggerStepThrough]
-            internal T GetInstance()
+            public T GetInstance()
             {
                 var context = HttpContext.Current;
 
@@ -56,7 +83,7 @@ namespace UCosmic
                     return _instanceCreator();
                 }
 
-                var key = GetType();
+                object key = GetType();
 
                 var instance = (T)context.Items[key];
 
