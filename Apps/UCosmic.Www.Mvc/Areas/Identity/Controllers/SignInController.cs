@@ -120,6 +120,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [NonAction]
         internal bool IsValidReturnUrl(string returnUrl)
         {
+            // sign in from root should go to default url
+            if (returnUrl == "/") return false;
+
             if (!string.IsNullOrWhiteSpace(returnUrl))
             {
                 // return URL should not lead to the following pages:
@@ -141,9 +144,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 return invalidReturnUrls.All(invalidReturnUrl => 
                     !returnUrl.StartsWith(invalidReturnUrl, StringComparison.OrdinalIgnoreCase));
             }
-
-            // sign in from root should go to default url
-            if (returnUrl == "/") return false;
 
             return true;
         }
