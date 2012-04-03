@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace UCosmic.Domain.Establishments
 {
     public class EstablishmentCategory : RevisableEntity
     {
-        [Required]
-        [StringLength(150)]
         public string EnglishName { get; set; }
 
-        [StringLength(150)]
         public string EnglishPluralName { get; set; }
 
-        [StringLength(4)]
         public string Code { get; set; }
     }
 

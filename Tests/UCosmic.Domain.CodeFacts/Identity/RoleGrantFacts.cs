@@ -30,7 +30,7 @@ namespace UCosmic.Domain.Identity
                 public override User User
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -41,7 +41,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void HasGetSet()
             {
-                var value = new Role(null);
+                var value = new Role();
                 var entity = new RoleGrant { Role = value };
                 entity.ShouldNotBeNull();
                 entity.Role.ShouldEqual(value);
@@ -57,7 +57,7 @@ namespace UCosmic.Domain.Identity
                 public override Role Role
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -84,7 +84,7 @@ namespace UCosmic.Domain.Identity
                 public override Establishment ForEstablishment
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

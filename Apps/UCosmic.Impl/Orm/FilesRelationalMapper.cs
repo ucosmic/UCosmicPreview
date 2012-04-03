@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
 using UCosmic.Domain.Files;
 
 namespace UCosmic.Orm
@@ -8,12 +7,12 @@ namespace UCosmic.Orm
     {
         public static void AddConfigurations(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new RevisableFileOrm());
+            modelBuilder.Configurations.Add(new LooseFileOrm());
         }
 
-        private class RevisableFileOrm : EntityTypeConfiguration<LooseFile>
+        private class LooseFileOrm : RevisableEntityTypeConfiguration<LooseFile>
         {
-            internal RevisableFileOrm()
+            internal LooseFileOrm()
             {
                 ToTable(typeof(LooseFile).Name, DbSchemaName.Files);
             }

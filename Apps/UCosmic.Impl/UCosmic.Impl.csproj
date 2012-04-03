@@ -41,11 +41,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=2.0.0.232, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AutoMapper.2.0.0\lib\net40-client\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="ComponentSpace.SAML2, Version=2.4.0.6, Culture=neutral, PublicKeyToken=7c51d97b3a0a8ff9, processorArchitecture=MSIL">
+    <Reference Include="AutoMapper, Version=2.1.266.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.2.1.266\lib\net40\AutoMapper.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ComponentSpace.SAML2">
       <HintPath>..\..\Etc\ComponentSpace.SAML2.dll</HintPath>
     </Reference>
     <Reference Include="Elmah">
@@ -54,6 +54,10 @@
     <Reference Include="EntityFramework, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=3.3.1.0, Culture=neutral, PublicKeyToken=a82054b837897c66, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentValidation.3.3.1.0\lib\Net40\FluentValidation.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -66,6 +70,12 @@
     </Reference>
     <Reference Include="NGeo, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NGeo.1.3.1\lib\net40\NGeo.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector">
+      <HintPath>..\..\packages\SimpleInjector.1.4.0.12049\lib\net35\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Extensions">
+      <HintPath>..\..\packages\SimpleInjector.Extensions.1.4.1.12070\lib\net35\SimpleInjector.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -80,11 +90,23 @@
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.XML" />
+    <Reference Include="Unity.AutoRegistration">
+      <HintPath>..\..\packages\UnityAutoRegistration.1.0.0.1\lib\net35\Unity.AutoRegistration.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Etc\DotNetFormsAuthentication.cs" />
+    <Compile Include="Ioc\FluentValidatorFactory.cs" />
+    <Compile Include="Ioc\InjectedRoleProvider.cs" />
+    <Compile Include="Ioc\SimpleDependencyInjector.cs" />
+    <Compile Include="Ioc\SimpleHttpContextLifestyleExtensions.cs" />
+    <Compile Include="Ioc\UnityValidatorFactory.cs" />
+    <Compile Include="Orm\CreateInitializer.cs" />
+    <Compile Include="Orm\DropAlwaysInitializer.cs" />
+    <Compile Include="Orm\DropOnModelChangeInitializer.cs" />
     <Compile Include="Orm\FilesRelationalMapper.cs" />
     <Compile Include="Orm\EstablishmentsRelationalMapper.cs" />
     <Compile Include="Orm\InstitutionalAgreementsRelationalMapper.cs" />
@@ -97,10 +119,12 @@
     <Compile Include="Etc\DotNetConfigurationManager.cs" />
     <Compile Include="Email\MvcEmailSender.cs" />
     <Compile Include="Orm\LanguagesRelationalMapper.cs" />
+    <Compile Include="Orm\RevisableEntityTypeConfiguration.cs" />
+    <Compile Include="Orm\SqlInitializer.cs" />
     <Compile Include="Saml\ComponentSpaceSaml2Response.cs" />
     <Compile Include="Saml\PublicSamlCertificateStorage.cs" />
     <Compile Include="Etc\WebRequestHttpConsumer.cs" />
-    <Compile Include="Orm\DatabaseInitializers.cs" />
+    <Compile Include="Orm\BrownfieldInitializer.cs" />
     <Compile Include="Ioc\UnityHttpContextLifetimeManager.cs" />
     <Compile Include="Ioc\UnityDependencyInjector.cs" />
     <Compile Include="Etc\ElmahExceptionLogger.cs" />
@@ -109,11 +133,12 @@
     <Compile Include="Etc\AuthorizationProvider.cs" />
     <Compile Include="Saml\ComponentSpaceSaml2ServiceProvider.cs" />
     <Compile Include="Email\SmtpEmailSender.cs" />
-    <Compile Include="Etc\DotNetMembershipSigner.cs" />
+    <Compile Include="Etc\DotNetMembershipProvider.cs" />
     <Compile Include="Seeders\BaseEstablishmentSeeder.cs" />
     <Compile Include="Seeders\BasePersonSeeder.cs" />
     <Compile Include="Seeders\BaseRoleSeeder.cs" />
     <Compile Include="Seeders\BaseUserSeeder.cs" />
+    <Compile Include="Seeders\BrownfieldDbSeeder.cs" />
     <Compile Include="Seeders\CompositeDbSeeder.cs" />
     <Compile Include="Seeders\DevelopmentDataSqlSeeder.cs" />
     <Compile Include="Seeders\EmailTemplateSeeder.cs" />
@@ -122,10 +147,12 @@
     <Compile Include="Seeders\InstitutionalAgreementSeeder.cs" />
     <Compile Include="Seeders\ISeedDb.cs" />
     <Compile Include="Seeders\LanguageSeeder.cs" />
+    <Compile Include="Seeders\NonContentFileSqlDbSeeder.cs" />
     <Compile Include="Seeders\PersonSeeder.cs" />
     <Compile Include="Seeders\PlaceSeeder.cs" />
     <Compile Include="Seeders\RecruitmentAgencySeeder.cs" />
     <Compile Include="Seeders\RoleSeeder.cs" />
+    <Compile Include="Seeders\UCosmicDbSeeder.cs" />
     <Compile Include="Seeders\UserSeeder.cs" />
     <Compile Include="Orm\ObjectCommander.cs" />
     <Compile Include="Saml\PrivateSamlCertificateStorage.cs" />

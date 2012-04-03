@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using UCosmic.Domain.Places;
 using System.Web.Mvc;
+using UCosmic.Domain.Places;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
 {

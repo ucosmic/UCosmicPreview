@@ -29,8 +29,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
                     sb.Append(typeWord.Substring(0, 1));
                 }
                 sb.Append(": ");
-                var endOfBetween = Title.IndexOf(" between", System.StringComparison.Ordinal) + 9;
-                sb.Append(Title.Substring(endOfBetween, Title.IndexOf(" - Status is", System.StringComparison.Ordinal) - endOfBetween));
+                var endOfBetween = Title.IndexOf(" between", StringComparison.Ordinal) + 9;
+                sb.Append(Title.Substring(endOfBetween, Title.IndexOf(" - Status is", StringComparison.Ordinal) - endOfBetween));
                 sb.Append(string.Format(" ({0})", Status));
                 return sb.ToString();
             }

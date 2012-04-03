@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Elmah.Contrib.Mvc;
+using FluentValidation;
+using FluentValidation.Mvc;
 using UCosmic.Domain;
 using UCosmic.Orm;
 using UCosmic.Seeders;
@@ -28,7 +30,10 @@ namespace UCosmic.Www.Mvc
             ViewEngines.Engines.Add(new RazorViewEngine());
 
             // setup dependency injection
-            SetupDependencyInjection();
+            SetUpDependencyInjection();
+
+            // set up fluent validation
+            SetUpFluentValidation();
 
             // configure automapper
             AutoMapperConfig.Configure();
@@ -54,6 +59,11 @@ namespace UCosmic.Www.Mvc
                 Server.UrlEncode(Request.CurrentExecutionFilePath)));
         }
 
+        protected void Application_EndRequest()
+        {
+            SimpleHttpContextLifestyleExtensions.DisposeInstance<IUnitOfWork>();
+        }
+
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             //filters.Add(new HandleErrorAttribute()); // default MVC setting
@@ -68,13 +78,30 @@ namespace UCosmic.Www.Mvc
             // NOTE: Default route mappings are disabled. Allow only explicitly-defined routes.
         }
 
-        private static void SetupDependencyInjection()
+        private static void SetUpDependencyInjection()
         {
-            // use unity for the infrastructure injector
-            DependencyInjector.SetInjector(new UnityDependencyInjector());
+            // use simple infrastructure injector
+            //var injector = new UnityDependencyInjector();
+            var injector = new SimpleDependencyInjector();
+            DependencyInjector.Set(injector);
 
-            // use infrastructure injector for MVC-specific injection
+            // use infrastructure service locator for MVC dependency resolution
             DependencyResolver.SetResolver(new MvcDependencyResolver());
+
+            //var providers = FilterProviders.Providers.OfType<FilterAttributeFilterProvider>().ToList();
+            //providers.ForEach(provider => FilterProviders.Providers.Remove(provider));
+            //FilterProviders.Providers.Add(new SimpleInjectorMVC3Extensions.SimpleInjectorFilterAttributeFilterProvider(injector.Container));
+        }
+
+        private static void SetUpFluentValidation()
+        {
+            FluentValidationModelValidatorProvider.Configure(
+                provider =>
+                {
+                    provider.ValidatorFactory = new FluentValidatorFactory(DependencyInjector.Current);
+                }
+            );
+            ValidatorOptions.CascadeMode = CascadeMode.StopOnFirstFailure;
         }
 
         private static void SeedDb()

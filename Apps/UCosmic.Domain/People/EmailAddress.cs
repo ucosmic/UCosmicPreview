@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using UCosmic.Domain.Email;
 
@@ -17,8 +16,6 @@ namespace UCosmic.Domain.People
         public int PersonId { get; set; }
         public virtual Person Person { get; set; }
 
-        [Required]
-        [StringLength(256)]
         public string Value { get; set; }
 
         public bool IsDefault { get; set; }

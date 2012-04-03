@@ -103,12 +103,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                     Token = Guid.NewGuid(),
                     SecretCode = "its a secret",
                 };
-                var di = new Mock<IInjectDependencies>();
+                var di = new Mock<IServiceProvider>();
                 var queryEntities = new Mock<IQueryEntities>();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(queryEntities.Object);
                 queryEntities.Setup(p => p.People)
                     .Returns(new Person[] { }.AsQueryable);
-                DependencyInjector.SetInjector(di.Object);
+                DependencyInjector.Set(di.Object);
                 var results = new List<ValidationResult>();
 
                 // act
@@ -160,12 +160,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IInjectDependencies>();
+                var di = new Mock<IServiceProvider>();
                 var people = new Mock<IQueryEntities>();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(people.Object);
                 people.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable);
-                DependencyInjector.SetInjector(di.Object);
+                DependencyInjector.Set(di.Object);
                 var results = new List<ValidationResult>();
 
                 // act 
@@ -216,12 +216,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IInjectDependencies>();
+                var di = new Mock<IServiceProvider>();
                 var people = new Mock<IQueryEntities>();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(people.Object);
                 people.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable());
-                DependencyInjector.SetInjector(di.Object);
+                DependencyInjector.Set(di.Object);
                 var results = new List<ValidationResult>();
 
                 // act 
@@ -272,12 +272,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IInjectDependencies>();
+                var di = new Mock<IServiceProvider>();
                 var people = new Mock<IQueryEntities>();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(people.Object);
                 people.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable());
-                DependencyInjector.SetInjector(di.Object);
+                DependencyInjector.Set(di.Object);
                 var results = new List<ValidationResult>();
 
                 // act 
@@ -328,12 +328,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IInjectDependencies>();
+                var di = new Mock<IServiceProvider>();
                 var people = new Mock<IQueryEntities>();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(people.Object);
                 people.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable());
-                DependencyInjector.SetInjector(di.Object);
+                DependencyInjector.Set(di.Object);
                 var results = new List<ValidationResult>();
 
                 // act 
@@ -388,11 +388,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IInjectDependencies>();
+                var di = new Mock<IServiceProvider>();
                 var entityQueries = new Mock<IQueryEntities>().Initialize();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable());
-                DependencyInjector.SetInjector(di.Object);
+                DependencyInjector.Set(di.Object);
                 var results = new List<ValidationResult>();
 
                 // act 
@@ -437,12 +437,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IInjectDependencies>();
+                var di = new Mock<IServiceProvider>();
                 var entityQueries = new Mock<IQueryEntities>().Initialize();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable());
-                DependencyInjector.SetInjector(di.Object);
+                DependencyInjector.Set(di.Object);
                 var results = new List<ValidationResult>();
 
                 // act 
@@ -491,12 +491,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IInjectDependencies>();
+                var di = new Mock<IServiceProvider>();
                 var entityQueries = new Mock<IQueryEntities>().Initialize();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable());
-                DependencyInjector.SetInjector(di.Object);
+                DependencyInjector.Set(di.Object);
                 var results = new List<ValidationResult>();
 
                 // act 
@@ -545,12 +545,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IInjectDependencies>();
+                var di = new Mock<IServiceProvider>();
                 var entityQueries = new Mock<IQueryEntities>().Initialize();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable());
-                DependencyInjector.SetInjector(di.Object);
+                DependencyInjector.Set(di.Object);
                 var results = new List<ValidationResult>();
 
                 // act 

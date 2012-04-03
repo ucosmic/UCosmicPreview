@@ -205,6 +205,7 @@ namespace UCosmic.Www.Mvc
         private static readonly Dictionary<string, string> TitleToUrl = new Dictionary<string, string>
         {
             { "Home", Home },
+            { "Sign In", SignIn },
             { "Sign Up", SignUp },
             { "Sign Up Confirm Email", SignUpConfirmEmail },
             { "Sign Up Create Password", SignUpCreatePassword },
@@ -216,7 +217,7 @@ namespace UCosmic.Www.Mvc
             if (TitleToUrl.ContainsKey(title))
                 return TitleToUrl[title];
 
-            throw new NotImplementedException(string.Format(
+            throw new NotSupportedException(string.Format(
                 "There is no URL mapped to the page with title '{0}'.", title));
         }
     }

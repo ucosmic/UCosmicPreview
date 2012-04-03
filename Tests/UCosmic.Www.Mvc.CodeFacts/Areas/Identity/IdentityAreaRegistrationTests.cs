@@ -24,7 +24,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             MVC.Identity.Name.DefaultAreaRoutes(MVC.Identity.Roles.Name).ShouldMapToNothing();
             MVC.Identity.Name.DefaultAreaRoutes(MVC.Identity.EmailConfirmation.Name).ShouldMapToNothing();
             MVC.Identity.Name.DefaultAreaRoutes(MVC.Identity.Password.Name).ShouldMapToNothing();
-            MVC.Identity.Name.DefaultAreaRoutes(MVC.Identity.Saml2.Name).ShouldMapToNothing();
             MVC.Identity.Name.DefaultAreaRoutes(MVC.Identity.Self.Name).ShouldMapToNothing();
             MVC.Identity.Name.DefaultAreaRoutes(MVC.Identity.SignUp.Name).ShouldMapToNothing();
         }
@@ -54,19 +53,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             Expression<Func<SignInController, ActionResult>> action = 
                 controller => controller.SignOut(null);
             const string routeUrl = "sign-out";
-            var url = routeUrl.ToAppRelativeUrl();
-
-            url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
-            url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            action.DefaultAreaRoutes(MVC.Identity.Name).ShouldMapToNothing();
-        }
-
-        [TestMethod]
-        public void Route_Identity_Authentication_SignOnStatus_IsSetUp()
-        {
-            Expression<Func<SignInController, ActionResult>> action = 
-                controller => controller.SignOnStatus();
-            const string routeUrl = "sign-on-status.partial.html";
             var url = routeUrl.ToAppRelativeUrl();
 
             url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);

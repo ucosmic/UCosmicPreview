@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Linq.Expressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 
 namespace UCosmic.Domain.InstitutionalAgreements
@@ -20,16 +17,6 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 var entity = new InstitutionalAgreementTypeValue { Id = value };
                 entity.ShouldNotBeNull();
                 entity.Id.ShouldEqual(value);
-            }
-
-            [TestMethod]
-            public void HasKeyAttribute()
-            {
-                Expression<Func<InstitutionalAgreementTypeValue, int>> property = p => p.Id;
-                var attributes = property.GetAttributes<InstitutionalAgreementTypeValue, int, KeyAttribute>();
-                attributes.ShouldNotBeNull();
-                attributes.Length.ShouldEqual(1);
-                attributes[0].ShouldBeType<KeyAttribute>();
             }
         }
 

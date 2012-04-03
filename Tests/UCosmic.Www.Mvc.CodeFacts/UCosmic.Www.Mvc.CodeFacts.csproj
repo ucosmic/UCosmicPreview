@@ -43,11 +43,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\..\packages\AutoMapper.2.0.0\lib\net40-client\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="ComponentSpace.SAML2, Version=2.4.0.6, Culture=neutral, PublicKeyToken=7c51d97b3a0a8ff9, processorArchitecture=MSIL">
+    <Reference Include="AutoMapper, Version=2.1.266.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.2.1.266\lib\net40\AutoMapper.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ComponentSpace.SAML2">
       <HintPath>..\..\Etc\ComponentSpace.SAML2.dll</HintPath>
     </Reference>
     <Reference Include="Elmah, Version=1.1.11517.0, Culture=neutral, processorArchitecture=MSIL">
@@ -60,22 +60,29 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=3.3.1.0, Culture=neutral, PublicKeyToken=a82054b837897c66, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentValidation.3.3.1.0\lib\Net40\FluentValidation.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Moq">
       <HintPath>..\..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="MvcContrib.TestHelper, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MvcContrib.Mvc3.TestHelper-ci.3.0.96.0\lib\MvcContrib.TestHelper.dll</HintPath>
+      <HintPath>..\..\packages\MvcContrib.Mvc3.TestHelper-ci.3.0.100.0\lib\MvcContrib.TestHelper.dll</HintPath>
     </Reference>
     <Reference Include="NGeo">
       <HintPath>..\..\packages\NGeo.1.3.1\lib\net40\NGeo.dll</HintPath>
     </Reference>
-    <Reference Include="Rhino.Mocks">
-      <HintPath>..\..\packages\RhinoMocks.3.6\lib\Rhino.Mocks.dll</HintPath>
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="Should, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Should.1.1.12.0\lib\Should.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=1.4.0.12049, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SimpleInjector.1.4.0.12049\lib\net35\SimpleInjector.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -106,21 +113,27 @@
     <Compile Include="Areas\Common\Mappers\FeaturesRouteMapperFacts.cs" />
     <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapperFacts.cs" />
     <Compile Include="Areas\Establishments\Mappers\ManagementFormsRouteMapperFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\RolesControllerFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignInControllerFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignOnControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignUpControllerFacts.cs" />
-    <Compile Include="Areas\Identity\Mappers\ManagementFormsRouteMapperFacts.cs" />
+    <Compile Include="Areas\Identity\Mappers\RolesRouteMapperFacts.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\Saml2IntegrationInfoFacts.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\SignOnBeginFormFacts.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\SignOnBeginFormValidatorFacts.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\SignOnEmailAddressValidatorRulesFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\CreatePasswordFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\SendEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\ConfirmEmailFormFacts.cs" />
+    <Compile Include="Etc\AuthorizationProviderFacts.cs" />
+    <Compile Include="Etc\ReuseMock.cs" />
+    <Compile Include="Etc\SimpleDependencyInjectorFacts.cs" />
     <Compile Include="Models\AutoMapperConfigFacts.cs" />
     <Compile Include="Etc\ExtensionMethods.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistrationFacts.cs" />
     <Compile Include="Areas\Establishments\EstablishmentsAreaRegistrationFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\Saml2ControllerFacts.cs" />
     <Compile Include="Areas\Identity\IdentityAreaRegistrationTests.cs" />
-    <Compile Include="Areas\Identity\Models\Authentication\SignInFormTests.cs" />
-    <Compile Include="Areas\Identity\Models\Password\ChangePasswordFormTests.cs" />
-    <Compile Include="Areas\Identity\Models\Password\ForgotPasswordFormTests.cs" />
-    <Compile Include="Areas\Identity\Models\Password\ResetPasswordFormTests.cs" />
     <Compile Include="Areas\InstitutionalAgreements\InstitutionalAgreementAreaRegistrationTests.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\ConfigurationForms\InstitutionalAgreementConfigurationFormTests.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\ConfigurationForms\InstitutionalAgreementContactTypeValueFormTests.cs" />
@@ -141,7 +154,6 @@
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\Establishments\Controllers\" />
     <Folder Include="Areas\Establishments\Models\" />
-    <Folder Include="Areas\Identity\Models\Self\" />
     <Folder Include="Areas\InstitutionalAgreements\Controllers\" />
   </ItemGroup>
   <ItemGroup>

@@ -15,7 +15,7 @@ namespace UCosmic.Domain.Identity
             public void HasGetSet()
             {
                 var value = new List<RoleGrant> { new RoleGrant() };
-                var entity = new Role(null) { Grants = value };
+                var entity = new Role { Grants = value };
                 entity.ShouldNotBeNull();
                 entity.Grants.ShouldEqual(value);
             }
@@ -30,7 +30,7 @@ namespace UCosmic.Domain.Identity
                 public override ICollection<RoleGrant> Grants
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

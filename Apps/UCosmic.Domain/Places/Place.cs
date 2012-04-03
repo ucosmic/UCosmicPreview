@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace UCosmic.Domain.Places
 {
@@ -11,8 +10,6 @@ namespace UCosmic.Domain.Places
             BoundingBox = new BoundingBox();
         }
 
-        [Required]
-        [StringLength(200)]
         public string OfficialName { get; set; }
 
         public virtual Place Parent { get; set; }

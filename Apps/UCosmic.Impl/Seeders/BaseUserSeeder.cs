@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Web.Security;
 using UCosmic.Domain;
@@ -34,29 +34,29 @@ namespace UCosmic.Seeders
             var person = EnsurePerson(emails, firstName, lastName, establishment);
 
             // make user registered and confirm all email addresses
-            person.User.IsRegistered = true;
             foreach (var email in emailsExploded)
                 person.Emails.Current().ByValue(email).IsConfirmed = true;
 
             // add grants to user
             if (roleNames != null)
             {
-                foreach (var roleName in roleNames)
+                var roles = new RoleFacade(Context);
+                //foreach (var roleName in roleNames)
+                //{
+                //    if (person.User.Grants.Select(g => g.Role.Name).Contains(roleName)) continue;
+
+                //    var role = roles.Get(roleName);
+                //    role.GrantUser(person.User.EntityId, userFinder);
+                //    Context.Entry(role).State = role.RevisionId == 0 ? EntityState.Added : EntityState.Modified;
+                //}
+                foreach (var role in from roleName in roleNames 
+                    where !person.User.Grants.Select(g => g.Role.Name).Contains(roleName) 
+                    select roles.Get(roleName))
                 {
-                    if (!person.User.Grants.Select(g => g.Role.Name).Contains(roleName))
-                    {
-                        var role = Context.Roles.ByName(roleName);
-                        role.Grants = role.Grants ?? new Collection<RoleGrant>();
-                        role.Grants.Add(new RoleGrant { User = person.User });
-                    }
+                    role.GrantUser(person.User.EntityId, Context);
+                    Context.Entry(role).State = role.RevisionId == 0 ? EntityState.Added : EntityState.Modified;
                 }
             }
-            //if (roleNames != null)
-            //    foreach (var role in roleNames
-            //        .Where(r => !person.User.Grants.Select(g => g.Role.Name).Contains(r))
-            //        //.Select(grant => EnsureRole(grant, null)))
-            //        .Select(grant => Context.Roles.ByName(grant)))
-            //        role.Grants.Add(new RoleGrant { User = person.User });
 
             Context.SaveChanges();
         }

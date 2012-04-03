@@ -46,6 +46,6 @@
                 </ds:X509Data>
             </ds:KeyInfo>
         </md:KeyDescriptor>
-        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ucosmic-dev/saml/2/sign-on/post" index="1" />
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://develop.ucosmic.com/sign-on/saml/2/post" index="1" />
     </md:SPSSODescriptor>
 </md:EntityDescriptor>

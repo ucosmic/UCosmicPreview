@@ -9,7 +9,9 @@ using ComponentSpace.SAML2.Protocols;
 
 namespace UCosmic
 {
+    // ReSharper disable ClassNeverInstantiated.Global
     public class ComponentSpaceSaml2ServiceProvider : IProvideSaml2Service
+    // ReSharper restore ClassNeverInstantiated.Global
     {
         private readonly IStoreSamlCertificates _certificates;
 

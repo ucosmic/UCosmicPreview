@@ -7,7 +7,7 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.InstitutionalAgreements
 {
-    public class InstitutionalAgreementParticipant
+    public class InstitutionalAgreementParticipant : Entity
     {
         public int Id { get; set; }
 

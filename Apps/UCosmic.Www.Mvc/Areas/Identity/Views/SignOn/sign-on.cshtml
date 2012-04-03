@@ -1,0 +1,36 @@
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.SignOn.SignOnBeginForm
+@{
+    ViewBag.Title = "Sign on to UCosmic";
+    Layout = MVC.Shared.Views.layout;
+}
+<div class="wrap-960 split-form">
+    <div class="left">
+        <p>
+            UCosmic now has the ability to sign you on using your institutional password. <a
+                href="@Url.Action(MVC.Identity.SignOn.Saml2Integrations())">Here is a list of currently
+                integrated institutions</a>.
+        </p>
+        <p>
+            If your institution is not integrated, but <a href="http://www.ucosmic.org/CurrentMembers.aspx"
+                target="_blank">is a consortium member</a>, you can sign up for a UCosmic account
+            using your email address.
+        </p>
+        <p>
+            <strong style="color: #c00;">Important:</strong> Be sure to enter your institutional
+            work email address, such as username<strong>@@suny.edu</strong>. Single sign on
+            will not work with @@gmail.com, @@yahoo.com, or other public email domains.
+        </p>
+    </div>
+    <div class="right">
+        @using (Html.BeginForm())
+        {
+            <fieldset>
+                <legend>Begin Sign On</legend>
+                <br />
+                @Html.EditorForModel()
+                <br />
+                <br />
+            </fieldset>
+        }
+    </div>
+</div>

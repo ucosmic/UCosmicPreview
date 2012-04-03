@@ -1,11 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace UCosmic.Domain.Places
+﻿namespace UCosmic.Domain.Places
 {
     public class GeoNamesTimeZone : Entity
     {
-        [Key]
-        [StringLength(50)]
         public string Id { get; set; }
 
         public double DstOffset { get; set; }

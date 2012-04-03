@@ -1,5 +1,5 @@
+using System.Data;
 using UCosmic.Domain.Identity;
-using UCosmic.Orm;
 
 namespace UCosmic.Seeders
 {
@@ -7,15 +7,9 @@ namespace UCosmic.Seeders
     {
         protected void EnsureRole(string roleName, string roleDescription)
         {
-            var roleFinder = new RoleFinder(Context);
-            var objectCommander = new ObjectCommander(Context);
-            var role = roleFinder.FindOne(RoleBy.Name(roleName).ForInsertOrUpdate());
-            if (role != null) return;
-            role = new Role(roleName)
-            {
-                Description = roleDescription,
-            };
-            objectCommander.Insert(role, true);
+            var facade = DependencyInjector.Current.GetService<RoleFacade>();
+            var role = facade.CreateOrUpdate(roleName, roleDescription);
+            Context.Entry(role).State = role.RevisionId == 0 ? EntityState.Added : EntityState.Modified;
         }
     }
 }

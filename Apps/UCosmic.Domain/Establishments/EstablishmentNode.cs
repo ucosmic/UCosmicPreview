@@ -1,6 +1,6 @@
 ﻿namespace UCosmic.Domain.Establishments
 {
-    public class EstablishmentNode
+    public class EstablishmentNode : Entity
     {
         public int AncestorId { get; set; }
         public virtual Establishment Ancestor { get; set; }

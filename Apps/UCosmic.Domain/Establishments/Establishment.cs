@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
 using System.Security.Principal;
@@ -17,7 +16,6 @@ namespace UCosmic.Domain.Establishments
             PartnerContactInfo = new EstablishmentContactInfo();
         }
 
-        [Required, StringLength(500)]
         public string OfficialName { get; set; }
 
         public virtual ICollection<EstablishmentName> Names { get; set; }
@@ -42,7 +40,6 @@ namespace UCosmic.Domain.Establishments
             }
         }
 
-        [StringLength(200)]
         public string WebsiteUrl { get; set; }
 
         public virtual ICollection<EstablishmentUrl> Urls { get; set; }
@@ -55,10 +52,17 @@ namespace UCosmic.Domain.Establishments
 
         public virtual ICollection<EstablishmentNode> Offspring { get; set; }
 
-        [Required]
         public virtual EstablishmentLocation Location { get; set; }
 
-        public virtual EstablishmentSamlSignOn SamlSignOn { get; set; }
+        public virtual EstablishmentSamlSignOn SamlSignOn { get; protected internal set; }
+
+        public void SetSamlSignOn(string samlEntityId, string metadataUrl)
+        {
+            if (SamlSignOn == null || SamlSignOn.EntityId != samlEntityId || SamlSignOn.MetadataUrl != metadataUrl)
+            {
+                SamlSignOn = EstablishmentSamlFactory.Create(samlEntityId, metadataUrl);
+            }
+        }
 
         public virtual EstablishmentType Type { get; set; }
 
@@ -108,20 +112,6 @@ namespace UCosmic.Domain.Establishments
 
     public static class EstablishmentExtensions
     {
-        public static Establishment ByEmailDomain(this IQueryable<Establishment> query, string email)
-        {
-            if (!string.IsNullOrWhiteSpace(email) && email.Contains('@'))
-            {
-                var emailDomain = email.Substring(email.IndexOf('@'));
-                return (query != null)
-                    ? query.Current().SingleOrDefault(e =>
-                        e.EmailDomains.Any(d => d.IsCurrent && !e.IsArchived && !e.IsDeleted
-                            && d.Value.Equals(emailDomain, StringComparison.OrdinalIgnoreCase)))
-                    : null;
-            }
-            return null;
-        }
-
         public static Establishment ByOfficialName(this IEnumerable<Establishment> query, string officialName)
         {
             return (query != null)
@@ -143,10 +133,10 @@ namespace UCosmic.Domain.Establishments
             if (establishment == null) throw new ArgumentNullException("establishment");
             if (principal == null) throw new ArgumentNullException("principal");
 
-            Func<Affiliation, bool> defaultAffiliation = a => 
-                a.IsDefault && a.Person.User != null 
+            Func<Affiliation, bool> defaultAffiliation = a =>
+                a.IsDefault && a.Person.User != null
                 && a.Person.User.UserName.Equals(principal.Identity.Name, StringComparison.OrdinalIgnoreCase);
-            return establishment.Affiliates.Any(defaultAffiliation) 
+            return establishment.Affiliates.Any(defaultAffiliation)
                 || establishment.Ancestors.Any(n => n.Ancestor.Affiliates.Any(defaultAffiliation));
         }
 

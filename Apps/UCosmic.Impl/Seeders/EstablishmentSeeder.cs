@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using NGeo.GeoNames;
 using NGeo.Yahoo.GeoPlanet;
@@ -44,29 +43,25 @@ namespace UCosmic.Seeders
                         WebsiteUrl = "www.testshib.org",
                         Location = new EstablishmentLocation(),
                         Type = GetGenericBusiness(),
+                        Names = new[]
+                        {
+                            new EstablishmentName { IsOfficialName = true, Text = "TestShib2" }
+                        },
                         EmailDomains = new Collection<EstablishmentEmailDomain>
                         {
-                            new EstablishmentEmailDomain
-                            {
-                                Value = "@testshib.org",
-                            }
+                            new EstablishmentEmailDomain { Value = "@testshib.org", }
                         },
-                        SamlSignOn = new EstablishmentSamlSignOn
-                        {
-                            EntityId = "https://idp.testshib.org/idp/shibboleth",
-                            MetadataUrl = "https://idp.testshib.org/idp/shibboleth",
-                            CreatedOn = DateTime.UtcNow,
-                        }
                     };
+                    testshib.SetSamlSignOn("https://idp.testshib.org/idp/shibboleth", "https://idp.testshib.org/idp/shibboleth");
                     context.Establishments.Add(testshib);
                     context.SaveChanges();
                 }
             }
         }
 
-        // ReSharper disable UnusedMember.Global
+        // ReSharper disable MemberCanBePrivate.Global
         public class EstablishmentDecember2011Preview2Seeder : BaseEstablishmentSeeder
-        // ReSharper restore UnusedMember.Global
+        // ReSharper restore MemberCanBePrivate.Global
         {
             private PlaceFactory _placeFactory;
             private IConsumePlaceFinder _placeFinderClient;
@@ -104,7 +99,7 @@ namespace UCosmic.Seeders
                 if (!est.Location.Center.HasValue)
                 {
                     var result = _placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                    Debug.Assert(result.WoeId != null);
+                    if (!result.WoeId.HasValue) return;
                     var place = _placeFactory.FromWoeId(result.WoeId.Value);
                     var places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                     places.Add(place);

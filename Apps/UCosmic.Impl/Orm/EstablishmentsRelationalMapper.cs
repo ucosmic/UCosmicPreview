@@ -22,7 +22,7 @@ namespace UCosmic.Orm
             modelBuilder.Configurations.Add(new EmailTemplateOrm());
         }
 
-        private class EstablishmentOrm : EntityTypeConfiguration<Establishment>
+        private class EstablishmentOrm : RevisableEntityTypeConfiguration<Establishment>
         {
             internal EstablishmentOrm()
             {
@@ -84,19 +84,26 @@ namespace UCosmic.Orm
                 HasOptional(p => p.SamlSignOn)
                     .WithRequired();
 
+                Property(p => p.OfficialName).IsRequired().HasMaxLength(500);
+                Property(p => p.WebsiteUrl).HasMaxLength(200);
+
                 // name complex type properties
-                Property(p => p.PublicContactInfo.Phone).HasColumnName("PublicPhone");
-                Property(p => p.PublicContactInfo.Fax).HasColumnName("PublicFax");
-                Property(p => p.PublicContactInfo.Email).HasColumnName("PublicEmail");
-                Property(p => p.PartnerContactInfo.Phone).HasColumnName("PartnerPhone");
-                Property(p => p.PartnerContactInfo.Fax).HasColumnName("PartnerFax");
-                Property(p => p.PartnerContactInfo.Email).HasColumnName("PartnerEmail");
-                Property(p => p.InstitutionInfo.UCosmicCode).HasColumnName("UCosmicCode");
-                Property(p => p.InstitutionInfo.CollegeBoardDesignatedIndicator).HasColumnName("CollegeBoardDesignatedIndicator");
+                Property(p => p.PublicContactInfo.Phone).HasMaxLength(50).HasColumnName("PublicPhone");
+                Property(p => p.PublicContactInfo.Fax).HasMaxLength(50).HasColumnName("PublicFax");
+                Property(p => p.PublicContactInfo.Email).HasMaxLength(256).HasColumnName("PublicEmail");
+
+                Property(p => p.PartnerContactInfo.Phone).HasMaxLength(50).HasColumnName("PartnerPhone");
+                Property(p => p.PartnerContactInfo.Fax).HasMaxLength(50).HasColumnName("PartnerFax");
+                Property(p => p.PartnerContactInfo.Email).HasMaxLength(256).HasColumnName("PartnerEmail");
+
+                Property(p => p.InstitutionInfo.UCosmicCode).HasColumnName("UCosmicCode")
+                    .IsFixedLength().HasMaxLength(6).IsUnicode(false);
+                Property(p => p.InstitutionInfo.CollegeBoardDesignatedIndicator)
+                    .HasColumnName("CollegeBoardDesignatedIndicator").IsFixedLength().HasMaxLength(6).IsUnicode(false);
             }
         }
 
-        private class EstablishmentLocationOrm : EntityTypeConfiguration<EstablishmentLocation>
+        private class EstablishmentLocationOrm : RevisableEntityTypeConfiguration<EstablishmentLocation>
         {
             internal EstablishmentLocationOrm()
             {
@@ -132,13 +139,15 @@ namespace UCosmic.Orm
             {
                 ToTable(typeof(EstablishmentSamlSignOn).Name, DbSchemaName.Establishments);
 
+                Property(p => p.EntityId).IsRequired().HasMaxLength(2048);
+                Property(p => p.MetadataUrl).IsRequired().HasMaxLength(2048);
                 Property(p => p.MetadataXml).HasColumnType("ntext");
-                //Property(p => p.SigningCertificate).HasColumnType("ntext");
-                //Property(p => p.EncryptionCertificate).HasColumnType("ntext");
+                Property(p => p.SsoLocation).HasMaxLength(2048);
+                Property(p => p.SsoBinding).HasMaxLength(50);
             }
         }
 
-        private class EstablishmentAddressOrm : EntityTypeConfiguration<EstablishmentAddress>
+        private class EstablishmentAddressOrm : RevisableEntityTypeConfiguration<EstablishmentAddress>
         {
             internal EstablishmentAddressOrm()
             {
@@ -147,6 +156,8 @@ namespace UCosmic.Orm
                 HasRequired(d => d.TranslationToLanguage)
                     .WithMany()
                     .Map(d => d.MapKey("TranslationToLanguageId"));
+
+                Property(e => e.Text).IsRequired().HasMaxLength(500);
             }
         }
 
@@ -160,7 +171,7 @@ namespace UCosmic.Orm
             }
         }
 
-        private class EstablishmentTypeOrm : EntityTypeConfiguration<EstablishmentType>
+        private class EstablishmentTypeOrm : RevisableEntityTypeConfiguration<EstablishmentType>
         {
             internal EstablishmentTypeOrm()
             {
@@ -171,28 +182,35 @@ namespace UCosmic.Orm
                     .WithMany()
                     .HasForeignKey(d => d.CategoryId)
                     .WillCascadeOnDelete(false); // do not delete type if category is deleted
+
+                Property(p => p.EnglishName).IsRequired().HasMaxLength(150);
+                Property(p => p.EnglishPluralName).HasMaxLength(150);
             }
         }
 
-        private class EstablishmentCategoryOrm : EntityTypeConfiguration<EstablishmentCategory>
+        private class EstablishmentCategoryOrm : RevisableEntityTypeConfiguration<EstablishmentCategory>
         {
             internal EstablishmentCategoryOrm()
             {
                 ToTable(typeof(EstablishmentCategory).Name, DbSchemaName.Establishments);
 
-                Property(c => c.Code).HasColumnType("char");
+                Property(c => c.EnglishName).IsRequired().HasMaxLength(150);
+                Property(c => c.EnglishPluralName).HasMaxLength(150);
+                Property(c => c.Code).HasColumnType("char").HasMaxLength(4);
             }
         }
 
-        private class EstablishmentEmailDomainOrm : EntityTypeConfiguration<EstablishmentEmailDomain>
+        private class EstablishmentEmailDomainOrm : RevisableEntityTypeConfiguration<EstablishmentEmailDomain>
         {
             internal EstablishmentEmailDomainOrm()
             {
                 ToTable(typeof(EstablishmentEmailDomain).Name, DbSchemaName.Establishments);
+
+                Property(p => p.Value).IsRequired().HasMaxLength(256);
             }
         }
 
-        private class EstablishmentNameOrm : EntityTypeConfiguration<EstablishmentName>
+        private class EstablishmentNameOrm : RevisableEntityTypeConfiguration<EstablishmentName>
         {
             internal EstablishmentNameOrm()
             {
@@ -201,18 +219,24 @@ namespace UCosmic.Orm
                 HasOptional(d => d.TranslationToLanguage)
                     .WithMany()
                     .Map(d => d.MapKey("TranslationToLanguageId"));
+
+                Property(p => p.TranslationToHint).HasMaxLength(15);
+                Property(p => p.Text).IsRequired().HasMaxLength(500);
+                Property(p => p.AsciiEquivalent).HasMaxLength(500);
             }
         }
 
-        private class EstablishmentUrlOrm : EntityTypeConfiguration<EstablishmentUrl>
+        private class EstablishmentUrlOrm : RevisableEntityTypeConfiguration<EstablishmentUrl>
         {
             internal EstablishmentUrlOrm()
             {
                 ToTable(typeof(EstablishmentUrl).Name, DbSchemaName.Establishments);
+
+                Property(p => p.Value).IsRequired().HasMaxLength(200);
             }
         }
 
-        private class EmailTemplateOrm : EntityTypeConfiguration<EmailTemplate>
+        private class EmailTemplateOrm : RevisableEntityTypeConfiguration<EmailTemplate>
         {
             internal EmailTemplateOrm()
             {
@@ -224,6 +248,13 @@ namespace UCosmic.Orm
                     .HasForeignKey(d => d.EstablishmentId)
                     .WillCascadeOnDelete(true);
 
+                Property(t => t.Name).IsRequired().HasMaxLength(150);
+                Property(t => t.SubjectFormat).IsRequired().HasMaxLength(250);
+                Property(t => t.FromAddress).HasMaxLength(256);
+                Property(t => t.FromDisplayName).HasMaxLength(150);
+                Property(t => t.ReplyToAddress).HasMaxLength(256);
+                Property(t => t.ReplyToDisplayName).HasMaxLength(150);
+                Property(t => t.BodyFormat).IsRequired();
                 Property(t => t.Instructions).HasColumnType("ntext");
                 Property(t => t.BodyFormat).HasColumnType("ntext");
             }

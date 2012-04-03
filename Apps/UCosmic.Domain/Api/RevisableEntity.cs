@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Threading;
 
 namespace UCosmic.Domain
@@ -14,31 +13,24 @@ namespace UCosmic.Domain
             IsCurrent = true;
         }
 
-        [Key]
-        [Required]
         public int RevisionId { get; set; }
 
-        [Required]
         public Guid EntityId { get; set; }
 
-        [Required]
         public DateTime CreatedOnUtc { get; set; }
 
-        [StringLength(256)]
         public string CreatedByPrincipal { get; set; }
 
-        public DateTime? UpdatedOnUtc { get; set; }
+        public DateTime? UpdatedOnUtc { get; protected internal set; }
 
-        [StringLength(256)]
-        public string UpdatedByPrincipal { get; set; }
+        public string UpdatedByPrincipal { get; protected internal set; }
 
-        [Timestamp]
-        public byte[] Version { get; set; }
+        public byte[] Version { get; protected internal set; }
 
         public bool IsCurrent { get; set; }
 
-        public bool IsArchived { get; set; }
+        public bool IsArchived { get; protected internal set; }
 
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; protected internal set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using UCosmic.Domain;
@@ -11,12 +12,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
     [EnforceHttps]
     public partial class SignInController : BaseController
     {
+        #region Construction & DI
+
         private readonly EstablishmentFinder _establishments;
 
         public SignInController(IQueryEntities entityQueries)
         {
             _establishments = new EstablishmentFinder(entityQueries);
         }
+
+        #endregion
+        #region SignIn
 
         [HttpGet]
         [ActionName("sign-in")]
@@ -80,6 +86,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             return HttpNotFound();
         }
 
+        #endregion
+        #region SignOut
+
         [ActionName("sign-out")]
         public virtual ActionResult SignOut(string returnUrl)
         {
@@ -94,7 +103,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             if (!IsValidReturnUrl(returnUrl))
             {
-                // clear the querystring of invalid redirect URL's
+                // clear the query string of invalid redirect URL's
                 return RedirectToAction(MVC.Identity.SignIn.SignOut());
             }
 
@@ -105,39 +114,42 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             return View(model);
         }
 
-        [ChildActionOnly]
-        [ActionName("sign-on-status")]
-        public virtual PartialViewResult SignOnStatus()
-        {
-            return PartialView();
-        }
+        #endregion
+        #region ReturnUrl Validation
 
-        private bool IsValidReturnUrl(string returnUrl)
+        [NonAction]
+        internal bool IsValidReturnUrl(string returnUrl)
         {
             if (!string.IsNullOrWhiteSpace(returnUrl))
             {
-                // return URL should not lead to sign in or sign out pages
-                var signInUrl = Url.Action(MVC.Identity.SignIn.SignIn());
-                var signOutUrl = Url.Action(MVC.Identity.SignIn.SignOut());
-                var signUpUrl = Url.Action(MVC.Identity.SignUp.SendEmail());
-                const string confirmUrl = "/confirm-email/t-";
-                const string confirmUrlForForgotPassword = "/confirm-password-reset/t-";
-                var passwordUrl = Url.Action(MVC.Identity.SignUp.CreatePassword());
-                if (returnUrl.StartsWith(signInUrl, StringComparison.OrdinalIgnoreCase)
-                    || returnUrl.StartsWith(signOutUrl, StringComparison.OrdinalIgnoreCase)
-                    || returnUrl.StartsWith(signUpUrl, StringComparison.OrdinalIgnoreCase)
-                    || returnUrl.StartsWith(confirmUrl, StringComparison.OrdinalIgnoreCase)
-                    || returnUrl.StartsWith(confirmUrlForForgotPassword, StringComparison.OrdinalIgnoreCase)
-                    || returnUrl.StartsWith(passwordUrl, StringComparison.OrdinalIgnoreCase)
-                    || returnUrl.Equals("/") // sign in from root should go to default url
-                )
+                // return URL should not lead to the following pages:
+                var invalidReturnUrls = new[]
                 {
-                    return false;
-                }
+                    Url.Action(MVC.Identity.SignIn.SignIn()),               // back to sign in
+                    Url.Action(MVC.Identity.SignIn.SignOut()),              // over to sign out
+                    Url.Action(MVC.Identity.SignUp.SendEmail()),            // over to sign up
+                    "/sign-up/confirm-email/",                              // sign up email confirmation
+                    "/confirm-password-reset/t-",                           // password reset email confirmation
+                    Url.Action(MVC.Identity.Password.ForgotPassword()),     // over to password reset
+                };
+                //// foreach conversion to linq expression
+                //foreach (var invalidReturnUrl in invalidReturnUrls)
+                //{
+                //    if (returnUrl.StartsWith(invalidReturnUrl, StringComparison.OrdinalIgnoreCase))
+                //        return false;
+                //}
+                return invalidReturnUrls.All(invalidReturnUrl => 
+                    !returnUrl.StartsWith(invalidReturnUrl, StringComparison.OrdinalIgnoreCase));
             }
+
+            // sign in from root should go to default url
+            if (returnUrl == "/") return false;
 
             return true;
         }
+
+        #endregion
+        #region SignInAs
 
         [ReturnUrlReferrer("/")]
         [ActionName("sign-in-as")]
@@ -197,5 +209,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             return Redirect("/" + returnUrl);
         }
 
+        #endregion
     }
 }

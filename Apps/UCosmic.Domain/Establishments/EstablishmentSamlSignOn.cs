@@ -1,29 +1,27 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace UCosmic.Domain.Establishments
 {
-    public class EstablishmentSamlSignOn
+    public class EstablishmentSamlSignOn : Entity
     {
-        public int Id { get; set; }
+        protected internal EstablishmentSamlSignOn()
+        {
+            CreatedOnUtc = DateTime.UtcNow;
+        }
 
-        [Required]
-        [StringLength(1024)]
-        public string EntityId { get; set; }
+        public int Id { get; protected set; }
 
-        [Required]
-        [StringLength(1024)]
-        public string MetadataUrl { get; set; }
-        public string MetadataXml { get; set; }
+        public string EntityId { get; protected internal set; }
 
-        //public string SigningCertificate { get; set; }
-        //public string EncryptionCertificate { get; set; }
+        public string MetadataUrl { get; protected internal set; }
 
-        public string SsoLocation { get; set; }
-        public string SsoBinding { get; set; }
+        public string MetadataXml { get; protected internal set; }
 
-        public DateTime? CreatedOn { get; set; }
-        public DateTime? UpdatedOn { get; set; }
+        public string SsoLocation { get; protected internal set; }
+        public string SsoBinding { get; protected internal set; }
+
+        public DateTime? CreatedOnUtc { get; protected internal set; }
+        public DateTime? UpdatedOnUtc { get; protected internal set; }
 
     }
 }

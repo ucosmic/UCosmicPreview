@@ -3,7 +3,7 @@ using System.Text;
 
 namespace UCosmic.Domain.People
 {
-    public class PersonFactory
+    public static class PersonFactory
     {
         public static string DeriveDisplayName(string lastName, string firstName, string middleName, string salutation, string suffix)
         {
@@ -32,5 +32,18 @@ namespace UCosmic.Domain.People
                     person.MiddleName, person.Salutation, person.Suffix)
                 : person.DisplayName;
         }
+
+        internal static Person Create(string emailAddress)
+        {
+            var person = new Person
+            {
+                DisplayName = emailAddress,
+            };
+
+            person.AddEmail(emailAddress);
+
+            return person;
+        }
+
     }
 }

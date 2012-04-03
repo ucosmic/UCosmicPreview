@@ -1,42 +1,26 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Security;
-using UCosmic.Domain;
 using UCosmic.Domain.Identity;
-using UCosmic.Orm;
 
 namespace UCosmic
 {
     public class AuthorizationProvider : RoleProvider
     {
-        private readonly RoleFinder _roles;
+        private readonly RoleFacade _roles;
 
-        public AuthorizationProvider()
+        public AuthorizationProvider(RoleFacade roles)
         {
-            _roles = new RoleFinder(new UCosmicContext());
+            if (roles == null) throw new ArgumentNullException("roles");
+            _roles = roles;
         }
 
         public override string[] GetRolesForUser(string userName)
         {
-            return TryGetRolesForUser(userName, 0);
-        }
-
-        private string[] TryGetRolesForUser(string userName, int retryCount)
-        {
-            try
-            {
-                var roles = _roles.FindMany(RolesWith.GrantToUser(userName))
-                    .Current()
-                    .Select(role => role.Name)
-                    .Distinct().ToArray();
-                return roles;
-            }
-            catch (Exception)
-            {
-                if (retryCount <= 3)
-                    return TryGetRolesForUser(userName, ++retryCount);
-                throw;
-            }
+            var roles = _roles.GetGrantedTo(userName)
+                .Select(role => role.Name)
+                .Distinct().ToArray();
+            return roles;
         }
 
         public override bool IsUserInRole(string username, string roleName)

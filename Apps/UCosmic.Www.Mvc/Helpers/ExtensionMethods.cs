@@ -125,19 +125,19 @@ namespace UCosmic.Www.Mvc
 
         public static string GetFileName(this string filePath)
         {
-            return filePath.IndexOf("\\", System.StringComparison.Ordinal) >= 0
-                ? filePath.Substring(filePath.LastIndexOf("\\", System.StringComparison.Ordinal) + 1)
+            return filePath.IndexOf("\\", StringComparison.Ordinal) >= 0
+                ? filePath.Substring(filePath.LastIndexOf("\\", StringComparison.Ordinal) + 1)
                 : filePath;
         }
 
         public static bool HasFileName(this string fileName)
         {
-            return fileName.IndexOf(".", System.StringComparison.Ordinal) > 0;
+            return fileName.IndexOf(".", StringComparison.Ordinal) > 0;
         }
 
         public static bool HasFileExtension(this string fileName)
         {
-            return fileName.IndexOf(".", System.StringComparison.Ordinal) >= 0;
+            return fileName.IndexOf(".", StringComparison.Ordinal) >= 0;
         }
 
         public static bool HasValidFileExtension(this string fileName, string allowedExtensions)

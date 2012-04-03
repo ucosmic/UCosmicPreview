@@ -30,20 +30,6 @@ namespace UCosmic.Domain.People
         }
 
         [TestClass]
-        public class UserIdProperty
-        {
-            [TestMethod]
-            public void HasGetSet()
-            {
-                const int value = 7;
-                var entity = new Person { UserId = value };
-                entity.ShouldNotBeNull();
-                entity.UserId.ShouldEqual(value);
-
-            }
-        }
-
-        [TestClass]
         public class UserProperty
         {
             [TestMethod]

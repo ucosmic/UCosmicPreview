@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
 using UCosmic.Domain.Identity;
 
 namespace UCosmic.Orm
@@ -13,23 +12,28 @@ namespace UCosmic.Orm
             modelBuilder.Configurations.Add(new RoleGrantOrm());
         }
 
-        private class UserOrm : EntityTypeConfiguration<User>
+        private class UserOrm : RevisableEntityTypeConfiguration<User>
         {
             internal UserOrm()
             {
                 ToTable(typeof(User).Name, DbSchemaName.Identity);
+
+                Property(u => u.UserName).IsRequired().HasMaxLength(256);
             }
         }
 
-        private class RoleOrm : EntityTypeConfiguration<Role>
+        private class RoleOrm : RevisableEntityTypeConfiguration<Role>
         {
             internal RoleOrm()
             {
                 ToTable(typeof(Role).Name, DbSchemaName.Identity);
+
+                Property(p => p.Name).IsRequired().HasMaxLength(200);
+                Property(p => p.Description).IsMaxLength();
             }
         }
 
-        private class RoleGrantOrm : EntityTypeConfiguration<RoleGrant>
+        private class RoleGrantOrm : RevisableEntityTypeConfiguration<RoleGrant>
         {
             internal RoleGrantOrm()
             {

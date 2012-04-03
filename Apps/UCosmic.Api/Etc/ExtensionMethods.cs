@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Web;
@@ -25,6 +26,22 @@ namespace UCosmic
             return (value != null) ? HttpUtility.UrlDecode(value) : null;
         }
         
+        #endregion
+        #region Email Addresses
+
+        public static string GetEmailDomain(this string email)
+        {
+            if (email == null) throw new ArgumentNullException("email");
+
+            const char at = '@';
+            if (!email.Contains(at)) throw new InvalidOperationException(string.Format(
+                "The string '{0}' is missing its '{1}' character.", email, at));
+            if (email.IndexOf(at) != email.LastIndexOf(at)) throw new InvalidOperationException(string.Format(
+                "The string '{0}' has more than one '{1}' characters.", email, at));
+
+            return email.Substring(email.IndexOf(at));
+        }
+
         #endregion
         #region Template Formatting
 

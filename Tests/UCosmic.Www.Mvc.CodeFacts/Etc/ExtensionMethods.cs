@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
 using MvcContrib.TestHelper;
-using Rhino.Mocks;
 using Should;
 
 namespace UCosmic.Www.Mvc
@@ -28,6 +27,11 @@ namespace UCosmic.Www.Mvc
                 default:
                     return string.Format("~/{0}", url);
             }
+        }
+
+        public static string ToUrlHelperResult(this string url)
+        {
+            return url.ToAppRelativeUrl().Substring(1);
         }
 
         public static string AddQueryString(this string url, string format, params object[] values)
@@ -220,9 +224,8 @@ namespace UCosmic.Www.Mvc
 
         public string Url()
         {
-            var builder = new TestControllerBuilder();
+            var builder = ReuseMock.TestControllerBuilder(ControllerCustomization.ForUrlHelper);
             var context = new RequestContext(builder.HttpContext, new RouteData());
-            context.HttpContext.Response.Stub(x => x.ApplyAppPathModifier(null)).IgnoreArguments().Do(new Func<string, string>(s => s)).Repeat.Any();
 
             var routeValues = new RouteValueDictionary();
             if (!string.IsNullOrWhiteSpace(_area))

@@ -398,10 +398,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     EmailAddress = null,
                 };
-                var di = new Mock<IInjectDependencies>();
+                var di = new Mock<IServiceProvider>();
                 var entityQueries = new Mock<IQueryEntities>();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
-                DependencyInjector.SetInjector(di.Object);
+                DependencyInjector.Set(di.Object);
                 var controller = new SignUpController(null, null, null, null, null);
 
                 // act 
@@ -433,7 +433,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     OfficialName = "Test Establishment 6",
                     IsMember = true,
                 };
-                var di = new Mock<IInjectDependencies>();
+                var di = new Mock<IServiceProvider>();
                 var entityQueries = new Mock<IQueryEntities>().Initialize();
                 var memberSigner = new Mock<ISignMembers>();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
@@ -444,7 +444,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     .Returns(new Person[] { }.AsQueryable);
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == model.EmailAddress)))
                     .Returns(false);
-                DependencyInjector.SetInjector(di.Object);
+                DependencyInjector.Set(di.Object);
                 var controller = new SignUpController(null, null, null, null, null);
 
                 // act 
@@ -1880,12 +1880,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Token = Guid.NewGuid(),
                     SecretCode = null,
                 };
-                var di = new Mock<IInjectDependencies>();
+                var di = new Mock<IServiceProvider>();
                 var entityQueries = new Mock<IQueryEntities>();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.People)
                         .Returns(new Person[] {}.AsQueryable);
-                DependencyInjector.SetInjector(di.Object);
+                DependencyInjector.Set(di.Object);
                 var controller = new SignUpController(null, null, null, null, null);
 
                 // act 
@@ -1931,12 +1931,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 };
 
                 #endregion
-                var di = new Mock<IInjectDependencies>();
+                var di = new Mock<IServiceProvider>();
                 var entityQueries = new Mock<IQueryEntities>().Initialize();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable);
-                DependencyInjector.SetInjector(di.Object);
+                DependencyInjector.Set(di.Object);
                 var controller = new SignUpController(null, null, null, null, null);
 
                 // act 
@@ -2839,7 +2839,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 // arrange
                 var token = Guid.NewGuid();
-                const string defaultSignInUrl = "default sign in url";
                 var model = new CreatePasswordForm
                 {
                     Password = "password",
@@ -2880,7 +2879,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var memberSigner = new Mock<ISignMembers>();
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value))).Returns(false);
                 memberSigner.Setup(m => m.SignUp(emailAddress.Value, model.Password));
-                memberSigner.Setup(p => p.DefaultSignedInUrl).Returns(defaultSignInUrl);
                 var commander = new Mock<ICommandObjects>();
                 var controller = new SignUpController(entityQueries.Object, commander.Object, null, null, memberSigner.Object);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;

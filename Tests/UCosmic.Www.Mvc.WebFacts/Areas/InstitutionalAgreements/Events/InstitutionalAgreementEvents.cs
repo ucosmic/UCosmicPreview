@@ -26,7 +26,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
                     context.InstitutionalAgreements.Remove(agreement);
                     context.SaveChanges();
                 }
-                var uc = context.Establishments.ByEmailDomain("@uc.edu");
+                var uc = context.Establishments.ByEmail("@uc.edu");
                 agreement = new InstitutionalAgreement
                 {
                     EntityId = entityId,
@@ -63,7 +63,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
                     context.InstitutionalAgreements.Remove(agreement);
                     context.SaveChanges();
                 }
-                var uc = context.Establishments.ByEmailDomain("@uc.edu");
+                var uc = context.Establishments.ByEmail("@uc.edu");
                 agreement = new InstitutionalAgreement
                 {
                     EntityId = entityId,
@@ -97,7 +97,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
                     context.InstitutionalAgreements.Remove(agreement);
                     context.SaveChanges();
                 }
-                var uc = context.Establishments.ByEmailDomain("@uc.edu");
+                var uc = context.Establishments.ByEmail("@uc.edu");
                 agreement = new InstitutionalAgreement
                 {
                     EntityId = entityId,
@@ -134,7 +134,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
                     context.InstitutionalAgreements.Remove(agreement);
                     context.SaveChanges();
                 }
-                var uc = context.Establishments.ByEmailDomain("@uc.edu");
+                var uc = context.Establishments.ByEmail("@uc.edu");
                 agreement = new InstitutionalAgreement
                 {
                     EntityId = entityId,
@@ -171,7 +171,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
                     context.InstitutionalAgreements.Remove(agreement);
                     context.SaveChanges();
                 }
-                var uc = context.Establishments.ByEmailDomain("@uc.edu");
+                var uc = context.Establishments.ByEmail("@uc.edu");
                 agreement = new InstitutionalAgreement
                 {
                     EntityId = entityId,

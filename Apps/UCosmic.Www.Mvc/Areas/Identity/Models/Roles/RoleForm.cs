@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models.Roles
 {
-    //[UniqueRoleName( // check the role name to make sure it is unique
-    //    ErrorMessage = "There is already another role in the database named '{0}'. Please choose a unique role name.")]
-    public class RoleForm
+    public class RoleForm : IReturnUrl
     {
         public RoleForm()
         {

@@ -1,4 +1,3 @@
-using UCosmic.Domain.Identity;
 using UCosmic.Orm;
 
 namespace UCosmic.Seeders
@@ -10,8 +9,9 @@ namespace UCosmic.Seeders
         public void Seed(UCosmicContext context)
         {
             new RolePreview4Seeder().Seed(context);
-            new RolePreview5Seeder().Seed(context);
             new RoleDecember2011Preview2Seeder().Seed(context);
+
+            context.SaveChanges();
         }
 
         private class RoleDecember2011Preview2Seeder : BaseRoleSeeder
@@ -23,45 +23,14 @@ namespace UCosmic.Seeders
                 Context = context;
 
                 // add authentication agent
-                var authenticationAgent = Context.Roles.ByName(RoleName.AuthenticationAgent);
-                if (authenticationAgent == null)
-                {
-                    EnsureRole(RoleName.AuthenticationAgent,
-                        "Authentication Agents can sign in as any user, regardless of establishment."
-                    );
-                    Context.SaveChanges();
-                }
+                EnsureRole(RoleName.AuthenticationAgent,
+                    "Authentication Agents can sign in as any user, regardless of establishment."
+                );
 
                 // add establishment place editor
-                var establishmentLocationAgent = Context.Roles.ByName(RoleName.EstablishmentLocationAgent);
-                if (establishmentLocationAgent == null)
-                {
-                    EnsureRole(RoleName.EstablishmentLocationAgent,
-                        "Establishment Location Agents can modify location information for any establishment."
-                    );
-                    Context.SaveChanges();
-                }
-            }
-        }
-
-        private class RolePreview5Seeder : BaseRoleSeeder
-        {
-            public override void Seed(UCosmicContext context)
-            {
-                if (WebConfig.IsDeployedToCloud) return;
-
-                Context = context;
-
-                //// rename authorization executive to authorization agent
-                //var roleFinder = new RoleFinder(Context);
-                ////var authorizationAgent = Context.Roles.ByName("Authorization Executive");
-                //var authorizationAgent = roleFinder.FindOne(RoleBy.Name("Authorization Executive").ForInsertOrUpdate());
-                //if (authorizationAgent == null) return;
-
-                //authorizationAgent.Name = RoleName.AuthorizationAgent;
-                //authorizationAgent.Description =
-                //    "Authorization Agents can control the roles and role grants to any user, regardless of establishment.";
-                //Context.SaveChanges();
+                EnsureRole(RoleName.EstablishmentLocationAgent,
+                    "Establishment Location Agents can modify location information for any establishment."
+                );
             }
         }
 

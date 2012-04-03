@@ -15,7 +15,7 @@ namespace UCosmic.Orm
             modelBuilder.Configurations.Add(new PlaceNameOrm());
         }
 
-        private class PlaceOrm : EntityTypeConfiguration<Place>
+        private class PlaceOrm : RevisableEntityTypeConfiguration<Place>
         {
             internal PlaceOrm()
             {
@@ -27,7 +27,8 @@ namespace UCosmic.Orm
                     .Map(x => x.MapKey("ParentId"))
                     .WillCascadeOnDelete(false);
 
-                // name complex type properties
+                // name properties
+                Property(p => p.OfficialName).IsRequired().HasMaxLength(200);
                 Property(p => p.Center.Latitude).HasColumnName("Latitude");
                 Property(p => p.Center.Longitude).HasColumnName("Longitude");
                 Property(p => p.BoundingBox.Northeast.Latitude).HasColumnName("NorthLatitude");
@@ -57,15 +58,17 @@ namespace UCosmic.Orm
             }
         }
 
-        private class PlaceNameOrm : EntityTypeConfiguration<PlaceName>
+        private class PlaceNameOrm : RevisableEntityTypeConfiguration<PlaceName>
         {
             internal PlaceNameOrm()
             {
                 ToTable(typeof(PlaceName).Name, DbSchemaName.Places);
 
-                // map varchar (non-unicode) columns
+                // map properties
                 Property(p => p.AsciiEquivalent).IsUnicode(false);
-                Property(p => p.TranslationToHint).IsUnicode(false);
+                Property(p => p.TranslationToHint).IsUnicode(false).HasMaxLength(10);
+                Property(p => p.Text).IsRequired().HasMaxLength(250);
+                Property(p => p.AsciiEquivalent).HasMaxLength(250);
 
                 // PlaceName * <---> 1 Place
                 HasRequired(d => d.NameFor)

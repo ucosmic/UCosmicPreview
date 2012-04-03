@@ -50,8 +50,9 @@
     <OutputPath>bin\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\..\packages\AutoMapper.2.0.0\lib\net40-client\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=2.1.266.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\AutoMapper.2.1.266\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Elmah, Version=1.2.14318.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -64,11 +65,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=3.3.1.0, Culture=neutral, PublicKeyToken=a82054b837897c66, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\FluentValidation.3.3.1.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc, Version=3.3.1.0, Culture=neutral, PublicKeyToken=a82054b837897c66, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\FluentValidation.MVC3.3.3.1.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ApplicationServer.Caching.Client, Version=101.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\WindowsAzure.Caching.1.6.0.0\lib\net35-full\Microsoft.ApplicationServer.Caching.Client.dll</HintPath>
+      <HintPath>..\..\Etc\Microsoft.ApplicationServer.Caching.Client.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ApplicationServer.Caching.Core, Version=101.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\WindowsAzure.Caching.1.6.0.0\lib\net35-full\Microsoft.ApplicationServer.Caching.Core.dll</HintPath>
+      <HintPath>..\..\Etc\Microsoft.ApplicationServer.Caching.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -80,10 +89,11 @@
       <HintPath>..\..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.DistributedCache, Version=101.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\WindowsAzure.Caching.1.6.0.0\lib\net35-full\Microsoft.Web.DistributedCache.dll</HintPath>
+      <HintPath>..\..\Etc\Microsoft.Web.DistributedCache.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\..\packages\Mvc2Futures.2.0.50217.0\lib\Microsoft.Web.Mvc.dll</HintPath>
@@ -113,16 +123,20 @@
     <Reference Include="NGeo">
       <HintPath>..\..\packages\NGeo.1.3.1\lib\net40\NGeo.dll</HintPath>
     </Reference>
-    <Reference Include="PKCS12ProtectedConfigurationProvider, Version=1.0.0.0, Culture=neutral, PublicKeyToken=34da007ac91f901d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Unpackaged\PKCS12ProtectedConfigurationProvider.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="PKCS12ProtectedConfigurationProvider">
+      <HintPath>..\..\Etc\PKCS12ProtectedConfigurationProvider.dll</HintPath>
     </Reference>
     <Reference Include="Pluralize">
       <HintPath>..\..\packages\Pluralizer.0.2.1\lib\net40\Pluralize.dll</HintPath>
     </Reference>
     <Reference Include="Pluralize.Mvc">
       <HintPath>..\..\packages\Pluralizer.Mvc.0.2.2\lib\net40\Pluralize.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector">
+      <HintPath>..\..\packages\SimpleInjector.1.4.0.12049\lib\net35\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Extensions">
+      <HintPath>..\..\packages\SimpleInjector.Extensions.1.4.1.12070\lib\net35\SimpleInjector.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Services.Client" />
@@ -176,19 +190,35 @@
     <Reference Include="Unity.Mvc3">
       <HintPath>..\..\packages\Unity.Mvc3.1.1\lib\Unity.Mvc3.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Helpers\SimpleInjectorMVC3.cs" />
+    <Compile Include="Helpers\SimpleInjectorMVC3Extensions.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Common\Controllers\ErrorsController.cs" />
     <Compile Include="Areas\Common\Controllers\FeaturesController.cs" />
     <Compile Include="Areas\Common\Controllers\HealthController.cs" />
     <Compile Include="Areas\Common\Controllers\NavigationController.cs" />
     <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Controllers\Saml2MetadataController.cs" />
+    <Compile Include="Areas\Identity\Mappers\SignOnModelMapper.cs" />
+    <Compile Include="Areas\Identity\Models\Saml2Metadata\Saml2EntityDescriptorModel.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\Saml2IntegrationInfo.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignOnController.cs" />
+    <Compile Include="Areas\Identity\Mappers\SignOnRouteMapper.cs" />
     <Compile Include="Areas\Identity\Models\Password\ForgotPasswordEmailAttribute.cs" />
     <Compile Include="Areas\Identity\Models\Roles\NoDuplicateGrantsAttribute.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\SignOnBeginForm.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\SignOnEmailAddressValidator.cs" />
+    <Compile Include="Areas\Identity\Models\SignOn\SignOnBeginFormValidator.cs" />
+    <Compile Include="Areas\Identity\Services\RolesServices.cs" />
+    <Compile Include="Areas\Identity\Services\SignOnServices.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsRouteMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsModelMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\PublicSearchModelMapper.cs" />
@@ -241,7 +271,7 @@
     <Compile Include="Identity.RolesController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Identity.Saml2Controller.generated.cs">
+    <Compile Include="Identity.Saml2MetadataController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Identity.SelfController.generated.cs">
@@ -251,6 +281,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Identity.SignInController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.SignOnController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Identity.SignUpController.generated.cs">
@@ -292,7 +325,7 @@
     <Compile Include="Areas\Establishments\Models\ManagementForms\EstablishmentForm.cs" />
     <Compile Include="Areas\Establishments\Models\ManagementForms\EstablishmentSearchResult.cs" />
     <Compile Include="Areas\Identity\Mappers\SelfModelMapper.cs" />
-    <Compile Include="Areas\Identity\Mappers\Saml2RouteMapper.cs" />
+    <Compile Include="Areas\Identity\Mappers\Saml2MetadataRouteMapper.cs" />
     <Compile Include="Areas\Identity\Mappers\SelfRouteMapper.cs" />
     <Compile Include="Areas\Identity\Mappers\RolesModelMapper.cs" />
     <Compile Include="Areas\Identity\Mappers\RolesRouteMapper.cs" />
@@ -306,7 +339,6 @@
     <Compile Include="Areas\Identity\Controllers\RolesController.cs" />
     <Compile Include="Areas\Identity\Controllers\EmailConfirmationController.cs" />
     <Compile Include="Areas\Identity\Controllers\PasswordController.cs" />
-    <Compile Include="Areas\Identity\Controllers\Saml2Controller.cs" />
     <Compile Include="Areas\Identity\Controllers\SelfController.cs" />
     <Compile Include="Areas\Identity\Controllers\SignUpController.cs" />
     <Compile Include="Areas\Identity\IdentityAreaRegistration.cs" />
@@ -945,6 +977,11 @@
     <Content Include="scripts\ucosmic.js" />
     <Content Include="Areas\InstitutionalAgreements\Views\PublicSearch\_no-context.cshtml" />
     <Content Include="Areas\Common\Views\Features\february-2012-preview-2.cshtml" />
+    <Content Include="Areas\Identity\Views\SignOn\sign-on.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnBeginForm.cshtml" />
+    <Content Include="Areas\Identity\Views\SignOn\providers.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnEmailAddress.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnPassword.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />
@@ -983,6 +1020,7 @@
       <DependentUpon>web.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
     </Content>
+    <None Include="T4MVC.tt.settings.t4" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\mail\" />
@@ -1078,7 +1116,7 @@
     <Content Include="Areas\Identity\Views\SignIn\nav.cshtml" />
     <Content Include="Areas\Identity\Views\SignIn\sign-in-as.cshtml" />
     <Content Include="Areas\Identity\Views\SignIn\sign-in.cshtml" />
-    <Content Include="Areas\Identity\Views\SignIn\sign-on-status.cshtml" />
+    <Content Include="Areas\Identity\Views\SignIn\_sign-on-status.cshtml" />
     <Content Include="Areas\Identity\Views\SignIn\sign-out.cshtml" />
     <Content Include="Areas\Identity\Views\Roles\browse.cshtml" />
     <Content Include="Areas\Identity\Views\Roles\form.cshtml" />
@@ -1098,14 +1136,7 @@
     <Content Include="Areas\Identity\Views\Password\forgot-password.cshtml" />
     <Content Include="Areas\Identity\Views\Password\reset-password-expired.cshtml" />
     <Content Include="Areas\Identity\Views\Password\reset-password.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2\Artifact.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2\ComponentSpaceSignOn.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2\Index.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2\Metadata.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2\Post.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2\Redirect.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2\SignOffSuccess.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2\SignOnSuccess.cshtml" />
+    <Content Include="Areas\Identity\Views\Saml2Metadata\Index.cshtml" />
     <Content Include="Areas\Identity\Views\Self\change-email-spelling-modal.cshtml" />
     <Content Include="Areas\Identity\Views\Self\change-email-spelling.cshtml" />
     <Content Include="Areas\Identity\Views\Self\DisplayTemplates\AffiliationInfo.cshtml" />
@@ -1198,7 +1229,6 @@
       <DependentUpon>web.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
     </Content>
-    <None Include="T4MVC.tt.settings.t4" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

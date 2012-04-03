@@ -1,47 +1,24 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 
 namespace UCosmic
 {
     // NOTE: Service Locator pattern should be avoided in most places. Try to use constructor injection instead.
-    public class DependencyInjector
+    public static class DependencyInjector
     {
-        private IInjectDependencies _current = new DefaultDependencyInjector();
-        private static readonly DependencyInjector Instance = new DependencyInjector();
+        private static IServiceProvider _current = new DefaultDependencyInjector();
 
-        static DependencyInjector()
-        {
-            Instance = new DependencyInjector();
-        }
-
-        private DependencyInjector()
-        {
-            _current = new DefaultDependencyInjector();
-        }
-
-        public static void SetInjector(IInjectDependencies injector)
-        {
-            Instance.InnerSetInjector(injector);
-        }
-
-        private void InnerSetInjector(IInjectDependencies injector)
+        public static void Set(IServiceProvider injector)
         {
             if (injector == null) throw new ArgumentNullException("injector");
             _current = injector;
         }
 
-        public static IInjectDependencies Current
-        {
-            get { return Instance.InnerCurrent; }
-        }
-
-        private IInjectDependencies InnerCurrent
+        public static IServiceProvider Current
         {
             get { return _current; }
         }
 
-        private class DefaultDependencyInjector : IInjectDependencies
+        private class DefaultDependencyInjector : IServiceProvider
         {
             public object GetService(Type serviceType)
             {
@@ -53,11 +30,6 @@ namespace UCosmic
                 {
                     return null;
                 }
-            }
-
-            public IEnumerable<object> GetServices(Type serviceType)
-            {
-                return Enumerable.Empty<object>();
             }
         }
     }

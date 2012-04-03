@@ -46,6 +46,7 @@ Packages/
 #Ignore Azure build csdef & Pubxml files
 ServiceDefinition.build.csdef
 *.azurePubxml
+UCosmic.Www.Mvc.Publish.xml
 
 #Allow R# .DotSettings
 !*.csproj.DotSettings

@@ -63,7 +63,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public class ActionNamesClass {
             public readonly string SignIn = "sign-in";
             public readonly string SignOut = "sign-out";
-            public readonly string SignOnStatus = "sign-on-status";
             public readonly string SignInAs = "sign-in-as";
             public readonly string UndoSignInAs = "undo-sign-in-as";
         }
@@ -72,7 +71,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public class ActionNameConstants {
             public const string SignIn = "sign-in";
             public const string SignOut = "sign-out";
-            public const string SignOnStatus = "sign-on-status";
             public const string SignInAs = "sign-in-as";
             public const string UndoSignInAs = "undo-sign-in-as";
         }
@@ -83,10 +81,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
+            public readonly string _sign_on_status = "~/Areas/Identity/Views/SignIn/_sign-on-status.cshtml";
             public readonly string nav = "~/Areas/Identity/Views/SignIn/nav.cshtml";
             public readonly string sign_in_as = "~/Areas/Identity/Views/SignIn/sign-in-as.cshtml";
             public readonly string sign_in = "~/Areas/Identity/Views/SignIn/sign-in.cshtml";
-            public readonly string sign_on_status = "~/Areas/Identity/Views/SignIn/sign-on-status.cshtml";
             public readonly string sign_out = "~/Areas/Identity/Views/SignIn/sign-out.cshtml";
         }
     }
@@ -110,11 +108,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public override System.Web.Mvc.ActionResult SignOut(string returnUrl) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.SignOut);
             callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.PartialViewResult SignOnStatus() {
-            var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.SignOnStatus);
             return callInfo;
         }
 

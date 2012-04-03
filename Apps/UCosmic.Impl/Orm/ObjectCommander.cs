@@ -44,9 +44,11 @@ namespace UCosmic.Orm
             {
                 return UnitOfWork.SaveChanges();
             }
-            catch(DbEntityValidationException ex)
+            catch (DbEntityValidationException ex)
             {
+                // ReSharper disable UnusedVariable
                 var validationErrors = ex.EntityValidationErrors;
+                // ReSharper restore UnusedVariable
                 throw;
             }
         }

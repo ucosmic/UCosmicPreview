@@ -29,8 +29,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private readonly ICommandObjects _objectCommander;
         public const string ConfirmationTokenKey = "ConfirmationToken";
 
-        public SignUpController(IQueryEntities entityQueries, ICommandObjects objectCommander,
-            ISendEmails emailSender, IManageConfigurations configurationManager, ISignMembers memberSigner)
+        public SignUpController(IQueryEntities entityQueries
+            , ICommandObjects objectCommander
+            , ISendEmails emailSender
+            , IManageConfigurations configurationManager
+            , ISignMembers memberSigner
+        )
         {
             _people = new PersonFinder(entityQueries);
             _establishments = new EstablishmentFinder(entityQueries);
@@ -115,9 +119,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     confirmation.Token, HttpUtility.UrlEncode(confirmation.SecretCode)), _configurationManager);
 
             // update the db and send email
-            if (person.RevisionId == 0) 
+            if (person.RevisionId == 0)
                 _objectCommander.Insert(person, true);
-            else 
+            else
                 _objectCommander.Update(person, true);
             //_people.InsertOrUpdate(person);
             //_people.UnitOfWork.SaveChanges();

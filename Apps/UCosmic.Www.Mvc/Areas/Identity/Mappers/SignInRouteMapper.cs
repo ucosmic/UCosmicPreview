@@ -40,18 +40,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             }
         }
 
-        public static class SignOnStatus
-        {
-            public const string Route = "sign-on-status.partial.html";
-            private static readonly string Action = MVC.Identity.SignIn.ActionNames.SignOnStatus;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, Route, defaults, constraints);
-            }
-        }
-
         public static class SignInAs
         {
             public const string Route = "sign-in/as";

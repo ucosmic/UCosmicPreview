@@ -1,6 +1,6 @@
 ﻿namespace UCosmic.Domain.Places
 {
-    public class GeoPlanetPlaceBelongTo
+    public class GeoPlanetPlaceBelongTo : Entity
     {
         public int PlaceWoeId { get; set; }
         public virtual GeoPlanetPlace GeoPlanetPlace { get; set; }

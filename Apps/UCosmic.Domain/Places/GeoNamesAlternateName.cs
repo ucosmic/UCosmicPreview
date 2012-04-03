@@ -1,18 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace UCosmic.Domain.Places
+﻿namespace UCosmic.Domain.Places
 {
-    public class GeoNamesAlternateName
+    public class GeoNamesAlternateName : Entity
     {
-        [Key]
         public long AlternateNameId { get; set; }
 
         public int GeoNameId { get; set; }
 
-        [StringLength(10)]
         public string Language { get; set; }
 
-        [Required, StringLength(200)]
         public string Name { get; set; }
 
         public virtual GeoNamesToponym Toponym { get; set; }

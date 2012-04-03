@@ -200,7 +200,7 @@ namespace UCosmic.Domain.Establishments
                 public override EstablishmentSamlSignOn SamlSignOn
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

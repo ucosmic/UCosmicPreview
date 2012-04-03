@@ -4,9 +4,9 @@ using UCosmic.Domain.People;
 
 namespace UCosmic
 {
-    // ReSharper disable UnusedMember.Global
+    // ReSharper disable ClassNeverInstantiated.Global
     public class MvcEmailSender : ISendEmails
-    // ReSharper restore UnusedMember.Global
+    // ReSharper restore ClassNeverInstantiated.Global
     {
         private readonly ICommandObjects _objectCommander;
         private readonly IManageConfigurations _config;

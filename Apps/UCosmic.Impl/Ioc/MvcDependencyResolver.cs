@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace UCosmic
 {
     public class MvcDependencyResolver : IDependencyResolver
     {
-        private readonly IInjectDependencies _injector;
+        private readonly IServiceProvider _injector;
 
         public MvcDependencyResolver()
         {
@@ -20,7 +21,8 @@ namespace UCosmic
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            return _injector.GetServices(serviceType);
+            var services = _injector.GetService(typeof(IEnumerable<>).MakeGenericType(serviceType)) as IEnumerable<object>;
+            return services ?? Enumerable.Empty<object>();
         }
     }
 }

@@ -6,47 +6,30 @@ using Microsoft.Practices.Unity.Configuration;
 
 namespace UCosmic
 {
-    public class UnityDependencyInjector : IInjectDependencies
+    public class UnityDependencyInjector : IServiceProvider
     {
-        private readonly IUnityContainer _container;
+        internal readonly IUnityContainer Container;
 
         public UnityDependencyInjector()
         {
-            _container = new UnityContainer().LoadConfiguration();
+            Container = new UnityContainer().LoadConfiguration();
         }
 
         public object GetService(Type serviceType)
         {
-            try
+            if (!Container.IsRegistered(serviceType))
             {
-                if (!_container.IsRegistered(serviceType))
+                if (serviceType.IsGenericType && serviceType.GetGenericTypeDefinition() == typeof(IEnumerable<>))
                 {
-                    if (serviceType.IsAbstract || serviceType.IsInterface)
-                    {
-                        return null;
-                    }
+                    var all = Container.ResolveAll(serviceType.GetGenericArguments()[0]).ToList();
+                    if (all.Any()) return all;
                 }
-                return _container.Resolve(serviceType);
-
+                if (serviceType.IsAbstract || serviceType.IsInterface)
+                {
+                    return null;
+                }
             }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<object> GetServices(Type serviceType)
-        {
-            try
-            {
-                return _container.ResolveAll(serviceType);
-            }
-            catch (Exception)
-            {
-                return Enumerable.Empty<object>();
-            }
+            return Container.Resolve(serviceType);
         }
     }
-
-
 }

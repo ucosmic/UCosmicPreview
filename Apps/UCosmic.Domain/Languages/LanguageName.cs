@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace UCosmic.Domain.Languages
+﻿namespace UCosmic.Domain.Languages
 {
     public class LanguageName : RevisableEntity
     {
@@ -8,8 +6,6 @@ namespace UCosmic.Domain.Languages
 
         public virtual Language TranslationToLanguage { get; set; }
 
-        [Required]
-        [StringLength(150)]
         public string Text
         {
             get { return _text; }
@@ -20,21 +16,19 @@ namespace UCosmic.Domain.Languages
                     _text = null;
 
                 AsciiEquivalent = null;
-                if (!string.IsNullOrWhiteSpace(Text))
+                if (string.IsNullOrWhiteSpace(Text)) return;
+
+                var asciiEquivalent = Text.ConvertToAscii();
+                if (asciiEquivalent != null
+                    && !asciiEquivalent.Equals(Text)
+                    && !asciiEquivalent.ContainsOnlyQuestionMarksAndWhiteSpace())
                 {
-                    var asciiEquivalent = Text.ConvertToAscii();
-                    if (asciiEquivalent != null
-                        && !asciiEquivalent.Equals(Text)
-                        && !asciiEquivalent.ContainsOnlyQuestionMarksAndWhiteSpace())
-                    {
-                        AsciiEquivalent = asciiEquivalent;
-                    }
+                    AsciiEquivalent = asciiEquivalent;
                 }
             }
         }
         private string _text;
 
-        [StringLength(200)]
         public string AsciiEquivalent { get; private set; }
 
     }
