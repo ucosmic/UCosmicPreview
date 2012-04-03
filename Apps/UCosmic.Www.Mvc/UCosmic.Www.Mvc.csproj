@@ -325,7 +325,7 @@
     <Compile Include="Areas\Establishments\Models\ManagementForms\EstablishmentForm.cs" />
     <Compile Include="Areas\Establishments\Models\ManagementForms\EstablishmentSearchResult.cs" />
     <Compile Include="Areas\Identity\Mappers\SelfModelMapper.cs" />
-    <Compile Include="Areas\Identity\Mappers\Saml2RouteMapper.cs" />
+    <Compile Include="Areas\Identity\Mappers\Saml2MetadataRouteMapper.cs" />
     <Compile Include="Areas\Identity\Mappers\SelfRouteMapper.cs" />
     <Compile Include="Areas\Identity\Mappers\RolesModelMapper.cs" />
     <Compile Include="Areas\Identity\Mappers\RolesRouteMapper.cs" />
@@ -1136,14 +1136,7 @@
     <Content Include="Areas\Identity\Views\Password\forgot-password.cshtml" />
     <Content Include="Areas\Identity\Views\Password\reset-password-expired.cshtml" />
     <Content Include="Areas\Identity\Views\Password\reset-password.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2Metadata\Artifact.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2Metadata\ComponentSpaceSignOn.cshtml" />
     <Content Include="Areas\Identity\Views\Saml2Metadata\Index.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2Metadata\Metadata.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2Metadata\Post.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2Metadata\Redirect.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2Metadata\SignOffSuccess.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2Metadata\SignOnSuccess.cshtml" />
     <Content Include="Areas\Identity\Views\Self\change-email-spelling-modal.cshtml" />
     <Content Include="Areas\Identity\Views\Self\change-email-spelling.cshtml" />
     <Content Include="Areas\Identity\Views\Self\DisplayTemplates\AffiliationInfo.cshtml" />

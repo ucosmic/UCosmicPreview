@@ -7,8 +7,9 @@ namespace UCosmic.Domain.Establishments
     {
         internal static Establishment ByEmail(this IQueryable<Establishment> queryable, string email)
         {
-            var establishment = queryable.SingleOrDefault(e => e.EmailDomains.Any(d => 
-                d.Value.Equals(email.GetEmailDomain(), StringComparison.OrdinalIgnoreCase)));
+            var emailDomain = email.GetEmailDomain();
+            var establishment = queryable.SingleOrDefault(e => e.EmailDomains.Any(d =>
+                d.Value.Equals(emailDomain, StringComparison.OrdinalIgnoreCase)));
             return establishment;
         }
 

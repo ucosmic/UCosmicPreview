@@ -47,11 +47,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string Index = "Index";
+            public readonly string Development = "Development";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Index = "Index";
+            public const string Development = "Development";
         }
 
 
@@ -60,14 +62,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string Artifact = "~/Areas/Identity/Views/Saml2Metadata/Artifact.cshtml";
-            public readonly string ComponentSpaceSignOn = "~/Areas/Identity/Views/Saml2Metadata/ComponentSpaceSignOn.cshtml";
             public readonly string Index = "~/Areas/Identity/Views/Saml2Metadata/Index.cshtml";
-            public readonly string Metadata = "~/Areas/Identity/Views/Saml2Metadata/Metadata.cshtml";
-            public readonly string Post = "~/Areas/Identity/Views/Saml2Metadata/Post.cshtml";
-            public readonly string Redirect = "~/Areas/Identity/Views/Saml2Metadata/Redirect.cshtml";
-            public readonly string SignOffSuccess = "~/Areas/Identity/Views/Saml2Metadata/SignOffSuccess.cshtml";
-            public readonly string SignOnSuccess = "~/Areas/Identity/Views/Saml2Metadata/SignOnSuccess.cshtml";
         }
     }
 
@@ -77,6 +72,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
 
         public override System.Web.Mvc.ViewResult Index(string contentType) {
             var callInfo = new T4MVC_ViewResult(Area, Name, ActionNames.Index);
+            callInfo.RouteValueDictionary.Add("contentType", contentType);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ViewResult Development(string contentType) {
+            var callInfo = new T4MVC_ViewResult(Area, Name, ActionNames.Development);
             callInfo.RouteValueDictionary.Add("contentType", contentType);
             return callInfo;
         }

@@ -25,8 +25,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [HttpGet]
         [ActionName("sign-on")]
         [OpenTopTab(TopTabName.Home)]
-        public virtual ViewResult Begin(string returnUrl)
+        public virtual ActionResult Begin(string returnUrl)
         {
+            if (!string.IsNullOrWhiteSpace(returnUrl))
+            {
+                var correctedReturnUrl = GetReturnUrl(returnUrl);
+                if (correctedReturnUrl != returnUrl)
+                    return RedirectToAction(MVC.Identity.SignOn.Begin(correctedReturnUrl));
+            }
+
             var model = new SignOnBeginForm { ReturnUrl = returnUrl };
             return View(model);
         }
@@ -38,7 +45,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (model.EmailAddress.EndsWith("@testshib.org", StringComparison.OrdinalIgnoreCase))
+                if (model.EmailAddress.EndsWith("@testshib.org", StringComparison.OrdinalIgnoreCase)
+                    || model.EmailAddress.EndsWith("@uc.edu", StringComparison.OrdinalIgnoreCase))
                 {
                     var samlSignOn = _services.Establishments.GetSamlSignOnFor(model.EmailAddress);
                     _services.Saml2ServiceProvider.SendAuthnRequest(samlSignOn.SsoLocation, samlSignOn.SsoBinding.AsSaml2SsoBinding(),

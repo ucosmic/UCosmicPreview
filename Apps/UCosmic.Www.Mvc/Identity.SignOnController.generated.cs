@@ -33,8 +33,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ViewResult Begin() {
-            return new T4MVC_ViewResult(Area, Name, ActionNames.Begin);
+        public System.Web.Mvc.ActionResult Begin() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Begin);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -78,8 +78,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public class T4MVC_SignOnController: UCosmic.Www.Mvc.Areas.Identity.Controllers.SignOnController {
         public T4MVC_SignOnController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ViewResult Begin(string returnUrl) {
-            var callInfo = new T4MVC_ViewResult(Area, Name, ActionNames.Begin);
+        public override System.Web.Mvc.ActionResult Begin(string returnUrl) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Begin);
             callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
             return callInfo;
         }

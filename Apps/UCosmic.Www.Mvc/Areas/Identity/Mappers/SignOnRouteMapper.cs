@@ -11,7 +11,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouteMapper.RegisterRoutes(typeof(SignOnRouteMapper), context, Area, Controller);
+            if (!WebConfig.IsDeployedToCloud)
+                DefaultRouteMapper.RegisterRoutes(typeof(SignOnRouteMapper), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 using UCosmic.Www.Mvc.Areas.Identity.Models.SignOn;
 using UCosmic.Www.Mvc.Areas.Identity.Services;
 using UCosmic.Www.Mvc.Controllers;
+using Moq;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -67,15 +69,22 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsView_WhenReturnUrlArg_IsNull()
             {
                 var services = CreateSignOnServices();
-                var controller = new SignOnController(services);
+                var builder = ReuseMock.TestControllerBuilder(ControllerCustomization.ForUrlHelper);
+                var requestContext = new RequestContext(builder.HttpContext, new RouteData());
+                var controller = new SignOnController(services)
+                {
+                    Url = new UrlHelper(requestContext)
+                };
 
                 var result = controller.Begin(null as string);
 
                 result.ShouldNotBeNull();
-                result.ViewName.ShouldEqual(string.Empty);
-                result.Model.ShouldNotBeNull();
-                result.Model.ShouldBeType<SignOnBeginForm>();
-                var form = (SignOnBeginForm)result.Model;
+                result.ShouldBeType<ViewResult>();
+                var viewResult = (ViewResult) result;
+                viewResult.ViewName.ShouldEqual(string.Empty);
+                viewResult.Model.ShouldNotBeNull();
+                viewResult.Model.ShouldBeType<SignOnBeginForm>();
+                var form = (SignOnBeginForm)viewResult.Model;
                 form.EmailAddress.ShouldBeNull();
                 form.ReturnUrl.ShouldBeNull();
             }
@@ -90,10 +99,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Begin(returnUrl);
 
                 result.ShouldNotBeNull();
-                result.ViewName.ShouldEqual(string.Empty);
-                result.Model.ShouldNotBeNull();
-                result.Model.ShouldBeType<SignOnBeginForm>();
-                var form = (SignOnBeginForm)result.Model;
+                result.ShouldBeType<ViewResult>();
+                var viewResult = (ViewResult)result;
+                viewResult.ViewName.ShouldEqual(string.Empty);
+                viewResult.Model.ShouldNotBeNull();
+                viewResult.Model.ShouldBeType<SignOnBeginForm>();
+                var form = (SignOnBeginForm)viewResult.Model;
                 form.EmailAddress.ShouldBeNull();
                 form.ReturnUrl.ShouldEqual(returnUrl);
             }
@@ -102,16 +113,25 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsView_WhenReturnUrlArg_IsNonEmptyString()
             {
                 const string returnUrl = "/path/to/resource";
+                var userSigner = new Mock<ISignUsers>();
+                userSigner.Setup(p => p.DefaultSignedOnUrl).Returns("/my/profile");
                 var services = CreateSignOnServices();
-                var controller = new SignOnController(services);
+                var builder = ReuseMock.TestControllerBuilder(ControllerCustomization.ForUrlHelper);
+                var requestContext = new RequestContext(builder.HttpContext, new RouteData());
+                var controller = new SignOnController(services)
+                {
+                    Url = new UrlHelper(requestContext)
+                };
 
                 var result = controller.Begin(returnUrl);
 
                 result.ShouldNotBeNull();
-                result.ViewName.ShouldEqual(string.Empty);
-                result.Model.ShouldNotBeNull();
-                result.Model.ShouldBeType<SignOnBeginForm>();
-                var form = (SignOnBeginForm)result.Model;
+                result.ShouldBeType<ViewResult>();
+                var viewResult = (ViewResult)result;
+                viewResult.ViewName.ShouldEqual(string.Empty);
+                viewResult.Model.ShouldNotBeNull();
+                viewResult.Model.ShouldBeType<SignOnBeginForm>();
+                var form = (SignOnBeginForm)viewResult.Model;
                 form.EmailAddress.ShouldBeNull();
                 form.ReturnUrl.ShouldEqual(returnUrl);
             }
@@ -181,6 +201,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static SignOnServices CreateSignOnServices()
         {
             return new SignOnServices(null, null, null, null, null, null, null);
+        }
+
+        private static SignOnServices CreateSignOnServices(ISignUsers userSigner)
+        {
+            return new SignOnServices(null, null, null, null, userSigner, null, null);
         }
 
     }
