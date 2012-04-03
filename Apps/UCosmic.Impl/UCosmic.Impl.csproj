@@ -101,7 +101,6 @@
     <Compile Include="Ioc\InjectedRoleProvider.cs" />
     <Compile Include="Ioc\SimpleDependencyInjector.cs" />
     <Compile Include="Ioc\SimpleHttpContextLifestyleExtensions.cs" />
-    <Compile Include="Ioc\SimpleValidatorFactory.cs" />
     <Compile Include="Ioc\UnityValidatorFactory.cs" />
     <Compile Include="Orm\CreateInitializer.cs" />
     <Compile Include="Orm\DropAlwaysInitializer.cs" />

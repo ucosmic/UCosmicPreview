@@ -79,6 +79,9 @@
     <Reference Include="Should, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Should.1.1.12.0\lib\Should.dll</HintPath>
     </Reference>
+    <Reference Include="SimpleInjector, Version=1.4.0.12049, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SimpleInjector.1.4.0.12049\lib\net35\SimpleInjector.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -122,6 +125,7 @@
     <Compile Include="Areas\Identity\Models\SignUp\ConfirmEmailFormFacts.cs" />
     <Compile Include="Etc\AuthorizationProviderFacts.cs" />
     <Compile Include="Etc\ReuseMock.cs" />
+    <Compile Include="Etc\SimpleDependencyInjectorFacts.cs" />
     <Compile Include="Models\AutoMapperConfigFacts.cs" />
     <Compile Include="Etc\ExtensionMethods.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistrationFacts.cs" />
