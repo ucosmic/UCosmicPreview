@@ -17,17 +17,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
         public class TheClass
         {
             [TestMethod]
-            public void IsDecoratedWith_Validator_Using_SignOnBeginFormValidator()
-            {
-                var attribute = Attribute.GetCustomAttribute(typeof(SignOnBeginForm), typeof(ValidatorAttribute));
-
-                attribute.ShouldNotBeNull();
-                attribute.ShouldBeType<ValidatorAttribute>();
-                var validatorAttribute = (ValidatorAttribute) attribute;
-                validatorAttribute.ValidatorType.ShouldEqual(typeof(SignOnBeginFormValidator));
-            }
-
-            [TestMethod]
             public void Implements_IReturnUrl()
             {
                 var model = new SignOnBeginForm();
