@@ -19,6 +19,7 @@ namespace UCosmic.Orm
                 ToTable(typeof(User).Name, DbSchemaName.Identity);
 
                 Property(u => u.UserName).IsRequired().HasMaxLength(256);
+                Property(u => u.SubjectNameId).HasMaxLength(256);
             }
         }
 

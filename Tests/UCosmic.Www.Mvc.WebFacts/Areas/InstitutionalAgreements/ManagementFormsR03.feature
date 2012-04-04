@@ -1,5 +1,4 @@
-﻿@InstAgrForms
-@InstAgrFormsR03
+﻿@InstAgrForms @InstAgrFormsR03 @InstAgrFormsFreshTestAgreementUc01
 Feature:  Institutional Agreement Management Preview Revision 3
 		  In order to know which people are responsible for my Institutional Agreements
 		  As an Institutional Agreement Manager

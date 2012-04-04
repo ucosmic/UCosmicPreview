@@ -96,20 +96,21 @@ namespace UCosmic.Seeders
             private void Seed(string url, double latitude, double longitude)
             {
                 var est = Context.Establishments.Single(e => e.WebsiteUrl == url);
-                if (!est.Location.Center.HasValue)
+                if (est.Location.Center.HasValue) return;
+
+                est.Location.Center = new Coordinates { Latitude = latitude, Longitude = longitude };
+                var result = _placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
+                if (result.WoeId.HasValue)
                 {
-                    var result = _placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                    if (!result.WoeId.HasValue) return;
                     var place = _placeFactory.FromWoeId(result.WoeId.Value);
                     var places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                     places.Add(place);
-                    est.Location.Center = new Coordinates { Latitude = latitude, Longitude = longitude };
                     est.Location.BoundingBox = place.BoundingBox;
                     if (est.Location.Places != null)
                         est.Location.Places.Clear();
                     est.Location.Places = places;
-                    Context.SaveChanges();
                 }
+                Context.SaveChanges();
             }
         }
 

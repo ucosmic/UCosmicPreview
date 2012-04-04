@@ -41,7 +41,7 @@ namespace UCosmic.Www.Mvc.WebDriver
                 {
                     // sometimes, clicking a button or hyperlink does not work in IE / Chrome
                     // solution is to click only for FF, and use enter key for IE / Chrome
-                    if (link.Browser().IsInternetExplorer())
+                    if (link.Browser().IsInternetExplorer() || link.Browser().IsFirefox())
                     {
                         link.SendKeys(Keys.Enter);
                     }
