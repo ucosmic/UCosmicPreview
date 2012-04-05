@@ -17,7 +17,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
         [BeforeScenario("InstAgrFormsFreshTestAgreementUc01")]
         public static void FreshTestAgreementUc01()
         {
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 var entityId = new Guid("e8b53211-5b60-4b75-9c1a-e82f881a33a0");
                 var agreement = context.InstitutionalAgreements.Current().SingleOrDefault(a => a.EntityId == entityId);
@@ -54,7 +54,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
         [BeforeScenario("InstAgrFormsFreshTestAgreementUc02")]
         public static void FreshTestAgreementUc02()
         {
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 var entityId = new Guid("e8b53211-2222-2222-9c1a-e82f881a33a0");
                 var agreement = context.InstitutionalAgreements.Current().SingleOrDefault(a => a.EntityId == entityId);
@@ -88,7 +88,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
         [BeforeScenario("InstAgrFormsFreshTestAgreementUcGc")]
         public static void FreshTestAgreementUcGc()
         {
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 var entityId = new Guid("ccb53211-5b60-4b75-9c1a-e82f881a33a0");
                 var agreement = context.InstitutionalAgreements.Current().SingleOrDefault(a => a.EntityId == entityId);
@@ -125,7 +125,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
         [BeforeScenario("InstAgrFormsFreshTestAgreementUcFf")]
         public static void FreshTestAgreementUcFf()
         {
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 var entityId = new Guid("ffb53211-5b60-4b75-9c1a-e82f881a33a0");
                 var agreement = context.InstitutionalAgreements.Current().SingleOrDefault(a => a.EntityId == entityId);
@@ -162,7 +162,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
         [BeforeScenario("InstAgrFormsFreshTestAgreementUcIe")]
         public static void FreshTestAgreementUcIe()
         {
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 var entityId = new Guid("eeb53211-5b60-4b75-9c1a-e82f881a33a0");
                 var agreement = context.InstitutionalAgreements.Current().SingleOrDefault(a => a.EntityId == entityId);
@@ -216,7 +216,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
                 "1 Agreement Test R0316B",
                 "Agreement, UC B test",
             };
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 var agreements = context.InstitutionalAgreements.Where(a => 
                     titles.Contains(a.Title))
@@ -267,7 +267,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
 
         private static void ResetConfigurationData(string url)
         {
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 var config = context.InstitutionalAgreementConfigurations.SingleOrDefault(c =>
                     url.Equals(c.ForEstablishment.WebsiteUrl));

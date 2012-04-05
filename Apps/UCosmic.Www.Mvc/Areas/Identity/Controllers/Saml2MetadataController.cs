@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Web.Mvc;
 using UCosmic.Www.Mvc.Areas.Identity.Models.Saml2Metadata;
+using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
+    [EnforceHttps]
     public partial class Saml2MetadataController : Controller
     {
         private readonly IManageConfigurations _configurationManager;

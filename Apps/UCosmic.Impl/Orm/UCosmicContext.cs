@@ -18,14 +18,11 @@ namespace UCosmic.Orm
 {
     public class UCosmicContext : DbContext, IUnitOfWork, ICommandEntities
     {
-        public UCosmicContext()
+        public UCosmicContext(IDatabaseInitializer<UCosmicContext> initializer)
         {
-            // inject initializer if exists
-            var initializer = DependencyInjector.Current.GetService<IDatabaseInitializer<UCosmicContext>>();
+            // inject initializer if passed
             if (initializer != null)
-            {
                 Database.SetInitializer(initializer);
-            }
         }
 
         // ReSharper disable UnusedAutoPropertyAccessor.Global

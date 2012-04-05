@@ -16,7 +16,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Events
         public static void ResetSignUpData()
         {
             var membersToClear = new[] { "new@bjtu.edu.cn", "new@usil.edu.pe", "new@griffith.edu.au" };
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 foreach (var memberToClear in membersToClear)
                 {

@@ -22,7 +22,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
             if (_userContactType != null)
             {
                 // open a new database connection
-                using (var context = new UCosmicContext())
+                using (var context = new UCosmicContext(null))
                 {
                     var configuration = context.ForCurrentUserDefaultAffiliation(true);
                     if (configuration != null)

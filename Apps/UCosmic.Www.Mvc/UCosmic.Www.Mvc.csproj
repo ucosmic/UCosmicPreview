@@ -125,6 +125,7 @@
     </Reference>
     <Reference Include="PKCS12ProtectedConfigurationProvider">
       <HintPath>..\..\Etc\PKCS12ProtectedConfigurationProvider.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Pluralize">
       <HintPath>..\..\packages\Pluralizer.0.2.1\lib\net40\Pluralize.dll</HintPath>

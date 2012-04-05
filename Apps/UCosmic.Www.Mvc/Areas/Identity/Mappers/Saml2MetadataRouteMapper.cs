@@ -11,8 +11,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            if (!WebConfig.IsDeployedToCloud)
-                DefaultRouteMapper.RegisterRoutes(typeof(Saml2MetadataRouteMapper), context, Area, Controller);
+            DefaultRouteMapper.RegisterRoutes(typeof(Saml2MetadataRouteMapper), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global
@@ -23,6 +22,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             private static readonly string Action = MVC.Identity.Saml2Metadata.ActionNames.Index;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
+                if (WebConfig.IsDeployedToCloud) return;
+
                 var defaults = new { area, controller, action = Action, };
                 var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
                 context.MapRoute(null, Route, defaults, constraints);
@@ -31,7 +32,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
 
         public static class Development
         {
-            public const string Route = "sign-on/saml/2/metadata/development";
+            public const string Route = "sign-on/saml/2/metadata/develop";
             private static readonly string Action = MVC.Identity.Saml2Metadata.ActionNames.Development;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {

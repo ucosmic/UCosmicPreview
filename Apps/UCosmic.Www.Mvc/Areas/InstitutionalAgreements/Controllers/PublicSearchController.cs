@@ -51,11 +51,13 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         [NonAction]
         private IEnumerable<SelectListItem> GetHierarchySelectList(string contextEstablishmentUrl)
         {
-            var rootEstablishment = _establishments.FindOne(EstablishmentBy.WebsiteUrl(contextEstablishmentUrl));
+            var rootEstablishment = _establishments.FindOne(EstablishmentBy.WebsiteUrl(contextEstablishmentUrl)
+            );
             while (rootEstablishment.Parent != null)
                 rootEstablishment = rootEstablishment.Parent;
 
-            var childEstablishments = _agreements.FindMany(With<InstitutionalAgreement>.DefaultCriteria())
+            var childEstablishments = _agreements.FindMany(With<InstitutionalAgreement>.DefaultCriteria()
+                    .EagerLoad(a => a.Participants.Select(p => p.Establishment.Ancestors)))
                 .Where(a => a.Participants.Any(p => p.IsOwner &&
                     (p.Establishment.EntityId == rootEstablishment.EntityId ||
                     p.Establishment.Ancestors.Any(h => h.Ancestor.EntityId == rootEstablishment.EntityId))))
@@ -104,13 +106,21 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 return View(Views.no_context, ownerModels);
             }
 
-            var context = _establishments.FindOne(EstablishmentBy.WebsiteUrl(establishmentUrl));
+            var context = _establishments.FindOne(EstablishmentBy.WebsiteUrl(establishmentUrl)
+                .EagerLoad(e => e.Affiliates.Select(a => a.Person.User))
+                .EagerLoad(e => e.Ancestors)
+            );
             var isAffiliate = context.HasDefaultAffiliate(User);
             var isSupervisor = isAffiliate && User.IsInRole(RoleName.InstitutionalAgreementSupervisor);
             var isManager = isSupervisor || (isAffiliate && User.IsInRole(RoleName.InstitutionalAgreementManager));
 
             var agreements = _agreements.FindMany(
-                InstitutionalAgreementsWith.OwnedByEstablishmentUrl(establishmentUrl));
+                InstitutionalAgreementsWith.OwnedByEstablishmentUrl(establishmentUrl)
+                //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places.Select(l => l.Names)))
+                .EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places))
+                .EagerLoad(a => a.Participants.Select(p => p.Establishment.Names.Select(n => n.TranslationToLanguage)))
+                .EagerLoad(a => a.Contacts)
+            );
             if (!string.IsNullOrWhiteSpace(keyword))
             {
                 var byCountry = agreements.Where(a =>
@@ -214,7 +224,15 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             if (agreementId == Guid.Empty) return HttpNotFound();
 
-            var agreement = _agreements.FindOne(By<InstitutionalAgreement>.EntityId(agreementId));
+            var agreement = _agreements.FindOne(By<InstitutionalAgreement>.EntityId(agreementId)
+                //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Affiliates.Select(f => f.Person.User)))
+                //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places.Select(l => l.GeoPlanetPlace.Type)))
+                //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places.Select(l => l.Ancestors)))
+                //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Names.Select(n => n.TranslationToLanguage)))
+                //.EagerLoad(a => a.Participants.Select(p => p.Establishment.EmailDomains))
+                //.EagerLoad(a => a.Contacts.Select(c => c.Person))
+                //.EagerLoad(a => a.Files)
+            );
             if (agreement == null) return HttpNotFound();
 
             var owners = agreement.Participants.Where(p => p.IsOwner).Select(p => p.Establishment).ToList();

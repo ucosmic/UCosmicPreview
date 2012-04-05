@@ -74,8 +74,8 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         }
 
         [ActionName("run-establishment-import")]
-        [Authorize(Users = "ludwigd1@uc.edu,sodhiha1@uc.edu")]
-        //[Authorize(Users = "Daniel.Ludwig@uc.edu")]
+        //[Authorize(Users = "ludwigd1@uc.edu,sodhiha1@uc.edu")]
+        [Authorize(Users = "Daniel.Ludwig@uc.edu")]
         public virtual ActionResult RunEstablishmentImport()
         {
             var placeMarks = new KmlPlaceMarks(Server.MapPath(string.Format("~{0}",

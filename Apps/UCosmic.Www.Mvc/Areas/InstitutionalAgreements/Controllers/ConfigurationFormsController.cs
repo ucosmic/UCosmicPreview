@@ -36,7 +36,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             var model = new InstitutionalAgreementConfigurationForm();
 
             // connect to database
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 // find the configuration for the currently signed in user's default affiliation
                 var configuration = context.ForCurrentUserDefaultAffiliation();
@@ -81,7 +81,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (var context = new UCosmicContext())
+                    using (var context = new UCosmicContext(null))
                     {
                         // make sure configuration does not already exist
                         var configuration = context.ForCurrentUserDefaultAffiliation();
@@ -122,7 +122,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             var model = new InstitutionalAgreementConfigurationForm();
 
             // connect to database
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 // find a configuration for the currently signed in user's default affiliation establishment
                 var configuration = context.ForCurrentUserDefaultAffiliation();
@@ -154,7 +154,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             if (model != null)
             {
-                using (var context = new UCosmicContext())
+                using (var context = new UCosmicContext(null))
                 {
                     // look for current entity
                     var existingEntity = context.InstitutionalAgreementConfigurations.Current()
@@ -311,7 +311,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         public virtual PartialViewResult NewAgreementType(Guid configurationId)
         {
             var configurationRevisionId = 0;
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 var configuration = context.InstitutionalAgreementConfigurations.Current(configurationId);
                 if (configuration != null)
@@ -330,7 +330,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         public virtual PartialViewResult NewAgreementStatus(Guid configurationId)
         {
             var configurationRevisionId = 0;
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 var configuration = context.InstitutionalAgreementConfigurations.Current(configurationId);
                 if (configuration != null)
@@ -349,7 +349,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         public virtual PartialViewResult NewAgreementContactType(Guid configurationId)
         {
             var configurationRevisionId = 0;
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 var configuration = context.InstitutionalAgreementConfigurations.Current(configurationId);
                 if (configuration != null)
@@ -411,7 +411,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 buttonTitle = "Show examples",
                 source = DefaultTypes.Select(text => new AutoCompleteOption { label = text, value = text, }),
             };
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 var configuration = context.ForCurrentUserDefaultAffiliation(true);
                 if (configuration != null)
@@ -436,7 +436,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 buttonTitle = "Show examples",
                 source = DefaultStatuses.Select(text => new AutoCompleteOption { label = text, value = text, }),
             };
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 var configuration = context.ForCurrentUserDefaultAffiliation(true);
                 if (configuration != null)
@@ -461,7 +461,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 buttonTitle = "Show examples",
                 source = DefaultContactTypes.Select(text => new AutoCompleteOption { label = text, value = text, }),
             };
-            using (var context = new UCosmicContext())
+            using (var context = new UCosmicContext(null))
             {
                 var configuration = context.ForCurrentUserDefaultAffiliation(true);
                 if (configuration != null)
