@@ -119,9 +119,9 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
     public class T4MVC_PublicSearchController: UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers.PublicSearchController {
         public T4MVC_PublicSearchController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult ChangeOwner(string establishmentUrl, string keyword) {
+        public override System.Web.Mvc.ActionResult ChangeOwner(string newEstablishmentUrl, string keyword) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ChangeOwner);
-            callInfo.RouteValueDictionary.Add("establishmentUrl", establishmentUrl);
+            callInfo.RouteValueDictionary.Add("newEstablishmentUrl", newEstablishmentUrl);
             callInfo.RouteValueDictionary.Add("keyword", keyword);
             return callInfo;
         }

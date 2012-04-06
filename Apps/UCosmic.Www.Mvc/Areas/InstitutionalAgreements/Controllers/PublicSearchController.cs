@@ -74,9 +74,9 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             return selectList;
         }
 
-        public virtual ActionResult ChangeOwner(string establishmentUrl, string keyword)
+        public virtual ActionResult ChangeOwner(string newEstablishmentUrl, string keyword)
         {
-            return RedirectToAction(MVC.InstitutionalAgreements.PublicSearch.Index(establishmentUrl, keyword));
+            return RedirectToAction(MVC.InstitutionalAgreements.PublicSearch.Index(newEstablishmentUrl, keyword));
         }
 
         [OpenTopTab(TopTabName.InstitutionalAgreements)]
@@ -320,8 +320,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             const int maxResults = 15;
             var places = _places.FindMany(PlacesWith.AutoCompleteTerm(term, maxResults)
                 .EagerLoad(p => p.Names.Select(n => n.TranslationToLanguage)));
-            var placeNames = places.Select(p => (p.OfficialName.StartsWith(term, StringComparison.OrdinalIgnoreCase)) 
-                ? p.OfficialName 
+            var placeNames = places.Select(p => (p.OfficialName.StartsWith(term, StringComparison.OrdinalIgnoreCase))
+                ? p.OfficialName
                 : p.Names.First(n => n.TranslationToLanguage != null && n.TranslationToLanguage.TwoLetterIsoCode.Equals(
                         CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, StringComparison.OrdinalIgnoreCase)).Text
             ).OrderBy(s => s);

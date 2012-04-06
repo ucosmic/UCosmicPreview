@@ -37,7 +37,7 @@
         <div class="buttons col">
             <input type="submit" value="Search" data-ucosmic-not-implemented="true" />
             <span class="no-display"><a href="#" class="button-sized" data-ucosmic-not-implemented="true">
-                Advanced search</a></span>
+                Advanced</a></span>
         </div>
     </div>*@
     @using (Html.BeginForm<PublicSearchController>(c => c.Index(Model.ContextEstablishment.WebsiteUrl, null), FormMethod.Get))
@@ -61,7 +61,7 @@
             <div class="buttons col">
                 <input type="submit" value="Search" />
                 <span class="no-display"><a href="#" class="button-sized" data-ucosmic-not-implemented="true">
-                                             Advanced search</a></span>
+                    Advanced search</a></span>
             </div>
         </div>
     }
@@ -120,21 +120,21 @@
             @if (Model.HierarchySelectList.Length > 1)
             {
                 using (Html.BeginForm(
-                    MVC.InstitutionalAgreements.PublicSearch.ActionNames.ChangeOwner, 
-                    MVC.InstitutionalAgreements.PublicSearch.Name, 
-                    FormMethod.Get 
+                    MVC.InstitutionalAgreements.PublicSearch.ActionNames.ChangeOwner,
+                    MVC.InstitutionalAgreements.PublicSearch.Name,
+                    FormMethod.Get
                 ))
                 {
-                    <div>
-                        @Html.DropDownListFor(m => m.EstablishmentUrl, Model.HierarchySelectList, new
+                <div>
+                    @Html.DropDownListFor(m => m.NewEstablishmentUrl, Model.HierarchySelectList, new
                             {
                                 onchange = "$(this).closest('form').submit()",
-                                style = "width: 100%;"
+                                style = "width: 100%;",
                             })
-                    </div>
-                    <div class="hidden-input">
-                        @Html.HiddenFor(m => m.Keyword)
-                    </div>
+                </div>
+                <div class="hidden-input">
+                    @Html.HiddenFor(m => m.Keyword)
+                </div>
                 }
             }
             @if (Model.Agreements.Length > 0)
@@ -171,7 +171,7 @@
                     <br />
                     <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Post(null as Guid?))">
                         Add a new agreement</a> <span>|</span> <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Browse())">
-                                                                   Go to admin view</a>
+                            Go to admin view</a>
                     @if (Model.IsSupervisor)
                     {
                         <br />

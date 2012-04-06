@@ -28,8 +28,8 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         private readonly IConsumePlaceFinder _placeFinder;
         private readonly IManageConfigurations _config;
 
-        public HealthController(IQueryEntities entityQueries, ICommandObjects objectCommander, 
-            IConsumeGeoNames geoNames, IConsumeGeoPlanet geoPlanet, IConsumePlaceFinder placeFinder, 
+        public HealthController(IQueryEntities entityQueries, ICommandObjects objectCommander,
+            IConsumeGeoNames geoNames, IConsumeGeoPlanet geoPlanet, IConsumePlaceFinder placeFinder,
             IManageConfigurations config)
         {
             _entityQueries = entityQueries;
@@ -74,8 +74,8 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         }
 
         [ActionName("run-establishment-import")]
-        //[Authorize(Users = "ludwigd1@uc.edu,sodhiha1@uc.edu")]
-        [Authorize(Users = "Daniel.Ludwig@uc.edu")]
+        [Authorize(Users = "ludwigd1@uc.edu,sodhiha1@uc.edu")]
+        //[Authorize(Users = "Daniel.Ludwig@uc.edu")]
         public virtual ActionResult RunEstablishmentImport()
         {
             var placeMarks = new KmlPlaceMarks(Server.MapPath(string.Format("~{0}",
@@ -268,6 +268,16 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                     _objectCommander.Insert(establishment, true);
                     ConsoleLog(string.Format("Establishment with website URL '{0}' has been seeded.", establishmentRow.WebsiteUrl), true, true);
                 }
+            }
+
+            // add former name for rotterdam dance academy
+            const string rdaName = "Rotterdam Dance Academy";
+            var codarts = new EstablishmentFinder(_entityQueries).FindOne(EstablishmentBy.WebsiteUrl("www.codarts.nl").ForInsertOrUpdate());
+            var rda = codarts.Names.SingleOrDefault(n => n.Text == "Rotterdam Dance Academy");
+            if (rda == null)
+            {
+                codarts.Names.Add(new EstablishmentName { Text = rdaName, IsFormerName = true, TranslationToLanguage = en });
+                _objectCommander.Update(codarts, true);
             }
 
             ViewBag.Console = _consoleLog.ToString();

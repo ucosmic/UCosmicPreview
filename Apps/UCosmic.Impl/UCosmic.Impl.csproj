@@ -121,6 +121,7 @@
     <Compile Include="Orm\LanguagesRelationalMapper.cs" />
     <Compile Include="Orm\RevisableEntityTypeConfiguration.cs" />
     <Compile Include="Orm\SqlInitializer.cs" />
+    <Compile Include="Orm\UCosmicContext.Views.cs" />
     <Compile Include="Saml\ComponentSpaceSaml2Response.cs" />
     <Compile Include="Saml\PublicSamlCertificateStorage.cs" />
     <Compile Include="Etc\WebRequestHttpConsumer.cs" />

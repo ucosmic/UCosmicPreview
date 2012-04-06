@@ -1,34 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ServiceDefinition name="UCosmic.Cloud.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
-    <WebRole name="UCosmic.Www.Mvc" vmsize="Medium">
-        <Runtime executionContext="elevated" />
-        <Startup>
-            <Task commandLine="startup\disableTimeout.cmd" executionContext="elevated" taskType="simple" />
-            <!--<Task commandLine="startup\installMvc3.cmd" executionContext="elevated" taskType="simple" />-->
-        </Startup>
-        <Sites>
-            <Site name="Web">
-                <Bindings>
-                    <Binding name="Endpoint1" endpointName="Endpoint1" />
-                    <Binding name="Endpoint2" endpointName="Endpoint2" />
-                </Bindings>
-            </Site>
-        </Sites>
-        <Endpoints>
-            <InputEndpoint name="Endpoint1" protocol="http" port="80" />
-            <InputEndpoint name="Endpoint2" protocol="https" port="443" certificate="preview.ucosmic.com" />
-        </Endpoints>
-        <Imports>
-            <Import moduleName="Diagnostics" />
-            <Import moduleName="RemoteAccess" />
-            <Import moduleName="RemoteForwarder" />
-        </Imports>
-        <ConfigurationSettings>
-            <Setting name="UCosmic.Www.Mvc.DeployedToEmulator" />
-        </ConfigurationSettings>
-        <Certificates>
-            <Certificate name="preview.ucosmic.com" storeLocation="LocalMachine" storeName="My" />
-            <Certificate name="azureconfig" storeLocation="LocalMachine" storeName="My" />
-        </Certificates>
-    </WebRole>
+  <WebRole name="UCosmic.Www.Mvc" vmsize="Medium">
+    <Runtime executionContext="elevated" />
+    <Startup>
+      <Task commandLine="startup\disableTimeout.cmd" executionContext="elevated" taskType="simple" />
+      <!--<Task commandLine="startup\installMvc3.cmd" executionContext="elevated" taskType="simple" />-->
+    </Startup>
+    <Sites>
+      <Site name="Web">
+        <Bindings>
+          <Binding name="Endpoint1" endpointName="Endpoint1" />
+          <Binding name="Endpoint2" endpointName="Endpoint2" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <Endpoints>
+      <InputEndpoint name="Endpoint1" protocol="http" port="80" />
+      <InputEndpoint name="Endpoint2" protocol="https" port="443" certificate="preview.ucosmic.com" />
+    </Endpoints>
+    <Imports>
+      <Import moduleName="Diagnostics" />
+      <Import moduleName="RemoteAccess" />
+      <Import moduleName="RemoteForwarder" />
+    </Imports>
+    <ConfigurationSettings>
+      <Setting name="UCosmic.Www.Mvc.DeployedToEmulator" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="preview.ucosmic.com" storeLocation="LocalMachine" storeName="My" />
+      <Certificate name="azureconfig" storeLocation="LocalMachine" storeName="My" />
+    </Certificates>
+  </WebRole>
 </ServiceDefinition>

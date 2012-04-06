@@ -16,6 +16,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
         public string Keyword { get; set; }
         public SelectListItem[] HierarchySelectList { get; set; }
         public string EstablishmentUrl { get; set; }
+        public string NewEstablishmentUrl
+        {
+            get { return EstablishmentUrl; }
+            set { EstablishmentUrl = value; }
+        }
 
         private BoundingBox _boundingBox;
         public BoundingBox MapBoundingBox
