@@ -11,7 +11,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
         public int CountryCount { get; set; }
         public bool IsManager { get; set; }
         public bool IsSupervisor { get; set; }
-        public bool IsAffiliate { get; set; }
         public EstablishmentInfo ContextEstablishment { get; set; }
         public string Keyword { get; set; }
         public SelectListItem[] HierarchySelectList { get; set; }

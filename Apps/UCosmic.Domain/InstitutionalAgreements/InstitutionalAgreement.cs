@@ -92,7 +92,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             // the establishment or one of the establishment's ancestors.
             participant = new InstitutionalAgreementParticipant
             {
-                Establishment = establishment, 
+                Establishment = establishment,
             };
             participant.DeriveIsOwner(principal);
             Participants.Add(participant);

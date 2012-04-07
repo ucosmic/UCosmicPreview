@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
+using AutoMapper;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
+using UCosmic.Domain.Places;
 using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch;
 using UCosmic.Www.Mvc.Controllers;
-using AutoMapper;
-using UCosmic.Domain.Places;
 using UCosmic.Www.Mvc.Models;
-using System.Globalization;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 {
@@ -82,8 +82,10 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         [OpenTopTab(TopTabName.InstitutionalAgreements)]
         public virtual ActionResult Index(string establishmentUrl, string keyword = null)
         {
+            // return 404 when there is no establishment url
             if (string.IsNullOrWhiteSpace(establishmentUrl)) return HttpNotFound();
 
+            // redirect to canonical route when keyword is in the query string
             if (Request.QueryString.AllKeys.Contains("keyword", new CaseInsensitiveStringComparer()))
                 return RedirectToRoute(new
                 {
@@ -94,7 +96,10 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                     keyword,
                 });
 
+            // try to derive the establishment url for current user
             establishmentUrl = ConvertEstablishmentUrlFromMy(establishmentUrl);
+
+            // when request is not authenticated, present list of establishments to choose from
             if (establishmentUrl.Equals("my", StringComparison.OrdinalIgnoreCase))
             {
                 var owners = _agreements.FindMany(With<InstitutionalAgreement>.DefaultCriteria())
@@ -106,21 +111,29 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 return View(Views.no_context, ownerModels);
             }
 
+            // load the establishment by url as the context for the results
             var context = _establishments.FindOne(EstablishmentBy.WebsiteUrl(establishmentUrl)
                 .EagerLoad(e => e.Affiliates.Select(a => a.Person.User))
                 .EagerLoad(e => e.Ancestors)
             );
+
+            // determine whether or not the current user is an affiliate of the establishment
             var isAffiliate = context.HasDefaultAffiliate(User);
+
+            // determine whether or not the current user is an agreement supervisor or manager
             var isSupervisor = isAffiliate && User.IsInRole(RoleName.InstitutionalAgreementSupervisor);
             var isManager = isSupervisor || (isAffiliate && User.IsInRole(RoleName.InstitutionalAgreementManager));
 
+            // load up all agreements owned by this establishment
             var agreements = _agreements.FindMany(
                 InstitutionalAgreementsWith.OwnedByEstablishmentUrl(establishmentUrl)
-                //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places.Select(l => l.Names)))
+                //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places.Select(l => l.Names))) this takes WAY too long, don't even think about it
                 .EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places))
                 .EagerLoad(a => a.Participants.Select(p => p.Establishment.Names.Select(n => n.TranslationToLanguage)))
                 .EagerLoad(a => a.Contacts)
             );
+
+            // apply keyword to search
             if (!string.IsNullOrWhiteSpace(keyword))
             {
                 var byCountry = agreements.Where(a =>
@@ -142,9 +155,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                                     n.AsciiEquivalent != null &&
                                     n.AsciiEquivalent.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 &&
                                     n.TranslationToLanguage != null &&
-                                    n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
+                                    n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
                                 )
-                            )
                         )
                     )
                 );
@@ -196,7 +208,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 Establishments = Mapper.Map<SearchResults.EstablishmentInfo[]>(partners),
                 Agreements = Mapper.Map<SearchResults.AgreementInfo[]>(agreements),
                 CountryCount = countryCount,
-                IsAffiliate = isAffiliate,
                 IsManager = isManager,
                 IsSupervisor = isSupervisor,
                 Keyword = keyword,
