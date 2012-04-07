@@ -10,11 +10,11 @@ namespace UCosmic.Orm
             // index on Place_OfficialName
             context.Database.ExecuteSqlCommand("CREATE NONCLUSTERED INDEX [Place_OfficialName] ON [Places].[Place] ( [OfficialName] ASC ) ");
 
-            // index on PlaceName_Text
-            context.Database.ExecuteSqlCommand("CREATE NONCLUSTERED INDEX [PlaceName_Text] ON [Places].[PlaceName] ( [Text] ASC )");
+            // index on PlaceName_TranslationToLanguage_Text
+            context.Database.ExecuteSqlCommand("CREATE NONCLUSTERED INDEX [PlaceName_TranslationToLanguage_Text] ON [Places].[PlaceName] ( [TranslationToLanguageId] ASC, [Text] ASC )");
 
-            // index on PlaceName_AsciiEquivalent
-            context.Database.ExecuteSqlCommand("CREATE NONCLUSTERED INDEX [PlaceName_AsciiEquivalent] ON [Places].[PlaceName] ( [AsciiEquivalent] ASC, [NameForPlaceId] ASC, [TranslationToLanguageId] ASC )");
+            // index on PlaceName_TranslationToLanguage_AsciiEquivalent
+            context.Database.ExecuteSqlCommand("CREATE NONCLUSTERED INDEX [PlaceName_TranslationToLanguage_AsciiEquivalent] ON [Places].[PlaceName] ( [TranslationToLanguageId] ASC, [AsciiEquivalent] ASC )");
 
             context.SaveChanges();
         }
