@@ -84,7 +84,7 @@ namespace UCosmic.Orm
                 HasOptional(p => p.SamlSignOn)
                     .WithRequired();
 
-                Property(p => p.OfficialName).IsRequired().HasMaxLength(500);
+                Property(p => p.OfficialName).IsRequired().HasMaxLength(400);
                 Property(p => p.WebsiteUrl).HasMaxLength(200);
 
                 // name complex type properties
@@ -221,8 +221,8 @@ namespace UCosmic.Orm
                     .Map(d => d.MapKey("TranslationToLanguageId"));
 
                 Property(p => p.TranslationToHint).HasMaxLength(15);
-                Property(p => p.Text).IsRequired().HasMaxLength(500);
-                Property(p => p.AsciiEquivalent).HasMaxLength(500);
+                Property(p => p.Text).IsRequired().HasMaxLength(400);
+                Property(p => p.AsciiEquivalent).HasMaxLength(400);
             }
         }
 
