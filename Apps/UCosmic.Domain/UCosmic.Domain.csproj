@@ -89,6 +89,7 @@
     <Compile Include="Identity\UserFacade.cs" />
     <Compile Include="Identity\UserFactory.cs" />
     <Compile Include="InstitutionalAgreements\InstitutionalAgreementChanger.cs" />
+    <Compile Include="InstitutionalAgreements\InstitutionalAgreementQueries.cs" />
     <Compile Include="InstitutionalAgreements\InstitutionalAgreementQuery.cs" />
     <Compile Include="Languages\LanguageQuery.cs" />
     <Compile Include="People\PersonFactory.cs" />

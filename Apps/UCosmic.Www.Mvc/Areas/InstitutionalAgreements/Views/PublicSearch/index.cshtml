@@ -141,7 +141,7 @@
             {
                 <h2>@Html.Pluralize("{0|_} {0|agreement} with {1|_} {1|institution}",
                       Model.Agreements.Length, Model.Establishments.Length)
-                    in @Model.CountryCount
+                    @*in @Model.CountryCount
                     @if (Model.CountryCount == 1)
                     {
                         <text>country</text>
@@ -149,7 +149,7 @@
                     else
                     {
                         <text>countries</text>
-                    }
+                    }*@
                     @if (!string.IsNullOrWhiteSpace(Model.Keyword))
                     {
                         <text>matching the search term &quot;@Model.Keyword&quot;</text>

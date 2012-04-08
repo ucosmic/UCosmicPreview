@@ -113,11 +113,11 @@ namespace UCosmic.Orm
             entry.State = EntityState.Deleted;
         }
 
-        public IQueryable<TEntity> EagerLoad<TEntity>(IQueryable<TEntity> query, Expression<Func<TEntity, object>> expression)
+        public IQueryable<TEntity> EagerLoad<TEntity>(IQueryable<TEntity> query, params Expression<Func<TEntity, object>>[] expressions)
             where TEntity : Entity
         {
-            if (query != null && expression != null)
-                query = query.Include(expression);
+            if (query != null && expressions != null)
+                query = expressions.Aggregate(query, (current, expression) => current.Include(expression));
             return query;
         }
 

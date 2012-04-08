@@ -8,7 +8,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
 {
     public class SearchResults
     {
-        public int CountryCount { get; set; }
         public bool IsManager { get; set; }
         public bool IsSupervisor { get; set; }
         public EstablishmentInfo ContextEstablishment { get; set; }
@@ -60,7 +59,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
         public EstablishmentInfo[] Establishments { get; set; }
         public class EstablishmentInfo
         {
-            //public Guid EntityId { get; set; }
             public string OfficialName { get; set; }
             public string TranslatedName { get; set; }
             public string WebsiteUrl { get; set; }
@@ -95,7 +93,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
 
             [DisplayFormat(DataFormatString = "{0:d}")]
             public DateTime StartsOn { get; set; }
-            public bool IsOwnedByPrincipal { get; set; }
 
             public EstablishmentInfo[] Partners { get; set; }
         }

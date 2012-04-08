@@ -19,9 +19,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         private readonly InstitutionalAgreementFinder _agreements;
         private readonly EstablishmentFinder _establishments;
         private readonly PlaceFinder _places;
+        private readonly IQueryEntities _queries;
 
         public PublicSearchController(IQueryEntities entityQueries)
         {
+            _queries = entityQueries;
             _agreements = new InstitutionalAgreementFinder(entityQueries);
             _establishments = new EstablishmentFinder(entityQueries);
             _places = new PlaceFinder(entityQueries);
@@ -49,12 +51,15 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         }
 
         [NonAction]
-        private IEnumerable<SelectListItem> GetHierarchySelectList(string contextEstablishmentUrl)
+        private IEnumerable<SelectListItem> GetHierarchySelectList(Establishment establishment)
         {
-            var rootEstablishment = _establishments.FindOne(EstablishmentBy.WebsiteUrl(contextEstablishmentUrl)
-            );
-            while (rootEstablishment.Parent != null)
-                rootEstablishment = rootEstablishment.Parent;
+            //var rootEstablishment = _establishments.FindOne(EstablishmentBy.WebsiteUrl(contextEstablishmentUrl)
+            //);
+            var rootEstablishment = establishment.Parent == null
+                ? establishment
+                : establishment.Ancestors.Single(e => e.Ancestor.Parent == null).Ancestor;
+            //while (rootEstablishment.Parent != null)
+            //    rootEstablishment = rootEstablishment.Parent;
 
             var childEstablishments = _agreements.FindMany(With<InstitutionalAgreement>.DefaultCriteria()
                     .EagerLoad(a => a.Participants.Select(p => p.Establishment.Ancestors)))
@@ -113,7 +118,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 
             // load the establishment by url as the context for the results
             var context = _establishments.FindOne(EstablishmentBy.WebsiteUrl(establishmentUrl)
-                .EagerLoad(e => e.Affiliates.Select(a => a.Person.User))
+                .EagerLoad(e => e.Names.Select(n => n.TranslationToLanguage))
+                .EagerLoad(e => e.Location)
                 .EagerLoad(e => e.Ancestors)
             );
 
@@ -124,97 +130,166 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             var isSupervisor = isAffiliate && User.IsInRole(RoleName.InstitutionalAgreementSupervisor);
             var isManager = isSupervisor || (isAffiliate && User.IsInRole(RoleName.InstitutionalAgreementManager));
 
-            // load up all agreements owned by this establishment
-            var agreements = _agreements.FindMany(
-                InstitutionalAgreementsWith.OwnedByEstablishmentUrl(establishmentUrl)
-                //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places.Select(l => l.Names))) this takes WAY too long, don't even think about it
-                .EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places))
-                .EagerLoad(a => a.Participants.Select(p => p.Establishment.Names.Select(n => n.TranslationToLanguage)))
-                .EagerLoad(a => a.Contacts)
-            );
+            var query = _queries.EagerLoad(_queries.InstitutionalAgreements, 
+                a => a.Participants.Select(p => p.Establishment.Names), 
+                a => a.Participants.Select(p => p.Establishment.Location));
+            var agreements = query
+                .OwnedBy(context.RevisionId)
+                .MatchingPlaceParticipantOrContact(keyword)
+                .OrderByDescending(a => a.StartsOn)
+                .ToArray();
 
-            // apply keyword to search
-            if (!string.IsNullOrWhiteSpace(keyword))
-            {
-                var byCountry = agreements.Where(a =>
-                    a.Participants.Any(p =>
-                        !p.IsOwner &&
-                        (
-                            p.Establishment.Location.Places.Any(l =>
-                                l.OfficialName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
-                            ||
-                            p.Establishment.Location.Places.Any(l =>
-                                l.Names.Any(n =>
-                                    n.Text.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 &&
-                                    n.TranslationToLanguage != null &&
-                                    n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
-                                )
-                            ||
-                            p.Establishment.Location.Places.Any(l =>
-                                l.Names.Any(n =>
-                                    n.AsciiEquivalent != null &&
-                                    n.AsciiEquivalent.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 &&
-                                    n.TranslationToLanguage != null &&
-                                    n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
-                                )
-                        )
-                    )
-                );
-                var byPartner = agreements.Where(a =>
-                    a.Participants.Any(p =>
-                        (
-                            p.Establishment.OfficialName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0
-                            ||
-                            p.Establishment.Names.Any(n =>
-                                n.Text.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 &&
-                                n.TranslationToLanguage != null &&
-                                n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
-                            )
-                            ||
-                            p.Establishment.Names.Any(n =>
-                                n.AsciiEquivalent != null &&
-                                n.AsciiEquivalent.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 &&
-                                n.TranslationToLanguage != null &&
-                                n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
-                            )
-                        )
-                    )
-                );
-                var byContact = agreements.Where(a =>
-                    a.Contacts.Any(c =>
-                        (c.Person.FirstName != null && c.Person.FirstName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
-                        ||
-                        (c.Person.LastName != null && c.Person.LastName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
-                        ||
-                        (c.Person.DisplayName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
-                    )
-                );
+            #region old code
 
-                agreements = byCountry.Union(byPartner).Union(byContact)
-                    .Distinct(new RevisableEntityEqualityComparer())
-                    .Cast<InstitutionalAgreement>().ToList();
-            }
-            agreements = agreements.OrderByDescending(a => a.StartsOn).ToList();
+            //// load up all agreements owned by this establishment
+            //var agreements = _agreements.FindMany(
+            //    InstitutionalAgreementsWith.OwnedByEstablishmentUrl(establishmentUrl)
+            //    //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places.Select(l => l.Names))) this takes WAY too long, don't even think about it
+            //    .EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places))
+            //    .EagerLoad(a => a.Participants.Select(p => p.Establishment.Names.Select(n => n.TranslationToLanguage)))
+            //    .EagerLoad(a => a.Contacts)
+            //);
+
+            //// apply keyword to search
+            //if (!string.IsNullOrWhiteSpace(keyword))
+            //{
+            //    var isOwner = PredicateBuilder.True<InstitutionalAgreement>()
+            //        .And(a => a.Participants.Any(p => p.IsOwner));
+            //    var establishmentUrlMatches = PredicateBuilder.False<InstitutionalAgreement>()
+            //        .Or(a => a.Participants.Any(p => establishmentUrl.Equals(p.Establishment.WebsiteUrl, StringComparison.OrdinalIgnoreCase)));
+            //    establishmentUrlMatches = establishmentUrlMatches
+            //        .Or(a => a.Participants.Any(p => p.Establishment.Ancestors.Any(h => establishmentUrl.Equals(h.Ancestor.WebsiteUrl, StringComparison.OrdinalIgnoreCase))));
+
+            //    var ownedByEstablishmentUrl = PredicateBuilder.True<InstitutionalAgreement>()
+            //        .And(a => a.Participants.Any(p => p.IsOwner && (establishmentUrl.Equals(p.Establishment.WebsiteUrl, StringComparison.OrdinalIgnoreCase)) ||
+            //        p.Establishment.Ancestors.Any(h => establishmentUrl.Equals(h.Ancestor.WebsiteUrl, StringComparison.OrdinalIgnoreCase))));
+
+            //    //var ownedByEstablishmentUrl = isOwner.And(establishmentUrlMatches.Expand());
+
+            //    var placeNameMatchesKeyword = PredicateBuilder.False<InstitutionalAgreement>()
+            //        .Or(a => a.Participants.Any(p => p.Establishment.Location.Places.Any(
+            //            l => l.OfficialName.Contains(keyword)
+            //    )));
+            //    placeNameMatchesKeyword = placeNameMatchesKeyword.Or(a => a.Participants.Any(p => p.Establishment.Location.Places.Any(
+            //        l => l.Names.Any(
+            //            n =>
+            //                n.Text.Contains(keyword) &&
+            //                n.TranslationToLanguage != null &&
+            //                n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
+            //            )
+            //    )));
+            //    placeNameMatchesKeyword = placeNameMatchesKeyword.Or(a => a.Participants.Any(p => p.Establishment.Location.Places.Any(
+            //        l => l.Names.Any(
+            //            n =>
+            //                n.AsciiEquivalent != null &&
+            //                n.AsciiEquivalent.Contains(keyword) &&
+            //                n.TranslationToLanguage != null &&
+            //                n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
+            //            )
+            //    )));
+
+            //    //var notOwnerAndPlaceNameMatchesKeyword = PredicateBuilder.True<InstitutionalAgreement>()
+            //    //    .And(a => a.Participants.Any(p => !p.IsOwner)).And(placeNameMatchesKeyword.Expand());
+
+            //    //ownedByEstablishmentUrl = ownedByEstablishmentUrl.And(notOwnerAndPlaceNameMatchesKeyword.Expand());
+
+            //    ownedByEstablishmentUrl = ownedByEstablishmentUrl.And(a => a.Participants.Any(p => !p.IsOwner)).And(placeNameMatchesKeyword.Expand());
+
+            //    using (var dbContext = new UCosmicContext(null))
+            //    {
+            //        //var byCountry2 = dbContext.InstitutionalAgreements.AsExpandable().Where(ownedByEstablishmentUrl.Expand());
+            //        //var byCountry2List = byCountry2.ToList();
+
+            //        var agreements2 = dbContext.InstitutionalAgreements
+            //            .Include(a => a.Participants.Select(p => p.Establishment))
+            //            .OwnedBy(1)
+            //            .MatchingPlaceParticipantOrContact(keyword)
+            //            .OrderByDescending(a => a.StartsOn);
+            //        var agreements2List = agreements2.ToList();
+            //    }
+
+
+            //    var byCountry = agreements.Where(a =>
+            //        a.Participants.Any(p =>
+            //            !p.IsOwner &&
+            //            (
+            //                p.Establishment.Location.Places.Any(l =>
+            //                    l.OfficialName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
+            //                ||
+            //                p.Establishment.Location.Places.Any(l =>
+            //                    l.Names.Any(n =>
+            //                        n.Text.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 &&
+            //                        n.TranslationToLanguage != null &&
+            //                        n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+            //                    )
+            //                ||
+            //                p.Establishment.Location.Places.Any(l =>
+            //                    l.Names.Any(n =>
+            //                        n.AsciiEquivalent != null &&
+            //                        n.AsciiEquivalent.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 &&
+            //                        n.TranslationToLanguage != null &&
+            //                        n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+            //                    )
+            //            )
+            //        )
+            //    );
+            //    var byPartner = agreements.Where(a =>
+            //        a.Participants.Any(p =>
+            //            (
+            //                p.Establishment.OfficialName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0
+            //                ||
+            //                p.Establishment.Names.Any(n =>
+            //                    n.Text.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 &&
+            //                    n.TranslationToLanguage != null &&
+            //                    n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
+            //                )
+            //                ||
+            //                p.Establishment.Names.Any(n =>
+            //                    n.AsciiEquivalent != null &&
+            //                    n.AsciiEquivalent.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 &&
+            //                    n.TranslationToLanguage != null &&
+            //                    n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
+            //                )
+            //            )
+            //        )
+            //    );
+            //    var byContact = agreements.Where(a =>
+            //        a.Contacts.Any(c =>
+            //            (c.Person.FirstName != null && c.Person.FirstName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
+            //            ||
+            //            (c.Person.LastName != null && c.Person.LastName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
+            //            ||
+            //            (c.Person.DisplayName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
+            //        )
+            //    );
+
+            //    agreements = byCountry.Union(byPartner).Union(byContact)
+            //        .Distinct(new RevisableEntityEqualityComparer())
+            //        .Cast<InstitutionalAgreement>().ToList();
+            //}
+            //agreements = agreements.OrderByDescending(a => a.StartsOn).ToList();
+
+            #endregion
 
             var partners = agreements.SelectMany(a => a.Participants).Where(a => !a.IsOwner)
                 .Select(p => p.Establishment).Distinct(new RevisableEntityEqualityComparer())
                 .Cast<Establishment>();
-            var countryCount = partners.SelectMany(e => e.Location.Places).Where(l => l.IsCountry)
-                .Distinct(new RevisableEntityEqualityComparer()).Count();
+            //var countryCount = partners.SelectMany(e => e.Location.Places).Where(l => l.IsCountry)
+            //    .Distinct(new RevisableEntityEqualityComparer()).Count(); // degrades performance
 
             var model = new SearchResults
             {
                 ContextEstablishment = Mapper.Map<SearchResults.EstablishmentInfo>(context),
                 Establishments = Mapper.Map<SearchResults.EstablishmentInfo[]>(partners),
                 Agreements = Mapper.Map<SearchResults.AgreementInfo[]>(agreements),
-                CountryCount = countryCount,
+                //CountryCount = countryCount,
                 IsManager = isManager,
                 IsSupervisor = isSupervisor,
                 Keyword = keyword,
             };
-            foreach (var agreement in model.Agreements)
-                agreement.IsOwnedByPrincipal = agreements.Single(a => a.EntityId == agreement.EntityId).IsOwnedBy(User) &&
-                    (isSupervisor || isManager);
+            //foreach (var agreement in model.Agreements)
+            //    agreement.IsOwnedByPrincipal = agreements.Single(a => a.EntityId == agreement.EntityId).IsOwnedBy(User) &&
+            //        (isSupervisor || isManager);
 
             if (!string.IsNullOrWhiteSpace(keyword))
             {
@@ -223,7 +298,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                     model.MapBoundingBox = places.Single().BoundingBox;
             }
 
-            model.HierarchySelectList = GetHierarchySelectList(model.ContextEstablishment.WebsiteUrl).ToArray();
+            model.HierarchySelectList = GetHierarchySelectList(context).ToArray();
             model.EstablishmentUrl = model.ContextEstablishment.WebsiteUrl;
             return View(model);
         }

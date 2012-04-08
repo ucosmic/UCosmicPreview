@@ -27,7 +27,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                 CreateMap<InstitutionalAgreement, SearchResults.AgreementInfo>()
                     .ForMember(target => target.Partners, opt => opt
                         .ResolveUsing(source => source.Participants.Where(p => !p.IsOwner).Select(p => p.Establishment)))
-                    .ForMember(target => target.IsOwnedByPrincipal, opt => opt.UseValue(false))
                 ;
             }
         }
