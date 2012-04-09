@@ -19,11 +19,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         private readonly InstitutionalAgreementFinder _agreements;
         private readonly EstablishmentFinder _establishments;
         private readonly PlaceFinder _places;
-        private readonly IQueryEntities _queries;
+        private readonly IProcessQueries _queryProcessor;
 
-        public PublicSearchController(IQueryEntities entityQueries)
+        public PublicSearchController(IQueryEntities entityQueries, IProcessQueries queryProcessor)
         {
-            _queries = entityQueries;
+            _queryProcessor = queryProcessor;
             _agreements = new InstitutionalAgreementFinder(entityQueries);
             _establishments = new EstablishmentFinder(entityQueries);
             _places = new PlaceFinder(entityQueries);
@@ -130,14 +130,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             var isSupervisor = isAffiliate && User.IsInRole(RoleName.InstitutionalAgreementSupervisor);
             var isManager = isSupervisor || (isAffiliate && User.IsInRole(RoleName.InstitutionalAgreementManager));
 
-            var query = _queries.EagerLoad(_queries.InstitutionalAgreements, 
-                a => a.Participants.Select(p => p.Establishment.Names), 
-                a => a.Participants.Select(p => p.Establishment.Location));
-            var agreements = query
-                .OwnedBy(context.RevisionId)
-                .MatchingPlaceParticipantOrContact(keyword)
-                .OrderByDescending(a => a.StartsOn)
-                .ToArray();
+            var agreements = _queryProcessor.Execute(new FindInstitutionalAgreementsByKeywordQuery
+            {
+                EstablishmentId = context.RevisionId,
+                Keyword = keyword,
+            });
 
             #region old code
 

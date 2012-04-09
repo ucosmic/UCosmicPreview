@@ -81,6 +81,7 @@ namespace UCosmic
             container.RegisterPerWebRequest<IConsumeGeoPlanet, GeoPlanetClient>();
             container.RegisterPerWebRequest<IConsumePlaceFinder, PlaceFinderClient>();
 
+            // load assemblies for IoC reflection
             var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
             var msWebMvc = assemblies.SingleOrDefault(a => a.FullName.StartsWith("Microsoft.Web.Mvc"));
             if (msWebMvc != null) assemblies.Remove(msWebMvc);
@@ -90,6 +91,12 @@ namespace UCosmic
             //container.RegisterOpenGenericDecorator(typeof(IHandleCommands<>),
             //    typeof(SomeCommandHandlerDecorator<>));
 
+            // query processing
+            container.RegisterPerWebRequest<SimpleQueryProcessor>();
+            container.Register<IProcessQueries>(container.GetInstance<SimpleQueryProcessor>);
+            container.RegisterManyForOpenGeneric(typeof(IHandleQueries<,>), assemblies);
+
+            // fluent validation open generics
             container.RegisterManyForOpenGeneric(typeof(IValidator<>), assemblies);
 
             // verify container
