@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 using AutoMapper;
+using FluentValidation.Mvc;
+using UCosmic.Domain.Establishments;
 using UCosmic.Www.Mvc.Areas.Identity.Models.SignOn;
 using UCosmic.Www.Mvc.Areas.Identity.Services;
 using UCosmic.Www.Mvc.Controllers;
@@ -39,6 +42,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         }
 
         [HttpPost]
+        public virtual JsonResult ValidateEmailAddress(
+            [CustomizeValidator(Properties = "EmailAddress")] SignOnBeginForm model)
+        {
+            return ValidateRemote(JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
         [UnitOfWork]
         [ActionName("sign-on")]
         [OpenTopTab(TopTabName.Home)]
@@ -46,6 +56,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             if (ModelState.IsValid)
             {
+                var establishment = _services.QueryProcessor.Execute(
+                    new FindEstablishmentByEmailQuery
+                    {
+                        Email = model.EmailAddress,
+                        EagerLoad = new Expression<Func<Establishment, object>>[]
+                        {
+                            e => e.SamlSignOn,
+                        }
+                    }
+                );
+
                 if (model.EmailAddress.EndsWith("@testshib.org", StringComparison.OrdinalIgnoreCase)
                     || model.EmailAddress.EndsWith("@uc.edu", StringComparison.OrdinalIgnoreCase))
                 {

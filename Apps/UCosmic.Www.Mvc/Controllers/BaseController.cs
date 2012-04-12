@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 
 namespace UCosmic.Www.Mvc.Controllers
 {
@@ -32,6 +33,13 @@ namespace UCosmic.Www.Mvc.Controllers
             {
                 TempData.FeedbackMessage(message);
             }
+        }
+
+        protected JsonResult ValidateRemote(JsonRequestBehavior jsonRequestBehaviuor)
+        {
+            return ModelState.IsValid
+                ? Json(true, jsonRequestBehaviuor)
+                : Json(ModelState.First().Value.Errors.First().ErrorMessage, jsonRequestBehaviuor);
         }
     }
 

@@ -200,12 +200,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         private static SignOnServices CreateSignOnServices()
         {
-            return new SignOnServices(null, null, null, null, null, null, null);
+            return new SignOnServices(null, null, null, null, null, null, null, null);
         }
 
         private static SignOnServices CreateSignOnServices(ISignUsers userSigner)
         {
-            return new SignOnServices(null, null, null, null, userSigner, null, null);
+            return new SignOnServices(null, null, null, null, userSigner, null, null, null);
         }
 
     }

@@ -1,12 +1,35 @@
 using FluentValidation;
+using UCosmic.Domain;
+using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
 {
     public class SignOnBeginFormValidator : AbstractValidator<SignOnBeginForm>
     {
-        public SignOnBeginFormValidator()
+        private readonly IProcessQueries _queryProcessor;
+
+        public SignOnBeginFormValidator(IProcessQueries queryProcessor)
         {
-            RuleFor(p => p.EmailAddress).SignOnEmailAddressRules();
+            _queryProcessor = queryProcessor;
+
+            RuleFor(p => p.EmailAddress)
+                .SignOnEmailAddressRules()
+                .Must(MatchExistingEstablishment).WithMessage(IneligibleEmailMessage, p => p.EmailAddress)
+            ;
+        }
+
+        public const string IneligibleEmailMessage = "Sorry, but the email address \"{0}\" is not eligible at this time.";
+
+        private bool MatchExistingEstablishment(string emailAddress)
+        {
+            var establishment = _queryProcessor.Execute(
+                new FindEstablishmentByEmailQuery
+                {
+                    Email = emailAddress,
+                }
+            );
+
+            return establishment != null && establishment.IsMember;
         }
     }
 }

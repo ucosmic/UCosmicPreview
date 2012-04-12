@@ -29,6 +29,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             }
         }
 
+        public static class ValidateEmailAddress
+        {
+            public const string Route = "sign-on/validate/email";
+            private static readonly string Action = MVC.Identity.SignOn.ActionNames.ValidateEmailAddress;
+            public static void MapRoutes(AreaRegistrationContext routes, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
+                routes.MapRoute(null, Route, defaults, constraints);
+            }
+        }
         public static class Saml2Post
         {
             public const string Route = "sign-on/saml/2/post";
