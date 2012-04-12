@@ -13,15 +13,14 @@ namespace UCosmic.Domain.InstitutionalAgreements
 
         public InstitutionalAgreement[] Handle(FindInstitutionalAgreementsByKeywordQuery query)
         {
-            var setup = _entities.EagerLoad(_entities.InstitutionalAgreements,
-                a => a.Participants.Select(p => p.Establishment.Names),
-                a => a.Participants.Select(p => p.Establishment.Location));
-
-            var results = setup.OwnedBy(query.EstablishmentId)
+            var queryable = _entities.InstitutionalAgreements
+                .EagerLoad(query.EagerLoad, _entities)
+                .OwnedBy(query.EstablishmentId)
                 .MatchingPlaceParticipantOrContact(query.Keyword)
-                .OrderByDescending(a => a.StartsOn);
+                .OrderBy(query.OrderBy);
 
-            return results.ToArray();
+            return queryable.ToArray();
         }
+
     }
 }

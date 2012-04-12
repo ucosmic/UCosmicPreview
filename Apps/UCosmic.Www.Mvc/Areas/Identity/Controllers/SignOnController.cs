@@ -39,6 +39,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         }
 
         [HttpPost]
+        [UnitOfWork]
         [ActionName("sign-on")]
         [OpenTopTab(TopTabName.Home)]
         public virtual ActionResult Begin(SignOnBeginForm model)
