@@ -48,7 +48,7 @@ namespace UCosmic.Domain
         IQueryable<TEntity> ApplyEagerLoading<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
             where TEntity : Entity;
 
-        IQueryable<TEntity> EagerLoad<TEntity>(IQueryable<TEntity> query, params Expression<Func<TEntity, object>>[] expressions)
+        IQueryable<TEntity> EagerLoad<TEntity>(IQueryable<TEntity> query, Expression<Func<TEntity, object>> expression)
             where TEntity : Entity;
     }
 }

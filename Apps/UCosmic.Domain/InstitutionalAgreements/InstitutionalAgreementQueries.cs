@@ -6,9 +6,9 @@ using System.Globalization;
 
 namespace UCosmic.Domain.InstitutionalAgreements
 {
-    public static class InstitutionalAgreementQueries
+    internal static class InstitutionalAgreementQueries
     {
-        public static IQueryable<InstitutionalAgreement> OwnedBy(this IQueryable<InstitutionalAgreement> queryable, int establishmentId)
+        internal static IQueryable<InstitutionalAgreement> OwnedBy(this IQueryable<InstitutionalAgreement> queryable, int establishmentId)
         {
             queryable = queryable.Where(IsOwnedBy(establishmentId));
             return queryable;
@@ -41,7 +41,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             #endregion
         }
 
-        public static IQueryable<InstitutionalAgreement> MatchingNonOwnerPlaceName(this IQueryable<InstitutionalAgreement> queryable, string keyword)
+        internal static IQueryable<InstitutionalAgreement> MatchingNonOwnerPlaceName(this IQueryable<InstitutionalAgreement> queryable, string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword)) return queryable;
             queryable = queryable.Where(NonOwnerPlaceNameMatches(keyword));
@@ -106,7 +106,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             #endregion
         }
 
-        public static IQueryable<InstitutionalAgreement> MatchingParticipantName(this IQueryable<InstitutionalAgreement> queryable, string keyword)
+        internal static IQueryable<InstitutionalAgreement> MatchingParticipantName(this IQueryable<InstitutionalAgreement> queryable, string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword)) return queryable;
             queryable = queryable.Where(ParticipantNameMatches(keyword));
@@ -157,7 +157,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             #endregion
         }
 
-        public static IQueryable<InstitutionalAgreement> MatchingContact(this IQueryable<InstitutionalAgreement> queryable, string keyword)
+        internal static IQueryable<InstitutionalAgreement> MatchingContact(this IQueryable<InstitutionalAgreement> queryable, string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword)) return queryable;
             queryable = queryable.Where(ContactMatches(keyword));
@@ -193,7 +193,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             #endregion
         }
 
-        public static IQueryable<InstitutionalAgreement> MatchingPlaceParticipantOrContact(this IQueryable<InstitutionalAgreement> queryable, string keyword)
+        internal static IQueryable<InstitutionalAgreement> MatchingPlaceParticipantOrContact(this IQueryable<InstitutionalAgreement> queryable, string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword)) return queryable;
 

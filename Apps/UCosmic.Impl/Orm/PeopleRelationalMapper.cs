@@ -21,7 +21,7 @@ namespace UCosmic.Orm
             {
                 ToTable(typeof(Person).Name, DbSchemaName.People);
 
-                // has one user
+                // has zero or one user
                 HasOptional(p => p.User)
                     .WithRequired(d => d.Person)
                     .Map(d => d.MapKey("PersonId"))

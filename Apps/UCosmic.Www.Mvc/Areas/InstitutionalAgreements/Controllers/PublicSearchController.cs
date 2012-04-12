@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 using AutoMapper;
 using UCosmic.Domain;
@@ -130,11 +131,22 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             var isSupervisor = isAffiliate && User.IsInRole(RoleName.InstitutionalAgreementSupervisor);
             var isManager = isSupervisor || (isAffiliate && User.IsInRole(RoleName.InstitutionalAgreementManager));
 
-            var agreements = _queryProcessor.Execute(new FindInstitutionalAgreementsByKeywordQuery
-            {
-                EstablishmentId = context.RevisionId,
-                Keyword = keyword,
-            });
+            var agreements = _queryProcessor.Execute(
+                new FindInstitutionalAgreementsByKeywordQuery
+                {
+                    EstablishmentId = context.RevisionId,
+                    Keyword = keyword,
+                    EagerLoad = new Expression<Func<InstitutionalAgreement, object>>[]
+                    {
+                        a => a.Participants.Select(p => p.Establishment.Names),
+                        a => a.Participants.Select(p => p.Establishment.Location),
+                    },
+                    OrderBy = new Dictionary<Expression<Func<InstitutionalAgreement, object>>, OrderByDirection>
+                    {
+                        { a => a.StartsOn, OrderByDirection.Descending },
+                    },
+                }
+            );
 
             #region old code
 
