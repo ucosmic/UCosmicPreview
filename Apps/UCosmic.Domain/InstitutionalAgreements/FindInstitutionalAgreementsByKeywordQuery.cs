@@ -8,6 +8,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
     {
         public string Keyword { get; set; }
         public int EstablishmentId { get; set; }
+
         public IEnumerable<Expression<Func<InstitutionalAgreement, object>>> EagerLoad { get; set; }
         public IDictionary<Expression<Func<InstitutionalAgreement, object>>, OrderByDirection> OrderBy { get; set; }
     }
