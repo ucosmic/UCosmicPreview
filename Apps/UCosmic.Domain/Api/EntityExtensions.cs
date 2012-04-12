@@ -16,7 +16,9 @@ namespace UCosmic.Domain
         public static IQueryable<TEntity> EagerLoad<TEntity>(this IQueryable<TEntity> queryable, IEnumerable<Expression<Func<TEntity, object>>> expressions, IQueryEntities entities)
             where TEntity : Entity
         {
-            return expressions.Aggregate(queryable, (current, expression) => current.EagerLoad(expression, entities));
+            if (expressions != null)
+                queryable = expressions.Aggregate(queryable, (current, expression) => current.EagerLoad(expression, entities));
+            return queryable;
         }
 
         public static IQueryable<TEntity> OrderBy<TEntity>(this IQueryable<TEntity> queryable, IEnumerable<KeyValuePair<Expression<Func<TEntity, object>>, OrderByDirection>> expressions)
