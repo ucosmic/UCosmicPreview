@@ -84,6 +84,8 @@
     <Compile Include="Establishments\EstablishmentTypeQuery.cs" />
     <Compile Include="Establishments\EstablishmentQuery.cs" />
     <Compile Include="Establishments\EstablishmentFinder.cs" />
+    <Compile Include="Establishments\FindEstablishmentByEmailHandler.cs" />
+    <Compile Include="Establishments\FindEstablishmentByEmailQuery.cs" />
     <Compile Include="Files\FileFactory.cs" />
     <Compile Include="Files\LooseFile.cs" />
     <Compile Include="Files\FileFinder.cs" />
