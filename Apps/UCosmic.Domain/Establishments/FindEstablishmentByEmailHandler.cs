@@ -13,7 +13,8 @@
         {
             return _entities.Establishments
                 .EagerLoad(query.EagerLoad, _entities)
-                .ByEmail(query.Email);
+                .ByEmail(query.Email)
+            ;
         }
     }
 }

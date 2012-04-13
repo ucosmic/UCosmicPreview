@@ -79,6 +79,8 @@
     <Compile Include="Api\RevisableEntityQueryCriteria.cs" />
     <Compile Include="Email\EmailTemplateQuery.cs" />
     <Compile Include="Email\EmailTemplateFinder.cs" />
+    <Compile Include="Establishments\FindSamlIntegratedEstablishmentsHandler.cs" />
+    <Compile Include="Establishments\FindSamlIntegratedEstablishmentsQuery.cs" />
     <Compile Include="Establishments\UpdateSamlSignOnInfoCommand.cs" />
     <Compile Include="Establishments\EstablishmentChanger.cs" />
     <Compile Include="Establishments\EstablishmentQueries.cs" />

@@ -11,11 +11,11 @@ namespace UCosmic.Domain.Establishments
         {
         }
 
-        public IEnumerable<Establishment> GetSamlIntegrated(params Expression<Func<Establishment, object>>[] eagerLoads)
-        {
-            var query = EagerLoad(Entities.Establishments, eagerLoads);
-            return query.SamlIntegrated().OrderBy(e => e.OfficialName);
-        }
+        //public IEnumerable<Establishment> GetSamlIntegrated(params Expression<Func<Establishment, object>>[] eagerLoads)
+        //{
+        //    var query = EagerLoad(Entities.Establishments, eagerLoads);
+        //    return query.SamlIntegrated().OrderBy(e => e.OfficialName);
+        //}
 
         //public EstablishmentSamlSignOn GetSamlSignOnFor(string emailAddress)
         //{

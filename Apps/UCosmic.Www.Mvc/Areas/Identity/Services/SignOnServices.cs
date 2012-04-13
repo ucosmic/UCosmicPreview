@@ -6,8 +6,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Services
 {
     public class SignOnServices
     {
-        public SignOnServices(IManageConfigurations configurationManager
-            , EstablishmentFacade establishments
+        public SignOnServices(
+            //IManageConfigurations configurationManager
+            EstablishmentFacade establishments
             , UserFacade users
             , ISignUsers userSigner
             , ISignMembers members
@@ -16,7 +17,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Services
             , IHandleCommands<SendSamlAuthnRequestCommand> authnRequestHandler
         )
         {
-            Configuration = configurationManager;
+            //Configuration = configurationManager;
             Establishments = establishments;
             Users = users;
             UserSigner = userSigner;
@@ -26,7 +27,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Services
             SendSamlAuthnRequestHandler = authnRequestHandler;
         }
 
-        public IManageConfigurations Configuration { get; private set; }
+        //public IManageConfigurations Configuration { get; private set; }
         public EstablishmentFacade Establishments { get; private set; }
         public UserFacade Users { get; private set; }
         public ISignUsers UserSigner { get; private set; }
