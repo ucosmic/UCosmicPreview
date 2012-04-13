@@ -94,7 +94,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [ActionName("post")]
         public virtual ActionResult Saml2Post()
         {
-            var samlResponse = _services.Saml2ServiceProvider.ReceiveSamlResponse(Saml2SsoBinding.HttpPost, HttpContext);
+            var samlResponse = _services.QueryProcessor.Execute(
+                new ReceiveSaml2ResponseQuery
+                {
+                    SsoBinding = Saml2SsoBinding.HttpPost,
+                    HttpContext = HttpContext,
+                }
+            );
 
             // Check that response is from a valid issuer
             var isTrustedIssuer = _services.Establishments.IsIssuerTrusted(samlResponse.IssuerNameIdentifier);
@@ -139,10 +145,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             //    if (suggestedReturnUrl.StartsWith(invalidReturnUrl, StringComparison.OrdinalIgnoreCase))
             //        return _identityFacade.UserSigner.DefaultSignedInUrl;
             //}
-            var returnUrl = invalidReturnUrls.Any(invalidReturnUrl => 
+            var returnUrl = invalidReturnUrls.Any(invalidReturnUrl =>
                 suggestedReturnUrl.StartsWith(invalidReturnUrl, StringComparison.OrdinalIgnoreCase)) ||
                     suggestedReturnUrl == "/" // sign in from root should go to default url
-                    ? _services.UserSigner.DefaultSignedOnUrl 
+                    ? _services.UserSigner.DefaultSignedOnUrl
                     : suggestedReturnUrl;
 
             return returnUrl;
