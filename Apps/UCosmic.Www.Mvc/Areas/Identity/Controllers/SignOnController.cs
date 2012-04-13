@@ -62,7 +62,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 // get the establishment for this email address
                 var establishment = _services.QueryProcessor.Execute(
-                    new FindEstablishmentByEmailQuery
+                    new GetEstablishmentByEmailQuery
                     {
                         Email = model.EmailAddress,
                         EagerLoad = new Expression<Func<Establishment, object>>[]
@@ -102,14 +102,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 }
             );
 
-            // Check that response is from a valid issuer
-            var isTrustedIssuer = _services.Establishments.IsIssuerTrusted(samlResponse.IssuerNameIdentifier);
-            if (!isTrustedIssuer) throw new InvalidOperationException(string.Format(
-                "Issuer '{0}' does not appear to be trusted.", samlResponse.IssuerNameIdentifier));
+            //// Check that response is from a valid issuer
+            //var isTrustedIssuer = _services.Establishments.IsIssuerTrusted(samlResponse.IssuerNameIdentifier);
+            //if (!isTrustedIssuer) throw new InvalidOperationException(string.Format(
+            //    "Issuer '{0}' does not appear to be trusted.", samlResponse.IssuerNameIdentifier));
 
-            // Verify the response's signature.
-            if (!samlResponse.VerifySignature())
-                throw new InvalidOperationException("The SAML response signature failed to verify.");
+            //// Verify the response's signature.
+            //if (!samlResponse.VerifySignature())
+            //    throw new InvalidOperationException("The SAML response signature failed to verify.");
 
             var subjectNameIdentifier = samlResponse.SubjectNameIdentifier;
             var eduPrincipalPersonName = samlResponse.GetAttributeValueByFriendlyName(SamlAttributeFriendlyName.EduPersonPrincipalName);

@@ -23,7 +23,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
         private bool MatchExistingEstablishment(string emailAddress)
         {
             var establishment = _queryProcessor.Execute(
-                new FindEstablishmentByEmailQuery
+                new GetEstablishmentByEmailQuery
                 {
                     Email = emailAddress,
                 }

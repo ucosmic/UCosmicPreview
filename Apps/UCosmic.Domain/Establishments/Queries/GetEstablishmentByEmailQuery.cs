@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace UCosmic.Domain.Establishments
 {
-    public class FindEstablishmentByEmailQuery : IDefineQuery<Establishment>
+    public class GetEstablishmentByEmailQuery : IDefineQuery<Establishment>
     {
         public string Email { get; set; }
 
