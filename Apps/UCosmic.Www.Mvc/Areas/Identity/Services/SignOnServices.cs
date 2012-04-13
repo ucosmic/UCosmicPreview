@@ -12,7 +12,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Services
             , UserFacade users
             , ISignUsers userSigner
             , ISignMembers members
-            , IProvideSaml2Service saml2ServiceProvider
+            //, IProvideSaml2Service saml2ServiceProvider
             , IProcessQueries queryProcessor
             , IHandleCommands<SendSamlAuthnRequestCommand> authnRequestHandler
         )
@@ -22,7 +22,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Services
             Users = users;
             UserSigner = userSigner;
             Members = members;
-            Saml2ServiceProvider = saml2ServiceProvider;
+            //Saml2ServiceProvider = saml2ServiceProvider;
             QueryProcessor = queryProcessor;
             SendSamlAuthnRequestHandler = authnRequestHandler;
         }
@@ -32,7 +32,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Services
         public UserFacade Users { get; private set; }
         public ISignUsers UserSigner { get; private set; }
         public ISignMembers Members { get; private set; }
-        public IProvideSaml2Service Saml2ServiceProvider { get; private set; }
+        //public IProvideSaml2Service Saml2ServiceProvider { get; private set; }
         public IProcessQueries QueryProcessor { get; private set; }
         public IHandleCommands<SendSamlAuthnRequestCommand> SendSamlAuthnRequestHandler { get; private set; }
 

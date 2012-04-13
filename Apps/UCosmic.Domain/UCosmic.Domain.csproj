@@ -95,6 +95,8 @@
     <Compile Include="Establishments\Commands\UpdateSamlSignOnInfoHandler.cs" />
     <Compile Include="Establishments\Commands\UpdateSamlSignOnMetadataCommand.cs" />
     <Compile Include="Establishments\Commands\UpdateSamlSignOnMetadataHandler.cs" />
+    <Compile Include="Establishments\Queries\ReceiveSaml2ResponseHandler.cs" />
+    <Compile Include="Establishments\Queries\ReceiveSaml2ResponseQuery.cs" />
     <Compile Include="Files\FileFactory.cs" />
     <Compile Include="Files\LooseFile.cs" />
     <Compile Include="Files\FileFinder.cs" />
