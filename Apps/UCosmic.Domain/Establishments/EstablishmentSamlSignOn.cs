@@ -22,6 +22,5 @@ namespace UCosmic.Domain.Establishments
 
         public DateTime? CreatedOnUtc { get; protected internal set; }
         public DateTime? UpdatedOnUtc { get; protected internal set; }
-
     }
 }

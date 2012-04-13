@@ -23,6 +23,24 @@ namespace UCosmic.Seeders
             new EstablishmentPreview5Seeder().Seed(context);
             new EstablishmentDecember2011Preview2Seeder().Seed(context);
             new EstablishmentJanuary2011Preview1Seeder().Seed(context);
+            new EstablishmentUcSamlIntegrationSeeder().Seed(context);
+        }
+
+        private class EstablishmentUcSamlIntegrationSeeder : UCosmicDbSeeder
+        {
+            public override void Seed(UCosmicContext context)
+            {
+                if (WebConfig.IsDeployedToCloud) return;
+
+                Context = context;
+
+                var uc = context.Establishments.Single(e => e.WebsiteUrl == "www.uc.edu");
+                uc.SetSamlSignOn(
+                    "https://qalogin.uc.edu/idp/profile/Metadata/SAML",
+                    "https://qalogin.uc.edu/idp/shibboleth"
+                );
+                context.SaveChanges();
+            }
         }
 
         private class EstablishmentJanuary2011Preview1Seeder : BaseEstablishmentSeeder

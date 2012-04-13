@@ -56,7 +56,7 @@ namespace UCosmic.Domain.Establishments
 
         public virtual EstablishmentSamlSignOn SamlSignOn { get; protected internal set; }
 
-        public void SetSamlSignOn(string samlEntityId, string metadataUrl)
+        public void SetSamlSignOn(string metadataUrl, string samlEntityId)
         {
             if (SamlSignOn == null || SamlSignOn.EntityId != samlEntityId || SamlSignOn.MetadataUrl != metadataUrl)
             {
@@ -101,6 +101,11 @@ namespace UCosmic.Domain.Establishments
         public override string ToString()
         {
             return OfficialName;
+        }
+
+        public bool HasSamlSignOn()
+        {
+            return SamlSignOn != null;
         }
     }
 

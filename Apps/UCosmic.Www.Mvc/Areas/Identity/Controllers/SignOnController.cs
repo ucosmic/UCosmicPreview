@@ -25,11 +25,21 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         #endregion
         #region SignOn
 
+        [HttpPost]
+        [OutputCache(VaryByParam = SignOnBeginForm.EmailAddressPropertyName, Duration = 1800)]
+        public virtual JsonResult ValidateEmailAddress(
+            [CustomizeValidator(Properties = SignOnBeginForm.EmailAddressPropertyName)] SignOnBeginForm model)
+        {
+            // form must not be valid unless email address is eligible
+            return ValidateRemote(JsonRequestBehavior.DenyGet);
+        }
+
         [HttpGet]
         [ActionName("sign-on")]
         [OpenTopTab(TopTabName.Home)]
         public virtual ActionResult Begin(string returnUrl)
         {
+            // there are certain URL's we don't want to return to after signing on
             if (!string.IsNullOrWhiteSpace(returnUrl))
             {
                 var correctedReturnUrl = GetReturnUrl(returnUrl);
@@ -37,15 +47,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     return RedirectToAction(MVC.Identity.SignOn.Begin(correctedReturnUrl));
             }
 
+            // pass the return url into the view model for POST
             var model = new SignOnBeginForm { ReturnUrl = returnUrl };
             return View(model);
-        }
-
-        [HttpPost]
-        public virtual JsonResult ValidateEmailAddress(
-            [CustomizeValidator(Properties = "EmailAddress")] SignOnBeginForm model)
-        {
-            return ValidateRemote(JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
@@ -56,6 +60,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             if (ModelState.IsValid)
             {
+                // get the establishment for this email address
                 var establishment = _services.QueryProcessor.Execute(
                     new FindEstablishmentByEmailQuery
                     {
@@ -67,15 +72,19 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     }
                 );
 
-                if (model.EmailAddress.EndsWith("@testshib.org", StringComparison.OrdinalIgnoreCase)
-                    || model.EmailAddress.EndsWith("@uc.edu", StringComparison.OrdinalIgnoreCase))
+                // sign on user using SAML2
+                if (establishment.HasSamlSignOn())
                 {
-                    var samlSignOn = _services.Establishments.GetSamlSignOnFor(model.EmailAddress);
-                    _services.Saml2ServiceProvider.SendAuthnRequest(samlSignOn.SsoLocation, samlSignOn.SsoBinding.AsSaml2SsoBinding(),
-                        _services.Configuration.SamlServiceProviderEntityId, model.ReturnUrl, HttpContext);
+                    _services.SendSamlAuthnRequestHandler.Handle(
+                        new SendSamlAuthnRequestCommand
+                        {
+                            SamlSignOn = establishment.SamlSignOn,
+                            ReturnUrl = model.ReturnUrl,
+                            HttpContext = HttpContext,
+                        }
+                    );
                     return new EmptyResult();
                 }
-
             }
             return View(model);
         }

@@ -86,8 +86,8 @@ namespace UCosmic
             var msWebMvc = assemblies.SingleOrDefault(a => a.FullName.StartsWith("Microsoft.Web.Mvc"));
             if (msWebMvc != null) assemblies.Remove(msWebMvc);
 
-            //// open generic decorator chains
-            //container.RegisterManyForOpenGeneric(typeof(IHandleCommands<>), assemblies);
+            // open generic decorator chains http://www.cuttingedge.it/blogs/steven/pivot/entry.php?id=91
+            container.RegisterManyForOpenGeneric(typeof(IHandleCommands<>), assemblies);
             //container.RegisterOpenGenericDecorator(typeof(IHandleCommands<>),
             //    typeof(SomeCommandHandlerDecorator<>));
 
