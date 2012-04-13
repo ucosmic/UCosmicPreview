@@ -147,7 +147,6 @@
     <Compile Include="Establishments\Entities\EstablishmentName.cs" />
     <Compile Include="Establishments\Entities\EstablishmentNode.cs" />
     <Compile Include="Establishments\Entities\EstablishmentSamlSignOn.cs" />
-    <Compile Include="Establishments\EstablishmentFacade.cs" />
     <Compile Include="Establishments\Entities\EstablishmentType.cs" />
     <Compile Include="Establishments\Entities\EstablishmentUrl.cs" />
     <Compile Include="InstitutionalAgreements\InstitutionalAgreement.cs" />
