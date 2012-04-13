@@ -79,9 +79,9 @@
     <Compile Include="Api\RevisableEntityQueryCriteria.cs" />
     <Compile Include="Email\EmailTemplateQuery.cs" />
     <Compile Include="Email\EmailTemplateFinder.cs" />
+    <Compile Include="Establishments\UpdateSamlSignOnInfoCommand.cs" />
     <Compile Include="Establishments\EstablishmentChanger.cs" />
     <Compile Include="Establishments\EstablishmentQueries.cs" />
-    <Compile Include="Establishments\EstablishmentSamlFactory.cs" />
     <Compile Include="Establishments\EstablishmentTypeFinder.cs" />
     <Compile Include="Establishments\EstablishmentTypeQuery.cs" />
     <Compile Include="Establishments\EstablishmentQuery.cs" />
@@ -90,6 +90,7 @@
     <Compile Include="Establishments\FindEstablishmentByEmailQuery.cs" />
     <Compile Include="Establishments\SendSamlAuthnRequestCommand.cs" />
     <Compile Include="Establishments\SendSamlAuthnRequestHandler.cs" />
+    <Compile Include="Establishments\UpdateSamlSignOnInfoHandler.cs" />
     <Compile Include="Establishments\UpdateSamlSignOnMetadataCommand.cs" />
     <Compile Include="Establishments\UpdateSamlSignOnMetadataHandler.cs" />
     <Compile Include="Files\FileFactory.cs" />
