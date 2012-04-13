@@ -56,14 +56,6 @@ namespace UCosmic.Domain.Establishments
 
         public virtual EstablishmentSamlSignOn SamlSignOn { get; protected internal set; }
 
-        public void SetSamlSignOn(string metadataUrl, string samlEntityId)
-        {
-            if (SamlSignOn == null || SamlSignOn.EntityId != samlEntityId || SamlSignOn.MetadataUrl != metadataUrl)
-            {
-                SamlSignOn = EstablishmentSamlFactory.Create(samlEntityId, metadataUrl);
-            }
-        }
-
         public virtual EstablishmentType Type { get; set; }
 
         public bool IsMember { get; set; }

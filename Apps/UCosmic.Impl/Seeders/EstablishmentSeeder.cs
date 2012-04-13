@@ -6,6 +6,7 @@ using System.Linq;
 using NGeo.GeoNames;
 using NGeo.Yahoo.GeoPlanet;
 using NGeo.Yahoo.PlaceFinder;
+using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Places;
 using UCosmic.Orm;
@@ -35,9 +36,14 @@ namespace UCosmic.Seeders
                 Context = context;
 
                 var uc = context.Establishments.Single(e => e.WebsiteUrl == "www.uc.edu");
-                uc.SetSamlSignOn(
-                    "https://qalogin.uc.edu/idp/profile/Metadata/SAML",
-                    "https://qalogin.uc.edu/idp/shibboleth"
+                var samlHandler = DependencyInjector.Current.GetService<IHandleCommands<UpdateSamlSignOnInfoCommand>>();
+                samlHandler.Handle(
+                    new UpdateSamlSignOnInfoCommand
+                    {
+                        Establishment = uc,
+                        EntityId = "https://qalogin.uc.edu/idp/shibboleth",
+                        MetadataUrl = "https://qalogin.uc.edu/idp/profile/Metadata/SAML",
+                    }
                 );
                 context.SaveChanges();
             }
@@ -70,8 +76,18 @@ namespace UCosmic.Seeders
                             new EstablishmentEmailDomain { Value = "@testshib.org", }
                         },
                     };
-                    testshib.SetSamlSignOn("https://idp.testshib.org/idp/shibboleth", "https://idp.testshib.org/idp/shibboleth");
                     context.Establishments.Add(testshib);
+                    context.SaveChanges();
+
+                    var samlHandler = DependencyInjector.Current.GetService<IHandleCommands<UpdateSamlSignOnInfoCommand>>();
+                    samlHandler.Handle(
+                        new UpdateSamlSignOnInfoCommand
+                        {
+                            Establishment = testshib,
+                            EntityId = "https://idp.testshib.org/idp/shibboleth",
+                            MetadataUrl = "https://idp.testshib.org/idp/shibboleth",
+                        }
+                    );
                     context.SaveChanges();
                 }
             }
