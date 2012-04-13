@@ -79,6 +79,8 @@
     <Compile Include="Api\RevisableEntityQueryCriteria.cs" />
     <Compile Include="Email\EmailTemplateQuery.cs" />
     <Compile Include="Email\EmailTemplateFinder.cs" />
+    <Compile Include="Establishments\Commands\SignOnSamlUserCommand.cs" />
+    <Compile Include="Establishments\Commands\SignOnSamlUserHandler.cs" />
     <Compile Include="Establishments\Queries\FindSamlIntegratedEstablishmentsHandler.cs" />
     <Compile Include="Establishments\Queries\FindSamlIntegratedEstablishmentsQuery.cs" />
     <Compile Include="Establishments\Commands\UpdateSamlSignOnInfoCommand.cs" />
@@ -88,13 +90,15 @@
     <Compile Include="Establishments\EstablishmentTypeQuery.cs" />
     <Compile Include="Establishments\EstablishmentQuery.cs" />
     <Compile Include="Establishments\EstablishmentFinder.cs" />
-    <Compile Include="Establishments\Queries\FindEstablishmentByEmailHandler.cs" />
-    <Compile Include="Establishments\Queries\FindEstablishmentByEmailQuery.cs" />
+    <Compile Include="Establishments\Queries\GetEstablishmentByEmailHandler.cs" />
+    <Compile Include="Establishments\Queries\GetEstablishmentByEmailQuery.cs" />
     <Compile Include="Establishments\Commands\SendSamlAuthnRequestCommand.cs" />
     <Compile Include="Establishments\Commands\SendSamlAuthnRequestHandler.cs" />
     <Compile Include="Establishments\Commands\UpdateSamlSignOnInfoHandler.cs" />
     <Compile Include="Establishments\Commands\UpdateSamlSignOnMetadataCommand.cs" />
     <Compile Include="Establishments\Commands\UpdateSamlSignOnMetadataHandler.cs" />
+    <Compile Include="Establishments\Queries\GetEstablishmentBySamlEntityIdHandler.cs" />
+    <Compile Include="Establishments\Queries\GetEstablishmentBySamlEntityIdQuery.cs" />
     <Compile Include="Establishments\Queries\ReceiveSaml2ResponseHandler.cs" />
     <Compile Include="Establishments\Queries\ReceiveSaml2ResponseQuery.cs" />
     <Compile Include="Files\FileFactory.cs" />

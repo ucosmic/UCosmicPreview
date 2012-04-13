@@ -1,15 +1,15 @@
 ﻿namespace UCosmic.Domain.Establishments
 {
-    public class FindEstablishmentByEmailHandler : IHandleQueries<FindEstablishmentByEmailQuery, Establishment>
+    public class GetEstablishmentByEmailHandler : IHandleQueries<GetEstablishmentByEmailQuery, Establishment>
     {
         private readonly IQueryEntities _entities;
 
-        public FindEstablishmentByEmailHandler(IQueryEntities entities)
+        public GetEstablishmentByEmailHandler(IQueryEntities entities)
         {
             _entities = entities;
         }
 
-        public Establishment Handle(FindEstablishmentByEmailQuery query)
+        public Establishment Handle(GetEstablishmentByEmailQuery query)
         {
             return _entities.Establishments
                 .EagerLoad(query.EagerLoad, _entities)

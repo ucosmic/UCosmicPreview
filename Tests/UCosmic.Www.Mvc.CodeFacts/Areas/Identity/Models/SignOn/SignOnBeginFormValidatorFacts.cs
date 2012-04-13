@@ -17,7 +17,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
             public void HasErrorWhen_EmailAddress_IsNull()
             {
                 var queryProcessor = new Mock<IProcessQueries>();
-                queryProcessor.Setup(m => m.Execute(It.IsAny<FindEstablishmentByEmailQuery>())).Returns(new Establishment());
+                queryProcessor.Setup(m => m.Execute(It.IsAny<GetEstablishmentByEmailQuery>())).Returns(new Establishment());
                 var validator = new SignOnBeginFormValidator(queryProcessor.Object);
                 validator.ShouldHaveValidationErrorFor(model => model.EmailAddress, null as string);
             }
@@ -26,7 +26,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
             public void HasErrorWhen_EmailAddress_IsEmpty()
             {
                 var queryProcessor = new Mock<IProcessQueries>();
-                queryProcessor.Setup(m => m.Execute(It.IsAny<FindEstablishmentByEmailQuery>())).Returns(new Establishment());
+                queryProcessor.Setup(m => m.Execute(It.IsAny<GetEstablishmentByEmailQuery>())).Returns(new Establishment());
                 var validator = new SignOnBeginFormValidator(queryProcessor.Object);
                 validator.ShouldHaveValidationErrorFor(model => model.EmailAddress, string.Empty);
             }
@@ -35,7 +35,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
             public void HasErrorWhen_EmailAddress_IsWhiteSpace()
             {
                 var queryProcessor = new Mock<IProcessQueries>();
-                queryProcessor.Setup(m => m.Execute(It.IsAny<FindEstablishmentByEmailQuery>())).Returns(new Establishment());
+                queryProcessor.Setup(m => m.Execute(It.IsAny<GetEstablishmentByEmailQuery>())).Returns(new Establishment());
                 var validator = new SignOnBeginFormValidator(queryProcessor.Object);
                 validator.ShouldHaveValidationErrorFor(model => model.EmailAddress, " \t ");
             }
@@ -44,7 +44,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
             public void HasErrorWhen_EmailAddress_IsMissingTldExtension()
             {
                 var queryProcessor = new Mock<IProcessQueries>();
-                queryProcessor.Setup(m => m.Execute(It.IsAny<FindEstablishmentByEmailQuery>())).Returns(new Establishment());
+                queryProcessor.Setup(m => m.Execute(It.IsAny<GetEstablishmentByEmailQuery>())).Returns(new Establishment());
                 var validator = new SignOnBeginFormValidator(queryProcessor.Object);
                 validator.ShouldHaveValidationErrorFor(model => model.EmailAddress, "email@domain");
             }
@@ -53,7 +53,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
             public void HasNoErrorWhen_EmailAddress_IsValidEmailAddress()
             {
                 var queryProcessor = new Mock<IProcessQueries>();
-                queryProcessor.Setup(m => m.Execute(It.IsAny<FindEstablishmentByEmailQuery>())).Returns(new Establishment());
+                queryProcessor.Setup(m => m.Execute(It.IsAny<GetEstablishmentByEmailQuery>())).Returns(new Establishment());
                 var validator = new SignOnBeginFormValidator(queryProcessor.Object);
                 validator.ShouldNotHaveValidationErrorFor(model => model.EmailAddress, "email@domain.tld");
             }
