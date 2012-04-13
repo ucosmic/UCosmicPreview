@@ -156,8 +156,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [OpenTopTab(TopTabName.Home)]
         public virtual ActionResult Saml2Integrations()
         {
-            var models = Mapper.Map<Saml2IntegrationInfo[]>
-                (_services.Establishments.GetSamlIntegrated());
+            var entities = _services.QueryProcessor.Execute(
+                new FindSamlIntegratedEstablishmentsQuery()
+            );
+
+            var models = Mapper.Map<Saml2IntegrationInfo[]>(entities);
             return View(models);
         }
 
