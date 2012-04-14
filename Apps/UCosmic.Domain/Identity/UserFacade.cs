@@ -44,12 +44,12 @@ namespace UCosmic.Domain.Identity
             return Get(Entities.Users, revisionId, eagerLoads);
         }
 
-        public User GetBySubjectNameId(string subjectNameId, params Expression<Func<User, object>>[] eagerLoads)
-        {
-            var query = EagerLoad(Entities.Users, eagerLoads);
-            var user = query.BySubjectNameId(subjectNameId);
-            return user;
-        }
+        //public User GetBySubjectNameId(string subjectNameId, params Expression<Func<User, object>>[] eagerLoads)
+        //{
+        //    var query = EagerLoad(Entities.Users, eagerLoads);
+        //    var user = query.BySubjectNameId(subjectNameId);
+        //    return user;
+        //}
 
         public IEnumerable<User> AutoComplete(string term, IEnumerable<Guid> excludeEntityIds)
         {
@@ -74,7 +74,7 @@ namespace UCosmic.Domain.Identity
                 {
                     UserName = userName,
                     IsRegistered = isRegistered,
-                    SubjectNameId = subjectNameId,
+                    //SubjectNameId = subjectNameId,
                     Person = _personFinder.FindOne(PersonBy.EmailAddress(userName))
                                 ?? PersonFactory.Create(userName),
                 };
@@ -93,9 +93,9 @@ namespace UCosmic.Domain.Identity
             if (!isRegistered.Equals(user.IsRegistered))
                 user.IsRegistered = isRegistered;
 
-            // make sure user has correct subject name id
-            if (!string.IsNullOrWhiteSpace(subjectNameId) && !subjectNameId.Equals(user.SubjectNameId))
-                user.SubjectNameId = subjectNameId;
+            //// make sure user has correct subject name id
+            //if (!string.IsNullOrWhiteSpace(subjectNameId) && !subjectNameId.Equals(user.SubjectNameId))
+            //    user.SubjectNameId = subjectNameId;
 
             return user;
         }
