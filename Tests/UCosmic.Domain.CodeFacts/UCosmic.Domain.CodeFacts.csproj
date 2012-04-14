@@ -80,7 +80,6 @@
     <Compile Include="Establishments\InstitutionInfoFacts.cs" />
     <Compile Include="Establishments\EstablishmentEmailDomainFacts.cs" />
     <Compile Include="Establishments\EstablishmentNameFacts.cs" />
-    <Compile Include="Establishments\EstablishmentChangerFacts.cs" />
     <Compile Include="Establishments\EstablishmentFinderFacts.cs" />
     <Compile Include="Establishments\EstablishmentNodeFacts.cs" />
     <Compile Include="Establishments\EstablishmentQueryFacts.cs" />
