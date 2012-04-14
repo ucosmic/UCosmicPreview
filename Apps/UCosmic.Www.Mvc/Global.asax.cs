@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
@@ -88,9 +89,9 @@ namespace UCosmic.Www.Mvc
             // use infrastructure service locator for MVC dependency resolution
             DependencyResolver.SetResolver(new MvcDependencyResolver());
 
-            //var providers = FilterProviders.Providers.OfType<FilterAttributeFilterProvider>().ToList();
-            //providers.ForEach(provider => FilterProviders.Providers.Remove(provider));
-            //FilterProviders.Providers.Add(new SimpleInjectorMVC3Extensions.SimpleInjectorFilterAttributeFilterProvider(injector.Container));
+            var providers = FilterProviders.Providers.OfType<FilterAttributeFilterProvider>().ToList();
+            providers.ForEach(provider => FilterProviders.Providers.Remove(provider));
+            FilterProviders.Providers.Add(DependencyInjector.Current.GetService<SimpleFilterAttributeFilterProvider>());
         }
 
         private static void SetUpFluentValidation()

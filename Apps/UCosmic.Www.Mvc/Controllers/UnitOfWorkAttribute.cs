@@ -5,10 +5,11 @@ namespace UCosmic.Www.Mvc.Controllers
 {
     public class UnitOfWorkAttribute : ActionFilterAttribute
     {
+        public IUnitOfWork UnitOfWork { get; set; }
+
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            var unitOfWork = DependencyInjector.Current.GetService<IUnitOfWork>();
-            unitOfWork.SaveChanges();
+            UnitOfWork.SaveChanges();
             base.OnActionExecuted(filterContext);
         }
     }
