@@ -28,7 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 
                     Expression<Func<Affiliation, bool>> myDefaultAffiliation = affiliation =>
                         affiliation.IsDefault && affiliation.Person.User != null
-                        && affiliation.Person.User.UserName.Equals(Thread.CurrentPrincipal.Identity.Name, StringComparison.OrdinalIgnoreCase);
+                        && affiliation.Person.User.Name.Equals(Thread.CurrentPrincipal.Identity.Name, StringComparison.OrdinalIgnoreCase);
 
                     var owners = establishments.FindMany(With<Establishment>.EntityIds(participantIds))
                         .Where(e => e.Affiliates.AsQueryable().Any(myDefaultAffiliation)

@@ -235,7 +235,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                     DisplayName = "Test Person 3",
                     User = new User
                     {
-                        UserName = model.EmailAddress,
+                        Name = model.EmailAddress,
                         IsRegistered = true,
                     },
                     Emails = new[]
@@ -392,7 +392,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                     DisplayName = "Test Person 6",
                     User = new User
                     {
-                        UserName = model.EmailAddress,
+                        Name = model.EmailAddress,
                         IsRegistered = false,
                     },
                 };
@@ -449,7 +449,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                     DisplayName = "Test Person 4",
                     User = new User
                     {
-                        UserName = model.EmailAddress,
+                        Name = model.EmailAddress,
                         IsRegistered = false,
                     },
                 };

@@ -10,7 +10,7 @@
                     <img src="@Url.Content(Links.content.icons.deletes.delete_hot_16_png)" 
                     alt="remove member icon" title="Remove this member" /></a>
             </div>
-            <b>@Html.DisplayFor(m => m.User.UserName)</b>
+            <b>@Html.DisplayFor(m => m.User.Name)</b>
         </div>
     </div>
     @using (Html.BeginCollectionItem("Grants"))

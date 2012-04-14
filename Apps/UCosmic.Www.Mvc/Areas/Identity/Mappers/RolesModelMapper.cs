@@ -22,7 +22,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             {
                 CreateMap<Role, RoleForm>()
                     .ForMember(target => target.ReturnUrl, opt => opt.Ignore())
-                    .ForMember(d => d.Grants, o => o.MapFrom(s => s.Grants.OrderBy(g => g.User.UserName)))
+                    .ForMember(d => d.Grants, o => o.MapFrom(s => s.Grants.OrderBy(g => g.User.Name)))
                 ;
                 CreateMap<RoleGrant, RoleForm.RoleGrantForm>();
                 CreateMap<User, RoleForm.RoleGrantForm.UserForm>();
@@ -30,14 +30,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
                     .ForMember(target => target.User, opt => opt
                         .ResolveUsing(source => new RoleForm.RoleGrantForm.UserForm
                         {
-                            EntityId = source.EntityId, UserName = source.UserName
+                            EntityId = source.EntityId, Name = source.Name
                         }))
                 ;
                 CreateMap<User, AutoCompleteOption>()
                     .ForMember(target => target.value, opt => opt
                         .ResolveUsing(source => source.EntityId.ToString()))
                     .ForMember(target => target.label, opt => opt
-                        .ResolveUsing(source => source.UserName))
+                        .ResolveUsing(source => source.Name))
                 ;
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Establishments
 {
@@ -32,7 +33,7 @@ namespace UCosmic.Domain.Establishments
             var isIssuerTrusted = establishment != null && establishment.HasSamlSignOn();
             if (!isIssuerTrusted)
                 throw new InvalidOperationException(string.Format(
-                    "SAML 2 response issuer '{0}' does not appear to be trusted.", 
+                    "SAML 2 response issuer '{0}' does not appear to be trusted.",
                         command.Saml2Response.IssuerNameIdentifier));
 
             // verify the response's signature
@@ -47,7 +48,12 @@ namespace UCosmic.Domain.Establishments
                 (SamlAttributeFriendlyName.EduPersonPrincipalName);
 
             // find person
-
+            var person = _queryProcessor.Execute(
+                new GetPersonByEmailQuery
+                {
+                    Email = eduPrincipalPersonName
+                }
+            );
 
             // sign on the user
             _userSigner.SignOn(eduPrincipalPersonName);

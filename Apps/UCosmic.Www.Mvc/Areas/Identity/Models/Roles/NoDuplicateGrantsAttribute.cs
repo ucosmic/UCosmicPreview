@@ -27,7 +27,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.Roles
                 //{
                 //    var matches = model.Where(m => m.UserId == grant.UserId && !m.IsDeleted);
                 //    if (matches.Count() < 2) continue;
-                //    _duplicateUserName = grant.UserUserName;
+                //    _duplicateUserName = grant.UserName;
                 //    return false;
                 //}
                 foreach (var grant in from grant in model
@@ -36,7 +36,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.Roles
                                       where matches.Count() > 1
                                       select grant)
                 {
-                    _duplicateUserName = grant.User.UserName;
+                    _duplicateUserName = grant.User.Name;
                     return false;
                 }
                 return true;

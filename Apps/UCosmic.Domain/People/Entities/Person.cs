@@ -163,7 +163,7 @@ namespace UCosmic.Domain.People
                 if (emailAddress != null && Emails.Contains(emailAddress))
                 {
                     User = User ?? new User();
-                    User.UserName = User.UserName ?? emailAddress.Value;
+                    User.Name = User.Name ?? emailAddress.Value;
                     User.IsRegistered = true;
                     return User;
                 }
@@ -185,7 +185,7 @@ namespace UCosmic.Domain.People
         {
             return (query != null)
                 ? query.Current().SingleOrDefault(p =>
-                    p.User != null && p.User.UserName.Equals(Thread.CurrentPrincipal.Identity.Name))
+                    p.User != null && p.User.Name.Equals(Thread.CurrentPrincipal.Identity.Name))
                 : null;
         }
     }

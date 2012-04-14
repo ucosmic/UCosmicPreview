@@ -132,7 +132,7 @@ namespace UCosmic.Domain.Establishments
 
             Func<Affiliation, bool> defaultAffiliation = a =>
                 a.IsDefault && a.Person.User != null
-                && a.Person.User.UserName.Equals(principal.Identity.Name, StringComparison.OrdinalIgnoreCase);
+                && a.Person.User.Name.Equals(principal.Identity.Name, StringComparison.OrdinalIgnoreCase);
             return establishment.Affiliates.Any(defaultAffiliation)
                 || establishment.Ancestors.Any(n => n.Ancestor.Affiliates.Any(defaultAffiliation));
         }

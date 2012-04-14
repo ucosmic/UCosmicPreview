@@ -300,7 +300,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 var user = confirmation.EmailAddress.Person.SignUp(confirmation.EmailAddress);
                 _objectCommander.Update(confirmation.EmailAddress.Person);
-                _memberSigner.SignUp(user.UserName, model.Password);
+                _memberSigner.SignUp(user.Name, model.Password);
                 _objectCommander.SaveChanges();
 
                 SetFeedbackMessage("Your password was created successfully");

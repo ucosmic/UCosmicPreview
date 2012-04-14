@@ -39,7 +39,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.Roles
             public class UserForm
             {
                 public Guid EntityId { get; set; }
-                public string UserName { get; set; }
+                public string Name { get; set; }
             }
 
             [HiddenInput(DisplayValue = false)]

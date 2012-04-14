@@ -34,7 +34,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
         {
             Expression<Func<Affiliation, bool>> principalDefaultAffiliation =
                 affiliation => affiliation.IsDefault && affiliation.Person.User != null &&
-                               affiliation.Person.User.UserName.Equals(principal.Identity.Name,
+                               affiliation.Person.User.Name.Equals(principal.Identity.Name,
                                                                        StringComparison.OrdinalIgnoreCase);
             IsOwner = 
                 Establishment.Affiliates.AsQueryable().Any(principalDefaultAffiliation) 
