@@ -2906,7 +2906,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 memberSigner.Verify(m => m.IsSignedUp(emailAddress.Value), Times.Once());
                 memberSigner.Verify(m => m.SignUp(emailAddress.Value, model.Password), Times.Once());
                 person.User.ShouldNotBeNull();
-                person.User.UserName.ShouldEqual(emailAddress.Value);
+                person.User.Name.ShouldEqual(emailAddress.Value);
                 person.User.IsRegistered.ShouldBeTrue();
             }
         }

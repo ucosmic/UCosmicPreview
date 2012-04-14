@@ -115,7 +115,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             var eduPrincipalPersonName = samlResponse.GetAttributeValueByFriendlyName(SamlAttributeFriendlyName.EduPersonPrincipalName);
 
             var user = _services.Users.GetOrCreate(eduPrincipalPersonName, true, subjectNameIdentifier);
-            _services.UserSigner.SignOn(user.UserName);
+            _services.UserSigner.SignOn(user.Name);
 
             return Redirect(GetReturnUrl(samlResponse.RelayResourceUrl));
         }

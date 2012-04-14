@@ -18,12 +18,12 @@ namespace UCosmic.Domain.People
 
             // apply principal
             if (finder.Principal != null)
-                query = query.Where(p => p.User != null 
-                    && p.User.UserName.Equals(finder.Principal.Identity.Name, 
+                query = query.Where(p => p.User != null
+                    && p.User.Name.Equals(finder.Principal.Identity.Name,
                         StringComparison.OrdinalIgnoreCase));
 
             // apply email entityId
-            if (finder.EmailEntityId.HasValue  && finder.EmailEntityId != Guid.Empty)
+            if (finder.EmailEntityId.HasValue && finder.EmailEntityId != Guid.Empty)
                 query = query.Where(p => p.Emails.Any(e =>
                     e.EntityId == finder.EmailEntityId.Value));
 
@@ -42,7 +42,7 @@ namespace UCosmic.Domain.People
 
             // apply first name starts with
             if (!string.IsNullOrWhiteSpace(finder.AutoCompleteFirstNamePrefix))
-                query = query.Where(p => p.FirstName != null && 
+                query = query.Where(p => p.FirstName != null &&
                     p.FirstName.Trim().ToLower().StartsWith(finder.AutoCompleteFirstNamePrefix.Trim().ToLower()));
 
             // apply last name starts with
@@ -52,7 +52,7 @@ namespace UCosmic.Domain.People
 
             // apply first name starts with
             if (!string.IsNullOrWhiteSpace(finder.AutoCompleteEmailTerm))
-                query = query.Where(p => p.Emails.Any(e => e.IsCurrent && !e.IsArchived && !e.IsDeleted 
+                query = query.Where(p => p.Emails.Any(e => e.IsCurrent && !e.IsArchived && !e.IsDeleted
                     && e.Value.Trim().ToLower().Contains(finder.AutoCompleteEmailTerm.Trim().ToLower())));
 
             query = FinalizeQuery(query, criteria);

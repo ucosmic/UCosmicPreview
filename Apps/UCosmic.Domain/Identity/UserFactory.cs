@@ -6,7 +6,7 @@
         {
             var user = new User
             {
-                UserName = userName,
+                Name = userName,
                 IsRegistered = isRegstered,
             };
             return user;

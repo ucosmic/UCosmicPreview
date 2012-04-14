@@ -25,7 +25,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Events
                         Membership.DeleteUser(memberToClear);
 
                     var person = context.People.SingleOrDefault(p => p.User != null 
-                        && memberToClear.Equals(p.User.UserName, StringComparison.OrdinalIgnoreCase))
+                        && memberToClear.Equals(p.User.Name, StringComparison.OrdinalIgnoreCase))
                         ?? context.People.SingleOrDefault(p => p.Emails.Any(
                             e => memberToClear.Equals(e.Value, StringComparison.OrdinalIgnoreCase)));
                     if (person == null) continue;

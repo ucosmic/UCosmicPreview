@@ -209,7 +209,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             {
                 Expression<Func<Affiliation, bool>> myDefaultAffiliation = affiliation =>
                     affiliation.IsDefault && affiliation.Person.User != null
-                        && affiliation.Person.User.UserName.Equals(User.Identity.Name,
+                        && affiliation.Person.User.Name.Equals(User.Identity.Name,
                             StringComparison.OrdinalIgnoreCase);
 
                 var model = new InstitutionalAgreementParticipantForm

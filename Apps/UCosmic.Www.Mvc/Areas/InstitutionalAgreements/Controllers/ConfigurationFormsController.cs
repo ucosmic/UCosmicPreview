@@ -540,7 +540,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             // set up common predicate expressions
             Expression<Func<Affiliation, bool>> currentUserDefaultAffiliation = affiliation =>
                 affiliation.Establishment.IsMember && affiliation.IsDefault && affiliation.Person.User != null
-                    && affiliation.Person.User.UserName.Equals(Thread.CurrentPrincipal.Identity.Name);
+                    && affiliation.Person.User.Name.Equals(Thread.CurrentPrincipal.Identity.Name);
 
             var query = context.InstitutionalAgreementConfigurations.AsNoTracking().Current()
                 //.Including(c => c.ForEstablishment.Affiliates.Select(a => a.Person.User))

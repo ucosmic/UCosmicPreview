@@ -58,7 +58,7 @@ namespace UCosmic.Domain.Identity
             var query = Entities.Users
                 .Exclude(excludeEntityIds)
                 .AutoComplete(term)
-                .OrderBy(u => u.UserName)
+                .OrderBy(u => u.Name)
             ;
             return query;
         }
@@ -72,7 +72,7 @@ namespace UCosmic.Domain.Identity
             {
                 user = new User
                 {
-                    UserName = userName,
+                    Name = userName,
                     IsRegistered = isRegistered,
                     //SubjectNameId = subjectNameId,
                     Person = _personFinder.FindOne(PersonBy.EmailAddress(userName))

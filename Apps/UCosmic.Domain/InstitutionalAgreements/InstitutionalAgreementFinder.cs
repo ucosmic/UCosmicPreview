@@ -42,7 +42,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 // select all agreements where this user's default affiliation is the owner
                 Expression<Func<Affiliation, bool>> principalDefaultAffiliation = affiliation =>
                     affiliation.IsDefault && affiliation.Person.User != null
-                        && affiliation.Person.User.UserName.Equals(finder.PrincipalContext.Identity.Name,
+                        && affiliation.Person.User.Name.Equals(finder.PrincipalContext.Identity.Name,
                             StringComparison.OrdinalIgnoreCase);
                 query = query.Where(agreement => agreement.Participants.Any(
                     participant => participant.IsOwner // only get owning participants
@@ -115,12 +115,12 @@ namespace UCosmic.Domain.InstitutionalAgreements
                     p.Establishment.Affiliates.Any(
                         a =>
                         a.IsDefault && a.Person.User != null &&
-                        a.Person.User.UserName.Equals(principal.Identity.Name, StringComparison.OrdinalIgnoreCase))
+                        a.Person.User.Name.Equals(principal.Identity.Name, StringComparison.OrdinalIgnoreCase))
                     ||
                     p.Establishment.Ancestors.Any(n => n.Ancestor.Affiliates.Any(
                         a =>
                         a.IsDefault && a.Person.User != null &&
-                        a.Person.User.UserName.Equals(principal.Identity.Name, StringComparison.OrdinalIgnoreCase)))
+                        a.Person.User.Name.Equals(principal.Identity.Name, StringComparison.OrdinalIgnoreCase)))
                 );
             return isOwned;
         }
