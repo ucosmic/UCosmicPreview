@@ -88,7 +88,6 @@
     <Compile Include="Establishments\Queries\FindSamlIntegratedEstablishmentsHandler.cs" />
     <Compile Include="Establishments\Queries\FindSamlIntegratedEstablishmentsQuery.cs" />
     <Compile Include="Establishments\Commands\UpdateSamlSignOnInfoCommand.cs" />
-    <Compile Include="Establishments\EstablishmentChanger.cs" />
     <Compile Include="Establishments\Queries\EstablishmentQueries.cs" />
     <Compile Include="Establishments\EstablishmentTypeFinder.cs" />
     <Compile Include="Establishments\EstablishmentTypeQuery.cs" />
