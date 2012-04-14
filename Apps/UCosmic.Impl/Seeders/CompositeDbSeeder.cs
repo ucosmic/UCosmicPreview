@@ -37,8 +37,9 @@ namespace UCosmic.Seeders
             var commander = DependencyInjector.Current.GetService<ICommandObjects>();
             var queries = DependencyInjector.Current.GetService<IQueryEntities>();
 
-            var establishmentChanger = new EstablishmentChanger(commander, queries);
-            establishmentChanger.DeriveNodes();
+            var updateEstablishmentHierarchy = DependencyInjector.Current
+                .GetService<IHandleCommands<UpdateEstablishmentNodeHierarchyCommand>>();
+            updateEstablishmentHierarchy.Handle(new UpdateEstablishmentNodeHierarchyCommand());
             commander.SaveChanges();
 
             var institutionalAgreementChanger = new InstitutionalAgreementChanger(commander, queries);
