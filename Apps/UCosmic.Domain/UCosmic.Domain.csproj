@@ -81,6 +81,10 @@
     <Compile Include="Email\EmailTemplateFinder.cs" />
     <Compile Include="Establishments\Commands\SignOnSamlUserCommand.cs" />
     <Compile Include="Establishments\Commands\SignOnSamlUserHandler.cs" />
+    <Compile Include="Establishments\Commands\UpdateEstablishmentNodeHierarchyCommand.cs" />
+    <Compile Include="Establishments\Commands\UpdateEstablishmentNodeHierarchyHandler.cs" />
+    <Compile Include="Establishments\Queries\FindRootEstablishmentsWithChildrenHandler.cs" />
+    <Compile Include="Establishments\Queries\FindRootEstablishmentsWithChildrenQuery.cs" />
     <Compile Include="Establishments\Queries\FindSamlIntegratedEstablishmentsHandler.cs" />
     <Compile Include="Establishments\Queries\FindSamlIntegratedEstablishmentsQuery.cs" />
     <Compile Include="Establishments\Commands\UpdateSamlSignOnInfoCommand.cs" />

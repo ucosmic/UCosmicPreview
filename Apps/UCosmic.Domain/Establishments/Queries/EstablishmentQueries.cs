@@ -8,8 +8,15 @@ namespace UCosmic.Domain.Establishments
         internal static Establishment ByEmail(this IQueryable<Establishment> queryable, string email)
         {
             var emailDomain = email.GetEmailDomain();
-            var establishment = queryable.SingleOrDefault(e => e.EmailDomains.Any(d =>
-                d.Value.Equals(emailDomain, StringComparison.OrdinalIgnoreCase)));
+            var establishment = queryable.SingleOrDefault
+            (
+                e =>
+                e.EmailDomains.Any
+                (
+                    d =>
+                    d.Value.Equals(emailDomain, StringComparison.OrdinalIgnoreCase)
+                )
+            );
             return establishment;
         }
 
@@ -26,7 +33,27 @@ namespace UCosmic.Domain.Establishments
 
         internal static IQueryable<Establishment> SamlIntegrated(this IQueryable<Establishment> queryable)
         {
-            return queryable.Where(e => e.SamlSignOn != null);
+            return queryable.Where(establishment => establishment.SamlSignOn != null);
+        }
+
+        internal static IQueryable<Establishment> IsRoot(this IQueryable<Establishment> queryable)
+        {
+            return queryable.Where(establishment => establishment.Parent == null);
+        }
+
+        internal static IQueryable<Establishment> IsNotRoot(this IQueryable<Establishment> queryable)
+        {
+            return queryable.Where(establishment => establishment.Parent != null);
+        }
+
+        internal static IQueryable<Establishment> WithAnyChildren(this IQueryable<Establishment> queryable)
+        {
+            return queryable.Where(establishment => establishment.Children.Any());
+        }
+
+        internal static IQueryable<Establishment> WithoutAnyChildren(this IQueryable<Establishment> queryable)
+        {
+            return queryable.Where(establishment => !establishment.Children.Any());
         }
     }
 }

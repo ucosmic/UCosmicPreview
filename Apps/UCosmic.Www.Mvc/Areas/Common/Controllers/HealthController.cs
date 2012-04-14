@@ -14,6 +14,7 @@ using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Domain.Languages;
 using UCosmic.Domain.Places;
+using UCosmic.Www.Mvc.Controllers;
 using BoundingBox = UCosmic.Domain.Places.BoundingBox;
 using Place = UCosmic.Domain.Places.Place;
 
@@ -27,10 +28,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         private readonly IConsumeGeoNames _geoNames;
         private readonly IConsumePlaceFinder _placeFinder;
         private readonly IManageConfigurations _config;
+        private readonly IHandleCommands<UpdateEstablishmentNodeHierarchyCommand> _updateEstablishmentHierarchy;
 
         public HealthController(IQueryEntities entityQueries, ICommandObjects objectCommander,
             IConsumeGeoNames geoNames, IConsumeGeoPlanet geoPlanet, IConsumePlaceFinder placeFinder,
-            IManageConfigurations config)
+            IManageConfigurations config, IHandleCommands<UpdateEstablishmentNodeHierarchyCommand> updateEstablishmentHierarchy)
         {
             _entityQueries = entityQueries;
             _objectCommander = objectCommander;
@@ -38,6 +40,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             _geoPlanet = geoPlanet;
             _placeFinder = placeFinder;
             _config = config;
+            _updateEstablishmentHierarchy = updateEstablishmentHierarchy;
         }
 
         [ActionName("sample-cached-page")]
@@ -49,15 +52,15 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             return View();
         }
 
-        [ActionName("run-establishment-hierarchy")]
+        [UnitOfWork]
         [Authorize(Users = "ludwigd1@uc.edu")]
         //[Authorize(Users = "Daniel.Ludwig@uc.edu")]
+        [ActionName("run-establishment-hierarchy")]
         public virtual ActionResult RunEstablishmentHierarchy()
         {
-            var establishmentChanger = new EstablishmentChanger(_objectCommander, _entityQueries);
-            establishmentChanger.DeriveNodes();
-            _objectCommander.SaveChanges();
-
+            _updateEstablishmentHierarchy.Handle(
+                new UpdateEstablishmentNodeHierarchyCommand()
+            );
             return View();
         }
 
