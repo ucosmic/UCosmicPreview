@@ -101,6 +101,7 @@
     <Compile Include="Etc\DotNetFormsAuthentication.cs" />
     <Compile Include="Ioc\FluentValidatorFactory.cs" />
     <Compile Include="Ioc\InjectedRoleProvider.cs" />
+    <Compile Include="Ioc\SimpleFilterAttributeFilterProvider.cs" />
     <Compile Include="Ioc\SimpleQueryProcessor.cs" />
     <Compile Include="Ioc\SimpleDependencyInjector.cs" />
     <Compile Include="Ioc\SimpleHttpContextLifestyleExtensions.cs" />
