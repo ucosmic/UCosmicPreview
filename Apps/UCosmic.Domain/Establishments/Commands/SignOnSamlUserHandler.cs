@@ -46,6 +46,9 @@ namespace UCosmic.Domain.Establishments
             var eduPrincipalPersonName = command.Saml2Response.GetAttributeValueByFriendlyName
                 (SamlAttributeFriendlyName.EduPersonPrincipalName);
 
+            // find person
+
+
             // sign on the user
             _userSigner.SignOn(eduPrincipalPersonName);
         }

@@ -2,6 +2,7 @@ using System.Linq;
 using System.Web.Security;
 using UCosmic.Domain.People;
 using UCosmic.Orm;
+using UCosmic.Domain;
 
 namespace UCosmic.Seeders
 {
@@ -37,7 +38,9 @@ namespace UCosmic.Seeders
                 };
                 EnsureUser("ludwigd1@uc.edu;ludwigd11@uc.edu;ludwigd111@uc.edu", "Test1", "Test1", "www.uc.edu",
                             developerRoles);
-                Context.People.ByEmail("ludwigd1@uc.edu").Emails.ByValue("ludwigd11@uc.edu").IsConfirmed = false;
+                var queryProcessor = DependencyInjector.Current.GetService<IProcessQueries>();
+                var findByEmailQuery = new GetPersonByEmailQuery {Email = "ludwigd1@uc.edu"};
+                queryProcessor.Execute(findByEmailQuery).Emails.ByValue("ludwigd11@uc.edu").IsConfirmed = false;
                 Context.SaveChanges(); // make 1 of ludwigd1's email addresses unconfirmed
 
                 EnsureUser("sodhiha1@uc.edu", "Haritma", "Sodhi", "www.uc.edu", developerRoles);

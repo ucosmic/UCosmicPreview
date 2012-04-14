@@ -1,4 +1,5 @@
 using System.Linq;
+using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
@@ -9,9 +10,16 @@ namespace UCosmic.Seeders
     {
         protected Person EnsurePerson(string emails, string firstName, string lastName, Establishment employedBy, bool registerUser = true)
         {
+            var queryProcessor = DependencyInjector.Current.GetService<IProcessQueries>();
+
             var emailsExploded = emails.Explode(";").ToArray();
             var defaultEmail = emailsExploded.First();
-            var person = Context.People.ByEmail(defaultEmail);
+            var person = queryProcessor.Execute(
+                new GetPersonByEmailQuery
+                {
+                    Email = defaultEmail
+                }
+            );
             if (person != null) return person;
             person = new Person
             {

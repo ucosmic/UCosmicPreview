@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration;
 using UCosmic.Domain.Identity;
 
 namespace UCosmic.Orm
@@ -10,6 +11,7 @@ namespace UCosmic.Orm
             modelBuilder.Configurations.Add(new UserOrm());
             modelBuilder.Configurations.Add(new RoleOrm());
             modelBuilder.Configurations.Add(new RoleGrantOrm());
+            modelBuilder.Configurations.Add(new SubjectNameIdentifierOrm());
         }
 
         private class UserOrm : RevisableEntityTypeConfiguration<User>
@@ -19,7 +21,6 @@ namespace UCosmic.Orm
                 ToTable(typeof(User).Name, DbSchemaName.Identity);
 
                 Property(u => u.UserName).IsRequired().HasMaxLength(256);
-                Property(u => u.SubjectNameId).HasMaxLength(256);
             }
         }
 
@@ -57,6 +58,24 @@ namespace UCosmic.Orm
                     .WithMany()
                     .Map(d => d.MapKey("ForEstablishmentId"))
                     .WillCascadeOnDelete(true);
+            }
+        }
+
+        private class SubjectNameIdentifierOrm : EntityTypeConfiguration<SubjectNameIdentifier>
+        {
+            internal SubjectNameIdentifierOrm()
+            {
+                ToTable(typeof(SubjectNameIdentifier).Name, DbSchemaName.Identity);
+
+                HasKey(p => new { p.Number, p.UserId });
+
+                // has one user
+                HasRequired(d => d.User)
+                    .WithMany(p => p.SubjectNameIdentifiers)
+                    .HasForeignKey(d => d.UserId)
+                    .WillCascadeOnDelete(true);
+
+                Property(p => p.Value).HasMaxLength(256);
             }
         }
     }

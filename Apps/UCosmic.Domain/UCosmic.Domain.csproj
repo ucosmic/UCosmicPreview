@@ -107,6 +107,7 @@
     <Compile Include="Files\FileFactory.cs" />
     <Compile Include="Files\LooseFile.cs" />
     <Compile Include="Files\FileFinder.cs" />
+    <Compile Include="Identity\SubjectNameIdentifier.cs" />
     <Compile Include="Identity\UserQueries.cs" />
     <Compile Include="Identity\RoleGrantQueries.cs" />
     <Compile Include="Identity\RoleFacade.cs" />
@@ -121,6 +122,9 @@
     <Compile Include="Languages\LanguageQuery.cs" />
     <Compile Include="People\PersonFactory.cs" />
     <Compile Include="People\PersonQuery.cs" />
+    <Compile Include="People\Queries\GetPersonByEmailHandler.cs" />
+    <Compile Include="People\Queries\GetPersonByEmailQuery.cs" />
+    <Compile Include="People\Queries\PersonQueries.cs" />
     <Compile Include="Places\PlaceChanger.cs" />
     <Compile Include="Places\PlaceFinder.cs" />
     <Compile Include="Places\PlaceQuery.cs" />
@@ -136,10 +140,10 @@
     <Compile Include="Api\IQueryEntities.cs" />
     <Compile Include="Email\RandomSecretCreator.cs" />
     <Compile Include="Api\ISendEmails.cs" />
-    <Compile Include="People\Affiliation.cs" />
-    <Compile Include="People\EmailAddress.cs" />
-    <Compile Include="People\EmailConfirmation.cs" />
-    <Compile Include="People\EmailMessage.cs" />
+    <Compile Include="People\Entities\Affiliation.cs" />
+    <Compile Include="People\Entities\EmailAddress.cs" />
+    <Compile Include="People\Entities\EmailConfirmation.cs" />
+    <Compile Include="People\Entities\EmailMessage.cs" />
     <Compile Include="Email\EmailTemplate.cs" />
     <Compile Include="Establishments\Entities\Establishment.cs" />
     <Compile Include="Establishments\Entities\EstablishmentAddress.cs" />
@@ -161,7 +165,7 @@
     <Compile Include="InstitutionalAgreements\InstitutionalAgreementParticipant.cs" />
     <Compile Include="Languages\Language.cs" />
     <Compile Include="Languages\LanguageName.cs" />
-    <Compile Include="People\Person.cs" />
+    <Compile Include="People\Entities\Person.cs" />
     <Compile Include="Places\BoundingBox.cs" />
     <Compile Include="Places\Coordinates.cs" />
     <Compile Include="Places\GeoNamesAlternateName.cs" />
