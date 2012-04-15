@@ -23,7 +23,9 @@ namespace UCosmic.Domain
         internal static IQueryable<TRevisableEntity> Exclude<TRevisableEntity>(this IQueryable<TRevisableEntity> queryable, IEnumerable<Guid> entityIds)
             where TRevisableEntity : RevisableEntity
         {
-            return queryable.Where(e => !entityIds.Contains(e.EntityId));
+            if (entityIds != null)
+                queryable = queryable.Where(e => !entityIds.Contains(e.EntityId));
+            return queryable;
         }
     }
 }
