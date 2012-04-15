@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
@@ -53,6 +54,14 @@ namespace UCosmic
 
         public override string GetAttributeValueByFriendlyName(SamlAttributeFriendlyName friendlyName)
         {
+            var attributeValues = GetAttributeValuesByFriendlyName(friendlyName);
+            return attributeValues != null
+                ? attributeValues.FirstOrDefault()
+                : null;
+        }
+
+        public override string[] GetAttributeValuesByFriendlyName(SamlAttributeFriendlyName friendlyName)
+        {
             if (Assertion != null)
             {
                 var attributeStatement = Assertion.Statements.OfType<AttributeStatement>().SingleOrDefault();
@@ -64,7 +73,15 @@ namespace UCosmic
                         var attribute = attributes.SingleOrDefault(a => a.FriendlyName != null &&
                             a.FriendlyName.Equals(friendlyName.AsString(), StringComparison.OrdinalIgnoreCase));
                         if (attribute != null && attribute.Values.Count > 0 && attribute.Values[0].Data != null)
-                            return attribute.Values[0].Data.ToString();
+                        {
+                            return
+                            (
+                                from value in attribute.Values
+                                where value != null && value.Data != null
+                                select value.Data.ToString()
+                            )
+                            .ToArray();
+                        }
                     }
                 }
             }

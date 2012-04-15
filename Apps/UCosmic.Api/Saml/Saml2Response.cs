@@ -27,5 +27,6 @@ namespace UCosmic
         public abstract string IssuerNameIdentifier { get; }
         public abstract string RelayResourceUrl { get; }
         public abstract string GetAttributeValueByFriendlyName(SamlAttributeFriendlyName friendlyName);
+        public abstract string[] GetAttributeValuesByFriendlyName(SamlAttributeFriendlyName friendlyName);
     }
 }
