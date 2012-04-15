@@ -2,6 +2,12 @@ namespace UCosmic
 {
     public enum SamlAttributeFriendlyName
     {
-        EduPersonPrincipalName
+        EduPersonTargetedId,
+        EduPersonPrincipalName,
+        EduPersonScopedAffiliation,
+        Cn,
+        Sn,
+        GivenName,
+        Mail,
     }
 }
