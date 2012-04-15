@@ -20,10 +20,13 @@ namespace UCosmic.Domain.Establishments
 
         public void Handle(SignOnSamlUserCommand command)
         {
+            // get saml response from http context
+            var samlResponse = GetSamlResponse(command);
+
             // extract data from the response
-            var issuerNameIdentifier = command.Saml2Response.IssuerNameIdentifier;
-            var subjectNameIdentifier = command.Saml2Response.SubjectNameIdentifier;
-            var eduPrincipalPersonName = command.Saml2Response.GetAttributeValueByFriendlyName
+            var issuerNameIdentifier = samlResponse.IssuerNameIdentifier;
+            var subjectNameIdentifier = samlResponse.SubjectNameIdentifier;
+            var eduPrincipalPersonName = samlResponse.GetAttributeValueByFriendlyName
                 (SamlAttributeFriendlyName.EduPersonPrincipalName);
 
             // get the establishment for this saml 2 response
@@ -36,7 +39,7 @@ namespace UCosmic.Domain.Establishments
 
             // verify the response's signature
             ThrowExceptionIfSamlResponseSignatureFailsVerification
-                (command.Saml2Response, issuerNameIdentifier);
+                (samlResponse, issuerNameIdentifier);
 
             // find person with email address
             var person = GetOrCreatePersonWithEmail(eduPrincipalPersonName);
@@ -62,6 +65,20 @@ namespace UCosmic.Domain.Establishments
 
             // sign on the user
             _userSigner.SignOn(eduPrincipalPersonName);
+
+            command.ReturnUrl = samlResponse.RelayResourceUrl;
+        }
+
+        private Saml2Response GetSamlResponse(SignOnSamlUserCommand command)
+        {
+            var samlResponse = _queryProcessor.Execute(
+                new ReceiveSaml2ResponseQuery
+                {
+                    HttpContext = command.HttpContext,
+                    SsoBinding = command.SsoBinding,
+                }
+            );
+            return samlResponse;
         }
 
         private Establishment GetIssuingEstablishment(string issuerNameIdentifier)
@@ -77,6 +94,29 @@ namespace UCosmic.Domain.Establishments
                 }
             );
             return establishment;
+        }
+
+        private Person GetOrCreatePersonWithEmail(string eduPrincipalPersonName)
+        {
+            var person = _queryProcessor.Execute(
+                new GetPersonByEmailQuery
+                {
+                    Email = eduPrincipalPersonName,
+                }
+            );
+
+            // create person if not found
+            if (person == null)
+            {
+                person = new Person
+                {
+                    DisplayName = eduPrincipalPersonName,
+                };
+
+                person.AddEmail(eduPrincipalPersonName);
+                _entities.Create(person);
+            }
+            return person;
         }
 
         private static void ThrowExceptionIfIssuingEstablishmentIsNotTrusted(Establishment establishment, string issuerNameIdentifier)
@@ -103,29 +143,6 @@ namespace UCosmic.Domain.Establishments
                 throw new InvalidOperationException(string.Format(
                     "The user account '{0}' does not match expected person '{1}'.",
                         user.Name, person.DisplayName));
-        }
-
-        private Person GetOrCreatePersonWithEmail(string eduPrincipalPersonName)
-        {
-            var person = _queryProcessor.Execute(
-                new GetPersonByEmailQuery
-                {
-                    Email = eduPrincipalPersonName,
-                }
-            );
-
-            // create person if not found
-            if (person == null)
-            {
-                person = new Person
-                {
-                    DisplayName = eduPrincipalPersonName,
-                };
-
-                person.AddEmail(eduPrincipalPersonName);
-                _entities.Create(person);
-            }
-            return person;
         }
     }
 }

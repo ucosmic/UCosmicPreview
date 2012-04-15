@@ -94,37 +94,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [ActionName("post")]
         public virtual ActionResult Saml2Post()
         {
-            var samlResponse = _services.QueryProcessor.Execute(
-                new ReceiveSaml2ResponseQuery
-                {
-                    SsoBinding = Saml2SsoBinding.HttpPost,
-                    HttpContext = HttpContext,
-                }
-            );
+            var command = new SignOnSamlUserCommand
+            {
+                SsoBinding = Saml2SsoBinding.HttpPost,
+                HttpContext = HttpContext,
+            };
 
-            _services.SignOnSamlUserHandler.Handle(
-                new SignOnSamlUserCommand
-                {
-                    Saml2Response = samlResponse,
-                }
-            );
+            _services.SignOnSamlUserHandler.Handle(command);
 
-            //// Check that response is from a valid issuer
-            //var isTrustedIssuer = _services.Establishments.IsIssuerTrusted(samlResponse.IssuerNameIdentifier);
-            //if (!isTrustedIssuer) throw new InvalidOperationException(string.Format(
-            //    "Issuer '{0}' does not appear to be trusted.", samlResponse.IssuerNameIdentifier));
-
-            //// Verify the response's signature.
-            //if (!samlResponse.VerifySignature())
-            //    throw new InvalidOperationException("The SAML response signature failed to verify.");
-
-            //var subjectNameIdentifier = samlResponse.SubjectNameIdentifier;
-            //var eduPrincipalPersonName = samlResponse.GetAttributeValueByFriendlyName(SamlAttributeFriendlyName.EduPersonPrincipalName);
-
-            //var user = _services.Users.GetOrCreate(eduPrincipalPersonName, true, subjectNameIdentifier);
-            //_services.UserSigner.SignOn(user.Name);
-
-            return Redirect(GetReturnUrl(samlResponse.RelayResourceUrl));
+            return Redirect(GetReturnUrl(command.ReturnUrl));
         }
 
         [NonAction]

@@ -1,7 +1,11 @@
-﻿namespace UCosmic.Domain.Establishments
+﻿using System.Web;
+
+namespace UCosmic.Domain.Establishments
 {
     public class SignOnSamlUserCommand
     {
-        public Saml2Response Saml2Response { get; set; }
+        public Saml2SsoBinding SsoBinding { get; set; }
+        public HttpContextBase HttpContext { get; set; }
+        public string ReturnUrl { get; set; }
     }
 }
