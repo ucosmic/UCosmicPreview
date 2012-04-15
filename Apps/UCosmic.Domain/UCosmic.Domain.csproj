@@ -118,7 +118,6 @@
     <Compile Include="Identity\Queries\RoleGrantQueries.cs" />
     <Compile Include="Identity\RoleFacade.cs" />
     <Compile Include="Identity\Queries\RoleQueries.cs" />
-    <Compile Include="Identity\UserFacade.cs" />
     <Compile Include="Identity\UserFactory.cs" />
     <Compile Include="InstitutionalAgreements\FindInstitutionalAgreementsByKeywordQuery.cs" />
     <Compile Include="InstitutionalAgreements\FindInstitutionalAgreementsByKeywordHandler.cs" />
