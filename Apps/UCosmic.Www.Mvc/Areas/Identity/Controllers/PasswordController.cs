@@ -172,7 +172,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     PersonBy.EmailConfirmation(confirmationToken.Value, EmailConfirmationIntent.PasswordReset)
                         .EagerLoad(p => p.Emails.Select(e => e.Confirmations))
                     )
-                    .Emails.Confirmations().ByToken(confirmationToken.Value);
+                    .Emails.SelectManyConfirmations().ByToken(confirmationToken.Value);
                 if (confirmation != null && confirmation.ConfirmedOnUtc.HasValue 
                     && confirmation.EmailAddress.IsConfirmed)
                 {

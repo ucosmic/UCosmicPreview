@@ -96,19 +96,6 @@ namespace UCosmic.Domain.People
 
     public static class EmailAddressExtensions
     {
-        public static EmailAddress ByValue(this IEnumerable<EmailAddress> enumerable, string value)
-        {
-            return (enumerable != null)
-                ? enumerable.Current().SingleOrDefault(e => e.Value.Equals(value, StringComparison.OrdinalIgnoreCase))
-                : null;
-        }
-
-        public static IEnumerable<EmailConfirmation> Confirmations(this IEnumerable<EmailAddress> enumerable)
-        {
-            return (enumerable != null)
-                ? enumerable.SelectMany(e => e.Confirmations)
-                : null;
-        }
 
     }
 }

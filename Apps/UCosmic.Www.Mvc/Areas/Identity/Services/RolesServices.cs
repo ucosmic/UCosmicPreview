@@ -1,18 +1,19 @@
-﻿using UCosmic.Domain.Identity;
+﻿using UCosmic.Domain;
+using UCosmic.Domain.Identity;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Services
 {
     public class RolesServices
     {
         public RolesServices(RoleFacade roles
-            , UserFacade users
+            , IProcessQueries queryProcessor
         )
         {
             Roles = roles;
-            Users = users;
+            QueryProcessor = queryProcessor;
         }
 
         public RoleFacade Roles { get; private set; }
-        public UserFacade Users { get; private set; }
+        public IProcessQueries QueryProcessor { get; private set; }
     }
 }

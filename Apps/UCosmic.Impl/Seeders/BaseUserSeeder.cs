@@ -17,7 +17,6 @@ namespace UCosmic.Seeders
         {
             // get affiliated establishment
             var establishment = Context.Establishments.ByWebsiteUrl(affiliationUrl);
-            //Context.Entry(establishment).Reload();
             if (establishment == null)
                 throw new InvalidOperationException(string.Format("There is no establishment for URL '{0}'.", affiliationUrl));
 
@@ -35,7 +34,7 @@ namespace UCosmic.Seeders
 
             // make user registered and confirm all email addresses
             foreach (var email in emailsExploded)
-                person.Emails.Current().ByValue(email).IsConfirmed = true;
+                person.Emails.ByValue(email).IsConfirmed = true;
 
             // add grants to user
             if (roleNames != null)

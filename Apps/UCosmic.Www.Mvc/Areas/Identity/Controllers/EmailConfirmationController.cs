@@ -95,7 +95,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             // search for confirmation
             var person = _people.FindOne(PersonBy.EmailConfirmation(token, EmailConfirmationIntent.PasswordReset));
-            var confirmation = (person != null) ? person.Emails.Confirmations().ByToken(token) : null;
+            var confirmation = (person != null) ? person.Emails.SelectManyConfirmations().ByToken(token) : null;
             if (confirmation != null && !confirmation.IsExpired
                 && confirmation.Token != Guid.Empty)
             {

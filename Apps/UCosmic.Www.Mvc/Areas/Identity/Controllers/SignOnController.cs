@@ -102,6 +102,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 }
             );
 
+            _services.SignOnSamlUserHandler.Handle(
+                new SignOnSamlUserCommand
+                {
+                    Saml2Response = samlResponse,
+                }
+            );
+
             //// Check that response is from a valid issuer
             //var isTrustedIssuer = _services.Establishments.IsIssuerTrusted(samlResponse.IssuerNameIdentifier);
             //if (!isTrustedIssuer) throw new InvalidOperationException(string.Format(
@@ -111,11 +118,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             //if (!samlResponse.VerifySignature())
             //    throw new InvalidOperationException("The SAML response signature failed to verify.");
 
-            var subjectNameIdentifier = samlResponse.SubjectNameIdentifier;
-            var eduPrincipalPersonName = samlResponse.GetAttributeValueByFriendlyName(SamlAttributeFriendlyName.EduPersonPrincipalName);
+            //var subjectNameIdentifier = samlResponse.SubjectNameIdentifier;
+            //var eduPrincipalPersonName = samlResponse.GetAttributeValueByFriendlyName(SamlAttributeFriendlyName.EduPersonPrincipalName);
 
-            var user = _services.Users.GetOrCreate(eduPrincipalPersonName, true, subjectNameIdentifier);
-            _services.UserSigner.SignOn(user.Name);
+            //var user = _services.Users.GetOrCreate(eduPrincipalPersonName, true, subjectNameIdentifier);
+            //_services.UserSigner.SignOn(user.Name);
 
             return Redirect(GetReturnUrl(samlResponse.RelayResourceUrl));
         }

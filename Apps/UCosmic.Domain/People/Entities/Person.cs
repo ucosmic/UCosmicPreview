@@ -58,7 +58,7 @@ namespace UCosmic.Domain.People
 
         public EmailAddress AddEmail(string emailAddress)
         {
-            var currentEmails = Emails.Current().ToList();
+            var currentEmails = Emails.ToList();
 
             // email may already exist
             var email = currentEmails.SingleOrDefault(e =>
@@ -90,7 +90,7 @@ namespace UCosmic.Domain.People
 
         public Affiliation AffiliateWith(Establishment establishment)
         {
-            var currentAffiliations = Affiliations.Current().ToList();
+            var currentAffiliations = Affiliations.ToList();
 
             // affiliation may already exist
             var affiliation = currentAffiliations
@@ -101,7 +101,7 @@ namespace UCosmic.Domain.People
             affiliation = new Affiliation
             {
                 // if person does not already have a default affiliation, this is it
-                IsDefault = (currentAffiliations.Count(a => a.IsDefault) == 0),
+                IsDefault = !currentAffiliations.Any(a => a.IsDefault),
                 Establishment = establishment, // affiliate with establishment
                 Person = this,
 
@@ -131,7 +131,7 @@ namespace UCosmic.Domain.People
         {
             if (Affiliations != null)
             {
-                foreach (var affiliation in Affiliations.Current())
+                foreach (var affiliation in Affiliations)
                 {
                     if (affiliation.EstablishmentId == establishment.RevisionId)
                     {
