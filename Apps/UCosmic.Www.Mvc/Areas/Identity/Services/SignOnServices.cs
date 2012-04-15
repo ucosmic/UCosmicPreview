@@ -7,15 +7,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Services
     public class SignOnServices
     {
         public SignOnServices(
-            UserFacade users
-            , ISignUsers userSigner
+            //UserFacade users
+            ISignUsers userSigner
             , ISignMembers members
             , IProcessQueries queryProcessor
             , IHandleCommands<SendSamlAuthnRequestCommand> authnRequestHandler
             , IHandleCommands<SignOnSamlUserCommand> authnResponseHandler
         )
         {
-            Users = users;
+            //Users = users;
             UserSigner = userSigner;
             Members = members;
             QueryProcessor = queryProcessor;
@@ -23,7 +23,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Services
             SignOnSamlUserHandler = authnResponseHandler;
         }
 
-        public UserFacade Users { get; private set; }
+        //public UserFacade Users { get; private set; }
         public ISignUsers UserSigner { get; private set; }
         public ISignMembers Members { get; private set; }
         public IProcessQueries QueryProcessor { get; private set; }

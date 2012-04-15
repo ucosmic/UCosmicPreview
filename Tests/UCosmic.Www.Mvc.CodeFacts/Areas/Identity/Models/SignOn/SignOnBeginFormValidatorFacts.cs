@@ -50,10 +50,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
             }
 
             [TestMethod]
-            public void HasNoErrorWhen_EmailAddress_IsValidEmailAddress()
+            public void HasNoErrorWhen_EmailAddress_IsValidEmailAddress_AndBelongsToMemberEstablishment()
             {
                 var queryProcessor = new Mock<IProcessQueries>();
-                queryProcessor.Setup(m => m.Execute(It.IsAny<GetEstablishmentByEmailQuery>())).Returns(new Establishment());
+                queryProcessor.Setup(m => m.Execute(It.IsAny<GetEstablishmentByEmailQuery>()))
+                    .Returns(new Establishment { IsMember = true, });
                 var validator = new SignOnBeginFormValidator(queryProcessor.Object);
                 validator.ShouldNotHaveValidationErrorFor(model => model.EmailAddress, "email@domain.tld");
             }

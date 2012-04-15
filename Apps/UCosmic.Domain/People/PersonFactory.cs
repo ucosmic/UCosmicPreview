@@ -32,18 +32,5 @@ namespace UCosmic.Domain.People
                     person.MiddleName, person.Salutation, person.Suffix)
                 : person.DisplayName;
         }
-
-        internal static Person Create(string emailAddress)
-        {
-            var person = new Person
-            {
-                DisplayName = emailAddress,
-            };
-
-            person.AddEmail(emailAddress);
-
-            return person;
-        }
-
     }
 }

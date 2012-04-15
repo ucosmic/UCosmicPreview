@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 using AutoMapper;
+using UCosmic.Domain;
 using UCosmic.Www.Mvc.Areas.Identity.Mappers;
 using UCosmic.Www.Mvc.Areas.Identity.Models.Roles;
 using UCosmic.Www.Mvc.Areas.Identity.Services;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Models;
+using UCosmic.Domain.Identity;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -61,12 +64,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var changes = _services.Roles.Update(User, model.EntityId, model.Description, 
-                        model.Grants.Where(g => g.IsDeleted).Select(g => g.User.EntityId), 
+                    var changes = _services.Roles.Update(User, model.EntityId, model.Description,
+                        model.Grants.Where(g => g.IsDeleted).Select(g => g.User.EntityId),
                         model.Grants.Where(g => !g.IsDeleted).Select(g => g.User.EntityId)
                     );
-                    SetFeedbackMessage(changes > 0 
-                        ? "Role has been successfully saved." 
+                    SetFeedbackMessage(changes > 0
+                        ? "Role has been successfully saved."
                         : "No changes were made.");
                     return Redirect(model.ReturnUrl);
                 }
@@ -82,7 +85,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [AutoMapper(typeof(IEnumerable<AutoCompleteOption>))]
         public virtual JsonResult AutoCompleteUserName(string term, List<Guid> excludeUserEntityIds)
         {
-            var entities = _services.Users.AutoComplete(term, excludeUserEntityIds);
+            var entities = _services.QueryProcessor.Execute(
+                new AutoCompleteUsersByNameQuery
+                {
+                    Term = term,
+                    ExcludeEntityIds = excludeUserEntityIds,
+                    OrderBy = new Dictionary<Expression<Func<User, object>>, OrderByDirection>
+                    {
+                        { u => u.Name, OrderByDirection.Ascending },
+                    },
+                }
+            );
             return Json(entities);
         }
 
@@ -90,7 +103,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [ActionName("add-username")]
         public virtual ActionResult AddUserName(Guid userEntityId)
         {
-            var user = _services.Users.Get(userEntityId);
+            //var user = _services.Users.Get(userEntityId);
+            var user = _services.QueryProcessor.Execute(
+                new GetUserByEntityIdQuery
+                {
+                    EntityId = userEntityId,
+                }
+            );
             if (user != null)
             {
                 var model = Mapper.Map<RoleForm.RoleGrantForm>(user);

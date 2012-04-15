@@ -5,7 +5,7 @@ namespace UCosmic.Domain.Identity
 {
     internal static class UserQueries
     {
-        internal static User By(this IQueryable<User> queryable, string name)
+        internal static User ByName(this IQueryable<User> queryable, string name)
         {
             return queryable.SingleOrDefault(u => u.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
