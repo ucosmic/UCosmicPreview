@@ -38,8 +38,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult CheckEmailSpelling() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.CheckEmailSpelling);
+        public System.Web.Mvc.ActionResult ValidateChangeSpelling() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.ValidateChangeSpelling);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -57,13 +57,13 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string ChangeSpelling = "change-spelling";
-            public readonly string CheckEmailSpelling = "CheckEmailSpelling";
+            public readonly string ValidateChangeSpelling = "ValidateChangeSpelling";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string ChangeSpelling = "change-spelling";
-            public const string CheckEmailSpelling = "CheckEmailSpelling";
+            public const string ValidateChangeSpelling = "ValidateChangeSpelling";
         }
 
 
@@ -98,8 +98,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult CheckEmailSpelling(UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses.ChangeSpellingForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.CheckEmailSpelling);
+        public override System.Web.Mvc.ActionResult ValidateChangeSpelling(UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses.ChangeSpellingForm model) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ValidateChangeSpelling);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }

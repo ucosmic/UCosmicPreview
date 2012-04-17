@@ -131,6 +131,8 @@
     <Compile Include="InstitutionalAgreements\InstitutionalAgreementQueries.cs" />
     <Compile Include="InstitutionalAgreements\InstitutionalAgreementQuery.cs" />
     <Compile Include="Languages\LanguageQuery.cs" />
+    <Compile Include="People\Commands\ChangeEmailAddressSpellingCommand.cs" />
+    <Compile Include="People\Commands\ChangeEmailAddressSpellingHandler.cs" />
     <Compile Include="People\PersonFactory.cs" />
     <Compile Include="People\PersonQuery.cs" />
     <Compile Include="People\Queries\GetEmailAddressByUserNameAndNumberHandler.cs" />
