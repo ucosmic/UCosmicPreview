@@ -55,7 +55,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
                 };
                 var constraints = new
                 {
-                    token = new NonEmptyGuidConstraint(),
+                    token = new NonEmptyGuidRouteConstraint(),
                     httpMethod = new HttpMethodConstraint("POST")
                 };
                 context.MapRoute(null, Route, defaults, constraints);
@@ -83,7 +83,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
                 };
                 var constraints = new
                 {
-                    token = new NonEmptyGuidConstraint(),
+                    token = new NonEmptyGuidRouteConstraint(),
                     httpMethod = new HttpMethodConstraint("GET"),
                 };
                 context.MapRoute(null, RouteForGet, defaults, constraints);

@@ -202,6 +202,7 @@ namespace UCosmic.Www.Mvc
         private readonly string _action;
         private readonly string _controller;
         private readonly RouteValueDictionary _routeValues;
+        private readonly RouteValueDictionary _viewModelParams = new RouteValueDictionary();
 
         public OutBoundRouteContext(string controllerName, string actionName, RouteValueDictionary routeValues)
         {
@@ -222,6 +223,13 @@ namespace UCosmic.Www.Mvc
             return this;
         }
 
+        public OutBoundRouteContext HavingViewModelProperty(string key, object value)
+        {
+            if (!_viewModelParams.ContainsKey(key))
+                _viewModelParams.Add(key, value);
+            return this;
+        }
+
         public string Url()
         {
             var builder = ReuseMock.TestControllerBuilder(ControllerCustomization.ForUrlHelper);
@@ -237,6 +245,9 @@ namespace UCosmic.Www.Mvc
             if (!_httpMethod.HasValue || _httpMethod.Value != HttpVerbs.Post)
                 foreach (var routeValue in _routeValues)
                     routeValues.Add(routeValue.Key, routeValue.Value);
+            if (_viewModelParams != null)
+                foreach (var viewModelParam in _viewModelParams)
+                    routeValues.Add(viewModelParam.Key, viewModelParam.Value);
 
             var generatedUrl = UrlHelper.GenerateUrl(null, null, null, routeValues, RouteTable.Routes, context, true);
 

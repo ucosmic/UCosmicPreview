@@ -125,6 +125,7 @@
     <Compile Include="Areas\Identity\Models\SignUp\CreatePasswordFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\SendEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\ConfirmEmailFormFacts.cs" />
+    <Compile Include="Areas\My\Routes\EmailAddressRoutesFacts.cs" />
     <Compile Include="Etc\AuthorizationProviderFacts.cs" />
     <Compile Include="Etc\ReuseMock.cs" />
     <Compile Include="Etc\SimpleDependencyInjectorFacts.cs" />

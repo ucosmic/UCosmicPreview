@@ -50,7 +50,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                 var constraints = new
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
-                    parentId = new NonEmptyGuidConstraint(),
+                    parentId = new NonEmptyGuidRouteConstraint(),
                 };
                 context.MapRoute(null, Route, defaults, constraints);
             }
@@ -92,7 +92,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                 var constraints = new
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
-                    agreementId = new NonEmptyGuidConstraint(),
+                    agreementId = new NonEmptyGuidRouteConstraint(),
                 };
                 context.MapRoute(null, Route, defaults, constraints);
             }

@@ -218,54 +218,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             action.DefaultAreaRoutes(MVC.Identity.Name).ShouldMapToNothing();
         }
 
-        //[TestMethod]
-        //public void Route_Identity_Self_ChangeEmailSpelling_GET_IsSetUp()
-        //{
-        //    var entityId = Guid.NewGuid();
-        //    Expression<Func<SelfController, ActionResult>> action =
-        //        controller => controller.ChangeEmailSpelling(entityId);
-        //    const string routeUrl = "me/emails/{entityId}/change-spelling.html";
-        //    const string entityIdParam = "entityId";
-        //    var urlFormat = routeUrl.Replace(entityIdParam, "0");
-
-        //    var url1 = string.Format(urlFormat, entityId).ToAppRelativeUrl();
-        //    url1.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
-        //    url1.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-        //    action.DefaultAreaRoutes(MVC.Identity.Name).ShouldMapToNothing();
-
-        //    var url2 = string.Format(urlFormat, Guid.Empty).ToAppRelativeUrl();
-        //    url2.WithAnyMethod().ShouldMapToNothing();
-
-        //    var url3 = string.Format(urlFormat, "not a Guid").ToAppRelativeUrl();
-        //    url3.WithAnyMethod().ShouldMapToNothing();
-        //}
-
-        [TestMethod]
-        public void Route_Identity_Self_ChangeEmailSpelling_POST_IsSetUp()
-        {
-            Expression<Func<SelfController, ActionResult>> action =
-                controller => controller.ChangeEmailSpelling(null as ChangeEmailSpellingForm);
-            const string url = "me/emails/change-spelling.html";
-
-            url.ToAppRelativeUrl().WithMethod(HttpVerbs.Post).ShouldMapTo(action);
-            url.ToAppRelativeUrl().WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
-            action.DefaultAreaRoutes(MVC.Identity.Name).ShouldMapToNothing();
-        }
-
-        [TestMethod]
-        public void Route_Identity_Self_CheckEmailSpelling_JSON_IsSetUp()
-        {
-            Expression<Func<SelfController, ActionResult>> action =
-                controller => controller.CheckEmailSpelling(null);
-            var url = "my/emails/change-spelling/validate".ToAppRelativeUrl();
-
-            OutBoundRoute.Of(action).InArea(MVC.Identity.Name).WithMethod(HttpVerbs.Get).Url().ShouldBeNull();
-            OutBoundRoute.Of(action).InArea(MVC.Identity.Name).WithMethod(HttpVerbs.Post).AppRelativeUrl().ShouldEqual(url);
-            url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
-            url.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
-            action.DefaultAreaRoutes(MVC.Identity.Name).ShouldMapToNothing();
-        }
-
         #endregion
 
     }

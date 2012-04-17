@@ -41,7 +41,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
                 var defaults = new { area, controller, action = Action, };
                 var constraintsForGet = new
                 {
-                        entityId = new NonEmptyGuidConstraint(),
+                        entityId = new NonEmptyGuidRouteConstraint(),
                         httpMethod = new HttpMethodConstraint("GET"),
                 };
                 var constraintsForPost = new

@@ -90,7 +90,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                 var defaults = new { area, controller, action = Action, };
                 var constraintsForEdit = new
                 {
-                    entityId = new NonEmptyGuidConstraint(),
+                    entityId = new NonEmptyGuidRouteConstraint(),
                     httpMethod = new HttpMethodConstraint("GET"),
                 };
                 context.MapRoute(null, RoutesForGet[0], defaults, constraintsForEdit);
