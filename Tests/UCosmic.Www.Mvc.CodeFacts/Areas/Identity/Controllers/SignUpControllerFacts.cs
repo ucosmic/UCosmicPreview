@@ -231,6 +231,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         },
                     },
                 };
+                person.Emails.ToList().ForEach(e => e.Person = person);
 
                 const string emailTokens = "{EmailAddress}|{ConfirmationCode}|{StartUrl}|{ConfirmationUrl}";
                 var emailTemplate = new EmailTemplate
@@ -276,7 +277,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 commander.Verify(m => m.Update(It.Is<Person>(e => e == person), true), Times.Once());
                 emailSender.Verify(m => m.Send(It.Is<EmailMessage>(e =>
-                    e == person.Emails.Single().Messages.Single())),
+                    e == person.Messages.Single())),
                         Times.Once());
             }
 
@@ -326,6 +327,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         },
                     },
                 };
+                person.Emails.ToList().ForEach(e => e.Person = person);
 
                 const string emailTokens = "{EmailAddress}|{ConfirmationCode}|{StartUrl}|{ConfirmationUrl}";
                 var emailTemplate = new EmailTemplate
@@ -370,7 +372,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     string.Format("A confirmation email has been sent to {0}", model.EmailAddress)));
 
                 commander.Verify(m => m.Update(It.Is<Person>(e => e == person), true), Times.Once());
-                emailSender.Verify(m => m.Send(It.Is<EmailMessage>(e => e == person.Emails.Single().Messages.Single())), Times.Once());
+                emailSender.Verify(m => m.Send(It.Is<EmailMessage>(e => e == person.Messages.Single())), Times.Once());
             }
         }
 
@@ -570,7 +572,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     new EmailAddress
                     {
-                        IsCurrent = false,
+                        //IsCurrent = false,
                         Confirmations = new List<EmailConfirmation>
                         {
                             new EmailConfirmation { Token = model.Token, },
@@ -1240,7 +1242,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     new EmailAddress
                     {
-                        IsCurrent = false,
+                        //IsCurrent = false,
                         Confirmations = new List<EmailConfirmation>
                         {
                             new EmailConfirmation

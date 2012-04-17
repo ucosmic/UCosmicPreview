@@ -38,16 +38,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult ChangeEmailSpelling() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.ChangeEmailSpelling);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult CheckEmailSpelling() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.CheckEmailSpelling);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult AutoCompleteNameSalutations() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.AutoCompleteNameSalutations);
         }
@@ -93,8 +83,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public class ActionNamesClass {
             public readonly string Me = "me";
             public readonly string EditAffiliation = "edit-affiliation";
-            public readonly string ChangeEmailSpelling = "change-email-spelling";
-            public readonly string CheckEmailSpelling = "CheckEmailSpelling";
             public readonly string AutoCompleteNameSalutations = "autocomplete-name-salutations";
             public readonly string AutoCompleteNameSuffixes = "autocomplete-name-suffixes";
             public readonly string AutoCompletePersonName = "autocomplete-name";
@@ -107,8 +95,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public class ActionNameConstants {
             public const string Me = "me";
             public const string EditAffiliation = "edit-affiliation";
-            public const string ChangeEmailSpelling = "change-email-spelling";
-            public const string CheckEmailSpelling = "CheckEmailSpelling";
             public const string AutoCompleteNameSalutations = "autocomplete-name-salutations";
             public const string AutoCompleteNameSuffixes = "autocomplete-name-suffixes";
             public const string AutoCompletePersonName = "autocomplete-name";
@@ -123,8 +109,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string change_email_spelling_modal = "~/Areas/Identity/Views/Self/change-email-spelling-modal.cshtml";
-            public readonly string change_email_spelling = "~/Areas/Identity/Views/Self/change-email-spelling.cshtml";
             public readonly string edit_affiliation = "~/Areas/Identity/Views/Self/edit-affiliation.cshtml";
             public readonly string me = "~/Areas/Identity/Views/Self/me.cshtml";
             static readonly _DisplayTemplates s_DisplayTemplates = new _DisplayTemplates();
@@ -137,7 +121,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{
                 public readonly string AffiliationForm = "AffiliationForm";
-                public readonly string ChangeEmailSpellingForm = "ChangeEmailSpellingForm";
                 public readonly string PersonForm = "PersonForm";
             }
         }
@@ -166,24 +149,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
 
         public override System.Web.Mvc.ActionResult EditAffiliation(UCosmic.Www.Mvc.Areas.Identity.Models.Self.AffiliationForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.EditAffiliation);
-            callInfo.RouteValueDictionary.Add("model", model);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult ChangeEmailSpelling(System.Guid? entityId) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ChangeEmailSpelling);
-            callInfo.RouteValueDictionary.Add("entityId", entityId);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult ChangeEmailSpelling(UCosmic.Www.Mvc.Areas.Identity.Models.Self.ChangeEmailSpellingForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ChangeEmailSpelling);
-            callInfo.RouteValueDictionary.Add("model", model);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult CheckEmailSpelling(UCosmic.Www.Mvc.Areas.Identity.Models.Self.ChangeEmailSpellingForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.CheckEmailSpelling);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }

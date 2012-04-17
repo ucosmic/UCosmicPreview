@@ -1,8 +1,8 @@
 ﻿@using UCosmic.Www.Mvc.Areas.Identity.Models.Self
 @model EmailInfo
-<div class="email-address" data-entity-id="@Model.EntityId">
+<div class="email-address">
     <div class="email-details email-info">
-        <span id="@Model.EntityId" class="email-value">@Model.Value</span>
+        <span class="email-value">@Model.Value</span>
         @if (Model.IsConfirmed)
         {
             <span class="email-confirmed">
@@ -21,7 +21,7 @@
         }
     </div>
     <div class="email-actions email-info">
-        @Html.ActionLink("Change spelling", MVC.Identity.Self.ActionNames.ChangeEmailSpelling, new { entityId = Model.EntityId }, new { @class = "email-action edit-email" })
+        <a href="@Url.Action(MVC.My.EmailAddresses.ChangeSpelling(Model.Number))" class="email-action">Change spelling</a>
         @if (!Model.IsConfirmed)
         {
             <a href="#" class="email-action email-confirm not-implemented">Send confirmation email</a>

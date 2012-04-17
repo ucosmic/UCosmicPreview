@@ -97,11 +97,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             );
 
             // person may already exist
-            var person = _people.FindOne(PersonBy.EmailAddress(model.EmailAddress) // get the person
-                .EagerLoad(p => p.Emails.Select(e => e.Confirmations)) // eager load collections
-                .EagerLoad(p => p.Emails.Select(e => e.Messages)) // needed for this process to
-                .EagerLoad(p => p.Affiliations.Select(a => a.Establishment)) // avoid extra db calls
-                .ForInsertOrUpdate() // track the entity on the unit of work
+            var person = _people.FindOne(PersonBy.EmailAddress(model.EmailAddress)  // get the person
+                .EagerLoad(p => p.Emails.Select(e => e.Confirmations))              // eager load collections
+                .EagerLoad(p => p.Messages)                                         // needed for this process to
+                .EagerLoad(p => p.Affiliations.Select(a => a.Establishment))        // avoid extra db calls
+                .ForInsertOrUpdate()                                                // track the entity on the unit of work
             )
 
             // create person if it does not exist
@@ -221,7 +221,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             var person = _people.FindOne(criteria);
             if (person != null)
             {
-                var confirmation = person.Emails.Current().SelectMany(e => e.Confirmations)
+                var confirmation = person.Emails.SelectManyConfirmations()
                     .SingleOrDefault(c => c.Token == token && c.Intent == EmailConfirmationIntent.SignUp);
                 if (confirmation != null)
                     return confirmation;

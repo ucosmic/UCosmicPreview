@@ -1,27 +1,28 @@
-﻿@using UCosmic.Www.Mvc.Areas.Identity.Models.Self
-@model ChangeEmailSpellingForm
+﻿@model UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses.ChangeSpellingForm
 <div class="wrap-960">
     <h2>
-        My <i>@Model.Value</i> Email Address
+        My <strong>@Model.Value</strong> Email Address
     </h2>
+    <br/>
     <div class="split-form">
         <div class="left">
             @using (Html.BeginForm(
-                MVC.Identity.Self.ActionNames.ChangeEmailSpelling,
-                MVC.Identity.Self.Name,
+                MVC.My.EmailAddresses.ActionNames.ChangeSpelling,
+                MVC.My.EmailAddresses.Name,
                 new
                 {
-                    area = MVC.Identity.Name,
+                    area = MVC.My.Name,
                     httpMethod = "POST"
                 },
                 FormMethod.Post,
                 new
                 {
                     @class = "email-respell",
-                    data_entity_id = Model.EntityId
+                    data_entity_id = Model.Number
                 }
             ))
             {
+                @Html.HttpMethodOverride(HttpVerbs.Put)
                 <fieldset>
                     <legend>Change Email Spelling</legend>
                     <p>

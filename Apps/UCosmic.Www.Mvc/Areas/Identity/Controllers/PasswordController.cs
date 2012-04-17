@@ -19,7 +19,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         private readonly PersonFinder _people;
         private readonly ICommandObjects _objectCommander;
-        private readonly EmailComposer _emailsComposer;
+        //private readonly EmailComposer _emailsComposer;
         private readonly ISendEmails _emailsSender;
         private readonly ILogExceptions _exceptionLogger;
         private readonly IManageConfigurations _config;
@@ -29,7 +29,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             _people = new PersonFinder(entityQueries);
             _objectCommander = objectCommander;
-            _emailsComposer = new EmailComposer(entityQueries, config);
+            //_emailsComposer = new EmailComposer(entityQueries, config);
             _emailsSender = emailsSender;
             _exceptionLogger = exceptionLogger;
             _config = config;
@@ -135,11 +135,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         _objectCommander.Update(person);
 
                         // create, add, & send email message
-                        var message = _emailsComposer.ComposeEmail(EmailTemplateName.PasswordResetConfirmation,
-                            null, confirmation.GetMessageVariables(_config)); // TODO: GetMessageVariables into extension method
-                        email.Messages.Add(message);
-                        _objectCommander.SaveChanges();
-                        _emailsSender.Send(message);
+                        // TODO: Create new way to compose email
+                        //var message = _emailsComposer.ComposeEmail(EmailTemplateName.PasswordResetConfirmation,
+                        //    null, confirmation.GetMessageVariables(_config)); // TODO: GetMessageVariables into extension method
+                        //person.Messages.Add(message);
+                        //_objectCommander.SaveChanges();
+                        //_emailsSender.Send(message);
                         return RedirectToAction(MVC.Identity.EmailConfirmation.ConfirmForPasswordReset(confirmation.Token, null));
                     }
                     catch (Exception ex)

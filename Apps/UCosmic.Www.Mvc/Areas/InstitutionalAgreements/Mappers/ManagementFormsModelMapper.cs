@@ -221,6 +221,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                     .ForMember(e => e.RevisionId, opt => opt.Ignore())
                     .ForMember(e => e.User, opt => opt.Ignore())
                     .ForMember(e => e.Affiliations, opt => opt.Ignore())
+                    .ForMember(e => e.Messages, opt => opt.Ignore())
                     .ForMember(e => e.CreatedOnUtc, opt => opt.Ignore())
                     .ForMember(e => e.CreatedByPrincipal, opt => opt.Ignore())
                     .ForMember(e => e.UpdatedOnUtc, opt => opt.Ignore())

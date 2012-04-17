@@ -41,7 +41,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             if (person != null)
             {
                 var model = Mapper.Map<PersonForm>(person);
-                person.Emails = person.Emails.OrderBy(e => e, new EmailAddressComparer()).ToList();
+                model.Emails = model.Emails.OrderBy(e => e.IsDefault).ThenBy(e => e.IsConfirmed).ThenBy(e => e.Value).ToArray(); // TODO: put this in the model mapper
+                //person.Emails = person.Emails.OrderBy(e => e.IsDefault).ThenBy(e => e.IsConfirmed).ThenBy(e => e.Value).ToList();
                 return View(model);
             }
             return HttpNotFound();
@@ -70,8 +71,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     SetFeedbackMessage("Your personal info was saved successfully.");
                     return RedirectToAction(MVC.Identity.Self.Me());
                 }
-                model.Emails = Mapper.Map<IList<EmailInfo>>(
-                    person.Emails.OrderBy(e => e, new EmailAddressComparer()).ToList());
+                model.Emails = Mapper.Map<EmailInfo[]>( // TODO: put this in the model mapper
+                    person.Emails.OrderBy(e => e.IsDefault).ThenBy(e => e.IsConfirmed).ThenBy(e => e.Value));
                 model.Affiliations = Mapper.Map<IList<PersonForm.AffiliationInfo>>(person.Affiliations);
                 return View(model);
             }
@@ -140,83 +141,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 }
             }
             return HttpNotFound();
-        }
-
-        #endregion
-        #region Change Email Spelling
-
-        [HttpGet]
-        [Authorize]
-        //[OpenTopTab(TopTabName.User)]
-        [OpenTopTab(TopTabName.Home)]
-        [ActionName("change-email-spelling")]
-        [ReturnUrlReferrer(SelfRouteMapper.Me.OutboundRoute)]
-        public virtual ActionResult ChangeEmailSpelling(Guid? entityId)
-        {
-            if (entityId.HasValue && entityId.Value != Guid.Empty)
-            {
-                // get the currently signed-in person
-                var person = _people.FindOne(PersonBy.Principal(User));
-                if (person != null)
-                {
-                    // ensure this person owns the email
-                    var email = person.Emails.Current(entityId.Value);
-                    if (email != null)
-                    {
-                        var model = Mapper.Map<ChangeEmailSpellingForm>(email);
-                        return View(model);
-                    }
-                }
-            }
-            return HttpNotFound();
-        }
-
-        [HttpPost]
-        [Authorize]
-        //[OpenTopTab(TopTabName.User)]
-        [OpenTopTab(TopTabName.Home)]
-        [ActionName("change-email-spelling")]
-        public virtual ActionResult ChangeEmailSpelling(ChangeEmailSpellingForm model)
-        {
-            if (model != null)
-            {
-                // get the currently signed-in person
-                var person = _people.FindOne(PersonBy.Principal(User).ForInsertOrUpdate());
-                if (person != null)
-                {
-                    // ensure this person owns the email
-                    var email = person.Emails.Current(model.EntityId);
-                    if (email != null)
-                    {
-                        if (ModelState.IsValid)
-                        {
-                            email.Value = model.Value;
-                            _objectCommander.SaveChanges();
-                            SetFeedbackMessage(string.Format(
-                                "Your email address was successfully changed to {0}.", 
-                                    model.Value));
-                            return RedirectToAction(MVC.Identity.Self.Me());
-                        }
-                        model.OldSpelling = email.Value;
-                        return View(model);
-                    }
-                }
-            }
-            return HttpNotFound();
-        }
-
-        #endregion
-        #region Partials
-
-        [HttpPost]
-        [Authorize]
-        public virtual ActionResult CheckEmailSpelling(ChangeEmailSpellingForm model)
-        {
-            var results = new List<ValidationResult>();
-            var isValid = Validator.TryValidateObject(model, new ValidationContext(model, null, null), results, false);
-            return isValid
-                ? Json(true)
-                : Json(results[0].ErrorMessage);
         }
 
         #endregion
@@ -345,8 +269,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     criteria = PeopleWith.AutoCompleteEmailTerm(term);
                     if (!orderTarget.HasValue)
                         criteria = criteria.OrderBy(p => p.Emails.FirstOrDefault(
-                            e => e.IsCurrent && !e.IsArchived && !e.IsDeleted 
-                                && e.IsDefault).Value);
+                            e => e.IsDefault).Value);
                     break;
             }
 
@@ -366,8 +289,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                         case PersonNameProperty.DefaultEmail:
                             criteria = criteria.OrderBy(p => p.Emails.FirstOrDefault(
-                                e => e.IsCurrent && !e.IsArchived && !e.IsDeleted
-                                    && e.IsDefault).Value);
+                                e => e.IsDefault).Value);
                             break;
                     }
                 }
@@ -378,7 +300,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     p.FirstName,
                     p.LastName,
                     // ReSharper disable PossibleNullReferenceException
-                    DefaultEmail = p.Emails.Current().SingleOrDefault(e => e.IsDefault).Value,
+                    DefaultEmail = p.Emails.SingleOrDefault(e => e.IsDefault).Value,
                     // ReSharper restore PossibleNullReferenceException
                 });
 
@@ -395,7 +317,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             var data = _people.FindOne(By<Person>.EntityId(personId));
             if (data != null)
             {
-                var defaultEmail = data.Emails.Current().SingleOrDefault(e => e.IsDefault);
+                var defaultEmail = data.Emails.SingleOrDefault(e => e.IsDefault);
                 var person = new
                 {
                     data.EntityId,
@@ -418,7 +340,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             var data = _people.FindOne(PersonBy.EmailAddress(email));
             if (data != null)
             {
-                var defaultEmail = data.Emails.Current().SingleOrDefault(e => e.IsDefault);
+                var defaultEmail = data.Emails.SingleOrDefault(e => e.IsDefault);
                 var person = new
                 {
                     data.EntityId,

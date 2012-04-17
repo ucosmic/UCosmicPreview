@@ -33,13 +33,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult Begin() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.Begin);
+        public System.Web.Mvc.JsonResult ValidateEmailAddress() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidateEmailAddress);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.JsonResult ValidateEmailAddress() {
-            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidateEmailAddress);
+        public System.Web.Mvc.ActionResult Begin() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Begin);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -56,16 +56,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Begin = "sign-on";
             public readonly string ValidateEmailAddress = "ValidateEmailAddress";
+            public readonly string Begin = "sign-on";
             public readonly string Saml2Post = "post";
             public readonly string Saml2Integrations = "providers";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Begin = "sign-on";
             public const string ValidateEmailAddress = "ValidateEmailAddress";
+            public const string Begin = "sign-on";
             public const string Saml2Post = "post";
             public const string Saml2Integrations = "providers";
         }
@@ -85,15 +85,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public class T4MVC_SignOnController: UCosmic.Www.Mvc.Areas.Identity.Controllers.SignOnController {
         public T4MVC_SignOnController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Begin(string returnUrl) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Begin);
-            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
-            return callInfo;
-        }
-
         public override System.Web.Mvc.JsonResult ValidateEmailAddress(UCosmic.Www.Mvc.Areas.Identity.Models.SignOn.SignOnBeginForm model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateEmailAddress);
             callInfo.RouteValueDictionary.Add("model", model);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Begin(string returnUrl) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Begin);
+            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
             return callInfo;
         }
 

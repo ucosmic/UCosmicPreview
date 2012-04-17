@@ -6,23 +6,20 @@ namespace UCosmic.Domain.People
 {
     public class EmailMessage : Entity
     {
-        public EmailMessage()
+        protected internal EmailMessage()
         {
-            EntityId = Guid.NewGuid();
             ComposedOnUtc = DateTime.UtcNow;
             ComposedByPrincipal = Thread.CurrentPrincipal.Identity.Name;
             IsArchived = false;
             IsDeleted = false;
         }
 
-        public int Id { get; set; }
-        public Guid EntityId { get; set; }
+        public int ToPersonId { get; protected internal set; }
+        public virtual Person ToPerson { get; protected internal set; }
+        public int Number { get; protected internal set; }
 
-        public int ToEmailAddressId { get; set; }
-        public virtual EmailAddress To { get; set; }
-
-        public int? FromEmailTemplateId { get; set; }
-        public virtual EmailTemplate FromEmailTemplate { get; set; }
+        public string ToAddress { get; set; }
+        public string FromEmailTemplate { get; set; }
 
         public string Subject { get; set; }
 

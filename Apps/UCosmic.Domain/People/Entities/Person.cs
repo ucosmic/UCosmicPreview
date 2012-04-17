@@ -13,12 +13,14 @@ namespace UCosmic.Domain.People
 
         public Person()
         {
-            _emails = new List<EmailAddress>();
-            _affiliations = new List<Affiliation>();
+            // ReSharper disable DoNotCallOverridableMethodsInConstructor
+            Emails = new List<EmailAddress>();
+            Affiliations = new List<Affiliation>();
+            Messages = new List<EmailMessage>();
+            // ReSharper restore DoNotCallOverridableMethodsInConstructor
         }
 
-        private ICollection<EmailAddress> _emails;
-        private ICollection<Affiliation> _affiliations;
+        public virtual ICollection<EmailMessage> Messages { get; protected internal set; }
 
         #endregion
         #region Name
@@ -50,11 +52,7 @@ namespace UCosmic.Domain.People
         #endregion
         #region EmailAddresses
 
-        public virtual ICollection<EmailAddress> Emails
-        {
-            get { return _emails; }
-            set { _emails = value; }
-        }
+        public virtual ICollection<EmailAddress> Emails { get; protected internal set; }
 
         public EmailAddress AddEmail(string value, bool isFromSaml = false)
         {
@@ -74,9 +72,10 @@ namespace UCosmic.Domain.People
                     // if person does not already have a default email, this is it
                     IsDefault = (Emails.Count(a => a.IsDefault) == 0),
                     Value = value,
-                    Person = this,
                     IsFromSaml = isFromSaml,
                     IsConfirmed = isFromSaml,
+                    Person = this,
+                    Number = Emails.NextNumber(),
                 };
 
                 // add & return email
@@ -86,30 +85,23 @@ namespace UCosmic.Domain.People
             return email;
         }
 
+        public EmailAddress GetEmail(int number)
+        {
+            return Emails.ByNumber(number);
+        }
+
         internal void ResetSamlEmails()
         {
             foreach (var email in Emails.FromSaml().ToList())
             {
-                // cannot remove email addresses with messages attached
-                if (email.Messages.Any())
-                {
-                    email.IsFromSaml = false;
-                }
-                else
-                {
-                    Emails.Remove(email);
-                }
+                Emails.Remove(email);
             }
         }
 
         #endregion
         #region Affiliations
 
-        public virtual ICollection<Affiliation> Affiliations
-        {
-            get { return _affiliations; }
-            set { _affiliations = value; }
-        }
+        public virtual ICollection<Affiliation> Affiliations { get; set; }
 
         public Affiliation AffiliateWith(Establishment establishment)
         {

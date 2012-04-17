@@ -112,5 +112,33 @@ namespace UCosmic.Domain.People
                 }
             }
         }
+
+        [TestClass]
+        public class MessagesProperty
+        {
+            [TestMethod]
+            public void HasGetSet()
+            {
+                var value = new EmailMessage[] { };
+                var entity = new Person { Messages = value };
+                entity.ShouldNotBeNull();
+                entity.Messages.ShouldEqual(value);
+                entity.Messages.Count.ShouldEqual(0);
+            }
+
+            [TestMethod]
+            public void IsVirtual()
+            {
+                new PersonRuntimeEntity();
+            }
+            private class PersonRuntimeEntity : Person
+            {
+                public override ICollection<EmailMessage> Messages
+                {
+                    get { return null; }
+                    protected internal set { }
+                }
+            }
+        }
     }
 }

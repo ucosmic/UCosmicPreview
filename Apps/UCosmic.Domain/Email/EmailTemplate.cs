@@ -31,6 +31,9 @@ namespace UCosmic.Domain.Email
         {
             var message = new EmailMessage
             {
+                ToPerson = to.Person,
+                Number = to.Person.Messages.NextNumber(),
+
                 // subject & body
                 Subject = SubjectFormat.FormatTemplate(variables),
                 Body = BodyFormat.FormatTemplate(variables),
@@ -48,8 +51,8 @@ namespace UCosmic.Domain.Email
                 ReplyToDisplayName = ReplyToDisplayName ??
                     config.EmailDefaultReplyToDisplayName,
 
-                FromEmailTemplate = this,
-                To = to,
+                FromEmailTemplate = Name,
+                ToAddress = to.Value,
                 ComposedOnUtc = DateTime.UtcNow,
             };
 
