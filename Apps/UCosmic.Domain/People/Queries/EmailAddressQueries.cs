@@ -11,6 +11,11 @@ namespace UCosmic.Domain.People
             return enumerable.SingleOrDefault(email => email.Value.Equals(value, StringComparison.OrdinalIgnoreCase));
         }
 
+        public static IEnumerable<EmailAddress> FromSaml(this IEnumerable<EmailAddress> enumerable)
+        {
+            return enumerable.Where(email => email.IsFromSaml);
+        }
+
         public static IEnumerable<EmailConfirmation> SelectManyConfirmations(this IEnumerable<EmailAddress> enumerable)
         {
             return enumerable.SelectMany(e => e.Confirmations);

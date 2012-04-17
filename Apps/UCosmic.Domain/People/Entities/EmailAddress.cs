@@ -20,6 +20,8 @@ namespace UCosmic.Domain.People
 
         public bool IsDefault { get; set; }
 
+        public bool IsFromSaml { get; protected internal set; }
+
         public bool IsConfirmed { get; set; }
 
         private ICollection<EmailMessage> _messages;

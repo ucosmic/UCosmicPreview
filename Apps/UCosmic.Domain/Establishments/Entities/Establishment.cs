@@ -101,12 +101,6 @@ namespace UCosmic.Domain.Establishments
         }
     }
 
-    public class InstitutionInfo
-    {
-        public string CollegeBoardDesignatedIndicator { get; set; }
-        public string UCosmicCode { get; set; }
-    }
-
     public static class EstablishmentExtensions
     {
         public static Establishment ByOfficialName(this IEnumerable<Establishment> query, string officialName)

@@ -16,6 +16,10 @@ namespace UCosmic
             HttpContext = httpContext;
         }
 
+        protected Saml2Response()
+        {
+        }
+
         protected XmlElement ResponseElement { get; private set; }
         protected string RelayStateId { get; private set; }
         protected HttpContextBase HttpContext { get; private set; }
@@ -26,7 +30,17 @@ namespace UCosmic
         public abstract string SubjectNameIdentifier { get; }
         public abstract string IssuerNameIdentifier { get; }
         public abstract string RelayResourceUrl { get; }
-        public abstract string GetAttributeValueByFriendlyName(SamlAttributeFriendlyName friendlyName);
-        public abstract string[] GetAttributeValuesByFriendlyName(SamlAttributeFriendlyName friendlyName);
+        protected abstract string GetAttributeValueByFriendlyName(SamlAttributeFriendlyName friendlyName);
+        protected abstract string[] GetAttributeValuesByFriendlyName(SamlAttributeFriendlyName friendlyName);
+        protected abstract string GetAttributeValueByName(SamlAttributeName name);
+        protected abstract string[] GetAttributeValuesByName(SamlAttributeName name);
+        public abstract string EduPersonTargetedId { get; }
+        public abstract string EduPersonPrincipalName { get; }
+        public abstract string[] EduPersonScopedAffiliations { get; }
+        public abstract string CommonName { get; }
+        public abstract string DisplayName { get; }
+        public abstract string GivenName { get; }
+        public abstract string SurName { get; }
+        public abstract string[] Mails { get; }
     }
 }

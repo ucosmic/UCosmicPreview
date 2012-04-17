@@ -5,8 +5,8 @@ namespace UCosmic
         EduPersonTargetedId,
         EduPersonPrincipalName,
         EduPersonScopedAffiliation,
-        Cn,
-        Sn,
+        CommonName,
+        SurName,
         GivenName,
         Mail,
     }

@@ -83,6 +83,7 @@
     <Compile Include="Establishments\Commands\SignOnSamlUserHandler.cs" />
     <Compile Include="Establishments\Commands\UpdateEstablishmentNodeHierarchyCommand.cs" />
     <Compile Include="Establishments\Commands\UpdateEstablishmentNodeHierarchyHandler.cs" />
+    <Compile Include="Establishments\Entities\InstitutionInfo.cs" />
     <Compile Include="Establishments\Queries\FindRootEstablishmentsWithChildrenHandler.cs" />
     <Compile Include="Establishments\Queries\FindRootEstablishmentsWithChildrenQuery.cs" />
     <Compile Include="Establishments\Queries\FindSamlIntegratedEstablishmentsHandler.cs" />
@@ -107,9 +108,12 @@
     <Compile Include="Files\FileFactory.cs" />
     <Compile Include="Files\LooseFile.cs" />
     <Compile Include="Files\FileFinder.cs" />
+    <Compile Include="Identity\Entities\EduPersonScopedAffiliation.cs" />
     <Compile Include="Identity\Entities\SubjectNameIdentifier.cs" />
     <Compile Include="Identity\Queries\AutoCompleteUsersByNameHandler.cs" />
     <Compile Include="Identity\Queries\AutoCompleteUsersByNameQuery.cs" />
+    <Compile Include="Identity\Queries\GetUserByEduPersonTargetedIdHandler.cs" />
+    <Compile Include="Identity\Queries\GetUserByEduPersonTargetedIdQuery.cs" />
     <Compile Include="Identity\Queries\GetUserByEntityIdHandler.cs" />
     <Compile Include="Identity\Queries\GetUserByEntityIdQuery.cs" />
     <Compile Include="Identity\Queries\GetUserByNameHandler.cs" />
