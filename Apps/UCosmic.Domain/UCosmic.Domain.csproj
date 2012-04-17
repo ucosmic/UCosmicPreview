@@ -45,6 +45,9 @@
       <HintPath>..\..\packages\AutoMapper.2.1.266\lib\net40\AutoMapper.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\..\packages\FluentValidation.3.3.1.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="LinqKit">
       <HintPath>..\..\packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
     </Reference>
@@ -62,6 +65,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Api\EntityExtensions.cs" />
+    <Compile Include="Api\FluentValidationCommandDecorator.cs" />
     <Compile Include="Api\IHandleCommands.cs" />
     <Compile Include="Api\IDefineQuery.cs" />
     <Compile Include="Api\IHandleQueries.cs" />
@@ -79,10 +83,15 @@
     <Compile Include="Api\RevisableEntityQueryCriteria.cs" />
     <Compile Include="Email\EmailTemplateQuery.cs" />
     <Compile Include="Email\EmailTemplateFinder.cs" />
+    <Compile Include="Establishments\Commands\SendSamlAuthnRequestValidator.cs" />
     <Compile Include="Establishments\Commands\SignOnSamlUserCommand.cs" />
     <Compile Include="Establishments\Commands\SignOnSamlUserHandler.cs" />
+    <Compile Include="Establishments\Commands\SignOnSamlUserValidator.cs" />
     <Compile Include="Establishments\Commands\UpdateEstablishmentNodeHierarchyCommand.cs" />
     <Compile Include="Establishments\Commands\UpdateEstablishmentNodeHierarchyHandler.cs" />
+    <Compile Include="Establishments\Commands\UpdateEstablishmentNodeHierarchyValidator.cs" />
+    <Compile Include="Establishments\Commands\UpdateSamlSignOnInfoValidator.cs" />
+    <Compile Include="Establishments\Commands\UpdateSamlSignOnMetadataValidator.cs" />
     <Compile Include="Establishments\Entities\InstitutionInfo.cs" />
     <Compile Include="Establishments\Queries\FindRootEstablishmentsWithChildrenHandler.cs" />
     <Compile Include="Establishments\Queries\FindRootEstablishmentsWithChildrenQuery.cs" />
@@ -133,6 +142,7 @@
     <Compile Include="Languages\LanguageQuery.cs" />
     <Compile Include="People\Commands\ChangeEmailAddressSpellingCommand.cs" />
     <Compile Include="People\Commands\ChangeEmailAddressSpellingHandler.cs" />
+    <Compile Include="People\Commands\ChangeEmailAddressSpellingValidator.cs" />
     <Compile Include="People\PersonFactory.cs" />
     <Compile Include="People\PersonQuery.cs" />
     <Compile Include="People\Queries\GetEmailAddressByUserNameAndNumberHandler.cs" />

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace UCosmic.Domain.People
+﻿namespace UCosmic.Domain.People
 {
     public class ChangeEmailAddressSpellingHandler : IHandleCommands<ChangeEmailAddressSpellingCommand>
     {
@@ -29,17 +27,11 @@ namespace UCosmic.Domain.People
             // only process matching email
             if (email == null) return;
 
-            // validate the command
-            // TODO: put this in command handler decorator
-            if (!email.Value.Equals(command.NewValue, StringComparison.OrdinalIgnoreCase))
-                throw new InvalidOperationException(string.Format(
-                    "Email address '{0}' cannot be respelled as '{1}'.",
-                        email.Value, command.NewValue));
-
             // only update the value if it was respelled
             if (email.Value == command.NewValue) return;
 
             email.Value = command.NewValue;
+            _entities.Update(email);
             command.ChangedState = true;
         }
     }
