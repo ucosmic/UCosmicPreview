@@ -16,7 +16,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Routes
 
         // ReSharper disable UnusedMember.Global
 
-        public static class ChangeEmailSpelling
+        public static class ChangeSpelling
         {
             public const string Route = "my/emails/{number}/change-spelling";
             private static readonly string Action = MVC.My.EmailAddresses.ActionNames.ChangeSpelling;
@@ -31,10 +31,10 @@ namespace UCosmic.Www.Mvc.Areas.My.Routes
             }
         }
 
-        public static class CheckEmailSpelling
+        public static class ValidateChangeSpelling
         {
-            public const string Route = "my/emails/change-spelling/validate";
-            private static readonly string Action = MVC.My.EmailAddresses.ActionNames.CheckEmailSpelling;
+            public const string Route = "my/emails/{number}/change-spelling/validate";
+            private static readonly string Action = MVC.My.EmailAddresses.ActionNames.ValidateChangeSpelling;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };

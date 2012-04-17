@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using UCosmic.Domain;
+﻿using UCosmic.Domain;
+using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.My.Services
 {
@@ -10,18 +7,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Services
     {
         public EmailAddressesServices(
             IProcessQueries queryProcessor
-            //, IHandleCommands<SendSamlAuthnRequestCommand> authnRequestHandler
-            //, IHandleCommands<SignOnSamlUserCommand> authnResponseHandler
+            , IHandleCommands<ChangeEmailAddressSpellingCommand> changeSpellingHandler
         )
         {
             QueryProcessor = queryProcessor;
-            //SendSamlAuthnRequestHandler = authnRequestHandler;
-            //SignOnSamlUserHandler = authnResponseHandler;
+            ChangeEmailAddressSpellingHandler = changeSpellingHandler;
         }
 
         public IProcessQueries QueryProcessor { get; private set; }
-        //public IHandleCommands<SendSamlAuthnRequestCommand> SendSamlAuthnRequestHandler { get; private set; }
-        //public IHandleCommands<SignOnSamlUserCommand> SignOnSamlUserHandler { get; private set; }
-
+        public IHandleCommands<ChangeEmailAddressSpellingCommand> ChangeEmailAddressSpellingHandler { get; private set; }
     }
 }

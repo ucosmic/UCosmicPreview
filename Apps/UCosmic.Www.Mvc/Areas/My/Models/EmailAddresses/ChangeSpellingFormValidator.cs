@@ -28,6 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
                 new GetEmailAddressByUserNameAndNumberQuery
                 {
                     UserName = form.PersonUserName,
+                    Number = form.Number,
                 }
             );
 

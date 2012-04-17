@@ -1042,7 +1042,6 @@
   <ItemGroup>
     <Folder Include="App_Data\mail\" />
     <Folder Include="Areas\Common\Views\Shared\" />
-    <Folder Include="Areas\My\Views\Shared\" />
     <Folder Include="Areas\RecruitmentAgencies\Controllers\" />
     <Folder Include="Areas\RecruitmentAgencies\Models\" />
     <Folder Include="Areas\RecruitmentAgencies\Views\Shared\" />
