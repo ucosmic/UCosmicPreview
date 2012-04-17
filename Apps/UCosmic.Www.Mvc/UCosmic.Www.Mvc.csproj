@@ -311,7 +311,7 @@
     <Compile Include="InstitutionalAgreements.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Mappers\PositiveIntegerRouteConstraint.cs" />
+    <Compile Include="Routes\PositiveIntegerRouteConstraint.cs" />
     <Compile Include="Models\IReturnUrl.cs" />
     <Compile Include="Controllers\NullLayoutOnAjaxRequestAttribute.cs" />
     <Compile Include="Controllers\OpenTopTabAttribute.cs" />
@@ -401,16 +401,16 @@
     <Compile Include="Helpers\NullDisplayCssClassHtml.cs" />
     <Compile Include="Helpers\RadioButtonsHtml.cs" />
     <Compile Include="Helpers\GroupedSelectExtensions.cs" />
-    <Compile Include="Mappers\AutoMapperConfig.cs" />
+    <Compile Include="Models\AutoMapperConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\EnforceHttpsAttribute.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mappers\DefaultModelMapper.cs" />
-    <Compile Include="Mappers\DefaultRouteMapper.cs" />
-    <Compile Include="Mappers\RawUrlCatchallConstraint.cs" />
+    <Compile Include="Models\DefaultModelMapper.cs" />
+    <Compile Include="Routes\DefaultRouteMapper.cs" />
+    <Compile Include="Routes\RawUrlCatchallRouteConstraint.cs" />
     <Compile Include="Models\AllowedFileExtensionsAttribute.cs" />
     <Compile Include="Models\AutoCompleteOption.cs" />
     <Compile Include="Models\FileExtensionRequiredAttribute.cs" />
@@ -420,8 +420,8 @@
     <Compile Include="Models\NoDuplicateValuesAttribute.cs" />
     <Compile Include="Models\RequiredIfAttribute.cs" />
     <Compile Include="Models\UserVoiceLink.cs" />
-    <Compile Include="Mappers\RequiredIfPresentConstraint.cs" />
-    <Compile Include="Mappers\NonEmptyGuidRouteConstraint.cs" />
+    <Compile Include="Routes\RequiredIfPresentRouteConstraint.cs" />
+    <Compile Include="Routes\NonEmptyGuidRouteConstraint.cs" />
     <Compile Include="My.EmailAddressesController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

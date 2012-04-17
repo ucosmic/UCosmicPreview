@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using UCosmic.Www.Mvc.Mappers;
+using UCosmic.Www.Mvc.Routes;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
 {

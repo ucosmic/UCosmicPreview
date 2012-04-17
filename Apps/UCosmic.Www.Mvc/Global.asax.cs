@@ -11,7 +11,7 @@ using FluentValidation.Mvc;
 using UCosmic.Domain;
 using UCosmic.Orm;
 using UCosmic.Seeders;
-using UCosmic.Www.Mvc.Mappers;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc
 {

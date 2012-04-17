@@ -2,7 +2,7 @@ using System;
 using System.Web;
 using System.Web.Routing;
 
-namespace UCosmic.Www.Mvc.Mappers
+namespace UCosmic.Www.Mvc.Routes
 {
     public class NonEmptyGuidRouteConstraint : IRouteConstraint
     {

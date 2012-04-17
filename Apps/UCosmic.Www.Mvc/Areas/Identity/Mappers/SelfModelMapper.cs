@@ -2,7 +2,7 @@
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Models.Self;
-using UCosmic.Www.Mvc.Mappers;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
 {

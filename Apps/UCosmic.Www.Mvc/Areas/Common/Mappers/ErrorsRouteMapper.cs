@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using UCosmic.Www.Mvc.Mappers;
+using UCosmic.Www.Mvc.Routes;
 
 namespace UCosmic.Www.Mvc.Areas.Common.Mappers
 {
@@ -77,7 +77,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };
-                var constraints = new { url = new RequiredIfPresentConstraint() };
+                var constraints = new { url = new RequiredIfPresentRouteConstraint() };
                 context.MapRoute(null, Routes[0], defaults, constraints);
                 context.MapRoute(null, Routes[1], defaults);
             }

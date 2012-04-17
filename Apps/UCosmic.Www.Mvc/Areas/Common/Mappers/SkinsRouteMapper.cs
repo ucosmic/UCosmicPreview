@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using UCosmic.Www.Mvc.Mappers;
+using UCosmic.Www.Mvc.Routes;
 
 namespace UCosmic.Www.Mvc.Areas.Common.Mappers
 {
@@ -65,7 +65,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 var constraints = new
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
-                    content = new RequiredIfPresentConstraint(),
+                    content = new RequiredIfPresentRouteConstraint(),
                 };
                 context.MapRoutes(null, Routes, defaults, constraints);
             }
