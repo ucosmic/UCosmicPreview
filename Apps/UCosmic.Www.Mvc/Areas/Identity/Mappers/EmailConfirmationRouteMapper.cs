@@ -36,7 +36,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
                 };
                 var getConstraints = new
                 {
-                    token = new NonEmptyGuidConstraint(),
+                    token = new NonEmptyGuidRouteConstraint(),
                     httpMethod = new HttpMethodConstraint("GET"),
                 };
                 var postConstraints = new

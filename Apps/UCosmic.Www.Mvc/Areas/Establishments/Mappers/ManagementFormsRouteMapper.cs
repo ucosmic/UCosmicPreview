@@ -39,7 +39,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 var constraintsForEdit = new
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
-                    entityId = new NonEmptyGuidConstraint(),
+                    entityId = new NonEmptyGuidRouteConstraint(),
                 };
                 context.MapRoute(null, RouteForEdit, defaults, constraintsForEdit);
 
@@ -61,7 +61,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 var constraints = new
                 {
                     httpMethod = new HttpMethodConstraint("PUT", "POST"),
-                    entityId = new NonEmptyGuidConstraint(),
+                    entityId = new NonEmptyGuidRouteConstraint(),
                 };
                 context.MapRoute(null, Route, defaults, constraints);
             }

@@ -311,6 +311,7 @@
     <Compile Include="InstitutionalAgreements.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Mappers\PositiveIntegerRouteConstraint.cs" />
     <Compile Include="Models\IReturnUrl.cs" />
     <Compile Include="Controllers\NullLayoutOnAjaxRequestAttribute.cs" />
     <Compile Include="Controllers\OpenTopTabAttribute.cs" />
@@ -420,7 +421,7 @@
     <Compile Include="Models\RequiredIfAttribute.cs" />
     <Compile Include="Models\UserVoiceLink.cs" />
     <Compile Include="Mappers\RequiredIfPresentConstraint.cs" />
-    <Compile Include="Mappers\NonEmptyGuidConstraint.cs" />
+    <Compile Include="Mappers\NonEmptyGuidRouteConstraint.cs" />
     <Compile Include="My.EmailAddressesController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

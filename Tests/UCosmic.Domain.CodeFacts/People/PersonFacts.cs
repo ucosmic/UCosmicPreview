@@ -108,7 +108,7 @@ namespace UCosmic.Domain.People
                 public override ICollection<EmailAddress> Emails
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

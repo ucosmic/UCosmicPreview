@@ -25,7 +25,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Routes
                 var defaults = new { area, controller, action = Action, };
                 var constraints = new
                 {
-                    httpMethod = new HttpMethodConstraint("GET", "POST", "PUT")
+                    httpMethod = new HttpMethodConstraint("GET", "POST", "PUT"),
+                    number = new PositiveIntegerRouteConstraint(),
                 };
                 context.MapRoute(null, Route, defaults, constraints);
             }
@@ -38,7 +39,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Routes
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
+                var constraints = new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                    number = new PositiveIntegerRouteConstraint(),
+                };
                 context.MapRoute(null, Route, defaults, constraints);
             }
         }

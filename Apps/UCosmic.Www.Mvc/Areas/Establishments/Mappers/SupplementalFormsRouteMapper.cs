@@ -42,7 +42,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 var defaults = new { area, controller, action = Action, };
                 var constraintsForGetWithReturnUrl = new
                 {
-                    establishmentId = new NonEmptyGuidConstraint(),
+                    establishmentId = new NonEmptyGuidRouteConstraint(),
                     returnUrl = new RequiredIfPresentConstraint(),
                     httpMethod = new HttpMethodConstraint("GET"),
                 };
@@ -50,7 +50,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
 
                 var constraintsForGetWithoutReturnUrl = new
                 {
-                    establishmentId = new NonEmptyGuidConstraint(),
+                    establishmentId = new NonEmptyGuidRouteConstraint(),
                     httpMethod = new HttpMethodConstraint("GET"),
                 };
                 context.MapRoute(null, RoutesForGet[1], defaults, constraintsForGetWithoutReturnUrl);
