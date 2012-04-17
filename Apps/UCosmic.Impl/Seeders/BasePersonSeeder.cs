@@ -33,7 +33,10 @@ namespace UCosmic.Seeders
 
             foreach (var email in emails.Explode(";"))
             {
-                person.Emails.Add(new EmailAddress { Value = email, IsDefault = (email == defaultEmail), IsConfirmed = true, });
+                var emailAddress = person.AddEmail(email);
+                emailAddress.IsConfirmed = true;
+                emailAddress.IsDefault = email == defaultEmail;
+                //person.Emails.Add(new EmailAddress { Value = email, IsDefault = (email == defaultEmail), IsConfirmed = true, });
             }
             Context.SaveChanges();
 

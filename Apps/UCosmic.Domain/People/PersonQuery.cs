@@ -6,7 +6,7 @@ namespace UCosmic.Domain.People
     public class PersonQuery : RevisableEntityQueryCriteria<Person>
     {
         public IPrincipal Principal { get; set; }
-        public Guid? EmailEntityId { get; set; }
+        //public Guid? EmailEntityId { get; set; }
         public string EmailAddress { get; set; }
         public Guid? EmailConfirmationToken { get; set; }
         public string EmailConfirmationIntent { get; set; }
@@ -32,10 +32,10 @@ namespace UCosmic.Domain.People
             return new PersonQuery { EmailConfirmationToken = token, EmailConfirmationIntent = intent };
         }
 
-        public static PersonQuery EmailEntityId(Guid emailEntityId)
-        {
-            return new PersonQuery { EmailEntityId = emailEntityId };
-        }
+        //public static PersonQuery EmailEntityId(Guid emailEntityId)
+        //{
+        //    return new PersonQuery { EmailEntityId = emailEntityId };
+        //}
     }
 
     public static class PeopleWith

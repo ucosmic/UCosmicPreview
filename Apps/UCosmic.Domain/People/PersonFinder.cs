@@ -22,10 +22,10 @@ namespace UCosmic.Domain.People
                     && p.User.Name.Equals(finder.Principal.Identity.Name,
                         StringComparison.OrdinalIgnoreCase));
 
-            // apply email entityId
-            if (finder.EmailEntityId.HasValue && finder.EmailEntityId != Guid.Empty)
-                query = query.Where(p => p.Emails.Any(e =>
-                    e.EntityId == finder.EmailEntityId.Value));
+            //// apply email entityId
+            //if (finder.EmailEntityId.HasValue && finder.EmailEntityId != Guid.Empty)
+            //    query = query.Where(p => p.Emails.Any(e =>
+            //        e.EntityId == finder.EmailEntityId.Value));
 
             // apply email address
             if (finder.EmailAddress != null)
@@ -52,8 +52,7 @@ namespace UCosmic.Domain.People
 
             // apply first name starts with
             if (!string.IsNullOrWhiteSpace(finder.AutoCompleteEmailTerm))
-                query = query.Where(p => p.Emails.Any(e => e.IsCurrent && !e.IsArchived && !e.IsDeleted
-                    && e.Value.Trim().ToLower().Contains(finder.AutoCompleteEmailTerm.Trim().ToLower())));
+                query = query.Where(p => p.Emails.Any(e => e.Value.Contains(finder.AutoCompleteEmailTerm.Trim())));
 
             query = FinalizeQuery(query, criteria);
 

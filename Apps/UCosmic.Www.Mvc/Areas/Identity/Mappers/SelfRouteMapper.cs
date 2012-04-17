@@ -53,39 +53,32 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             }
         }
 
-        public static class ChangeEmailSpelling
-        {
-            public const string RouteForGet = "me/emails/{entityId}/change-spelling.html";
-            public const string RouteForPost = "me/emails/change-spelling.html";
-            private static readonly string Action = MVC.Identity.Self.ActionNames.ChangeEmailSpelling;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new { area, controller, action = Action, };
-                var constraintsForGet = new
-                {
-                    entityId = new NonEmptyGuidConstraint(),
-                    httpMethod = new HttpMethodConstraint("GET"),
-                };
-                var constraintsForPost = new
-                {
-                    httpMethod = new HttpMethodConstraint("POST")
-                };
-                context.MapRoute(null, RouteForGet, defaults, constraintsForGet);
-                context.MapRoute(null, RouteForPost, defaults, constraintsForPost);
-            }
-        }
+        //public static class ChangeEmailSpelling
+        //{
+        //    public const string Route = "my/emails/{number}/change-spelling";
+        //    private static readonly string Action = MVC.Identity.Self.ActionNames.ChangeEmailSpelling;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        var constraints = new
+        //        {
+        //            httpMethod = new HttpMethodConstraint("GET", "POST", "PUT")
+        //        };
+        //        context.MapRoute(null, Route, defaults, constraints);
+        //    }
+        //}
 
-        public static class CheckEmailSpelling
-        {
-            public const string Route = "my/emails/change-spelling/validate";
-            private static readonly string Action = MVC.Identity.Self.ActionNames.CheckEmailSpelling;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
-                context.MapRoute(null, Route, defaults, constraints);
-            }
-        }
+        //public static class CheckEmailSpelling
+        //{
+        //    public const string Route = "my/emails/change-spelling/validate";
+        //    private static readonly string Action = MVC.Identity.Self.ActionNames.CheckEmailSpelling;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
+        //        context.MapRoute(null, Route, defaults, constraints);
+        //    }
+        //}
 
         public static class AutoCompleteNameSalutations
         {

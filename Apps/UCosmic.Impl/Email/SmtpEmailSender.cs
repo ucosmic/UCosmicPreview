@@ -45,8 +45,8 @@ namespace UCosmic
                 var interceptAddresses = _config.EmailInterceptAddresses;
                 if (string.IsNullOrWhiteSpace(interceptAddresses))
                 {
-                    message.To.Add(new MailAddress(_emailMessage.To.Value, 
-                        _emailMessage.To.Person.DisplayName));
+                    message.To.Add(new MailAddress(_emailMessage.ToAddress,
+                        _emailMessage.ToPerson.DisplayName));
                 }
                 else
                 {
@@ -54,7 +54,7 @@ namespace UCosmic
                     {
                         message.To.Add(new MailAddress(interceptAddress,
                             string.Format("UCosmic Intercept (intended for {0})",
-                                _emailMessage.To.Value)));
+                                _emailMessage.ToAddress)));
                     }
                 }
                 // reply-to address
@@ -64,10 +64,10 @@ namespace UCosmic
                 }
 
                 // wait for previous unit of work to commit
-                while (_emailMessage.Id == 0)
-                {
-                    Thread.Sleep(5000);
-                }
+                //while (_emailMessage.Id == 0)
+                //{
+                Thread.Sleep(15000);
+                //}
 
                 // send the message
                 var client = new SmtpClient();
@@ -84,7 +84,7 @@ namespace UCosmic
 
                 // record the date & time the email was sent
                 _emailMessage.SentOnUtc = sentOnUtc;
-                _objectCommander.Update(_emailMessage.To.Person, true);
+                _objectCommander.Update(_emailMessage.ToPerson, true);
                 //_people.Refresh(_emailMessage.To.Person);
                 //_people.UnitOfWork.SaveChanges();
             }
@@ -93,7 +93,7 @@ namespace UCosmic
                 // log the exception
                 var exceptionLogger = DependencyInjector.Current.GetService<ILogExceptions>();
                 exceptionLogger.LogException(ex);
-                
+
                 // wait 10 seconds and try to send the message again
                 if (!sent && _retryCount++ <= 3)
                 {

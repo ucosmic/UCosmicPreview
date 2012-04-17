@@ -31,6 +31,8 @@ public static class MVC {
     public static IdentityClass Identity { get { return s_Identity; } }
     static readonly InstitutionalAgreementsClass s_InstitutionalAgreements = new InstitutionalAgreementsClass();
     public static InstitutionalAgreementsClass InstitutionalAgreements { get { return s_InstitutionalAgreements; } }
+    static readonly MyClass s_My = new MyClass();
+    public static MyClass My { get { return s_My; } }
     static readonly RecruitmentAgenciesClass s_RecruitmentAgencies = new RecruitmentAgenciesClass();
     public static RecruitmentAgenciesClass RecruitmentAgencies { get { return s_RecruitmentAgencies; } }
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
@@ -75,6 +77,12 @@ namespace T4MVC {
         public UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers.ManagementFormsController ManagementForms = new UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers.T4MVC_ManagementFormsController();
         public UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers.PublicSearchController PublicSearch = new UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers.T4MVC_PublicSearchController();
         public T4MVC.InstitutionalAgreements.SharedController Shared = new T4MVC.InstitutionalAgreements.SharedController();
+    }
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class MyClass {
+        public readonly string Name = "My";
+        public UCosmic.Www.Mvc.Areas.My.Controllers.EmailAddressesController EmailAddresses = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_EmailAddressesController();
+        public T4MVC.My.SharedController Shared = new T4MVC.My.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class RecruitmentAgenciesClass {

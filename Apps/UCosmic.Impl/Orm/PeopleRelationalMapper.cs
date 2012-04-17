@@ -35,6 +35,12 @@ namespace UCosmic.Orm
                     .WillCascadeOnDelete(true)
                 ;
 
+                // has many messages
+                HasMany(p => p.Messages)
+                    .WithRequired(d => d.ToPerson)
+                    .HasForeignKey(d => d.ToPersonId)
+                    .WillCascadeOnDelete(true);
+
                 // has many affiliations
                 HasMany(p => p.Affiliations)
                     .WithRequired(d => d.Person)
@@ -51,22 +57,18 @@ namespace UCosmic.Orm
             }
         }
 
-        private class EmailAddressOrm : RevisableEntityTypeConfiguration<EmailAddress>
+        private class EmailAddressOrm : EntityTypeConfiguration<EmailAddress>
         {
             internal EmailAddressOrm()
             {
                 ToTable(typeof(EmailAddress).Name, DbSchemaName.People);
 
+                HasKey(p => new { p.PersonId, p.Number });
+
                 // has many confirmations
                 HasMany(p => p.Confirmations)
                     .WithRequired(d => d.EmailAddress)
-                    .HasForeignKey(d => d.EmailAddressId)
-                    .WillCascadeOnDelete(true);
-
-                // has many messages
-                HasMany(p => p.Messages)
-                    .WithRequired(d => d.To)
-                    .HasForeignKey(d => d.ToEmailAddressId)
+                    .HasForeignKey(d => new { d.EmailAddressId, d.EmailAddressNumber, })
                     .WillCascadeOnDelete(true);
 
                 Property(p => p.Value).IsRequired().HasMaxLength(256);
@@ -92,14 +94,10 @@ namespace UCosmic.Orm
             {
                 ToTable(typeof(EmailMessage).Name, DbSchemaName.People);
 
-                HasKey(p => p.Id);
+                HasKey(p => new { p.ToPersonId, p.Number });
 
-                // may be composed from template
-                HasOptional(d => d.FromEmailTemplate)
-                    .WithMany()
-                    .HasForeignKey(d => d.FromEmailTemplateId)
-                    .WillCascadeOnDelete(false);
-
+                Property(m => m.FromEmailTemplate).HasMaxLength(150);
+                Property(m => m.ToAddress).IsRequired().HasMaxLength(256);
                 Property(m => m.Subject).IsRequired().HasMaxLength(250);
                 Property(m => m.FromAddress).IsRequired().HasMaxLength(256);
                 Property(m => m.FromDisplayName).HasMaxLength(150);

@@ -24,34 +24,6 @@ namespace UCosmic.Domain.People
         }
 
         [TestClass]
-        public class MessagesProperty
-        {
-            [TestMethod]
-            public void HasGetSet()
-            {
-                var value = new EmailMessage[] {};
-                var entity = new EmailAddress { Messages = value };
-                entity.ShouldNotBeNull();
-                entity.Messages.ShouldEqual(value);
-                entity.Messages.Count.ShouldEqual(0);
-            }
-
-            [TestMethod]
-            public void IsVirtual()
-            {
-                new EmailAddressRuntimeEntity();
-            }
-            private class EmailAddressRuntimeEntity : EmailAddress
-            {
-                public override ICollection<EmailMessage> Messages
-                {
-                    get { return null; }
-                    set { }
-                }
-            }
-        }
-
-        [TestClass]
         public class ConfirmMethod
         {
             [TestMethod]

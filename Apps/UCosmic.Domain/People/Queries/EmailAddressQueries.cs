@@ -11,6 +11,11 @@ namespace UCosmic.Domain.People
             return enumerable.SingleOrDefault(email => email.Value.Equals(value, StringComparison.OrdinalIgnoreCase));
         }
 
+        internal static EmailAddress ByNumber(this IEnumerable<EmailAddress> enumerable, int number)
+        {
+            return enumerable.SingleOrDefault(email => email.Number == number);
+        }
+
         public static IEnumerable<EmailAddress> FromSaml(this IEnumerable<EmailAddress> enumerable)
         {
             return enumerable.Where(email => email.IsFromSaml);

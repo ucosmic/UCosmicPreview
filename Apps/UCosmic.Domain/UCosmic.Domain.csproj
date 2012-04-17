@@ -112,6 +112,8 @@
     <Compile Include="Identity\Entities\SubjectNameIdentifier.cs" />
     <Compile Include="Identity\Queries\AutoCompleteUsersByNameHandler.cs" />
     <Compile Include="Identity\Queries\AutoCompleteUsersByNameQuery.cs" />
+    <Compile Include="Identity\Queries\BaseUserQuery.cs" />
+    <Compile Include="Identity\Queries\BaseUsersQuery.cs" />
     <Compile Include="Identity\Queries\GetUserByEduPersonTargetedIdHandler.cs" />
     <Compile Include="Identity\Queries\GetUserByEduPersonTargetedIdQuery.cs" />
     <Compile Include="Identity\Queries\GetUserByEntityIdHandler.cs" />
@@ -131,6 +133,8 @@
     <Compile Include="Languages\LanguageQuery.cs" />
     <Compile Include="People\PersonFactory.cs" />
     <Compile Include="People\PersonQuery.cs" />
+    <Compile Include="People\Queries\GetEmailAddressByUserNameAndNumberHandler.cs" />
+    <Compile Include="People\Queries\GetEmailAddressByUserNameAndNumberQuery.cs" />
     <Compile Include="People\Queries\EmailAddressQueries.cs" />
     <Compile Include="People\Queries\GetPersonByEmailHandler.cs" />
     <Compile Include="People\Queries\GetPersonByEmailQuery.cs" />

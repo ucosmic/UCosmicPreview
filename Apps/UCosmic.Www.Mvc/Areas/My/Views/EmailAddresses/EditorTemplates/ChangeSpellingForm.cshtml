@@ -1,9 +1,9 @@
-﻿@using UCosmic.Www.Mvc.Areas.Identity.Models.Self
-@model ChangeEmailSpellingForm
+﻿@model UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses.ChangeSpellingForm
 <div class="email-respell-editor">
     <div class="hidden-input">
-        @Html.EditorFor(m => m.EntityId)
         @Html.EditorFor(m => m.ReturnUrl)
+        @Html.EditorFor(m => m.PersonUserName)
+        @Html.EditorFor(m => m.Number)
     </div>
     <div class="field" data-ucosmic-val="css">
         <span class="label">

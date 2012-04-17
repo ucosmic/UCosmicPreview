@@ -35,11 +35,12 @@ namespace UCosmic.Www.Mvc.Controllers
             }
         }
 
-        protected JsonResult ValidateRemote(JsonRequestBehavior jsonRequestBehaviuor)
+        [NonAction]
+        protected JsonResult ValidateRemote(JsonRequestBehavior jsonRequestBehaviuor, string propertyKey)
         {
             return ModelState.IsValid
                 ? Json(true, jsonRequestBehaviuor)
-                : Json(ModelState.First().Value.Errors.First().ErrorMessage, jsonRequestBehaviuor);
+                : Json(ModelState.First(m => m.Key == propertyKey).Value.Errors.First().ErrorMessage, jsonRequestBehaviuor);
         }
     }
 

@@ -18,6 +18,7 @@ namespace UCosmic.Domain.People
 
         public int EmailAddressId { get; set; }
         public virtual EmailAddress EmailAddress { get; set; }
+        public int EmailAddressNumber { get; protected internal set; }
 
         public Guid Token { get; set; }
 
@@ -31,7 +32,7 @@ namespace UCosmic.Domain.People
 
         public bool IsExpired { get { return (DateTime.UtcNow > ExpiresOnUtc); } }
 
-        public EmailMessage ComposeConfirmationMessage(EmailTemplate template, 
+        public EmailMessage ComposeConfirmationMessage(EmailTemplate template,
             string startUrl, string confirmationUrl, IManageConfigurations config)
         {
             //var tokenAsString = Token.ToString();
@@ -44,34 +45,34 @@ namespace UCosmic.Domain.People
             };
 
             var message = template.ComposeMessageTo(EmailAddress, variables, config);
-            EmailAddress.Messages.Add(message);
+            EmailAddress.Person.Messages.Add(message);
             return message;
         }
 
-        public IDictionary<string, string> GetMessageVariables(IManageConfigurations config)
-        {
-            var tokenAsString = Token.ToString();
-            var variables = new Dictionary<string, string>
-            {
-                { "{EmailAddress}", EmailAddress.Value },
-                { "{ConfirmationCode}", SecretCode },
-            };
-            switch (Intent)
-            {
-                case EmailConfirmationIntent.SignUp:
-                    variables.Add("{ConfirmationUrl}", string.Format(config.SignUpEmailConfirmationUrlFormat,
-                        tokenAsString, SecretCode.UrlEncoded()));
-                    variables.Add("{StartUrl}", config.SignUpUrl);
-                    break;
+        //public IDictionary<string, string> GetMessageVariables(IManageConfigurations config)
+        //{
+        //    var tokenAsString = Token.ToString();
+        //    var variables = new Dictionary<string, string>
+        //    {
+        //        { "{EmailAddress}", EmailAddress.Value },
+        //        { "{ConfirmationCode}", SecretCode },
+        //    };
+        //    switch (Intent)
+        //    {
+        //        case EmailConfirmationIntent.SignUp:
+        //            variables.Add("{ConfirmationUrl}", string.Format(config.SignUpEmailConfirmationUrlFormat,
+        //                tokenAsString, SecretCode.UrlEncoded()));
+        //            variables.Add("{StartUrl}", config.SignUpUrl);
+        //            break;
 
-                case EmailConfirmationIntent.PasswordReset:
-                    variables.Add("{ConfirmationUrl}", string.Format(config.PasswordResetConfirmationUrlFormat,
-                        tokenAsString, SecretCode.UrlEncoded()));
-                    variables.Add("{PasswordResetUrl}", config.PasswordResetUrl);
-                    break;
-            }
-            return variables;
-        }
+        //        case EmailConfirmationIntent.PasswordReset:
+        //            variables.Add("{ConfirmationUrl}", string.Format(config.PasswordResetConfirmationUrlFormat,
+        //                tokenAsString, SecretCode.UrlEncoded()));
+        //            variables.Add("{PasswordResetUrl}", config.PasswordResetUrl);
+        //            break;
+        //    }
+        //    return variables;
+        //}
 
     }
 

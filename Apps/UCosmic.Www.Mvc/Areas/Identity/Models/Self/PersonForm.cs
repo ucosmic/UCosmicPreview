@@ -44,7 +44,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.Self
         [HiddenInput(DisplayValue = false)]
         public int? UserId { get; set; }
 
-        public IList<EmailInfo> Emails { get; set; }
+        public EmailInfo[] Emails { get; set; }
 
         public IList<AffiliationInfo> Affiliations { get; set; }
         public class AffiliationInfo

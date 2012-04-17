@@ -143,7 +143,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 {
                     new EmailAddress
                     {
-                        IsCurrent = false,
+                        //IsCurrent = false,
                         Confirmations = new List<Domain.People.EmailConfirmation>
                         {
                             new Domain.People.EmailConfirmation

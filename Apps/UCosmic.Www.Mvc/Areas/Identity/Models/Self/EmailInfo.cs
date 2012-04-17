@@ -14,15 +14,20 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.Self
 
         public bool IsDefault { get; set; }
         public bool IsConfirmed { get; set; }
+        public bool IsFromSaml { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
-        public Guid EntityId { get; set; }
+        //[HiddenInput(DisplayValue = false)]
+        //public Guid EntityId { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
-        public int RevisionId { get; set; }
+        //[HiddenInput(DisplayValue = false)]
+        //public int RevisionId { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public int PersonId { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public int Number { get; set; }
+
         public PersonForm Person { get; set; }
     }
 }

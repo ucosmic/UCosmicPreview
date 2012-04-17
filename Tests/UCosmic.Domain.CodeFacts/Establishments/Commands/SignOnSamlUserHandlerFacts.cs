@@ -6,6 +6,7 @@ using Moq;
 using System;
 using Should;
 using UCosmic.Domain.Identity;
+using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Establishments
 {
@@ -199,6 +200,7 @@ namespace UCosmic.Domain.Establishments
             if (!scenarioInfo.NullUserWithEduPersonTargetedId)
                 scenarioInfo.UserWithEduPersonTargetedId = new User
                 {
+                    Person = new Person(),
                 };
 
             // set up previous subject name identifier

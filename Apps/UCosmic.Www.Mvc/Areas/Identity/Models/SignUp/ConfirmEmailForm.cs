@@ -36,7 +36,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 var finder = new PersonFinder(queryEntities);
                 var person = finder.FindOne(PersonBy.EmailConfirmation(Token, EmailConfirmationIntent.SignUp));
                 var confirmation = (person != null)
-                    ? person.Emails.Current().SelectMany(e => e.Confirmations)
+                    ? person.Emails.SelectManyConfirmations()
                         .SingleOrDefault(c => c.Token == Token && c.Intent == EmailConfirmationIntent.SignUp
                             && c.SecretCode == SecretCode)
                     : null;
