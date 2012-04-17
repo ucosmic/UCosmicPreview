@@ -2,7 +2,7 @@
 
 namespace UCosmic.Domain.Identity
 {
-    public class EduPersonScopedAffiliation : Entity
+    public class EduPersonScopedAffiliation : Entity, IAmNumbered
     {
         protected internal EduPersonScopedAffiliation()
         {

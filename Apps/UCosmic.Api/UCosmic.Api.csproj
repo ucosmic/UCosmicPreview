@@ -55,6 +55,7 @@
     <Compile Include="Config\DeployToTarget.cs" />
     <Compile Include="Etc\CaseInsensitiveStringComparer.cs" />
     <Compile Include="Etc\ExtensionMethods.cs" />
+    <Compile Include="Etc\IAmNumbered.cs" />
     <Compile Include="Etc\IConsumeHttp.cs" />
     <Compile Include="Etc\IHaveText.cs" />
     <Compile Include="Etc\ISignUsers.cs" />

@@ -5,7 +5,7 @@ using UCosmic.Domain.Email;
 
 namespace UCosmic.Domain.People
 {
-    public class EmailAddress : Entity
+    public class EmailAddress : Entity, IAmNumbered
     {
         public EmailAddress()
         {
@@ -62,32 +62,5 @@ namespace UCosmic.Domain.People
             }
             return false;
         }
-    }
-
-    //public class EmailAddressComparer : IComparer<EmailAddress>
-    //{
-    //    public int Compare(EmailAddress x, EmailAddress y)
-    //    {
-    //        if (x.RevisionId == y.RevisionId)
-    //            return 0;
-
-    //        // the default email should appear at the top
-    //        if (y.IsDefault)
-    //            return 1;
-    //        if (x.IsDefault)
-    //            return -1;
-
-    //        if (y.IsConfirmed)
-    //            return 1;
-    //        if (x.IsConfirmed)
-    //            return -1;
-
-    //        return 0;
-    //    }
-    //}
-
-    public static class EmailAddressExtensions
-    {
-
     }
 }

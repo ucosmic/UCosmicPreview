@@ -25,15 +25,5 @@ namespace UCosmic.Domain.Identity
         {
             return queryable.Where(u => u.Name.Contains(term));
         }
-
-        internal static int NextNumber(this ICollection<SubjectNameIdentifier> collection)
-        {
-            return collection.Any() ? collection.Max(w => w.Number) + 1 : 1;
-        }
-
-        internal static int NextNumber(this ICollection<EduPersonScopedAffiliation> collection)
-        {
-            return collection.Any() ? collection.Max(w => w.Number) + 1 : 1;
-        }
     }
 }

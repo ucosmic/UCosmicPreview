@@ -49,10 +49,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             protected override void Configure()
             {
                 CreateMap<EmailAddress, EmailInfo>();
-                CreateMap<EmailInfo, EmailAddress>()
-                    .ForMember(target => target.Confirmations, opt => opt.Ignore())
-                    .ForMember(target => target.IsFromSaml, opt => opt.Ignore())
-                ;
+                //CreateMap<EmailInfo, EmailAddress>()
+                //    .ForMember(target => target.Confirmations, opt => opt.Ignore())
+                //    .ForMember(target => target.IsFromSaml, opt => opt.Ignore())
+                //;
             }
         }
 

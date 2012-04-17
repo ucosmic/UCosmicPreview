@@ -1,5 +1,4 @@
-﻿
-namespace UCosmic.Www.Mvc.Areas.Identity.Models.Self
+﻿namespace UCosmic.Www.Mvc.Areas.Identity.Models.Self
 {
     public class EmailInfo
     {

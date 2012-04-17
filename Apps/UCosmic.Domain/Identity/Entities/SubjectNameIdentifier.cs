@@ -2,7 +2,7 @@
 
 namespace UCosmic.Domain.Identity
 {
-    public class SubjectNameIdentifier : Entity
+    public class SubjectNameIdentifier : Entity, IAmNumbered
     {
         protected internal SubjectNameIdentifier()
         {
