@@ -59,6 +59,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -69,6 +70,7 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Establishments\Commands\SignOnSamlUserHandlerFacts.cs" />
     <Compile Include="Etc\InterfaceQueryEntitiesExtensions.cs" />
     <Compile Include="Api\RevisableEntityFinderFacts.cs" />
     <Compile Include="Api\RevisableEntityQueryCriteriaFacts.cs" />
@@ -77,14 +79,14 @@
     <Compile Include="Api\EntityQueryCriteriaFacts.cs" />
     <Compile Include="Email\RandomSecretCreatorFacts.cs" />
     <Compile Include="Email\EmailTemplateFacts.cs" />
-    <Compile Include="Establishments\InstitutionInfoFacts.cs" />
-    <Compile Include="Establishments\EstablishmentEmailDomainFacts.cs" />
-    <Compile Include="Establishments\EstablishmentNameFacts.cs" />
+    <Compile Include="Establishments\Entities\InstitutionInfoFacts.cs" />
+    <Compile Include="Establishments\Entities\EstablishmentEmailDomainFacts.cs" />
+    <Compile Include="Establishments\Entities\EstablishmentNameFacts.cs" />
     <Compile Include="Establishments\EstablishmentFinderFacts.cs" />
-    <Compile Include="Establishments\EstablishmentNodeFacts.cs" />
+    <Compile Include="Establishments\Entities\EstablishmentNodeFacts.cs" />
     <Compile Include="Establishments\EstablishmentQueryFacts.cs" />
-    <Compile Include="Establishments\EstablishmentFacts.cs" />
-    <Compile Include="Establishments\EstablishmentTypeFacts.cs" />
+    <Compile Include="Establishments\Entities\EstablishmentFacts.cs" />
+    <Compile Include="Establishments\Entities\EstablishmentTypeFacts.cs" />
     <Compile Include="Etc\AutoMapperFacts.cs" />
     <Compile Include="Etc\UnicodeToAsciiConverterFacts.cs" />
     <Compile Include="Identity\RoleGrantFacts.cs" />
@@ -129,6 +131,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

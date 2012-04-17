@@ -12,6 +12,7 @@ namespace UCosmic.Orm
             modelBuilder.Configurations.Add(new RoleOrm());
             modelBuilder.Configurations.Add(new RoleGrantOrm());
             modelBuilder.Configurations.Add(new SubjectNameIdentifierOrm());
+            modelBuilder.Configurations.Add(new EduPersonScopedAffiliationOrm());
         }
 
         private class UserOrm : RevisableEntityTypeConfiguration<User>
@@ -21,6 +22,7 @@ namespace UCosmic.Orm
                 ToTable(typeof(User).Name, DbSchemaName.Identity);
 
                 Property(u => u.Name).IsRequired().HasMaxLength(256);
+                Property(u => u.EduPersonTargetedId).IsMaxLength();
             }
         }
 
@@ -67,11 +69,29 @@ namespace UCosmic.Orm
             {
                 ToTable(typeof(SubjectNameIdentifier).Name, DbSchemaName.Identity);
 
-                HasKey(p => new { p.Number, p.UserId });
+                HasKey(p => new { p.UserId, p.Number });
 
                 // has one user
                 HasRequired(d => d.User)
                     .WithMany(p => p.SubjectNameIdentifiers)
+                    .HasForeignKey(d => d.UserId)
+                    .WillCascadeOnDelete(true);
+
+                Property(p => p.Value).HasMaxLength(256);
+            }
+        }
+
+        private class EduPersonScopedAffiliationOrm : EntityTypeConfiguration<EduPersonScopedAffiliation>
+        {
+            internal EduPersonScopedAffiliationOrm()
+            {
+                ToTable(typeof(EduPersonScopedAffiliation).Name, DbSchemaName.Identity);
+
+                HasKey(p => new { p.UserId, p.Number });
+
+                // has one user
+                HasRequired(d => d.User)
+                    .WithMany(p => p.EduPersonScopedAffiliations)
                     .HasForeignKey(d => d.UserId)
                     .WillCascadeOnDelete(true);
 

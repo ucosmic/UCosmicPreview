@@ -56,27 +56,50 @@ namespace UCosmic.Domain.People
             set { _emails = value; }
         }
 
-        public EmailAddress AddEmail(string emailAddress)
+        public EmailAddress AddEmail(string value, bool isFromSaml = false)
         {
-            var currentEmails = Emails.ToList();
-
             // email may already exist
-            var email = currentEmails.SingleOrDefault(e =>
-                e.Value.Equals(emailAddress, StringComparison.OrdinalIgnoreCase));
-            if (email != null) return email;
-
-            // create email
-            email = new EmailAddress
+            var email = Emails.ByValue(value);
+            if (email != null)
             {
-                // if person does not already have a default email, this is it
-                IsDefault = (currentEmails.Count(a => a.IsDefault) == 0),
-                Value = emailAddress,
-                Person = this,
-            };
+                email.IsFromSaml = isFromSaml;
+                if (email.IsFromSaml && !email.IsConfirmed)
+                    email.IsConfirmed = true;
+            }
+            else
+            {
+                // create email
+                email = new EmailAddress
+                {
+                    // if person does not already have a default email, this is it
+                    IsDefault = (Emails.Count(a => a.IsDefault) == 0),
+                    Value = value,
+                    Person = this,
+                    IsFromSaml = isFromSaml,
+                    IsConfirmed = isFromSaml,
+                };
 
-            // add & return email
-            Emails.Add(email);
+                // add & return email
+                Emails.Add(email);
+            }
+
             return email;
+        }
+
+        internal void ResetSamlEmails()
+        {
+            foreach (var email in Emails.FromSaml().ToList())
+            {
+                // cannot remove email addresses with messages attached
+                if (email.Messages.Any())
+                {
+                    email.IsFromSaml = false;
+                }
+                else
+                {
+                    Emails.Remove(email);
+                }
+            }
         }
 
         #endregion
@@ -176,7 +199,6 @@ namespace UCosmic.Domain.People
         {
             return DisplayName;
         }
-
     }
 
     public static class PersonExtensions

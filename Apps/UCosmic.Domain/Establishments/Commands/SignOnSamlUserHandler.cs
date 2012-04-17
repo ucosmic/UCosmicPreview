@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using UCosmic.Domain.People;
 using UCosmic.Domain.Identity;
@@ -11,10 +12,10 @@ namespace UCosmic.Domain.Establishments
         private readonly IProcessQueries _queryProcessor;
         private readonly ISignUsers _userSigner;
 
-        public SignOnSamlUserHandler(ICommandEntities entities, IProcessQueries queryProcessor, ISignUsers userSigner)
+        public SignOnSamlUserHandler(IProcessQueries queryProcessor, ICommandEntities entities, ISignUsers userSigner)
         {
-            _entities = entities;
             _queryProcessor = queryProcessor;
+            _entities = entities;
             _userSigner = userSigner;
         }
 
@@ -23,35 +24,51 @@ namespace UCosmic.Domain.Establishments
             // get saml response from http context
             var samlResponse = GetSamlResponse(command);
 
-            // extract data from the response
-            var issuerNameIdentifier = samlResponse.IssuerNameIdentifier;
-            var subjectNameIdentifier = samlResponse.SubjectNameIdentifier;
-            var eduPrincipalPersonName = samlResponse.GetAttributeValueByFriendlyName
-                (SamlAttributeFriendlyName.EduPersonPrincipalName);
-
             // get the establishment for this saml 2 response
-            var establishment = GetIssuingEstablishment
-                (issuerNameIdentifier);
-
-            // make sure the issuer is trusted
-            ThrowExceptionIfIssuingEstablishmentIsNotTrusted
-                (establishment, issuerNameIdentifier);
+            var establishment = GetIssuingEstablishment(samlResponse.IssuerNameIdentifier);
 
             // verify the response's signature
             ThrowExceptionIfSamlResponseSignatureFailsVerification
-                (samlResponse, issuerNameIdentifier);
+                (samlResponse, samlResponse.IssuerNameIdentifier);
+
+            // first try to find user by SAML person targeted id
+            var user = _queryProcessor.Execute(
+                new GetUserByEduPersonTargetedIdQuery
+                {
+                    EduPersonTargetedId = samlResponse.EduPersonTargetedId,
+                    EagerLoad = new Expression<Func<User, object>>[]
+                    {
+                        u => u.SubjectNameIdentifiers,
+                        u => u.EduPersonScopedAffiliations,
+                        u => u.Person,
+                    },
+                });
+            if (user != null)
+            {
+                // update the user's sign on info
+                user.LogSubjectNameIdentifier(samlResponse.SubjectNameIdentifier);
+                user.SetEduPersonScopedAffiliations(samlResponse.EduPersonScopedAffiliations);
+
+                // update the person's mail
+                EnforceSamlEmailInvariants(user.Person, samlResponse);
+
+                // sign on the user
+                _userSigner.SignOn(samlResponse.EduPersonPrincipalName);
+
+                return;
+            }
 
             // find person with email address
-            var person = GetOrCreatePersonWithEmail(eduPrincipalPersonName);
+            var person = GetOrCreatePersonWithEmail(samlResponse);
 
             // find user with this email address
-            var user = _queryProcessor.Execute(new GetUserByNameQuery { Name = eduPrincipalPersonName });
+            user = _queryProcessor.Execute(new GetUserByNameQuery { Name = samlResponse.EduPersonPrincipalName });
 
             // if there is a user, make sure its person matches
             ThrowExceptionIfUserNameDoesNotMatchPersonEmail(user, person);
 
             // make sure the person's email address is confirmed
-            person.Emails.ByValue(eduPrincipalPersonName).IsConfirmed = true;
+            person.Emails.ByValue(samlResponse.EduPersonPrincipalName).IsConfirmed = true;
 
             // make sure the person is affiliated with the issuing establishment
             if (!person.IsAffiliatedWith(establishment)) person.AffiliateWith(establishment);
@@ -60,11 +77,12 @@ namespace UCosmic.Domain.Establishments
             if (person.User == null) person.User = new User();
 
             // make sure the user is registered and has matching name
-            person.User.Name = eduPrincipalPersonName;
+            person.User.Name = samlResponse.EduPersonPrincipalName;
+            person.User.EduPersonTargetedId = samlResponse.EduPersonTargetedId;
             person.User.IsRegistered = true;
 
             // sign on the user
-            _userSigner.SignOn(eduPrincipalPersonName);
+            _userSigner.SignOn(samlResponse.EduPersonPrincipalName);
 
             command.ReturnUrl = samlResponse.RelayResourceUrl;
         }
@@ -81,6 +99,9 @@ namespace UCosmic.Domain.Establishments
             return samlResponse;
         }
 
+        internal const string UntrustedIssuerExceptionMessageFormat =
+            "SAML 2 response issuer '{0}' does not appear to be trusted.";
+
         private Establishment GetIssuingEstablishment(string issuerNameIdentifier)
         {
             var establishment = _queryProcessor.Execute(
@@ -93,46 +114,93 @@ namespace UCosmic.Domain.Establishments
                     },
                 }
             );
+
+            // when getting by the saml entity id, establishment is immediately trusted if found
+            var isIssuerTrusted = establishment != null; // && establishment.HasSamlSignOn();
+            if (!isIssuerTrusted)
+                throw new InvalidOperationException(string.Format(
+                    UntrustedIssuerExceptionMessageFormat,
+                        issuerNameIdentifier));
+
             return establishment;
         }
 
-        private Person GetOrCreatePersonWithEmail(string eduPrincipalPersonName)
+        private Person GetPersonByEmail(string email)
         {
             var person = _queryProcessor.Execute(
                 new GetPersonByEmailQuery
                 {
-                    Email = eduPrincipalPersonName,
+                    Email = email,
+                    EagerLoad = new Expression<Func<Person, object>>[]
+                    {
+                        p => p.Emails,
+                    },
                 }
             );
+            return person;
+        }
+
+        private Person GetOrCreatePersonWithEmail(Saml2Response samlResponse)
+        {
+            // first lookup person whose email equals the eduPersonPrincipalName
+            var person = GetPersonByEmail(samlResponse.EduPersonPrincipalName);
+
+            // next, lookup a person whose email equals a mail attribute
+            var mails = samlResponse.Mails;
+            if (person == null && mails != null)
+            {
+                foreach (var mail in mails.Where(mail => !string.IsNullOrWhiteSpace(mail)))
+                {
+                    person = GetPersonByEmail(mail);
+                    if (person != null) break;
+                }
+            }
 
             // create person if not found
             if (person == null)
             {
                 person = new Person
                 {
-                    DisplayName = eduPrincipalPersonName,
+                    DisplayName = samlResponse.CommonName ?? samlResponse.DisplayName ?? samlResponse.EduPersonPrincipalName,
+                    FirstName = samlResponse.GivenName,
+                    LastName = samlResponse.SurName,
                 };
-
-                person.AddEmail(eduPrincipalPersonName);
                 _entities.Create(person);
             }
+
+            EnforceSamlEmailInvariants(person, samlResponse);
+
             return person;
         }
 
-        private static void ThrowExceptionIfIssuingEstablishmentIsNotTrusted(Establishment establishment, string issuerNameIdentifier)
+        private static void EnforceSamlEmailInvariants(Person person, Saml2Response samlResponse)
         {
-            var isIssuerTrusted = establishment != null && establishment.HasSamlSignOn();
-            if (!isIssuerTrusted)
-                throw new InvalidOperationException(string.Format(
-                    "SAML 2 response issuer '{0}' does not appear to be trusted.",
-                        issuerNameIdentifier));
+            // get the saml mail attribute statement
+            var mails = samlResponse.Mails;
+
+            // clear all previous email addresses provided by SAML
+            person.ResetSamlEmails();
+
+            // only add eduPersonPrincipalName as email if no emails were provided
+            if (mails == null || mails.Length < 1)
+            {
+                person.AddEmail(samlResponse.EduPersonPrincipalName, true);
+            }
+            else
+            {
+                foreach (var mail in mails)
+                    person.AddEmail(mail, true);
+            }
         }
+
+        internal const string ResponseSignatureFailedVerificationMessageFormat =
+            "SAML 2 response response signature for '{0}' failed to verify.";
 
         private static void ThrowExceptionIfSamlResponseSignatureFailsVerification(Saml2Response response, string issuerNameIdentifier)
         {
             if (!response.VerifySignature())
                 throw new InvalidOperationException(string.Format(
-                    "SAML 2 response response signature for '{0}' failed to verify.",
+                    ResponseSignatureFailedVerificationMessageFormat,
                         issuerNameIdentifier));
         }
 
