@@ -16,6 +16,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
 
             RuleFor(p => p.Value)
                 .NotEmpty().WithMessage(changeEmailSpellingErrorMessage)
+                .EmailAddress().WithMessage(changeEmailSpellingErrorMessage)
                 .Must(MatchPreviousSpellingCaseInvariantly).WithMessage(changeEmailSpellingErrorMessage)
             ;
         }
