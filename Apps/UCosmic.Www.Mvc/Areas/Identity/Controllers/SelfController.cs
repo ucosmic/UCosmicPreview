@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using Elmah;
 using UCosmic.Domain;
 using UCosmic.Domain.People;
+using UCosmic.Www.Mvc.Areas.Identity.Mappers;
 using UCosmic.Www.Mvc.Areas.Identity.Models.Self;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Models;
-using UCosmic.Www.Mvc.Areas.Identity.Mappers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -41,7 +40,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             if (person != null)
             {
                 var model = Mapper.Map<PersonForm>(person);
-                model.Emails = model.Emails.OrderBy(e => e.IsDefault).ThenBy(e => e.IsConfirmed).ThenBy(e => e.Value).ToArray(); // TODO: put this in the model mapper
+                model.Emails = model.Emails.OrderByDescending(e => e.IsDefault).ThenByDescending(e => e.IsConfirmed).ThenBy(e => e.Value).ToArray(); // TODO: put this in the model mapper
                 //person.Emails = person.Emails.OrderBy(e => e.IsDefault).ThenBy(e => e.IsConfirmed).ThenBy(e => e.Value).ToList();
                 return View(model);
             }
@@ -72,7 +71,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     return RedirectToAction(MVC.Identity.Self.Me());
                 }
                 model.Emails = Mapper.Map<EmailInfo[]>( // TODO: put this in the model mapper
-                    person.Emails.OrderBy(e => e.IsDefault).ThenBy(e => e.IsConfirmed).ThenBy(e => e.Value));
+                    person.Emails.OrderByDescending(e => e.IsDefault).ThenByDescending(e => e.IsConfirmed).ThenByDescending(e => e.Value));
                 model.Affiliations = Mapper.Map<IList<PersonForm.AffiliationInfo>>(person.Affiliations);
                 return View(model);
             }

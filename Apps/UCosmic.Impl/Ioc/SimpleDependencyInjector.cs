@@ -88,8 +88,8 @@ namespace UCosmic
 
             // open generic decorator chains http://www.cuttingedge.it/blogs/steven/pivot/entry.php?id=91
             container.RegisterManyForOpenGeneric(typeof(IHandleCommands<>), assemblies);
-            //container.RegisterOpenGenericDecorator(typeof(IHandleCommands<>),
-            //    typeof(SomeCommandHandlerDecorator<>));
+            container.RegisterOpenGenericDecorator(typeof(IHandleCommands<>),
+                typeof(FluentValidationCommandDecorator<>));
 
             // query processing
             container.RegisterPerWebRequest<SimpleQueryProcessor>();
