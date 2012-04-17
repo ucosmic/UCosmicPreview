@@ -43,7 +43,9 @@ namespace UCosmic.Www.Mvc
             AreaRegistration.RegisterAllAreas();
             MvcApplication.RegisterRoutes(RouteTable.Routes);
             AutoMapperConfig.Configure();
+            MvcApplication.SetUpFluentValidation();
         }
+
         private static class AreaRegistration
         {
             private static void RegisterArea(System.Web.Mvc.AreaRegistration area, RouteCollection routes)

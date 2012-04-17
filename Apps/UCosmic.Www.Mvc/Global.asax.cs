@@ -94,7 +94,7 @@ namespace UCosmic.Www.Mvc
             FilterProviders.Providers.Add(DependencyInjector.Current.GetService<SimpleFilterAttributeFilterProvider>());
         }
 
-        private static void SetUpFluentValidation()
+        public static void SetUpFluentValidation()
         {
             FluentValidationModelValidatorProvider.Configure(
                 provider =>
