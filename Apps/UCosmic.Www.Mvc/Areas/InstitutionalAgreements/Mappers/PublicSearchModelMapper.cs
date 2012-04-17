@@ -5,7 +5,7 @@ using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Domain.People;
 using UCosmic.Domain.Places;
 using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch;
-using UCosmic.Www.Mvc.Mappers;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
 {

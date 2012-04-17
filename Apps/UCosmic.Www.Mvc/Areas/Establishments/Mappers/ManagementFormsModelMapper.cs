@@ -3,7 +3,7 @@ using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Languages;
 using UCosmic.Domain.Places;
 using UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms;
-using UCosmic.Www.Mvc.Mappers;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
 {

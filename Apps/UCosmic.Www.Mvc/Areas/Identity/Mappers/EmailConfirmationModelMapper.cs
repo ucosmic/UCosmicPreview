@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Models.EmailConfirmation;
-using UCosmic.Www.Mvc.Mappers;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
 {

@@ -13,13 +13,13 @@ namespace UCosmic.Domain
             return collection.Any() ? collection.Max(w => w.Number) + 1 : 1;
         }
 
-        public static IQueryable<TEntity> EagerLoad<TEntity>(this IQueryable<TEntity> queryable, Expression<Func<TEntity, object>> expression, IQueryEntities entities)
+        private static IQueryable<TEntity> EagerLoad<TEntity>(this IQueryable<TEntity> queryable, Expression<Func<TEntity, object>> expression, IQueryEntities entities)
             where TEntity : Entity
         {
             return entities.EagerLoad(queryable, expression);
         }
 
-        public static IQueryable<TEntity> EagerLoad<TEntity>(this IQueryable<TEntity> queryable, IEnumerable<Expression<Func<TEntity, object>>> expressions, IQueryEntities entities)
+        internal static IQueryable<TEntity> EagerLoad<TEntity>(this IQueryable<TEntity> queryable, IEnumerable<Expression<Func<TEntity, object>>> expressions, IQueryEntities entities)
             where TEntity : Entity
         {
             if (expressions != null)
@@ -27,7 +27,7 @@ namespace UCosmic.Domain
             return queryable;
         }
 
-        public static IQueryable<TEntity> OrderBy<TEntity>(this IQueryable<TEntity> queryable, IEnumerable<KeyValuePair<Expression<Func<TEntity, object>>, OrderByDirection>> expressions)
+        internal static IQueryable<TEntity> OrderBy<TEntity>(this IQueryable<TEntity> queryable, IEnumerable<KeyValuePair<Expression<Func<TEntity, object>>, OrderByDirection>> expressions)
         {
             // http://stackoverflow.com/a/9155222/304832
             if (expressions != null)
@@ -44,6 +44,8 @@ namespace UCosmic.Domain
                         var parameters = expression.Key.Parameters;
                         if (propertyExpression.Type == typeof(DateTime))
                         {
+                            #region DateTime
+
                             var dateTimeExpression = Expression.Lambda<Func<TEntity, DateTime>>(propertyExpression, parameters);
                             if (counter < 1)
                             {
@@ -57,9 +59,13 @@ namespace UCosmic.Domain
                                     ? ((IOrderedQueryable<TEntity>)queryable).ThenBy(dateTimeExpression)
                                     : ((IOrderedQueryable<TEntity>)queryable).ThenByDescending(dateTimeExpression);
                             }
+
+                            #endregion
                         }
                         else if (propertyExpression.Type == typeof(int))
                         {
+                            #region int
+
                             var intExpression = Expression.Lambda<Func<TEntity, int>>(propertyExpression, parameters);
                             if (counter < 1)
                             {
@@ -73,6 +79,8 @@ namespace UCosmic.Domain
                                     ? ((IOrderedQueryable<TEntity>)queryable).ThenBy(intExpression)
                                     : ((IOrderedQueryable<TEntity>)queryable).ThenByDescending(intExpression);
                             }
+
+                            #endregion
                         }
                         else
                         {
@@ -81,6 +89,8 @@ namespace UCosmic.Domain
                     }
                     else
                     {
+                        #region object
+
                         if (counter < 1)
                         {
                             queryable = expression.Value == OrderByDirection.Ascending
@@ -93,6 +103,8 @@ namespace UCosmic.Domain
                                 ? ((IOrderedQueryable<TEntity>)queryable).ThenBy(expression.Key)
                                 : ((IOrderedQueryable<TEntity>)queryable).ThenByDescending(expression.Key);
                         }
+
+                        #endregion
                     }
                     ++counter;
                 }

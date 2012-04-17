@@ -10,7 +10,7 @@ using UCosmic.Www.Mvc.Areas.Identity;
 using UCosmic.Www.Mvc.Areas.InstitutionalAgreements;
 using UCosmic.Www.Mvc.Areas.My;
 using UCosmic.Www.Mvc.Areas.RecruitmentAgencies;
-using UCosmic.Www.Mvc.Mappers;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc
 {

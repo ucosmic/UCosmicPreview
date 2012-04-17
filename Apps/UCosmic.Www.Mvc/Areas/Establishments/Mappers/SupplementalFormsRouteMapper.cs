@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using UCosmic.Www.Mvc.Mappers;
+using UCosmic.Www.Mvc.Routes;
 
 namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
 {
@@ -43,7 +43,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 var constraintsForGetWithReturnUrl = new
                 {
                     establishmentId = new NonEmptyGuidRouteConstraint(),
-                    returnUrl = new RequiredIfPresentConstraint(),
+                    returnUrl = new RequiredIfPresentRouteConstraint(),
                     httpMethod = new HttpMethodConstraint("GET"),
                 };
                 context.MapRoute(null, RoutesForGet[0], defaults, constraintsForGetWithReturnUrl);

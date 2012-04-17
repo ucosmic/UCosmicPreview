@@ -5,7 +5,7 @@ using System.Web;
 using AutoMapper;
 using UCosmic.Domain.Files;
 
-namespace UCosmic.Www.Mvc.Mappers
+namespace UCosmic.Www.Mvc.Models
 {
     public static class DefaultModelMapper
     {

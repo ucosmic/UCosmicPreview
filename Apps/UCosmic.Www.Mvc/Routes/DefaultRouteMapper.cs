@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using System.Web.Mvc;
 
-namespace UCosmic.Www.Mvc.Mappers
+namespace UCosmic.Www.Mvc.Routes
 {
     public static class DefaultRouteMapper
     {

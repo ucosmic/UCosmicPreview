@@ -7,7 +7,7 @@ using UCosmic.Domain.Files;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms;
-using UCosmic.Www.Mvc.Mappers;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
 {

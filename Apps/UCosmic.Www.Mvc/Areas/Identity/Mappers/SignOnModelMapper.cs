@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using UCosmic.Domain.Establishments;
 using UCosmic.Www.Mvc.Areas.Identity.Models.SignOn;
-using UCosmic.Www.Mvc.Mappers;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
 {

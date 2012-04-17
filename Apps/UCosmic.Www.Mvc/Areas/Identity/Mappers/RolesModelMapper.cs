@@ -2,7 +2,6 @@
 using AutoMapper;
 using UCosmic.Domain.Identity;
 using UCosmic.Www.Mvc.Areas.Identity.Models.Roles;
-using UCosmic.Www.Mvc.Mappers;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Mappers

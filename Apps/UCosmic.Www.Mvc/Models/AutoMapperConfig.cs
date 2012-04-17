@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 
-namespace UCosmic.Www.Mvc.Mappers
+namespace UCosmic.Www.Mvc.Models
 {
     public static class AutoMapperConfig
     {

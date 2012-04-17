@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using UCosmic.Www.Mvc.Mappers;
+using UCosmic.Www.Mvc.Routes;
 
 namespace UCosmic.Www.Mvc.Areas.My.Routes
 {
