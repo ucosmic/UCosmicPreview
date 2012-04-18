@@ -1,7 +1,6 @@
 using System.Linq;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
-using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 
 namespace UCosmic.Seeders
@@ -11,6 +10,7 @@ namespace UCosmic.Seeders
         protected Person EnsurePerson(string emails, string firstName, string lastName, Establishment employedBy, bool registerUser = true)
         {
             var queryProcessor = DependencyInjector.Current.GetService<IProcessQueries>();
+            var createPersonHandler = DependencyInjector.Current.GetService<IHandleCommands<CreatePersonCommand>>();
 
             var emailsExploded = emails.Explode(";").ToArray();
             var defaultEmail = emailsExploded.First();
@@ -21,15 +21,25 @@ namespace UCosmic.Seeders
                 }
             );
             if (person != null) return person;
-            person = new Person
+            //person = new Person
+            //{
+            //    FirstName = firstName,
+            //    LastName = lastName,
+            //    DisplayName = string.Format("{0} {1}", firstName, lastName),
+            //    User = UserFactory.Create(defaultEmail, registerUser),
+            //};
+            //Context.People.Add(person);
+            var command = new CreatePersonCommand
             {
                 FirstName = firstName,
                 LastName = lastName,
                 DisplayName = string.Format("{0} {1}", firstName, lastName),
-                User = UserFactory.Create(defaultEmail, registerUser),
+                UserName = defaultEmail,
+                UserIsRegistered = registerUser,
             };
-            Context.People.Add(person);
+            createPersonHandler.Handle(command);
             Context.SaveChanges();
+            person = command.CreatedPerson;
 
             foreach (var email in emails.Explode(";"))
             {

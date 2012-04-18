@@ -143,6 +143,10 @@
     <Compile Include="People\Commands\ChangeEmailAddressSpellingCommand.cs" />
     <Compile Include="People\Commands\ChangeEmailAddressSpellingHandler.cs" />
     <Compile Include="People\Commands\ChangeEmailAddressSpellingValidator.cs" />
+    <Compile Include="People\Commands\CreatePersonCommand.cs" />
+    <Compile Include="People\Commands\CreatePersonHandler.cs" />
+    <Compile Include="People\Commands\CreatePersonValidator.cs" />
+    <Compile Include="People\PersonExtensions.cs" />
     <Compile Include="People\PersonFactory.cs" />
     <Compile Include="People\PersonQuery.cs" />
     <Compile Include="People\Queries\GetEmailAddressByUserNameAndNumberHandler.cs" />
