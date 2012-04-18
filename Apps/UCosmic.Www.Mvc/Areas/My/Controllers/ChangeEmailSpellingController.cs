@@ -4,32 +4,26 @@ using AutoMapper;
 using FluentValidation.Mvc;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Mappers;
-using UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses;
-using UCosmic.Www.Mvc.Areas.My.Services;
+using UCosmic.Www.Mvc.Areas.My.Models;
 using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
     [Authorize]
-    public partial class EmailAddressesController : BaseController
+    public partial class ChangeEmailSpellingController : BaseController
     {
-        #region Construction & DI
+        private readonly ChangeEmailSpellingServices _services;
 
-        private readonly EmailAddressesServices _services;
-
-        public EmailAddressesController(EmailAddressesServices services)
+        public ChangeEmailSpellingController(ChangeEmailSpellingServices services)
         {
             _services = services;
         }
-
-        #endregion
-        #region Change Email Spelling
 
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("change-spelling")]
         [ReturnUrlReferrer(SelfRouteMapper.Me.OutboundRoute)]
-        public virtual ActionResult ChangeSpelling(int number)
+        public virtual ActionResult Get(int number)
         {
             // get the currently signed-in user / person
             var email = _services.QueryProcessor.Execute(
@@ -40,7 +34,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 }
             );
 
-            if (email != null) return View(Mapper.Map<ChangeSpellingForm>(email));
+            if (email != null) return PartialView(Mapper.Map<ChangeEmailSpellingForm>(email));
             return HttpNotFound();
         }
 
@@ -48,7 +42,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         [UnitOfWork]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("change-spelling")]
-        public virtual ActionResult ChangeSpelling(ChangeSpellingForm model)
+        public virtual ActionResult Put(ChangeEmailSpellingForm model)
         {
             // make sure user owns this email address
             if (model == null || !User.Identity.Name.Equals(model.PersonUserName, StringComparison.OrdinalIgnoreCase))
@@ -59,25 +53,23 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
             // execute command, set feedback message, and redirect
             var command = Mapper.Map<ChangeEmailAddressSpellingCommand>(model);
-            _services.ChangeEmailAddressSpellingHandler.Handle(command);
+            _services.CommandHandler.Handle(command);
             SetFeedbackMessage(command.ChangedState
-                ? string.Format(ChangeSpellingSuccessMessageFormat, model.Value)
-                : ChangeSpellingNoChangesMessage
+                ? string.Format(SuccessMessageFormat, model.Value)
+                : NoChangesMessage
             );
             return Redirect(model.ReturnUrl);
         }
 
-        public const string ChangeSpellingSuccessMessageFormat = "Your email address was successfully changed to {0}.";
-        public const string ChangeSpellingNoChangesMessage = "No changes were made.";
+        public const string SuccessMessageFormat = "Your email address was successfully changed to {0}.";
+        public const string NoChangesMessage = "No changes were made.";
 
         [HttpPost]
         [OutputCache(VaryByParam = "*", Duration = 1800)]
-        public virtual JsonResult ValidateChangeSpelling(
-            [CustomizeValidator(Properties = ChangeSpellingForm.ValuePropertyName)] ChangeSpellingForm model)
+        public virtual JsonResult ValidateValue(
+            [CustomizeValidator(Properties = ChangeEmailSpellingForm.ValuePropertyName)] ChangeEmailSpellingForm model)
         {
-            return ValidateRemote(JsonRequestBehavior.DenyGet, ChangeSpellingForm.ValuePropertyName);
+            return ValidateRemote(JsonRequestBehavior.DenyGet, ChangeEmailSpellingForm.ValuePropertyName);
         }
-
-        #endregion
     }
 }

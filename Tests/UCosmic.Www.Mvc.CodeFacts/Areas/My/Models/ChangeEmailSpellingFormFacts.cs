@@ -6,10 +6,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 using UCosmic.Www.Mvc.Models;
 
-namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
+namespace UCosmic.Www.Mvc.Areas.My.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class ChangeSpellingFormFacts
+    public class ChangeEmailSpellingFormFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -18,7 +18,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             [TestMethod]
             public void Implements_IReturnUrl()
             {
-                var model = new ChangeSpellingForm();
+                var model = new ChangeEmailSpellingForm();
                 model.ShouldImplement<IReturnUrl>();
             }
         }
@@ -29,8 +29,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             [TestMethod]
             public void IsDecoratedWith_Display_UsingName_NewSpelling()
             {
-                Expression<Func<ChangeSpellingForm, string>> property = p => p.Value;
-                var attributes = property.GetAttributes<ChangeSpellingForm, string, DisplayAttribute>();
+                Expression<Func<ChangeEmailSpellingForm, string>> property = p => p.Value;
+                var attributes = property.GetAttributes<ChangeEmailSpellingForm, string, DisplayAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].Name.ShouldEqual("New spelling");
@@ -39,8 +39,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             [TestMethod]
             public void IsDecoratedWith_Remote_UsingHttpMethod_Post()
             {
-                Expression<Func<ChangeSpellingForm, string>> property = p => p.Value;
-                var attributes = property.GetAttributes<ChangeSpellingForm, string, RemoteAttribute>();
+                Expression<Func<ChangeEmailSpellingForm, string>> property = p => p.Value;
+                var attributes = property.GetAttributes<ChangeEmailSpellingForm, string, RemoteAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].HttpMethod.ShouldEqual("POST");
@@ -49,8 +49,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             [TestMethod]
             public void IsDecoratedWith_Remote_UsingAdditionalFields_PersonUserName_AndNumber()
             {
-                Expression<Func<ChangeSpellingForm, string>> property = p => p.Value;
-                var attributes = property.GetAttributes<ChangeSpellingForm, string, RemoteAttribute>();
+                Expression<Func<ChangeEmailSpellingForm, string>> property = p => p.Value;
+                var attributes = property.GetAttributes<ChangeEmailSpellingForm, string, RemoteAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].AdditionalFields.ShouldEqual("PersonUserName,Number");
@@ -63,8 +63,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             [TestMethod]
             public void IsDecoratedWith_Display_UsingName_CurrentSpelling()
             {
-                Expression<Func<ChangeSpellingForm, string>> property = p => p.OldSpelling;
-                var attributes = property.GetAttributes<ChangeSpellingForm, string, DisplayAttribute>();
+                Expression<Func<ChangeEmailSpellingForm, string>> property = p => p.OldSpelling;
+                var attributes = property.GetAttributes<ChangeEmailSpellingForm, string, DisplayAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].Name.ShouldEqual("Current spelling");
@@ -73,7 +73,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             [TestMethod]
             public void HasPublicSetter()
             {
-                new ChangeSpellingForm
+                new ChangeEmailSpellingForm
                 {
                     OldSpelling = "user@domain.tld"
                 };
@@ -86,8 +86,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             [TestMethod]
             public void IsDecoratedWith_HiddenInput()
             {
-                Expression<Func<ChangeSpellingForm, string>> property = p => p.PersonUserName;
-                var attributes = property.GetAttributes<ChangeSpellingForm, string, HiddenInputAttribute>();
+                Expression<Func<ChangeEmailSpellingForm, string>> property = p => p.PersonUserName;
+                var attributes = property.GetAttributes<ChangeEmailSpellingForm, string, HiddenInputAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();
@@ -100,8 +100,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             [TestMethod]
             public void IsDecoratedWith_HiddenInput()
             {
-                Expression<Func<ChangeSpellingForm, string>> property = p => p.ReturnUrl;
-                var attributes = property.GetAttributes<ChangeSpellingForm, string, HiddenInputAttribute>();
+                Expression<Func<ChangeEmailSpellingForm, string>> property = p => p.ReturnUrl;
+                var attributes = property.GetAttributes<ChangeEmailSpellingForm, string, HiddenInputAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();
@@ -114,8 +114,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             [TestMethod]
             public void IsDecoratedWith_HiddenInput()
             {
-                Expression<Func<ChangeSpellingForm, int>> property = p => p.Number;
-                var attributes = property.GetAttributes<ChangeSpellingForm, int, HiddenInputAttribute>();
+                Expression<Func<ChangeEmailSpellingForm, int>> property = p => p.Number;
+                var attributes = property.GetAttributes<ChangeEmailSpellingForm, int, HiddenInputAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();

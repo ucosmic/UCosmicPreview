@@ -81,7 +81,7 @@ namespace T4MVC {
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class MyClass {
         public readonly string Name = "My";
-        public UCosmic.Www.Mvc.Areas.My.Controllers.EmailAddressesController EmailAddresses = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_EmailAddressesController();
+        public UCosmic.Www.Mvc.Areas.My.Controllers.ChangeEmailSpellingController ChangeEmailSpelling = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_ChangeEmailSpellingController();
         public UCosmic.Www.Mvc.Areas.My.Controllers.ProfileController Profile = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_ProfileController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

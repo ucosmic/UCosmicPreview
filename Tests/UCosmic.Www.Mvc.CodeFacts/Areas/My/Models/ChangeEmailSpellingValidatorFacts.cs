@@ -7,10 +7,10 @@ using Should;
 using UCosmic.Domain;
 using UCosmic.Domain.People;
 
-namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
+namespace UCosmic.Www.Mvc.Areas.My.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class ChangeSpellingFormValidatorFacts
+    public class ChangeEmailSpellingValidatorFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -23,10 +23,10 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
                 HttpContext.Current = new HttpContext(request, new HttpResponse(null));
                 var container = SimpleDependencyInjector.Bootstrap();
 
-                var validator = container.GetInstance<IValidator<ChangeSpellingForm>>();
+                var validator = container.GetInstance<IValidator<ChangeEmailSpellingForm>>();
 
                 validator.ShouldNotBeNull();
-                validator.ShouldBeType<ChangeSpellingFormValidator>();
+                validator.ShouldBeType<ChangeEmailSpellingValidator>();
             }
         }
 
@@ -36,8 +36,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             [TestMethod]
             public void HasErrorWhen_Value_IsNull()
             {
-                var validator = new ChangeSpellingFormValidator(null);
-                var model = new ChangeSpellingForm { Value = null };
+                var validator = new ChangeEmailSpellingValidator(null);
+                var model = new ChangeEmailSpellingForm { Value = null };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldEqual(1);
@@ -48,8 +48,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             [TestMethod]
             public void HasErrorWhen_Value_IsEmpty()
             {
-                var validator = new ChangeSpellingFormValidator(null);
-                var model = new ChangeSpellingForm { Value = string.Empty };
+                var validator = new ChangeEmailSpellingValidator(null);
+                var model = new ChangeEmailSpellingForm { Value = string.Empty };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldEqual(1);
@@ -60,8 +60,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             [TestMethod]
             public void HasErrorWhen_Value_IsWhiteSpace()
             {
-                var validator = new ChangeSpellingFormValidator(null);
-                var model = new ChangeSpellingForm { Value = " \r" };
+                var validator = new ChangeEmailSpellingValidator(null);
+                var model = new ChangeEmailSpellingForm { Value = " \r" };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldEqual(1);
@@ -72,8 +72,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             [TestMethod]
             public void HasErrorWhen_Value_IsMissingTldExtension()
             {
-                var validator = new ChangeSpellingFormValidator(null);
-                var model = new ChangeSpellingForm { Value = "email@domain" };
+                var validator = new ChangeEmailSpellingValidator(null);
+                var model = new ChangeEmailSpellingForm { Value = "email@domain" };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldEqual(1);
@@ -87,8 +87,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
                 var queryProcessor = new Mock<IProcessQueries>();
                 queryProcessor.Setup(m => m.Execute(It.IsAny<GetEmailAddressByUserNameAndNumberQuery>()))
                     .Returns(new EmailAddress{ Value = "user@domain.tld"});
-                var validator = new ChangeSpellingFormValidator(queryProcessor.Object);
-                var model = new ChangeSpellingForm { Value = "user2@domain.tld" };
+                var validator = new ChangeEmailSpellingValidator(queryProcessor.Object);
+                var model = new ChangeEmailSpellingForm { Value = "user2@domain.tld" };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldEqual(1);
@@ -102,8 +102,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
                 var queryProcessor = new Mock<IProcessQueries>();
                 queryProcessor.Setup(m => m.Execute(It.IsAny<GetEmailAddressByUserNameAndNumberQuery>()))
                     .Returns(null as EmailAddress);
-                var validator = new ChangeSpellingFormValidator(queryProcessor.Object);
-                var model = new ChangeSpellingForm { Value = "user@domain.tld" };
+                var validator = new ChangeEmailSpellingValidator(queryProcessor.Object);
+                var model = new ChangeEmailSpellingForm { Value = "user@domain.tld" };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldEqual(1);
@@ -117,8 +117,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
                 var queryProcessor = new Mock<IProcessQueries>();
                 queryProcessor.Setup(m => m.Execute(It.IsAny<GetEmailAddressByUserNameAndNumberQuery>()))
                     .Returns(new EmailAddress { Value = "user@domain.tld" });
-                var validator = new ChangeSpellingFormValidator(queryProcessor.Object);
-                var model = new ChangeSpellingForm { Value = "User@Domain.Tld" };
+                var validator = new ChangeEmailSpellingValidator(queryProcessor.Object);
+                var model = new ChangeEmailSpellingForm { Value = "User@Domain.Tld" };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeTrue();
                 results.Errors.Count.ShouldEqual(0);
