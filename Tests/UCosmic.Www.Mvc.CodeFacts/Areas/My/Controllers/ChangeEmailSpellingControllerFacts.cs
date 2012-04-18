@@ -10,14 +10,13 @@ using Should;
 using UCosmic.Domain;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Mappers;
-using UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses;
-using UCosmic.Www.Mvc.Areas.My.Services;
+using UCosmic.Www.Mvc.Areas.My.Models;
 using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
     // ReSharper disable UnusedMember.Global
-    public class EmailAddressesControllerFacts
+    public class ChangeEmailSpellingControllerFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -26,7 +25,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_Authorize()
             {
-                var attribute = Attribute.GetCustomAttribute(typeof(EmailAddressesController), typeof(AuthorizeAttribute));
+                var attribute = Attribute.GetCustomAttribute(typeof(ChangeEmailSpellingController), typeof(AuthorizeAttribute));
 
                 attribute.ShouldNotBeNull();
                 attribute.ShouldBeType<AuthorizeAttribute>();
@@ -34,14 +33,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         }
 
         [TestClass]
-        public class TheChangeSpellingGetMethod
+        public class TheGetMethod
         {
             [TestMethod]
             public void IsDecoratedWith_HttpGet()
             {
-                Expression<Func<EmailAddressesController, ActionResult>> method = m => m.ChangeSpelling(1);
+                Expression<Func<ChangeEmailSpellingController, ActionResult>> method = m => m.Get(1);
 
-                var attributes = method.GetAttributes<EmailAddressesController, ActionResult, HttpGetAttribute>();
+                var attributes = method.GetAttributes<ChangeEmailSpellingController, ActionResult, HttpGetAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
@@ -50,9 +49,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_OpenTopTab_UsingHome()
             {
-                Expression<Func<EmailAddressesController, ActionResult>> method = m => m.ChangeSpelling(1);
+                Expression<Func<ChangeEmailSpellingController, ActionResult>> method = m => m.Get(1);
 
-                var attributes = method.GetAttributes<EmailAddressesController, ActionResult, OpenTopTabAttribute>();
+                var attributes = method.GetAttributes<ChangeEmailSpellingController, ActionResult, OpenTopTabAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
@@ -62,9 +61,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_ActionName_UsingChangeSpelling()
             {
-                Expression<Func<EmailAddressesController, ActionResult>> method = m => m.ChangeSpelling(1);
+                Expression<Func<ChangeEmailSpellingController, ActionResult>> method = m => m.Get(1);
 
-                var attributes = method.GetAttributes<EmailAddressesController, ActionResult, ActionNameAttribute>();
+                var attributes = method.GetAttributes<ChangeEmailSpellingController, ActionResult, ActionNameAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
@@ -74,9 +73,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_ReturnUrlReferrer_UsingMyProfile()
             {
-                Expression<Func<EmailAddressesController, ActionResult>> method = m => m.ChangeSpelling(1);
+                Expression<Func<ChangeEmailSpellingController, ActionResult>> method = m => m.Get(1);
 
-                var attributes = method.GetAttributes<EmailAddressesController, ActionResult, ReturnUrlReferrerAttribute>();
+                var attributes = method.GetAttributes<ChangeEmailSpellingController, ActionResult, ReturnUrlReferrerAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
@@ -88,14 +87,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             {
                 const int number = 2;
                 var scenarioOptions = new ScenarioOptions();
-                var controller = CreateEmailAddressesController(scenarioOptions);
+                var controller = CreateController(scenarioOptions);
                 scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<GetEmailAddressByUserNameAndNumberQuery>()))
                     .Returns(null as EmailAddress);
                 NullReferenceException exception = null;
 
                 try
                 {
-                    controller.ChangeSpelling(number);
+                    controller.Get(number);
                 }
                 catch (NullReferenceException ex)
                 {
@@ -116,11 +115,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 };
                 Expression<Func<GetEmailAddressByUserNameAndNumberQuery, bool>> emailAddressByUserNameAndNumberQuery =
                     query => query.UserName == userName && query.Number == number;
-                var controller = CreateEmailAddressesController(scenarioOptions);
+                var controller = CreateController(scenarioOptions);
                 scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(emailAddressByUserNameAndNumberQuery)))
                     .Returns(new EmailAddress());
 
-                controller.ChangeSpelling(number);
+                controller.Get(number);
 
                 scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
                     It.Is(emailAddressByUserNameAndNumberQuery)),
@@ -138,11 +137,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 };
                 Expression<Func<GetEmailAddressByUserNameAndNumberQuery, bool>> emailAddressByUserNameAndNumberQuery =
                     query => query.UserName == userName && query.Number == number;
-                var controller = CreateEmailAddressesController(scenarioOptions);
+                var controller = CreateController(scenarioOptions);
                 scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(emailAddressByUserNameAndNumberQuery)))
                     .Returns(null as EmailAddress);
 
-                var result = controller.ChangeSpelling(number);
+                var result = controller.Get(number);
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<HttpNotFoundResult>();
@@ -159,29 +158,29 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 };
                 Expression<Func<GetEmailAddressByUserNameAndNumberQuery, bool>> emailAddressByUserNameAndNumberQuery =
                     query => query.UserName == userName && query.Number == number;
-                var controller = CreateEmailAddressesController(scenarioOptions);
+                var controller = CreateController(scenarioOptions);
                 scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(emailAddressByUserNameAndNumberQuery)))
                     .Returns(new EmailAddress());
 
-                var result = controller.ChangeSpelling(number);
+                var result = controller.Get(number);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<ViewResult>();
-                var viewResult = (ViewResult)result;
-                viewResult.Model.ShouldNotBeNull();
-                viewResult.Model.ShouldBeType<ChangeSpellingForm>();
+                result.ShouldBeType<PartialViewResult>();
+                var partialViewResult = (PartialViewResult)result;
+                partialViewResult.Model.ShouldNotBeNull();
+                partialViewResult.Model.ShouldBeType<ChangeEmailSpellingForm>();
             }
         }
 
         [TestClass]
-        public class TheChangeSpellingPutMethod
+        public class ThePutMethod
         {
             [TestMethod]
             public void IsDecoratedWith_HttpPut()
             {
-                Expression<Func<EmailAddressesController, ActionResult>> method = m => m.ChangeSpelling(null);
+                Expression<Func<ChangeEmailSpellingController, ActionResult>> method = m => m.Put(null);
 
-                var attributes = method.GetAttributes<EmailAddressesController, ActionResult, HttpPutAttribute>();
+                var attributes = method.GetAttributes<ChangeEmailSpellingController, ActionResult, HttpPutAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
@@ -190,9 +189,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_UnitOfWork()
             {
-                Expression<Func<EmailAddressesController, ActionResult>> method = m => m.ChangeSpelling(null);
+                Expression<Func<ChangeEmailSpellingController, ActionResult>> method = m => m.Put(null);
 
-                var attributes = method.GetAttributes<EmailAddressesController, ActionResult, UnitOfWorkAttribute>();
+                var attributes = method.GetAttributes<ChangeEmailSpellingController, ActionResult, UnitOfWorkAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
@@ -201,9 +200,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_OpenTopTab_UsingHome()
             {
-                Expression<Func<EmailAddressesController, ActionResult>> method = m => m.ChangeSpelling(1);
+                Expression<Func<ChangeEmailSpellingController, ActionResult>> method = m => m.Get(1);
 
-                var attributes = method.GetAttributes<EmailAddressesController, ActionResult, OpenTopTabAttribute>();
+                var attributes = method.GetAttributes<ChangeEmailSpellingController, ActionResult, OpenTopTabAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
@@ -213,9 +212,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_ActionName_UsingChangeSpelling()
             {
-                Expression<Func<EmailAddressesController, ActionResult>> method = m => m.ChangeSpelling(1);
+                Expression<Func<ChangeEmailSpellingController, ActionResult>> method = m => m.Get(1);
 
-                var attributes = method.GetAttributes<EmailAddressesController, ActionResult, ActionNameAttribute>();
+                var attributes = method.GetAttributes<ChangeEmailSpellingController, ActionResult, ActionNameAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
@@ -225,9 +224,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void Returns404_WhenModel_IsNull()
             {
-                var controller = CreateEmailAddressesController();
+                var controller = CreateController();
 
-                var result = controller.ChangeSpelling(null);
+                var result = controller.Put(null);
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<HttpNotFoundResult>();
@@ -242,13 +241,13 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 {
                     UserIdentityName = userIdentityName,
                 };
-                var model = new ChangeSpellingForm
+                var model = new ChangeEmailSpellingForm
                 {
                     PersonUserName = personUserName,
                 };
-                var controller = CreateEmailAddressesController(scenarioOptions);
+                var controller = CreateController(scenarioOptions);
 
-                var result = controller.ChangeSpelling(model);
+                var result = controller.Put(model);
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<HttpNotFoundResult>();
@@ -263,20 +262,20 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 {
                     UserIdentityName = userIdentityName,
                 };
-                var model = new ChangeSpellingForm
+                var model = new ChangeEmailSpellingForm
                 {
                     PersonUserName = personUserName,
                 };
-                var controller = CreateEmailAddressesController(scenarioOptions);
+                var controller = CreateController(scenarioOptions);
                 controller.ModelState.AddModelError("error", "message");
 
-                var result = controller.ChangeSpelling(model);
+                var result = controller.Put(model);
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<ViewResult>();
                 var viewResult = (ViewResult)result;
                 viewResult.Model.ShouldNotBeNull();
-                viewResult.Model.ShouldBeType<ChangeSpellingForm>();
+                viewResult.Model.ShouldBeType<ChangeEmailSpellingForm>();
                 viewResult.Model.ShouldEqual(model);
             }
 
@@ -291,25 +290,25 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 {
                     UserIdentityName = userIdentityName,
                 };
-                var model = new ChangeSpellingForm
+                var model = new ChangeEmailSpellingForm
                 {
                     Number = number,
                     PersonUserName = personUserName,
                     Value = newValue,
                     ReturnUrl = "https://www.site.com/"
                 };
-                var controller = CreateEmailAddressesController(scenarioOptions);
+                var controller = CreateController(scenarioOptions);
                 Expression<Func<ChangeEmailAddressSpellingCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
                     command.UserName == personUserName &&
                     command.NewValue == newValue
                 ;
-                scenarioOptions.MockChangeSpelling.Setup(m => m.Handle(It.Is(commandDerivedFromModel)));
+                scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)));
 
-                controller.ChangeSpelling(model);
+                controller.Put(model);
 
-                scenarioOptions.MockChangeSpelling.Verify(m =>
+                scenarioOptions.MockCommandHandler.Verify(m =>
                     m.Handle(It.Is(commandDerivedFromModel)),
                         Times.Once());
             }
@@ -325,29 +324,29 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 {
                     UserIdentityName = userIdentityName,
                 };
-                var model = new ChangeSpellingForm
+                var model = new ChangeEmailSpellingForm
                 {
                     Number = number,
                     PersonUserName = personUserName,
                     Value = newValue,
                     ReturnUrl = "https://www.site.com/"
                 };
-                var controller = CreateEmailAddressesController(scenarioOptions);
+                var controller = CreateController(scenarioOptions);
                 Expression<Func<ChangeEmailAddressSpellingCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
                     command.UserName == personUserName &&
                     command.NewValue == newValue
                 ;
-                scenarioOptions.MockChangeSpelling.Setup(m => m.Handle(It.Is(commandDerivedFromModel)))
+                scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)))
                     .Callback((ChangeEmailAddressSpellingCommand command) => command.ChangedState = true);
 
-                controller.ChangeSpelling(model);
+                controller.Put(model);
 
                 controller.TempData.ShouldNotBeNull();
                 var message = controller.TempData.FeedbackMessage();
                 message.ShouldNotBeNull();
-                message.ShouldEqual(string.Format(EmailAddressesController.ChangeSpellingSuccessMessageFormat, model.Value));
+                message.ShouldEqual(string.Format(ChangeEmailSpellingController.SuccessMessageFormat, model.Value));
             }
 
             [TestMethod]
@@ -361,28 +360,28 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 {
                     UserIdentityName = userIdentityName,
                 };
-                var model = new ChangeSpellingForm
+                var model = new ChangeEmailSpellingForm
                 {
                     Number = number,
                     PersonUserName = personUserName,
                     Value = newValue,
                     ReturnUrl = "https://www.site.com/"
                 };
-                var controller = CreateEmailAddressesController(scenarioOptions);
+                var controller = CreateController(scenarioOptions);
                 Expression<Func<ChangeEmailAddressSpellingCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
                     command.UserName == personUserName &&
                     command.NewValue == newValue
                 ;
-                scenarioOptions.MockChangeSpelling.Setup(m => m.Handle(It.Is(commandDerivedFromModel)));
+                scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)));
 
-                controller.ChangeSpelling(model);
+                controller.Put(model);
 
                 controller.TempData.ShouldNotBeNull();
                 var message = controller.TempData.FeedbackMessage();
                 message.ShouldNotBeNull();
-                message.ShouldEqual(EmailAddressesController.ChangeSpellingNoChangesMessage);
+                message.ShouldEqual(ChangeEmailSpellingController.NoChangesMessage);
             }
 
             [TestMethod]
@@ -396,23 +395,23 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 {
                     UserIdentityName = userIdentityName,
                 };
-                var model = new ChangeSpellingForm
+                var model = new ChangeEmailSpellingForm
                 {
                     Number = number,
                     PersonUserName = personUserName,
                     Value = newValue,
                     ReturnUrl = "https://www.site.com/"
                 };
-                var controller = CreateEmailAddressesController(scenarioOptions);
+                var controller = CreateController(scenarioOptions);
                 Expression<Func<ChangeEmailAddressSpellingCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
                     command.UserName == personUserName &&
                     command.NewValue == newValue
                 ;
-                scenarioOptions.MockChangeSpelling.Setup(m => m.Handle(It.Is(commandDerivedFromModel)));
+                scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)));
 
-                var result = controller.ChangeSpelling(model);
+                var result = controller.Put(model);
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<RedirectResult>();
@@ -423,14 +422,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         }
 
         [TestClass]
-        public class TheValidateChangeSpellingPostMethod
+        public class TheValidateValueMethod
         {
             [TestMethod]
             public void IsDecoratedWith_HttpPost()
             {
-                Expression<Func<EmailAddressesController, ActionResult>> method = m => m.ValidateChangeSpelling(null);
+                Expression<Func<ChangeEmailSpellingController, ActionResult>> method = m => m.ValidateValue(null);
 
-                var attributes = method.GetAttributes<EmailAddressesController, ActionResult, HttpPostAttribute>();
+                var attributes = method.GetAttributes<ChangeEmailSpellingController, ActionResult, HttpPostAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
@@ -439,9 +438,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_OutputCache()
             {
-                Expression<Func<EmailAddressesController, ActionResult>> method = m => m.ValidateChangeSpelling(null);
+                Expression<Func<ChangeEmailSpellingController, ActionResult>> method = m => m.ValidateValue(null);
 
-                var attributes = method.GetAttributes<EmailAddressesController, ActionResult, OutputCacheAttribute>();
+                var attributes = method.GetAttributes<ChangeEmailSpellingController, ActionResult, OutputCacheAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
@@ -450,7 +449,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void ViewModelArgument_IsDecoratedWith_CustomizeValidator_ForValueProperty()
             {
-                Expression<Func<EmailAddressesController, JsonResult>> methodExpression = m => m.ValidateChangeSpelling(null);
+                Expression<Func<ChangeEmailSpellingController, JsonResult>> methodExpression = m => m.ValidateValue(null);
                 var methodCallExpression = (MethodCallExpression)methodExpression.Body;
                 var methodInfo = methodCallExpression.Method;
                 var methodArg = methodInfo.GetParameters().Single();
@@ -461,16 +460,16 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 attributes[0].ShouldNotBeNull();
                 attributes[0].ShouldBeType<CustomizeValidatorAttribute>();
                 var customizeValidator = (CustomizeValidatorAttribute) attributes[0];
-                customizeValidator.Properties.ShouldEqual(ChangeSpellingForm.ValuePropertyName);
+                customizeValidator.Properties.ShouldEqual(ChangeEmailSpellingForm.ValuePropertyName);
             }
 
             [TestMethod]
             public void ReturnsTrue_WhenModelStateIsValid()
             {
-                var model = new ChangeSpellingForm();
-                var controller = CreateEmailAddressesController();
+                var model = new ChangeEmailSpellingForm();
+                var controller = CreateController();
 
-                var result = controller.ValidateChangeSpelling(model);
+                var result = controller.ValidateValue(model);
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<JsonResult>();
@@ -482,11 +481,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             public void ReturnsErrorMessage_WhenModelStateIsInvalid_ForValueProperty()
             {
                 const string errorMessage = "Here is your error message.";
-                var model = new ChangeSpellingForm();
-                var controller = CreateEmailAddressesController();
-                controller.ModelState.AddModelError(ChangeSpellingForm.ValuePropertyName, errorMessage);
+                var model = new ChangeEmailSpellingForm();
+                var controller = CreateController();
+                controller.ModelState.AddModelError(ChangeEmailSpellingForm.ValuePropertyName, errorMessage);
 
-                var result = controller.ValidateChangeSpelling(model);
+                var result = controller.ValidateValue(model);
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<JsonResult>();
@@ -498,21 +497,21 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         private class ScenarioOptions
         {
             internal Mock<IProcessQueries> MockQueryProcessor { get; set; }
-            internal Mock<IHandleCommands<ChangeEmailAddressSpellingCommand>> MockChangeSpelling { get; set; }
+            internal Mock<IHandleCommands<ChangeEmailAddressSpellingCommand>> MockCommandHandler { get; set; }
             internal string UserIdentityName { get; set; }
         }
 
-        private static EmailAddressesController CreateEmailAddressesController(ScenarioOptions scenarioOptions = null)
+        private static ChangeEmailSpellingController CreateController(ScenarioOptions scenarioOptions = null)
         {
             scenarioOptions = scenarioOptions ?? new ScenarioOptions();
 
             scenarioOptions.MockQueryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
 
-            scenarioOptions.MockChangeSpelling = new Mock<IHandleCommands<ChangeEmailAddressSpellingCommand>>(MockBehavior.Strict);
+            scenarioOptions.MockCommandHandler = new Mock<IHandleCommands<ChangeEmailAddressSpellingCommand>>(MockBehavior.Strict);
 
-            var services = new EmailAddressesServices(scenarioOptions.MockQueryProcessor.Object, scenarioOptions.MockChangeSpelling.Object);
+            var services = new ChangeEmailSpellingServices(scenarioOptions.MockQueryProcessor.Object, scenarioOptions.MockCommandHandler.Object);
 
-            var controller = new EmailAddressesController(services);
+            var controller = new ChangeEmailSpellingController(services);
 
             var builder = ReuseMock.TestControllerBuilder();
 

@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses;
-using UCosmic.Www.Mvc.Areas.My.Routes;
+using UCosmic.Www.Mvc.Areas.My.Models;
+using UCosmic.Www.Mvc.Areas.My.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.My
 {
@@ -13,8 +13,10 @@ namespace UCosmic.Www.Mvc.Areas.My
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            EmailAddressesRoutes.RegisterRoutes(context);
-            ChangeSpellingFormMapper.RegisterProfiles();
+            ChangeEmailSpellingRouter.RegisterRoutes(context);
+            ChangeEmailSpellingProfiler.RegisterProfiles();
+
+            ProfileRouter.RegisterRoutes(context);
 
             //context.MapRoute(
             //    "My_default",

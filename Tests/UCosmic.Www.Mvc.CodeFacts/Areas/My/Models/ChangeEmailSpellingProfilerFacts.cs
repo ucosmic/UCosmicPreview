@@ -4,10 +4,10 @@ using Should;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 
-namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
+namespace UCosmic.Www.Mvc.Areas.My.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class ChangeSpellingFormMapperFacts
+    public class ChangeEmailSpellingProfilerFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -19,7 +19,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
                 const string value = "user@domain.tld";
                 var entity = new EmailAddress { Value = value };
 
-                var model = Mapper.Map<ChangeSpellingForm>(entity);
+                var model = Mapper.Map<ChangeEmailSpellingForm>(entity);
 
                 model.ShouldNotBeNull();
                 model.Value.ShouldNotBeNull();
@@ -32,7 +32,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
                 const string value = "user@domain.tld";
                 var entity = new EmailAddress { Value = value };
 
-                var model = Mapper.Map<ChangeSpellingForm>(entity);
+                var model = Mapper.Map<ChangeEmailSpellingForm>(entity);
 
                 model.ShouldNotBeNull();
                 model.OldSpelling.ShouldNotBeNull();
@@ -51,7 +51,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
                     }
                 };
 
-                var model = Mapper.Map<ChangeSpellingForm>(entity);
+                var model = Mapper.Map<ChangeEmailSpellingForm>(entity);
 
                 model.ShouldNotBeNull();
                 model.PersonUserName.ShouldNotBeNull();
@@ -64,7 +64,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
                 const int number = 2;
                 var entity = new EmailAddress { Number = number };
 
-                var model = Mapper.Map<ChangeSpellingForm>(entity);
+                var model = Mapper.Map<ChangeEmailSpellingForm>(entity);
 
                 model.ShouldNotBeNull();
                 model.Number.ShouldEqual(entity.Number);
@@ -75,7 +75,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             {
                 var entity = new EmailAddress();
 
-                var model = Mapper.Map<ChangeSpellingForm>(entity);
+                var model = Mapper.Map<ChangeEmailSpellingForm>(entity);
 
                 model.ShouldNotBeNull();
                 model.ReturnUrl.ShouldBeNull();
@@ -89,7 +89,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             public void MapsPersonUserName_ToUserName()
             {
                 const string userName = "user@domain.tld";
-                var model = new ChangeSpellingForm { PersonUserName = userName };
+                var model = new ChangeEmailSpellingForm { PersonUserName = userName };
 
                 var command = Mapper.Map<ChangeEmailAddressSpellingCommand>(model);
 
@@ -102,7 +102,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             public void MapsValue_ToNewValue()
             {
                 const string value = "user@domain.tld";
-                var model = new ChangeSpellingForm { Value = value };
+                var model = new ChangeEmailSpellingForm { Value = value };
 
                 var command = Mapper.Map<ChangeEmailAddressSpellingCommand>(model);
 
@@ -115,7 +115,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             public void MapsNumber_ToNumber()
             {
                 const int number = 2;
-                var model = new ChangeSpellingForm { Number = number };
+                var model = new ChangeEmailSpellingForm { Number = number };
 
                 var command = Mapper.Map<ChangeEmailAddressSpellingCommand>(model);
 
@@ -126,7 +126,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             [TestMethod]
             public void IgnoresChangedState()
             {
-                var model = new ChangeSpellingForm();
+                var model = new ChangeEmailSpellingForm();
 
                 var command = Mapper.Map<ChangeEmailAddressSpellingCommand>(model);
 

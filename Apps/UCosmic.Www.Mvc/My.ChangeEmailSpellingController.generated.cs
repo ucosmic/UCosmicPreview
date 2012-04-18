@@ -21,9 +21,9 @@ using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
 namespace UCosmic.Www.Mvc.Areas.My.Controllers {
-    public partial class EmailAddressesController {
+    public partial class ChangeEmailSpellingController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected EmailAddressesController(Dummy d) { }
+        protected ChangeEmailSpellingController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -33,37 +33,44 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult ChangeSpelling() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.ChangeSpelling);
+        public System.Web.Mvc.ActionResult Get() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Get);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.JsonResult ValidateChangeSpelling() {
-            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidateChangeSpelling);
+        public System.Web.Mvc.ActionResult Put() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Put);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.JsonResult ValidateValue() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidateValue);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public EmailAddressesController Actions { get { return MVC.My.EmailAddresses; } }
+        public ChangeEmailSpellingController Actions { get { return MVC.My.ChangeEmailSpelling; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "My";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "EmailAddresses";
+        public readonly string Name = "ChangeEmailSpelling";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "EmailAddresses";
+        public const string NameConst = "ChangeEmailSpelling";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string ChangeSpelling = "change-spelling";
-            public readonly string ValidateChangeSpelling = "ValidateChangeSpelling";
+            public readonly string Get = "change-spelling";
+            public readonly string Put = "change-spelling";
+            public readonly string ValidateValue = "ValidateValue";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string ChangeSpelling = "change-spelling";
-            public const string ValidateChangeSpelling = "ValidateChangeSpelling";
+            public const string Get = "change-spelling";
+            public const string Put = "change-spelling";
+            public const string ValidateValue = "ValidateValue";
         }
 
 
@@ -72,34 +79,34 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string change_spelling_modal = "~/Areas/My/Views/EmailAddresses/change-spelling-modal.cshtml";
-            public readonly string change_spelling = "~/Areas/My/Views/EmailAddresses/change-spelling.cshtml";
+            public readonly string change_spelling_modal = "~/Areas/My/Views/ChangeEmailSpelling/change-spelling-modal.cshtml";
+            public readonly string change_spelling = "~/Areas/My/Views/ChangeEmailSpelling/change-spelling.cshtml";
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{
-                public readonly string ChangeSpellingForm = "ChangeSpellingForm";
+                public readonly string ChangeEmailSpellingForm = "ChangeEmailSpellingForm";
             }
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_EmailAddressesController: UCosmic.Www.Mvc.Areas.My.Controllers.EmailAddressesController {
-        public T4MVC_EmailAddressesController() : base(Dummy.Instance) { }
+    public class T4MVC_ChangeEmailSpellingController: UCosmic.Www.Mvc.Areas.My.Controllers.ChangeEmailSpellingController {
+        public T4MVC_ChangeEmailSpellingController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult ChangeSpelling(int number) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ChangeSpelling);
+        public override System.Web.Mvc.ActionResult Get(int number) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
             callInfo.RouteValueDictionary.Add("number", number);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult ChangeSpelling(UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses.ChangeSpellingForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ChangeSpelling);
+        public override System.Web.Mvc.ActionResult Put(UCosmic.Www.Mvc.Areas.My.Models.ChangeEmailSpellingForm model) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Put);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
 
-        public override System.Web.Mvc.JsonResult ValidateChangeSpelling(UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses.ChangeSpellingForm model) {
-            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateChangeSpelling);
+        public override System.Web.Mvc.JsonResult ValidateValue(UCosmic.Www.Mvc.Areas.My.Models.ChangeEmailSpellingForm model) {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateValue);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }

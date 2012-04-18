@@ -2,13 +2,13 @@
 using UCosmic.Domain;
 using UCosmic.Domain.People;
 
-namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
+namespace UCosmic.Www.Mvc.Areas.My.Models
 {
-    public class ChangeSpellingFormValidator : AbstractValidator<ChangeSpellingForm>
+    public class ChangeEmailSpellingValidator : AbstractValidator<ChangeEmailSpellingForm>
     {
         private readonly IProcessQueries _queryProcessor;
 
-        public ChangeSpellingFormValidator(IProcessQueries queryProcessor)
+        public ChangeEmailSpellingValidator(IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
             const string changeEmailSpellingErrorMessage =
@@ -21,7 +21,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
             ;
         }
 
-        private bool MatchPreviousSpellingCaseInvariantly(ChangeSpellingForm form, string value)
+        private bool MatchPreviousSpellingCaseInvariantly(ChangeEmailSpellingForm form, string value)
         {
             return ChangeEmailAddressSpellingValidator
                 .NewEmailMatchesPreviousSpellingCaseInvariantly
