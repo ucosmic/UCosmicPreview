@@ -1,10 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 using System.Web.Mvc;
-using FluentValidation.Attributes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
-using System.ComponentModel.DataAnnotations;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
