@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Should;
 
 namespace UCosmic.Domain.Saml
@@ -12,12 +12,11 @@ namespace UCosmic.Domain.Saml
         public class ServiceProviderBindingProperty
         {
             [TestMethod]
-            [ExpectedException(typeof(InvalidCastException))]
             public void HasPublicGet()
             {
-                var response = (Saml2Response)new object();
-                var serviceProviderBinding = response.ServiceProviderBinding;
-                serviceProviderBinding.ShouldBeNull();
+                var response = new Mock<Saml2Response>();
+                var serviceProviderBinding = response.Object.ServiceProviderBinding;
+                serviceProviderBinding.ShouldEqual(Saml2SsoBinding.NotSpecified);
             }
         }
 
@@ -25,12 +24,11 @@ namespace UCosmic.Domain.Saml
         public class ServiceIsSignedProperty
         {
             [TestMethod]
-            [ExpectedException(typeof(InvalidCastException))]
             public void HasPublicGet()
             {
-                var response = (Saml2Response)new object();
-                var isSigned = response.IsSigned;
-                isSigned.ShouldBeNull();
+                var response = new Mock<Saml2Response>();
+                var isSigned = response.Object.IsSigned;
+                isSigned.ShouldBeFalse();
             }
         }
     }

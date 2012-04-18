@@ -8,7 +8,9 @@ using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses
 {
+    // ReSharper disable UnusedMember.Global
     public class ChangeSpellingFormFacts
+    // ReSharper restore UnusedMember.Global
     {
         [TestClass]
         public class TheClass

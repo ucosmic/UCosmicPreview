@@ -7,14 +7,14 @@ namespace UCosmic.Www.Mvc.Controllers
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class ReturnUrlReferrerAttribute : ActionFilterAttribute
     {
-        private readonly string _fallback;
-
         public ReturnUrlReferrerAttribute(string fallback)
         {
             if (string.IsNullOrWhiteSpace(fallback))
                 throw new ArgumentException("Cannot be null or whitespace.", "fallback");
-            _fallback = fallback;
+            Fallback = fallback;
         }
+
+        public string Fallback { get; private set; }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
@@ -25,7 +25,7 @@ namespace UCosmic.Www.Mvc.Controllers
 
             var returnUrl = filterContext.HttpContext.Request.UrlReferrer != null 
                 ? filterContext.HttpContext.Request.UrlReferrer.ToString() 
-                : _fallback;
+                : Fallback;
             
             if (!returnUrl.StartsWith("/") 
                 && !returnUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase) 
