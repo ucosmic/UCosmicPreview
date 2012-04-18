@@ -11,6 +11,40 @@ namespace UCosmic.Domain.People
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
+        public class TheConstructor
+        {
+            [TestMethod]
+            public void InitializesCollection_ForAffiliations()
+            {
+                var person = new Person();
+
+                person.ShouldNotBeNull();
+                person.Affiliations.ShouldNotBeNull();
+                person.Affiliations.Count.ShouldEqual(0);
+            }
+
+            [TestMethod]
+            public void InitializesCollection_ForEmails()
+            {
+                var person = new Person();
+
+                person.ShouldNotBeNull();
+                person.Emails.ShouldNotBeNull();
+                person.Emails.Count.ShouldEqual(0);
+            }
+
+            [TestMethod]
+            public void InitializesCollection_ForMessages()
+            {
+                var person = new Person();
+
+                person.ShouldNotBeNull();
+                person.Messages.ShouldNotBeNull();
+                person.Messages.Count.ShouldEqual(0);
+            }
+        }
+
+        [TestClass]
         public class AffiliateWithMethod
         {
             [TestMethod]
@@ -52,7 +86,7 @@ namespace UCosmic.Domain.People
                 public override User User
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -80,7 +114,7 @@ namespace UCosmic.Domain.People
                 public override ICollection<Affiliation> Affiliations
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

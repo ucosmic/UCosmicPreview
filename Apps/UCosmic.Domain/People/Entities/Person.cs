@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Identity;
 
@@ -8,35 +7,33 @@ namespace UCosmic.Domain.People
 {
     public class Person : RevisableEntity
     {
-        #region Construction & Fields
+        #region Construction
 
         public Person()
         {
             // ReSharper disable DoNotCallOverridableMethodsInConstructor
-            Emails = new List<EmailAddress>();
             Affiliations = new List<Affiliation>();
+            Emails = new List<EmailAddress>();
             Messages = new List<EmailMessage>();
             // ReSharper restore DoNotCallOverridableMethodsInConstructor
         }
 
-        public virtual ICollection<EmailMessage> Messages { get; protected internal set; }
-
         #endregion
         #region Name
 
-        public bool IsDisplayNameDerived { get; set; }
+        public bool IsDisplayNameDerived { get; protected internal set; }
 
-        public string DisplayName { get; set; }
+        public string DisplayName { get; protected internal set; }
 
-        public string Salutation { get; set; }
+        public string Salutation { get; protected internal set; }
 
-        public string FirstName { get; set; }
+        public string FirstName { get; protected internal set; }
 
-        public string MiddleName { get; set; }
+        public string MiddleName { get; protected internal set; }
 
-        public string LastName { get; set; }
+        public string LastName { get; protected internal set; }
 
-        public string Suffix { get; set; }
+        public string Suffix { get; protected internal set; }
 
         public string DeriveDisplayName()
         {
@@ -46,7 +43,7 @@ namespace UCosmic.Domain.People
         #endregion
         #region User
 
-        public virtual User User { get; set; }
+        public virtual User User { get; protected internal set; }
 
         #endregion
         #region EmailAddresses
@@ -98,9 +95,14 @@ namespace UCosmic.Domain.People
         }
 
         #endregion
+        #region Messages
+
+        public virtual ICollection<EmailMessage> Messages { get; protected internal set; }
+
+        #endregion
         #region Affiliations
 
-        public virtual ICollection<Affiliation> Affiliations { get; set; }
+        public virtual ICollection<Affiliation> Affiliations { get; protected internal set; }
 
         public Affiliation AffiliateWith(Establishment establishment)
         {
@@ -186,20 +188,12 @@ namespace UCosmic.Domain.People
         }
 
         #endregion
+
         public override string ToString()
         {
             return DisplayName;
         }
     }
 
-    public static class PersonExtensions
-    {
-        public static Person ForThreadPrincipal(this IQueryable<Person> query)
-        {
-            return (query != null)
-                ? query.Current().SingleOrDefault(p =>
-                    p.User != null && p.User.Name.Equals(Thread.CurrentPrincipal.Identity.Name))
-                : null;
-        }
-    }
+    // TODO: get rid of this class (hooked to institutional agreement module)
 }
