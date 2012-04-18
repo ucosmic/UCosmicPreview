@@ -20,43 +20,73 @@ namespace UCosmic.Domain.Saml
             }
 
             [TestMethod]
-            [ExpectedException(typeof(InvalidOperationException))]
             public void ThrowsInvalidOperationException_ForMisspelledEduPersonPrincipalNameString()
             {
                 const string friendlyNameString = "EduPersonPrincipalName";
-                var friendlyNameEnum = friendlyNameString.AsSamlAttributeFriendlyName();
-                friendlyNameEnum.ShouldBeNull();
+                InvalidOperationException exception = null;
+                try
+                {
+                    var friendlyNameEnum = friendlyNameString.AsSamlAttributeFriendlyName();
+                    friendlyNameEnum.ShouldBeNull();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    exception = ex;
+                }
+                exception.ShouldNotBeNull();
             }
 
             [TestMethod]
-            [ExpectedException(typeof(InvalidOperationException))]
             public void ThrowsInvalidOperationException_ForNullString()
             {
                 const string friendlyNameString = null;
-
-                // ReSharper disable ExpressionIsAlwaysNull
-                var friendlyNameEnum = friendlyNameString.AsSamlAttributeFriendlyName();
-                // ReSharper restore ExpressionIsAlwaysNull
-
-                friendlyNameEnum.ShouldBeNull();
+                InvalidOperationException exception = null;
+                try
+                {
+                    // ReSharper disable ExpressionIsAlwaysNull
+                    var friendlyNameEnum = friendlyNameString.AsSamlAttributeFriendlyName();
+                    // ReSharper restore ExpressionIsAlwaysNull
+                    friendlyNameEnum.ShouldBeNull();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    exception = ex;
+                }
+                exception.ShouldNotBeNull();
             }
 
             [TestMethod]
-            [ExpectedException(typeof(InvalidOperationException))]
             public void ThrowsInvalidOperationException_ForEmptyString()
             {
                 var friendlyNameString = string.Empty;
-                var friendlyNameEnum = friendlyNameString.AsSamlAttributeFriendlyName();
-                friendlyNameEnum.ShouldBeNull();
+                InvalidOperationException exception = null;
+                try
+                {
+                    var friendlyNameEnum = friendlyNameString.AsSamlAttributeFriendlyName();
+                    friendlyNameEnum.ShouldBeNull();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    exception = ex;
+                }
+                exception.ShouldNotBeNull();
             }
 
             [TestMethod]
-            [ExpectedException(typeof(InvalidOperationException))]
             public void ThrowsInvalidOperationException_ForWhiteSpaceString()
             {
                 const string friendlyNameString = " \t\r\n ";
-                var friendlyNameEnum = friendlyNameString.AsSamlAttributeFriendlyName();
-                friendlyNameEnum.ShouldBeNull();
+                InvalidOperationException exception = null;
+                try
+                {
+                    var friendlyNameEnum = friendlyNameString.AsSamlAttributeFriendlyName();
+                    friendlyNameEnum.ShouldBeNull();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    exception = ex;
+                }
+                exception.ShouldNotBeNull();
             }
         }
 

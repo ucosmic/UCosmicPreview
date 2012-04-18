@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using AutoMapper;
 using FluentValidation.Mvc;
 using UCosmic.Domain.People;
@@ -9,6 +10,7 @@ using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
+    [Authorize]
     public partial class EmailAddressesController : BaseController
     {
         #region Construction & DI
@@ -24,7 +26,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         #region Change Email Spelling
 
         [HttpGet]
-        [Authorize]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("change-spelling")]
         [ReturnUrlReferrer(SelfRouteMapper.Me.OutboundRoute)]
@@ -44,14 +45,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         }
 
         [HttpPut]
-        [Authorize]
         [UnitOfWork]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("change-spelling")]
         public virtual ActionResult ChangeSpelling(ChangeSpellingForm model)
         {
             // make sure user owns this email address
-            if (model == null || model.PersonUserName != User.Identity.Name) return HttpNotFound();
+            if (model == null || !User.Identity.Name.Equals(model.PersonUserName, StringComparison.OrdinalIgnoreCase))
+                return HttpNotFound();
 
             // make sure model state is valid
             if (!ModelState.IsValid) return View(model);
@@ -60,16 +61,18 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             var command = Mapper.Map<ChangeEmailAddressSpellingCommand>(model);
             _services.ChangeEmailAddressSpellingHandler.Handle(command);
             SetFeedbackMessage(command.ChangedState
-                ? string.Format("Your email address was successfully changed to {0}.", model.Value)
-                : "No changes were made."
+                ? string.Format(ChangeSpellingSuccessMessageFormat, model.Value)
+                : ChangeSpellingNoChangesMessage
             );
             return Redirect(model.ReturnUrl);
         }
 
+        public const string ChangeSpellingSuccessMessageFormat = "Your email address was successfully changed to {0}.";
+        public const string ChangeSpellingNoChangesMessage = "No changes were made.";
+
         [HttpPost]
-        [Authorize]
         [OutputCache(VaryByParam = "*", Duration = 1800)]
-        public virtual ActionResult ValidateChangeSpelling(
+        public virtual JsonResult ValidateChangeSpelling(
             [CustomizeValidator(Properties = ChangeSpellingForm.ValuePropertyName)] ChangeSpellingForm model)
         {
             return ValidateRemote(JsonRequestBehavior.DenyGet, ChangeSpellingForm.ValuePropertyName);

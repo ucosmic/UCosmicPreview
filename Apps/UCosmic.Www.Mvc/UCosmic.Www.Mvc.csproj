@@ -425,9 +425,6 @@
     <Compile Include="My.EmailAddressesController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="My.SharedController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecruitmentAgencies.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>

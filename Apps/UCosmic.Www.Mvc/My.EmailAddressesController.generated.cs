@@ -38,8 +38,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult ValidateChangeSpelling() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.ValidateChangeSpelling);
+        public System.Web.Mvc.JsonResult ValidateChangeSpelling() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidateChangeSpelling);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -98,8 +98,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult ValidateChangeSpelling(UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses.ChangeSpellingForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ValidateChangeSpelling);
+        public override System.Web.Mvc.JsonResult ValidateChangeSpelling(UCosmic.Www.Mvc.Areas.My.Models.EmailAddresses.ChangeSpellingForm model) {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateChangeSpelling);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }

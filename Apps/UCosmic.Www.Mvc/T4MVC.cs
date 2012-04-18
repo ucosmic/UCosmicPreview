@@ -82,7 +82,6 @@ namespace T4MVC {
     public class MyClass {
         public readonly string Name = "My";
         public UCosmic.Www.Mvc.Areas.My.Controllers.EmailAddressesController EmailAddresses = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_EmailAddressesController();
-        public T4MVC.My.SharedController Shared = new T4MVC.My.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class RecruitmentAgenciesClass {
