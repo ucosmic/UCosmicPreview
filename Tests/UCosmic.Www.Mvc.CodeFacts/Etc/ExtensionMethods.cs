@@ -230,7 +230,7 @@ namespace UCosmic.Www.Mvc
             return this;
         }
 
-        public string Url()
+        private string Url()
         {
             var builder = ReuseMock.TestControllerBuilder(ControllerCustomization.ForUrlHelper);
             var context = new RequestContext(builder.HttpContext, new RouteData());

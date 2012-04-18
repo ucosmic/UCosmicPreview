@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using UCosmic.Domain.Email;
 
 namespace UCosmic.Domain.People
 {
