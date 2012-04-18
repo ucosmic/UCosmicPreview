@@ -203,9 +203,11 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Areas\My\Controllers\EmailAddressesController.cs" />
+    <Compile Include="Areas\My\Controllers\ProfileController.cs" />
     <Compile Include="Areas\My\Models\EmailAddresses\ChangeSpellingFormMapper.cs" />
     <Compile Include="Areas\My\Models\EmailAddresses\ChangeSpellingFormValidator.cs" />
     <Compile Include="Areas\My\MyAreaRegistration.cs" />
+    <Compile Include="Areas\My\Routes\ProfileRoutes.cs" />
     <Compile Include="Areas\My\Routes\EmailAddressesRoutes.cs" />
     <Compile Include="Areas\My\Services\EmailAddressesServices.cs" />
     <Compile Include="Helpers\SimpleInjectorMVC3.cs" />
@@ -309,6 +311,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="InstitutionalAgreements.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="My.ProfileController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Routes\PositiveIntegerRouteConstraint.cs" />
