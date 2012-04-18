@@ -32,7 +32,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [HttpGet]
         [Authorize]
         [ActionName("me")]
-        //[OpenTopTab(TopTabName.User)]
         [OpenTopTab(TopTabName.Home)]
         public virtual ActionResult Me()
         {
@@ -50,7 +49,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [HttpPost]
         [Authorize]
         [ActionName("me")]
-        //[OpenTopTab(TopTabName.User)]
         [OpenTopTab(TopTabName.Home)]
         public virtual ActionResult Me(PersonForm model)
         {
