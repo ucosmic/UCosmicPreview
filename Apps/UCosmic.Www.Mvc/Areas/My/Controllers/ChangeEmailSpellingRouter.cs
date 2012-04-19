@@ -11,7 +11,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouteMapper.RegisterRoutes(typeof(ChangeEmailSpellingRouter), context, Area, Controller);
+            DefaultRouter.RegisterRoutes(typeof(ChangeEmailSpellingRouter), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global

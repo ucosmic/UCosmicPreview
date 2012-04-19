@@ -12,7 +12,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouteMapper.RegisterRoutes(typeof(SupplementalFormsRouteMapper), context, Area, Controller);
+            DefaultRouter.RegisterRoutes(typeof(SupplementalFormsRouteMapper), context, Area, Controller);
         }
 
         public static class FindPlaces

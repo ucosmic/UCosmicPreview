@@ -31,7 +31,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [CustomizeValidator(Properties = SignOnBeginForm.EmailAddressPropertyName)] SignOnBeginForm model)
         {
             // form must not be valid unless email address is eligible
-            return ValidateRemote(JsonRequestBehavior.DenyGet, SignOnBeginForm.EmailAddressPropertyName);
+            return ValidateRemote(SignOnBeginForm.EmailAddressPropertyName);
         }
 
         [HttpGet]

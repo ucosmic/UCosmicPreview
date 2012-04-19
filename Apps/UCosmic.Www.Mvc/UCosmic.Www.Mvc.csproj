@@ -203,13 +203,23 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Areas\My\Controllers\ChangeEmailSpellingController.cs" />
+    <Compile Include="Areas\My\Controllers\UpdateNameServices.cs" />
+    <Compile Include="Areas\My\Controllers\UpdateNameRouter.cs" />
+    <Compile Include="Areas\My\Controllers\ProfileServices.cs" />
     <Compile Include="Areas\My\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\My\Controllers\UpdateNameController.cs" />
     <Compile Include="Areas\My\Models\ChangeEmailSpellingProfiler.cs" />
     <Compile Include="Areas\My\Models\ChangeEmailSpellingValidator.cs" />
+    <Compile Include="Areas\My\Models\UpdateNameValidator.cs" />
+    <Compile Include="Areas\My\Models\UpdateNameProfiler.cs" />
+    <Compile Include="Areas\My\Models\ProfileProfiler.cs" />
+    <Compile Include="Areas\My\Models\ProfileInfo.cs" />
+    <Compile Include="Areas\My\Models\UpdateNameForm.cs" />
     <Compile Include="Areas\My\MyAreaRegistration.cs" />
     <Compile Include="Areas\My\Controllers\ProfileRouter.cs" />
     <Compile Include="Areas\My\Controllers\ChangeEmailSpellingRouter.cs" />
     <Compile Include="Areas\My\Controllers\ChangeEmailSpellingServices.cs" />
+    <Compile Include="Controllers\NullLayoutOnChildActionAttribute.cs" />
     <Compile Include="Helpers\SimpleInjectorMVC3.cs" />
     <Compile Include="Helpers\SimpleInjectorMVC3Extensions.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
@@ -319,6 +329,12 @@
     <Compile Include="My.ProfileController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="My.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="My.UpdateNameController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Routes\PositiveIntegerRouteConstraint.cs" />
     <Compile Include="Models\IReturnUrl.cs" />
     <Compile Include="Controllers\NullLayoutOnAjaxRequestAttribute.cs" />
@@ -417,7 +433,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DefaultModelMapper.cs" />
-    <Compile Include="Routes\DefaultRouteMapper.cs" />
+    <Compile Include="Routes\DefaultRouter.cs" />
     <Compile Include="Routes\RawUrlCatchallRouteConstraint.cs" />
     <Compile Include="Models\AllowedFileExtensionsAttribute.cs" />
     <Compile Include="Models\AutoCompleteOption.cs" />
@@ -1002,6 +1018,13 @@
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnEmailAddress.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnPassword.cshtml" />
     <Content Include="Areas\My\Views\Web.config" />
+    <Content Include="Areas\My\Views\Profile\profile.cshtml" />
+    <Content Include="Areas\My\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\My\Views\Shared\DisplayTemplates\AffiliationInfo.cshtml" />
+    <Content Include="Areas\My\Views\Shared\DisplayTemplates\EmailInfo.cshtml" />
+    <Content Include="Areas\My\Views\UpdateName\update-name.cshtml" />
+    <Content Include="Areas\My\Views\UpdateName\_form.cshtml" />
+    <Content Include="Areas\My\Views\Shared\EditorTemplates\UpdateNameForm.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />
@@ -1157,13 +1180,13 @@
     <Content Include="Areas\Identity\Views\Password\reset-password-expired.cshtml" />
     <Content Include="Areas\Identity\Views\Password\reset-password.cshtml" />
     <Content Include="Areas\Identity\Views\Saml2Metadata\Index.cshtml" />
-    <Content Include="Areas\My\Views\ChangeEmailSpelling\change-spelling-modal.cshtml" />
-    <Content Include="Areas\My\Views\ChangeEmailSpelling\change-spelling.cshtml" />
+    <Content Include="Areas\My\Views\ChangeEmailSpelling\_form.cshtml" />
+    <Content Include="Areas\My\Views\ChangeEmailSpelling\change-email-spelling.cshtml" />
     <Content Include="Areas\Identity\Views\Self\DisplayTemplates\AffiliationInfo.cshtml" />
     <Content Include="Areas\Identity\Views\Self\DisplayTemplates\EmailInfo.cshtml" />
     <Content Include="Areas\Identity\Views\Self\edit-affiliation.cshtml" />
     <Content Include="Areas\Identity\Views\Self\EditorTemplates\AffiliationForm.cshtml" />
-    <Content Include="Areas\My\Views\ChangeEmailSpelling\EditorTemplates\ChangeEmailSpellingForm.cshtml" />
+    <Content Include="Areas\My\Views\Shared\EditorTemplates\ChangeEmailSpellingForm.cshtml" />
     <Content Include="Areas\Identity\Views\Self\EditorTemplates\PersonForm.cshtml" />
     <Content Include="Areas\Identity\Views\Self\me.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignInForm.cshtml" />

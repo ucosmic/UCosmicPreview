@@ -36,7 +36,7 @@ namespace UCosmic.Www.Mvc.Controllers
         }
 
         [NonAction]
-        protected JsonResult ValidateRemote(JsonRequestBehavior jsonRequestBehaviuor, string propertyKey)
+        protected JsonResult ValidateRemote(string propertyKey, JsonRequestBehavior jsonRequestBehaviuor = JsonRequestBehavior.DenyGet)
         {
             return ModelState.IsValid
                 ? Json(true, jsonRequestBehaviuor)

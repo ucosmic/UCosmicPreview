@@ -169,10 +169,16 @@
     <Compile Include="Areas\Identity\Models\SignUp\SendEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\ConfirmEmailFormFacts.cs" />
     <Compile Include="Areas\My\Controllers\ChangeEmailSpellingControllerFacts.cs" />
+    <Compile Include="Areas\My\Controllers\UpdateNameControllerFacts.cs" />
+    <Compile Include="Areas\My\Controllers\UpdateNameRouterFacts.cs" />
     <Compile Include="Areas\My\Models\ChangeEmailSpellingFormFacts.cs" />
     <Compile Include="Areas\My\Models\ChangeEmailSpellingProfilerFacts.cs" />
     <Compile Include="Areas\My\Models\ChangeEmailSpellingValidatorFacts.cs" />
     <Compile Include="Areas\My\Controllers\ChangeEmailSpellingRouterFacts.cs" />
+    <Compile Include="Areas\My\Models\ProfileProfilerFacts.cs" />
+    <Compile Include="Areas\My\Models\UpdateNameValidatorFacts.cs" />
+    <Compile Include="Areas\My\Models\UpdateNameProfilerFacts.cs" />
+    <Compile Include="Areas\My\Models\UpdateNameFormFacts.cs" />
     <Compile Include="Etc\AuthorizationProviderFacts.cs" />
     <Compile Include="Etc\ReuseMock.cs" />
     <Compile Include="Etc\SimpleDependencyInjectorFacts.cs" />

@@ -12,7 +12,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouteMapper.RegisterRoutes(typeof(PublicSearchRouteMapper), context, Area, Controller);
+            DefaultRouter.RegisterRoutes(typeof(PublicSearchRouteMapper), context, Area, Controller);
         }
 
         public static class Index

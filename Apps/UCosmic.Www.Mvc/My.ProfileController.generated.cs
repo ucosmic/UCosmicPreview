@@ -23,9 +23,6 @@ using T4MVC;
 namespace UCosmic.Www.Mvc.Areas.My.Controllers {
     public partial class ProfileController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ProfileController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected ProfileController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -49,12 +46,12 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Index = "Index";
+            public readonly string Get = "profile";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Index = "Index";
+            public const string Get = "profile";
         }
 
 
@@ -63,6 +60,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
+            public readonly string profile = "~/Areas/My/Views/Profile/profile.cshtml";
         }
     }
 
@@ -70,8 +68,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
     public class T4MVC_ProfileController: UCosmic.Www.Mvc.Areas.My.Controllers.ProfileController {
         public T4MVC_ProfileController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Index() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Index);
+        public override System.Web.Mvc.ActionResult Get() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
             return callInfo;
         }
 

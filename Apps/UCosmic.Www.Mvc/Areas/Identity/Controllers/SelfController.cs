@@ -361,8 +361,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public virtual ActionResult DeriveDisplayName(PersonForm model)
         {
             var person = Mapper.Map<Person>(model);
-            model.DisplayName = person.DeriveDisplayName();
-            return Json(model);
+            //model.DisplayName = person.DeriveDisplayName();
+            var displayName = person.DeriveDisplayName();
+            return Json(displayName);
         }
 
         #endregion

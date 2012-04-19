@@ -13,7 +13,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
             if (!WebConfig.IsDeployedToCloud)
-                DefaultRouteMapper.RegisterRoutes(typeof(QaRouteMapper), context, Area, Controller);
+                DefaultRouter.RegisterRoutes(typeof(QaRouteMapper), context, Area, Controller);
         }
 
         public static class DeliverQaMail

@@ -83,6 +83,8 @@ namespace T4MVC {
         public readonly string Name = "My";
         public UCosmic.Www.Mvc.Areas.My.Controllers.ChangeEmailSpellingController ChangeEmailSpelling = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_ChangeEmailSpellingController();
         public UCosmic.Www.Mvc.Areas.My.Controllers.ProfileController Profile = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_ProfileController();
+        public UCosmic.Www.Mvc.Areas.My.Controllers.UpdateNameController UpdateName = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_UpdateNameController();
+        public T4MVC.My.SharedController Shared = new T4MVC.My.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class RecruitmentAgenciesClass {

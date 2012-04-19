@@ -17,6 +17,10 @@ namespace UCosmic.Www.Mvc.Areas.My
             ChangeEmailSpellingProfiler.RegisterProfiles();
 
             ProfileRouter.RegisterRoutes(context);
+            ProfileProfiler.RegisterProfiles();
+
+            UpdateNameRouter.RegisterRoutes(context);
+            UpdateNameProfiler.RegisterProfiles();
 
             //context.MapRoute(
             //    "My_default",

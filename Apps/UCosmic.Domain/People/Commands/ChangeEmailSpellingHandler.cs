@@ -1,18 +1,22 @@
-﻿namespace UCosmic.Domain.People
+﻿using System;
+
+namespace UCosmic.Domain.People
 {
-    public class ChangeEmailAddressSpellingHandler : IHandleCommands<ChangeEmailAddressSpellingCommand>
+    public class ChangeEmailSpellingHandler : IHandleCommands<ChangeEmailSpellingCommand>
     {
         private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
 
-        public ChangeEmailAddressSpellingHandler(IProcessQueries queryProcessor, ICommandEntities entities)
+        public ChangeEmailSpellingHandler(IProcessQueries queryProcessor, ICommandEntities entities)
         {
             _queryProcessor = queryProcessor;
             _entities = entities;
         }
 
-        public void Handle(ChangeEmailAddressSpellingCommand command)
+        public void Handle(ChangeEmailSpellingCommand command)
         {
+            if (command == null) throw new ArgumentNullException("command");
+
             command.ChangedState = false;
 
             // get the email address

@@ -11,7 +11,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouteMapper.RegisterRoutes(typeof(ConfigurationFormsRouteMapper), context, Area, Controller);
+            DefaultRouter.RegisterRoutes(typeof(ConfigurationFormsRouteMapper), context, Area, Controller);
         }
 
         public static class Add

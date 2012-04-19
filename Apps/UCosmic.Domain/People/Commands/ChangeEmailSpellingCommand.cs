@@ -1,7 +1,7 @@
 ﻿
 namespace UCosmic.Domain.People
 {
-    public class ChangeEmailAddressSpellingCommand
+    public class ChangeEmailSpellingCommand
     {
         public string UserName { get; set; }
         public int Number { get; set; }
