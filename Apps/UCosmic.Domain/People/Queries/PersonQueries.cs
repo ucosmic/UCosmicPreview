@@ -18,5 +18,25 @@ namespace UCosmic.Domain.People
             );
             return person;
         }
+
+        internal static IQueryable<Person> WithNonEmptySalutation(this IQueryable<Person> queryable)
+        {
+            return queryable.Where(p => p.Salutation != null && p.Salutation.Trim() != string.Empty);
+        }
+
+        internal static IQueryable<Person> WithNonEmptySuffix(this IQueryable<Person> queryable)
+        {
+            return queryable.Where(p => p.Suffix != null && p.Suffix.Trim() != string.Empty);
+        }
+
+        internal static IQueryable<string> SelectSalutations(this IQueryable<Person> queryable)
+        {
+            return queryable.Select(p => p.Salutation);
+        }
+
+        internal static IQueryable<string> SelectSuffixes(this IQueryable<Person> queryable)
+        {
+            return queryable.Select(p => p.Suffix);
+        }
     }
 }
