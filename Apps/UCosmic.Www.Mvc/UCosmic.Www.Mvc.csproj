@@ -323,6 +323,7 @@
     <Compile Include="InstitutionalAgreements.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ComboBoxOptions.cs" />
     <Compile Include="My.ChangeEmailSpellingController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

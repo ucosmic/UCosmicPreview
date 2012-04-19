@@ -94,9 +94,13 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.JsonResult GenerateDisplayName(UCosmic.Www.Mvc.Areas.My.Models.UpdateNameForm model) {
+        public override System.Web.Mvc.JsonResult GenerateDisplayName(string salutation, string firstName, string middleName, string lastName, string suffix) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.GenerateDisplayName);
-            callInfo.RouteValueDictionary.Add("model", model);
+            callInfo.RouteValueDictionary.Add("salutation", salutation);
+            callInfo.RouteValueDictionary.Add("firstName", firstName);
+            callInfo.RouteValueDictionary.Add("middleName", middleName);
+            callInfo.RouteValueDictionary.Add("lastName", lastName);
+            callInfo.RouteValueDictionary.Add("suffix", suffix);
             return callInfo;
         }
 
