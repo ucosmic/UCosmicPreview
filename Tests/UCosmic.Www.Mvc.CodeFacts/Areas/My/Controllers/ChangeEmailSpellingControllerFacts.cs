@@ -67,7 +67,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
-                attributes[0].Name.ShouldEqual("change-spelling");
+                attributes[0].Name.ShouldEqual("change-email-spelling");
             }
 
             [TestMethod]
@@ -148,7 +148,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             }
 
             [TestMethod]
-            public void ReturnsView_WhenEmailAddress_IsFound()
+            public void ReturnsPartialView_WhenEmailAddress_IsFound()
             {
                 const int number = 2;
                 const string userName = "user@domain.tld";
@@ -200,7 +200,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_OpenTopTab_UsingHome()
             {
-                Expression<Func<ChangeEmailSpellingController, ActionResult>> method = m => m.Get(1);
+                Expression<Func<ChangeEmailSpellingController, ActionResult>> method = m => m.Put(null);
 
                 var attributes = method.GetAttributes<ChangeEmailSpellingController, ActionResult, OpenTopTabAttribute>();
                 attributes.ShouldNotBeNull();
@@ -212,13 +212,13 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_ActionName_UsingChangeSpelling()
             {
-                Expression<Func<ChangeEmailSpellingController, ActionResult>> method = m => m.Get(1);
+                Expression<Func<ChangeEmailSpellingController, ActionResult>> method = m => m.Put(null);
 
                 var attributes = method.GetAttributes<ChangeEmailSpellingController, ActionResult, ActionNameAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
-                attributes[0].Name.ShouldEqual("change-spelling");
+                attributes[0].Name.ShouldEqual("change-email-spelling");
             }
 
             [TestMethod]
@@ -254,7 +254,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             }
 
             [TestMethod]
-            public void ReturnsView_WhenModelState_IsInvalid()
+            public void ReturnsPartialView_WhenModelState_IsInvalid()
             {
                 const string userIdentityName = "user@domain.tld";
                 const string personUserName = "user@domain.tld";
@@ -272,11 +272,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 var result = controller.Put(model);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<ViewResult>();
-                var viewResult = (ViewResult)result;
-                viewResult.Model.ShouldNotBeNull();
-                viewResult.Model.ShouldBeType<ChangeEmailSpellingForm>();
-                viewResult.Model.ShouldEqual(model);
+                result.ShouldBeType<PartialViewResult>();
+                var partialViewResult = (PartialViewResult)result;
+                partialViewResult.Model.ShouldNotBeNull();
+                partialViewResult.Model.ShouldBeType<ChangeEmailSpellingForm>();
+                partialViewResult.Model.ShouldEqual(model);
             }
 
             [TestMethod]
@@ -298,7 +298,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     ReturnUrl = "https://www.site.com/"
                 };
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<ChangeEmailAddressSpellingCommand, bool>> commandDerivedFromModel =
+                Expression<Func<ChangeEmailSpellingCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
                     command.UserName == personUserName &&
@@ -332,14 +332,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     ReturnUrl = "https://www.site.com/"
                 };
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<ChangeEmailAddressSpellingCommand, bool>> commandDerivedFromModel =
+                Expression<Func<ChangeEmailSpellingCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
                     command.UserName == personUserName &&
                     command.NewValue == newValue
                 ;
                 scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)))
-                    .Callback((ChangeEmailAddressSpellingCommand command) => command.ChangedState = true);
+                    .Callback((ChangeEmailSpellingCommand command) => command.ChangedState = true);
 
                 controller.Put(model);
 
@@ -368,7 +368,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     ReturnUrl = "https://www.site.com/"
                 };
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<ChangeEmailAddressSpellingCommand, bool>> commandDerivedFromModel =
+                Expression<Func<ChangeEmailSpellingCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
                     command.UserName == personUserName &&
@@ -403,7 +403,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     ReturnUrl = "https://www.site.com/"
                 };
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<ChangeEmailAddressSpellingCommand, bool>> commandDerivedFromModel =
+                Expression<Func<ChangeEmailSpellingCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
                     command.UserName == personUserName &&
@@ -497,7 +497,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         private class ScenarioOptions
         {
             internal Mock<IProcessQueries> MockQueryProcessor { get; set; }
-            internal Mock<IHandleCommands<ChangeEmailAddressSpellingCommand>> MockCommandHandler { get; set; }
+            internal Mock<IHandleCommands<ChangeEmailSpellingCommand>> MockCommandHandler { get; set; }
             internal string UserIdentityName { get; set; }
         }
 
@@ -507,7 +507,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
             scenarioOptions.MockQueryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
 
-            scenarioOptions.MockCommandHandler = new Mock<IHandleCommands<ChangeEmailAddressSpellingCommand>>(MockBehavior.Strict);
+            scenarioOptions.MockCommandHandler = new Mock<IHandleCommands<ChangeEmailSpellingCommand>>(MockBehavior.Strict);
 
             var services = new ChangeEmailSpellingServices(scenarioOptions.MockQueryProcessor.Object, scenarioOptions.MockCommandHandler.Object);
 

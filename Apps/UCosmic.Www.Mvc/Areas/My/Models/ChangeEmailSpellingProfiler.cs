@@ -28,7 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         {
             protected override void Configure()
             {
-                CreateMap<ChangeEmailSpellingForm, ChangeEmailAddressSpellingCommand>()
+                CreateMap<ChangeEmailSpellingForm, ChangeEmailSpellingCommand>()
                     .ForMember(d => d.UserName, o => o.MapFrom(s => s.PersonUserName))
                     .ForMember(d => d.NewValue, o => o.MapFrom(s => s.Value))
                     .ForMember(d => d.ChangedState, o => o.Ignore())

@@ -8,11 +8,13 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
     {
         public const string ValuePropertyName = "Value";
 
-        [Display(Name = "New spelling")]
+        public const string ValueDisplayName = "New spelling";
+        [Display(Name = ValueDisplayName)]
         [Remote("ValidateValue", "ChangeEmailSpelling", "My", HttpMethod = "POST", AdditionalFields = "PersonUserName,Number")]
         public string Value { get; set; }
 
-        [Display(Name = "Current spelling")]
+        public const string OldSpellingDisplayName = "Current spelling";
+        [Display(Name = OldSpellingDisplayName)]
         public string OldSpelling { get; set; }
 
         [HiddenInput(DisplayValue = false)]

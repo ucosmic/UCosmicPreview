@@ -12,7 +12,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouteMapper.RegisterRoutes(typeof(SkinsRouteMapper), context, Area, Controller);
+            DefaultRouter.RegisterRoutes(typeof(SkinsRouteMapper), context, Area, Controller);
         }
 
         public static class Change

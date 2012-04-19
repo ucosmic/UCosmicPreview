@@ -11,7 +11,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouteMapper.RegisterRoutes(typeof(Saml2MetadataRouteMapper), context, Area, Controller);
+            DefaultRouter.RegisterRoutes(typeof(Saml2MetadataRouteMapper), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global

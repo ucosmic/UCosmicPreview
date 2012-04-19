@@ -12,7 +12,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouteMapper.RegisterRoutes(typeof(NavigationRouteMapper), context, Area, Controller);
+            DefaultRouter.RegisterRoutes(typeof(NavigationRouteMapper), context, Area, Controller);
         }
 
         public static class HorizontalTabs

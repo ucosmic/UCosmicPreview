@@ -17,12 +17,13 @@
         if ($('#' + isDisplayNameDerivedId).is(':checked')) {
             $('#' + displayNameId).attr('readonly', 'readonly');
             originalValue = $('#' + displayNameId).val();
+            var url = displayNameConfig.data('ucosmic-person-derive-display-name-url');
             $.ajax({
-                url: displayNameConfig.data('ucosmic-person-derive-display-name-url'),
+                url: url,
                 type: 'POST',
-                data: $('[data-ucosmic-person-derive-display-name=true]').closest('form').serialize(),
-                success: function (model) {
-                    $('#' + displayNameId).val($.trim(model.DisplayName));
+                data: $('#person_self_editor *').serialize(),
+                success: function (data) {
+                    $('#' + displayNameId).val($.trim(data));
                 }
             });
         } else if (fromCheckbox) {

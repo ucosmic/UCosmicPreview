@@ -31,73 +31,93 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         }
 
         [TestClass]
-        public class TheConstructor
+        public class TheValueProperty
         {
             [TestMethod]
-            public void HasErrorWhen_Value_IsNull()
+            public void IsInvalidWhen_Value_IsNull()
             {
                 var validator = new ChangeEmailSpellingValidator(null);
                 var model = new ChangeEmailSpellingForm { Value = null };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldEqual(1);
-                results.Errors.Single().ErrorMessage.ShouldEqual(
-                    ChangeEmailAddressSpellingValidator.ChangeEmailSpellingErrorMessage);
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Value");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(
+                    Domain.People.ChangeEmailSpellingValidator.ChangeEmailSpellingErrorMessage);
+                // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void HasErrorWhen_Value_IsEmpty()
+            public void IsInvalidWhen_Value_IsEmpty()
             {
                 var validator = new ChangeEmailSpellingValidator(null);
                 var model = new ChangeEmailSpellingForm { Value = string.Empty };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldEqual(1);
-                results.Errors.Single().ErrorMessage.ShouldEqual(
-                    ChangeEmailAddressSpellingValidator.ChangeEmailSpellingErrorMessage);
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Value");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(
+                    Domain.People.ChangeEmailSpellingValidator.ChangeEmailSpellingErrorMessage);
+                // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void HasErrorWhen_Value_IsWhiteSpace()
+            public void IsInvalidWhen_Value_IsWhiteSpace()
             {
                 var validator = new ChangeEmailSpellingValidator(null);
                 var model = new ChangeEmailSpellingForm { Value = " \r" };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldEqual(1);
-                results.Errors.Single().ErrorMessage.ShouldEqual(
-                    ChangeEmailAddressSpellingValidator.ChangeEmailSpellingErrorMessage);
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Value");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(
+                    Domain.People.ChangeEmailSpellingValidator.ChangeEmailSpellingErrorMessage);
+                // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void HasErrorWhen_Value_IsMissingTldExtension()
+            public void IsInvalidWhen_Value_IsMissingTldExtension()
             {
                 var validator = new ChangeEmailSpellingValidator(null);
                 var model = new ChangeEmailSpellingForm { Value = "email@domain" };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldEqual(1);
-                results.Errors.Single().ErrorMessage.ShouldEqual(
-                    ChangeEmailAddressSpellingValidator.ChangeEmailSpellingErrorMessage);
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Value");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(
+                    Domain.People.ChangeEmailSpellingValidator.ChangeEmailSpellingErrorMessage);
+                // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void HasErrorWhen_Value_DoesNotMatchPreviousSpelling_CaseInsensitively()
+            public void IsInvalidWhen_Value_DoesNotMatchPreviousSpelling_CaseInsensitively()
             {
                 var queryProcessor = new Mock<IProcessQueries>();
                 queryProcessor.Setup(m => m.Execute(It.IsAny<GetEmailAddressByUserNameAndNumberQuery>()))
-                    .Returns(new EmailAddress{ Value = "user@domain.tld"});
+                    .Returns(new EmailAddress { Value = "user@domain.tld" });
                 var validator = new ChangeEmailSpellingValidator(queryProcessor.Object);
                 var model = new ChangeEmailSpellingForm { Value = "user2@domain.tld" };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldEqual(1);
-                results.Errors.Single().ErrorMessage.ShouldEqual(
-                    ChangeEmailAddressSpellingValidator.ChangeEmailSpellingErrorMessage);
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Value");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(
+                    Domain.People.ChangeEmailSpellingValidator.ChangeEmailSpellingErrorMessage);
+                // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void HasErrorWhen_PreviousSpelling_CannotBeFound()
+            public void IsInvalidWhen_PreviousSpelling_CannotBeFound()
             {
                 var queryProcessor = new Mock<IProcessQueries>();
                 queryProcessor.Setup(m => m.Execute(It.IsAny<GetEmailAddressByUserNameAndNumberQuery>()))
@@ -106,13 +126,17 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 var model = new ChangeEmailSpellingForm { Value = "user@domain.tld" };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldEqual(1);
-                results.Errors.Single().ErrorMessage.ShouldEqual(
-                    ChangeEmailAddressSpellingValidator.ChangeEmailSpellingErrorMessage);
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Value");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(
+                    Domain.People.ChangeEmailSpellingValidator.ChangeEmailSpellingErrorMessage);
+                // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void HasNoErrorWhen_Value_MatchesPreviousSpelling_CaseInsensitively()
+            public void IsValidWhen_Value_MatchesPreviousSpelling_CaseInsensitively()
             {
                 var queryProcessor = new Mock<IProcessQueries>();
                 queryProcessor.Setup(m => m.Execute(It.IsAny<GetEmailAddressByUserNameAndNumberQuery>()))
@@ -120,8 +144,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 var validator = new ChangeEmailSpellingValidator(queryProcessor.Object);
                 var model = new ChangeEmailSpellingForm { Value = "User@Domain.Tld" };
                 var results = validator.Validate(model);
-                results.IsValid.ShouldBeTrue();
-                results.Errors.Count.ShouldEqual(0);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Value");
+                error.ShouldBeNull();
             }
         }
     }

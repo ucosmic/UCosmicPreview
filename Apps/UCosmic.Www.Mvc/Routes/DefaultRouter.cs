@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace UCosmic.Www.Mvc.Routes
 {
-    public static class DefaultRouteMapper
+    public static class DefaultRouter
     {
         public static void RegisterRoutes(Type routeMapper, AreaRegistrationContext context, string area, string controller)
         {

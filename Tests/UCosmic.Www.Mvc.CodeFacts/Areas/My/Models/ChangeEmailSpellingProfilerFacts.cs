@@ -91,7 +91,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 const string userName = "user@domain.tld";
                 var model = new ChangeEmailSpellingForm { PersonUserName = userName };
 
-                var command = Mapper.Map<ChangeEmailAddressSpellingCommand>(model);
+                var command = Mapper.Map<ChangeEmailSpellingCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.UserName.ShouldNotBeNull();
@@ -104,7 +104,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 const string value = "user@domain.tld";
                 var model = new ChangeEmailSpellingForm { Value = value };
 
-                var command = Mapper.Map<ChangeEmailAddressSpellingCommand>(model);
+                var command = Mapper.Map<ChangeEmailSpellingCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.NewValue.ShouldNotBeNull();
@@ -117,7 +117,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 const int number = 2;
                 var model = new ChangeEmailSpellingForm { Number = number };
 
-                var command = Mapper.Map<ChangeEmailAddressSpellingCommand>(model);
+                var command = Mapper.Map<ChangeEmailSpellingCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.Number.ShouldEqual(model.Number);
@@ -128,7 +128,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             {
                 var model = new ChangeEmailSpellingForm();
 
-                var command = Mapper.Map<ChangeEmailAddressSpellingCommand>(model);
+                var command = Mapper.Map<ChangeEmailSpellingCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.ChangedState.ShouldBeFalse();

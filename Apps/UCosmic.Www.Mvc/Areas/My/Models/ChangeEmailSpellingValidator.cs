@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using UCosmic.Domain;
-using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
@@ -11,10 +10,12 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         public ChangeEmailSpellingValidator(IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
+
             const string changeEmailSpellingErrorMessage =
-                ChangeEmailAddressSpellingValidator.ChangeEmailSpellingErrorMessage;
+                Domain.People.ChangeEmailSpellingValidator.ChangeEmailSpellingErrorMessage;
 
             RuleFor(p => p.Value)
+                .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage(changeEmailSpellingErrorMessage)
                 .EmailAddress().WithMessage(changeEmailSpellingErrorMessage)
                 .Must(MatchPreviousSpellingCaseInvariantly).WithMessage(changeEmailSpellingErrorMessage)
@@ -23,7 +24,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
 
         private bool MatchPreviousSpellingCaseInvariantly(ChangeEmailSpellingForm form, string value)
         {
-            return ChangeEmailAddressSpellingValidator
+            return Domain.People.ChangeEmailSpellingValidator
                 .NewEmailMatchesPreviousSpellingCaseInvariantly
                     (value, form.PersonUserName, form.Number, _queryProcessor);
         }

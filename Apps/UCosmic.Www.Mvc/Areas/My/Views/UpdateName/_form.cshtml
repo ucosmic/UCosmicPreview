@@ -1,0 +1,20 @@
+﻿@model UCosmic.Www.Mvc.Areas.My.Models.UpdateNameForm
+@using (Html.BeginForm(
+    MVC.My.UpdateName.ActionNames.Put,
+    MVC.My.UpdateName.Name,
+    new
+    {
+        area = MVC.My.Name,
+        httpMethod = "POST",
+    }
+))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <fieldset>
+        <legend>My Name</legend>
+        <p>
+            Use the form below to update your name.
+        </p>
+        @Html.EditorForModel()
+    </fieldset>
+}

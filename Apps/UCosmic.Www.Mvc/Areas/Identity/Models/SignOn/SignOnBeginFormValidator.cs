@@ -13,6 +13,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
             _queryProcessor = queryProcessor;
 
             RuleFor(p => p.EmailAddress)
+                .Cascade(CascadeMode.StopOnFirstFailure)
                 .SignOnEmailAddressRules()
                 .Must(MatchExistingEstablishment).WithMessage(IneligibleEmailMessage, p => p.EmailAddress)
             ;

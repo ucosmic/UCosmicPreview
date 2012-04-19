@@ -33,7 +33,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 var attributes = property.GetAttributes<ChangeEmailSpellingForm, string, DisplayAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
-                attributes[0].Name.ShouldEqual("New spelling");
+                attributes[0].Name.ShouldEqual(ChangeEmailSpellingForm.ValueDisplayName);
             }
 
             [TestMethod]
@@ -67,7 +67,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 var attributes = property.GetAttributes<ChangeEmailSpellingForm, string, DisplayAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
-                attributes[0].Name.ShouldEqual("Current spelling");
+                attributes[0].Name.ShouldEqual(ChangeEmailSpellingForm.OldSpellingDisplayName);
             }
 
             [TestMethod]

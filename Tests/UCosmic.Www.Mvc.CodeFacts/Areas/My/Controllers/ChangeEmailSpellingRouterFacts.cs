@@ -21,8 +21,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.Get.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethod(HttpVerbs.Get).ShouldMapToNothing();
             }
 
@@ -35,8 +35,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.Get.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
 
@@ -47,8 +47,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.Get.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethodsExcept(HttpVerbs.Get, HttpVerbs.Put, HttpVerbs.Post).ShouldMapToNothing();
             }
 
@@ -59,8 +59,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.Get.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethodsExcept(HttpVerbs.Get, HttpVerbs.Put, HttpVerbs.Post).ShouldMapToNothing();
             }
 
@@ -83,8 +83,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.Get.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 OutBoundRoute.Of(action).InArea(MVC.My.Name).WithMethod(HttpVerbs.Get).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -94,6 +94,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const int number = 0;
                 Expression<Func<ChangeEmailSpellingController, ActionResult>> action =
                     controller => controller.Get(number);
+
                 action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
             }
 
@@ -103,6 +104,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const int number = 7;
                 Expression<Func<ChangeEmailSpellingController, ActionResult>> action =
                     controller => controller.Get(number);
+
                 action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
             }
 
@@ -118,8 +120,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.Put.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethod(HttpVerbs.Put).ShouldMapToNothing();
             }
 
@@ -132,8 +134,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.Put.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethod(HttpVerbs.Put).ShouldMapTo(action);
             }
 
@@ -144,8 +146,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.Put.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethod(HttpVerbs.Post).ShouldMapToNothing();
             }
 
@@ -158,8 +160,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.Put.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
             }
 
@@ -184,8 +186,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.Put.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 OutBoundRoute.Of(action).InArea(MVC.My.Name).WithMethod(HttpVerbs.Post)
                     .HavingViewModelProperty(numberParam, number).AppRelativeUrl().ShouldEqual(url);
             }
@@ -195,6 +197,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             {
                 Expression<Func<ChangeEmailSpellingController, ActionResult>> action =
                     controller => controller.Put(null);
+
                 action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
             }
 
@@ -210,8 +213,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.ValidateValue.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethod(HttpVerbs.Get).ShouldMapToNothing();
             }
 
@@ -222,8 +225,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.ValidateValue.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethod(HttpVerbs.Get).ShouldMapToNothing();
             }
 
@@ -234,8 +237,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.ValidateValue.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethod(HttpVerbs.Put).ShouldMapToNothing();
             }
 
@@ -246,8 +249,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.ValidateValue.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethod(HttpVerbs.Put).ShouldMapToNothing();
             }
 
@@ -258,8 +261,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.ValidateValue.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethod(HttpVerbs.Post).ShouldMapToNothing();
             }
 
@@ -272,8 +275,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.ValidateValue.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
             }
 
@@ -284,8 +287,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.ValidateValue.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
             }
 
@@ -296,8 +299,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.ValidateValue.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 url.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
             }
 
@@ -322,8 +325,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string routeUrl = ChangeEmailSpellingRouter.ValidateValue.Route;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
-
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
+
                 OutBoundRoute.Of(action).InArea(MVC.My.Name).WithMethod(HttpVerbs.Post)
                     .HavingViewModelProperty(numberParam, number).AppRelativeUrl().ShouldEqual(url);
             }
@@ -333,6 +336,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             {
                 Expression<Func<ChangeEmailSpellingController, ActionResult>> action =
                     controller => controller.ValidateValue(null);
+
                 action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
             }
 

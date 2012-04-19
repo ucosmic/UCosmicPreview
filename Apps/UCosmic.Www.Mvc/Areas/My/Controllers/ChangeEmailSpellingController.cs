@@ -21,7 +21,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
-        [ActionName("change-spelling")]
+        [ActionName("change-email-spelling")]
         [ReturnUrlReferrer(SelfRouteMapper.Me.OutboundRoute)]
         public virtual ActionResult Get(int number)
         {
@@ -34,14 +34,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 }
             );
 
-            if (email != null) return PartialView(Mapper.Map<ChangeEmailSpellingForm>(email));
-            return HttpNotFound();
+            if (email == null) return HttpNotFound();
+            return PartialView(Mapper.Map<ChangeEmailSpellingForm>(email));
         }
 
         [HttpPut]
         [UnitOfWork]
         [OpenTopTab(TopTabName.Home)]
-        [ActionName("change-spelling")]
+        [ActionName("change-email-spelling")]
         public virtual ActionResult Put(ChangeEmailSpellingForm model)
         {
             // make sure user owns this email address
@@ -49,10 +49,10 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 return HttpNotFound();
 
             // make sure model state is valid
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid) return PartialView(model);
 
             // execute command, set feedback message, and redirect
-            var command = Mapper.Map<ChangeEmailAddressSpellingCommand>(model);
+            var command = Mapper.Map<ChangeEmailSpellingCommand>(model);
             _services.CommandHandler.Handle(command);
             SetFeedbackMessage(command.ChangedState
                 ? string.Format(SuccessMessageFormat, model.Value)
@@ -69,7 +69,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         public virtual JsonResult ValidateValue(
             [CustomizeValidator(Properties = ChangeEmailSpellingForm.ValuePropertyName)] ChangeEmailSpellingForm model)
         {
-            return ValidateRemote(JsonRequestBehavior.DenyGet, ChangeEmailSpellingForm.ValuePropertyName);
+            return ValidateRemote(ChangeEmailSpellingForm.ValuePropertyName);
         }
     }
 }

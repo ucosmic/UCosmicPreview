@@ -1,0 +1,8 @@
+﻿@model UCosmic.Www.Mvc.Areas.My.Models.UpdateNameForm
+@{
+    ViewBag.Title = "Update my name";
+    Layout = MVC.Shared.Views.layout;
+    Layout = (ViewBag.NullLayout == null) ? Layout : null;
+}
+@Html.Partial(MVC.My.UpdateName.Views._form, Model)
+

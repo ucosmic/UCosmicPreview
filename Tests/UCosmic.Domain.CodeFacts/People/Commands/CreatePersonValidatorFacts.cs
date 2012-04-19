@@ -11,21 +11,60 @@ namespace UCosmic.Domain.People
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
-        public class TheConstructor
+        public class TheDisplayNameProperty
         {
             [TestMethod]
-            public void HasErrorWhen_DisplayName_IsNull()
+            public void IsInvalidWhen_DisplayName_IsNull()
             {
                 var command = new CreatePersonCommand { DisplayName = null };
                 var validator = new CreatePersonValidator(null);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldEqual(1);
-                results.Errors.Single().PropertyName.ShouldEqual("DisplayName");
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "DisplayName");
+                error.ShouldNotBeNull();
             }
 
             [TestMethod]
-            public void HasErrorWhen_UserIsAlreadyAssociated_WithAnotherPerson()
+            public void IsInvalidWhen_DisplayName_IsEmptyString()
+            {
+                var command = new CreatePersonCommand { DisplayName = string.Empty };
+                var validator = new CreatePersonValidator(null);
+                var results = validator.Validate(command);
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "DisplayName");
+                error.ShouldNotBeNull();
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_DisplayName_IsWhiteSpace()
+            {
+                var command = new CreatePersonCommand { DisplayName = " " };
+                var validator = new CreatePersonValidator(null);
+                var results = validator.Validate(command);
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "DisplayName");
+                error.ShouldNotBeNull();
+            }
+
+            [TestMethod]
+            public void IsValidWhen_DisplayName_IsNotEmpty()
+            {
+                var command = new CreatePersonCommand { DisplayName = "Adam West" };
+                var validator = new CreatePersonValidator(null);
+                var results = validator.Validate(command);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "DisplayName");
+                error.ShouldBeNull();
+            }
+        }
+
+        [TestClass]
+        public class TheUserNameProperty
+        {
+            [TestMethod]
+            public void IsInvalidWhen_UserIsAlreadyAssociated_WithAnotherPerson()
             {
                 const string userName = "user@domain.tld";
                 const string userDisplayName = "Bruce Wayne";
@@ -41,15 +80,18 @@ namespace UCosmic.Domain.People
                 var validator = new CreatePersonValidator(queryProcessor.Object);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldEqual(1);
-                results.Errors.Single().PropertyName.ShouldEqual("UserName");
-                results.Errors.Single().ErrorMessage.ShouldEqual(string.Format(
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "UserName");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
                     CreatePersonValidator.UserIsAlreadyAssociatedWithAnotherPersonErrorFormat,
                         userName, personDisplayName, userDisplayName));
+                // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void HasNoErrorWhen_UserNameIsNull()
+            public void IsValidWhen_UserNameIsNull()
             {
                 const string personDisplayName = "Adam West";
                 var command = new CreatePersonCommand
@@ -59,12 +101,12 @@ namespace UCosmic.Domain.People
                 };
                 var validator = new CreatePersonValidator(null);
                 var results = validator.Validate(command);
-                results.IsValid.ShouldBeTrue();
-                results.Errors.Count.ShouldEqual(0);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "UserName");
+                error.ShouldBeNull();
             }
 
             [TestMethod]
-            public void HasNoErrorWhen_UserNameIsEmptyString()
+            public void IsValidWhen_UserNameIsEmptyString()
             {
                 const string personDisplayName = "Adam West";
                 var command = new CreatePersonCommand
@@ -74,12 +116,12 @@ namespace UCosmic.Domain.People
                 };
                 var validator = new CreatePersonValidator(null);
                 var results = validator.Validate(command);
-                results.IsValid.ShouldBeTrue();
-                results.Errors.Count.ShouldEqual(0);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "UserName");
+                error.ShouldBeNull();
             }
 
             [TestMethod]
-            public void HasNoErrorWhen_UserNameIsWhiteSpace()
+            public void IsValidWhen_UserNameIsWhiteSpace()
             {
                 const string personDisplayName = "Adam West";
                 var command = new CreatePersonCommand
@@ -89,12 +131,12 @@ namespace UCosmic.Domain.People
                 };
                 var validator = new CreatePersonValidator(null);
                 var results = validator.Validate(command);
-                results.IsValid.ShouldBeTrue();
-                results.Errors.Count.ShouldEqual(0);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "UserName");
+                error.ShouldBeNull();
             }
 
             [TestMethod]
-            public void HasNoErrorWhen_UserNameDoesNotMatch_AnyUser()
+            public void IsValidWhen_UserNameDoesNotMatch_AnyUser()
             {
                 const string userName = "user@domain.tld";
                 const string personDisplayName = "Adam West";
@@ -108,27 +150,8 @@ namespace UCosmic.Domain.People
                     .Returns(null as User);
                 var validator = new CreatePersonValidator(queryProcessor.Object);
                 var results = validator.Validate(command);
-                results.IsValid.ShouldBeTrue();
-                results.Errors.Count.ShouldEqual(0);
-            }
-
-            [TestMethod]
-            public void HasNoErrorWhen_UserNameMatches_UserWithNullPerson()
-            {
-                const string userName = "user@domain.tld";
-                const string personDisplayName = "Adam West";
-                var command = new CreatePersonCommand
-                {
-                    DisplayName = personDisplayName,
-                    UserName = userName,
-                };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is<GetUserByNameQuery>(q => q.Name == command.UserName)))
-                    .Returns(new User { Person = null });
-                var validator = new CreatePersonValidator(queryProcessor.Object);
-                var results = validator.Validate(command);
-                results.IsValid.ShouldBeTrue();
-                results.Errors.Count.ShouldEqual(0);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "UserName");
+                error.ShouldBeNull();
             }
         }
     }

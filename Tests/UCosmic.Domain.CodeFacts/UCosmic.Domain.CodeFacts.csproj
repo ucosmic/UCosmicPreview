@@ -104,6 +104,10 @@
     <Compile Include="InstitutionalAgreements\InstitutionalAgreementFacts.cs" />
     <Compile Include="Languages\LanguageNameFacts.cs" />
     <Compile Include="Languages\LanguageFacts.cs" />
+    <Compile Include="People\Commands\ChangeEmailSpellingValidatorFacts.cs" />
+    <Compile Include="People\Commands\ChangeEmailSpellingHandlerFacts.cs" />
+    <Compile Include="People\Commands\UpdateNameHandlerFacts.cs" />
+    <Compile Include="People\Commands\UpdateNameValidatorFacts.cs" />
     <Compile Include="People\Commands\CreatePersonHandlerFacts.cs" />
     <Compile Include="People\Commands\CreatePersonValidatorFacts.cs" />
     <Compile Include="People\Entities\AffiliationFacts.cs" />
@@ -111,6 +115,7 @@
     <Compile Include="People\Entities\EmailConfirmationFacts.cs" />
     <Compile Include="People\Entities\EmailMessageFacts.cs" />
     <Compile Include="People\Entities\PersonFacts.cs" />
+    <Compile Include="People\Queries\GenerateDisplayNameHandlerFacts.cs" />
     <Compile Include="Places\BoundingBoxFacts.cs" />
     <Compile Include="Places\GeoPlanetPlaceBelongToFacts.cs" />
     <Compile Include="Places\GeoPlanetPlaceNodeFacts.cs" />
@@ -136,9 +141,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="People\Queries\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -61,15 +61,15 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Get = "change-spelling";
-            public readonly string Put = "change-spelling";
+            public readonly string Get = "change-email-spelling";
+            public readonly string Put = "change-email-spelling";
             public readonly string ValidateValue = "ValidateValue";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Get = "change-spelling";
-            public const string Put = "change-spelling";
+            public const string Get = "change-email-spelling";
+            public const string Put = "change-email-spelling";
             public const string ValidateValue = "ValidateValue";
         }
 
@@ -79,13 +79,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string change_spelling_modal = "~/Areas/My/Views/ChangeEmailSpelling/change-spelling-modal.cshtml";
-            public readonly string change_spelling = "~/Areas/My/Views/ChangeEmailSpelling/change-spelling.cshtml";
-            static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
-            public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
-            public partial class _EditorTemplates{
-                public readonly string ChangeEmailSpellingForm = "ChangeEmailSpellingForm";
-            }
+            public readonly string _form = "~/Areas/My/Views/ChangeEmailSpelling/_form.cshtml";
+            public readonly string change_email_spelling = "~/Areas/My/Views/ChangeEmailSpelling/change-email-spelling.cshtml";
         }
     }
 

@@ -47,8 +47,8 @@ namespace UCosmic.Domain.People
             command.UserPersonDisplayName = user != null && user.Person != null
                 ? user.Person.DisplayName : null;
 
-            // return true (valid) if there is no user or no person attached to the user
-            return user == null || user.Person == null;
+            // return true (valid) if there is no user
+            return user == null;
         }
     }
 }
