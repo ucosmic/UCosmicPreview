@@ -53,30 +53,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             }
         }
 
-        public static class AutoCompleteNameSalutations
-        {
-            public const string Route = "people/autocomplete/name-salutations.json";
-            private static readonly string Action = MVC.Identity.Self.ActionNames.AutoCompleteNameSalutations;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, Route, defaults, constraints);
-            }
-        }
-
-        public static class AutoCompleteNameSuffixes
-        {
-            public const string Route = "people/autocomplete/name-suffixes.json";
-            private static readonly string Action = MVC.Identity.Self.ActionNames.AutoCompleteNameSuffixes;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, Route, defaults, constraints);
-            }
-        }
-
         public static class AutoCompletePersonName
         {
             public const string Route = "people/autocomplete/name.json";

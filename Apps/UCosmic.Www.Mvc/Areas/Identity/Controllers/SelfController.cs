@@ -9,7 +9,6 @@ using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Mappers;
 using UCosmic.Www.Mvc.Areas.Identity.Models.Self;
 using UCosmic.Www.Mvc.Controllers;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -143,86 +142,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         #endregion
         #region Json
 
-        #region AutoComplete Salutations & Suffixes
-
-        [ActionName("autocomplete-name-salutations")]
-        public virtual ActionResult AutoCompleteNameSalutations(string term)
-        {
-            const string nullOptionLabel = "[None]";
-            // get all of the unique salutations already in the database
-            var data = _people.GetDistinctSalutations();
-
-            // set up default examples
-            var defaults = new List<string> { "Prof.", "Dr.", "Mr.", "Mrs.", };
-
-            // integrate defaults with data
-            var union = data.Union(defaults);
-
-            // apply term
-            if (!string.IsNullOrWhiteSpace(term))
-            {
-                union = union.AsEnumerable()
-                    .Where(x => x.StartsWith(term, StringComparison.OrdinalIgnoreCase))
-                    .AsQueryable();
-            }
-
-            // add null option if term is empty
-            if (string.IsNullOrWhiteSpace(term) && !string.IsNullOrWhiteSpace(nullOptionLabel))
-            {
-                union = union.Union(new List<string> { nullOptionLabel });
-            }
-
-            // sort & return results
-            union = union.OrderBy(a => a);
-            var options = union.Select(a => new AutoCompleteOption { value = a, label = a, }).ToList();
-            var nullOption = options.SingleOrDefault(o => o.value == nullOptionLabel);
-            if (nullOption != null)
-            {
-                nullOption.value = string.Empty;
-            }
-            return Json(options, JsonRequestBehavior.AllowGet);
-        }
-
-        [ActionName("autocomplete-name-suffixes")]
-        public virtual ActionResult AutoCompleteNameSuffixes(string term)
-        {
-            const string nullOptionLabel = "[None]";
-            //var autoComplete = _identities.AutoCompleteNameSuffix(term, nullOptionLabel);
-            // get all of the unique suffixes already in the database
-            var data = _people.GetDistinctSuffixes();
-
-            // set up default examples
-            var defaults = new List<string> { "Jr.", "Sr.", "PhD", "Esq.", };
-
-            // integrate defaults with data
-            var union = data.Union(defaults);
-
-            // apply term
-            if (!string.IsNullOrWhiteSpace(term))
-            {
-                union = union.AsEnumerable()
-                    .Where(x => x.StartsWith(term, StringComparison.OrdinalIgnoreCase))
-                    .AsQueryable();
-            }
-
-            // add null option if term is empty
-            if (string.IsNullOrWhiteSpace(term) && !string.IsNullOrWhiteSpace(nullOptionLabel))
-            {
-                union = union.Union(new List<string> { nullOptionLabel });
-            }
-
-            // sort & return results
-            union = union.OrderBy(a => a);
-            var options = union.Select(a => new AutoCompleteOption { value = a, label = a, }).ToList();
-            var nullOption = options.SingleOrDefault(o => o.value == nullOptionLabel);
-            if (nullOption != null)
-            {
-                nullOption.value = string.Empty;
-            }
-            return Json(options, JsonRequestBehavior.AllowGet);
-        }
-
-        #endregion
         #region AutoComplete Person Name
 
         public enum PersonNameProperty

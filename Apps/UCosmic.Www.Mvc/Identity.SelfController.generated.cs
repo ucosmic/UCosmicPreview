@@ -38,16 +38,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult AutoCompleteNameSalutations() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.AutoCompleteNameSalutations);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult AutoCompleteNameSuffixes() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.AutoCompleteNameSuffixes);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult AutoCompletePersonName() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.AutoCompletePersonName);
         }
@@ -83,8 +73,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public class ActionNamesClass {
             public readonly string Me = "me";
             public readonly string EditAffiliation = "edit-affiliation";
-            public readonly string AutoCompleteNameSalutations = "autocomplete-name-salutations";
-            public readonly string AutoCompleteNameSuffixes = "autocomplete-name-suffixes";
             public readonly string AutoCompletePersonName = "autocomplete-name";
             public readonly string PersonInfoById = "person-info-by-id";
             public readonly string PersonInfoByEmail = "person-info-by-email";
@@ -95,8 +83,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public class ActionNameConstants {
             public const string Me = "me";
             public const string EditAffiliation = "edit-affiliation";
-            public const string AutoCompleteNameSalutations = "autocomplete-name-salutations";
-            public const string AutoCompleteNameSuffixes = "autocomplete-name-suffixes";
             public const string AutoCompletePersonName = "autocomplete-name";
             public const string PersonInfoById = "person-info-by-id";
             public const string PersonInfoByEmail = "person-info-by-email";
@@ -150,18 +136,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public override System.Web.Mvc.ActionResult EditAffiliation(UCosmic.Www.Mvc.Areas.Identity.Models.Self.AffiliationForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.EditAffiliation);
             callInfo.RouteValueDictionary.Add("model", model);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult AutoCompleteNameSalutations(string term) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AutoCompleteNameSalutations);
-            callInfo.RouteValueDictionary.Add("term", term);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult AutoCompleteNameSuffixes(string term) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AutoCompleteNameSuffixes);
-            callInfo.RouteValueDictionary.Add("term", term);
             return callInfo;
         }
 
