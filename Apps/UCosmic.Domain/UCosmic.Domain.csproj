@@ -151,6 +151,8 @@
     <Compile Include="People\PersonExtensions.cs" />
     <Compile Include="People\PersonFactory.cs" />
     <Compile Include="People\PersonQuery.cs" />
+    <Compile Include="People\Queries\FindDistinctSuffixesHandler.cs" />
+    <Compile Include="People\Queries\FindDistinctSuffixesQuery.cs" />
     <Compile Include="People\Queries\FindDistinctSalutationsHandler.cs" />
     <Compile Include="People\Queries\FindDistinctSalutationsQuery.cs" />
     <Compile Include="People\Queries\GenerateDisplayNameHandler.cs" />

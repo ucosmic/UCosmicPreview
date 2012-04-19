@@ -28,6 +28,9 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             return Json(displayName);
         }
 
+        public const string SalutationAndSuffixNullValueLabel = "[None]";
+        public static readonly string[] DefaultSalutationValues = new[] { "Prof.", "Dr.", "Mr.", "Ms." };
+
         [HttpGet]
         [OutputCache(VaryByParam = "*", Duration = 1800, Location = OutputCacheLocation.Server)]
         public virtual JsonResult AutoCompleteSalutations(string term)
@@ -52,7 +55,30 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             return Json(options, JsonRequestBehavior.AllowGet);
         }
 
-        public const string SalutationAndSuffixNullValueLabel = "[None]";
-        public static readonly string[] DefaultSalutationValues = new[] { "Prof.", "Dr.", "Mr.", "Ms." };
+        public static readonly string[] DefaultSuffixValues = new[] { "Jr.", "Sr.", "PhD", "Esq." };
+
+        [HttpGet]
+        [OutputCache(VaryByParam = "*", Duration = 1800, Location = OutputCacheLocation.Server)]
+        public virtual JsonResult AutoCompleteSuffixes(string term)
+        {
+            var data = new List<string> { SalutationAndSuffixNullValueLabel };
+            data.AddRange(DefaultSuffixValues);
+
+            var results = _services.QueryProcessor.Execute(
+                new FindDistinctSuffixesQuery
+                {
+                    Exclude = data.ToArray(),
+                }
+            );
+            if (results != null && results.Length > 0)
+                data.AddRange(results);
+
+            var options = data.OrderBy(s => s).Select(s => new
+            {
+                label = s,
+                value = s != SalutationAndSuffixNullValueLabel ? s : string.Empty,
+            });
+            return Json(options, JsonRequestBehavior.AllowGet);
+        }
     }
 }

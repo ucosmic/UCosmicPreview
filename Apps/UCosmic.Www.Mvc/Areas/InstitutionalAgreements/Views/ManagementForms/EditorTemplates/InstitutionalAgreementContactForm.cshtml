@@ -305,7 +305,7 @@
             function initExtraComboBoxes() {
                 if (extraComboBoxesInitialized) return;
                 $('#' + salutationId).cosmobox({
-                    source: '@Url.Action(MVC.Identity.Self.AutoCompleteNameSalutations())',
+                    source: '@Url.Action(MVC.People.PersonName.AutoCompleteSalutations())',
                     buttonTitle: 'Show examples',
                     appendTo: '.' + salutationId + '-field .autocomplete-menu',
                     focused: function () {
@@ -315,7 +315,7 @@
                     }
                 });
                 $('#' + suffixId).cosmobox({
-                    source: '@Url.Action(MVC.Identity.Self.AutoCompleteNameSuffixes())',
+                    source: '@Url.Action(MVC.People.PersonName.AutoCompleteSuffixes())',
                     buttonTitle: 'Show examples',
                     appendTo: '.' + suffixId + '-field .autocomplete-menu',
                     focused: function () {

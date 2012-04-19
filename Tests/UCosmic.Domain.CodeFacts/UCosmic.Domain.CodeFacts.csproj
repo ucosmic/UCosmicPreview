@@ -115,6 +115,7 @@
     <Compile Include="People\Entities\EmailConfirmationFacts.cs" />
     <Compile Include="People\Entities\EmailMessageFacts.cs" />
     <Compile Include="People\Entities\PersonFacts.cs" />
+    <Compile Include="People\Queries\FindDistinctSuffixesHandlerFacts.cs" />
     <Compile Include="People\Queries\FindDistinctSalutationsHandlerFacts.cs" />
     <Compile Include="People\Queries\GenerateDisplayNameHandlerFacts.cs" />
     <Compile Include="Places\BoundingBoxFacts.cs" />

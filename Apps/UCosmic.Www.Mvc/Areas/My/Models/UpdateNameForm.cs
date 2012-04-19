@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using UCosmic.Www.Mvc.Areas.My.Controllers;
+using UCosmic.Www.Mvc.Areas.People.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
     public class UpdateNameForm
     {
-        private const string NoneNullDisplayText = "[None]";
+        private const string NoneNullDisplayText = PersonNameController.SalutationAndSuffixNullValueLabel;
         private const string UnknownNullDisplayText = "[Unknown]";
 
         public const string DisplayNameDisplayName = "Display name";
