@@ -15,22 +15,6 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         public class TheGenerateDisplayNameRoute
         {
             [TestMethod]
-            public void Inbound_WithGet_MapsToNothing()
-            {
-                var url = PersonNameRouter.GenerateDisplayName.Route.ToAppRelativeUrl();
-
-                url.WithMethod(HttpVerbs.Get).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void Inbound_WithPut_MapsToNothing()
-            {
-                var url = PersonNameRouter.GenerateDisplayName.Route.ToAppRelativeUrl();
-
-                url.WithMethod(HttpVerbs.Put).ShouldMapToNothing();
-            }
-
-            [TestMethod]
             public void Inbound_WithPost_MapsToPostAction()
             {
                 Expression<Func<PersonNameController, ActionResult>> action =
@@ -64,6 +48,49 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonNameController, ActionResult>> action =
                     controller => controller.GenerateDisplayName(null);
+
+                action.DefaultAreaRoutes(MVC.People.Name).ShouldMapToNothing();
+            }
+
+        }
+
+        [TestClass]
+        public class TheAutoCompleteSalutationsRoute
+        {
+            [TestMethod]
+            public void Inbound_WithGet_MapsToAction()
+            {
+                Expression<Func<PersonNameController, ActionResult>> action =
+                    controller => controller.AutoCompleteSalutations(null);
+                var url = PersonNameRouter.AutoCompleteSalutations.Route.ToAppRelativeUrl();
+
+                url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
+            }
+
+            [TestMethod]
+            public void Inbound_WithNonGet_MapsToNothing()
+            {
+                var url = PersonNameRouter.AutoCompleteSalutations.Route.ToAppRelativeUrl();
+
+                url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
+            }
+
+            [TestMethod]
+            public void Outbound_ForGetAction_MapsToUrl()
+            {
+                Expression<Func<PersonNameController, ActionResult>> action =
+                    controller => controller.AutoCompleteSalutations(null);
+                var url = PersonNameRouter.AutoCompleteSalutations.Route.ToAppRelativeUrl();
+
+                OutBoundRoute.Of(action).InArea(MVC.People.Name).WithMethod(HttpVerbs.Get)
+                    .AppRelativeUrl().ShouldEqual(url);
+            }
+
+            [TestMethod]
+            public void Defaults_WithGetAction_MapToNothing()
+            {
+                Expression<Func<PersonNameController, ActionResult>> action =
+                    controller => controller.AutoCompleteSalutations(null);
 
                 action.DefaultAreaRoutes(MVC.People.Name).ShouldMapToNothing();
             }

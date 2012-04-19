@@ -36,6 +36,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
         public System.Web.Mvc.JsonResult GenerateDisplayName() {
             return new T4MVC_JsonResult(Area, Name, ActionNames.GenerateDisplayName);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.JsonResult AutoCompleteSalutations() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.AutoCompleteSalutations);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public PersonNameController Actions { get { return MVC.People.PersonName; } }
@@ -52,11 +57,13 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string GenerateDisplayName = "GenerateDisplayName";
+            public readonly string AutoCompleteSalutations = "AutoCompleteSalutations";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string GenerateDisplayName = "GenerateDisplayName";
+            public const string AutoCompleteSalutations = "AutoCompleteSalutations";
         }
 
 
@@ -75,6 +82,12 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
         public override System.Web.Mvc.JsonResult GenerateDisplayName(UCosmic.Www.Mvc.Areas.People.Models.GenerateDisplayNameForm model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.GenerateDisplayName);
             callInfo.RouteValueDictionary.Add("model", model);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.JsonResult AutoCompleteSalutations(string term) {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.AutoCompleteSalutations);
+            callInfo.RouteValueDictionary.Add("term", term);
             return callInfo;
         }
 

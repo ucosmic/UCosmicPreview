@@ -28,6 +28,18 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             }
         }
 
+        public static class AutoCompleteSalutations
+        {
+            public const string Route = "people/salutations";
+            private static readonly string Action = MVC.People.PersonName.ActionNames.AutoCompleteSalutations;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("GET"), };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
         // ReSharper restore UnusedMember.Global
     }
 }
