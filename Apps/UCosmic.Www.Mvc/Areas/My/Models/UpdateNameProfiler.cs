@@ -32,14 +32,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             }
         }
 
-        private class ViewModelToGenerateDisplayNameQueryProfile : Profile
-        {
-            protected override void Configure()
-            {
-                CreateMap<UpdateNameForm, GenerateDisplayNameQuery>();
-            }
-        }
-
         // ReSharper restore UnusedMember.Local
     }
 }

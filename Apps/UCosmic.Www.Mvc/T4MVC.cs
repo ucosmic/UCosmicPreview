@@ -33,6 +33,8 @@ public static class MVC {
     public static InstitutionalAgreementsClass InstitutionalAgreements { get { return s_InstitutionalAgreements; } }
     static readonly MyClass s_My = new MyClass();
     public static MyClass My { get { return s_My; } }
+    static readonly PeopleClass s_People = new PeopleClass();
+    public static PeopleClass People { get { return s_People; } }
     static readonly RecruitmentAgenciesClass s_RecruitmentAgencies = new RecruitmentAgenciesClass();
     public static RecruitmentAgenciesClass RecruitmentAgencies { get { return s_RecruitmentAgencies; } }
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
@@ -85,6 +87,12 @@ namespace T4MVC {
         public UCosmic.Www.Mvc.Areas.My.Controllers.ProfileController Profile = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_ProfileController();
         public UCosmic.Www.Mvc.Areas.My.Controllers.UpdateNameController UpdateName = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_UpdateNameController();
         public T4MVC.My.SharedController Shared = new T4MVC.My.SharedController();
+    }
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class PeopleClass {
+        public readonly string Name = "People";
+        public UCosmic.Www.Mvc.Areas.People.Controllers.PersonNameController PersonName = new UCosmic.Www.Mvc.Areas.People.Controllers.T4MVC_PersonNameController();
+        public T4MVC.People.SharedController Shared = new T4MVC.People.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class RecruitmentAgenciesClass {

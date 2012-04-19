@@ -179,6 +179,9 @@
     <Compile Include="Areas\My\Models\UpdateNameValidatorFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameProfilerFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameFormFacts.cs" />
+    <Compile Include="Areas\People\Controllers\PersonNameRouterFacts.cs" />
+    <Compile Include="Areas\People\Controllers\PersonNameControllerFacts.cs" />
+    <Compile Include="Areas\People\Models\GenerateDisplayNameProfilerFacts.cs" />
     <Compile Include="Etc\AuthorizationProviderFacts.cs" />
     <Compile Include="Etc\ReuseMock.cs" />
     <Compile Include="Etc\SimpleDependencyInjectorFacts.cs" />

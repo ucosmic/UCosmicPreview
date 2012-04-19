@@ -9,6 +9,7 @@ using UCosmic.Www.Mvc.Areas.Establishments;
 using UCosmic.Www.Mvc.Areas.Identity;
 using UCosmic.Www.Mvc.Areas.InstitutionalAgreements;
 using UCosmic.Www.Mvc.Areas.My;
+using UCosmic.Www.Mvc.Areas.People;
 using UCosmic.Www.Mvc.Areas.RecruitmentAgencies;
 using UCosmic.Www.Mvc.Models;
 
@@ -63,6 +64,7 @@ namespace UCosmic.Www.Mvc
                     new IdentityAreaRegistration(), 
                     new InstitutionalAgreementsAreaRegistration(), 
                     new MyAreaRegistration(),
+                    new PeopleAreaRegistration(),
                     new RecruitmentAgenciesAreaRegistration(), 
 
                 }.ToList().ForEach(area => RegisterArea(area, RouteTable.Routes));

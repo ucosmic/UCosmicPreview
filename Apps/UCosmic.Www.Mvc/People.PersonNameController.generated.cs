@@ -20,10 +20,10 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace UCosmic.Www.Mvc.Areas.My.Controllers {
-    public partial class UpdateNameController {
+namespace UCosmic.Www.Mvc.Areas.People.Controllers {
+    public partial class PersonNameController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected UpdateNameController(Dummy d) { }
+        protected PersonNameController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -33,32 +33,30 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult Put() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.Put);
+        public System.Web.Mvc.JsonResult GenerateDisplayName() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.GenerateDisplayName);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public UpdateNameController Actions { get { return MVC.My.UpdateName; } }
+        public PersonNameController Actions { get { return MVC.People.PersonName; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "My";
+        public readonly string Area = "People";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "UpdateName";
+        public readonly string Name = "PersonName";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "UpdateName";
+        public const string NameConst = "PersonName";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Get = "update-name";
-            public readonly string Put = "update-name";
+            public readonly string GenerateDisplayName = "GenerateDisplayName";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Get = "update-name";
-            public const string Put = "update-name";
+            public const string GenerateDisplayName = "GenerateDisplayName";
         }
 
 
@@ -67,22 +65,15 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _form = "~/Areas/My/Views/UpdateName/_form.cshtml";
-            public readonly string update_name = "~/Areas/My/Views/UpdateName/update-name.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_UpdateNameController: UCosmic.Www.Mvc.Areas.My.Controllers.UpdateNameController {
-        public T4MVC_UpdateNameController() : base(Dummy.Instance) { }
+    public class T4MVC_PersonNameController: UCosmic.Www.Mvc.Areas.People.Controllers.PersonNameController {
+        public T4MVC_PersonNameController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Get() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult Put(UCosmic.Www.Mvc.Areas.My.Models.UpdateNameForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Put);
+        public override System.Web.Mvc.JsonResult GenerateDisplayName(UCosmic.Www.Mvc.Areas.People.Models.GenerateDisplayNameForm model) {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.GenerateDisplayName);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
