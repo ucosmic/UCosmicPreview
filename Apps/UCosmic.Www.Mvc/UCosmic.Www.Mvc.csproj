@@ -219,6 +219,12 @@
     <Compile Include="Areas\My\Controllers\ProfileRouter.cs" />
     <Compile Include="Areas\My\Controllers\ChangeEmailSpellingRouter.cs" />
     <Compile Include="Areas\My\Controllers\ChangeEmailSpellingServices.cs" />
+    <Compile Include="Areas\People\Controllers\PersonNameController.cs" />
+    <Compile Include="Areas\People\Controllers\PersonNameServices.cs" />
+    <Compile Include="Areas\People\Controllers\PersonNameRouter.cs" />
+    <Compile Include="Areas\People\Models\GenerateDisplayNameForm.cs" />
+    <Compile Include="Areas\People\Models\GenerateDisplayNameProfiler.cs" />
+    <Compile Include="Areas\People\PeopleAreaRegistration.cs" />
     <Compile Include="Controllers\NullLayoutOnChildActionAttribute.cs" />
     <Compile Include="Helpers\SimpleInjectorMVC3.cs" />
     <Compile Include="Helpers\SimpleInjectorMVC3Extensions.cs" />
@@ -334,6 +340,12 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="My.UpdateNameController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="People.PersonNameController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="People.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Routes\PositiveIntegerRouteConstraint.cs" />
@@ -1026,6 +1038,8 @@
     <Content Include="Areas\My\Views\UpdateName\update-name.cshtml" />
     <Content Include="Areas\My\Views\UpdateName\_form.cshtml" />
     <Content Include="Areas\My\Views\Shared\EditorTemplates\UpdateNameForm.cshtml" />
+    <Content Include="Areas\People\Views\Web.config" />
+    <Content Include="Areas\People\Views\_ViewStart.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />
@@ -1069,6 +1083,7 @@
   <ItemGroup>
     <Folder Include="App_Data\mail\" />
     <Folder Include="Areas\Common\Views\Shared\" />
+    <Folder Include="Areas\People\Views\Shared\" />
     <Folder Include="Areas\RecruitmentAgencies\Controllers\" />
     <Folder Include="Areas\RecruitmentAgencies\Models\" />
     <Folder Include="Areas\RecruitmentAgencies\Views\Shared\" />
