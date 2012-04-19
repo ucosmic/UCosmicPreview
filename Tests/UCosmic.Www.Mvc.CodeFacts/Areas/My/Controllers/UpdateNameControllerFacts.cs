@@ -415,7 +415,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_HttpPost()
             {
-                Expression<Func<UpdateNameController, ActionResult>> method = m => m.GenerateDisplayName(null);
+                Expression<Func<UpdateNameController, ActionResult>> method = m => m.GenerateDisplayName(null, null, null, null, null);
 
                 var attributes = method.GetAttributes<UpdateNameController, ActionResult, HttpPostAttribute>();
                 attributes.ShouldNotBeNull();
@@ -426,7 +426,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_OutputCache()
             {
-                Expression<Func<UpdateNameController, ActionResult>> method = m => m.GenerateDisplayName(null);
+                Expression<Func<UpdateNameController, ActionResult>> method = m => m.GenerateDisplayName(null, null, null, null, null);
 
                 var attributes = method.GetAttributes<UpdateNameController, ActionResult, OutputCacheAttribute>();
                 attributes.ShouldNotBeNull();
@@ -437,30 +437,27 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void ExecutesQuery_ToGenerateDisplayName()
             {
-                var model = new UpdateNameForm
-                {
-                    Salutation = "Mr",
-                    FirstName = "Adam",
-                    MiddleName = "B",
-                    LastName = "West",
-                    Suffix = "Sr.",
-                };
+                const string salutation = "Mr";
+                const string firstName = "Adam";
+                const string middleName = "B";
+                const string lastName = "West";
+                const string suffix = "Sr.";
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<GenerateDisplayNameQuery, bool>> generateDisplayNameBasedOnModel = q => 
-                    q.Salutation == model.Salutation &&
-                    q.FirstName == model.FirstName &&
-                    q.MiddleName == model.MiddleName &&
-                    q.LastName == model.LastName &&
-                    q.Suffix == model.Suffix
+                Expression<Func<GenerateDisplayNameQuery, bool>> generateDisplayNameBasedOnArgs = q =>
+                    q.Salutation == salutation &&
+                    q.FirstName == firstName &&
+                    q.MiddleName == middleName &&
+                    q.LastName == lastName &&
+                    q.Suffix == suffix
                 ;
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(generateDisplayNameBasedOnModel)))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(generateDisplayNameBasedOnArgs)))
                     .Returns("derived display name");
 
-                controller.GenerateDisplayName(model);
+                controller.GenerateDisplayName(salutation, firstName, middleName, lastName, suffix);
 
                 scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
-                    It.Is(generateDisplayNameBasedOnModel)), 
+                    It.Is(generateDisplayNameBasedOnArgs)), 
                         Times.Once());
             }
 
@@ -468,27 +465,24 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             public void ReturnsJson_WithGeneratedDisplayName()
             {
                 const string generatedDisplayName = "generated display name";
-                var model = new UpdateNameForm
-                {
-                    Salutation = "Mr",
-                    FirstName = "Adam",
-                    MiddleName = "B",
-                    LastName = "West",
-                    Suffix = "Sr.",
-                };
+                const string salutation = "Mr";
+                const string firstName = "Adam";
+                const string middleName = "B";
+                const string lastName = "West";
+                const string suffix = "Sr.";
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<GenerateDisplayNameQuery, bool>> generateDisplayNameBasedOnModel = q =>
-                    q.Salutation == model.Salutation &&
-                    q.FirstName == model.FirstName &&
-                    q.MiddleName == model.MiddleName &&
-                    q.LastName == model.LastName &&
-                    q.Suffix == model.Suffix
+                Expression<Func<GenerateDisplayNameQuery, bool>> generateDisplayNameBasedOnArgs = q =>
+                    q.Salutation == salutation &&
+                    q.FirstName == firstName &&
+                    q.MiddleName == middleName &&
+                    q.LastName == lastName &&
+                    q.Suffix == suffix
                 ;
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(generateDisplayNameBasedOnModel)))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(generateDisplayNameBasedOnArgs)))
                     .Returns(generatedDisplayName);
 
-                var result = controller.GenerateDisplayName(model);
+                var result = controller.GenerateDisplayName(salutation, firstName, middleName, lastName, suffix);
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<JsonResult>();

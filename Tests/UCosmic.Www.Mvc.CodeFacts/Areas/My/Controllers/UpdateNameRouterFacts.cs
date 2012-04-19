@@ -139,7 +139,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             public void Inbound_WithPost_MapsToPostAction()
             {
                 Expression<Func<UpdateNameController, ActionResult>> action =
-                    controller => controller.GenerateDisplayName(null);
+                    controller => controller.GenerateDisplayName(null, null, null, null, null);
                 var url = UpdateNameRouter.GenerateDisplayName.Route.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
@@ -157,7 +157,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             public void Outbound_ForPostAction_MapsToUrl()
             {
                 Expression<Func<UpdateNameController, ActionResult>> action =
-                    controller => controller.GenerateDisplayName(null);
+                    controller => controller.GenerateDisplayName(null, null, null, null, null);
                 var url = UpdateNameRouter.GenerateDisplayName.Route.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(MVC.My.Name).WithMethod(HttpVerbs.Post)
@@ -168,7 +168,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             public void Defaults_WithPostAction_MapToNothing()
             {
                 Expression<Func<UpdateNameController, ActionResult>> action =
-                    controller => controller.GenerateDisplayName(null);
+                    controller => controller.GenerateDisplayName(null, null, null, null, null);
 
                 action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
             }

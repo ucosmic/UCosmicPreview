@@ -68,9 +68,17 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
         [HttpPost]
         [OutputCache(VaryByParam = "*", Duration = 1800)]
-        public virtual JsonResult GenerateDisplayName(UpdateNameForm model)
+        public virtual JsonResult GenerateDisplayName(string salutation, string firstName, string middleName, string lastName, string suffix)
         {
-            var query = Mapper.Map<GenerateDisplayNameQuery>(model);
+            //var query = Mapper.Map<GenerateDisplayNameQuery>(model);
+            var query = new GenerateDisplayNameQuery
+            {
+                Salutation = salutation,
+                FirstName = firstName,
+                MiddleName = middleName,
+                LastName = lastName,
+                Suffix = suffix,
+            };
             var displayName = _services.QueryProcessor.Execute(query);
             return Json(displayName);
         }
