@@ -45,6 +45,17 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             }
         }
 
+        private class ViewModelToCommandProfile : Profile
+        {
+            protected override void Configure()
+            {
+                CreateMap<AffiliationForm, UpdateMyAffiliationCommand>()
+                    .ForMember(d => d.Principal, o => o.Ignore())
+                    .ForMember(d => d.ChangeCount, o => o.Ignore())
+                ;
+            }
+        }
+
         // ReSharper restore UnusedMember.Local
     }
 }

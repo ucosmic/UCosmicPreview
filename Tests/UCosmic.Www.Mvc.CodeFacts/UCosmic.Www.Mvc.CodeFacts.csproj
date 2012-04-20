@@ -179,6 +179,9 @@
     <Compile Include="Areas\My\Models\ChangeEmailSpellingProfilerFacts.cs" />
     <Compile Include="Areas\My\Models\ChangeEmailSpellingValidatorFacts.cs" />
     <Compile Include="Areas\My\Controllers\ChangeEmailSpellingRouterFacts.cs" />
+    <Compile Include="Areas\My\Models\AffiliationProfilerFacts.cs" />
+    <Compile Include="Areas\My\Models\AffiliationValidatorFacts.cs" />
+    <Compile Include="Areas\My\Models\AffiliationFormFacts.cs" />
     <Compile Include="Areas\My\Models\ProfileProfilerFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameValidatorFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameProfilerFacts.cs" />

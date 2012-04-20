@@ -9,8 +9,10 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         [HiddenInput(DisplayValue = false)]
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Job Title(s) & Department(s)")]
-        [DisplayFormat(NullDisplayText = "[Job Title(s) Unknown]")]
+        public const string JobTitlesDisplayName = "Job Title(s) & Department(s)";
+        public const string JobTitlesNullDisplayText = "[Job Title(s) Unknown]";
+        [Display(Name = JobTitlesDisplayName)]
+        [DisplayFormat(NullDisplayText = JobTitlesNullDisplayText)]
         [DataType(DataType.MultilineText)]
         public string JobTitles { get; set; }
 
@@ -30,39 +32,41 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         [HiddenInput(DisplayValue = false)]
         public bool IsAcknowledged { get; set; }
 
-        public bool IsClaimingStudent { get; set; }
-        
-        public bool IsClaimingEmployee { get; set; }
-
-        [Display(Name = "I am employed in the international affairs office.")]
-        public bool IsClaimingInternationalOffice { get; set; }
-
-        [Display(Name = "I am an administrator.")]
-        public bool IsClaimingAdministrator { get; set; }
-
-        [Display(Name = "I am a faculty member.")]
-        public bool IsClaimingFaculty { get; set; }
-
-        [Display(Name = "I am a staff employee.")]
-        public bool IsClaimingStaff { get; set; }
-
-        [Required(ErrorMessage = "Please indicate which statement best describes this affiliation.")]
-        public EmployeeOrStudentAnswer? EmployeeOrStudent { get; set; }
-
-        public void ApplyEmployeeOrStudentAnswer()
+        public bool IsClaimingEmployee
         {
-            IsClaimingStudent = false;
-            IsClaimingEmployee = true;
-            if (!EmployeeOrStudent.HasValue) return;
-            IsClaimingStudent = EmployeeOrStudent == EmployeeOrStudentAnswer.Both
-                                || EmployeeOrStudent == EmployeeOrStudentAnswer.StudentOnly;
-            IsClaimingEmployee = EmployeeOrStudent == EmployeeOrStudentAnswer.Both
-                                 || EmployeeOrStudent == EmployeeOrStudentAnswer.EmployeeOnly;
-            if (EmployeeOrStudent == EmployeeOrStudentAnswer.Neither)
+            get
             {
-                IsClaimingEmployee = false;
+                return EmployeeOrStudent == EmployeeOrStudentAnswer.EmployeeOnly
+                    || EmployeeOrStudent == EmployeeOrStudentAnswer.Both;
             }
         }
+
+        public bool IsClaimingStudent
+        {
+            get
+            {
+                return EmployeeOrStudent == EmployeeOrStudentAnswer.StudentOnly
+                    || EmployeeOrStudent == EmployeeOrStudentAnswer.Both;
+            }
+        }
+
+        public const string IsClaimingInternationalOfficeDisplayName = "I am employed in the international affairs office.";
+        [Display(Name = IsClaimingInternationalOfficeDisplayName)]
+        public bool IsClaimingInternationalOffice { get; set; }
+
+        public const string IsClaimingAdministratorDisplayName = "I am an administrator.";
+        [Display(Name = IsClaimingAdministratorDisplayName)]
+        public bool IsClaimingAdministrator { get; set; }
+
+        public const string IsClaimingFacultyDisplayName = "I am a faculty member.";
+        [Display(Name = IsClaimingFacultyDisplayName)]
+        public bool IsClaimingFaculty { get; set; }
+
+        public const string IsClaimingStaffDisplayName = "I am a staff employee.";
+        [Display(Name = IsClaimingStaffDisplayName)]
+        public bool IsClaimingStaff { get; set; }
+
+        public EmployeeOrStudentAnswer? EmployeeOrStudent { get; set; }
     }
 
     public enum EmployeeOrStudentAnswer

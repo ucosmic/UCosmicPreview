@@ -1,4 +1,5 @@
 ﻿using UCosmic.Domain;
+using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
@@ -6,14 +7,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
     {
         public AffiliationServices(
             IProcessQueries queryProcessor
-            //, IHandleCommands<ChangeEmailSpellingCommand> commandHandler
+            , IHandleCommands<UpdateMyAffiliationCommand> commandHandler
         )
         {
             QueryProcessor = queryProcessor;
-            //CommandHandler = commandHandler;
+            CommandHandler = commandHandler;
         }
 
         public IProcessQueries QueryProcessor { get; private set; }
-        //public IHandleCommands<ChangeEmailSpellingCommand> CommandHandler { get; private set; }
+        public IHandleCommands<UpdateMyAffiliationCommand> CommandHandler { get; private set; }
     }
 }

@@ -46,17 +46,18 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             // make sure model state is valid
             if (!ModelState.IsValid) return PartialView(model);
 
-            //// execute command, set feedback message, and redirect
-            //var command = Mapper.Map<ChangeEmailSpellingCommand>(model);
-            //_services.CommandHandler.Handle(command);
-            //SetFeedbackMessage(command.ChangedState
-            //    ? string.Format(SuccessMessageFormat, model.Value)
-            //    : NoChangesMessage
-            //);
+            // execute command, set feedback message, and redirect
+            var command = Mapper.Map<UpdateMyAffiliationCommand>(model);
+            command.Principal = User;
+            _services.CommandHandler.Handle(command);
+            SetFeedbackMessage(command.ChangedState
+                ? SuccessMessage
+                : NoChangesMessage
+            );
             return Redirect(model.ReturnUrl);
         }
 
-        public const string SuccessMessageFormat = "Your email address was successfully changed to {0}.";
+        public const string SuccessMessage = "Your affiliation info was successfully updated.";
         public const string NoChangesMessage = "No changes were made.";
     }
 }

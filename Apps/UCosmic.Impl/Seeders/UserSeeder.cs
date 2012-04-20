@@ -45,6 +45,7 @@ namespace UCosmic.Seeders
 
                 EnsureUser("sodhiha1@uc.edu", "Haritma", "Sodhi", "www.uc.edu", developerRoles);
                 EnsureUser("ganesh_c@uc.edu", "Ganesh", "Chitrothu", "www.uc.edu", developerRoles);
+                EnsureUser("test@terradotta.com", "Terradotta", "Test", "www.terradotta.com", null);
 
                 // members for non-role-based tests
                 EnsureUser("any1@uc.edu", "Any", "One", "www.uc.edu");

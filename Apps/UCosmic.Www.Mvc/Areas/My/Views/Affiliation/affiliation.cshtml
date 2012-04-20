@@ -3,6 +3,14 @@
     ViewBag.Title = "Edit affiliation info";
     Layout = MVC.Shared.Views.layout;
 }
+@section Styles
+{
+    @Html.Partial(MVC.My.Affiliation.Views._styles)
+}
+@section Scripts
+{
+    @Html.Partial(MVC.My.Affiliation.Views._scripts)
+}
 <div class="wrap-960">
     <h2 class="push-down">
         My <i>@Model.Establishment.OfficialName</i> Affiliation
@@ -57,48 +65,3 @@
         </div>
     </div>
 </div>
-@section Styles {
-    <style type="text/css">
-        .ucosmic #employee_form textarea {
-            max-width: 415px;
-            min-height: 4em;
-            max-height: 8em;
-        }
-    </style>
-}
-@section Scripts
-{
-    @if (Model.Establishment.IsInstitution)
-    {
-        <script type="text/javascript">
-            $(function () {
-                var answerName = '@Html.NameFor(m => m.EmployeeOrStudent)';
-                $('input[name="' + answerName + '"]').change(function () {
-                    var value = $(this).val();
-                    switch (value) {
-                        case 'EmployeeOnly':
-                        case 'Both':
-                            $('#employee_form').slideDown();
-                            break;
-
-                        case 'StudentOnly':
-                        case 'Neither':
-                            $('#employee_form').slideUp();
-                            break;
-
-                        default:
-                            break;
-                    }
-                });
-            });
-        </script>
-    }
-    @if (!Model.Establishment.IsInstitution || (Model.IsClaimingEmployee && Model.IsAcknowledged))
-    {
-        <script type="text/javascript">
-            $(function () {
-                $('#employee_form').show();
-            });
-        </script>
-    }
-}
