@@ -117,37 +117,37 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         public class TheIsClaimingEmployeeProperty
         {
             [TestMethod]
-            public void IsTrue_WhenEmployeeOrStudent_IsBoth()
+            public void IsTrue_WhenEmployeeOrStudentAffiliation_IsBoth()
             {
-                var model = new AffiliationForm {EmployeeOrStudent = EmployeeOrStudentAnswer.Both};
+                var model = new AffiliationForm {EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Both};
                 model.IsClaimingEmployee.ShouldBeTrue();
             }
 
             [TestMethod]
-            public void IsTrue_WhenEmployeeOrStudent_IsEmployeeOnly()
+            public void IsTrue_WhenEmployeeOrStudentAffiliation_IsEmployeeOnly()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.EmployeeOnly };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.EmployeeOnly };
                 model.IsClaimingEmployee.ShouldBeTrue();
             }
 
             [TestMethod]
-            public void IsFalse_WhenEmployeeOrStudent_IsStudentOnly()
+            public void IsFalse_WhenEmployeeOrStudentAffiliation_IsStudentOnly()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.StudentOnly };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.StudentOnly };
                 model.IsClaimingEmployee.ShouldBeFalse();
             }
 
             [TestMethod]
-            public void IsFalse_WhenEmployeeOrStudent_IsNeither()
+            public void IsFalse_WhenEmployeeOrStudentAffiliation_IsNeither()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.Neither };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Neither };
                 model.IsClaimingEmployee.ShouldBeFalse();
             }
 
             [TestMethod]
-            public void IsFalse_WhenEmployeeOrStudent_IsNull()
+            public void IsFalse_WhenEmployeeOrStudentAffiliation_IsNull()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = null };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = null };
                 model.IsClaimingEmployee.ShouldBeFalse();
             }
         }
@@ -156,37 +156,37 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         public class TheIsClaimingStudentProperty
         {
             [TestMethod]
-            public void IsTrue_WhenEmployeeOrStudent_IsBoth()
+            public void IsTrue_WhenEmployeeOrStudentAffiliation_IsBoth()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.Both };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Both };
                 model.IsClaimingStudent.ShouldBeTrue();
             }
 
             [TestMethod]
-            public void IsTrue_WhenEmployeeOrStudent_IsEmployeeOnly()
+            public void IsTrue_WhenEmployeeOrStudentAffiliation_IsEmployeeOnly()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.StudentOnly };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.StudentOnly };
                 model.IsClaimingStudent.ShouldBeTrue();
             }
 
             [TestMethod]
-            public void IsFalse_WhenEmployeeOrStudent_IsStudentOnly()
+            public void IsFalse_WhenEmployeeOrStudentAffiliation_IsStudentOnly()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.EmployeeOnly };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.EmployeeOnly };
                 model.IsClaimingStudent.ShouldBeFalse();
             }
 
             [TestMethod]
-            public void IsFalse_WhenEmployeeOrStudent_IsNeither()
+            public void IsFalse_WhenEmployeeOrStudentAffiliation_IsNeither()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.Neither };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Neither };
                 model.IsClaimingStudent.ShouldBeFalse();
             }
 
             [TestMethod]
-            public void IsFalse_WhenEmployeeOrStudent_IsNull()
+            public void IsFalse_WhenEmployeeOrStudentAffiliation_IsNull()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = null };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = null };
                 model.IsClaimingStudent.ShouldBeFalse();
             }
         }

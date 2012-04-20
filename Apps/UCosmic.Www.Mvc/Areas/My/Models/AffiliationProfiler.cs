@@ -19,21 +19,21 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             protected override void Configure()
             {
                 CreateMap<Affiliation, AffiliationForm>()
-                    .ForMember(d => d.EmployeeOrStudent, o => o.ResolveUsing(s =>
+                    .ForMember(d => d.EmployeeOrStudentAffiliation, o => o.ResolveUsing(s =>
                         {
                             if (s.IsAcknowledged)
                             {
                                 if (s.IsClaimingEmployee && !s.IsClaimingStudent)
-                                    return EmployeeOrStudentAnswer.EmployeeOnly;
+                                    return EmployeeOrStudentAffiliate.EmployeeOnly;
 
                                 if (s.IsClaimingEmployee && s.IsClaimingStudent)
-                                    return EmployeeOrStudentAnswer.Both;
+                                    return EmployeeOrStudentAffiliate.Both;
 
                                 if (!s.IsClaimingEmployee && !s.IsClaimingStudent)
-                                    return EmployeeOrStudentAnswer.Neither;
+                                    return EmployeeOrStudentAffiliate.Neither;
 
                                 if (!s.IsClaimingEmployee && s.IsClaimingStudent)
-                                    return EmployeeOrStudentAnswer.StudentOnly;
+                                    return EmployeeOrStudentAffiliate.StudentOnly;
                             }
                             return null;
                         }))
