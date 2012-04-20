@@ -19,6 +19,16 @@ namespace UCosmic.Domain.People
             return person;
         }
 
+        internal static EmailAddress GetEmail(this Person owner, int number)
+        {
+            return owner.Emails.ByNumber(number);
+        }
+
+        internal static Affiliation GetAffiliation(this Person owner, int establishmentId)
+        {
+            return owner.Affiliations.ByEstablishmentId(establishmentId);
+        }
+
         internal static IQueryable<Person> WithNonEmptySalutation(this IQueryable<Person> queryable)
         {
             return queryable.Where(p => p.Salutation != null && p.Salutation.Trim() != string.Empty);

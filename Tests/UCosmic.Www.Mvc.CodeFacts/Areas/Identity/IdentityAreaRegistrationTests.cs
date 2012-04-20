@@ -185,39 +185,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             actionForPost.DefaultAreaRoutes(MVC.Identity.Name).ShouldMapToNothing();
         }
 
-        [TestMethod]
-        public void Route_Identity_Self_EditAffiliation_GET_IsSetUp()
-        {
-            var entityId = Guid.NewGuid();
-            Expression<Func<SelfController, ActionResult>> action =
-                controller => controller.EditAffiliation(entityId);
-            const string entityIdParam = "{entityId}";
-            const string urlFormat = "me/affiliations/{entityId}/edit.html";
-
-            var url1 = urlFormat.Replace(entityIdParam, entityId.ToString()).ToAppRelativeUrl();
-            url1.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
-            url1.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            action.DefaultAreaRoutes(MVC.Identity.Name).ShouldMapToNothing();
-
-            var url2 = urlFormat.Replace(entityIdParam, Guid.Empty.ToString()).ToAppRelativeUrl();
-            url2.WithAnyMethod().ShouldMapToNothing();
-
-            var url3 = urlFormat.Replace(entityIdParam, "not a Guid").ToAppRelativeUrl();
-            url3.WithAnyMethod().ShouldMapToNothing();
-        }
-
-        [TestMethod]
-        public void Route_Identity_Self_EditAffiliation_POST_IsSetUp()
-        {
-            Expression<Func<SelfController, ActionResult>> action =
-                controller => controller.EditAffiliation(null as AffiliationForm);
-            const string url = "me/affiliations/edit.html";
-
-            url.ToAppRelativeUrl().WithMethod(HttpVerbs.Post).ShouldMapTo(action);
-            url.ToAppRelativeUrl().WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
-            action.DefaultAreaRoutes(MVC.Identity.Name).ShouldMapToNothing();
-        }
-
         #endregion
 
     }

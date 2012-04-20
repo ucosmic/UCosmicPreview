@@ -1,7 +1,7 @@
 ﻿using System.Security.Principal;
 namespace UCosmic.Domain.People
 {
-    public class UpdateNameCommand
+    public class UpdateMyNameCommand
     {
         public IPrincipal Principal { get; set; }
         public bool IsDisplayNameDerived { get; set; }

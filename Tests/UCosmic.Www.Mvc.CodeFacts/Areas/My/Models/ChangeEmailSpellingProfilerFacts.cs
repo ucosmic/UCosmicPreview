@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
+using System.Threading;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
@@ -86,16 +87,15 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         public class TheViewModelToCommandProfile
         {
             [TestMethod]
-            public void MapsPersonUserName_ToUserName()
+            public void Ignores_Principal()
             {
                 const string userName = "user@domain.tld";
                 var model = new ChangeEmailSpellingForm { PersonUserName = userName };
 
-                var command = Mapper.Map<ChangeEmailSpellingCommand>(model);
+                var command = Mapper.Map<ChangeMyEmailSpellingCommand>(model);
 
                 command.ShouldNotBeNull();
-                command.UserName.ShouldNotBeNull();
-                command.UserName.ShouldEqual(model.PersonUserName);
+                command.Principal.ShouldBeNull();
             }
 
             [TestMethod]
@@ -104,7 +104,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 const string value = "user@domain.tld";
                 var model = new ChangeEmailSpellingForm { Value = value };
 
-                var command = Mapper.Map<ChangeEmailSpellingCommand>(model);
+                var command = Mapper.Map<ChangeMyEmailSpellingCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.NewValue.ShouldNotBeNull();
@@ -117,7 +117,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 const int number = 2;
                 var model = new ChangeEmailSpellingForm { Number = number };
 
-                var command = Mapper.Map<ChangeEmailSpellingCommand>(model);
+                var command = Mapper.Map<ChangeMyEmailSpellingCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.Number.ShouldEqual(model.Number);
@@ -128,7 +128,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             {
                 var model = new ChangeEmailSpellingForm();
 
-                var command = Mapper.Map<ChangeEmailSpellingCommand>(model);
+                var command = Mapper.Map<ChangeMyEmailSpellingCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.ChangedState.ShouldBeFalse();

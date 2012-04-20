@@ -4,18 +4,18 @@ using UCosmic.Domain.Identity;
 
 namespace UCosmic.Domain.People
 {
-    public class UpdateNameHandler : IHandleCommands<UpdateNameCommand>
+    public class UpdateMyNameHandler : IHandleCommands<UpdateMyNameCommand>
     {
         private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
 
-        public UpdateNameHandler(IProcessQueries queryProcessor, ICommandEntities entities)
+        public UpdateMyNameHandler(IProcessQueries queryProcessor, ICommandEntities entities)
         {
             _queryProcessor = queryProcessor;
             _entities = entities;
         }
 
-        public void Handle(UpdateNameCommand command)
+        public void Handle(UpdateMyNameCommand command)
         {
             if (command == null) throw new ArgumentNullException("command");
 
@@ -47,7 +47,6 @@ namespace UCosmic.Domain.People
                         Suffix = command.Suffix,
                     })
                 : command.DisplayName;
-
 
             if (user.Person.Salutation != command.Salutation) command.ChangeCount++;
             user.Person.Salutation = command.Salutation;

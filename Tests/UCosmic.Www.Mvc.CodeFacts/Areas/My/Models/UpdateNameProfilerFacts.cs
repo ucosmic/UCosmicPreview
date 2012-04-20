@@ -111,7 +111,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 const string value = "test";
                 var model = new UpdateNameForm { DisplayName = value };
 
-                var command = Mapper.Map<UpdateNameCommand>(model);
+                var command = Mapper.Map<UpdateMyNameCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.DisplayName.ShouldNotBeNull();
@@ -123,7 +123,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             {
                 var model = new UpdateNameForm { IsDisplayNameDerived = true };
 
-                var command = Mapper.Map<UpdateNameCommand>(model);
+                var command = Mapper.Map<UpdateMyNameCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.IsDisplayNameDerived.ShouldBeTrue();
@@ -135,7 +135,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 const string value = "test";
                 var model = new UpdateNameForm { Salutation = value };
 
-                var command = Mapper.Map<UpdateNameCommand>(model);
+                var command = Mapper.Map<UpdateMyNameCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.Salutation.ShouldNotBeNull();
@@ -148,7 +148,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 const string value = "test";
                 var model = new UpdateNameForm { FirstName = value };
 
-                var command = Mapper.Map<UpdateNameCommand>(model);
+                var command = Mapper.Map<UpdateMyNameCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.FirstName.ShouldNotBeNull();
@@ -161,7 +161,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 const string value = "test";
                 var model = new UpdateNameForm { MiddleName = value };
 
-                var command = Mapper.Map<UpdateNameCommand>(model);
+                var command = Mapper.Map<UpdateMyNameCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.MiddleName.ShouldNotBeNull();
@@ -174,7 +174,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 const string value = "test";
                 var model = new UpdateNameForm { LastName = value };
 
-                var command = Mapper.Map<UpdateNameCommand>(model);
+                var command = Mapper.Map<UpdateMyNameCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.LastName.ShouldNotBeNull();
@@ -187,7 +187,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 const string value = "test";
                 var model = new UpdateNameForm { Suffix = value };
 
-                var command = Mapper.Map<UpdateNameCommand>(model);
+                var command = Mapper.Map<UpdateMyNameCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.Suffix.ShouldNotBeNull();
@@ -199,7 +199,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             {
                 var model = new UpdateNameForm();
 
-                var command = Mapper.Map<UpdateNameCommand>(model);
+                var command = Mapper.Map<UpdateMyNameCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.Principal.ShouldBeNull();
@@ -210,7 +210,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             {
                 var model = new UpdateNameForm();
 
-                var command = Mapper.Map<UpdateNameCommand>(model);
+                var command = Mapper.Map<UpdateMyNameCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.ChangeCount.ShouldEqual(0);

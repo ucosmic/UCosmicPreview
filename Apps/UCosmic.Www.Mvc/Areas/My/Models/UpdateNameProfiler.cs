@@ -25,7 +25,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         {
             protected override void Configure()
             {
-                CreateMap<UpdateNameForm, UpdateNameCommand>()
+                CreateMap<UpdateNameForm, UpdateMyNameCommand>()
                     .ForMember(d => d.Principal, o => o.Ignore())
                     .ForMember(d => d.ChangeCount, o => o.Ignore())
                 ;

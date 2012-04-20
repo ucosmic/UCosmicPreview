@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Threading;
+using AutoMapper;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Models;
 
@@ -28,8 +29,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         {
             protected override void Configure()
             {
-                CreateMap<ChangeEmailSpellingForm, ChangeEmailSpellingCommand>()
-                    .ForMember(d => d.UserName, o => o.MapFrom(s => s.PersonUserName))
+                CreateMap<ChangeEmailSpellingForm, ChangeMyEmailSpellingCommand>()
+                    .ForMember(d => d.Principal, o => o.Ignore())
                     .ForMember(d => d.NewValue, o => o.MapFrom(s => s.Value))
                     .ForMember(d => d.ChangedState, o => o.Ignore())
                 ;

@@ -170,6 +170,9 @@
     <Compile Include="Areas\Identity\Models\SignUp\SendEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\ConfirmEmailFormFacts.cs" />
     <Compile Include="Areas\My\Controllers\ChangeEmailSpellingControllerFacts.cs" />
+    <Compile Include="Areas\My\Controllers\AffiliationRouterFacts.cs" />
+    <Compile Include="Areas\My\Controllers\ProfileControllerFacts.cs" />
+    <Compile Include="Areas\My\Controllers\ProfileRouterFacts.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameControllerFacts.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameRouterFacts.cs" />
     <Compile Include="Areas\My\Models\ChangeEmailSpellingFormFacts.cs" />

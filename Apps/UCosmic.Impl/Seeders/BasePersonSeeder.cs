@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
@@ -11,6 +12,7 @@ namespace UCosmic.Seeders
         {
             var queryProcessor = DependencyInjector.Current.GetService<IProcessQueries>();
             var createPersonHandler = DependencyInjector.Current.GetService<IHandleCommands<CreatePersonCommand>>();
+            var createAffiliationHandler = DependencyInjector.Current.GetService<IHandleCommands<CreateAffiliationCommand>>();
 
             var emailsExploded = emails.Explode(";").ToArray();
             var defaultEmail = emailsExploded.First();
@@ -52,14 +54,27 @@ namespace UCosmic.Seeders
 
             if (employedBy != null)
             {
-                person.Affiliations.Add(new Affiliation
-                {
-                    Establishment = employedBy,
-                    IsClaimingEmployee = true,
-                    IsClaimingStudent = false,
-                    IsDefault = true,
-                });
+                //person.Affiliations.Add(new Affiliation
+                //{
+                //    Establishment = employedBy,
+                //    IsClaimingEmployee = true,
+                //    IsClaimingStudent = false,
+                //    IsDefault = true,
+                //});
+                createAffiliationHandler.Handle(
+                    new CreateAffiliationCommand
+                    {
+                        EstablishmentId = employedBy.RevisionId,
+                        PersonId = person.RevisionId,
+                        IsClaimingEmployee = true,
+                        IsClaimingStudent = false,
+                    }
+                );
                 Context.SaveChanges();
+            }
+            else
+            {
+                throw new NotSupportedException("Why is the person not affiliated with an employer?");
             }
             return person;
         }
