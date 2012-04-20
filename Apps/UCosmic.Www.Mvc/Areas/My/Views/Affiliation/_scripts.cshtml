@@ -1,0 +1,42 @@
+﻿@model UCosmic.Www.Mvc.Areas.My.Models.AffiliationForm
+@if (Model.Establishment.IsInstitution)
+{
+@*
+        render a script to toggle the employee sections
+        when establishment is an academic institution
+    *@
+    <script type="text/javascript">
+        $(function () {
+            $('label.institution-radio input[type=radio]').change(function () {
+                var value = $(this).val();
+                switch (value) {
+                    case 'EmployeeOnly':
+                    case 'Both':
+                        $('#employee_form').slideDown();
+                        break;
+
+                    case 'StudentOnly':
+                    case 'Neither':
+                        $('#employee_form').slideUp();
+                        break;
+
+                    default:
+                        break;
+                }
+            });
+        });
+    </script>
+}
+@if (!Model.Establishment.IsInstitution || (Model.IsClaimingEmployee && Model.IsAcknowledged))
+{
+@*
+        render a script to display the employee sections
+        when establishment is not an institution or
+        user has already claimed employee
+    *@
+    <script type="text/javascript">
+        $(function () {
+            $('#employee_form').show();
+        });
+    </script>
+}

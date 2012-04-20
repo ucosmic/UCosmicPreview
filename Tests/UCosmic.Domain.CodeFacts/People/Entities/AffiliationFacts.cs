@@ -9,7 +9,7 @@ namespace UCosmic.Domain.People
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
-        public class PersonIdProperty
+        public class ThePersonIdProperty
         {
             [TestMethod]
             public void HasGetSet()
@@ -22,7 +22,7 @@ namespace UCosmic.Domain.People
         }
 
         [TestClass]
-        public class PersonProperty
+        public class ThePersonProperty
         {
             [TestMethod]
             public void IsVirtual()
@@ -40,7 +40,7 @@ namespace UCosmic.Domain.People
         }
 
         [TestClass]
-        public class EstablishmentIdProperty
+        public class TheEstablishmentIdProperty
         {
             [TestMethod]
             public void HasGetSet()
@@ -53,7 +53,7 @@ namespace UCosmic.Domain.People
         }
 
         [TestClass]
-        public class EstablishmentProperty
+        public class TheEstablishmentProperty
         {
             [TestMethod]
             public void IsVirtual()
@@ -71,7 +71,7 @@ namespace UCosmic.Domain.People
         }
 
         [TestClass]
-        public class JobTitlesProperty
+        public class TheJobTitlesProperty
         {
             [TestMethod]
             public void HasGetSet()
@@ -84,7 +84,7 @@ namespace UCosmic.Domain.People
         }
 
         [TestClass]
-        public class IsAcknowledgedProperty
+        public class TheIsAcknowledgedProperty
         {
             [TestMethod]
             public void HasGetSet()
@@ -97,7 +97,7 @@ namespace UCosmic.Domain.People
         }
 
         [TestClass]
-        public class IsClaimingStudentProperty
+        public class TheIsClaimingStudentProperty
         {
             [TestMethod]
             public void HasGetSet()
@@ -110,7 +110,7 @@ namespace UCosmic.Domain.People
         }
 
         [TestClass]
-        public class IsClaimingInternationalOfficeProperty
+        public class TheIsClaimingInternationalOfficeProperty
         {
             [TestMethod]
             public void HasGetSet()
@@ -119,6 +119,31 @@ namespace UCosmic.Domain.People
                 var entity = new Affiliation { IsClaimingInternationalOffice = value };
                 entity.ShouldNotBeNull();
                 entity.IsClaimingInternationalOffice.ShouldEqual(value);
+            }
+        }
+
+        [TestClass]
+        public class TheToStringProperty
+        {
+            [TestMethod]
+            public void ReturnsFriendlyInfo()
+            {
+                var entity = new Affiliation
+                {
+                    Person = new Person
+                    {
+                        DisplayName = "display name",
+                    },
+                    Establishment = new Establishment
+                    {
+                        OfficialName = "official name",
+                    },
+                };
+
+                var result = entity.ToString();
+
+                result.ShouldEqual(string.Format("{0} - {1}",
+                    entity.Person.DisplayName, entity.Establishment.OfficialName));
             }
         }
     }

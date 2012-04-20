@@ -215,6 +215,7 @@
     <Compile Include="Areas\My\Models\ChangeEmailSpellingProfiler.cs" />
     <Compile Include="Areas\My\Models\ChangeEmailSpellingValidator.cs" />
     <Compile Include="Areas\My\Models\AffiliationProfiler.cs" />
+    <Compile Include="Areas\My\Models\AffiliationValidator.cs" />
     <Compile Include="Areas\My\Models\UpdateNameValidator.cs" />
     <Compile Include="Areas\My\Models\UpdateNameProfiler.cs" />
     <Compile Include="Areas\My\Models\ProfileProfiler.cs" />
@@ -1050,6 +1051,8 @@
     <Content Include="Areas\People\Views\_ViewStart.cshtml" />
     <Content Include="Areas\My\Views\Affiliation\affiliation.cshtml" />
     <Content Include="Areas\My\Views\Shared\EditorTemplates\AffiliationForm.cshtml" />
+    <Content Include="Areas\My\Views\Affiliation\_scripts.cshtml" />
+    <Content Include="Areas\My\Views\Affiliation\_styles.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />
