@@ -12,6 +12,7 @@
         public User Handle(GetUserByNameQuery query)
         {
             return _entities.Users
+                .EagerLoad(query.EagerLoad, _entities)
                 .ByName(query.Name)
             ;
         }

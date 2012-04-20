@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
+using System;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
@@ -13,76 +14,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         [TestClass]
         public class TheEntityToViewModelProfile
         {
-            [TestMethod]
-            public void MapsEmployeeOrStudentAffiliation_ToNull_WhenAffiliationIsNotAcknowledged()
-            {
-                var entity = new Affiliation();
-
-                var model = Mapper.Map<AffiliationForm>(entity);
-
-                model.EmployeeOrStudentAffiliation.ShouldBeNull();
-            }
-
-            [TestMethod]
-            public void MapsEmployeeOrStudentAffiliation_ToEmployeeOnly_WhenAffiliationIsAcknowledged_AndIsClaimingEmployee_AndIsNotClaimingStudent()
-            {
-                var entity = new Affiliation
-                {
-                    IsAcknowledged = true,
-                    IsClaimingEmployee = true,
-                    IsClaimingStudent = false,
-                };
-
-                var model = Mapper.Map<AffiliationForm>(entity);
-
-                model.EmployeeOrStudentAffiliation.ShouldEqual(EmployeeOrStudentAffiliate.EmployeeOnly);
-            }
-
-            [TestMethod]
-            public void MapsEmployeeOrStudentAffiliation_ToBoth_WhenAffiliationIsAcknowledged_AndIsClaimingEmployee_AndIsClaimingStudent()
-            {
-                var entity = new Affiliation
-                {
-                    IsAcknowledged = true,
-                    IsClaimingEmployee = true,
-                    IsClaimingStudent = true,
-                };
-
-                var model = Mapper.Map<AffiliationForm>(entity);
-
-                model.EmployeeOrStudentAffiliation.ShouldEqual(EmployeeOrStudentAffiliate.Both);
-            }
-
-            [TestMethod]
-            public void MapsEmployeeOrStudentAffiliation_ToNeither_WhenAffiliationIsAcknowledged_AndIsNotClaimingEmployee_AndIsNotClaimingStudent()
-            {
-                var entity = new Affiliation
-                {
-                    IsAcknowledged = true,
-                    IsClaimingEmployee = false,
-                    IsClaimingStudent = false,
-                };
-
-                var model = Mapper.Map<AffiliationForm>(entity);
-
-                model.EmployeeOrStudentAffiliation.ShouldEqual(EmployeeOrStudentAffiliate.Neither);
-            }
-
-            [TestMethod]
-            public void MapsEmployeeOrStudentAffiliation_ToStudentOnly_WhenAffiliationIsAcknowledged_AndIsNotClaimingEmployee_AndIsClaimingStudent()
-            {
-                var entity = new Affiliation
-                {
-                    IsAcknowledged = true,
-                    IsClaimingEmployee = false,
-                    IsClaimingStudent = true,
-                };
-
-                var model = Mapper.Map<AffiliationForm>(entity);
-
-                model.EmployeeOrStudentAffiliation.ShouldEqual(EmployeeOrStudentAffiliate.StudentOnly);
-            }
-
             [TestMethod]
             public void MapsEmployeeOrStudentAffiliation_ToEmployeeOnly_WhenEstablishmentIsNotInstitution()
             {
@@ -106,6 +37,127 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 var model = Mapper.Map<AffiliationForm>(entity);
 
                 model.EmployeeOrStudentAffiliation.ShouldEqual(EmployeeOrStudentAffiliate.EmployeeOnly);
+            }
+
+            [TestMethod]
+            public void MapsEmployeeOrStudentAffiliation_ToNull_WhenInstitutionalAffiliationIsNotAcknowledged()
+            {
+                var entity = new Affiliation
+                {
+                    Establishment = new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Inst,
+                            },
+                        },
+                    },
+                };
+
+                var model = Mapper.Map<AffiliationForm>(entity);
+                model.EmployeeOrStudentAffiliation.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void MapsEmployeeOrStudentAffiliation_ToEmployeeOnly_WhenInstitutionalAffiliationIsAcknowledged_AndIsClaimingEmployee_AndIsNotClaimingStudent()
+            {
+                var entity = new Affiliation
+                {
+                    IsAcknowledged = true,
+                    IsClaimingEmployee = true,
+                    IsClaimingStudent = false,
+                    Establishment = new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Inst,
+                            },
+                        },
+                    },
+                };
+
+                var model = Mapper.Map<AffiliationForm>(entity);
+
+                model.EmployeeOrStudentAffiliation.ShouldEqual(EmployeeOrStudentAffiliate.EmployeeOnly);
+            }
+
+            [TestMethod]
+            public void MapsEmployeeOrStudentAffiliation_ToBoth_WhenInstitutionalAffiliationIsAcknowledged_AndIsClaimingEmployee_AndIsClaimingStudent()
+            {
+                var entity = new Affiliation
+                {
+                    IsAcknowledged = true,
+                    IsClaimingEmployee = true,
+                    IsClaimingStudent = true,
+                    Establishment = new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Inst,
+                            },
+                        },
+                    },
+                };
+
+                var model = Mapper.Map<AffiliationForm>(entity);
+
+                model.EmployeeOrStudentAffiliation.ShouldEqual(EmployeeOrStudentAffiliate.Both);
+            }
+
+            [TestMethod]
+            public void MapsEmployeeOrStudentAffiliation_ToNeither_WhenInstitutionalAffiliationIsAcknowledged_AndIsNotClaimingEmployee_AndIsNotClaimingStudent()
+            {
+                var entity = new Affiliation
+                {
+                    IsAcknowledged = true,
+                    IsClaimingEmployee = false,
+                    IsClaimingStudent = false,
+                    Establishment = new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Inst,
+                            },
+                        },
+                    },
+                };
+
+                var model = Mapper.Map<AffiliationForm>(entity);
+
+                model.EmployeeOrStudentAffiliation.ShouldEqual(EmployeeOrStudentAffiliate.Neither);
+            }
+
+            [TestMethod]
+            public void MapsEmployeeOrStudentAffiliation_ToStudentOnly_WhenInstitutionalAffiliationIsAcknowledged_AndIsNotClaimingEmployee_AndIsClaimingStudent()
+            {
+                var entity = new Affiliation
+                {
+                    IsAcknowledged = true,
+                    IsClaimingEmployee = false,
+                    IsClaimingStudent = true,
+                    Establishment = new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Inst,
+                            },
+                        },
+                    },
+                };
+
+                var model = Mapper.Map<AffiliationForm>(entity);
+
+                model.EmployeeOrStudentAffiliation.ShouldEqual(EmployeeOrStudentAffiliate.StudentOnly);
             }
 
             [TestMethod]

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 
 namespace UCosmic.Domain.Establishments
 {
-    public class FindRootEstablishmentsWithChildrenQuery : IDefineQuery<ICollection<Establishment>>
+    public class FindRootEstablishmentsWithChildrenQuery : BaseEstablishmentQuery, IDefineQuery<ICollection<Establishment>>
     {
-        public IEnumerable<Expression<Func<Establishment, object>>> EagerLoad { get; set; }
     }
 }

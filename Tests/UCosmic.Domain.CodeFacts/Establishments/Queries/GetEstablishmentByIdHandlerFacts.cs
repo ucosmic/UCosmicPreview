@@ -36,9 +36,14 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void ReturnsNull_WhenIdCannotBeMatched()
             {
-                var query = new GetEstablishmentByIdQuery();
-                var entities = new Mock<IQueryEntities>();
-                entities.Setup(p => p.Establishments).Returns(new Establishment[] { }.AsQueryable);
+                const int id = 9;
+                var query = new GetEstablishmentByIdQuery
+                {
+                    Id = id,
+                };
+                var establishments = new Establishment[] {}.AsQueryable();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
+                entities.Setup(p => p.Establishments).Returns(establishments);
                 var handler = new GetEstablishmentByIdHandler(entities.Object);
 
                 var result = handler.Handle(query);
@@ -54,14 +59,16 @@ namespace UCosmic.Domain.Establishments
                 {
                     Id = id,
                 };
-                var entities = new Mock<IQueryEntities>();
-                entities.Setup(p => p.Establishments).Returns(new[]
+                var establishment = new Establishment
                 {
-                    new Establishment
-                    {
-                        RevisionId = id,
-                    },
-                }.AsQueryable);
+                    RevisionId = id,
+                };
+                var establishments = new[]
+                {
+                    establishment,
+                }.AsQueryable();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
+                entities.Setup(p => p.Establishments).Returns(establishments);
                 var handler = new GetEstablishmentByIdHandler(entities.Object);
 
                 var result = handler.Handle(query);

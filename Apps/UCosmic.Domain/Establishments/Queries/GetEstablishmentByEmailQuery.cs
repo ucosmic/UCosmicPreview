@@ -4,10 +4,8 @@ using System.Linq.Expressions;
 
 namespace UCosmic.Domain.Establishments
 {
-    public class GetEstablishmentByEmailQuery : IDefineQuery<Establishment>
+    public class GetEstablishmentByEmailQuery : BaseEstablishmentQuery, IDefineQuery<Establishment>
     {
         public string Email { get; set; }
-
-        public IEnumerable<Expression<Func<Establishment, object>>> EagerLoad { get; set; }
     }
 }

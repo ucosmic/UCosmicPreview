@@ -66,7 +66,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         [Display(Name = IsClaimingStaffDisplayName)]
         public bool IsClaimingStaff { get; set; }
 
-        [UIHint("EmployeeOrStudentAffiliation")]
+        public const string EmployeeOrStudentAffiliationPropertyName = "EmployeeOrStudentAffiliation";
+        [UIHint(EmployeeOrStudentAffiliationPropertyName)]
         public EmployeeOrStudentAffiliate? EmployeeOrStudentAffiliation { get; set; }
     }
 
