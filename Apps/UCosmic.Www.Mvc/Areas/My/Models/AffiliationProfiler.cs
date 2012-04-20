@@ -21,6 +21,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 CreateMap<Affiliation, AffiliationForm>()
                     .ForMember(d => d.EmployeeOrStudentAffiliation, o => o.ResolveUsing(s =>
                         {
+                            if (!s.Establishment.IsInstitution)
+                                return EmployeeOrStudentAffiliate.EmployeeOnly;
                             if (s.IsAcknowledged)
                             {
                                 if (s.IsClaimingEmployee && !s.IsClaimingStudent)

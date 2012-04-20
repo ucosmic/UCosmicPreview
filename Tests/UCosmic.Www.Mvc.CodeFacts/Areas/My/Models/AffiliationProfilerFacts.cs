@@ -84,6 +84,31 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             }
 
             [TestMethod]
+            public void MapsEmployeeOrStudentAffiliation_ToEmployeeOnly_WhenEstablishmentIsNotInstitution()
+            {
+                var entity = new Affiliation
+                {
+                    IsAcknowledged = true,
+                    IsClaimingEmployee = false,
+                    IsClaimingStudent = true,
+                    Establishment = new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = "not an institution"
+                            }
+                        }
+                    }
+                };
+
+                var model = Mapper.Map<AffiliationForm>(entity);
+
+                model.EmployeeOrStudentAffiliation.ShouldEqual(EmployeeOrStudentAffiliate.EmployeeOnly);
+            }
+
+            [TestMethod]
             public void IgnoresReturnUrl()
             {
                 var entity = new Affiliation();
