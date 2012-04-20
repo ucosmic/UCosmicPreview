@@ -38,7 +38,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmployeeOrStudentAffiliation");
+                var error = results.Errors.SingleOrDefault(e =>
+                    e.PropertyName == AffiliationForm.EmployeeOrStudentAffiliationPropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -50,9 +51,13 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             public void IsValidWhen_EmployeeOrStudentAffiliation_IsNotEmpty()
             {
                 var validator = new AffiliationValidator();
-                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Neither };
+                var model = new AffiliationForm
+                {
+                    EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Neither
+                };
                 var results = validator.Validate(model);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmployeeOrStudentAffiliation");
+                var error = results.Errors.SingleOrDefault(e =>
+                    e.PropertyName == AffiliationForm.EmployeeOrStudentAffiliationPropertyName);
                 error.ShouldBeNull();
             }
         }

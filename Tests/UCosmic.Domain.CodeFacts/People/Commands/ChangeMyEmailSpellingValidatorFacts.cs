@@ -42,7 +42,7 @@ namespace UCosmic.Domain.People
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Principal");
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(ValidatePrincipal.FailedWithEmptyIdentityName);
+                error.ErrorMessage.ShouldEqual(ValidatePrincipal.FailedBecauseIdentityNameWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -59,7 +59,7 @@ namespace UCosmic.Domain.People
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Principal");
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(ValidatePrincipal.FailedWithEmptyIdentityName);
+                error.ErrorMessage.ShouldEqual(ValidatePrincipal.FailedBecauseIdentityNameWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -76,7 +76,7 @@ namespace UCosmic.Domain.People
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Principal");
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(ValidatePrincipal.FailedWithEmptyIdentityName);
+                error.ErrorMessage.ShouldEqual(ValidatePrincipal.FailedBecauseIdentityNameWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -98,7 +98,7 @@ namespace UCosmic.Domain.People
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    ValidatePrincipal.FailedWithNoUserMatchesIdentityName,
+                    ValidatePrincipal.FailedBecauseIdentityNameMatchedNoUser,
                         principalIdentityName));
                 // ReSharper restore PossibleNullReferenceException
             }

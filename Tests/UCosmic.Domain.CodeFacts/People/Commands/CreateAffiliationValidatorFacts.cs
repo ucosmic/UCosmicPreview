@@ -33,19 +33,29 @@ namespace UCosmic.Domain.People
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    CreateAffiliationValidator.FailedBecauseEstablishmentIdDoesNotMatchEstablishment,
+                    ValidateEstablishment.FailedBecauseIdMatchedNoEntity,
                         establishmentId));
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void IsValidWhen_EstablishmentId_MatchesEstablishment()
+            public void IsValidWhen_EstablishmentId_MatchesEstablishment_WithAnyTypeCategory()
             {
                 const int establishmentId = 6;
                 var command = new CreateAffiliationCommand { EstablishmentId = establishmentId };
                 var queryProcessor = new Mock<IProcessQueries>();
                 queryProcessor.Setup(m => m.Execute(It.Is(EstablishmentQueryBasedOn(command))))
-                    .Returns(new Establishment { RevisionId = command.EstablishmentId });
+                    .Returns(new Establishment
+                    {
+                        RevisionId = command.EstablishmentId,
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Govt,
+                            },
+                        },
+                    });
                 var validator = new CreateAffiliationValidator(queryProcessor.Object);
 
                 var results = validator.Validate(command);
@@ -53,12 +63,72 @@ namespace UCosmic.Domain.People
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EstablishmentId");
                 error.ShouldBeNull();
             }
+        }
 
-            private static Expression<Func<GetEstablishmentByIdQuery, bool>> EstablishmentQueryBasedOn(CreateAffiliationCommand command)
+        [TestClass]
+        public class TheIsClaimingStudentProperty
+        {
+            [TestMethod]
+            public void IsInvalidWhen_IsTrue_ButEstablishmentIsNotInstitution()
             {
-                Expression<Func<GetEstablishmentByIdQuery, bool>> establishmentQueryBasedOn = q =>
-                    q.Id == command.EstablishmentId;
-                return establishmentQueryBasedOn;
+                const bool isClaimingStudent = true;
+                var command = new CreateAffiliationCommand
+                {
+                    IsClaimingStudent = isClaimingStudent
+                };
+                var queryProcessor = new Mock<IProcessQueries>();
+                queryProcessor.Setup(m => m.Execute(It.Is(EstablishmentQueryBasedOn(command))))
+                    .Returns(new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = "not an institution",
+                            },
+                        },
+                    });
+                var validator = new CreateAffiliationValidator(queryProcessor.Object);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "IsClaimingStudent");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ValidateAffiliation.FailedBecauseIsClaimingStudentButEstablishmentIsNotInstitution,
+                        command.EstablishmentId));
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void ValidWhen_IsTrue_AndEstablishmentIsInstitution()
+            {
+                const bool isClaimingStudent = true;
+                var command = new CreateAffiliationCommand
+                {
+                    IsClaimingStudent = isClaimingStudent
+                };
+                var queryProcessor = new Mock<IProcessQueries>();
+                queryProcessor.Setup(m => m.Execute(It.Is(EstablishmentQueryBasedOn(command))))
+                    .Returns(new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Inst,
+                            },
+                        },
+                    });
+                var validator = new CreateAffiliationValidator(queryProcessor.Object);
+
+                var results = validator.Validate(command);
+
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "IsClaimingStudent");
+                error.ShouldBeNull();
             }
         }
 
@@ -83,7 +153,7 @@ namespace UCosmic.Domain.People
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    CreateAffiliationValidator.FailedBecausePersonIdDoesNotMatchPerson,
+                    ValidatePerson.FailedBecauseIdMatchedNoEntity,
                         personId));
                 // ReSharper restore PossibleNullReferenceException
             }
@@ -117,7 +187,7 @@ namespace UCosmic.Domain.People
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    CreateAffiliationValidator.FailedBecausePersonIsAlreadyAffiliatedWithEstablishment,
+                    ValidatePerson.FailedBecausePersonIsAlreadyAffiliatedWithEstablishment,
                         personId, establishmentId));
                 // ReSharper restore PossibleNullReferenceException
             }
@@ -155,6 +225,13 @@ namespace UCosmic.Domain.People
                     q.Id == command.PersonId;
                 return personQueryBasedOn;
             }
+        }
+
+        private static Expression<Func<GetEstablishmentByIdQuery, bool>> EstablishmentQueryBasedOn(CreateAffiliationCommand command)
+        {
+            Expression<Func<GetEstablishmentByIdQuery, bool>> establishmentQueryBasedOn = q =>
+                q.Id == command.EstablishmentId;
+            return establishmentQueryBasedOn;
         }
     }
 }

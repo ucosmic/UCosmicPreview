@@ -16,8 +16,11 @@ namespace UCosmic.Domain.People
             RuleFor(p => p.Principal)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty()
-                .Must(ValidatePrincipal.IdentityNameIsNotEmpty).WithMessage(ValidatePrincipal.FailedWithEmptyIdentityName)
-                .Must(MatchIdentityNameWithUser).WithMessage(ValidatePrincipal.FailedWithNoUserMatchesIdentityName, p => p.Principal.Identity.Name)
+                .Must(ValidatePrincipal.IdentityNameIsNotEmpty).WithMessage(
+                    ValidatePrincipal.FailedBecauseIdentityNameWasEmpty)
+                .Must(ValidatePrincipalIdentityNameMatchesUser).WithMessage(
+                    ValidatePrincipal.FailedBecauseIdentityNameMatchedNoUser,
+                        p => p.Principal.Identity.Name)
             ;
 
             RuleFor(p => p.Number)
@@ -34,7 +37,7 @@ namespace UCosmic.Domain.People
             ;
         }
 
-        private bool MatchIdentityNameWithUser(IPrincipal principal)
+        private bool ValidatePrincipalIdentityNameMatchesUser(IPrincipal principal)
         {
             return ValidatePrincipal.IdentityNameMatchesUser(principal, _queryProcessor);
         }
