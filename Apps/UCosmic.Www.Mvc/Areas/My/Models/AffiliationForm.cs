@@ -36,8 +36,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         {
             get
             {
-                return EmployeeOrStudent == EmployeeOrStudentAnswer.EmployeeOnly
-                    || EmployeeOrStudent == EmployeeOrStudentAnswer.Both;
+                return EmployeeOrStudentAffiliation == EmployeeOrStudentAffiliate.EmployeeOnly
+                    || EmployeeOrStudentAffiliation == EmployeeOrStudentAffiliate.Both;
             }
         }
 
@@ -45,8 +45,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         {
             get
             {
-                return EmployeeOrStudent == EmployeeOrStudentAnswer.StudentOnly
-                    || EmployeeOrStudent == EmployeeOrStudentAnswer.Both;
+                return EmployeeOrStudentAffiliation == EmployeeOrStudentAffiliate.StudentOnly
+                    || EmployeeOrStudentAffiliation == EmployeeOrStudentAffiliate.Both;
             }
         }
 
@@ -66,10 +66,10 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         [Display(Name = IsClaimingStaffDisplayName)]
         public bool IsClaimingStaff { get; set; }
 
-        public EmployeeOrStudentAnswer? EmployeeOrStudent { get; set; }
+        public EmployeeOrStudentAffiliate? EmployeeOrStudentAffiliation { get; set; }
     }
 
-    public enum EmployeeOrStudentAnswer
+    public enum EmployeeOrStudentAffiliate
     {
         EmployeeOnly,
         StudentOnly,

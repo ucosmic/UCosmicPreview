@@ -14,17 +14,17 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         public class TheEntityToViewModelProfile
         {
             [TestMethod]
-            public void MapsEmployeeOrStudent_ToNull_WhenAffiliationIsNotAcknowledged()
+            public void MapsEmployeeOrStudentAffiliation_ToNull_WhenAffiliationIsNotAcknowledged()
             {
                 var entity = new Affiliation();
 
                 var model = Mapper.Map<AffiliationForm>(entity);
 
-                model.EmployeeOrStudent.ShouldBeNull();
+                model.EmployeeOrStudentAffiliation.ShouldBeNull();
             }
 
             [TestMethod]
-            public void MapsEmployeeOrStudent_ToEmployeeOnly_WhenAffiliationIsAcknowledged_AndIsClaimingEmployee_AndIsNotClaimingStudent()
+            public void MapsEmployeeOrStudentAffiliation_ToEmployeeOnly_WhenAffiliationIsAcknowledged_AndIsClaimingEmployee_AndIsNotClaimingStudent()
             {
                 var entity = new Affiliation
                 {
@@ -35,11 +35,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
 
                 var model = Mapper.Map<AffiliationForm>(entity);
 
-                model.EmployeeOrStudent.ShouldEqual(EmployeeOrStudentAnswer.EmployeeOnly);
+                model.EmployeeOrStudentAffiliation.ShouldEqual(EmployeeOrStudentAffiliate.EmployeeOnly);
             }
 
             [TestMethod]
-            public void MapsEmployeeOrStudent_ToBoth_WhenAffiliationIsAcknowledged_AndIsClaimingEmployee_AndIsClaimingStudent()
+            public void MapsEmployeeOrStudentAffiliation_ToBoth_WhenAffiliationIsAcknowledged_AndIsClaimingEmployee_AndIsClaimingStudent()
             {
                 var entity = new Affiliation
                 {
@@ -50,11 +50,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
 
                 var model = Mapper.Map<AffiliationForm>(entity);
 
-                model.EmployeeOrStudent.ShouldEqual(EmployeeOrStudentAnswer.Both);
+                model.EmployeeOrStudentAffiliation.ShouldEqual(EmployeeOrStudentAffiliate.Both);
             }
 
             [TestMethod]
-            public void MapsEmployeeOrStudent_ToNeither_WhenAffiliationIsAcknowledged_AndIsNotClaimingEmployee_AndIsNotClaimingStudent()
+            public void MapsEmployeeOrStudentAffiliation_ToNeither_WhenAffiliationIsAcknowledged_AndIsNotClaimingEmployee_AndIsNotClaimingStudent()
             {
                 var entity = new Affiliation
                 {
@@ -65,11 +65,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
 
                 var model = Mapper.Map<AffiliationForm>(entity);
 
-                model.EmployeeOrStudent.ShouldEqual(EmployeeOrStudentAnswer.Neither);
+                model.EmployeeOrStudentAffiliation.ShouldEqual(EmployeeOrStudentAffiliate.Neither);
             }
 
             [TestMethod]
-            public void MapsEmployeeOrStudent_ToStudentOnly_WhenAffiliationIsAcknowledged_AndIsNotClaimingEmployee_AndIsClaimingStudent()
+            public void MapsEmployeeOrStudentAffiliation_ToStudentOnly_WhenAffiliationIsAcknowledged_AndIsNotClaimingEmployee_AndIsClaimingStudent()
             {
                 var entity = new Affiliation
                 {
@@ -80,7 +80,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
 
                 var model = Mapper.Map<AffiliationForm>(entity);
 
-                model.EmployeeOrStudent.ShouldEqual(EmployeeOrStudentAnswer.StudentOnly);
+                model.EmployeeOrStudentAffiliation.ShouldEqual(EmployeeOrStudentAffiliate.StudentOnly);
             }
 
             [TestMethod]
@@ -178,19 +178,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 model.IsAcknowledged.ShouldEqual(entity.IsAcknowledged);
             }
 
-            //[TestMethod]
-            //public void MapsIsClaimingEmployee()
-            //{
-            //    var entity = new Affiliation
-            //    {
-            //        IsClaimingEmployee = true,
-            //    };
-
-            //    var model = Mapper.Map<AffiliationForm>(entity);
-
-            //    model.IsClaimingEmployee.ShouldEqual(entity.IsClaimingEmployee);
-            //}
-
             [TestMethod]
             public void MapsIsClaimingInternationalOffice()
             {
@@ -248,9 +235,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         public class TheViewModelToCommandProfile
         {
             [TestMethod]
-            public void MapsIsClaimingStudent_ToFalse_WhenEmployeeOrStudent_IsNeither()
+            public void MapsIsClaimingStudent_ToFalse_WhenEmployeeOrStudentAffiliation_IsNeither()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.Neither };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Neither };
 
                 var command = Mapper.Map<UpdateMyAffiliationCommand>(model);
 
@@ -259,9 +246,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             }
 
             [TestMethod]
-            public void MapsIsClaimingStudent_ToFalse_WhenEmployeeOrStudent_IsEmployeeOnly()
+            public void MapsIsClaimingStudent_ToFalse_WhenEmployeeOrStudentAffiliation_IsEmployeeOnly()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.EmployeeOnly };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.EmployeeOnly };
 
                 var command = Mapper.Map<UpdateMyAffiliationCommand>(model);
 
@@ -270,9 +257,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             }
 
             [TestMethod]
-            public void MapsIsClaimingStudent_ToTrue_WhenEmployeeOrStudent_IsStudentOnly()
+            public void MapsIsClaimingStudent_ToTrue_WhenEmployeeOrStudentAffiliation_IsStudentOnly()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.StudentOnly };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.StudentOnly };
 
                 var command = Mapper.Map<UpdateMyAffiliationCommand>(model);
 
@@ -281,9 +268,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             }
 
             [TestMethod]
-            public void MapsIsClaimingStudent_ToTrue_WhenEmployeeOrStudent_IsBoth()
+            public void MapsIsClaimingStudent_ToTrue_WhenEmployeeOrStudentAffiliation_IsBoth()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.Both };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Both };
 
                 var command = Mapper.Map<UpdateMyAffiliationCommand>(model);
 
@@ -292,9 +279,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             }
 
             [TestMethod]
-            public void MapsIsClaimingEmployee_ToFalse_WhenEmployeeOrStudent_IsNeither()
+            public void MapsIsClaimingEmployee_ToFalse_WhenEmployeeOrStudentAffiliation_IsNeither()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.Neither };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Neither };
 
                 var command = Mapper.Map<UpdateMyAffiliationCommand>(model);
 
@@ -303,9 +290,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             }
 
             [TestMethod]
-            public void MapsIsClaimingEmployee_ToTrue_WhenEmployeeOrStudent_IsEmployeeOnly()
+            public void MapsIsClaimingEmployee_ToTrue_WhenEmployeeOrStudentAffiliation_IsEmployeeOnly()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.EmployeeOnly };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.EmployeeOnly };
 
                 var command = Mapper.Map<UpdateMyAffiliationCommand>(model);
 
@@ -314,9 +301,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             }
 
             [TestMethod]
-            public void MapsIsClaimingEmployee_ToFalse_WhenEmployeeOrStudent_IsStudentOnly()
+            public void MapsIsClaimingEmployee_ToFalse_WhenEmployeeOrStudentAffiliation_IsStudentOnly()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.StudentOnly };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.StudentOnly };
 
                 var command = Mapper.Map<UpdateMyAffiliationCommand>(model);
 
@@ -325,9 +312,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             }
 
             [TestMethod]
-            public void MapsIsClaimingEmployee_ToTrue_WhenEmployeeOrStudent_IsBoth()
+            public void MapsIsClaimingEmployee_ToTrue_WhenEmployeeOrStudentAffiliation_IsBoth()
             {
-                var model = new AffiliationForm { EmployeeOrStudent = EmployeeOrStudentAnswer.Both };
+                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Both };
 
                 var command = Mapper.Map<UpdateMyAffiliationCommand>(model);
 
