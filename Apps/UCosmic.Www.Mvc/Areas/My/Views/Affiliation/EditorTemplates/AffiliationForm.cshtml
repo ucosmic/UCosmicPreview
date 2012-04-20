@@ -13,39 +13,11 @@
         <p>
             Which of the following statements best describes your affiliation with @Model.Establishment.OfficialName?
         </p>
-        <div class="field" style="margin-bottom: 0; padding-bottom: 1em;">
-            <div class="messages push-down">
-                @Html.ValidationMessageFor(m => m.EmployeeOrStudentAffiliation)
-            </div>
-            <div>
-                <label class="institution-radio">
-                     @Html.RadioButtonFor(m => m.EmployeeOrStudentAffiliation, EmployeeOrStudentAffiliate.EmployeeOnly)
-                    I am an employee.
-                </label>
-            </div>
-            <div class="font-11">
-                <label class="institution-radio">
-                     @Html.RadioButtonFor(m => m.EmployeeOrStudentAffiliation, EmployeeOrStudentAffiliate.StudentOnly)
-                    I am a student.
-                </label>
-            </div>
-            <div class="is-student">
-                <label class="institution-radio">
-                     @Html.RadioButtonFor(m => m.EmployeeOrStudentAffiliation, EmployeeOrStudentAffiliate.Both)
-                    I am both an employee and a student.
-                </label>
-            </div>
-            <div>
-                <label class="institution-radio">
-                     @Html.RadioButtonFor(m => m.EmployeeOrStudentAffiliation, EmployeeOrStudentAffiliate.Neither)
-                    I am neither an employee nor a student.
-                </label>
-            </div>
-        </div>
+        @Html.EditorFor(m => m.EmployeeOrStudentAffiliation)
     }
     else
     {
-        <input type="hidden" id="@Html.IdFor(m => m.EmployeeOrStudentAffiliation)" name="@Html.NameFor(m => m.EmployeeOrStudentAffiliation)" value="@EmployeeOrStudentAffiliate.EmployeeOnly.ToString()" />
+        @Html.HiddenFor(m => m.EmployeeOrStudentAffiliation)
     }
     <div id="employee_form" style="display: none;">
         @if (Model.Establishment.IsInstitution)
