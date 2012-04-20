@@ -34,7 +34,7 @@ namespace UCosmic.Domain.People
                 public override Person Person
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -65,7 +65,7 @@ namespace UCosmic.Domain.People
                 public override Establishment Establishment
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

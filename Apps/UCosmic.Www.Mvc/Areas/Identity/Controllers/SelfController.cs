@@ -6,7 +6,6 @@ using AutoMapper;
 using Elmah;
 using UCosmic.Domain;
 using UCosmic.Domain.People;
-using UCosmic.Www.Mvc.Areas.Identity.Mappers;
 using UCosmic.Www.Mvc.Areas.Identity.Models.Self;
 using UCosmic.Www.Mvc.Controllers;
 
@@ -78,66 +77,66 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         #endregion
         #region Edit Affiliation
 
-        [HttpGet]
-        [Authorize]
-        //[OpenTopTab(TopTabName.User)]
-        [OpenTopTab(TopTabName.Home)]
-        [ActionName("edit-affiliation")]
-        [ReturnUrlReferrer(SelfRouteMapper.Me.OutboundRoute)]
-        public virtual ActionResult EditAffiliation(Guid? entityId)
-        {
-            if (entityId.HasValue && entityId.Value != Guid.Empty)
-            {
-                // get the affiliation by id
-                var person = _people.FindOne(PersonBy.Principal(User));
-                if (person != null)
-                {
-                    // ensure this member owns the affiliation
-                    var affiliation = person.Affiliations.Current(entityId.Value);
-                    if (affiliation != null)
-                    {
-                        var model = Mapper.Map<AffiliationForm>(affiliation);
-                        model.DeriveEmployeeOrStudentAnswer();
-                        return View(model);
-                    }
-                }
-            }
-            return HttpNotFound();
-        }
+        //[HttpGet]
+        //[Authorize]
+        ////[OpenTopTab(TopTabName.User)]
+        //[OpenTopTab(TopTabName.Home)]
+        //[ActionName("edit-affiliation")]
+        //[ReturnUrlReferrer(SelfRouteMapper.Me.OutboundRoute)]
+        //public virtual ActionResult EditAffiliation(Guid? entityId)
+        //{
+        //    if (entityId.HasValue && entityId.Value != Guid.Empty)
+        //    {
+        //        // get the affiliation by id
+        //        var person = _people.FindOne(PersonBy.Principal(User));
+        //        if (person != null)
+        //        {
+        //            // ensure this member owns the affiliation
+        //            var affiliation = person.Affiliations.Current(entityId.Value);
+        //            if (affiliation != null)
+        //            {
+        //                var model = Mapper.Map<AffiliationForm>(affiliation);
+        //                model.DeriveEmployeeOrStudentAnswer();
+        //                return View(model);
+        //            }
+        //        }
+        //    }
+        //    return HttpNotFound();
+        //}
 
-        [HttpPost]
-        [Authorize]
-        //[OpenTopTab(TopTabName.User)]
-        [OpenTopTab(TopTabName.Home)]
-        [ActionName("edit-affiliation")]
-        public virtual ActionResult EditAffiliation(AffiliationForm model)
-        {
-            if (model != null)
-            {
-                // get the affiliation by id
-                var person = _people.FindOne(PersonBy.Principal(User).ForInsertOrUpdate());
-                if (person != null)
-                {
-                    // ensure this member owns the affiliation
-                    var affiliation = person.Affiliations.Current(model.EntityId);
-                    if (affiliation != null)
-                    {
-                        if (ModelState.IsValid)
-                        {
-                            model.IsAcknowledged = true;
-                            model.ApplyEmployeeOrStudentAnswer();
-                            Mapper.Map(model, affiliation);
-                            _objectCommander.Update(affiliation, true);
-                            SetFeedbackMessage("Your affiliation info was saved successfully.");
-                            return RedirectToAction(MVC.Identity.Self.Me());
-                        }
-                        model.Establishment = Mapper.Map<AffiliationForm.EstablishmentInfo>(affiliation.Establishment);
-                        return View(model);
-                    }
-                }
-            }
-            return HttpNotFound();
-        }
+        //[HttpPost]
+        //[Authorize]
+        ////[OpenTopTab(TopTabName.User)]
+        //[OpenTopTab(TopTabName.Home)]
+        //[ActionName("edit-affiliation")]
+        //public virtual ActionResult EditAffiliation(AffiliationForm model)
+        //{
+        //    if (model != null)
+        //    {
+        //        // get the affiliation by id
+        //        var person = _people.FindOne(PersonBy.Principal(User).ForInsertOrUpdate());
+        //        if (person != null)
+        //        {
+        //            // ensure this member owns the affiliation
+        //            var affiliation = person.Affiliations.Current(model.EntityId);
+        //            if (affiliation != null)
+        //            {
+        //                if (ModelState.IsValid)
+        //                {
+        //                    model.IsAcknowledged = true;
+        //                    model.ApplyEmployeeOrStudentAnswer();
+        //                    Mapper.Map(model, affiliation);
+        //                    _objectCommander.Update(affiliation, true);
+        //                    SetFeedbackMessage("Your affiliation info was saved successfully.");
+        //                    return RedirectToAction(MVC.Identity.Self.Me());
+        //                }
+        //                model.Establishment = Mapper.Map<AffiliationForm.EstablishmentInfo>(affiliation.Establishment);
+        //                return View(model);
+        //            }
+        //        }
+        //    }
+        //    return HttpNotFound();
+        //}
 
         #endregion
         #region Json

@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using AutoMapper;
 using FluentValidation.Mvc;
 using UCosmic.Domain.People;
-using UCosmic.Www.Mvc.Areas.Identity.Mappers;
 using UCosmic.Www.Mvc.Areas.My.Models;
 using UCosmic.Www.Mvc.Controllers;
 
@@ -22,14 +21,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("change-email-spelling")]
-        [ReturnUrlReferrer(SelfRouteMapper.Me.OutboundRoute)]
+        [ReturnUrlReferrer(ProfileRouter.Get.Route)]
         public virtual ActionResult Get(int number)
         {
-            // get the currently signed-in user / person
+            // get the email address
             var email = _services.QueryProcessor.Execute(
-                new GetEmailAddressByUserNameAndNumberQuery
+                new GetMyEmailAddressByNumberQuery
                 {
-                    UserName = User.Identity.Name,
+                    Principal = User,
                     Number = number,
                 }
             );
@@ -52,7 +51,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             if (!ModelState.IsValid) return PartialView(model);
 
             // execute command, set feedback message, and redirect
-            var command = Mapper.Map<ChangeEmailSpellingCommand>(model);
+            var command = Mapper.Map<ChangeMyEmailSpellingCommand>(model);
+            command.Principal = User;
             _services.CommandHandler.Handle(command);
             SetFeedbackMessage(command.ChangedState
                 ? string.Format(SuccessMessageFormat, model.Value)

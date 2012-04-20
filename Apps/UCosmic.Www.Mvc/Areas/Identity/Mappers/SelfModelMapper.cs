@@ -23,7 +23,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
                 CreateMap<Person, PersonForm>()
                     .ForMember(d => d.UserId, o => o.Ignore())
                 ;
-                CreateMap<Affiliation, PersonForm.AffiliationInfo>();
+                CreateMap<Affiliation, PersonForm.AffiliationInfo>()
+                    .ForMember(d => d.EntityId, o => o.Ignore())
+                ;
                 CreateMap<Establishment, PersonForm.AffiliationInfo.EstablishmentInfo>();
 
                 // model to entity
@@ -56,33 +58,33 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             }
         }
 
-        private class AffiliationFormProfile : Profile
-        {
-            protected override void Configure()
-            {
-                CreateMap<Affiliation, AffiliationForm>()
-                    .ForMember(target => target.EmployeeOrStudent, opt => opt.Ignore())
-                    .ForMember(target => target.ReturnUrl, opt => opt.Ignore())
-                ;
-                CreateMap<Establishment, AffiliationForm.EstablishmentInfo>();
+        //private class AffiliationFormProfile : Profile
+        //{
+        //    protected override void Configure()
+        //    {
+        //        CreateMap<Affiliation, AffiliationForm>()
+        //            .ForMember(target => target.EmployeeOrStudent, opt => opt.Ignore())
+        //            .ForMember(target => target.ReturnUrl, opt => opt.Ignore())
+        //        ;
+        //        CreateMap<Establishment, AffiliationForm.EstablishmentInfo>();
 
-                CreateMap<AffiliationForm, Affiliation>()
-                    .ForMember(target => target.CreatedOnUtc, opt => opt.Ignore())
-                    .ForMember(target => target.CreatedByPrincipal, opt => opt.Ignore())
-                    .ForMember(target => target.UpdatedOnUtc, opt => opt.Ignore())
-                    .ForMember(target => target.UpdatedByPrincipal, opt => opt.Ignore())
-                    .ForMember(target => target.EstablishmentId, opt => opt.Ignore())
-                    .ForMember(target => target.Establishment, opt => opt.Ignore())
-                    .ForMember(target => target.PersonId, opt => opt.Ignore())
-                    .ForMember(target => target.Person, opt => opt.Ignore())
-                    .ForMember(target => target.Version, opt => opt.Ignore())
-                    .ForMember(target => target.IsCurrent, opt => opt.Ignore())
-                    .ForMember(target => target.IsArchived, opt => opt.Ignore())
-                    .ForMember(target => target.IsDeleted, opt => opt.Ignore())
-                ; 
+        //        CreateMap<AffiliationForm, Affiliation>()
+        //            .ForMember(target => target.CreatedOnUtc, opt => opt.Ignore())
+        //            .ForMember(target => target.CreatedByPrincipal, opt => opt.Ignore())
+        //            .ForMember(target => target.UpdatedOnUtc, opt => opt.Ignore())
+        //            .ForMember(target => target.UpdatedByPrincipal, opt => opt.Ignore())
+        //            .ForMember(target => target.EstablishmentId, opt => opt.Ignore())
+        //            .ForMember(target => target.Establishment, opt => opt.Ignore())
+        //            .ForMember(target => target.PersonId, opt => opt.Ignore())
+        //            .ForMember(target => target.Person, opt => opt.Ignore())
+        //            .ForMember(target => target.Version, opt => opt.Ignore())
+        //            .ForMember(target => target.IsCurrent, opt => opt.Ignore())
+        //            .ForMember(target => target.IsArchived, opt => opt.Ignore())
+        //            .ForMember(target => target.IsDeleted, opt => opt.Ignore())
+        //        ; 
 
-            }
-        }
+        //    }
+        //}
 
         // ReSharper restore UnusedMember.Local
     }

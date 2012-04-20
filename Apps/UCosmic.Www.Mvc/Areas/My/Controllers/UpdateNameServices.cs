@@ -7,7 +7,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
     {
         public UpdateNameServices(
             IProcessQueries queryProcessor
-            , IHandleCommands<UpdateNameCommand> commandHandler
+            , IHandleCommands<UpdateMyNameCommand> commandHandler
         )
         {
             QueryProcessor = queryProcessor;
@@ -15,6 +15,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         }
 
         public IProcessQueries QueryProcessor { get; private set; }
-        public IHandleCommands<UpdateNameCommand> CommandHandler { get; private set; }
+        public IHandleCommands<UpdateMyNameCommand> CommandHandler { get; private set; }
     }
 }

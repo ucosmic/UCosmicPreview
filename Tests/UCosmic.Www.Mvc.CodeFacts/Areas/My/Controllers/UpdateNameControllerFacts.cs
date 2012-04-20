@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq.Expressions;
-using System.Security.Principal;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -84,7 +83,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             {
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<GetEmailAddressByUserNameAndNumberQuery>()))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<GetMyEmailAddressByNumberQuery>()))
                     .Returns(null as EmailAddress);
                 NullReferenceException exception = null;
 
@@ -106,7 +105,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string userName = "user@domain.tld";
                 var scenarioOptions = new ScenarioOptions
                 {
-                    UserIdentityName = userName,
+                    PrincipalIdentityName = userName,
                 };
                 Expression<Func<GetUserByNameQuery, bool>> userByNameQuery =
                     query => query.Name == userName;
@@ -127,7 +126,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string userName = "user@domain.tld";
                 var scenarioOptions = new ScenarioOptions
                 {
-                    UserIdentityName = userName,
+                    PrincipalIdentityName = userName,
                 };
                 Expression<Func<GetUserByNameQuery, bool>> userByNameQuery =
                     query => query.Name == userName;
@@ -147,7 +146,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string userName = "user@domain.tld";
                 var scenarioOptions = new ScenarioOptions
                 {
-                    UserIdentityName = userName,
+                    PrincipalIdentityName = userName,
                 };
                 Expression<Func<GetUserByNameQuery, bool>> userByNameQuery =
                     query => query.Name == userName;
@@ -249,7 +248,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string principalIdentityName = "user@domain.tld";
                 var scenarioOptions = new ScenarioOptions
                 {
-                    UserIdentityName = principalIdentityName,
+                    PrincipalIdentityName = principalIdentityName,
                 };
                 var model = new UpdateNameForm
                 {
@@ -259,7 +258,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     LastName = "last",
                 };
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<UpdateNameCommand, bool>> commandDerivedFromModel =
+                Expression<Func<UpdateMyNameCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.DisplayName == model.DisplayName &&
                     command.IsDisplayNameDerived == model.IsDisplayNameDerived &&
@@ -269,13 +268,13 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     command.LastName == model.LastName &&
                     command.Suffix == model.Suffix
                 ;
-                UpdateNameCommand executedCommand = null;
+                UpdateMyNameCommand executedCommand = null;
                 scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)))
-                    .Callback((UpdateNameCommand command) => executedCommand = command);
+                    .Callback((UpdateMyNameCommand command) => executedCommand = command);
 
                 controller.Put(model);
 
-                executedCommand.Principal.ShouldEqual(scenarioOptions.MockPrincipal.Object);
+                executedCommand.Principal.Identity.Name.ShouldEqual(scenarioOptions.PrincipalIdentityName);
                 executedCommand.Principal.Identity.Name.ShouldEqual(principalIdentityName);
             }
 
@@ -291,7 +290,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     LastName = "last",
                 };
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<UpdateNameCommand, bool>> commandDerivedFromModel =
+                Expression<Func<UpdateMyNameCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.DisplayName == model.DisplayName &&
                     command.IsDisplayNameDerived == model.IsDisplayNameDerived &&
@@ -322,7 +321,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     LastName = "last",
                 };
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<UpdateNameCommand, bool>> commandDerivedFromModel =
+                Expression<Func<UpdateMyNameCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.DisplayName == model.DisplayName &&
                     command.IsDisplayNameDerived == model.IsDisplayNameDerived &&
@@ -333,7 +332,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     command.Suffix == model.Suffix
                 ;
                 scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)))
-                    .Callback((UpdateNameCommand command) => command.ChangeCount = 1);
+                    .Callback((UpdateMyNameCommand command) => command.ChangeCount = 1);
 
                 controller.Put(model);
 
@@ -355,7 +354,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     LastName = "last",
                 };
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<UpdateNameCommand, bool>> commandDerivedFromModel =
+                Expression<Func<UpdateMyNameCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.DisplayName == model.DisplayName &&
                     command.IsDisplayNameDerived == model.IsDisplayNameDerived &&
@@ -387,7 +386,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     LastName = "last",
                 };
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<UpdateNameCommand, bool>> commandDerivedFromModel =
+                Expression<Func<UpdateMyNameCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.DisplayName == model.DisplayName &&
                     command.IsDisplayNameDerived == model.IsDisplayNameDerived &&
@@ -412,9 +411,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         private class ScenarioOptions
         {
             internal Mock<IProcessQueries> MockQueryProcessor { get; set; }
-            internal Mock<IPrincipal> MockPrincipal { get; set; }
-            internal Mock<IHandleCommands<UpdateNameCommand>> MockCommandHandler { get; set; }
-            internal string UserIdentityName { get; set; }
+            internal Mock<IHandleCommands<UpdateMyNameCommand>> MockCommandHandler { get; set; }
+            internal string PrincipalIdentityName { get; set; }
         }
 
         private static UpdateNameController CreateController(ScenarioOptions scenarioOptions = null)
@@ -423,7 +421,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
             scenarioOptions.MockQueryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
 
-            scenarioOptions.MockCommandHandler = new Mock<IHandleCommands<UpdateNameCommand>>(MockBehavior.Strict);
+            scenarioOptions.MockCommandHandler = new Mock<IHandleCommands<UpdateMyNameCommand>>(MockBehavior.Strict);
 
             var services = new UpdateNameServices(scenarioOptions.MockQueryProcessor.Object, scenarioOptions.MockCommandHandler.Object);
 
@@ -432,13 +430,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             var builder = ReuseMock.TestControllerBuilder();
 
             builder.HttpContext.User = null;
-            if (!string.IsNullOrWhiteSpace(scenarioOptions.UserIdentityName))
+            if (!string.IsNullOrWhiteSpace(scenarioOptions.PrincipalIdentityName))
             {
-                var identity = new Mock<IIdentity>();
-                identity.Setup(p => p.Name).Returns(scenarioOptions.UserIdentityName);
-                scenarioOptions.MockPrincipal = new Mock<IPrincipal>();
-                scenarioOptions.MockPrincipal.Setup(p => p.Identity).Returns(identity.Object);
-                builder.HttpContext.User = scenarioOptions.MockPrincipal.Object;
+                builder.HttpContext.User = scenarioOptions.PrincipalIdentityName.AsPrincipal();
             }
 
             builder.InitializeController(controller);

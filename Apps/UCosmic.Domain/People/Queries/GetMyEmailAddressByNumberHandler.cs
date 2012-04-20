@@ -4,21 +4,23 @@ using UCosmic.Domain.Identity;
 
 namespace UCosmic.Domain.People
 {
-    public class GetEmailAddressByUserNameAndNumberHandler : IHandleQueries<GetEmailAddressByUserNameAndNumberQuery, EmailAddress>
+    public class GetMyEmailAddressByNumberHandler : IHandleQueries<GetMyEmailAddressByNumberQuery, EmailAddress>
     {
         private readonly IProcessQueries _queryProcessor;
 
-        public GetEmailAddressByUserNameAndNumberHandler(IProcessQueries queryProcessor)
+        public GetMyEmailAddressByNumberHandler(IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
         }
 
-        public EmailAddress Handle(GetEmailAddressByUserNameAndNumberQuery query)
+        public EmailAddress Handle(GetMyEmailAddressByNumberQuery query)
         {
+            if (query == null) throw new ArgumentNullException("query");
+
             var user = _queryProcessor.Execute(
                 new GetUserByNameQuery
                 {
-                    Name = query.UserName,
+                    Name = query.Principal.Identity.Name,
                     EagerLoad = new Expression<Func<User, object>>[]
                     {
                         u => u.Person.Emails,

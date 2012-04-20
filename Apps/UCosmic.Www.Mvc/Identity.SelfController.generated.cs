@@ -33,11 +33,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult EditAffiliation() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.EditAffiliation);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult AutoCompletePersonName() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.AutoCompletePersonName);
         }
@@ -72,7 +67,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string Me = "me";
-            public readonly string EditAffiliation = "edit-affiliation";
             public readonly string AutoCompletePersonName = "autocomplete-name";
             public readonly string PersonInfoById = "person-info-by-id";
             public readonly string PersonInfoByEmail = "person-info-by-email";
@@ -82,7 +76,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Me = "me";
-            public const string EditAffiliation = "edit-affiliation";
             public const string AutoCompletePersonName = "autocomplete-name";
             public const string PersonInfoById = "person-info-by-id";
             public const string PersonInfoByEmail = "person-info-by-email";
@@ -123,18 +116,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
 
         public override System.Web.Mvc.ActionResult Me(UCosmic.Www.Mvc.Areas.Identity.Models.Self.PersonForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Me);
-            callInfo.RouteValueDictionary.Add("model", model);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult EditAffiliation(System.Guid? entityId) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.EditAffiliation);
-            callInfo.RouteValueDictionary.Add("entityId", entityId);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult EditAffiliation(UCosmic.Www.Mvc.Areas.Identity.Models.Self.AffiliationForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.EditAffiliation);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }

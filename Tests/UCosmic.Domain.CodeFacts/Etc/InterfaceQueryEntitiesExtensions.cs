@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Security.Principal;
 using Moq;
 using UCosmic.Domain.Email;
 using UCosmic.Domain.Establishments;
@@ -23,6 +24,23 @@ namespace UCosmic.Domain
                 .Returns((IQueryable<TEntity> arg0, EntityQueryCriteria<TEntity> arg1) => FuncApply(arg0, arg1));
             mock.Setup(m => m.ApplyEagerLoading(It.IsAny<IQueryable<TEntity>>(), It.IsAny<EntityQueryCriteria<TEntity>>()))
                 .Returns((IQueryable<TEntity> arg0, EntityQueryCriteria<TEntity> arg1) => FuncApply(arg0, arg1));
+        }
+
+        public static IPrincipal AsPrincipal(this string principalIdentityName)
+        {
+            if (principalIdentityName == null)
+            {
+                var identity = new Mock<IIdentity>();
+                var principal = new Mock<IPrincipal>();
+                identity.Setup(p => p.Name).Returns(null as string);
+                principal.Setup(p => p.Identity).Returns(identity.Object);
+                return principal.Object;
+            }
+            else
+            {
+                var principal = new GenericPrincipal(new GenericIdentity(principalIdentityName), null);
+                return principal;
+            }
         }
 
         // ReSharper disable UnusedParameter.Local

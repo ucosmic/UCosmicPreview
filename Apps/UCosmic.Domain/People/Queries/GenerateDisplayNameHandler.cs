@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace UCosmic.Domain.People
 {
@@ -6,6 +7,8 @@ namespace UCosmic.Domain.People
     {
         public string Handle(GenerateDisplayNameQuery query)
         {
+            if (query == null) throw new ArgumentNullException("query");
+
             var builder = new StringBuilder();
 
             // start with the last name

@@ -81,11 +81,6 @@ namespace UCosmic.Domain.People
             return email;
         }
 
-        public EmailAddress GetEmail(int number)
-        {
-            return Emails.ByNumber(number);
-        }
-
         internal void ResetSamlEmails()
         {
             foreach (var email in Emails.FromSaml().ToList())
@@ -136,7 +131,7 @@ namespace UCosmic.Domain.People
             {
                 if (Affiliations != null)
                 {
-                    var defaultAffiliation = Affiliations.Current().SingleOrDefault(a => a.IsDefault);
+                    var defaultAffiliation = Affiliations.SingleOrDefault(a => a.IsDefault);
                     if (defaultAffiliation != null) return defaultAffiliation;
                 }
                 return null;

@@ -108,11 +108,13 @@ namespace UCosmic.Orm
             }
         }
 
-        private class AffiliationOrm : RevisableEntityTypeConfiguration<Affiliation>
+        private class AffiliationOrm : EntityTypeConfiguration<Affiliation>
         {
             internal AffiliationOrm()
             {
                 ToTable(typeof(Affiliation).Name, DbSchemaName.People);
+
+                HasKey(p => new { p.PersonId, p.EstablishmentId });
 
                 Property(p => p.JobTitles).HasMaxLength(500);
             }

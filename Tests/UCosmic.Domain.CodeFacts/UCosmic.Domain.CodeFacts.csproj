@@ -74,6 +74,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Establishments\Commands\SignOnSamlUserHandlerFacts.cs" />
+    <Compile Include="Establishments\Queries\GetEstablishmentByIdHandlerFacts.cs" />
     <Compile Include="Etc\InterfaceQueryEntitiesExtensions.cs" />
     <Compile Include="Api\RevisableEntityFinderFacts.cs" />
     <Compile Include="Api\RevisableEntityQueryCriteriaFacts.cs" />
@@ -104,10 +105,16 @@
     <Compile Include="InstitutionalAgreements\InstitutionalAgreementFacts.cs" />
     <Compile Include="Languages\LanguageNameFacts.cs" />
     <Compile Include="Languages\LanguageFacts.cs" />
-    <Compile Include="People\Commands\ChangeEmailSpellingValidatorFacts.cs" />
-    <Compile Include="People\Commands\ChangeEmailSpellingHandlerFacts.cs" />
-    <Compile Include="People\Commands\UpdateNameHandlerFacts.cs" />
-    <Compile Include="People\Commands\UpdateNameValidatorFacts.cs" />
+    <Compile Include="People\Commands\ChangeMyEmailSpellingValidatorFacts.cs" />
+    <Compile Include="People\Commands\ChangeMyEmailSpellingHandlerFacts.cs" />
+    <Compile Include="People\Commands\CreateAffiliationHandlerFacts.cs" />
+    <Compile Include="People\Commands\CreateAffiliationValidatorFacts.cs" />
+    <Compile Include="People\Commands\UpdateMyAffiliationHandlerFacts.cs" />
+    <Compile Include="People\Commands\UpdateMyAffiliationValidatorFacts.cs" />
+    <Compile Include="People\Commands\UpdateMyAffiliationCommandFacts.cs" />
+    <Compile Include="People\Commands\UpdateMyNameCommandFacts.cs" />
+    <Compile Include="People\Commands\UpdateMyNameHandlerFacts.cs" />
+    <Compile Include="People\Commands\UpdateMyNameValidatorFacts.cs" />
     <Compile Include="People\Commands\CreatePersonHandlerFacts.cs" />
     <Compile Include="People\Commands\CreatePersonValidatorFacts.cs" />
     <Compile Include="People\Entities\AffiliationFacts.cs" />
@@ -115,6 +122,10 @@
     <Compile Include="People\Entities\EmailConfirmationFacts.cs" />
     <Compile Include="People\Entities\EmailMessageFacts.cs" />
     <Compile Include="People\Entities\PersonFacts.cs" />
+    <Compile Include="People\Queries\GetPersonByIdHandlerFacts.cs" />
+    <Compile Include="People\Queries\GetMyAffiliationByEstablishmentIdHandlerFacts.cs" />
+    <Compile Include="People\Queries\GetMyEmailAddressByNumberHandlerFacts.cs" />
+    <Compile Include="People\Queries\GetPersonByEmailHandlerFacts.cs" />
     <Compile Include="People\Queries\FindDistinctSuffixesHandlerFacts.cs" />
     <Compile Include="People\Queries\FindDistinctSalutationsHandlerFacts.cs" />
     <Compile Include="People\Queries\GenerateDisplayNameHandlerFacts.cs" />

@@ -53,7 +53,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             if (!ModelState.IsValid) return PartialView(model);
 
             // execute command, set feedback message, and redirect
-            var command = Mapper.Map<UpdateNameCommand>(model);
+            var command = Mapper.Map<UpdateMyNameCommand>(model);
             command.Principal = User;
             _services.CommandHandler.Handle(command);
             SetFeedbackMessage(command.ChangedState

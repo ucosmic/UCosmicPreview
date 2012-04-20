@@ -5,15 +5,13 @@
         @if (!Model.IsAcknowledged)
         {
             <span class="affiliation-unacknowledged">You have not yet set up this affiliation.</span>
-            <span class="affiliation-actions">
-                @Html.ActionLink("Set up affiliation", MVC.Identity.Self.ActionNames.EditAffiliation,
-                    new { entityId = Model.EntityId }, new { @class = "affiliation-edit" })</span>
+            <span class="affiliation-actions"><a href="@Url.Action(MVC.My.Affiliation.Get(Model.EstablishmentId))">
+                Set up affiliation</a></span>
         }
         else
         {
-            <span class="affiliation-actions">
-                @Html.ActionLink("Edit affiliation info", MVC.Identity.Self.ActionNames.EditAffiliation,
-                    new { entityId = Model.EntityId }, new { @class = "affiliation-edit" })</span>
+            <span class="affiliation-actions"><a href="@Url.Action(MVC.My.Affiliation.Get(Model.EstablishmentId))">
+                Edit affiliation info</a></span>
         }
     </div>
     @if (Model.IsAcknowledged)

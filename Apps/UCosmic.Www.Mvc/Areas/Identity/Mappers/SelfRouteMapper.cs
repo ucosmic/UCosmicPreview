@@ -31,27 +31,27 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             }
         }
 
-        public static class EditAffiliation
-        {
-            public const string RouteForGet = "me/affiliations/{entityId}/edit.html";
-            public const string RouteForPost = "me/affiliations/edit.html";
-            private static readonly string Action = MVC.Identity.Self.ActionNames.EditAffiliation;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new { area, controller, action = Action, };
-                var constraintsForGet = new
-                {
-                        entityId = new NonEmptyGuidRouteConstraint(),
-                        httpMethod = new HttpMethodConstraint("GET"),
-                };
-                var constraintsForPost = new
-                {
-                    httpMethod = new HttpMethodConstraint("POST")
-                };
-                context.MapRoute(null, RouteForGet, defaults, constraintsForGet);
-                context.MapRoute(null, RouteForPost, defaults, constraintsForPost);
-            }
-        }
+        //public static class EditAffiliation
+        //{
+        //    public const string RouteForGet = "me/affiliations/{entityId}/edit.html";
+        //    public const string RouteForPost = "me/affiliations/edit.html";
+        //    private static readonly string Action = MVC.Identity.Self.ActionNames.EditAffiliation;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        var constraintsForGet = new
+        //        {
+        //                entityId = new NonEmptyGuidRouteConstraint(),
+        //                httpMethod = new HttpMethodConstraint("GET"),
+        //        };
+        //        var constraintsForPost = new
+        //        {
+        //            httpMethod = new HttpMethodConstraint("POST")
+        //        };
+        //        context.MapRoute(null, RouteForGet, defaults, constraintsForGet);
+        //        context.MapRoute(null, RouteForPost, defaults, constraintsForPost);
+        //    }
+        //}
 
         public static class AutoCompletePersonName
         {

@@ -1,9 +1,10 @@
-﻿
+﻿using System.Security.Principal;
+
 namespace UCosmic.Domain.People
 {
-    public class ChangeEmailSpellingCommand
+    public class ChangeMyEmailSpellingCommand
     {
-        public string UserName { get; set; }
+        public IPrincipal Principal { get; set; }
         public int Number { get; set; }
         public string NewValue { get; set; }
         public bool ChangedState { get; internal set; }

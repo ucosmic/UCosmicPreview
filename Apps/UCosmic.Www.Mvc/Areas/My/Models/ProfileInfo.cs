@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
@@ -17,7 +16,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         public AffiliationInfo[] Affiliations { get; set; }
         public class AffiliationInfo
         {
-            public Guid EntityId { get; set; }
+            public int EstablishmentId { get; set; }
 
             [DisplayFormat(NullDisplayText = "[Job Title(s) Unknown]")]
             public string JobTitles { get; set; }

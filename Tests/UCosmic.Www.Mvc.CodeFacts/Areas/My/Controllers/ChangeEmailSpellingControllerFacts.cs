@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Security.Principal;
 using System.Web.Mvc;
 using FluentValidation.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,7 +8,6 @@ using Moq;
 using Should;
 using UCosmic.Domain;
 using UCosmic.Domain.People;
-using UCosmic.Www.Mvc.Areas.Identity.Mappers;
 using UCosmic.Www.Mvc.Areas.My.Models;
 using UCosmic.Www.Mvc.Controllers;
 
@@ -79,29 +77,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
-                attributes[0].Fallback.ShouldEqual(SelfRouteMapper.Me.OutboundRoute);
-            }
-
-            [TestMethod]
-            public void ThrowsNullReferenceException_WhenUserIsNull()
-            {
-                const int number = 2;
-                var scenarioOptions = new ScenarioOptions();
-                var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<GetEmailAddressByUserNameAndNumberQuery>()))
-                    .Returns(null as EmailAddress);
-                NullReferenceException exception = null;
-
-                try
-                {
-                    controller.Get(number);
-                }
-                catch (NullReferenceException ex)
-                {
-                    exception = ex;
-                }
-
-                exception.ShouldNotBeNull();
+                attributes[0].Fallback.ShouldEqual(ProfileRouter.Get.Route);
             }
 
             [TestMethod]
@@ -111,10 +87,10 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string userName = "user@domain.tld";
                 var scenarioOptions = new ScenarioOptions
                 {
-                    UserIdentityName = userName,
+                    PrincipalIdentityName = userName,
                 };
-                Expression<Func<GetEmailAddressByUserNameAndNumberQuery, bool>> emailAddressByUserNameAndNumberQuery =
-                    query => query.UserName == userName && query.Number == number;
+                Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailAddressByUserNameAndNumberQuery =
+                    q => q.Principal.Identity.Name == userName && q.Number == number;
                 var controller = CreateController(scenarioOptions);
                 scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(emailAddressByUserNameAndNumberQuery)))
                     .Returns(new EmailAddress());
@@ -133,10 +109,10 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string userName = "user@domain.tld";
                 var scenarioOptions = new ScenarioOptions
                 {
-                    UserIdentityName = userName,
+                    PrincipalIdentityName = userName,
                 };
-                Expression<Func<GetEmailAddressByUserNameAndNumberQuery, bool>> emailAddressByUserNameAndNumberQuery =
-                    query => query.UserName == userName && query.Number == number;
+                Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailAddressByUserNameAndNumberQuery =
+                    q => q.Principal.Identity.Name == userName && q.Number == number;
                 var controller = CreateController(scenarioOptions);
                 scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(emailAddressByUserNameAndNumberQuery)))
                     .Returns(null as EmailAddress);
@@ -154,10 +130,10 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string userName = "user@domain.tld";
                 var scenarioOptions = new ScenarioOptions
                 {
-                    UserIdentityName = userName,
+                    PrincipalIdentityName = userName,
                 };
-                Expression<Func<GetEmailAddressByUserNameAndNumberQuery, bool>> emailAddressByUserNameAndNumberQuery =
-                    query => query.UserName == userName && query.Number == number;
+                Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailAddressByUserNameAndNumberQuery =
+                    q => q.Principal.Identity.Name == userName && q.Number == number;
                 var controller = CreateController(scenarioOptions);
                 scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(emailAddressByUserNameAndNumberQuery)))
                     .Returns(new EmailAddress());
@@ -239,7 +215,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string personUserName = "user@domain2.tld";
                 var scenarioOptions = new ScenarioOptions
                 {
-                    UserIdentityName = userIdentityName,
+                    PrincipalIdentityName = userIdentityName,
                 };
                 var model = new ChangeEmailSpellingForm
                 {
@@ -260,7 +236,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const string personUserName = "user@domain.tld";
                 var scenarioOptions = new ScenarioOptions
                 {
-                    UserIdentityName = userIdentityName,
+                    PrincipalIdentityName = userIdentityName,
                 };
                 var model = new ChangeEmailSpellingForm
                 {
@@ -285,10 +261,10 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const int number = 2;
                 const string personUserName = "user@domain.tld";
                 const string newValue = "User@domain.tld";
-                const string userIdentityName = "user@domain.tld";
+                const string principalIdentityName = "user@domain.tld";
                 var scenarioOptions = new ScenarioOptions
                 {
-                    UserIdentityName = userIdentityName,
+                    PrincipalIdentityName = principalIdentityName,
                 };
                 var model = new ChangeEmailSpellingForm
                 {
@@ -298,10 +274,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     ReturnUrl = "https://www.site.com/"
                 };
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<ChangeEmailSpellingCommand, bool>> commandDerivedFromModel =
+                var builder = ReuseMock.TestControllerBuilder();
+                var principal = principalIdentityName.AsPrincipal();
+                builder.HttpContext.User = principal;
+                builder.InitializeController(controller);
+                Expression<Func<ChangeMyEmailSpellingCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
-                    command.UserName == personUserName &&
+                    command.Principal == principal &&
                     command.NewValue == newValue
                 ;
                 scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)));
@@ -319,10 +299,10 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const int number = 2;
                 const string personUserName = "user@domain.tld";
                 const string newValue = "User@domain.tld";
-                const string userIdentityName = "user@domain.tld";
+                const string principalIdentityName = "user@domain.tld";
                 var scenarioOptions = new ScenarioOptions
                 {
-                    UserIdentityName = userIdentityName,
+                    PrincipalIdentityName = principalIdentityName,
                 };
                 var model = new ChangeEmailSpellingForm
                 {
@@ -332,14 +312,18 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     ReturnUrl = "https://www.site.com/"
                 };
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<ChangeEmailSpellingCommand, bool>> commandDerivedFromModel =
+                var builder = ReuseMock.TestControllerBuilder();
+                var principal = principalIdentityName.AsPrincipal();
+                builder.HttpContext.User = principal;
+                builder.InitializeController(controller);
+                Expression<Func<ChangeMyEmailSpellingCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
-                    command.UserName == personUserName &&
+                    command.Principal == principal &&
                     command.NewValue == newValue
                 ;
                 scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)))
-                    .Callback((ChangeEmailSpellingCommand command) => command.ChangedState = true);
+                    .Callback((ChangeMyEmailSpellingCommand command) => command.ChangedState = true);
 
                 controller.Put(model);
 
@@ -355,10 +339,10 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const int number = 2;
                 const string personUserName = "user@domain.tld";
                 const string newValue = "User@domain.tld";
-                const string userIdentityName = "user@domain.tld";
+                const string principalIdentityName = "user@domain.tld";
                 var scenarioOptions = new ScenarioOptions
                 {
-                    UserIdentityName = userIdentityName,
+                    PrincipalIdentityName = principalIdentityName,
                 };
                 var model = new ChangeEmailSpellingForm
                 {
@@ -368,10 +352,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     ReturnUrl = "https://www.site.com/"
                 };
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<ChangeEmailSpellingCommand, bool>> commandDerivedFromModel =
+                var builder = ReuseMock.TestControllerBuilder();
+                var principal = principalIdentityName.AsPrincipal();
+                builder.HttpContext.User = principal;
+                builder.InitializeController(controller);
+                Expression<Func<ChangeMyEmailSpellingCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
-                    command.UserName == personUserName &&
+                    command.Principal == principal &&
                     command.NewValue == newValue
                 ;
                 scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)));
@@ -390,10 +378,10 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 const int number = 2;
                 const string personUserName = "user@domain.tld";
                 const string newValue = "User@domain.tld";
-                const string userIdentityName = "user@domain.tld";
+                const string principalIdentityName = "user@domain.tld";
                 var scenarioOptions = new ScenarioOptions
                 {
-                    UserIdentityName = userIdentityName,
+                    PrincipalIdentityName = principalIdentityName,
                 };
                 var model = new ChangeEmailSpellingForm
                 {
@@ -403,10 +391,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     ReturnUrl = "https://www.site.com/"
                 };
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<ChangeEmailSpellingCommand, bool>> commandDerivedFromModel =
+                var builder = ReuseMock.TestControllerBuilder();
+                var principal = principalIdentityName.AsPrincipal();
+                builder.HttpContext.User = principal;
+                builder.InitializeController(controller);
+                Expression<Func<ChangeMyEmailSpellingCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
-                    command.UserName == personUserName &&
+                    command.Principal == principal &&
                     command.NewValue == newValue
                 ;
                 scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)));
@@ -497,8 +489,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         private class ScenarioOptions
         {
             internal Mock<IProcessQueries> MockQueryProcessor { get; set; }
-            internal Mock<IHandleCommands<ChangeEmailSpellingCommand>> MockCommandHandler { get; set; }
-            internal string UserIdentityName { get; set; }
+            internal Mock<IHandleCommands<ChangeMyEmailSpellingCommand>> MockCommandHandler { get; set; }
+            internal string PrincipalIdentityName { get; set; }
         }
 
         private static ChangeEmailSpellingController CreateController(ScenarioOptions scenarioOptions = null)
@@ -507,7 +499,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
             scenarioOptions.MockQueryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
 
-            scenarioOptions.MockCommandHandler = new Mock<IHandleCommands<ChangeEmailSpellingCommand>>(MockBehavior.Strict);
+            scenarioOptions.MockCommandHandler = new Mock<IHandleCommands<ChangeMyEmailSpellingCommand>>(MockBehavior.Strict);
 
             var services = new ChangeEmailSpellingServices(scenarioOptions.MockQueryProcessor.Object, scenarioOptions.MockCommandHandler.Object);
 
@@ -516,13 +508,10 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             var builder = ReuseMock.TestControllerBuilder();
 
             builder.HttpContext.User = null;
-            if (!string.IsNullOrWhiteSpace(scenarioOptions.UserIdentityName))
+            if (!string.IsNullOrWhiteSpace(scenarioOptions.PrincipalIdentityName))
             {
-                var identity = new Mock<IIdentity>();
-                identity.Setup(p => p.Name).Returns(scenarioOptions.UserIdentityName);
-                var principal = new Mock<IPrincipal>();
-                principal.Setup(p => p.Identity).Returns(identity.Object);
-                builder.HttpContext.User = principal.Object;
+                var principal = scenarioOptions.PrincipalIdentityName.AsPrincipal();
+                builder.HttpContext.User = principal;
             }
 
             builder.InitializeController(controller);

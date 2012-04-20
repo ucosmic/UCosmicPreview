@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 
 namespace UCosmic.Domain.People
@@ -10,6 +11,26 @@ namespace UCosmic.Domain.People
         [TestClass]
         public class TheHandleMethod
         {
+            [TestMethod]
+            public void ThrowsArgumentNullException_WhenQueryArgIsNull()
+            {
+                var handler = new GenerateDisplayNameHandler();
+                ArgumentNullException exception = null;
+                try
+                {
+                    handler.Handle(null);
+                }
+                catch (ArgumentNullException ex)
+                {
+                    exception = ex;
+                }
+
+                exception.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                exception.ParamName.ShouldEqual("query");
+                // ReSharper restore PossibleNullReferenceException
+            }
+
             [TestMethod]
             public void ReturnsNull_WhenNoComponentsAreProvided()
             {
