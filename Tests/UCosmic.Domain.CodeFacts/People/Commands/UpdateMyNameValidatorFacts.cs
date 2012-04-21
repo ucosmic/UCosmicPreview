@@ -23,6 +23,9 @@ namespace UCosmic.Domain.People
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "DisplayName");
                 error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(ValidatePerson.FailedBecauseDisplayNameWasEmpty);
+                // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
@@ -35,6 +38,9 @@ namespace UCosmic.Domain.People
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "DisplayName");
                 error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(ValidatePerson.FailedBecauseDisplayNameWasEmpty);
+                // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
@@ -47,6 +53,9 @@ namespace UCosmic.Domain.People
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "DisplayName");
                 error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(ValidatePerson.FailedBecauseDisplayNameWasEmpty);
+                // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
@@ -76,6 +85,9 @@ namespace UCosmic.Domain.People
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Principal");
                 error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(ValidatePrincipal.FailedBecausePrincipalWasNull);
+                // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]

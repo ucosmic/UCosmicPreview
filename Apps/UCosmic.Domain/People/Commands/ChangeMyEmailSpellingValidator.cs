@@ -1,7 +1,6 @@
-﻿using System;
+﻿using System.Security.Principal;
 using FluentValidation;
 using UCosmic.Domain.Identity;
-using System.Security.Principal;
 
 namespace UCosmic.Domain.People
 {
@@ -12,57 +11,65 @@ namespace UCosmic.Domain.People
         public ChangeMyEmailSpellingValidator(IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
+            CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(p => p.Principal)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty()
+
+                // principal cannot be null
+                .NotEmpty().WithMessage(
+                    ValidatePrincipal.FailedBecausePrincipalWasNull)
+
+                // principal identity name cannot be null or whitespace
                 .Must(ValidatePrincipal.IdentityNameIsNotEmpty).WithMessage(
                     ValidatePrincipal.FailedBecauseIdentityNameWasEmpty)
+
+                // principal identity name must match User.Name entity property
                 .Must(ValidatePrincipalIdentityNameMatchesUser).WithMessage(
                     ValidatePrincipal.FailedBecauseIdentityNameMatchedNoUser,
                         p => p.Principal.Identity.Name)
             ;
 
             RuleFor(p => p.Number)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty()
-                .GreaterThanOrEqualTo(1)
+
+                // number must match email for user
+                .Must(ValidateEmailAddressNumberAndPrincipalMatchesEntity).WithMessage(
+                    ValidateEmailAddress.FailedBecauseNumberAndPrincipalMatchedNoEntity,
+                        p => p.Number)
             ;
 
             RuleFor(p => p.NewValue)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty()
-                .EmailAddress()
-                .Must(MatchPreviousSpellingCaseInvariantly).WithMessage(FailedWithPreviousSpellingDoesNotMatchCaseInvariantly)
+
+                // new email address cannot be empty
+                .NotEmpty().WithMessage(
+                    ValidateEmailAddress.FailedBecauseValueWasEmpty)
+
+                // must be valid against email address regular expression
+                .EmailAddress().WithMessage(
+                    ValidateEmailAddress.FailedBecauseValueWasNotValidEmailAddress,
+                        p => p.NewValue)
+
+                // must match previous spelling case insensitively
+                .Must(ValidateEmailAddressNewValueMatchesCurrentValueCaseInsensitively).WithMessage(
+                    ValidateEmailAddress.FailedBecauseNewValueDidNotMatchCurrentValueCaseInvsensitively,
+                        p => p.NewValue)
             ;
         }
+
+        private EmailAddress _email;
 
         private bool ValidatePrincipalIdentityNameMatchesUser(IPrincipal principal)
         {
             return ValidatePrincipal.IdentityNameMatchesUser(principal, _queryProcessor);
         }
 
-        public const string FailedWithPreviousSpellingDoesNotMatchCaseInvariantly
-            = "You can only change lowercase letters to uppercase (or vice versa) when changing the spelling of your email address.";
-
-        private bool MatchPreviousSpellingCaseInvariantly(ChangeMyEmailSpellingCommand command, string value)
+        private bool ValidateEmailAddressNumberAndPrincipalMatchesEntity(ChangeMyEmailSpellingCommand command, int number)
         {
-            return NewEmailMatchesPreviousSpellingCaseInvariantly
-                (value, command.Principal, command.Number, _queryProcessor);
+            return ValidateEmailAddress.NumberAndPrincipalMatchesEntity(number, command.Principal, _queryProcessor, out _email);
         }
 
-        public static bool NewEmailMatchesPreviousSpellingCaseInvariantly(string newValue, IPrincipal principal, int number, IProcessQueries queryProcessor)
+        private bool ValidateEmailAddressNewValueMatchesCurrentValueCaseInsensitively(string newValue)
         {
-            var email = queryProcessor.Execute(
-                new GetMyEmailAddressByNumberQuery
-                {
-                    Principal = principal,
-                    Number = number,
-                }
-            );
-
-            return email != null
-                && email.Value.Equals(newValue, StringComparison.OrdinalIgnoreCase);
+            return ValidateEmailAddress.NewValueMatchesCurrentValueCaseInsensitively(newValue, _email);
         }
     }
 }

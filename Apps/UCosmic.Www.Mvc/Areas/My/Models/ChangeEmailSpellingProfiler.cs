@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using AutoMapper;
+﻿using AutoMapper;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Models;
 

@@ -68,6 +68,7 @@
     <Compile Include="Establishments\Queries\BaseEstablishmentQuery.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentByIdHandler.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentByIdQuery.cs" />
+    <Compile Include="Identity\Commands\ValidateUser.cs" />
     <Compile Include="Identity\Commands\ValidatePrincipal.cs" />
     <Compile Include="Api\EntityExtensions.cs" />
     <Compile Include="Api\FluentValidationCommandDecorator.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="People\Commands\ChangeMyEmailSpellingCommand.cs" />
     <Compile Include="People\Commands\ChangeMyEmailSpellingHandler.cs" />
     <Compile Include="People\Commands\ChangeMyEmailSpellingValidator.cs" />
+    <Compile Include="People\Commands\ValidateEmailAddress.cs" />
     <Compile Include="People\Commands\CreateAffiliationCommand.cs" />
     <Compile Include="People\Commands\CreateAffiliationHandler.cs" />
     <Compile Include="People\Commands\CreateAffiliationValidator.cs" />

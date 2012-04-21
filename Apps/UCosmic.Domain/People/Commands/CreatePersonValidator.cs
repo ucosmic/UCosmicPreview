@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-using FluentValidation;
+﻿using FluentValidation;
 using UCosmic.Domain.Identity;
 
 namespace UCosmic.Domain.People
@@ -12,43 +10,27 @@ namespace UCosmic.Domain.People
         public CreatePersonValidator(IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
+            CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(p => p.DisplayName)
-                .NotEmpty()
+
+                // display name cannot be empty
+                .NotEmpty().WithMessage(
+                    ValidatePerson.FailedBecauseDisplayNameWasEmpty)
             ;
 
-            // if user is present, validate that it is not attached to another person
             RuleFor(p => p.UserName)
-                .Must(NotBeAssociatedWithAnotherPerson)
-                    .WithMessage(UserIsAlreadyAssociatedWithAnotherPersonErrorFormat,
-                        p => p.UserName, p => p.DisplayName, p => p.UserPersonDisplayName)
+
+                // if username is present, validate that it is not attached to another person
+                .Must(ValidateUserNameMatchesNoEntity)
+                    .WithMessage(ValidateUser.FailedBecauseNameMatchedEntity,
+                        p => p.UserName)
             ;
         }
 
-        public const string UserIsAlreadyAssociatedWithAnotherPersonErrorFormat =
-            "The user '{0}' cannot be associated with person '{1}' because it is already associated with person '{2}'.";
-
-        private bool NotBeAssociatedWithAnotherPerson(CreatePersonCommand command, string userName)
+        private bool ValidateUserNameMatchesNoEntity(CreatePersonCommand command, string userName)
         {
-            // when username is not provided, do not validate
-            if (string.IsNullOrWhiteSpace(userName)) return true;
-
-            var user = _queryProcessor.Execute(
-                new GetUserByNameQuery
-                {
-                    Name = userName,
-                    EagerLoad = new Expression<Func<User, object>>[]
-                    {
-                        u => u.Person,
-                    },
-                }
-            );
-
-            command.UserPersonDisplayName = user != null && user.Person != null
-                ? user.Person.DisplayName : null;
-
-            // return true (valid) if there is no user
-            return user == null;
+            return ValidateUser.NameMatchesNoEntity(userName, _queryProcessor);
         }
     }
 }

@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcContrib.TestHelper;
 using Should;
 using UCosmic.Www.Mvc.Areas.Identity.Controllers;
-using UCosmic.Www.Mvc.Areas.Identity.Models.Self;
 using UCosmic.Www.Mvc.Areas.Identity.Models.SignIn;
 
 namespace UCosmic.Www.Mvc.Areas.Identity

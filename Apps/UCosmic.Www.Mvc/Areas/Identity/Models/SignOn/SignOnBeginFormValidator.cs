@@ -11,26 +11,37 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
         public SignOnBeginFormValidator(IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
+            CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(p => p.EmailAddress)
-                .Cascade(CascadeMode.StopOnFirstFailure)
+
+                // validate the email address
                 .SignOnEmailAddressRules()
-                .Must(MatchExistingEstablishment).WithMessage(IneligibleEmailMessage, p => p.EmailAddress)
+
+                // establishment must exist
+                .Must(ValidateEstablishmentEmailMatchesEntity).WithMessage(
+                    FailedBecauseEstablishmentIsNotEligible,
+                        p => p.EmailAddress)
+
+                // establishment must be a member
+                .Must(ValidateEstablishmentIsMember).WithMessage(
+                    FailedBecauseEstablishmentIsNotEligible,
+                        p => p.EmailAddress)
             ;
         }
 
-        public const string IneligibleEmailMessage = "Sorry, but the email address \"{0}\" is not eligible at this time.";
+        private Establishment _establishment;
 
-        private bool MatchExistingEstablishment(string emailAddress)
+        internal const string FailedBecauseEstablishmentIsNotEligible = "Sorry, but the email address \"{0}\" is not eligible at this time.";
+
+        private bool ValidateEstablishmentEmailMatchesEntity(string emailAddress)
         {
-            var establishment = _queryProcessor.Execute(
-                new GetEstablishmentByEmailQuery
-                {
-                    Email = emailAddress,
-                }
-            );
+            return ValidateEstablishment.EmailMatchesEntity(emailAddress, _queryProcessor, out _establishment);
+        }
 
-            return establishment != null && establishment.IsMember;
+        private bool ValidateEstablishmentIsMember(string emailAddress)
+        {
+            return ValidateEstablishment.IsMember(_establishment);
         }
     }
 }

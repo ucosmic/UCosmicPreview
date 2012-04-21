@@ -12,23 +12,47 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         public ChangeEmailSpellingValidator(IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
+            CascadeMode = CascadeMode.StopOnFirstFailure;
 
-            const string changeEmailSpellingErrorMessage =
-                ChangeMyEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInvariantly;
+            RuleFor(p => p.Number)
+            ;
 
             RuleFor(p => p.Value)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage(changeEmailSpellingErrorMessage)
-                .EmailAddress().WithMessage(changeEmailSpellingErrorMessage)
-                .Must(MatchPreviousSpellingCaseInvariantly).WithMessage(changeEmailSpellingErrorMessage)
+
+                // email address cannot be empty
+                .NotEmpty().WithMessage(
+                    FailedWithPreviousSpellingDoesNotMatchCaseInsensitively)
+
+                // must be valid against email address regular expression
+                .EmailAddress().WithMessage(
+                    FailedWithPreviousSpellingDoesNotMatchCaseInsensitively)
+
+                // validate the number within the Value property b/c remote only validates this property
+                .Must(ValidateEmailAddressNumberAndPrincipalMatchesEntity).WithMessage(
+                    ValidateEmailAddress.FailedBecauseNumberAndPrincipalMatchedNoEntity,
+                        p => p.Number)
+
+                // must match previous spelling case insensitively
+                .Must(ValidateEmailAddressNewValueMatchesCurrentValueCaseInsensitively).WithMessage(
+                    FailedWithPreviousSpellingDoesNotMatchCaseInsensitively)
             ;
         }
 
-        private bool MatchPreviousSpellingCaseInvariantly(ChangeEmailSpellingForm form, string value)
+        private EmailAddress _email;
+
+        internal const string FailedWithPreviousSpellingDoesNotMatchCaseInsensitively
+            = "You can only change lowercase letters to uppercase (or vice versa) when changing the spelling of your email address.";
+
+        private bool ValidateEmailAddressNumberAndPrincipalMatchesEntity(ChangeEmailSpellingForm form, string value)
         {
-            return ChangeMyEmailSpellingValidator
-                .NewEmailMatchesPreviousSpellingCaseInvariantly
-                    (value, new GenericPrincipal(new GenericIdentity(form.PersonUserName), null), form.Number, _queryProcessor);
+            var principalIdentityName = form.PersonUserName ?? string.Empty;
+            var principal = new GenericPrincipal(new GenericIdentity(principalIdentityName), null);
+            return ValidateEmailAddress.NumberAndPrincipalMatchesEntity(form.Number, principal, _queryProcessor, out _email);
+        }
+
+        private bool ValidateEmailAddressNewValueMatchesCurrentValueCaseInsensitively(ChangeEmailSpellingForm form, string value)
+        {
+            return ValidateEmailAddress.NewValueMatchesCurrentValueCaseInsensitively(value, _email);
         }
     }
 }
