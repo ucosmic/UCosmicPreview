@@ -2,7 +2,7 @@
 
 namespace UCosmic.Domain.People
 {
-    public class ChangeMyEmailSpellingCommand
+    public class UpdateMyEmailValueCommand
     {
         public IPrincipal Principal { get; set; }
         public int Number { get; set; }

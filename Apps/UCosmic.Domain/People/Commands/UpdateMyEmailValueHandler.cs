@@ -2,18 +2,18 @@
 
 namespace UCosmic.Domain.People
 {
-    public class ChangeMyEmailSpellingHandler : IHandleCommands<ChangeMyEmailSpellingCommand>
+    public class UpdateMyEmailValueHandler : IHandleCommands<UpdateMyEmailValueCommand>
     {
         private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
 
-        public ChangeMyEmailSpellingHandler(IProcessQueries queryProcessor, ICommandEntities entities)
+        public UpdateMyEmailValueHandler(IProcessQueries queryProcessor, ICommandEntities entities)
         {
             _queryProcessor = queryProcessor;
             _entities = entities;
         }
 
-        public void Handle(ChangeMyEmailSpellingCommand command)
+        public void Handle(UpdateMyEmailValueCommand command)
         {
             if (command == null) throw new ArgumentNullException("command");
 

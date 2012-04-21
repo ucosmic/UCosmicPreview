@@ -145,9 +145,9 @@
     <Compile Include="InstitutionalAgreements\InstitutionalAgreementQueries.cs" />
     <Compile Include="InstitutionalAgreements\InstitutionalAgreementQuery.cs" />
     <Compile Include="Languages\LanguageQuery.cs" />
-    <Compile Include="People\Commands\ChangeMyEmailSpellingCommand.cs" />
-    <Compile Include="People\Commands\ChangeMyEmailSpellingHandler.cs" />
-    <Compile Include="People\Commands\ChangeMyEmailSpellingValidator.cs" />
+    <Compile Include="People\Commands\UpdateMyEmailValueCommand.cs" />
+    <Compile Include="People\Commands\UpdateMyEmailValueHandler.cs" />
+    <Compile Include="People\Commands\UpdateMyEmailValueValidator.cs" />
     <Compile Include="People\Commands\ValidateEmailAddress.cs" />
     <Compile Include="People\Commands\CreateAffiliationCommand.cs" />
     <Compile Include="People\Commands\CreateAffiliationHandler.cs" />

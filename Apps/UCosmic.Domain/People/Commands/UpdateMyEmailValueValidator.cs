@@ -4,11 +4,11 @@ using UCosmic.Domain.Identity;
 
 namespace UCosmic.Domain.People
 {
-    public class ChangeMyEmailSpellingValidator : AbstractValidator<ChangeMyEmailSpellingCommand>
+    public class UpdateMyEmailValueValidator : AbstractValidator<UpdateMyEmailValueCommand>
     {
         private readonly IProcessQueries _queryProcessor;
 
-        public ChangeMyEmailSpellingValidator(IProcessQueries queryProcessor)
+        public UpdateMyEmailValueValidator(IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
             CascadeMode = CascadeMode.StopOnFirstFailure;
@@ -62,7 +62,7 @@ namespace UCosmic.Domain.People
             return ValidatePrincipal.IdentityNameMatchesUser(principal, _queryProcessor);
         }
 
-        private bool ValidateEmailAddressNumberAndPrincipalMatchesEntity(ChangeMyEmailSpellingCommand command, int number)
+        private bool ValidateEmailAddressNumberAndPrincipalMatchesEntity(UpdateMyEmailValueCommand command, int number)
         {
             return ValidateEmailAddress.NumberAndPrincipalMatchesEntity(number, command.Principal, _queryProcessor, out _email);
         }
