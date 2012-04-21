@@ -37,7 +37,7 @@ namespace UCosmic.Domain.People
             public void ReturnsNull_WhenEmailCannotBeMatched()
             {
                 var query = new GetPersonByEmailQuery();
-                var entities = new Mock<IQueryEntities>();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new Person[] { }.AsQueryable);
                 var handler = new GetPersonByEmailHandler(entities.Object);
 
@@ -54,7 +54,7 @@ namespace UCosmic.Domain.People
                 {
                     Email = email,
                 };
-                var entities = new Mock<IQueryEntities>();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new[]
                 {
                     new Person

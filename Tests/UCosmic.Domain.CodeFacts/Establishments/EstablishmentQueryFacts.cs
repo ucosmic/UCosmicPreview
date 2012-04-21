@@ -17,7 +17,7 @@ namespace UCosmic.Domain.Establishments
             public void Defaults_HasParent_ToNull()
             {
                 // arrange
-                var mockQuery = new Mock<EstablishmentQuery>();
+                var mockQuery = new Mock<EstablishmentQuery>(MockBehavior.Strict);
 
                 // act
                 var query = mockQuery.Object;
@@ -31,7 +31,7 @@ namespace UCosmic.Domain.Establishments
             public void Defaults_HasChildren_ToNull()
             {
                 // arrange
-                var mockQuery = new Mock<EstablishmentQuery>();
+                var mockQuery = new Mock<EstablishmentQuery>(MockBehavior.Strict);
 
                 // act
                 var query = mockQuery.Object;
@@ -45,7 +45,7 @@ namespace UCosmic.Domain.Establishments
             public void Defaults_EmailDomain_ToNull()
             {
                 // arrange
-                var mockQuery = new Mock<EstablishmentQuery>();
+                var mockQuery = new Mock<EstablishmentQuery>(MockBehavior.Strict);
 
                 // act
                 var query = mockQuery.Object;
@@ -59,7 +59,7 @@ namespace UCosmic.Domain.Establishments
             public void Defaults_WebsiteUrl_ToNull()
             {
                 // arrange
-                var mockQuery = new Mock<EstablishmentQuery>();
+                var mockQuery = new Mock<EstablishmentQuery>(MockBehavior.Strict);
 
                 // act
                 var query = mockQuery.Object;
@@ -73,7 +73,7 @@ namespace UCosmic.Domain.Establishments
             public void Defaults_AutoCompleteTerm_ToNull()
             {
                 // arrange
-                var mockQuery = new Mock<EstablishmentQuery>();
+                var mockQuery = new Mock<EstablishmentQuery>(MockBehavior.Strict);
 
                 // act
                 var query = mockQuery.Object;
@@ -87,7 +87,7 @@ namespace UCosmic.Domain.Establishments
             public void Defaults_SamlEntityId_ToNull()
             {
                 // arrange
-                var mockQuery = new Mock<EstablishmentQuery>();
+                var mockQuery = new Mock<EstablishmentQuery>(MockBehavior.Strict);
 
                 // act
                 var query = mockQuery.Object;

@@ -113,7 +113,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsView_WhenReturnUrlArg_IsNonEmptyString()
             {
                 const string returnUrl = "/path/to/resource";
-                var userSigner = new Mock<ISignUsers>();
+                var userSigner = new Mock<ISignUsers>(MockBehavior.Strict);
                 userSigner.Setup(p => p.DefaultSignedOnUrl).Returns("/my/profile");
                 var services = CreateSignOnServices();
                 var builder = ReuseMock.TestControllerBuilder(ControllerCustomization.ForUrlHelper);

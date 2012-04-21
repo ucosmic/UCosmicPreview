@@ -149,8 +149,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 {
                     EmailAddress = "user@invalid1.edu",
                 };
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.Establishments).Returns(new Establishment[] { }.AsQueryable);
                 DependencyInjector.Set(di.Object);
@@ -186,8 +186,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                     OfficialName = "Test Establishment 2",
                     IsMember = false,
                 };
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.Establishments)
                     .Returns(new[] { establishment }.AsQueryable);
@@ -245,8 +245,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.Establishments)
                         .Returns(new[] { establishment }.AsQueryable());
@@ -288,9 +288,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                     OfficialName = "Test Establishment 4",
                     IsMember = true,
                 };
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
-                var memberSigner = new Mock<ISignMembers>();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 di.Setup(m => m.GetService(typeof(ISignMembers))).Returns(memberSigner.Object);
                 entityQueries.Setup(m => m.Establishments)
@@ -341,9 +341,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
-                var memberSigner = new Mock<ISignMembers>();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 di.Setup(m => m.GetService(typeof(ISignMembers))).Returns(memberSigner.Object);
                 entityQueries.Setup(m => m.Establishments)
@@ -398,9 +398,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
-                var memberSigner = new Mock<ISignMembers>();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 di.Setup(m => m.GetService(typeof(ISignMembers))).Returns(memberSigner.Object);
                 entityQueries.Setup(m => m.Establishments)
@@ -455,9 +455,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
-                var memberSigner = new Mock<ISignMembers>();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 di.Setup(m => m.GetService(typeof(ISignMembers))).Returns(memberSigner.Object);
                 entityQueries.Setup(m => m.Establishments)

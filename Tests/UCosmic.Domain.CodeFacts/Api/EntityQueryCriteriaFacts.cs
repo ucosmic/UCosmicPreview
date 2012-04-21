@@ -15,7 +15,7 @@ namespace UCosmic.Domain
             public void Defaults_IsForInsertOrUpdate_ToFalse()
             {
                 // arrange
-                var mockQuery = new Mock<EntityQueryCriteria<object>>();
+                var mockQuery = new Mock<EntityQueryCriteria<object>>(MockBehavior.Strict);
 
                 // act
                 var query = mockQuery.Object;
@@ -33,7 +33,7 @@ namespace UCosmic.Domain
             public void AddsNoExpressions_WhenArgIsNull()
             {
                 // arrange
-                var mockQuery = new Mock<EntityQueryCriteria<object>>();
+                var mockQuery = new Mock<EntityQueryCriteria<object>>(MockBehavior.Strict);
                 var query = mockQuery.Object;
                 query.ShouldNotBeNull();
 
@@ -52,7 +52,7 @@ namespace UCosmic.Domain
             public void AddsNoExpressions_WhenArgIsNull()
             {
                 // arrange
-                var mockQuery = new Mock<EntityQueryCriteria<object>>();
+                var mockQuery = new Mock<EntityQueryCriteria<object>>(MockBehavior.Strict);
                 var query = mockQuery.Object;
                 query.ShouldNotBeNull();
 
@@ -71,7 +71,7 @@ namespace UCosmic.Domain
             public void AddsNoExpressions_WhenArgIsNull()
             {
                 // arrange
-                var mockQuery = new Mock<EntityQueryCriteria<object>>();
+                var mockQuery = new Mock<EntityQueryCriteria<object>>(MockBehavior.Strict);
                 var query = mockQuery.Object;
                 query.ShouldNotBeNull();
 
@@ -90,7 +90,7 @@ namespace UCosmic.Domain
             public void Sets_IsForInsertOrUpdate_ToTrue()
             {
                 // arrange
-                var mockQuery = new Mock<EntityQueryCriteria<object>>();
+                var mockQuery = new Mock<EntityQueryCriteria<object>>(MockBehavior.Strict);
                 var query = mockQuery.Object;
                 query.ShouldNotBeNull();
 

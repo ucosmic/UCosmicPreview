@@ -37,7 +37,7 @@ namespace UCosmic.Domain.People
             public void DoesNotReturn_NullSalutations()
             {
                 var query = new FindDistinctSalutationsQuery();
-                var entities = new Mock<IQueryEntities>();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new[]
                 {
                     new Person{ Salutation = null },
@@ -56,7 +56,7 @@ namespace UCosmic.Domain.People
             public void DoesNotReturn_EmptyStringSalutations()
             {
                 var query = new FindDistinctSalutationsQuery();
-                var entities = new Mock<IQueryEntities>();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new[]
                 {
                     new Person{ Salutation = string.Empty },
@@ -75,7 +75,7 @@ namespace UCosmic.Domain.People
             public void DoesNotReturn_WhiteSpaceSalutations()
             {
                 var query = new FindDistinctSalutationsQuery();
-                var entities = new Mock<IQueryEntities>();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new[]
                 {
                     new Person{ Salutation = "\r " },
@@ -94,7 +94,7 @@ namespace UCosmic.Domain.People
             public void DoesNotReturn_DuplicateSalutations()
             {
                 var query = new FindDistinctSalutationsQuery();
-                var entities = new Mock<IQueryEntities>();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new[]
                 {
                     new Person{ Salutation = "H.R.H." },
@@ -121,7 +121,7 @@ namespace UCosmic.Domain.People
                         "Mr."
                     }
                 };
-                var entities = new Mock<IQueryEntities>();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new[]
                 {
                     new Person{ Salutation = "Dr." },

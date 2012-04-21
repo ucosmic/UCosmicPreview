@@ -22,7 +22,7 @@ namespace UCosmic.Domain
             [TestMethod]
             public void Languages_HasGet()
             {
-                var mockQueries = new Mock<IQueryEntities>();
+                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
                 mockQueries.Setup(p => p.Languages).Returns(null as IQueryable<Language>);
                 var queries = mockQueries.Object;
                 queries.ShouldNotBeNull();
@@ -32,7 +32,7 @@ namespace UCosmic.Domain
             [TestMethod]
             public void Places_HasGet()
             {
-                var mockQueries = new Mock<IQueryEntities>();
+                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
                 mockQueries.Setup(p => p.Places).Returns(null as IQueryable<Place>);
                 var queries = mockQueries.Object;
                 queries.ShouldNotBeNull();
@@ -42,7 +42,7 @@ namespace UCosmic.Domain
             [TestMethod]
             public void GeoNamesToponyms_HasGet()
             {
-                var mockQueries = new Mock<IQueryEntities>();
+                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
                 mockQueries.Setup(p => p.GeoNamesToponyms)
                     .Returns(null as IQueryable<GeoNamesToponym>);
                 var queries = mockQueries.Object;
@@ -53,7 +53,7 @@ namespace UCosmic.Domain
             [TestMethod]
             public void GeoPlanetPlaces_HasGet()
             {
-                var mockQueries = new Mock<IQueryEntities>();
+                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
                 mockQueries.Setup(p => p.GeoPlanetPlaces)
                     .Returns(null as IQueryable<GeoPlanetPlace>);
                 var queries = mockQueries.Object;
@@ -64,7 +64,7 @@ namespace UCosmic.Domain
             [TestMethod]
             public void Users_HasGet()
             {
-                var mockQueries = new Mock<IQueryEntities>();
+                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
                 mockQueries.Setup(p => p.Users).Returns(null as IQueryable<User>);
                 var queries = mockQueries.Object;
                 queries.ShouldNotBeNull();
@@ -74,7 +74,7 @@ namespace UCosmic.Domain
             [TestMethod]
             public void Roles_HasGet()
             {
-                var mockQueries = new Mock<IQueryEntities>();
+                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
                 mockQueries.Setup(p => p.Roles).Returns(null as IQueryable<Role>);
                 var queries = mockQueries.Object;
                 queries.ShouldNotBeNull();
@@ -84,7 +84,7 @@ namespace UCosmic.Domain
             [TestMethod]
             public void People_HasGet()
             {
-                var mockQueries = new Mock<IQueryEntities>();
+                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
                 mockQueries.Setup(p => p.People).Returns(null as IQueryable<Person>);
                 var queries = mockQueries.Object;
                 queries.ShouldNotBeNull();
@@ -94,7 +94,7 @@ namespace UCosmic.Domain
             [TestMethod]
             public void EmailTemplates_HasGet()
             {
-                var mockQueries = new Mock<IQueryEntities>();
+                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
                 mockQueries.Setup(p => p.EmailTemplates)
                     .Returns(null as IQueryable<EmailTemplate>);
                 var queries = mockQueries.Object;
@@ -105,7 +105,7 @@ namespace UCosmic.Domain
             [TestMethod]
             public void InstitutionalAgreements_HasGet()
             {
-                var mockQueries = new Mock<IQueryEntities>();
+                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
                 mockQueries.Setup(p => p.InstitutionalAgreements)
                     .Returns(null as IQueryable<InstitutionalAgreement>);
                 var queries = mockQueries.Object;
@@ -116,7 +116,7 @@ namespace UCosmic.Domain
             [TestMethod]
             public void InstitutionalAgreementConfigurations_HasGet()
             {
-                var mockQueries = new Mock<IQueryEntities>();
+                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
                 mockQueries.Setup(p => p.InstitutionalAgreementConfigurations)
                     .Returns(null as IQueryable<InstitutionalAgreementConfiguration>);
                 var queries = mockQueries.Object;
@@ -133,7 +133,7 @@ namespace UCosmic.Domain
             {
                 var genericIQueryable = new List<Entity>().AsQueryable();
 
-                var mockQueries = new Mock<IQueryEntities>();
+                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
                 mockQueries
                     .Setup(p => p.ApplyInsertOrUpdate(
                         It.IsAny<IQueryable<Entity>>(),
@@ -154,7 +154,7 @@ namespace UCosmic.Domain
             {
                 var genericIQueryable = new List<Entity>().AsQueryable();
 
-                var mockQueries = new Mock<IQueryEntities>();
+                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 mockQueries
                     .Setup(p => p.ApplyEagerLoading(
                         It.IsAny<IQueryable<Entity>>(),

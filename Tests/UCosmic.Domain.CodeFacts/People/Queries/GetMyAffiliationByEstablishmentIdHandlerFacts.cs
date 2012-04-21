@@ -45,7 +45,7 @@ namespace UCosmic.Domain.People
                 };
                 Expression<Func<GetUserByNameQuery, bool>> userByNameQuery = q =>
                     q.Name == query.Principal.Identity.Name;
-                var queryProcessor = new Mock<IProcessQueries>();
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(p => p.Execute(It.Is(userByNameQuery)))
                     .Returns(null as User);
                 var handler = new GetMyAffiliationByEstablishmentIdHandler(queryProcessor.Object);
@@ -66,7 +66,7 @@ namespace UCosmic.Domain.People
                 };
                 Expression<Func<GetUserByNameQuery, bool>> userByNameQuery = q =>
                     q.Name == query.Principal.Identity.Name;
-                var queryProcessor = new Mock<IProcessQueries>();
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(p => p.Execute(It.Is(userByNameQuery)))
                     .Returns(null as User);
                 var handler = new GetMyAffiliationByEstablishmentIdHandler(queryProcessor.Object);
@@ -88,7 +88,7 @@ namespace UCosmic.Domain.People
                 };
                 Expression<Func<GetUserByNameQuery, bool>> userByNameQuery = q =>
                     q.Name == query.Principal.Identity.Name;
-                var queryProcessor = new Mock<IProcessQueries>();
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(p => p.Execute(It.Is(userByNameQuery)))
                     .Returns(new User
                     {
@@ -121,7 +121,7 @@ namespace UCosmic.Domain.People
                 };
                 Expression<Func<GetUserByNameQuery, bool>> userByNameQuery = q =>
                     q.Name == query.Principal.Identity.Name;
-                var queryProcessor = new Mock<IProcessQueries>();
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(p => p.Execute(It.Is(userByNameQuery)))
                     .Returns(new User
                     {

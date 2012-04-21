@@ -37,7 +37,7 @@ namespace UCosmic.Domain.People
             public void ReturnsNull_WhenIdCannotBeMatched()
             {
                 var query = new GetPersonByIdQuery();
-                var entities = new Mock<IQueryEntities>();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new Person[] { }.AsQueryable);
                 var handler = new GetPersonByIdHandler(entities.Object);
 
@@ -54,7 +54,7 @@ namespace UCosmic.Domain.People
                 {
                     Id = id,
                 };
-                var entities = new Mock<IQueryEntities>();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new[]
                 {
                     new Person

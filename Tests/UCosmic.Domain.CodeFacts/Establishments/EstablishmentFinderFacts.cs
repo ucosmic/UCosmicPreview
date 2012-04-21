@@ -17,7 +17,7 @@ namespace UCosmic.Domain.Establishments
             {
                 // arrange
                 var data = new[] { new Establishment(), new Establishment(), }.AsQueryable();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(i => i.Establishments).Returns(data);
                 var finder = new EstablishmentFinder(entityQueries.Object);
 
