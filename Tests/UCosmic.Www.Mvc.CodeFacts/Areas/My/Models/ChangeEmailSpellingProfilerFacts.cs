@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
-using System.Threading;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {

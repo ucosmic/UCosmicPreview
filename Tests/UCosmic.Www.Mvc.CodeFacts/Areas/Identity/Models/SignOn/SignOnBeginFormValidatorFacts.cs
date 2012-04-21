@@ -114,7 +114,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    SignOnBeginFormValidator.IneligibleEmailMessage, emailAddress));
+                    SignOnBeginFormValidator.FailedBecauseEstablishmentIsNotEligible, emailAddress));
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -135,7 +135,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    SignOnBeginFormValidator.IneligibleEmailMessage, emailAddress));
+                    SignOnBeginFormValidator.FailedBecauseEstablishmentIsNotEligible, emailAddress));
                 // ReSharper restore PossibleNullReferenceException
             }
 

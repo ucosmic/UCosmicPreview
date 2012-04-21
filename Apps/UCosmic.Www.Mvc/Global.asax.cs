@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Elmah.Contrib.Mvc;
-using FluentValidation;
 using FluentValidation.Mvc;
 using UCosmic.Domain;
 using UCosmic.Orm;
@@ -102,7 +101,6 @@ namespace UCosmic.Www.Mvc
                     provider.ValidatorFactory = new FluentValidatorFactory(DependencyInjector.Current);
                 }
             );
-            ValidatorOptions.CascadeMode = CascadeMode.StopOnFirstFailure;
         }
 
         private static void SeedDb()

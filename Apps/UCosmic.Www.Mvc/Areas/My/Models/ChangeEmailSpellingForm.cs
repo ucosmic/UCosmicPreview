@@ -7,7 +7,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
     public class ChangeEmailSpellingForm : IReturnUrl
     {
         public const string ValuePropertyName = "Value";
-
         public const string ValueDisplayName = "New spelling";
         [Display(Name = ValueDisplayName)]
         [Remote("ValidateValue", "ChangeEmailSpelling", "My", HttpMethod = "POST", AdditionalFields = "PersonUserName,Number")]

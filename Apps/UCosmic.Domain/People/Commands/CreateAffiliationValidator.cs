@@ -13,9 +13,9 @@ namespace UCosmic.Domain.People
         public CreateAffiliationValidator(IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
+            CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(p => p.EstablishmentId)
-                .Cascade(CascadeMode.StopOnFirstFailure)
 
                 // establishment id must exist in database
                 .Must(ValidateEstablishmentIdMatchesEntity).WithMessage(
@@ -24,16 +24,14 @@ namespace UCosmic.Domain.People
             ;
 
             RuleFor(p => p.IsClaimingStudent)
-                .Cascade(CascadeMode.StopOnFirstFailure)
 
-                // cannot claim student unless affiliation establishment isn an academic institution
+                // cannot claim student unless affiliation establishment is an academic institution
                 .Must(ValidateAffiliationEstablishmentIsInstitutionWhenIsClaimingStudent).WithMessage(
                     ValidateAffiliation.FailedBecauseIsClaimingStudentButEstablishmentIsNotInstitution,
                         p => p.EstablishmentId)
             ;
 
             RuleFor(p => p.PersonId)
-                .Cascade(CascadeMode.StopOnFirstFailure)
 
                 // person id must exist in database
                 .Must(ValidatePersonIdMatchesEntity).WithMessage(

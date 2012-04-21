@@ -8,8 +8,13 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
 
         public UpdateNameValidator()
         {
+            CascadeMode = CascadeMode.StopOnFirstFailure;
+
             RuleFor(p => p.DisplayName)
-                .NotEmpty().WithMessage(DisplayNameRequiredErrorMessage)
+
+                // person must have a display name
+                .NotEmpty().WithMessage(
+                    DisplayNameRequiredErrorMessage)
             ;
         }
     }

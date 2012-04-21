@@ -23,6 +23,9 @@ namespace UCosmic.Domain.People
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "DisplayName");
                 error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(ValidatePerson.FailedBecauseDisplayNameWasEmpty);
+                // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
@@ -35,6 +38,9 @@ namespace UCosmic.Domain.People
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "DisplayName");
                 error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(ValidatePerson.FailedBecauseDisplayNameWasEmpty);
+                // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
@@ -47,6 +53,9 @@ namespace UCosmic.Domain.People
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "DisplayName");
                 error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(ValidatePerson.FailedBecauseDisplayNameWasEmpty);
+                // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
@@ -64,7 +73,7 @@ namespace UCosmic.Domain.People
         public class TheUserNameProperty
         {
             [TestMethod]
-            public void IsInvalidWhen_UserIsAlreadyAssociated_WithAnotherPerson()
+            public void IsInvalidWhen_UserName_MatchesExistingUser()
             {
                 const string userName = "user@domain.tld";
                 const string userDisplayName = "Bruce Wayne";
@@ -85,13 +94,13 @@ namespace UCosmic.Domain.People
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    CreatePersonValidator.UserIsAlreadyAssociatedWithAnotherPersonErrorFormat,
-                        userName, personDisplayName, userDisplayName));
+                    ValidateUser.FailedBecauseNameMatchedEntity,
+                        userName));
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void IsValidWhen_UserNameIsNull()
+            public void IsValidWhen_UserName_IsNull()
             {
                 const string personDisplayName = "Adam West";
                 var command = new CreatePersonCommand
@@ -106,7 +115,7 @@ namespace UCosmic.Domain.People
             }
 
             [TestMethod]
-            public void IsValidWhen_UserNameIsEmptyString()
+            public void IsValidWhen_UserName_IsEmptyString()
             {
                 const string personDisplayName = "Adam West";
                 var command = new CreatePersonCommand
@@ -121,7 +130,7 @@ namespace UCosmic.Domain.People
             }
 
             [TestMethod]
-            public void IsValidWhen_UserNameIsWhiteSpace()
+            public void IsValidWhen_UserName_IsWhiteSpace()
             {
                 const string personDisplayName = "Adam West";
                 var command = new CreatePersonCommand
@@ -136,7 +145,7 @@ namespace UCosmic.Domain.People
             }
 
             [TestMethod]
-            public void IsValidWhen_UserNameDoesNotMatch_AnyUser()
+            public void IsValidWhen_UserName_DoesNotMatchExistingUser()
             {
                 const string userName = "user@domain.tld";
                 const string personDisplayName = "Adam West";

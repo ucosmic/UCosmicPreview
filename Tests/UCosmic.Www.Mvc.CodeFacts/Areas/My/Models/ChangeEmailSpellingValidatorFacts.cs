@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using FluentValidation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -45,7 +47,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ChangeMyEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInvariantly);
+                    ChangeEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -61,7 +63,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ChangeMyEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInvariantly);
+                    ChangeEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -77,7 +79,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ChangeMyEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInvariantly);
+                    ChangeEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -93,7 +95,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ChangeMyEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInvariantly);
+                    ChangeEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -112,27 +114,55 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ChangeMyEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInvariantly);
+                    ChangeEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void IsInvalidWhen_PreviousSpelling_CannotBeFound()
+            public void IsInvalidWhen_Number_DoesNotMatchEmail_ForPersonUserName()
             {
-                var queryProcessor = new Mock<IProcessQueries>();
-                queryProcessor.Setup(m => m.Execute(It.IsAny<GetMyEmailAddressByNumberQuery>()))
+                const string personUserName = "user@domain.tld";
+                const string emailValue = "user1@domain.tld";
+                var form = new ChangeEmailSpellingForm
+                {
+                    PersonUserName = personUserName,
+                    Number = 13,
+                    Value = emailValue.ToUpper(),
+                };
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(form))))
                     .Returns(null as EmailAddress);
                 var validator = new ChangeEmailSpellingValidator(queryProcessor.Object);
-                var model = new ChangeEmailSpellingForm { Value = "user@domain.tld", PersonUserName = string.Empty, };
-                var results = validator.Validate(model);
+                var results = validator.Validate(form);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Value");
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(
-                    ChangeMyEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInvariantly);
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ValidateEmailAddress.FailedBecauseNumberAndPrincipalMatchedNoEntity,
+                        form.Number));
                 // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsValidWhen_Number_MatchesEmail_ForPersonUserName()
+            {
+                const string personUserName = "user@domain.tld";
+                const string emailValue = "user1@domain.tld";
+                var form = new ChangeEmailSpellingForm
+                {
+                    PersonUserName = personUserName,
+                    Number = 13,
+                    Value = emailValue.ToUpper(),
+                };
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(form))))
+                    .Returns(new EmailAddress { Value = emailValue.ToLower() });
+                var validator = new ChangeEmailSpellingValidator(queryProcessor.Object);
+                var results = validator.Validate(form);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Value");
+                error.ShouldBeNull();
             }
 
             [TestMethod]
@@ -147,6 +177,13 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Value");
                 error.ShouldBeNull();
             }
+        }
+
+        private static Expression<Func<GetMyEmailAddressByNumberQuery, bool>> EmailQueryBasedOn(ChangeEmailSpellingForm form)
+        {
+            Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailQueryBasedOn =
+                q => q.Principal.Identity.Name == form.PersonUserName && q.Number == form.Number;
+            return emailQueryBasedOn;
         }
     }
 }

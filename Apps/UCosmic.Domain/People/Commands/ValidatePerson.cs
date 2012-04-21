@@ -4,14 +4,20 @@ using System.Linq.Expressions;
 
 namespace UCosmic.Domain.People
 {
-    internal static class ValidatePerson
+    public static class ValidatePerson
     {
+        #region DisplayName cannot be empty
+
+        public const string FailedBecauseDisplayNameWasEmpty =
+            "A person's display name cannot be empty.";
+
+        #endregion
         #region PersonId matches entity
 
-        internal const string FailedBecauseIdMatchedNoEntity =
+        public const string FailedBecauseIdMatchedNoEntity =
             "Person with id '{0}' could not be found.";
 
-        internal static bool IdMatchesEntity(int id, IProcessQueries queryProcessor,
+        public static bool IdMatchesEntity(int id, IProcessQueries queryProcessor,
             IEnumerable<Expression<Func<Person, object>>> eagerLoad, out Person entity)
         {
             if (id < 0)
@@ -32,14 +38,14 @@ namespace UCosmic.Domain.People
             return entity != null;
         }
 
-        internal static bool IdMatchesEntity(int id, IProcessQueries queryProcessor,
+        public static bool IdMatchesEntity(int id, IProcessQueries queryProcessor,
             IEnumerable<Expression<Func<Person, object>>> eagerLoad = null)
         {
             Person entity;
             return IdMatchesEntity(id, queryProcessor, eagerLoad, out entity);
         }
 
-        internal static bool IdMatchesEntity(int id, IProcessQueries queryProcessor, out Person entity)
+        public static bool IdMatchesEntity(int id, IProcessQueries queryProcessor, out Person entity)
         {
             return IdMatchesEntity(id, queryProcessor, null, out entity);
         }
@@ -47,10 +53,10 @@ namespace UCosmic.Domain.People
         #endregion
         #region Person is not already affiliated with establishment
 
-        internal const string FailedBecausePersonIsAlreadyAffiliatedWithEstablishment =
+        public const string FailedBecausePersonIsAlreadyAffiliatedWithEstablishment =
             "Person '{0}' is already affiliated with establishment '{1}'.";
 
-        internal static bool IsNotAlreadyAffiliatedWithEstablishment(Person person, int establishmentId)
+        public static bool IsNotAlreadyAffiliatedWithEstablishment(Person person, int establishmentId)
         {
             // return true (valid) if person does not have matching affiliation
             return person != null && person.GetAffiliation(establishmentId) == null;

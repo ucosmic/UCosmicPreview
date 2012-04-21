@@ -43,7 +43,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    AffiliationValidator.EmployeeOrStudentAffiliationRequiredErrorMessage);
+                    AffiliationValidator.FailedBecauseEmployeeOrStudentAffiliationWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
