@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using AutoMapper;
+using UCosmic.Domain.Identity;
 using UCosmic.Www.Mvc.Areas.My.Models;
 using UCosmic.Www.Mvc.Controllers;
-using UCosmic.Domain.Identity;
-using AutoMapper;
 
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
@@ -30,6 +31,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                     EagerLoad = new Expression<Func<User, object>>[]
                     {
                         u => u.Person.Emails,
+                        u => u.Person.Affiliations.Select(a => a.Establishment),
                     }
                 }
             );

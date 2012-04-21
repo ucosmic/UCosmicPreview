@@ -197,7 +197,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             }
 
             [TestMethod]
-            public void MapsEstablishmentInfo_OfficialName()
+            public void MapsEstablishmentOfficialName()
             {
                 var entity = new Affiliation
                 {
@@ -216,11 +216,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
 
                 var model = Mapper.Map<UpdateAffiliationForm>(entity);
 
-                model.Establishment.OfficialName.ShouldEqual(entity.Establishment.OfficialName);
+                model.EstablishmentOfficialName.ShouldEqual(entity.Establishment.OfficialName);
             }
 
             [TestMethod]
-            public void MapsEstablishmentInfo_IsInsitution()
+            public void MapsEstablishmentIsInsitution()
             {
                 var entity = new Affiliation
                 {
@@ -238,7 +238,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
 
                 var model = Mapper.Map<UpdateAffiliationForm>(entity);
 
-                model.Establishment.IsInstitution.ShouldBeTrue();
+                model.EstablishmentIsInstitution.ShouldBeTrue();
             }
 
             [TestMethod]

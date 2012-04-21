@@ -19,15 +19,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         [HiddenInput(DisplayValue = false)]
         public int EstablishmentId { get; set; }
 
-        public EstablishmentInfo Establishment { get; set; }
-        public class EstablishmentInfo
-        {
-            [HiddenInput(DisplayValue = false)]
-            public string OfficialName { get; set; }
+        [HiddenInput(DisplayValue = false)]
+        public string EstablishmentOfficialName { get; set; }
 
-            [HiddenInput(DisplayValue = false)]
-            public bool IsInstitution { get; set; }
-        }
+        [HiddenInput(DisplayValue = false)]
+        public bool EstablishmentIsInstitution { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public bool IsAcknowledged { get; set; }

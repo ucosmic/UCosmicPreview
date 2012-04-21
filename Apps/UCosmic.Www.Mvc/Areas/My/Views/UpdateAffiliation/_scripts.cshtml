@@ -1,5 +1,5 @@
 ﻿@model UCosmic.Www.Mvc.Areas.My.Models.UpdateAffiliationForm
-@if (Model.Establishment.IsInstitution)
+@if (Model.EstablishmentIsInstitution)
 {
 @*
         render a script to toggle the employee sections
@@ -27,7 +27,7 @@
         });
     </script>
 }
-@if (!Model.Establishment.IsInstitution || (Model.IsClaimingEmployee && Model.IsAcknowledged))
+@if (!Model.EstablishmentIsInstitution || (Model.IsClaimingEmployee && Model.IsAcknowledged))
 {
 @*
         render a script to display the employee sections

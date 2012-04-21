@@ -5,13 +5,13 @@
         @Html.EditorFor(m => m.ReturnUrl)
         @Html.EditorFor(m => m.IsAcknowledged)
         @Html.EditorFor(m => m.EstablishmentId)
-        @Html.EditorFor(m => m.Establishment.OfficialName)
-        @Html.EditorFor(m => m.Establishment.IsInstitution)
+        @Html.EditorFor(m => m.EstablishmentOfficialName)
+        @Html.EditorFor(m => m.EstablishmentIsInstitution)
     </div>
-    @if (Model.Establishment.IsInstitution)
+    @if (Model.EstablishmentIsInstitution)
     {
         <p>
-            Which of the following statements best describes your affiliation with @Model.Establishment.OfficialName?
+            Which of the following statements best describes your affiliation with @Model.EstablishmentOfficialName?
         </p>
         @Html.EditorFor(m => m.EmployeeOrStudentAffiliation)
     }
@@ -20,7 +20,7 @@
         @Html.HiddenFor(m => m.EmployeeOrStudentAffiliation)
     }
     <div id="employee_form" style="display: none;">
-        @if (Model.Establishment.IsInstitution)
+        @if (Model.EstablishmentIsInstitution)
         {
             <p>
                 Do you work in the international affairs office? Are you an administrator, faculty,
