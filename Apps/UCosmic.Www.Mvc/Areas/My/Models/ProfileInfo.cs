@@ -4,6 +4,12 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
 {
     public class ProfileInfo
     {
+        public string UserEduPersonTargetedId { get; set; }
+        public bool CanChangePassword
+        {
+            get { return string.IsNullOrWhiteSpace(UserEduPersonTargetedId); }
+        }
+
         public EmailInfo[] Emails { get; set; }
         public class EmailInfo
         {
@@ -18,7 +24,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         {
             public int EstablishmentId { get; set; }
 
-            [DisplayFormat(NullDisplayText = "[Job Title(s) Unknown]")]
+            public const string JobTitlesNullDisplayText = "[Job Title(s) Unknown]";
+            [DisplayFormat(NullDisplayText = JobTitlesNullDisplayText)]
             public string JobTitles { get; set; }
 
             public bool IsAcknowledged { get; set; }

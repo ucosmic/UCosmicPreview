@@ -176,6 +176,7 @@
     <Compile Include="Areas\My\Controllers\ProfileRouterFacts.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameControllerFacts.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameRouterFacts.cs" />
+    <Compile Include="Areas\My\Models\ProfileInfoFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateMyEmailValueFormFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateMyEmailValueProfilerFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateMyEmailValueValidatorFacts.cs" />

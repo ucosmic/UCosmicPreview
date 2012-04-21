@@ -2,6 +2,7 @@
 using AutoMapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
+using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
@@ -85,6 +86,23 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 model.Emails.Skip(4).First().Value.ShouldEqual("b1@domain.tld");
                 model.Emails.Skip(5).First().IsConfirmed.ShouldBeFalse();
                 model.Emails.Skip(5).First().Value.ShouldEqual("g1@domain.tld");
+            }
+
+            [TestMethod]
+            public void MapsUser_UserEduPersonTargetedId()
+            {
+                var entity = new Person
+                {
+                    User = new User
+                    {
+                        EduPersonTargetedId = "person targeted id",
+                    },
+                };
+
+                var model = Mapper.Map<ProfileInfo>(entity);
+
+                model.ShouldNotBeNull();
+                model.UserEduPersonTargetedId.ShouldEqual(entity.User.EduPersonTargetedId);
             }
         }
     }

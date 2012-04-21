@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Models;
 
@@ -40,9 +39,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                             return null;
                         }))
                     .ForMember(d => d.ReturnUrl, o => o.Ignore())
-                ;
-
-                CreateMap<Establishment, UpdateAffiliationForm.EstablishmentInfo>()
                 ;
             }
         }

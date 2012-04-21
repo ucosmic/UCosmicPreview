@@ -13,7 +13,7 @@
 }
 <div class="wrap-960">
     <h2 class="push-down">
-        My <i>@Model.Establishment.OfficialName</i> Affiliation
+        My <i>@Model.EstablishmentOfficialName</i> Affiliation
     </h2>
     <div class="split-form pull-down">
         <div class="left">
@@ -35,13 +35,13 @@
             }
         </div>
         <div class="right">
-            @if (Model.Establishment.IsInstitution)
+            @if (Model.EstablishmentIsInstitution)
             {
                 <p>
                     Please answer the questionnaire on the left.
                 </p>
                 <p>
-                    If you are a <b>@Model.Establishment.OfficialName</b> employee, you can indicate
+                    If you are a <b>@Model.EstablishmentOfficialName</b> employee, you can indicate
                     whether you are an administrator, faculty member, or staff.
                 </p>
                 <p>
@@ -55,7 +55,7 @@
             {
                 <p>
                     Because this affiliation is not with an academic institution, UCosmic assumes you
-                    are an employee of <b>@Model.Establishment.OfficialName</b>.
+                    are an employee of <b>@Model.EstablishmentOfficialName</b>.
                 </p>
                 <p>
                     Please enter your job title(s) and / or department(s) in the box on the left and

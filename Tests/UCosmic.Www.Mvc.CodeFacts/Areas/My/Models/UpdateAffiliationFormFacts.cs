@@ -234,13 +234,13 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         }
 
         [TestClass]
-        public class TheEstablishmentInfoClass_OfficialNameProperty
+        public class TheEstablishmentOfficialNameProperty
         {
             [TestMethod]
             public void IsDecoratedWith_HiddenInput_Using_FalseDisplayValue()
             {
-                Expression<Func<UpdateAffiliationForm.EstablishmentInfo, string>> property = p => p.OfficialName;
-                var attributes = property.GetAttributes<UpdateAffiliationForm.EstablishmentInfo, string, HiddenInputAttribute>();
+                Expression<Func<UpdateAffiliationForm, string>> property = p => p.EstablishmentOfficialName;
+                var attributes = property.GetAttributes<UpdateAffiliationForm, string, HiddenInputAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();
@@ -248,13 +248,13 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         }
 
         [TestClass]
-        public class TheEstablishmentInfoClass_IsInstitutionProperty
+        public class TheEstablishmentIsInstitutionProperty
         {
             [TestMethod]
             public void IsDecoratedWith_HiddenInput_Using_FalseDisplayValue()
             {
-                Expression<Func<UpdateAffiliationForm.EstablishmentInfo, bool>> property = p => p.IsInstitution;
-                var attributes = property.GetAttributes<UpdateAffiliationForm.EstablishmentInfo, bool, HiddenInputAttribute>();
+                Expression<Func<UpdateAffiliationForm, bool>> property = p => p.EstablishmentIsInstitution;
+                var attributes = property.GetAttributes<UpdateAffiliationForm, bool, HiddenInputAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();

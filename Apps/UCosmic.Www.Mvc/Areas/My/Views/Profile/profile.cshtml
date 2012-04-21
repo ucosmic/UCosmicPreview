@@ -24,10 +24,13 @@
                 @*<div>
                     <a href="#" class="email-add-new not-implemented">Add an alternate or alias email address</a>
                 </div>*@
-                <div>
-                    <a href="@Url.Action(MVC.Identity.Password.ChangePassword())" title="Change password">
-                        Change Password</a>
-                </div>
+                @if (Model.CanChangePassword)
+                {
+                    <div>
+                        <a href="@Url.Action(MVC.Identity.Password.ChangePassword())" title="Change password">
+                            Change Password</a>
+                    </div>
+                }
             </div>
         </fieldset>
         <fieldset>
