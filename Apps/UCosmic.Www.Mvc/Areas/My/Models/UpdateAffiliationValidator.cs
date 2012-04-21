@@ -2,12 +2,12 @@
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
-    public class AffiliationValidator : AbstractValidator<AffiliationForm>
+    public class UpdateAffiliationValidator : AbstractValidator<UpdateAffiliationForm>
     {
         public const string FailedBecauseEmployeeOrStudentAffiliationWasEmpty =
             "Please indicate which statement best describes this affiliation.";
 
-        public AffiliationValidator()
+        public UpdateAffiliationValidator()
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 

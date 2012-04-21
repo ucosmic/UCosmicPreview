@@ -202,20 +202,20 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Areas\My\Controllers\AffiliationController.cs" />
+    <Compile Include="Areas\My\Controllers\UpdateAffiliationController.cs" />
     <Compile Include="Areas\My\Controllers\ChangeEmailSpellingController.cs" />
-    <Compile Include="Areas\My\Controllers\AffiliationServices.cs" />
-    <Compile Include="Areas\My\Controllers\AffiliationRouter.cs" />
+    <Compile Include="Areas\My\Controllers\UpdateAffiliationServices.cs" />
+    <Compile Include="Areas\My\Controllers\UpdateAffiliationRouter.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameServices.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameRouter.cs" />
     <Compile Include="Areas\My\Controllers\ProfileServices.cs" />
     <Compile Include="Areas\My\Controllers\ProfileController.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameController.cs" />
-    <Compile Include="Areas\My\Models\AffiliationForm.cs" />
+    <Compile Include="Areas\My\Models\UpdateAffiliationForm.cs" />
     <Compile Include="Areas\My\Models\ChangeEmailSpellingProfiler.cs" />
     <Compile Include="Areas\My\Models\ChangeEmailSpellingValidator.cs" />
-    <Compile Include="Areas\My\Models\AffiliationProfiler.cs" />
-    <Compile Include="Areas\My\Models\AffiliationValidator.cs" />
+    <Compile Include="Areas\My\Models\UpdateAffiliationProfiler.cs" />
+    <Compile Include="Areas\My\Models\UpdateAffiliationValidator.cs" />
     <Compile Include="Areas\My\Models\UpdateNameValidator.cs" />
     <Compile Include="Areas\My\Models\UpdateNameProfiler.cs" />
     <Compile Include="Areas\My\Models\ProfileProfiler.cs" />
@@ -336,9 +336,6 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ComboBoxOptions.cs" />
-    <Compile Include="My.AffiliationController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="My.ChangeEmailSpellingController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -346,6 +343,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="My.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="My.UpdateAffiliationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="My.UpdateNameController.generated.cs">
@@ -1049,11 +1049,11 @@
     <Content Include="Areas\My\Views\Shared\EditorTemplates\UpdateNameForm.cshtml" />
     <Content Include="Areas\People\Views\Web.config" />
     <Content Include="Areas\People\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\My\Views\Affiliation\affiliation.cshtml" />
-    <Content Include="Areas\My\Views\Affiliation\EditorTemplates\AffiliationForm.cshtml" />
-    <Content Include="Areas\My\Views\Affiliation\_scripts.cshtml" />
-    <Content Include="Areas\My\Views\Affiliation\_styles.cshtml" />
-    <Content Include="Areas\My\Views\Affiliation\EditorTemplates\EmployeeOrStudentAffiliation.cshtml" />
+    <Content Include="Areas\My\Views\UpdateAffiliation\update-affiliation.cshtml" />
+    <Content Include="Areas\My\Views\UpdateAffiliation\EditorTemplates\UpdateAffiliationForm.cshtml" />
+    <Content Include="Areas\My\Views\UpdateAffiliation\_scripts.cshtml" />
+    <Content Include="Areas\My\Views\UpdateAffiliation\_styles.cshtml" />
+    <Content Include="Areas\My\Views\UpdateAffiliation\EditorTemplates\EmployeeOrStudentAffiliation.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />

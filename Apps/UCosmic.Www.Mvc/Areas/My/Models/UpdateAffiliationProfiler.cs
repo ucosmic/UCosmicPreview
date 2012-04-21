@@ -5,11 +5,11 @@ using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
-    public static class AffiliationProfiler
+    public static class UpdateAffiliationProfiler
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(AffiliationProfiler));
+            DefaultModelMapper.RegisterProfiles(typeof(UpdateAffiliationProfiler));
         }
 
         // ReSharper disable UnusedMember.Local
@@ -18,7 +18,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         {
             protected override void Configure()
             {
-                CreateMap<Affiliation, AffiliationForm>()
+                CreateMap<Affiliation, UpdateAffiliationForm>()
                     .ForMember(d => d.EmployeeOrStudentAffiliation, o => o.ResolveUsing(s =>
                         {
                             if (!s.Establishment.IsInstitution)
@@ -42,7 +42,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                     .ForMember(d => d.ReturnUrl, o => o.Ignore())
                 ;
 
-                CreateMap<Establishment, AffiliationForm.EstablishmentInfo>()
+                CreateMap<Establishment, UpdateAffiliationForm.EstablishmentInfo>()
                 ;
             }
         }
@@ -51,7 +51,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         {
             protected override void Configure()
             {
-                CreateMap<AffiliationForm, UpdateMyAffiliationCommand>()
+                CreateMap<UpdateAffiliationForm, UpdateMyAffiliationCommand>()
                     .ForMember(d => d.Principal, o => o.Ignore())
                     .ForMember(d => d.ChangeCount, o => o.Ignore())
                 ;

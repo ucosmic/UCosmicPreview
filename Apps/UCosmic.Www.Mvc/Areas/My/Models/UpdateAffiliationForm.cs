@@ -4,7 +4,7 @@ using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
-    public class AffiliationForm : IReturnUrl
+    public class UpdateAffiliationForm : IReturnUrl
     {
         [HiddenInput(DisplayValue = false)]
         public string ReturnUrl { get; set; }

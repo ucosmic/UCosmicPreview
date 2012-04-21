@@ -7,7 +7,7 @@ using Should;
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class AffiliationValidatorFacts
+    public class UpdateAffiliationValidatorFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -20,10 +20,10 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 HttpContext.Current = new HttpContext(request, new HttpResponse(null));
                 var container = SimpleDependencyInjector.Bootstrap();
 
-                var validator = container.GetInstance<IValidator<AffiliationForm>>();
+                var validator = container.GetInstance<IValidator<UpdateAffiliationForm>>();
 
                 validator.ShouldNotBeNull();
-                validator.ShouldBeType<AffiliationValidator>();
+                validator.ShouldBeType<UpdateAffiliationValidator>();
             }
         }
 
@@ -33,31 +33,31 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsInvalidWhen_EmployeeOrStudentAffiliation_IsNull()
             {
-                var validator = new AffiliationValidator();
-                var model = new AffiliationForm { EmployeeOrStudentAffiliation = null };
+                var validator = new UpdateAffiliationValidator();
+                var model = new UpdateAffiliationForm { EmployeeOrStudentAffiliation = null };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e =>
-                    e.PropertyName == AffiliationForm.EmployeeOrStudentAffiliationPropertyName);
+                    e.PropertyName == UpdateAffiliationForm.EmployeeOrStudentAffiliationPropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    AffiliationValidator.FailedBecauseEmployeeOrStudentAffiliationWasEmpty);
+                    UpdateAffiliationValidator.FailedBecauseEmployeeOrStudentAffiliationWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
             public void IsValidWhen_EmployeeOrStudentAffiliation_IsNotEmpty()
             {
-                var validator = new AffiliationValidator();
-                var model = new AffiliationForm
+                var validator = new UpdateAffiliationValidator();
+                var model = new UpdateAffiliationForm
                 {
                     EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Neither
                 };
                 var results = validator.Validate(model);
                 var error = results.Errors.SingleOrDefault(e =>
-                    e.PropertyName == AffiliationForm.EmployeeOrStudentAffiliationPropertyName);
+                    e.PropertyName == UpdateAffiliationForm.EmployeeOrStudentAffiliationPropertyName);
                 error.ShouldBeNull();
             }
         }

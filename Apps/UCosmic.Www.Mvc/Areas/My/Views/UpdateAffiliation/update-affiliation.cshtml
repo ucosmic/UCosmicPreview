@@ -1,15 +1,15 @@
-﻿@model UCosmic.Www.Mvc.Areas.My.Models.AffiliationForm
+﻿@model UCosmic.Www.Mvc.Areas.My.Models.UpdateAffiliationForm
 @{
     ViewBag.Title = "Edit affiliation info";
     Layout = MVC.Shared.Views.layout;
 }
 @section Styles
 {
-    @Html.Partial(MVC.My.Affiliation.Views._styles)
+    @Html.Partial(MVC.My.UpdateAffiliation.Views._styles)
 }
 @section Scripts
 {
-    @Html.Partial(MVC.My.Affiliation.Views._scripts)
+    @Html.Partial(MVC.My.UpdateAffiliation.Views._scripts)
 }
 <div class="wrap-960">
     <h2 class="push-down">
@@ -18,7 +18,7 @@
     <div class="split-form pull-down">
         <div class="left">
             @using (Html.BeginForm(
-                MVC.My.Affiliation.ActionNames.Put,
+                MVC.My.UpdateAffiliation.ActionNames.Put,
                 MVC.Identity.Self.Name,
                 new
                 {

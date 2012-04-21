@@ -6,18 +6,19 @@ using UCosmic.Www.Mvc.Areas.My.Models;
 
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
-    public partial class AffiliationController : BaseController
+    [Authorize]
+    public partial class UpdateAffiliationController : BaseController
     {
-        private readonly AffiliationServices _services;
+        private readonly UpdateAffiliationServices _services;
 
-        public AffiliationController(AffiliationServices services)
+        public UpdateAffiliationController(UpdateAffiliationServices services)
         {
             _services = services;
         }
 
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
-        [ActionName("affiliation")]
+        [ActionName("update-affiliation")]
         [ReturnUrlReferrer(ProfileRouter.Get.Route)]
         public virtual ActionResult Get(int establishmentId)
         {
@@ -31,14 +32,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             );
 
             if (affiliation == null) return HttpNotFound();
-            return PartialView(Mapper.Map<AffiliationForm>(affiliation));
+            return PartialView(Mapper.Map<UpdateAffiliationForm>(affiliation));
         }
 
         [HttpPut]
         [UnitOfWork]
         [OpenTopTab(TopTabName.Home)]
-        [ActionName("affiliation")]
-        public virtual ActionResult Put(AffiliationForm model)
+        [ActionName("update-affiliation")]
+        public virtual ActionResult Put(UpdateAffiliationForm model)
         {
             // make sure model is not null
             if (model == null) return HttpNotFound();

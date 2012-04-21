@@ -22,8 +22,8 @@ namespace UCosmic.Www.Mvc.Areas.My
             UpdateNameRouter.RegisterRoutes(context);
             UpdateNameProfiler.RegisterProfiles();
 
-            AffiliationRouter.RegisterRoutes(context);
-            AffiliationProfiler.RegisterProfiles();
+            UpdateAffiliationRouter.RegisterRoutes(context);
+            UpdateAffiliationProfiler.RegisterProfiles();
 
             //context.MapRoute(
             //    "My_default",

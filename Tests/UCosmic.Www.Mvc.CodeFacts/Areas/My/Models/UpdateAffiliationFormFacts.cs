@@ -9,7 +9,7 @@ using UCosmic.Www.Mvc.Models;
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class AffiliationFormFacts
+    public class UpdateAffiliationFormFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -18,7 +18,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void Implements_IReturnUrl()
             {
-                var model = new AffiliationForm();
+                var model = new UpdateAffiliationForm();
                 model.ShouldImplement<IReturnUrl>();
             }
         }
@@ -29,8 +29,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_HiddenInput_Using_FalseDisplayValue()
             {
-                Expression<Func<AffiliationForm, string>> property = p => p.ReturnUrl;
-                var attributes = property.GetAttributes<AffiliationForm, string, HiddenInputAttribute>();
+                Expression<Func<UpdateAffiliationForm, string>> property = p => p.ReturnUrl;
+                var attributes = property.GetAttributes<UpdateAffiliationForm, string, HiddenInputAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();
@@ -43,28 +43,28 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_Display_UsingName()
             {
-                Expression<Func<AffiliationForm, string>> property = p => p.JobTitles;
-                var attributes = property.GetAttributes<AffiliationForm, string, DisplayAttribute>();
+                Expression<Func<UpdateAffiliationForm, string>> property = p => p.JobTitles;
+                var attributes = property.GetAttributes<UpdateAffiliationForm, string, DisplayAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
-                attributes[0].Name.ShouldEqual(AffiliationForm.JobTitlesDisplayName);
+                attributes[0].Name.ShouldEqual(UpdateAffiliationForm.JobTitlesDisplayName);
             }
 
             [TestMethod]
             public void IsDecoratedWith_DisplayFormat_UsingNullDisplayText()
             {
-                Expression<Func<AffiliationForm, string>> property = p => p.JobTitles;
-                var attributes = property.GetAttributes<AffiliationForm, string, DisplayFormatAttribute>();
+                Expression<Func<UpdateAffiliationForm, string>> property = p => p.JobTitles;
+                var attributes = property.GetAttributes<UpdateAffiliationForm, string, DisplayFormatAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
-                attributes[0].NullDisplayText.ShouldEqual(AffiliationForm.JobTitlesNullDisplayText);
+                attributes[0].NullDisplayText.ShouldEqual(UpdateAffiliationForm.JobTitlesNullDisplayText);
             }
 
             [TestMethod]
             public void IsDecoratedWith_DataType_UsingMultilineText()
             {
-                Expression<Func<AffiliationForm, string>> property = p => p.JobTitles;
-                var attributes = property.GetAttributes<AffiliationForm, string, DataTypeAttribute>();
+                Expression<Func<UpdateAffiliationForm, string>> property = p => p.JobTitles;
+                var attributes = property.GetAttributes<UpdateAffiliationForm, string, DataTypeAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DataType.ShouldEqual(DataType.MultilineText);
@@ -77,8 +77,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_HiddenInput_Using_FalseDisplayValue()
             {
-                Expression<Func<AffiliationForm, int>> property = p => p.EstablishmentId;
-                var attributes = property.GetAttributes<AffiliationForm, int, HiddenInputAttribute>();
+                Expression<Func<UpdateAffiliationForm, int>> property = p => p.EstablishmentId;
+                var attributes = property.GetAttributes<UpdateAffiliationForm, int, HiddenInputAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();
@@ -91,8 +91,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_HiddenInput_Using_FalseDisplayValue()
             {
-                Expression<Func<AffiliationForm, bool>> property = p => p.IsAcknowledged;
-                var attributes = property.GetAttributes<AffiliationForm, bool, HiddenInputAttribute>();
+                Expression<Func<UpdateAffiliationForm, bool>> property = p => p.IsAcknowledged;
+                var attributes = property.GetAttributes<UpdateAffiliationForm, bool, HiddenInputAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();
@@ -105,11 +105,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_Display_UsingName()
             {
-                Expression<Func<AffiliationForm, bool>> property = p => p.IsClaimingInternationalOffice;
-                var attributes = property.GetAttributes<AffiliationForm, bool, DisplayAttribute>();
+                Expression<Func<UpdateAffiliationForm, bool>> property = p => p.IsClaimingInternationalOffice;
+                var attributes = property.GetAttributes<UpdateAffiliationForm, bool, DisplayAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
-                attributes[0].Name.ShouldEqual(AffiliationForm.IsClaimingInternationalOfficeDisplayName);
+                attributes[0].Name.ShouldEqual(UpdateAffiliationForm.IsClaimingInternationalOfficeDisplayName);
             }
         }
 
@@ -119,35 +119,35 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsTrue_WhenEmployeeOrStudentAffiliation_IsBoth()
             {
-                var model = new AffiliationForm {EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Both};
+                var model = new UpdateAffiliationForm {EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Both};
                 model.IsClaimingEmployee.ShouldBeTrue();
             }
 
             [TestMethod]
             public void IsTrue_WhenEmployeeOrStudentAffiliation_IsEmployeeOnly()
             {
-                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.EmployeeOnly };
+                var model = new UpdateAffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.EmployeeOnly };
                 model.IsClaimingEmployee.ShouldBeTrue();
             }
 
             [TestMethod]
             public void IsFalse_WhenEmployeeOrStudentAffiliation_IsStudentOnly()
             {
-                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.StudentOnly };
+                var model = new UpdateAffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.StudentOnly };
                 model.IsClaimingEmployee.ShouldBeFalse();
             }
 
             [TestMethod]
             public void IsFalse_WhenEmployeeOrStudentAffiliation_IsNeither()
             {
-                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Neither };
+                var model = new UpdateAffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Neither };
                 model.IsClaimingEmployee.ShouldBeFalse();
             }
 
             [TestMethod]
             public void IsFalse_WhenEmployeeOrStudentAffiliation_IsNull()
             {
-                var model = new AffiliationForm { EmployeeOrStudentAffiliation = null };
+                var model = new UpdateAffiliationForm { EmployeeOrStudentAffiliation = null };
                 model.IsClaimingEmployee.ShouldBeFalse();
             }
         }
@@ -158,35 +158,35 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsTrue_WhenEmployeeOrStudentAffiliation_IsBoth()
             {
-                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Both };
+                var model = new UpdateAffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Both };
                 model.IsClaimingStudent.ShouldBeTrue();
             }
 
             [TestMethod]
             public void IsTrue_WhenEmployeeOrStudentAffiliation_IsEmployeeOnly()
             {
-                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.StudentOnly };
+                var model = new UpdateAffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.StudentOnly };
                 model.IsClaimingStudent.ShouldBeTrue();
             }
 
             [TestMethod]
             public void IsFalse_WhenEmployeeOrStudentAffiliation_IsStudentOnly()
             {
-                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.EmployeeOnly };
+                var model = new UpdateAffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.EmployeeOnly };
                 model.IsClaimingStudent.ShouldBeFalse();
             }
 
             [TestMethod]
             public void IsFalse_WhenEmployeeOrStudentAffiliation_IsNeither()
             {
-                var model = new AffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Neither };
+                var model = new UpdateAffiliationForm { EmployeeOrStudentAffiliation = EmployeeOrStudentAffiliate.Neither };
                 model.IsClaimingStudent.ShouldBeFalse();
             }
 
             [TestMethod]
             public void IsFalse_WhenEmployeeOrStudentAffiliation_IsNull()
             {
-                var model = new AffiliationForm { EmployeeOrStudentAffiliation = null };
+                var model = new UpdateAffiliationForm { EmployeeOrStudentAffiliation = null };
                 model.IsClaimingStudent.ShouldBeFalse();
             }
         }
@@ -197,11 +197,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_Display_UsingName()
             {
-                Expression<Func<AffiliationForm, bool>> property = p => p.IsClaimingAdministrator;
-                var attributes = property.GetAttributes<AffiliationForm, bool, DisplayAttribute>();
+                Expression<Func<UpdateAffiliationForm, bool>> property = p => p.IsClaimingAdministrator;
+                var attributes = property.GetAttributes<UpdateAffiliationForm, bool, DisplayAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
-                attributes[0].Name.ShouldEqual(AffiliationForm.IsClaimingAdministratorDisplayName);
+                attributes[0].Name.ShouldEqual(UpdateAffiliationForm.IsClaimingAdministratorDisplayName);
             }
         }
 
@@ -211,11 +211,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_Display_UsingName()
             {
-                Expression<Func<AffiliationForm, bool>> property = p => p.IsClaimingFaculty;
-                var attributes = property.GetAttributes<AffiliationForm, bool, DisplayAttribute>();
+                Expression<Func<UpdateAffiliationForm, bool>> property = p => p.IsClaimingFaculty;
+                var attributes = property.GetAttributes<UpdateAffiliationForm, bool, DisplayAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
-                attributes[0].Name.ShouldEqual(AffiliationForm.IsClaimingFacultyDisplayName);
+                attributes[0].Name.ShouldEqual(UpdateAffiliationForm.IsClaimingFacultyDisplayName);
             }
         }
 
@@ -225,11 +225,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_Display_UsingName()
             {
-                Expression<Func<AffiliationForm, bool>> property = p => p.IsClaimingStaff;
-                var attributes = property.GetAttributes<AffiliationForm, bool, DisplayAttribute>();
+                Expression<Func<UpdateAffiliationForm, bool>> property = p => p.IsClaimingStaff;
+                var attributes = property.GetAttributes<UpdateAffiliationForm, bool, DisplayAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
-                attributes[0].Name.ShouldEqual(AffiliationForm.IsClaimingStaffDisplayName);
+                attributes[0].Name.ShouldEqual(UpdateAffiliationForm.IsClaimingStaffDisplayName);
             }
         }
 
@@ -239,8 +239,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_HiddenInput_Using_FalseDisplayValue()
             {
-                Expression<Func<AffiliationForm.EstablishmentInfo, string>> property = p => p.OfficialName;
-                var attributes = property.GetAttributes<AffiliationForm.EstablishmentInfo, string, HiddenInputAttribute>();
+                Expression<Func<UpdateAffiliationForm.EstablishmentInfo, string>> property = p => p.OfficialName;
+                var attributes = property.GetAttributes<UpdateAffiliationForm.EstablishmentInfo, string, HiddenInputAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();
@@ -253,8 +253,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_HiddenInput_Using_FalseDisplayValue()
             {
-                Expression<Func<AffiliationForm.EstablishmentInfo, bool>> property = p => p.IsInstitution;
-                var attributes = property.GetAttributes<AffiliationForm.EstablishmentInfo, bool, HiddenInputAttribute>();
+                Expression<Func<UpdateAffiliationForm.EstablishmentInfo, bool>> property = p => p.IsInstitution;
+                var attributes = property.GetAttributes<UpdateAffiliationForm.EstablishmentInfo, bool, HiddenInputAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();
