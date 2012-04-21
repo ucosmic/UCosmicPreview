@@ -170,7 +170,8 @@
     <Compile Include="Areas\Identity\Models\SignUp\SendEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\ConfirmEmailFormFacts.cs" />
     <Compile Include="Areas\My\Controllers\ChangeEmailSpellingControllerFacts.cs" />
-    <Compile Include="Areas\My\Controllers\AffiliationRouterFacts.cs" />
+    <Compile Include="Areas\My\Controllers\UpdateAffiliationControllerFacts.cs" />
+    <Compile Include="Areas\My\Controllers\UpdateAffiliationRouterFacts.cs" />
     <Compile Include="Areas\My\Controllers\ProfileControllerFacts.cs" />
     <Compile Include="Areas\My\Controllers\ProfileRouterFacts.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameControllerFacts.cs" />
@@ -179,9 +180,9 @@
     <Compile Include="Areas\My\Models\ChangeEmailSpellingProfilerFacts.cs" />
     <Compile Include="Areas\My\Models\ChangeEmailSpellingValidatorFacts.cs" />
     <Compile Include="Areas\My\Controllers\ChangeEmailSpellingRouterFacts.cs" />
-    <Compile Include="Areas\My\Models\AffiliationProfilerFacts.cs" />
-    <Compile Include="Areas\My\Models\AffiliationValidatorFacts.cs" />
-    <Compile Include="Areas\My\Models\AffiliationFormFacts.cs" />
+    <Compile Include="Areas\My\Models\UpdateAffiliationProfilerFacts.cs" />
+    <Compile Include="Areas\My\Models\UpdateAffiliationValidatorFacts.cs" />
+    <Compile Include="Areas\My\Models\UpdateAffiliationFormFacts.cs" />
     <Compile Include="Areas\My\Models\ProfileProfilerFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameValidatorFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameProfilerFacts.cs" />

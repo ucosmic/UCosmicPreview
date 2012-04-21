@@ -4,14 +4,14 @@ using UCosmic.Www.Mvc.Routes;
 
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
-    public static class AffiliationRouter
+    public static class UpdateAffiliationRouter
     {
         private static readonly string Area = MVC.My.Name;
-        private static readonly string Controller = MVC.My.Affiliation.Name;
+        private static readonly string Controller = MVC.My.UpdateAffiliation.Name;
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouter.RegisterRoutes(typeof(AffiliationRouter), context, Area, Controller);
+            DefaultRouter.RegisterRoutes(typeof(UpdateAffiliationRouter), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global
@@ -19,7 +19,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         public static class Get
         {
             public const string Route = "my/affiliations/{establishmentId}";
-            private static readonly string Action = MVC.My.Affiliation.ActionNames.Get;
+            private static readonly string Action = MVC.My.UpdateAffiliation.ActionNames.Get;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };
@@ -35,7 +35,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         public static class Put
         {
             public const string Route = Get.Route;
-            private static readonly string Action = MVC.My.Affiliation.ActionNames.Put;
+            private static readonly string Action = MVC.My.UpdateAffiliation.ActionNames.Put;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };

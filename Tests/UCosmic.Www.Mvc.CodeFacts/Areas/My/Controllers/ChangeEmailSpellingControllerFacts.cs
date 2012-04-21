@@ -89,16 +89,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 {
                     PrincipalIdentityName = userName,
                 };
-                Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailAddressByUserNameAndNumberQuery =
-                    q => q.Principal.Identity.Name == userName && q.Number == number;
                 var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(emailAddressByUserNameAndNumberQuery)))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(number, userName))))
                     .Returns(new EmailAddress());
 
                 controller.Get(number);
 
                 scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
-                    It.Is(emailAddressByUserNameAndNumberQuery)),
+                    It.Is(EmailQueryBasedOn(number, userName))),
                         Times.Once());
             }
 
@@ -111,10 +109,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 {
                     PrincipalIdentityName = userName,
                 };
-                Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailAddressByUserNameAndNumberQuery =
-                    q => q.Principal.Identity.Name == userName && q.Number == number;
                 var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(emailAddressByUserNameAndNumberQuery)))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(number, userName))))
                     .Returns(null as EmailAddress);
 
                 var result = controller.Get(number);
@@ -132,10 +128,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 {
                     PrincipalIdentityName = userName,
                 };
-                Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailAddressByUserNameAndNumberQuery =
-                    q => q.Principal.Identity.Name == userName && q.Number == number;
                 var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(emailAddressByUserNameAndNumberQuery)))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(number, userName))))
                     .Returns(new EmailAddress());
 
                 var result = controller.Get(number);
@@ -278,18 +272,12 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 var principal = principalIdentityName.AsPrincipal();
                 builder.HttpContext.User = principal;
                 builder.InitializeController(controller);
-                Expression<Func<UpdateMyEmailValueCommand, bool>> commandDerivedFromModel =
-                    command =>
-                    command.Number == number &&
-                    command.Principal == principal &&
-                    command.NewValue == newValue
-                ;
-                scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)));
+                scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(CommandBasedOn(model))));
 
                 controller.Put(model);
 
                 scenarioOptions.MockCommandHandler.Verify(m =>
-                    m.Handle(It.Is(commandDerivedFromModel)),
+                    m.Handle(It.Is(CommandBasedOn(model))),
                         Times.Once());
             }
 
@@ -316,13 +304,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 var principal = principalIdentityName.AsPrincipal();
                 builder.HttpContext.User = principal;
                 builder.InitializeController(controller);
-                Expression<Func<UpdateMyEmailValueCommand, bool>> commandDerivedFromModel =
-                    command =>
-                    command.Number == number &&
-                    command.Principal == principal &&
-                    command.NewValue == newValue
-                ;
-                scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)))
+                scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(CommandBasedOn(model))))
                     .Callback((UpdateMyEmailValueCommand command) => command.ChangedState = true);
 
                 controller.Put(model);
@@ -356,13 +338,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 var principal = principalIdentityName.AsPrincipal();
                 builder.HttpContext.User = principal;
                 builder.InitializeController(controller);
-                Expression<Func<UpdateMyEmailValueCommand, bool>> commandDerivedFromModel =
-                    command =>
-                    command.Number == number &&
-                    command.Principal == principal &&
-                    command.NewValue == newValue
-                ;
-                scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)));
+                scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(CommandBasedOn(model))));
 
                 controller.Put(model);
 
@@ -395,13 +371,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 var principal = principalIdentityName.AsPrincipal();
                 builder.HttpContext.User = principal;
                 builder.InitializeController(controller);
-                Expression<Func<UpdateMyEmailValueCommand, bool>> commandDerivedFromModel =
-                    command =>
-                    command.Number == number &&
-                    command.Principal == principal &&
-                    command.NewValue == newValue
-                ;
-                scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)));
+                scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(CommandBasedOn(model))));
 
                 var result = controller.Put(model);
 
@@ -517,6 +487,25 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             builder.InitializeController(controller);
 
             return controller;
+        }
+
+        private static Expression<Func<GetMyEmailAddressByNumberQuery, bool>> EmailQueryBasedOn(int number, string userName)
+        {
+            Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailQueryBasedOn = q => 
+                q.Principal.Identity.Name == userName && 
+                q.Number == number
+            ;
+            return emailQueryBasedOn;
+        }
+
+        private static Expression<Func<UpdateMyEmailValueCommand, bool>> CommandBasedOn(ChangeEmailSpellingForm model)
+        {
+            Expression<Func<UpdateMyEmailValueCommand, bool>> commandDerivedFromModel = command =>
+                command.Number == model.Number &&
+                command.Principal.Identity.Name == model.PersonUserName &&
+                command.NewValue == model.Value
+            ;
+            return commandDerivedFromModel;
         }
     }
 }

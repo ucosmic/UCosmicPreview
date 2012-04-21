@@ -3,9 +3,9 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
-    public class AffiliationServices
+    public class UpdateAffiliationServices
     {
-        public AffiliationServices(
+        public UpdateAffiliationServices(
             IProcessQueries queryProcessor
             , IHandleCommands<UpdateMyAffiliationCommand> commandHandler
         )

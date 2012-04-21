@@ -21,9 +21,9 @@ using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
 namespace UCosmic.Www.Mvc.Areas.My.Controllers {
-    public partial class AffiliationController {
+    public partial class UpdateAffiliationController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected AffiliationController(Dummy d) { }
+        protected UpdateAffiliationController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -43,27 +43,27 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public AffiliationController Actions { get { return MVC.My.Affiliation; } }
+        public UpdateAffiliationController Actions { get { return MVC.My.UpdateAffiliation; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "My";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Affiliation";
+        public readonly string Name = "UpdateAffiliation";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Affiliation";
+        public const string NameConst = "UpdateAffiliation";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Get = "affiliation";
-            public readonly string Put = "affiliation";
+            public readonly string Get = "update-affiliation";
+            public readonly string Put = "update-affiliation";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Get = "affiliation";
-            public const string Put = "affiliation";
+            public const string Get = "update-affiliation";
+            public const string Put = "update-affiliation";
         }
 
 
@@ -72,21 +72,21 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _scripts = "~/Areas/My/Views/Affiliation/_scripts.cshtml";
-            public readonly string _styles = "~/Areas/My/Views/Affiliation/_styles.cshtml";
-            public readonly string affiliation = "~/Areas/My/Views/Affiliation/affiliation.cshtml";
+            public readonly string _scripts = "~/Areas/My/Views/UpdateAffiliation/_scripts.cshtml";
+            public readonly string _styles = "~/Areas/My/Views/UpdateAffiliation/_styles.cshtml";
+            public readonly string update_affiliation = "~/Areas/My/Views/UpdateAffiliation/update-affiliation.cshtml";
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{
-                public readonly string AffiliationForm = "AffiliationForm";
                 public readonly string EmployeeOrStudentAffiliation = "EmployeeOrStudentAffiliation";
+                public readonly string UpdateAffiliationForm = "UpdateAffiliationForm";
             }
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_AffiliationController: UCosmic.Www.Mvc.Areas.My.Controllers.AffiliationController {
-        public T4MVC_AffiliationController() : base(Dummy.Instance) { }
+    public class T4MVC_UpdateAffiliationController: UCosmic.Www.Mvc.Areas.My.Controllers.UpdateAffiliationController {
+        public T4MVC_UpdateAffiliationController() : base(Dummy.Instance) { }
 
         public override System.Web.Mvc.ActionResult Get(int establishmentId) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
@@ -94,7 +94,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Put(UCosmic.Www.Mvc.Areas.My.Models.AffiliationForm model) {
+        public override System.Web.Mvc.ActionResult Put(UCosmic.Www.Mvc.Areas.My.Models.UpdateAffiliationForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Put);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
