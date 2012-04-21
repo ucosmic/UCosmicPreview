@@ -37,7 +37,7 @@ namespace T4MVC.My {
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{
-                public readonly string ChangeEmailSpellingForm = "ChangeEmailSpellingForm";
+                public readonly string UpdateEmailValueForm = "UpdateEmailValueForm";
                 public readonly string UpdateNameForm = "UpdateNameForm";
             }
         }

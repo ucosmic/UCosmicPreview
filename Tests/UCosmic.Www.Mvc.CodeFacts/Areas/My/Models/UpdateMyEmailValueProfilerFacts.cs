@@ -7,7 +7,7 @@ using UCosmic.Domain.People;
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class ChangeEmailSpellingProfilerFacts
+    public class UpdateMyEmailValueProfilerFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -19,7 +19,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 const string value = "user@domain.tld";
                 var entity = new EmailAddress { Value = value };
 
-                var model = Mapper.Map<ChangeEmailSpellingForm>(entity);
+                var model = Mapper.Map<UpdateEmailValueForm>(entity);
 
                 model.ShouldNotBeNull();
                 model.Value.ShouldNotBeNull();
@@ -32,7 +32,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 const string value = "user@domain.tld";
                 var entity = new EmailAddress { Value = value };
 
-                var model = Mapper.Map<ChangeEmailSpellingForm>(entity);
+                var model = Mapper.Map<UpdateEmailValueForm>(entity);
 
                 model.ShouldNotBeNull();
                 model.OldSpelling.ShouldNotBeNull();
@@ -51,7 +51,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                     }
                 };
 
-                var model = Mapper.Map<ChangeEmailSpellingForm>(entity);
+                var model = Mapper.Map<UpdateEmailValueForm>(entity);
 
                 model.ShouldNotBeNull();
                 model.PersonUserName.ShouldNotBeNull();
@@ -64,7 +64,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 const int number = 2;
                 var entity = new EmailAddress { Number = number };
 
-                var model = Mapper.Map<ChangeEmailSpellingForm>(entity);
+                var model = Mapper.Map<UpdateEmailValueForm>(entity);
 
                 model.ShouldNotBeNull();
                 model.Number.ShouldEqual(entity.Number);
@@ -75,7 +75,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             {
                 var entity = new EmailAddress();
 
-                var model = Mapper.Map<ChangeEmailSpellingForm>(entity);
+                var model = Mapper.Map<UpdateEmailValueForm>(entity);
 
                 model.ShouldNotBeNull();
                 model.ReturnUrl.ShouldBeNull();
@@ -89,7 +89,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             public void Ignores_Principal()
             {
                 const string userName = "user@domain.tld";
-                var model = new ChangeEmailSpellingForm { PersonUserName = userName };
+                var model = new UpdateEmailValueForm { PersonUserName = userName };
 
                 var command = Mapper.Map<UpdateMyEmailValueCommand>(model);
 
@@ -101,7 +101,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             public void MapsValue_ToNewValue()
             {
                 const string value = "user@domain.tld";
-                var model = new ChangeEmailSpellingForm { Value = value };
+                var model = new UpdateEmailValueForm { Value = value };
 
                 var command = Mapper.Map<UpdateMyEmailValueCommand>(model);
 
@@ -114,7 +114,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             public void MapsNumber_ToNumber()
             {
                 const int number = 2;
-                var model = new ChangeEmailSpellingForm { Number = number };
+                var model = new UpdateEmailValueForm { Number = number };
 
                 var command = Mapper.Map<UpdateMyEmailValueCommand>(model);
 
@@ -125,7 +125,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IgnoresChangedState()
             {
-                var model = new ChangeEmailSpellingForm();
+                var model = new UpdateEmailValueForm();
 
                 var command = Mapper.Map<UpdateMyEmailValueCommand>(model);
 

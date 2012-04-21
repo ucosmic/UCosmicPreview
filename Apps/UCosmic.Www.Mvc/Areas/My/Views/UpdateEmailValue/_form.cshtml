@@ -1,4 +1,4 @@
-﻿@model UCosmic.Www.Mvc.Areas.My.Models.ChangeEmailSpellingForm
+﻿@model UCosmic.Www.Mvc.Areas.My.Models.UpdateEmailValueForm
 <div class="wrap-960">
     <h2>
         My <strong>@Model.Value</strong> Email Address
@@ -7,8 +7,8 @@
     <div class="split-form">
         <div class="left">
             @using (Html.BeginForm(
-                MVC.My.ChangeEmailSpelling.ActionNames.Put,
-                MVC.My.ChangeEmailSpelling.Name,
+                MVC.My.UpdateEmailValue.ActionNames.Put,
+                MVC.My.UpdateEmailValue.Name,
                 new
                 {
                     area = MVC.My.Name,

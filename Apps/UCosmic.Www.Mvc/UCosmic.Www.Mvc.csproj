@@ -203,7 +203,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Areas\My\Controllers\UpdateAffiliationController.cs" />
-    <Compile Include="Areas\My\Controllers\ChangeEmailSpellingController.cs" />
+    <Compile Include="Areas\My\Controllers\UpdateEmailValueController.cs" />
     <Compile Include="Areas\My\Controllers\UpdateAffiliationServices.cs" />
     <Compile Include="Areas\My\Controllers\UpdateAffiliationRouter.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameServices.cs" />
@@ -212,8 +212,8 @@
     <Compile Include="Areas\My\Controllers\ProfileController.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameController.cs" />
     <Compile Include="Areas\My\Models\UpdateAffiliationForm.cs" />
-    <Compile Include="Areas\My\Models\ChangeEmailSpellingProfiler.cs" />
-    <Compile Include="Areas\My\Models\ChangeEmailSpellingValidator.cs" />
+    <Compile Include="Areas\My\Models\UpdateEmailValueProfiler.cs" />
+    <Compile Include="Areas\My\Models\UpdateEmailValueValidator.cs" />
     <Compile Include="Areas\My\Models\UpdateAffiliationProfiler.cs" />
     <Compile Include="Areas\My\Models\UpdateAffiliationValidator.cs" />
     <Compile Include="Areas\My\Models\UpdateNameValidator.cs" />
@@ -223,8 +223,8 @@
     <Compile Include="Areas\My\Models\UpdateNameForm.cs" />
     <Compile Include="Areas\My\MyAreaRegistration.cs" />
     <Compile Include="Areas\My\Controllers\ProfileRouter.cs" />
-    <Compile Include="Areas\My\Controllers\ChangeEmailSpellingRouter.cs" />
-    <Compile Include="Areas\My\Controllers\ChangeEmailSpellingServices.cs" />
+    <Compile Include="Areas\My\Controllers\UpdateEmailValueRouter.cs" />
+    <Compile Include="Areas\My\Controllers\UpdateEmailValueServices.cs" />
     <Compile Include="Areas\People\Controllers\PersonNameController.cs" />
     <Compile Include="Areas\People\Controllers\PersonNameServices.cs" />
     <Compile Include="Areas\People\Controllers\PersonNameRouter.cs" />
@@ -336,9 +336,6 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ComboBoxOptions.cs" />
-    <Compile Include="My.ChangeEmailSpellingController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="My.ProfileController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -346,6 +343,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="My.UpdateAffiliationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="My.UpdateEmailValueController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="My.UpdateNameController.generated.cs">
@@ -410,7 +410,7 @@
     <Compile Include="Areas\Identity\Models\Password\ForgotPasswordForm.cs" />
     <Compile Include="Areas\Identity\Models\Password\ResetPasswordForm.cs" />
     <Compile Include="Areas\Identity\Models\Self\AffiliationForm.cs" />
-    <Compile Include="Areas\My\Models\ChangeEmailSpellingForm.cs" />
+    <Compile Include="Areas\My\Models\UpdateEmailValueForm.cs" />
     <Compile Include="Areas\Identity\Models\Self\EmailInfo.cs" />
     <Compile Include="Areas\Identity\Models\Self\PersonForm.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\ConfirmDeniedPage.cs" />
@@ -1210,13 +1210,13 @@
     <Content Include="Areas\Identity\Views\Password\reset-password-expired.cshtml" />
     <Content Include="Areas\Identity\Views\Password\reset-password.cshtml" />
     <Content Include="Areas\Identity\Views\Saml2Metadata\Index.cshtml" />
-    <Content Include="Areas\My\Views\ChangeEmailSpelling\_form.cshtml" />
-    <Content Include="Areas\My\Views\ChangeEmailSpelling\change-email-spelling.cshtml" />
+    <Content Include="Areas\My\Views\UpdateEmailValue\_form.cshtml" />
+    <Content Include="Areas\My\Views\UpdateEmailValue\update-email-value.cshtml" />
     <Content Include="Areas\Identity\Views\Self\DisplayTemplates\AffiliationInfo.cshtml" />
     <Content Include="Areas\Identity\Views\Self\DisplayTemplates\EmailInfo.cshtml" />
     <Content Include="Areas\Identity\Views\Self\edit-affiliation.cshtml" />
     <Content Include="Areas\Identity\Views\Self\EditorTemplates\AffiliationForm.cshtml" />
-    <Content Include="Areas\My\Views\Shared\EditorTemplates\ChangeEmailSpellingForm.cshtml" />
+    <Content Include="Areas\My\Views\Shared\EditorTemplates\UpdateEmailValueForm.cshtml" />
     <Content Include="Areas\Identity\Views\Self\EditorTemplates\PersonForm.cshtml" />
     <Content Include="Areas\Identity\Views\Self\me.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignInForm.cshtml" />

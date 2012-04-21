@@ -13,8 +13,8 @@ namespace UCosmic.Www.Mvc.Areas.My
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            ChangeEmailSpellingRouter.RegisterRoutes(context);
-            ChangeEmailSpellingProfiler.RegisterProfiles();
+            UpdateEmailValueRouter.RegisterRoutes(context);
+            UpdateEmailValueProfiler.RegisterProfiles();
 
             ProfileRouter.RegisterRoutes(context);
             ProfileProfiler.RegisterProfiles();

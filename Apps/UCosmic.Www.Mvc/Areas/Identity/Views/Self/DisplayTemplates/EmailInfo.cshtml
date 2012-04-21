@@ -20,7 +20,7 @@
         }
     </div>
     <div class="email-actions email-info">
-        <a href="@Url.Action(MVC.My.ChangeEmailSpelling.Get(Model.Number))" class="email-action">Change spelling</a>
+        <a href="@Url.Action(MVC.My.UpdateEmailValue.Get(Model.Number))" class="email-action">Change spelling</a>
         @if (!Model.IsConfirmed)
         {
             <a href="#" class="email-action email-confirm not-implemented">Send confirmation email</a>
