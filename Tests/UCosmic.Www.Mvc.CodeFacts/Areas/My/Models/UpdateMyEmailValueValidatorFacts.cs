@@ -12,23 +12,23 @@ using UCosmic.Domain.People;
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class ChangeEmailSpellingValidatorFacts
+    public class UpdateMyEmailValueValidatorFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
         public class TheClass
         {
             [TestMethod]
-            public void Validates_ChangeEmailSpellingForm()
+            public void Validates_UpdateEmailValueForm()
             {
                 var request = new HttpRequest(null, "http://www.site.com", null);
                 HttpContext.Current = new HttpContext(request, new HttpResponse(null));
                 var container = SimpleDependencyInjector.Bootstrap();
 
-                var validator = container.GetInstance<IValidator<ChangeEmailSpellingForm>>();
+                var validator = container.GetInstance<IValidator<UpdateEmailValueForm>>();
 
                 validator.ShouldNotBeNull();
-                validator.ShouldBeType<ChangeEmailSpellingValidator>();
+                validator.ShouldBeType<UpdateEmailValueValidator>();
             }
         }
 
@@ -38,8 +38,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsInvalidWhen_Value_IsNull()
             {
-                var validator = new ChangeEmailSpellingValidator(null);
-                var model = new ChangeEmailSpellingForm { Value = null };
+                var validator = new UpdateEmailValueValidator(null);
+                var model = new UpdateEmailValueForm { Value = null };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -47,15 +47,15 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ChangeEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
+                    UpdateEmailValueValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
             public void IsInvalidWhen_Value_IsEmpty()
             {
-                var validator = new ChangeEmailSpellingValidator(null);
-                var model = new ChangeEmailSpellingForm { Value = string.Empty };
+                var validator = new UpdateEmailValueValidator(null);
+                var model = new UpdateEmailValueForm { Value = string.Empty };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -63,15 +63,15 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ChangeEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
+                    UpdateEmailValueValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
             public void IsInvalidWhen_Value_IsWhiteSpace()
             {
-                var validator = new ChangeEmailSpellingValidator(null);
-                var model = new ChangeEmailSpellingForm { Value = " \r" };
+                var validator = new UpdateEmailValueValidator(null);
+                var model = new UpdateEmailValueForm { Value = " \r" };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -79,15 +79,15 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ChangeEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
+                    UpdateEmailValueValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
             public void IsInvalidWhen_Value_IsMissingTldExtension()
             {
-                var validator = new ChangeEmailSpellingValidator(null);
-                var model = new ChangeEmailSpellingForm { Value = "email@domain" };
+                var validator = new UpdateEmailValueValidator(null);
+                var model = new UpdateEmailValueForm { Value = "email@domain" };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -95,7 +95,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ChangeEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
+                    UpdateEmailValueValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -105,8 +105,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 var queryProcessor = new Mock<IProcessQueries>();
                 queryProcessor.Setup(m => m.Execute(It.IsAny<GetMyEmailAddressByNumberQuery>()))
                     .Returns(new EmailAddress { Value = "user@domain.tld" });
-                var validator = new ChangeEmailSpellingValidator(queryProcessor.Object);
-                var model = new ChangeEmailSpellingForm { Value = "user2@domain.tld", PersonUserName = string.Empty };
+                var validator = new UpdateEmailValueValidator(queryProcessor.Object);
+                var model = new UpdateEmailValueForm { Value = "user2@domain.tld", PersonUserName = string.Empty };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -114,7 +114,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ChangeEmailSpellingValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
+                    UpdateEmailValueValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -123,7 +123,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             {
                 const string personUserName = "user@domain.tld";
                 const string emailValue = "user1@domain.tld";
-                var form = new ChangeEmailSpellingForm
+                var form = new UpdateEmailValueForm
                 {
                     PersonUserName = personUserName,
                     Number = 13,
@@ -132,7 +132,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(form))))
                     .Returns(null as EmailAddress);
-                var validator = new ChangeEmailSpellingValidator(queryProcessor.Object);
+                var validator = new UpdateEmailValueValidator(queryProcessor.Object);
                 var results = validator.Validate(form);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -150,7 +150,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             {
                 const string personUserName = "user@domain.tld";
                 const string emailValue = "user1@domain.tld";
-                var form = new ChangeEmailSpellingForm
+                var form = new UpdateEmailValueForm
                 {
                     PersonUserName = personUserName,
                     Number = 13,
@@ -159,7 +159,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(form))))
                     .Returns(new EmailAddress { Value = emailValue.ToLower() });
-                var validator = new ChangeEmailSpellingValidator(queryProcessor.Object);
+                var validator = new UpdateEmailValueValidator(queryProcessor.Object);
                 var results = validator.Validate(form);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Value");
                 error.ShouldBeNull();
@@ -171,15 +171,15 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 var queryProcessor = new Mock<IProcessQueries>();
                 queryProcessor.Setup(m => m.Execute(It.IsAny<GetMyEmailAddressByNumberQuery>()))
                     .Returns(new EmailAddress { Value = "user@domain.tld" });
-                var validator = new ChangeEmailSpellingValidator(queryProcessor.Object);
-                var model = new ChangeEmailSpellingForm { Value = "User@Domain.Tld", PersonUserName = string.Empty };
+                var validator = new UpdateEmailValueValidator(queryProcessor.Object);
+                var model = new UpdateEmailValueForm { Value = "User@Domain.Tld", PersonUserName = string.Empty };
                 var results = validator.Validate(model);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Value");
                 error.ShouldBeNull();
             }
         }
 
-        private static Expression<Func<GetMyEmailAddressByNumberQuery, bool>> EmailQueryBasedOn(ChangeEmailSpellingForm form)
+        private static Expression<Func<GetMyEmailAddressByNumberQuery, bool>> EmailQueryBasedOn(UpdateEmailValueForm form)
         {
             Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailQueryBasedOn =
                 q => q.Principal.Identity.Name == form.PersonUserName && q.Number == form.Number;

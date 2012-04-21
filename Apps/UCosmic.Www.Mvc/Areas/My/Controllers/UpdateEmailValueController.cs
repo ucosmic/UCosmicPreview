@@ -9,18 +9,18 @@ using UCosmic.Www.Mvc.Controllers;
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
     [Authorize]
-    public partial class ChangeEmailSpellingController : BaseController
+    public partial class UpdateEmailValueController : BaseController
     {
-        private readonly ChangeEmailSpellingServices _services;
+        private readonly UpdateEmailValueServices _services;
 
-        public ChangeEmailSpellingController(ChangeEmailSpellingServices services)
+        public UpdateEmailValueController(UpdateEmailValueServices services)
         {
             _services = services;
         }
 
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
-        [ActionName("change-email-spelling")]
+        [ActionName("update-email-value")]
         [ReturnUrlReferrer(ProfileRouter.Get.Route)]
         public virtual ActionResult Get(int number)
         {
@@ -34,14 +34,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             );
 
             if (email == null) return HttpNotFound();
-            return PartialView(Mapper.Map<ChangeEmailSpellingForm>(email));
+            return PartialView(Mapper.Map<UpdateEmailValueForm>(email));
         }
 
         [HttpPut]
         [UnitOfWork]
         [OpenTopTab(TopTabName.Home)]
-        [ActionName("change-email-spelling")]
-        public virtual ActionResult Put(ChangeEmailSpellingForm model)
+        [ActionName("update-email-value")]
+        public virtual ActionResult Put(UpdateEmailValueForm model)
         {
             // make sure user owns this email address
             if (model == null || !User.Identity.Name.Equals(model.PersonUserName, StringComparison.OrdinalIgnoreCase))
@@ -67,9 +67,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         [HttpPost]
         [OutputCache(VaryByParam = "*", Duration = 1800)]
         public virtual JsonResult ValidateValue(
-            [CustomizeValidator(Properties = ChangeEmailSpellingForm.ValuePropertyName)] ChangeEmailSpellingForm model)
+            [CustomizeValidator(Properties = UpdateEmailValueForm.ValuePropertyName)] UpdateEmailValueForm model)
         {
-            return ValidateRemote(ChangeEmailSpellingForm.ValuePropertyName);
+            return ValidateRemote(UpdateEmailValueForm.ValuePropertyName);
         }
     }
 }

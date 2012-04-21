@@ -14,7 +14,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         public class TheClass
         {
             [TestMethod]
-            public void Validates_AffiliationForm()
+            public void Validates_UpdateAffiliationForm()
             {
                 var request = new HttpRequest(null, "http://www.site.com", null);
                 HttpContext.Current = new HttpContext(request, new HttpResponse(null));

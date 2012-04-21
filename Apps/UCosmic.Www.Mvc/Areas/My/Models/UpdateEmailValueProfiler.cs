@@ -4,11 +4,11 @@ using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
-    public static class ChangeEmailSpellingProfiler
+    public static class UpdateEmailValueProfiler
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(ChangeEmailSpellingProfiler));
+            DefaultModelMapper.RegisterProfiles(typeof(UpdateEmailValueProfiler));
         }
 
         // ReSharper disable UnusedMember.Local
@@ -17,7 +17,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         {
             protected override void Configure()
             {
-                CreateMap<EmailAddress, ChangeEmailSpellingForm>()
+                CreateMap<EmailAddress, UpdateEmailValueForm>()
                     .ForMember(d => d.OldSpelling, opt => opt.MapFrom(s => s.Value))
                     .ForMember(d => d.ReturnUrl, opt => opt.Ignore())
                 ;
@@ -28,7 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         {
             protected override void Configure()
             {
-                CreateMap<ChangeEmailSpellingForm, UpdateMyEmailValueCommand>()
+                CreateMap<UpdateEmailValueForm, UpdateMyEmailValueCommand>()
                     .ForMember(d => d.Principal, o => o.Ignore())
                     .ForMember(d => d.NewValue, o => o.MapFrom(s => s.Value))
                     .ForMember(d => d.ChangedState, o => o.Ignore())

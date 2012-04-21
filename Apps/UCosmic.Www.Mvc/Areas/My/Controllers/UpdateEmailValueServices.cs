@@ -3,9 +3,9 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
-    public class ChangeEmailSpellingServices
+    public class UpdateEmailValueServices
     {
-        public ChangeEmailSpellingServices(
+        public UpdateEmailValueServices(
             IProcessQueries queryProcessor
             , IHandleCommands<UpdateMyEmailValueCommand> commandHandler
         )

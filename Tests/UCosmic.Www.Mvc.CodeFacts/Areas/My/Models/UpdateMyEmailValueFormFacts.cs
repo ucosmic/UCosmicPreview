@@ -9,7 +9,7 @@ using UCosmic.Www.Mvc.Models;
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class ChangeEmailSpellingFormFacts
+    public class UpdateMyEmailValueFormFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -18,7 +18,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void Implements_IReturnUrl()
             {
-                var model = new ChangeEmailSpellingForm();
+                var model = new UpdateEmailValueForm();
                 model.ShouldImplement<IReturnUrl>();
             }
         }
@@ -29,18 +29,18 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_Display_UsingName_NewSpelling()
             {
-                Expression<Func<ChangeEmailSpellingForm, string>> property = p => p.Value;
-                var attributes = property.GetAttributes<ChangeEmailSpellingForm, string, DisplayAttribute>();
+                Expression<Func<UpdateEmailValueForm, string>> property = p => p.Value;
+                var attributes = property.GetAttributes<UpdateEmailValueForm, string, DisplayAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
-                attributes[0].Name.ShouldEqual(ChangeEmailSpellingForm.ValueDisplayName);
+                attributes[0].Name.ShouldEqual(UpdateEmailValueForm.ValueDisplayName);
             }
 
             [TestMethod]
             public void IsDecoratedWith_Remote_UsingHttpMethod_Post()
             {
-                Expression<Func<ChangeEmailSpellingForm, string>> property = p => p.Value;
-                var attributes = property.GetAttributes<ChangeEmailSpellingForm, string, RemoteAttribute>();
+                Expression<Func<UpdateEmailValueForm, string>> property = p => p.Value;
+                var attributes = property.GetAttributes<UpdateEmailValueForm, string, RemoteAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].HttpMethod.ShouldEqual("POST");
@@ -49,8 +49,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_Remote_UsingAdditionalFields_PersonUserName_AndNumber()
             {
-                Expression<Func<ChangeEmailSpellingForm, string>> property = p => p.Value;
-                var attributes = property.GetAttributes<ChangeEmailSpellingForm, string, RemoteAttribute>();
+                Expression<Func<UpdateEmailValueForm, string>> property = p => p.Value;
+                var attributes = property.GetAttributes<UpdateEmailValueForm, string, RemoteAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].AdditionalFields.ShouldEqual("PersonUserName,Number");
@@ -63,17 +63,17 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_Display_UsingName_CurrentSpelling()
             {
-                Expression<Func<ChangeEmailSpellingForm, string>> property = p => p.OldSpelling;
-                var attributes = property.GetAttributes<ChangeEmailSpellingForm, string, DisplayAttribute>();
+                Expression<Func<UpdateEmailValueForm, string>> property = p => p.OldSpelling;
+                var attributes = property.GetAttributes<UpdateEmailValueForm, string, DisplayAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
-                attributes[0].Name.ShouldEqual(ChangeEmailSpellingForm.OldSpellingDisplayName);
+                attributes[0].Name.ShouldEqual(UpdateEmailValueForm.OldSpellingDisplayName);
             }
 
             [TestMethod]
             public void HasPublicSetter()
             {
-                new ChangeEmailSpellingForm
+                new UpdateEmailValueForm
                 {
                     OldSpelling = "user@domain.tld"
                 };
@@ -86,8 +86,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_HiddenInput()
             {
-                Expression<Func<ChangeEmailSpellingForm, string>> property = p => p.PersonUserName;
-                var attributes = property.GetAttributes<ChangeEmailSpellingForm, string, HiddenInputAttribute>();
+                Expression<Func<UpdateEmailValueForm, string>> property = p => p.PersonUserName;
+                var attributes = property.GetAttributes<UpdateEmailValueForm, string, HiddenInputAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();
@@ -100,8 +100,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_HiddenInput()
             {
-                Expression<Func<ChangeEmailSpellingForm, string>> property = p => p.ReturnUrl;
-                var attributes = property.GetAttributes<ChangeEmailSpellingForm, string, HiddenInputAttribute>();
+                Expression<Func<UpdateEmailValueForm, string>> property = p => p.ReturnUrl;
+                var attributes = property.GetAttributes<UpdateEmailValueForm, string, HiddenInputAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();
@@ -114,8 +114,8 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsDecoratedWith_HiddenInput()
             {
-                Expression<Func<ChangeEmailSpellingForm, int>> property = p => p.Number;
-                var attributes = property.GetAttributes<ChangeEmailSpellingForm, int, HiddenInputAttribute>();
+                Expression<Func<UpdateEmailValueForm, int>> property = p => p.Number;
+                var attributes = property.GetAttributes<UpdateEmailValueForm, int, HiddenInputAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();

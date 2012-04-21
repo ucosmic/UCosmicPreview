@@ -4,12 +4,12 @@ using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
-    public class ChangeEmailSpellingForm : IReturnUrl
+    public class UpdateEmailValueForm : IReturnUrl
     {
         public const string ValuePropertyName = "Value";
         public const string ValueDisplayName = "New spelling";
         [Display(Name = ValueDisplayName)]
-        [Remote("ValidateValue", "ChangeEmailSpelling", "My", HttpMethod = "POST", AdditionalFields = "PersonUserName,Number")]
+        [Remote("ValidateValue", "UpdateEmailValue", "My", HttpMethod = "POST", AdditionalFields = "PersonUserName,Number")]
         public string Value { get; set; }
 
         public const string OldSpellingDisplayName = "Current spelling";
