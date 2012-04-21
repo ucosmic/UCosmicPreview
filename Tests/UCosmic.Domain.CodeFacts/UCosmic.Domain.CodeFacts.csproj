@@ -105,8 +105,8 @@
     <Compile Include="InstitutionalAgreements\InstitutionalAgreementFacts.cs" />
     <Compile Include="Languages\LanguageNameFacts.cs" />
     <Compile Include="Languages\LanguageFacts.cs" />
-    <Compile Include="People\Commands\ChangeMyEmailSpellingValidatorFacts.cs" />
-    <Compile Include="People\Commands\ChangeMyEmailSpellingHandlerFacts.cs" />
+    <Compile Include="People\Commands\UpdateMyEmailValueValidatorFacts.cs" />
+    <Compile Include="People\Commands\UpdateMyEmailValueHandlerFacts.cs" />
     <Compile Include="People\Commands\CreateAffiliationHandlerFacts.cs" />
     <Compile Include="People\Commands\CreateAffiliationValidatorFacts.cs" />
     <Compile Include="People\Commands\UpdateMyAffiliationHandlerFacts.cs" />

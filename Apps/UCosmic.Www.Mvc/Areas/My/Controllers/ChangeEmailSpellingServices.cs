@@ -7,7 +7,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
     {
         public ChangeEmailSpellingServices(
             IProcessQueries queryProcessor
-            , IHandleCommands<ChangeMyEmailSpellingCommand> commandHandler
+            , IHandleCommands<UpdateMyEmailValueCommand> commandHandler
         )
         {
             QueryProcessor = queryProcessor;
@@ -15,6 +15,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         }
 
         public IProcessQueries QueryProcessor { get; private set; }
-        public IHandleCommands<ChangeMyEmailSpellingCommand> CommandHandler { get; private set; }
+        public IHandleCommands<UpdateMyEmailValueCommand> CommandHandler { get; private set; }
     }
 }

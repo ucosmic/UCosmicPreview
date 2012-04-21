@@ -7,7 +7,7 @@ using Should;
 namespace UCosmic.Domain.People
 {
     // ReSharper disable UnusedMember.Global
-    public class ChangeMyEmailSpellingHandlerFacts
+    public class UpdateMyEmailValueHandlerFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -17,7 +17,7 @@ namespace UCosmic.Domain.People
             public void ThrowsArgumentNullException_WhenCommandArgIsNull()
             {
                 ArgumentNullException exception = null;
-                var handler = new ChangeMyEmailSpellingHandler(null, null);
+                var handler = new UpdateMyEmailValueHandler(null, null);
                 try
                 {
                     handler.Handle(null);
@@ -36,13 +36,13 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void ExecutesQuery_ToGetEmailAddress_ByUserNameAndNumber()
             {
-                var command = new ChangeMyEmailSpellingCommand();
+                var command = new UpdateMyEmailValueCommand();
                 Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailAddressQueryFromCommand = q =>
                     q.Principal == command.Principal && q.Number == command.Number;
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.Is(emailAddressQueryFromCommand)))
                     .Returns(null as EmailAddress);
-                var handler = new ChangeMyEmailSpellingHandler(queryProcessor.Object, null);
+                var handler = new UpdateMyEmailValueHandler(queryProcessor.Object, null);
 
                 handler.Handle(command);
 
@@ -52,7 +52,7 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void DoesNotUpdate_WhenEmailAddressIsNull()
             {
-                var command = new ChangeMyEmailSpellingCommand();
+                var command = new UpdateMyEmailValueCommand();
                 Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailAddressQueryFromCommand = q =>
                     q.Principal == command.Principal && q.Number == command.Number;
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
@@ -60,7 +60,7 @@ namespace UCosmic.Domain.People
                     .Returns(null as EmailAddress);
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
                 entities.Setup(m => m.Update(It.IsAny<EmailAddress>()));
-                var handler = new ChangeMyEmailSpellingHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyEmailValueHandler(queryProcessor.Object, entities.Object);
 
                 handler.Handle(command);
 
@@ -72,7 +72,7 @@ namespace UCosmic.Domain.People
             public void DoesNotUpdate_WhenNewValue_IsSameAsOldSpelling()
             {
                 const string value = "user@domain.tld";
-                var command = new ChangeMyEmailSpellingCommand { NewValue = value };
+                var command = new UpdateMyEmailValueCommand { NewValue = value };
                 Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailAddressQueryFromCommand = q =>
                     q.Principal == command.Principal && q.Number == command.Number;
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
@@ -80,7 +80,7 @@ namespace UCosmic.Domain.People
                     .Returns(new EmailAddress { Value = value });
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
                 entities.Setup(m => m.Update(It.IsAny<EmailAddress>()));
-                var handler = new ChangeMyEmailSpellingHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyEmailValueHandler(queryProcessor.Object, entities.Object);
 
                 handler.Handle(command);
 
@@ -94,7 +94,7 @@ namespace UCosmic.Domain.People
                 const string newValue = "User@Domain.Tld";
                 const string oldValue = "user@domain.tld";
                 EmailAddress updatedEntity = null;
-                var command = new ChangeMyEmailSpellingCommand { NewValue = newValue };
+                var command = new UpdateMyEmailValueCommand { NewValue = newValue };
                 Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailAddressQueryFromCommand = q =>
                     q.Principal == command.Principal && q.Number == command.Number;
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
@@ -103,7 +103,7 @@ namespace UCosmic.Domain.People
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
                 entities.Setup(m => m.Update(It.Is<EmailAddress>(a => a.Value == newValue)))
                     .Callback((Entity entity) => updatedEntity = (EmailAddress)entity);
-                var handler = new ChangeMyEmailSpellingHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyEmailValueHandler(queryProcessor.Object, entities.Object);
 
                 handler.Handle(command);
 

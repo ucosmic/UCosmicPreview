@@ -9,7 +9,7 @@ using UCosmic.Domain.Identity;
 namespace UCosmic.Domain.People
 {
     // ReSharper disable UnusedMember.Global
-    public class ChangeMyEmailSpellingValidatorFacts
+    public class UpdateMyEmailValueValidatorFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -18,8 +18,8 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsInvalidWhen_Principal_IsNull()
             {
-                var command = new ChangeMyEmailSpellingCommand { Principal = null };
-                var validator = new ChangeMyEmailSpellingValidator(null);
+                var command = new UpdateMyEmailValueCommand { Principal = null };
+                var validator = new UpdateMyEmailValueValidator(null);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -37,8 +37,8 @@ namespace UCosmic.Domain.People
                 // ReSharper disable ExpressionIsAlwaysNull
                 var principal = principalIdentityName.AsPrincipal();
                 // ReSharper restore ExpressionIsAlwaysNull
-                var command = new ChangeMyEmailSpellingCommand { Principal = principal };
-                var validator = new ChangeMyEmailSpellingValidator(null);
+                var command = new UpdateMyEmailValueCommand { Principal = principal };
+                var validator = new UpdateMyEmailValueValidator(null);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -54,8 +54,8 @@ namespace UCosmic.Domain.People
             {
                 var principalIdentityName = string.Empty;
                 var principal = principalIdentityName.AsPrincipal();
-                var command = new ChangeMyEmailSpellingCommand { Principal = principal };
-                var validator = new ChangeMyEmailSpellingValidator(null);
+                var command = new UpdateMyEmailValueCommand { Principal = principal };
+                var validator = new UpdateMyEmailValueValidator(null);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -71,8 +71,8 @@ namespace UCosmic.Domain.People
             {
                 const string principalIdentityName = "\t";
                 var principal = principalIdentityName.AsPrincipal();
-                var command = new ChangeMyEmailSpellingCommand { Principal = principal };
-                var validator = new ChangeMyEmailSpellingValidator(null);
+                var command = new UpdateMyEmailValueCommand { Principal = principal };
+                var validator = new UpdateMyEmailValueValidator(null);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -88,10 +88,10 @@ namespace UCosmic.Domain.People
             {
                 const string principalIdentityName = "user@domain.";
                 var principal = principalIdentityName.AsPrincipal();
-                var command = new ChangeMyEmailSpellingCommand { Principal = principal };
+                var command = new UpdateMyEmailValueCommand { Principal = principal };
                 var queryProcessor = new Mock<IProcessQueries>();
                 queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command)))).Returns(null as User);
-                var validator = new ChangeMyEmailSpellingValidator(queryProcessor.Object);
+                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -109,10 +109,10 @@ namespace UCosmic.Domain.People
             {
                 const string principalIdentityName = "user@domain.tld";
                 var principal = principalIdentityName.AsPrincipal();
-                var command = new ChangeMyEmailSpellingCommand { Principal = principal };
+                var command = new UpdateMyEmailValueCommand { Principal = principal };
                 var queryProcessor = new Mock<IProcessQueries>();
                 queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command)))).Returns(new User());
-                var validator = new ChangeMyEmailSpellingValidator(queryProcessor.Object);
+                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -129,7 +129,7 @@ namespace UCosmic.Domain.People
             {
                 const string principalIdentityName = "user@domain.tld";
                 var principal = principalIdentityName.AsPrincipal();
-                var command = new ChangeMyEmailSpellingCommand
+                var command = new UpdateMyEmailValueCommand
                 {
                     Principal = principal,
                     Number = 11,
@@ -137,7 +137,7 @@ namespace UCosmic.Domain.People
                 var queryProcessor = new Mock<IProcessQueries>();
                 queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command))))
                     .Returns(null as EmailAddress);
-                var validator = new ChangeMyEmailSpellingValidator(queryProcessor.Object);
+                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -155,7 +155,7 @@ namespace UCosmic.Domain.People
             {
                 const string principalIdentityName = "user@domain.tld";
                 var principal = principalIdentityName.AsPrincipal();
-                var command = new ChangeMyEmailSpellingCommand
+                var command = new UpdateMyEmailValueCommand
                 {
                     Principal = principal,
                     Number = 1,
@@ -163,7 +163,7 @@ namespace UCosmic.Domain.People
                 var queryProcessor = new Mock<IProcessQueries>();
                 queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command))))
                     .Returns(new EmailAddress());
-                var validator = new ChangeMyEmailSpellingValidator(queryProcessor.Object);
+                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
                 var results = validator.Validate(command);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Number");
                 error.ShouldBeNull();
@@ -176,8 +176,8 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsInvalidWhen_NewValue_IsNull()
             {
-                var command = new ChangeMyEmailSpellingCommand { NewValue = null };
-                var validator = new ChangeMyEmailSpellingValidator(null);
+                var command = new UpdateMyEmailValueCommand { NewValue = null };
+                var validator = new UpdateMyEmailValueValidator(null);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -191,8 +191,8 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsInvalidWhen_NewValue_IsEmptyString()
             {
-                var command = new ChangeMyEmailSpellingCommand { NewValue = string.Empty };
-                var validator = new ChangeMyEmailSpellingValidator(null);
+                var command = new UpdateMyEmailValueCommand { NewValue = string.Empty };
+                var validator = new UpdateMyEmailValueValidator(null);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -206,8 +206,8 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsInvalidWhen_NewValue_IsWhiteSpace()
             {
-                var command = new ChangeMyEmailSpellingCommand { NewValue = "\t" };
-                var validator = new ChangeMyEmailSpellingValidator(null);
+                var command = new UpdateMyEmailValueCommand { NewValue = "\t" };
+                var validator = new UpdateMyEmailValueValidator(null);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -221,11 +221,11 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsInvalidWhen_NewValue_FailsEmailAddressRegex()
             {
-                var command = new ChangeMyEmailSpellingCommand { NewValue = "user@domain.", };
+                var command = new UpdateMyEmailValueCommand { NewValue = "user@domain.", };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command))))
                     .Returns(null as EmailAddress);
-                var validator = new ChangeMyEmailSpellingValidator(queryProcessor.Object);
+                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -241,11 +241,11 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsInvalidWhen_NewValue_DoesNotMatchPreviousSpelling_CaseInsensitively()
             {
-                var command = new ChangeMyEmailSpellingCommand { NewValue = "user@domain.tld", };
+                var command = new UpdateMyEmailValueCommand { NewValue = "user@domain.tld", };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command))))
                     .Returns(new EmailAddress { Value = "user@domain2.tld" });
-                var validator = new ChangeMyEmailSpellingValidator(queryProcessor.Object);
+                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -261,11 +261,11 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsValidWhen_NewValue_MatchesPreviousSpelling_CaseInsensitively()
             {
-                var command = new ChangeMyEmailSpellingCommand { NewValue = "User@Domain.Tld", };
+                var command = new UpdateMyEmailValueCommand { NewValue = "User@Domain.Tld", };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command))))
                     .Returns(new EmailAddress { Value = "user@domain.tld" });
-                var validator = new ChangeMyEmailSpellingValidator(queryProcessor.Object);
+                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -274,7 +274,7 @@ namespace UCosmic.Domain.People
             }
         }
 
-        private static Expression<Func<GetUserByNameQuery, bool>> UserQueryBasedOn(ChangeMyEmailSpellingCommand command)
+        private static Expression<Func<GetUserByNameQuery, bool>> UserQueryBasedOn(UpdateMyEmailValueCommand command)
         {
             Expression<Func<GetUserByNameQuery, bool>> userByPrincipalIdentityName = q =>
                 q.Name == command.Principal.Identity.Name
@@ -282,7 +282,7 @@ namespace UCosmic.Domain.People
             return userByPrincipalIdentityName;
         }
 
-        private static Expression<Func<GetMyEmailAddressByNumberQuery, bool>> EmailQueryBasedOn(ChangeMyEmailSpellingCommand command)
+        private static Expression<Func<GetMyEmailAddressByNumberQuery, bool>> EmailQueryBasedOn(UpdateMyEmailValueCommand command)
         {
             Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailQueryBasedOn = q =>
                 q.Principal == command.Principal &&

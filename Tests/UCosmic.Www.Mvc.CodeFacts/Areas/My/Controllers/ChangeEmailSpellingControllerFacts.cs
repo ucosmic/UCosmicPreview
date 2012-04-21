@@ -278,7 +278,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 var principal = principalIdentityName.AsPrincipal();
                 builder.HttpContext.User = principal;
                 builder.InitializeController(controller);
-                Expression<Func<ChangeMyEmailSpellingCommand, bool>> commandDerivedFromModel =
+                Expression<Func<UpdateMyEmailValueCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
                     command.Principal == principal &&
@@ -316,14 +316,14 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 var principal = principalIdentityName.AsPrincipal();
                 builder.HttpContext.User = principal;
                 builder.InitializeController(controller);
-                Expression<Func<ChangeMyEmailSpellingCommand, bool>> commandDerivedFromModel =
+                Expression<Func<UpdateMyEmailValueCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
                     command.Principal == principal &&
                     command.NewValue == newValue
                 ;
                 scenarioOptions.MockCommandHandler.Setup(m => m.Handle(It.Is(commandDerivedFromModel)))
-                    .Callback((ChangeMyEmailSpellingCommand command) => command.ChangedState = true);
+                    .Callback((UpdateMyEmailValueCommand command) => command.ChangedState = true);
 
                 controller.Put(model);
 
@@ -356,7 +356,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 var principal = principalIdentityName.AsPrincipal();
                 builder.HttpContext.User = principal;
                 builder.InitializeController(controller);
-                Expression<Func<ChangeMyEmailSpellingCommand, bool>> commandDerivedFromModel =
+                Expression<Func<UpdateMyEmailValueCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
                     command.Principal == principal &&
@@ -395,7 +395,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 var principal = principalIdentityName.AsPrincipal();
                 builder.HttpContext.User = principal;
                 builder.InitializeController(controller);
-                Expression<Func<ChangeMyEmailSpellingCommand, bool>> commandDerivedFromModel =
+                Expression<Func<UpdateMyEmailValueCommand, bool>> commandDerivedFromModel =
                     command =>
                     command.Number == number &&
                     command.Principal == principal &&
@@ -489,7 +489,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         private class ScenarioOptions
         {
             internal Mock<IProcessQueries> MockQueryProcessor { get; set; }
-            internal Mock<IHandleCommands<ChangeMyEmailSpellingCommand>> MockCommandHandler { get; set; }
+            internal Mock<IHandleCommands<UpdateMyEmailValueCommand>> MockCommandHandler { get; set; }
             internal string PrincipalIdentityName { get; set; }
         }
 
@@ -499,7 +499,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
             scenarioOptions.MockQueryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
 
-            scenarioOptions.MockCommandHandler = new Mock<IHandleCommands<ChangeMyEmailSpellingCommand>>(MockBehavior.Strict);
+            scenarioOptions.MockCommandHandler = new Mock<IHandleCommands<UpdateMyEmailValueCommand>>(MockBehavior.Strict);
 
             var services = new ChangeEmailSpellingServices(scenarioOptions.MockQueryProcessor.Object, scenarioOptions.MockCommandHandler.Object);
 
