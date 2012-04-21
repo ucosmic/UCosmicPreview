@@ -14,7 +14,7 @@ namespace UCosmic.Domain.Saml
             [TestMethod]
             public void HasPublicGet()
             {
-                var response = new Mock<Saml2Response>();
+                var response = new Mock<Saml2Response>(MockBehavior.Strict);
                 var serviceProviderBinding = response.Object.ServiceProviderBinding;
                 serviceProviderBinding.ShouldEqual(Saml2SsoBinding.NotSpecified);
             }
@@ -26,7 +26,7 @@ namespace UCosmic.Domain.Saml
             [TestMethod]
             public void HasPublicGet()
             {
-                var response = new Mock<Saml2Response>();
+                var response = new Mock<Saml2Response>(MockBehavior.Default);
                 var isSigned = response.Object.IsSigned;
                 isSigned.ShouldBeFalse();
             }

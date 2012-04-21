@@ -54,7 +54,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void Invokes_Roles_Get()
             {
-                var roles = new Mock<RoleFacade>();
+                var roles = new Mock<RoleFacade>(MockBehavior.Strict);
                 roles.Setup(m => m.Get()).Returns(new[] { new Role { Name = "role 1" }, new Role { Name = "role 2" }, });
                 var controller = new RolesController(CreateRolesServices(roles.Object));
 
@@ -67,7 +67,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void Returns_RoleSearchResults()
             {
-                var roles = new Mock<RoleFacade>();
+                var roles = new Mock<RoleFacade>(MockBehavior.Strict);
                 roles.Setup(m => m.Get()).Returns(new[] { new Role { Name = "role 1" }, new Role { Name = "role 2" }, });
                 var controller = new RolesController(CreateRolesServices(roles.Object));
 
@@ -147,7 +147,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Returns404_WhenSlug_DoesNotMatchRole()
             {
                 const string slug = "role-1";
-                var roles = new Mock<RoleFacade>();
+                var roles = new Mock<RoleFacade>(MockBehavior.Strict);
                 roles.Setup(m => m.GetBySlug(slug)).Returns(null as Role);
                 var controller = new RolesController(CreateRolesServices(roles.Object));
 
@@ -162,7 +162,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 const string slug = "role-1";
                 const string name = "Role 1";
-                var roles = new Mock<RoleFacade>();
+                var roles = new Mock<RoleFacade>(MockBehavior.Strict);
                 roles.Setup(m => m.GetBySlug(slug)).Returns(new Role { Name = name });
                 var controller = new RolesController(CreateRolesServices(roles.Object));
 
@@ -177,7 +177,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 const string slug = "role-1";
                 const string name = "Role 1";
-                var roles = new Mock<RoleFacade>();
+                var roles = new Mock<RoleFacade>(MockBehavior.Strict);
                 roles.Setup(m => m.GetBySlug(slug)).Returns(new Role { Name = name });
                 var controller = new RolesController(CreateRolesServices(roles.Object));
 

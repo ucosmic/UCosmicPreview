@@ -37,7 +37,7 @@ namespace UCosmic.Domain.People
             public void DoesNotReturn_NullSuffixes()
             {
                 var query = new FindDistinctSuffixesQuery();
-                var entities = new Mock<IQueryEntities>();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new[]
                 {
                     new Person{ Suffix = null },
@@ -56,7 +56,7 @@ namespace UCosmic.Domain.People
             public void DoesNotReturn_EmptyStringSuffixes()
             {
                 var query = new FindDistinctSuffixesQuery();
-                var entities = new Mock<IQueryEntities>();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new[]
                 {
                     new Person{ Suffix = string.Empty },
@@ -75,7 +75,7 @@ namespace UCosmic.Domain.People
             public void DoesNotReturn_WhiteSpaceSuffixes()
             {
                 var query = new FindDistinctSuffixesQuery();
-                var entities = new Mock<IQueryEntities>();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new[]
                 {
                     new Person{ Suffix = "\r " },
@@ -94,7 +94,7 @@ namespace UCosmic.Domain.People
             public void DoesNotReturn_DuplicateSuffixes()
             {
                 var query = new FindDistinctSuffixesQuery();
-                var entities = new Mock<IQueryEntities>();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new[]
                 {
                     new Person{ Suffix = "S1" },
@@ -121,7 +121,7 @@ namespace UCosmic.Domain.People
                         "S2"
                     }
                 };
-                var entities = new Mock<IQueryEntities>();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new[]
                 {
                     new Person{ Suffix = "S1" },

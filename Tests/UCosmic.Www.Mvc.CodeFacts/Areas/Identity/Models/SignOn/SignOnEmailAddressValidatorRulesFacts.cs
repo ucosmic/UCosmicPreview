@@ -15,7 +15,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
             [TestMethod]
             public void Returns_IRuleBuilder()
             {
-                var validator = new Mock<AbstractValidator<SignOnBeginForm>>();
+                var validator = new Mock<AbstractValidator<SignOnBeginForm>>(MockBehavior.Strict);
                 var ruleBuilder = validator.Object.RuleFor(p => p.EmailAddress)
                     .SignOnEmailAddressRules();
                 ruleBuilder.ShouldNotBeNull();

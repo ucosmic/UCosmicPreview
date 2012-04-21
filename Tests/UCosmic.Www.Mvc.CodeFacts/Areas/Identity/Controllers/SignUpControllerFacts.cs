@@ -151,10 +151,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 };
 
                 #endregion
-                var commander = new Mock<ICommandObjects>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
-                var emailSender = new Mock<ISendEmails>();
-                var configurationManager = new Mock<IManageConfigurations>();
+                var commander = new Mock<ICommandObjects>(MockBehavior.Default);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                var emailSender = new Mock<ISendEmails>(MockBehavior.Default);
+                var configurationManager = new Mock<IManageConfigurations>(MockBehavior.Default);
                 entityQueries.Setup(m => m.Establishments).Returns(new[] { establishment }.AsQueryable());
                 entityQueries.Setup(m => m.People).Returns(new Person[] { }.AsQueryable());
                 entityQueries.Setup(m => m.EmailTemplates).Returns(new[] { emailTemplate }.AsQueryable);
@@ -243,10 +243,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 };
 
                 #endregion
-                var commander = new Mock<ICommandObjects>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
-                var emailSender = new Mock<ISendEmails>();
-                var configurationManager = new Mock<IManageConfigurations>();
+                var commander = new Mock<ICommandObjects>(MockBehavior.Default);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                var emailSender = new Mock<ISendEmails>(MockBehavior.Default);
+                var configurationManager = new Mock<IManageConfigurations>(MockBehavior.Default);
                 entityQueries.Setup(m => m.Establishments).Returns(new[] { establishment }.AsQueryable);
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 entityQueries.Setup(m => m.EmailTemplates).Returns(new[] { emailTemplate }.AsQueryable);
@@ -339,10 +339,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 };
 
                 #endregion
-                var commander = new Mock<ICommandObjects>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
-                var emailSender = new Mock<ISendEmails>();
-                var configurationManager = new Mock<IManageConfigurations>();
+                var commander = new Mock<ICommandObjects>(MockBehavior.Default);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                var emailSender = new Mock<ISendEmails>(MockBehavior.Default);
+                var configurationManager = new Mock<IManageConfigurations>(MockBehavior.Default);
                 entityQueries.Setup(m => m.Establishments).Returns(new[] { establishment }.AsQueryable);
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 entityQueries.Setup(m => m.EmailTemplates).Returns(new[] { emailTemplate }.AsQueryable);
@@ -401,8 +401,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     EmailAddress = null,
                 };
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 DependencyInjector.Set(di.Object);
                 var controller = new SignUpController(null, null, null, null, null);
@@ -436,9 +436,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     OfficialName = "Test Establishment 6",
                     IsMember = true,
                 };
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
-                var memberSigner = new Mock<ISignMembers>();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 di.Setup(m => m.GetService(typeof(ISignMembers))).Returns(memberSigner.Object);
                 entityQueries.Setup(m => m.Establishments)
@@ -521,7 +521,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Token = Guid.Empty,
                     SecretCode = null,
                 };
-                var entityQueries = new Mock<IQueryEntities>();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
 
                 // act
@@ -542,7 +542,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Token = Guid.NewGuid(),
                     SecretCode = null,
                 };
-                var entityQueries = new Mock<IQueryEntities>();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People)
                         .Returns(new Person[] {}.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
@@ -584,7 +584,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 };
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People)
                     .Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
@@ -638,9 +638,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
-                var memberSigner = new Mock<ISignMembers>();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)))
                     .Returns(false);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, memberSigner.Object);
@@ -701,9 +701,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
-                var memberSigner = new Mock<ISignMembers>();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)))
                     .Returns(false);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, memberSigner.Object);
@@ -765,7 +765,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
 
@@ -825,7 +825,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
 
@@ -886,7 +886,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
 
@@ -946,7 +946,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
 
@@ -1007,7 +1007,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
 
@@ -1068,9 +1068,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
-                var memberSigner = new Mock<ISignMembers>();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)))
                     .Returns(false);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, memberSigner.Object);
@@ -1134,9 +1134,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
-                var memberSigner = new Mock<ISignMembers>();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)))
                     .Returns(true);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, memberSigner.Object);
@@ -1213,7 +1213,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Token = Guid.NewGuid(),
                     SecretCode = "its a secret",
                 };
-                var entityQueries = new Mock<IQueryEntities>();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new Person[] {}.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
 
@@ -1258,7 +1258,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 };
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new [] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
 
@@ -1361,7 +1361,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
 
@@ -1421,7 +1421,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
 
@@ -1482,7 +1482,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
 
@@ -1542,7 +1542,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
 
@@ -1603,7 +1603,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
 
@@ -1664,9 +1664,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
-                var memberSigner = new Mock<ISignMembers>();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)))
                     .Returns(false);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, memberSigner.Object);
@@ -1730,9 +1730,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
-                var memberSigner = new Mock<ISignMembers>();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)))
                     .Returns(true);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, memberSigner.Object);
@@ -1792,10 +1792,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var commander = new Mock<ICommandObjects>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var commander = new Mock<ICommandObjects>(MockBehavior.Default);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
-                var memberSigner = new Mock<ISignMembers>();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)))
                     .Returns(false);
                 var controller = new SignUpController(entityQueries.Object, commander.Object, null, null, memberSigner.Object);
@@ -1883,8 +1883,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Token = Guid.NewGuid(),
                     SecretCode = null,
                 };
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.People)
                         .Returns(new Person[] {}.AsQueryable);
@@ -1934,8 +1934,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 };
 
                 #endregion
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable);
@@ -2006,7 +2006,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 // arrange
                 var token = Guid.NewGuid();
-                var controller = new SignUpController(new Mock<IQueryEntities>().Object,
+                var controller = new SignUpController(new Mock<IQueryEntities>(MockBehavior.Default).Object,
                     null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
 
@@ -2024,7 +2024,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 // arrange
                 var token = Guid.NewGuid();
-                var entityQueries = new Mock<IQueryEntities>();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new Person[] {}.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
@@ -2044,7 +2044,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 // arrange
                 var token = Guid.NewGuid();
-                var entityQueries = new Mock<IQueryEntities>();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new Person[] { }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
@@ -2098,7 +2098,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new[] {person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
@@ -2152,7 +2152,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
@@ -2206,7 +2206,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
@@ -2261,7 +2261,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
@@ -2317,9 +2317,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
-                var memberSigner = new Mock<ISignMembers>();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)))
                     .Returns(true);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, memberSigner.Object);
@@ -2377,9 +2377,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
-                var memberSigner = new Mock<ISignMembers>();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)))
                     .Returns(false);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, memberSigner.Object);
@@ -2499,7 +2499,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 // arrange
                 var token = Guid.NewGuid();
-                var controller = new SignUpController(new Mock<IQueryEntities>().Object,
+                var controller = new SignUpController(new Mock<IQueryEntities>(MockBehavior.Strict).Object,
                     null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
                 controller.ModelState.AddModelError("error", "error");
@@ -2518,7 +2518,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 // arrange
                 var token = Guid.NewGuid();
-                var entityQueries = new Mock<IQueryEntities>();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new Person[] {}.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
@@ -2538,7 +2538,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 // arrange
                 var token = Guid.NewGuid();
-                var entityQueries = new Mock<IQueryEntities>();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new Person[] { }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
@@ -2592,7 +2592,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
@@ -2646,7 +2646,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
@@ -2700,7 +2700,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
@@ -2755,7 +2755,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
@@ -2811,9 +2811,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
-                var memberSigner = new Mock<ISignMembers>();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)))
                     .Returns(true);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, memberSigner.Object);
@@ -2877,12 +2877,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
-                var memberSigner = new Mock<ISignMembers>();
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value))).Returns(false);
                 memberSigner.Setup(m => m.SignUp(emailAddress.Value, model.Password));
-                var commander = new Mock<ICommandObjects>();
+                var commander = new Mock<ICommandObjects>(MockBehavior.Default);
                 var controller = new SignUpController(entityQueries.Object, commander.Object, null, null, memberSigner.Object);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
 
@@ -3011,7 +3011,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new[] {person}.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;
@@ -3067,7 +3067,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 confirmation.EmailAddress = emailAddress;
 
                 #endregion
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = new SignUpController(entityQueries.Object, null, null, null, null);
                 controller.TempData[SignUpController.ConfirmationTokenKey] = token;

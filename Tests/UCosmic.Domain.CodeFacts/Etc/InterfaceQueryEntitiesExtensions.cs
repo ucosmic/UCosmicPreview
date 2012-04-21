@@ -30,8 +30,8 @@ namespace UCosmic.Domain
         {
             if (principalIdentityName == null)
             {
-                var identity = new Mock<IIdentity>();
-                var principal = new Mock<IPrincipal>();
+                var identity = new Mock<IIdentity>(MockBehavior.Strict);
+                var principal = new Mock<IPrincipal>(MockBehavior.Strict);
                 identity.Setup(p => p.Name).Returns(null as string);
                 principal.Setup(p => p.Identity).Returns(identity.Object);
                 return principal.Object;

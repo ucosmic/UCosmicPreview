@@ -15,10 +15,10 @@ namespace UCosmic.Domain
             public void IsPublicAbstract()
             {
                 // arrange
-                var mockQueries = new Mock<IQueryEntities>();
-                var mockFinder = new Mock<EntityFinder<Entity>>(mockQueries.Object);
+                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
+                var mockFinder = new Mock<EntityFinder<Entity>>(MockBehavior.Strict, mockQueries.Object);
                 mockFinder.Setup(m => m.FindMany(It.IsAny<EntityQueryCriteria<Entity>>()))
-                    .Returns(new[] { new Mock<Entity>().Object, new Mock<Entity>().Object });
+                    .Returns(new[] { new Mock<Entity>(MockBehavior.Strict).Object, new Mock<Entity>(MockBehavior.Strict).Object });
 
                 // act
                 var finder = mockFinder.Object;
@@ -37,10 +37,10 @@ namespace UCosmic.Domain
             public void IsPublicAbstract()
             {
                 // arrange
-                var mockQueries = new Mock<IQueryEntities>();
-                var mockFinder = new Mock<EntityFinder<Entity>>(mockQueries.Object);
+                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
+                var mockFinder = new Mock<EntityFinder<Entity>>(MockBehavior.Strict, mockQueries.Object);
                 mockFinder.Setup(m => m.FindOne(It.IsAny<EntityQueryCriteria<Entity>>()))
-                    .Returns(new Mock<Entity>().Object);
+                    .Returns(new Mock<Entity>(MockBehavior.Strict).Object);
 
                 // act
                 var finder = mockFinder.Object;

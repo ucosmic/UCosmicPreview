@@ -103,8 +103,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                     Token = Guid.NewGuid(),
                     SecretCode = "its a secret",
                 };
-                var di = new Mock<IServiceProvider>();
-                var queryEntities = new Mock<IQueryEntities>();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var queryEntities = new Mock<IQueryEntities>(MockBehavior.Default);
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(queryEntities.Object);
                 queryEntities.Setup(p => p.People)
                     .Returns(new Person[] { }.AsQueryable);
@@ -160,8 +160,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IServiceProvider>();
-                var people = new Mock<IQueryEntities>();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var people = new Mock<IQueryEntities>(MockBehavior.Default);
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(people.Object);
                 people.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable);
@@ -216,8 +216,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IServiceProvider>();
-                var people = new Mock<IQueryEntities>();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var people = new Mock<IQueryEntities>(MockBehavior.Default);
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(people.Object);
                 people.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable());
@@ -272,8 +272,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IServiceProvider>();
-                var people = new Mock<IQueryEntities>();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var people = new Mock<IQueryEntities>(MockBehavior.Default);
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(people.Object);
                 people.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable());
@@ -328,8 +328,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IServiceProvider>();
-                var people = new Mock<IQueryEntities>();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var people = new Mock<IQueryEntities>(MockBehavior.Default);
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(people.Object);
                 people.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable());
@@ -388,8 +388,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable());
                 DependencyInjector.Set(di.Object);
@@ -437,8 +437,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable());
@@ -491,8 +491,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable());
@@ -545,8 +545,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 };
 
                 #endregion
-                var di = new Mock<IServiceProvider>();
-                var entityQueries = new Mock<IQueryEntities>().Initialize();
+                var di = new Mock<IServiceProvider>(MockBehavior.Strict);
+                var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 di.Setup(m => m.GetService(typeof(IQueryEntities))).Returns(entityQueries.Object);
                 entityQueries.Setup(m => m.People)
                         .Returns(new[] { person }.AsQueryable());

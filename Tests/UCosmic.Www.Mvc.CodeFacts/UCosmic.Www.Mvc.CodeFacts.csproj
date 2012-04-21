@@ -198,7 +198,6 @@
     <Compile Include="Etc\ExtensionMethods.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistrationFacts.cs" />
     <Compile Include="Areas\Establishments\EstablishmentsAreaRegistrationFacts.cs" />
-    <Compile Include="Areas\Identity\Controllers\Saml2ControllerFacts.cs" />
     <Compile Include="Areas\Identity\IdentityAreaRegistrationTests.cs" />
     <Compile Include="Areas\InstitutionalAgreements\InstitutionalAgreementAreaRegistrationTests.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\ConfigurationForms\InstitutionalAgreementConfigurationFormTests.cs" />

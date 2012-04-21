@@ -89,8 +89,9 @@ namespace UCosmic.Domain.People
                 const string principalIdentityName = "user@domain.";
                 var principal = principalIdentityName.AsPrincipal();
                 var command = new UpdateMyEmailValueCommand { Principal = principal };
-                var queryProcessor = new Mock<IProcessQueries>();
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command)))).Returns(null as User);
+                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command)))).Returns(null as EmailAddress);
                 var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
@@ -110,8 +111,9 @@ namespace UCosmic.Domain.People
                 const string principalIdentityName = "user@domain.tld";
                 var principal = principalIdentityName.AsPrincipal();
                 var command = new UpdateMyEmailValueCommand { Principal = principal };
-                var queryProcessor = new Mock<IProcessQueries>();
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command)))).Returns(new User());
+                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command)))).Returns(null as EmailAddress);
                 var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
@@ -134,7 +136,9 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                     Number = 11,
                 };
-                var queryProcessor = new Mock<IProcessQueries>();
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
+                    .Returns(null as User);
                 queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command))))
                     .Returns(null as EmailAddress);
                 var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
@@ -160,7 +164,9 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                     Number = 1,
                 };
-                var queryProcessor = new Mock<IProcessQueries>();
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
+                    .Returns(null as User);
                 queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command))))
                     .Returns(new EmailAddress());
                 var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);

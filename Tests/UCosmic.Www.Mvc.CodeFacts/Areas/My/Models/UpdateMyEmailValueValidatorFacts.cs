@@ -102,7 +102,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsInvalidWhen_Value_DoesNotMatchPreviousSpelling_CaseInsensitively()
             {
-                var queryProcessor = new Mock<IProcessQueries>();
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.IsAny<GetMyEmailAddressByNumberQuery>()))
                     .Returns(new EmailAddress { Value = "user@domain.tld" });
                 var validator = new UpdateEmailValueValidator(queryProcessor.Object);
@@ -168,7 +168,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             [TestMethod]
             public void IsValidWhen_Value_MatchesPreviousSpelling_CaseInsensitively()
             {
-                var queryProcessor = new Mock<IProcessQueries>();
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.IsAny<GetMyEmailAddressByNumberQuery>()))
                     .Returns(new EmailAddress { Value = "user@domain.tld" });
                 var validator = new UpdateEmailValueValidator(queryProcessor.Object);

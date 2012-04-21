@@ -142,7 +142,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
             [TestMethod]
             public void IsValidWhen_EmailAddress_IsValidEmailAddress_AndBelongsToMemberEstablishment()
             {
-                var queryProcessor = new Mock<IProcessQueries>();
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.IsAny<GetEstablishmentByEmailQuery>()))
                     .Returns(new Establishment { IsMember = true, });
                 var validator = new SignOnBeginFormValidator(queryProcessor.Object);

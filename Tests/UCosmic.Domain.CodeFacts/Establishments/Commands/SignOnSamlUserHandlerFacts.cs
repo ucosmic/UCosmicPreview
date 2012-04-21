@@ -164,6 +164,12 @@ namespace UCosmic.Domain.Establishments
 
             internal Mock<IProcessQueries> MockQueryProcessor { get; set; }
             internal Mock<ISignUsers> MockUserSigner { get; set; }
+
+            public string EduPersonTargetedId { get; set; }
+
+            public string[] EduPersonScopedAffiliations { get; set; }
+
+            public string[] Mails { get; set; }
         }
 
         private static SignOnSamlUserHandler CreateSignOnSamlUserHandler(ScenarioInfo scenarioInfo)
@@ -175,11 +181,14 @@ namespace UCosmic.Domain.Establishments
             scenarioInfo.MockQueryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
 
             // return a mock Saml2Response
-            var samlResponse = new Mock<Saml2Response>();
+            var samlResponse = new Mock<Saml2Response>(MockBehavior.Strict);
             samlResponse.Setup(p => p.IssuerNameIdentifier).Returns(scenarioInfo.IssuerNameIdentifier);
             samlResponse.Setup(p => p.SubjectNameIdentifier).Returns(scenarioInfo.SubjectNameIdentifier);
             samlResponse.Setup(m => m.VerifySignature()).Returns(!scenarioInfo.FailResponseSignatureVerification);
             samlResponse.Setup(p => p.EduPersonPrincipalName).Returns(scenarioInfo.EduPersonPrincipalName);
+            samlResponse.Setup(p => p.EduPersonTargetedId).Returns(scenarioInfo.EduPersonTargetedId);
+            samlResponse.Setup(p => p.EduPersonScopedAffiliations).Returns(scenarioInfo.EduPersonScopedAffiliations);
+            samlResponse.Setup(p => p.Mails).Returns(scenarioInfo.Mails);
             scenarioInfo.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<ReceiveSaml2ResponseQuery>()))
                 .Returns(samlResponse.Object);
 
@@ -236,7 +245,7 @@ namespace UCosmic.Domain.Establishments
             var command = new SignOnSamlUserCommand
             {
                 SsoBinding = Saml2SsoBinding.HttpPost,
-                HttpContext = new Mock<HttpContextBase>().Object,
+                HttpContext = new Mock<HttpContextBase>(MockBehavior.Strict).Object,
             };
             return command;
         }
