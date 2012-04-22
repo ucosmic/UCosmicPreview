@@ -2,7 +2,7 @@
 <div class="identity">
     @if (Model.IsSignedIn)
     {
-        <a href="@Url.Action(MVC.Identity.Self.Me())" class="signed-in">@User.Identity.Name</a>
+        <a href="@Url.Action(MVC.My.Profile.Get())" class="signed-in">@User.Identity.Name</a>
         <span class="pipe">|</span>
         <a href="@Url.Action(MVC.Identity.SignIn.SignOut(Request.RawUrl))">Sign Out</a>
         if (Model.IsImpersonating)

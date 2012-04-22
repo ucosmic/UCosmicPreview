@@ -190,7 +190,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     SetFeedbackMessage(string.Format("Impersonation was successful. You are signed in as {0}.", model.UserName));
                     if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
                         return Redirect(model.ReturnUrl);
-                    return RedirectToAction(MVC.Identity.Self.Me());
+                    return RedirectToAction(MVC.My.Profile.Get());
                 }
                 return View(model);
             }

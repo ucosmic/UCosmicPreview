@@ -23,7 +23,7 @@ namespace UCosmic.Domain.People
 
         public bool IsDisplayNameDerived { get; protected internal set; }
 
-        public string DisplayName { get; protected internal set; }
+        public string DisplayName { get; set; }
 
         public string Salutation { get; protected internal set; }
 

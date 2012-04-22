@@ -108,7 +108,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Steps
                 // part of the expected URL before the token, and ends with the part of the 
                 // expected URL after the token
                 var urlFront = url.Substring(0, url.IndexOf(UrlPathVariableToken, StringComparison.Ordinal));
-                var urlBack = url.Substring(url.LastIndexOf(UrlPathVariableToken, StringComparison.Ordinal) 
+                var urlBack = url.Substring(url.LastIndexOf(UrlPathVariableToken, StringComparison.Ordinal)
                     + UrlPathVariableToken.Length);
                 browser.WaitUntil(b => b.Url.StartsWith(urlFront, StringComparison.OrdinalIgnoreCase)
                     && b.Url.EndsWith(urlBack, StringComparison.OrdinalIgnoreCase), string.Format(
@@ -178,6 +178,25 @@ namespace UCosmic.Www.Mvc.Areas.Common.Steps
             });
         }
 
+        [Given(@"I have seen a link titled ""(.*)""")]
+        [When(@"I see a link titled ""(.*)""")]
+        [Then(@"I should see a link titled ""(.*)""")]
+        public void SeeLinkWithTitle(string linkTitle)
+        {
+            var cssSelector = string.Format("a[title='{0}']", linkTitle);
+            Browsers.ForEach(browser =>
+            {
+                // ensure that the hyperlink element is located
+                var link = browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
+                    string.Format("A hyperlink with title '{0}' does not exist using @Browser.", linkTitle));
+
+                // ensure the link is visible
+                browser.WaitUntil(b => link.Displayed,
+                    string.Format("A hyperlink with title '{0}' was not displayed using @Browser.", linkTitle));
+            });
+        }
+
+
         [Given(@"I have clicked the ""(.*)"" link")]
         [When(@"I click the ""(.*)"" link")]
         [Then(@"I should click the ""(.*)"" link")]
@@ -231,6 +250,22 @@ namespace UCosmic.Www.Mvc.Areas.Common.Steps
                         "Expected link '{0}' or '{1}' but couldn't fine either using @Browser.",
                             linkText1, linkText2));
                 }
+            });
+        }
+
+        [Given(@"I have clicked the link titled ""(.*)""")]
+        [When(@"I click the link titled ""(.*)""")]
+        [Then(@"I should click the link titled ""(.*)""")]
+        public void ClickLinkWithTitle(string linkTitle)
+        {
+            var cssSelector = string.Format("a[title='{0}']", linkTitle);
+            Browsers.ForEach(browser =>
+            {
+                // ensure that the hyperlink element is located
+                var link = browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
+                    string.Format("A hyperlink with title '{0}' does not exist using @Browser.", linkTitle));
+
+                link.ClickLink();
             });
         }
 

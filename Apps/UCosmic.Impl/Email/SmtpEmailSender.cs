@@ -45,6 +45,9 @@ namespace UCosmic
                 var interceptAddresses = _config.EmailInterceptAddresses;
                 if (string.IsNullOrWhiteSpace(interceptAddresses))
                 {
+                    // wait for previous unit of work to commit
+                    Thread.Sleep(15000);
+
                     message.To.Add(new MailAddress(_emailMessage.ToAddress,
                         _emailMessage.ToPerson.DisplayName));
                 }
@@ -66,7 +69,7 @@ namespace UCosmic
                 // wait for previous unit of work to commit
                 //while (_emailMessage.Id == 0)
                 //{
-                Thread.Sleep(15000);
+                //Thread.Sleep(15000);
                 //}
 
                 // send the message

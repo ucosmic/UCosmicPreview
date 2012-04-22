@@ -105,11 +105,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             )
 
             // create person if it does not exist
-            //?? new Person
-            //{
-            //    DisplayName = model.EmailAddress,
-            //};
-            ?? new Person(); // display name no longer set here
+            ?? new Person
+            {
+                DisplayName = model.EmailAddress,
+            };
+            //?? new Person(); // display name no longer set here
 
             person.AffiliateWith(establishment);
             var emailAddress = person.AddEmail(model.EmailAddress);

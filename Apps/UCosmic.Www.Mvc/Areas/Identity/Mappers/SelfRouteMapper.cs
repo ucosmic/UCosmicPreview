@@ -16,20 +16,20 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
 
         // ReSharper disable UnusedMember.Global
 
-        public static class Me
-        {
-            public const string OutboundRoute = "my/profile";
-            public const string AlternateRoute = "my";
-            private static readonly string Action = MVC.Identity.Self.ActionNames.Me;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new { area, controller, action = Action, };
-                var outboundConstraints = new { httpMethod = new HttpMethodConstraint("GET", "POST") };
-                var inboundConstraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, OutboundRoute, defaults, outboundConstraints);
-                context.MapRoute(null, AlternateRoute, defaults, inboundConstraints);
-            }
-        }
+        //public static class Me
+        //{
+        //    public const string OutboundRoute = "my/profile";
+        //    public const string AlternateRoute = "my";
+        //    private static readonly string Action = MVC.Identity.Self.ActionNames.Me;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        var outboundConstraints = new { httpMethod = new HttpMethodConstraint("GET", "POST") };
+        //        var inboundConstraints = new { httpMethod = new HttpMethodConstraint("GET") };
+        //        context.MapRoute(null, OutboundRoute, defaults, outboundConstraints);
+        //        context.MapRoute(null, AlternateRoute, defaults, inboundConstraints);
+        //    }
+        //}
 
         //public static class EditAffiliation
         //{
@@ -89,17 +89,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             }
         }
 
-        public static class DeriveDisplayName
-        {
-            public const string Route = "people/derive-display-name.json";
-            private static readonly string Action = MVC.Identity.Self.ActionNames.DeriveDisplayName;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
-                context.MapRoute(null, Route, defaults, constraints);
-            }
-        }
+        //public static class DeriveDisplayName
+        //{
+        //    public const string Route = "people/derive-display-name.json";
+        //    private static readonly string Action = MVC.Identity.Self.ActionNames.DeriveDisplayName;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
+        //        context.MapRoute(null, Route, defaults, constraints);
+        //    }
+        //}
 
         // ReSharper restore UnusedMember.Global
     }

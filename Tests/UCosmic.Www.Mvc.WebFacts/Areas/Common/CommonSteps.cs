@@ -214,7 +214,28 @@ namespace UCosmic.Www.Mvc.Areas.Common
             });
         }
 
-        //public static void SeeSuccessFeedbackMessage(IWebDriver browser, string topMessage)
+        [Given(@"I have seen either top feedback message ""(.*)"" or ""(.*)""")]
+        [When(@"I see either top feedback message ""(.*)"" or ""(.*)""")]
+        [Then(@"I should see either top feedback message ""(.*)"" or ""(.*)""")]
+        public void SeeOneOfTwoSuccessFeedbackMessages(string topMessage1, string topMessage2)
+        {
+            Browsers.ForEach(browser =>
+            {
+                // ensure that the element was located
+                var validationElement = browser.WaitUntil(b => b.FindElement(By.Id("feedback_flash")),
+                    string.Format("Top success message element does not exist using @Browser."));
+
+                // ensure the element is displayed
+                browser.WaitUntil(b => validationElement.Displayed,
+                    string.Format("Top success message element was not displayed using @Browser."));
+
+                // verify the success message
+                browser.WaitUntil(b => validationElement.Displayed &&
+                    (validationElement.Text.Equals(topMessage1) || validationElement.Text.Equals(topMessage2)),
+                    string.Format("Neither success messages '{0}' nor {1} were not displayed using @Browser. " +
+                        "(Actual message was '{2}'.)", topMessage1, topMessage2, validationElement.Text));
+            });
+        }
 
         #endregion
     }

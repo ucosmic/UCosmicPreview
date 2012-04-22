@@ -34,7 +34,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
         public static class Put
         {
-            public const string Route = Get.Route;
+            public const string Route = "my/emails/{number}";
             private static readonly string Action = MVC.My.UpdateEmailValue.ActionNames.Put;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {

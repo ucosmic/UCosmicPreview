@@ -1,7 +1,8 @@
 ﻿@model UCosmic.Www.Mvc.Areas.My.Models.ProfileInfo.EmailInfo
 <div class="email-address">
     <div class="email-details email-info">
-        <span class="email-value"><a href="@Url.Action(MVC.My.UpdateEmailValue.Get(Model.Number))" class="email-action" title="Change spelling">@Model.Value</a></span>
+        <span class="email-value"><a href="@Url.Action(MVC.My.UpdateEmailValue.Get(Model.Number))" class="email-action" title="Change spelling">@Model.Value</a>
+        </span>
         @if (Model.IsConfirmed)
         {
             <span class="email-confirmed">

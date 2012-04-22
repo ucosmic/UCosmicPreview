@@ -18,7 +18,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
         public static class Get
         {
-            public const string Route = "my/affiliations/{establishmentId}";
+            public const string Route = "my/affiliations/{establishmentId}/edit";
             private static readonly string Action = MVC.My.UpdateAffiliation.ActionNames.Get;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
@@ -34,7 +34,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
         public static class Put
         {
-            public const string Route = Get.Route;
+            public const string Route = "my/affiliations/{establishmentId}";
             private static readonly string Action = MVC.My.UpdateAffiliation.ActionNames.Put;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {

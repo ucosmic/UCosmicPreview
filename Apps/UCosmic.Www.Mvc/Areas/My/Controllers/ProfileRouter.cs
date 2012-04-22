@@ -18,7 +18,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
         public static class Get
         {
-            public const string Route = "my/profile2";
+            public const string Route = "my/profile";
             private static readonly string Action = MVC.My.Profile.ActionNames.Get;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {

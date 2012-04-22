@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using AutoMapper;
-using Elmah;
 using UCosmic.Domain;
 using UCosmic.Domain.People;
-using UCosmic.Www.Mvc.Areas.Identity.Models.Self;
 using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
@@ -16,63 +12,63 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         #region Construction & DI
 
         private readonly PersonFinder _people;
-        private readonly ICommandObjects _objectCommander;
+        //private readonly ICommandObjects _objectCommander;
 
-        public SelfController(IQueryEntities queryEntities, ICommandObjects objectCommander)
+        public SelfController(IQueryEntities queryEntities)
         {
             _people = new PersonFinder(queryEntities);
-            _objectCommander = objectCommander;
+            //_objectCommander = objectCommander;
         }
 
         #endregion
         #region Personal Homepage
         
-        [HttpGet]
-        [Authorize]
-        [ActionName("me")]
-        [OpenTopTab(TopTabName.Home)]
-        public virtual ActionResult Me()
-        {
-            var person = _people.FindOne(PersonBy.Principal(User));
-            if (person != null)
-            {
-                var model = Mapper.Map<PersonForm>(person);
-                model.Emails = model.Emails.OrderByDescending(e => e.IsDefault).ThenByDescending(e => e.IsConfirmed).ThenBy(e => e.Value).ToArray(); // TODO: put this in the model mapper
-                //person.Emails = person.Emails.OrderBy(e => e.IsDefault).ThenBy(e => e.IsConfirmed).ThenBy(e => e.Value).ToList();
-                return View(model);
-            }
-            return HttpNotFound();
-        }
+        //[HttpGet]
+        //[Authorize]
+        //[ActionName("me")]
+        //[OpenTopTab(TopTabName.Home)]
+        //public virtual ActionResult Me()
+        //{
+        //    var person = _people.FindOne(PersonBy.Principal(User));
+        //    if (person != null)
+        //    {
+        //        var model = Mapper.Map<PersonForm>(person);
+        //        model.Emails = model.Emails.OrderByDescending(e => e.IsDefault).ThenByDescending(e => e.IsConfirmed).ThenBy(e => e.Value).ToArray(); // TODO: put this in the model mapper
+        //        //person.Emails = person.Emails.OrderBy(e => e.IsDefault).ThenBy(e => e.IsConfirmed).ThenBy(e => e.Value).ToList();
+        //        return View(model);
+        //    }
+        //    return HttpNotFound();
+        //}
 
-        [HttpPost]
-        [Authorize]
-        [ActionName("me")]
-        [OpenTopTab(TopTabName.Home)]
-        public virtual ActionResult Me(PersonForm model)
-        {
-            var person = _people.FindOne(PersonBy.Principal(User).ForInsertOrUpdate());
-            if (person != null && person.RevisionId == model.RevisionId)
-            {
-                if (ModelState.IsValid)
-                {
-                    Mapper.Map(model, person);
-                    if (person.IsDisplayNameDerived && !person.DisplayName.Equals(person.DeriveDisplayName()))
-                    {
-                        ErrorSignal.FromCurrentContext().Raise(new InvalidOperationException(string.Format(
-                            "Client Person DisplayName '{0}' was not consistent with server Person DerviveDisplayName() value '{1}'.",
-                            person.DisplayName, person.DeriveDisplayName())));
-                    }
-                    _objectCommander.Update(person, true);
-                    SetFeedbackMessage("Your personal info was saved successfully.");
-                    return RedirectToAction(MVC.Identity.Self.Me());
-                }
-                model.Emails = Mapper.Map<EmailInfo[]>( // TODO: put this in the model mapper
-                    person.Emails.OrderByDescending(e => e.IsDefault).ThenByDescending(e => e.IsConfirmed).ThenByDescending(e => e.Value));
-                model.Affiliations = Mapper.Map<IList<PersonForm.AffiliationInfo>>(person.Affiliations);
-                return View(model);
-            }
-            return HttpNotFound();
-        }
+        //[HttpPost]
+        //[Authorize]
+        //[ActionName("me")]
+        //[OpenTopTab(TopTabName.Home)]
+        //public virtual ActionResult Me(PersonForm model)
+        //{
+        //    var person = _people.FindOne(PersonBy.Principal(User).ForInsertOrUpdate());
+        //    if (person != null && person.RevisionId == model.RevisionId)
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            Mapper.Map(model, person);
+        //            if (person.IsDisplayNameDerived && !person.DisplayName.Equals(person.DeriveDisplayName()))
+        //            {
+        //                ErrorSignal.FromCurrentContext().Raise(new InvalidOperationException(string.Format(
+        //                    "Client Person DisplayName '{0}' was not consistent with server Person DerviveDisplayName() value '{1}'.",
+        //                    person.DisplayName, person.DeriveDisplayName())));
+        //            }
+        //            _objectCommander.Update(person, true);
+        //            SetFeedbackMessage("Your personal info was saved successfully.");
+        //            return RedirectToAction(MVC.Identity.Self.Me());
+        //        }
+        //        model.Emails = Mapper.Map<EmailInfo[]>( // TODO: put this in the model mapper
+        //            person.Emails.OrderByDescending(e => e.IsDefault).ThenByDescending(e => e.IsConfirmed).ThenByDescending(e => e.Value));
+        //        model.Affiliations = Mapper.Map<IList<PersonForm.AffiliationInfo>>(person.Affiliations);
+        //        return View(model);
+        //    }
+        //    return HttpNotFound();
+        //}
 
         #endregion
         #region Edit Affiliation
@@ -274,15 +270,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         #endregion
         #region Derive Person DisplayName
 
-        [HttpPost]
-        [ActionName("derive-display-name")]
-        public virtual ActionResult DeriveDisplayName(PersonForm model)
-        {
-            var person = Mapper.Map<Person>(model);
-            //model.DisplayName = person.DeriveDisplayName();
-            var displayName = person.DeriveDisplayName();
-            return Json(displayName);
-        }
+        //[HttpPost]
+        //[ActionName("derive-display-name")]
+        //public virtual ActionResult DeriveDisplayName(PersonForm model)
+        //{
+        //    var person = Mapper.Map<Person>(model);
+        //    //model.DisplayName = person.DeriveDisplayName();
+        //    var displayName = person.DeriveDisplayName();
+        //    return Json(displayName);
+        //}
 
         #endregion
 
