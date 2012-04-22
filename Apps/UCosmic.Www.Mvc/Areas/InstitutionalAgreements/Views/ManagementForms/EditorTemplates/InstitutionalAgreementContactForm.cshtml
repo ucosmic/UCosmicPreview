@@ -391,9 +391,10 @@
                     select: function (event, ui) {
                         $(this).val('');
                         $.ajax({
-                            url: '@Url.Action(MVC.Identity.Self.PersonInfoById())',
+                            url: '@Url.Action(MVC.People.PersonInfo.ByGuid())',
+                            type: 'POST',
                             data: {
-                                personId: ui.item.value
+                                guid: ui.item.value
                             },
                             dataType: 'json',
                             traditional: true,

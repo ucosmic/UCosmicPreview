@@ -27,5 +27,19 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 context.MapRoute(null, Route, defaults, constraints);
             }
         }
+
+        public static class ByGuid
+        {
+            public const string Route = "people/by-guid";
+            private static readonly string Action = MVC.People.PersonInfo.ActionNames.ByGuid;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("POST"), };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
+        // ReSharper restore UnusedMember.Global
     }
 }

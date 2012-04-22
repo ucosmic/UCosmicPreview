@@ -36,6 +36,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
         public System.Web.Mvc.JsonResult ByEmail() {
             return new T4MVC_JsonResult(Area, Name, ActionNames.ByEmail);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.JsonResult ByGuid() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.ByGuid);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public PersonInfoController Actions { get { return MVC.People.PersonInfo; } }
@@ -52,11 +57,13 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string ByEmail = "ByEmail";
+            public readonly string ByGuid = "ByGuid";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string ByEmail = "ByEmail";
+            public const string ByGuid = "ByGuid";
         }
 
 
@@ -75,6 +82,12 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
         public override System.Web.Mvc.JsonResult ByEmail(string email) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ByEmail);
             callInfo.RouteValueDictionary.Add("email", email);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.JsonResult ByGuid(System.Guid guid) {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ByGuid);
+            callInfo.RouteValueDictionary.Add("guid", guid);
             return callInfo;
         }
 

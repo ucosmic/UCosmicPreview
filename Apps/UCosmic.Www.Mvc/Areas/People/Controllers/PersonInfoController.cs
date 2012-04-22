@@ -11,16 +11,12 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
     [Authorize]
     public partial class PersonInfoController : BaseController
     {
-        #region Construction & DI
-
         private readonly PersonInfoServices _services;
 
         public PersonInfoController(PersonInfoServices services)
         {
             _services = services;
         }
-
-        #endregion
 
         [HttpPost]
         public virtual JsonResult ByEmail(string email)
@@ -36,11 +32,34 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 }
             );
 
-            var model = person != null 
-                ? Mapper.Map<PersonInfoModel>(person) 
+            var model = person != null
+                ? Mapper.Map<PersonInfoModel>(person)
                 : null;
 
             return Json(model);
+        }
+
+        [HttpPost]
+        public virtual JsonResult ByGuid(Guid guid)
+        {
+            if (guid == Guid.Empty) return Json(null);
+
+            var person = _services.QueryProcessor.Execute(
+                new GetPersonByGuidQuery
+                {
+                    Guid = guid,
+                    EagerLoad = new Expression<Func<Person, object>>[]
+                    {
+                        p => p.Emails,
+                    },
+                }
+            );
+
+            var model = person != null
+                ? Mapper.Map<PersonInfoModel>(person)
+                : null;
+
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
 
     }
