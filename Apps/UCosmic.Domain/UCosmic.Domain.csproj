@@ -168,6 +168,8 @@
     <Compile Include="People\PersonQuery.cs" />
     <Compile Include="People\Queries\BasePersonQuery.cs" />
     <Compile Include="People\Queries\AffiliationQueries.cs" />
+    <Compile Include="People\Queries\GetPersonByGuidHandler.cs" />
+    <Compile Include="People\Queries\GetPersonByGuidQuery.cs" />
     <Compile Include="People\Queries\GetPersonByIdHandler.cs" />
     <Compile Include="People\Queries\GetPersonByIdQuery.cs" />
     <Compile Include="People\Queries\GetMyAffiliationByEstablishmentIdHandler.cs" />

@@ -40,20 +40,34 @@ namespace UCosmic.Domain
         }
 
         #endregion
-        #region ByRevisionId
+        #region ById
 
         public static TEntity ByRevisionId<TEntity>(this IQueryable<TEntity> query, int revisionId) where TEntity : RevisableEntity
         {
             return (query != null)
-                       ? query.SingleOrDefault(e => e.RevisionId == revisionId)
-                       : null;
+                ? query.SingleOrDefault(e => e.RevisionId == revisionId)
+                : null;
         }
 
         public static TEntity ByRevisionId<TEntity>(this IEnumerable<TEntity> enumerable, int revisionId) where TEntity : RevisableEntity
         {
             return (enumerable != null)
-                       ? enumerable.SingleOrDefault(e => e.RevisionId == revisionId)
-                       : null;
+                ? enumerable.SingleOrDefault(e => e.RevisionId == revisionId)
+                : null;
+        }
+
+        public static TEntity ByEntityId<TEntity>(this IQueryable<TEntity> query, Guid entityId) where TEntity : RevisableEntity
+        {
+            return (query != null && entityId != Guid.Empty)
+                ? query.SingleOrDefault(e => e.EntityId == entityId)
+                : null;
+        }
+
+        public static TEntity ByEntityId<TEntity>(this IEnumerable<TEntity> enumerable, Guid entityId) where TEntity : RevisableEntity
+        {
+            return (enumerable != null && entityId != Guid.Empty)
+                ? enumerable.SingleOrDefault(e => e.EntityId == entityId)
+                : null;
         }
 
         #endregion

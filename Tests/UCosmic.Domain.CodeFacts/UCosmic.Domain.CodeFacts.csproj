@@ -129,6 +129,7 @@
     <Compile Include="People\Queries\FindDistinctSuffixesHandlerFacts.cs" />
     <Compile Include="People\Queries\FindDistinctSalutationsHandlerFacts.cs" />
     <Compile Include="People\Queries\GenerateDisplayNameHandlerFacts.cs" />
+    <Compile Include="People\Queries\GetPersonByGuidHandlerFacts.cs" />
     <Compile Include="Places\BoundingBoxFacts.cs" />
     <Compile Include="Places\GeoPlanetPlaceBelongToFacts.cs" />
     <Compile Include="Places\GeoPlanetPlaceNodeFacts.cs" />
