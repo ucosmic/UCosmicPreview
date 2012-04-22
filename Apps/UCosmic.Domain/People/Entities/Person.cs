@@ -9,7 +9,7 @@ namespace UCosmic.Domain.People
     {
         #region Construction
 
-        public Person()
+        protected internal Person()
         {
             // ReSharper disable DoNotCallOverridableMethodsInConstructor
             Affiliations = new List<Affiliation>();
@@ -23,7 +23,7 @@ namespace UCosmic.Domain.People
 
         public bool IsDisplayNameDerived { get; protected internal set; }
 
-        public string DisplayName { get; set; }
+        public string DisplayName { get; protected internal set; }
 
         public string Salutation { get; protected internal set; }
 
@@ -35,10 +35,10 @@ namespace UCosmic.Domain.People
 
         public string Suffix { get; protected internal set; }
 
-        public string DeriveDisplayName()
-        {
-            return PersonFactory.DeriveDisplayName(this);
-        }
+        //public string DeriveDisplayName()
+        //{
+        //    return PersonFactory.DeriveDisplayName(this);
+        //}
 
         #endregion
         #region User

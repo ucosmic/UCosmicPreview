@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace UCosmic.Domain.People
 {
@@ -24,13 +23,13 @@ namespace UCosmic.Domain.People
             return displayName.ToString().Trim();
         }
 
-        public static string DeriveDisplayName(Person person)
-        {
-            if (person == null) throw new ArgumentNullException("person");
-            return person.IsDisplayNameDerived
-                ? DeriveDisplayName(person.LastName, person.FirstName, 
-                    person.MiddleName, person.Salutation, person.Suffix)
-                : person.DisplayName;
-        }
+        //public static string DeriveDisplayName(Person person)
+        //{
+        //    if (person == null) throw new ArgumentNullException("person");
+        //    return person.IsDisplayNameDerived
+        //        ? DeriveDisplayName(person.LastName, person.FirstName,
+        //            person.MiddleName, person.Salutation, person.Suffix)
+        //        : person.DisplayName;
+        //}
     }
 }

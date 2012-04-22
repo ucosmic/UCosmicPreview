@@ -27,6 +27,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private readonly IManageConfigurations _configurationManager;
         private readonly ISignMembers _memberSigner;
         private readonly ICommandObjects _objectCommander;
+        private readonly IHandleCommands<CreatePersonCommand> _createPersonHandler;
         public const string ConfirmationTokenKey = "ConfirmationToken";
 
         public SignUpController(IQueryEntities entityQueries
@@ -34,6 +35,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             , ISendEmails emailSender
             , IManageConfigurations configurationManager
             , ISignMembers memberSigner
+            , IHandleCommands<CreatePersonCommand> createPersonHandler
         )
         {
             _people = new PersonFinder(entityQueries);
@@ -43,6 +45,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             _configurationManager = configurationManager;
             _memberSigner = memberSigner;
             _objectCommander = objectCommander;
+            _createPersonHandler = createPersonHandler;
         }
 
         #endregion
@@ -102,13 +105,23 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 .EagerLoad(p => p.Messages)                                         // needed for this process to
                 .EagerLoad(p => p.Affiliations.Select(a => a.Establishment))        // avoid extra db calls
                 .ForInsertOrUpdate()                                                // track the entity on the unit of work
-            )
+            );
+
+            if (person == null)
+            {
+                var createPersonCommand = new CreatePersonCommand
+                {
+                    DisplayName = model.EmailAddress
+                };
+                _createPersonHandler.Handle(createPersonCommand);
+                person = createPersonCommand.CreatedPerson;
+            }
 
             // create person if it does not exist
-            ?? new Person
-            {
-                DisplayName = model.EmailAddress,
-            };
+            //?? new Person
+            //{
+            //    DisplayName = model.EmailAddress,
+            //};
             //?? new Person(); // display name no longer set here
 
             person.AffiliateWith(establishment);
