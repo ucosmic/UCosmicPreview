@@ -18,11 +18,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Models
                 const string value = "test";
                 var model = new GenerateDisplayNameForm { Salutation = value };
 
-                var command = Mapper.Map<GenerateDisplayNameQuery>(model);
+                var query = Mapper.Map<GenerateDisplayNameQuery>(model);
 
-                command.ShouldNotBeNull();
-                command.Salutation.ShouldNotBeNull();
-                command.Salutation.ShouldEqual(model.Salutation);
+                query.ShouldNotBeNull();
+                query.Salutation.ShouldNotBeNull();
+                query.Salutation.ShouldEqual(model.Salutation);
             }
 
             [TestMethod]
@@ -31,11 +31,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Models
                 const string value = "test";
                 var model = new GenerateDisplayNameForm { FirstName = value };
 
-                var command = Mapper.Map<GenerateDisplayNameQuery>(model);
+                var query = Mapper.Map<GenerateDisplayNameQuery>(model);
 
-                command.ShouldNotBeNull();
-                command.FirstName.ShouldNotBeNull();
-                command.FirstName.ShouldEqual(model.FirstName);
+                query.ShouldNotBeNull();
+                query.FirstName.ShouldNotBeNull();
+                query.FirstName.ShouldEqual(model.FirstName);
             }
 
             [TestMethod]
@@ -44,11 +44,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Models
                 const string value = "test";
                 var model = new GenerateDisplayNameForm { MiddleName = value };
 
-                var command = Mapper.Map<GenerateDisplayNameQuery>(model);
+                var query = Mapper.Map<GenerateDisplayNameQuery>(model);
 
-                command.ShouldNotBeNull();
-                command.MiddleName.ShouldNotBeNull();
-                command.MiddleName.ShouldEqual(model.MiddleName);
+                query.ShouldNotBeNull();
+                query.MiddleName.ShouldNotBeNull();
+                query.MiddleName.ShouldEqual(model.MiddleName);
             }
 
             [TestMethod]
@@ -57,11 +57,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Models
                 const string value = "test";
                 var model = new GenerateDisplayNameForm { LastName = value };
 
-                var command = Mapper.Map<GenerateDisplayNameQuery>(model);
+                var query = Mapper.Map<GenerateDisplayNameQuery>(model);
 
-                command.ShouldNotBeNull();
-                command.LastName.ShouldNotBeNull();
-                command.LastName.ShouldEqual(model.LastName);
+                query.ShouldNotBeNull();
+                query.LastName.ShouldNotBeNull();
+                query.LastName.ShouldEqual(model.LastName);
             }
 
             [TestMethod]
@@ -70,11 +70,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Models
                 const string value = "test";
                 var model = new GenerateDisplayNameForm { Suffix = value };
 
-                var command = Mapper.Map<GenerateDisplayNameQuery>(model);
+                var query = Mapper.Map<GenerateDisplayNameQuery>(model);
 
-                command.ShouldNotBeNull();
-                command.Suffix.ShouldNotBeNull();
-                command.Suffix.ShouldEqual(model.Suffix);
+                query.ShouldNotBeNull();
+                query.Suffix.ShouldNotBeNull();
+                query.Suffix.ShouldEqual(model.Suffix);
             }
         }
     }

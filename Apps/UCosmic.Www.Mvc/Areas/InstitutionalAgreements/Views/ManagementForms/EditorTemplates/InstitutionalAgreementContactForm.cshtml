@@ -458,7 +458,8 @@
             function checkExistingEmail() {
                 var isValid = false;
                 $.ajax({
-                    url: '@Url.Action(MVC.Identity.Self.PersonInfoByEmail())',
+                    url: '@Url.Action(MVC.People.PersonInfo.ByEmail())',
+                    type: 'POST',
                     data: {
                         email: $('#' + emailId).val()
                     },

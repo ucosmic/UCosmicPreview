@@ -77,17 +77,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
             }
         }
 
-        public static class PersonInfoByEmail
-        {
-            public const string Route = "people/info-by-email.json";
-            private static readonly string Action = MVC.Identity.Self.ActionNames.PersonInfoByEmail;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, Route, defaults, constraints);
-            }
-        }
+        //public static class PersonInfoByEmail
+        //{
+        //    public const string Route = "people/info-by-email.json";
+        //    private static readonly string Action = MVC.Identity.Self.ActionNames.PersonInfoByEmail;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
+        //        context.MapRoute(null, Route, defaults, constraints);
+        //    }
+        //}
 
         //public static class DeriveDisplayName
         //{

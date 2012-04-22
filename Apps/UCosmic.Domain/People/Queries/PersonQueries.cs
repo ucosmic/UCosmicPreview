@@ -9,10 +9,10 @@ namespace UCosmic.Domain.People
         {
             var person = queryable.SingleOrDefault
             (
-                p => 
+                p =>
                 p.Emails.Any
                 (
-                    e => 
+                    e =>
                     e.Value.Equals(email, StringComparison.OrdinalIgnoreCase)
                 )
             );
@@ -21,7 +21,16 @@ namespace UCosmic.Domain.People
 
         internal static EmailAddress GetEmail(this Person owner, int number)
         {
-            return owner.Emails.ByNumber(number);
+            return owner != null && owner.Emails != null
+                ? owner.Emails.ByNumber(number)
+                : null;
+        }
+
+        internal static EmailAddress GetDefaultEmail(this Person owner)
+        {
+            return owner != null && owner.Emails != null
+                ? owner.Emails.SingleOrDefault(e => e.IsDefault)
+                : null;
         }
 
         internal static Affiliation GetAffiliation(this Person owner, int establishmentId)

@@ -41,11 +41,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public System.Web.Mvc.ActionResult PersonInfoById() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.PersonInfoById);
         }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult PersonInfoByEmail() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.PersonInfoByEmail);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SelfController Actions { get { return MVC.Identity.Self; } }
@@ -63,14 +58,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public class ActionNamesClass {
             public readonly string AutoCompletePersonName = "autocomplete-name";
             public readonly string PersonInfoById = "person-info-by-id";
-            public readonly string PersonInfoByEmail = "person-info-by-email";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string AutoCompletePersonName = "autocomplete-name";
             public const string PersonInfoById = "person-info-by-id";
-            public const string PersonInfoByEmail = "person-info-by-email";
         }
 
 
@@ -111,12 +104,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public override System.Web.Mvc.ActionResult PersonInfoById(System.Guid personId) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.PersonInfoById);
             callInfo.RouteValueDictionary.Add("personId", personId);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult PersonInfoByEmail(string email) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.PersonInfoByEmail);
-            callInfo.RouteValueDictionary.Add("email", email);
             return callInfo;
         }
 

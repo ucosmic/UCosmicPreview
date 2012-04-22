@@ -244,28 +244,28 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             return Json(null, JsonRequestBehavior.AllowGet);
         }
 
-        [ActionName("person-info-by-email")]
-        [Authorize]
-        public virtual ActionResult PersonInfoByEmail(string email)
-        {
-            var data = _people.FindOne(PersonBy.EmailAddress(email));
-            if (data != null)
-            {
-                var defaultEmail = data.Emails.SingleOrDefault(e => e.IsDefault);
-                var person = new
-                {
-                    data.EntityId,
-                    data.Salutation,
-                    data.FirstName,
-                    data.MiddleName,
-                    data.LastName,
-                    data.Suffix,
-                    DefaultEmail = (defaultEmail != null) ? defaultEmail.Value : null,
-                };
-                return Json(person, JsonRequestBehavior.AllowGet);
-            }
-            return Json(null, JsonRequestBehavior.AllowGet);
-        }
+        //[ActionName("person-info-by-email")]
+        //[Authorize]
+        //public virtual ActionResult PersonInfoByEmail(string email)
+        //{
+        //    var data = _people.FindOne(PersonBy.EmailAddress(email));
+        //    if (data != null)
+        //    {
+        //        var defaultEmail = data.Emails.SingleOrDefault(e => e.IsDefault);
+        //        var person = new
+        //        {
+        //            data.EntityId,
+        //            data.Salutation,
+        //            data.FirstName,
+        //            data.MiddleName,
+        //            data.LastName,
+        //            data.Suffix,
+        //            DefaultEmail = (defaultEmail != null) ? defaultEmail.Value : null,
+        //        };
+        //        return Json(person, JsonRequestBehavior.AllowGet);
+        //    }
+        //    return Json(null, JsonRequestBehavior.AllowGet);
+        //}
 
         #endregion
         #region Derive Person DisplayName
