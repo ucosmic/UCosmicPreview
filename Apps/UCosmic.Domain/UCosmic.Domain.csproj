@@ -166,8 +166,15 @@
     <Compile Include="People\PersonExtensions.cs" />
     <Compile Include="People\PersonFactory.cs" />
     <Compile Include="People\PersonQuery.cs" />
+    <Compile Include="People\Queries\BasePeopleQuery.cs" />
     <Compile Include="People\Queries\BasePersonQuery.cs" />
     <Compile Include="People\Queries\AffiliationQueries.cs" />
+    <Compile Include="People\Queries\FindPeopleWithLastNameHandler.cs" />
+    <Compile Include="People\Queries\FindPeopleWithLastNameQuery.cs" />
+    <Compile Include="People\Queries\FindPeopleWithFirstNameHandler.cs" />
+    <Compile Include="People\Queries\FindPeopleWithFirstNameQuery.cs" />
+    <Compile Include="People\Queries\FindPeopleWithEmailHandler.cs" />
+    <Compile Include="People\Queries\FindPeopleWithEmailQuery.cs" />
     <Compile Include="People\Queries\GetPersonByGuidHandler.cs" />
     <Compile Include="People\Queries\GetPersonByGuidQuery.cs" />
     <Compile Include="People\Queries\GetPersonByIdHandler.cs" />
