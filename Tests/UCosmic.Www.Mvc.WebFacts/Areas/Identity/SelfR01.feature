@@ -17,7 +17,7 @@ Scenario: My Name form save changes unsuccessfully with invalid input
 	When  I type "" into the "DisplayName" text box on the My Name form
 	And   I click the "Save Changes" button on the My Name form
     Then  I should see a page at the "my/profile" url
-	And   I should see the error message "You must have a Display name." for the "DisplayName" text box on the My Name form
+	And   I should see the error message "Display name is required." for the "DisplayName" text box on the My Name form
     And   I should see "" in the "DisplayName" text box on the My Name form
 
 @SelfName
@@ -33,7 +33,7 @@ Scenario Outline: My Name form save changes successfully with valid input
 	And   I type "<Suffix>" into the "Suffix" text box on the My Name form
 	And   I successfully submit the My Name form
 	Then  I should see a page at the "my/profile" url
-	And   I should see top feedback message "Your personal info was saved successfully."
+	And   I should see either top feedback message "Your info was successfully updated." or "No changes were made."
     And   I should see "<DisplayName>" in the "DisplayName" text box on the My Name form
     And   I should see "<Salutation>" in the "Salutation" text box on the My Name form
     And   I should see "<FirstName>" in the "FirstName" text box on the My Name form
@@ -136,7 +136,7 @@ Examples:
     | Salutation | [None]    |
     | Salutation | Dr.       |
     | Salutation | Mr.       |
-    | Salutation | Mrs.      |
+    | Salutation | Ms.       |
     | Salutation | Prof.     |
     | Suffix     | [None]    |
     | Suffix     | Esq.      |
@@ -154,7 +154,7 @@ Examples:
     | Salutation | [          | not see  | [None]    |
     | Salutation | D          | see      | Dr.       |
     | Salutation | M          | see      | Mr.       |
-    | Salutation | M          | see      | Mrs.      |
+    | Salutation | M          | see      | Ms.       |
     | Salutation | Mrs        | not see  | Mr.       |
     | Salutation | P          | see      | Prof.     |
     | Suffix     | [          | not see  | [None]    |
@@ -175,7 +175,7 @@ Examples:
     | Salutation | [None]    |            |
     | Salutation | Dr.       | Dr.        |
     | Salutation | Mr.       | Mr.        |
-    | Salutation | Mrs.      | Mrs.       |
+    | Salutation | Ms.       | Ms.        |
     | Salutation | Prof.     | Prof.      |
     | Suffix     | [None]    |            |
     | Suffix     | Esq.      | Esq.       |
@@ -187,13 +187,13 @@ Examples:
 @SelfR0108
 Scenario Outline: My Affiliation Info form successfully save changes with valid input
     When  I click either the "Set up affiliation" or "Edit affiliation info" link
-    And   I see a page at the "me/affiliations/[PathVar]/edit.html" url
+    And   I see a page at the "my/affiliations/[PathVar]/edit" url
     And   I click the radio button for "<AffiliationType>" on the Affiliation Info form
     And   I <SeeOrNot> additional employee fields on the Affiliation Info form
     And   I <TypeOrNot> "<JobTitle>" into the "Job Titles & Departments" text box on the Affiliation Info form
     And   I click the "Save Changes" button on the Affiliation Info form
 	Then  I should see a page at the "my/profile" url
-	And   I should see top feedback message "Your affiliation info was saved successfully."
+	And   I should see either top feedback message "Your affiliation info was successfully updated." or "No changes were made."
     And   I should see "<AffiliationInfo>" Affiliation Info text on the My Affiliations section of the About Me url
     Examples:
     | AffiliationType                         | SeeOrNot  | TypeOrNot  | JobTitle             | AffiliationInfo              |
@@ -214,15 +214,15 @@ Scenario Outline: My Affiliation Info form successfully save changes with valid 
 @SelfR0109
 Scenario Outline: My Affiliation Info form confirm employee categories are checked or unchecked after successful save
     Given I have clicked either the "Set up affiliation" or "Edit affiliation info" link
-    And   I have seen a page at the "me/affiliations/[PathVar]/edit.html" url
+    And   I have seen a page at the "my/affiliations/[PathVar]/edit" url
     And   I have clicked the radio button for "I am an employee." on the Affiliation Info form
     And   I have <CheckOrNot1> the "<EmployeeCategory1>" checkbox on the Affiliation Info form
     And   I have <CheckOrNot2> the "<EmployeeCategory2>" checkbox on the Affiliation Info form 
     And   I have clicked the "Save Changes" button on the Affiliation Info form
 	And   I have seen a page at the "my/profile" url
-	And   I have seen top feedback message "Your affiliation info was saved successfully."
+	And   I have seen either top feedback message "Your affiliation info was successfully updated." or "No changes were made."
     When  I click the "Edit affiliation info" link
-    And   I see a page at the "me/affiliations/[PathVar]/edit.html" url 
+    And   I see a page at the "my/affiliations/[PathVar]/edit" url 
     Then  I should see the "<EmployeeCategory1>" checkbox is <CheckOrNot1> on the Affiliation Info form 
     And   I should see the "<EmployeeCategory2>" checkbox is <CheckOrNot2> on the Affiliation Info form
     Examples:

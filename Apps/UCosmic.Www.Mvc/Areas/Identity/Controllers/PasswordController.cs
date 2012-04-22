@@ -9,6 +9,7 @@ using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Models.Password;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Areas.Identity.Mappers;
+using UCosmic.Www.Mvc.Areas.My.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -43,7 +44,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         //[OpenTopTab(TopTabName.User)]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("change-password")]
-        [ReturnUrlReferrer(SelfRouteMapper.Me.OutboundRoute)]
+        [ReturnUrlReferrer(ProfileRouter.Get.Route)]
         public virtual ActionResult ChangePassword()
         {
             var currentUser = Membership.GetUser(User.Identity.Name, true);
@@ -81,7 +82,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     if (changePasswordSucceeded)
                     {
                         SetFeedbackMessage("Your password has been changed successfully.");
-                        return RedirectToAction(MVC.Identity.Self.Me());
+                        return RedirectToAction(MVC.My.Profile.Get());
                     }
 
                     ModelState.AddModelError("OldPassword", "The Old Password is incorrect.");
@@ -210,7 +211,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     if (changePasswordSucceeded)
                     {
                         SetFeedbackMessage("Your password has been reset, please sign in.");
-                        return RedirectToAction(MVC.Identity.Self.Me());
+                        return RedirectToAction(MVC.My.Profile.Get());
                     }
                 }
                 return View(model);

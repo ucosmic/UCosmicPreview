@@ -46,11 +46,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public System.Web.Mvc.ActionResult PersonInfoByEmail() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.PersonInfoByEmail);
         }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult DeriveDisplayName() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.DeriveDisplayName);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SelfController Actions { get { return MVC.Identity.Self; } }
@@ -66,20 +61,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Me = "me";
             public readonly string AutoCompletePersonName = "autocomplete-name";
             public readonly string PersonInfoById = "person-info-by-id";
             public readonly string PersonInfoByEmail = "person-info-by-email";
-            public readonly string DeriveDisplayName = "derive-display-name";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Me = "me";
             public const string AutoCompletePersonName = "autocomplete-name";
             public const string PersonInfoById = "person-info-by-id";
             public const string PersonInfoByEmail = "person-info-by-email";
-            public const string DeriveDisplayName = "derive-display-name";
         }
 
 
@@ -109,17 +100,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public class T4MVC_SelfController: UCosmic.Www.Mvc.Areas.Identity.Controllers.SelfController {
         public T4MVC_SelfController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Me() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Me);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult Me(UCosmic.Www.Mvc.Areas.Identity.Models.Self.PersonForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Me);
-            callInfo.RouteValueDictionary.Add("model", model);
-            return callInfo;
-        }
-
         public override System.Web.Mvc.ActionResult AutoCompletePersonName(string term, UCosmic.Www.Mvc.Areas.Identity.Controllers.SelfController.PersonNameProperty termTarget, UCosmic.Www.Mvc.Areas.Identity.Controllers.SelfController.PersonNameProperty? orderTarget) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AutoCompletePersonName);
             callInfo.RouteValueDictionary.Add("term", term);
@@ -137,12 +117,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public override System.Web.Mvc.ActionResult PersonInfoByEmail(string email) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.PersonInfoByEmail);
             callInfo.RouteValueDictionary.Add("email", email);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult DeriveDisplayName(UCosmic.Www.Mvc.Areas.Identity.Models.Self.PersonForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.DeriveDisplayName);
-            callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
 

@@ -2,6 +2,7 @@
 using TechTalk.SpecFlow;
 using UCosmic.Www.Mvc.SpecFlow;
 using UCosmic.Www.Mvc.WebDriver;
+using UCosmic.Www.Mvc.Areas.My.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity
 {
@@ -75,12 +76,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity
 
                 // click the sign in submit button
                 button.ClickButton();
-
-                // wait for the next url
-                //SharedSteps.SeeThePageAt(browser, RelativeUrl.Me);
-
-                // verify success message
-                //CommonSteps.SeeSuccessFeedbackMessage(browser, "Your personal info was saved successfully.");
 
                 if (browser.IsInternetExplorer())
                     2000.WaitThisManyMilleseconds();
@@ -275,23 +270,23 @@ namespace UCosmic.Www.Mvc.Areas.Identity
 
         private static string TranslateRadioButtonLabelToRadioButtonId(string affiliationType)
         {
-            var radioButtonId = "EmployeeOrStudent_{0}";
+            var radioButtonId = "EmployeeOrStudentAffiliation_{0}";
             switch (affiliationType)
             {
                 case "I am an employee.":
-                    radioButtonId = string.Format(radioButtonId, "EmployeeOnly");
+                    radioButtonId = string.Format(radioButtonId, EmployeeOrStudentAffiliate.EmployeeOnly);
                     break;
 
                 case "I am a student.":
-                    radioButtonId = string.Format(radioButtonId, "StudentOnly");
+                    radioButtonId = string.Format(radioButtonId, EmployeeOrStudentAffiliate.StudentOnly);
                     break;
 
                 case "I am both an employee and a student.":
-                    radioButtonId = string.Format(radioButtonId, "Both");
+                    radioButtonId = string.Format(radioButtonId, EmployeeOrStudentAffiliate.Both);
                     break;
 
                 case "I am neither an employee nor a student.":
-                    radioButtonId = string.Format(radioButtonId, "Neither");
+                    radioButtonId = string.Format(radioButtonId, EmployeeOrStudentAffiliate.Neither);
                     break;
             }
             return radioButtonId;

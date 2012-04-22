@@ -166,25 +166,25 @@ namespace UCosmic.Www.Mvc.Areas.Identity
         }
 
         #endregion
-        #region Self
+        //#region Self
 
-        [TestMethod]
-        public void Route_Identity_Self_Me_IsSetUp()
-        {
-            Expression<Func<SelfController, ActionResult>> actionForGet =
-                controller => controller.Me();
-            Expression<Func<SelfController, ActionResult>> actionForPost =
-                controller => controller.Me(null);
-            const string url = "my/profile";
+        //[TestMethod]
+        //public void Route_Identity_Self_Me_IsSetUp()
+        //{
+        //    Expression<Func<SelfController, ActionResult>> actionForGet =
+        //        controller => controller.Me();
+        //    Expression<Func<SelfController, ActionResult>> actionForPost =
+        //        controller => controller.Me(null);
+        //    const string url = "my/profile";
 
-            url.ToAppRelativeUrl().WithMethod(HttpVerbs.Get).ShouldMapTo(actionForGet);
-            url.ToAppRelativeUrl().WithMethod(HttpVerbs.Post).ShouldMapTo(actionForPost);
-            url.ToAppRelativeUrl().WithMethodsExcept(HttpVerbs.Get, HttpVerbs.Post).ShouldMapToNothing();
-            actionForGet.DefaultAreaRoutes(MVC.Identity.Name).ShouldMapToNothing();
-            actionForPost.DefaultAreaRoutes(MVC.Identity.Name).ShouldMapToNothing();
-        }
+        //    url.ToAppRelativeUrl().WithMethod(HttpVerbs.Get).ShouldMapTo(actionForGet);
+        //    url.ToAppRelativeUrl().WithMethod(HttpVerbs.Post).ShouldMapTo(actionForPost);
+        //    url.ToAppRelativeUrl().WithMethodsExcept(HttpVerbs.Get, HttpVerbs.Post).ShouldMapToNothing();
+        //    actionForGet.DefaultAreaRoutes(MVC.Identity.Name).ShouldMapToNothing();
+        //    actionForPost.DefaultAreaRoutes(MVC.Identity.Name).ShouldMapToNothing();
+        //}
 
-        #endregion
+        //#endregion
 
     }
 }
