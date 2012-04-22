@@ -221,28 +221,29 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             return HttpNotFound();
         }
 
-        [Authorize]
-        [ActionName("person-info-by-id")]
-        public virtual ActionResult PersonInfoById(Guid personId)
-        {
-            var data = _people.FindOne(By<Person>.EntityId(personId));
-            if (data != null)
-            {
-                var defaultEmail = data.Emails.SingleOrDefault(e => e.IsDefault);
-                var person = new
-                {
-                    data.EntityId,
-                    data.Salutation,
-                    data.FirstName,
-                    data.MiddleName,
-                    data.LastName,
-                    data.Suffix,
-                    DefaultEmail = (defaultEmail != null) ? defaultEmail.Value : null,
-                };
-                return Json(person, JsonRequestBehavior.AllowGet);
-            }
-            return Json(null, JsonRequestBehavior.AllowGet);
-        }
+        //[HttpPost]
+        //[Authorize]
+        //[ActionName("person-info-by-id")]
+        //public virtual ActionResult PersonInfoById(Guid personId)
+        //{
+        //    var data = _people.FindOne(By<Person>.EntityId(personId));
+        //    if (data != null)
+        //    {
+        //        var defaultEmail = data.Emails.SingleOrDefault(e => e.IsDefault);
+        //        var person = new
+        //        {
+        //            data.EntityId,
+        //            data.Salutation,
+        //            data.FirstName,
+        //            data.MiddleName,
+        //            data.LastName,
+        //            data.Suffix,
+        //            DefaultEmail = (defaultEmail != null) ? defaultEmail.Value : null,
+        //        };
+        //        return Json(person);
+        //    }
+        //    return Json(null);
+        //}
 
         //[ActionName("person-info-by-email")]
         //[Authorize]

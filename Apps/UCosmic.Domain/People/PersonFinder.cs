@@ -50,7 +50,7 @@ namespace UCosmic.Domain.People
                 query = query.Where(p => p.LastName != null &&
                     p.LastName.Trim().ToLower().StartsWith(finder.AutoCompleteLastNamePrefix.Trim().ToLower()));
 
-            // apply first name starts with
+            // apply email starts with
             if (!string.IsNullOrWhiteSpace(finder.AutoCompleteEmailTerm))
                 query = query.Where(p => p.Emails.Any(e => e.Value.Contains(finder.AutoCompleteEmailTerm.Trim())));
 

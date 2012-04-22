@@ -53,5 +53,48 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             }
 
         }
+
+        [TestClass]
+        public class TheByGuidRoute
+        {
+            [TestMethod]
+            public void Inbound_WithPost_MapsToPostAction()
+            {
+                Expression<Func<PersonInfoController, ActionResult>> action =
+                    controller => controller.ByGuid();
+                var url = PersonInfoRouter.ByGuid.Route.ToAppRelativeUrl();
+
+                url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
+            }
+
+            [TestMethod]
+            public void Inbound_WithNonPost_MapsToNothing()
+            {
+                var url = PersonInfoRouter.ByGuid.Route.ToAppRelativeUrl();
+
+                url.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
+            }
+
+            [TestMethod]
+            public void Outbound_ForPostAction_MapsToUrl()
+            {
+                Expression<Func<PersonInfoController, ActionResult>> action =
+                    controller => controller.ByGuid();
+                var url = PersonInfoRouter.ByGuid.Route.ToAppRelativeUrl();
+
+                OutBoundRoute.Of(action).InArea(MVC.People.Name).WithMethod(HttpVerbs.Post)
+                    .AppRelativeUrl().ShouldEqual(url);
+            }
+
+            [TestMethod]
+            public void Defaults_WithPostAction_MapToNothing()
+            {
+                Expression<Func<PersonInfoController, ActionResult>> action =
+                    controller => controller.ByGuid();
+
+                action.DefaultAreaRoutes(MVC.People.Name).ShouldMapToNothing();
+            }
+
+        }
     }
 }
