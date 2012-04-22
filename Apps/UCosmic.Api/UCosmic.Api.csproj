@@ -59,6 +59,7 @@
     <Compile Include="Etc\IConsumeHttp.cs" />
     <Compile Include="Etc\IHaveText.cs" />
     <Compile Include="Etc\ISignUsers.cs" />
+    <Compile Include="Etc\StringMatchStrategy.cs" />
     <Compile Include="Ioc\DependencyInjector.cs" />
     <Compile Include="Ioc\DependencyInjectorExtensions.cs" />
     <Compile Include="Etc\ILogExceptions.cs" />

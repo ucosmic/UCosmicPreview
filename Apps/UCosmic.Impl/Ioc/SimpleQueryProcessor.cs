@@ -1,4 +1,5 @@
-﻿using SimpleInjector;
+﻿using System.Diagnostics;
+using SimpleInjector;
 using UCosmic.Domain;
 
 namespace UCosmic
@@ -12,6 +13,7 @@ namespace UCosmic
             _container = container;
         }
 
+        [DebuggerStepThrough]
         public TResult Execute<TResult>(IDefineQuery<TResult> query)
         {
             var handlerType = typeof(IHandleQueries<,>).MakeGenericType(query.GetType(), typeof(TResult));
