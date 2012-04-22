@@ -59,7 +59,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 ? Mapper.Map<PersonInfoModel>(person)
                 : null;
 
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return Json(model);
         }
 
     }

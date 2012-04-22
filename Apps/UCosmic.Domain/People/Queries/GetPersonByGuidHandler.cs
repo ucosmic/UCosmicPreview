@@ -17,7 +17,7 @@ namespace UCosmic.Domain.People
 
             return _entities.People
                 .EagerLoad(query.EagerLoad, _entities)
-                .ByEntityId(query.Guid)
+                .By(query.Guid)
             ;
         }
     }

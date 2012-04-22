@@ -94,7 +94,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Models
             [TestMethod]
             public void MapsDefaultEmail_ToNull_WhenPersonEmails_IsNull()
             {
-                var entity = new Person { Emails = null };
+                var entity = new Person();
 
                 var model = Mapper.Map<PersonInfoModel>(entity);
 
