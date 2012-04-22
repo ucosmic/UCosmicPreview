@@ -50,6 +50,11 @@ namespace UCosmic.Domain.People
 
         public virtual ICollection<EmailAddress> Emails { get; protected internal set; }
 
+        public EmailAddress DefaultEmail
+        {
+            get { return this.GetDefaultEmail(); }
+        }
+
         public EmailAddress AddEmail(string value, bool isFromSaml = false)
         {
             // email may already exist

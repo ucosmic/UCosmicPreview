@@ -16,6 +16,9 @@ namespace UCosmic.Www.Mvc.Areas.People
             PersonNameRouter.RegisterRoutes(context);
             GenerateDisplayNameProfiler.RegisterProfiles();
 
+            PersonInfoRouter.RegisterRoutes(context);
+            PersonInfoProfiler.RegisterProfiles();
+
             //context.MapRoute(
             //    "People_default",
             //    "People/{controller}/{action}/{id}",

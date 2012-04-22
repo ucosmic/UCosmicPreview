@@ -225,11 +225,16 @@
     <Compile Include="Areas\My\Controllers\ProfileRouter.cs" />
     <Compile Include="Areas\My\Controllers\UpdateEmailValueRouter.cs" />
     <Compile Include="Areas\My\Controllers\UpdateEmailValueServices.cs" />
+    <Compile Include="Areas\People\Controllers\PersonInfoRouter.cs" />
+    <Compile Include="Areas\People\Controllers\PersonInfoServices.cs" />
+    <Compile Include="Areas\People\Controllers\PersonInfoController.cs" />
     <Compile Include="Areas\People\Controllers\PersonNameController.cs" />
     <Compile Include="Areas\People\Controllers\PersonNameServices.cs" />
     <Compile Include="Areas\People\Controllers\PersonNameRouter.cs" />
+    <Compile Include="Areas\People\Models\PersonInfoProfiler.cs" />
     <Compile Include="Areas\People\Models\GenerateDisplayNameForm.cs" />
     <Compile Include="Areas\People\Models\GenerateDisplayNameProfiler.cs" />
+    <Compile Include="Areas\People\Models\PersonInfoModel.cs" />
     <Compile Include="Areas\People\PeopleAreaRegistration.cs" />
     <Compile Include="Controllers\NullLayoutOnChildActionAttribute.cs" />
     <Compile Include="Helpers\SimpleInjectorMVC3.cs" />
@@ -349,6 +354,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="My.UpdateNameController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="People.PersonInfoController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="People.PersonNameController.generated.cs">

@@ -81,20 +81,14 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 };
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<GenerateDisplayNameQuery, bool>> generateDisplayNameBasedOnModel = q =>
-                    q.Salutation == model.Salutation &&
-                    q.FirstName == model.FirstName &&
-                    q.MiddleName == model.MiddleName &&
-                    q.LastName == model.LastName &&
-                    q.Suffix == model.Suffix
-                ;
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(generateDisplayNameBasedOnModel)))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(
+                    It.Is(GenerateDisplayNameQueryBasedOn(model))))
                     .Returns("derived display name");
 
                 controller.GenerateDisplayName(model);
 
                 scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
-                    It.Is(generateDisplayNameBasedOnModel)),
+                    It.Is(GenerateDisplayNameQueryBasedOn(model))),
                         Times.Once());
             }
 
@@ -112,14 +106,8 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 };
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                Expression<Func<GenerateDisplayNameQuery, bool>> generateDisplayNameBasedOnModel = q =>
-                    q.Salutation == model.Salutation &&
-                    q.FirstName == model.FirstName &&
-                    q.MiddleName == model.MiddleName &&
-                    q.LastName == model.LastName &&
-                    q.Suffix == model.Suffix
-                ;
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(generateDisplayNameBasedOnModel)))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(
+                    It.Is(GenerateDisplayNameQueryBasedOn(model))))
                     .Returns(generatedDisplayName);
 
                 var result = controller.GenerateDisplayName(model);
@@ -127,6 +115,18 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 result.ShouldNotBeNull();
                 result.ShouldBeType<JsonResult>();
                 result.Data.ShouldEqual(generatedDisplayName);
+            }
+
+            private static Expression<Func<GenerateDisplayNameQuery, bool>> GenerateDisplayNameQueryBasedOn(GenerateDisplayNameForm model)
+            {
+                Expression<Func<GenerateDisplayNameQuery, bool>> generateDisplayNameQueryBasedOn = q =>
+                    q.Salutation == model.Salutation &&
+                    q.FirstName == model.FirstName &&
+                    q.MiddleName == model.MiddleName &&
+                    q.LastName == model.LastName &&
+                    q.Suffix == model.Suffix
+                ;
+                return generateDisplayNameQueryBasedOn;
             }
         }
 
@@ -173,13 +173,13 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<FindDistinctSalutationsQuery>()))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(FindDistinctSalutationsQuery)))
                     .Returns(null as string[]);
 
                 controller.AutoCompleteSalutations(null);
 
                 scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
-                    It.IsAny<FindDistinctSalutationsQuery>()),
+                    It.Is(FindDistinctSalutationsQuery)),
                         Times.Once());
             }
 
@@ -188,7 +188,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<FindDistinctSalutationsQuery>()))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(FindDistinctSalutationsQuery)))
                     .Returns(null as string[]);
 
                 var result = controller.AutoCompleteSalutations(null);
@@ -204,7 +204,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<FindDistinctSalutationsQuery>()))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(FindDistinctSalutationsQuery)))
                     .Returns(null as string[]);
 
                 var result = controller.AutoCompleteSalutations(null);
@@ -225,7 +225,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<FindDistinctSalutationsQuery>()))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(FindDistinctSalutationsQuery)))
                     .Returns(null as string[]);
 
                 var result = controller.AutoCompleteSalutations(null);
@@ -251,7 +251,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 var databaseValues = new[] { "S1", "S2" };
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<FindDistinctSalutationsQuery>()))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(FindDistinctSalutationsQuery)))
                     .Returns(databaseValues);
 
                 var result = controller.AutoCompleteSalutations(null);
@@ -269,6 +269,16 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                     if (PersonNameController.DefaultSalutationValues.Contains(value)) continue;
                     databaseValues.ShouldContain(value);
                     databaseValues.ShouldContain(label);
+                }
+            }
+
+            private static Expression<Func<FindDistinctSalutationsQuery, bool>> FindDistinctSalutationsQuery
+            {
+                get
+                {
+                    Expression<Func<FindDistinctSalutationsQuery, bool>> findDistinctSalutationsQuery =
+                        q => q.Exclude == PersonNameController.DefaultSalutationValues;
+                    return findDistinctSalutationsQuery;
                 }
             }
         }
@@ -316,13 +326,13 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<FindDistinctSuffixesQuery>()))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(FindDistinctSuffixesQuery)))
                     .Returns(null as string[]);
 
                 controller.AutoCompleteSuffixes(null);
 
                 scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
-                    It.IsAny<FindDistinctSuffixesQuery>()),
+                    It.Is(FindDistinctSuffixesQuery)),
                         Times.Once());
             }
 
@@ -331,7 +341,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<FindDistinctSuffixesQuery>()))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(FindDistinctSuffixesQuery)))
                     .Returns(null as string[]);
 
                 var result = controller.AutoCompleteSuffixes(null);
@@ -347,7 +357,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<FindDistinctSuffixesQuery>()))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(FindDistinctSuffixesQuery)))
                     .Returns(null as string[]);
 
                 var result = controller.AutoCompleteSuffixes(null);
@@ -368,7 +378,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<FindDistinctSuffixesQuery>()))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(FindDistinctSuffixesQuery)))
                     .Returns(null as string[]);
 
                 var result = controller.AutoCompleteSuffixes(null);
@@ -394,7 +404,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 var databaseValues = new[] { "S1", "S2" };
                 var scenarioOptions = new ScenarioOptions();
                 var controller = CreateController(scenarioOptions);
-                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.IsAny<FindDistinctSuffixesQuery>()))
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(FindDistinctSuffixesQuery)))
                     .Returns(databaseValues);
 
                 var result = controller.AutoCompleteSuffixes(null);
@@ -412,6 +422,16 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                     if (PersonNameController.DefaultSuffixValues.Contains(value)) continue;
                     databaseValues.ShouldContain(value);
                     databaseValues.ShouldContain(label);
+                }
+            }
+
+            private static Expression<Func<FindDistinctSuffixesQuery, bool>> FindDistinctSuffixesQuery
+            {
+                get
+                {
+                    Expression<Func<FindDistinctSuffixesQuery, bool>> findDistinctSuffixesQuery =
+                        q => q.Exclude == PersonNameController.DefaultSuffixValues;
+                    return findDistinctSuffixesQuery;
                 }
             }
         }
