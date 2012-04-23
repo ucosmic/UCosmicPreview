@@ -9,7 +9,7 @@ using UCosmic.Www.Mvc.Models;
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class UpdateMyEmailValueFormFacts
+    public class UpdateEmailValueFormFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]

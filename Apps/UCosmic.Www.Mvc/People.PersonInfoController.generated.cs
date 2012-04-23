@@ -41,6 +41,21 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
         public System.Web.Mvc.JsonResult ByGuid() {
             return new T4MVC_JsonResult(Area, Name, ActionNames.ByGuid);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.JsonResult WithEmail() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.WithEmail);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.JsonResult WithFirstName() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.WithFirstName);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.JsonResult WithLastName() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.WithLastName);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public PersonInfoController Actions { get { return MVC.People.PersonInfo; } }
@@ -58,12 +73,18 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
         public class ActionNamesClass {
             public readonly string ByEmail = "ByEmail";
             public readonly string ByGuid = "ByGuid";
+            public readonly string WithEmail = "WithEmail";
+            public readonly string WithFirstName = "WithFirstName";
+            public readonly string WithLastName = "WithLastName";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string ByEmail = "ByEmail";
             public const string ByGuid = "ByGuid";
+            public const string WithEmail = "WithEmail";
+            public const string WithFirstName = "WithFirstName";
+            public const string WithLastName = "WithLastName";
         }
 
 
@@ -88,6 +109,27 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
         public override System.Web.Mvc.JsonResult ByGuid(System.Guid guid) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ByGuid);
             callInfo.RouteValueDictionary.Add("guid", guid);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.JsonResult WithEmail(string term, UCosmic.StringMatchStrategy matchStrategy) {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.WithEmail);
+            callInfo.RouteValueDictionary.Add("term", term);
+            callInfo.RouteValueDictionary.Add("matchStrategy", matchStrategy);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.JsonResult WithFirstName(string term, UCosmic.StringMatchStrategy matchStrategy) {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.WithFirstName);
+            callInfo.RouteValueDictionary.Add("term", term);
+            callInfo.RouteValueDictionary.Add("matchStrategy", matchStrategy);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.JsonResult WithLastName(string term, UCosmic.StringMatchStrategy matchStrategy) {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.WithLastName);
+            callInfo.RouteValueDictionary.Add("term", term);
+            callInfo.RouteValueDictionary.Add("matchStrategy", matchStrategy);
             return callInfo;
         }
 

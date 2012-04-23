@@ -24,8 +24,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             RolesRouteMapper.RegisterRoutes(context);
             RolesModelMapper.RegisterProfiles();
 
-            SelfRouteMapper.RegisterRoutes(context);
-            SelfModelMapper.RegisterProfiles();
+            //SelfRouteMapper.RegisterRoutes(context);
+            //SelfModelMapper.RegisterProfiles();
 
             Saml2MetadataRouteMapper.RegisterRoutes(context);
 

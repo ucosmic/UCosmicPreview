@@ -301,7 +301,7 @@
                     }
                 }
             });
-            
+
             function initExtraComboBoxes() {
                 if (extraComboBoxesInitialized) return;
                 $('#' + salutationId).cosmobox({
@@ -350,15 +350,28 @@
             autoCompleteNameInput(emailId, 'DefaultEmail', null, "{FirstName} {LastName}");
 
             function autoCompleteNameInput(inputId, targetTerm, targetOrder, labelFormat) {
+                var url = '', matchStrategy = 'StartsWith';
+                switch (targetTerm) {
+                    case 'FirstName':
+                        url = '@Url.Action(MVC.People.PersonInfo.WithFirstName())';
+                        break;
+                    case 'LastName':
+                        url = '@Url.Action(MVC.People.PersonInfo.WithLastName())';
+                        break;
+                    case 'DefaultEmail':
+                        url = '@Url.Action(MVC.People.PersonInfo.WithEmail())';
+                        matchStrategy = 'Contains';
+                        break;
+                }
                 $('#' + inputId).autocomplete({
                     source: function (request, response) {
                         $.ajax({
-                            url: '@Url.Action(MVC.Identity.Self.AutoCompletePersonName())',
+                            url: url,
                             data: {
                                 term: request.term,
-                                termTarget: targetTerm,
-                                orderTarget: targetOrder
+                                matchStrategy: matchStrategy
                             },
+                            type: 'POST',
                             dataType: 'json',
                             traditional: true,
                             cache: false,

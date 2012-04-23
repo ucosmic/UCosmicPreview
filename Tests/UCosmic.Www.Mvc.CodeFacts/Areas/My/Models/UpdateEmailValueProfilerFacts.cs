@@ -7,7 +7,7 @@ using UCosmic.Domain.People;
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class UpdateMyEmailValueProfilerFacts
+    public class UpdateEmailValueProfilerFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
