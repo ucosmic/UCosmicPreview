@@ -389,9 +389,7 @@
     <Compile Include="Areas\Establishments\EstablishmentsAreaRegistration.cs" />
     <Compile Include="Areas\Establishments\Models\ManagementForms\EstablishmentForm.cs" />
     <Compile Include="Areas\Establishments\Models\ManagementForms\EstablishmentSearchResult.cs" />
-    <Compile Include="Areas\Identity\Mappers\SelfModelMapper.cs" />
     <Compile Include="Areas\Identity\Mappers\Saml2MetadataRouteMapper.cs" />
-    <Compile Include="Areas\Identity\Mappers\SelfRouteMapper.cs" />
     <Compile Include="Areas\Identity\Mappers\RolesModelMapper.cs" />
     <Compile Include="Areas\Identity\Mappers\RolesRouteMapper.cs" />
     <Compile Include="Areas\Identity\Mappers\PasswordModelMapper.cs" />
@@ -404,7 +402,6 @@
     <Compile Include="Areas\Identity\Controllers\RolesController.cs" />
     <Compile Include="Areas\Identity\Controllers\EmailConfirmationController.cs" />
     <Compile Include="Areas\Identity\Controllers\PasswordController.cs" />
-    <Compile Include="Areas\Identity\Controllers\SelfController.cs" />
     <Compile Include="Areas\Identity\Controllers\SignUpController.cs" />
     <Compile Include="Areas\Identity\IdentityAreaRegistration.cs" />
     <Compile Include="Areas\Identity\Mappers\SignInRouteMapper.cs" />
@@ -417,10 +414,7 @@
     <Compile Include="Areas\Identity\Models\Password\ChangePasswordForm.cs" />
     <Compile Include="Areas\Identity\Models\Password\ForgotPasswordForm.cs" />
     <Compile Include="Areas\Identity\Models\Password\ResetPasswordForm.cs" />
-    <Compile Include="Areas\Identity\Models\Self\AffiliationForm.cs" />
     <Compile Include="Areas\My\Models\UpdateEmailValueForm.cs" />
-    <Compile Include="Areas\Identity\Models\Self\EmailInfo.cs" />
-    <Compile Include="Areas\Identity\Models\Self\PersonForm.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\ConfirmDeniedPage.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\ConfirmEmailForm.cs" />
     <Compile Include="Areas\Identity\Models\SignUp\CreateDeniedPage.cs" />
@@ -1220,13 +1214,7 @@
     <Content Include="Areas\Identity\Views\Saml2Metadata\Index.cshtml" />
     <Content Include="Areas\My\Views\UpdateEmailValue\_form.cshtml" />
     <Content Include="Areas\My\Views\UpdateEmailValue\update-email-value.cshtml" />
-    <Content Include="Areas\Identity\Views\Self\DisplayTemplates\AffiliationInfo.cshtml" />
-    <Content Include="Areas\Identity\Views\Self\DisplayTemplates\EmailInfo.cshtml" />
-    <Content Include="Areas\Identity\Views\Self\edit-affiliation.cshtml" />
-    <Content Include="Areas\Identity\Views\Self\EditorTemplates\AffiliationForm.cshtml" />
     <Content Include="Areas\My\Views\Shared\EditorTemplates\UpdateEmailValueForm.cshtml" />
-    <Content Include="Areas\Identity\Views\Self\EditorTemplates\PersonForm.cshtml" />
-    <Content Include="Areas\Identity\Views\Self\me.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignInForm.cshtml" />
     <Content Include="Areas\Identity\Views\SignUp\confirm-denied.cshtml" />
     <Content Include="Areas\Identity\Views\SignUp\confirm-email.cshtml" />
