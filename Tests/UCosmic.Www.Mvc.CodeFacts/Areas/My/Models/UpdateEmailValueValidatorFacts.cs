@@ -12,7 +12,7 @@ using UCosmic.Domain.People;
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class UpdateMyEmailValueValidatorFacts
+    public class UpdateEmailValueValidatorFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -119,7 +119,33 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             }
 
             [TestMethod]
-            public void IsInvalidWhen_Number_DoesNotMatchEmail_ForPersonUserName()
+            public void IsInvalidWhen_Number_DoesNotMatchEmail_ForNullPersonUserName()
+            {
+                const string emailValue = "user1@domain.tld";
+                var form = new UpdateEmailValueForm
+                {
+                    PersonUserName = null,
+                    Number = 13,
+                    Value = emailValue.ToUpper(),
+                };
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(form))))
+                    .Returns(null as EmailAddress);
+                var validator = new UpdateEmailValueValidator(queryProcessor.Object);
+                var results = validator.Validate(form);
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Value");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ValidateEmailAddress.FailedBecauseNumberAndPrincipalMatchedNoEntity,
+                        form.Number));
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_Number_DoesNotMatchEmail_ForNonNullPersonUserName()
             {
                 const string personUserName = "user@domain.tld";
                 const string emailValue = "user1@domain.tld";
@@ -181,8 +207,15 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
 
         private static Expression<Func<GetMyEmailAddressByNumberQuery, bool>> EmailQueryBasedOn(UpdateEmailValueForm form)
         {
-            Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailQueryBasedOn =
-                q => q.Principal.Identity.Name == form.PersonUserName && q.Number == form.Number;
+            Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailQueryBasedOn = q =>
+                q.Principal.Identity.Name == form.PersonUserName &&
+                q.Number == form.Number
+            ;
+            if (form.PersonUserName == null)
+                emailQueryBasedOn = q =>
+                    q.Principal.Identity.Name == string.Empty &&
+                    q.Number == form.Number
+                ;
             return emailQueryBasedOn;
         }
     }

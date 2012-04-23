@@ -22,21 +22,23 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                         {
                             if (!s.Establishment.IsInstitution)
                                 return EmployeeOrStudentAffiliate.EmployeeOnly;
-                            if (s.IsAcknowledged)
-                            {
-                                if (s.IsClaimingEmployee && !s.IsClaimingStudent)
-                                    return EmployeeOrStudentAffiliate.EmployeeOnly;
 
-                                if (s.IsClaimingEmployee && s.IsClaimingStudent)
+                            if (!s.IsAcknowledged)
+                                return null;
+
+                            if (s.IsClaimingEmployee)
+                                if (s.IsClaimingStudent)
                                     return EmployeeOrStudentAffiliate.Both;
 
-                                if (!s.IsClaimingEmployee && !s.IsClaimingStudent)
-                                    return EmployeeOrStudentAffiliate.Neither;
+                            if (s.IsClaimingEmployee)
+                                if (!s.IsClaimingStudent)
+                                    return EmployeeOrStudentAffiliate.EmployeeOnly;
 
-                                if (!s.IsClaimingEmployee && s.IsClaimingStudent)
+                            if (!s.IsClaimingEmployee)
+                                if (s.IsClaimingStudent)
                                     return EmployeeOrStudentAffiliate.StudentOnly;
-                            }
-                            return null;
+
+                            return EmployeeOrStudentAffiliate.Neither;
                         }))
                     .ForMember(d => d.ReturnUrl, o => o.Ignore())
                 ;

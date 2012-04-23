@@ -20,45 +20,8 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
-    public partial class SelfController {
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected SelfController(Dummy d) { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToAction(ActionResult result) {
-            var callInfo = result.GetT4MVCResult();
-            return RedirectToRoute(callInfo.RouteValueDictionary);
-        }
-
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult AutoCompletePersonName() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.AutoCompletePersonName);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public SelfController Actions { get { return MVC.Identity.Self; } }
-        [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "Identity";
-        [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Self";
-        [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Self";
-
-        static readonly ActionNamesClass s_actions = new ActionNamesClass();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionNamesClass ActionNames { get { return s_actions; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNamesClass {
-            public readonly string AutoCompletePersonName = "autocomplete-name";
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNameConstants {
-            public const string AutoCompletePersonName = "autocomplete-name";
-        }
-
+namespace T4MVC.Identity {
+    public class SelfController {
 
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -82,19 +45,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         }
     }
 
-    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_SelfController: UCosmic.Www.Mvc.Areas.Identity.Controllers.SelfController {
-        public T4MVC_SelfController() : base(Dummy.Instance) { }
-
-        public override System.Web.Mvc.ActionResult AutoCompletePersonName(string term, UCosmic.Www.Mvc.Areas.Identity.Controllers.SelfController.PersonNameProperty termTarget, UCosmic.Www.Mvc.Areas.Identity.Controllers.SelfController.PersonNameProperty? orderTarget) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AutoCompletePersonName);
-            callInfo.RouteValueDictionary.Add("term", term);
-            callInfo.RouteValueDictionary.Add("termTarget", termTarget);
-            callInfo.RouteValueDictionary.Add("orderTarget", orderTarget);
-            return callInfo;
-        }
-
-    }
 }
 
 #endregion T4MVC

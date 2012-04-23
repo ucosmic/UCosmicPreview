@@ -59,6 +59,88 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             }
 
             [TestMethod]
+            public void ExecutesNoQuery_WhenEmailArgIsNull()
+            {
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                controller.ByEmail(null);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PersonQueryBasedOn(null))),
+                        Times.Never());
+            }
+
+            [TestMethod]
+            public void ExecutesNoQuery_WhenEmailArgIsEmptyString()
+            {
+                var email = string.Empty;
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                controller.ByEmail(email);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PersonQueryBasedOn(email))),
+                        Times.Never());
+            }
+
+            [TestMethod]
+            public void ExecutesNoQuery_WhenEmailArgIsWhiteSpace()
+            {
+                const string email = " \t";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                controller.ByEmail(email);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PersonQueryBasedOn(email))),
+                        Times.Never());
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithNullData_WhenEmailArgIsNull()
+            {
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                var result = controller.ByEmail(null);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithNullData_WhenEmailArgIsEmptyString()
+            {
+                var email = string.Empty;
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                var result = controller.ByEmail(email);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithNullData_WhenEmailArgIsWhiteSpace()
+            {
+                const string email = "\t ";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                var result = controller.ByEmail(email);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldBeNull();
+            }
+
+            [TestMethod]
             public void ReturnsJson_WithNullData_WhenPersonIsNotFound()
             {
                 const string email = "test";
@@ -217,6 +299,507 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<GetPersonByGuidQuery, bool>> personQueryBasedOn = q =>
                     q.Guid == guid
+                ;
+                return personQueryBasedOn;
+            }
+        }
+
+        [TestClass]
+        public class TheWithEmailMethod
+        {
+            [TestMethod]
+            public void IsDecoratedWith_HttpPost()
+            {
+                Expression<Func<PersonInfoController, ActionResult>> method = m => m.WithEmail(null, StringMatchStrategy.Equals);
+
+                var attributes = method.GetAttributes<PersonInfoController, ActionResult, HttpPostAttribute>();
+                attributes.ShouldNotBeNull();
+                attributes.Length.ShouldEqual(1);
+                attributes[0].ShouldNotBeNull();
+            }
+
+            [TestMethod]
+            public void ExecutesQuery_ToGetPeopleWithEmail()
+            {
+                const string term = "test";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(
+                    It.Is(PeopleWithEmailQueryBasedOn(term))))
+                    .Returns(new Person[] {});
+
+                controller.WithEmail(term);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PeopleWithEmailQueryBasedOn(term))),
+                        Times.Once());
+            }
+
+            [TestMethod]
+            public void ExecutesNoQuery_WhenTermArgIsNull()
+            {
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                controller.WithEmail(null);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PeopleWithEmailQueryBasedOn(null))),
+                        Times.Never());
+            }
+
+            [TestMethod]
+            public void ExecutesNoQuery_WhenTermArgIsEmptyString()
+            {
+                var term = string.Empty;
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                controller.WithEmail(term);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PeopleWithEmailQueryBasedOn(term))),
+                        Times.Never());
+            }
+
+            [TestMethod]
+            public void ExecutesNoQuery_WhenTermArgIsWhiteSpace()
+            {
+                const string term = " \t";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                controller.WithEmail(term);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PeopleWithEmailQueryBasedOn(term))),
+                        Times.Never());
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithNullData_WhenTermArgIsNull()
+            {
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                var result = controller.WithEmail(null);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithNullData_WhenTermArgIsEmptyString()
+            {
+                var term = string.Empty;
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                var result = controller.WithEmail(term);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithNullData_WhenTermArgIsWhiteSpace()
+            {
+                const string term = "\t ";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                var result = controller.WithEmail(term);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithEmptyData_WhenPeopleAreNotFound()
+            {
+                const string term = "test";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(
+                    It.Is(PeopleWithEmailQueryBasedOn(term))))
+                    .Returns(new Person[] {});
+
+                var result = controller.WithEmail(term);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldNotBeNull();
+                result.Data.ShouldBeType<PersonInfoModel[]>();
+                var models = (PersonInfoModel[]) result.Data;
+                models.Length.ShouldEqual(0);
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithPersonInfoModelArrayData_WhenPeopleAreFound()
+            {
+                const string term = "test";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(
+                    It.Is(PeopleWithEmailQueryBasedOn(term))))
+                    .Returns(new[]
+                    {
+                        new Person(),
+                        new Person(),
+                        new Person(),
+                    });
+
+                var result = controller.WithEmail(term);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldNotBeNull();
+                result.Data.ShouldBeType<PersonInfoModel[]>();
+                var models = (PersonInfoModel[])result.Data;
+                models.Length.ShouldEqual(3);
+            }
+
+            private static Expression<Func<FindPeopleWithEmailQuery, bool>> PeopleWithEmailQueryBasedOn(string term)
+            {
+                Expression<Func<FindPeopleWithEmailQuery, bool>> personQueryBasedOn = q =>
+                    q.Term == term
+                ;
+                return personQueryBasedOn;
+            }
+        }
+
+        [TestClass]
+        public class TheWithFirstNameMethod
+        {
+            [TestMethod]
+            public void IsDecoratedWith_HttpPost()
+            {
+                Expression<Func<PersonInfoController, ActionResult>> method = m => m.WithFirstName(null, StringMatchStrategy.Equals);
+
+                var attributes = method.GetAttributes<PersonInfoController, ActionResult, HttpPostAttribute>();
+                attributes.ShouldNotBeNull();
+                attributes.Length.ShouldEqual(1);
+                attributes[0].ShouldNotBeNull();
+            }
+
+            [TestMethod]
+            public void ExecutesQuery_ToGetPeopleWithFirstName()
+            {
+                const string term = "test";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(
+                    It.Is(PeopleWithFirstNameQueryBasedOn(term))))
+                    .Returns(new Person[] { });
+
+                controller.WithFirstName(term);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PeopleWithFirstNameQueryBasedOn(term))),
+                        Times.Once());
+            }
+
+            [TestMethod]
+            public void ExecutesNoQuery_WhenTermArgIsNull()
+            {
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                controller.WithFirstName(null);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PeopleWithFirstNameQueryBasedOn(null))),
+                        Times.Never());
+            }
+
+            [TestMethod]
+            public void ExecutesNoQuery_WhenTermArgIsEmptyString()
+            {
+                var term = string.Empty;
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                controller.WithFirstName(term);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PeopleWithFirstNameQueryBasedOn(term))),
+                        Times.Never());
+            }
+
+            [TestMethod]
+            public void ExecutesNoQuery_WhenTermArgIsWhiteSpace()
+            {
+                const string term = " \t";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                controller.WithFirstName(term);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PeopleWithFirstNameQueryBasedOn(term))),
+                        Times.Never());
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithNullData_WhenTermArgIsNull()
+            {
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                var result = controller.WithFirstName(null);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithNullData_WhenTermArgIsEmptyString()
+            {
+                var term = string.Empty;
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                var result = controller.WithFirstName(term);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithNullData_WhenTermArgIsWhiteSpace()
+            {
+                const string term = "\t ";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                var result = controller.WithFirstName(term);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithEmptyData_WhenPeopleAreNotFound()
+            {
+                const string term = "test";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(
+                    It.Is(PeopleWithFirstNameQueryBasedOn(term))))
+                    .Returns(new Person[] { });
+
+                var result = controller.WithFirstName(term);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldNotBeNull();
+                result.Data.ShouldBeType<PersonInfoModel[]>();
+                var models = (PersonInfoModel[])result.Data;
+                models.Length.ShouldEqual(0);
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithPersonInfoModelArrayData_WhenPeopleAreFound()
+            {
+                const string term = "test";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(
+                    It.Is(PeopleWithFirstNameQueryBasedOn(term))))
+                    .Returns(new[]
+                    {
+                        new Person(),
+                        new Person(),
+                        new Person(),
+                    });
+
+                var result = controller.WithFirstName(term);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldNotBeNull();
+                result.Data.ShouldBeType<PersonInfoModel[]>();
+                var models = (PersonInfoModel[])result.Data;
+                models.Length.ShouldEqual(3);
+            }
+
+            private static Expression<Func<FindPeopleWithFirstNameQuery, bool>> PeopleWithFirstNameQueryBasedOn(string term)
+            {
+                Expression<Func<FindPeopleWithFirstNameQuery, bool>> personQueryBasedOn = q =>
+                    q.Term == term
+                ;
+                return personQueryBasedOn;
+            }
+        }
+
+        [TestClass]
+        public class TheWithLastNameMethod
+        {
+            [TestMethod]
+            public void IsDecoratedWith_HttpPost()
+            {
+                Expression<Func<PersonInfoController, ActionResult>> method = m => m.WithLastName(null, StringMatchStrategy.Equals);
+
+                var attributes = method.GetAttributes<PersonInfoController, ActionResult, HttpPostAttribute>();
+                attributes.ShouldNotBeNull();
+                attributes.Length.ShouldEqual(1);
+                attributes[0].ShouldNotBeNull();
+            }
+
+            [TestMethod]
+            public void ExecutesQuery_ToGetPeopleWithLastName()
+            {
+                const string term = "test";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(
+                    It.Is(PeopleWithLastNameQueryBasedOn(term))))
+                    .Returns(new Person[] { });
+
+                controller.WithLastName(term);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PeopleWithLastNameQueryBasedOn(term))),
+                        Times.Once());
+            }
+
+            [TestMethod]
+            public void ExecutesNoQuery_WhenTermArgIsNull()
+            {
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                controller.WithLastName(null);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PeopleWithLastNameQueryBasedOn(null))),
+                        Times.Never());
+            }
+
+            [TestMethod]
+            public void ExecutesNoQuery_WhenTermArgIsEmptyString()
+            {
+                var term = string.Empty;
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                controller.WithLastName(term);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PeopleWithLastNameQueryBasedOn(term))),
+                        Times.Never());
+            }
+
+            [TestMethod]
+            public void ExecutesNoQuery_WhenTermArgIsWhiteSpace()
+            {
+                const string term = " \t";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                controller.WithLastName(term);
+
+                scenarioOptions.MockQueryProcessor.Verify(m => m.Execute(
+                    It.Is(PeopleWithLastNameQueryBasedOn(term))),
+                        Times.Never());
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithNullData_WhenTermArgIsNull()
+            {
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                var result = controller.WithLastName(null);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithNullData_WhenTermArgIsEmptyString()
+            {
+                var term = string.Empty;
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                var result = controller.WithLastName(term);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithNullData_WhenTermArgIsWhiteSpace()
+            {
+                const string term = "\t ";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+
+                var result = controller.WithLastName(term);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithEmptyData_WhenPeopleAreNotFound()
+            {
+                const string term = "test";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(
+                    It.Is(PeopleWithLastNameQueryBasedOn(term))))
+                    .Returns(new Person[] { });
+
+                var result = controller.WithLastName(term);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldNotBeNull();
+                result.Data.ShouldBeType<PersonInfoModel[]>();
+                var models = (PersonInfoModel[])result.Data;
+                models.Length.ShouldEqual(0);
+            }
+
+            [TestMethod]
+            public void ReturnsJson_WithPersonInfoModelArrayData_WhenPeopleAreFound()
+            {
+                const string term = "test";
+                var scenarioOptions = new ScenarioOptions();
+                var controller = CreateController(scenarioOptions);
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(
+                    It.Is(PeopleWithLastNameQueryBasedOn(term))))
+                    .Returns(new[]
+                    {
+                        new Person(),
+                        new Person(),
+                        new Person(),
+                    });
+
+                var result = controller.WithLastName(term);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.Data.ShouldNotBeNull();
+                result.Data.ShouldBeType<PersonInfoModel[]>();
+                var models = (PersonInfoModel[])result.Data;
+                models.Length.ShouldEqual(3);
+            }
+
+            private static Expression<Func<FindPeopleWithLastNameQuery, bool>> PeopleWithLastNameQueryBasedOn(string term)
+            {
+                Expression<Func<FindPeopleWithLastNameQuery, bool>> personQueryBasedOn = q =>
+                    q.Term == term
                 ;
                 return personQueryBasedOn;
             }

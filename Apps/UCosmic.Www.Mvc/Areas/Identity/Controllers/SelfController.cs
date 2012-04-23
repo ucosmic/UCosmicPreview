@@ -1,288 +1,110 @@
-﻿using System;
-using System.Linq;
-using System.Web.Mvc;
-using UCosmic.Domain;
-using UCosmic.Domain.People;
-using UCosmic.Www.Mvc.Controllers;
+﻿//using System;
+//using System.Linq;
+//using System.Web.Mvc;
+//using UCosmic.Domain;
+//using UCosmic.Domain.People;
+//using UCosmic.Www.Mvc.Controllers;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
-{
-    public partial class SelfController : BaseController
-    {
-        #region Construction & DI
+//namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
+//{
+//    public partial class SelfController : BaseController
+//    {
+//        #region Construction & DI
 
-        private readonly PersonFinder _people;
-        //private readonly ICommandObjects _objectCommander;
+//        private readonly PersonFinder _people;
+//        //private readonly ICommandObjects _objectCommander;
 
-        public SelfController(IQueryEntities queryEntities)
-        {
-            _people = new PersonFinder(queryEntities);
-            //_objectCommander = objectCommander;
-        }
+//        public SelfController(IQueryEntities queryEntities)
+//        {
+//            _people = new PersonFinder(queryEntities);
+//            //_objectCommander = objectCommander;
+//        }
 
-        #endregion
-        #region Personal Homepage
-        
-        //[HttpGet]
-        //[Authorize]
-        //[ActionName("me")]
-        //[OpenTopTab(TopTabName.Home)]
-        //public virtual ActionResult Me()
-        //{
-        //    var person = _people.FindOne(PersonBy.Principal(User));
-        //    if (person != null)
-        //    {
-        //        var model = Mapper.Map<PersonForm>(person);
-        //        model.Emails = model.Emails.OrderByDescending(e => e.IsDefault).ThenByDescending(e => e.IsConfirmed).ThenBy(e => e.Value).ToArray(); // TODO: put this in the model mapper
-        //        //person.Emails = person.Emails.OrderBy(e => e.IsDefault).ThenBy(e => e.IsConfirmed).ThenBy(e => e.Value).ToList();
-        //        return View(model);
-        //    }
-        //    return HttpNotFound();
-        //}
+//        #endregion
+//        #region AutoComplete Person Name
 
-        //[HttpPost]
-        //[Authorize]
-        //[ActionName("me")]
-        //[OpenTopTab(TopTabName.Home)]
-        //public virtual ActionResult Me(PersonForm model)
-        //{
-        //    var person = _people.FindOne(PersonBy.Principal(User).ForInsertOrUpdate());
-        //    if (person != null && person.RevisionId == model.RevisionId)
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            Mapper.Map(model, person);
-        //            if (person.IsDisplayNameDerived && !person.DisplayName.Equals(person.DeriveDisplayName()))
-        //            {
-        //                ErrorSignal.FromCurrentContext().Raise(new InvalidOperationException(string.Format(
-        //                    "Client Person DisplayName '{0}' was not consistent with server Person DerviveDisplayName() value '{1}'.",
-        //                    person.DisplayName, person.DeriveDisplayName())));
-        //            }
-        //            _objectCommander.Update(person, true);
-        //            SetFeedbackMessage("Your personal info was saved successfully.");
-        //            return RedirectToAction(MVC.Identity.Self.Me());
-        //        }
-        //        model.Emails = Mapper.Map<EmailInfo[]>( // TODO: put this in the model mapper
-        //            person.Emails.OrderByDescending(e => e.IsDefault).ThenByDescending(e => e.IsConfirmed).ThenByDescending(e => e.Value));
-        //        model.Affiliations = Mapper.Map<IList<PersonForm.AffiliationInfo>>(person.Affiliations);
-        //        return View(model);
-        //    }
-        //    return HttpNotFound();
-        //}
+//        //public enum PersonNameProperty
+//        //{
+//        //    FirstName,
+//        //    LastName,
+//        //    DefaultEmail,
+//        //}
 
-        #endregion
-        #region Edit Affiliation
+//        //[ActionName("autocomplete-name")]
+//        //[Authorize]
+//        //public virtual ActionResult AutoCompletePersonName(string term, PersonNameProperty termTarget, PersonNameProperty? orderTarget = null)
+//        //{
+//        //    var criteria = With<Person>.DefaultCriteria();
+//        //    switch (termTarget)
+//        //    {
+//        //        case PersonNameProperty.FirstName:
+//        //            //data = _people.Current.Where(p => p.FirstName.ToLower().StartsWith(term.ToLower()));
+//        //            //if (!orderTarget.HasValue)
+//        //            //    data = data.OrderBy(p => p.FirstName);
+//        //            criteria = PeopleWith.AutoCompleteFirstNamePrefix(term);
+//        //            if (!orderTarget.HasValue)
+//        //                criteria = criteria.OrderBy(p => p.FirstName);
+//        //            break;
 
-        //[HttpGet]
-        //[Authorize]
-        ////[OpenTopTab(TopTabName.User)]
-        //[OpenTopTab(TopTabName.Home)]
-        //[ActionName("edit-affiliation")]
-        //[ReturnUrlReferrer(SelfRouteMapper.Me.OutboundRoute)]
-        //public virtual ActionResult EditAffiliation(Guid? entityId)
-        //{
-        //    if (entityId.HasValue && entityId.Value != Guid.Empty)
-        //    {
-        //        // get the affiliation by id
-        //        var person = _people.FindOne(PersonBy.Principal(User));
-        //        if (person != null)
-        //        {
-        //            // ensure this member owns the affiliation
-        //            var affiliation = person.Affiliations.Current(entityId.Value);
-        //            if (affiliation != null)
-        //            {
-        //                var model = Mapper.Map<AffiliationForm>(affiliation);
-        //                model.DeriveEmployeeOrStudentAnswer();
-        //                return View(model);
-        //            }
-        //        }
-        //    }
-        //    return HttpNotFound();
-        //}
+//        //        case PersonNameProperty.LastName:
+//        //            //data = _people.Current.Where(p => p.LastName.ToLower().StartsWith(term.ToLower()));
+//        //            //if (!orderTarget.HasValue)
+//        //            //    data = data.OrderBy(p => p.LastName);
+//        //            criteria = PeopleWith.AutoCompleteLastNamePrefix(term);
+//        //            if (!orderTarget.HasValue)
+//        //                criteria = criteria.OrderBy(p => p.LastName);
+//        //            break;
 
-        //[HttpPost]
-        //[Authorize]
-        ////[OpenTopTab(TopTabName.User)]
-        //[OpenTopTab(TopTabName.Home)]
-        //[ActionName("edit-affiliation")]
-        //public virtual ActionResult EditAffiliation(AffiliationForm model)
-        //{
-        //    if (model != null)
-        //    {
-        //        // get the affiliation by id
-        //        var person = _people.FindOne(PersonBy.Principal(User).ForInsertOrUpdate());
-        //        if (person != null)
-        //        {
-        //            // ensure this member owns the affiliation
-        //            var affiliation = person.Affiliations.Current(model.EntityId);
-        //            if (affiliation != null)
-        //            {
-        //                if (ModelState.IsValid)
-        //                {
-        //                    model.IsAcknowledged = true;
-        //                    model.ApplyEmployeeOrStudentAnswer();
-        //                    Mapper.Map(model, affiliation);
-        //                    _objectCommander.Update(affiliation, true);
-        //                    SetFeedbackMessage("Your affiliation info was saved successfully.");
-        //                    return RedirectToAction(MVC.Identity.Self.Me());
-        //                }
-        //                model.Establishment = Mapper.Map<AffiliationForm.EstablishmentInfo>(affiliation.Establishment);
-        //                return View(model);
-        //            }
-        //        }
-        //    }
-        //    return HttpNotFound();
-        //}
+//        //        case PersonNameProperty.DefaultEmail:
+//        //            //data = _people.Current.Where(p => p.Emails.Any(e => e.IsCurrent && !e.IsArchived && !e.IsDeleted
+//        //            //    && e.Value.ToLower().Contains(term.ToLower())));
+//        //            //if (!orderTarget.HasValue)
+//        //            //    data = data.OrderBy(p => p.Emails.FirstOrDefault(e => e.IsCurrent && !e.IsArchived && !e.IsDeleted
+//        //            //        && e.IsDefault).Value);
+//        //            criteria = PeopleWith.AutoCompleteEmailTerm(term);
+//        //            if (!orderTarget.HasValue)
+//        //                criteria = criteria.OrderBy(p => p.Emails.FirstOrDefault(
+//        //                    e => e.IsDefault).Value);
+//        //            break;
+//        //    }
 
-        #endregion
-        #region Json
+//        //    if (criteria != null)
+//        //    {
+//        //        if (orderTarget.HasValue)
+//        //        {
+//        //            switch (orderTarget)
+//        //            {
+//        //                case PersonNameProperty.FirstName:
+//        //                    criteria = criteria.OrderBy(p => p.FirstName);
+//        //                    break;
 
-        #region AutoComplete Person Name
+//        //                case PersonNameProperty.LastName:
+//        //                    criteria = criteria.OrderBy(p => p.LastName);
+//        //                    break;
 
-        public enum PersonNameProperty
-        {
-            FirstName,
-            LastName,
-            DefaultEmail,
-        }
+//        //                case PersonNameProperty.DefaultEmail:
+//        //                    criteria = criteria.OrderBy(p => p.Emails.FirstOrDefault(
+//        //                        e => e.IsDefault).Value);
+//        //                    break;
+//        //            }
+//        //        }
 
-        [ActionName("autocomplete-name")]
-        [Authorize]
-        public virtual ActionResult AutoCompletePersonName(string term, PersonNameProperty termTarget, PersonNameProperty? orderTarget = null)
-        {
-            var criteria = With<Person>.DefaultCriteria();
-            switch (termTarget)
-            {
-                case PersonNameProperty.FirstName:
-                    //data = _people.Current.Where(p => p.FirstName.ToLower().StartsWith(term.ToLower()));
-                    //if (!orderTarget.HasValue)
-                    //    data = data.OrderBy(p => p.FirstName);
-                    criteria = PeopleWith.AutoCompleteFirstNamePrefix(term);
-                    if (!orderTarget.HasValue)
-                        criteria = criteria.OrderBy(p => p.FirstName);
-                    break;
+//        //        var options = _people.FindMany(criteria).Select(p => new
+//        //        {
+//        //            p.EntityId,
+//        //            p.FirstName,
+//        //            p.LastName,
+//        //            // ReSharper disable PossibleNullReferenceException
+//        //            DefaultEmail = p.Emails.SingleOrDefault(e => e.IsDefault).Value,
+//        //            // ReSharper restore PossibleNullReferenceException
+//        //        });
 
-                case PersonNameProperty.LastName:
-                    //data = _people.Current.Where(p => p.LastName.ToLower().StartsWith(term.ToLower()));
-                    //if (!orderTarget.HasValue)
-                    //    data = data.OrderBy(p => p.LastName);
-                    criteria = PeopleWith.AutoCompleteLastNamePrefix(term);
-                    if (!orderTarget.HasValue)
-                        criteria = criteria.OrderBy(p => p.LastName);
-                    break;
+//        //        return Json(options, JsonRequestBehavior.AllowGet);
+//        //    }
 
-                case PersonNameProperty.DefaultEmail:
-                    //data = _people.Current.Where(p => p.Emails.Any(e => e.IsCurrent && !e.IsArchived && !e.IsDeleted
-                    //    && e.Value.ToLower().Contains(term.ToLower())));
-                    //if (!orderTarget.HasValue)
-                    //    data = data.OrderBy(p => p.Emails.FirstOrDefault(e => e.IsCurrent && !e.IsArchived && !e.IsDeleted
-                    //        && e.IsDefault).Value);
-                    criteria = PeopleWith.AutoCompleteEmailTerm(term);
-                    if (!orderTarget.HasValue)
-                        criteria = criteria.OrderBy(p => p.Emails.FirstOrDefault(
-                            e => e.IsDefault).Value);
-                    break;
-            }
+//        //    return HttpNotFound();
+//        //}
 
-            if (criteria != null)
-            {
-                if (orderTarget.HasValue)
-                {
-                    switch (orderTarget)
-                    {
-                        case PersonNameProperty.FirstName:
-                            criteria = criteria.OrderBy(p => p.FirstName);
-                            break;
-
-                        case PersonNameProperty.LastName:
-                            criteria = criteria.OrderBy(p => p.LastName);
-                            break;
-
-                        case PersonNameProperty.DefaultEmail:
-                            criteria = criteria.OrderBy(p => p.Emails.FirstOrDefault(
-                                e => e.IsDefault).Value);
-                            break;
-                    }
-                }
-
-                var options = _people.FindMany(criteria).Select(p => new
-                {
-                    p.EntityId,
-                    p.FirstName,
-                    p.LastName,
-                    // ReSharper disable PossibleNullReferenceException
-                    DefaultEmail = p.Emails.SingleOrDefault(e => e.IsDefault).Value,
-                    // ReSharper restore PossibleNullReferenceException
-                });
-
-                return Json(options, JsonRequestBehavior.AllowGet);
-            }
-
-            return HttpNotFound();
-        }
-
-        //[HttpPost]
-        //[Authorize]
-        //[ActionName("person-info-by-id")]
-        //public virtual ActionResult PersonInfoById(Guid personId)
-        //{
-        //    var data = _people.FindOne(By<Person>.EntityId(personId));
-        //    if (data != null)
-        //    {
-        //        var defaultEmail = data.Emails.SingleOrDefault(e => e.IsDefault);
-        //        var person = new
-        //        {
-        //            data.EntityId,
-        //            data.Salutation,
-        //            data.FirstName,
-        //            data.MiddleName,
-        //            data.LastName,
-        //            data.Suffix,
-        //            DefaultEmail = (defaultEmail != null) ? defaultEmail.Value : null,
-        //        };
-        //        return Json(person);
-        //    }
-        //    return Json(null);
-        //}
-
-        //[ActionName("person-info-by-email")]
-        //[Authorize]
-        //public virtual ActionResult PersonInfoByEmail(string email)
-        //{
-        //    var data = _people.FindOne(PersonBy.EmailAddress(email));
-        //    if (data != null)
-        //    {
-        //        var defaultEmail = data.Emails.SingleOrDefault(e => e.IsDefault);
-        //        var person = new
-        //        {
-        //            data.EntityId,
-        //            data.Salutation,
-        //            data.FirstName,
-        //            data.MiddleName,
-        //            data.LastName,
-        //            data.Suffix,
-        //            DefaultEmail = (defaultEmail != null) ? defaultEmail.Value : null,
-        //        };
-        //        return Json(person, JsonRequestBehavior.AllowGet);
-        //    }
-        //    return Json(null, JsonRequestBehavior.AllowGet);
-        //}
-
-        #endregion
-        #region Derive Person DisplayName
-
-        //[HttpPost]
-        //[ActionName("derive-display-name")]
-        //public virtual ActionResult DeriveDisplayName(PersonForm model)
-        //{
-        //    var person = Mapper.Map<Person>(model);
-        //    //model.DisplayName = person.DeriveDisplayName();
-        //    var displayName = person.DeriveDisplayName();
-        //    return Json(displayName);
-        //}
-
-        #endregion
-
-        #endregion
-    }
-}
+//        #endregion
+//    }
+//}

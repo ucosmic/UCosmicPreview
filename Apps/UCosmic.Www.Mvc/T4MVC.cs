@@ -66,10 +66,10 @@ namespace T4MVC {
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.PasswordController Password = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_PasswordController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.RolesController Roles = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_RolesController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.Saml2MetadataController Saml2Metadata = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_Saml2MetadataController();
-        public UCosmic.Www.Mvc.Areas.Identity.Controllers.SelfController Self = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SelfController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignInController SignIn = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignInController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignOnController SignOn = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignOnController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignUpController SignUp = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignUpController();
+        public T4MVC.Identity.SelfController Self = new T4MVC.Identity.SelfController();
         public T4MVC.Identity.SharedController Shared = new T4MVC.Identity.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

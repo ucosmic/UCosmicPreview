@@ -33,7 +33,7 @@ namespace UCosmic.Domain.People
                     return person => person.Emails.Any(email => email.Value.Equals(term, StringComparison.OrdinalIgnoreCase));
 
                 case StringMatchStrategy.StartsWith:
-                    return person => person.Emails.Any(email => email.Value.StartsWith(term, StringComparison.OrdinalIgnoreCase));
+                    return person => person.Emails.Any(email => email.Value.ToLower().StartsWith(term.ToLower()));
 
                 case StringMatchStrategy.Contains:
                     return person => person.Emails.Any(email => email.Value.Contains(term));
@@ -90,13 +90,13 @@ namespace UCosmic.Domain.People
             switch (matchStrategy)
             {
                 case StringMatchStrategy.Equals:
-                    return person => person.FirstName.Equals(term, StringComparison.OrdinalIgnoreCase);
+                    return person => person.FirstName != null && person.FirstName.Equals(term, StringComparison.OrdinalIgnoreCase);
 
                 case StringMatchStrategy.StartsWith:
-                    return person => person.FirstName.StartsWith(term, StringComparison.OrdinalIgnoreCase);
+                    return person => person.FirstName != null && person.FirstName.ToLower().StartsWith(term.ToLower());
 
                 case StringMatchStrategy.Contains:
-                    return person => person.FirstName.Contains(term);
+                    return person => person.FirstName != null && person.FirstName.Contains(term);
             }
             throw new NotSupportedException(string.Format("StringMatchStrategy '{0}' is not supported.", matchStrategy));
         }
@@ -111,13 +111,13 @@ namespace UCosmic.Domain.People
             switch (matchStrategy)
             {
                 case StringMatchStrategy.Equals:
-                    return person => person.LastName.Equals(term, StringComparison.OrdinalIgnoreCase);
+                    return person => person.LastName != null && person.LastName.Equals(term, StringComparison.OrdinalIgnoreCase);
 
                 case StringMatchStrategy.StartsWith:
-                    return person => person.LastName.StartsWith(term, StringComparison.OrdinalIgnoreCase);
+                    return person => person.LastName != null && person.LastName.ToLower().StartsWith(term.ToLower());
 
                 case StringMatchStrategy.Contains:
-                    return person => person.LastName.Contains(term);
+                    return person => person.LastName != null && person.LastName.Contains(term);
             }
             throw new NotSupportedException(string.Format("StringMatchStrategy '{0}' is not supported.", matchStrategy));
         }
