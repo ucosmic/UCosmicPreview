@@ -25,7 +25,7 @@ namespace UCosmic
             _config = config;
         }
 
-        public void Send()
+        internal void Send()
         {
             // check whether the message has been sent
             var sent = _emailMessage.SentOnUtc.HasValue;

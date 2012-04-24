@@ -1,6 +1,4 @@
-﻿using UCosmic.Domain;
-
-namespace UCosmic.Www.Mvc.Areas.People.Controllers
+﻿namespace UCosmic.Www.Mvc.Areas.People.Controllers
 {
     public class PersonInfoServices
     {

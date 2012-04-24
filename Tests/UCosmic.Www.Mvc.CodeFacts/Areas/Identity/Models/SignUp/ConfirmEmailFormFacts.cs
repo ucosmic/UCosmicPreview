@@ -130,33 +130,34 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             public void IsInvalid_WhenConfirmationIsNull()
             {
                 // arrange
+                const string secretCode = "its a secret";
+                var tokenConfirmation = new Domain.People.EmailConfirmation
+                {
+                    SecretCode = secretCode,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ConfirmedOnUtc = null,
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
-                    SecretCode = "its a secret",
+                    Token = tokenConfirmation.Token,
+                    SecretCode = secretCode,
                 };
                 #region Person Aggregate
 
                 var person = new Person
                 {
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        //IsCurrent = false,
-                        Confirmations = new List<Domain.People.EmailConfirmation>
+                        new EmailAddress
                         {
-                            new Domain.People.EmailConfirmation
+                            //IsCurrent = false,
+                            Confirmations = new List<Domain.People.EmailConfirmation>
                             {
-                                Token = model.Token,
-                                SecretCode = model.SecretCode,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ConfirmedOnUtc = null,
+                                tokenConfirmation
                             }
                         }
                     }
-                }
                 };
 
                 #endregion
@@ -187,10 +188,18 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             public void IsInvalid_WhenTokenDoesNotMatch()
             {
                 // arrange
+                const string secretCode = "its a secret";
+                var tokenConfirmation = new Domain.People.EmailConfirmation
+                {
+                    SecretCode = secretCode,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ConfirmedOnUtc = null,
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
-                    SecretCode = "its a secret",
+                    Token = tokenConfirmation.Token,
+                    SecretCode = secretCode,
                 };
                 #region Person Aggregate
 
@@ -202,14 +211,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                     {
                         Confirmations = new List<Domain.People.EmailConfirmation>
                         {
-                            new Domain.People.EmailConfirmation
-                            {
-                                Token = Guid.NewGuid(),
-                                SecretCode = model.SecretCode,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ConfirmedOnUtc = null,
-                            }
+                            tokenConfirmation
                         }
                     }
                 }
@@ -243,10 +245,18 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             public void IsInvalid_WhenIntentDoesNotMatch()
             {
                 // arrange
+                const string secretCode = "its a secret";
+                var tokenConfirmation = new Domain.People.EmailConfirmation
+                {
+                    SecretCode = secretCode,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    Intent = "Some other intent",
+                    ConfirmedOnUtc = null,
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
-                    SecretCode = "its a secret",
+                    Token = tokenConfirmation.Token,
+                    SecretCode = secretCode,
                 };
                 #region Person Aggregate
 
@@ -258,14 +268,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                     {
                         Confirmations = new List<Domain.People.EmailConfirmation>
                         {
-                            new Domain.People.EmailConfirmation
-                            {
-                                Token = model.Token,
-                                SecretCode = model.SecretCode,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                Intent = "Some other intent",
-                                ConfirmedOnUtc = null,
-                            }
+                            tokenConfirmation
                         }
                     }
                 }
@@ -299,10 +302,18 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             public void IsInvalid_WhenSecretCodeDoesNotMatch()
             {
                 // arrange
+                const string secretCode = "its a secret";
+                var tokenConfirmation = new Domain.People.EmailConfirmation
+                {
+                    SecretCode = secretCode.ToUpper(),
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ConfirmedOnUtc = null,
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
-                    SecretCode = "its a secret",
+                    Token = tokenConfirmation.Token,
+                    SecretCode = secretCode,
                 };
                 #region Person Aggregate
 
@@ -314,14 +325,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                     {
                         Confirmations = new List<Domain.People.EmailConfirmation>
                         {
-                            new Domain.People.EmailConfirmation
-                            {
-                                Token = model.Token,
-                                SecretCode = model.SecretCode.ToUpper(),
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ConfirmedOnUtc = null,
-                            }
+                            tokenConfirmation
                         }
                     }
                 }
@@ -355,10 +359,18 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             public void IsValid_WhenSecretCodeIsMatch()
             {
                 // arrange
+                const string secretCode = "its a secret";
+                var tokenConfirmation = new Domain.People.EmailConfirmation
+                {
+                    SecretCode = secretCode,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ConfirmedOnUtc = null,
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
-                    SecretCode = "its a secret",
+                    Token = tokenConfirmation.Token,
+                    SecretCode = secretCode,
                 };
                 #region Person Aggregate
 
@@ -369,22 +381,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                         IsRegistered = false,
                     },
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Confirmations = new List<Domain.People.EmailConfirmation>
+                        new EmailAddress
                         {
-                            new Domain.People.EmailConfirmation
+                            Confirmations = new List<Domain.People.EmailConfirmation>
                             {
-                                Token = model.Token,
-                                SecretCode = model.SecretCode,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ConfirmedOnUtc = null,
+                                tokenConfirmation
                             }
                         }
                     }
-                }
                 };
 
                 #endregion
@@ -408,32 +413,33 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             public void IsValid_WhenSecretCodeIsMatch_AndConfirmationIsExpired()
             {
                 // arrange
+                const string secretCode = "its a secret";
+                var tokenConfirmation = new Domain.People.EmailConfirmation
+                {
+                    SecretCode = secretCode,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ConfirmedOnUtc = null,
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
-                    SecretCode = "its a secret",
+                    Token = tokenConfirmation.Token,
+                    SecretCode = secretCode,
                 };
                 #region Person Aggregate
 
                 var person = new Person
                 {
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Confirmations = new List<Domain.People.EmailConfirmation>
+                        new EmailAddress
                         {
-                            new Domain.People.EmailConfirmation
+                            Confirmations = new List<Domain.People.EmailConfirmation>
                             {
-                                Token = model.Token,
-                                SecretCode = model.SecretCode,
-                                ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ConfirmedOnUtc = null,
+                                tokenConfirmation
                             }
                         }
                     }
-                }
                 };
 
                 #endregion
@@ -458,10 +464,18 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             public void IsValid_WhenSecretCodeIsMatch_AndUserIsSignedUp()
             {
                 // arrange
+                const string secretCode = "its a secret";
+                var tokenConfirmation = new Domain.People.EmailConfirmation
+                {
+                    SecretCode = secretCode,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ConfirmedOnUtc = null,
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
-                    SecretCode = "its a secret",
+                    Token = tokenConfirmation.Token,
+                    SecretCode = secretCode,
                 };
                 #region Person Aggregate
 
@@ -477,14 +491,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                         {
                             Confirmations = new List<Domain.People.EmailConfirmation>
                             {
-                                new Domain.People.EmailConfirmation
-                                {
-                                    Token = model.Token,
-                                    SecretCode = model.SecretCode,
-                                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                    ConfirmedOnUtc = null,
-                                }
+                                tokenConfirmation
                             }
                         }
                     }
@@ -512,10 +519,18 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             public void IsValid_WhenSecretCodeIsMatch_AndConfirmationIsRedeemed()
             {
                 // arrange
+                const string secretCode = "its a secret";
+                var tokenConfirmation = new Domain.People.EmailConfirmation
+                {
+                    SecretCode = secretCode,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
-                    SecretCode = "its a secret",
+                    Token = tokenConfirmation.Token,
+                    SecretCode = secretCode,
                 };
                 #region Person Aggregate
 
@@ -531,14 +546,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                         {
                             Confirmations = new List<Domain.People.EmailConfirmation>
                             {
-                                new Domain.People.EmailConfirmation
-                                {
-                                    Token = model.Token,
-                                    SecretCode = model.SecretCode,
-                                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
-                                }
+                                tokenConfirmation
                             }
                         }
                     }

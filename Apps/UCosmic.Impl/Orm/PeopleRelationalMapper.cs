@@ -68,7 +68,7 @@ namespace UCosmic.Orm
                 // has many confirmations
                 HasMany(p => p.Confirmations)
                     .WithRequired(d => d.EmailAddress)
-                    .HasForeignKey(d => new { d.EmailAddressId, d.EmailAddressNumber, })
+                    .HasForeignKey(d => new { d.PersonId, d.EmailAddressNumber, })
                     .WillCascadeOnDelete(true);
 
                 Property(p => p.Value).IsRequired().HasMaxLength(256);

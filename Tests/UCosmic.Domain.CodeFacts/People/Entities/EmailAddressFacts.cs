@@ -43,27 +43,23 @@ namespace UCosmic.Domain.People
             public void ReturnsTrue_WhenEmailAddressIsAlreadyConfirmed()
             {
                 // arrange
-                var token = Guid.NewGuid();
                 const string intent = "confirmation intent";
                 const string secretCode = "its a secret";
+                var confirmation = new EmailConfirmation
+                {
+                    Intent = intent,
+                    SecretCode = secretCode,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = null,
+                };
                 var emailAddress = new EmailAddress
                 {
                     IsConfirmed = true,
-                    Confirmations = new List<EmailConfirmation>
-                        {
-                            new EmailConfirmation
-                            {
-                                Token = token,
-                                Intent = intent,
-                                SecretCode = secretCode,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                ConfirmedOnUtc = null,
-                            }
-                        },
+                    Confirmations = new[] { confirmation, },
                 };
 
                 // act
-                var result = emailAddress.Confirm(token, intent, secretCode);
+                var result = emailAddress.Confirm(confirmation.Token, intent, secretCode);
 
                 // assert
                 result.ShouldBeTrue();
@@ -73,31 +69,27 @@ namespace UCosmic.Domain.People
             public void UpdatesConfirmedOnUtc_WhenEmailAddressIsAlreadyConfirmed()
             {
                 // arrange
-                var token = Guid.NewGuid();
                 const string intent = "confirmation intent";
                 const string secretCode = "its a secret";
+                var confirmation = new EmailConfirmation
+                {
+                    Intent = intent,
+                    SecretCode = secretCode,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = null,
+                };
                 var emailAddress = new EmailAddress
                 {
                     IsConfirmed = true,
-                    Confirmations = new List<EmailConfirmation>
-                        {
-                            new EmailConfirmation
-                            {
-                                Token = token,
-                                Intent = intent,
-                                SecretCode = secretCode,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                ConfirmedOnUtc = null,
-                            }
-                        },
+                    Confirmations = new[] { confirmation, },
                 };
 
                 // act
-                emailAddress.Confirm(token, intent, secretCode);
+                emailAddress.Confirm(confirmation.Token, intent, secretCode);
 
                 // assert
-                var confirmation = emailAddress.Confirmations.Single(c => c.Token == token);
-                confirmation.ConfirmedOnUtc.HasValue.ShouldBeTrue();
+                var result = emailAddress.Confirmations.Single(c => c.Token == confirmation.Token);
+                result.ConfirmedOnUtc.HasValue.ShouldBeTrue();
             }
         }
 
@@ -114,7 +106,7 @@ namespace UCosmic.Domain.People
                 public override Person Person
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -132,7 +124,7 @@ namespace UCosmic.Domain.People
                 public override ICollection<EmailConfirmation> Confirmations
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

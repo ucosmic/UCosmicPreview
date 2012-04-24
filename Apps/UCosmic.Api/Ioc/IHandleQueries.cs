@@ -1,4 +1,4 @@
-﻿namespace UCosmic.Domain
+﻿namespace UCosmic
 {
     public interface IHandleQueries<in TQuery, out TResult> where TQuery : IDefineQuery<TResult>
     {

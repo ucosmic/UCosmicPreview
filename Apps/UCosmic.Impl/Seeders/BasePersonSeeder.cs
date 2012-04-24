@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
 

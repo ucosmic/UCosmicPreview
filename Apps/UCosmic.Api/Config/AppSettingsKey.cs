@@ -19,5 +19,6 @@ namespace UCosmic
         SignUpEmailConfirmationUrlFormat,
         PasswordResetUrl,
         PasswordResetConfirmationUrlFormat,
+        EmailConfirmationUrlFormat,
     }
 }

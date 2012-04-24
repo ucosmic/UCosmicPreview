@@ -6,7 +6,6 @@ using FluentValidation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
-using UCosmic.Domain;
 using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
@@ -47,7 +46,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    UpdateEmailValueValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
+                    UpdateEmailValueValidator.FailedBecausePreviousSpellingDoesNotMatchValueCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -63,7 +62,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    UpdateEmailValueValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
+                    UpdateEmailValueValidator.FailedBecausePreviousSpellingDoesNotMatchValueCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -79,7 +78,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    UpdateEmailValueValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
+                    UpdateEmailValueValidator.FailedBecausePreviousSpellingDoesNotMatchValueCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -95,7 +94,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    UpdateEmailValueValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
+                    UpdateEmailValueValidator.FailedBecausePreviousSpellingDoesNotMatchValueCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -114,7 +113,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    UpdateEmailValueValidator.FailedWithPreviousSpellingDoesNotMatchCaseInsensitively);
+                    UpdateEmailValueValidator.FailedBecausePreviousSpellingDoesNotMatchValueCaseInsensitively);
                 // ReSharper restore PossibleNullReferenceException
             }
 

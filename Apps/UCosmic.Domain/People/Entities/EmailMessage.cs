@@ -9,8 +9,6 @@ namespace UCosmic.Domain.People
         {
             ComposedOnUtc = DateTime.UtcNow;
             ComposedByPrincipal = Thread.CurrentPrincipal.Identity.Name;
-            IsArchived = false;
-            IsDeleted = false;
         }
 
         public int ToPersonId { get; protected internal set; }
@@ -36,8 +34,6 @@ namespace UCosmic.Domain.People
 
         public DateTime ComposedOnUtc { get; set; }
         public DateTime? SentOnUtc { get; set; }
-        public bool IsArchived { get; set; }
-        public bool IsDeleted { get; set; }
     }
 
 }

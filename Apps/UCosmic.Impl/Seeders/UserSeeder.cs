@@ -2,7 +2,6 @@ using System.Linq;
 using System.Web.Security;
 using UCosmic.Domain.People;
 using UCosmic.Orm;
-using UCosmic.Domain;
 
 namespace UCosmic.Seeders
 {

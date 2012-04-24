@@ -63,5 +63,16 @@ namespace UCosmic.Domain.People
         }
 
         #endregion
+        #region User cannot be null
+
+        public const string FailedBecauseUserWasNull =
+            "The person '{0}' is not associated with a user.";
+
+        public static bool UserIsNotNull(Person entity)
+        {
+            return entity != null && entity.User != null;
+        }
+
+        #endregion
     }
 }

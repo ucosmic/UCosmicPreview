@@ -188,6 +188,7 @@
     <Compile Include="Areas\My\Models\UpdateNameValidatorFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameProfilerFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameFormFacts.cs" />
+    <Compile Include="Areas\Passwords\Controllers\ForgotPasswordRouterFacts.cs" />
     <Compile Include="Areas\People\Controllers\PersonInfoControllerFacts.cs" />
     <Compile Include="Areas\People\Controllers\PersonInfoRouterFacts.cs" />
     <Compile Include="Areas\People\Controllers\PersonNameRouterFacts.cs" />

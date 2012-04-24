@@ -19,13 +19,64 @@ namespace UCosmic.Domain.People
             "Email '{0}' is not a valid email address.";
 
         #endregion
+        #region Value matches person entity
+
+        public const string FailedBecauseValueMatchedNoPerson =
+            "No person was found for the email address '{0}'.";
+
+        public static bool ValueMatchesPerson(string value, IProcessQueries queryProcessor,
+            IEnumerable<Expression<Func<Person, object>>> eagerLoad, out Person person)
+        {
+            if (queryProcessor == null)
+            {
+                person = null;
+                return false;
+            }
+
+            person = queryProcessor.Execute(
+                new GetPersonByEmailQuery
+                {
+                    Email = value,
+                    EagerLoad = eagerLoad,
+                }
+            );
+
+            // return true (valid) if there is an entity
+            return person != null;
+        }
+
+        public static bool ValueMatchesPerson(string value, IProcessQueries queryProcessor,
+            IEnumerable<Expression<Func<Person, object>>> eagerLoad = null)
+        {
+            Person person;
+            return ValueMatchesPerson(value, queryProcessor, eagerLoad, out person);
+        }
+
+        public static bool ValueMatchesPerson(string value, IProcessQueries queryProcessor, out Person person)
+        {
+            return ValueMatchesPerson(value, queryProcessor, null, out person);
+        }
+
+        #endregion
+        #region Must be confirmed
+
+        public const string FailedBecauseIsNotConfirmed =
+            "Ownership of the email address '{0}' has not been confirmed.";
+
+        public static bool IsConfirmed(EmailAddress entity)
+        {
+            // return true (valid) if the email is confirmed
+            return entity != null && entity.IsConfirmed;
+        }
+
+        #endregion
         #region Number and Principal matches entity
 
         public const string FailedBecauseNumberAndPrincipalMatchedNoEntity =
             "Email with number '{0}' could not be found for user.";
 
         public static bool NumberAndPrincipalMatchesEntity(int number, IPrincipal principal, IProcessQueries queryProcessor,
-            IEnumerable<Expression<Func<Person, object>>> eagerLoad, out EmailAddress entity)
+            out EmailAddress entity)
         {
             if (queryProcessor == null)
             {
@@ -43,18 +94,6 @@ namespace UCosmic.Domain.People
 
             // return true (valid) if there is an entity
             return entity != null;
-        }
-
-        public static bool NumberAndPrincipalMatchesEntity(int number, IPrincipal principal, IProcessQueries queryProcessor,
-            IEnumerable<Expression<Func<Person, object>>> eagerLoad = null)
-        {
-            EmailAddress entity;
-            return NumberAndPrincipalMatchesEntity(number, principal, queryProcessor, eagerLoad, out entity);
-        }
-
-        public static bool NumberAndPrincipalMatchesEntity(int number, IPrincipal principal, IProcessQueries queryProcessor, out EmailAddress entity)
-        {
-            return NumberAndPrincipalMatchesEntity(number, principal, queryProcessor, null, out entity);
         }
 
         #endregion

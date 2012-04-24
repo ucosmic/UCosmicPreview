@@ -46,32 +46,5 @@ namespace UCosmic.Domain.People
                 entity.ComposedOnUtc.ShouldEqual(value);
             }
         }
-
-        [TestClass]
-        public class IsArchivedProperty
-        {
-            [TestMethod]
-            public void HasGetSet()
-            {
-                const bool value = true;
-                var entity = new EmailMessage { IsArchived = value };
-                entity.ShouldNotBeNull();
-                entity.IsArchived.ShouldEqual(value);
-            }
-        }
-
-        [TestClass]
-        public class IsDeletedProperty
-        {
-            [TestMethod]
-            public void HasGetSet()
-            {
-                const bool value = true;
-                var entity = new EmailMessage { IsDeleted = value };
-                entity.ShouldNotBeNull();
-                entity.IsDeleted.ShouldEqual(value);
-            }
-        }
-
     }
 }

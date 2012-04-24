@@ -566,9 +566,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Returns404_WhenConfirmationIsNull()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation();
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -576,17 +577,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var person = new Person
                 {
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        //IsCurrent = false,
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation { Token = model.Token, },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
-                        }
-                    },
-                }
+                            Confirmations = new List<EmailConfirmation>
+                            {
+                                tokenConfirmation,
+                                new EmailConfirmation(),
+                            }
+                        },
+                    }
                 };
 
                 #endregion
@@ -608,9 +608,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsInputForm_WhenConfirmationIsValid()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -622,21 +627,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         IsRegistered = false,
                     },
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
-                        }
-                    },
-                }
+                                tokenConfirmation,
+                                new EmailConfirmation(),
+                            }
+                        },
+                    }
                 };
                 var emailAddress = person.Emails.First();
                 var confirmation = emailAddress.Confirmations.First();
@@ -675,9 +675,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsInputForm_WhenConfirmationIsValid_AndSecretCodeIsPassed()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = "its a secret",
                 };
                 #region Person Aggregate
@@ -690,13 +695,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     {
                         Confirmations = new List<EmailConfirmation>
                         {
-                            new EmailConfirmation
-                            {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
+                            tokenConfirmation,
+                            new EmailConfirmation(),
                         }
                     },
                 }
@@ -739,9 +739,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenConfirmationIsExpired()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 1)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -754,13 +759,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     {
                         Confirmations = new List<EmailConfirmation>
                         {
-                            new EmailConfirmation
-                            {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 1)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
+                            tokenConfirmation,
+                            new EmailConfirmation(),
                         }
                     },
                 }
@@ -795,9 +795,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenConfirmationIsExpired_AndPersonHasRegisteredUser()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 1)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -814,13 +819,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     {
                         Confirmations = new List<EmailConfirmation>
                         {
-                            new EmailConfirmation
-                            {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 1)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
+                            tokenConfirmation,
+                            new EmailConfirmation(),
                         }
                     },
                 }
@@ -855,9 +855,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenConfirmationIsExpired_AndConfirmationIsRedeemed()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -869,22 +875,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         IsRegistered = false,
                     },
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
-                                ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
-                        }
-                    },
-                }
+                                    tokenConfirmation,
+                                    new EmailConfirmation(),
+                            }
+                        },
+                    }
                 };
                 var emailAddress = person.Emails.Single();
                 var confirmation = emailAddress.Confirmations.First();
@@ -916,9 +916,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenUserIsSignedUp()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -930,21 +935,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         IsRegistered = true,
                     },
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
-                        }
-                    },
-                }
+                                tokenConfirmation,
+                                new EmailConfirmation(),
+                            }
+                        },
+                    }
                 };
                 var emailAddress = person.Emails.Single();
                 var confirmation = emailAddress.Confirmations.First();
@@ -976,9 +976,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenUserIsSignedUp_AndConfirmationIsRedeemed()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -990,21 +996,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         IsRegistered = true,
                     },
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
-                        }
-                    },
+                                tokenConfirmation,
+                                new EmailConfirmation(),
+                            }
+                        },
                 }
                 };
                 var emailAddress = person.Emails.Single();
@@ -1037,9 +1037,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenConfirmationIsRedeemed()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -1051,22 +1057,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         IsRegistered = false,
                     },
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
-                        }
-                    },
-                }
+                                tokenConfirmation,
+                                new EmailConfirmation(),
+                            }
+                        },
+                    }
                 };
                 var emailAddress = person.Emails.Single();
                 var confirmation = emailAddress.Confirmations.First();
@@ -1102,9 +1102,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenMemberIsSignedUp()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -1116,23 +1122,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         IsRegistered = false,
                     },
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Value = "pending@valid.edu",
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            Value = "pending@valid.edu",
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
-                        }
-                    },
-                }
+                                tokenConfirmation,
+                                new EmailConfirmation(),
+                            }
+                        },
+                    }
                 };
                 var emailAddress = person.Emails.Single();
                 var confirmation = emailAddress.Confirmations.First();
@@ -1236,9 +1236,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Returns404_WhenConfirmationIsNull()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = "its a secret",
                 };
                 #region Person Aggregate
@@ -1246,21 +1251,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var person = new Person
                 {
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        //IsCurrent = false,
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            //IsCurrent = false,
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token,
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                                tokenConfirmation,
                             }
                         }
                     }
-                }
                 };
 
                 #endregion
@@ -1335,9 +1335,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenConfirmationIsExpired()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 1)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -1345,21 +1350,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var person = new Person
                 {
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 1)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
-                        }
-                    },
-                }
+                                tokenConfirmation,
+                                new EmailConfirmation(),
+                            }
+                        },
+                    }
                 };
                 var emailAddress = person.Emails.Single();
                 var confirmation = emailAddress.Confirmations.First();
@@ -1391,9 +1391,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenConfirmationIsExpired_AndPersonHasRegisteredUser()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 1)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -1405,21 +1410,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         IsRegistered = true,
                     },
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 1)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
-                        }
-                    },
-                }
+                                tokenConfirmation,
+                                new EmailConfirmation(),
+                            }
+                        },
+                    }
                 };
                 var emailAddress = person.Emails.Single();
                 var confirmation = emailAddress.Confirmations.First();
@@ -1451,9 +1451,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenConfirmationIsExpired_AndConfirmationIsRedeemed()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -1465,22 +1471,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         IsRegistered = false,
                     },
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
-                                ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
-                        }
-                    },
-                }
+                                tokenConfirmation,
+                                new EmailConfirmation(),
+                            }
+                        },
+                    }
                 };
                 var emailAddress = person.Emails.Single();
                 var confirmation = emailAddress.Confirmations.First();
@@ -1512,9 +1512,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenUserIsSignedUp()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -1526,21 +1531,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         IsRegistered = true,
                     },
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
-                        }
-                    },
-                }
+                                tokenConfirmation,
+                                new EmailConfirmation(),
+                            }
+                        },
+                    }
                 };
                 var emailAddress = person.Emails.Single();
                 var confirmation = emailAddress.Confirmations.First();
@@ -1572,9 +1572,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenUserIsSignedUp_AndConfirmationIsRedeemed()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -1586,22 +1592,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         IsRegistered = true,
                     },
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
-                        }
-                    },
-                }
+                                tokenConfirmation,
+                                new EmailConfirmation(),
+                            }
+                        },
+                    }
                 };
                 var emailAddress = person.Emails.Single();
                 var confirmation = emailAddress.Confirmations.First();
@@ -1633,9 +1633,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenConfirmationIsRedeemed()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -1647,22 +1653,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         IsRegistered = false,
                     },
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
-                        }
-                    },
-                }
+                                tokenConfirmation,
+                                new EmailConfirmation(),
+                            }
+                        },
+                    }
                 };
                 var emailAddress = person.Emails.Single();
                 var confirmation = emailAddress.Confirmations.First();
@@ -1698,9 +1698,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenMemberIsSignedUp()
             {
                 // arrange
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = tokenConfirmation.Token,
                     SecretCode = null,
                 };
                 #region Person Aggregate
@@ -1712,23 +1718,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         IsRegistered = false,
                     },
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Value = "pending@valid.edu",
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            Value = "pending@valid.edu",
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token, 
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                            },
-                            new EmailConfirmation { Token = Guid.NewGuid(), },
-                        }
-                    },
-                }
+                                tokenConfirmation,
+                                new EmailConfirmation(),
+                            }
+                        },
+                    }
                 };
                 var emailAddress = person.Emails.Single();
                 var confirmation = emailAddress.Confirmations.First();
@@ -1764,33 +1764,34 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsSuccessRedirect_WhenConfirmationIsValid()
             {
                 // arrange
+                const string secretCode = "valid secret";
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    SecretCode = secretCode,
+                    ConfirmedOnUtc = null,
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
-                    SecretCode = "valid secret",
+                    Token = tokenConfirmation.Token,
+                    SecretCode = secretCode,
                 };
                 #region Person Aggregate
 
                 var person = new Person
                 {
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        IsConfirmed = false,
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            IsConfirmed = false,
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token,
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                SecretCode = model.SecretCode,
-                                ConfirmedOnUtc = null,
+                                tokenConfirmation,
                             }
                         }
                     }
-                }
                 };
                 var emailAddress = person.Emails.Single();
                 var confirmation = emailAddress.Confirmations.Single();
@@ -1911,32 +1912,33 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsTrue_WhenModelIsValid()
             {
                 // arrange
+                const string secretCode = "its a secret";
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    SecretCode = secretCode,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ConfirmedOnUtc = null,
+                };
                 var model = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
-                    SecretCode = "its a secret",
+                    Token = tokenConfirmation.Token,
+                    SecretCode = secretCode,
                 };
                 #region Person Aggregate
 
                 var person = new Person
                 {
                     Emails = new List<EmailAddress>
-                {
-                    new EmailAddress
                     {
-                        Confirmations = new List<EmailConfirmation>
+                        new EmailAddress
                         {
-                            new EmailConfirmation
+                            Confirmations = new List<EmailConfirmation>
                             {
-                                Token = model.Token,
-                                SecretCode = model.SecretCode,
-                                ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                Intent = EmailConfirmationIntent.SignUp,
-                                ConfirmedOnUtc = null,
+                                tokenConfirmation,
                             }
                         }
                     }
-                }
                 };
 
                 #endregion
@@ -2074,7 +2076,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenEmailIsNotConfirmed()
             {
                 // arrange
-                var token = Guid.NewGuid();
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
+                };
                 #region Person Aggregate
 
                 var person = new Person
@@ -2086,13 +2093,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                             IsConfirmed = false,
                             Confirmations = new List<EmailConfirmation>
                             {
-                                new EmailConfirmation
-                                {
-                                    Token = token,
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
-                                },
+                                tokenConfirmation,
                             },
                         },
                     },
@@ -2106,7 +2107,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = CreateController(entityQueries.Object);
-                controller.TempData[SignUpController.ConfirmationTokenKey] = token;
+                controller.TempData[SignUpController.ConfirmationTokenKey] = tokenConfirmation.Token;
 
                 // act
                 var result = controller.CreatePassword();
@@ -2120,7 +2121,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 viewResult.Model.ShouldBeType<CreateDeniedPage>();
                 var page = (CreateDeniedPage)viewResult.Model;
                 page.Reason.ShouldEqual(CreateDeniedPage.DeniedBecause.ConfirmationDoesNotExist);
-                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, token));
+                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, tokenConfirmation.Token));
                 entityQueries.Verify(m => m.People, Times.Once());
             }
 
@@ -2128,7 +2129,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenConfirmationIsNotRedeemed()
             {
                 // arrange
-                var token = Guid.NewGuid();
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = null,
+                };
                 #region Person Aggregate
 
                 var person = new Person
@@ -2140,13 +2146,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                             IsConfirmed = false,
                             Confirmations = new List<EmailConfirmation>
                             {
-                                new EmailConfirmation
-                                {
-                                    Token = token,
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                    ConfirmedOnUtc = null,
-                                },
+                                tokenConfirmation,
                             },
                         },
                     },
@@ -2160,7 +2160,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = CreateController(entityQueries.Object);
-                controller.TempData[SignUpController.ConfirmationTokenKey] = token;
+                controller.TempData[SignUpController.ConfirmationTokenKey] = tokenConfirmation.Token;
 
                 // act
                 var result = controller.CreatePassword();
@@ -2174,7 +2174,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 viewResult.Model.ShouldBeType<CreateDeniedPage>();
                 var page = (CreateDeniedPage)viewResult.Model;
                 page.Reason.ShouldEqual(CreateDeniedPage.DeniedBecause.ConfirmationDoesNotExist);
-                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, token));
+                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, tokenConfirmation.Token));
                 entityQueries.Verify(m => m.People, Times.Once());
             }
 
@@ -2182,7 +2182,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenConfirmationIsExpired()
             {
                 // arrange
-                var token = Guid.NewGuid();
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
+                };
                 #region Person Aggregate
 
                 var person = new Person
@@ -2194,13 +2199,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                             IsConfirmed = true,
                             Confirmations = new List<EmailConfirmation>
                             {
-                                new EmailConfirmation
-                                {
-                                    Token = token,
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
-                                },
+                                tokenConfirmation,
                             },
                         },
                     },
@@ -2214,7 +2213,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = CreateController(entityQueries.Object);
-                controller.TempData[SignUpController.ConfirmationTokenKey] = token;
+                controller.TempData[SignUpController.ConfirmationTokenKey] = tokenConfirmation.Token;
 
                 // act
                 var result = controller.CreatePassword();
@@ -2228,7 +2227,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 viewResult.Model.ShouldBeType<CreateDeniedPage>();
                 var page = (CreateDeniedPage)viewResult.Model;
                 page.Reason.ShouldEqual(CreateDeniedPage.DeniedBecause.ConfirmationIsExpired);
-                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, token));
+                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, tokenConfirmation.Token));
                 entityQueries.Verify(m => m.People, Times.Once());
             }
 
@@ -2236,7 +2235,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenPersonHasSignedUpUser()
             {
                 // arrange
-                var token = Guid.NewGuid();
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                };
                 #region Person Aggregate
 
                 var person = new Person
@@ -2249,13 +2253,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                             IsConfirmed = true,
                             Confirmations = new List<EmailConfirmation>
                             {
-                                new EmailConfirmation
-                                {
-                                    Token = token,
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                },
+                                tokenConfirmation,
                             },
                         },
                     },
@@ -2269,7 +2267,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = CreateController(entityQueries.Object);
-                controller.TempData[SignUpController.ConfirmationTokenKey] = token;
+                controller.TempData[SignUpController.ConfirmationTokenKey] = tokenConfirmation.Token;
 
                 // act
                 var result = controller.CreatePassword();
@@ -2283,7 +2281,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 viewResult.Model.ShouldBeType<CreateDeniedPage>();
                 var page = (CreateDeniedPage)viewResult.Model;
                 page.Reason.ShouldEqual(CreateDeniedPage.DeniedBecause.UserIsSignedUp);
-                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, token));
+                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, tokenConfirmation.Token));
                 entityQueries.Verify(m => m.People, Times.Once());
             }
 
@@ -2291,7 +2289,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenMemberIsSignedUp()
             {
                 // arrange
-                var token = Guid.NewGuid();
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                };
                 #region Person Aggregate
 
                 var person = new Person
@@ -2305,13 +2308,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                             IsConfirmed = true,
                             Confirmations = new List<EmailConfirmation>
                             {
-                                new EmailConfirmation
-                                {
-                                    Token = token,
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                },
+                                tokenConfirmation,
                             },
                         },
                     },
@@ -2328,7 +2325,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)))
                     .Returns(true);
                 var controller = CreateController(entityQueries.Object, memberSigner.Object);
-                controller.TempData[SignUpController.ConfirmationTokenKey] = token;
+                controller.TempData[SignUpController.ConfirmationTokenKey] = tokenConfirmation.Token;
 
                 // act
                 var result = controller.CreatePassword();
@@ -2342,7 +2339,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 viewResult.Model.ShouldBeType<CreateDeniedPage>();
                 var page = (CreateDeniedPage)viewResult.Model;
                 page.Reason.ShouldEqual(CreateDeniedPage.DeniedBecause.MemberIsSignedUp);
-                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, token));
+                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, tokenConfirmation.Token));
                 entityQueries.Verify(m => m.People, Times.Once());
                 memberSigner.Verify(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)), Times.Once());
             }
@@ -2351,7 +2348,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsSuccessView_WhenConfirmationIsValid()
             {
                 // arrange
-                var token = Guid.NewGuid();
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                };
                 #region Person Aggregate
 
                 var person = new Person
@@ -2365,13 +2367,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                             IsConfirmed = true,
                             Confirmations = new List<EmailConfirmation>
                             {
-                                new EmailConfirmation
-                                {
-                                    Token = token,
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                },
+                                tokenConfirmation,
                             },
                         },
                     },
@@ -2388,7 +2384,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)))
                     .Returns(false);
                 var controller = CreateController(entityQueries.Object, memberSigner.Object);
-                controller.TempData[SignUpController.ConfirmationTokenKey] = token;
+                controller.TempData[SignUpController.ConfirmationTokenKey] = tokenConfirmation.Token;
 
                 // act
                 var result = controller.CreatePassword();
@@ -2403,7 +2399,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var form = (CreatePasswordForm)viewResult.Model;
                 form.Password.ShouldBeNull();
                 form.ConfirmPassword.ShouldBeNull();
-                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, token));
+                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, tokenConfirmation.Token));
                 entityQueries.Verify(m => m.People, Times.Once());
                 memberSigner.Verify(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)),
                     Times.Once());
@@ -2567,7 +2563,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenEmailIsNotConfirmed()
             {
                 // arrange
-                var token = Guid.NewGuid();
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
+                };
                 #region Person Aggregate
 
                 var person = new Person
@@ -2579,13 +2580,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                             IsConfirmed = false,
                             Confirmations = new List<EmailConfirmation>
                             {
-                                new EmailConfirmation
-                                {
-                                    Token = token,
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
-                                },
+                                tokenConfirmation,
                             },
                         },
                     },
@@ -2599,7 +2594,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = CreateController(entityQueries.Object);
-                controller.TempData[SignUpController.ConfirmationTokenKey] = token;
+                controller.TempData[SignUpController.ConfirmationTokenKey] = tokenConfirmation.Token;
 
                 // act
                 var result = controller.CreatePassword(new CreatePasswordForm());
@@ -2613,7 +2608,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 viewResult.Model.ShouldBeType<CreateDeniedPage>();
                 var page = (CreateDeniedPage)viewResult.Model;
                 page.Reason.ShouldEqual(CreateDeniedPage.DeniedBecause.ConfirmationDoesNotExist);
-                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, token));
+                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, tokenConfirmation.Token));
                 entityQueries.Verify(m => m.People, Times.Once());
             }
 
@@ -2621,7 +2616,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenConfirmationIsNotRedeemed()
             {
                 // arrange
-                var token = Guid.NewGuid();
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = null,
+                };
                 #region Person Aggregate
 
                 var person = new Person
@@ -2633,13 +2633,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                             IsConfirmed = false,
                             Confirmations = new List<EmailConfirmation>
                             {
-                                new EmailConfirmation
-                                {
-                                    Token = token,
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                    ConfirmedOnUtc = null,
-                                },
+                                tokenConfirmation,
                             },
                         },
                     },
@@ -2653,7 +2647,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = CreateController(entityQueries.Object);
-                controller.TempData[SignUpController.ConfirmationTokenKey] = token;
+                controller.TempData[SignUpController.ConfirmationTokenKey] = tokenConfirmation.Token;
 
                 // act
                 var result = controller.CreatePassword(new CreatePasswordForm());
@@ -2667,7 +2661,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 viewResult.Model.ShouldBeType<CreateDeniedPage>();
                 var page = (CreateDeniedPage)viewResult.Model;
                 page.Reason.ShouldEqual(CreateDeniedPage.DeniedBecause.ConfirmationDoesNotExist);
-                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, token));
+                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, tokenConfirmation.Token));
                 entityQueries.Verify(m => m.People, Times.Once());
             }
 
@@ -2675,7 +2669,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenConfirmationIsExpired()
             {
                 // arrange
-                var token = Guid.NewGuid();
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
+                };
                 #region Person Aggregate
 
                 var person = new Person
@@ -2687,13 +2686,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                             IsConfirmed = true,
                             Confirmations = new List<EmailConfirmation>
                             {
-                                new EmailConfirmation
-                                {
-                                    Token = token,
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                    ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
-                                },
+                                tokenConfirmation,
                             },
                         },
                     },
@@ -2707,7 +2700,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = CreateController(entityQueries.Object);
-                controller.TempData[SignUpController.ConfirmationTokenKey] = token;
+                controller.TempData[SignUpController.ConfirmationTokenKey] = tokenConfirmation.Token;
 
                 // act
                 var result = controller.CreatePassword(new CreatePasswordForm());
@@ -2721,7 +2714,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 viewResult.Model.ShouldBeType<CreateDeniedPage>();
                 var page = (CreateDeniedPage)viewResult.Model;
                 page.Reason.ShouldEqual(CreateDeniedPage.DeniedBecause.ConfirmationIsExpired);
-                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, token));
+                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, tokenConfirmation.Token));
                 entityQueries.Verify(m => m.People, Times.Once());
             }
 
@@ -2729,7 +2722,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenPersonHasSignedUpUser()
             {
                 // arrange
-                var token = Guid.NewGuid();
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                };
                 #region Person Aggregate
 
                 var person = new Person
@@ -2742,13 +2740,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                             IsConfirmed = true,
                             Confirmations = new List<EmailConfirmation>
                             {
-                                new EmailConfirmation
-                                {
-                                    Token = token,
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                },
+                                tokenConfirmation,
                             },
                         },
                     },
@@ -2762,7 +2754,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = CreateController(entityQueries.Object);
-                controller.TempData[SignUpController.ConfirmationTokenKey] = token;
+                controller.TempData[SignUpController.ConfirmationTokenKey] = tokenConfirmation.Token;
 
                 // act
                 var result = controller.CreatePassword(new CreatePasswordForm());
@@ -2776,7 +2768,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 viewResult.Model.ShouldBeType<CreateDeniedPage>();
                 var page = (CreateDeniedPage)viewResult.Model;
                 page.Reason.ShouldEqual(CreateDeniedPage.DeniedBecause.UserIsSignedUp);
-                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, token));
+                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, tokenConfirmation.Token));
                 entityQueries.Verify(m => m.People, Times.Once());
             }
 
@@ -2784,7 +2776,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsDeniedView_WhenMemberIsSignedUp()
             {
                 // arrange
-                var token = Guid.NewGuid();
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                };
                 #region Person Aggregate
 
                 var person = new Person
@@ -2798,13 +2795,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                             IsConfirmed = true,
                             Confirmations = new List<EmailConfirmation>
                             {
-                                new EmailConfirmation
-                                {
-                                    Token = token,
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                },
+                                tokenConfirmation,
                             },
                         },
                     },
@@ -2821,7 +2812,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 memberSigner.Setup(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)))
                     .Returns(true);
                 var controller = CreateController(entityQueries.Object, memberSigner.Object);
-                controller.TempData[SignUpController.ConfirmationTokenKey] = token;
+                controller.TempData[SignUpController.ConfirmationTokenKey] = tokenConfirmation.Token;
 
                 // act
                 var result = controller.CreatePassword(new CreatePasswordForm());
@@ -2835,7 +2826,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 viewResult.Model.ShouldBeType<CreateDeniedPage>();
                 var page = (CreateDeniedPage)viewResult.Model;
                 page.Reason.ShouldEqual(CreateDeniedPage.DeniedBecause.MemberIsSignedUp);
-                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, token));
+                controller.TempData.ShouldContain(new KeyValuePair<string, object>(SignUpController.ConfirmationTokenKey, tokenConfirmation.Token));
                 entityQueries.Verify(m => m.People, Times.Once());
                 memberSigner.Verify(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)),
                     Times.Once());
@@ -2845,7 +2836,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsSuccessRedirect_WhenPersonHasNullUser()
             {
                 // arrange
-                var token = Guid.NewGuid();
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+                };
                 var model = new CreatePasswordForm
                 {
                     Password = "password",
@@ -2864,13 +2860,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                             IsConfirmed = true,
                             Confirmations = new List<EmailConfirmation>
                             {
-                                new EmailConfirmation
-                                {
-                                    Token = token,
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                                }
+                                tokenConfirmation,
                             },
                         },
                     },
@@ -2888,7 +2878,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 memberSigner.Setup(m => m.SignUp(emailAddress.Value, model.Password));
                 var commander = new Mock<ICommandObjects>(MockBehavior.Default);
                 var controller = CreateController(entityQueries.Object, commander.Object, memberSigner.Object);
-                controller.TempData[SignUpController.ConfirmationTokenKey] = token;
+                controller.TempData[SignUpController.ConfirmationTokenKey] = tokenConfirmation.Token;
 
                 // act
                 var result = controller.CreatePassword(model);
@@ -2988,7 +2978,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void RedirectsToSignIn_WhenConfirmationCannotBeFound()
             {
                 // arrange
-                var token = Guid.NewGuid();
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                };
                 #region Person Aggregate
 
                 var person = new Person
@@ -3000,11 +2993,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                             Value = "user@valid.edu",
                             Confirmations = new List<EmailConfirmation>
                             {
-                                new EmailConfirmation
-                                {
-                                    Token = Guid.NewGuid(),
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                }
+                                tokenConfirmation,
                             }
                         }
                     }
@@ -3018,7 +3007,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var entityQueries = new Mock<IQueryEntities>(MockBehavior.Default);
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = CreateController(entityQueries.Object);
-                controller.TempData[SignUpController.ConfirmationTokenKey] = token;
+                controller.TempData[SignUpController.ConfirmationTokenKey] = tokenConfirmation.Token;
 
                 // act
                 var result = controller.SignIn();
@@ -3044,7 +3033,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsSuccessView_WhenConfirmationTokenIsValid()
             {
                 // arrange
-                var token = Guid.NewGuid();
+                var tokenConfirmation = new EmailConfirmation
+                {
+                    Intent = EmailConfirmationIntent.SignUp,
+                };
                 #region Person Aggregate
 
                 var person = new Person
@@ -3056,11 +3048,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                             Value = "user@valid.edu",
                             Confirmations = new List<EmailConfirmation>
                             {
-                                new EmailConfirmation
-                                {
-                                    Token = token,
-                                    Intent = EmailConfirmationIntent.SignUp,
-                                }
+                                tokenConfirmation
                             }
                         }
                     }
@@ -3074,7 +3062,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var entityQueries = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
                 entityQueries.Setup(m => m.People).Returns(new[] { person }.AsQueryable);
                 var controller = CreateController(entityQueries.Object);
-                controller.TempData[SignUpController.ConfirmationTokenKey] = token;
+                controller.TempData[SignUpController.ConfirmationTokenKey] = tokenConfirmation.Token;
 
                 // act
                 var result = controller.SignIn();

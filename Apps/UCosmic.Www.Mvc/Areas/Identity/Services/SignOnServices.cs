@@ -1,5 +1,4 @@
-﻿using UCosmic.Domain;
-using UCosmic.Domain.Establishments;
+﻿using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Services
 {

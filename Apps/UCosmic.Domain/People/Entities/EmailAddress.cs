@@ -14,9 +14,9 @@ namespace UCosmic.Domain.People
             // ReSharper restore DoNotCallOverridableMethodsInConstructor
         }
 
-        public int PersonId { get; set; }
-        public virtual Person Person { get; set; }
-        public int Number { get; set; }
+        public int PersonId { get; protected internal set; }
+        public virtual Person Person { get; protected internal set; }
+        public int Number { get; protected internal set; }
 
         public string Value { get; set; }
 
@@ -26,7 +26,7 @@ namespace UCosmic.Domain.People
 
         public bool IsConfirmed { get; set; }
 
-        public virtual ICollection<EmailConfirmation> Confirmations { get; set; }
+        public virtual ICollection<EmailConfirmation> Confirmations { get; protected internal set; }
 
         public EmailConfirmation AddConfirmation(string intent)
         {

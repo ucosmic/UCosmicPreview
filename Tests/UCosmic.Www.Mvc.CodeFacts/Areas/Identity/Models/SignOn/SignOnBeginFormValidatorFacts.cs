@@ -4,7 +4,6 @@ using FluentValidation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
-using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn

@@ -1,6 +1,5 @@
 ﻿using System.Security.Principal;
 using FluentValidation;
-using UCosmic.Domain;
 using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
@@ -14,18 +13,15 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             _queryProcessor = queryProcessor;
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
-            RuleFor(p => p.Number)
-            ;
-
             RuleFor(p => p.Value)
 
                 // email address cannot be empty
                 .NotEmpty().WithMessage(
-                    FailedWithPreviousSpellingDoesNotMatchCaseInsensitively)
+                    FailedBecausePreviousSpellingDoesNotMatchValueCaseInsensitively)
 
                 // must be valid against email address regular expression
                 .EmailAddress().WithMessage(
-                    FailedWithPreviousSpellingDoesNotMatchCaseInsensitively)
+                    FailedBecausePreviousSpellingDoesNotMatchValueCaseInsensitively)
 
                 // validate the number within the Value property b/c remote only validates this property
                 .Must(ValidateEmailAddressNumberAndPrincipalMatchesEntity).WithMessage(
@@ -34,13 +30,13 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
 
                 // must match previous spelling case insensitively
                 .Must(ValidateEmailAddressNewValueMatchesCurrentValueCaseInsensitively).WithMessage(
-                    FailedWithPreviousSpellingDoesNotMatchCaseInsensitively)
+                    FailedBecausePreviousSpellingDoesNotMatchValueCaseInsensitively)
             ;
         }
 
         private EmailAddress _email;
 
-        internal const string FailedWithPreviousSpellingDoesNotMatchCaseInsensitively
+        internal const string FailedBecausePreviousSpellingDoesNotMatchValueCaseInsensitively
             = "You can only change lowercase letters to uppercase (or vice versa) when changing the spelling of your email address.";
 
         private bool ValidateEmailAddressNumberAndPrincipalMatchesEntity(UpdateEmailValueForm form, string value)

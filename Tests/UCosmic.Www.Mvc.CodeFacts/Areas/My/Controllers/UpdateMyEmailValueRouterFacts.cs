@@ -65,7 +65,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             }
 
             [TestMethod]
-            public void Outbound_ForGetAction_WithNumber0_MapsToUrl()
+            public void Outbound_ForGetAction_WithNumber0_MapsToNothing()
             {
                 const int number = 0;
                 Expression<Func<UpdateEmailValueController, ActionResult>> action =
@@ -206,54 +206,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         [TestClass]
         public class TheValidateValueRoute
         {
-            [TestMethod]
-            public void Inbound_WithGet_AndNumber0_MapsToNothing()
-            {
-                const int number = 0;
-                const string routeUrl = UpdateEmailValueRouter.ValidateValue.Route;
-                const string numberParam = "number";
-                var urlFormat = routeUrl.Replace(numberParam, "0");
-                var url = string.Format(urlFormat, number).ToAppRelativeUrl();
-
-                url.WithMethod(HttpVerbs.Get).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void Inbound_WithGet_AndPositiveNumber_MapsToNothing()
-            {
-                const int number = 1;
-                const string routeUrl = UpdateEmailValueRouter.ValidateValue.Route;
-                const string numberParam = "number";
-                var urlFormat = routeUrl.Replace(numberParam, "0");
-                var url = string.Format(urlFormat, number).ToAppRelativeUrl();
-
-                url.WithMethod(HttpVerbs.Get).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void Inbound_WithPut_AndNumber0_MapsToNothing()
-            {
-                const int number = 0;
-                const string routeUrl = UpdateEmailValueRouter.ValidateValue.Route;
-                const string numberParam = "number";
-                var urlFormat = routeUrl.Replace(numberParam, "0");
-                var url = string.Format(urlFormat, number).ToAppRelativeUrl();
-
-                url.WithMethod(HttpVerbs.Put).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void Inbound_WithPut_AndPositiveNumber_MapsToNothing()
-            {
-                const int number = 2;
-                const string routeUrl = UpdateEmailValueRouter.ValidateValue.Route;
-                const string numberParam = "number";
-                var urlFormat = routeUrl.Replace(numberParam, "0");
-                var url = string.Format(urlFormat, number).ToAppRelativeUrl();
-
-                url.WithMethod(HttpVerbs.Put).ShouldMapToNothing();
-            }
-
             [TestMethod]
             public void Inbound_WithPost_AndNumber0_MapsToNothing()
             {

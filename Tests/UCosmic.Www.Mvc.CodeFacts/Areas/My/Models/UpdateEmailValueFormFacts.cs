@@ -37,6 +37,16 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             }
 
             [TestMethod]
+            public void IsDecoratedWith_DataType_UsingEmailAddress()
+            {
+                Expression<Func<UpdateEmailValueForm, string>> property = p => p.Value;
+                var attributes = property.GetAttributes<UpdateEmailValueForm, string, DataTypeAttribute>();
+                attributes.ShouldNotBeNull();
+                attributes.Length.ShouldEqual(1);
+                attributes[0].DataType.ShouldEqual(DataType.EmailAddress);
+            }
+
+            [TestMethod]
             public void IsDecoratedWith_Remote_UsingHttpMethod_Post()
             {
                 Expression<Func<UpdateEmailValueForm, string>> property = p => p.Value;

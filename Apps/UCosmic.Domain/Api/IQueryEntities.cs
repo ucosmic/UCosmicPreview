@@ -50,5 +50,8 @@ namespace UCosmic.Domain
 
         IQueryable<TEntity> EagerLoad<TEntity>(IQueryable<TEntity> query, Expression<Func<TEntity, object>> expression)
             where TEntity : Entity;
+
+        IQueryable<TEntity> WithoutUnitOfWork<TEntity>(IQueryable<TEntity> query)
+            where TEntity : Entity;
     }
 }
