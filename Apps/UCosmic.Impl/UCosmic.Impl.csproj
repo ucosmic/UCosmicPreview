@@ -101,9 +101,9 @@
     <Compile Include="Email\SendAsyncEmailMessageHandler.cs" />
     <Compile Include="Email\SmtpMailSender.cs" />
     <Compile Include="Etc\DotNetFormsAuthentication.cs" />
-    <Compile Include="Ioc\FluentValidationCommandDecorator.cs" />
     <Compile Include="Ioc\FluentValidatorFactory.cs" />
     <Compile Include="Ioc\InjectedRoleProvider.cs" />
+    <Compile Include="Ioc\UnspecifiedValidator.cs" />
     <Compile Include="Ioc\SimpleFilterAttributeFilterProvider.cs" />
     <Compile Include="Ioc\SimpleQueryProcessor.cs" />
     <Compile Include="Ioc\SimpleDependencyInjector.cs" />

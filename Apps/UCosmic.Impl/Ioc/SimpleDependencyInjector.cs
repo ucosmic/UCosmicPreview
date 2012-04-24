@@ -92,6 +92,9 @@ namespace UCosmic
             // fluent validation open generics
             container.RegisterManyForOpenGeneric(typeof(IValidator<>), assemblies);
 
+            // add unregistered type resolution for objects missing an IValidator<T>
+            container.RegisterSingleOpenGeneric(typeof(IValidator<>), typeof(UnspecifiedValidator<>));
+
             // open generic decorator chains http://www.cuttingedge.it/blogs/steven/pivot/entry.php?id=91
             container.RegisterManyForOpenGeneric(typeof(IHandleCommands<>), (type, implementations) =>
                 {
