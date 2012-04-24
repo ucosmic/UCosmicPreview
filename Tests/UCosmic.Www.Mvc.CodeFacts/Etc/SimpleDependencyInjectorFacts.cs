@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 using UCosmic.Domain;
-using UCosmic.Domain.Email;
 
 namespace UCosmic.Www.Mvc
 {

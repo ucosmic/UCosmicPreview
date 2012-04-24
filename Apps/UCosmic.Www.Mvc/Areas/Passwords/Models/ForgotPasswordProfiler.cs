@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using UCosmic.Domain.Email;
+using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Passwords.Models
@@ -17,7 +18,8 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
         {
             protected override void Configure()
             {
-                CreateMap<ForgotPasswordForm, SendPasswordResetMessageCommand>()
+                CreateMap<ForgotPasswordForm, SendEmailConfirmationMessageCommand>()
+                    .ForMember(d => d.Intent, o => o.UseValue(EmailConfirmationIntent.PasswordReset))
                     .ForMember(d => d.ConfirmationToken, o => o.Ignore())
                 ;
             }

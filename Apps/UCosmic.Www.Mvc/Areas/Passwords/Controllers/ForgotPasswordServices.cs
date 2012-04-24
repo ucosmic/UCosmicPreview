@@ -6,7 +6,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
     {
         public ForgotPasswordServices(
             IProcessQueries queryProcessor
-        , IHandleCommands<SendPasswordResetMessageCommand> commandHandler
+        , IHandleCommands<SendEmailConfirmationMessageCommand> commandHandler
         )
         {
             QueryProcessor = queryProcessor;
@@ -14,6 +14,6 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
         }
 
         public IProcessQueries QueryProcessor { get; private set; }
-        public IHandleCommands<SendPasswordResetMessageCommand> CommandHandler { get; private set; }
+        public IHandleCommands<SendEmailConfirmationMessageCommand> CommandHandler { get; private set; }
     }
 }

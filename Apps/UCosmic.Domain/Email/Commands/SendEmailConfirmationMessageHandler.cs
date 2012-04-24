@@ -4,13 +4,13 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Email
 {
-    public class SendPasswordResetMessageHandler : IHandleCommands<SendPasswordResetMessageCommand>
+    public class SendEmailConfirmationMessageHandler : IHandleCommands<SendEmailConfirmationMessageCommand>
     {
         private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
         private readonly IHandleCommands<SendEmailMessageCommand> _sendHandler;
 
-        public SendPasswordResetMessageHandler(IProcessQueries queryProcessor
+        public SendEmailConfirmationMessageHandler(IProcessQueries queryProcessor
             , ICommandEntities entities
             , IHandleCommands<SendEmailMessageCommand> sendHandler
         )
@@ -20,7 +20,7 @@ namespace UCosmic.Domain.Email
             _sendHandler = sendHandler;
         }
 
-        public void Handle(SendPasswordResetMessageCommand command)
+        public void Handle(SendEmailConfirmationMessageCommand command)
         {
             if (command == null) throw new ArgumentNullException("command");
 
@@ -35,19 +35,13 @@ namespace UCosmic.Domain.Email
                     },
                 }
             );
-            if (person == null) throw new InvalidOperationException(string.Format(
-                ValidateEmailAddress.FailedBecauseValueMatchedNoPerson,
-                    command.EmailAddress));
 
             // get the email
-            var email = person.Emails.ByValue(command.EmailAddress);
-            if (email == null) throw new InvalidOperationException(string.Format(
-                ValidateEmailAddress.FailedBecauseValueMatchedNoPerson,
-                    command.EmailAddress));
+            var email = person.GetEmail(command.EmailAddress);
 
             // create the confirmation
             var confirmation = new EmailConfirmation
-                (EmailConfirmationIntent.PasswordReset, 12, email);
+                (command.Intent, 12, email);
             command.ConfirmationToken = confirmation.Token;
             _entities.Create(confirmation);
 
@@ -55,7 +49,7 @@ namespace UCosmic.Domain.Email
             var template = _queryProcessor.Execute(
                 new GetEmailTemplateByNameQuery
                 {
-                    Name = EmailTemplateName.PasswordResetConfirmation,
+                    Name = command.EmailTemplateName,
                 }
             );
 

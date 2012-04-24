@@ -1,6 +1,4 @@
-﻿using UCosmic.Domain.People;
-
-namespace UCosmic.Domain.Email
+﻿namespace UCosmic.Domain.Email
 {
     public class SendEmailMessageCommand
     {
