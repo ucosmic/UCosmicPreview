@@ -13,6 +13,12 @@ namespace UCosmic.Domain
             return collection.Any() ? collection.Max(w => w.Number) + 1 : 1;
         }
 
+        internal static IQueryable<TEntity> WithoutUnitOfWork<TEntity>(this IQueryable<TEntity> queryable, IQueryEntities entities)
+            where TEntity : Entity
+        {
+            return entities.WithoutUnitOfWork(queryable);
+        }
+
         private static IQueryable<TEntity> EagerLoad<TEntity>(this IQueryable<TEntity> queryable, Expression<Func<TEntity, object>> expression, IQueryEntities entities)
             where TEntity : Entity
         {

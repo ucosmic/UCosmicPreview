@@ -11,6 +11,8 @@
         string PasswordResetUrl { get; }
         string PasswordResetConfirmationUrlFormat { get; }
 
+        string EmailConfirmationUrlFormat { get; }
+
         string TestMailServer { get; }
         string TestMailInbox { get; }
 

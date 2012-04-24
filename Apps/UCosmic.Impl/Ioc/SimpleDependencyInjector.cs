@@ -11,6 +11,7 @@ using SimpleInjector.Extensions;
 using UCosmic.Domain;
 using UCosmic.Orm;
 using UCosmic.Seeders;
+using UCosmic.Domain.Email;
 
 namespace UCosmic
 {
@@ -36,7 +37,8 @@ namespace UCosmic
              * The DropAlwaysInitializer drops and recreates the database after each new solution rebuild.
              * The BrownfieldInitializer never drops the database, even if the entity model does not match.
              * However the initializer only drops and recreates the database, all tables will be empty.
-             * To populate with new data, use the CompositeDbSeeder. It uses a combination of DbContext and raw SQL to populate the database.
+             * To populate with new data, use the CompositeDbSeeder.
+             * It uses a combination of DbContext and raw SQL to populate the database.
              * When the BrownfieldDbSeeder is injected, no data will be seeded.
              * 
              * 2012.02.22: There is now a DevelopmentDataSqlSeeder, which is much faster than the CompositeDbSeeder.
@@ -67,8 +69,9 @@ namespace UCosmic
             container.Register<ISignUsers, DotNetFormsAuthentication>();
             container.Register<IManageConfigurations, DotNetConfigurationManager>();
             container.Register<ILogExceptions, ElmahExceptionLogger>();
-            container.Register<ISendEmails, MvcEmailSender>();
             container.Register<IConsumeHttp, WebRequestHttpConsumer>();
+            container.Register<ISendEmails, MvcEmailSender>();
+            container.Register<ISendMail, SmtpMailSender>();
 
             // SAML interfaces
             container.Register<IProvideSaml2Service, ComponentSpaceSaml2ServiceProvider>();
@@ -86,8 +89,31 @@ namespace UCosmic
             var msWebMvc = assemblies.SingleOrDefault(a => a.FullName.StartsWith("Microsoft.Web.Mvc"));
             if (msWebMvc != null) assemblies.Remove(msWebMvc);
 
+            // fluent validation open generics
+            container.RegisterManyForOpenGeneric(typeof(IValidator<>), assemblies);
+
             // open generic decorator chains http://www.cuttingedge.it/blogs/steven/pivot/entry.php?id=91
-            container.RegisterManyForOpenGeneric(typeof(IHandleCommands<>), assemblies);
+            container.RegisterManyForOpenGeneric(typeof(IHandleCommands<>), (type, implementations) =>
+                {
+                    // register the async email handler
+                    if (type == typeof(IHandleCommands<SendEmailMessageCommand>))
+                        container.Register(type, implementations
+                            .Single(i => i == typeof(SendAsyncEmailMessageHandler)));
+
+                    else if (implementations.Length < 1)
+                        throw new InvalidOperationException(string.Format(
+                            "No implementations were found for type '{0}'.",
+                                type.Name));
+                    else if (implementations.Length > 1)
+                        throw new InvalidOperationException(string.Format(
+                            "{1} implementations were found for type '{0}'.",
+                                type.Name, implementations.Length));
+
+                    // register a single implementation (default behavior)
+                    else
+                        container.Register(type, implementations.Single());
+
+                }, assemblies);
             container.RegisterOpenGenericDecorator(typeof(IHandleCommands<>),
                 typeof(FluentValidationCommandDecorator<>));
 
@@ -95,9 +121,6 @@ namespace UCosmic
             container.RegisterPerWebRequest<SimpleQueryProcessor>();
             container.Register<IProcessQueries>(container.GetInstance<SimpleQueryProcessor>);
             container.RegisterManyForOpenGeneric(typeof(IHandleQueries<,>), assemblies);
-
-            // fluent validation open generics
-            container.RegisterManyForOpenGeneric(typeof(IValidator<>), assemblies);
 
             // verify container
             container.Verify();

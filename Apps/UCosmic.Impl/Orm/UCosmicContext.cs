@@ -121,6 +121,14 @@ namespace UCosmic.Orm
             return query;
         }
 
+        public IQueryable<TEntity> WithoutUnitOfWork<TEntity>(IQueryable<TEntity> query)
+            where TEntity : Entity
+        {
+            if (query != null)
+                query = query.AsNoTracking();
+            return query;
+        }
+
         public IQueryable<TEntity> ApplyEagerLoading<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
             where TEntity : Entity
         {

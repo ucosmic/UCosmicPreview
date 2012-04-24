@@ -2,8 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 using UCosmic.Domain;
+using UCosmic.Domain.Email;
 
-namespace UCosmic.Www.Mvc.Etc
+namespace UCosmic.Www.Mvc
 {
     // ReSharper disable UnusedMember.Global
     public class SimpleDependencyInjectorFacts

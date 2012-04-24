@@ -98,7 +98,10 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Email\SendAsyncEmailMessageHandler.cs" />
+    <Compile Include="Email\SmtpMailSender.cs" />
     <Compile Include="Etc\DotNetFormsAuthentication.cs" />
+    <Compile Include="Ioc\FluentValidationCommandDecorator.cs" />
     <Compile Include="Ioc\FluentValidatorFactory.cs" />
     <Compile Include="Ioc\InjectedRoleProvider.cs" />
     <Compile Include="Ioc\SimpleFilterAttributeFilterProvider.cs" />

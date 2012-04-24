@@ -13,6 +13,8 @@ namespace UCosmic
         public string PasswordResetUrl { get { return GetString(AppSettingsKey.PasswordResetUrl); } }
         public string PasswordResetConfirmationUrlFormat { get { return GetString(AppSettingsKey.PasswordResetConfirmationUrlFormat); } }
 
+        public string EmailConfirmationUrlFormat { get { return GetString(AppSettingsKey.EmailConfirmationUrlFormat); } }
+
         public string TestMailServer { get { return GetString(AppSettingsKey.TestMailServer); } }
         public string TestMailInbox { get { return GetString(AppSettingsKey.TestMailInbox); } }
 

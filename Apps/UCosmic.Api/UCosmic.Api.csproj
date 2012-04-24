@@ -57,7 +57,12 @@
     <Compile Include="Etc\ExtensionMethods.cs" />
     <Compile Include="Etc\IAmNumbered.cs" />
     <Compile Include="Etc\IConsumeHttp.cs" />
+    <Compile Include="Etc\ISendMail.cs" />
+    <Compile Include="Ioc\IDefineQuery.cs" />
+    <Compile Include="Ioc\IHandleCommands.cs" />
+    <Compile Include="Ioc\IHandleQueries.cs" />
     <Compile Include="Etc\IHaveText.cs" />
+    <Compile Include="Ioc\IProcessQueries.cs" />
     <Compile Include="Etc\ISignUsers.cs" />
     <Compile Include="Etc\StringMatchStrategy.cs" />
     <Compile Include="Ioc\DependencyInjector.cs" />

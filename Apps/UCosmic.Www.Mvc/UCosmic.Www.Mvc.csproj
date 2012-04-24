@@ -225,6 +225,13 @@
     <Compile Include="Areas\My\Controllers\ProfileRouter.cs" />
     <Compile Include="Areas\My\Controllers\UpdateEmailValueRouter.cs" />
     <Compile Include="Areas\My\Controllers\UpdateEmailValueServices.cs" />
+    <Compile Include="Areas\Passwords\Controllers\ForgotPasswordController.cs" />
+    <Compile Include="Areas\Passwords\Controllers\ForgotPasswordServices.cs" />
+    <Compile Include="Areas\Passwords\Controllers\ForgotPasswordRouter.cs" />
+    <Compile Include="Areas\Passwords\Models\ForgotPasswordForm.cs" />
+    <Compile Include="Areas\Passwords\Models\ForgotPasswordValidator.cs" />
+    <Compile Include="Areas\Passwords\Models\ForgotPasswordProfiler.cs" />
+    <Compile Include="Areas\Passwords\PasswordsAreaRegistration.cs" />
     <Compile Include="Areas\People\Controllers\PersonInfoRouter.cs" />
     <Compile Include="Areas\People\Controllers\PersonInfoServices.cs" />
     <Compile Include="Areas\People\Controllers\PersonInfoController.cs" />
@@ -313,9 +320,6 @@
     <Compile Include="Identity.Saml2MetadataController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Identity.SelfController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Identity.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -354,6 +358,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="My.UpdateNameController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Passwords.ForgotPasswordController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="People.PersonInfoController.generated.cs">
@@ -1056,6 +1063,10 @@
     <Content Include="Areas\My\Views\UpdateAffiliation\_scripts.cshtml" />
     <Content Include="Areas\My\Views\UpdateAffiliation\_styles.cshtml" />
     <Content Include="Areas\My\Views\UpdateAffiliation\EditorTemplates\EmployeeOrStudentAffiliation.cshtml" />
+    <Content Include="Areas\Passwords\Views\Web.config" />
+    <Content Include="Areas\Passwords\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Passwords\Views\ForgotPassword\forgot-password.cshtml" />
+    <Content Include="Areas\Passwords\Views\ForgotPassword\EditorTemplates\ForgotPasswordForm.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />

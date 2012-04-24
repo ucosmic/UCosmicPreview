@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using UCosmic.Domain.Email;
 using UCosmic.Orm;
 
@@ -18,7 +20,9 @@ namespace UCosmic.Seeders
 
                 #region Sign Up Email Confirmation
 
-                var signUpEmailConfirmation = Context.EmailTemplates.ByName(EmailTemplateName.SignUpConfirmation);
+                //var signUpEmailConfirmation = Context.EmailTemplates.ByName(EmailTemplateName.SignUpConfirmation);
+                var signUpEmailConfirmation = Context.EmailTemplates.SingleOrDefault(e => e.Establishment == null
+                    && e.Name.Equals(EmailTemplateName.SignUpConfirmation, StringComparison.OrdinalIgnoreCase));
                 if (signUpEmailConfirmation == null)
                 {
                     signUpEmailConfirmation = new EmailTemplate
@@ -53,7 +57,9 @@ namespace UCosmic.Seeders
                 #endregion
                 #region Password Reset Confirmation
 
-                var passwordResetConfirmation = Context.EmailTemplates.ByName(EmailTemplateName.PasswordResetConfirmation);
+                //var passwordResetConfirmation = Context.EmailTemplates.ByName(EmailTemplateName.PasswordResetConfirmation);
+                var passwordResetConfirmation = Context.EmailTemplates.SingleOrDefault(e => e.Establishment == null
+                    && e.Name.Equals(EmailTemplateName.PasswordResetConfirmation, StringComparison.OrdinalIgnoreCase));
                 if (passwordResetConfirmation == null)
                 {
                     passwordResetConfirmation = new EmailTemplate

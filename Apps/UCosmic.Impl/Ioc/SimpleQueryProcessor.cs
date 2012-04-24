@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using SimpleInjector;
-using UCosmic.Domain;
 
 namespace UCosmic
 {

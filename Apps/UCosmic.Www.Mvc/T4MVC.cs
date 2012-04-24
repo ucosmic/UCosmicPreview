@@ -33,6 +33,8 @@ public static class MVC {
     public static InstitutionalAgreementsClass InstitutionalAgreements { get { return s_InstitutionalAgreements; } }
     static readonly MyClass s_My = new MyClass();
     public static MyClass My { get { return s_My; } }
+    static readonly PasswordsClass s_Passwords = new PasswordsClass();
+    public static PasswordsClass Passwords { get { return s_Passwords; } }
     static readonly PeopleClass s_People = new PeopleClass();
     public static PeopleClass People { get { return s_People; } }
     static readonly RecruitmentAgenciesClass s_RecruitmentAgencies = new RecruitmentAgenciesClass();
@@ -87,6 +89,11 @@ namespace T4MVC {
         public UCosmic.Www.Mvc.Areas.My.Controllers.UpdateEmailValueController UpdateEmailValue = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_UpdateEmailValueController();
         public UCosmic.Www.Mvc.Areas.My.Controllers.UpdateNameController UpdateName = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_UpdateNameController();
         public T4MVC.My.SharedController Shared = new T4MVC.My.SharedController();
+    }
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class PasswordsClass {
+        public readonly string Name = "Passwords";
+        public UCosmic.Www.Mvc.Areas.Passwords.Controllers.ForgotPasswordController ForgotPassword = new UCosmic.Www.Mvc.Areas.Passwords.Controllers.T4MVC_ForgotPasswordController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class PeopleClass {

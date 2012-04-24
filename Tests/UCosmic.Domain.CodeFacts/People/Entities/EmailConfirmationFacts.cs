@@ -9,7 +9,39 @@ namespace UCosmic.Domain.People
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
-        public class IdProperty
+        public class TheConstructor
+        {
+            [TestMethod]
+            public void SetsToken_ToNonEmptyGuid()
+            {
+                var entity = new EmailConfirmation();
+                entity.ShouldNotBeNull();
+                entity.Token.ShouldNotEqual(Guid.Empty);
+            }
+
+            [TestMethod]
+            public void SetsIssuedOnUtc_ToUtcNow()
+            {
+                var entity = new EmailConfirmation();
+                entity.ShouldNotBeNull();
+                entity.IssuedOnUtc.ShouldBeInRange(
+                    DateTime.UtcNow.AddSeconds(-5),
+                    DateTime.UtcNow.AddSeconds(5));
+            }
+
+            [TestMethod]
+            public void SetsExpiresOnUtc_ToUtcNow_PlusTwoHours()
+            {
+                var entity = new EmailConfirmation();
+                entity.ShouldNotBeNull();
+                entity.ExpiresOnUtc.ShouldBeInRange(
+                    DateTime.UtcNow.AddSeconds((60 * 60 * 2) - 5),
+                    DateTime.UtcNow.AddSeconds((60 * 60 * 2) + 5));
+            }
+        }
+
+        [TestClass]
+        public class TheIdProperty
         {
             [TestMethod]
             public void HasGetSet()
@@ -22,20 +54,20 @@ namespace UCosmic.Domain.People
         }
 
         [TestClass]
-        public class EmailAddressIdProperty
+        public class ThePersonIdProperty
         {
             [TestMethod]
             public void HasGetSet()
             {
                 const int value = 0;
-                var entity = new EmailConfirmation { EmailAddressId = value };
+                var entity = new EmailConfirmation { PersonId = value };
                 entity.ShouldNotBeNull();
-                entity.EmailAddressId.ShouldEqual(value);
+                entity.PersonId.ShouldEqual(value);
             }
         }
 
         [TestClass]
-        public class EmailAddressProperty
+        public class TheEmailAddressProperty
         {
             [TestMethod]
             public void IsVirtual()
@@ -47,7 +79,7 @@ namespace UCosmic.Domain.People
                 public override EmailAddress EmailAddress
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

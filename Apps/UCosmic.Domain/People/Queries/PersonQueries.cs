@@ -48,6 +48,20 @@ namespace UCosmic.Domain.People
                 : null;
         }
 
+        internal static EmailAddress GetEmail(this Person owner, string value)
+        {
+            return owner != null
+                ? owner.Emails.ByValue(value)
+                : null;
+        }
+
+        internal static EmailMessage GetMessage(this Person owner, int number)
+        {
+            return owner != null
+                ? owner.Messages.ByNumber(number)
+                : null;
+        }
+
         internal static EmailAddress GetDefaultEmail(this Person owner)
         {
             return owner != null

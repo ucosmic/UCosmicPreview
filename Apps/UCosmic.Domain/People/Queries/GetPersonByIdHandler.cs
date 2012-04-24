@@ -15,7 +15,11 @@ namespace UCosmic.Domain.People
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            return _entities.People
+            var queryable = _entities.People;
+            if (query.WithoutUnitOfWork)
+                queryable = queryable.WithoutUnitOfWork(_entities);
+
+            return queryable
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByRevisionId(query.Id)
             ;

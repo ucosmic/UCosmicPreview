@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
 
@@ -64,17 +63,6 @@ namespace UCosmic.Domain.Email
     {
         public const string SignUpConfirmation = "Sign Up Email Confirmation";
         public const string PasswordResetConfirmation = "Password Reset Email Confirmation";
-    }
-
-    public static class EmailTemplateExtensions
-    {
-        public static EmailTemplate ByName(this IEnumerable<EmailTemplate> query, string name)
-        {
-            return (query != null)
-                ? query.SingleOrDefault(e => e.Establishment == null
-                    && e.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
-                : null;
-        }
     }
 
 }

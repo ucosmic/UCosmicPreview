@@ -45,5 +45,27 @@ namespace UCosmic.Domain.Identity
         }
 
         #endregion
+        #region Name matches local member
+
+        public const string FailedBecauseNameMatchedNoLocalMember =
+            "User with name '{0}' cannot be created because it already exists.";
+
+        public static bool NameMatchesLocalMember(string name, ISignMembers memberSigner)
+        {
+            return memberSigner.IsSignedUp(name);
+        }
+
+        #endregion
+        #region EduPersonTargetedId must be null
+
+        public const string FailedBecauseEduPersonTargetedIdWasNotEmpty =
+            "User with name '{0}' has a non-empty EduPersonTargetedId value.";
+
+        public static bool EduPersonTargetedIdIsEmpty(User entity)
+        {
+            return entity != null && string.IsNullOrWhiteSpace(entity.EduPersonTargetedId);
+        }
+
+        #endregion
     }
 }

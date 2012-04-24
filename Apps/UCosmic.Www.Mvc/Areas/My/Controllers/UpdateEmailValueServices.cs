@@ -1,5 +1,4 @@
-﻿using UCosmic.Domain;
-using UCosmic.Domain.People;
+﻿using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {

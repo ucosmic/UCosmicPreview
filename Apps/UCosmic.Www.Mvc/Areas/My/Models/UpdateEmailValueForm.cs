@@ -8,6 +8,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
     {
         public const string ValuePropertyName = "Value";
         public const string ValueDisplayName = "New spelling";
+        [DataType(DataType.EmailAddress)]
         [Display(Name = ValueDisplayName)]
         [Remote("ValidateValue", "UpdateEmailValue", "My", HttpMethod = "POST", AdditionalFields = "PersonUserName,Number")]
         public string Value { get; set; }
