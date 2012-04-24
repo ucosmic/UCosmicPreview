@@ -39,7 +39,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
             if (!ModelState.IsValid) return PartialView(model);
 
             // execute command, set feedback message, and redirect
-            var command = Mapper.Map<SendPasswordResetMessageCommand>(model);
+            var command = Mapper.Map<SendEmailConfirmationMessageCommand>(model);
             _services.CommandHandler.Handle(command);
             SetFeedbackMessage(string.Format(SuccessMessageFormat, model.EmailAddress));
             return RedirectToAction(MVC.Identity.SignUp.ConfirmEmail(command.ConfirmationToken, null));
