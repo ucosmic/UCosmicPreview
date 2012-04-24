@@ -25,10 +25,10 @@ namespace UCosmic.Domain.Email
                 Body = email.Body,
             };
 
-            // intercept recipient during development
             if (_configurationManager.IsDeployedToCloud)
                 mail.To.Add(new MailAddress(email.ToAddress, email.ToPerson.DisplayName));
 
+            // intercept recipient during development
             else
                 foreach (var interceptAddress in _configurationManager.EmailInterceptAddresses.Explode(";"))
                     mail.To.Add(new MailAddress(interceptAddress, string.Format(
