@@ -42,9 +42,11 @@ namespace UCosmic
 
             internal void Launch()
             {
-                var entities = DependencyInjector.Current.GetService<ICommandEntities>();
+                // get transient instance of DbContext and query processor
+                var unitOfWork = DependencyInjector.Current.GetService<IUnitOfWork>();
                 var queryProcessor = DependencyInjector.Current.GetService<IProcessQueries>();
-                var handler = new SendEmailMessageHandler(queryProcessor, entities, entities as IUnitOfWork, _mailSender, _exceptionLogger);
+                var handler = new SendEmailMessageHandler(queryProcessor,
+                    unitOfWork as ICommandEntities, unitOfWork, _mailSender, _exceptionLogger);
                 handler.Handle(_command);
             }
         }

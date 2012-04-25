@@ -6,12 +6,12 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Email
 {
-    public class SendEmailConfirmationMessageValidator : AbstractValidator<SendEmailConfirmationMessageCommand>
+    public class SendConfirmEmailMessageValidator : AbstractValidator<SendConfirmEmailMessageCommand>
     {
         private readonly IProcessQueries _queryProcessor;
         private readonly ISignMembers _memberSigner;
 
-        public SendEmailConfirmationMessageValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
+        public SendConfirmEmailMessageValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
         {
             _queryProcessor = queryProcessor;
             _memberSigner = memberSigner;
