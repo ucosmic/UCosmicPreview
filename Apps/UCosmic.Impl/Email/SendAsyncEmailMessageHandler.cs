@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using UCosmic.Domain;
 using UCosmic.Domain.Email;
+using UCosmic.Orm;
 
 namespace UCosmic
 {
@@ -42,12 +43,13 @@ namespace UCosmic
 
             internal void Launch()
             {
-                // get transient instance of DbContext and query processor
-                var unitOfWork = DependencyInjector.Current.GetService<IUnitOfWork>();
+                // get per-thread instance of DbContext and query processor
+                var dbContext = DependencyInjector.Current.GetService<UCosmicContext>();
                 var queryProcessor = DependencyInjector.Current.GetService<IProcessQueries>();
                 var handler = new SendEmailMessageHandler(queryProcessor,
-                    unitOfWork as ICommandEntities, unitOfWork, _mailSender, _exceptionLogger);
+                    dbContext, dbContext, _mailSender, _exceptionLogger);
                 handler.Handle(_command);
+                SimpleHttpContextLifestyleExtensions.DisposeInstance<UCosmicContext>();
             }
         }
     }

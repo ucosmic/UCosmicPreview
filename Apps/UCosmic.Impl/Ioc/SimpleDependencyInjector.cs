@@ -12,6 +12,7 @@ using UCosmic.Domain;
 using UCosmic.Orm;
 using UCosmic.Seeders;
 using UCosmic.Domain.Email;
+using System.Diagnostics;
 
 namespace UCosmic
 {
@@ -121,7 +122,7 @@ namespace UCosmic
                 typeof(FluentValidationCommandDecorator<>));
 
             // query processing
-            container.RegisterPerWebRequest<SimpleQueryProcessor>();
+            container.RegisterSingle<SimpleQueryProcessor>();
             container.Register<IProcessQueries>(container.GetInstance<SimpleQueryProcessor>);
             container.RegisterManyForOpenGeneric(typeof(IHandleQueries<,>), assemblies);
 
@@ -131,6 +132,7 @@ namespace UCosmic
             return container;
         }
 
+        [DebuggerStepThrough]
         public object GetService(Type serviceType)
         {
             return ((IServiceProvider)_container).GetService(serviceType);

@@ -37,7 +37,7 @@ namespace UCosmic
 
             container.ExpressionBuilt += (sender, e) =>
             {
-                if (e.RegisteredServiceType != typeof (TConcrete)) return;
+                if (e.RegisteredServiceType != typeof(TConcrete)) return;
 
                 var transientInstanceCreator = Expression.Lambda<Func<TConcrete>>(
                     e.Expression, new ParameterExpression[0]).Compile();
@@ -53,14 +53,25 @@ namespace UCosmic
         [DebuggerStepThrough]
         public static void DisposeInstance<TService>() where TService : class
         {
+            IDisposable disposable;
             object key = typeof(PerWebRequestInstanceCreator<TService>);
+            var httpContext = HttpContext.Current;
 
-            var instance = HttpContext.Current.Items[key] as IDisposable;
-
-            if (instance != null)
+            if (httpContext != null)
             {
-                instance.Dispose();
+                disposable = httpContext.Items[key] as IDisposable;
+                if (httpContext.Items.Contains(key))
+                    httpContext.Items.Remove(key);
             }
+            else
+            {
+                disposable = PerWebRequestInstanceCreator<TService>
+                    .ThreadStaticInstance as IDisposable;
+                PerWebRequestInstanceCreator<TService>
+                    .ThreadStaticInstance = null;
+            }
+
+            if (disposable != null) disposable.Dispose();
         }
 
         private sealed class PerWebRequestInstanceCreator<T> where T : class
@@ -72,25 +83,25 @@ namespace UCosmic
                 _instanceCreator = instanceCreator;
             }
 
+            [ThreadStatic]
+            internal static T ThreadStaticInstance;
+
             [DebuggerStepThrough]
             public T GetInstance()
             {
                 var context = HttpContext.Current;
 
+                // when there is no HttpContext, fall back to per-thread instance creator
                 if (context == null)
-                {
-                    // No HttpContext: Let's create a transient object.
-                    return _instanceCreator();
-                }
+                    return ThreadStaticInstance
+                        ?? (ThreadStaticInstance = _instanceCreator());
 
                 object key = GetType();
 
                 var instance = (T)context.Items[key];
 
                 if (instance == null)
-                {
                     context.Items[key] = instance = _instanceCreator();
-                }
 
                 return instance;
             }
