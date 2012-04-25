@@ -19,7 +19,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
             {
                 var model = new ForgotPasswordForm();
 
-                var command = Mapper.Map<SendEmailConfirmationMessageCommand>(model);
+                var command = Mapper.Map<SendConfirmEmailMessageCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.ConfirmationToken.ShouldEqual(Guid.Empty);
@@ -31,7 +31,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 const string value = "user@domain.tld";
                 var model = new ForgotPasswordForm { EmailAddress = value };
 
-                var command = Mapper.Map<SendEmailConfirmationMessageCommand>(model);
+                var command = Mapper.Map<SendConfirmEmailMessageCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.EmailAddress.ShouldNotBeNull();
@@ -43,7 +43,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
             {
                 var model = new ForgotPasswordForm();
 
-                var command = Mapper.Map<SendEmailConfirmationMessageCommand>(model);
+                var command = Mapper.Map<SendConfirmEmailMessageCommand>(model);
 
                 command.ShouldNotBeNull();
                 command.Intent.ShouldEqual(EmailConfirmationIntent.PasswordReset);

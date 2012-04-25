@@ -3,7 +3,7 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Email
 {
-    public class SendEmailConfirmationMessageCommand
+    public class SendConfirmEmailMessageCommand
     {
         public string EmailAddress { get; set; }
         public string Intent { get; set; }

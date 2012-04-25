@@ -4,13 +4,13 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Email
 {
-    public class SendEmailConfirmationMessageHandler : IHandleCommands<SendEmailConfirmationMessageCommand>
+    public class SendConfirmEmailMessageHandler : IHandleCommands<SendConfirmEmailMessageCommand>
     {
         private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
         private readonly IHandleCommands<SendEmailMessageCommand> _sendHandler;
 
-        public SendEmailConfirmationMessageHandler(IProcessQueries queryProcessor
+        public SendConfirmEmailMessageHandler(IProcessQueries queryProcessor
             , ICommandEntities entities
             , IHandleCommands<SendEmailMessageCommand> sendHandler
         )
@@ -20,7 +20,7 @@ namespace UCosmic.Domain.Email
             _sendHandler = sendHandler;
         }
 
-        public void Handle(SendEmailConfirmationMessageCommand command)
+        public void Handle(SendConfirmEmailMessageCommand command)
         {
             if (command == null) throw new ArgumentNullException("command");
 

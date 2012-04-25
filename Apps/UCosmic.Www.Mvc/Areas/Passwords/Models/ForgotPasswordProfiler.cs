@@ -18,7 +18,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
         {
             protected override void Configure()
             {
-                CreateMap<ForgotPasswordForm, SendEmailConfirmationMessageCommand>()
+                CreateMap<ForgotPasswordForm, SendConfirmEmailMessageCommand>()
                     .ForMember(d => d.Intent, o => o.UseValue(EmailConfirmationIntent.PasswordReset))
                     .ForMember(d => d.ConfirmationToken, o => o.Ignore())
                 ;
