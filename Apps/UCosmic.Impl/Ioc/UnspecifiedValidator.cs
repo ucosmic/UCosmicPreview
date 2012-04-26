@@ -1,8 +1,8 @@
-﻿using FluentValidation;
+﻿//using FluentValidation;
 
-namespace UCosmic.Impl
-{
-    public class UnspecifiedValidator<TCommand> : AbstractValidator<TCommand>
-    {
-    }
-}
+//namespace UCosmic.Impl
+//{
+//    public class UnspecifiedValidator<T> : AbstractValidator<T>
+//    {
+//    }
+//}
