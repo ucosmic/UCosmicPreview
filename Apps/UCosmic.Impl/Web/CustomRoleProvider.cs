@@ -7,11 +7,11 @@ using UCosmic.Domain;
 
 namespace UCosmic.Impl
 {
-    public class AuthorizationProvider : RoleProvider
+    public class CustomRoleProvider : RoleProvider
     {
         private readonly IQueryEntities _entities;
 
-        public AuthorizationProvider()
+        public CustomRoleProvider()
         {
             // asp.net role provider behaves as a singleton, so we can't inject the PerWebRequest
             // instances of DbContext, because those are disposed of at the end of a web request.
