@@ -21,7 +21,6 @@ namespace UCosmic.Domain.Email
                 new GetPersonByIdQuery
                 {
                     Id = query.PersonId,
-                    WithoutUnitOfWork = query.WithoutUnitOfWork,
                     EagerLoad = new Expression<Func<Person, object>>[]
                     {
                         p => p.Messages,

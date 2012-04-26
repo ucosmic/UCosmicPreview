@@ -9,7 +9,9 @@ namespace UCosmic.Www.Mvc.Controllers
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            UnitOfWork.SaveChanges();
+            // do not save changes if there was an exception
+            if (filterContext.Exception == null)
+                UnitOfWork.SaveChanges();
             base.OnActionExecuted(filterContext);
         }
     }
