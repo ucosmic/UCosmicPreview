@@ -104,7 +104,6 @@
     <Compile Include="Etc\DotNetFormsAuthentication.cs" />
     <Compile Include="Ioc\FluentValidationCommandDecorator.cs" />
     <Compile Include="Ioc\FluentValidatorFactory.cs" />
-    <Compile Include="Ioc\InjectedRoleProvider.cs" />
     <Compile Include="Ioc\SimpleDecoratorContext.cs" />
     <Compile Include="Ioc\SimpleDecoratorExtensions.cs" />
     <Compile Include="Ioc\UnspecifiedValidator.cs" />
