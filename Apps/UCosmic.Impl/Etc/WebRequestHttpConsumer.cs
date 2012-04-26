@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Net;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class WebRequestHttpConsumer : IConsumeHttp
     {

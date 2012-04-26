@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using FluentValidation;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     // ReSharper disable UnusedMember.Global
     public class UnityValidatorFactory : FluentValidatorFactory

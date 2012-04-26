@@ -14,7 +14,7 @@ using UCosmic.Domain.People;
 using UCosmic.Domain.Places;
 using UCosmic.Domain.Files;
 
-namespace UCosmic.Orm
+namespace UCosmic.Impl.Orm
 {
     public class UCosmicContext : DbContext, IUnitOfWork, ICommandEntities
     {

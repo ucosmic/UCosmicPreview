@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using SimpleInjector;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     sealed class SimpleQueryProcessor : IProcessQueries
     {

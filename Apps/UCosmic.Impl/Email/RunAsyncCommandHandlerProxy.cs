@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class RunAsyncCommandHandlerProxy<TCommand> : IHandleCommands<TCommand>
     {

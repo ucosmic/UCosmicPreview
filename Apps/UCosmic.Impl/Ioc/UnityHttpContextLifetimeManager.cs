@@ -2,7 +2,7 @@ using System;
 using System.Web;
 using Microsoft.Practices.Unity;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class UnityHttpContextLifetimeManager : LifetimeManager
     {

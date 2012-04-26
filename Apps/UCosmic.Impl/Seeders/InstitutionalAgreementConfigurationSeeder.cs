@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
-using UCosmic.Orm;
+using UCosmic.Impl.Orm;
 
-namespace UCosmic.Seeders
+namespace UCosmic.Impl.Seeders
 {
     public class InstitutionalAgreementConfigurationSeeder : ISeedDb
     {

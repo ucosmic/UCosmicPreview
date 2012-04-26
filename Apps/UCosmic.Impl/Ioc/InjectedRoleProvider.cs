@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Security;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class InjectedRoleProvider : RoleProvider
     {

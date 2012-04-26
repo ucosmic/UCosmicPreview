@@ -2,7 +2,7 @@
 using System.Data.Entity.ModelConfiguration;
 using UCosmic.Domain.Identity;
 
-namespace UCosmic.Orm
+namespace UCosmic.Impl.Orm
 {
     public static class IdentityRelationalMapper
     {

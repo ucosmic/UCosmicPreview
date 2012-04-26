@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Should;
+using UCosmic.Impl;
 
 namespace UCosmic.Www.Mvc.WebDriver
 {

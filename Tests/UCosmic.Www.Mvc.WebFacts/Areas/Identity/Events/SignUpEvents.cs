@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web.Security;
 using TechTalk.SpecFlow;
-using UCosmic.Orm;
+using UCosmic.Impl.Orm;
 using UCosmic.Www.Mvc.SpecFlow;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Events

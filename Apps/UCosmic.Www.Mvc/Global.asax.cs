@@ -8,8 +8,9 @@ using System.Web.Routing;
 using Elmah.Contrib.Mvc;
 using FluentValidation.Mvc;
 using UCosmic.Domain;
-using UCosmic.Orm;
-using UCosmic.Seeders;
+using UCosmic.Impl;
+using UCosmic.Impl.Orm;
+using UCosmic.Impl.Seeders;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc

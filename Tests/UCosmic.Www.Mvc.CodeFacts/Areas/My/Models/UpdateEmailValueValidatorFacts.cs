@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
 using UCosmic.Domain.People;
+using UCosmic.Impl;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {

@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 using UCosmic.Domain;
+using UCosmic.Impl;
 
 namespace UCosmic.Www.Mvc
 {

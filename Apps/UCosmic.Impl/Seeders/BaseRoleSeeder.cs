@@ -1,7 +1,7 @@
 using System.Data;
 using UCosmic.Domain.Identity;
 
-namespace UCosmic.Seeders
+namespace UCosmic.Impl.Seeders
 {
     public abstract class BaseRoleSeeder : UCosmicDbSeeder
     {

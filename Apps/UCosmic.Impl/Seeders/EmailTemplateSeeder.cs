@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
 using UCosmic.Domain.Email;
-using UCosmic.Orm;
+using UCosmic.Impl.Orm;
 
-namespace UCosmic.Seeders
+namespace UCosmic.Impl.Seeders
 {
     public class EmailTemplateSeeder : ISeedDb
     {

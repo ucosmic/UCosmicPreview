@@ -1,4 +1,4 @@
-namespace UCosmic.Orm
+namespace UCosmic.Impl.Orm
 {
     public static class SqlInitializer
     {

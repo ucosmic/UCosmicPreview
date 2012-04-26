@@ -1,6 +1,6 @@
-using UCosmic.Orm;
+using UCosmic.Impl.Orm;
 
-namespace UCosmic.Seeders
+namespace UCosmic.Impl.Seeders
 {
     // ReSharper disable ClassNeverInstantiated.Global
     public class BrownfieldDbSeeder : ISeedDb

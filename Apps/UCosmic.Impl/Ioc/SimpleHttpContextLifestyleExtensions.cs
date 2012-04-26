@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Web;
 using SimpleInjector;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public static class SimpleHttpContextLifestyleExtensions
     {

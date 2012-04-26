@@ -3,11 +3,9 @@ using System.Linq;
 using System.Xml;
 using ComponentSpace.SAML2.Metadata;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
-    // ReSharper disable ClassNeverInstantiated.Global
     public class ComponentSpaceSaml2MetadataParser : IParseSaml2Metadata
-    // ReSharper restore ClassNeverInstantiated.Global
     {
         public string GetEntityDescriptor(string fromEntitiesDescriptorXml, string forEntityId)
         {

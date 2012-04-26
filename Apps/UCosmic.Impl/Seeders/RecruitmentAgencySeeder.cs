@@ -7,10 +7,10 @@ using NGeo.Yahoo.PlaceFinder;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Places;
-using UCosmic.Orm;
+using UCosmic.Impl.Orm;
 using Place = UCosmic.Domain.Places.Place;
 
-namespace UCosmic.Seeders
+namespace UCosmic.Impl.Seeders
 {
     // ReSharper disable UnusedMember.Global
     public class RecruitmentAgencySeeder : BaseEstablishmentSeeder

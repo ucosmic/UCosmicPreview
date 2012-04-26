@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using SimpleInjector;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public sealed class SimpleFilterAttributeFilterProvider : FilterAttributeFilterProvider
     {
@@ -20,10 +20,6 @@ namespace UCosmic
         public override IEnumerable<Filter> GetFilters(ControllerContext controllerContext, ActionDescriptor actionDescriptor)
         {
             var filters = base.GetFilters(controllerContext, actionDescriptor).ToArray();
-
-            //// converted to foreach loop
-            //for (var index = 0; index < filters.Length; index++)
-            //    _container.InjectProperties(filters[index].Instance);
 
             foreach (var filter in filters)
                 _container.InjectProperties(filter.Instance);

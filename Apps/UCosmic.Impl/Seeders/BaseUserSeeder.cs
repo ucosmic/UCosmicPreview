@@ -7,7 +7,7 @@ using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 
-namespace UCosmic.Seeders
+namespace UCosmic.Impl.Seeders
 {
     public abstract class BaseUserSeeder : BasePersonSeeder
     {

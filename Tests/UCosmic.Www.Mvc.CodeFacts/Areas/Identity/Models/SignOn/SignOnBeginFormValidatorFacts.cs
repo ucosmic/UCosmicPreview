@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
 using UCosmic.Domain.Establishments;
+using UCosmic.Impl;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
 {

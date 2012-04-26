@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using System;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class FluentValidatorFactory : ValidatorFactoryBase
     {

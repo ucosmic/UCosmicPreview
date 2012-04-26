@@ -3,7 +3,7 @@ using System.Linq;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
 
-namespace UCosmic.Seeders
+namespace UCosmic.Impl.Seeders
 {
     public abstract class BasePersonSeeder : UCosmicDbSeeder
     {

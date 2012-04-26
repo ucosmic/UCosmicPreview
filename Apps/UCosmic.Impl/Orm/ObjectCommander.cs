@@ -2,7 +2,7 @@ using System.Data;
 using UCosmic.Domain;
 using System.Data.Entity.Validation;
 
-namespace UCosmic.Orm
+namespace UCosmic.Impl.Orm
 {
     public class ObjectCommander : ICommandObjects
     {

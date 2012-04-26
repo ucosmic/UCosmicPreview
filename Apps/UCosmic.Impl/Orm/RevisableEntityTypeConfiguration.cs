@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 using UCosmic.Domain;
 
-namespace UCosmic.Orm
+namespace UCosmic.Impl.Orm
 {
     internal abstract class RevisableEntityTypeConfiguration<TRevisableEntity> 
         : EntityTypeConfiguration<TRevisableEntity> where TRevisableEntity : RevisableEntity

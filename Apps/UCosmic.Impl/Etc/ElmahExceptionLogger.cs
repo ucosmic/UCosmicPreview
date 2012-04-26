@@ -4,11 +4,9 @@ using System.IO;
 using System.Net.Mail;
 using Elmah;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
-    // ReSharper disable ClassNeverInstantiated.Global
     public class ElmahExceptionLogger : ILogExceptions
-    // ReSharper restore ClassNeverInstantiated.Global
     {
         private readonly IManageConfigurations _config;
 

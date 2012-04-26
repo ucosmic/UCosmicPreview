@@ -4,7 +4,7 @@ using System.Linq;
 using SimpleInjector;
 using System.Linq.Expressions;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public static class SimpleDecoratorExtensions
     {

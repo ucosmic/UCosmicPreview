@@ -1,9 +1,9 @@
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
-using UCosmic.Orm;
+using UCosmic.Impl.Orm;
 
-namespace UCosmic.Seeders
+namespace UCosmic.Impl.Seeders
 {
     // The composite db seeder uses a combination of EF DbContext 
     // and raw SQL to seed a database. It runs much more slowly 

@@ -9,12 +9,12 @@ using NGeo.Yahoo.PlaceFinder;
 using SimpleInjector;
 using SimpleInjector.Extensions;
 using UCosmic.Domain;
-using UCosmic.Orm;
-using UCosmic.Seeders;
+using UCosmic.Impl.Orm;
+using UCosmic.Impl.Seeders;
 using UCosmic.Domain.Email;
 using System.Diagnostics;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class SimpleDependencyInjector : IServiceProvider
     {

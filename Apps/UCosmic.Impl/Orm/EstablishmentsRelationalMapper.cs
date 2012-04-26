@@ -3,7 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 using UCosmic.Domain.Email;
 using UCosmic.Domain.Establishments;
 
-namespace UCosmic.Orm
+namespace UCosmic.Impl.Orm
 {
     public static class EstablishmentsRelationalMapper
     {

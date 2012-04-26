@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using UCosmic.Domain.Languages;
 
-namespace UCosmic.Orm
+namespace UCosmic.Impl.Orm
 {
     public static class LanguagesRelationalMapper
     {

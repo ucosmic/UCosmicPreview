@@ -1,6 +1,6 @@
-using UCosmic.Orm;
+using UCosmic.Impl.Orm;
 
-namespace UCosmic.Seeders
+namespace UCosmic.Impl.Seeders
 {
     public abstract class UCosmicDbSeeder : ISeedDb
     {

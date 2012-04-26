@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Should;
 using TechTalk.SpecFlow;
+using UCosmic.Impl;
 using UCosmic.Www.Mvc.Areas.Common.WebPages;
 using UCosmic.Www.Mvc.SpecFlow;
 using UCosmic.Www.Mvc.WebDriver;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UCosmic.Www.Mvc.Areas.Common.Steps
 {
