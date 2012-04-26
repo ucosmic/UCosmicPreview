@@ -31,7 +31,7 @@ namespace UCosmic.Domain.Email
             EmailMessage emailMessage = null;
             while (emailMessage == null && ++_retryCount < RetryLimit)
             {
-                if (_retryCount > 1) Thread.Sleep(100);
+                if (_retryCount > 1) Thread.Sleep(300);
 
                 emailMessage = _queryProcessor.Execute(
                     new GetEmailMessageByPersonIdAndNumberQuery
@@ -52,7 +52,7 @@ namespace UCosmic.Domain.Email
 
             // convert email message to mail message
             var mail = _queryProcessor.Execute(
-                new CreateMailMessageFromEmailMessageQuery(emailMessage)
+                new GetMailMessageQuery(emailMessage)
             );
 
             // send the mail message

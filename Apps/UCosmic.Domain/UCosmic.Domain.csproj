@@ -67,8 +67,8 @@
     <Compile Include="Api\BaseQuery.cs" />
     <Compile Include="Email\Commands\SendEmailMessageCommand.cs" />
     <Compile Include="Email\Commands\SendEmailMessageHandler.cs" />
-    <Compile Include="Email\Queries\CreateMailMessageFromEmailMessageQuery.cs" />
-    <Compile Include="Email\Queries\CreateMailMessageFromEmailMessageHandler.cs" />
+    <Compile Include="Email\Queries\GetMailMessageQuery.cs" />
+    <Compile Include="Email\Queries\GetMailMessageHandler.cs" />
     <Compile Include="Email\Queries\EmailTemplateQueries.cs" />
     <Compile Include="Email\Queries\GetEmailTemplateByNameHandler.cs" />
     <Compile Include="Email\Queries\GetEmailTemplateByNameQuery.cs" />
