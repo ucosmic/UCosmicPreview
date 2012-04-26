@@ -8,7 +8,7 @@ using ComponentSpace.SAML2.Assertions;
 using ComponentSpace.SAML2.Bindings;
 using ComponentSpace.SAML2.Protocols;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class ComponentSpaceSaml2Response : Saml2Response
     {

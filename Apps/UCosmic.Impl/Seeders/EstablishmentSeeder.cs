@@ -8,9 +8,9 @@ using NGeo.Yahoo.GeoPlanet;
 using NGeo.Yahoo.PlaceFinder;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Places;
-using UCosmic.Orm;
+using UCosmic.Impl.Orm;
 
-namespace UCosmic.Seeders
+namespace UCosmic.Impl.Seeders
 {
     public class EstablishmentSeeder : ISeedDb
     {

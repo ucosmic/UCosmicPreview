@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.Security;
 using UCosmic.Domain.Identity;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class AuthorizationProvider : RoleProvider
     {

@@ -2,7 +2,7 @@
 using System.Data.Entity.ModelConfiguration;
 using UCosmic.Domain.Places;
 
-namespace UCosmic.Orm
+namespace UCosmic.Impl.Orm
 {
     public static class PlacesRelationalMapper
     {

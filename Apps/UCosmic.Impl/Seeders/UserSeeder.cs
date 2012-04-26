@@ -1,9 +1,9 @@
 using System.Linq;
 using System.Web.Security;
 using UCosmic.Domain.People;
-using UCosmic.Orm;
+using UCosmic.Impl.Orm;
 
-namespace UCosmic.Seeders
+namespace UCosmic.Impl.Seeders
 {
     public class UserSeeder : ISeedDb
     {

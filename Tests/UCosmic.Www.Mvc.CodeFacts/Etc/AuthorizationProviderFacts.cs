@@ -1,13 +1,11 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
+using UCosmic.Impl;
 
 namespace UCosmic.Www.Mvc
 {
-    // ReSharper disable PossibleNullReferenceException
-    // ReSharper disable UnusedMember.Global
     public class AuthorizationProviderFacts
-    // ReSharper restore UnusedMember.Global
     {
         [TestClass]
         public class TheConstructor
@@ -26,9 +24,10 @@ namespace UCosmic.Www.Mvc
                 }
 
                 exception.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
                 exception.ParamName.ShouldEqual("roles");
+                // ReSharper restore PossibleNullReferenceException
             }
         }
     }
-    // ReSharper restore PossibleNullReferenceException
 }

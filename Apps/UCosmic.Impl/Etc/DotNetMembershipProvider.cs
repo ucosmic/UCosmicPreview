@@ -1,6 +1,6 @@
 ﻿using System.Web.Security;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     // ReSharper disable ClassNeverInstantiated.Global
     public class DotNetMembershipProvider : ISignMembers

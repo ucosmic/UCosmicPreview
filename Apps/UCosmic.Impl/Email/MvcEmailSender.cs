@@ -2,7 +2,7 @@ using System.Threading;
 using UCosmic.Domain;
 using UCosmic.Domain.People;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     // ReSharper disable ClassNeverInstantiated.Global
     public class MvcEmailSender : ISendEmails

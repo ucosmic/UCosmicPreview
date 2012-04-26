@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class DotNetConfigurationManager : IManageConfigurations
     {

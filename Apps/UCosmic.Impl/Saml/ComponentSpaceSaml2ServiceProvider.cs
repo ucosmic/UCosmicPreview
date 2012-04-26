@@ -7,7 +7,7 @@ using ComponentSpace.SAML2.Bindings;
 using ComponentSpace.SAML2.Profiles.SSOBrowser;
 using ComponentSpace.SAML2.Protocols;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     // ReSharper disable ClassNeverInstantiated.Global
     public class ComponentSpaceSaml2ServiceProvider : IProvideSaml2Service

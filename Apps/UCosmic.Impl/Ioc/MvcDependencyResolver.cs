@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class MvcDependencyResolver : IDependencyResolver
     {

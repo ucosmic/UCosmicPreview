@@ -6,7 +6,7 @@ using System.Web;
 using UCosmic.Domain;
 using UCosmic.Domain.People;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class SmtpEmailSender
     {

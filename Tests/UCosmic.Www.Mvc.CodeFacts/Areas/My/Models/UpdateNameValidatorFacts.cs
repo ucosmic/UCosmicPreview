@@ -3,6 +3,7 @@ using System.Web;
 using FluentValidation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
+using UCosmic.Impl;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {

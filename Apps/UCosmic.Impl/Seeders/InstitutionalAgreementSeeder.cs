@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using UCosmic.Domain.InstitutionalAgreements;
-using UCosmic.Orm;
+using UCosmic.Impl.Orm;
 
-namespace UCosmic.Seeders
+namespace UCosmic.Impl.Seeders
 {
     public class InstitutionalAgreementSeeder : ISeedDb
     {

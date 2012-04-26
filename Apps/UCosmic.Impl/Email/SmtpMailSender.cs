@@ -4,7 +4,7 @@ using System.Net.Mail;
 using System.Threading;
 using System.Web;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class SmtpMailSender : ISendMail
     {

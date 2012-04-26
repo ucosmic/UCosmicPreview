@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using UCosmic.Domain.Files;
 
-namespace UCosmic.Orm
+namespace UCosmic.Impl.Orm
 {
     public static class FilesRelationalMapper
     {

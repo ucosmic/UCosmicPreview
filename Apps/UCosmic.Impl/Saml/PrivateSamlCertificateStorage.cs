@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     // ReSharper disable UnusedMember.Global
     public class PrivateSamlCertificateStorage : IStoreSamlCertificates

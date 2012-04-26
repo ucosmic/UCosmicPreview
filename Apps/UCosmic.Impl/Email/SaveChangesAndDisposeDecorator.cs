@@ -1,6 +1,6 @@
-﻿using UCosmic.Orm;
+﻿using UCosmic.Impl.Orm;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class SaveChangesAndDisposeDecorator<TCommand> : IHandleCommands<TCommand>
     {

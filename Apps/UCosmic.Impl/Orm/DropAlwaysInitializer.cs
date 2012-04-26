@@ -1,6 +1,6 @@
 using System.Data.Entity;
 
-namespace UCosmic.Orm
+namespace UCosmic.Impl.Orm
 {
     // ReSharper disable ClassNeverInstantiated.Global
     public class DropAlwaysInitializer : DropCreateDatabaseAlways<UCosmicContext>

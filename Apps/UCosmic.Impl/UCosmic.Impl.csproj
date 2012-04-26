@@ -8,7 +8,7 @@
     <ProjectGuid>{1CF30064-FA30-4231-B2F9-3CD513B29E67}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UCosmic</RootNamespace>
+    <RootNamespace>UCosmic.Impl</RootNamespace>
     <AssemblyName>UCosmic.Impl</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -100,7 +100,6 @@
     </Compile>
     <Compile Include="Email\RunAsyncCommandHandlerProxy.cs" />
     <Compile Include="Email\SaveChangesAndDisposeDecorator.cs" />
-    <Compile Include="Email\SendAsyncEmailMessageHandler.cs" />
     <Compile Include="Email\SmtpMailSender.cs" />
     <Compile Include="Etc\DotNetFormsAuthentication.cs" />
     <Compile Include="Ioc\FluentValidatorFactory.cs" />

@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using UCosmic.Orm;
+using UCosmic.Impl.Orm;
 using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms

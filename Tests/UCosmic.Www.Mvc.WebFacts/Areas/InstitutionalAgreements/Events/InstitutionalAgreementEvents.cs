@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
-using UCosmic.Orm;
+using UCosmic.Impl.Orm;
 using UCosmic.Www.Mvc.SpecFlow;
 
 // ReSharper disable UnusedMember.Global

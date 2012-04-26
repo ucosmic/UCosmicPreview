@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class UnityDependencyInjector : IServiceProvider
     {

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class UnspecifiedValidator<TCommand> : AbstractValidator<TCommand>
     {

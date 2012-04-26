@@ -5,8 +5,8 @@ using System.ServiceProcess;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using UCosmic.Domain;
-using UCosmic.Orm;
-using UCosmic.Seeders;
+using UCosmic.Impl.Orm;
+using UCosmic.Impl.Seeders;
 using UCosmic.Www.Mvc.WebDriver;
 
 namespace UCosmic.Www.Mvc.SpecFlow

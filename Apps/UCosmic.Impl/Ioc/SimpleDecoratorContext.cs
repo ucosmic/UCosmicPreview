@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public class SimpleDecoratorContext
     {

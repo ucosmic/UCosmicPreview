@@ -11,7 +11,7 @@ using AutoMapper;
 using UCosmic.Domain;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Domain.People;
-using UCosmic.Orm;
+using UCosmic.Impl.Orm;
 using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ConfigurationForms;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Models;
