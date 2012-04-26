@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Net.Mail;
 using System.Threading;
 using System.Web;
@@ -8,9 +9,6 @@ namespace UCosmic.Impl
 {
     public class SmtpMailSender : ISendMail
     {
-        private bool _isDisposed;
-        private int _retryCount;
-        private SmtpClient _smtpClient;
         private readonly IManageConfigurations _configurationManager;
         private readonly ILogExceptions _exceptionLogger;
 
@@ -24,52 +22,53 @@ namespace UCosmic.Impl
 
         public void Send(MailMessage message)
         {
+            Send(message, 0);
+        }
+
+        private void Send(MailMessage message, int retryCount)
+        {
             if (message == null) throw new ArgumentNullException("message");
-
-            // do not send after disposal
-            if (_isDisposed)
-                throw new ObjectDisposedException(GetType().Name,
-                    "The mail sender has been disposed and can no longer be used.");
-
-            // new up client in case exception was thrown by bad setup
-            if (_smtpClient != null) _smtpClient.Dispose();
-            _smtpClient = new SmtpClient();
 
             try
             {
-                // for development & qa, deliver mail to test mail server folder
-                if (!_configurationManager.IsDeployedToCloud)
+                using (var smtpClient = new SmtpClient())
                 {
-                    var path = Path.Combine(HttpRuntime.AppDomainAppPath, _configurationManager.TestMailServer);
-                    var directory = Directory.CreateDirectory(path);
-                    _smtpClient.PickupDirectoryLocation = directory.FullName;
-                }
-                _smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    // in development & qa, deliver mail to test mail server folder
+                    if (smtpClient.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
+                    {
+                        var path = Path.Combine(HttpRuntime.AppDomainAppPath, _configurationManager.TestMailServer);
+                        var directory = Directory.CreateDirectory(path);
+                        smtpClient.PickupDirectoryLocation = directory.FullName;
+                    }
 
-                // send the message
-                _smtpClient.Send(message);
+                    // rename recipients when not deployed to prevent sending to unwanted recipients
+                    if (!_configurationManager.IsDeployedToCloud)
+                    {
+                        var toAddress = message.To.First().Address;
+                        message.To.Clear();
+                        message.CC.Clear();
+                        message.Bcc.Clear();
+                        foreach (var interceptAddress in _configurationManager.EmailInterceptAddresses.Explode(";"))
+                            message.To.Add(new MailAddress(interceptAddress, string.Format(
+                                "Intended for {0} (UCosmic Mail Intercept)", toAddress)));
+                    }
+
+                    // send the message
+                    smtpClient.Send(message);
+                }
             }
             catch (Exception ex)
             {
                 // log the exception
                 _exceptionLogger.LogException(ex);
 
-                // wait 10 seconds and try to send the message again
-                if (_retryCount++ <= 3)
-                {
-                    Thread.Sleep(10000);
-                    Send(message);
-                }
-                else throw;
+                // give up after trying 3 times
+                if (++retryCount > 2) throw;
+
+                // wait 3 seconds and try to send the message again
+                Thread.Sleep(3000);
+                Send(message, retryCount);
             }
-
-            Dispose();
-        }
-
-        public void Dispose()
-        {
-            if (_smtpClient != null) _smtpClient.Dispose();
-            _isDisposed = true;
         }
     }
 }

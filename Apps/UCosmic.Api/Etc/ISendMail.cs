@@ -1,9 +1,8 @@
-﻿using System;
-using System.Net.Mail;
+﻿using System.Net.Mail;
 
 namespace UCosmic
 {
-    public interface ISendMail : IDisposable
+    public interface ISendMail
     {
         void Send(MailMessage message);
     }
