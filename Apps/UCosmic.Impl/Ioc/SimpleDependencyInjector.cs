@@ -86,9 +86,9 @@ namespace UCosmic
             container.RegisterPerWebRequest<IConsumePlaceFinder, PlaceFinderClient>();
 
             // load assemblies for IoC reflection
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
-            var msWebMvc = assemblies.SingleOrDefault(a => a.FullName.StartsWith("Microsoft.Web.Mvc"));
-            if (msWebMvc != null) assemblies.Remove(msWebMvc);
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+                .Where(a => !a.FullName.StartsWith("Microsoft.Web.Mvc,"))
+                .ToArray();
 
             // fluent validation open generics
             container.RegisterManyForOpenGeneric(typeof(IValidator<>), assemblies);
@@ -97,27 +97,11 @@ namespace UCosmic
             container.RegisterSingleOpenGeneric(typeof(IValidator<>), typeof(UnspecifiedValidator<>));
 
             // open generic decorator chains http://www.cuttingedge.it/blogs/steven/pivot/entry.php?id=91
-            container.RegisterManyForOpenGeneric(typeof(IHandleCommands<>), (type, implementations) =>
-                {
-                    // register the async email handler
-                    if (type == typeof(IHandleCommands<SendEmailMessageCommand>))
-                        container.Register(type, implementations
-                            .Single(i => i == typeof(SendAsyncEmailMessageHandler)));
+            container.RegisterManyForOpenGeneric(typeof(IHandleCommands<>), assemblies);
 
-                    else if (implementations.Length < 1)
-                        throw new InvalidOperationException(string.Format(
-                            "No implementations were found for type '{0}'.",
-                                type.Name));
-                    else if (implementations.Length > 1)
-                        throw new InvalidOperationException(string.Format(
-                            "{1} implementations were found for type '{0}'.",
-                                type.Name, implementations.Length));
+            // send emails in a new thread
+            container.RegisterRunAsyncCommandHandlerProxy<SendEmailMessageCommand>();
 
-                    // register a single implementation (default behavior)
-                    else
-                        container.Register(type, implementations.Single());
-
-                }, assemblies);
             container.RegisterOpenGenericDecorator(typeof(IHandleCommands<>),
                 typeof(FluentValidationCommandDecorator<>));
 
@@ -137,5 +121,6 @@ namespace UCosmic
         {
             return ((IServiceProvider)_container).GetService(serviceType);
         }
+
     }
 }

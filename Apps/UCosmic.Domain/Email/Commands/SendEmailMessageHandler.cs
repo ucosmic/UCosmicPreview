@@ -10,20 +10,17 @@ namespace UCosmic.Domain.Email
         private const int RetryLimit = 1000;
         private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly ISendMail _mailSender;
         private readonly ILogExceptions _exceptionLogger;
 
         public SendEmailMessageHandler(IProcessQueries queryProcessor
             , ICommandEntities entities
-            , IUnitOfWork unitOfWork
             , ISendMail mailSender
             , ILogExceptions exceptionLogger
         )
         {
             _queryProcessor = queryProcessor;
             _entities = entities;
-            _unitOfWork = unitOfWork;
             _mailSender = mailSender;
             _exceptionLogger = exceptionLogger;
         }
@@ -41,7 +38,6 @@ namespace UCosmic.Domain.Email
                     {
                         PersonId = command.PersonId,
                         Number = command.MessageNumber,
-                        WithoutUnitOfWork = true,
                     }
                 );
             }
@@ -65,7 +61,6 @@ namespace UCosmic.Domain.Email
             // log when the message was sent
             emailMessage.SentOnUtc = DateTime.UtcNow;
             _entities.Update(emailMessage);
-            _unitOfWork.SaveChanges();
         }
     }
 }

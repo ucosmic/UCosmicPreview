@@ -61,7 +61,7 @@ namespace UCosmic.Www.Mvc
 
         protected void Application_EndRequest()
         {
-            SimpleHttpContextLifestyleExtensions.DisposeInstance<IUnitOfWork>();
+            SimpleHttpContextLifestyleExtensions.DisposeInstance<UCosmicContext>();
         }
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)

@@ -98,11 +98,15 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Email\RunAsyncCommandHandlerProxy.cs" />
+    <Compile Include="Email\SaveChangesAndDisposeDecorator.cs" />
     <Compile Include="Email\SendAsyncEmailMessageHandler.cs" />
     <Compile Include="Email\SmtpMailSender.cs" />
     <Compile Include="Etc\DotNetFormsAuthentication.cs" />
     <Compile Include="Ioc\FluentValidatorFactory.cs" />
     <Compile Include="Ioc\InjectedRoleProvider.cs" />
+    <Compile Include="Ioc\SimpleDecoratorContext.cs" />
+    <Compile Include="Ioc\SimpleDecoratorExtensions.cs" />
     <Compile Include="Ioc\UnspecifiedValidator.cs" />
     <Compile Include="Ioc\SimpleFilterAttributeFilterProvider.cs" />
     <Compile Include="Ioc\SimpleQueryProcessor.cs" />

@@ -18,7 +18,6 @@ namespace UCosmic
             container.RegisterPerWebRequest(instanceCreator);
         }
 
-        // ReSharper disable MemberCanBePrivate.Global
         [DebuggerStepThrough]
         public static void RegisterPerWebRequest<TService>(
             this Container container,
@@ -27,7 +26,6 @@ namespace UCosmic
             var creator = new PerWebRequestInstanceCreator<TService>(instanceCreator);
             container.Register(creator.GetInstance);
         }
-        // ReSharper restore MemberCanBePrivate.Global
 
         [DebuggerStepThrough]
         public static void RegisterPerWebRequest<TConcrete>(this Container container)
@@ -53,15 +51,17 @@ namespace UCosmic
         [DebuggerStepThrough]
         public static void DisposeInstance<TService>() where TService : class
         {
-            IDisposable disposable;
-            object key = typeof(PerWebRequestInstanceCreator<TService>);
+            IDisposable disposable = null;
             var httpContext = HttpContext.Current;
 
             if (httpContext != null)
             {
-                disposable = httpContext.Items[key] as IDisposable;
+                var key = typeof(PerWebRequestInstanceCreator<TService>);
                 if (httpContext.Items.Contains(key))
+                {
+                    disposable = httpContext.Items[key] as IDisposable;
                     httpContext.Items.Remove(key);
+                }
             }
             else
             {
