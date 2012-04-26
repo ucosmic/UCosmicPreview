@@ -5,8 +5,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using FluentValidation.Mvc;
 using UCosmic.Domain.Establishments;
-using UCosmic.Www.Mvc.Areas.Identity.Models.SignOn;
-using UCosmic.Www.Mvc.Areas.Identity.Services;
+using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers

@@ -3,11 +3,10 @@ using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Should;
-using UCosmic.Www.Mvc.Areas.Identity.Models.SignOn;
-using UCosmic.Www.Mvc.Areas.Identity.Services;
-using UCosmic.Www.Mvc.Controllers;
 using Moq;
+using Should;
+using UCosmic.Www.Mvc.Areas.Identity.Models;
+using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {

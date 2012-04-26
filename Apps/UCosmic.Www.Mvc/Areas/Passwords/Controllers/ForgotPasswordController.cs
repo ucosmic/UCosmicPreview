@@ -2,7 +2,7 @@
 using AutoMapper;
 using FluentValidation.Mvc;
 using UCosmic.Domain.Email;
-using UCosmic.Www.Mvc.Areas.Identity.Mappers;
+using UCosmic.Www.Mvc.Areas.Identity.Controllers;
 using UCosmic.Www.Mvc.Areas.Passwords.Models;
 using UCosmic.Www.Mvc.Controllers;
 
@@ -20,7 +20,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("forgot-password")]
-        [ReturnUrlReferrer(SignOnRouteMapper.Begin.Route)]
+        [ReturnUrlReferrer(SignOnRouter.Begin.Route)]
         public virtual PartialViewResult Get()
         {
             var model = new ForgotPasswordForm();

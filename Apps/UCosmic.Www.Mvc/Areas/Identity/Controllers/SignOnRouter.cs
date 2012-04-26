@@ -2,9 +2,9 @@
 using System.Web.Routing;
 using UCosmic.Www.Mvc.Routes;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
+namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
-    public static class SignOnRouteMapper
+    public static class SignOnRouter
     {
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.SignOn.Name;
@@ -12,7 +12,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
             if (!WebConfig.IsDeployedToCloud)
-                DefaultRouter.RegisterRoutes(typeof(SignOnRouteMapper), context, Area, Controller);
+                DefaultRouter.RegisterRoutes(typeof(SignOnRouter), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global

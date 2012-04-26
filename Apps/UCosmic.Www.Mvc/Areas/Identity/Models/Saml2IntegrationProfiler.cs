@@ -1,20 +1,19 @@
 ﻿using AutoMapper;
 using UCosmic.Domain.Establishments;
-using UCosmic.Www.Mvc.Areas.Identity.Models.SignOn;
 using UCosmic.Www.Mvc.Models;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
+namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    public static class SignOnModelMapper
+    public static class Saml2IntegrationProfiler
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(SignOnModelMapper));
+            DefaultModelMapper.RegisterProfiles(typeof(Saml2IntegrationProfiler));
         }
 
         // ReSharper disable UnusedMember.Local
 
-        private class Saml2Integration : Profile
+        private class EntityToViewModelProfile : Profile
         {
             protected override void Configure()
             {

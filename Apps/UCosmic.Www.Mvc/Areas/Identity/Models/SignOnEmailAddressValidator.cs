@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
+namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     public static class SignOnEmailAddressValidatorRules
     {

@@ -2,16 +2,16 @@
 using System.Web.Routing;
 using UCosmic.Www.Mvc.Routes;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
+namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
-    public static class Saml2MetadataRouteMapper
+    public static class Saml2MetadataRouter
     {
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.Saml2Metadata.Name;
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouter.RegisterRoutes(typeof(Saml2MetadataRouteMapper), context, Area, Controller);
+            DefaultRouter.RegisterRoutes(typeof(Saml2MetadataRouter), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global

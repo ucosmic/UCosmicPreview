@@ -202,6 +202,12 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Areas\Identity\Controllers\ConfirmEmailController.cs" />
+    <Compile Include="Areas\Identity\Controllers\ConfirmEmailServices.cs" />
+    <Compile Include="Areas\Identity\Controllers\Saml2MetadataServices.cs" />
+    <Compile Include="Areas\Identity\Models\Saml2IntegrationProfiler.cs" />
+    <Compile Include="Areas\Identity\Models\RoleSearchResultProfiler.cs" />
+    <Compile Include="Areas\Identity\Models\RoleFormProfiler.cs" />
     <Compile Include="Areas\My\Controllers\UpdateAffiliationController.cs" />
     <Compile Include="Areas\My\Controllers\UpdateEmailValueController.cs" />
     <Compile Include="Areas\My\Controllers\UpdateAffiliationServices.cs" />
@@ -253,18 +259,17 @@
     <Compile Include="Areas\Common\Controllers\NavigationController.cs" />
     <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapper.cs" />
     <Compile Include="Areas\Identity\Controllers\Saml2MetadataController.cs" />
-    <Compile Include="Areas\Identity\Mappers\SignOnModelMapper.cs" />
-    <Compile Include="Areas\Identity\Models\Saml2Metadata\Saml2EntityDescriptorModel.cs" />
-    <Compile Include="Areas\Identity\Models\SignOn\Saml2IntegrationInfo.cs" />
+    <Compile Include="Areas\Identity\Models\Saml2EntityDescriptorModel.cs" />
+    <Compile Include="Areas\Identity\Models\Saml2IntegrationInfo.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOnController.cs" />
-    <Compile Include="Areas\Identity\Mappers\SignOnRouteMapper.cs" />
-    <Compile Include="Areas\Identity\Models\Password\ForgotPasswordEmailAttribute.cs" />
-    <Compile Include="Areas\Identity\Models\Roles\NoDuplicateGrantsAttribute.cs" />
-    <Compile Include="Areas\Identity\Models\SignOn\SignOnBeginForm.cs" />
-    <Compile Include="Areas\Identity\Models\SignOn\SignOnEmailAddressValidator.cs" />
-    <Compile Include="Areas\Identity\Models\SignOn\SignOnBeginFormValidator.cs" />
-    <Compile Include="Areas\Identity\Services\RolesServices.cs" />
-    <Compile Include="Areas\Identity\Services\SignOnServices.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignOnRouter.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\Password\ForgotPasswordEmailAttribute.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\NoDuplicateGrantsAttribute.cs" />
+    <Compile Include="Areas\Identity\Models\SignOnBeginForm.cs" />
+    <Compile Include="Areas\Identity\Models\SignOnEmailAddressValidator.cs" />
+    <Compile Include="Areas\Identity\Models\SignOnBeginFormValidator.cs" />
+    <Compile Include="Areas\Identity\Controllers\RolesServices.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignOnServices.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsRouteMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsModelMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\PublicSearchModelMapper.cs" />
@@ -306,6 +311,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Establishments.SupplementalFormsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.ConfirmEmailController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Identity.EmailConfirmationController.generated.cs">
@@ -396,38 +404,37 @@
     <Compile Include="Areas\Establishments\EstablishmentsAreaRegistration.cs" />
     <Compile Include="Areas\Establishments\Models\ManagementForms\EstablishmentForm.cs" />
     <Compile Include="Areas\Establishments\Models\ManagementForms\EstablishmentSearchResult.cs" />
-    <Compile Include="Areas\Identity\Mappers\Saml2MetadataRouteMapper.cs" />
-    <Compile Include="Areas\Identity\Mappers\RolesModelMapper.cs" />
-    <Compile Include="Areas\Identity\Mappers\RolesRouteMapper.cs" />
-    <Compile Include="Areas\Identity\Mappers\PasswordModelMapper.cs" />
-    <Compile Include="Areas\Identity\Mappers\PasswordRouteMapper.cs" />
-    <Compile Include="Areas\Identity\Mappers\EmailConfirmationModelMapper.cs" />
-    <Compile Include="Areas\Identity\Mappers\EmailConfirmationRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Controllers\Saml2MetadataRouter.cs" />
+    <Compile Include="Areas\Identity\Controllers\RolesRouter.cs" />
+    <Compile Include="Areas\Identity\Mappers\Deprecated\PasswordModelMapper.cs" />
+    <Compile Include="Areas\Identity\Mappers\Deprecated\PasswordRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Mappers\Deprecated\EmailConfirmationModelMapper.cs" />
+    <Compile Include="Areas\Identity\Mappers\Deprecated\EmailConfirmationRouteMapper.cs" />
     <Compile Include="Controllers\TryAuthorizeAttribute.cs" />
     <Compile Include="Controllers\AuthorizeForImpersonationAttribute.cs" />
-    <Compile Include="Areas\Identity\Controllers\SignInController.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\SignInController.cs" />
     <Compile Include="Areas\Identity\Controllers\RolesController.cs" />
-    <Compile Include="Areas\Identity\Controllers\EmailConfirmationController.cs" />
-    <Compile Include="Areas\Identity\Controllers\PasswordController.cs" />
-    <Compile Include="Areas\Identity\Controllers\SignUpController.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\EmailConfirmationController.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\PasswordController.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\SignUpController.cs" />
     <Compile Include="Areas\Identity\IdentityAreaRegistration.cs" />
-    <Compile Include="Areas\Identity\Mappers\SignInRouteMapper.cs" />
-    <Compile Include="Areas\Identity\Models\SignIn\SignInAsForm.cs" />
-    <Compile Include="Areas\Identity\Models\SignIn\SignInForm.cs" />
-    <Compile Include="Areas\Identity\Models\SignIn\SignInNavInfo.cs" />
-    <Compile Include="Areas\Identity\Models\Roles\RoleForm.cs" />
-    <Compile Include="Areas\Identity\Models\Roles\RoleSearchResult.cs" />
-    <Compile Include="Areas\Identity\Models\EmailConfirmation\ConfirmEmailForgotPasswordForm.cs" />
-    <Compile Include="Areas\Identity\Models\Password\ChangePasswordForm.cs" />
-    <Compile Include="Areas\Identity\Models\Password\ForgotPasswordForm.cs" />
-    <Compile Include="Areas\Identity\Models\Password\ResetPasswordForm.cs" />
+    <Compile Include="Areas\Identity\Mappers\Deprecated\SignInRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\SignIn\SignInAsForm.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\SignIn\SignInForm.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\SignIn\SignInNavInfo.cs" />
+    <Compile Include="Areas\Identity\Models\RoleForm.cs" />
+    <Compile Include="Areas\Identity\Models\RoleSearchResult.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\EmailConfirmation\ConfirmEmailForgotPasswordForm.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\Password\ChangePasswordForm.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\Password\ForgotPasswordForm.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\Password\ResetPasswordForm.cs" />
     <Compile Include="Areas\My\Models\UpdateEmailValueForm.cs" />
-    <Compile Include="Areas\Identity\Models\SignUp\ConfirmDeniedPage.cs" />
-    <Compile Include="Areas\Identity\Models\SignUp\ConfirmEmailForm.cs" />
-    <Compile Include="Areas\Identity\Models\SignUp\CreateDeniedPage.cs" />
-    <Compile Include="Areas\Identity\Models\SignUp\CreatePasswordForm.cs" />
-    <Compile Include="Areas\Identity\Models\SignUp\SendEmailForm.cs" />
-    <Compile Include="Areas\Identity\Mappers\SignUpRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\ConfirmDeniedPage.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\ConfirmEmailForm.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\CreateDeniedPage.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\CreatePasswordForm.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\SendEmailForm.cs" />
+    <Compile Include="Areas\Identity\Mappers\Deprecated\SignUpRouteMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Controllers\ConfigurationFormsController.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Controllers\ManagementFormsController.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Controllers\PublicSearchController.cs" />

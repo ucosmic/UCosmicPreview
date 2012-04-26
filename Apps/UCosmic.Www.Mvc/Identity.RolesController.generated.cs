@@ -114,7 +114,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Put(UCosmic.Www.Mvc.Areas.Identity.Models.Roles.RoleForm model) {
+        public override System.Web.Mvc.ActionResult Put(UCosmic.Www.Mvc.Areas.Identity.Models.RoleForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Put);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;

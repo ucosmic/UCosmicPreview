@@ -1,4 +1,4 @@
-﻿namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
+﻿namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     public class Saml2IntegrationInfo
     {

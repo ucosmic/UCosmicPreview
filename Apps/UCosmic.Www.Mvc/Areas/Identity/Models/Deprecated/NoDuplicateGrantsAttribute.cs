@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Models.Roles
+namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public class NoDuplicateGrantsAttribute : ValidationAttribute

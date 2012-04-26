@@ -1,21 +1,20 @@
 ﻿using System.Linq;
 using AutoMapper;
 using UCosmic.Domain.Identity;
-using UCosmic.Www.Mvc.Areas.Identity.Models.Roles;
 using UCosmic.Www.Mvc.Models;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
+namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    public static class RolesModelMapper
+    public static class RoleFormProfiler
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(RolesModelMapper));
+            DefaultModelMapper.RegisterProfiles(typeof(RoleFormProfiler));
         }
 
         // ReSharper disable UnusedMember.Local
 
-        private class RoleFormProfile : Profile
+        private class EntityToViewModel : Profile
         {
             protected override void Configure()
             {
@@ -29,7 +28,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
                     .ForMember(target => target.User, opt => opt
                         .ResolveUsing(source => new RoleForm.RoleGrantForm.UserForm
                         {
-                            EntityId = source.EntityId, Name = source.Name
+                            EntityId = source.EntityId,
+                            Name = source.Name
                         }))
                 ;
                 CreateMap<User, AutoCompleteOption>()
@@ -37,16 +37,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
                         .ResolveUsing(source => source.EntityId.ToString()))
                     .ForMember(target => target.label, opt => opt
                         .ResolveUsing(source => source.Name))
-                ;
-            }
-        }
-
-        private class RoleSearchResultProfile : Profile
-        {
-            protected override void Configure()
-            {
-                CreateMap<Role, RoleSearchResult>()
-                    .ForMember(d => d.Slug, o => o.ResolveUsing(s => s.Name.Replace(" ", "-").ToLower()))
                 ;
             }
         }

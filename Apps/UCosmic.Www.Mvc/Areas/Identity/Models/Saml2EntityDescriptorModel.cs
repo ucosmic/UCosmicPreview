@@ -1,4 +1,4 @@
-﻿namespace UCosmic.Www.Mvc.Areas.Identity.Models.Saml2Metadata
+﻿namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     public class Saml2EntityDescriptorModel
     {
