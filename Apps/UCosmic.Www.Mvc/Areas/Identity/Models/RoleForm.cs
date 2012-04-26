@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using UCosmic.Www.Mvc.Models;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Models.Roles
+namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     public class RoleForm : IReturnUrl
     {

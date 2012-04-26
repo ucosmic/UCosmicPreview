@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
+using UCosmic.Www.Mvc.Areas.Identity.Controllers;
 using UCosmic.Www.Mvc.Areas.Identity.Mappers;
+using UCosmic.Www.Mvc.Areas.Identity.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity
 {
@@ -21,16 +23,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             PasswordRouteMapper.RegisterRoutes(context);
             PasswordModelMapper.RegisterProfiles();
 
-            RolesRouteMapper.RegisterRoutes(context);
-            RolesModelMapper.RegisterProfiles();
+            RolesRouter.RegisterRoutes(context);
+            RoleFormProfiler.RegisterProfiles();
+            RoleSearchResultProfiler.RegisterProfiles();
 
-            //SelfRouteMapper.RegisterRoutes(context);
-            //SelfModelMapper.RegisterProfiles();
+            Saml2MetadataRouter.RegisterRoutes(context);
 
-            Saml2MetadataRouteMapper.RegisterRoutes(context);
-
-            SignOnRouteMapper.RegisterRoutes(context);
-            SignOnModelMapper.RegisterProfiles();
+            SignOnRouter.RegisterRoutes(context);
+            Saml2IntegrationProfiler.RegisterProfiles();
 
             //// default route
             //context.MapRoute(

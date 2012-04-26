@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
-using System.Web.Security;
 using FluentValidation;
 using NGeo.GeoNames;
 using NGeo.Yahoo.GeoPlanet;
@@ -9,10 +9,9 @@ using NGeo.Yahoo.PlaceFinder;
 using SimpleInjector;
 using SimpleInjector.Extensions;
 using UCosmic.Domain;
+using UCosmic.Domain.Email;
 using UCosmic.Impl.Orm;
 using UCosmic.Impl.Seeders;
-using UCosmic.Domain.Email;
-using System.Diagnostics;
 
 namespace UCosmic.Impl
 {

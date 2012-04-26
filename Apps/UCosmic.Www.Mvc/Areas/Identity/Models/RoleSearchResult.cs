@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Models.Roles
+namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     public class RoleSearchResult
     {

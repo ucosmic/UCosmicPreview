@@ -1,6 +1,6 @@
 ﻿using UCosmic.Domain.Establishments;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Services
+namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
     public class SignOnServices
     {

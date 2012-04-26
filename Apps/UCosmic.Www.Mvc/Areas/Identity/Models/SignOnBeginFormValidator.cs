@@ -1,7 +1,7 @@
 using FluentValidation;
 using UCosmic.Domain.Establishments;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
+namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     public class SignOnBeginFormValidator : AbstractValidator<SignOnBeginForm>
     {

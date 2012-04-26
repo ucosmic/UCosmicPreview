@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using UCosmic.Impl;
-using UCosmic.Www.Mvc.Areas.Identity.Models.Saml2Metadata;
+using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
@@ -9,28 +9,24 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
     [EnforceHttps]
     public partial class Saml2MetadataController : Controller
     {
-        private readonly IManageConfigurations _configurationManager;
-        private readonly IStoreSamlCertificates _samlCertificates;
+        private readonly Saml2MetadataServices _services;
 
-        public Saml2MetadataController(IManageConfigurations configurationManager
-            , IStoreSamlCertificates samlCertificates
-        )
+        public Saml2MetadataController(Saml2MetadataServices services)
         {
-            _configurationManager = configurationManager;
-            _samlCertificates = samlCertificates;
+            _services = services;
         }
 
         public virtual ViewResult Index(string contentType = null)
         {
-            var encryptionCertificate = _samlCertificates.GetEncryptionCertificate();
-            var signingCertificate = _samlCertificates.GetSigningCertificate();
+            var encryptionCertificate = _services.SamlCertificates.GetEncryptionCertificate();
+            var signingCertificate = _services.SamlCertificates.GetSigningCertificate();
             var model = new Saml2EntityDescriptorModel
             {
                 SigningX509SubjectName = signingCertificate.SubjectName.Name,
                 SigningX509Certificate = Convert.ToBase64String(signingCertificate.RawData),
                 EncryptionX509SubjectName = encryptionCertificate.SubjectName.Name,
                 EncryptionX509Certificate = Convert.ToBase64String(encryptionCertificate.RawData),
-                EntityId = _configurationManager.SamlServiceProviderEntityId,
+                EntityId = _services.Configuration.SamlServiceProviderEntityId,
             };
 
             // NOTE: http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf section 4.1.1 

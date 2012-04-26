@@ -5,12 +5,10 @@ using System.Linq.Expressions;
 using System.Web.Mvc;
 using AutoMapper;
 using UCosmic.Domain;
-using UCosmic.Www.Mvc.Areas.Identity.Mappers;
-using UCosmic.Www.Mvc.Areas.Identity.Models.Roles;
-using UCosmic.Www.Mvc.Areas.Identity.Services;
+using UCosmic.Domain.Identity;
+using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Models;
-using UCosmic.Domain.Identity;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -40,7 +38,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         [HttpGet]
         [ActionName("form")]
-        [ReturnUrlReferrer(RolesRouteMapper.Browse.Route)]
+        [ReturnUrlReferrer(RolesRouter.Browse.Route)]
         public virtual ActionResult Form(string slug)
         {
             if (!string.IsNullOrWhiteSpace(slug))

@@ -6,10 +6,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
 using UCosmic.Domain.Identity;
-using UCosmic.Www.Mvc.Areas.Identity.Services;
+using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;
 using System.Collections.Generic;
-using UCosmic.Www.Mvc.Areas.Identity.Models.Roles;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {

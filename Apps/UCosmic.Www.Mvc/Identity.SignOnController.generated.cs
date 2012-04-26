@@ -85,7 +85,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public class T4MVC_SignOnController: UCosmic.Www.Mvc.Areas.Identity.Controllers.SignOnController {
         public T4MVC_SignOnController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.JsonResult ValidateEmailAddress(UCosmic.Www.Mvc.Areas.Identity.Models.SignOn.SignOnBeginForm model) {
+        public override System.Web.Mvc.JsonResult ValidateEmailAddress(UCosmic.Www.Mvc.Areas.Identity.Models.SignOnBeginForm model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateEmailAddress);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
@@ -97,7 +97,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Begin(UCosmic.Www.Mvc.Areas.Identity.Models.SignOn.SignOnBeginForm model) {
+        public override System.Web.Mvc.ActionResult Begin(UCosmic.Www.Mvc.Areas.Identity.Models.SignOnBeginForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Begin);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;

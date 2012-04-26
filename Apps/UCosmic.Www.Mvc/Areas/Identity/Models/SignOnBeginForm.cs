@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using UCosmic.Www.Mvc.Models;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
+namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     public class SignOnBeginForm : IReturnUrl
     {
