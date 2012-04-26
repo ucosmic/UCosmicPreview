@@ -65,7 +65,6 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Api\BaseQuery.cs" />
-    <Compile Include="Api\FluentValidationCommandDecorator.cs" />
     <Compile Include="Email\Commands\SendEmailMessageCommand.cs" />
     <Compile Include="Email\Commands\SendEmailMessageHandler.cs" />
     <Compile Include="Email\Queries\CreateMailMessageFromEmailMessageQuery.cs" />
@@ -135,6 +134,8 @@
     <Compile Include="Identity\Queries\AutoCompleteUsersByNameQuery.cs" />
     <Compile Include="Identity\Queries\BaseUserQuery.cs" />
     <Compile Include="Identity\Queries\BaseUsersQuery.cs" />
+    <Compile Include="Identity\Queries\FindRolesGrantedToUserNameHandler.cs" />
+    <Compile Include="Identity\Queries\FindRolesGrantedToUserNameQuery.cs" />
     <Compile Include="Identity\Queries\GetUserByEduPersonTargetedIdHandler.cs" />
     <Compile Include="Identity\Queries\GetUserByEduPersonTargetedIdQuery.cs" />
     <Compile Include="Identity\Queries\GetUserByEntityIdHandler.cs" />

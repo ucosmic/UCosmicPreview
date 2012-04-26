@@ -102,6 +102,7 @@
     <Compile Include="Email\SaveChangesAndDisposeDecorator.cs" />
     <Compile Include="Email\SmtpMailSender.cs" />
     <Compile Include="Etc\DotNetFormsAuthentication.cs" />
+    <Compile Include="Ioc\FluentValidationCommandDecorator.cs" />
     <Compile Include="Ioc\FluentValidatorFactory.cs" />
     <Compile Include="Ioc\InjectedRoleProvider.cs" />
     <Compile Include="Ioc\SimpleDecoratorContext.cs" />

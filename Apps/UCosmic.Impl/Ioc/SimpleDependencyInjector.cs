@@ -63,7 +63,7 @@ namespace UCosmic.Impl
 
             // other interfaces related to DbContext
             container.Register<ICommandObjects, ObjectCommander>();
-            container.RegisterPerWebRequest<RoleProvider, AuthorizationProvider>();
+            //container.RegisterSingle<RoleProvider, AuthorizationProvider>();
 
             // general purpose interfaces
             container.Register<ISignMembers, DotNetMembershipProvider>();
@@ -94,7 +94,7 @@ namespace UCosmic.Impl
             container.RegisterManyForOpenGeneric(typeof(IValidator<>), assemblies);
 
             // add unregistered type resolution for objects missing an IValidator<T>
-            container.RegisterSingleOpenGeneric(typeof(IValidator<>), typeof(UnspecifiedValidator<>));
+            //container.RegisterSingleOpenGeneric(typeof(IValidator<>), typeof(UnspecifiedValidator<>));
 
             // open generic decorator chains http://www.cuttingedge.it/blogs/steven/pivot/entry.php?id=91
             container.RegisterManyForOpenGeneric(typeof(IHandleCommands<>), assemblies);
