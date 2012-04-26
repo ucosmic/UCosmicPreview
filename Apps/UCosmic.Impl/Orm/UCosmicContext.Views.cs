@@ -8,30 +8,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets8704CE5108B9E623CA7750B842C81290F16D310BFE74C936EF8DD4D8104B6C99))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets587B4CFCBFA315E99E9711FCCA0CB956DFF49FB0788A3FE34FDB5FF4B513DB2F))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
-    
-    
+
+
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySets8704CE5108B9E623CA7750B842C81290F16D310BFE74C936EF8DD4D8104B6C99 : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySets587B4CFCBFA315E99E9711FCCA0CB956DFF49FB0788A3FE34FDB5FF4B513DB2F : System.Data.Mapping.EntityViewContainer
     {
-        
+
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySets8704CE5108B9E623CA7750B842C81290F16D310BFE74C936EF8DD4D8104B6C99()
+        public ViewsForBaseEntitySets587B4CFCBFA315E99E9711FCCA0CB956DFF49FB0788A3FE34FDB5FF4B513DB2F()
         {
             this.EdmEntityContainerName = "UCosmicContext";
             this.StoreEntityContainerName = "CodeFirstDatabase";
-            this.HashOverMappingClosure = "822a64b62681b32e5d12c57a0ad2216669f7d7ddc74c167c02b0e5bf2b692b5f";
-            this.HashOverAllExtentViews = "96e0d976fedf37bd2fc4d78d5a5844702474297b4d6f8f68b97e72573a47c2da";
-            this.ViewCount = 121;
+            this.HashOverMappingClosure = "1c538164e435a466acb51b875df9ec0efde6effe4d79b998d94d5dd18bfc70f8";
+            this.HashOverAllExtentViews = "3cc7c5473899730f241b0db0705781f45a185a636201b351e1bc48d2ae4c4a58";
+            this.ViewCount = 125;
         }
-        
+
         /// <Summary>
         /// The method returns the view for the index given.
         /// </Summary>
@@ -521,9 +521,25 @@ namespace Edm_EntityMappingGeneratedViews
             {
                 return GetView120();
             }
+            if ((index == 121))
+            {
+                return GetView121();
+            }
+            if ((index == 122))
+            {
+                return GetView122();
+            }
+            if ((index == 123))
+            {
+                return GetView123();
+            }
+            if ((index == 124))
+            {
+                return GetView124();
+            }
             throw new System.IndexOutOfRangeException();
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.LooseFile
         /// </Summary>
@@ -552,7 +568,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.Files AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.Files
         /// </Summary>
@@ -560,7 +576,7 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.Files", @"
     SELECT VALUE -- Constructing Files
-        [UCosmic.Orm.LooseFile](T1.LooseFile_RevisionId, T1.LooseFile_Content, T1.LooseFile_Length, T1.LooseFile_MimeType, T1.LooseFile_Name, T1.LooseFile_EntityId, T1.LooseFile_CreatedOnUtc, T1.LooseFile_CreatedByPrincipal, T1.LooseFile_UpdatedOnUtc, T1.LooseFile_UpdatedByPrincipal, T1.LooseFile_Version, T1.LooseFile_IsCurrent, T1.LooseFile_IsArchived, T1.LooseFile_IsDeleted)
+        [UCosmic.Impl.Orm.LooseFile](T1.LooseFile_RevisionId, T1.LooseFile_Content, T1.LooseFile_Length, T1.LooseFile_MimeType, T1.LooseFile_Name, T1.LooseFile_EntityId, T1.LooseFile_CreatedOnUtc, T1.LooseFile_CreatedByPrincipal, T1.LooseFile_UpdatedOnUtc, T1.LooseFile_UpdatedByPrincipal, T1.LooseFile_Version, T1.LooseFile_IsCurrent, T1.LooseFile_IsArchived, T1.LooseFile_IsDeleted)
     FROM (
         SELECT 
             T.RevisionId AS LooseFile_RevisionId, 
@@ -581,7 +597,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.LooseFile AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.Language
         /// </Summary>
@@ -609,7 +625,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.Languages AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.LanguageName
         /// </Summary>
@@ -653,7 +669,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("nId = T3.LanguageName_RevisionId\r\n    ) AS T4");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.LanguageName", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.Place
         /// </Summary>
@@ -700,7 +716,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("onId = T2.Place_RevisionId\r\n    ) AS T3");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.Place", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.PlaceNode
         /// </Summary>
@@ -718,7 +734,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.PlaceNodes AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.GeoNamesToponym
         /// </Summary>
@@ -775,7 +791,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("NamesToponym_GeoNameId = T3.GeoNamesToponym_GeoNameId\r\n    ) AS T4");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.GeoNamesToponym", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.GeoNamesFeature
         /// </Summary>
@@ -793,7 +809,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.GeoNamesFeatures AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.GeoNamesFeatureClass
         /// </Summary>
@@ -810,7 +826,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.GeoNamesFeatureClasses AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.GeoNamesTimeZone
         /// </Summary>
@@ -828,7 +844,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.GeoNamesTimeZones AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.GeoNamesCountry
         /// </Summary>
@@ -859,7 +875,7 @@ namespace Edm_EntityMappingGeneratedViews
                     "\r\n            True AS _from0\r\n        FROM UCosmicContext.GeoNamesCountries AS T" +
                     "\r\n    ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.GeoNamesToponymNode
         /// </Summary>
@@ -877,7 +893,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.GeoNamesToponymNodes AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.GeoNamesAlternateName
         /// </Summary>
@@ -896,7 +912,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.GeoNamesAlternateNames AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.GeoPlanetPlace
         /// </Summary>
@@ -985,7 +1001,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append(".GeoPlanetPlace_WoeId = T5.GeoPlanetPlace_WoeId\r\n    ) AS T6");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.GeoPlanetPlace", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.GeoPlanetPlaceNode
         /// </Summary>
@@ -1003,7 +1019,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.GeoPlanetPlaceNodes AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.GeoPlanetPlaceType
         /// </Summary>
@@ -1022,7 +1038,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.GeoPlanetPlaceTypes AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.GeoPlanetPlaceBelongTo
         /// </Summary>
@@ -1040,7 +1056,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.GeoPlanetPlaceBelongToes AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.PlaceName
         /// </Summary>
@@ -1093,38 +1109,38 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("ame_RevisionId\r\n    ) AS T5");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.PlaceName", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.User
         /// </Summary>
         private System.Collections.Generic.KeyValuePair<string, string> GetView18()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.User", "\r\n    SELECT VALUE -- Constructing User\r\n        [CodeFirstDatabaseSchema.User](T" +
-                    "3.User_RevisionId, T3.User_UserName, T3.User_SubjectNameId, T3.User_IsRegistered" +
-                    ", T3.User_EntityId, T3.User_CreatedOnUtc, T3.User_CreatedByPrincipal, T3.User_Up" +
-                    "datedOnUtc, T3.User_UpdatedByPrincipal, T3.User_Version, T3.User_IsCurrent, T3.U" +
-                    "ser_IsArchived, T3.User_IsDeleted, T3.User_PersonId)\r\n    FROM (\r\n        SELECT" +
-                    " T1.User_RevisionId, T2.User_UserName, T2.User_SubjectNameId, T2.User_IsRegister" +
-                    "ed, T2.User_EntityId, T2.User_CreatedOnUtc, T2.User_CreatedByPrincipal, T2.User_" +
-                    "UpdatedOnUtc, T2.User_UpdatedByPrincipal, T2.User_Version, T2.User_IsCurrent, T2" +
-                    ".User_IsArchived, T2.User_IsDeleted, T1.User_PersonId, T2._from0, T1._from1\r\n   " +
-                    "     FROM  (\r\n            SELECT \r\n                Key(T.Person_User_Target).Rev" +
-                    "isionId AS User_RevisionId, \r\n                Key(T.Person_User_Source).Revision" +
-                    "Id AS User_PersonId, \r\n                True AS _from1\r\n            FROM UCosmicC" +
-                    "ontext.Person_User AS T) AS T1\r\n            INNER JOIN (\r\n            SELECT \r\n " +
-                    "               T.RevisionId AS User_RevisionId, \r\n                T.UserName AS " +
-                    "User_UserName, \r\n                T.SubjectNameId AS User_SubjectNameId, \r\n      " +
-                    "          T.IsRegistered AS User_IsRegistered, \r\n                T.EntityId AS U" +
-                    "ser_EntityId, \r\n                T.CreatedOnUtc AS User_CreatedOnUtc, \r\n         " +
-                    "       T.CreatedByPrincipal AS User_CreatedByPrincipal, \r\n                T.Upda" +
-                    "tedOnUtc AS User_UpdatedOnUtc, \r\n                T.UpdatedByPrincipal AS User_Up" +
-                    "datedByPrincipal, \r\n                T.Version AS User_Version, \r\n               " +
-                    " T.IsCurrent AS User_IsCurrent, \r\n                T.IsArchived AS User_IsArchive" +
-                    "d, \r\n                T.IsDeleted AS User_IsDeleted, \r\n                True AS _f" +
-                    "rom0\r\n            FROM UCosmicContext.Users AS T) AS T2\r\n            ON T1.User_" +
-                    "RevisionId = T2.User_RevisionId\r\n    ) AS T3");
+                    "3.User_RevisionId, T3.User_Name, T3.User_EduPersonTargetedId, T3.User_IsRegister" +
+                    "ed, T3.User_EntityId, T3.User_CreatedOnUtc, T3.User_CreatedByPrincipal, T3.User_" +
+                    "UpdatedOnUtc, T3.User_UpdatedByPrincipal, T3.User_Version, T3.User_IsCurrent, T3" +
+                    ".User_IsArchived, T3.User_IsDeleted, T3.User_PersonId)\r\n    FROM (\r\n        SELE" +
+                    "CT T1.User_RevisionId, T2.User_Name, T2.User_EduPersonTargetedId, T2.User_IsRegi" +
+                    "stered, T2.User_EntityId, T2.User_CreatedOnUtc, T2.User_CreatedByPrincipal, T2.U" +
+                    "ser_UpdatedOnUtc, T2.User_UpdatedByPrincipal, T2.User_Version, T2.User_IsCurrent" +
+                    ", T2.User_IsArchived, T2.User_IsDeleted, T1.User_PersonId, T2._from0, T1._from1\r" +
+                    "\n        FROM  (\r\n            SELECT \r\n                Key(T.Person_User_Target)" +
+                    ".RevisionId AS User_RevisionId, \r\n                Key(T.Person_User_Source).Revi" +
+                    "sionId AS User_PersonId, \r\n                True AS _from1\r\n            FROM UCos" +
+                    "micContext.Person_User AS T) AS T1\r\n            INNER JOIN (\r\n            SELECT" +
+                    " \r\n                T.RevisionId AS User_RevisionId, \r\n                T.Name AS " +
+                    "User_Name, \r\n                T.EduPersonTargetedId AS User_EduPersonTargetedId, " +
+                    "\r\n                T.IsRegistered AS User_IsRegistered, \r\n                T.Entit" +
+                    "yId AS User_EntityId, \r\n                T.CreatedOnUtc AS User_CreatedOnUtc, \r\n " +
+                    "               T.CreatedByPrincipal AS User_CreatedByPrincipal, \r\n              " +
+                    "  T.UpdatedOnUtc AS User_UpdatedOnUtc, \r\n                T.UpdatedByPrincipal AS" +
+                    " User_UpdatedByPrincipal, \r\n                T.Version AS User_Version, \r\n       " +
+                    "         T.IsCurrent AS User_IsCurrent, \r\n                T.IsArchived AS User_I" +
+                    "sArchived, \r\n                T.IsDeleted AS User_IsDeleted, \r\n                Tr" +
+                    "ue AS _from0\r\n            FROM UCosmicContext.Users AS T) AS T2\r\n            ON " +
+                    "T1.User_RevisionId = T2.User_RevisionId\r\n    ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.RoleGrant
         /// </Summary>
@@ -1174,7 +1190,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("isionId = T5.RoleGrant_RevisionId\r\n    ) AS T6");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.RoleGrant", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.Role
         /// </Summary>
@@ -1201,7 +1217,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.Roles AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.Establishment
         /// </Summary>
@@ -1271,7 +1287,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("_RevisionId = T4.Establishment_RevisionId\r\n    ) AS T5");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.Establishment", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.EstablishmentName
         /// </Summary>
@@ -1333,7 +1349,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("mentName_RevisionId = T4.EstablishmentName_RevisionId\r\n    ) AS T5");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.EstablishmentName", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.EstablishmentUrl
         /// </Summary>
@@ -1374,7 +1390,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("ionId\r\n    ) AS T3");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.EstablishmentUrl", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.EstablishmentNode
         /// </Summary>
@@ -1392,7 +1408,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.EstablishmentNodes AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.EstablishmentLocation
         /// </Summary>
@@ -1430,7 +1446,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append(" T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.EstablishmentLocation", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.EstablishmentAddress
         /// </Summary>
@@ -1478,7 +1494,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("ss_RevisionId\r\n    ) AS T4");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.EstablishmentAddress", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.EstablishmentSamlSignOn
         /// </Summary>
@@ -1501,7 +1517,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.EstablishmentSamlSignOns AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.EstablishmentType
         /// </Summary>
@@ -1529,7 +1545,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.EstablishmentTypes AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.EstablishmentCategory
         /// </Summary>
@@ -1556,7 +1572,7 @@ namespace Edm_EntityMappingGeneratedViews
                     "           T.IsDeleted AS EstablishmentCategory_IsDeleted, \r\n            True AS" +
                     " _from0\r\n        FROM UCosmicContext.EstablishmentCategories AS T\r\n    ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.EstablishmentEmailDomain
         /// </Summary>
@@ -1583,43 +1599,33 @@ namespace Edm_EntityMappingGeneratedViews
                     "blishmentEmailDomain_IsDeleted, \r\n            True AS _from0\r\n        FROM UCosm" +
                     "icContext.EstablishmentEmailDomains AS T\r\n    ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.Affiliation
         /// </Summary>
         private System.Collections.Generic.KeyValuePair<string, string> GetView31()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2142);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing Affiliation\r\n        [CodeFirstDatabaseSchema");
-            viewString.Append(".Affiliation](T1.Affiliation_RevisionId, T1.Affiliation_PersonId, T1.Affiliation");
-            viewString.Append("_EstablishmentId, T1.Affiliation_JobTitles, T1.Affiliation_IsDefault, T1.Affilia");
-            viewString.Append("tion_IsAcknowledged, T1.Affiliation_IsClaimingStudent, T1.Affiliation_IsClaiming");
-            viewString.Append("Employee, T1.Affiliation_IsClaimingInternationalOffice, T1.Affiliation_IsClaimin");
-            viewString.Append("gAdministrator, T1.Affiliation_IsClaimingFaculty, T1.Affiliation_IsClaimingStaff");
-            viewString.Append(", T1.Affiliation_EntityId, T1.Affiliation_CreatedOnUtc, T1.Affiliation_CreatedBy");
-            viewString.Append("Principal, T1.Affiliation_UpdatedOnUtc, T1.Affiliation_UpdatedByPrincipal, T1.Af");
-            viewString.Append("filiation_Version, T1.Affiliation_IsCurrent, T1.Affiliation_IsArchived, T1.Affil");
-            viewString.Append("iation_IsDeleted)\r\n    FROM (\r\n        SELECT \r\n            T.RevisionId AS Affi");
-            viewString.Append("liation_RevisionId, \r\n            T.PersonId AS Affiliation_PersonId, \r\n        ");
-            viewString.Append("    T.EstablishmentId AS Affiliation_EstablishmentId, \r\n            T.JobTitles ");
-            viewString.Append("AS Affiliation_JobTitles, \r\n            T.IsDefault AS Affiliation_IsDefault, \r\n");
-            viewString.Append("            T.IsAcknowledged AS Affiliation_IsAcknowledged, \r\n            T.IsCl");
-            viewString.Append("aimingStudent AS Affiliation_IsClaimingStudent, \r\n            T.IsClaimingEmploy");
-            viewString.Append("ee AS Affiliation_IsClaimingEmployee, \r\n            T.IsClaimingInternationalOff");
-            viewString.Append("ice AS Affiliation_IsClaimingInternationalOffice, \r\n            T.IsClaimingAdmi");
-            viewString.Append("nistrator AS Affiliation_IsClaimingAdministrator, \r\n            T.IsClaimingFacu");
-            viewString.Append("lty AS Affiliation_IsClaimingFaculty, \r\n            T.IsClaimingStaff AS Affilia");
-            viewString.Append("tion_IsClaimingStaff, \r\n            T.EntityId AS Affiliation_EntityId, \r\n      ");
-            viewString.Append("      T.CreatedOnUtc AS Affiliation_CreatedOnUtc, \r\n            T.CreatedByPrinc");
-            viewString.Append("ipal AS Affiliation_CreatedByPrincipal, \r\n            T.UpdatedOnUtc AS Affiliat");
-            viewString.Append("ion_UpdatedOnUtc, \r\n            T.UpdatedByPrincipal AS Affiliation_UpdatedByPri");
-            viewString.Append("ncipal, \r\n            T.Version AS Affiliation_Version, \r\n            T.IsCurren");
-            viewString.Append("t AS Affiliation_IsCurrent, \r\n            T.IsArchived AS Affiliation_IsArchived");
-            viewString.Append(", \r\n            T.IsDeleted AS Affiliation_IsDeleted, \r\n            True AS _fro");
-            viewString.Append("m0\r\n        FROM UCosmicContext.Affiliations AS T\r\n    ) AS T1");
-            return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.Affiliation", viewString.ToString());
+            return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.Affiliation", @"
+    SELECT VALUE -- Constructing Affiliation
+        [CodeFirstDatabaseSchema.Affiliation](T1.Affiliation_PersonId, T1.Affiliation_EstablishmentId, T1.Affiliation_JobTitles, T1.Affiliation_IsDefault, T1.Affiliation_IsAcknowledged, T1.Affiliation_IsClaimingStudent, T1.Affiliation_IsClaimingEmployee, T1.Affiliation_IsClaimingInternationalOffice, T1.Affiliation_IsClaimingAdministrator, T1.Affiliation_IsClaimingFaculty, T1.Affiliation_IsClaimingStaff)
+    FROM (
+        SELECT 
+            T.PersonId AS Affiliation_PersonId, 
+            T.EstablishmentId AS Affiliation_EstablishmentId, 
+            T.JobTitles AS Affiliation_JobTitles, 
+            T.IsDefault AS Affiliation_IsDefault, 
+            T.IsAcknowledged AS Affiliation_IsAcknowledged, 
+            T.IsClaimingStudent AS Affiliation_IsClaimingStudent, 
+            T.IsClaimingEmployee AS Affiliation_IsClaimingEmployee, 
+            T.IsClaimingInternationalOffice AS Affiliation_IsClaimingInternationalOffice, 
+            T.IsClaimingAdministrator AS Affiliation_IsClaimingAdministrator, 
+            T.IsClaimingFaculty AS Affiliation_IsClaimingFaculty, 
+            T.IsClaimingStaff AS Affiliation_IsClaimingStaff, 
+            True AS _from0
+        FROM UCosmicContext.Affiliations AS T
+    ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.Person
         /// </Summary>
@@ -1651,7 +1657,7 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.People AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.EmailAddress
         /// </Summary>
@@ -1659,59 +1665,115 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.EmailAddress", @"
     SELECT VALUE -- Constructing EmailAddress
-        [CodeFirstDatabaseSchema.EmailAddress](T1.EmailAddress_RevisionId, T1.EmailAddress_PersonId, T1.EmailAddress_Value, T1.EmailAddress_IsDefault, T1.EmailAddress_IsConfirmed, T1.EmailAddress_EntityId, T1.EmailAddress_CreatedOnUtc, T1.EmailAddress_CreatedByPrincipal, T1.EmailAddress_UpdatedOnUtc, T1.EmailAddress_UpdatedByPrincipal, T1.EmailAddress_Version, T1.EmailAddress_IsCurrent, T1.EmailAddress_IsArchived, T1.EmailAddress_IsDeleted)
+        [CodeFirstDatabaseSchema.EmailAddress](T1.EmailAddress_PersonId, T1.EmailAddress_Number, T1.EmailAddress_Value, T1.EmailAddress_IsDefault, T1.EmailAddress_IsFromSaml, T1.EmailAddress_IsConfirmed)
     FROM (
         SELECT 
-            T.RevisionId AS EmailAddress_RevisionId, 
             T.PersonId AS EmailAddress_PersonId, 
+            T.Number AS EmailAddress_Number, 
             T.[Value] AS EmailAddress_Value, 
             T.IsDefault AS EmailAddress_IsDefault, 
+            T.IsFromSaml AS EmailAddress_IsFromSaml, 
             T.IsConfirmed AS EmailAddress_IsConfirmed, 
-            T.EntityId AS EmailAddress_EntityId, 
-            T.CreatedOnUtc AS EmailAddress_CreatedOnUtc, 
-            T.CreatedByPrincipal AS EmailAddress_CreatedByPrincipal, 
-            T.UpdatedOnUtc AS EmailAddress_UpdatedOnUtc, 
-            T.UpdatedByPrincipal AS EmailAddress_UpdatedByPrincipal, 
-            T.Version AS EmailAddress_Version, 
-            T.IsCurrent AS EmailAddress_IsCurrent, 
-            T.IsArchived AS EmailAddress_IsArchived, 
-            T.IsDeleted AS EmailAddress_IsDeleted, 
             True AS _from0
         FROM UCosmicContext.EmailAddresses AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
-        /// return view for CodeFirstDatabase.EmailMessage
+        /// return view for CodeFirstDatabase.EmailConfirmation
         /// </Summary>
         private System.Collections.Generic.KeyValuePair<string, string> GetView34()
         {
-            return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.EmailMessage", "\r\n    SELECT VALUE -- Constructing EmailMessage\r\n        [CodeFirstDatabaseSchema" +
-                    ".EmailMessage](T1.EmailMessage_Id, T1.EmailMessage_EntityId, T1.EmailMessage_ToE" +
-                    "mailAddressId, T1.EmailMessage_FromEmailTemplateId, T1.EmailMessage_Subject, T1." +
-                    "EmailMessage_FromAddress, T1.EmailMessage_FromDisplayName, T1.EmailMessage_Reply" +
-                    "ToAddress, T1.EmailMessage_ReplyToDisplayName, T1.EmailMessage_Body, T1.EmailMes" +
-                    "sage_ComposedByPrincipal, T1.EmailMessage_ComposedOnUtc, T1.EmailMessage_SentOnU" +
-                    "tc, T1.EmailMessage_IsArchived, T1.EmailMessage_IsDeleted)\r\n    FROM (\r\n        " +
-                    "SELECT \r\n            T.Id AS EmailMessage_Id, \r\n            T.EntityId AS EmailM" +
-                    "essage_EntityId, \r\n            T.ToEmailAddressId AS EmailMessage_ToEmailAddress" +
-                    "Id, \r\n            T.FromEmailTemplateId AS EmailMessage_FromEmailTemplateId, \r\n " +
-                    "           T.Subject AS EmailMessage_Subject, \r\n            T.FromAddress AS Ema" +
-                    "ilMessage_FromAddress, \r\n            T.FromDisplayName AS EmailMessage_FromDispl" +
-                    "ayName, \r\n            T.ReplyToAddress AS EmailMessage_ReplyToAddress, \r\n       " +
-                    "     T.ReplyToDisplayName AS EmailMessage_ReplyToDisplayName, \r\n            T.Bo" +
-                    "dy AS EmailMessage_Body, \r\n            T.ComposedByPrincipal AS EmailMessage_Com" +
-                    "posedByPrincipal, \r\n            T.ComposedOnUtc AS EmailMessage_ComposedOnUtc, \r" +
-                    "\n            T.SentOnUtc AS EmailMessage_SentOnUtc, \r\n            T.IsArchived A" +
-                    "S EmailMessage_IsArchived, \r\n            T.IsDeleted AS EmailMessage_IsDeleted, " +
-                    "\r\n            True AS _from0\r\n        FROM UCosmicContext.EmailMessages AS T\r\n  " +
-                    "  ) AS T1");
+            return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.EmailConfirmation", @"
+    SELECT VALUE -- Constructing EmailConfirmation
+        [CodeFirstDatabaseSchema.EmailConfirmation](T1.EmailConfirmation_Id, T1.EmailConfirmation_PersonId, T1.EmailConfirmation_EmailAddressNumber, T1.EmailConfirmation_Token, T1.EmailConfirmation_SecretCode, T1.EmailConfirmation_Intent, T1.EmailConfirmation_IssuedOnUtc, T1.EmailConfirmation_ConfirmedOnUtc, T1.EmailConfirmation_ExpiresOnUtc)
+    FROM (
+        SELECT 
+            T.Id AS EmailConfirmation_Id, 
+            T.PersonId AS EmailConfirmation_PersonId, 
+            T.EmailAddressNumber AS EmailConfirmation_EmailAddressNumber, 
+            T.Token AS EmailConfirmation_Token, 
+            T.SecretCode AS EmailConfirmation_SecretCode, 
+            T.Intent AS EmailConfirmation_Intent, 
+            T.IssuedOnUtc AS EmailConfirmation_IssuedOnUtc, 
+            T.ConfirmedOnUtc AS EmailConfirmation_ConfirmedOnUtc, 
+            T.ExpiresOnUtc AS EmailConfirmation_ExpiresOnUtc, 
+            True AS _from0
+        FROM UCosmicContext.EmailConfirmations AS T
+    ) AS T1");
         }
-        
+
+        /// <Summary>
+        /// return view for CodeFirstDatabase.EmailMessage
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView35()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.EmailMessage", @"
+    SELECT VALUE -- Constructing EmailMessage
+        [CodeFirstDatabaseSchema.EmailMessage](T1.EmailMessage_ToPersonId, T1.EmailMessage_Number, T1.EmailMessage_ToAddress, T1.EmailMessage_FromEmailTemplate, T1.EmailMessage_Subject, T1.EmailMessage_FromAddress, T1.EmailMessage_FromDisplayName, T1.EmailMessage_ReplyToAddress, T1.EmailMessage_ReplyToDisplayName, T1.EmailMessage_Body, T1.EmailMessage_ComposedByPrincipal, T1.EmailMessage_ComposedOnUtc, T1.EmailMessage_SentOnUtc)
+    FROM (
+        SELECT 
+            T.ToPersonId AS EmailMessage_ToPersonId, 
+            T.Number AS EmailMessage_Number, 
+            T.ToAddress AS EmailMessage_ToAddress, 
+            T.FromEmailTemplate AS EmailMessage_FromEmailTemplate, 
+            T.Subject AS EmailMessage_Subject, 
+            T.FromAddress AS EmailMessage_FromAddress, 
+            T.FromDisplayName AS EmailMessage_FromDisplayName, 
+            T.ReplyToAddress AS EmailMessage_ReplyToAddress, 
+            T.ReplyToDisplayName AS EmailMessage_ReplyToDisplayName, 
+            T.Body AS EmailMessage_Body, 
+            T.ComposedByPrincipal AS EmailMessage_ComposedByPrincipal, 
+            T.ComposedOnUtc AS EmailMessage_ComposedOnUtc, 
+            T.SentOnUtc AS EmailMessage_SentOnUtc, 
+            True AS _from0
+        FROM UCosmicContext.EmailMessages AS T
+    ) AS T1");
+        }
+
+        /// <Summary>
+        /// return view for CodeFirstDatabase.SubjectNameIdentifier
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView36()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.SubjectNameIdentifier", @"
+    SELECT VALUE -- Constructing SubjectNameIdentifier
+        [CodeFirstDatabaseSchema.SubjectNameIdentifier](T1.SubjectNameIdentifier_UserId, T1.SubjectNameIdentifier_Number, T1.SubjectNameIdentifier_Value, T1.SubjectNameIdentifier_CreatedOnUtc, T1.SubjectNameIdentifier_UpdatedOnUtc)
+    FROM (
+        SELECT 
+            T.UserId AS SubjectNameIdentifier_UserId, 
+            T.Number AS SubjectNameIdentifier_Number, 
+            T.[Value] AS SubjectNameIdentifier_Value, 
+            T.CreatedOnUtc AS SubjectNameIdentifier_CreatedOnUtc, 
+            T.UpdatedOnUtc AS SubjectNameIdentifier_UpdatedOnUtc, 
+            True AS _from0
+        FROM UCosmicContext.SubjectNameIdentifiers AS T
+    ) AS T1");
+        }
+
+        /// <Summary>
+        /// return view for CodeFirstDatabase.EduPersonScopedAffiliation
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView37()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.EduPersonScopedAffiliation", @"
+    SELECT VALUE -- Constructing EduPersonScopedAffiliation
+        [CodeFirstDatabaseSchema.EduPersonScopedAffiliation](T1.EduPersonScopedAffiliation_UserId, T1.EduPersonScopedAffiliation_Number, T1.EduPersonScopedAffiliation_Value, T1.EduPersonScopedAffiliation_CreatedOnUtc)
+    FROM (
+        SELECT 
+            T.UserId AS EduPersonScopedAffiliation_UserId, 
+            T.Number AS EduPersonScopedAffiliation_Number, 
+            T.[Value] AS EduPersonScopedAffiliation_Value, 
+            T.CreatedOnUtc AS EduPersonScopedAffiliation_CreatedOnUtc, 
+            True AS _from0
+        FROM UCosmicContext.EduPersonScopedAffiliations AS T
+    ) AS T1");
+        }
+
         /// <Summary>
         /// return view for CodeFirstDatabase.EmailTemplate
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView35()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView38()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.EmailTemplate", "\r\n    SELECT VALUE -- Constructing EmailTemplate\r\n        [CodeFirstDatabaseSchem" +
                     "a.EmailTemplate](T1.EmailTemplate_RevisionId, T1.EmailTemplate_EstablishmentId, " +
@@ -1739,34 +1801,11 @@ namespace Edm_EntityMappingGeneratedViews
                     "ted, \r\n            True AS _from0\r\n        FROM UCosmicContext.EmailTemplates AS" +
                     " T\r\n    ) AS T1");
         }
-        
-        /// <Summary>
-        /// return view for CodeFirstDatabase.EmailConfirmation
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView36()
-        {
-            return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.EmailConfirmation", @"
-    SELECT VALUE -- Constructing EmailConfirmation
-        [CodeFirstDatabaseSchema.EmailConfirmation](T1.EmailConfirmation_Id, T1.EmailConfirmation_EmailAddressId, T1.EmailConfirmation_Token, T1.EmailConfirmation_SecretCode, T1.EmailConfirmation_Intent, T1.EmailConfirmation_IssuedOnUtc, T1.EmailConfirmation_ConfirmedOnUtc, T1.EmailConfirmation_ExpiresOnUtc)
-    FROM (
-        SELECT 
-            T.Id AS EmailConfirmation_Id, 
-            T.EmailAddressId AS EmailConfirmation_EmailAddressId, 
-            T.Token AS EmailConfirmation_Token, 
-            T.SecretCode AS EmailConfirmation_SecretCode, 
-            T.Intent AS EmailConfirmation_Intent, 
-            T.IssuedOnUtc AS EmailConfirmation_IssuedOnUtc, 
-            T.ConfirmedOnUtc AS EmailConfirmation_ConfirmedOnUtc, 
-            T.ExpiresOnUtc AS EmailConfirmation_ExpiresOnUtc, 
-            True AS _from0
-        FROM UCosmicContext.EmailConfirmations AS T
-    ) AS T1");
-        }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.InstitutionalAgreement
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView37()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView39()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(3712);
             viewString.Append("\r\n    SELECT VALUE -- Constructing InstitutionalAgreement\r\n        [CodeFirstDat");
@@ -1818,11 +1857,11 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("greement_RevisionId\r\n    ) AS T3");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.InstitutionalAgreement", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.InstitutionalAgreementNode
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView38()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView40()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.InstitutionalAgreementNode", @"
     SELECT VALUE -- Constructing InstitutionalAgreementNode
@@ -1836,11 +1875,11 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.InstitutionalAgreementNodes AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.InstitutionalAgreementParticipant
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView39()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView41()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.InstitutionalAgreementParticipant", "\r\n    SELECT VALUE -- Constructing InstitutionalAgreementParticipant\r\n        [Co" +
                     "deFirstDatabaseSchema.InstitutionalAgreementParticipant](T4.InstitutionalAgreeme" +
@@ -1867,11 +1906,11 @@ namespace Edm_EntityMappingGeneratedViews
                     "InstitutionalAgreementParticipants AS T) AS T3\r\n            ON T1.InstitutionalA" +
                     "greementParticipant_Id = T3.InstitutionalAgreementParticipant_Id\r\n    ) AS T4");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.InstitutionalAgreementContact
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView40()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView42()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(3398);
             viewString.Append("\r\n    SELECT VALUE -- Constructing InstitutionalAgreementContact\r\n        [CodeF");
@@ -1919,11 +1958,11 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("reementContact_RevisionId\r\n    ) AS T4");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.InstitutionalAgreementContact", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.InstitutionalAgreementFile
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView41()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView43()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(3086);
             viewString.Append("\r\n    SELECT VALUE -- Constructing InstitutionalAgreementFile\r\n        [CodeFirs");
@@ -1967,11 +2006,11 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("itutionalAgreementFile_RevisionId\r\n    ) AS T3");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.InstitutionalAgreementFile", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.InstitutionalAgreementConfiguration
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView42()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView44()
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(2259);
             viewString.Append("\r\n    SELECT VALUE -- Constructing InstitutionalAgreementConfiguration\r\n        ");
@@ -2005,11 +2044,11 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("s AS T\r\n    ) AS T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.InstitutionalAgreementConfiguration", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.InstitutionalAgreementTypeValue
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView43()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView45()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.InstitutionalAgreementTypeValue", @"
     SELECT VALUE -- Constructing InstitutionalAgreementTypeValue
@@ -2023,11 +2062,11 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.InstitutionalAgreementTypeValues AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.InstitutionalAgreementStatusValue
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView44()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView46()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.InstitutionalAgreementStatusValue", @"
     SELECT VALUE -- Constructing InstitutionalAgreementStatusValue
@@ -2041,11 +2080,11 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.InstitutionalAgreementStatusValues AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.InstitutionalAgreementContactTypeValue
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView45()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView47()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.InstitutionalAgreementContactTypeValue", @"
     SELECT VALUE -- Constructing InstitutionalAgreementContactTypeValue
@@ -2059,11 +2098,11 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.InstitutionalAgreementContactTypeValues AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.EstablishmentLocationPlace
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView46()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView48()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.EstablishmentLocationPlace", @"
     SELECT VALUE -- Constructing EstablishmentLocationPlace
@@ -2076,15 +2115,15 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.EstablishmentLocation_Places AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.Languages
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView47()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView49()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.Languages", @"
     SELECT VALUE -- Constructing Languages
-        [UCosmic.Orm.Language](T1.Language_RevisionId, T1.Language_TwoLetterIsoCode, T1.Language_ThreeLetterIsoCode, T1.Language_ThreeLetterIsoBibliographicCode, T1.Language_EntityId, T1.Language_CreatedOnUtc, T1.Language_CreatedByPrincipal, T1.Language_UpdatedOnUtc, T1.Language_UpdatedByPrincipal, T1.Language_Version, T1.Language_IsCurrent, T1.Language_IsArchived, T1.Language_IsDeleted)
+        [UCosmic.Impl.Orm.Language](T1.Language_RevisionId, T1.Language_TwoLetterIsoCode, T1.Language_ThreeLetterIsoCode, T1.Language_ThreeLetterIsoBibliographicCode, T1.Language_EntityId, T1.Language_CreatedOnUtc, T1.Language_CreatedByPrincipal, T1.Language_UpdatedOnUtc, T1.Language_UpdatedByPrincipal, T1.Language_Version, T1.Language_IsCurrent, T1.Language_IsArchived, T1.Language_IsDeleted)
     FROM (
         SELECT 
             T.RevisionId AS Language_RevisionId, 
@@ -2104,149 +2143,149 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.Language AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.LanguageNames
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView48()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView50()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2092);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing LanguageNames\r\n        [UCosmic.Orm.LanguageN");
-            viewString.Append("ame](T1.LanguageName_RevisionId, T1.LanguageName_Text, T1.LanguageName_AsciiEqui");
-            viewString.Append("valent, T1.LanguageName_EntityId, T1.LanguageName_CreatedOnUtc, T1.LanguageName_");
-            viewString.Append("CreatedByPrincipal, T1.LanguageName_UpdatedOnUtc, T1.LanguageName_UpdatedByPrinc");
-            viewString.Append("ipal, T1.LanguageName_Version, T1.LanguageName_IsCurrent, T1.LanguageName_IsArch");
-            viewString.Append("ived, T1.LanguageName_IsDeleted) WITH \r\n        RELATIONSHIP(CREATEREF(UCosmicCo");
-            viewString.Append("ntext.Languages, ROW(T1.[LanguageName_NameForLanguage.LanguageName_NameForLangua");
-            viewString.Append("ge_Target.RevisionId]),[UCosmic.Orm.Language]),[UCosmic.Orm.LanguageName_NameFor");
-            viewString.Append("Language],LanguageName_NameForLanguage_Source,LanguageName_NameForLanguage_Targe");
-            viewString.Append("t) \r\n        RELATIONSHIP(CREATEREF(UCosmicContext.Languages, ROW(T1.[LanguageNa");
-            viewString.Append("me_TranslationToLanguage.LanguageName_TranslationToLanguage_Target.RevisionId]),");
-            viewString.Append("[UCosmic.Orm.Language]),[UCosmic.Orm.LanguageName_TranslationToLanguage],Languag");
-            viewString.Append("eName_TranslationToLanguage_Source,LanguageName_TranslationToLanguage_Target) \r\n");
-            viewString.Append("    FROM (\r\n        SELECT \r\n            T.RevisionId AS LanguageName_RevisionId");
-            viewString.Append(", \r\n            T.Text AS LanguageName_Text, \r\n            T.AsciiEquivalent AS ");
-            viewString.Append("LanguageName_AsciiEquivalent, \r\n            T.EntityId AS LanguageName_EntityId,");
-            viewString.Append(" \r\n            T.CreatedOnUtc AS LanguageName_CreatedOnUtc, \r\n            T.Crea");
-            viewString.Append("tedByPrincipal AS LanguageName_CreatedByPrincipal, \r\n            T.UpdatedOnUtc ");
-            viewString.Append("AS LanguageName_UpdatedOnUtc, \r\n            T.UpdatedByPrincipal AS LanguageName");
-            viewString.Append("_UpdatedByPrincipal, \r\n            T.Version AS LanguageName_Version, \r\n        ");
-            viewString.Append("    T.IsCurrent AS LanguageName_IsCurrent, \r\n            T.IsArchived AS Languag");
-            viewString.Append("eName_IsArchived, \r\n            T.IsDeleted AS LanguageName_IsDeleted, \r\n       ");
-            viewString.Append("     True AS _from0, \r\n            T.NameForLanguageId AS [LanguageName_NameForL");
-            viewString.Append("anguage.LanguageName_NameForLanguage_Target.RevisionId], \r\n            T.Transla");
-            viewString.Append("tionToLanguageId AS [LanguageName_TranslationToLanguage.LanguageName_Translation");
-            viewString.Append("ToLanguage_Target.RevisionId]\r\n        FROM CodeFirstDatabase.LanguageName AS T\r");
-            viewString.Append("\n    ) AS T1");
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2117);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing LanguageNames\r\n        [UCosmic.Impl.Orm.Lang");
+            viewString.Append("uageName](T1.LanguageName_RevisionId, T1.LanguageName_Text, T1.LanguageName_Asci");
+            viewString.Append("iEquivalent, T1.LanguageName_EntityId, T1.LanguageName_CreatedOnUtc, T1.Language");
+            viewString.Append("Name_CreatedByPrincipal, T1.LanguageName_UpdatedOnUtc, T1.LanguageName_UpdatedBy");
+            viewString.Append("Principal, T1.LanguageName_Version, T1.LanguageName_IsCurrent, T1.LanguageName_I");
+            viewString.Append("sArchived, T1.LanguageName_IsDeleted) WITH \r\n        RELATIONSHIP(CREATEREF(UCos");
+            viewString.Append("micContext.Languages, ROW(T1.[LanguageName_NameForLanguage.LanguageName_NameForL");
+            viewString.Append("anguage_Target.RevisionId]),[UCosmic.Impl.Orm.Language]),[UCosmic.Impl.Orm.Langu");
+            viewString.Append("ageName_NameForLanguage],LanguageName_NameForLanguage_Source,LanguageName_NameFo");
+            viewString.Append("rLanguage_Target) \r\n        RELATIONSHIP(CREATEREF(UCosmicContext.Languages, ROW");
+            viewString.Append("(T1.[LanguageName_TranslationToLanguage.LanguageName_TranslationToLanguage_Targe");
+            viewString.Append("t.RevisionId]),[UCosmic.Impl.Orm.Language]),[UCosmic.Impl.Orm.LanguageName_Trans");
+            viewString.Append("lationToLanguage],LanguageName_TranslationToLanguage_Source,LanguageName_Transla");
+            viewString.Append("tionToLanguage_Target) \r\n    FROM (\r\n        SELECT \r\n            T.RevisionId A");
+            viewString.Append("S LanguageName_RevisionId, \r\n            T.Text AS LanguageName_Text, \r\n        ");
+            viewString.Append("    T.AsciiEquivalent AS LanguageName_AsciiEquivalent, \r\n            T.EntityId ");
+            viewString.Append("AS LanguageName_EntityId, \r\n            T.CreatedOnUtc AS LanguageName_CreatedOn");
+            viewString.Append("Utc, \r\n            T.CreatedByPrincipal AS LanguageName_CreatedByPrincipal, \r\n  ");
+            viewString.Append("          T.UpdatedOnUtc AS LanguageName_UpdatedOnUtc, \r\n            T.UpdatedBy");
+            viewString.Append("Principal AS LanguageName_UpdatedByPrincipal, \r\n            T.Version AS Languag");
+            viewString.Append("eName_Version, \r\n            T.IsCurrent AS LanguageName_IsCurrent, \r\n          ");
+            viewString.Append("  T.IsArchived AS LanguageName_IsArchived, \r\n            T.IsDeleted AS Language");
+            viewString.Append("Name_IsDeleted, \r\n            True AS _from0, \r\n            T.NameForLanguageId ");
+            viewString.Append("AS [LanguageName_NameForLanguage.LanguageName_NameForLanguage_Target.RevisionId]");
+            viewString.Append(", \r\n            T.TranslationToLanguageId AS [LanguageName_TranslationToLanguage");
+            viewString.Append(".LanguageName_TranslationToLanguage_Target.RevisionId]\r\n        FROM CodeFirstDa");
+            viewString.Append("tabase.LanguageName AS T\r\n    ) AS T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.LanguageNames", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.Places
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView49()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView51()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(7056);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing Places\r\n        [UCosmic.Orm.Place](T5.Place_");
-            viewString.Append("RevisionId, T5.Place_OfficialName, T5.Place_IsEarth, T5.Place_IsContinent, T5.Pl");
-            viewString.Append("ace_IsCountry, T5.Place_IsAdmin1, T5.Place_IsAdmin2, T5.Place_IsAdmin3, T5.Place");
-            viewString.Append("_Center, T5.Place_BoundingBox, T5.Place_EntityId, T5.Place_CreatedOnUtc, T5.Plac");
-            viewString.Append("e_CreatedByPrincipal, T5.Place_UpdatedOnUtc, T5.Place_UpdatedByPrincipal, T5.Pla");
-            viewString.Append("ce_Version, T5.Place_IsCurrent, T5.Place_IsArchived, T5.Place_IsDeleted) WITH \r\n");
-            viewString.Append("        RELATIONSHIP(CREATEREF(UCosmicContext.Places, ROW(T5.[Place_Parent.Place");
-            viewString.Append("_Parent_Target.RevisionId]),[UCosmic.Orm.Place]),[UCosmic.Orm.Place_Parent],Plac");
-            viewString.Append("e_Parent_Source,Place_Parent_Target) \r\n    FROM (\r\n        SELECT -- Constructin");
-            viewString.Append("g Center\r\n            T4.Place_RevisionId, \r\n            T4.Place_OfficialName, ");
-            viewString.Append("\r\n            T4.Place_IsEarth, \r\n            T4.Place_IsContinent, \r\n          ");
-            viewString.Append("  T4.Place_IsCountry, \r\n            T4.Place_IsAdmin1, \r\n            T4.Place_Is");
-            viewString.Append("Admin2, \r\n            T4.Place_IsAdmin3, \r\n            [UCosmic.Orm.Coordinates]");
-            viewString.Append("(T4.Place_Center_Latitude, T4.Place_Center_Longitude) AS Place_Center, \r\n       ");
-            viewString.Append("     T4.Place_BoundingBox, \r\n            T4.Place_EntityId, \r\n            T4.Pla");
-            viewString.Append("ce_CreatedOnUtc, \r\n            T4.Place_CreatedByPrincipal, \r\n            T4.Pla");
-            viewString.Append("ce_UpdatedOnUtc, \r\n            T4.Place_UpdatedByPrincipal, \r\n            T4.Pla");
-            viewString.Append("ce_Version, \r\n            T4.Place_IsCurrent, \r\n            T4.Place_IsArchived,");
-            viewString.Append(" \r\n            T4.Place_IsDeleted, \r\n            T4.[Place_Parent.Place_Parent_T");
-            viewString.Append("arget.RevisionId]\r\n        FROM (\r\n            SELECT -- Constructing BoundingBo");
-            viewString.Append("x\r\n                T3.Place_RevisionId, \r\n                T3.Place_OfficialName,");
-            viewString.Append(" \r\n                T3.Place_IsEarth, \r\n                T3.Place_IsContinent, \r\n ");
-            viewString.Append("               T3.Place_IsCountry, \r\n                T3.Place_IsAdmin1, \r\n      ");
-            viewString.Append("          T3.Place_IsAdmin2, \r\n                T3.Place_IsAdmin3, \r\n            ");
-            viewString.Append("    T3.Place_Center_Latitude, \r\n                T3.Place_Center_Longitude, \r\n   ");
-            viewString.Append("             [UCosmic.Orm.BoundingBox](T3.Place_BoundingBox_Northeast, T3.Place_");
-            viewString.Append("BoundingBox_Southwest) AS Place_BoundingBox, \r\n                T3.Place_EntityId");
-            viewString.Append(", \r\n                T3.Place_CreatedOnUtc, \r\n                T3.Place_CreatedByP");
-            viewString.Append("rincipal, \r\n                T3.Place_UpdatedOnUtc, \r\n                T3.Place_Up");
-            viewString.Append("datedByPrincipal, \r\n                T3.Place_Version, \r\n                T3.Place");
-            viewString.Append("_IsCurrent, \r\n                T3.Place_IsArchived, \r\n                T3.Place_Is");
-            viewString.Append("Deleted, \r\n                T3.[Place_Parent.Place_Parent_Target.RevisionId]\r\n   ");
-            viewString.Append("         FROM (\r\n                SELECT -- Constructing Northeast\r\n             ");
-            viewString.Append("       T2.Place_RevisionId, \r\n                    T2.Place_OfficialName, \r\n     ");
-            viewString.Append("               T2.Place_IsEarth, \r\n                    T2.Place_IsContinent, \r\n ");
-            viewString.Append("                   T2.Place_IsCountry, \r\n                    T2.Place_IsAdmin1, ");
-            viewString.Append("\r\n                    T2.Place_IsAdmin2, \r\n                    T2.Place_IsAdmin3");
-            viewString.Append(", \r\n                    T2.Place_Center_Latitude, \r\n                    T2.Place");
-            viewString.Append("_Center_Longitude, \r\n                    [UCosmic.Orm.Coordinates](T2.Place_Boun");
-            viewString.Append("dingBox_Northeast_Latitude, T2.Place_BoundingBox_Northeast_Longitude) AS Place_B");
-            viewString.Append("oundingBox_Northeast, \r\n                    T2.Place_BoundingBox_Southwest, \r\n  ");
-            viewString.Append("                  T2.Place_EntityId, \r\n                    T2.Place_CreatedOnUtc");
-            viewString.Append(", \r\n                    T2.Place_CreatedByPrincipal, \r\n                    T2.Pl");
-            viewString.Append("ace_UpdatedOnUtc, \r\n                    T2.Place_UpdatedByPrincipal, \r\n         ");
-            viewString.Append("           T2.Place_Version, \r\n                    T2.Place_IsCurrent, \r\n       ");
-            viewString.Append("             T2.Place_IsArchived, \r\n                    T2.Place_IsDeleted, \r\n  ");
-            viewString.Append("                  T2.[Place_Parent.Place_Parent_Target.RevisionId]\r\n            ");
-            viewString.Append("    FROM (\r\n                    SELECT -- Constructing Southwest\r\n              ");
-            viewString.Append("          T1.Place_RevisionId, \r\n                        T1.Place_OfficialName, ");
-            viewString.Append("\r\n                        T1.Place_IsEarth, \r\n                        T1.Place_I");
-            viewString.Append("sContinent, \r\n                        T1.Place_IsCountry, \r\n                    ");
-            viewString.Append("    T1.Place_IsAdmin1, \r\n                        T1.Place_IsAdmin2, \r\n          ");
-            viewString.Append("              T1.Place_IsAdmin3, \r\n                        T1.Place_Center_Latit");
-            viewString.Append("ude, \r\n                        T1.Place_Center_Longitude, \r\n                    ");
-            viewString.Append("    T1.Place_BoundingBox_Northeast_Latitude, \r\n                        T1.Place_");
-            viewString.Append("BoundingBox_Northeast_Longitude, \r\n                        [UCosmic.Orm.Coordina");
-            viewString.Append("tes](T1.Place_BoundingBox_Southwest_Latitude, T1.Place_BoundingBox_Southwest_Lon");
-            viewString.Append("gitude) AS Place_BoundingBox_Southwest, \r\n                        T1.Place_Entit");
-            viewString.Append("yId, \r\n                        T1.Place_CreatedOnUtc, \r\n                        ");
-            viewString.Append("T1.Place_CreatedByPrincipal, \r\n                        T1.Place_UpdatedOnUtc, \r\n");
-            viewString.Append("                        T1.Place_UpdatedByPrincipal, \r\n                        T");
-            viewString.Append("1.Place_Version, \r\n                        T1.Place_IsCurrent, \r\n               ");
-            viewString.Append("         T1.Place_IsArchived, \r\n                        T1.Place_IsDeleted, \r\n  ");
-            viewString.Append("                      T1.[Place_Parent.Place_Parent_Target.RevisionId]\r\n        ");
-            viewString.Append("            FROM (\r\n                        SELECT \r\n                           ");
-            viewString.Append(" T.RevisionId AS Place_RevisionId, \r\n                            T.OfficialName ");
-            viewString.Append("AS Place_OfficialName, \r\n                            T.IsEarth AS Place_IsEarth,");
-            viewString.Append(" \r\n                            T.IsContinent AS Place_IsContinent, \r\n           ");
-            viewString.Append("                 T.IsCountry AS Place_IsCountry, \r\n                            T");
-            viewString.Append(".IsAdmin1 AS Place_IsAdmin1, \r\n                            T.IsAdmin2 AS Place_I");
-            viewString.Append("sAdmin2, \r\n                            T.IsAdmin3 AS Place_IsAdmin3, \r\n         ");
-            viewString.Append("                   T.Latitude AS Place_Center_Latitude, \r\n                      ");
-            viewString.Append("      T.Longitude AS Place_Center_Longitude, \r\n                            T.Nor");
-            viewString.Append("thLatitude AS Place_BoundingBox_Northeast_Latitude, \r\n                          ");
-            viewString.Append("  T.EastLongitude AS Place_BoundingBox_Northeast_Longitude, \r\n                  ");
-            viewString.Append("          T.SouthLatitude AS Place_BoundingBox_Southwest_Latitude, \r\n           ");
-            viewString.Append("                 T.WestLongitude AS Place_BoundingBox_Southwest_Longitude, \r\n   ");
-            viewString.Append("                         T.EntityId AS Place_EntityId, \r\n                       ");
-            viewString.Append("     T.CreatedOnUtc AS Place_CreatedOnUtc, \r\n                            T.Creat");
-            viewString.Append("edByPrincipal AS Place_CreatedByPrincipal, \r\n                            T.Updat");
-            viewString.Append("edOnUtc AS Place_UpdatedOnUtc, \r\n                            T.UpdatedByPrincipa");
-            viewString.Append("l AS Place_UpdatedByPrincipal, \r\n                            T.Version AS Place_");
-            viewString.Append("Version, \r\n                            T.IsCurrent AS Place_IsCurrent, \r\n       ");
-            viewString.Append("                     T.IsArchived AS Place_IsArchived, \r\n                       ");
-            viewString.Append("     T.IsDeleted AS Place_IsDeleted, \r\n                            True AS _from");
-            viewString.Append("0, \r\n                            T.ParentId AS [Place_Parent.Place_Parent_Target");
-            viewString.Append(".RevisionId]\r\n                        FROM CodeFirstDatabase.Place AS T\r\n       ");
-            viewString.Append("             ) AS T1\r\n                ) AS T2\r\n            ) AS T3\r\n        ) AS");
-            viewString.Append(" T4\r\n    ) AS T5");
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(7091);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing Places\r\n        [UCosmic.Impl.Orm.Place](T5.P");
+            viewString.Append("lace_RevisionId, T5.Place_OfficialName, T5.Place_IsEarth, T5.Place_IsContinent, ");
+            viewString.Append("T5.Place_IsCountry, T5.Place_IsAdmin1, T5.Place_IsAdmin2, T5.Place_IsAdmin3, T5.");
+            viewString.Append("Place_Center, T5.Place_BoundingBox, T5.Place_EntityId, T5.Place_CreatedOnUtc, T5");
+            viewString.Append(".Place_CreatedByPrincipal, T5.Place_UpdatedOnUtc, T5.Place_UpdatedByPrincipal, T");
+            viewString.Append("5.Place_Version, T5.Place_IsCurrent, T5.Place_IsArchived, T5.Place_IsDeleted) WI");
+            viewString.Append("TH \r\n        RELATIONSHIP(CREATEREF(UCosmicContext.Places, ROW(T5.[Place_Parent.");
+            viewString.Append("Place_Parent_Target.RevisionId]),[UCosmic.Impl.Orm.Place]),[UCosmic.Impl.Orm.Pla");
+            viewString.Append("ce_Parent],Place_Parent_Source,Place_Parent_Target) \r\n    FROM (\r\n        SELECT");
+            viewString.Append(" -- Constructing Center\r\n            T4.Place_RevisionId, \r\n            T4.Place");
+            viewString.Append("_OfficialName, \r\n            T4.Place_IsEarth, \r\n            T4.Place_IsContinen");
+            viewString.Append("t, \r\n            T4.Place_IsCountry, \r\n            T4.Place_IsAdmin1, \r\n        ");
+            viewString.Append("    T4.Place_IsAdmin2, \r\n            T4.Place_IsAdmin3, \r\n            [UCosmic.I");
+            viewString.Append("mpl.Orm.Coordinates](T4.Place_Center_Latitude, T4.Place_Center_Longitude) AS Pla");
+            viewString.Append("ce_Center, \r\n            T4.Place_BoundingBox, \r\n            T4.Place_EntityId, ");
+            viewString.Append("\r\n            T4.Place_CreatedOnUtc, \r\n            T4.Place_CreatedByPrincipal, ");
+            viewString.Append("\r\n            T4.Place_UpdatedOnUtc, \r\n            T4.Place_UpdatedByPrincipal, ");
+            viewString.Append("\r\n            T4.Place_Version, \r\n            T4.Place_IsCurrent, \r\n            ");
+            viewString.Append("T4.Place_IsArchived, \r\n            T4.Place_IsDeleted, \r\n            T4.[Place_P");
+            viewString.Append("arent.Place_Parent_Target.RevisionId]\r\n        FROM (\r\n            SELECT -- Con");
+            viewString.Append("structing BoundingBox\r\n                T3.Place_RevisionId, \r\n                T3");
+            viewString.Append(".Place_OfficialName, \r\n                T3.Place_IsEarth, \r\n                T3.Pl");
+            viewString.Append("ace_IsContinent, \r\n                T3.Place_IsCountry, \r\n                T3.Plac");
+            viewString.Append("e_IsAdmin1, \r\n                T3.Place_IsAdmin2, \r\n                T3.Place_IsAd");
+            viewString.Append("min3, \r\n                T3.Place_Center_Latitude, \r\n                T3.Place_Cen");
+            viewString.Append("ter_Longitude, \r\n                [UCosmic.Impl.Orm.BoundingBox](T3.Place_Boundin");
+            viewString.Append("gBox_Northeast, T3.Place_BoundingBox_Southwest) AS Place_BoundingBox, \r\n        ");
+            viewString.Append("        T3.Place_EntityId, \r\n                T3.Place_CreatedOnUtc, \r\n          ");
+            viewString.Append("      T3.Place_CreatedByPrincipal, \r\n                T3.Place_UpdatedOnUtc, \r\n  ");
+            viewString.Append("              T3.Place_UpdatedByPrincipal, \r\n                T3.Place_Version, \r");
+            viewString.Append("\n                T3.Place_IsCurrent, \r\n                T3.Place_IsArchived, \r\n  ");
+            viewString.Append("              T3.Place_IsDeleted, \r\n                T3.[Place_Parent.Place_Paren");
+            viewString.Append("t_Target.RevisionId]\r\n            FROM (\r\n                SELECT -- Constructing");
+            viewString.Append(" Northeast\r\n                    T2.Place_RevisionId, \r\n                    T2.Pl");
+            viewString.Append("ace_OfficialName, \r\n                    T2.Place_IsEarth, \r\n                    ");
+            viewString.Append("T2.Place_IsContinent, \r\n                    T2.Place_IsCountry, \r\n              ");
+            viewString.Append("      T2.Place_IsAdmin1, \r\n                    T2.Place_IsAdmin2, \r\n            ");
+            viewString.Append("        T2.Place_IsAdmin3, \r\n                    T2.Place_Center_Latitude, \r\n   ");
+            viewString.Append("                 T2.Place_Center_Longitude, \r\n                    [UCosmic.Impl.");
+            viewString.Append("Orm.Coordinates](T2.Place_BoundingBox_Northeast_Latitude, T2.Place_BoundingBox_N");
+            viewString.Append("ortheast_Longitude) AS Place_BoundingBox_Northeast, \r\n                    T2.Pla");
+            viewString.Append("ce_BoundingBox_Southwest, \r\n                    T2.Place_EntityId, \r\n           ");
+            viewString.Append("         T2.Place_CreatedOnUtc, \r\n                    T2.Place_CreatedByPrincipa");
+            viewString.Append("l, \r\n                    T2.Place_UpdatedOnUtc, \r\n                    T2.Place_U");
+            viewString.Append("pdatedByPrincipal, \r\n                    T2.Place_Version, \r\n                   ");
+            viewString.Append(" T2.Place_IsCurrent, \r\n                    T2.Place_IsArchived, \r\n              ");
+            viewString.Append("      T2.Place_IsDeleted, \r\n                    T2.[Place_Parent.Place_Parent_Ta");
+            viewString.Append("rget.RevisionId]\r\n                FROM (\r\n                    SELECT -- Construc");
+            viewString.Append("ting Southwest\r\n                        T1.Place_RevisionId, \r\n                 ");
+            viewString.Append("       T1.Place_OfficialName, \r\n                        T1.Place_IsEarth, \r\n    ");
+            viewString.Append("                    T1.Place_IsContinent, \r\n                        T1.Place_IsC");
+            viewString.Append("ountry, \r\n                        T1.Place_IsAdmin1, \r\n                        T");
+            viewString.Append("1.Place_IsAdmin2, \r\n                        T1.Place_IsAdmin3, \r\n               ");
+            viewString.Append("         T1.Place_Center_Latitude, \r\n                        T1.Place_Center_Lon");
+            viewString.Append("gitude, \r\n                        T1.Place_BoundingBox_Northeast_Latitude, \r\n   ");
+            viewString.Append("                     T1.Place_BoundingBox_Northeast_Longitude, \r\n               ");
+            viewString.Append("         [UCosmic.Impl.Orm.Coordinates](T1.Place_BoundingBox_Southwest_Latitude,");
+            viewString.Append(" T1.Place_BoundingBox_Southwest_Longitude) AS Place_BoundingBox_Southwest, \r\n   ");
+            viewString.Append("                     T1.Place_EntityId, \r\n                        T1.Place_Creat");
+            viewString.Append("edOnUtc, \r\n                        T1.Place_CreatedByPrincipal, \r\n              ");
+            viewString.Append("          T1.Place_UpdatedOnUtc, \r\n                        T1.Place_UpdatedByPri");
+            viewString.Append("ncipal, \r\n                        T1.Place_Version, \r\n                        T1");
+            viewString.Append(".Place_IsCurrent, \r\n                        T1.Place_IsArchived, \r\n             ");
+            viewString.Append("           T1.Place_IsDeleted, \r\n                        T1.[Place_Parent.Place_");
+            viewString.Append("Parent_Target.RevisionId]\r\n                    FROM (\r\n                        S");
+            viewString.Append("ELECT \r\n                            T.RevisionId AS Place_RevisionId, \r\n        ");
+            viewString.Append("                    T.OfficialName AS Place_OfficialName, \r\n                    ");
+            viewString.Append("        T.IsEarth AS Place_IsEarth, \r\n                            T.IsContinent ");
+            viewString.Append("AS Place_IsContinent, \r\n                            T.IsCountry AS Place_IsCount");
+            viewString.Append("ry, \r\n                            T.IsAdmin1 AS Place_IsAdmin1, \r\n              ");
+            viewString.Append("              T.IsAdmin2 AS Place_IsAdmin2, \r\n                            T.IsAd");
+            viewString.Append("min3 AS Place_IsAdmin3, \r\n                            T.Latitude AS Place_Center");
+            viewString.Append("_Latitude, \r\n                            T.Longitude AS Place_Center_Longitude, ");
+            viewString.Append("\r\n                            T.NorthLatitude AS Place_BoundingBox_Northeast_Lat");
+            viewString.Append("itude, \r\n                            T.EastLongitude AS Place_BoundingBox_Northe");
+            viewString.Append("ast_Longitude, \r\n                            T.SouthLatitude AS Place_BoundingBo");
+            viewString.Append("x_Southwest_Latitude, \r\n                            T.WestLongitude AS Place_Bou");
+            viewString.Append("ndingBox_Southwest_Longitude, \r\n                            T.EntityId AS Place_");
+            viewString.Append("EntityId, \r\n                            T.CreatedOnUtc AS Place_CreatedOnUtc, \r\n");
+            viewString.Append("                            T.CreatedByPrincipal AS Place_CreatedByPrincipal, \r\n");
+            viewString.Append("                            T.UpdatedOnUtc AS Place_UpdatedOnUtc, \r\n            ");
+            viewString.Append("                T.UpdatedByPrincipal AS Place_UpdatedByPrincipal, \r\n            ");
+            viewString.Append("                T.Version AS Place_Version, \r\n                            T.IsCu");
+            viewString.Append("rrent AS Place_IsCurrent, \r\n                            T.IsArchived AS Place_Is");
+            viewString.Append("Archived, \r\n                            T.IsDeleted AS Place_IsDeleted, \r\n      ");
+            viewString.Append("                      True AS _from0, \r\n                            T.ParentId A");
+            viewString.Append("S [Place_Parent.Place_Parent_Target.RevisionId]\r\n                        FROM Co");
+            viewString.Append("deFirstDatabase.Place AS T\r\n                    ) AS T1\r\n                ) AS T2");
+            viewString.Append("\r\n            ) AS T3\r\n        ) AS T4\r\n    ) AS T5");
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.Places", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.PlaceNodes
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView50()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView52()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.PlaceNodes", @"
     SELECT VALUE -- Constructing PlaceNodes
-        [UCosmic.Orm.PlaceNode](T1.PlaceNode_AncestorId, T1.PlaceNode_OffspringId, T1.PlaceNode_Separation)
+        [UCosmic.Impl.Orm.PlaceNode](T1.PlaceNode_AncestorId, T1.PlaceNode_OffspringId, T1.PlaceNode_Separation)
     FROM (
         SELECT 
             T.AncestorId AS PlaceNode_AncestorId, 
@@ -2256,74 +2295,74 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.PlaceNode AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoNamesToponyms
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView51()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView53()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(3958);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing GeoNamesToponyms\r\n        [UCosmic.Orm.GeoNam");
-            viewString.Append("esToponym](T2.GeoNamesToponym_GeoNameId, T2.GeoNamesToponym_FeatureCode, T2.GeoN");
-            viewString.Append("amesToponym_TimeZoneId, T2.GeoNamesToponym_Center, T2.GeoNamesToponym_Name, T2.G");
-            viewString.Append("eoNamesToponym_ToponymName, T2.GeoNamesToponym_ContinentCode, T2.GeoNamesToponym");
-            viewString.Append("_CountryCode, T2.GeoNamesToponym_CountryName, T2.GeoNamesToponym_Admin1Code, T2.");
-            viewString.Append("GeoNamesToponym_Admin1Name, T2.GeoNamesToponym_Admin2Code, T2.GeoNamesToponym_Ad");
-            viewString.Append("min2Name, T2.GeoNamesToponym_Admin3Code, T2.GeoNamesToponym_Admin3Name, T2.GeoNa");
-            viewString.Append("mesToponym_Admin4Code, T2.GeoNamesToponym_Admin4Name, T2.GeoNamesToponym_Populat");
-            viewString.Append("ion, T2.GeoNamesToponym_Elevation) WITH \r\n        RELATIONSHIP(CREATEREF(UCosmic");
-            viewString.Append("Context.Places, ROW(T2.[GeoNamesToponym_Place.GeoNamesToponym_Place_Target.Revis");
-            viewString.Append("ionId]),[UCosmic.Orm.Place]),[UCosmic.Orm.GeoNamesToponym_Place],GeoNamesToponym");
-            viewString.Append("_Place_Source,GeoNamesToponym_Place_Target) \r\n        RELATIONSHIP(CREATEREF(UCo");
-            viewString.Append("smicContext.GeoNamesToponyms, ROW(T2.[GeoNamesToponym_Parent.GeoNamesToponym_Par");
-            viewString.Append("ent_Target.GeoNameId]),[UCosmic.Orm.GeoNamesToponym]),[UCosmic.Orm.GeoNamesTopon");
-            viewString.Append("ym_Parent],GeoNamesToponym_Parent_Source,GeoNamesToponym_Parent_Target) \r\n    FR");
-            viewString.Append("OM (\r\n        SELECT -- Constructing Center\r\n            T1.GeoNamesToponym_GeoN");
-            viewString.Append("ameId, \r\n            T1.GeoNamesToponym_FeatureCode, \r\n            T1.GeoNamesTo");
-            viewString.Append("ponym_TimeZoneId, \r\n            [UCosmic.Orm.Coordinates](T1.GeoNamesToponym_Cen");
-            viewString.Append("ter_Latitude, T1.GeoNamesToponym_Center_Longitude) AS GeoNamesToponym_Center, \r\n");
-            viewString.Append("            T1.GeoNamesToponym_Name, \r\n            T1.GeoNamesToponym_ToponymNam");
-            viewString.Append("e, \r\n            T1.GeoNamesToponym_ContinentCode, \r\n            T1.GeoNamesTopo");
-            viewString.Append("nym_CountryCode, \r\n            T1.GeoNamesToponym_CountryName, \r\n            T1.");
-            viewString.Append("GeoNamesToponym_Admin1Code, \r\n            T1.GeoNamesToponym_Admin1Name, \r\n     ");
-            viewString.Append("       T1.GeoNamesToponym_Admin2Code, \r\n            T1.GeoNamesToponym_Admin2Nam");
-            viewString.Append("e, \r\n            T1.GeoNamesToponym_Admin3Code, \r\n            T1.GeoNamesToponym");
-            viewString.Append("_Admin3Name, \r\n            T1.GeoNamesToponym_Admin4Code, \r\n            T1.GeoNa");
-            viewString.Append("mesToponym_Admin4Name, \r\n            T1.GeoNamesToponym_Population, \r\n          ");
-            viewString.Append("  T1.GeoNamesToponym_Elevation, \r\n            T1.[GeoNamesToponym_Place.GeoNames");
-            viewString.Append("Toponym_Place_Target.RevisionId], \r\n            T1.[GeoNamesToponym_Parent.GeoNa");
-            viewString.Append("mesToponym_Parent_Target.GeoNameId]\r\n        FROM (\r\n            SELECT \r\n      ");
-            viewString.Append("          T.GeoNameId AS GeoNamesToponym_GeoNameId, \r\n                T.FeatureC");
-            viewString.Append("ode AS GeoNamesToponym_FeatureCode, \r\n                T.TimeZoneId AS GeoNamesTo");
-            viewString.Append("ponym_TimeZoneId, \r\n                T.Latitude AS GeoNamesToponym_Center_Latitud");
-            viewString.Append("e, \r\n                T.Longitude AS GeoNamesToponym_Center_Longitude, \r\n        ");
-            viewString.Append("        T.Name AS GeoNamesToponym_Name, \r\n                T.ToponymName AS GeoNa");
-            viewString.Append("mesToponym_ToponymName, \r\n                T.ContinentCode AS GeoNamesToponym_Con");
-            viewString.Append("tinentCode, \r\n                T.CountryCode AS GeoNamesToponym_CountryCode, \r\n  ");
-            viewString.Append("              T.CountryName AS GeoNamesToponym_CountryName, \r\n                T.");
-            viewString.Append("Admin1Code AS GeoNamesToponym_Admin1Code, \r\n                T.Admin1Name AS GeoN");
-            viewString.Append("amesToponym_Admin1Name, \r\n                T.Admin2Code AS GeoNamesToponym_Admin2");
-            viewString.Append("Code, \r\n                T.Admin2Name AS GeoNamesToponym_Admin2Name, \r\n          ");
-            viewString.Append("      T.Admin3Code AS GeoNamesToponym_Admin3Code, \r\n                T.Admin3Name");
-            viewString.Append(" AS GeoNamesToponym_Admin3Name, \r\n                T.Admin4Code AS GeoNamesTopony");
-            viewString.Append("m_Admin4Code, \r\n                T.Admin4Name AS GeoNamesToponym_Admin4Name, \r\n  ");
-            viewString.Append("              T.Population AS GeoNamesToponym_Population, \r\n                T.El");
-            viewString.Append("evation AS GeoNamesToponym_Elevation, \r\n                True AS _from0, \r\n      ");
-            viewString.Append("          T.PlaceId AS [GeoNamesToponym_Place.GeoNamesToponym_Place_Target.Revis");
-            viewString.Append("ionId], \r\n                T.ParentGeoNameId AS [GeoNamesToponym_Parent.GeoNamesT");
-            viewString.Append("oponym_Parent_Target.GeoNameId]\r\n            FROM CodeFirstDatabase.GeoNamesTopo");
-            viewString.Append("nym AS T\r\n        ) AS T1\r\n    ) AS T2");
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(3988);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing GeoNamesToponyms\r\n        [UCosmic.Impl.Orm.G");
+            viewString.Append("eoNamesToponym](T2.GeoNamesToponym_GeoNameId, T2.GeoNamesToponym_FeatureCode, T2");
+            viewString.Append(".GeoNamesToponym_TimeZoneId, T2.GeoNamesToponym_Center, T2.GeoNamesToponym_Name,");
+            viewString.Append(" T2.GeoNamesToponym_ToponymName, T2.GeoNamesToponym_ContinentCode, T2.GeoNamesTo");
+            viewString.Append("ponym_CountryCode, T2.GeoNamesToponym_CountryName, T2.GeoNamesToponym_Admin1Code");
+            viewString.Append(", T2.GeoNamesToponym_Admin1Name, T2.GeoNamesToponym_Admin2Code, T2.GeoNamesTopon");
+            viewString.Append("ym_Admin2Name, T2.GeoNamesToponym_Admin3Code, T2.GeoNamesToponym_Admin3Name, T2.");
+            viewString.Append("GeoNamesToponym_Admin4Code, T2.GeoNamesToponym_Admin4Name, T2.GeoNamesToponym_Po");
+            viewString.Append("pulation, T2.GeoNamesToponym_Elevation) WITH \r\n        RELATIONSHIP(CREATEREF(UC");
+            viewString.Append("osmicContext.Places, ROW(T2.[GeoNamesToponym_Place.GeoNamesToponym_Place_Target.");
+            viewString.Append("RevisionId]),[UCosmic.Impl.Orm.Place]),[UCosmic.Impl.Orm.GeoNamesToponym_Place],");
+            viewString.Append("GeoNamesToponym_Place_Source,GeoNamesToponym_Place_Target) \r\n        RELATIONSHI");
+            viewString.Append("P(CREATEREF(UCosmicContext.GeoNamesToponyms, ROW(T2.[GeoNamesToponym_Parent.GeoN");
+            viewString.Append("amesToponym_Parent_Target.GeoNameId]),[UCosmic.Impl.Orm.GeoNamesToponym]),[UCosm");
+            viewString.Append("ic.Impl.Orm.GeoNamesToponym_Parent],GeoNamesToponym_Parent_Source,GeoNamesTopony");
+            viewString.Append("m_Parent_Target) \r\n    FROM (\r\n        SELECT -- Constructing Center\r\n          ");
+            viewString.Append("  T1.GeoNamesToponym_GeoNameId, \r\n            T1.GeoNamesToponym_FeatureCode, \r\n");
+            viewString.Append("            T1.GeoNamesToponym_TimeZoneId, \r\n            [UCosmic.Impl.Orm.Coord");
+            viewString.Append("inates](T1.GeoNamesToponym_Center_Latitude, T1.GeoNamesToponym_Center_Longitude)");
+            viewString.Append(" AS GeoNamesToponym_Center, \r\n            T1.GeoNamesToponym_Name, \r\n           ");
+            viewString.Append(" T1.GeoNamesToponym_ToponymName, \r\n            T1.GeoNamesToponym_ContinentCode,");
+            viewString.Append(" \r\n            T1.GeoNamesToponym_CountryCode, \r\n            T1.GeoNamesToponym_");
+            viewString.Append("CountryName, \r\n            T1.GeoNamesToponym_Admin1Code, \r\n            T1.GeoNa");
+            viewString.Append("mesToponym_Admin1Name, \r\n            T1.GeoNamesToponym_Admin2Code, \r\n          ");
+            viewString.Append("  T1.GeoNamesToponym_Admin2Name, \r\n            T1.GeoNamesToponym_Admin3Code, \r\n");
+            viewString.Append("            T1.GeoNamesToponym_Admin3Name, \r\n            T1.GeoNamesToponym_Admi");
+            viewString.Append("n4Code, \r\n            T1.GeoNamesToponym_Admin4Name, \r\n            T1.GeoNamesTo");
+            viewString.Append("ponym_Population, \r\n            T1.GeoNamesToponym_Elevation, \r\n            T1.[");
+            viewString.Append("GeoNamesToponym_Place.GeoNamesToponym_Place_Target.RevisionId], \r\n            T1");
+            viewString.Append(".[GeoNamesToponym_Parent.GeoNamesToponym_Parent_Target.GeoNameId]\r\n        FROM ");
+            viewString.Append("(\r\n            SELECT \r\n                T.GeoNameId AS GeoNamesToponym_GeoNameId");
+            viewString.Append(", \r\n                T.FeatureCode AS GeoNamesToponym_FeatureCode, \r\n            ");
+            viewString.Append("    T.TimeZoneId AS GeoNamesToponym_TimeZoneId, \r\n                T.Latitude AS ");
+            viewString.Append("GeoNamesToponym_Center_Latitude, \r\n                T.Longitude AS GeoNamesTopony");
+            viewString.Append("m_Center_Longitude, \r\n                T.Name AS GeoNamesToponym_Name, \r\n        ");
+            viewString.Append("        T.ToponymName AS GeoNamesToponym_ToponymName, \r\n                T.Contin");
+            viewString.Append("entCode AS GeoNamesToponym_ContinentCode, \r\n                T.CountryCode AS Geo");
+            viewString.Append("NamesToponym_CountryCode, \r\n                T.CountryName AS GeoNamesToponym_Cou");
+            viewString.Append("ntryName, \r\n                T.Admin1Code AS GeoNamesToponym_Admin1Code, \r\n      ");
+            viewString.Append("          T.Admin1Name AS GeoNamesToponym_Admin1Name, \r\n                T.Admin2");
+            viewString.Append("Code AS GeoNamesToponym_Admin2Code, \r\n                T.Admin2Name AS GeoNamesTo");
+            viewString.Append("ponym_Admin2Name, \r\n                T.Admin3Code AS GeoNamesToponym_Admin3Code, ");
+            viewString.Append("\r\n                T.Admin3Name AS GeoNamesToponym_Admin3Name, \r\n                ");
+            viewString.Append("T.Admin4Code AS GeoNamesToponym_Admin4Code, \r\n                T.Admin4Name AS Ge");
+            viewString.Append("oNamesToponym_Admin4Name, \r\n                T.Population AS GeoNamesToponym_Popu");
+            viewString.Append("lation, \r\n                T.Elevation AS GeoNamesToponym_Elevation, \r\n          ");
+            viewString.Append("      True AS _from0, \r\n                T.PlaceId AS [GeoNamesToponym_Place.GeoN");
+            viewString.Append("amesToponym_Place_Target.RevisionId], \r\n                T.ParentGeoNameId AS [Ge");
+            viewString.Append("oNamesToponym_Parent.GeoNamesToponym_Parent_Target.GeoNameId]\r\n            FROM ");
+            viewString.Append("CodeFirstDatabase.GeoNamesToponym AS T\r\n        ) AS T1\r\n    ) AS T2");
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoNamesToponyms", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoNamesFeatures
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView52()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView54()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoNamesFeatures", @"
     SELECT VALUE -- Constructing GeoNamesFeatures
-        [UCosmic.Orm.GeoNamesFeature](T1.GeoNamesFeature_Code, T1.GeoNamesFeature_ClassCode, T1.GeoNamesFeature_Name)
+        [UCosmic.Impl.Orm.GeoNamesFeature](T1.GeoNamesFeature_Code, T1.GeoNamesFeature_ClassCode, T1.GeoNamesFeature_Name)
     FROM (
         SELECT 
             T.Code AS GeoNamesFeature_Code, 
@@ -2333,15 +2372,15 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.GeoNamesFeature AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoNamesFeatureClasses
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView53()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView55()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoNamesFeatureClasses", @"
     SELECT VALUE -- Constructing GeoNamesFeatureClasses
-        [UCosmic.Orm.GeoNamesFeatureClass](T1.GeoNamesFeatureClass_Code, T1.GeoNamesFeatureClass_Name)
+        [UCosmic.Impl.Orm.GeoNamesFeatureClass](T1.GeoNamesFeatureClass_Code, T1.GeoNamesFeatureClass_Name)
     FROM (
         SELECT 
             T.Code AS GeoNamesFeatureClass_Code, 
@@ -2350,15 +2389,15 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.GeoNamesFeatureClass AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoNamesTimeZones
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView54()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView56()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoNamesTimeZones", @"
     SELECT VALUE -- Constructing GeoNamesTimeZones
-        [UCosmic.Orm.GeoNamesTimeZone](T1.GeoNamesTimeZone_Id, T1.GeoNamesTimeZone_DstOffset, T1.GeoNamesTimeZone_GmtOffset)
+        [UCosmic.Impl.Orm.GeoNamesTimeZone](T1.GeoNamesTimeZone_Id, T1.GeoNamesTimeZone_DstOffset, T1.GeoNamesTimeZone_GmtOffset)
     FROM (
         SELECT 
             T.Id AS GeoNamesTimeZone_Id, 
@@ -2368,86 +2407,86 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.GeoNamesTimeZone AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoNamesCountries
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView55()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView57()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(4906);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing GeoNamesCountries\r\n        [UCosmic.Orm.GeoNa");
-            viewString.Append("mesCountry](T4.GeoNamesCountry_GeoNameId, T4.GeoNamesCountry_BoundingBox, T4.Geo");
-            viewString.Append("NamesCountry_Code, T4.GeoNamesCountry_Name, T4.GeoNamesCountry_ContinentCode, T4");
-            viewString.Append(".GeoNamesCountry_ContinentName, T4.GeoNamesCountry_IsoNumericCode, T4.GeoNamesCo");
-            viewString.Append("untry_IsoAlpha3Code, T4.GeoNamesCountry_FipsCode, T4.GeoNamesCountry_CapitalCity");
-            viewString.Append("Name, T4.GeoNamesCountry_AreaInSqKm, T4.GeoNamesCountry_CurrencyCode, T4.GeoName");
-            viewString.Append("sCountry_Languages, T4.GeoNamesCountry_Population)\r\n    FROM (\r\n        SELECT -");
-            viewString.Append("- Constructing BoundingBox\r\n            T3.GeoNamesCountry_GeoNameId, \r\n        ");
-            viewString.Append("    [UCosmic.Orm.BoundingBox](T3.GeoNamesCountry_BoundingBox_Northeast, T3.GeoNa");
-            viewString.Append("mesCountry_BoundingBox_Southwest) AS GeoNamesCountry_BoundingBox, \r\n            ");
-            viewString.Append("T3.GeoNamesCountry_Code, \r\n            T3.GeoNamesCountry_Name, \r\n            T3");
-            viewString.Append(".GeoNamesCountry_ContinentCode, \r\n            T3.GeoNamesCountry_ContinentName, ");
-            viewString.Append("\r\n            T3.GeoNamesCountry_IsoNumericCode, \r\n            T3.GeoNamesCountr");
-            viewString.Append("y_IsoAlpha3Code, \r\n            T3.GeoNamesCountry_FipsCode, \r\n            T3.Geo");
-            viewString.Append("NamesCountry_CapitalCityName, \r\n            T3.GeoNamesCountry_AreaInSqKm, \r\n   ");
-            viewString.Append("         T3.GeoNamesCountry_CurrencyCode, \r\n            T3.GeoNamesCountry_Langu");
-            viewString.Append("ages, \r\n            T3.GeoNamesCountry_Population\r\n        FROM (\r\n            S");
-            viewString.Append("ELECT -- Constructing Northeast\r\n                T2.GeoNamesCountry_GeoNameId, \r");
-            viewString.Append("\n                [UCosmic.Orm.Coordinates](T2.GeoNamesCountry_BoundingBox_Northe");
-            viewString.Append("ast_Latitude, T2.GeoNamesCountry_BoundingBox_Northeast_Longitude) AS GeoNamesCou");
-            viewString.Append("ntry_BoundingBox_Northeast, \r\n                T2.GeoNamesCountry_BoundingBox_Sou");
-            viewString.Append("thwest, \r\n                T2.GeoNamesCountry_Code, \r\n                T2.GeoNames");
-            viewString.Append("Country_Name, \r\n                T2.GeoNamesCountry_ContinentCode, \r\n            ");
-            viewString.Append("    T2.GeoNamesCountry_ContinentName, \r\n                T2.GeoNamesCountry_IsoNu");
-            viewString.Append("mericCode, \r\n                T2.GeoNamesCountry_IsoAlpha3Code, \r\n               ");
-            viewString.Append(" T2.GeoNamesCountry_FipsCode, \r\n                T2.GeoNamesCountry_CapitalCityNa");
-            viewString.Append("me, \r\n                T2.GeoNamesCountry_AreaInSqKm, \r\n                T2.GeoNam");
-            viewString.Append("esCountry_CurrencyCode, \r\n                T2.GeoNamesCountry_Languages, \r\n      ");
-            viewString.Append("          T2.GeoNamesCountry_Population\r\n            FROM (\r\n                SEL");
-            viewString.Append("ECT -- Constructing Southwest\r\n                    T1.GeoNamesCountry_GeoNameId,");
-            viewString.Append(" \r\n                    T1.GeoNamesCountry_BoundingBox_Northeast_Latitude, \r\n    ");
-            viewString.Append("                T1.GeoNamesCountry_BoundingBox_Northeast_Longitude, \r\n          ");
-            viewString.Append("          [UCosmic.Orm.Coordinates](T1.GeoNamesCountry_BoundingBox_Southwest_Lat");
-            viewString.Append("itude, T1.GeoNamesCountry_BoundingBox_Southwest_Longitude) AS GeoNamesCountry_Bo");
-            viewString.Append("undingBox_Southwest, \r\n                    T1.GeoNamesCountry_Code, \r\n          ");
-            viewString.Append("          T1.GeoNamesCountry_Name, \r\n                    T1.GeoNamesCountry_Cont");
-            viewString.Append("inentCode, \r\n                    T1.GeoNamesCountry_ContinentName, \r\n           ");
-            viewString.Append("         T1.GeoNamesCountry_IsoNumericCode, \r\n                    T1.GeoNamesCou");
-            viewString.Append("ntry_IsoAlpha3Code, \r\n                    T1.GeoNamesCountry_FipsCode, \r\n       ");
-            viewString.Append("             T1.GeoNamesCountry_CapitalCityName, \r\n                    T1.GeoNam");
-            viewString.Append("esCountry_AreaInSqKm, \r\n                    T1.GeoNamesCountry_CurrencyCode, \r\n ");
-            viewString.Append("                   T1.GeoNamesCountry_Languages, \r\n                    T1.GeoNam");
-            viewString.Append("esCountry_Population\r\n                FROM (\r\n                    SELECT \r\n     ");
-            viewString.Append("                   T.GeoNameId AS GeoNamesCountry_GeoNameId, \r\n                 ");
-            viewString.Append("       T.NorthLatitude AS GeoNamesCountry_BoundingBox_Northeast_Latitude, \r\n    ");
-            viewString.Append("                    T.EastLongitude AS GeoNamesCountry_BoundingBox_Northeast_Lon");
-            viewString.Append("gitude, \r\n                        T.SouthLatitude AS GeoNamesCountry_BoundingBox");
-            viewString.Append("_Southwest_Latitude, \r\n                        T.WestLongitude AS GeoNamesCountr");
-            viewString.Append("y_BoundingBox_Southwest_Longitude, \r\n                        T.Code AS GeoNamesC");
-            viewString.Append("ountry_Code, \r\n                        T.Name AS GeoNamesCountry_Name, \r\n       ");
-            viewString.Append("                 T.ContinentCode AS GeoNamesCountry_ContinentCode, \r\n           ");
-            viewString.Append("             T.ContinentName AS GeoNamesCountry_ContinentName, \r\n               ");
-            viewString.Append("         T.IsoNumericCode AS GeoNamesCountry_IsoNumericCode, \r\n                 ");
-            viewString.Append("       T.IsoAlpha3Code AS GeoNamesCountry_IsoAlpha3Code, \r\n                     ");
-            viewString.Append("   T.FipsCode AS GeoNamesCountry_FipsCode, \r\n                        T.CapitalCi");
-            viewString.Append("tyName AS GeoNamesCountry_CapitalCityName, \r\n                        T.AreaInSqK");
-            viewString.Append("m AS GeoNamesCountry_AreaInSqKm, \r\n                        T.CurrencyCode AS Geo");
-            viewString.Append("NamesCountry_CurrencyCode, \r\n                        T.Languages AS GeoNamesCoun");
-            viewString.Append("try_Languages, \r\n                        T.Population AS GeoNamesCountry_Populat");
-            viewString.Append("ion, \r\n                        True AS _from0\r\n                    FROM CodeFirs");
-            viewString.Append("tDatabase.GeoNamesCountry AS T\r\n                ) AS T1\r\n            ) AS T2\r\n  ");
-            viewString.Append("      ) AS T3\r\n    ) AS T4");
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(4926);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing GeoNamesCountries\r\n        [UCosmic.Impl.Orm.");
+            viewString.Append("GeoNamesCountry](T4.GeoNamesCountry_GeoNameId, T4.GeoNamesCountry_BoundingBox, T");
+            viewString.Append("4.GeoNamesCountry_Code, T4.GeoNamesCountry_Name, T4.GeoNamesCountry_ContinentCod");
+            viewString.Append("e, T4.GeoNamesCountry_ContinentName, T4.GeoNamesCountry_IsoNumericCode, T4.GeoNa");
+            viewString.Append("mesCountry_IsoAlpha3Code, T4.GeoNamesCountry_FipsCode, T4.GeoNamesCountry_Capita");
+            viewString.Append("lCityName, T4.GeoNamesCountry_AreaInSqKm, T4.GeoNamesCountry_CurrencyCode, T4.Ge");
+            viewString.Append("oNamesCountry_Languages, T4.GeoNamesCountry_Population)\r\n    FROM (\r\n        SEL");
+            viewString.Append("ECT -- Constructing BoundingBox\r\n            T3.GeoNamesCountry_GeoNameId, \r\n   ");
+            viewString.Append("         [UCosmic.Impl.Orm.BoundingBox](T3.GeoNamesCountry_BoundingBox_Northeast");
+            viewString.Append(", T3.GeoNamesCountry_BoundingBox_Southwest) AS GeoNamesCountry_BoundingBox, \r\n  ");
+            viewString.Append("          T3.GeoNamesCountry_Code, \r\n            T3.GeoNamesCountry_Name, \r\n    ");
+            viewString.Append("        T3.GeoNamesCountry_ContinentCode, \r\n            T3.GeoNamesCountry_Conti");
+            viewString.Append("nentName, \r\n            T3.GeoNamesCountry_IsoNumericCode, \r\n            T3.GeoN");
+            viewString.Append("amesCountry_IsoAlpha3Code, \r\n            T3.GeoNamesCountry_FipsCode, \r\n        ");
+            viewString.Append("    T3.GeoNamesCountry_CapitalCityName, \r\n            T3.GeoNamesCountry_AreaInS");
+            viewString.Append("qKm, \r\n            T3.GeoNamesCountry_CurrencyCode, \r\n            T3.GeoNamesCou");
+            viewString.Append("ntry_Languages, \r\n            T3.GeoNamesCountry_Population\r\n        FROM (\r\n   ");
+            viewString.Append("         SELECT -- Constructing Northeast\r\n                T2.GeoNamesCountry_Ge");
+            viewString.Append("oNameId, \r\n                [UCosmic.Impl.Orm.Coordinates](T2.GeoNamesCountry_Bou");
+            viewString.Append("ndingBox_Northeast_Latitude, T2.GeoNamesCountry_BoundingBox_Northeast_Longitude)");
+            viewString.Append(" AS GeoNamesCountry_BoundingBox_Northeast, \r\n                T2.GeoNamesCountry_");
+            viewString.Append("BoundingBox_Southwest, \r\n                T2.GeoNamesCountry_Code, \r\n            ");
+            viewString.Append("    T2.GeoNamesCountry_Name, \r\n                T2.GeoNamesCountry_ContinentCode,");
+            viewString.Append(" \r\n                T2.GeoNamesCountry_ContinentName, \r\n                T2.GeoNam");
+            viewString.Append("esCountry_IsoNumericCode, \r\n                T2.GeoNamesCountry_IsoAlpha3Code, \r\n");
+            viewString.Append("                T2.GeoNamesCountry_FipsCode, \r\n                T2.GeoNamesCountr");
+            viewString.Append("y_CapitalCityName, \r\n                T2.GeoNamesCountry_AreaInSqKm, \r\n          ");
+            viewString.Append("      T2.GeoNamesCountry_CurrencyCode, \r\n                T2.GeoNamesCountry_Lang");
+            viewString.Append("uages, \r\n                T2.GeoNamesCountry_Population\r\n            FROM (\r\n    ");
+            viewString.Append("            SELECT -- Constructing Southwest\r\n                    T1.GeoNamesCou");
+            viewString.Append("ntry_GeoNameId, \r\n                    T1.GeoNamesCountry_BoundingBox_Northeast_L");
+            viewString.Append("atitude, \r\n                    T1.GeoNamesCountry_BoundingBox_Northeast_Longitud");
+            viewString.Append("e, \r\n                    [UCosmic.Impl.Orm.Coordinates](T1.GeoNamesCountry_Bound");
+            viewString.Append("ingBox_Southwest_Latitude, T1.GeoNamesCountry_BoundingBox_Southwest_Longitude) A");
+            viewString.Append("S GeoNamesCountry_BoundingBox_Southwest, \r\n                    T1.GeoNamesCountr");
+            viewString.Append("y_Code, \r\n                    T1.GeoNamesCountry_Name, \r\n                    T1.");
+            viewString.Append("GeoNamesCountry_ContinentCode, \r\n                    T1.GeoNamesCountry_Continen");
+            viewString.Append("tName, \r\n                    T1.GeoNamesCountry_IsoNumericCode, \r\n              ");
+            viewString.Append("      T1.GeoNamesCountry_IsoAlpha3Code, \r\n                    T1.GeoNamesCountry");
+            viewString.Append("_FipsCode, \r\n                    T1.GeoNamesCountry_CapitalCityName, \r\n         ");
+            viewString.Append("           T1.GeoNamesCountry_AreaInSqKm, \r\n                    T1.GeoNamesCount");
+            viewString.Append("ry_CurrencyCode, \r\n                    T1.GeoNamesCountry_Languages, \r\n         ");
+            viewString.Append("           T1.GeoNamesCountry_Population\r\n                FROM (\r\n              ");
+            viewString.Append("      SELECT \r\n                        T.GeoNameId AS GeoNamesCountry_GeoNameId,");
+            viewString.Append(" \r\n                        T.NorthLatitude AS GeoNamesCountry_BoundingBox_Northe");
+            viewString.Append("ast_Latitude, \r\n                        T.EastLongitude AS GeoNamesCountry_Bound");
+            viewString.Append("ingBox_Northeast_Longitude, \r\n                        T.SouthLatitude AS GeoName");
+            viewString.Append("sCountry_BoundingBox_Southwest_Latitude, \r\n                        T.WestLongitu");
+            viewString.Append("de AS GeoNamesCountry_BoundingBox_Southwest_Longitude, \r\n                       ");
+            viewString.Append(" T.Code AS GeoNamesCountry_Code, \r\n                        T.Name AS GeoNamesCou");
+            viewString.Append("ntry_Name, \r\n                        T.ContinentCode AS GeoNamesCountry_Continen");
+            viewString.Append("tCode, \r\n                        T.ContinentName AS GeoNamesCountry_ContinentNam");
+            viewString.Append("e, \r\n                        T.IsoNumericCode AS GeoNamesCountry_IsoNumericCode,");
+            viewString.Append(" \r\n                        T.IsoAlpha3Code AS GeoNamesCountry_IsoAlpha3Code, \r\n ");
+            viewString.Append("                       T.FipsCode AS GeoNamesCountry_FipsCode, \r\n               ");
+            viewString.Append("         T.CapitalCityName AS GeoNamesCountry_CapitalCityName, \r\n               ");
+            viewString.Append("         T.AreaInSqKm AS GeoNamesCountry_AreaInSqKm, \r\n                        T");
+            viewString.Append(".CurrencyCode AS GeoNamesCountry_CurrencyCode, \r\n                        T.Langu");
+            viewString.Append("ages AS GeoNamesCountry_Languages, \r\n                        T.Population AS Geo");
+            viewString.Append("NamesCountry_Population, \r\n                        True AS _from0\r\n             ");
+            viewString.Append("       FROM CodeFirstDatabase.GeoNamesCountry AS T\r\n                ) AS T1\r\n   ");
+            viewString.Append("         ) AS T2\r\n        ) AS T3\r\n    ) AS T4");
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoNamesCountries", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoNamesToponymNodes
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView56()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView58()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoNamesToponymNodes", @"
     SELECT VALUE -- Constructing GeoNamesToponymNodes
-        [UCosmic.Orm.GeoNamesToponymNode](T1.GeoNamesToponymNode_AncestorId, T1.GeoNamesToponymNode_OffspringId, T1.GeoNamesToponymNode_Separation)
+        [UCosmic.Impl.Orm.GeoNamesToponymNode](T1.GeoNamesToponymNode_AncestorId, T1.GeoNamesToponymNode_OffspringId, T1.GeoNamesToponymNode_Separation)
     FROM (
         SELECT 
             T.AncestorId AS GeoNamesToponymNode_AncestorId, 
@@ -2457,15 +2496,15 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.GeoNamesToponymNode AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoNamesAlternateNames
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView57()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView59()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoNamesAlternateNames", @"
     SELECT VALUE -- Constructing GeoNamesAlternateNames
-        [UCosmic.Orm.GeoNamesAlternateName](T1.GeoNamesAlternateName_AlternateNameId, T1.GeoNamesAlternateName_GeoNameId, T1.GeoNamesAlternateName_Language, T1.GeoNamesAlternateName_Name)
+        [UCosmic.Impl.Orm.GeoNamesAlternateName](T1.GeoNamesAlternateName_AlternateNameId, T1.GeoNamesAlternateName_GeoNameId, T1.GeoNamesAlternateName_Language, T1.GeoNamesAlternateName_Name)
     FROM (
         SELECT 
             T.AlternateNameId AS GeoNamesAlternateName_AlternateNameId, 
@@ -2476,215 +2515,216 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.GeoNamesAlternateName AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoPlanetPlaces
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView58()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView60()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(23398);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing GeoPlanetPlaces\r\n        [UCosmic.Orm.GeoPlan");
-            viewString.Append("etPlace](T11.GeoPlanetPlace_WoeId, T11.GeoPlanetPlace_EnglishName, T11.GeoPlanet");
-            viewString.Append("Place_Uri, T11.GeoPlanetPlace_Center, T11.GeoPlanetPlace_BoundingBox, T11.GeoPla");
-            viewString.Append("netPlace_AreaRank, T11.GeoPlanetPlace_PopulationRank, T11.GeoPlanetPlace_Postal,");
-            viewString.Append(" T11.GeoPlanetPlace_Country, T11.GeoPlanetPlace_Admin1, T11.GeoPlanetPlace_Admin");
-            viewString.Append("2, T11.GeoPlanetPlace_Admin3, T11.GeoPlanetPlace_Locality1, T11.GeoPlanetPlace_L");
-            viewString.Append("ocality2) WITH \r\n        RELATIONSHIP(CREATEREF(UCosmicContext.GeoPlanetPlaces, ");
-            viewString.Append("ROW(T11.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target.WoeId]),[UCosmic.Orm");
-            viewString.Append(".GeoPlanetPlace]),[UCosmic.Orm.GeoPlanetPlace_Parent],GeoPlanetPlace_Parent_Sour");
-            viewString.Append("ce,GeoPlanetPlace_Parent_Target) \r\n        RELATIONSHIP(CREATEREF(UCosmicContext");
-            viewString.Append(".GeoPlanetPlaceTypes, ROW(T11.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Target.Co");
-            viewString.Append("de]),[UCosmic.Orm.GeoPlanetPlaceType]),[UCosmic.Orm.GeoPlanetPlace_Type],GeoPlan");
-            viewString.Append("etPlace_Type_Source,GeoPlanetPlace_Type_Target) \r\n        RELATIONSHIP(CREATEREF");
-            viewString.Append("(UCosmicContext.Places, ROW(T11.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Targe");
-            viewString.Append("t.RevisionId]),[UCosmic.Orm.Place]),[UCosmic.Orm.GeoPlanetPlace_Place],GeoPlanet");
-            viewString.Append("Place_Place_Source,GeoPlanetPlace_Place_Target) \r\n    FROM (\r\n        SELECT -- ");
-            viewString.Append("Constructing Center\r\n            T10.GeoPlanetPlace_WoeId, \r\n            T10.Geo");
-            viewString.Append("PlanetPlace_EnglishName, \r\n            T10.GeoPlanetPlace_Uri, \r\n            [UC");
-            viewString.Append("osmic.Orm.Coordinates](T10.GeoPlanetPlace_Center_Latitude, T10.GeoPlanetPlace_Ce");
-            viewString.Append("nter_Longitude) AS GeoPlanetPlace_Center, \r\n            T10.GeoPlanetPlace_Bound");
-            viewString.Append("ingBox, \r\n            T10.GeoPlanetPlace_AreaRank, \r\n            T10.GeoPlanetPl");
-            viewString.Append("ace_PopulationRank, \r\n            T10.GeoPlanetPlace_Postal, \r\n            T10.G");
-            viewString.Append("eoPlanetPlace_Country, \r\n            T10.GeoPlanetPlace_Admin1, \r\n            T1");
-            viewString.Append("0.GeoPlanetPlace_Admin2, \r\n            T10.GeoPlanetPlace_Admin3, \r\n            ");
-            viewString.Append("T10.GeoPlanetPlace_Locality1, \r\n            T10.GeoPlanetPlace_Locality2, \r\n    ");
-            viewString.Append("        T10.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target.WoeId], \r\n      ");
-            viewString.Append("      T10.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Target.Code], \r\n            T");
-            viewString.Append("10.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target.RevisionId]\r\n        FROM (");
-            viewString.Append("\r\n            SELECT -- Constructing BoundingBox\r\n                T9.GeoPlanetPl");
-            viewString.Append("ace_WoeId, \r\n                T9.GeoPlanetPlace_EnglishName, \r\n                T9");
-            viewString.Append(".GeoPlanetPlace_Uri, \r\n                T9.GeoPlanetPlace_Center_Latitude, \r\n    ");
-            viewString.Append("            T9.GeoPlanetPlace_Center_Longitude, \r\n                [UCosmic.Orm.B");
-            viewString.Append("oundingBox](T9.GeoPlanetPlace_BoundingBox_Northeast, T9.GeoPlanetPlace_BoundingB");
-            viewString.Append("ox_Southwest) AS GeoPlanetPlace_BoundingBox, \r\n                T9.GeoPlanetPlace");
-            viewString.Append("_AreaRank, \r\n                T9.GeoPlanetPlace_PopulationRank, \r\n               ");
-            viewString.Append(" T9.GeoPlanetPlace_Postal, \r\n                T9.GeoPlanetPlace_Country, \r\n      ");
-            viewString.Append("          T9.GeoPlanetPlace_Admin1, \r\n                T9.GeoPlanetPlace_Admin2, ");
-            viewString.Append("\r\n                T9.GeoPlanetPlace_Admin3, \r\n                T9.GeoPlanetPlace_");
-            viewString.Append("Locality1, \r\n                T9.GeoPlanetPlace_Locality2, \r\n                T9.[");
-            viewString.Append("GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target.WoeId], \r\n                T9.");
-            viewString.Append("[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Target.Code], \r\n                T9.[Geo");
-            viewString.Append("PlanetPlace_Place.GeoPlanetPlace_Place_Target.RevisionId]\r\n            FROM (\r\n ");
-            viewString.Append("               SELECT -- Constructing Northeast\r\n                    T8.GeoPlane");
-            viewString.Append("tPlace_WoeId, \r\n                    T8.GeoPlanetPlace_EnglishName, \r\n           ");
-            viewString.Append("         T8.GeoPlanetPlace_Uri, \r\n                    T8.GeoPlanetPlace_Center_L");
-            viewString.Append("atitude, \r\n                    T8.GeoPlanetPlace_Center_Longitude, \r\n           ");
-            viewString.Append("         [UCosmic.Orm.Coordinates](T8.GeoPlanetPlace_BoundingBox_Northeast_Latit");
-            viewString.Append("ude, T8.GeoPlanetPlace_BoundingBox_Northeast_Longitude) AS GeoPlanetPlace_Boundi");
-            viewString.Append("ngBox_Northeast, \r\n                    T8.GeoPlanetPlace_BoundingBox_Southwest, ");
-            viewString.Append("\r\n                    T8.GeoPlanetPlace_AreaRank, \r\n                    T8.GeoPl");
-            viewString.Append("anetPlace_PopulationRank, \r\n                    T8.GeoPlanetPlace_Postal, \r\n    ");
-            viewString.Append("                T8.GeoPlanetPlace_Country, \r\n                    T8.GeoPlanetPla");
-            viewString.Append("ce_Admin1, \r\n                    T8.GeoPlanetPlace_Admin2, \r\n                   ");
-            viewString.Append(" T8.GeoPlanetPlace_Admin3, \r\n                    T8.GeoPlanetPlace_Locality1, \r\n");
-            viewString.Append("                    T8.GeoPlanetPlace_Locality2, \r\n                    T8.[GeoPl");
-            viewString.Append("anetPlace_Parent.GeoPlanetPlace_Parent_Target.WoeId], \r\n                    T8.[");
-            viewString.Append("GeoPlanetPlace_Type.GeoPlanetPlace_Type_Target.Code], \r\n                    T8.[");
-            viewString.Append("GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target.RevisionId]\r\n                FR");
-            viewString.Append("OM (\r\n                    SELECT -- Constructing Southwest\r\n                    ");
-            viewString.Append("    T7.GeoPlanetPlace_WoeId, \r\n                        T7.GeoPlanetPlace_English");
-            viewString.Append("Name, \r\n                        T7.GeoPlanetPlace_Uri, \r\n                       ");
-            viewString.Append(" T7.GeoPlanetPlace_Center_Latitude, \r\n                        T7.GeoPlanetPlace_");
-            viewString.Append("Center_Longitude, \r\n                        T7.GeoPlanetPlace_BoundingBox_Northe");
-            viewString.Append("ast_Latitude, \r\n                        T7.GeoPlanetPlace_BoundingBox_Northeast_");
-            viewString.Append("Longitude, \r\n                        [UCosmic.Orm.Coordinates](T7.GeoPlanetPlace");
-            viewString.Append("_BoundingBox_Southwest_Latitude, T7.GeoPlanetPlace_BoundingBox_Southwest_Longitu");
-            viewString.Append("de) AS GeoPlanetPlace_BoundingBox_Southwest, \r\n                        T7.GeoPla");
-            viewString.Append("netPlace_AreaRank, \r\n                        T7.GeoPlanetPlace_PopulationRank, \r");
-            viewString.Append("\n                        T7.GeoPlanetPlace_Postal, \r\n                        T7.");
-            viewString.Append("GeoPlanetPlace_Country, \r\n                        T7.GeoPlanetPlace_Admin1, \r\n  ");
-            viewString.Append("                      T7.GeoPlanetPlace_Admin2, \r\n                        T7.Geo");
-            viewString.Append("PlanetPlace_Admin3, \r\n                        T7.GeoPlanetPlace_Locality1, \r\n   ");
-            viewString.Append("                     T7.GeoPlanetPlace_Locality2, \r\n                        T7.[");
-            viewString.Append("GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target.WoeId], \r\n                   ");
-            viewString.Append("     T7.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Target.Code], \r\n               ");
-            viewString.Append("         T7.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target.RevisionId]\r\n     ");
-            viewString.Append("               FROM (\r\n                        SELECT -- Constructing Country\r\n ");
-            viewString.Append("                           T6.GeoPlanetPlace_WoeId, \r\n                          ");
-            viewString.Append("  T6.GeoPlanetPlace_EnglishName, \r\n                            T6.GeoPlanetPlace");
-            viewString.Append("_Uri, \r\n                            T6.GeoPlanetPlace_Center_Latitude, \r\n       ");
-            viewString.Append("                     T6.GeoPlanetPlace_Center_Longitude, \r\n                     ");
-            viewString.Append("       T6.GeoPlanetPlace_BoundingBox_Northeast_Latitude, \r\n                     ");
-            viewString.Append("       T6.GeoPlanetPlace_BoundingBox_Northeast_Longitude, \r\n                    ");
-            viewString.Append("        T6.GeoPlanetPlace_BoundingBox_Southwest_Latitude, \r\n                    ");
-            viewString.Append("        T6.GeoPlanetPlace_BoundingBox_Southwest_Longitude, \r\n                   ");
-            viewString.Append("         T6.GeoPlanetPlace_AreaRank, \r\n                            T6.GeoPlanetP");
-            viewString.Append("lace_PopulationRank, \r\n                            T6.GeoPlanetPlace_Postal, \r\n ");
-            viewString.Append("                           [UCosmic.Orm.GeoPlanetAdmin](T6.GeoPlanetPlace_Countr");
-            viewString.Append("y_Code, T6.GeoPlanetPlace_Country_TypeName, T6.GeoPlanetPlace_Country_Name) AS G");
-            viewString.Append("eoPlanetPlace_Country, \r\n                            T6.GeoPlanetPlace_Admin1, \r");
-            viewString.Append("\n                            T6.GeoPlanetPlace_Admin2, \r\n                       ");
-            viewString.Append("     T6.GeoPlanetPlace_Admin3, \r\n                            T6.GeoPlanetPlace_L");
-            viewString.Append("ocality1, \r\n                            T6.GeoPlanetPlace_Locality2, \r\n         ");
-            viewString.Append("                   T6.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target.WoeId]");
-            viewString.Append(", \r\n                            T6.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Targ");
-            viewString.Append("et.Code], \r\n                            T6.[GeoPlanetPlace_Place.GeoPlanetPlace_");
-            viewString.Append("Place_Target.RevisionId]\r\n                        FROM (\r\n                      ");
-            viewString.Append("      SELECT -- Constructing Admin1\r\n                                T5.GeoPlane");
-            viewString.Append("tPlace_WoeId, \r\n                                T5.GeoPlanetPlace_EnglishName, \r");
-            viewString.Append("\n                                T5.GeoPlanetPlace_Uri, \r\n                      ");
-            viewString.Append("          T5.GeoPlanetPlace_Center_Latitude, \r\n                                T");
-            viewString.Append("5.GeoPlanetPlace_Center_Longitude, \r\n                                T5.GeoPlane");
-            viewString.Append("tPlace_BoundingBox_Northeast_Latitude, \r\n                                T5.GeoP");
-            viewString.Append("lanetPlace_BoundingBox_Northeast_Longitude, \r\n                                T5");
-            viewString.Append(".GeoPlanetPlace_BoundingBox_Southwest_Latitude, \r\n                              ");
-            viewString.Append("  T5.GeoPlanetPlace_BoundingBox_Southwest_Longitude, \r\n                         ");
-            viewString.Append("       T5.GeoPlanetPlace_AreaRank, \r\n                                T5.GeoPlane");
-            viewString.Append("tPlace_PopulationRank, \r\n                                T5.GeoPlanetPlace_Posta");
-            viewString.Append("l, \r\n                                T5.GeoPlanetPlace_Country_Code, \r\n         ");
-            viewString.Append("                       T5.GeoPlanetPlace_Country_TypeName, \r\n                   ");
-            viewString.Append("             T5.GeoPlanetPlace_Country_Name, \r\n                                [");
-            viewString.Append("UCosmic.Orm.GeoPlanetAdmin](T5.GeoPlanetPlace_Admin1_Code, T5.GeoPlanetPlace_Adm");
-            viewString.Append("in1_TypeName, T5.GeoPlanetPlace_Admin1_Name) AS GeoPlanetPlace_Admin1, \r\n       ");
-            viewString.Append("                         T5.GeoPlanetPlace_Admin2, \r\n                           ");
-            viewString.Append("     T5.GeoPlanetPlace_Admin3, \r\n                                T5.GeoPlanetPla");
-            viewString.Append("ce_Locality1, \r\n                                T5.GeoPlanetPlace_Locality2, \r\n ");
-            viewString.Append("                               T5.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_T");
-            viewString.Append("arget.WoeId], \r\n                                T5.[GeoPlanetPlace_Type.GeoPlane");
-            viewString.Append("tPlace_Type_Target.Code], \r\n                                T5.[GeoPlanetPlace_P");
-            viewString.Append("lace.GeoPlanetPlace_Place_Target.RevisionId]\r\n                            FROM (");
-            viewString.Append("\r\n                                SELECT -- Constructing Admin2\r\n               ");
-            viewString.Append("                     T4.GeoPlanetPlace_WoeId, \r\n                                ");
-            viewString.Append("    T4.GeoPlanetPlace_EnglishName, \r\n                                    T4.GeoP");
-            viewString.Append("lanetPlace_Uri, \r\n                                    T4.GeoPlanetPlace_Center_L");
-            viewString.Append("atitude, \r\n                                    T4.GeoPlanetPlace_Center_Longitud");
-            viewString.Append("e, \r\n                                    T4.GeoPlanetPlace_BoundingBox_Northeast");
-            viewString.Append("_Latitude, \r\n                                    T4.GeoPlanetPlace_BoundingBox_N");
-            viewString.Append("ortheast_Longitude, \r\n                                    T4.GeoPlanetPlace_Boun");
-            viewString.Append("dingBox_Southwest_Latitude, \r\n                                    T4.GeoPlanetPl");
-            viewString.Append("ace_BoundingBox_Southwest_Longitude, \r\n                                    T4.Ge");
-            viewString.Append("oPlanetPlace_AreaRank, \r\n                                    T4.GeoPlanetPlace_P");
-            viewString.Append("opulationRank, \r\n                                    T4.GeoPlanetPlace_Postal, \r");
-            viewString.Append("\n                                    T4.GeoPlanetPlace_Country_Code, \r\n         ");
-            viewString.Append("                           T4.GeoPlanetPlace_Country_TypeName, \r\n               ");
-            viewString.Append("                     T4.GeoPlanetPlace_Country_Name, \r\n                         ");
-            viewString.Append("           T4.GeoPlanetPlace_Admin1_Code, \r\n                                    ");
-            viewString.Append("T4.GeoPlanetPlace_Admin1_TypeName, \r\n                                    T4.GeoP");
-            viewString.Append("lanetPlace_Admin1_Name, \r\n                                    [UCosmic.Orm.GeoPl");
-            viewString.Append("anetAdmin](T4.GeoPlanetPlace_Admin2_Code, T4.GeoPlanetPlace_Admin2_TypeName, T4.");
-            viewString.Append("GeoPlanetPlace_Admin2_Name) AS GeoPlanetPlace_Admin2, \r\n                        ");
-            viewString.Append("            T4.GeoPlanetPlace_Admin3, \r\n                                    T4.G");
-            viewString.Append("eoPlanetPlace_Locality1, \r\n                                    T4.GeoPlanetPlace");
-            viewString.Append("_Locality2, \r\n                                    T4.[GeoPlanetPlace_Parent.GeoP");
-            viewString.Append("lanetPlace_Parent_Target.WoeId], \r\n                                    T4.[GeoPl");
-            viewString.Append("anetPlace_Type.GeoPlanetPlace_Type_Target.Code], \r\n                             ");
-            viewString.Append("       T4.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target.RevisionId]\r\n       ");
-            viewString.Append("                         FROM (\r\n                                    SELECT -- C");
-            viewString.Append("onstructing Admin3\r\n                                        T3.GeoPlanetPlace_Wo");
-            viewString.Append("eId, \r\n                                        T3.GeoPlanetPlace_EnglishName, \r\n");
-            viewString.Append("                                        T3.GeoPlanetPlace_Uri, \r\n               ");
-            viewString.Append("                         T3.GeoPlanetPlace_Center_Latitude, \r\n                  ");
-            viewString.Append("                      T3.GeoPlanetPlace_Center_Longitude, \r\n                    ");
-            viewString.Append("                    T3.GeoPlanetPlace_BoundingBox_Northeast_Latitude, \r\n        ");
-            viewString.Append("                                T3.GeoPlanetPlace_BoundingBox_Northeast_Longitud");
-            viewString.Append("e, \r\n                                        T3.GeoPlanetPlace_BoundingBox_South");
-            viewString.Append("west_Latitude, \r\n                                        T3.GeoPlanetPlace_Bound");
-            viewString.Append("ingBox_Southwest_Longitude, \r\n                                        T3.GeoPlan");
-            viewString.Append("etPlace_AreaRank, \r\n                                        T3.GeoPlanetPlace_Po");
-            viewString.Append("pulationRank, \r\n                                        T3.GeoPlanetPlace_Postal");
-            viewString.Append(", \r\n                                        T3.GeoPlanetPlace_Country_Code, \r\n  ");
-            viewString.Append("                                      T3.GeoPlanetPlace_Country_TypeName, \r\n    ");
-            viewString.Append("                                    T3.GeoPlanetPlace_Country_Name, \r\n          ");
-            viewString.Append("                              T3.GeoPlanetPlace_Admin1_Code, \r\n                 ");
-            viewString.Append("                       T3.GeoPlanetPlace_Admin1_TypeName, \r\n                    ");
-            viewString.Append("                    T3.GeoPlanetPlace_Admin1_Name, \r\n                           ");
-            viewString.Append("             T3.GeoPlanetPlace_Admin2_Code, \r\n                                  ");
-            viewString.Append("      T3.GeoPlanetPlace_Admin2_TypeName, \r\n                                     ");
-            viewString.Append("   T3.GeoPlanetPlace_Admin2_Name, \r\n                                        [UCo");
-            viewString.Append("smic.Orm.GeoPlanetAdmin](T3.GeoPlanetPlace_Admin3_Code, T3.GeoPlanetPlace_Admin3");
-            viewString.Append("_TypeName, T3.GeoPlanetPlace_Admin3_Name) AS GeoPlanetPlace_Admin3, \r\n          ");
-            viewString.Append("                              T3.GeoPlanetPlace_Locality1, \r\n                   ");
-            viewString.Append("                     T3.GeoPlanetPlace_Locality2, \r\n                            ");
-            viewString.Append("            T3.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target.WoeId], \r\n   ");
-            viewString.Append("                                     T3.[GeoPlanetPlace_Type.GeoPlanetPlace_Type");
-            viewString.Append("_Target.Code], \r\n                                        T3.[GeoPlanetPlace_Plac");
-            viewString.Append("e.GeoPlanetPlace_Place_Target.RevisionId]\r\n                                    F");
-            viewString.Append("ROM (\r\n                                        SELECT -- Constructing Locality1\r");
-            viewString.Append("\n                                            T2.GeoPlanetPlace_WoeId, \r\n        ");
-            viewString.Append("                                    T2.GeoPlanetPlace_EnglishName, \r\n           ");
-            viewString.Append("                                 T2.GeoPlanetPlace_Uri, \r\n                      ");
-            viewString.Append("                      T2.GeoPlanetPlace_Center_Latitude, \r\n                     ");
-            viewString.Append("                       T2.GeoPlanetPlace_Center_Longitude, \r\n                   ");
-            viewString.Append("                         T2.GeoPlanetPlace_BoundingBox_Northeast_Latitude, \r\n   ");
-            viewString.Append("                                         T2.GeoPlanetPlace_BoundingBox_Northeast");
-            viewString.Append("_Longitude, \r\n                                            T2.GeoPlanetPlace_Boun");
-            viewString.Append("dingBox_Southwest_Latitude, \r\n                                            T2.Geo");
-            viewString.Append("PlanetPlace_BoundingBox_Southwest_Longitude, \r\n                                 ");
-            viewString.Append("           T2.GeoPlanetPlace_AreaRank, \r\n                                       ");
-            viewString.Append("     T2.GeoPlanetPlace_PopulationRank, \r\n                                       ");
-            viewString.Append("     T2.GeoPlanetPlace_Postal, \r\n                                            T2.");
-            viewString.Append("GeoPlanetPlace_Country_Code, \r\n                                            T2.Ge");
-            viewString.Append("oPlanetPlace_Country_TypeName, \r\n                                            T2.");
-            viewString.Append("GeoPlanetPlace_Country_Name, \r\n                                            T2.Ge");
-            viewString.Append("oPlanetPlace_Admin1_Code, \r\n                                            T2.GeoPl");
-            viewString.Append("anetPlace_Admin1_TypeName, \r\n                                            T2.GeoP");
-            viewString.Append("lanetPlace_Admin1_Name, \r\n                                            T2.GeoPlan");
-            viewString.Append("etPlace_Admin2_Code, \r\n                                            T2.GeoPlanetP");
-            viewString.Append("lace_Admin2_TypeName, \r\n                                            T2.GeoPlanet");
-            viewString.Append("Place_Admin2_Name, \r\n                                            T2.GeoPlanetPla");
-            viewString.Append("ce_Admin3_Code, \r\n                                            T2.GeoPlanetPlace_");
-            viewString.Append("Admin3_TypeName, \r\n                                            T2.GeoPlanetPlace");
-            viewString.Append("_Admin3_Name, \r\n                                            [UCosmic.Orm.GeoPlan");
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(23483);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing GeoPlanetPlaces\r\n        [UCosmic.Impl.Orm.Ge");
+            viewString.Append("oPlanetPlace](T11.GeoPlanetPlace_WoeId, T11.GeoPlanetPlace_EnglishName, T11.GeoP");
+            viewString.Append("lanetPlace_Uri, T11.GeoPlanetPlace_Center, T11.GeoPlanetPlace_BoundingBox, T11.G");
+            viewString.Append("eoPlanetPlace_AreaRank, T11.GeoPlanetPlace_PopulationRank, T11.GeoPlanetPlace_Po");
+            viewString.Append("stal, T11.GeoPlanetPlace_Country, T11.GeoPlanetPlace_Admin1, T11.GeoPlanetPlace_");
+            viewString.Append("Admin2, T11.GeoPlanetPlace_Admin3, T11.GeoPlanetPlace_Locality1, T11.GeoPlanetPl");
+            viewString.Append("ace_Locality2) WITH \r\n        RELATIONSHIP(CREATEREF(UCosmicContext.GeoPlanetPla");
+            viewString.Append("ces, ROW(T11.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target.WoeId]),[UCosmi");
+            viewString.Append("c.Impl.Orm.GeoPlanetPlace]),[UCosmic.Impl.Orm.GeoPlanetPlace_Parent],GeoPlanetPl");
+            viewString.Append("ace_Parent_Source,GeoPlanetPlace_Parent_Target) \r\n        RELATIONSHIP(CREATEREF");
+            viewString.Append("(UCosmicContext.GeoPlanetPlaceTypes, ROW(T11.[GeoPlanetPlace_Type.GeoPlanetPlace");
+            viewString.Append("_Type_Target.Code]),[UCosmic.Impl.Orm.GeoPlanetPlaceType]),[UCosmic.Impl.Orm.Geo");
+            viewString.Append("PlanetPlace_Type],GeoPlanetPlace_Type_Source,GeoPlanetPlace_Type_Target) \r\n     ");
+            viewString.Append("   RELATIONSHIP(CREATEREF(UCosmicContext.Places, ROW(T11.[GeoPlanetPlace_Place.G");
+            viewString.Append("eoPlanetPlace_Place_Target.RevisionId]),[UCosmic.Impl.Orm.Place]),[UCosmic.Impl.");
+            viewString.Append("Orm.GeoPlanetPlace_Place],GeoPlanetPlace_Place_Source,GeoPlanetPlace_Place_Targe");
+            viewString.Append("t) \r\n    FROM (\r\n        SELECT -- Constructing Center\r\n            T10.GeoPlane");
+            viewString.Append("tPlace_WoeId, \r\n            T10.GeoPlanetPlace_EnglishName, \r\n            T10.Ge");
+            viewString.Append("oPlanetPlace_Uri, \r\n            [UCosmic.Impl.Orm.Coordinates](T10.GeoPlanetPlac");
+            viewString.Append("e_Center_Latitude, T10.GeoPlanetPlace_Center_Longitude) AS GeoPlanetPlace_Center");
+            viewString.Append(", \r\n            T10.GeoPlanetPlace_BoundingBox, \r\n            T10.GeoPlanetPlace");
+            viewString.Append("_AreaRank, \r\n            T10.GeoPlanetPlace_PopulationRank, \r\n            T10.Ge");
+            viewString.Append("oPlanetPlace_Postal, \r\n            T10.GeoPlanetPlace_Country, \r\n            T10");
+            viewString.Append(".GeoPlanetPlace_Admin1, \r\n            T10.GeoPlanetPlace_Admin2, \r\n            T");
+            viewString.Append("10.GeoPlanetPlace_Admin3, \r\n            T10.GeoPlanetPlace_Locality1, \r\n        ");
+            viewString.Append("    T10.GeoPlanetPlace_Locality2, \r\n            T10.[GeoPlanetPlace_Parent.GeoPl");
+            viewString.Append("anetPlace_Parent_Target.WoeId], \r\n            T10.[GeoPlanetPlace_Type.GeoPlanet");
+            viewString.Append("Place_Type_Target.Code], \r\n            T10.[GeoPlanetPlace_Place.GeoPlanetPlace_");
+            viewString.Append("Place_Target.RevisionId]\r\n        FROM (\r\n            SELECT -- Constructing Bou");
+            viewString.Append("ndingBox\r\n                T9.GeoPlanetPlace_WoeId, \r\n                T9.GeoPlane");
+            viewString.Append("tPlace_EnglishName, \r\n                T9.GeoPlanetPlace_Uri, \r\n                T");
+            viewString.Append("9.GeoPlanetPlace_Center_Latitude, \r\n                T9.GeoPlanetPlace_Center_Lon");
+            viewString.Append("gitude, \r\n                [UCosmic.Impl.Orm.BoundingBox](T9.GeoPlanetPlace_Bound");
+            viewString.Append("ingBox_Northeast, T9.GeoPlanetPlace_BoundingBox_Southwest) AS GeoPlanetPlace_Bou");
+            viewString.Append("ndingBox, \r\n                T9.GeoPlanetPlace_AreaRank, \r\n                T9.Geo");
+            viewString.Append("PlanetPlace_PopulationRank, \r\n                T9.GeoPlanetPlace_Postal, \r\n      ");
+            viewString.Append("          T9.GeoPlanetPlace_Country, \r\n                T9.GeoPlanetPlace_Admin1,");
+            viewString.Append(" \r\n                T9.GeoPlanetPlace_Admin2, \r\n                T9.GeoPlanetPlace");
+            viewString.Append("_Admin3, \r\n                T9.GeoPlanetPlace_Locality1, \r\n                T9.Geo");
+            viewString.Append("PlanetPlace_Locality2, \r\n                T9.[GeoPlanetPlace_Parent.GeoPlanetPlac");
+            viewString.Append("e_Parent_Target.WoeId], \r\n                T9.[GeoPlanetPlace_Type.GeoPlanetPlace");
+            viewString.Append("_Type_Target.Code], \r\n                T9.[GeoPlanetPlace_Place.GeoPlanetPlace_Pl");
+            viewString.Append("ace_Target.RevisionId]\r\n            FROM (\r\n                SELECT -- Constructi");
+            viewString.Append("ng Northeast\r\n                    T8.GeoPlanetPlace_WoeId, \r\n                   ");
+            viewString.Append(" T8.GeoPlanetPlace_EnglishName, \r\n                    T8.GeoPlanetPlace_Uri, \r\n ");
+            viewString.Append("                   T8.GeoPlanetPlace_Center_Latitude, \r\n                    T8.G");
+            viewString.Append("eoPlanetPlace_Center_Longitude, \r\n                    [UCosmic.Impl.Orm.Coordina");
+            viewString.Append("tes](T8.GeoPlanetPlace_BoundingBox_Northeast_Latitude, T8.GeoPlanetPlace_Boundin");
+            viewString.Append("gBox_Northeast_Longitude) AS GeoPlanetPlace_BoundingBox_Northeast, \r\n           ");
+            viewString.Append("         T8.GeoPlanetPlace_BoundingBox_Southwest, \r\n                    T8.GeoPl");
+            viewString.Append("anetPlace_AreaRank, \r\n                    T8.GeoPlanetPlace_PopulationRank, \r\n  ");
+            viewString.Append("                  T8.GeoPlanetPlace_Postal, \r\n                    T8.GeoPlanetPl");
+            viewString.Append("ace_Country, \r\n                    T8.GeoPlanetPlace_Admin1, \r\n                 ");
+            viewString.Append("   T8.GeoPlanetPlace_Admin2, \r\n                    T8.GeoPlanetPlace_Admin3, \r\n ");
+            viewString.Append("                   T8.GeoPlanetPlace_Locality1, \r\n                    T8.GeoPlan");
+            viewString.Append("etPlace_Locality2, \r\n                    T8.[GeoPlanetPlace_Parent.GeoPlanetPlac");
+            viewString.Append("e_Parent_Target.WoeId], \r\n                    T8.[GeoPlanetPlace_Type.GeoPlanetP");
+            viewString.Append("lace_Type_Target.Code], \r\n                    T8.[GeoPlanetPlace_Place.GeoPlanet");
+            viewString.Append("Place_Place_Target.RevisionId]\r\n                FROM (\r\n                    SELE");
+            viewString.Append("CT -- Constructing Southwest\r\n                        T7.GeoPlanetPlace_WoeId, \r");
+            viewString.Append("\n                        T7.GeoPlanetPlace_EnglishName, \r\n                      ");
+            viewString.Append("  T7.GeoPlanetPlace_Uri, \r\n                        T7.GeoPlanetPlace_Center_Lati");
+            viewString.Append("tude, \r\n                        T7.GeoPlanetPlace_Center_Longitude, \r\n          ");
+            viewString.Append("              T7.GeoPlanetPlace_BoundingBox_Northeast_Latitude, \r\n              ");
+            viewString.Append("          T7.GeoPlanetPlace_BoundingBox_Northeast_Longitude, \r\n                 ");
+            viewString.Append("       [UCosmic.Impl.Orm.Coordinates](T7.GeoPlanetPlace_BoundingBox_Southwest_La");
+            viewString.Append("titude, T7.GeoPlanetPlace_BoundingBox_Southwest_Longitude) AS GeoPlanetPlace_Bou");
+            viewString.Append("ndingBox_Southwest, \r\n                        T7.GeoPlanetPlace_AreaRank, \r\n    ");
+            viewString.Append("                    T7.GeoPlanetPlace_PopulationRank, \r\n                        ");
+            viewString.Append("T7.GeoPlanetPlace_Postal, \r\n                        T7.GeoPlanetPlace_Country, \r");
+            viewString.Append("\n                        T7.GeoPlanetPlace_Admin1, \r\n                        T7.");
+            viewString.Append("GeoPlanetPlace_Admin2, \r\n                        T7.GeoPlanetPlace_Admin3, \r\n   ");
+            viewString.Append("                     T7.GeoPlanetPlace_Locality1, \r\n                        T7.G");
+            viewString.Append("eoPlanetPlace_Locality2, \r\n                        T7.[GeoPlanetPlace_Parent.Geo");
+            viewString.Append("PlanetPlace_Parent_Target.WoeId], \r\n                        T7.[GeoPlanetPlace_T");
+            viewString.Append("ype.GeoPlanetPlace_Type_Target.Code], \r\n                        T7.[GeoPlanetPla");
+            viewString.Append("ce_Place.GeoPlanetPlace_Place_Target.RevisionId]\r\n                    FROM (\r\n  ");
+            viewString.Append("                      SELECT -- Constructing Country\r\n                          ");
+            viewString.Append("  T6.GeoPlanetPlace_WoeId, \r\n                            T6.GeoPlanetPlace_Engli");
+            viewString.Append("shName, \r\n                            T6.GeoPlanetPlace_Uri, \r\n                 ");
+            viewString.Append("           T6.GeoPlanetPlace_Center_Latitude, \r\n                            T6.G");
+            viewString.Append("eoPlanetPlace_Center_Longitude, \r\n                            T6.GeoPlanetPlace_");
+            viewString.Append("BoundingBox_Northeast_Latitude, \r\n                            T6.GeoPlanetPlace_");
+            viewString.Append("BoundingBox_Northeast_Longitude, \r\n                            T6.GeoPlanetPlace");
+            viewString.Append("_BoundingBox_Southwest_Latitude, \r\n                            T6.GeoPlanetPlace");
+            viewString.Append("_BoundingBox_Southwest_Longitude, \r\n                            T6.GeoPlanetPlac");
+            viewString.Append("e_AreaRank, \r\n                            T6.GeoPlanetPlace_PopulationRank, \r\n  ");
+            viewString.Append("                          T6.GeoPlanetPlace_Postal, \r\n                          ");
+            viewString.Append("  [UCosmic.Impl.Orm.GeoPlanetAdmin](T6.GeoPlanetPlace_Country_Code, T6.GeoPlanet");
+            viewString.Append("Place_Country_TypeName, T6.GeoPlanetPlace_Country_Name) AS GeoPlanetPlace_Countr");
+            viewString.Append("y, \r\n                            T6.GeoPlanetPlace_Admin1, \r\n                   ");
+            viewString.Append("         T6.GeoPlanetPlace_Admin2, \r\n                            T6.GeoPlanetPla");
+            viewString.Append("ce_Admin3, \r\n                            T6.GeoPlanetPlace_Locality1, \r\n        ");
+            viewString.Append("                    T6.GeoPlanetPlace_Locality2, \r\n                            T");
+            viewString.Append("6.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target.WoeId], \r\n                ");
+            viewString.Append("            T6.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Target.Code], \r\n        ");
+            viewString.Append("                    T6.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target.Revisio");
+            viewString.Append("nId]\r\n                        FROM (\r\n                            SELECT -- Cons");
+            viewString.Append("tructing Admin1\r\n                                T5.GeoPlanetPlace_WoeId, \r\n    ");
+            viewString.Append("                            T5.GeoPlanetPlace_EnglishName, \r\n                   ");
+            viewString.Append("             T5.GeoPlanetPlace_Uri, \r\n                                T5.GeoPlan");
+            viewString.Append("etPlace_Center_Latitude, \r\n                                T5.GeoPlanetPlace_Cen");
+            viewString.Append("ter_Longitude, \r\n                                T5.GeoPlanetPlace_BoundingBox_N");
+            viewString.Append("ortheast_Latitude, \r\n                                T5.GeoPlanetPlace_BoundingB");
+            viewString.Append("ox_Northeast_Longitude, \r\n                                T5.GeoPlanetPlace_Boun");
+            viewString.Append("dingBox_Southwest_Latitude, \r\n                                T5.GeoPlanetPlace_");
+            viewString.Append("BoundingBox_Southwest_Longitude, \r\n                                T5.GeoPlanetP");
+            viewString.Append("lace_AreaRank, \r\n                                T5.GeoPlanetPlace_PopulationRan");
+            viewString.Append("k, \r\n                                T5.GeoPlanetPlace_Postal, \r\n               ");
+            viewString.Append("                 T5.GeoPlanetPlace_Country_Code, \r\n                             ");
+            viewString.Append("   T5.GeoPlanetPlace_Country_TypeName, \r\n                                T5.GeoP");
+            viewString.Append("lanetPlace_Country_Name, \r\n                                [UCosmic.Impl.Orm.Geo");
+            viewString.Append("PlanetAdmin](T5.GeoPlanetPlace_Admin1_Code, T5.GeoPlanetPlace_Admin1_TypeName, T");
+            viewString.Append("5.GeoPlanetPlace_Admin1_Name) AS GeoPlanetPlace_Admin1, \r\n                      ");
+            viewString.Append("          T5.GeoPlanetPlace_Admin2, \r\n                                T5.GeoPlan");
+            viewString.Append("etPlace_Admin3, \r\n                                T5.GeoPlanetPlace_Locality1, \r");
+            viewString.Append("\n                                T5.GeoPlanetPlace_Locality2, \r\n                ");
+            viewString.Append("                T5.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target.WoeId], \r");
+            viewString.Append("\n                                T5.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Tar");
+            viewString.Append("get.Code], \r\n                                T5.[GeoPlanetPlace_Place.GeoPlanetP");
+            viewString.Append("lace_Place_Target.RevisionId]\r\n                            FROM (\r\n             ");
+            viewString.Append("                   SELECT -- Constructing Admin2\r\n                              ");
+            viewString.Append("      T4.GeoPlanetPlace_WoeId, \r\n                                    T4.GeoPlane");
+            viewString.Append("tPlace_EnglishName, \r\n                                    T4.GeoPlanetPlace_Uri,");
+            viewString.Append(" \r\n                                    T4.GeoPlanetPlace_Center_Latitude, \r\n    ");
+            viewString.Append("                                T4.GeoPlanetPlace_Center_Longitude, \r\n          ");
+            viewString.Append("                          T4.GeoPlanetPlace_BoundingBox_Northeast_Latitude, \r\n  ");
+            viewString.Append("                                  T4.GeoPlanetPlace_BoundingBox_Northeast_Longit");
+            viewString.Append("ude, \r\n                                    T4.GeoPlanetPlace_BoundingBox_Southwe");
+            viewString.Append("st_Latitude, \r\n                                    T4.GeoPlanetPlace_BoundingBox");
+            viewString.Append("_Southwest_Longitude, \r\n                                    T4.GeoPlanetPlace_Ar");
+            viewString.Append("eaRank, \r\n                                    T4.GeoPlanetPlace_PopulationRank, ");
+            viewString.Append("\r\n                                    T4.GeoPlanetPlace_Postal, \r\n              ");
+            viewString.Append("                      T4.GeoPlanetPlace_Country_Code, \r\n                        ");
+            viewString.Append("            T4.GeoPlanetPlace_Country_TypeName, \r\n                              ");
+            viewString.Append("      T4.GeoPlanetPlace_Country_Name, \r\n                                    T4.G");
+            viewString.Append("eoPlanetPlace_Admin1_Code, \r\n                                    T4.GeoPlanetPla");
+            viewString.Append("ce_Admin1_TypeName, \r\n                                    T4.GeoPlanetPlace_Admi");
+            viewString.Append("n1_Name, \r\n                                    [UCosmic.Impl.Orm.GeoPlanetAdmin]");
+            viewString.Append("(T4.GeoPlanetPlace_Admin2_Code, T4.GeoPlanetPlace_Admin2_TypeName, T4.GeoPlanetP");
+            viewString.Append("lace_Admin2_Name) AS GeoPlanetPlace_Admin2, \r\n                                  ");
+            viewString.Append("  T4.GeoPlanetPlace_Admin3, \r\n                                    T4.GeoPlanetPl");
+            viewString.Append("ace_Locality1, \r\n                                    T4.GeoPlanetPlace_Locality2");
+            viewString.Append(", \r\n                                    T4.[GeoPlanetPlace_Parent.GeoPlanetPlace");
+            viewString.Append("_Parent_Target.WoeId], \r\n                                    T4.[GeoPlanetPlace_");
+            viewString.Append("Type.GeoPlanetPlace_Type_Target.Code], \r\n                                    T4.");
+            viewString.Append("[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target.RevisionId]\r\n                 ");
+            viewString.Append("               FROM (\r\n                                    SELECT -- Constructin");
+            viewString.Append("g Admin3\r\n                                        T3.GeoPlanetPlace_WoeId, \r\n   ");
+            viewString.Append("                                     T3.GeoPlanetPlace_EnglishName, \r\n          ");
+            viewString.Append("                              T3.GeoPlanetPlace_Uri, \r\n                         ");
+            viewString.Append("               T3.GeoPlanetPlace_Center_Latitude, \r\n                            ");
+            viewString.Append("            T3.GeoPlanetPlace_Center_Longitude, \r\n                              ");
+            viewString.Append("          T3.GeoPlanetPlace_BoundingBox_Northeast_Latitude, \r\n                  ");
+            viewString.Append("                      T3.GeoPlanetPlace_BoundingBox_Northeast_Longitude, \r\n     ");
+            viewString.Append("                                   T3.GeoPlanetPlace_BoundingBox_Southwest_Latit");
+            viewString.Append("ude, \r\n                                        T3.GeoPlanetPlace_BoundingBox_Sou");
+            viewString.Append("thwest_Longitude, \r\n                                        T3.GeoPlanetPlace_Ar");
+            viewString.Append("eaRank, \r\n                                        T3.GeoPlanetPlace_PopulationRa");
+            viewString.Append("nk, \r\n                                        T3.GeoPlanetPlace_Postal, \r\n      ");
+            viewString.Append("                                  T3.GeoPlanetPlace_Country_Code, \r\n            ");
+            viewString.Append("                            T3.GeoPlanetPlace_Country_TypeName, \r\n              ");
+            viewString.Append("                          T3.GeoPlanetPlace_Country_Name, \r\n                    ");
+            viewString.Append("                    T3.GeoPlanetPlace_Admin1_Code, \r\n                           ");
+            viewString.Append("             T3.GeoPlanetPlace_Admin1_TypeName, \r\n                              ");
+            viewString.Append("          T3.GeoPlanetPlace_Admin1_Name, \r\n                                     ");
+            viewString.Append("   T3.GeoPlanetPlace_Admin2_Code, \r\n                                        T3.G");
+            viewString.Append("eoPlanetPlace_Admin2_TypeName, \r\n                                        T3.GeoP");
+            viewString.Append("lanetPlace_Admin2_Name, \r\n                                        [UCosmic.Impl.");
+            viewString.Append("Orm.GeoPlanetAdmin](T3.GeoPlanetPlace_Admin3_Code, T3.GeoPlanetPlace_Admin3_Type");
+            viewString.Append("Name, T3.GeoPlanetPlace_Admin3_Name) AS GeoPlanetPlace_Admin3, \r\n               ");
+            viewString.Append("                         T3.GeoPlanetPlace_Locality1, \r\n                        ");
+            viewString.Append("                T3.GeoPlanetPlace_Locality2, \r\n                                 ");
+            viewString.Append("       T3.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target.WoeId], \r\n        ");
+            viewString.Append("                                T3.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Targ");
+            viewString.Append("et.Code], \r\n                                        T3.[GeoPlanetPlace_Place.Geo");
+            viewString.Append("PlanetPlace_Place_Target.RevisionId]\r\n                                    FROM (");
+            viewString.Append("\r\n                                        SELECT -- Constructing Locality1\r\n    ");
+            viewString.Append("                                        T2.GeoPlanetPlace_WoeId, \r\n             ");
+            viewString.Append("                               T2.GeoPlanetPlace_EnglishName, \r\n                ");
+            viewString.Append("                            T2.GeoPlanetPlace_Uri, \r\n                           ");
+            viewString.Append("                 T2.GeoPlanetPlace_Center_Latitude, \r\n                          ");
+            viewString.Append("                  T2.GeoPlanetPlace_Center_Longitude, \r\n                        ");
+            viewString.Append("                    T2.GeoPlanetPlace_BoundingBox_Northeast_Latitude, \r\n        ");
+            viewString.Append("                                    T2.GeoPlanetPlace_BoundingBox_Northeast_Long");
+            viewString.Append("itude, \r\n                                            T2.GeoPlanetPlace_BoundingB");
+            viewString.Append("ox_Southwest_Latitude, \r\n                                            T2.GeoPlane");
+            viewString.Append("tPlace_BoundingBox_Southwest_Longitude, \r\n                                      ");
+            viewString.Append("      T2.GeoPlanetPlace_AreaRank, \r\n                                            ");
+            viewString.Append("T2.GeoPlanetPlace_PopulationRank, \r\n                                            ");
+            viewString.Append("T2.GeoPlanetPlace_Postal, \r\n                                            T2.GeoPl");
+            viewString.Append("anetPlace_Country_Code, \r\n                                            T2.GeoPlan");
+            viewString.Append("etPlace_Country_TypeName, \r\n                                            T2.GeoPl");
+            viewString.Append("anetPlace_Country_Name, \r\n                                            T2.GeoPlan");
+            viewString.Append("etPlace_Admin1_Code, \r\n                                            T2.GeoPlanetP");
+            viewString.Append("lace_Admin1_TypeName, \r\n                                            T2.GeoPlanet");
+            viewString.Append("Place_Admin1_Name, \r\n                                            T2.GeoPlanetPla");
+            viewString.Append("ce_Admin2_Code, \r\n                                            T2.GeoPlanetPlace_");
+            viewString.Append("Admin2_TypeName, \r\n                                            T2.GeoPlanetPlace");
+            viewString.Append("_Admin2_Name, \r\n                                            T2.GeoPlanetPlace_Ad");
+            viewString.Append("min3_Code, \r\n                                            T2.GeoPlanetPlace_Admin");
+            viewString.Append("3_TypeName, \r\n                                            T2.GeoPlanetPlace_Admi");
+            viewString.Append("n3_Name, \r\n                                            [UCosmic.Impl.Orm.GeoPlan");
             viewString.Append("etLocality](T2.GeoPlanetPlace_Locality1_TypeName, T2.GeoPlanetPlace_Locality1_Na");
             viewString.Append("me) AS GeoPlanetPlace_Locality1, \r\n                                            T");
             viewString.Append("2.GeoPlanetPlace_Locality2, \r\n                                            T2.[Ge");
@@ -2721,72 +2761,72 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("GeoPlanetPlace_Admin3_Name, \r\n                                                T1");
             viewString.Append(".GeoPlanetPlace_Locality1_TypeName, \r\n                                          ");
             viewString.Append("      T1.GeoPlanetPlace_Locality1_Name, \r\n                                      ");
-            viewString.Append("          [UCosmic.Orm.GeoPlanetLocality](T1.GeoPlanetPlace_Locality2_TypeName, ");
-            viewString.Append("T1.GeoPlanetPlace_Locality2_Name) AS GeoPlanetPlace_Locality2, \r\n               ");
-            viewString.Append("                                 T1.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent");
-            viewString.Append("_Target.WoeId], \r\n                                                T1.[GeoPlanetP");
-            viewString.Append("lace_Type.GeoPlanetPlace_Type_Target.Code], \r\n                                  ");
-            viewString.Append("              T1.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target.RevisionId]\r\n");
-            viewString.Append("                                            FROM (\r\n                            ");
-            viewString.Append("                    SELECT \r\n                                                   ");
-            viewString.Append(" T.WoeId AS GeoPlanetPlace_WoeId, \r\n                                            ");
-            viewString.Append("        T.EnglishName AS GeoPlanetPlace_EnglishName, \r\n                         ");
-            viewString.Append("                           T.Uri AS GeoPlanetPlace_Uri, \r\n                      ");
-            viewString.Append("                              T.Latitude AS GeoPlanetPlace_Center_Latitude, \r\n  ");
-            viewString.Append("                                                  T.Longitude AS GeoPlanetPlace_");
-            viewString.Append("Center_Longitude, \r\n                                                    T.NorthL");
-            viewString.Append("atitude AS GeoPlanetPlace_BoundingBox_Northeast_Latitude, \r\n                    ");
-            viewString.Append("                                T.EastLongitude AS GeoPlanetPlace_BoundingBox_No");
-            viewString.Append("rtheast_Longitude, \r\n                                                    T.South");
-            viewString.Append("Latitude AS GeoPlanetPlace_BoundingBox_Southwest_Latitude, \r\n                   ");
-            viewString.Append("                                 T.WestLongitude AS GeoPlanetPlace_BoundingBox_S");
-            viewString.Append("outhwest_Longitude, \r\n                                                    T.Area");
-            viewString.Append("Rank AS GeoPlanetPlace_AreaRank, \r\n                                             ");
-            viewString.Append("       T.PopulationRank AS GeoPlanetPlace_PopulationRank, \r\n                    ");
-            viewString.Append("                                T.Postal AS GeoPlanetPlace_Postal, \r\n           ");
-            viewString.Append("                                         T.CountryCode AS GeoPlanetPlace_Country");
-            viewString.Append("_Code, \r\n                                                    T.CountryType AS Ge");
-            viewString.Append("oPlanetPlace_Country_TypeName, \r\n                                               ");
-            viewString.Append("     T.CountryName AS GeoPlanetPlace_Country_Name, \r\n                           ");
-            viewString.Append("                         T.Admin1Code AS GeoPlanetPlace_Admin1_Code, \r\n         ");
-            viewString.Append("                                           T.Admin1Type AS GeoPlanetPlace_Admin1");
-            viewString.Append("_TypeName, \r\n                                                    T.Admin1Name AS");
-            viewString.Append(" GeoPlanetPlace_Admin1_Name, \r\n                                                 ");
-            viewString.Append("   T.Admin2Code AS GeoPlanetPlace_Admin2_Code, \r\n                               ");
-            viewString.Append("                     T.Admin2Type AS GeoPlanetPlace_Admin2_TypeName, \r\n         ");
-            viewString.Append("                                           T.Admin2Name AS GeoPlanetPlace_Admin2");
-            viewString.Append("_Name, \r\n                                                    T.Admin3Code AS Geo");
-            viewString.Append("PlanetPlace_Admin3_Code, \r\n                                                    T");
-            viewString.Append(".Admin3Type AS GeoPlanetPlace_Admin3_TypeName, \r\n                               ");
-            viewString.Append("                     T.Admin3Name AS GeoPlanetPlace_Admin3_Name, \r\n             ");
-            viewString.Append("                                       T.Locality1Type AS GeoPlanetPlace_Localit");
-            viewString.Append("y1_TypeName, \r\n                                                    T.Locality1Na");
-            viewString.Append("me AS GeoPlanetPlace_Locality1_Name, \r\n                                         ");
-            viewString.Append("           T.Locality2Type AS GeoPlanetPlace_Locality2_TypeName, \r\n             ");
-            viewString.Append("                                       T.Locality2Name AS GeoPlanetPlace_Localit");
-            viewString.Append("y2_Name, \r\n                                                    True AS _from0, \r");
-            viewString.Append("\n                                                    T.ParentWoeId AS [GeoPlanet");
-            viewString.Append("Place_Parent.GeoPlanetPlace_Parent_Target.WoeId], \r\n                            ");
-            viewString.Append("                        T.TypeCode AS [GeoPlanetPlace_Type.GeoPlanetPlace_Type_T");
-            viewString.Append("arget.Code], \r\n                                                    T.PlaceId AS ");
-            viewString.Append("[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target.RevisionId]\r\n                 ");
-            viewString.Append("                               FROM CodeFirstDatabase.GeoPlanetPlace AS T\r\n     ");
-            viewString.Append("                                       ) AS T1\r\n                                ");
-            viewString.Append("        ) AS T2\r\n                                    ) AS T3\r\n                  ");
-            viewString.Append("              ) AS T4\r\n                            ) AS T5\r\n                    ");
-            viewString.Append("    ) AS T6\r\n                    ) AS T7\r\n                ) AS T8\r\n            )");
-            viewString.Append(" AS T9\r\n        ) AS T10\r\n    ) AS T11");
+            viewString.Append("          [UCosmic.Impl.Orm.GeoPlanetLocality](T1.GeoPlanetPlace_Locality2_TypeN");
+            viewString.Append("ame, T1.GeoPlanetPlace_Locality2_Name) AS GeoPlanetPlace_Locality2, \r\n          ");
+            viewString.Append("                                      T1.[GeoPlanetPlace_Parent.GeoPlanetPlace_P");
+            viewString.Append("arent_Target.WoeId], \r\n                                                T1.[GeoPl");
+            viewString.Append("anetPlace_Type.GeoPlanetPlace_Type_Target.Code], \r\n                             ");
+            viewString.Append("                   T1.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target.Revision");
+            viewString.Append("Id]\r\n                                            FROM (\r\n                       ");
+            viewString.Append("                         SELECT \r\n                                              ");
+            viewString.Append("      T.WoeId AS GeoPlanetPlace_WoeId, \r\n                                       ");
+            viewString.Append("             T.EnglishName AS GeoPlanetPlace_EnglishName, \r\n                    ");
+            viewString.Append("                                T.Uri AS GeoPlanetPlace_Uri, \r\n                 ");
+            viewString.Append("                                   T.Latitude AS GeoPlanetPlace_Center_Latitude,");
+            viewString.Append(" \r\n                                                    T.Longitude AS GeoPlanetP");
+            viewString.Append("lace_Center_Longitude, \r\n                                                    T.N");
+            viewString.Append("orthLatitude AS GeoPlanetPlace_BoundingBox_Northeast_Latitude, \r\n               ");
+            viewString.Append("                                     T.EastLongitude AS GeoPlanetPlace_BoundingB");
+            viewString.Append("ox_Northeast_Longitude, \r\n                                                    T.");
+            viewString.Append("SouthLatitude AS GeoPlanetPlace_BoundingBox_Southwest_Latitude, \r\n              ");
+            viewString.Append("                                      T.WestLongitude AS GeoPlanetPlace_Bounding");
+            viewString.Append("Box_Southwest_Longitude, \r\n                                                    T");
+            viewString.Append(".AreaRank AS GeoPlanetPlace_AreaRank, \r\n                                        ");
+            viewString.Append("            T.PopulationRank AS GeoPlanetPlace_PopulationRank, \r\n               ");
+            viewString.Append("                                     T.Postal AS GeoPlanetPlace_Postal, \r\n      ");
+            viewString.Append("                                              T.CountryCode AS GeoPlanetPlace_Co");
+            viewString.Append("untry_Code, \r\n                                                    T.CountryType ");
+            viewString.Append("AS GeoPlanetPlace_Country_TypeName, \r\n                                          ");
+            viewString.Append("          T.CountryName AS GeoPlanetPlace_Country_Name, \r\n                      ");
+            viewString.Append("                              T.Admin1Code AS GeoPlanetPlace_Admin1_Code, \r\n    ");
+            viewString.Append("                                                T.Admin1Type AS GeoPlanetPlace_A");
+            viewString.Append("dmin1_TypeName, \r\n                                                    T.Admin1Na");
+            viewString.Append("me AS GeoPlanetPlace_Admin1_Name, \r\n                                            ");
+            viewString.Append("        T.Admin2Code AS GeoPlanetPlace_Admin2_Code, \r\n                          ");
+            viewString.Append("                          T.Admin2Type AS GeoPlanetPlace_Admin2_TypeName, \r\n    ");
+            viewString.Append("                                                T.Admin2Name AS GeoPlanetPlace_A");
+            viewString.Append("dmin2_Name, \r\n                                                    T.Admin3Code A");
+            viewString.Append("S GeoPlanetPlace_Admin3_Code, \r\n                                                ");
+            viewString.Append("    T.Admin3Type AS GeoPlanetPlace_Admin3_TypeName, \r\n                          ");
+            viewString.Append("                          T.Admin3Name AS GeoPlanetPlace_Admin3_Name, \r\n        ");
+            viewString.Append("                                            T.Locality1Type AS GeoPlanetPlace_Lo");
+            viewString.Append("cality1_TypeName, \r\n                                                    T.Locali");
+            viewString.Append("ty1Name AS GeoPlanetPlace_Locality1_Name, \r\n                                    ");
+            viewString.Append("                T.Locality2Type AS GeoPlanetPlace_Locality2_TypeName, \r\n        ");
+            viewString.Append("                                            T.Locality2Name AS GeoPlanetPlace_Lo");
+            viewString.Append("cality2_Name, \r\n                                                    True AS _fro");
+            viewString.Append("m0, \r\n                                                    T.ParentWoeId AS [GeoP");
+            viewString.Append("lanetPlace_Parent.GeoPlanetPlace_Parent_Target.WoeId], \r\n                       ");
+            viewString.Append("                             T.TypeCode AS [GeoPlanetPlace_Type.GeoPlanetPlace_T");
+            viewString.Append("ype_Target.Code], \r\n                                                    T.PlaceI");
+            viewString.Append("d AS [GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target.RevisionId]\r\n            ");
+            viewString.Append("                                    FROM CodeFirstDatabase.GeoPlanetPlace AS T\r\n");
+            viewString.Append("                                            ) AS T1\r\n                           ");
+            viewString.Append("             ) AS T2\r\n                                    ) AS T3\r\n             ");
+            viewString.Append("                   ) AS T4\r\n                            ) AS T5\r\n               ");
+            viewString.Append("         ) AS T6\r\n                    ) AS T7\r\n                ) AS T8\r\n        ");
+            viewString.Append("    ) AS T9\r\n        ) AS T10\r\n    ) AS T11");
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoPlanetPlaces", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoPlanetPlaceNodes
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView59()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView61()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoPlanetPlaceNodes", @"
     SELECT VALUE -- Constructing GeoPlanetPlaceNodes
-        [UCosmic.Orm.GeoPlanetPlaceNode](T1.GeoPlanetPlaceNode_AncestorId, T1.GeoPlanetPlaceNode_OffspringId, T1.GeoPlanetPlaceNode_Separation)
+        [UCosmic.Impl.Orm.GeoPlanetPlaceNode](T1.GeoPlanetPlaceNode_AncestorId, T1.GeoPlanetPlaceNode_OffspringId, T1.GeoPlanetPlaceNode_Separation)
     FROM (
         SELECT 
             T.AncestorId AS GeoPlanetPlaceNode_AncestorId, 
@@ -2796,15 +2836,15 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.GeoPlanetPlaceNode AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoPlanetPlaceTypes
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView60()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView62()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoPlanetPlaceTypes", @"
     SELECT VALUE -- Constructing GeoPlanetPlaceTypes
-        [UCosmic.Orm.GeoPlanetPlaceType](T1.GeoPlanetPlaceType_Code, T1.GeoPlanetPlaceType_Uri, T1.GeoPlanetPlaceType_EnglishName, T1.GeoPlanetPlaceType_EnglishDescription)
+        [UCosmic.Impl.Orm.GeoPlanetPlaceType](T1.GeoPlanetPlaceType_Code, T1.GeoPlanetPlaceType_Uri, T1.GeoPlanetPlaceType_EnglishName, T1.GeoPlanetPlaceType_EnglishDescription)
     FROM (
         SELECT 
             T.Code AS GeoPlanetPlaceType_Code, 
@@ -2815,15 +2855,15 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.GeoPlanetPlaceType AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoPlanetPlaceBelongToes
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView61()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView63()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoPlanetPlaceBelongToes", @"
     SELECT VALUE -- Constructing GeoPlanetPlaceBelongToes
-        [UCosmic.Orm.GeoPlanetPlaceBelongTo](T1.GeoPlanetPlaceBelongTo_PlaceWoeId, T1.GeoPlanetPlaceBelongTo_Rank, T1.GeoPlanetPlaceBelongTo_BelongToWoeId)
+        [UCosmic.Impl.Orm.GeoPlanetPlaceBelongTo](T1.GeoPlanetPlaceBelongTo_PlaceWoeId, T1.GeoPlanetPlaceBelongTo_Rank, T1.GeoPlanetPlaceBelongTo_BelongToWoeId)
     FROM (
         SELECT 
             T.PlaceWoeId AS GeoPlanetPlaceBelongTo_PlaceWoeId, 
@@ -2833,57 +2873,57 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.GeoPlanetPlaceBelongTo AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.PlaceNames
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView62()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView64()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2115);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing PlaceNames\r\n        [UCosmic.Orm.PlaceName](T");
-            viewString.Append("1.PlaceName_RevisionId, T1.PlaceName_TranslationToHint, T1.PlaceName_IsPreferred");
-            viewString.Append("Translation, T1.PlaceName_Text, T1.PlaceName_AsciiEquivalent, T1.PlaceName_Entit");
-            viewString.Append("yId, T1.PlaceName_CreatedOnUtc, T1.PlaceName_CreatedByPrincipal, T1.PlaceName_Up");
-            viewString.Append("datedOnUtc, T1.PlaceName_UpdatedByPrincipal, T1.PlaceName_Version, T1.PlaceName_");
-            viewString.Append("IsCurrent, T1.PlaceName_IsArchived, T1.PlaceName_IsDeleted) WITH \r\n        RELAT");
-            viewString.Append("IONSHIP(CREATEREF(UCosmicContext.Places, ROW(T1.[PlaceName_NameFor.PlaceName_Nam");
-            viewString.Append("eFor_Target.RevisionId]),[UCosmic.Orm.Place]),[UCosmic.Orm.PlaceName_NameFor],Pl");
-            viewString.Append("aceName_NameFor_Source,PlaceName_NameFor_Target) \r\n        RELATIONSHIP(CREATERE");
-            viewString.Append("F(UCosmicContext.Languages, ROW(T1.[PlaceName_TranslationToLanguage.PlaceName_Tr");
-            viewString.Append("anslationToLanguage_Target.RevisionId]),[UCosmic.Orm.Language]),[UCosmic.Orm.Pla");
-            viewString.Append("ceName_TranslationToLanguage],PlaceName_TranslationToLanguage_Source,PlaceName_T");
-            viewString.Append("ranslationToLanguage_Target) \r\n    FROM (\r\n        SELECT \r\n            T.Revisi");
-            viewString.Append("onId AS PlaceName_RevisionId, \r\n            T.TranslationToHint AS PlaceName_Tra");
-            viewString.Append("nslationToHint, \r\n            T.IsPreferredTranslation AS PlaceName_IsPreferredT");
-            viewString.Append("ranslation, \r\n            T.Text AS PlaceName_Text, \r\n            T.AsciiEquival");
-            viewString.Append("ent AS PlaceName_AsciiEquivalent, \r\n            T.EntityId AS PlaceName_EntityId");
-            viewString.Append(", \r\n            T.CreatedOnUtc AS PlaceName_CreatedOnUtc, \r\n            T.Create");
-            viewString.Append("dByPrincipal AS PlaceName_CreatedByPrincipal, \r\n            T.UpdatedOnUtc AS Pl");
-            viewString.Append("aceName_UpdatedOnUtc, \r\n            T.UpdatedByPrincipal AS PlaceName_UpdatedByP");
-            viewString.Append("rincipal, \r\n            T.Version AS PlaceName_Version, \r\n            T.IsCurren");
-            viewString.Append("t AS PlaceName_IsCurrent, \r\n            T.IsArchived AS PlaceName_IsArchived, \r\n");
-            viewString.Append("            T.IsDeleted AS PlaceName_IsDeleted, \r\n            True AS _from0, \r\n");
-            viewString.Append("            T.NameForPlaceId AS [PlaceName_NameFor.PlaceName_NameFor_Target.Revi");
-            viewString.Append("sionId], \r\n            T.TranslationToLanguageId AS [PlaceName_TranslationToLang");
-            viewString.Append("uage.PlaceName_TranslationToLanguage_Target.RevisionId]\r\n        FROM CodeFirstD");
-            viewString.Append("atabase.PlaceName AS T\r\n    ) AS T1");
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2140);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing PlaceNames\r\n        [UCosmic.Impl.Orm.PlaceNa");
+            viewString.Append("me](T1.PlaceName_RevisionId, T1.PlaceName_TranslationToHint, T1.PlaceName_IsPref");
+            viewString.Append("erredTranslation, T1.PlaceName_Text, T1.PlaceName_AsciiEquivalent, T1.PlaceName_");
+            viewString.Append("EntityId, T1.PlaceName_CreatedOnUtc, T1.PlaceName_CreatedByPrincipal, T1.PlaceNa");
+            viewString.Append("me_UpdatedOnUtc, T1.PlaceName_UpdatedByPrincipal, T1.PlaceName_Version, T1.Place");
+            viewString.Append("Name_IsCurrent, T1.PlaceName_IsArchived, T1.PlaceName_IsDeleted) WITH \r\n        ");
+            viewString.Append("RELATIONSHIP(CREATEREF(UCosmicContext.Places, ROW(T1.[PlaceName_NameFor.PlaceNam");
+            viewString.Append("e_NameFor_Target.RevisionId]),[UCosmic.Impl.Orm.Place]),[UCosmic.Impl.Orm.PlaceN");
+            viewString.Append("ame_NameFor],PlaceName_NameFor_Source,PlaceName_NameFor_Target) \r\n        RELATI");
+            viewString.Append("ONSHIP(CREATEREF(UCosmicContext.Languages, ROW(T1.[PlaceName_TranslationToLangua");
+            viewString.Append("ge.PlaceName_TranslationToLanguage_Target.RevisionId]),[UCosmic.Impl.Orm.Languag");
+            viewString.Append("e]),[UCosmic.Impl.Orm.PlaceName_TranslationToLanguage],PlaceName_TranslationToLa");
+            viewString.Append("nguage_Source,PlaceName_TranslationToLanguage_Target) \r\n    FROM (\r\n        SELE");
+            viewString.Append("CT \r\n            T.RevisionId AS PlaceName_RevisionId, \r\n            T.Translati");
+            viewString.Append("onToHint AS PlaceName_TranslationToHint, \r\n            T.IsPreferredTranslation ");
+            viewString.Append("AS PlaceName_IsPreferredTranslation, \r\n            T.Text AS PlaceName_Text, \r\n ");
+            viewString.Append("           T.AsciiEquivalent AS PlaceName_AsciiEquivalent, \r\n            T.Entit");
+            viewString.Append("yId AS PlaceName_EntityId, \r\n            T.CreatedOnUtc AS PlaceName_CreatedOnUt");
+            viewString.Append("c, \r\n            T.CreatedByPrincipal AS PlaceName_CreatedByPrincipal, \r\n       ");
+            viewString.Append("     T.UpdatedOnUtc AS PlaceName_UpdatedOnUtc, \r\n            T.UpdatedByPrincipa");
+            viewString.Append("l AS PlaceName_UpdatedByPrincipal, \r\n            T.Version AS PlaceName_Version,");
+            viewString.Append(" \r\n            T.IsCurrent AS PlaceName_IsCurrent, \r\n            T.IsArchived AS");
+            viewString.Append(" PlaceName_IsArchived, \r\n            T.IsDeleted AS PlaceName_IsDeleted, \r\n     ");
+            viewString.Append("       True AS _from0, \r\n            T.NameForPlaceId AS [PlaceName_NameFor.Plac");
+            viewString.Append("eName_NameFor_Target.RevisionId], \r\n            T.TranslationToLanguageId AS [Pl");
+            viewString.Append("aceName_TranslationToLanguage.PlaceName_TranslationToLanguage_Target.RevisionId]");
+            viewString.Append("\r\n        FROM CodeFirstDatabase.PlaceName AS T\r\n    ) AS T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.PlaceNames", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.Users
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView63()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView65()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.Users", @"
     SELECT VALUE -- Constructing Users
-        [UCosmic.Orm.User](T1.User_RevisionId, T1.User_UserName, T1.User_SubjectNameId, T1.User_IsRegistered, T1.User_EntityId, T1.User_CreatedOnUtc, T1.User_CreatedByPrincipal, T1.User_UpdatedOnUtc, T1.User_UpdatedByPrincipal, T1.User_Version, T1.User_IsCurrent, T1.User_IsArchived, T1.User_IsDeleted) WITH 
-        RELATIONSHIP(CREATEREF(UCosmicContext.People, ROW(T1.[Person_User.Person_User_Source.RevisionId]),[UCosmic.Orm.Person]),[UCosmic.Orm.Person_User],Person_User_Target,Person_User_Source) 
+        [UCosmic.Impl.Orm.User](T1.User_RevisionId, T1.User_Name, T1.User_EduPersonTargetedId, T1.User_IsRegistered, T1.User_EntityId, T1.User_CreatedOnUtc, T1.User_CreatedByPrincipal, T1.User_UpdatedOnUtc, T1.User_UpdatedByPrincipal, T1.User_Version, T1.User_IsCurrent, T1.User_IsArchived, T1.User_IsDeleted) WITH 
+        RELATIONSHIP(CREATEREF(UCosmicContext.People, ROW(T1.[Person_User.Person_User_Source.RevisionId]),[UCosmic.Impl.Orm.Person]),[UCosmic.Impl.Orm.Person_User],Person_User_Target,Person_User_Source) 
     FROM (
         SELECT 
             T.RevisionId AS User_RevisionId, 
-            T.UserName AS User_UserName, 
-            T.SubjectNameId AS User_SubjectNameId, 
+            T.Name AS User_Name, 
+            T.EduPersonTargetedId AS User_EduPersonTargetedId, 
             T.IsRegistered AS User_IsRegistered, 
             T.EntityId AS User_EntityId, 
             T.CreatedOnUtc AS User_CreatedOnUtc, 
@@ -2899,47 +2939,48 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.User AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.RoleGrants
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView64()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView66()
         {
-            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.RoleGrants", "\r\n    SELECT VALUE -- Constructing RoleGrants\r\n        [UCosmic.Orm.RoleGrant](T1" +
-                    ".RoleGrant_RevisionId, T1.RoleGrant_EntityId, T1.RoleGrant_CreatedOnUtc, T1.Role" +
-                    "Grant_CreatedByPrincipal, T1.RoleGrant_UpdatedOnUtc, T1.RoleGrant_UpdatedByPrinc" +
-                    "ipal, T1.RoleGrant_Version, T1.RoleGrant_IsCurrent, T1.RoleGrant_IsArchived, T1." +
-                    "RoleGrant_IsDeleted) WITH \r\n        RELATIONSHIP(CREATEREF(UCosmicContext.Users," +
-                    " ROW(T1.[RoleGrant_User.RoleGrant_User_Target.RevisionId]),[UCosmic.Orm.User]),[" +
-                    "UCosmic.Orm.RoleGrant_User],RoleGrant_User_Source,RoleGrant_User_Target) \r\n     " +
-                    "   RELATIONSHIP(CREATEREF(UCosmicContext.Roles, ROW(T1.[RoleGrant_Role.RoleGrant" +
-                    "_Role_Target.RevisionId]),[UCosmic.Orm.Role]),[UCosmic.Orm.RoleGrant_Role],RoleG" +
-                    "rant_Role_Source,RoleGrant_Role_Target) \r\n        RELATIONSHIP(CREATEREF(UCosmic" +
-                    "Context.Establishments, ROW(T1.[RoleGrant_ForEstablishment.RoleGrant_ForEstablis" +
-                    "hment_Target.RevisionId]),[UCosmic.Orm.Establishment]),[UCosmic.Orm.RoleGrant_Fo" +
-                    "rEstablishment],RoleGrant_ForEstablishment_Source,RoleGrant_ForEstablishment_Tar" +
-                    "get) \r\n    FROM (\r\n        SELECT \r\n            T.RevisionId AS RoleGrant_Revisi" +
-                    "onId, \r\n            T.EntityId AS RoleGrant_EntityId, \r\n            T.CreatedOnU" +
-                    "tc AS RoleGrant_CreatedOnUtc, \r\n            T.CreatedByPrincipal AS RoleGrant_Cr" +
-                    "eatedByPrincipal, \r\n            T.UpdatedOnUtc AS RoleGrant_UpdatedOnUtc, \r\n    " +
-                    "        T.UpdatedByPrincipal AS RoleGrant_UpdatedByPrincipal, \r\n            T.Ve" +
-                    "rsion AS RoleGrant_Version, \r\n            T.IsCurrent AS RoleGrant_IsCurrent, \r\n" +
-                    "            T.IsArchived AS RoleGrant_IsArchived, \r\n            T.IsDeleted AS R" +
-                    "oleGrant_IsDeleted, \r\n            True AS _from0, \r\n            T.UserId AS [Rol" +
-                    "eGrant_User.RoleGrant_User_Target.RevisionId], \r\n            T.RoleId AS [RoleGr" +
-                    "ant_Role.RoleGrant_Role_Target.RevisionId], \r\n            T.ForEstablishmentId A" +
-                    "S [RoleGrant_ForEstablishment.RoleGrant_ForEstablishment_Target.RevisionId]\r\n   " +
-                    "     FROM CodeFirstDatabase.RoleGrant AS T\r\n    ) AS T1");
+            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.RoleGrants", "\r\n    SELECT VALUE -- Constructing RoleGrants\r\n        [UCosmic.Impl.Orm.RoleGran" +
+                    "t](T1.RoleGrant_RevisionId, T1.RoleGrant_EntityId, T1.RoleGrant_CreatedOnUtc, T1" +
+                    ".RoleGrant_CreatedByPrincipal, T1.RoleGrant_UpdatedOnUtc, T1.RoleGrant_UpdatedBy" +
+                    "Principal, T1.RoleGrant_Version, T1.RoleGrant_IsCurrent, T1.RoleGrant_IsArchived" +
+                    ", T1.RoleGrant_IsDeleted) WITH \r\n        RELATIONSHIP(CREATEREF(UCosmicContext.U" +
+                    "sers, ROW(T1.[RoleGrant_User.RoleGrant_User_Target.RevisionId]),[UCosmic.Impl.Or" +
+                    "m.User]),[UCosmic.Impl.Orm.RoleGrant_User],RoleGrant_User_Source,RoleGrant_User_" +
+                    "Target) \r\n        RELATIONSHIP(CREATEREF(UCosmicContext.Roles, ROW(T1.[RoleGrant" +
+                    "_Role.RoleGrant_Role_Target.RevisionId]),[UCosmic.Impl.Orm.Role]),[UCosmic.Impl." +
+                    "Orm.RoleGrant_Role],RoleGrant_Role_Source,RoleGrant_Role_Target) \r\n        RELAT" +
+                    "IONSHIP(CREATEREF(UCosmicContext.Establishments, ROW(T1.[RoleGrant_ForEstablishm" +
+                    "ent.RoleGrant_ForEstablishment_Target.RevisionId]),[UCosmic.Impl.Orm.Establishme" +
+                    "nt]),[UCosmic.Impl.Orm.RoleGrant_ForEstablishment],RoleGrant_ForEstablishment_So" +
+                    "urce,RoleGrant_ForEstablishment_Target) \r\n    FROM (\r\n        SELECT \r\n         " +
+                    "   T.RevisionId AS RoleGrant_RevisionId, \r\n            T.EntityId AS RoleGrant_E" +
+                    "ntityId, \r\n            T.CreatedOnUtc AS RoleGrant_CreatedOnUtc, \r\n            T" +
+                    ".CreatedByPrincipal AS RoleGrant_CreatedByPrincipal, \r\n            T.UpdatedOnUt" +
+                    "c AS RoleGrant_UpdatedOnUtc, \r\n            T.UpdatedByPrincipal AS RoleGrant_Upd" +
+                    "atedByPrincipal, \r\n            T.Version AS RoleGrant_Version, \r\n            T.I" +
+                    "sCurrent AS RoleGrant_IsCurrent, \r\n            T.IsArchived AS RoleGrant_IsArchi" +
+                    "ved, \r\n            T.IsDeleted AS RoleGrant_IsDeleted, \r\n            True AS _fr" +
+                    "om0, \r\n            T.UserId AS [RoleGrant_User.RoleGrant_User_Target.RevisionId]" +
+                    ", \r\n            T.RoleId AS [RoleGrant_Role.RoleGrant_Role_Target.RevisionId], \r" +
+                    "\n            T.ForEstablishmentId AS [RoleGrant_ForEstablishment.RoleGrant_ForEs" +
+                    "tablishment_Target.RevisionId]\r\n        FROM CodeFirstDatabase.RoleGrant AS T\r\n " +
+                    "   ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.Roles
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView65()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView67()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.Roles", @"
     SELECT VALUE -- Constructing Roles
-        [UCosmic.Orm.Role](T1.Role_RevisionId, T1.Role_Name, T1.Role_Description, T1.Role_EntityId, T1.Role_CreatedOnUtc, T1.Role_CreatedByPrincipal, T1.Role_UpdatedOnUtc, T1.Role_UpdatedByPrincipal, T1.Role_Version, T1.Role_IsCurrent, T1.Role_IsArchived, T1.Role_IsDeleted)
+        [UCosmic.Impl.Orm.Role](T1.Role_RevisionId, T1.Role_Name, T1.Role_Description, T1.Role_EntityId, T1.Role_CreatedOnUtc, T1.Role_CreatedByPrincipal, T1.Role_UpdatedOnUtc, T1.Role_UpdatedByPrincipal, T1.Role_Version, T1.Role_IsCurrent, T1.Role_IsArchived, T1.Role_IsDeleted)
     FROM (
         SELECT 
             T.RevisionId AS Role_RevisionId, 
@@ -2958,183 +2999,183 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.Role AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.Establishments
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView66()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView68()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(6990);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing Establishments\r\n        [UCosmic.Orm.Establis");
-            viewString.Append("hment](T4.Establishment_RevisionId, T4.Establishment_OfficialName, T4.Establishm");
-            viewString.Append("ent_WebsiteUrl, T4.Establishment_IsMember, T4.Establishment_InstitutionInfo, T4.");
-            viewString.Append("Establishment_PublicContactInfo, T4.Establishment_PartnerContactInfo, T4.Establi");
-            viewString.Append("shment_EntityId, T4.Establishment_CreatedOnUtc, T4.Establishment_CreatedByPrinci");
-            viewString.Append("pal, T4.Establishment_UpdatedOnUtc, T4.Establishment_UpdatedByPrincipal, T4.Esta");
-            viewString.Append("blishment_Version, T4.Establishment_IsCurrent, T4.Establishment_IsArchived, T4.E");
-            viewString.Append("stablishment_IsDeleted) WITH \r\n        RELATIONSHIP(CREATEREF(UCosmicContext.Est");
-            viewString.Append("ablishments, ROW(T4.[Establishment_Parent.Establishment_Parent_Target.RevisionId");
-            viewString.Append("]),[UCosmic.Orm.Establishment]),[UCosmic.Orm.Establishment_Parent],Establishment");
-            viewString.Append("_Parent_Source,Establishment_Parent_Target) \r\n        RELATIONSHIP(CREATEREF(UCo");
-            viewString.Append("smicContext.EstablishmentTypes, ROW(T4.[Establishment_Type.Establishment_Type_Ta");
-            viewString.Append("rget.RevisionId]),[UCosmic.Orm.EstablishmentType]),[UCosmic.Orm.Establishment_Ty");
-            viewString.Append("pe],Establishment_Type_Source,Establishment_Type_Target) \r\n    FROM (\r\n        S");
-            viewString.Append("ELECT -- Constructing InstitutionInfo\r\n            T3.Establishment_RevisionId, ");
-            viewString.Append("\r\n            T3.Establishment_OfficialName, \r\n            T3.Establishment_Webs");
-            viewString.Append("iteUrl, \r\n            T3.Establishment_IsMember, \r\n            [UCosmic.Orm.Inst");
-            viewString.Append("itutionInfo](T3.Establishment_InstitutionInfo_CollegeBoardDesignatedIndicator, T");
-            viewString.Append("3.Establishment_InstitutionInfo_UCosmicCode) AS Establishment_InstitutionInfo, \r");
-            viewString.Append("\n            T3.Establishment_PublicContactInfo, \r\n            T3.Establishment_");
-            viewString.Append("PartnerContactInfo, \r\n            T3.Establishment_EntityId, \r\n            T3.Es");
-            viewString.Append("tablishment_CreatedOnUtc, \r\n            T3.Establishment_CreatedByPrincipal, \r\n ");
-            viewString.Append("           T3.Establishment_UpdatedOnUtc, \r\n            T3.Establishment_Updated");
-            viewString.Append("ByPrincipal, \r\n            T3.Establishment_Version, \r\n            T3.Establishm");
-            viewString.Append("ent_IsCurrent, \r\n            T3.Establishment_IsArchived, \r\n            T3.Estab");
-            viewString.Append("lishment_IsDeleted, \r\n            T3.[Establishment_Parent.Establishment_Parent_");
-            viewString.Append("Target.RevisionId], \r\n            T3.[Establishment_Type.Establishment_Type_Targ");
-            viewString.Append("et.RevisionId]\r\n        FROM (\r\n            SELECT -- Constructing PublicContact");
-            viewString.Append("Info\r\n                T2.Establishment_RevisionId, \r\n                T2.Establis");
-            viewString.Append("hment_OfficialName, \r\n                T2.Establishment_WebsiteUrl, \r\n           ");
-            viewString.Append("     T2.Establishment_IsMember, \r\n                T2.Establishment_InstitutionIn");
-            viewString.Append("fo_CollegeBoardDesignatedIndicator, \r\n                T2.Establishment_Instituti");
-            viewString.Append("onInfo_UCosmicCode, \r\n                [UCosmic.Orm.EstablishmentContactInfo](T2.");
-            viewString.Append("Establishment_PublicContactInfo_Phone, T2.Establishment_PublicContactInfo_Fax, T");
-            viewString.Append("2.Establishment_PublicContactInfo_Email) AS Establishment_PublicContactInfo, \r\n ");
-            viewString.Append("               T2.Establishment_PartnerContactInfo, \r\n                T2.Establi");
-            viewString.Append("shment_EntityId, \r\n                T2.Establishment_CreatedOnUtc, \r\n            ");
-            viewString.Append("    T2.Establishment_CreatedByPrincipal, \r\n                T2.Establishment_Upda");
-            viewString.Append("tedOnUtc, \r\n                T2.Establishment_UpdatedByPrincipal, \r\n             ");
-            viewString.Append("   T2.Establishment_Version, \r\n                T2.Establishment_IsCurrent, \r\n   ");
-            viewString.Append("             T2.Establishment_IsArchived, \r\n                T2.Establishment_IsD");
-            viewString.Append("eleted, \r\n                T2.[Establishment_Parent.Establishment_Parent_Target.R");
-            viewString.Append("evisionId], \r\n                T2.[Establishment_Type.Establishment_Type_Target.R");
-            viewString.Append("evisionId]\r\n            FROM (\r\n                SELECT -- Constructing PartnerCo");
-            viewString.Append("ntactInfo\r\n                    T1.Establishment_RevisionId, \r\n                  ");
-            viewString.Append("  T1.Establishment_OfficialName, \r\n                    T1.Establishment_WebsiteU");
-            viewString.Append("rl, \r\n                    T1.Establishment_IsMember, \r\n                    T1.Es");
-            viewString.Append("tablishment_InstitutionInfo_CollegeBoardDesignatedIndicator, \r\n                 ");
-            viewString.Append("   T1.Establishment_InstitutionInfo_UCosmicCode, \r\n                    T1.Establ");
-            viewString.Append("ishment_PublicContactInfo_Phone, \r\n                    T1.Establishment_PublicCo");
-            viewString.Append("ntactInfo_Fax, \r\n                    T1.Establishment_PublicContactInfo_Email, \r");
-            viewString.Append("\n                    [UCosmic.Orm.EstablishmentContactInfo](T1.Establishment_Par");
-            viewString.Append("tnerContactInfo_Phone, T1.Establishment_PartnerContactInfo_Fax, T1.Establishment");
-            viewString.Append("_PartnerContactInfo_Email) AS Establishment_PartnerContactInfo, \r\n              ");
-            viewString.Append("      T1.Establishment_EntityId, \r\n                    T1.Establishment_CreatedO");
-            viewString.Append("nUtc, \r\n                    T1.Establishment_CreatedByPrincipal, \r\n             ");
-            viewString.Append("       T1.Establishment_UpdatedOnUtc, \r\n                    T1.Establishment_Upd");
-            viewString.Append("atedByPrincipal, \r\n                    T1.Establishment_Version, \r\n             ");
-            viewString.Append("       T1.Establishment_IsCurrent, \r\n                    T1.Establishment_IsArch");
-            viewString.Append("ived, \r\n                    T1.Establishment_IsDeleted, \r\n                    T1");
-            viewString.Append(".[Establishment_Parent.Establishment_Parent_Target.RevisionId], \r\n              ");
-            viewString.Append("      T1.[Establishment_Type.Establishment_Type_Target.RevisionId]\r\n            ");
-            viewString.Append("    FROM (\r\n                    SELECT \r\n                        T.RevisionId AS");
-            viewString.Append(" Establishment_RevisionId, \r\n                        T.OfficialName AS Establish");
-            viewString.Append("ment_OfficialName, \r\n                        T.WebsiteUrl AS Establishment_Websi");
-            viewString.Append("teUrl, \r\n                        T.IsMember AS Establishment_IsMember, \r\n       ");
-            viewString.Append("                 T.CollegeBoardDesignatedIndicator AS Establishment_InstitutionI");
-            viewString.Append("nfo_CollegeBoardDesignatedIndicator, \r\n                        T.UCosmicCode AS ");
-            viewString.Append("Establishment_InstitutionInfo_UCosmicCode, \r\n                        T.PublicPho");
-            viewString.Append("ne AS Establishment_PublicContactInfo_Phone, \r\n                        T.PublicF");
-            viewString.Append("ax AS Establishment_PublicContactInfo_Fax, \r\n                        T.PublicEma");
-            viewString.Append("il AS Establishment_PublicContactInfo_Email, \r\n                        T.Partner");
-            viewString.Append("Phone AS Establishment_PartnerContactInfo_Phone, \r\n                        T.Par");
-            viewString.Append("tnerFax AS Establishment_PartnerContactInfo_Fax, \r\n                        T.Par");
-            viewString.Append("tnerEmail AS Establishment_PartnerContactInfo_Email, \r\n                        T");
-            viewString.Append(".EntityId AS Establishment_EntityId, \r\n                        T.CreatedOnUtc AS");
-            viewString.Append(" Establishment_CreatedOnUtc, \r\n                        T.CreatedByPrincipal AS E");
-            viewString.Append("stablishment_CreatedByPrincipal, \r\n                        T.UpdatedOnUtc AS Est");
-            viewString.Append("ablishment_UpdatedOnUtc, \r\n                        T.UpdatedByPrincipal AS Estab");
-            viewString.Append("lishment_UpdatedByPrincipal, \r\n                        T.Version AS Establishmen");
-            viewString.Append("t_Version, \r\n                        T.IsCurrent AS Establishment_IsCurrent, \r\n ");
-            viewString.Append("                       T.IsArchived AS Establishment_IsArchived, \r\n             ");
-            viewString.Append("           T.IsDeleted AS Establishment_IsDeleted, \r\n                        Tru");
-            viewString.Append("e AS _from0, \r\n                        T.ParentId AS [Establishment_Parent.Estab");
-            viewString.Append("lishment_Parent_Target.RevisionId], \r\n                        T.TypeId AS [Estab");
-            viewString.Append("lishment_Type.Establishment_Type_Target.RevisionId]\r\n                    FROM Co");
-            viewString.Append("deFirstDatabase.Establishment AS T\r\n                ) AS T1\r\n            ) AS T2");
-            viewString.Append("\r\n        ) AS T3\r\n    ) AS T4");
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(7030);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing Establishments\r\n        [UCosmic.Impl.Orm.Est");
+            viewString.Append("ablishment](T4.Establishment_RevisionId, T4.Establishment_OfficialName, T4.Estab");
+            viewString.Append("lishment_WebsiteUrl, T4.Establishment_IsMember, T4.Establishment_InstitutionInfo");
+            viewString.Append(", T4.Establishment_PublicContactInfo, T4.Establishment_PartnerContactInfo, T4.Es");
+            viewString.Append("tablishment_EntityId, T4.Establishment_CreatedOnUtc, T4.Establishment_CreatedByP");
+            viewString.Append("rincipal, T4.Establishment_UpdatedOnUtc, T4.Establishment_UpdatedByPrincipal, T4");
+            viewString.Append(".Establishment_Version, T4.Establishment_IsCurrent, T4.Establishment_IsArchived,");
+            viewString.Append(" T4.Establishment_IsDeleted) WITH \r\n        RELATIONSHIP(CREATEREF(UCosmicContex");
+            viewString.Append("t.Establishments, ROW(T4.[Establishment_Parent.Establishment_Parent_Target.Revis");
+            viewString.Append("ionId]),[UCosmic.Impl.Orm.Establishment]),[UCosmic.Impl.Orm.Establishment_Parent");
+            viewString.Append("],Establishment_Parent_Source,Establishment_Parent_Target) \r\n        RELATIONSHI");
+            viewString.Append("P(CREATEREF(UCosmicContext.EstablishmentTypes, ROW(T4.[Establishment_Type.Establ");
+            viewString.Append("ishment_Type_Target.RevisionId]),[UCosmic.Impl.Orm.EstablishmentType]),[UCosmic.");
+            viewString.Append("Impl.Orm.Establishment_Type],Establishment_Type_Source,Establishment_Type_Target");
+            viewString.Append(") \r\n    FROM (\r\n        SELECT -- Constructing InstitutionInfo\r\n            T3.E");
+            viewString.Append("stablishment_RevisionId, \r\n            T3.Establishment_OfficialName, \r\n        ");
+            viewString.Append("    T3.Establishment_WebsiteUrl, \r\n            T3.Establishment_IsMember, \r\n    ");
+            viewString.Append("        [UCosmic.Impl.Orm.InstitutionInfo](T3.Establishment_InstitutionInfo_Coll");
+            viewString.Append("egeBoardDesignatedIndicator, T3.Establishment_InstitutionInfo_UCosmicCode) AS Es");
+            viewString.Append("tablishment_InstitutionInfo, \r\n            T3.Establishment_PublicContactInfo, \r");
+            viewString.Append("\n            T3.Establishment_PartnerContactInfo, \r\n            T3.Establishment");
+            viewString.Append("_EntityId, \r\n            T3.Establishment_CreatedOnUtc, \r\n            T3.Establi");
+            viewString.Append("shment_CreatedByPrincipal, \r\n            T3.Establishment_UpdatedOnUtc, \r\n      ");
+            viewString.Append("      T3.Establishment_UpdatedByPrincipal, \r\n            T3.Establishment_Versio");
+            viewString.Append("n, \r\n            T3.Establishment_IsCurrent, \r\n            T3.Establishment_IsAr");
+            viewString.Append("chived, \r\n            T3.Establishment_IsDeleted, \r\n            T3.[Establishmen");
+            viewString.Append("t_Parent.Establishment_Parent_Target.RevisionId], \r\n            T3.[Establishmen");
+            viewString.Append("t_Type.Establishment_Type_Target.RevisionId]\r\n        FROM (\r\n            SELECT");
+            viewString.Append(" -- Constructing PublicContactInfo\r\n                T2.Establishment_RevisionId,");
+            viewString.Append(" \r\n                T2.Establishment_OfficialName, \r\n                T2.Establish");
+            viewString.Append("ment_WebsiteUrl, \r\n                T2.Establishment_IsMember, \r\n                ");
+            viewString.Append("T2.Establishment_InstitutionInfo_CollegeBoardDesignatedIndicator, \r\n            ");
+            viewString.Append("    T2.Establishment_InstitutionInfo_UCosmicCode, \r\n                [UCosmic.Imp");
+            viewString.Append("l.Orm.EstablishmentContactInfo](T2.Establishment_PublicContactInfo_Phone, T2.Est");
+            viewString.Append("ablishment_PublicContactInfo_Fax, T2.Establishment_PublicContactInfo_Email) AS E");
+            viewString.Append("stablishment_PublicContactInfo, \r\n                T2.Establishment_PartnerContac");
+            viewString.Append("tInfo, \r\n                T2.Establishment_EntityId, \r\n                T2.Establi");
+            viewString.Append("shment_CreatedOnUtc, \r\n                T2.Establishment_CreatedByPrincipal, \r\n  ");
+            viewString.Append("              T2.Establishment_UpdatedOnUtc, \r\n                T2.Establishment_");
+            viewString.Append("UpdatedByPrincipal, \r\n                T2.Establishment_Version, \r\n              ");
+            viewString.Append("  T2.Establishment_IsCurrent, \r\n                T2.Establishment_IsArchived, \r\n ");
+            viewString.Append("               T2.Establishment_IsDeleted, \r\n                T2.[Establishment_P");
+            viewString.Append("arent.Establishment_Parent_Target.RevisionId], \r\n                T2.[Establishme");
+            viewString.Append("nt_Type.Establishment_Type_Target.RevisionId]\r\n            FROM (\r\n             ");
+            viewString.Append("   SELECT -- Constructing PartnerContactInfo\r\n                    T1.Establishme");
+            viewString.Append("nt_RevisionId, \r\n                    T1.Establishment_OfficialName, \r\n          ");
+            viewString.Append("          T1.Establishment_WebsiteUrl, \r\n                    T1.Establishment_Is");
+            viewString.Append("Member, \r\n                    T1.Establishment_InstitutionInfo_CollegeBoardDesig");
+            viewString.Append("natedIndicator, \r\n                    T1.Establishment_InstitutionInfo_UCosmicCo");
+            viewString.Append("de, \r\n                    T1.Establishment_PublicContactInfo_Phone, \r\n          ");
+            viewString.Append("          T1.Establishment_PublicContactInfo_Fax, \r\n                    T1.Estab");
+            viewString.Append("lishment_PublicContactInfo_Email, \r\n                    [UCosmic.Impl.Orm.Establ");
+            viewString.Append("ishmentContactInfo](T1.Establishment_PartnerContactInfo_Phone, T1.Establishment_");
+            viewString.Append("PartnerContactInfo_Fax, T1.Establishment_PartnerContactInfo_Email) AS Establishm");
+            viewString.Append("ent_PartnerContactInfo, \r\n                    T1.Establishment_EntityId, \r\n     ");
+            viewString.Append("               T1.Establishment_CreatedOnUtc, \r\n                    T1.Establish");
+            viewString.Append("ment_CreatedByPrincipal, \r\n                    T1.Establishment_UpdatedOnUtc, \r\n");
+            viewString.Append("                    T1.Establishment_UpdatedByPrincipal, \r\n                    T");
+            viewString.Append("1.Establishment_Version, \r\n                    T1.Establishment_IsCurrent, \r\n   ");
+            viewString.Append("                 T1.Establishment_IsArchived, \r\n                    T1.Establish");
+            viewString.Append("ment_IsDeleted, \r\n                    T1.[Establishment_Parent.Establishment_Par");
+            viewString.Append("ent_Target.RevisionId], \r\n                    T1.[Establishment_Type.Establishme");
+            viewString.Append("nt_Type_Target.RevisionId]\r\n                FROM (\r\n                    SELECT \r");
+            viewString.Append("\n                        T.RevisionId AS Establishment_RevisionId, \r\n           ");
+            viewString.Append("             T.OfficialName AS Establishment_OfficialName, \r\n                   ");
+            viewString.Append("     T.WebsiteUrl AS Establishment_WebsiteUrl, \r\n                        T.IsMem");
+            viewString.Append("ber AS Establishment_IsMember, \r\n                        T.CollegeBoardDesignate");
+            viewString.Append("dIndicator AS Establishment_InstitutionInfo_CollegeBoardDesignatedIndicator, \r\n ");
+            viewString.Append("                       T.UCosmicCode AS Establishment_InstitutionInfo_UCosmicCod");
+            viewString.Append("e, \r\n                        T.PublicPhone AS Establishment_PublicContactInfo_Ph");
+            viewString.Append("one, \r\n                        T.PublicFax AS Establishment_PublicContactInfo_Fa");
+            viewString.Append("x, \r\n                        T.PublicEmail AS Establishment_PublicContactInfo_Em");
+            viewString.Append("ail, \r\n                        T.PartnerPhone AS Establishment_PartnerContactInf");
+            viewString.Append("o_Phone, \r\n                        T.PartnerFax AS Establishment_PartnerContactI");
+            viewString.Append("nfo_Fax, \r\n                        T.PartnerEmail AS Establishment_PartnerContac");
+            viewString.Append("tInfo_Email, \r\n                        T.EntityId AS Establishment_EntityId, \r\n ");
+            viewString.Append("                       T.CreatedOnUtc AS Establishment_CreatedOnUtc, \r\n         ");
+            viewString.Append("               T.CreatedByPrincipal AS Establishment_CreatedByPrincipal, \r\n     ");
+            viewString.Append("                   T.UpdatedOnUtc AS Establishment_UpdatedOnUtc, \r\n             ");
+            viewString.Append("           T.UpdatedByPrincipal AS Establishment_UpdatedByPrincipal, \r\n         ");
+            viewString.Append("               T.Version AS Establishment_Version, \r\n                        T.I");
+            viewString.Append("sCurrent AS Establishment_IsCurrent, \r\n                        T.IsArchived AS E");
+            viewString.Append("stablishment_IsArchived, \r\n                        T.IsDeleted AS Establishment_");
+            viewString.Append("IsDeleted, \r\n                        True AS _from0, \r\n                        T");
+            viewString.Append(".ParentId AS [Establishment_Parent.Establishment_Parent_Target.RevisionId], \r\n  ");
+            viewString.Append("                      T.TypeId AS [Establishment_Type.Establishment_Type_Target.");
+            viewString.Append("RevisionId]\r\n                    FROM CodeFirstDatabase.Establishment AS T\r\n    ");
+            viewString.Append("            ) AS T1\r\n            ) AS T2\r\n        ) AS T3\r\n    ) AS T4");
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.Establishments", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EstablishmentNames
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView67()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView69()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2528);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing EstablishmentNames\r\n        [UCosmic.Orm.Esta");
-            viewString.Append("blishmentName](T1.EstablishmentName_RevisionId, T1.EstablishmentName_Translation");
-            viewString.Append("ToHint, T1.EstablishmentName_IsFormerName, T1.EstablishmentName_IsOfficialName, ");
-            viewString.Append("T1.EstablishmentName_Text, T1.EstablishmentName_AsciiEquivalent, T1.Establishmen");
-            viewString.Append("tName_EntityId, T1.EstablishmentName_CreatedOnUtc, T1.EstablishmentName_CreatedB");
-            viewString.Append("yPrincipal, T1.EstablishmentName_UpdatedOnUtc, T1.EstablishmentName_UpdatedByPri");
-            viewString.Append("ncipal, T1.EstablishmentName_Version, T1.EstablishmentName_IsCurrent, T1.Establi");
-            viewString.Append("shmentName_IsArchived, T1.EstablishmentName_IsDeleted) WITH \r\n        RELATIONSH");
-            viewString.Append("IP(CREATEREF(UCosmicContext.Languages, ROW(T1.[EstablishmentName_TranslationToLa");
-            viewString.Append("nguage.EstablishmentName_TranslationToLanguage_Target.RevisionId]),[UCosmic.Orm.");
-            viewString.Append("Language]),[UCosmic.Orm.EstablishmentName_TranslationToLanguage],EstablishmentNa");
-            viewString.Append("me_TranslationToLanguage_Source,EstablishmentName_TranslationToLanguage_Target) ");
-            viewString.Append("\r\n        RELATIONSHIP(CREATEREF(UCosmicContext.Establishments, ROW(T1.[Establis");
-            viewString.Append("hment_Names.Establishment_Names_Source.RevisionId]),[UCosmic.Orm.Establishment])");
-            viewString.Append(",[UCosmic.Orm.Establishment_Names],Establishment_Names_Target,Establishment_Name");
-            viewString.Append("s_Source) \r\n    FROM (\r\n        SELECT \r\n            T.RevisionId AS Establishme");
-            viewString.Append("ntName_RevisionId, \r\n            T.TranslationToHint AS EstablishmentName_Transl");
-            viewString.Append("ationToHint, \r\n            T.IsFormerName AS EstablishmentName_IsFormerName, \r\n ");
-            viewString.Append("           T.IsOfficialName AS EstablishmentName_IsOfficialName, \r\n            T");
-            viewString.Append(".Text AS EstablishmentName_Text, \r\n            T.AsciiEquivalent AS Establishmen");
-            viewString.Append("tName_AsciiEquivalent, \r\n            T.EntityId AS EstablishmentName_EntityId, \r");
-            viewString.Append("\n            T.CreatedOnUtc AS EstablishmentName_CreatedOnUtc, \r\n            T.C");
-            viewString.Append("reatedByPrincipal AS EstablishmentName_CreatedByPrincipal, \r\n            T.Updat");
-            viewString.Append("edOnUtc AS EstablishmentName_UpdatedOnUtc, \r\n            T.UpdatedByPrincipal AS");
-            viewString.Append(" EstablishmentName_UpdatedByPrincipal, \r\n            T.Version AS EstablishmentN");
-            viewString.Append("ame_Version, \r\n            T.IsCurrent AS EstablishmentName_IsCurrent, \r\n       ");
-            viewString.Append("     T.IsArchived AS EstablishmentName_IsArchived, \r\n            T.IsDeleted AS ");
-            viewString.Append("EstablishmentName_IsDeleted, \r\n            True AS _from0, \r\n            T.Trans");
-            viewString.Append("lationToLanguageId AS [EstablishmentName_TranslationToLanguage.EstablishmentName");
-            viewString.Append("_TranslationToLanguage_Target.RevisionId], \r\n            T.ForEstablishmentId AS");
-            viewString.Append(" [Establishment_Names.Establishment_Names_Source.RevisionId]\r\n        FROM CodeF");
-            viewString.Append("irstDatabase.EstablishmentName AS T\r\n    ) AS T1");
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2553);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing EstablishmentNames\r\n        [UCosmic.Impl.Orm");
+            viewString.Append(".EstablishmentName](T1.EstablishmentName_RevisionId, T1.EstablishmentName_Transl");
+            viewString.Append("ationToHint, T1.EstablishmentName_IsFormerName, T1.EstablishmentName_IsOfficialN");
+            viewString.Append("ame, T1.EstablishmentName_Text, T1.EstablishmentName_AsciiEquivalent, T1.Establi");
+            viewString.Append("shmentName_EntityId, T1.EstablishmentName_CreatedOnUtc, T1.EstablishmentName_Cre");
+            viewString.Append("atedByPrincipal, T1.EstablishmentName_UpdatedOnUtc, T1.EstablishmentName_Updated");
+            viewString.Append("ByPrincipal, T1.EstablishmentName_Version, T1.EstablishmentName_IsCurrent, T1.Es");
+            viewString.Append("tablishmentName_IsArchived, T1.EstablishmentName_IsDeleted) WITH \r\n        RELAT");
+            viewString.Append("IONSHIP(CREATEREF(UCosmicContext.Languages, ROW(T1.[EstablishmentName_Translatio");
+            viewString.Append("nToLanguage.EstablishmentName_TranslationToLanguage_Target.RevisionId]),[UCosmic");
+            viewString.Append(".Impl.Orm.Language]),[UCosmic.Impl.Orm.EstablishmentName_TranslationToLanguage],");
+            viewString.Append("EstablishmentName_TranslationToLanguage_Source,EstablishmentName_TranslationToLa");
+            viewString.Append("nguage_Target) \r\n        RELATIONSHIP(CREATEREF(UCosmicContext.Establishments, R");
+            viewString.Append("OW(T1.[Establishment_Names.Establishment_Names_Source.RevisionId]),[UCosmic.Impl");
+            viewString.Append(".Orm.Establishment]),[UCosmic.Impl.Orm.Establishment_Names],Establishment_Names_");
+            viewString.Append("Target,Establishment_Names_Source) \r\n    FROM (\r\n        SELECT \r\n            T.");
+            viewString.Append("RevisionId AS EstablishmentName_RevisionId, \r\n            T.TranslationToHint AS");
+            viewString.Append(" EstablishmentName_TranslationToHint, \r\n            T.IsFormerName AS Establishm");
+            viewString.Append("entName_IsFormerName, \r\n            T.IsOfficialName AS EstablishmentName_IsOffi");
+            viewString.Append("cialName, \r\n            T.Text AS EstablishmentName_Text, \r\n            T.AsciiE");
+            viewString.Append("quivalent AS EstablishmentName_AsciiEquivalent, \r\n            T.EntityId AS Esta");
+            viewString.Append("blishmentName_EntityId, \r\n            T.CreatedOnUtc AS EstablishmentName_Create");
+            viewString.Append("dOnUtc, \r\n            T.CreatedByPrincipal AS EstablishmentName_CreatedByPrincip");
+            viewString.Append("al, \r\n            T.UpdatedOnUtc AS EstablishmentName_UpdatedOnUtc, \r\n          ");
+            viewString.Append("  T.UpdatedByPrincipal AS EstablishmentName_UpdatedByPrincipal, \r\n            T.");
+            viewString.Append("Version AS EstablishmentName_Version, \r\n            T.IsCurrent AS Establishment");
+            viewString.Append("Name_IsCurrent, \r\n            T.IsArchived AS EstablishmentName_IsArchived, \r\n  ");
+            viewString.Append("          T.IsDeleted AS EstablishmentName_IsDeleted, \r\n            True AS _fro");
+            viewString.Append("m0, \r\n            T.TranslationToLanguageId AS [EstablishmentName_TranslationToL");
+            viewString.Append("anguage.EstablishmentName_TranslationToLanguage_Target.RevisionId], \r\n          ");
+            viewString.Append("  T.ForEstablishmentId AS [Establishment_Names.Establishment_Names_Source.Revisi");
+            viewString.Append("onId]\r\n        FROM CodeFirstDatabase.EstablishmentName AS T\r\n    ) AS T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentNames", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EstablishmentUrls
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView68()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView70()
         {
-            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentUrls", "\r\n    SELECT VALUE -- Constructing EstablishmentUrls\r\n        [UCosmic.Orm.Establ" +
-                    "ishmentUrl](T1.EstablishmentUrl_RevisionId, T1.EstablishmentUrl_Value, T1.Establ" +
-                    "ishmentUrl_IsOfficialUrl, T1.EstablishmentUrl_IsFormerUrl, T1.EstablishmentUrl_E" +
-                    "ntityId, T1.EstablishmentUrl_CreatedOnUtc, T1.EstablishmentUrl_CreatedByPrincipa" +
-                    "l, T1.EstablishmentUrl_UpdatedOnUtc, T1.EstablishmentUrl_UpdatedByPrincipal, T1." +
-                    "EstablishmentUrl_Version, T1.EstablishmentUrl_IsCurrent, T1.EstablishmentUrl_IsA" +
-                    "rchived, T1.EstablishmentUrl_IsDeleted) WITH \r\n        RELATIONSHIP(CREATEREF(UC" +
-                    "osmicContext.Establishments, ROW(T1.[Establishment_Urls.Establishment_Urls_Sourc" +
-                    "e.RevisionId]),[UCosmic.Orm.Establishment]),[UCosmic.Orm.Establishment_Urls],Est" +
-                    "ablishment_Urls_Target,Establishment_Urls_Source) \r\n    FROM (\r\n        SELECT \r" +
-                    "\n            T.RevisionId AS EstablishmentUrl_RevisionId, \r\n            T.[Value" +
-                    "] AS EstablishmentUrl_Value, \r\n            T.IsOfficialUrl AS EstablishmentUrl_I" +
-                    "sOfficialUrl, \r\n            T.IsFormerUrl AS EstablishmentUrl_IsFormerUrl, \r\n   " +
-                    "         T.EntityId AS EstablishmentUrl_EntityId, \r\n            T.CreatedOnUtc A" +
-                    "S EstablishmentUrl_CreatedOnUtc, \r\n            T.CreatedByPrincipal AS Establish" +
-                    "mentUrl_CreatedByPrincipal, \r\n            T.UpdatedOnUtc AS EstablishmentUrl_Upd" +
-                    "atedOnUtc, \r\n            T.UpdatedByPrincipal AS EstablishmentUrl_UpdatedByPrinc" +
-                    "ipal, \r\n            T.Version AS EstablishmentUrl_Version, \r\n            T.IsCur" +
-                    "rent AS EstablishmentUrl_IsCurrent, \r\n            T.IsArchived AS EstablishmentU" +
-                    "rl_IsArchived, \r\n            T.IsDeleted AS EstablishmentUrl_IsDeleted, \r\n      " +
-                    "      True AS _from0, \r\n            T.ForEstablishmentId AS [Establishment_Urls." +
-                    "Establishment_Urls_Source.RevisionId]\r\n        FROM CodeFirstDatabase.Establishm" +
-                    "entUrl AS T\r\n    ) AS T1");
+            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentUrls", "\r\n    SELECT VALUE -- Constructing EstablishmentUrls\r\n        [UCosmic.Impl.Orm.E" +
+                    "stablishmentUrl](T1.EstablishmentUrl_RevisionId, T1.EstablishmentUrl_Value, T1.E" +
+                    "stablishmentUrl_IsOfficialUrl, T1.EstablishmentUrl_IsFormerUrl, T1.Establishment" +
+                    "Url_EntityId, T1.EstablishmentUrl_CreatedOnUtc, T1.EstablishmentUrl_CreatedByPri" +
+                    "ncipal, T1.EstablishmentUrl_UpdatedOnUtc, T1.EstablishmentUrl_UpdatedByPrincipal" +
+                    ", T1.EstablishmentUrl_Version, T1.EstablishmentUrl_IsCurrent, T1.EstablishmentUr" +
+                    "l_IsArchived, T1.EstablishmentUrl_IsDeleted) WITH \r\n        RELATIONSHIP(CREATER" +
+                    "EF(UCosmicContext.Establishments, ROW(T1.[Establishment_Urls.Establishment_Urls_" +
+                    "Source.RevisionId]),[UCosmic.Impl.Orm.Establishment]),[UCosmic.Impl.Orm.Establis" +
+                    "hment_Urls],Establishment_Urls_Target,Establishment_Urls_Source) \r\n    FROM (\r\n " +
+                    "       SELECT \r\n            T.RevisionId AS EstablishmentUrl_RevisionId, \r\n     " +
+                    "       T.[Value] AS EstablishmentUrl_Value, \r\n            T.IsOfficialUrl AS Est" +
+                    "ablishmentUrl_IsOfficialUrl, \r\n            T.IsFormerUrl AS EstablishmentUrl_IsF" +
+                    "ormerUrl, \r\n            T.EntityId AS EstablishmentUrl_EntityId, \r\n            T" +
+                    ".CreatedOnUtc AS EstablishmentUrl_CreatedOnUtc, \r\n            T.CreatedByPrincip" +
+                    "al AS EstablishmentUrl_CreatedByPrincipal, \r\n            T.UpdatedOnUtc AS Estab" +
+                    "lishmentUrl_UpdatedOnUtc, \r\n            T.UpdatedByPrincipal AS EstablishmentUrl" +
+                    "_UpdatedByPrincipal, \r\n            T.Version AS EstablishmentUrl_Version, \r\n    " +
+                    "        T.IsCurrent AS EstablishmentUrl_IsCurrent, \r\n            T.IsArchived AS" +
+                    " EstablishmentUrl_IsArchived, \r\n            T.IsDeleted AS EstablishmentUrl_IsDe" +
+                    "leted, \r\n            True AS _from0, \r\n            T.ForEstablishmentId AS [Esta" +
+                    "blishment_Urls.Establishment_Urls_Source.RevisionId]\r\n        FROM CodeFirstData" +
+                    "base.EstablishmentUrl AS T\r\n    ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EstablishmentNodes
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView69()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView71()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentNodes", @"
     SELECT VALUE -- Constructing EstablishmentNodes
-        [UCosmic.Orm.EstablishmentNode](T1.EstablishmentNode_AncestorId, T1.EstablishmentNode_OffspringId, T1.EstablishmentNode_Separation)
+        [UCosmic.Impl.Orm.EstablishmentNode](T1.EstablishmentNode_AncestorId, T1.EstablishmentNode_OffspringId, T1.EstablishmentNode_Separation)
     FROM (
         SELECT 
             T.AncestorId AS EstablishmentNode_AncestorId, 
@@ -3144,147 +3185,148 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.EstablishmentNode AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EstablishmentLocations
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView70()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView72()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(6731);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing EstablishmentLocations\r\n        [UCosmic.Orm.");
-            viewString.Append("EstablishmentLocation](T5.EstablishmentLocation_RevisionId, T5.EstablishmentLoca");
-            viewString.Append("tion_Center, T5.EstablishmentLocation_BoundingBox, T5.EstablishmentLocation_Goog");
-            viewString.Append("leMapZoomLevel, T5.EstablishmentLocation_EntityId, T5.EstablishmentLocation_Crea");
-            viewString.Append("tedOnUtc, T5.EstablishmentLocation_CreatedByPrincipal, T5.EstablishmentLocation_");
-            viewString.Append("UpdatedOnUtc, T5.EstablishmentLocation_UpdatedByPrincipal, T5.EstablishmentLocat");
-            viewString.Append("ion_Version, T5.EstablishmentLocation_IsCurrent, T5.EstablishmentLocation_IsArch");
-            viewString.Append("ived, T5.EstablishmentLocation_IsDeleted)\r\n    FROM (\r\n        SELECT -- Constru");
-            viewString.Append("cting Center\r\n            T4.EstablishmentLocation_RevisionId, \r\n            [UC");
-            viewString.Append("osmic.Orm.Coordinates](T4.EstablishmentLocation_Center_Latitude, T4.Establishmen");
-            viewString.Append("tLocation_Center_Longitude) AS EstablishmentLocation_Center, \r\n            T4.Es");
-            viewString.Append("tablishmentLocation_BoundingBox, \r\n            T4.EstablishmentLocation_GoogleMa");
-            viewString.Append("pZoomLevel, \r\n            T4.EstablishmentLocation_EntityId, \r\n            T4.Es");
-            viewString.Append("tablishmentLocation_CreatedOnUtc, \r\n            T4.EstablishmentLocation_Created");
-            viewString.Append("ByPrincipal, \r\n            T4.EstablishmentLocation_UpdatedOnUtc, \r\n            ");
-            viewString.Append("T4.EstablishmentLocation_UpdatedByPrincipal, \r\n            T4.EstablishmentLocat");
-            viewString.Append("ion_Version, \r\n            T4.EstablishmentLocation_IsCurrent, \r\n            T4.");
-            viewString.Append("EstablishmentLocation_IsArchived, \r\n            T4.EstablishmentLocation_IsDelet");
-            viewString.Append("ed\r\n        FROM (\r\n            SELECT -- Constructing BoundingBox\r\n            ");
-            viewString.Append("    T3.EstablishmentLocation_RevisionId, \r\n                T3.EstablishmentLocat");
-            viewString.Append("ion_Center_Latitude, \r\n                T3.EstablishmentLocation_Center_Longitude");
-            viewString.Append(", \r\n                [UCosmic.Orm.BoundingBox](T3.EstablishmentLocation_BoundingB");
-            viewString.Append("ox_Northeast, T3.EstablishmentLocation_BoundingBox_Southwest) AS EstablishmentLo");
-            viewString.Append("cation_BoundingBox, \r\n                T3.EstablishmentLocation_GoogleMapZoomLeve");
-            viewString.Append("l, \r\n                T3.EstablishmentLocation_EntityId, \r\n                T3.Est");
-            viewString.Append("ablishmentLocation_CreatedOnUtc, \r\n                T3.EstablishmentLocation_Crea");
-            viewString.Append("tedByPrincipal, \r\n                T3.EstablishmentLocation_UpdatedOnUtc, \r\n     ");
-            viewString.Append("           T3.EstablishmentLocation_UpdatedByPrincipal, \r\n                T3.Est");
-            viewString.Append("ablishmentLocation_Version, \r\n                T3.EstablishmentLocation_IsCurrent");
-            viewString.Append(", \r\n                T3.EstablishmentLocation_IsArchived, \r\n                T3.Es");
-            viewString.Append("tablishmentLocation_IsDeleted\r\n            FROM (\r\n                SELECT -- Con");
-            viewString.Append("structing Northeast\r\n                    T2.EstablishmentLocation_RevisionId, \r\n");
-            viewString.Append("                    T2.EstablishmentLocation_Center_Latitude, \r\n                ");
-            viewString.Append("    T2.EstablishmentLocation_Center_Longitude, \r\n                    [UCosmic.Or");
-            viewString.Append("m.Coordinates](T2.EstablishmentLocation_BoundingBox_Northeast_Latitude, T2.Estab");
-            viewString.Append("lishmentLocation_BoundingBox_Northeast_Longitude) AS EstablishmentLocation_Bound");
-            viewString.Append("ingBox_Northeast, \r\n                    T2.EstablishmentLocation_BoundingBox_Sou");
-            viewString.Append("thwest, \r\n                    T2.EstablishmentLocation_GoogleMapZoomLevel, \r\n   ");
-            viewString.Append("                 T2.EstablishmentLocation_EntityId, \r\n                    T2.Est");
-            viewString.Append("ablishmentLocation_CreatedOnUtc, \r\n                    T2.EstablishmentLocation_");
-            viewString.Append("CreatedByPrincipal, \r\n                    T2.EstablishmentLocation_UpdatedOnUtc,");
-            viewString.Append(" \r\n                    T2.EstablishmentLocation_UpdatedByPrincipal, \r\n          ");
-            viewString.Append("          T2.EstablishmentLocation_Version, \r\n                    T2.Establishme");
-            viewString.Append("ntLocation_IsCurrent, \r\n                    T2.EstablishmentLocation_IsArchived,");
-            viewString.Append(" \r\n                    T2.EstablishmentLocation_IsDeleted\r\n                FROM ");
-            viewString.Append("(\r\n                    SELECT -- Constructing Southwest\r\n                       ");
-            viewString.Append(" T1.EstablishmentLocation_RevisionId, \r\n                        T1.Establishment");
-            viewString.Append("Location_Center_Latitude, \r\n                        T1.EstablishmentLocation_Cen");
-            viewString.Append("ter_Longitude, \r\n                        T1.EstablishmentLocation_BoundingBox_No");
-            viewString.Append("rtheast_Latitude, \r\n                        T1.EstablishmentLocation_BoundingBox");
-            viewString.Append("_Northeast_Longitude, \r\n                        [UCosmic.Orm.Coordinates](T1.Est");
-            viewString.Append("ablishmentLocation_BoundingBox_Southwest_Latitude, T1.EstablishmentLocation_Boun");
-            viewString.Append("dingBox_Southwest_Longitude) AS EstablishmentLocation_BoundingBox_Southwest, \r\n ");
-            viewString.Append("                       T1.EstablishmentLocation_GoogleMapZoomLevel, \r\n          ");
-            viewString.Append("              T1.EstablishmentLocation_EntityId, \r\n                        T1.Es");
-            viewString.Append("tablishmentLocation_CreatedOnUtc, \r\n                        T1.EstablishmentLoca");
-            viewString.Append("tion_CreatedByPrincipal, \r\n                        T1.EstablishmentLocation_Upda");
-            viewString.Append("tedOnUtc, \r\n                        T1.EstablishmentLocation_UpdatedByPrincipal,");
-            viewString.Append(" \r\n                        T1.EstablishmentLocation_Version, \r\n                 ");
-            viewString.Append("       T1.EstablishmentLocation_IsCurrent, \r\n                        T1.Establis");
-            viewString.Append("hmentLocation_IsArchived, \r\n                        T1.EstablishmentLocation_IsD");
-            viewString.Append("eleted\r\n                    FROM (\r\n                        SELECT \r\n           ");
-            viewString.Append("                 T.RevisionId AS EstablishmentLocation_RevisionId, \r\n           ");
-            viewString.Append("                 T.CenterLatitude AS EstablishmentLocation_Center_Latitude, \r\n  ");
-            viewString.Append("                          T.CenterLongitude AS EstablishmentLocation_Center_Long");
-            viewString.Append("itude, \r\n                            T.BoundingBoxNorthLatitude AS Establishment");
-            viewString.Append("Location_BoundingBox_Northeast_Latitude, \r\n                            T.Boundin");
-            viewString.Append("gBoxEastLongitude AS EstablishmentLocation_BoundingBox_Northeast_Longitude, \r\n  ");
-            viewString.Append("                          T.BoundingBoxSouthLatitude AS EstablishmentLocation_Bo");
-            viewString.Append("undingBox_Southwest_Latitude, \r\n                            T.BoundingBoxWestLon");
-            viewString.Append("gitude AS EstablishmentLocation_BoundingBox_Southwest_Longitude, \r\n             ");
-            viewString.Append("               T.GoogleMapZoomLevel AS EstablishmentLocation_GoogleMapZoomLevel,");
-            viewString.Append(" \r\n                            T.EntityId AS EstablishmentLocation_EntityId, \r\n ");
-            viewString.Append("                           T.CreatedOnUtc AS EstablishmentLocation_CreatedOnUtc,");
-            viewString.Append(" \r\n                            T.CreatedByPrincipal AS EstablishmentLocation_Cre");
-            viewString.Append("atedByPrincipal, \r\n                            T.UpdatedOnUtc AS EstablishmentLo");
-            viewString.Append("cation_UpdatedOnUtc, \r\n                            T.UpdatedByPrincipal AS Estab");
-            viewString.Append("lishmentLocation_UpdatedByPrincipal, \r\n                            T.Version AS ");
-            viewString.Append("EstablishmentLocation_Version, \r\n                            T.IsCurrent AS Esta");
-            viewString.Append("blishmentLocation_IsCurrent, \r\n                            T.IsArchived AS Estab");
-            viewString.Append("lishmentLocation_IsArchived, \r\n                            T.IsDeleted AS Establ");
-            viewString.Append("ishmentLocation_IsDeleted, \r\n                            True AS _from0\r\n       ");
-            viewString.Append("                 FROM CodeFirstDatabase.EstablishmentLocation AS T\r\n            ");
-            viewString.Append("        ) AS T1\r\n                ) AS T2\r\n            ) AS T3\r\n        ) AS T4\r\n");
-            viewString.Append("    ) AS T5");
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(6756);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing EstablishmentLocations\r\n        [UCosmic.Impl");
+            viewString.Append(".Orm.EstablishmentLocation](T5.EstablishmentLocation_RevisionId, T5.Establishmen");
+            viewString.Append("tLocation_Center, T5.EstablishmentLocation_BoundingBox, T5.EstablishmentLocation");
+            viewString.Append("_GoogleMapZoomLevel, T5.EstablishmentLocation_EntityId, T5.EstablishmentLocation");
+            viewString.Append("_CreatedOnUtc, T5.EstablishmentLocation_CreatedByPrincipal, T5.EstablishmentLoca");
+            viewString.Append("tion_UpdatedOnUtc, T5.EstablishmentLocation_UpdatedByPrincipal, T5.Establishment");
+            viewString.Append("Location_Version, T5.EstablishmentLocation_IsCurrent, T5.EstablishmentLocation_I");
+            viewString.Append("sArchived, T5.EstablishmentLocation_IsDeleted)\r\n    FROM (\r\n        SELECT -- Co");
+            viewString.Append("nstructing Center\r\n            T4.EstablishmentLocation_RevisionId, \r\n          ");
+            viewString.Append("  [UCosmic.Impl.Orm.Coordinates](T4.EstablishmentLocation_Center_Latitude, T4.Es");
+            viewString.Append("tablishmentLocation_Center_Longitude) AS EstablishmentLocation_Center, \r\n       ");
+            viewString.Append("     T4.EstablishmentLocation_BoundingBox, \r\n            T4.EstablishmentLocatio");
+            viewString.Append("n_GoogleMapZoomLevel, \r\n            T4.EstablishmentLocation_EntityId, \r\n       ");
+            viewString.Append("     T4.EstablishmentLocation_CreatedOnUtc, \r\n            T4.EstablishmentLocati");
+            viewString.Append("on_CreatedByPrincipal, \r\n            T4.EstablishmentLocation_UpdatedOnUtc, \r\n  ");
+            viewString.Append("          T4.EstablishmentLocation_UpdatedByPrincipal, \r\n            T4.Establis");
+            viewString.Append("hmentLocation_Version, \r\n            T4.EstablishmentLocation_IsCurrent, \r\n     ");
+            viewString.Append("       T4.EstablishmentLocation_IsArchived, \r\n            T4.EstablishmentLocati");
+            viewString.Append("on_IsDeleted\r\n        FROM (\r\n            SELECT -- Constructing BoundingBox\r\n  ");
+            viewString.Append("              T3.EstablishmentLocation_RevisionId, \r\n                T3.Establis");
+            viewString.Append("hmentLocation_Center_Latitude, \r\n                T3.EstablishmentLocation_Center");
+            viewString.Append("_Longitude, \r\n                [UCosmic.Impl.Orm.BoundingBox](T3.EstablishmentLoc");
+            viewString.Append("ation_BoundingBox_Northeast, T3.EstablishmentLocation_BoundingBox_Southwest) AS ");
+            viewString.Append("EstablishmentLocation_BoundingBox, \r\n                T3.EstablishmentLocation_Go");
+            viewString.Append("ogleMapZoomLevel, \r\n                T3.EstablishmentLocation_EntityId, \r\n       ");
+            viewString.Append("         T3.EstablishmentLocation_CreatedOnUtc, \r\n                T3.Establishme");
+            viewString.Append("ntLocation_CreatedByPrincipal, \r\n                T3.EstablishmentLocation_Update");
+            viewString.Append("dOnUtc, \r\n                T3.EstablishmentLocation_UpdatedByPrincipal, \r\n       ");
+            viewString.Append("         T3.EstablishmentLocation_Version, \r\n                T3.EstablishmentLoc");
+            viewString.Append("ation_IsCurrent, \r\n                T3.EstablishmentLocation_IsArchived, \r\n      ");
+            viewString.Append("          T3.EstablishmentLocation_IsDeleted\r\n            FROM (\r\n              ");
+            viewString.Append("  SELECT -- Constructing Northeast\r\n                    T2.EstablishmentLocation");
+            viewString.Append("_RevisionId, \r\n                    T2.EstablishmentLocation_Center_Latitude, \r\n ");
+            viewString.Append("                   T2.EstablishmentLocation_Center_Longitude, \r\n                ");
+            viewString.Append("    [UCosmic.Impl.Orm.Coordinates](T2.EstablishmentLocation_BoundingBox_Northeas");
+            viewString.Append("t_Latitude, T2.EstablishmentLocation_BoundingBox_Northeast_Longitude) AS Establi");
+            viewString.Append("shmentLocation_BoundingBox_Northeast, \r\n                    T2.EstablishmentLoca");
+            viewString.Append("tion_BoundingBox_Southwest, \r\n                    T2.EstablishmentLocation_Googl");
+            viewString.Append("eMapZoomLevel, \r\n                    T2.EstablishmentLocation_EntityId, \r\n      ");
+            viewString.Append("              T2.EstablishmentLocation_CreatedOnUtc, \r\n                    T2.Es");
+            viewString.Append("tablishmentLocation_CreatedByPrincipal, \r\n                    T2.EstablishmentLo");
+            viewString.Append("cation_UpdatedOnUtc, \r\n                    T2.EstablishmentLocation_UpdatedByPri");
+            viewString.Append("ncipal, \r\n                    T2.EstablishmentLocation_Version, \r\n              ");
+            viewString.Append("      T2.EstablishmentLocation_IsCurrent, \r\n                    T2.Establishment");
+            viewString.Append("Location_IsArchived, \r\n                    T2.EstablishmentLocation_IsDeleted\r\n ");
+            viewString.Append("               FROM (\r\n                    SELECT -- Constructing Southwest\r\n   ");
+            viewString.Append("                     T1.EstablishmentLocation_RevisionId, \r\n                    ");
+            viewString.Append("    T1.EstablishmentLocation_Center_Latitude, \r\n                        T1.Estab");
+            viewString.Append("lishmentLocation_Center_Longitude, \r\n                        T1.EstablishmentLoc");
+            viewString.Append("ation_BoundingBox_Northeast_Latitude, \r\n                        T1.Establishment");
+            viewString.Append("Location_BoundingBox_Northeast_Longitude, \r\n                        [UCosmic.Imp");
+            viewString.Append("l.Orm.Coordinates](T1.EstablishmentLocation_BoundingBox_Southwest_Latitude, T1.E");
+            viewString.Append("stablishmentLocation_BoundingBox_Southwest_Longitude) AS EstablishmentLocation_B");
+            viewString.Append("oundingBox_Southwest, \r\n                        T1.EstablishmentLocation_GoogleM");
+            viewString.Append("apZoomLevel, \r\n                        T1.EstablishmentLocation_EntityId, \r\n    ");
+            viewString.Append("                    T1.EstablishmentLocation_CreatedOnUtc, \r\n                   ");
+            viewString.Append("     T1.EstablishmentLocation_CreatedByPrincipal, \r\n                        T1.E");
+            viewString.Append("stablishmentLocation_UpdatedOnUtc, \r\n                        T1.EstablishmentLoc");
+            viewString.Append("ation_UpdatedByPrincipal, \r\n                        T1.EstablishmentLocation_Ver");
+            viewString.Append("sion, \r\n                        T1.EstablishmentLocation_IsCurrent, \r\n          ");
+            viewString.Append("              T1.EstablishmentLocation_IsArchived, \r\n                        T1.");
+            viewString.Append("EstablishmentLocation_IsDeleted\r\n                    FROM (\r\n                   ");
+            viewString.Append("     SELECT \r\n                            T.RevisionId AS EstablishmentLocation_");
+            viewString.Append("RevisionId, \r\n                            T.CenterLatitude AS EstablishmentLocat");
+            viewString.Append("ion_Center_Latitude, \r\n                            T.CenterLongitude AS Establis");
+            viewString.Append("hmentLocation_Center_Longitude, \r\n                            T.BoundingBoxNorth");
+            viewString.Append("Latitude AS EstablishmentLocation_BoundingBox_Northeast_Latitude, \r\n            ");
+            viewString.Append("                T.BoundingBoxEastLongitude AS EstablishmentLocation_BoundingBox_");
+            viewString.Append("Northeast_Longitude, \r\n                            T.BoundingBoxSouthLatitude AS");
+            viewString.Append(" EstablishmentLocation_BoundingBox_Southwest_Latitude, \r\n                       ");
+            viewString.Append("     T.BoundingBoxWestLongitude AS EstablishmentLocation_BoundingBox_Southwest_L");
+            viewString.Append("ongitude, \r\n                            T.GoogleMapZoomLevel AS EstablishmentLoc");
+            viewString.Append("ation_GoogleMapZoomLevel, \r\n                            T.EntityId AS Establishm");
+            viewString.Append("entLocation_EntityId, \r\n                            T.CreatedOnUtc AS Establishm");
+            viewString.Append("entLocation_CreatedOnUtc, \r\n                            T.CreatedByPrincipal AS ");
+            viewString.Append("EstablishmentLocation_CreatedByPrincipal, \r\n                            T.Update");
+            viewString.Append("dOnUtc AS EstablishmentLocation_UpdatedOnUtc, \r\n                            T.Up");
+            viewString.Append("datedByPrincipal AS EstablishmentLocation_UpdatedByPrincipal, \r\n                ");
+            viewString.Append("            T.Version AS EstablishmentLocation_Version, \r\n                      ");
+            viewString.Append("      T.IsCurrent AS EstablishmentLocation_IsCurrent, \r\n                        ");
+            viewString.Append("    T.IsArchived AS EstablishmentLocation_IsArchived, \r\n                        ");
+            viewString.Append("    T.IsDeleted AS EstablishmentLocation_IsDeleted, \r\n                          ");
+            viewString.Append("  True AS _from0\r\n                        FROM CodeFirstDatabase.EstablishmentLo");
+            viewString.Append("cation AS T\r\n                    ) AS T1\r\n                ) AS T2\r\n            )");
+            viewString.Append(" AS T3\r\n        ) AS T4\r\n    ) AS T5");
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentLocations", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EstablishmentAddresses
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView71()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView73()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2304);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing EstablishmentAddresses\r\n        [UCosmic.Orm.");
-            viewString.Append("EstablishmentAddress](T1.EstablishmentAddress_RevisionId, T1.EstablishmentAddres");
-            viewString.Append("s_Text, T1.EstablishmentAddress_EntityId, T1.EstablishmentAddress_CreatedOnUtc, ");
-            viewString.Append("T1.EstablishmentAddress_CreatedByPrincipal, T1.EstablishmentAddress_UpdatedOnUtc");
-            viewString.Append(", T1.EstablishmentAddress_UpdatedByPrincipal, T1.EstablishmentAddress_Version, T");
-            viewString.Append("1.EstablishmentAddress_IsCurrent, T1.EstablishmentAddress_IsArchived, T1.Establi");
-            viewString.Append("shmentAddress_IsDeleted) WITH \r\n        RELATIONSHIP(CREATEREF(UCosmicContext.La");
-            viewString.Append("nguages, ROW(T1.[EstablishmentAddress_TranslationToLanguage.EstablishmentAddress");
-            viewString.Append("_TranslationToLanguage_Target.RevisionId]),[UCosmic.Orm.Language]),[UCosmic.Orm.");
-            viewString.Append("EstablishmentAddress_TranslationToLanguage],EstablishmentAddress_TranslationToLa");
-            viewString.Append("nguage_Source,EstablishmentAddress_TranslationToLanguage_Target) \r\n        RELAT");
-            viewString.Append("IONSHIP(CREATEREF(UCosmicContext.EstablishmentLocations, ROW(T1.[EstablishmentLo");
-            viewString.Append("cation_Addresses.EstablishmentLocation_Addresses_Source.RevisionId]),[UCosmic.Or");
-            viewString.Append("m.EstablishmentLocation]),[UCosmic.Orm.EstablishmentLocation_Addresses],Establis");
-            viewString.Append("hmentLocation_Addresses_Target,EstablishmentLocation_Addresses_Source) \r\n    FRO");
-            viewString.Append("M (\r\n        SELECT \r\n            T.RevisionId AS EstablishmentAddress_RevisionI");
-            viewString.Append("d, \r\n            T.Text AS EstablishmentAddress_Text, \r\n            T.EntityId A");
-            viewString.Append("S EstablishmentAddress_EntityId, \r\n            T.CreatedOnUtc AS EstablishmentAd");
-            viewString.Append("dress_CreatedOnUtc, \r\n            T.CreatedByPrincipal AS EstablishmentAddress_C");
-            viewString.Append("reatedByPrincipal, \r\n            T.UpdatedOnUtc AS EstablishmentAddress_UpdatedO");
-            viewString.Append("nUtc, \r\n            T.UpdatedByPrincipal AS EstablishmentAddress_UpdatedByPrinci");
-            viewString.Append("pal, \r\n            T.Version AS EstablishmentAddress_Version, \r\n            T.Is");
-            viewString.Append("Current AS EstablishmentAddress_IsCurrent, \r\n            T.IsArchived AS Establi");
-            viewString.Append("shmentAddress_IsArchived, \r\n            T.IsDeleted AS EstablishmentAddress_IsDe");
-            viewString.Append("leted, \r\n            True AS _from0, \r\n            T.TranslationToLanguageId AS ");
-            viewString.Append("[EstablishmentAddress_TranslationToLanguage.EstablishmentAddress_TranslationToLa");
-            viewString.Append("nguage_Target.RevisionId], \r\n            T.EstablishmentLocationId AS [Establish");
-            viewString.Append("mentLocation_Addresses.EstablishmentLocation_Addresses_Source.RevisionId]\r\n     ");
-            viewString.Append("   FROM CodeFirstDatabase.EstablishmentAddress AS T\r\n    ) AS T1");
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2329);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing EstablishmentAddresses\r\n        [UCosmic.Impl");
+            viewString.Append(".Orm.EstablishmentAddress](T1.EstablishmentAddress_RevisionId, T1.EstablishmentA");
+            viewString.Append("ddress_Text, T1.EstablishmentAddress_EntityId, T1.EstablishmentAddress_CreatedOn");
+            viewString.Append("Utc, T1.EstablishmentAddress_CreatedByPrincipal, T1.EstablishmentAddress_Updated");
+            viewString.Append("OnUtc, T1.EstablishmentAddress_UpdatedByPrincipal, T1.EstablishmentAddress_Versi");
+            viewString.Append("on, T1.EstablishmentAddress_IsCurrent, T1.EstablishmentAddress_IsArchived, T1.Es");
+            viewString.Append("tablishmentAddress_IsDeleted) WITH \r\n        RELATIONSHIP(CREATEREF(UCosmicConte");
+            viewString.Append("xt.Languages, ROW(T1.[EstablishmentAddress_TranslationToLanguage.EstablishmentAd");
+            viewString.Append("dress_TranslationToLanguage_Target.RevisionId]),[UCosmic.Impl.Orm.Language]),[UC");
+            viewString.Append("osmic.Impl.Orm.EstablishmentAddress_TranslationToLanguage],EstablishmentAddress_");
+            viewString.Append("TranslationToLanguage_Source,EstablishmentAddress_TranslationToLanguage_Target) ");
+            viewString.Append("\r\n        RELATIONSHIP(CREATEREF(UCosmicContext.EstablishmentLocations, ROW(T1.[");
+            viewString.Append("EstablishmentLocation_Addresses.EstablishmentLocation_Addresses_Source.RevisionI");
+            viewString.Append("d]),[UCosmic.Impl.Orm.EstablishmentLocation]),[UCosmic.Impl.Orm.EstablishmentLoc");
+            viewString.Append("ation_Addresses],EstablishmentLocation_Addresses_Target,EstablishmentLocation_Ad");
+            viewString.Append("dresses_Source) \r\n    FROM (\r\n        SELECT \r\n            T.RevisionId AS Estab");
+            viewString.Append("lishmentAddress_RevisionId, \r\n            T.Text AS EstablishmentAddress_Text, \r");
+            viewString.Append("\n            T.EntityId AS EstablishmentAddress_EntityId, \r\n            T.Create");
+            viewString.Append("dOnUtc AS EstablishmentAddress_CreatedOnUtc, \r\n            T.CreatedByPrincipal ");
+            viewString.Append("AS EstablishmentAddress_CreatedByPrincipal, \r\n            T.UpdatedOnUtc AS Esta");
+            viewString.Append("blishmentAddress_UpdatedOnUtc, \r\n            T.UpdatedByPrincipal AS Establishme");
+            viewString.Append("ntAddress_UpdatedByPrincipal, \r\n            T.Version AS EstablishmentAddress_Ve");
+            viewString.Append("rsion, \r\n            T.IsCurrent AS EstablishmentAddress_IsCurrent, \r\n          ");
+            viewString.Append("  T.IsArchived AS EstablishmentAddress_IsArchived, \r\n            T.IsDeleted AS ");
+            viewString.Append("EstablishmentAddress_IsDeleted, \r\n            True AS _from0, \r\n            T.Tr");
+            viewString.Append("anslationToLanguageId AS [EstablishmentAddress_TranslationToLanguage.Establishme");
+            viewString.Append("ntAddress_TranslationToLanguage_Target.RevisionId], \r\n            T.Establishmen");
+            viewString.Append("tLocationId AS [EstablishmentLocation_Addresses.EstablishmentLocation_Addresses_");
+            viewString.Append("Source.RevisionId]\r\n        FROM CodeFirstDatabase.EstablishmentAddress AS T\r\n  ");
+            viewString.Append("  ) AS T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentAddresses", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EstablishmentSamlSignOns
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView72()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView74()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentSamlSignOns", @"
     SELECT VALUE -- Constructing EstablishmentSamlSignOns
-        [UCosmic.Orm.EstablishmentSamlSignOn](T1.EstablishmentSamlSignOn_Id, T1.EstablishmentSamlSignOn_EntityId, T1.EstablishmentSamlSignOn_MetadataUrl, T1.EstablishmentSamlSignOn_MetadataXml, T1.EstablishmentSamlSignOn_SsoLocation, T1.EstablishmentSamlSignOn_SsoBinding, T1.EstablishmentSamlSignOn_CreatedOnUtc, T1.EstablishmentSamlSignOn_UpdatedOnUtc)
+        [UCosmic.Impl.Orm.EstablishmentSamlSignOn](T1.EstablishmentSamlSignOn_Id, T1.EstablishmentSamlSignOn_EntityId, T1.EstablishmentSamlSignOn_MetadataUrl, T1.EstablishmentSamlSignOn_MetadataXml, T1.EstablishmentSamlSignOn_SsoLocation, T1.EstablishmentSamlSignOn_SsoBinding, T1.EstablishmentSamlSignOn_CreatedOnUtc, T1.EstablishmentSamlSignOn_UpdatedOnUtc)
     FROM (
         SELECT 
             T.Id AS EstablishmentSamlSignOn_Id, 
@@ -3299,15 +3341,15 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.EstablishmentSamlSignOn AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EstablishmentTypes
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView73()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView75()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentTypes", @"
     SELECT VALUE -- Constructing EstablishmentTypes
-        [UCosmic.Orm.EstablishmentType](T1.EstablishmentType_RevisionId, T1.EstablishmentType_CategoryId, T1.EstablishmentType_EnglishName, T1.EstablishmentType_EnglishPluralName, T1.EstablishmentType_EntityId, T1.EstablishmentType_CreatedOnUtc, T1.EstablishmentType_CreatedByPrincipal, T1.EstablishmentType_UpdatedOnUtc, T1.EstablishmentType_UpdatedByPrincipal, T1.EstablishmentType_Version, T1.EstablishmentType_IsCurrent, T1.EstablishmentType_IsArchived, T1.EstablishmentType_IsDeleted)
+        [UCosmic.Impl.Orm.EstablishmentType](T1.EstablishmentType_RevisionId, T1.EstablishmentType_CategoryId, T1.EstablishmentType_EnglishName, T1.EstablishmentType_EnglishPluralName, T1.EstablishmentType_EntityId, T1.EstablishmentType_CreatedOnUtc, T1.EstablishmentType_CreatedByPrincipal, T1.EstablishmentType_UpdatedOnUtc, T1.EstablishmentType_UpdatedByPrincipal, T1.EstablishmentType_Version, T1.EstablishmentType_IsCurrent, T1.EstablishmentType_IsArchived, T1.EstablishmentType_IsDeleted)
     FROM (
         SELECT 
             T.RevisionId AS EstablishmentType_RevisionId, 
@@ -3327,105 +3369,95 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.EstablishmentType AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EstablishmentCategories
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView74()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView76()
         {
-            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentCategories", "\r\n    SELECT VALUE -- Constructing EstablishmentCategories\r\n        [UCosmic.Orm." +
-                    "EstablishmentCategory](T1.EstablishmentCategory_RevisionId, T1.EstablishmentCate" +
-                    "gory_EnglishName, T1.EstablishmentCategory_EnglishPluralName, T1.EstablishmentCa" +
-                    "tegory_Code, T1.EstablishmentCategory_EntityId, T1.EstablishmentCategory_Created" +
-                    "OnUtc, T1.EstablishmentCategory_CreatedByPrincipal, T1.EstablishmentCategory_Upd" +
-                    "atedOnUtc, T1.EstablishmentCategory_UpdatedByPrincipal, T1.EstablishmentCategory" +
-                    "_Version, T1.EstablishmentCategory_IsCurrent, T1.EstablishmentCategory_IsArchive" +
-                    "d, T1.EstablishmentCategory_IsDeleted)\r\n    FROM (\r\n        SELECT \r\n           " +
-                    " T.RevisionId AS EstablishmentCategory_RevisionId, \r\n            T.EnglishName A" +
-                    "S EstablishmentCategory_EnglishName, \r\n            T.EnglishPluralName AS Establ" +
-                    "ishmentCategory_EnglishPluralName, \r\n            T.Code AS EstablishmentCategory" +
-                    "_Code, \r\n            T.EntityId AS EstablishmentCategory_EntityId, \r\n           " +
-                    " T.CreatedOnUtc AS EstablishmentCategory_CreatedOnUtc, \r\n            T.CreatedBy" +
-                    "Principal AS EstablishmentCategory_CreatedByPrincipal, \r\n            T.UpdatedOn" +
-                    "Utc AS EstablishmentCategory_UpdatedOnUtc, \r\n            T.UpdatedByPrincipal AS" +
-                    " EstablishmentCategory_UpdatedByPrincipal, \r\n            T.Version AS Establishm" +
-                    "entCategory_Version, \r\n            T.IsCurrent AS EstablishmentCategory_IsCurren" +
-                    "t, \r\n            T.IsArchived AS EstablishmentCategory_IsArchived, \r\n           " +
-                    " T.IsDeleted AS EstablishmentCategory_IsDeleted, \r\n            True AS _from0\r\n " +
-                    "       FROM CodeFirstDatabase.EstablishmentCategory AS T\r\n    ) AS T1");
+            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentCategories", "\r\n    SELECT VALUE -- Constructing EstablishmentCategories\r\n        [UCosmic.Impl" +
+                    ".Orm.EstablishmentCategory](T1.EstablishmentCategory_RevisionId, T1.Establishmen" +
+                    "tCategory_EnglishName, T1.EstablishmentCategory_EnglishPluralName, T1.Establishm" +
+                    "entCategory_Code, T1.EstablishmentCategory_EntityId, T1.EstablishmentCategory_Cr" +
+                    "eatedOnUtc, T1.EstablishmentCategory_CreatedByPrincipal, T1.EstablishmentCategor" +
+                    "y_UpdatedOnUtc, T1.EstablishmentCategory_UpdatedByPrincipal, T1.EstablishmentCat" +
+                    "egory_Version, T1.EstablishmentCategory_IsCurrent, T1.EstablishmentCategory_IsAr" +
+                    "chived, T1.EstablishmentCategory_IsDeleted)\r\n    FROM (\r\n        SELECT \r\n      " +
+                    "      T.RevisionId AS EstablishmentCategory_RevisionId, \r\n            T.EnglishN" +
+                    "ame AS EstablishmentCategory_EnglishName, \r\n            T.EnglishPluralName AS E" +
+                    "stablishmentCategory_EnglishPluralName, \r\n            T.Code AS EstablishmentCat" +
+                    "egory_Code, \r\n            T.EntityId AS EstablishmentCategory_EntityId, \r\n      " +
+                    "      T.CreatedOnUtc AS EstablishmentCategory_CreatedOnUtc, \r\n            T.Crea" +
+                    "tedByPrincipal AS EstablishmentCategory_CreatedByPrincipal, \r\n            T.Upda" +
+                    "tedOnUtc AS EstablishmentCategory_UpdatedOnUtc, \r\n            T.UpdatedByPrincip" +
+                    "al AS EstablishmentCategory_UpdatedByPrincipal, \r\n            T.Version AS Estab" +
+                    "lishmentCategory_Version, \r\n            T.IsCurrent AS EstablishmentCategory_IsC" +
+                    "urrent, \r\n            T.IsArchived AS EstablishmentCategory_IsArchived, \r\n      " +
+                    "      T.IsDeleted AS EstablishmentCategory_IsDeleted, \r\n            True AS _fro" +
+                    "m0\r\n        FROM CodeFirstDatabase.EstablishmentCategory AS T\r\n    ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EstablishmentEmailDomains
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView75()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView77()
         {
-            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentEmailDomains", "\r\n    SELECT VALUE -- Constructing EstablishmentEmailDomains\r\n        [UCosmic.Or" +
-                    "m.EstablishmentEmailDomain](T1.EstablishmentEmailDomain_RevisionId, T1.Establish" +
-                    "mentEmailDomain_Value, T1.EstablishmentEmailDomain_EstablishmentId, T1.Establish" +
-                    "mentEmailDomain_EntityId, T1.EstablishmentEmailDomain_CreatedOnUtc, T1.Establish" +
-                    "mentEmailDomain_CreatedByPrincipal, T1.EstablishmentEmailDomain_UpdatedOnUtc, T1" +
-                    ".EstablishmentEmailDomain_UpdatedByPrincipal, T1.EstablishmentEmailDomain_Versio" +
-                    "n, T1.EstablishmentEmailDomain_IsCurrent, T1.EstablishmentEmailDomain_IsArchived" +
-                    ", T1.EstablishmentEmailDomain_IsDeleted)\r\n    FROM (\r\n        SELECT \r\n         " +
-                    "   T.RevisionId AS EstablishmentEmailDomain_RevisionId, \r\n            T.[Value] " +
-                    "AS EstablishmentEmailDomain_Value, \r\n            T.EstablishmentId AS Establishm" +
-                    "entEmailDomain_EstablishmentId, \r\n            T.EntityId AS EstablishmentEmailDo" +
-                    "main_EntityId, \r\n            T.CreatedOnUtc AS EstablishmentEmailDomain_CreatedO" +
-                    "nUtc, \r\n            T.CreatedByPrincipal AS EstablishmentEmailDomain_CreatedByPr" +
-                    "incipal, \r\n            T.UpdatedOnUtc AS EstablishmentEmailDomain_UpdatedOnUtc, " +
-                    "\r\n            T.UpdatedByPrincipal AS EstablishmentEmailDomain_UpdatedByPrincipa" +
-                    "l, \r\n            T.Version AS EstablishmentEmailDomain_Version, \r\n            T." +
-                    "IsCurrent AS EstablishmentEmailDomain_IsCurrent, \r\n            T.IsArchived AS E" +
-                    "stablishmentEmailDomain_IsArchived, \r\n            T.IsDeleted AS EstablishmentEm" +
-                    "ailDomain_IsDeleted, \r\n            True AS _from0\r\n        FROM CodeFirstDatabas" +
-                    "e.EstablishmentEmailDomain AS T\r\n    ) AS T1");
+            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentEmailDomains", "\r\n    SELECT VALUE -- Constructing EstablishmentEmailDomains\r\n        [UCosmic.Im" +
+                    "pl.Orm.EstablishmentEmailDomain](T1.EstablishmentEmailDomain_RevisionId, T1.Esta" +
+                    "blishmentEmailDomain_Value, T1.EstablishmentEmailDomain_EstablishmentId, T1.Esta" +
+                    "blishmentEmailDomain_EntityId, T1.EstablishmentEmailDomain_CreatedOnUtc, T1.Esta" +
+                    "blishmentEmailDomain_CreatedByPrincipal, T1.EstablishmentEmailDomain_UpdatedOnUt" +
+                    "c, T1.EstablishmentEmailDomain_UpdatedByPrincipal, T1.EstablishmentEmailDomain_V" +
+                    "ersion, T1.EstablishmentEmailDomain_IsCurrent, T1.EstablishmentEmailDomain_IsArc" +
+                    "hived, T1.EstablishmentEmailDomain_IsDeleted)\r\n    FROM (\r\n        SELECT \r\n    " +
+                    "        T.RevisionId AS EstablishmentEmailDomain_RevisionId, \r\n            T.[Va" +
+                    "lue] AS EstablishmentEmailDomain_Value, \r\n            T.EstablishmentId AS Estab" +
+                    "lishmentEmailDomain_EstablishmentId, \r\n            T.EntityId AS EstablishmentEm" +
+                    "ailDomain_EntityId, \r\n            T.CreatedOnUtc AS EstablishmentEmailDomain_Cre" +
+                    "atedOnUtc, \r\n            T.CreatedByPrincipal AS EstablishmentEmailDomain_Create" +
+                    "dByPrincipal, \r\n            T.UpdatedOnUtc AS EstablishmentEmailDomain_UpdatedOn" +
+                    "Utc, \r\n            T.UpdatedByPrincipal AS EstablishmentEmailDomain_UpdatedByPri" +
+                    "ncipal, \r\n            T.Version AS EstablishmentEmailDomain_Version, \r\n         " +
+                    "   T.IsCurrent AS EstablishmentEmailDomain_IsCurrent, \r\n            T.IsArchived" +
+                    " AS EstablishmentEmailDomain_IsArchived, \r\n            T.IsDeleted AS Establishm" +
+                    "entEmailDomain_IsDeleted, \r\n            True AS _from0\r\n        FROM CodeFirstDa" +
+                    "tabase.EstablishmentEmailDomain AS T\r\n    ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.Affiliations
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView76()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView78()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2133);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing Affiliations\r\n        [UCosmic.Orm.Affiliatio");
-            viewString.Append("n](T1.Affiliation_RevisionId, T1.Affiliation_PersonId, T1.Affiliation_Establishm");
-            viewString.Append("entId, T1.Affiliation_JobTitles, T1.Affiliation_IsDefault, T1.Affiliation_IsAckn");
-            viewString.Append("owledged, T1.Affiliation_IsClaimingStudent, T1.Affiliation_IsClaimingEmployee, T");
-            viewString.Append("1.Affiliation_IsClaimingInternationalOffice, T1.Affiliation_IsClaimingAdministra");
-            viewString.Append("tor, T1.Affiliation_IsClaimingFaculty, T1.Affiliation_IsClaimingStaff, T1.Affili");
-            viewString.Append("ation_EntityId, T1.Affiliation_CreatedOnUtc, T1.Affiliation_CreatedByPrincipal, ");
-            viewString.Append("T1.Affiliation_UpdatedOnUtc, T1.Affiliation_UpdatedByPrincipal, T1.Affiliation_V");
-            viewString.Append("ersion, T1.Affiliation_IsCurrent, T1.Affiliation_IsArchived, T1.Affiliation_IsDe");
-            viewString.Append("leted)\r\n    FROM (\r\n        SELECT \r\n            T.RevisionId AS Affiliation_Rev");
-            viewString.Append("isionId, \r\n            T.PersonId AS Affiliation_PersonId, \r\n            T.Estab");
-            viewString.Append("lishmentId AS Affiliation_EstablishmentId, \r\n            T.JobTitles AS Affiliat");
-            viewString.Append("ion_JobTitles, \r\n            T.IsDefault AS Affiliation_IsDefault, \r\n           ");
-            viewString.Append(" T.IsAcknowledged AS Affiliation_IsAcknowledged, \r\n            T.IsClaimingStude");
-            viewString.Append("nt AS Affiliation_IsClaimingStudent, \r\n            T.IsClaimingEmployee AS Affil");
-            viewString.Append("iation_IsClaimingEmployee, \r\n            T.IsClaimingInternationalOffice AS Affi");
-            viewString.Append("liation_IsClaimingInternationalOffice, \r\n            T.IsClaimingAdministrator A");
-            viewString.Append("S Affiliation_IsClaimingAdministrator, \r\n            T.IsClaimingFaculty AS Affi");
-            viewString.Append("liation_IsClaimingFaculty, \r\n            T.IsClaimingStaff AS Affiliation_IsClai");
-            viewString.Append("mingStaff, \r\n            T.EntityId AS Affiliation_EntityId, \r\n            T.Cre");
-            viewString.Append("atedOnUtc AS Affiliation_CreatedOnUtc, \r\n            T.CreatedByPrincipal AS Aff");
-            viewString.Append("iliation_CreatedByPrincipal, \r\n            T.UpdatedOnUtc AS Affiliation_Updated");
-            viewString.Append("OnUtc, \r\n            T.UpdatedByPrincipal AS Affiliation_UpdatedByPrincipal, \r\n ");
-            viewString.Append("           T.Version AS Affiliation_Version, \r\n            T.IsCurrent AS Affili");
-            viewString.Append("ation_IsCurrent, \r\n            T.IsArchived AS Affiliation_IsArchived, \r\n       ");
-            viewString.Append("     T.IsDeleted AS Affiliation_IsDeleted, \r\n            True AS _from0\r\n       ");
-            viewString.Append(" FROM CodeFirstDatabase.Affiliation AS T\r\n    ) AS T1");
-            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.Affiliations", viewString.ToString());
+            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.Affiliations", @"
+    SELECT VALUE -- Constructing Affiliations
+        [UCosmic.Impl.Orm.Affiliation](T1.Affiliation_PersonId, T1.Affiliation_EstablishmentId, T1.Affiliation_JobTitles, T1.Affiliation_IsDefault, T1.Affiliation_IsAcknowledged, T1.Affiliation_IsClaimingStudent, T1.Affiliation_IsClaimingEmployee, T1.Affiliation_IsClaimingInternationalOffice, T1.Affiliation_IsClaimingAdministrator, T1.Affiliation_IsClaimingFaculty, T1.Affiliation_IsClaimingStaff)
+    FROM (
+        SELECT 
+            T.PersonId AS Affiliation_PersonId, 
+            T.EstablishmentId AS Affiliation_EstablishmentId, 
+            T.JobTitles AS Affiliation_JobTitles, 
+            T.IsDefault AS Affiliation_IsDefault, 
+            T.IsAcknowledged AS Affiliation_IsAcknowledged, 
+            T.IsClaimingStudent AS Affiliation_IsClaimingStudent, 
+            T.IsClaimingEmployee AS Affiliation_IsClaimingEmployee, 
+            T.IsClaimingInternationalOffice AS Affiliation_IsClaimingInternationalOffice, 
+            T.IsClaimingAdministrator AS Affiliation_IsClaimingAdministrator, 
+            T.IsClaimingFaculty AS Affiliation_IsClaimingFaculty, 
+            T.IsClaimingStaff AS Affiliation_IsClaimingStaff, 
+            True AS _from0
+        FROM CodeFirstDatabase.Affiliation AS T
+    ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.People
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView77()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView79()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.People", @"
     SELECT VALUE -- Constructing People
-        [UCosmic.Orm.Person](T1.Person_RevisionId, T1.Person_IsDisplayNameDerived, T1.Person_DisplayName, T1.Person_Salutation, T1.Person_FirstName, T1.Person_MiddleName, T1.Person_LastName, T1.Person_Suffix, T1.Person_EntityId, T1.Person_CreatedOnUtc, T1.Person_CreatedByPrincipal, T1.Person_UpdatedOnUtc, T1.Person_UpdatedByPrincipal, T1.Person_Version, T1.Person_IsCurrent, T1.Person_IsArchived, T1.Person_IsDeleted)
+        [UCosmic.Impl.Orm.Person](T1.Person_RevisionId, T1.Person_IsDisplayNameDerived, T1.Person_DisplayName, T1.Person_Salutation, T1.Person_FirstName, T1.Person_MiddleName, T1.Person_LastName, T1.Person_Suffix, T1.Person_EntityId, T1.Person_CreatedOnUtc, T1.Person_CreatedByPrincipal, T1.Person_UpdatedOnUtc, T1.Person_UpdatedByPrincipal, T1.Person_Version, T1.Person_IsCurrent, T1.Person_IsArchived, T1.Person_IsDeleted)
     FROM (
         SELECT 
             T.RevisionId AS Person_RevisionId, 
@@ -3449,95 +3481,28 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.Person AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EmailAddresses
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView78()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView80()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EmailAddresses", @"
     SELECT VALUE -- Constructing EmailAddresses
-        [UCosmic.Orm.EmailAddress](T1.EmailAddress_RevisionId, T1.EmailAddress_PersonId, T1.EmailAddress_Value, T1.EmailAddress_IsDefault, T1.EmailAddress_IsConfirmed, T1.EmailAddress_EntityId, T1.EmailAddress_CreatedOnUtc, T1.EmailAddress_CreatedByPrincipal, T1.EmailAddress_UpdatedOnUtc, T1.EmailAddress_UpdatedByPrincipal, T1.EmailAddress_Version, T1.EmailAddress_IsCurrent, T1.EmailAddress_IsArchived, T1.EmailAddress_IsDeleted)
+        [UCosmic.Impl.Orm.EmailAddress](T1.EmailAddress_PersonId, T1.EmailAddress_Number, T1.EmailAddress_Value, T1.EmailAddress_IsDefault, T1.EmailAddress_IsFromSaml, T1.EmailAddress_IsConfirmed)
     FROM (
         SELECT 
-            T.RevisionId AS EmailAddress_RevisionId, 
             T.PersonId AS EmailAddress_PersonId, 
+            T.Number AS EmailAddress_Number, 
             T.[Value] AS EmailAddress_Value, 
             T.IsDefault AS EmailAddress_IsDefault, 
+            T.IsFromSaml AS EmailAddress_IsFromSaml, 
             T.IsConfirmed AS EmailAddress_IsConfirmed, 
-            T.EntityId AS EmailAddress_EntityId, 
-            T.CreatedOnUtc AS EmailAddress_CreatedOnUtc, 
-            T.CreatedByPrincipal AS EmailAddress_CreatedByPrincipal, 
-            T.UpdatedOnUtc AS EmailAddress_UpdatedOnUtc, 
-            T.UpdatedByPrincipal AS EmailAddress_UpdatedByPrincipal, 
-            T.Version AS EmailAddress_Version, 
-            T.IsCurrent AS EmailAddress_IsCurrent, 
-            T.IsArchived AS EmailAddress_IsArchived, 
-            T.IsDeleted AS EmailAddress_IsDeleted, 
             True AS _from0
         FROM CodeFirstDatabase.EmailAddress AS T
     ) AS T1");
         }
-        
-        /// <Summary>
-        /// return view for UCosmicContext.EmailMessages
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView79()
-        {
-            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EmailMessages", "\r\n    SELECT VALUE -- Constructing EmailMessages\r\n        [UCosmic.Orm.EmailMessa" +
-                    "ge](T1.EmailMessage_Id, T1.EmailMessage_EntityId, T1.EmailMessage_ToEmailAddress" +
-                    "Id, T1.EmailMessage_FromEmailTemplateId, T1.EmailMessage_Subject, T1.EmailMessag" +
-                    "e_FromAddress, T1.EmailMessage_FromDisplayName, T1.EmailMessage_ReplyToAddress, " +
-                    "T1.EmailMessage_ReplyToDisplayName, T1.EmailMessage_Body, T1.EmailMessage_Compos" +
-                    "edByPrincipal, T1.EmailMessage_ComposedOnUtc, T1.EmailMessage_SentOnUtc, T1.Emai" +
-                    "lMessage_IsArchived, T1.EmailMessage_IsDeleted)\r\n    FROM (\r\n        SELECT \r\n  " +
-                    "          T.Id AS EmailMessage_Id, \r\n            T.EntityId AS EmailMessage_Enti" +
-                    "tyId, \r\n            T.ToEmailAddressId AS EmailMessage_ToEmailAddressId, \r\n     " +
-                    "       T.FromEmailTemplateId AS EmailMessage_FromEmailTemplateId, \r\n            " +
-                    "T.Subject AS EmailMessage_Subject, \r\n            T.FromAddress AS EmailMessage_F" +
-                    "romAddress, \r\n            T.FromDisplayName AS EmailMessage_FromDisplayName, \r\n " +
-                    "           T.ReplyToAddress AS EmailMessage_ReplyToAddress, \r\n            T.Repl" +
-                    "yToDisplayName AS EmailMessage_ReplyToDisplayName, \r\n            T.Body AS Email" +
-                    "Message_Body, \r\n            T.ComposedByPrincipal AS EmailMessage_ComposedByPrin" +
-                    "cipal, \r\n            T.ComposedOnUtc AS EmailMessage_ComposedOnUtc, \r\n          " +
-                    "  T.SentOnUtc AS EmailMessage_SentOnUtc, \r\n            T.IsArchived AS EmailMess" +
-                    "age_IsArchived, \r\n            T.IsDeleted AS EmailMessage_IsDeleted, \r\n         " +
-                    "   True AS _from0\r\n        FROM CodeFirstDatabase.EmailMessage AS T\r\n    ) AS T1" +
-                    "");
-        }
-        
-        /// <Summary>
-        /// return view for UCosmicContext.EmailTemplates
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView80()
-        {
-            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EmailTemplates", "\r\n    SELECT VALUE -- Constructing EmailTemplates\r\n        [UCosmic.Orm.EmailTemp" +
-                    "late](T1.EmailTemplate_RevisionId, T1.EmailTemplate_EstablishmentId, T1.EmailTem" +
-                    "plate_Name, T1.EmailTemplate_Instructions, T1.EmailTemplate_SubjectFormat, T1.Em" +
-                    "ailTemplate_FromAddress, T1.EmailTemplate_FromDisplayName, T1.EmailTemplate_Repl" +
-                    "yToAddress, T1.EmailTemplate_ReplyToDisplayName, T1.EmailTemplate_BodyFormat, T1" +
-                    ".EmailTemplate_EntityId, T1.EmailTemplate_CreatedOnUtc, T1.EmailTemplate_Created" +
-                    "ByPrincipal, T1.EmailTemplate_UpdatedOnUtc, T1.EmailTemplate_UpdatedByPrincipal," +
-                    " T1.EmailTemplate_Version, T1.EmailTemplate_IsCurrent, T1.EmailTemplate_IsArchiv" +
-                    "ed, T1.EmailTemplate_IsDeleted)\r\n    FROM (\r\n        SELECT \r\n            T.Revi" +
-                    "sionId AS EmailTemplate_RevisionId, \r\n            T.EstablishmentId AS EmailTemp" +
-                    "late_EstablishmentId, \r\n            T.Name AS EmailTemplate_Name, \r\n            " +
-                    "T.Instructions AS EmailTemplate_Instructions, \r\n            T.SubjectFormat AS E" +
-                    "mailTemplate_SubjectFormat, \r\n            T.FromAddress AS EmailTemplate_FromAdd" +
-                    "ress, \r\n            T.FromDisplayName AS EmailTemplate_FromDisplayName, \r\n      " +
-                    "      T.ReplyToAddress AS EmailTemplate_ReplyToAddress, \r\n            T.ReplyToD" +
-                    "isplayName AS EmailTemplate_ReplyToDisplayName, \r\n            T.BodyFormat AS Em" +
-                    "ailTemplate_BodyFormat, \r\n            T.EntityId AS EmailTemplate_EntityId, \r\n  " +
-                    "          T.CreatedOnUtc AS EmailTemplate_CreatedOnUtc, \r\n            T.CreatedB" +
-                    "yPrincipal AS EmailTemplate_CreatedByPrincipal, \r\n            T.UpdatedOnUtc AS " +
-                    "EmailTemplate_UpdatedOnUtc, \r\n            T.UpdatedByPrincipal AS EmailTemplate_" +
-                    "UpdatedByPrincipal, \r\n            T.Version AS EmailTemplate_Version, \r\n        " +
-                    "    T.IsCurrent AS EmailTemplate_IsCurrent, \r\n            T.IsArchived AS EmailT" +
-                    "emplate_IsArchived, \r\n            T.IsDeleted AS EmailTemplate_IsDeleted, \r\n    " +
-                    "        True AS _from0\r\n        FROM CodeFirstDatabase.EmailTemplate AS T\r\n    )" +
-                    " AS T1");
-        }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EmailConfirmations
         /// </Summary>
@@ -3545,11 +3510,12 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EmailConfirmations", @"
     SELECT VALUE -- Constructing EmailConfirmations
-        [UCosmic.Orm.EmailConfirmation](T1.EmailConfirmation_Id, T1.EmailConfirmation_EmailAddressId, T1.EmailConfirmation_Token, T1.EmailConfirmation_SecretCode, T1.EmailConfirmation_Intent, T1.EmailConfirmation_IssuedOnUtc, T1.EmailConfirmation_ConfirmedOnUtc, T1.EmailConfirmation_ExpiresOnUtc)
+        [UCosmic.Impl.Orm.EmailConfirmation](T1.EmailConfirmation_Id, T1.EmailConfirmation_PersonId, T1.EmailConfirmation_EmailAddressNumber, T1.EmailConfirmation_Token, T1.EmailConfirmation_SecretCode, T1.EmailConfirmation_Intent, T1.EmailConfirmation_IssuedOnUtc, T1.EmailConfirmation_ConfirmedOnUtc, T1.EmailConfirmation_ExpiresOnUtc)
     FROM (
         SELECT 
             T.Id AS EmailConfirmation_Id, 
-            T.EmailAddressId AS EmailConfirmation_EmailAddressId, 
+            T.PersonId AS EmailConfirmation_PersonId, 
+            T.EmailAddressNumber AS EmailConfirmation_EmailAddressNumber, 
             T.Token AS EmailConfirmation_Token, 
             T.SecretCode AS EmailConfirmation_SecretCode, 
             T.Intent AS EmailConfirmation_Intent, 
@@ -3560,58 +3526,157 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.EmailConfirmation AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
-        /// return view for UCosmicContext.InstitutionalAgreements
+        /// return view for UCosmicContext.EmailMessages
         /// </Summary>
         private System.Collections.Generic.KeyValuePair<string, string> GetView82()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2676);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing InstitutionalAgreements\r\n        [UCosmic.Orm");
-            viewString.Append(".InstitutionalAgreement](T1.InstitutionalAgreement_RevisionId, T1.InstitutionalA");
-            viewString.Append("greement_IsTitleDerived, T1.InstitutionalAgreement_Title, T1.InstitutionalAgreem");
-            viewString.Append("ent_Type, T1.InstitutionalAgreement_StartsOn, T1.InstitutionalAgreement_ExpiresO");
-            viewString.Append("n, T1.InstitutionalAgreement_IsExpirationEstimated, T1.InstitutionalAgreement_De");
-            viewString.Append("scription, T1.InstitutionalAgreement_IsAutoRenew, T1.InstitutionalAgreement_Stat");
-            viewString.Append("us, T1.InstitutionalAgreement_EntityId, T1.InstitutionalAgreement_CreatedOnUtc, ");
-            viewString.Append("T1.InstitutionalAgreement_CreatedByPrincipal, T1.InstitutionalAgreement_UpdatedO");
-            viewString.Append("nUtc, T1.InstitutionalAgreement_UpdatedByPrincipal, T1.InstitutionalAgreement_Ve");
-            viewString.Append("rsion, T1.InstitutionalAgreement_IsCurrent, T1.InstitutionalAgreement_IsArchived");
-            viewString.Append(", T1.InstitutionalAgreement_IsDeleted) WITH \r\n        RELATIONSHIP(CREATEREF(UCo");
-            viewString.Append("smicContext.InstitutionalAgreements, ROW(T1.[InstitutionalAgreement_Umbrella.Ins");
-            viewString.Append("titutionalAgreement_Umbrella_Target.RevisionId]),[UCosmic.Orm.InstitutionalAgree");
-            viewString.Append("ment]),[UCosmic.Orm.InstitutionalAgreement_Umbrella],InstitutionalAgreement_Umbr");
-            viewString.Append("ella_Source,InstitutionalAgreement_Umbrella_Target) \r\n    FROM (\r\n        SELECT");
-            viewString.Append(" \r\n            T.RevisionId AS InstitutionalAgreement_RevisionId, \r\n            ");
-            viewString.Append("T.IsTitleDerived AS InstitutionalAgreement_IsTitleDerived, \r\n            T.Title");
-            viewString.Append(" AS InstitutionalAgreement_Title, \r\n            T.Type AS InstitutionalAgreement");
-            viewString.Append("_Type, \r\n            T.StartsOn AS InstitutionalAgreement_StartsOn, \r\n          ");
-            viewString.Append("  T.ExpiresOn AS InstitutionalAgreement_ExpiresOn, \r\n            T.IsExpirationE");
-            viewString.Append("stimated AS InstitutionalAgreement_IsExpirationEstimated, \r\n            T.Descri");
-            viewString.Append("ption AS InstitutionalAgreement_Description, \r\n            T.IsAutoRenew AS Inst");
-            viewString.Append("itutionalAgreement_IsAutoRenew, \r\n            T.Status AS InstitutionalAgreement");
-            viewString.Append("_Status, \r\n            T.EntityId AS InstitutionalAgreement_EntityId, \r\n        ");
-            viewString.Append("    T.CreatedOnUtc AS InstitutionalAgreement_CreatedOnUtc, \r\n            T.Creat");
-            viewString.Append("edByPrincipal AS InstitutionalAgreement_CreatedByPrincipal, \r\n            T.Upda");
-            viewString.Append("tedOnUtc AS InstitutionalAgreement_UpdatedOnUtc, \r\n            T.UpdatedByPrinci");
-            viewString.Append("pal AS InstitutionalAgreement_UpdatedByPrincipal, \r\n            T.Version AS Ins");
-            viewString.Append("titutionalAgreement_Version, \r\n            T.IsCurrent AS InstitutionalAgreement");
-            viewString.Append("_IsCurrent, \r\n            T.IsArchived AS InstitutionalAgreement_IsArchived, \r\n ");
-            viewString.Append("           T.IsDeleted AS InstitutionalAgreement_IsDeleted, \r\n            True A");
-            viewString.Append("S _from0, \r\n            T.UmbrellaId AS [InstitutionalAgreement_Umbrella.Institu");
-            viewString.Append("tionalAgreement_Umbrella_Target.RevisionId]\r\n        FROM CodeFirstDatabase.Inst");
-            viewString.Append("itutionalAgreement AS T\r\n    ) AS T1");
-            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreements", viewString.ToString());
+            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EmailMessages", @"
+    SELECT VALUE -- Constructing EmailMessages
+        [UCosmic.Impl.Orm.EmailMessage](T1.EmailMessage_ToPersonId, T1.EmailMessage_Number, T1.EmailMessage_ToAddress, T1.EmailMessage_FromEmailTemplate, T1.EmailMessage_Subject, T1.EmailMessage_FromAddress, T1.EmailMessage_FromDisplayName, T1.EmailMessage_ReplyToAddress, T1.EmailMessage_ReplyToDisplayName, T1.EmailMessage_Body, T1.EmailMessage_ComposedByPrincipal, T1.EmailMessage_ComposedOnUtc, T1.EmailMessage_SentOnUtc)
+    FROM (
+        SELECT 
+            T.ToPersonId AS EmailMessage_ToPersonId, 
+            T.Number AS EmailMessage_Number, 
+            T.ToAddress AS EmailMessage_ToAddress, 
+            T.FromEmailTemplate AS EmailMessage_FromEmailTemplate, 
+            T.Subject AS EmailMessage_Subject, 
+            T.FromAddress AS EmailMessage_FromAddress, 
+            T.FromDisplayName AS EmailMessage_FromDisplayName, 
+            T.ReplyToAddress AS EmailMessage_ReplyToAddress, 
+            T.ReplyToDisplayName AS EmailMessage_ReplyToDisplayName, 
+            T.Body AS EmailMessage_Body, 
+            T.ComposedByPrincipal AS EmailMessage_ComposedByPrincipal, 
+            T.ComposedOnUtc AS EmailMessage_ComposedOnUtc, 
+            T.SentOnUtc AS EmailMessage_SentOnUtc, 
+            True AS _from0
+        FROM CodeFirstDatabase.EmailMessage AS T
+    ) AS T1");
         }
-        
+
         /// <Summary>
-        /// return view for UCosmicContext.InstitutionalAgreementNodes
+        /// return view for UCosmicContext.SubjectNameIdentifiers
         /// </Summary>
         private System.Collections.Generic.KeyValuePair<string, string> GetView83()
         {
+            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.SubjectNameIdentifiers", @"
+    SELECT VALUE -- Constructing SubjectNameIdentifiers
+        [UCosmic.Impl.Orm.SubjectNameIdentifier](T1.SubjectNameIdentifier_UserId, T1.SubjectNameIdentifier_Number, T1.SubjectNameIdentifier_Value, T1.SubjectNameIdentifier_CreatedOnUtc, T1.SubjectNameIdentifier_UpdatedOnUtc)
+    FROM (
+        SELECT 
+            T.UserId AS SubjectNameIdentifier_UserId, 
+            T.Number AS SubjectNameIdentifier_Number, 
+            T.[Value] AS SubjectNameIdentifier_Value, 
+            T.CreatedOnUtc AS SubjectNameIdentifier_CreatedOnUtc, 
+            T.UpdatedOnUtc AS SubjectNameIdentifier_UpdatedOnUtc, 
+            True AS _from0
+        FROM CodeFirstDatabase.SubjectNameIdentifier AS T
+    ) AS T1");
+        }
+
+        /// <Summary>
+        /// return view for UCosmicContext.EduPersonScopedAffiliations
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView84()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EduPersonScopedAffiliations", @"
+    SELECT VALUE -- Constructing EduPersonScopedAffiliations
+        [UCosmic.Impl.Orm.EduPersonScopedAffiliation](T1.EduPersonScopedAffiliation_UserId, T1.EduPersonScopedAffiliation_Number, T1.EduPersonScopedAffiliation_Value, T1.EduPersonScopedAffiliation_CreatedOnUtc)
+    FROM (
+        SELECT 
+            T.UserId AS EduPersonScopedAffiliation_UserId, 
+            T.Number AS EduPersonScopedAffiliation_Number, 
+            T.[Value] AS EduPersonScopedAffiliation_Value, 
+            T.CreatedOnUtc AS EduPersonScopedAffiliation_CreatedOnUtc, 
+            True AS _from0
+        FROM CodeFirstDatabase.EduPersonScopedAffiliation AS T
+    ) AS T1");
+        }
+
+        /// <Summary>
+        /// return view for UCosmicContext.EmailTemplates
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView85()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EmailTemplates", "\r\n    SELECT VALUE -- Constructing EmailTemplates\r\n        [UCosmic.Impl.Orm.Emai" +
+                    "lTemplate](T1.EmailTemplate_RevisionId, T1.EmailTemplate_EstablishmentId, T1.Ema" +
+                    "ilTemplate_Name, T1.EmailTemplate_Instructions, T1.EmailTemplate_SubjectFormat, " +
+                    "T1.EmailTemplate_FromAddress, T1.EmailTemplate_FromDisplayName, T1.EmailTemplate" +
+                    "_ReplyToAddress, T1.EmailTemplate_ReplyToDisplayName, T1.EmailTemplate_BodyForma" +
+                    "t, T1.EmailTemplate_EntityId, T1.EmailTemplate_CreatedOnUtc, T1.EmailTemplate_Cr" +
+                    "eatedByPrincipal, T1.EmailTemplate_UpdatedOnUtc, T1.EmailTemplate_UpdatedByPrinc" +
+                    "ipal, T1.EmailTemplate_Version, T1.EmailTemplate_IsCurrent, T1.EmailTemplate_IsA" +
+                    "rchived, T1.EmailTemplate_IsDeleted)\r\n    FROM (\r\n        SELECT \r\n            T" +
+                    ".RevisionId AS EmailTemplate_RevisionId, \r\n            T.EstablishmentId AS Emai" +
+                    "lTemplate_EstablishmentId, \r\n            T.Name AS EmailTemplate_Name, \r\n       " +
+                    "     T.Instructions AS EmailTemplate_Instructions, \r\n            T.SubjectFormat" +
+                    " AS EmailTemplate_SubjectFormat, \r\n            T.FromAddress AS EmailTemplate_Fr" +
+                    "omAddress, \r\n            T.FromDisplayName AS EmailTemplate_FromDisplayName, \r\n " +
+                    "           T.ReplyToAddress AS EmailTemplate_ReplyToAddress, \r\n            T.Rep" +
+                    "lyToDisplayName AS EmailTemplate_ReplyToDisplayName, \r\n            T.BodyFormat " +
+                    "AS EmailTemplate_BodyFormat, \r\n            T.EntityId AS EmailTemplate_EntityId," +
+                    " \r\n            T.CreatedOnUtc AS EmailTemplate_CreatedOnUtc, \r\n            T.Cre" +
+                    "atedByPrincipal AS EmailTemplate_CreatedByPrincipal, \r\n            T.UpdatedOnUt" +
+                    "c AS EmailTemplate_UpdatedOnUtc, \r\n            T.UpdatedByPrincipal AS EmailTemp" +
+                    "late_UpdatedByPrincipal, \r\n            T.Version AS EmailTemplate_Version, \r\n   " +
+                    "         T.IsCurrent AS EmailTemplate_IsCurrent, \r\n            T.IsArchived AS E" +
+                    "mailTemplate_IsArchived, \r\n            T.IsDeleted AS EmailTemplate_IsDeleted, \r" +
+                    "\n            True AS _from0\r\n        FROM CodeFirstDatabase.EmailTemplate AS T\r\n" +
+                    "    ) AS T1");
+        }
+
+        /// <Summary>
+        /// return view for UCosmicContext.InstitutionalAgreements
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView86()
+        {
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2691);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing InstitutionalAgreements\r\n        [UCosmic.Imp");
+            viewString.Append("l.Orm.InstitutionalAgreement](T1.InstitutionalAgreement_RevisionId, T1.Instituti");
+            viewString.Append("onalAgreement_IsTitleDerived, T1.InstitutionalAgreement_Title, T1.InstitutionalA");
+            viewString.Append("greement_Type, T1.InstitutionalAgreement_StartsOn, T1.InstitutionalAgreement_Exp");
+            viewString.Append("iresOn, T1.InstitutionalAgreement_IsExpirationEstimated, T1.InstitutionalAgreeme");
+            viewString.Append("nt_Description, T1.InstitutionalAgreement_IsAutoRenew, T1.InstitutionalAgreement");
+            viewString.Append("_Status, T1.InstitutionalAgreement_EntityId, T1.InstitutionalAgreement_CreatedOn");
+            viewString.Append("Utc, T1.InstitutionalAgreement_CreatedByPrincipal, T1.InstitutionalAgreement_Upd");
+            viewString.Append("atedOnUtc, T1.InstitutionalAgreement_UpdatedByPrincipal, T1.InstitutionalAgreeme");
+            viewString.Append("nt_Version, T1.InstitutionalAgreement_IsCurrent, T1.InstitutionalAgreement_IsArc");
+            viewString.Append("hived, T1.InstitutionalAgreement_IsDeleted) WITH \r\n        RELATIONSHIP(CREATERE");
+            viewString.Append("F(UCosmicContext.InstitutionalAgreements, ROW(T1.[InstitutionalAgreement_Umbrell");
+            viewString.Append("a.InstitutionalAgreement_Umbrella_Target.RevisionId]),[UCosmic.Impl.Orm.Institut");
+            viewString.Append("ionalAgreement]),[UCosmic.Impl.Orm.InstitutionalAgreement_Umbrella],Institutiona");
+            viewString.Append("lAgreement_Umbrella_Source,InstitutionalAgreement_Umbrella_Target) \r\n    FROM (\r");
+            viewString.Append("\n        SELECT \r\n            T.RevisionId AS InstitutionalAgreement_RevisionId,");
+            viewString.Append(" \r\n            T.IsTitleDerived AS InstitutionalAgreement_IsTitleDerived, \r\n    ");
+            viewString.Append("        T.Title AS InstitutionalAgreement_Title, \r\n            T.Type AS Institu");
+            viewString.Append("tionalAgreement_Type, \r\n            T.StartsOn AS InstitutionalAgreement_StartsO");
+            viewString.Append("n, \r\n            T.ExpiresOn AS InstitutionalAgreement_ExpiresOn, \r\n            ");
+            viewString.Append("T.IsExpirationEstimated AS InstitutionalAgreement_IsExpirationEstimated, \r\n     ");
+            viewString.Append("       T.Description AS InstitutionalAgreement_Description, \r\n            T.IsAu");
+            viewString.Append("toRenew AS InstitutionalAgreement_IsAutoRenew, \r\n            T.Status AS Institu");
+            viewString.Append("tionalAgreement_Status, \r\n            T.EntityId AS InstitutionalAgreement_Entit");
+            viewString.Append("yId, \r\n            T.CreatedOnUtc AS InstitutionalAgreement_CreatedOnUtc, \r\n    ");
+            viewString.Append("        T.CreatedByPrincipal AS InstitutionalAgreement_CreatedByPrincipal, \r\n   ");
+            viewString.Append("         T.UpdatedOnUtc AS InstitutionalAgreement_UpdatedOnUtc, \r\n            T.");
+            viewString.Append("UpdatedByPrincipal AS InstitutionalAgreement_UpdatedByPrincipal, \r\n            T");
+            viewString.Append(".Version AS InstitutionalAgreement_Version, \r\n            T.IsCurrent AS Institu");
+            viewString.Append("tionalAgreement_IsCurrent, \r\n            T.IsArchived AS InstitutionalAgreement_");
+            viewString.Append("IsArchived, \r\n            T.IsDeleted AS InstitutionalAgreement_IsDeleted, \r\n   ");
+            viewString.Append("         True AS _from0, \r\n            T.UmbrellaId AS [InstitutionalAgreement_U");
+            viewString.Append("mbrella.InstitutionalAgreement_Umbrella_Target.RevisionId]\r\n        FROM CodeFir");
+            viewString.Append("stDatabase.InstitutionalAgreement AS T\r\n    ) AS T1");
+            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreements", viewString.ToString());
+        }
+
+        /// <Summary>
+        /// return view for UCosmicContext.InstitutionalAgreementNodes
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView87()
+        {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreementNodes", @"
     SELECT VALUE -- Constructing InstitutionalAgreementNodes
-        [UCosmic.Orm.InstitutionalAgreementNode](T1.InstitutionalAgreementNode_AncestorId, T1.InstitutionalAgreementNode_OffspringId, T1.InstitutionalAgreementNode_Separation)
+        [UCosmic.Impl.Orm.InstitutionalAgreementNode](T1.InstitutionalAgreementNode_AncestorId, T1.InstitutionalAgreementNode_OffspringId, T1.InstitutionalAgreementNode_Separation)
     FROM (
         SELECT 
             T.AncestorId AS InstitutionalAgreementNode_AncestorId, 
@@ -3621,156 +3686,158 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.InstitutionalAgreementNode AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.InstitutionalAgreementParticipants
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView84()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView88()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreementParticipants", "\r\n    SELECT VALUE -- Constructing InstitutionalAgreementParticipants\r\n        [U" +
-                    "Cosmic.Orm.InstitutionalAgreementParticipant](T1.InstitutionalAgreementParticipa" +
-                    "nt_Id, T1.InstitutionalAgreementParticipant_IsOwner) WITH \r\n        RELATIONSHIP" +
-                    "(CREATEREF(UCosmicContext.Establishments, ROW(T1.[InstitutionalAgreementParticip" +
-                    "ant_Establishment.InstitutionalAgreementParticipant_Establishment_Target.Revisio" +
-                    "nId]),[UCosmic.Orm.Establishment]),[UCosmic.Orm.InstitutionalAgreementParticipan" +
-                    "t_Establishment],InstitutionalAgreementParticipant_Establishment_Source,Institut" +
-                    "ionalAgreementParticipant_Establishment_Target) \r\n        RELATIONSHIP(CREATEREF" +
-                    "(UCosmicContext.InstitutionalAgreements, ROW(T1.[InstitutionalAgreement_Particip" +
-                    "ants.InstitutionalAgreement_Participants_Source.RevisionId]),[UCosmic.Orm.Instit" +
-                    "utionalAgreement]),[UCosmic.Orm.InstitutionalAgreement_Participants],Institution" +
-                    "alAgreement_Participants_Target,InstitutionalAgreement_Participants_Source) \r\n  " +
-                    "  FROM (\r\n        SELECT \r\n            T.Id AS InstitutionalAgreementParticipant" +
-                    "_Id, \r\n            T.IsOwner AS InstitutionalAgreementParticipant_IsOwner, \r\n   " +
-                    "         True AS _from0, \r\n            T.EstablishmentId AS [InstitutionalAgreem" +
-                    "entParticipant_Establishment.InstitutionalAgreementParticipant_Establishment_Tar" +
-                    "get.RevisionId], \r\n            T.AgreementId AS [InstitutionalAgreement_Particip" +
-                    "ants.InstitutionalAgreement_Participants_Source.RevisionId]\r\n        FROM CodeFi" +
-                    "rstDatabase.InstitutionalAgreementParticipant AS T\r\n    ) AS T1");
+                    "Cosmic.Impl.Orm.InstitutionalAgreementParticipant](T1.InstitutionalAgreementPart" +
+                    "icipant_Id, T1.InstitutionalAgreementParticipant_IsOwner) WITH \r\n        RELATIO" +
+                    "NSHIP(CREATEREF(UCosmicContext.Establishments, ROW(T1.[InstitutionalAgreementPar" +
+                    "ticipant_Establishment.InstitutionalAgreementParticipant_Establishment_Target.Re" +
+                    "visionId]),[UCosmic.Impl.Orm.Establishment]),[UCosmic.Impl.Orm.InstitutionalAgre" +
+                    "ementParticipant_Establishment],InstitutionalAgreementParticipant_Establishment_" +
+                    "Source,InstitutionalAgreementParticipant_Establishment_Target) \r\n        RELATIO" +
+                    "NSHIP(CREATEREF(UCosmicContext.InstitutionalAgreements, ROW(T1.[InstitutionalAgr" +
+                    "eement_Participants.InstitutionalAgreement_Participants_Source.RevisionId]),[UCo" +
+                    "smic.Impl.Orm.InstitutionalAgreement]),[UCosmic.Impl.Orm.InstitutionalAgreement_" +
+                    "Participants],InstitutionalAgreement_Participants_Target,InstitutionalAgreement_" +
+                    "Participants_Source) \r\n    FROM (\r\n        SELECT \r\n            T.Id AS Institut" +
+                    "ionalAgreementParticipant_Id, \r\n            T.IsOwner AS InstitutionalAgreementP" +
+                    "articipant_IsOwner, \r\n            True AS _from0, \r\n            T.EstablishmentI" +
+                    "d AS [InstitutionalAgreementParticipant_Establishment.InstitutionalAgreementPart" +
+                    "icipant_Establishment_Target.RevisionId], \r\n            T.AgreementId AS [Instit" +
+                    "utionalAgreement_Participants.InstitutionalAgreement_Participants_Source.Revisio" +
+                    "nId]\r\n        FROM CodeFirstDatabase.InstitutionalAgreementParticipant AS T\r\n   " +
+                    " ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.InstitutionalAgreementContacts
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView85()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView89()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2456);
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2481);
             viewString.Append("\r\n    SELECT VALUE -- Constructing InstitutionalAgreementContacts\r\n        [UCos");
-            viewString.Append("mic.Orm.InstitutionalAgreementContact](T1.InstitutionalAgreementContact_Revision");
-            viewString.Append("Id, T1.InstitutionalAgreementContact_Type, T1.InstitutionalAgreementContact_Enti");
-            viewString.Append("tyId, T1.InstitutionalAgreementContact_CreatedOnUtc, T1.InstitutionalAgreementCo");
-            viewString.Append("ntact_CreatedByPrincipal, T1.InstitutionalAgreementContact_UpdatedOnUtc, T1.Inst");
-            viewString.Append("itutionalAgreementContact_UpdatedByPrincipal, T1.InstitutionalAgreementContact_V");
-            viewString.Append("ersion, T1.InstitutionalAgreementContact_IsCurrent, T1.InstitutionalAgreementCon");
-            viewString.Append("tact_IsArchived, T1.InstitutionalAgreementContact_IsDeleted) WITH \r\n        RELA");
-            viewString.Append("TIONSHIP(CREATEREF(UCosmicContext.People, ROW(T1.[InstitutionalAgreementContact_");
-            viewString.Append("Person.InstitutionalAgreementContact_Person_Target.RevisionId]),[UCosmic.Orm.Per");
-            viewString.Append("son]),[UCosmic.Orm.InstitutionalAgreementContact_Person],InstitutionalAgreementC");
-            viewString.Append("ontact_Person_Source,InstitutionalAgreementContact_Person_Target) \r\n        RELA");
-            viewString.Append("TIONSHIP(CREATEREF(UCosmicContext.InstitutionalAgreements, ROW(T1.[Institutional");
-            viewString.Append("Agreement_Contacts.InstitutionalAgreement_Contacts_Source.RevisionId]),[UCosmic.");
-            viewString.Append("Orm.InstitutionalAgreement]),[UCosmic.Orm.InstitutionalAgreement_Contacts],Insti");
-            viewString.Append("tutionalAgreement_Contacts_Target,InstitutionalAgreement_Contacts_Source) \r\n    ");
-            viewString.Append("FROM (\r\n        SELECT \r\n            T.RevisionId AS InstitutionalAgreementConta");
-            viewString.Append("ct_RevisionId, \r\n            T.Type AS InstitutionalAgreementContact_Type, \r\n   ");
-            viewString.Append("         T.EntityId AS InstitutionalAgreementContact_EntityId, \r\n            T.C");
-            viewString.Append("reatedOnUtc AS InstitutionalAgreementContact_CreatedOnUtc, \r\n            T.Creat");
-            viewString.Append("edByPrincipal AS InstitutionalAgreementContact_CreatedByPrincipal, \r\n           ");
-            viewString.Append(" T.UpdatedOnUtc AS InstitutionalAgreementContact_UpdatedOnUtc, \r\n            T.U");
-            viewString.Append("pdatedByPrincipal AS InstitutionalAgreementContact_UpdatedByPrincipal, \r\n       ");
-            viewString.Append("     T.Version AS InstitutionalAgreementContact_Version, \r\n            T.IsCurre");
-            viewString.Append("nt AS InstitutionalAgreementContact_IsCurrent, \r\n            T.IsArchived AS Ins");
-            viewString.Append("titutionalAgreementContact_IsArchived, \r\n            T.IsDeleted AS Institutiona");
-            viewString.Append("lAgreementContact_IsDeleted, \r\n            True AS _from0, \r\n            T.Perso");
-            viewString.Append("nId AS [InstitutionalAgreementContact_Person.InstitutionalAgreementContact_Perso");
-            viewString.Append("n_Target.RevisionId], \r\n            T.AgreementId AS [InstitutionalAgreement_Con");
-            viewString.Append("tacts.InstitutionalAgreement_Contacts_Source.RevisionId]\r\n        FROM CodeFirst");
-            viewString.Append("Database.InstitutionalAgreementContact AS T\r\n    ) AS T1");
+            viewString.Append("mic.Impl.Orm.InstitutionalAgreementContact](T1.InstitutionalAgreementContact_Rev");
+            viewString.Append("isionId, T1.InstitutionalAgreementContact_Type, T1.InstitutionalAgreementContact");
+            viewString.Append("_EntityId, T1.InstitutionalAgreementContact_CreatedOnUtc, T1.InstitutionalAgreem");
+            viewString.Append("entContact_CreatedByPrincipal, T1.InstitutionalAgreementContact_UpdatedOnUtc, T1");
+            viewString.Append(".InstitutionalAgreementContact_UpdatedByPrincipal, T1.InstitutionalAgreementCont");
+            viewString.Append("act_Version, T1.InstitutionalAgreementContact_IsCurrent, T1.InstitutionalAgreeme");
+            viewString.Append("ntContact_IsArchived, T1.InstitutionalAgreementContact_IsDeleted) WITH \r\n       ");
+            viewString.Append(" RELATIONSHIP(CREATEREF(UCosmicContext.People, ROW(T1.[InstitutionalAgreementCon");
+            viewString.Append("tact_Person.InstitutionalAgreementContact_Person_Target.RevisionId]),[UCosmic.Im");
+            viewString.Append("pl.Orm.Person]),[UCosmic.Impl.Orm.InstitutionalAgreementContact_Person],Institut");
+            viewString.Append("ionalAgreementContact_Person_Source,InstitutionalAgreementContact_Person_Target)");
+            viewString.Append(" \r\n        RELATIONSHIP(CREATEREF(UCosmicContext.InstitutionalAgreements, ROW(T1");
+            viewString.Append(".[InstitutionalAgreement_Contacts.InstitutionalAgreement_Contacts_Source.Revisio");
+            viewString.Append("nId]),[UCosmic.Impl.Orm.InstitutionalAgreement]),[UCosmic.Impl.Orm.Institutional");
+            viewString.Append("Agreement_Contacts],InstitutionalAgreement_Contacts_Target,InstitutionalAgreemen");
+            viewString.Append("t_Contacts_Source) \r\n    FROM (\r\n        SELECT \r\n            T.RevisionId AS In");
+            viewString.Append("stitutionalAgreementContact_RevisionId, \r\n            T.Type AS InstitutionalAgr");
+            viewString.Append("eementContact_Type, \r\n            T.EntityId AS InstitutionalAgreementContact_En");
+            viewString.Append("tityId, \r\n            T.CreatedOnUtc AS InstitutionalAgreementContact_CreatedOnU");
+            viewString.Append("tc, \r\n            T.CreatedByPrincipal AS InstitutionalAgreementContact_CreatedB");
+            viewString.Append("yPrincipal, \r\n            T.UpdatedOnUtc AS InstitutionalAgreementContact_Update");
+            viewString.Append("dOnUtc, \r\n            T.UpdatedByPrincipal AS InstitutionalAgreementContact_Upda");
+            viewString.Append("tedByPrincipal, \r\n            T.Version AS InstitutionalAgreementContact_Version");
+            viewString.Append(", \r\n            T.IsCurrent AS InstitutionalAgreementContact_IsCurrent, \r\n      ");
+            viewString.Append("      T.IsArchived AS InstitutionalAgreementContact_IsArchived, \r\n            T.");
+            viewString.Append("IsDeleted AS InstitutionalAgreementContact_IsDeleted, \r\n            True AS _fro");
+            viewString.Append("m0, \r\n            T.PersonId AS [InstitutionalAgreementContact_Person.Institutio");
+            viewString.Append("nalAgreementContact_Person_Target.RevisionId], \r\n            T.AgreementId AS [I");
+            viewString.Append("nstitutionalAgreement_Contacts.InstitutionalAgreement_Contacts_Source.RevisionId");
+            viewString.Append("]\r\n        FROM CodeFirstDatabase.InstitutionalAgreementContact AS T\r\n    ) AS T");
+            viewString.Append("1");
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreementContacts", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.InstitutionalAgreementFiles
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView86()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView90()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2223);
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2238);
             viewString.Append("\r\n    SELECT VALUE -- Constructing InstitutionalAgreementFiles\r\n        [UCosmic");
-            viewString.Append(".Orm.InstitutionalAgreementFile](T1.InstitutionalAgreementFile_RevisionId, T1.In");
-            viewString.Append("stitutionalAgreementFile_Content, T1.InstitutionalAgreementFile_Length, T1.Insti");
-            viewString.Append("tutionalAgreementFile_MimeType, T1.InstitutionalAgreementFile_Name, T1.Instituti");
-            viewString.Append("onalAgreementFile_EntityId, T1.InstitutionalAgreementFile_CreatedOnUtc, T1.Insti");
-            viewString.Append("tutionalAgreementFile_CreatedByPrincipal, T1.InstitutionalAgreementFile_UpdatedO");
-            viewString.Append("nUtc, T1.InstitutionalAgreementFile_UpdatedByPrincipal, T1.InstitutionalAgreemen");
-            viewString.Append("tFile_Version, T1.InstitutionalAgreementFile_IsCurrent, T1.InstitutionalAgreemen");
-            viewString.Append("tFile_IsArchived, T1.InstitutionalAgreementFile_IsDeleted) WITH \r\n        RELATI");
-            viewString.Append("ONSHIP(CREATEREF(UCosmicContext.InstitutionalAgreements, ROW(T1.[InstitutionalAg");
-            viewString.Append("reement_Files.InstitutionalAgreement_Files_Source.RevisionId]),[UCosmic.Orm.Inst");
-            viewString.Append("itutionalAgreement]),[UCosmic.Orm.InstitutionalAgreement_Files],InstitutionalAgr");
-            viewString.Append("eement_Files_Target,InstitutionalAgreement_Files_Source) \r\n    FROM (\r\n        S");
-            viewString.Append("ELECT \r\n            T.RevisionId AS InstitutionalAgreementFile_RevisionId, \r\n   ");
-            viewString.Append("         T.Content AS InstitutionalAgreementFile_Content, \r\n            T.Length");
-            viewString.Append(" AS InstitutionalAgreementFile_Length, \r\n            T.MimeType AS Institutional");
-            viewString.Append("AgreementFile_MimeType, \r\n            T.Name AS InstitutionalAgreementFile_Name,");
-            viewString.Append(" \r\n            T.EntityId AS InstitutionalAgreementFile_EntityId, \r\n            ");
-            viewString.Append("T.CreatedOnUtc AS InstitutionalAgreementFile_CreatedOnUtc, \r\n            T.Creat");
-            viewString.Append("edByPrincipal AS InstitutionalAgreementFile_CreatedByPrincipal, \r\n            T.");
-            viewString.Append("UpdatedOnUtc AS InstitutionalAgreementFile_UpdatedOnUtc, \r\n            T.Updated");
-            viewString.Append("ByPrincipal AS InstitutionalAgreementFile_UpdatedByPrincipal, \r\n            T.Ve");
-            viewString.Append("rsion AS InstitutionalAgreementFile_Version, \r\n            T.IsCurrent AS Instit");
-            viewString.Append("utionalAgreementFile_IsCurrent, \r\n            T.IsArchived AS InstitutionalAgree");
-            viewString.Append("mentFile_IsArchived, \r\n            T.IsDeleted AS InstitutionalAgreementFile_IsD");
-            viewString.Append("eleted, \r\n            True AS _from0, \r\n            T.AgreementId AS [Institutio");
-            viewString.Append("nalAgreement_Files.InstitutionalAgreement_Files_Source.RevisionId]\r\n        FROM");
-            viewString.Append(" CodeFirstDatabase.InstitutionalAgreementFile AS T\r\n    ) AS T1");
+            viewString.Append(".Impl.Orm.InstitutionalAgreementFile](T1.InstitutionalAgreementFile_RevisionId, ");
+            viewString.Append("T1.InstitutionalAgreementFile_Content, T1.InstitutionalAgreementFile_Length, T1.");
+            viewString.Append("InstitutionalAgreementFile_MimeType, T1.InstitutionalAgreementFile_Name, T1.Inst");
+            viewString.Append("itutionalAgreementFile_EntityId, T1.InstitutionalAgreementFile_CreatedOnUtc, T1.");
+            viewString.Append("InstitutionalAgreementFile_CreatedByPrincipal, T1.InstitutionalAgreementFile_Upd");
+            viewString.Append("atedOnUtc, T1.InstitutionalAgreementFile_UpdatedByPrincipal, T1.InstitutionalAgr");
+            viewString.Append("eementFile_Version, T1.InstitutionalAgreementFile_IsCurrent, T1.InstitutionalAgr");
+            viewString.Append("eementFile_IsArchived, T1.InstitutionalAgreementFile_IsDeleted) WITH \r\n        R");
+            viewString.Append("ELATIONSHIP(CREATEREF(UCosmicContext.InstitutionalAgreements, ROW(T1.[Institutio");
+            viewString.Append("nalAgreement_Files.InstitutionalAgreement_Files_Source.RevisionId]),[UCosmic.Imp");
+            viewString.Append("l.Orm.InstitutionalAgreement]),[UCosmic.Impl.Orm.InstitutionalAgreement_Files],I");
+            viewString.Append("nstitutionalAgreement_Files_Target,InstitutionalAgreement_Files_Source) \r\n    FR");
+            viewString.Append("OM (\r\n        SELECT \r\n            T.RevisionId AS InstitutionalAgreementFile_Re");
+            viewString.Append("visionId, \r\n            T.Content AS InstitutionalAgreementFile_Content, \r\n     ");
+            viewString.Append("       T.Length AS InstitutionalAgreementFile_Length, \r\n            T.MimeType A");
+            viewString.Append("S InstitutionalAgreementFile_MimeType, \r\n            T.Name AS InstitutionalAgre");
+            viewString.Append("ementFile_Name, \r\n            T.EntityId AS InstitutionalAgreementFile_EntityId,");
+            viewString.Append(" \r\n            T.CreatedOnUtc AS InstitutionalAgreementFile_CreatedOnUtc, \r\n    ");
+            viewString.Append("        T.CreatedByPrincipal AS InstitutionalAgreementFile_CreatedByPrincipal, \r");
+            viewString.Append("\n            T.UpdatedOnUtc AS InstitutionalAgreementFile_UpdatedOnUtc, \r\n      ");
+            viewString.Append("      T.UpdatedByPrincipal AS InstitutionalAgreementFile_UpdatedByPrincipal, \r\n ");
+            viewString.Append("           T.Version AS InstitutionalAgreementFile_Version, \r\n            T.IsCu");
+            viewString.Append("rrent AS InstitutionalAgreementFile_IsCurrent, \r\n            T.IsArchived AS Ins");
+            viewString.Append("titutionalAgreementFile_IsArchived, \r\n            T.IsDeleted AS InstitutionalAg");
+            viewString.Append("reementFile_IsDeleted, \r\n            True AS _from0, \r\n            T.AgreementId");
+            viewString.Append(" AS [InstitutionalAgreement_Files.InstitutionalAgreement_Files_Source.RevisionId");
+            viewString.Append("]\r\n        FROM CodeFirstDatabase.InstitutionalAgreementFile AS T\r\n    ) AS T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreementFiles", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.InstitutionalAgreementConfigurations
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView87()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView91()
         {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2250);
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2255);
             viewString.Append("\r\n    SELECT VALUE -- Constructing InstitutionalAgreementConfigurations\r\n       ");
-            viewString.Append(" [UCosmic.Orm.InstitutionalAgreementConfiguration](T1.InstitutionalAgreementConf");
-            viewString.Append("iguration_RevisionId, T1.InstitutionalAgreementConfiguration_ForEstablishmentId,");
-            viewString.Append(" T1.InstitutionalAgreementConfiguration_IsCustomTypeAllowed, T1.InstitutionalAgr");
-            viewString.Append("eementConfiguration_IsCustomStatusAllowed, T1.InstitutionalAgreementConfiguratio");
-            viewString.Append("n_IsCustomContactTypeAllowed, T1.InstitutionalAgreementConfiguration_EntityId, T");
-            viewString.Append("1.InstitutionalAgreementConfiguration_CreatedOnUtc, T1.InstitutionalAgreementCon");
-            viewString.Append("figuration_CreatedByPrincipal, T1.InstitutionalAgreementConfiguration_UpdatedOnU");
-            viewString.Append("tc, T1.InstitutionalAgreementConfiguration_UpdatedByPrincipal, T1.InstitutionalA");
-            viewString.Append("greementConfiguration_Version, T1.InstitutionalAgreementConfiguration_IsCurrent,");
-            viewString.Append(" T1.InstitutionalAgreementConfiguration_IsArchived, T1.InstitutionalAgreementCon");
-            viewString.Append("figuration_IsDeleted)\r\n    FROM (\r\n        SELECT \r\n            T.RevisionId AS ");
-            viewString.Append("InstitutionalAgreementConfiguration_RevisionId, \r\n            T.ForEstablishment");
-            viewString.Append("Id AS InstitutionalAgreementConfiguration_ForEstablishmentId, \r\n            T.Is");
-            viewString.Append("CustomTypeAllowed AS InstitutionalAgreementConfiguration_IsCustomTypeAllowed, \r\n");
-            viewString.Append("            T.IsCustomStatusAllowed AS InstitutionalAgreementConfiguration_IsCus");
-            viewString.Append("tomStatusAllowed, \r\n            T.IsCustomContactTypeAllowed AS InstitutionalAgr");
-            viewString.Append("eementConfiguration_IsCustomContactTypeAllowed, \r\n            T.EntityId AS Inst");
-            viewString.Append("itutionalAgreementConfiguration_EntityId, \r\n            T.CreatedOnUtc AS Instit");
-            viewString.Append("utionalAgreementConfiguration_CreatedOnUtc, \r\n            T.CreatedByPrincipal A");
-            viewString.Append("S InstitutionalAgreementConfiguration_CreatedByPrincipal, \r\n            T.Update");
-            viewString.Append("dOnUtc AS InstitutionalAgreementConfiguration_UpdatedOnUtc, \r\n            T.Upda");
-            viewString.Append("tedByPrincipal AS InstitutionalAgreementConfiguration_UpdatedByPrincipal, \r\n    ");
-            viewString.Append("        T.Version AS InstitutionalAgreementConfiguration_Version, \r\n            ");
-            viewString.Append("T.IsCurrent AS InstitutionalAgreementConfiguration_IsCurrent, \r\n            T.Is");
-            viewString.Append("Archived AS InstitutionalAgreementConfiguration_IsArchived, \r\n            T.IsDe");
-            viewString.Append("leted AS InstitutionalAgreementConfiguration_IsDeleted, \r\n            True AS _f");
-            viewString.Append("rom0\r\n        FROM CodeFirstDatabase.InstitutionalAgreementConfiguration AS T\r\n ");
-            viewString.Append("   ) AS T1");
+            viewString.Append(" [UCosmic.Impl.Orm.InstitutionalAgreementConfiguration](T1.InstitutionalAgreemen");
+            viewString.Append("tConfiguration_RevisionId, T1.InstitutionalAgreementConfiguration_ForEstablishme");
+            viewString.Append("ntId, T1.InstitutionalAgreementConfiguration_IsCustomTypeAllowed, T1.Institution");
+            viewString.Append("alAgreementConfiguration_IsCustomStatusAllowed, T1.InstitutionalAgreementConfigu");
+            viewString.Append("ration_IsCustomContactTypeAllowed, T1.InstitutionalAgreementConfiguration_Entity");
+            viewString.Append("Id, T1.InstitutionalAgreementConfiguration_CreatedOnUtc, T1.InstitutionalAgreeme");
+            viewString.Append("ntConfiguration_CreatedByPrincipal, T1.InstitutionalAgreementConfiguration_Updat");
+            viewString.Append("edOnUtc, T1.InstitutionalAgreementConfiguration_UpdatedByPrincipal, T1.Instituti");
+            viewString.Append("onalAgreementConfiguration_Version, T1.InstitutionalAgreementConfiguration_IsCur");
+            viewString.Append("rent, T1.InstitutionalAgreementConfiguration_IsArchived, T1.InstitutionalAgreeme");
+            viewString.Append("ntConfiguration_IsDeleted)\r\n    FROM (\r\n        SELECT \r\n            T.RevisionI");
+            viewString.Append("d AS InstitutionalAgreementConfiguration_RevisionId, \r\n            T.ForEstablis");
+            viewString.Append("hmentId AS InstitutionalAgreementConfiguration_ForEstablishmentId, \r\n           ");
+            viewString.Append(" T.IsCustomTypeAllowed AS InstitutionalAgreementConfiguration_IsCustomTypeAllowe");
+            viewString.Append("d, \r\n            T.IsCustomStatusAllowed AS InstitutionalAgreementConfiguration_");
+            viewString.Append("IsCustomStatusAllowed, \r\n            T.IsCustomContactTypeAllowed AS Institution");
+            viewString.Append("alAgreementConfiguration_IsCustomContactTypeAllowed, \r\n            T.EntityId AS");
+            viewString.Append(" InstitutionalAgreementConfiguration_EntityId, \r\n            T.CreatedOnUtc AS I");
+            viewString.Append("nstitutionalAgreementConfiguration_CreatedOnUtc, \r\n            T.CreatedByPrinci");
+            viewString.Append("pal AS InstitutionalAgreementConfiguration_CreatedByPrincipal, \r\n            T.U");
+            viewString.Append("pdatedOnUtc AS InstitutionalAgreementConfiguration_UpdatedOnUtc, \r\n            T");
+            viewString.Append(".UpdatedByPrincipal AS InstitutionalAgreementConfiguration_UpdatedByPrincipal, \r");
+            viewString.Append("\n            T.Version AS InstitutionalAgreementConfiguration_Version, \r\n       ");
+            viewString.Append("     T.IsCurrent AS InstitutionalAgreementConfiguration_IsCurrent, \r\n           ");
+            viewString.Append(" T.IsArchived AS InstitutionalAgreementConfiguration_IsArchived, \r\n            T");
+            viewString.Append(".IsDeleted AS InstitutionalAgreementConfiguration_IsDeleted, \r\n            True ");
+            viewString.Append("AS _from0\r\n        FROM CodeFirstDatabase.InstitutionalAgreementConfiguration AS");
+            viewString.Append(" T\r\n    ) AS T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreementConfigurations", viewString.ToString());
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.InstitutionalAgreementTypeValues
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView88()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView92()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreementTypeValues", @"
     SELECT VALUE -- Constructing InstitutionalAgreementTypeValues
-        [UCosmic.Orm.InstitutionalAgreementTypeValue](T1.InstitutionalAgreementTypeValue_Id, T1.InstitutionalAgreementTypeValue_ConfigurationId, T1.InstitutionalAgreementTypeValue_Text)
+        [UCosmic.Impl.Orm.InstitutionalAgreementTypeValue](T1.InstitutionalAgreementTypeValue_Id, T1.InstitutionalAgreementTypeValue_ConfigurationId, T1.InstitutionalAgreementTypeValue_Text)
     FROM (
         SELECT 
             T.Id AS InstitutionalAgreementTypeValue_Id, 
@@ -3780,15 +3847,15 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.InstitutionalAgreementTypeValue AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.InstitutionalAgreementStatusValues
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView89()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView93()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreementStatusValues", @"
     SELECT VALUE -- Constructing InstitutionalAgreementStatusValues
-        [UCosmic.Orm.InstitutionalAgreementStatusValue](T1.InstitutionalAgreementStatusValue_Id, T1.InstitutionalAgreementStatusValue_ConfigurationId, T1.InstitutionalAgreementStatusValue_Text)
+        [UCosmic.Impl.Orm.InstitutionalAgreementStatusValue](T1.InstitutionalAgreementStatusValue_Id, T1.InstitutionalAgreementStatusValue_ConfigurationId, T1.InstitutionalAgreementStatusValue_Text)
     FROM (
         SELECT 
             T.Id AS InstitutionalAgreementStatusValue_Id, 
@@ -3798,15 +3865,15 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.InstitutionalAgreementStatusValue AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.InstitutionalAgreementContactTypeValues
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView90()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView94()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreementContactTypeValues", @"
     SELECT VALUE -- Constructing InstitutionalAgreementContactTypeValues
-        [UCosmic.Orm.InstitutionalAgreementContactTypeValue](T1.InstitutionalAgreementContactTypeValue_Id, T1.InstitutionalAgreementContactTypeValue_ConfigurationId, T1.InstitutionalAgreementContactTypeValue_Text)
+        [UCosmic.Impl.Orm.InstitutionalAgreementContactTypeValue](T1.InstitutionalAgreementContactTypeValue_Id, T1.InstitutionalAgreementContactTypeValue_ConfigurationId, T1.InstitutionalAgreementContactTypeValue_Text)
     FROM (
         SELECT 
             T.Id AS InstitutionalAgreementContactTypeValue_Id, 
@@ -3816,77 +3883,78 @@ namespace Edm_EntityMappingGeneratedViews
         FROM CodeFirstDatabase.InstitutionalAgreementContactTypeValue AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.LanguageName_NameForLanguage
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView91()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView95()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.LanguageName_NameForLanguage", "\r\n    SELECT VALUE -- Constructing LanguageName_NameForLanguage\r\n        [UCosmic" +
-                    ".Orm.LanguageName_NameForLanguage](T3.[LanguageName_NameForLanguage.LanguageName" +
-                    "_NameForLanguage_Source], T3.[LanguageName_NameForLanguage.LanguageName_NameForL" +
-                    "anguage_Target])\r\n    FROM (\r\n        SELECT -- Constructing LanguageName_NameFo" +
-                    "rLanguage_Source\r\n            CreateRef(UCosmicContext.LanguageNames, row(T2.[La" +
-                    "nguageName_NameForLanguage.LanguageName_NameForLanguage_Source.RevisionId]), [UC" +
-                    "osmic.Orm.LanguageName]) AS [LanguageName_NameForLanguage.LanguageName_NameForLa" +
-                    "nguage_Source], \r\n            T2.[LanguageName_NameForLanguage.LanguageName_Name" +
-                    "ForLanguage_Target]\r\n        FROM (\r\n            SELECT -- Constructing Language" +
-                    "Name_NameForLanguage_Target\r\n                T1.[LanguageName_NameForLanguage.La" +
-                    "nguageName_NameForLanguage_Source.RevisionId], \r\n                CreateRef(UCosm" +
-                    "icContext.Languages, row(T1.[LanguageName_NameForLanguage.LanguageName_NameForLa" +
-                    "nguage_Target.RevisionId]), [UCosmic.Orm.Language]) AS [LanguageName_NameForLang" +
-                    "uage.LanguageName_NameForLanguage_Target]\r\n            FROM (\r\n                S" +
-                    "ELECT \r\n                    T.RevisionId AS [LanguageName_NameForLanguage.Langua" +
-                    "geName_NameForLanguage_Source.RevisionId], \r\n                    T.NameForLangua" +
-                    "geId AS [LanguageName_NameForLanguage.LanguageName_NameForLanguage_Target.Revisi" +
-                    "onId], \r\n                    True AS _from0\r\n                FROM CodeFirstDatab" +
-                    "ase.LanguageName AS T\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
+                    ".Impl.Orm.LanguageName_NameForLanguage](T3.[LanguageName_NameForLanguage.Languag" +
+                    "eName_NameForLanguage_Source], T3.[LanguageName_NameForLanguage.LanguageName_Nam" +
+                    "eForLanguage_Target])\r\n    FROM (\r\n        SELECT -- Constructing LanguageName_N" +
+                    "ameForLanguage_Source\r\n            CreateRef(UCosmicContext.LanguageNames, row(T" +
+                    "2.[LanguageName_NameForLanguage.LanguageName_NameForLanguage_Source.RevisionId])" +
+                    ", [UCosmic.Impl.Orm.LanguageName]) AS [LanguageName_NameForLanguage.LanguageName" +
+                    "_NameForLanguage_Source], \r\n            T2.[LanguageName_NameForLanguage.Languag" +
+                    "eName_NameForLanguage_Target]\r\n        FROM (\r\n            SELECT -- Constructin" +
+                    "g LanguageName_NameForLanguage_Target\r\n                T1.[LanguageName_NameForL" +
+                    "anguage.LanguageName_NameForLanguage_Source.RevisionId], \r\n                Creat" +
+                    "eRef(UCosmicContext.Languages, row(T1.[LanguageName_NameForLanguage.LanguageName" +
+                    "_NameForLanguage_Target.RevisionId]), [UCosmic.Impl.Orm.Language]) AS [LanguageN" +
+                    "ame_NameForLanguage.LanguageName_NameForLanguage_Target]\r\n            FROM (\r\n  " +
+                    "              SELECT \r\n                    T.RevisionId AS [LanguageName_NameFor" +
+                    "Language.LanguageName_NameForLanguage_Source.RevisionId], \r\n                    " +
+                    "T.NameForLanguageId AS [LanguageName_NameForLanguage.LanguageName_NameForLanguag" +
+                    "e_Target.RevisionId], \r\n                    True AS _from0\r\n                FROM" +
+                    " CodeFirstDatabase.LanguageName AS T\r\n            ) AS T1\r\n        ) AS T2\r\n    " +
+                    ") AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.LanguageName_TranslationToLanguage
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView92()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView96()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.LanguageName_TranslationToLanguage", "\r\n    SELECT VALUE -- Constructing LanguageName_TranslationToLanguage\r\n        [U" +
-                    "Cosmic.Orm.LanguageName_TranslationToLanguage](T3.[LanguageName_TranslationToLan" +
-                    "guage.LanguageName_TranslationToLanguage_Source], T3.[LanguageName_TranslationTo" +
-                    "Language.LanguageName_TranslationToLanguage_Target])\r\n    FROM (\r\n        SELECT" +
-                    " -- Constructing LanguageName_TranslationToLanguage_Source\r\n            CreateRe" +
-                    "f(UCosmicContext.LanguageNames, row(T2.[LanguageName_TranslationToLanguage.Langu" +
-                    "ageName_TranslationToLanguage_Source.RevisionId]), [UCosmic.Orm.LanguageName]) A" +
-                    "S [LanguageName_TranslationToLanguage.LanguageName_TranslationToLanguage_Source]" +
-                    ", \r\n            T2.[LanguageName_TranslationToLanguage.LanguageName_TranslationT" +
-                    "oLanguage_Target]\r\n        FROM (\r\n            SELECT -- Constructing LanguageNa" +
-                    "me_TranslationToLanguage_Target\r\n                T1.[LanguageName_TranslationToL" +
-                    "anguage.LanguageName_TranslationToLanguage_Source.RevisionId], \r\n               " +
-                    " CreateRef(UCosmicContext.Languages, row(T1.[LanguageName_TranslationToLanguage." +
-                    "LanguageName_TranslationToLanguage_Target.RevisionId]), [UCosmic.Orm.Language]) " +
-                    "AS [LanguageName_TranslationToLanguage.LanguageName_TranslationToLanguage_Target" +
-                    "]\r\n            FROM (\r\n                SELECT \r\n                    T.RevisionId" +
-                    " AS [LanguageName_TranslationToLanguage.LanguageName_TranslationToLanguage_Sourc" +
-                    "e.RevisionId], \r\n                    T.TranslationToLanguageId AS [LanguageName_" +
-                    "TranslationToLanguage.LanguageName_TranslationToLanguage_Target.RevisionId], \r\n " +
-                    "                   True AS _from0\r\n                FROM CodeFirstDatabase.Langua" +
-                    "geName AS T\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
+                    "Cosmic.Impl.Orm.LanguageName_TranslationToLanguage](T3.[LanguageName_Translation" +
+                    "ToLanguage.LanguageName_TranslationToLanguage_Source], T3.[LanguageName_Translat" +
+                    "ionToLanguage.LanguageName_TranslationToLanguage_Target])\r\n    FROM (\r\n        S" +
+                    "ELECT -- Constructing LanguageName_TranslationToLanguage_Source\r\n            Cre" +
+                    "ateRef(UCosmicContext.LanguageNames, row(T2.[LanguageName_TranslationToLanguage." +
+                    "LanguageName_TranslationToLanguage_Source.RevisionId]), [UCosmic.Impl.Orm.Langua" +
+                    "geName]) AS [LanguageName_TranslationToLanguage.LanguageName_TranslationToLangua" +
+                    "ge_Source], \r\n            T2.[LanguageName_TranslationToLanguage.LanguageName_Tr" +
+                    "anslationToLanguage_Target]\r\n        FROM (\r\n            SELECT -- Constructing " +
+                    "LanguageName_TranslationToLanguage_Target\r\n                T1.[LanguageName_Tran" +
+                    "slationToLanguage.LanguageName_TranslationToLanguage_Source.RevisionId], \r\n     " +
+                    "           CreateRef(UCosmicContext.Languages, row(T1.[LanguageName_TranslationT" +
+                    "oLanguage.LanguageName_TranslationToLanguage_Target.RevisionId]), [UCosmic.Impl." +
+                    "Orm.Language]) AS [LanguageName_TranslationToLanguage.LanguageName_TranslationTo" +
+                    "Language_Target]\r\n            FROM (\r\n                SELECT \r\n                 " +
+                    "   T.RevisionId AS [LanguageName_TranslationToLanguage.LanguageName_TranslationT" +
+                    "oLanguage_Source.RevisionId], \r\n                    T.TranslationToLanguageId AS" +
+                    " [LanguageName_TranslationToLanguage.LanguageName_TranslationToLanguage_Target.R" +
+                    "evisionId], \r\n                    True AS _from0\r\n                FROM CodeFirst" +
+                    "Database.LanguageName AS T\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.Place_Parent
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView93()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView97()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.Place_Parent", @"
     SELECT VALUE -- Constructing Place_Parent
-        [UCosmic.Orm.Place_Parent](T3.[Place_Parent.Place_Parent_Source], T3.[Place_Parent.Place_Parent_Target])
+        [UCosmic.Impl.Orm.Place_Parent](T3.[Place_Parent.Place_Parent_Source], T3.[Place_Parent.Place_Parent_Target])
     FROM (
         SELECT -- Constructing Place_Parent_Source
-            CreateRef(UCosmicContext.Places, row(T2.[Place_Parent.Place_Parent_Source.RevisionId]), [UCosmic.Orm.Place]) AS [Place_Parent.Place_Parent_Source], 
+            CreateRef(UCosmicContext.Places, row(T2.[Place_Parent.Place_Parent_Source.RevisionId]), [UCosmic.Impl.Orm.Place]) AS [Place_Parent.Place_Parent_Source], 
             T2.[Place_Parent.Place_Parent_Target]
         FROM (
             SELECT -- Constructing Place_Parent_Target
                 T1.[Place_Parent.Place_Parent_Source.RevisionId], 
-                CreateRef(UCosmicContext.Places, row(T1.[Place_Parent.Place_Parent_Target.RevisionId]), [UCosmic.Orm.Place]) AS [Place_Parent.Place_Parent_Target]
+                CreateRef(UCosmicContext.Places, row(T1.[Place_Parent.Place_Parent_Target.RevisionId]), [UCosmic.Impl.Orm.Place]) AS [Place_Parent.Place_Parent_Target]
             FROM (
                 SELECT 
                     T.RevisionId AS [Place_Parent.Place_Parent_Source.RevisionId], 
@@ -3898,23 +3966,23 @@ namespace Edm_EntityMappingGeneratedViews
         ) AS T2
     ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoNamesToponym_Place
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView94()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView98()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoNamesToponym_Place", @"
     SELECT VALUE -- Constructing GeoNamesToponym_Place
-        [UCosmic.Orm.GeoNamesToponym_Place](T3.[GeoNamesToponym_Place.GeoNamesToponym_Place_Target], T3.[GeoNamesToponym_Place.GeoNamesToponym_Place_Source])
+        [UCosmic.Impl.Orm.GeoNamesToponym_Place](T3.[GeoNamesToponym_Place.GeoNamesToponym_Place_Target], T3.[GeoNamesToponym_Place.GeoNamesToponym_Place_Source])
     FROM (
         SELECT -- Constructing GeoNamesToponym_Place_Target
-            CreateRef(UCosmicContext.Places, row(T2.[GeoNamesToponym_Place.GeoNamesToponym_Place_Target.RevisionId]), [UCosmic.Orm.Place]) AS [GeoNamesToponym_Place.GeoNamesToponym_Place_Target], 
+            CreateRef(UCosmicContext.Places, row(T2.[GeoNamesToponym_Place.GeoNamesToponym_Place_Target.RevisionId]), [UCosmic.Impl.Orm.Place]) AS [GeoNamesToponym_Place.GeoNamesToponym_Place_Target], 
             T2.[GeoNamesToponym_Place.GeoNamesToponym_Place_Source]
         FROM (
             SELECT -- Constructing GeoNamesToponym_Place_Source
                 T1.[GeoNamesToponym_Place.GeoNamesToponym_Place_Target.RevisionId], 
-                CreateRef(UCosmicContext.GeoNamesToponyms, row(T1.[GeoNamesToponym_Place.GeoNamesToponym_Place_Source.GeoNameId]), [UCosmic.Orm.GeoNamesToponym]) AS [GeoNamesToponym_Place.GeoNamesToponym_Place_Source]
+                CreateRef(UCosmicContext.GeoNamesToponyms, row(T1.[GeoNamesToponym_Place.GeoNamesToponym_Place_Source.GeoNameId]), [UCosmic.Impl.Orm.GeoNamesToponym]) AS [GeoNamesToponym_Place.GeoNamesToponym_Place_Source]
             FROM (
                 SELECT 
                     T.PlaceId AS [GeoNamesToponym_Place.GeoNamesToponym_Place_Target.RevisionId], 
@@ -3926,23 +3994,23 @@ namespace Edm_EntityMappingGeneratedViews
         ) AS T2
     ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoNamesToponym_Parent
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView95()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView99()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoNamesToponym_Parent", @"
     SELECT VALUE -- Constructing GeoNamesToponym_Parent
-        [UCosmic.Orm.GeoNamesToponym_Parent](T3.[GeoNamesToponym_Parent.GeoNamesToponym_Parent_Source], T3.[GeoNamesToponym_Parent.GeoNamesToponym_Parent_Target])
+        [UCosmic.Impl.Orm.GeoNamesToponym_Parent](T3.[GeoNamesToponym_Parent.GeoNamesToponym_Parent_Source], T3.[GeoNamesToponym_Parent.GeoNamesToponym_Parent_Target])
     FROM (
         SELECT -- Constructing GeoNamesToponym_Parent_Source
-            CreateRef(UCosmicContext.GeoNamesToponyms, row(T2.[GeoNamesToponym_Parent.GeoNamesToponym_Parent_Source.GeoNameId]), [UCosmic.Orm.GeoNamesToponym]) AS [GeoNamesToponym_Parent.GeoNamesToponym_Parent_Source], 
+            CreateRef(UCosmicContext.GeoNamesToponyms, row(T2.[GeoNamesToponym_Parent.GeoNamesToponym_Parent_Source.GeoNameId]), [UCosmic.Impl.Orm.GeoNamesToponym]) AS [GeoNamesToponym_Parent.GeoNamesToponym_Parent_Source], 
             T2.[GeoNamesToponym_Parent.GeoNamesToponym_Parent_Target]
         FROM (
             SELECT -- Constructing GeoNamesToponym_Parent_Target
                 T1.[GeoNamesToponym_Parent.GeoNamesToponym_Parent_Source.GeoNameId], 
-                CreateRef(UCosmicContext.GeoNamesToponyms, row(T1.[GeoNamesToponym_Parent.GeoNamesToponym_Parent_Target.GeoNameId]), [UCosmic.Orm.GeoNamesToponym]) AS [GeoNamesToponym_Parent.GeoNamesToponym_Parent_Target]
+                CreateRef(UCosmicContext.GeoNamesToponyms, row(T1.[GeoNamesToponym_Parent.GeoNamesToponym_Parent_Target.GeoNameId]), [UCosmic.Impl.Orm.GeoNamesToponym]) AS [GeoNamesToponym_Parent.GeoNamesToponym_Parent_Target]
             FROM (
                 SELECT 
                     T.GeoNameId AS [GeoNamesToponym_Parent.GeoNamesToponym_Parent_Source.GeoNameId], 
@@ -3954,23 +4022,23 @@ namespace Edm_EntityMappingGeneratedViews
         ) AS T2
     ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoPlanetPlace_Parent
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView96()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView100()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoPlanetPlace_Parent", @"
     SELECT VALUE -- Constructing GeoPlanetPlace_Parent
-        [UCosmic.Orm.GeoPlanetPlace_Parent](T3.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Source], T3.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target])
+        [UCosmic.Impl.Orm.GeoPlanetPlace_Parent](T3.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Source], T3.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target])
     FROM (
         SELECT -- Constructing GeoPlanetPlace_Parent_Source
-            CreateRef(UCosmicContext.GeoPlanetPlaces, row(T2.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Source.WoeId]), [UCosmic.Orm.GeoPlanetPlace]) AS [GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Source], 
+            CreateRef(UCosmicContext.GeoPlanetPlaces, row(T2.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Source.WoeId]), [UCosmic.Impl.Orm.GeoPlanetPlace]) AS [GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Source], 
             T2.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target]
         FROM (
             SELECT -- Constructing GeoPlanetPlace_Parent_Target
                 T1.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Source.WoeId], 
-                CreateRef(UCosmicContext.GeoPlanetPlaces, row(T1.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target.WoeId]), [UCosmic.Orm.GeoPlanetPlace]) AS [GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target]
+                CreateRef(UCosmicContext.GeoPlanetPlaces, row(T1.[GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target.WoeId]), [UCosmic.Impl.Orm.GeoPlanetPlace]) AS [GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Target]
             FROM (
                 SELECT 
                     T.WoeId AS [GeoPlanetPlace_Parent.GeoPlanetPlace_Parent_Source.WoeId], 
@@ -3982,23 +4050,23 @@ namespace Edm_EntityMappingGeneratedViews
         ) AS T2
     ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoPlanetPlace_Type
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView97()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView101()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoPlanetPlace_Type", @"
     SELECT VALUE -- Constructing GeoPlanetPlace_Type
-        [UCosmic.Orm.GeoPlanetPlace_Type](T3.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Source], T3.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Target])
+        [UCosmic.Impl.Orm.GeoPlanetPlace_Type](T3.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Source], T3.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Target])
     FROM (
         SELECT -- Constructing GeoPlanetPlace_Type_Source
-            CreateRef(UCosmicContext.GeoPlanetPlaces, row(T2.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Source.WoeId]), [UCosmic.Orm.GeoPlanetPlace]) AS [GeoPlanetPlace_Type.GeoPlanetPlace_Type_Source], 
+            CreateRef(UCosmicContext.GeoPlanetPlaces, row(T2.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Source.WoeId]), [UCosmic.Impl.Orm.GeoPlanetPlace]) AS [GeoPlanetPlace_Type.GeoPlanetPlace_Type_Source], 
             T2.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Target]
         FROM (
             SELECT -- Constructing GeoPlanetPlace_Type_Target
                 T1.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Source.WoeId], 
-                CreateRef(UCosmicContext.GeoPlanetPlaceTypes, row(T1.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Target.Code]), [UCosmic.Orm.GeoPlanetPlaceType]) AS [GeoPlanetPlace_Type.GeoPlanetPlace_Type_Target]
+                CreateRef(UCosmicContext.GeoPlanetPlaceTypes, row(T1.[GeoPlanetPlace_Type.GeoPlanetPlace_Type_Target.Code]), [UCosmic.Impl.Orm.GeoPlanetPlaceType]) AS [GeoPlanetPlace_Type.GeoPlanetPlace_Type_Target]
             FROM (
                 SELECT 
                     T.WoeId AS [GeoPlanetPlace_Type.GeoPlanetPlace_Type_Source.WoeId], 
@@ -4009,23 +4077,23 @@ namespace Edm_EntityMappingGeneratedViews
         ) AS T2
     ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.GeoPlanetPlace_Place
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView98()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView102()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.GeoPlanetPlace_Place", @"
     SELECT VALUE -- Constructing GeoPlanetPlace_Place
-        [UCosmic.Orm.GeoPlanetPlace_Place](T3.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target], T3.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Source])
+        [UCosmic.Impl.Orm.GeoPlanetPlace_Place](T3.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target], T3.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Source])
     FROM (
         SELECT -- Constructing GeoPlanetPlace_Place_Target
-            CreateRef(UCosmicContext.Places, row(T2.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target.RevisionId]), [UCosmic.Orm.Place]) AS [GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target], 
+            CreateRef(UCosmicContext.Places, row(T2.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target.RevisionId]), [UCosmic.Impl.Orm.Place]) AS [GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target], 
             T2.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Source]
         FROM (
             SELECT -- Constructing GeoPlanetPlace_Place_Source
                 T1.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target.RevisionId], 
-                CreateRef(UCosmicContext.GeoPlanetPlaces, row(T1.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Source.WoeId]), [UCosmic.Orm.GeoPlanetPlace]) AS [GeoPlanetPlace_Place.GeoPlanetPlace_Place_Source]
+                CreateRef(UCosmicContext.GeoPlanetPlaces, row(T1.[GeoPlanetPlace_Place.GeoPlanetPlace_Place_Source.WoeId]), [UCosmic.Impl.Orm.GeoPlanetPlace]) AS [GeoPlanetPlace_Place.GeoPlanetPlace_Place_Source]
             FROM (
                 SELECT 
                     T.PlaceId AS [GeoPlanetPlace_Place.GeoPlanetPlace_Place_Target.RevisionId], 
@@ -4037,23 +4105,23 @@ namespace Edm_EntityMappingGeneratedViews
         ) AS T2
     ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.PlaceName_NameFor
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView99()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView103()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.PlaceName_NameFor", @"
     SELECT VALUE -- Constructing PlaceName_NameFor
-        [UCosmic.Orm.PlaceName_NameFor](T3.[PlaceName_NameFor.PlaceName_NameFor_Source], T3.[PlaceName_NameFor.PlaceName_NameFor_Target])
+        [UCosmic.Impl.Orm.PlaceName_NameFor](T3.[PlaceName_NameFor.PlaceName_NameFor_Source], T3.[PlaceName_NameFor.PlaceName_NameFor_Target])
     FROM (
         SELECT -- Constructing PlaceName_NameFor_Source
-            CreateRef(UCosmicContext.PlaceNames, row(T2.[PlaceName_NameFor.PlaceName_NameFor_Source.RevisionId]), [UCosmic.Orm.PlaceName]) AS [PlaceName_NameFor.PlaceName_NameFor_Source], 
+            CreateRef(UCosmicContext.PlaceNames, row(T2.[PlaceName_NameFor.PlaceName_NameFor_Source.RevisionId]), [UCosmic.Impl.Orm.PlaceName]) AS [PlaceName_NameFor.PlaceName_NameFor_Source], 
             T2.[PlaceName_NameFor.PlaceName_NameFor_Target]
         FROM (
             SELECT -- Constructing PlaceName_NameFor_Target
                 T1.[PlaceName_NameFor.PlaceName_NameFor_Source.RevisionId], 
-                CreateRef(UCosmicContext.Places, row(T1.[PlaceName_NameFor.PlaceName_NameFor_Target.RevisionId]), [UCosmic.Orm.Place]) AS [PlaceName_NameFor.PlaceName_NameFor_Target]
+                CreateRef(UCosmicContext.Places, row(T1.[PlaceName_NameFor.PlaceName_NameFor_Target.RevisionId]), [UCosmic.Impl.Orm.Place]) AS [PlaceName_NameFor.PlaceName_NameFor_Target]
             FROM (
                 SELECT 
                     T.RevisionId AS [PlaceName_NameFor.PlaceName_NameFor_Source.RevisionId], 
@@ -4064,51 +4132,51 @@ namespace Edm_EntityMappingGeneratedViews
         ) AS T2
     ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.PlaceName_TranslationToLanguage
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView100()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView104()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.PlaceName_TranslationToLanguage", "\r\n    SELECT VALUE -- Constructing PlaceName_TranslationToLanguage\r\n        [UCos" +
-                    "mic.Orm.PlaceName_TranslationToLanguage](T3.[PlaceName_TranslationToLanguage.Pla" +
-                    "ceName_TranslationToLanguage_Source], T3.[PlaceName_TranslationToLanguage.PlaceN" +
-                    "ame_TranslationToLanguage_Target])\r\n    FROM (\r\n        SELECT -- Constructing P" +
-                    "laceName_TranslationToLanguage_Source\r\n            CreateRef(UCosmicContext.Plac" +
-                    "eNames, row(T2.[PlaceName_TranslationToLanguage.PlaceName_TranslationToLanguage_" +
-                    "Source.RevisionId]), [UCosmic.Orm.PlaceName]) AS [PlaceName_TranslationToLanguag" +
-                    "e.PlaceName_TranslationToLanguage_Source], \r\n            T2.[PlaceName_Translati" +
-                    "onToLanguage.PlaceName_TranslationToLanguage_Target]\r\n        FROM (\r\n          " +
-                    "  SELECT -- Constructing PlaceName_TranslationToLanguage_Target\r\n               " +
-                    " T1.[PlaceName_TranslationToLanguage.PlaceName_TranslationToLanguage_Source.Revi" +
-                    "sionId], \r\n                CreateRef(UCosmicContext.Languages, row(T1.[PlaceName" +
-                    "_TranslationToLanguage.PlaceName_TranslationToLanguage_Target.RevisionId]), [UCo" +
-                    "smic.Orm.Language]) AS [PlaceName_TranslationToLanguage.PlaceName_TranslationToL" +
-                    "anguage_Target]\r\n            FROM (\r\n                SELECT \r\n                  " +
-                    "  T.RevisionId AS [PlaceName_TranslationToLanguage.PlaceName_TranslationToLangua" +
-                    "ge_Source.RevisionId], \r\n                    T.TranslationToLanguageId AS [Place" +
-                    "Name_TranslationToLanguage.PlaceName_TranslationToLanguage_Target.RevisionId], \r" +
-                    "\n                    True AS _from0\r\n                FROM CodeFirstDatabase.Plac" +
-                    "eName AS T\r\n                WHERE T.TranslationToLanguageId IS NOT NULL\r\n       " +
-                    "     ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
+                    "mic.Impl.Orm.PlaceName_TranslationToLanguage](T3.[PlaceName_TranslationToLanguag" +
+                    "e.PlaceName_TranslationToLanguage_Source], T3.[PlaceName_TranslationToLanguage.P" +
+                    "laceName_TranslationToLanguage_Target])\r\n    FROM (\r\n        SELECT -- Construct" +
+                    "ing PlaceName_TranslationToLanguage_Source\r\n            CreateRef(UCosmicContext" +
+                    ".PlaceNames, row(T2.[PlaceName_TranslationToLanguage.PlaceName_TranslationToLang" +
+                    "uage_Source.RevisionId]), [UCosmic.Impl.Orm.PlaceName]) AS [PlaceName_Translatio" +
+                    "nToLanguage.PlaceName_TranslationToLanguage_Source], \r\n            T2.[PlaceName" +
+                    "_TranslationToLanguage.PlaceName_TranslationToLanguage_Target]\r\n        FROM (\r\n" +
+                    "            SELECT -- Constructing PlaceName_TranslationToLanguage_Target\r\n     " +
+                    "           T1.[PlaceName_TranslationToLanguage.PlaceName_TranslationToLanguage_S" +
+                    "ource.RevisionId], \r\n                CreateRef(UCosmicContext.Languages, row(T1." +
+                    "[PlaceName_TranslationToLanguage.PlaceName_TranslationToLanguage_Target.Revision" +
+                    "Id]), [UCosmic.Impl.Orm.Language]) AS [PlaceName_TranslationToLanguage.PlaceName" +
+                    "_TranslationToLanguage_Target]\r\n            FROM (\r\n                SELECT \r\n   " +
+                    "                 T.RevisionId AS [PlaceName_TranslationToLanguage.PlaceName_Tran" +
+                    "slationToLanguage_Source.RevisionId], \r\n                    T.TranslationToLangu" +
+                    "ageId AS [PlaceName_TranslationToLanguage.PlaceName_TranslationToLanguage_Target" +
+                    ".RevisionId], \r\n                    True AS _from0\r\n                FROM CodeFir" +
+                    "stDatabase.PlaceName AS T\r\n                WHERE T.TranslationToLanguageId IS NO" +
+                    "T NULL\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.RoleGrant_User
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView101()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView105()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.RoleGrant_User", @"
     SELECT VALUE -- Constructing RoleGrant_User
-        [UCosmic.Orm.RoleGrant_User](T3.[RoleGrant_User.RoleGrant_User_Source], T3.[RoleGrant_User.RoleGrant_User_Target])
+        [UCosmic.Impl.Orm.RoleGrant_User](T3.[RoleGrant_User.RoleGrant_User_Source], T3.[RoleGrant_User.RoleGrant_User_Target])
     FROM (
         SELECT -- Constructing RoleGrant_User_Source
-            CreateRef(UCosmicContext.RoleGrants, row(T2.[RoleGrant_User.RoleGrant_User_Source.RevisionId]), [UCosmic.Orm.RoleGrant]) AS [RoleGrant_User.RoleGrant_User_Source], 
+            CreateRef(UCosmicContext.RoleGrants, row(T2.[RoleGrant_User.RoleGrant_User_Source.RevisionId]), [UCosmic.Impl.Orm.RoleGrant]) AS [RoleGrant_User.RoleGrant_User_Source], 
             T2.[RoleGrant_User.RoleGrant_User_Target]
         FROM (
             SELECT -- Constructing RoleGrant_User_Target
                 T1.[RoleGrant_User.RoleGrant_User_Source.RevisionId], 
-                CreateRef(UCosmicContext.Users, row(T1.[RoleGrant_User.RoleGrant_User_Target.RevisionId]), [UCosmic.Orm.User]) AS [RoleGrant_User.RoleGrant_User_Target]
+                CreateRef(UCosmicContext.Users, row(T1.[RoleGrant_User.RoleGrant_User_Target.RevisionId]), [UCosmic.Impl.Orm.User]) AS [RoleGrant_User.RoleGrant_User_Target]
             FROM (
                 SELECT 
                     T.RevisionId AS [RoleGrant_User.RoleGrant_User_Source.RevisionId], 
@@ -4119,23 +4187,23 @@ namespace Edm_EntityMappingGeneratedViews
         ) AS T2
     ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.RoleGrant_Role
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView102()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView106()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.RoleGrant_Role", @"
     SELECT VALUE -- Constructing RoleGrant_Role
-        [UCosmic.Orm.RoleGrant_Role](T3.[RoleGrant_Role.RoleGrant_Role_Source], T3.[RoleGrant_Role.RoleGrant_Role_Target])
+        [UCosmic.Impl.Orm.RoleGrant_Role](T3.[RoleGrant_Role.RoleGrant_Role_Source], T3.[RoleGrant_Role.RoleGrant_Role_Target])
     FROM (
         SELECT -- Constructing RoleGrant_Role_Source
-            CreateRef(UCosmicContext.RoleGrants, row(T2.[RoleGrant_Role.RoleGrant_Role_Source.RevisionId]), [UCosmic.Orm.RoleGrant]) AS [RoleGrant_Role.RoleGrant_Role_Source], 
+            CreateRef(UCosmicContext.RoleGrants, row(T2.[RoleGrant_Role.RoleGrant_Role_Source.RevisionId]), [UCosmic.Impl.Orm.RoleGrant]) AS [RoleGrant_Role.RoleGrant_Role_Source], 
             T2.[RoleGrant_Role.RoleGrant_Role_Target]
         FROM (
             SELECT -- Constructing RoleGrant_Role_Target
                 T1.[RoleGrant_Role.RoleGrant_Role_Source.RevisionId], 
-                CreateRef(UCosmicContext.Roles, row(T1.[RoleGrant_Role.RoleGrant_Role_Target.RevisionId]), [UCosmic.Orm.Role]) AS [RoleGrant_Role.RoleGrant_Role_Target]
+                CreateRef(UCosmicContext.Roles, row(T1.[RoleGrant_Role.RoleGrant_Role_Target.RevisionId]), [UCosmic.Impl.Orm.Role]) AS [RoleGrant_Role.RoleGrant_Role_Target]
             FROM (
                 SELECT 
                     T.RevisionId AS [RoleGrant_Role.RoleGrant_Role_Source.RevisionId], 
@@ -4146,54 +4214,54 @@ namespace Edm_EntityMappingGeneratedViews
         ) AS T2
     ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EstablishmentName_TranslationToLanguage
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView103()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView107()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentName_TranslationToLanguage", "\r\n    SELECT VALUE -- Constructing EstablishmentName_TranslationToLanguage\r\n     " +
-                    "   [UCosmic.Orm.EstablishmentName_TranslationToLanguage](T3.[EstablishmentName_T" +
-                    "ranslationToLanguage.EstablishmentName_TranslationToLanguage_Source], T3.[Establ" +
-                    "ishmentName_TranslationToLanguage.EstablishmentName_TranslationToLanguage_Target" +
-                    "])\r\n    FROM (\r\n        SELECT -- Constructing EstablishmentName_TranslationToLa" +
-                    "nguage_Source\r\n            CreateRef(UCosmicContext.EstablishmentNames, row(T2.[" +
-                    "EstablishmentName_TranslationToLanguage.EstablishmentName_TranslationToLanguage_" +
-                    "Source.RevisionId]), [UCosmic.Orm.EstablishmentName]) AS [EstablishmentName_Tran" +
-                    "slationToLanguage.EstablishmentName_TranslationToLanguage_Source], \r\n           " +
-                    " T2.[EstablishmentName_TranslationToLanguage.EstablishmentName_TranslationToLang" +
-                    "uage_Target]\r\n        FROM (\r\n            SELECT -- Constructing EstablishmentNa" +
-                    "me_TranslationToLanguage_Target\r\n                T1.[EstablishmentName_Translati" +
-                    "onToLanguage.EstablishmentName_TranslationToLanguage_Source.RevisionId], \r\n     " +
-                    "           CreateRef(UCosmicContext.Languages, row(T1.[EstablishmentName_Transla" +
-                    "tionToLanguage.EstablishmentName_TranslationToLanguage_Target.RevisionId]), [UCo" +
-                    "smic.Orm.Language]) AS [EstablishmentName_TranslationToLanguage.EstablishmentNam" +
-                    "e_TranslationToLanguage_Target]\r\n            FROM (\r\n                SELECT \r\n  " +
-                    "                  T.RevisionId AS [EstablishmentName_TranslationToLanguage.Estab" +
-                    "lishmentName_TranslationToLanguage_Source.RevisionId], \r\n                    T.T" +
-                    "ranslationToLanguageId AS [EstablishmentName_TranslationToLanguage.Establishment" +
-                    "Name_TranslationToLanguage_Target.RevisionId], \r\n                    True AS _fr" +
-                    "om0\r\n                FROM CodeFirstDatabase.EstablishmentName AS T\r\n            " +
-                    "    WHERE T.TranslationToLanguageId IS NOT NULL\r\n            ) AS T1\r\n        ) " +
-                    "AS T2\r\n    ) AS T3");
+                    "   [UCosmic.Impl.Orm.EstablishmentName_TranslationToLanguage](T3.[EstablishmentN" +
+                    "ame_TranslationToLanguage.EstablishmentName_TranslationToLanguage_Source], T3.[E" +
+                    "stablishmentName_TranslationToLanguage.EstablishmentName_TranslationToLanguage_T" +
+                    "arget])\r\n    FROM (\r\n        SELECT -- Constructing EstablishmentName_Translatio" +
+                    "nToLanguage_Source\r\n            CreateRef(UCosmicContext.EstablishmentNames, row" +
+                    "(T2.[EstablishmentName_TranslationToLanguage.EstablishmentName_TranslationToLang" +
+                    "uage_Source.RevisionId]), [UCosmic.Impl.Orm.EstablishmentName]) AS [Establishmen" +
+                    "tName_TranslationToLanguage.EstablishmentName_TranslationToLanguage_Source], \r\n " +
+                    "           T2.[EstablishmentName_TranslationToLanguage.EstablishmentName_Transla" +
+                    "tionToLanguage_Target]\r\n        FROM (\r\n            SELECT -- Constructing Estab" +
+                    "lishmentName_TranslationToLanguage_Target\r\n                T1.[EstablishmentName" +
+                    "_TranslationToLanguage.EstablishmentName_TranslationToLanguage_Source.RevisionId" +
+                    "], \r\n                CreateRef(UCosmicContext.Languages, row(T1.[EstablishmentNa" +
+                    "me_TranslationToLanguage.EstablishmentName_TranslationToLanguage_Target.Revision" +
+                    "Id]), [UCosmic.Impl.Orm.Language]) AS [EstablishmentName_TranslationToLanguage.E" +
+                    "stablishmentName_TranslationToLanguage_Target]\r\n            FROM (\r\n            " +
+                    "    SELECT \r\n                    T.RevisionId AS [EstablishmentName_TranslationT" +
+                    "oLanguage.EstablishmentName_TranslationToLanguage_Source.RevisionId], \r\n        " +
+                    "            T.TranslationToLanguageId AS [EstablishmentName_TranslationToLanguag" +
+                    "e.EstablishmentName_TranslationToLanguage_Target.RevisionId], \r\n                " +
+                    "    True AS _from0\r\n                FROM CodeFirstDatabase.EstablishmentName AS " +
+                    "T\r\n                WHERE T.TranslationToLanguageId IS NOT NULL\r\n            ) AS" +
+                    " T1\r\n        ) AS T2\r\n    ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.Establishment_Names
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView104()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView108()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.Establishment_Names", @"
     SELECT VALUE -- Constructing Establishment_Names
-        [UCosmic.Orm.Establishment_Names](T3.[Establishment_Names.Establishment_Names_Source], T3.[Establishment_Names.Establishment_Names_Target])
+        [UCosmic.Impl.Orm.Establishment_Names](T3.[Establishment_Names.Establishment_Names_Source], T3.[Establishment_Names.Establishment_Names_Target])
     FROM (
         SELECT -- Constructing Establishment_Names_Source
-            CreateRef(UCosmicContext.Establishments, row(T2.[Establishment_Names.Establishment_Names_Source.RevisionId]), [UCosmic.Orm.Establishment]) AS [Establishment_Names.Establishment_Names_Source], 
+            CreateRef(UCosmicContext.Establishments, row(T2.[Establishment_Names.Establishment_Names_Source.RevisionId]), [UCosmic.Impl.Orm.Establishment]) AS [Establishment_Names.Establishment_Names_Source], 
             T2.[Establishment_Names.Establishment_Names_Target]
         FROM (
             SELECT -- Constructing Establishment_Names_Target
                 T1.[Establishment_Names.Establishment_Names_Source.RevisionId], 
-                CreateRef(UCosmicContext.EstablishmentNames, row(T1.[Establishment_Names.Establishment_Names_Target.RevisionId]), [UCosmic.Orm.EstablishmentName]) AS [Establishment_Names.Establishment_Names_Target]
+                CreateRef(UCosmicContext.EstablishmentNames, row(T1.[Establishment_Names.Establishment_Names_Target.RevisionId]), [UCosmic.Impl.Orm.EstablishmentName]) AS [Establishment_Names.Establishment_Names_Target]
             FROM (
                 SELECT 
                     T.ForEstablishmentId AS [Establishment_Names.Establishment_Names_Source.RevisionId], 
@@ -4204,23 +4272,23 @@ namespace Edm_EntityMappingGeneratedViews
         ) AS T2
     ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.Establishment_Urls
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView105()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView109()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.Establishment_Urls", @"
     SELECT VALUE -- Constructing Establishment_Urls
-        [UCosmic.Orm.Establishment_Urls](T3.[Establishment_Urls.Establishment_Urls_Source], T3.[Establishment_Urls.Establishment_Urls_Target])
+        [UCosmic.Impl.Orm.Establishment_Urls](T3.[Establishment_Urls.Establishment_Urls_Source], T3.[Establishment_Urls.Establishment_Urls_Target])
     FROM (
         SELECT -- Constructing Establishment_Urls_Source
-            CreateRef(UCosmicContext.Establishments, row(T2.[Establishment_Urls.Establishment_Urls_Source.RevisionId]), [UCosmic.Orm.Establishment]) AS [Establishment_Urls.Establishment_Urls_Source], 
+            CreateRef(UCosmicContext.Establishments, row(T2.[Establishment_Urls.Establishment_Urls_Source.RevisionId]), [UCosmic.Impl.Orm.Establishment]) AS [Establishment_Urls.Establishment_Urls_Source], 
             T2.[Establishment_Urls.Establishment_Urls_Target]
         FROM (
             SELECT -- Constructing Establishment_Urls_Target
                 T1.[Establishment_Urls.Establishment_Urls_Source.RevisionId], 
-                CreateRef(UCosmicContext.EstablishmentUrls, row(T1.[Establishment_Urls.Establishment_Urls_Target.RevisionId]), [UCosmic.Orm.EstablishmentUrl]) AS [Establishment_Urls.Establishment_Urls_Target]
+                CreateRef(UCosmicContext.EstablishmentUrls, row(T1.[Establishment_Urls.Establishment_Urls_Target.RevisionId]), [UCosmic.Impl.Orm.EstablishmentUrl]) AS [Establishment_Urls.Establishment_Urls_Target]
             FROM (
                 SELECT 
                     T.ForEstablishmentId AS [Establishment_Urls.Establishment_Urls_Source.RevisionId], 
@@ -4231,23 +4299,23 @@ namespace Edm_EntityMappingGeneratedViews
         ) AS T2
     ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.Establishment_Parent
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView106()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView110()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.Establishment_Parent", @"
     SELECT VALUE -- Constructing Establishment_Parent
-        [UCosmic.Orm.Establishment_Parent](T3.[Establishment_Parent.Establishment_Parent_Source], T3.[Establishment_Parent.Establishment_Parent_Target])
+        [UCosmic.Impl.Orm.Establishment_Parent](T3.[Establishment_Parent.Establishment_Parent_Source], T3.[Establishment_Parent.Establishment_Parent_Target])
     FROM (
         SELECT -- Constructing Establishment_Parent_Source
-            CreateRef(UCosmicContext.Establishments, row(T2.[Establishment_Parent.Establishment_Parent_Source.RevisionId]), [UCosmic.Orm.Establishment]) AS [Establishment_Parent.Establishment_Parent_Source], 
+            CreateRef(UCosmicContext.Establishments, row(T2.[Establishment_Parent.Establishment_Parent_Source.RevisionId]), [UCosmic.Impl.Orm.Establishment]) AS [Establishment_Parent.Establishment_Parent_Source], 
             T2.[Establishment_Parent.Establishment_Parent_Target]
         FROM (
             SELECT -- Constructing Establishment_Parent_Target
                 T1.[Establishment_Parent.Establishment_Parent_Source.RevisionId], 
-                CreateRef(UCosmicContext.Establishments, row(T1.[Establishment_Parent.Establishment_Parent_Target.RevisionId]), [UCosmic.Orm.Establishment]) AS [Establishment_Parent.Establishment_Parent_Target]
+                CreateRef(UCosmicContext.Establishments, row(T1.[Establishment_Parent.Establishment_Parent_Target.RevisionId]), [UCosmic.Impl.Orm.Establishment]) AS [Establishment_Parent.Establishment_Parent_Target]
             FROM (
                 SELECT 
                     T.RevisionId AS [Establishment_Parent.Establishment_Parent_Source.RevisionId], 
@@ -4259,109 +4327,109 @@ namespace Edm_EntityMappingGeneratedViews
         ) AS T2
     ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EstablishmentAddress_TranslationToLanguage
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView107()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView111()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentAddress_TranslationToLanguage", "\r\n    SELECT VALUE -- Constructing EstablishmentAddress_TranslationToLanguage\r\n  " +
-                    "      [UCosmic.Orm.EstablishmentAddress_TranslationToLanguage](T3.[Establishment" +
-                    "Address_TranslationToLanguage.EstablishmentAddress_TranslationToLanguage_Source]" +
-                    ", T3.[EstablishmentAddress_TranslationToLanguage.EstablishmentAddress_Translatio" +
-                    "nToLanguage_Target])\r\n    FROM (\r\n        SELECT -- Constructing EstablishmentAd" +
-                    "dress_TranslationToLanguage_Source\r\n            CreateRef(UCosmicContext.Establi" +
-                    "shmentAddresses, row(T2.[EstablishmentAddress_TranslationToLanguage.Establishmen" +
-                    "tAddress_TranslationToLanguage_Source.RevisionId]), [UCosmic.Orm.EstablishmentAd" +
-                    "dress]) AS [EstablishmentAddress_TranslationToLanguage.EstablishmentAddress_Tran" +
-                    "slationToLanguage_Source], \r\n            T2.[EstablishmentAddress_TranslationToL" +
-                    "anguage.EstablishmentAddress_TranslationToLanguage_Target]\r\n        FROM (\r\n    " +
-                    "        SELECT -- Constructing EstablishmentAddress_TranslationToLanguage_Target" +
-                    "\r\n                T1.[EstablishmentAddress_TranslationToLanguage.EstablishmentAd" +
-                    "dress_TranslationToLanguage_Source.RevisionId], \r\n                CreateRef(UCos" +
-                    "micContext.Languages, row(T1.[EstablishmentAddress_TranslationToLanguage.Establi" +
-                    "shmentAddress_TranslationToLanguage_Target.RevisionId]), [UCosmic.Orm.Language])" +
-                    " AS [EstablishmentAddress_TranslationToLanguage.EstablishmentAddress_Translation" +
-                    "ToLanguage_Target]\r\n            FROM (\r\n                SELECT \r\n               " +
-                    "     T.RevisionId AS [EstablishmentAddress_TranslationToLanguage.EstablishmentAd" +
-                    "dress_TranslationToLanguage_Source.RevisionId], \r\n                    T.Translat" +
-                    "ionToLanguageId AS [EstablishmentAddress_TranslationToLanguage.EstablishmentAddr" +
-                    "ess_TranslationToLanguage_Target.RevisionId], \r\n                    True AS _fro" +
-                    "m0\r\n                FROM CodeFirstDatabase.EstablishmentAddress AS T\r\n          " +
-                    "  ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
+                    "      [UCosmic.Impl.Orm.EstablishmentAddress_TranslationToLanguage](T3.[Establis" +
+                    "hmentAddress_TranslationToLanguage.EstablishmentAddress_TranslationToLanguage_So" +
+                    "urce], T3.[EstablishmentAddress_TranslationToLanguage.EstablishmentAddress_Trans" +
+                    "lationToLanguage_Target])\r\n    FROM (\r\n        SELECT -- Constructing Establishm" +
+                    "entAddress_TranslationToLanguage_Source\r\n            CreateRef(UCosmicContext.Es" +
+                    "tablishmentAddresses, row(T2.[EstablishmentAddress_TranslationToLanguage.Establi" +
+                    "shmentAddress_TranslationToLanguage_Source.RevisionId]), [UCosmic.Impl.Orm.Estab" +
+                    "lishmentAddress]) AS [EstablishmentAddress_TranslationToLanguage.EstablishmentAd" +
+                    "dress_TranslationToLanguage_Source], \r\n            T2.[EstablishmentAddress_Tran" +
+                    "slationToLanguage.EstablishmentAddress_TranslationToLanguage_Target]\r\n        FR" +
+                    "OM (\r\n            SELECT -- Constructing EstablishmentAddress_TranslationToLangu" +
+                    "age_Target\r\n                T1.[EstablishmentAddress_TranslationToLanguage.Estab" +
+                    "lishmentAddress_TranslationToLanguage_Source.RevisionId], \r\n                Crea" +
+                    "teRef(UCosmicContext.Languages, row(T1.[EstablishmentAddress_TranslationToLangua" +
+                    "ge.EstablishmentAddress_TranslationToLanguage_Target.RevisionId]), [UCosmic.Impl" +
+                    ".Orm.Language]) AS [EstablishmentAddress_TranslationToLanguage.EstablishmentAddr" +
+                    "ess_TranslationToLanguage_Target]\r\n            FROM (\r\n                SELECT \r\n" +
+                    "                    T.RevisionId AS [EstablishmentAddress_TranslationToLanguage." +
+                    "EstablishmentAddress_TranslationToLanguage_Source.RevisionId], \r\n               " +
+                    "     T.TranslationToLanguageId AS [EstablishmentAddress_TranslationToLanguage.Es" +
+                    "tablishmentAddress_TranslationToLanguage_Target.RevisionId], \r\n                 " +
+                    "   True AS _from0\r\n                FROM CodeFirstDatabase.EstablishmentAddress A" +
+                    "S T\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EstablishmentLocation_Addresses
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView108()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView112()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentLocation_Addresses", "\r\n    SELECT VALUE -- Constructing EstablishmentLocation_Addresses\r\n        [UCos" +
-                    "mic.Orm.EstablishmentLocation_Addresses](T3.[EstablishmentLocation_Addresses.Est" +
-                    "ablishmentLocation_Addresses_Source], T3.[EstablishmentLocation_Addresses.Establ" +
-                    "ishmentLocation_Addresses_Target])\r\n    FROM (\r\n        SELECT -- Constructing E" +
-                    "stablishmentLocation_Addresses_Source\r\n            CreateRef(UCosmicContext.Esta" +
-                    "blishmentLocations, row(T2.[EstablishmentLocation_Addresses.EstablishmentLocatio" +
-                    "n_Addresses_Source.RevisionId]), [UCosmic.Orm.EstablishmentLocation]) AS [Establ" +
-                    "ishmentLocation_Addresses.EstablishmentLocation_Addresses_Source], \r\n           " +
-                    " T2.[EstablishmentLocation_Addresses.EstablishmentLocation_Addresses_Target]\r\n  " +
-                    "      FROM (\r\n            SELECT -- Constructing EstablishmentLocation_Addresses" +
-                    "_Target\r\n                T1.[EstablishmentLocation_Addresses.EstablishmentLocati" +
-                    "on_Addresses_Source.RevisionId], \r\n                CreateRef(UCosmicContext.Esta" +
-                    "blishmentAddresses, row(T1.[EstablishmentLocation_Addresses.EstablishmentLocatio" +
-                    "n_Addresses_Target.RevisionId]), [UCosmic.Orm.EstablishmentAddress]) AS [Establi" +
-                    "shmentLocation_Addresses.EstablishmentLocation_Addresses_Target]\r\n            FR" +
-                    "OM (\r\n                SELECT \r\n                    T.EstablishmentLocationId AS " +
-                    "[EstablishmentLocation_Addresses.EstablishmentLocation_Addresses_Source.Revision" +
-                    "Id], \r\n                    T.RevisionId AS [EstablishmentLocation_Addresses.Esta" +
-                    "blishmentLocation_Addresses_Target.RevisionId], \r\n                    True AS _f" +
-                    "rom0\r\n                FROM CodeFirstDatabase.EstablishmentAddress AS T\r\n        " +
-                    "    ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
+                    "mic.Impl.Orm.EstablishmentLocation_Addresses](T3.[EstablishmentLocation_Addresse" +
+                    "s.EstablishmentLocation_Addresses_Source], T3.[EstablishmentLocation_Addresses.E" +
+                    "stablishmentLocation_Addresses_Target])\r\n    FROM (\r\n        SELECT -- Construct" +
+                    "ing EstablishmentLocation_Addresses_Source\r\n            CreateRef(UCosmicContext" +
+                    ".EstablishmentLocations, row(T2.[EstablishmentLocation_Addresses.EstablishmentLo" +
+                    "cation_Addresses_Source.RevisionId]), [UCosmic.Impl.Orm.EstablishmentLocation]) " +
+                    "AS [EstablishmentLocation_Addresses.EstablishmentLocation_Addresses_Source], \r\n " +
+                    "           T2.[EstablishmentLocation_Addresses.EstablishmentLocation_Addresses_T" +
+                    "arget]\r\n        FROM (\r\n            SELECT -- Constructing EstablishmentLocation" +
+                    "_Addresses_Target\r\n                T1.[EstablishmentLocation_Addresses.Establish" +
+                    "mentLocation_Addresses_Source.RevisionId], \r\n                CreateRef(UCosmicCo" +
+                    "ntext.EstablishmentAddresses, row(T1.[EstablishmentLocation_Addresses.Establishm" +
+                    "entLocation_Addresses_Target.RevisionId]), [UCosmic.Impl.Orm.EstablishmentAddres" +
+                    "s]) AS [EstablishmentLocation_Addresses.EstablishmentLocation_Addresses_Target]\r" +
+                    "\n            FROM (\r\n                SELECT \r\n                    T.Establishmen" +
+                    "tLocationId AS [EstablishmentLocation_Addresses.EstablishmentLocation_Addresses_" +
+                    "Source.RevisionId], \r\n                    T.RevisionId AS [EstablishmentLocation" +
+                    "_Addresses.EstablishmentLocation_Addresses_Target.RevisionId], \r\n               " +
+                    "     True AS _from0\r\n                FROM CodeFirstDatabase.EstablishmentAddress" +
+                    " AS T\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EstablishmentLocation_Places
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView109()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView113()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EstablishmentLocation_Places", "\r\n    SELECT VALUE -- Constructing EstablishmentLocation_Places\r\n        [UCosmic" +
-                    ".Orm.EstablishmentLocation_Places](T3.[EstablishmentLocation_Places.Establishmen" +
-                    "tLocation_Places_Source], T3.[EstablishmentLocation_Places.EstablishmentLocation" +
-                    "_Places_Target])\r\n    FROM (\r\n        SELECT -- Constructing EstablishmentLocati" +
-                    "on_Places_Source\r\n            CreateRef(UCosmicContext.EstablishmentLocations, r" +
-                    "ow(T2.[EstablishmentLocation_Places.EstablishmentLocation_Places_Source.Revision" +
-                    "Id]), [UCosmic.Orm.EstablishmentLocation]) AS [EstablishmentLocation_Places.Esta" +
-                    "blishmentLocation_Places_Source], \r\n            T2.[EstablishmentLocation_Places" +
-                    ".EstablishmentLocation_Places_Target]\r\n        FROM (\r\n            SELECT -- Con" +
-                    "structing EstablishmentLocation_Places_Target\r\n                T1.[Establishment" +
-                    "Location_Places.EstablishmentLocation_Places_Source.RevisionId], \r\n             " +
-                    "   CreateRef(UCosmicContext.Places, row(T1.[EstablishmentLocation_Places.Establi" +
-                    "shmentLocation_Places_Target.RevisionId]), [UCosmic.Orm.Place]) AS [Establishmen" +
-                    "tLocation_Places.EstablishmentLocation_Places_Target]\r\n            FROM (\r\n     " +
-                    "           SELECT \r\n                    T.EstablishmentLocationId AS [Establishm" +
-                    "entLocation_Places.EstablishmentLocation_Places_Source.RevisionId], \r\n          " +
-                    "          T.PlaceId AS [EstablishmentLocation_Places.EstablishmentLocation_Place" +
-                    "s_Target.RevisionId], \r\n                    True AS _from0\r\n                FROM" +
-                    " CodeFirstDatabase.EstablishmentLocationPlace AS T\r\n            ) AS T1\r\n       " +
-                    " ) AS T2\r\n    ) AS T3");
+                    ".Impl.Orm.EstablishmentLocation_Places](T3.[EstablishmentLocation_Places.Establi" +
+                    "shmentLocation_Places_Source], T3.[EstablishmentLocation_Places.EstablishmentLoc" +
+                    "ation_Places_Target])\r\n    FROM (\r\n        SELECT -- Constructing EstablishmentL" +
+                    "ocation_Places_Source\r\n            CreateRef(UCosmicContext.EstablishmentLocatio" +
+                    "ns, row(T2.[EstablishmentLocation_Places.EstablishmentLocation_Places_Source.Rev" +
+                    "isionId]), [UCosmic.Impl.Orm.EstablishmentLocation]) AS [EstablishmentLocation_P" +
+                    "laces.EstablishmentLocation_Places_Source], \r\n            T2.[EstablishmentLocat" +
+                    "ion_Places.EstablishmentLocation_Places_Target]\r\n        FROM (\r\n            SEL" +
+                    "ECT -- Constructing EstablishmentLocation_Places_Target\r\n                T1.[Est" +
+                    "ablishmentLocation_Places.EstablishmentLocation_Places_Source.RevisionId], \r\n   " +
+                    "             CreateRef(UCosmicContext.Places, row(T1.[EstablishmentLocation_Plac" +
+                    "es.EstablishmentLocation_Places_Target.RevisionId]), [UCosmic.Impl.Orm.Place]) A" +
+                    "S [EstablishmentLocation_Places.EstablishmentLocation_Places_Target]\r\n          " +
+                    "  FROM (\r\n                SELECT \r\n                    T.EstablishmentLocationId" +
+                    " AS [EstablishmentLocation_Places.EstablishmentLocation_Places_Source.RevisionId" +
+                    "], \r\n                    T.PlaceId AS [EstablishmentLocation_Places.Establishmen" +
+                    "tLocation_Places_Target.RevisionId], \r\n                    True AS _from0\r\n     " +
+                    "           FROM CodeFirstDatabase.EstablishmentLocationPlace AS T\r\n            )" +
+                    " AS T1\r\n        ) AS T2\r\n    ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.Establishment_Type
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView110()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView114()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.Establishment_Type", @"
     SELECT VALUE -- Constructing Establishment_Type
-        [UCosmic.Orm.Establishment_Type](T3.[Establishment_Type.Establishment_Type_Source], T3.[Establishment_Type.Establishment_Type_Target])
+        [UCosmic.Impl.Orm.Establishment_Type](T3.[Establishment_Type.Establishment_Type_Source], T3.[Establishment_Type.Establishment_Type_Target])
     FROM (
         SELECT -- Constructing Establishment_Type_Source
-            CreateRef(UCosmicContext.Establishments, row(T2.[Establishment_Type.Establishment_Type_Source.RevisionId]), [UCosmic.Orm.Establishment]) AS [Establishment_Type.Establishment_Type_Source], 
+            CreateRef(UCosmicContext.Establishments, row(T2.[Establishment_Type.Establishment_Type_Source.RevisionId]), [UCosmic.Impl.Orm.Establishment]) AS [Establishment_Type.Establishment_Type_Source], 
             T2.[Establishment_Type.Establishment_Type_Target]
         FROM (
             SELECT -- Constructing Establishment_Type_Target
                 T1.[Establishment_Type.Establishment_Type_Source.RevisionId], 
-                CreateRef(UCosmicContext.EstablishmentTypes, row(T1.[Establishment_Type.Establishment_Type_Target.RevisionId]), [UCosmic.Orm.EstablishmentType]) AS [Establishment_Type.Establishment_Type_Target]
+                CreateRef(UCosmicContext.EstablishmentTypes, row(T1.[Establishment_Type.Establishment_Type_Target.RevisionId]), [UCosmic.Impl.Orm.EstablishmentType]) AS [Establishment_Type.Establishment_Type_Target]
             FROM (
                 SELECT 
                     T.RevisionId AS [Establishment_Type.Establishment_Type_Source.RevisionId], 
@@ -4372,23 +4440,23 @@ namespace Edm_EntityMappingGeneratedViews
         ) AS T2
     ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.Person_User
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView111()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView115()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.Person_User", @"
     SELECT VALUE -- Constructing Person_User
-        [UCosmic.Orm.Person_User](T3.[Person_User.Person_User_Source], T3.[Person_User.Person_User_Target])
+        [UCosmic.Impl.Orm.Person_User](T3.[Person_User.Person_User_Source], T3.[Person_User.Person_User_Target])
     FROM (
         SELECT -- Constructing Person_User_Source
-            CreateRef(UCosmicContext.People, row(T2.[Person_User.Person_User_Source.RevisionId]), [UCosmic.Orm.Person]) AS [Person_User.Person_User_Source], 
+            CreateRef(UCosmicContext.People, row(T2.[Person_User.Person_User_Source.RevisionId]), [UCosmic.Impl.Orm.Person]) AS [Person_User.Person_User_Source], 
             T2.[Person_User.Person_User_Target]
         FROM (
             SELECT -- Constructing Person_User_Target
                 T1.[Person_User.Person_User_Source.RevisionId], 
-                CreateRef(UCosmicContext.Users, row(T1.[Person_User.Person_User_Target.RevisionId]), [UCosmic.Orm.User]) AS [Person_User.Person_User_Target]
+                CreateRef(UCosmicContext.Users, row(T1.[Person_User.Person_User_Target.RevisionId]), [UCosmic.Impl.Orm.User]) AS [Person_User.Person_User_Target]
             FROM (
                 SELECT 
                     T.PersonId AS [Person_User.Person_User_Source.RevisionId], 
@@ -4399,213 +4467,213 @@ namespace Edm_EntityMappingGeneratedViews
         ) AS T2
     ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.RoleGrant_ForEstablishment
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView112()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView116()
         {
-            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.RoleGrant_ForEstablishment", "\r\n    SELECT VALUE -- Constructing RoleGrant_ForEstablishment\r\n        [UCosmic.O" +
-                    "rm.RoleGrant_ForEstablishment](T3.[RoleGrant_ForEstablishment.RoleGrant_ForEstab" +
-                    "lishment_Source], T3.[RoleGrant_ForEstablishment.RoleGrant_ForEstablishment_Targ" +
-                    "et])\r\n    FROM (\r\n        SELECT -- Constructing RoleGrant_ForEstablishment_Sour" +
-                    "ce\r\n            CreateRef(UCosmicContext.RoleGrants, row(T2.[RoleGrant_ForEstabl" +
-                    "ishment.RoleGrant_ForEstablishment_Source.RevisionId]), [UCosmic.Orm.RoleGrant])" +
-                    " AS [RoleGrant_ForEstablishment.RoleGrant_ForEstablishment_Source], \r\n          " +
-                    "  T2.[RoleGrant_ForEstablishment.RoleGrant_ForEstablishment_Target]\r\n        FRO" +
-                    "M (\r\n            SELECT -- Constructing RoleGrant_ForEstablishment_Target\r\n     " +
-                    "           T1.[RoleGrant_ForEstablishment.RoleGrant_ForEstablishment_Source.Revi" +
-                    "sionId], \r\n                CreateRef(UCosmicContext.Establishments, row(T1.[Role" +
-                    "Grant_ForEstablishment.RoleGrant_ForEstablishment_Target.RevisionId]), [UCosmic." +
-                    "Orm.Establishment]) AS [RoleGrant_ForEstablishment.RoleGrant_ForEstablishment_Ta" +
-                    "rget]\r\n            FROM (\r\n                SELECT \r\n                    T.Revisi" +
-                    "onId AS [RoleGrant_ForEstablishment.RoleGrant_ForEstablishment_Source.RevisionId" +
-                    "], \r\n                    T.ForEstablishmentId AS [RoleGrant_ForEstablishment.Rol" +
-                    "eGrant_ForEstablishment_Target.RevisionId], \r\n                    True AS _from0" +
-                    "\r\n                FROM CodeFirstDatabase.RoleGrant AS T\r\n                WHERE T" +
-                    ".ForEstablishmentId IS NOT NULL\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS " +
-                    "T3");
+            return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.RoleGrant_ForEstablishment", "\r\n    SELECT VALUE -- Constructing RoleGrant_ForEstablishment\r\n        [UCosmic.I" +
+                    "mpl.Orm.RoleGrant_ForEstablishment](T3.[RoleGrant_ForEstablishment.RoleGrant_For" +
+                    "Establishment_Source], T3.[RoleGrant_ForEstablishment.RoleGrant_ForEstablishment" +
+                    "_Target])\r\n    FROM (\r\n        SELECT -- Constructing RoleGrant_ForEstablishment" +
+                    "_Source\r\n            CreateRef(UCosmicContext.RoleGrants, row(T2.[RoleGrant_ForE" +
+                    "stablishment.RoleGrant_ForEstablishment_Source.RevisionId]), [UCosmic.Impl.Orm.R" +
+                    "oleGrant]) AS [RoleGrant_ForEstablishment.RoleGrant_ForEstablishment_Source], \r\n" +
+                    "            T2.[RoleGrant_ForEstablishment.RoleGrant_ForEstablishment_Target]\r\n " +
+                    "       FROM (\r\n            SELECT -- Constructing RoleGrant_ForEstablishment_Tar" +
+                    "get\r\n                T1.[RoleGrant_ForEstablishment.RoleGrant_ForEstablishment_S" +
+                    "ource.RevisionId], \r\n                CreateRef(UCosmicContext.Establishments, ro" +
+                    "w(T1.[RoleGrant_ForEstablishment.RoleGrant_ForEstablishment_Target.RevisionId])," +
+                    " [UCosmic.Impl.Orm.Establishment]) AS [RoleGrant_ForEstablishment.RoleGrant_ForE" +
+                    "stablishment_Target]\r\n            FROM (\r\n                SELECT \r\n             " +
+                    "       T.RevisionId AS [RoleGrant_ForEstablishment.RoleGrant_ForEstablishment_So" +
+                    "urce.RevisionId], \r\n                    T.ForEstablishmentId AS [RoleGrant_ForEs" +
+                    "tablishment.RoleGrant_ForEstablishment_Target.RevisionId], \r\n                   " +
+                    " True AS _from0\r\n                FROM CodeFirstDatabase.RoleGrant AS T\r\n        " +
+                    "        WHERE T.ForEstablishmentId IS NOT NULL\r\n            ) AS T1\r\n        ) A" +
+                    "S T2\r\n    ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.InstitutionalAgreement_Umbrella
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView113()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView117()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreement_Umbrella", "\r\n    SELECT VALUE -- Constructing InstitutionalAgreement_Umbrella\r\n        [UCos" +
-                    "mic.Orm.InstitutionalAgreement_Umbrella](T3.[InstitutionalAgreement_Umbrella.Ins" +
-                    "titutionalAgreement_Umbrella_Source], T3.[InstitutionalAgreement_Umbrella.Instit" +
-                    "utionalAgreement_Umbrella_Target])\r\n    FROM (\r\n        SELECT -- Constructing I" +
-                    "nstitutionalAgreement_Umbrella_Source\r\n            CreateRef(UCosmicContext.Inst" +
-                    "itutionalAgreements, row(T2.[InstitutionalAgreement_Umbrella.InstitutionalAgreem" +
-                    "ent_Umbrella_Source.RevisionId]), [UCosmic.Orm.InstitutionalAgreement]) AS [Inst" +
-                    "itutionalAgreement_Umbrella.InstitutionalAgreement_Umbrella_Source], \r\n         " +
-                    "   T2.[InstitutionalAgreement_Umbrella.InstitutionalAgreement_Umbrella_Target]\r\n" +
-                    "        FROM (\r\n            SELECT -- Constructing InstitutionalAgreement_Umbrel" +
-                    "la_Target\r\n                T1.[InstitutionalAgreement_Umbrella.InstitutionalAgre" +
-                    "ement_Umbrella_Source.RevisionId], \r\n                CreateRef(UCosmicContext.In" +
-                    "stitutionalAgreements, row(T1.[InstitutionalAgreement_Umbrella.InstitutionalAgre" +
-                    "ement_Umbrella_Target.RevisionId]), [UCosmic.Orm.InstitutionalAgreement]) AS [In" +
-                    "stitutionalAgreement_Umbrella.InstitutionalAgreement_Umbrella_Target]\r\n         " +
-                    "   FROM (\r\n                SELECT \r\n                    T.RevisionId AS [Institu" +
-                    "tionalAgreement_Umbrella.InstitutionalAgreement_Umbrella_Source.RevisionId], \r\n " +
-                    "                   T.UmbrellaId AS [InstitutionalAgreement_Umbrella.Institutiona" +
-                    "lAgreement_Umbrella_Target.RevisionId], \r\n                    True AS _from0\r\n  " +
-                    "              FROM CodeFirstDatabase.InstitutionalAgreement AS T\r\n              " +
-                    "  WHERE T.UmbrellaId IS NOT NULL\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS" +
-                    " T3");
+                    "mic.Impl.Orm.InstitutionalAgreement_Umbrella](T3.[InstitutionalAgreement_Umbrell" +
+                    "a.InstitutionalAgreement_Umbrella_Source], T3.[InstitutionalAgreement_Umbrella.I" +
+                    "nstitutionalAgreement_Umbrella_Target])\r\n    FROM (\r\n        SELECT -- Construct" +
+                    "ing InstitutionalAgreement_Umbrella_Source\r\n            CreateRef(UCosmicContext" +
+                    ".InstitutionalAgreements, row(T2.[InstitutionalAgreement_Umbrella.InstitutionalA" +
+                    "greement_Umbrella_Source.RevisionId]), [UCosmic.Impl.Orm.InstitutionalAgreement]" +
+                    ") AS [InstitutionalAgreement_Umbrella.InstitutionalAgreement_Umbrella_Source], \r" +
+                    "\n            T2.[InstitutionalAgreement_Umbrella.InstitutionalAgreement_Umbrella" +
+                    "_Target]\r\n        FROM (\r\n            SELECT -- Constructing InstitutionalAgreem" +
+                    "ent_Umbrella_Target\r\n                T1.[InstitutionalAgreement_Umbrella.Institu" +
+                    "tionalAgreement_Umbrella_Source.RevisionId], \r\n                CreateRef(UCosmic" +
+                    "Context.InstitutionalAgreements, row(T1.[InstitutionalAgreement_Umbrella.Institu" +
+                    "tionalAgreement_Umbrella_Target.RevisionId]), [UCosmic.Impl.Orm.InstitutionalAgr" +
+                    "eement]) AS [InstitutionalAgreement_Umbrella.InstitutionalAgreement_Umbrella_Tar" +
+                    "get]\r\n            FROM (\r\n                SELECT \r\n                    T.Revisio" +
+                    "nId AS [InstitutionalAgreement_Umbrella.InstitutionalAgreement_Umbrella_Source.R" +
+                    "evisionId], \r\n                    T.UmbrellaId AS [InstitutionalAgreement_Umbrel" +
+                    "la.InstitutionalAgreement_Umbrella_Target.RevisionId], \r\n                    Tru" +
+                    "e AS _from0\r\n                FROM CodeFirstDatabase.InstitutionalAgreement AS T\r" +
+                    "\n                WHERE T.UmbrellaId IS NOT NULL\r\n            ) AS T1\r\n        ) " +
+                    "AS T2\r\n    ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.InstitutionalAgreementParticipant_Establishment
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView114()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView118()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreementParticipant_Establishment", "\r\n    SELECT VALUE -- Constructing InstitutionalAgreementParticipant_Establishmen" +
-                    "t\r\n        [UCosmic.Orm.InstitutionalAgreementParticipant_Establishment](T3.[Ins" +
+                    "t\r\n        [UCosmic.Impl.Orm.InstitutionalAgreementParticipant_Establishment](T3" +
+                    ".[InstitutionalAgreementParticipant_Establishment.InstitutionalAgreementParticip" +
+                    "ant_Establishment_Source], T3.[InstitutionalAgreementParticipant_Establishment.I" +
+                    "nstitutionalAgreementParticipant_Establishment_Target])\r\n    FROM (\r\n        SEL" +
+                    "ECT -- Constructing InstitutionalAgreementParticipant_Establishment_Source\r\n    " +
+                    "        CreateRef(UCosmicContext.InstitutionalAgreementParticipants, row(T2.[Ins" +
                     "titutionalAgreementParticipant_Establishment.InstitutionalAgreementParticipant_E" +
-                    "stablishment_Source], T3.[InstitutionalAgreementParticipant_Establishment.Instit" +
-                    "utionalAgreementParticipant_Establishment_Target])\r\n    FROM (\r\n        SELECT -" +
-                    "- Constructing InstitutionalAgreementParticipant_Establishment_Source\r\n         " +
-                    "   CreateRef(UCosmicContext.InstitutionalAgreementParticipants, row(T2.[Institut" +
-                    "ionalAgreementParticipant_Establishment.InstitutionalAgreementParticipant_Establ" +
-                    "ishment_Source.Id]), [UCosmic.Orm.InstitutionalAgreementParticipant]) AS [Instit" +
-                    "utionalAgreementParticipant_Establishment.InstitutionalAgreementParticipant_Esta" +
-                    "blishment_Source], \r\n            T2.[InstitutionalAgreementParticipant_Establish" +
-                    "ment.InstitutionalAgreementParticipant_Establishment_Target]\r\n        FROM (\r\n  " +
-                    "          SELECT -- Constructing InstitutionalAgreementParticipant_Establishment" +
-                    "_Target\r\n                T1.[InstitutionalAgreementParticipant_Establishment.Ins" +
-                    "titutionalAgreementParticipant_Establishment_Source.Id], \r\n                Creat" +
-                    "eRef(UCosmicContext.Establishments, row(T1.[InstitutionalAgreementParticipant_Es" +
-                    "tablishment.InstitutionalAgreementParticipant_Establishment_Target.RevisionId])," +
-                    " [UCosmic.Orm.Establishment]) AS [InstitutionalAgreementParticipant_Establishmen" +
-                    "t.InstitutionalAgreementParticipant_Establishment_Target]\r\n            FROM (\r\n " +
-                    "               SELECT \r\n                    T.Id AS [InstitutionalAgreementParti" +
-                    "cipant_Establishment.InstitutionalAgreementParticipant_Establishment_Source.Id]," +
-                    " \r\n                    T.EstablishmentId AS [InstitutionalAgreementParticipant_E" +
-                    "stablishment.InstitutionalAgreementParticipant_Establishment_Target.RevisionId]," +
-                    " \r\n                    True AS _from0\r\n                FROM CodeFirstDatabase.In" +
-                    "stitutionalAgreementParticipant AS T\r\n            ) AS T1\r\n        ) AS T2\r\n    " +
-                    ") AS T3");
+                    "stablishment_Source.Id]), [UCosmic.Impl.Orm.InstitutionalAgreementParticipant]) " +
+                    "AS [InstitutionalAgreementParticipant_Establishment.InstitutionalAgreementPartic" +
+                    "ipant_Establishment_Source], \r\n            T2.[InstitutionalAgreementParticipant" +
+                    "_Establishment.InstitutionalAgreementParticipant_Establishment_Target]\r\n        " +
+                    "FROM (\r\n            SELECT -- Constructing InstitutionalAgreementParticipant_Est" +
+                    "ablishment_Target\r\n                T1.[InstitutionalAgreementParticipant_Establi" +
+                    "shment.InstitutionalAgreementParticipant_Establishment_Source.Id], \r\n           " +
+                    "     CreateRef(UCosmicContext.Establishments, row(T1.[InstitutionalAgreementPart" +
+                    "icipant_Establishment.InstitutionalAgreementParticipant_Establishment_Target.Rev" +
+                    "isionId]), [UCosmic.Impl.Orm.Establishment]) AS [InstitutionalAgreementParticipa" +
+                    "nt_Establishment.InstitutionalAgreementParticipant_Establishment_Target]\r\n      " +
+                    "      FROM (\r\n                SELECT \r\n                    T.Id AS [Institutiona" +
+                    "lAgreementParticipant_Establishment.InstitutionalAgreementParticipant_Establishm" +
+                    "ent_Source.Id], \r\n                    T.EstablishmentId AS [InstitutionalAgreeme" +
+                    "ntParticipant_Establishment.InstitutionalAgreementParticipant_Establishment_Targ" +
+                    "et.RevisionId], \r\n                    True AS _from0\r\n                FROM CodeF" +
+                    "irstDatabase.InstitutionalAgreementParticipant AS T\r\n            ) AS T1\r\n      " +
+                    "  ) AS T2\r\n    ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.InstitutionalAgreement_Participants
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView115()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView119()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreement_Participants", "\r\n    SELECT VALUE -- Constructing InstitutionalAgreement_Participants\r\n        [" +
-                    "UCosmic.Orm.InstitutionalAgreement_Participants](T3.[InstitutionalAgreement_Part" +
-                    "icipants.InstitutionalAgreement_Participants_Source], T3.[InstitutionalAgreement" +
-                    "_Participants.InstitutionalAgreement_Participants_Target])\r\n    FROM (\r\n        " +
-                    "SELECT -- Constructing InstitutionalAgreement_Participants_Source\r\n            C" +
-                    "reateRef(UCosmicContext.InstitutionalAgreements, row(T2.[InstitutionalAgreement_" +
-                    "Participants.InstitutionalAgreement_Participants_Source.RevisionId]), [UCosmic.O" +
-                    "rm.InstitutionalAgreement]) AS [InstitutionalAgreement_Participants.Institutiona" +
-                    "lAgreement_Participants_Source], \r\n            T2.[InstitutionalAgreement_Partic" +
-                    "ipants.InstitutionalAgreement_Participants_Target]\r\n        FROM (\r\n            " +
-                    "SELECT -- Constructing InstitutionalAgreement_Participants_Target\r\n             " +
-                    "   T1.[InstitutionalAgreement_Participants.InstitutionalAgreement_Participants_S" +
-                    "ource.RevisionId], \r\n                CreateRef(UCosmicContext.InstitutionalAgree" +
-                    "mentParticipants, row(T1.[InstitutionalAgreement_Participants.InstitutionalAgree" +
-                    "ment_Participants_Target.Id]), [UCosmic.Orm.InstitutionalAgreementParticipant]) " +
-                    "AS [InstitutionalAgreement_Participants.InstitutionalAgreement_Participants_Targ" +
-                    "et]\r\n            FROM (\r\n                SELECT \r\n                    T.Agreemen" +
-                    "tId AS [InstitutionalAgreement_Participants.InstitutionalAgreement_Participants_" +
-                    "Source.RevisionId], \r\n                    T.Id AS [InstitutionalAgreement_Partic" +
-                    "ipants.InstitutionalAgreement_Participants_Target.Id], \r\n                    Tru" +
-                    "e AS _from0\r\n                FROM CodeFirstDatabase.InstitutionalAgreementPartic" +
-                    "ipant AS T\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
+                    "UCosmic.Impl.Orm.InstitutionalAgreement_Participants](T3.[InstitutionalAgreement" +
+                    "_Participants.InstitutionalAgreement_Participants_Source], T3.[InstitutionalAgre" +
+                    "ement_Participants.InstitutionalAgreement_Participants_Target])\r\n    FROM (\r\n   " +
+                    "     SELECT -- Constructing InstitutionalAgreement_Participants_Source\r\n        " +
+                    "    CreateRef(UCosmicContext.InstitutionalAgreements, row(T2.[InstitutionalAgree" +
+                    "ment_Participants.InstitutionalAgreement_Participants_Source.RevisionId]), [UCos" +
+                    "mic.Impl.Orm.InstitutionalAgreement]) AS [InstitutionalAgreement_Participants.In" +
+                    "stitutionalAgreement_Participants_Source], \r\n            T2.[InstitutionalAgreem" +
+                    "ent_Participants.InstitutionalAgreement_Participants_Target]\r\n        FROM (\r\n  " +
+                    "          SELECT -- Constructing InstitutionalAgreement_Participants_Target\r\n   " +
+                    "             T1.[InstitutionalAgreement_Participants.InstitutionalAgreement_Part" +
+                    "icipants_Source.RevisionId], \r\n                CreateRef(UCosmicContext.Institut" +
+                    "ionalAgreementParticipants, row(T1.[InstitutionalAgreement_Participants.Institut" +
+                    "ionalAgreement_Participants_Target.Id]), [UCosmic.Impl.Orm.InstitutionalAgreemen" +
+                    "tParticipant]) AS [InstitutionalAgreement_Participants.InstitutionalAgreement_Pa" +
+                    "rticipants_Target]\r\n            FROM (\r\n                SELECT \r\n               " +
+                    "     T.AgreementId AS [InstitutionalAgreement_Participants.InstitutionalAgreemen" +
+                    "t_Participants_Source.RevisionId], \r\n                    T.Id AS [InstitutionalA" +
+                    "greement_Participants.InstitutionalAgreement_Participants_Target.Id], \r\n        " +
+                    "            True AS _from0\r\n                FROM CodeFirstDatabase.Institutional" +
+                    "AgreementParticipant AS T\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.InstitutionalAgreementContact_Person
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView116()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView120()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreementContact_Person", "\r\n    SELECT VALUE -- Constructing InstitutionalAgreementContact_Person\r\n        " +
-                    "[UCosmic.Orm.InstitutionalAgreementContact_Person](T3.[InstitutionalAgreementCon" +
-                    "tact_Person.InstitutionalAgreementContact_Person_Source], T3.[InstitutionalAgree" +
-                    "mentContact_Person.InstitutionalAgreementContact_Person_Target])\r\n    FROM (\r\n  " +
-                    "      SELECT -- Constructing InstitutionalAgreementContact_Person_Source\r\n      " +
-                    "      CreateRef(UCosmicContext.InstitutionalAgreementContacts, row(T2.[Instituti" +
-                    "onalAgreementContact_Person.InstitutionalAgreementContact_Person_Source.Revision" +
-                    "Id]), [UCosmic.Orm.InstitutionalAgreementContact]) AS [InstitutionalAgreementCon" +
-                    "tact_Person.InstitutionalAgreementContact_Person_Source], \r\n            T2.[Inst" +
-                    "itutionalAgreementContact_Person.InstitutionalAgreementContact_Person_Target]\r\n " +
-                    "       FROM (\r\n            SELECT -- Constructing InstitutionalAgreementContact_" +
-                    "Person_Target\r\n                T1.[InstitutionalAgreementContact_Person.Institut" +
-                    "ionalAgreementContact_Person_Source.RevisionId], \r\n                CreateRef(UCo" +
-                    "smicContext.People, row(T1.[InstitutionalAgreementContact_Person.InstitutionalAg" +
-                    "reementContact_Person_Target.RevisionId]), [UCosmic.Orm.Person]) AS [Institution" +
-                    "alAgreementContact_Person.InstitutionalAgreementContact_Person_Target]\r\n        " +
-                    "    FROM (\r\n                SELECT \r\n                    T.RevisionId AS [Instit" +
-                    "utionalAgreementContact_Person.InstitutionalAgreementContact_Person_Source.Revis" +
-                    "ionId], \r\n                    T.PersonId AS [InstitutionalAgreementContact_Perso" +
-                    "n.InstitutionalAgreementContact_Person_Target.RevisionId], \r\n                   " +
-                    " True AS _from0\r\n                FROM CodeFirstDatabase.InstitutionalAgreementCo" +
-                    "ntact AS T\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
+                    "[UCosmic.Impl.Orm.InstitutionalAgreementContact_Person](T3.[InstitutionalAgreeme" +
+                    "ntContact_Person.InstitutionalAgreementContact_Person_Source], T3.[Institutional" +
+                    "AgreementContact_Person.InstitutionalAgreementContact_Person_Target])\r\n    FROM " +
+                    "(\r\n        SELECT -- Constructing InstitutionalAgreementContact_Person_Source\r\n " +
+                    "           CreateRef(UCosmicContext.InstitutionalAgreementContacts, row(T2.[Inst" +
+                    "itutionalAgreementContact_Person.InstitutionalAgreementContact_Person_Source.Rev" +
+                    "isionId]), [UCosmic.Impl.Orm.InstitutionalAgreementContact]) AS [InstitutionalAg" +
+                    "reementContact_Person.InstitutionalAgreementContact_Person_Source], \r\n          " +
+                    "  T2.[InstitutionalAgreementContact_Person.InstitutionalAgreementContact_Person_" +
+                    "Target]\r\n        FROM (\r\n            SELECT -- Constructing InstitutionalAgreeme" +
+                    "ntContact_Person_Target\r\n                T1.[InstitutionalAgreementContact_Perso" +
+                    "n.InstitutionalAgreementContact_Person_Source.RevisionId], \r\n                Cre" +
+                    "ateRef(UCosmicContext.People, row(T1.[InstitutionalAgreementContact_Person.Insti" +
+                    "tutionalAgreementContact_Person_Target.RevisionId]), [UCosmic.Impl.Orm.Person]) " +
+                    "AS [InstitutionalAgreementContact_Person.InstitutionalAgreementContact_Person_Ta" +
+                    "rget]\r\n            FROM (\r\n                SELECT \r\n                    T.Revisi" +
+                    "onId AS [InstitutionalAgreementContact_Person.InstitutionalAgreementContact_Pers" +
+                    "on_Source.RevisionId], \r\n                    T.PersonId AS [InstitutionalAgreeme" +
+                    "ntContact_Person.InstitutionalAgreementContact_Person_Target.RevisionId], \r\n    " +
+                    "                True AS _from0\r\n                FROM CodeFirstDatabase.Instituti" +
+                    "onalAgreementContact AS T\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.InstitutionalAgreement_Contacts
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView117()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView121()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreement_Contacts", "\r\n    SELECT VALUE -- Constructing InstitutionalAgreement_Contacts\r\n        [UCos" +
-                    "mic.Orm.InstitutionalAgreement_Contacts](T3.[InstitutionalAgreement_Contacts.Ins" +
-                    "titutionalAgreement_Contacts_Source], T3.[InstitutionalAgreement_Contacts.Instit" +
-                    "utionalAgreement_Contacts_Target])\r\n    FROM (\r\n        SELECT -- Constructing I" +
-                    "nstitutionalAgreement_Contacts_Source\r\n            CreateRef(UCosmicContext.Inst" +
-                    "itutionalAgreements, row(T2.[InstitutionalAgreement_Contacts.InstitutionalAgreem" +
-                    "ent_Contacts_Source.RevisionId]), [UCosmic.Orm.InstitutionalAgreement]) AS [Inst" +
-                    "itutionalAgreement_Contacts.InstitutionalAgreement_Contacts_Source], \r\n         " +
-                    "   T2.[InstitutionalAgreement_Contacts.InstitutionalAgreement_Contacts_Target]\r\n" +
-                    "        FROM (\r\n            SELECT -- Constructing InstitutionalAgreement_Contac" +
-                    "ts_Target\r\n                T1.[InstitutionalAgreement_Contacts.InstitutionalAgre" +
-                    "ement_Contacts_Source.RevisionId], \r\n                CreateRef(UCosmicContext.In" +
-                    "stitutionalAgreementContacts, row(T1.[InstitutionalAgreement_Contacts.Institutio" +
-                    "nalAgreement_Contacts_Target.RevisionId]), [UCosmic.Orm.InstitutionalAgreementCo" +
-                    "ntact]) AS [InstitutionalAgreement_Contacts.InstitutionalAgreement_Contacts_Targ" +
-                    "et]\r\n            FROM (\r\n                SELECT \r\n                    T.Agreemen" +
-                    "tId AS [InstitutionalAgreement_Contacts.InstitutionalAgreement_Contacts_Source.R" +
-                    "evisionId], \r\n                    T.RevisionId AS [InstitutionalAgreement_Contac" +
-                    "ts.InstitutionalAgreement_Contacts_Target.RevisionId], \r\n                    Tru" +
-                    "e AS _from0\r\n                FROM CodeFirstDatabase.InstitutionalAgreementContac" +
-                    "t AS T\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
+                    "mic.Impl.Orm.InstitutionalAgreement_Contacts](T3.[InstitutionalAgreement_Contact" +
+                    "s.InstitutionalAgreement_Contacts_Source], T3.[InstitutionalAgreement_Contacts.I" +
+                    "nstitutionalAgreement_Contacts_Target])\r\n    FROM (\r\n        SELECT -- Construct" +
+                    "ing InstitutionalAgreement_Contacts_Source\r\n            CreateRef(UCosmicContext" +
+                    ".InstitutionalAgreements, row(T2.[InstitutionalAgreement_Contacts.InstitutionalA" +
+                    "greement_Contacts_Source.RevisionId]), [UCosmic.Impl.Orm.InstitutionalAgreement]" +
+                    ") AS [InstitutionalAgreement_Contacts.InstitutionalAgreement_Contacts_Source], \r" +
+                    "\n            T2.[InstitutionalAgreement_Contacts.InstitutionalAgreement_Contacts" +
+                    "_Target]\r\n        FROM (\r\n            SELECT -- Constructing InstitutionalAgreem" +
+                    "ent_Contacts_Target\r\n                T1.[InstitutionalAgreement_Contacts.Institu" +
+                    "tionalAgreement_Contacts_Source.RevisionId], \r\n                CreateRef(UCosmic" +
+                    "Context.InstitutionalAgreementContacts, row(T1.[InstitutionalAgreement_Contacts." +
+                    "InstitutionalAgreement_Contacts_Target.RevisionId]), [UCosmic.Impl.Orm.Instituti" +
+                    "onalAgreementContact]) AS [InstitutionalAgreement_Contacts.InstitutionalAgreemen" +
+                    "t_Contacts_Target]\r\n            FROM (\r\n                SELECT \r\n               " +
+                    "     T.AgreementId AS [InstitutionalAgreement_Contacts.InstitutionalAgreement_Co" +
+                    "ntacts_Source.RevisionId], \r\n                    T.RevisionId AS [InstitutionalA" +
+                    "greement_Contacts.InstitutionalAgreement_Contacts_Target.RevisionId], \r\n        " +
+                    "            True AS _from0\r\n                FROM CodeFirstDatabase.Institutional" +
+                    "AgreementContact AS T\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.InstitutionalAgreement_Files
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView118()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView122()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.InstitutionalAgreement_Files", "\r\n    SELECT VALUE -- Constructing InstitutionalAgreement_Files\r\n        [UCosmic" +
-                    ".Orm.InstitutionalAgreement_Files](T3.[InstitutionalAgreement_Files.Institutiona" +
-                    "lAgreement_Files_Source], T3.[InstitutionalAgreement_Files.InstitutionalAgreemen" +
-                    "t_Files_Target])\r\n    FROM (\r\n        SELECT -- Constructing InstitutionalAgreem" +
-                    "ent_Files_Source\r\n            CreateRef(UCosmicContext.InstitutionalAgreements, " +
-                    "row(T2.[InstitutionalAgreement_Files.InstitutionalAgreement_Files_Source.Revisio" +
-                    "nId]), [UCosmic.Orm.InstitutionalAgreement]) AS [InstitutionalAgreement_Files.In" +
-                    "stitutionalAgreement_Files_Source], \r\n            T2.[InstitutionalAgreement_Fil" +
-                    "es.InstitutionalAgreement_Files_Target]\r\n        FROM (\r\n            SELECT -- C" +
-                    "onstructing InstitutionalAgreement_Files_Target\r\n                T1.[Institution" +
-                    "alAgreement_Files.InstitutionalAgreement_Files_Source.RevisionId], \r\n           " +
-                    "     CreateRef(UCosmicContext.InstitutionalAgreementFiles, row(T1.[Institutional" +
-                    "Agreement_Files.InstitutionalAgreement_Files_Target.RevisionId]), [UCosmic.Orm.I" +
-                    "nstitutionalAgreementFile]) AS [InstitutionalAgreement_Files.InstitutionalAgreem" +
-                    "ent_Files_Target]\r\n            FROM (\r\n                SELECT \r\n                " +
-                    "    T.AgreementId AS [InstitutionalAgreement_Files.InstitutionalAgreement_Files_" +
-                    "Source.RevisionId], \r\n                    T.RevisionId AS [InstitutionalAgreemen" +
-                    "t_Files.InstitutionalAgreement_Files_Target.RevisionId], \r\n                    T" +
-                    "rue AS _from0\r\n                FROM CodeFirstDatabase.InstitutionalAgreementFile" +
-                    " AS T\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
+                    ".Impl.Orm.InstitutionalAgreement_Files](T3.[InstitutionalAgreement_Files.Institu" +
+                    "tionalAgreement_Files_Source], T3.[InstitutionalAgreement_Files.InstitutionalAgr" +
+                    "eement_Files_Target])\r\n    FROM (\r\n        SELECT -- Constructing InstitutionalA" +
+                    "greement_Files_Source\r\n            CreateRef(UCosmicContext.InstitutionalAgreeme" +
+                    "nts, row(T2.[InstitutionalAgreement_Files.InstitutionalAgreement_Files_Source.Re" +
+                    "visionId]), [UCosmic.Impl.Orm.InstitutionalAgreement]) AS [InstitutionalAgreemen" +
+                    "t_Files.InstitutionalAgreement_Files_Source], \r\n            T2.[InstitutionalAgr" +
+                    "eement_Files.InstitutionalAgreement_Files_Target]\r\n        FROM (\r\n            S" +
+                    "ELECT -- Constructing InstitutionalAgreement_Files_Target\r\n                T1.[I" +
+                    "nstitutionalAgreement_Files.InstitutionalAgreement_Files_Source.RevisionId], \r\n " +
+                    "               CreateRef(UCosmicContext.InstitutionalAgreementFiles, row(T1.[Ins" +
+                    "titutionalAgreement_Files.InstitutionalAgreement_Files_Target.RevisionId]), [UCo" +
+                    "smic.Impl.Orm.InstitutionalAgreementFile]) AS [InstitutionalAgreement_Files.Inst" +
+                    "itutionalAgreement_Files_Target]\r\n            FROM (\r\n                SELECT \r\n " +
+                    "                   T.AgreementId AS [InstitutionalAgreement_Files.InstitutionalA" +
+                    "greement_Files_Source.RevisionId], \r\n                    T.RevisionId AS [Instit" +
+                    "utionalAgreement_Files.InstitutionalAgreement_Files_Target.RevisionId], \r\n      " +
+                    "              True AS _from0\r\n                FROM CodeFirstDatabase.Institution" +
+                    "alAgreementFile AS T\r\n            ) AS T1\r\n        ) AS T2\r\n    ) AS T3");
         }
-        
+
         /// <Summary>
         /// return view for CodeFirstDatabase.EdmMetadata
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView119()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView123()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("CodeFirstDatabase.EdmMetadata", @"
     SELECT VALUE -- Constructing EdmMetadata
@@ -4618,15 +4686,15 @@ namespace Edm_EntityMappingGeneratedViews
         FROM UCosmicContext.EdmMetadatas AS T
     ) AS T1");
         }
-        
+
         /// <Summary>
         /// return view for UCosmicContext.EdmMetadatas
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView120()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView124()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("UCosmicContext.EdmMetadatas", @"
     SELECT VALUE -- Constructing EdmMetadatas
-        [UCosmic.Orm.EdmMetadata](T1.EdmMetadata_Id, T1.EdmMetadata_ModelHash)
+        [UCosmic.Impl.Orm.EdmMetadata](T1.EdmMetadata_Id, T1.EdmMetadata_ModelHash)
     FROM (
         SELECT 
             T.Id AS EdmMetadata_Id, 
