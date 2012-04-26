@@ -166,7 +166,6 @@
     <Compile Include="Areas\People\Controllers\PersonNameControllerFacts.cs" />
     <Compile Include="Areas\People\Models\PersonInfoProfilerFacts.cs" />
     <Compile Include="Areas\People\Models\GenerateDisplayNameProfilerFacts.cs" />
-    <Compile Include="Etc\AuthorizationProviderFacts.cs" />
     <Compile Include="Etc\ReuseMock.cs" />
     <Compile Include="Etc\SimpleDependencyInjectorFacts.cs" />
     <Compile Include="Models\AutoMapperConfigFacts.cs" />

@@ -63,7 +63,6 @@ namespace UCosmic.Impl
 
             // other interfaces related to DbContext
             container.Register<ICommandObjects, ObjectCommander>();
-            //container.RegisterSingle<RoleProvider, AuthorizationProvider>();
 
             // general purpose interfaces
             container.Register<ISignMembers, DotNetMembershipProvider>();
