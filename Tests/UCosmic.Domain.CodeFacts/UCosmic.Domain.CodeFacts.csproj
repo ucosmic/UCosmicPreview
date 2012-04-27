@@ -94,6 +94,7 @@
     <Compile Include="Establishments\Entities\EstablishmentTypeFacts.cs" />
     <Compile Include="Etc\AutoMapperFacts.cs" />
     <Compile Include="Etc\UnicodeToAsciiConverterFacts.cs" />
+    <Compile Include="Identity\Commands\ResetPasswordValidatorFacts.cs" />
     <Compile Include="Identity\RoleGrantFacts.cs" />
     <Compile Include="Identity\RoleFacts.cs" />
     <Compile Include="Identity\UserFacts.cs" />

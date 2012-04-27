@@ -5,22 +5,20 @@ using UCosmic.Domain.Email;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Models;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Models
+namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 {
-    public class ConfirmEmailQuery
+    public class ResetPasswordQuery
     {
         public Guid Token { get; set; }
-        public string SecretCode { get; set; }
         public string Intent { get; set; }
-        public bool IsExpired { get; set; }
-        public bool IsRedeemed { get; set; }
+        public const string IntentPropertyName = "Intent";
     }
 
-    public class ConfirmQueryValidator : AbstractValidator<ConfirmEmailQuery>
+    public class ResetQueryValidator : AbstractValidator<ResetPasswordQuery>
     {
         private readonly IProcessQueries _queryProcessor;
 
-        public ConfirmQueryValidator(IProcessQueries queryProcessor)
+        public ResetQueryValidator(IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
             CascadeMode = CascadeMode.StopOnFirstFailure;
@@ -31,39 +29,30 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 .Must(ValidateEmailConfirmationTokenMatchesEntity)
             ;
 
-            RuleFor(p => p.IsExpired)
+            RuleFor(p => p.Intent)
 
-                // cannot be expired
-                .Equal(false)
-                .Unless(p => _confirmation == null)
-            ;
-
-            RuleFor(p => p.IsRedeemed)
-
-                // cannot be redeemed
-                .Equal(false)
+                // intent must match confirmation
+                .Equal(EmailConfirmationIntent.PasswordReset)
                 .Unless(p => _confirmation == null)
             ;
         }
 
         private EmailConfirmation _confirmation;
 
-        private bool ValidateEmailConfirmationTokenMatchesEntity(ConfirmEmailQuery model, Guid token)
+        private bool ValidateEmailConfirmationTokenMatchesEntity(ResetPasswordQuery model, Guid token)
         {
             var isValid = ValidateEmailConfirmation.TokenMatchesEntity(token, _queryProcessor, out _confirmation);
             if (_confirmation == null) return isValid;
             model.Intent = _confirmation.Intent;
-            model.IsExpired = _confirmation.IsExpired;
-            model.IsRedeemed = _confirmation.IsRedeemed;
             return isValid;
         }
     }
 
-    public static class ConfirmQueryProfiler
+    public static class ResetQueryProfiler
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(ConfirmQueryProfiler));
+            DefaultModelMapper.RegisterProfiles(typeof(ResetQueryProfiler));
         }
 
         // ReSharper disable UnusedMember.Local
@@ -72,9 +61,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         {
             protected override void Configure()
             {
-                CreateMap<ConfirmEmailQuery, ConfirmEmailForm>()
-                    .ForMember(d => d.IsUrlConfirmation, o => o
-                        .MapFrom(s => !string.IsNullOrWhiteSpace(s.SecretCode)))
+                CreateMap<ResetPasswordQuery, ResetPasswordForm>()
+                    .ForMember(d => d.Password, o => o.Ignore())
+                    .ForMember(d => d.PasswordConfirmation, o => o.Ignore())
                 ;
             }
         }

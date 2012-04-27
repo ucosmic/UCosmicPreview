@@ -95,6 +95,8 @@ namespace T4MVC {
     public class PasswordsClass {
         public readonly string Name = "Passwords";
         public UCosmic.Www.Mvc.Areas.Passwords.Controllers.ForgotPasswordController ForgotPassword = new UCosmic.Www.Mvc.Areas.Passwords.Controllers.T4MVC_ForgotPasswordController();
+        public UCosmic.Www.Mvc.Areas.Passwords.Controllers.ResetPasswordController ResetPassword = new UCosmic.Www.Mvc.Areas.Passwords.Controllers.T4MVC_ResetPasswordController();
+        public T4MVC.Passwords.SharedController Shared = new T4MVC.Passwords.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class PeopleClass {

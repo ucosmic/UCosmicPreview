@@ -234,7 +234,10 @@
     <Compile Include="Areas\My\Controllers\ProfileRouter.cs" />
     <Compile Include="Areas\My\Controllers\UpdateEmailValueRouter.cs" />
     <Compile Include="Areas\My\Controllers\UpdateEmailValueServices.cs" />
+    <Compile Include="Areas\Passwords\Controllers\ResetPasswordController.cs" />
     <Compile Include="Areas\Passwords\Controllers\ForgotPasswordController.cs" />
+    <Compile Include="Areas\Passwords\Models\ResetPasswordQuery.cs" />
+    <Compile Include="Areas\Passwords\Models\ResetPasswordForm.cs" />
     <Compile Include="Areas\Passwords\Models\ForgotPasswordForm.cs" />
     <Compile Include="Areas\Passwords\PasswordsAreaRegistration.cs" />
     <Compile Include="Areas\People\Controllers\PersonInfoRouter.cs" />
@@ -248,6 +251,7 @@
     <Compile Include="Areas\People\Models\GenerateDisplayNameProfiler.cs" />
     <Compile Include="Areas\People\Models\PersonInfoModel.cs" />
     <Compile Include="Areas\People\PeopleAreaRegistration.cs" />
+    <Compile Include="Controllers\ValidateEmailConfirmationTicketAttribute.cs" />
     <Compile Include="Controllers\NullLayoutOnChildActionAttribute.cs" />
     <Compile Include="Helpers\SimpleInjectorMVC3.cs" />
     <Compile Include="Helpers\SimpleInjectorMVC3Extensions.cs" />
@@ -368,6 +372,12 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Passwords.ForgotPasswordController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Passwords.ResetPasswordController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Passwords.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="People.PersonInfoController.generated.cs">
@@ -1081,6 +1091,10 @@
     <Content Include="Areas\Identity\Views\ConfirmEmail\_form-legend.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\_right.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\_styles.cshtml" />
+    <Content Include="Areas\Passwords\Views\ResetPassword\reset-password.cshtml" />
+    <Content Include="Areas\Passwords\Views\ResetPassword\_denied.cshtml" />
+    <Content Include="Areas\Passwords\Views\ResetPassword\EditorTemplates\ResetPasswordForm.cshtml" />
+    <Content Include="Areas\Passwords\Views\Shared\EditorTemplates\StrengthMeteredPassword.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />
