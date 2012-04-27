@@ -4,7 +4,7 @@ using System.Web.Security;
 using AutoMapper;
 using UCosmic.Domain;
 using UCosmic.Domain.People;
-using UCosmic.Www.Mvc.Areas.Identity.Models.EmailConfirmation;
+using UCosmic.Www.Mvc.Areas.Identity.Models.Deprecated;
 using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
@@ -107,7 +107,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     {
                         // confirm the email address
                         confirmation.EmailAddress.IsConfirmed = true;
-                        confirmation.ConfirmedOnUtc = DateTime.UtcNow;
+                        confirmation.RedeemedOnUtc = DateTime.UtcNow;
                         //_people.Refresh(confirmation.EmailAddress.Person);
                         _objectCommander.Update(confirmation.EmailAddress.Person);
                     }

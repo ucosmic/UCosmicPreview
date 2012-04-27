@@ -86,7 +86,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult ConfirmForPasswordReset(UCosmic.Www.Mvc.Areas.Identity.Models.EmailConfirmation.ConfirmEmailForgotPasswordForm model) {
+        public override System.Web.Mvc.ActionResult ConfirmForPasswordReset(UCosmic.Www.Mvc.Areas.Identity.Models.Deprecated.ConfirmEmailForgotPasswordForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ConfirmForPasswordReset);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;

@@ -41,7 +41,7 @@ namespace UCosmic.Domain.Email
 
             // create the confirmation
             var confirmation = new EmailConfirmation
-                (command.Intent, 12, email);
+                (email, command.Intent);
             command.ConfirmationToken = confirmation.Token;
             _entities.Create(confirmation);
 
@@ -58,7 +58,7 @@ namespace UCosmic.Domain.Email
                 new ComposeEmailMessageQuery(template, email)
                 {
                     Formatters = _queryProcessor.Execute(
-                        new GetEmailConfirmationFormattersQuery(confirmation)
+                        new GetConfirmEmailFormattersQuery(confirmation)
                     )
                 }
             );

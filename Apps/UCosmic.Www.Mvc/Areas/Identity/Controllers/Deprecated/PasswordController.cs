@@ -175,7 +175,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         .EagerLoad(p => p.Emails.Select(e => e.Confirmations))
                     )
                     .Emails.SelectManyConfirmations().ByToken(confirmationToken.Value);
-                if (confirmation != null && confirmation.ConfirmedOnUtc.HasValue 
+                if (confirmation != null && confirmation.RedeemedOnUtc.HasValue 
                     && confirmation.EmailAddress.IsConfirmed)
                 {
                     // return viewmodel for password creation

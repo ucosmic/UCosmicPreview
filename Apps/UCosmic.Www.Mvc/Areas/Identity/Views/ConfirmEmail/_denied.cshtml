@@ -1,0 +1,74 @@
+﻿@using UCosmic.Www.Mvc.Areas.Identity.Models
+@using UCosmic.Domain.People
+@model ConfirmDeniedModel
+@{
+    Layout = MVC.Shared.Views.layout;
+    switch (Model.Reason)
+    {
+        case ConfirmDeniedBecause.ConfirmationIsExpired:
+            switch (Model.Intent)
+            {
+                case EmailConfirmationIntent.SignUp:
+                    ViewBag.Title = "Your email confirmation window has expired";
+                    break;
+
+                case EmailConfirmationIntent.PasswordReset:
+                    ViewBag.Title = "Your password reset window has expired";
+                    break;
+
+                default:
+                    ViewBag.Title = "There was a problem confirming your email";
+                    break;
+
+            }
+            break;
+    }
+}
+<div class="wrap-960">
+    @switch (Model.Reason)
+    {
+        case ConfirmDeniedBecause.ConfirmationIsExpired:
+        @Html.Partial(MVC.Identity.ConfirmEmail.Views._denied_expired, Model.Intent)
+   break;
+
+
+
+@*case ConfirmDeniedBecause.UserIsSignedUp:
+        case ConfirmDeniedBecause.MemberIsSignedUp:
+                       ViewBag.Title = "Your email has already been signed up";
+        <p>
+            You have already confirmed your email address and created a password.
+        </p>
+        <p>
+            Please <a href="@Url.Action(MVC.Identity.SignIn.SignIn())">sign in</a>, or <a href="@Url.Action(MVC.Identity.Password.ForgotPassword())">
+                click here if you forgot your password</a>.
+        </p>
+                                                                                           break;
+
+
+
+        case ConfirmDeniedBecause.ConfirmationIsRedeemed:
+                                                                                           ViewBag.Title = "Your email confirmation has been redeemed";
+        <p>
+            For security purposes, email confirmation codes are no longer valid after they have
+            been redeemed.
+        </p>
+        <p>
+            Immediately after you submit your confirmation code, you must successfully create
+            a password. This is to protect your from other people who could intercept the secret
+            that was emailed to you.
+        </p>
+        <p>
+            Please <a href="@Url.Action(MVC.Identity.SignUp.SendEmail())">sign up again</a>,
+            confirm your email address within the 2 hour window, and create your password immediately
+            afterward.
+        </p>
+        <p>
+            You will then be able to sign in.
+        </p>
+                       break;
+*@
+
+
+    }
+</div>

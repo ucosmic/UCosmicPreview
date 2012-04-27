@@ -203,8 +203,11 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailController.cs" />
-    <Compile Include="Areas\Identity\Controllers\ConfirmEmailServices.cs" />
     <Compile Include="Areas\Identity\Controllers\Saml2MetadataServices.cs" />
+    <Compile Include="Areas\Identity\Models\ConfirmDeniedBecause.cs" />
+    <Compile Include="Areas\Identity\Models\ConfirmDeniedModel.cs" />
+    <Compile Include="Areas\Identity\Models\ConfirmEmailForm.cs" />
+    <Compile Include="Areas\Identity\Models\ConfirmEmailQuery.cs" />
     <Compile Include="Areas\Identity\Models\Saml2IntegrationProfiler.cs" />
     <Compile Include="Areas\Identity\Models\RoleSearchResultProfiler.cs" />
     <Compile Include="Areas\Identity\Models\RoleFormProfiler.cs" />
@@ -232,11 +235,7 @@
     <Compile Include="Areas\My\Controllers\UpdateEmailValueRouter.cs" />
     <Compile Include="Areas\My\Controllers\UpdateEmailValueServices.cs" />
     <Compile Include="Areas\Passwords\Controllers\ForgotPasswordController.cs" />
-    <Compile Include="Areas\Passwords\Controllers\ForgotPasswordServices.cs" />
-    <Compile Include="Areas\Passwords\Controllers\ForgotPasswordRouter.cs" />
     <Compile Include="Areas\Passwords\Models\ForgotPasswordForm.cs" />
-    <Compile Include="Areas\Passwords\Models\ForgotPasswordValidator.cs" />
-    <Compile Include="Areas\Passwords\Models\ForgotPasswordProfiler.cs" />
     <Compile Include="Areas\Passwords\PasswordsAreaRegistration.cs" />
     <Compile Include="Areas\People\Controllers\PersonInfoRouter.cs" />
     <Compile Include="Areas\People\Controllers\PersonInfoServices.cs" />
@@ -1074,6 +1073,14 @@
     <Content Include="Areas\Passwords\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Passwords\Views\ForgotPassword\forgot-password.cshtml" />
     <Content Include="Areas\Passwords\Views\ForgotPassword\EditorTemplates\ForgotPasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Views\ConfirmEmail\confirm-email.cshtml" />
+    <Content Include="Areas\Identity\Views\ConfirmEmail\EditorTemplates\ConfirmEmailForm.cshtml" />
+    <Content Include="Areas\Identity\Views\ConfirmEmail\_denied.cshtml" />
+    <Content Include="Areas\Identity\Views\ConfirmEmail\_denied-expired.cshtml" />
+    <Content Include="Areas\Identity\Views\ConfirmEmail\_form-instructions.cshtml" />
+    <Content Include="Areas\Identity\Views\ConfirmEmail\_form-legend.cshtml" />
+    <Content Include="Areas\Identity\Views\ConfirmEmail\_right.cshtml" />
+    <Content Include="Areas\Identity\Views\ConfirmEmail\_styles.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />

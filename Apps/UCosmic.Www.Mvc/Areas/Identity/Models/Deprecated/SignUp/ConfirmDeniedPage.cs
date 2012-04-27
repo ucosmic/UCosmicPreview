@@ -1,5 +1,4 @@
-﻿
-namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
+﻿namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
 {
     public class ConfirmDeniedPage
     {

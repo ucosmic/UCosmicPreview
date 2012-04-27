@@ -73,6 +73,7 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Email\Commands\RedeemEmailConfirmationValidatorFacts.cs" />
     <Compile Include="Establishments\Commands\SignOnSamlUserHandlerFacts.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentByIdHandlerFacts.cs" />
     <Compile Include="Etc\InterfaceQueryEntitiesExtensions.cs" />

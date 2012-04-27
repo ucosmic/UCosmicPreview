@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Models.EmailConfirmation
+namespace UCosmic.Www.Mvc.Areas.Identity.Models.Deprecated
 {
     public class ConfirmEmailForgotPasswordForm
     {

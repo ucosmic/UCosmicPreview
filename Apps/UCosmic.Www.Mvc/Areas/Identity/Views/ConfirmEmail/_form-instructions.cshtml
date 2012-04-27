@@ -1,0 +1,23 @@
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.ConfirmEmailForm
+@if (!Model.IsUrlConfirmation)
+{
+    <p>
+        When you receive your confirmation email, it will contain a secret Confirmation
+        Code.
+    </p>
+    <p>
+        Copy and paste that code into the text box below ownership and click the <strong>Confirm
+            Email Address</strong> button.
+    </p>
+}
+else
+{
+    <p>
+        As a safeguard against the URL that was sent to you, your email address still has
+        not yet been confirmed.
+    </p>
+    <p>
+        Your confirmation code is ready. Please click the <strong>Confirm Email Address</strong>
+        button below to proceed.
+    </p>
+}

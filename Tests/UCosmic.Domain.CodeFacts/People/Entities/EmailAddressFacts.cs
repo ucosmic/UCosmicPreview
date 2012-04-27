@@ -50,7 +50,7 @@ namespace UCosmic.Domain.People
                     Intent = intent,
                     SecretCode = secretCode,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = null,
+                    RedeemedOnUtc = null,
                 };
                 var emailAddress = new EmailAddress
                 {
@@ -76,7 +76,7 @@ namespace UCosmic.Domain.People
                     Intent = intent,
                     SecretCode = secretCode,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = null,
+                    RedeemedOnUtc = null,
                 };
                 var emailAddress = new EmailAddress
                 {
@@ -89,7 +89,7 @@ namespace UCosmic.Domain.People
 
                 // assert
                 var result = emailAddress.Confirmations.Single(c => c.Token == confirmation.Token);
-                result.ConfirmedOnUtc.HasValue.ShouldBeTrue();
+                result.RedeemedOnUtc.HasValue.ShouldBeTrue();
             }
         }
 

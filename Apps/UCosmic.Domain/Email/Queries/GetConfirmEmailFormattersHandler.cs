@@ -3,16 +3,16 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Email
 {
-    public class GetEmailConfirmationFormattersHandler : IHandleQueries<GetEmailConfirmationFormattersQuery, IDictionary<string, string>>
+    public class GetConfirmEmailFormattersHandler : IHandleQueries<GetConfirmEmailFormattersQuery, IDictionary<string, string>>
     {
         private readonly IManageConfigurations _configurationManager;
 
-        public GetEmailConfirmationFormattersHandler(IManageConfigurations configurationManager)
+        public GetConfirmEmailFormattersHandler(IManageConfigurations configurationManager)
         {
             _configurationManager = configurationManager;
         }
 
-        public IDictionary<string, string> Handle(GetEmailConfirmationFormattersQuery query)
+        public IDictionary<string, string> Handle(GetConfirmEmailFormattersQuery query)
         {
             var formatters = new Dictionary<string, string>
             {

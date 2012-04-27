@@ -14,7 +14,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
         // ReSharper disable UnusedMember.Local
 
-        private class EntityToViewModel : Profile
+        private class EntityToViewModelProfile : Profile
         {
             protected override void Configure()
             {

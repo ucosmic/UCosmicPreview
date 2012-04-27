@@ -25,5 +25,10 @@ namespace UCosmic.Domain.People
         {
             return enumerable.SelectMany(e => e.Confirmations);
         }
+
+        public static EmailConfirmation ByToken(this IEnumerable<EmailConfirmation> enumerable, Guid token)
+        {
+            return enumerable.SingleOrDefault(c => c.Token == token);
+        }
     }
 }

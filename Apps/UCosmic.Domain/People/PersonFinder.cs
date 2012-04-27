@@ -60,16 +60,16 @@ namespace UCosmic.Domain.People
             return results;
         }
 
-        public IEnumerable<string> GetDistinctSalutations()
-        {
-            return EntityQueries.People.Where(p => p.Salutation != null && p.Salutation.Trim() != string.Empty)
-                .Select(p => p.Salutation).Distinct().ToArray();
-        }
+        //public IEnumerable<string> GetDistinctSalutations()
+        //{
+        //    return EntityQueries.People.Where(p => p.Salutation != null && p.Salutation.Trim() != string.Empty)
+        //        .Select(p => p.Salutation).Distinct().ToArray();
+        //}
 
-        public IEnumerable<string> GetDistinctSuffixes()
-        {
-            return EntityQueries.People.Where(p => p.Suffix != null && p.Suffix.Trim() != string.Empty)
-                .Select(p => p.Suffix).Distinct().ToArray();
-        }
+        //public IEnumerable<string> GetDistinctSuffixes()
+        //{
+        //    return EntityQueries.People.Where(p => p.Suffix != null && p.Suffix.Trim() != string.Empty)
+        //        .Select(p => p.Suffix).Distinct().ToArray();
+        //}
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UCosmic.Domain.Email;
 
 namespace UCosmic.Domain.People
@@ -14,7 +13,7 @@ namespace UCosmic.Domain.People
             ExpiresOnUtc = DateTime.UtcNow.AddHours(2);
         }
 
-        protected internal EmailConfirmation(string intent, int secretCodeLength, EmailAddress emailAddress)
+        protected internal EmailConfirmation(EmailAddress emailAddress, string intent, int secretCodeLength = 12)
             : this()
         {
             Intent = intent;
@@ -34,13 +33,19 @@ namespace UCosmic.Domain.People
 
         public string SecretCode { get; set; }
 
+        public string Ticket { get; protected internal set; }
+
         public string Intent { get; set; }
 
         public DateTime IssuedOnUtc { get; protected internal set; }
-        public DateTime? ConfirmedOnUtc { get; set; }
+
+        public DateTime? RedeemedOnUtc { get; set; }
+
         public DateTime ExpiresOnUtc { get; protected internal set; }
 
         public bool IsExpired { get { return (DateTime.UtcNow > ExpiresOnUtc); } }
+
+        public bool IsRedeemed { get { return RedeemedOnUtc.HasValue; } }
 
         public EmailMessage ComposeConfirmationMessage(EmailTemplate template,
             string startUrl, string confirmationUrl, IManageConfigurations config)
@@ -90,16 +95,5 @@ namespace UCosmic.Domain.People
     {
         public const string SignUp = "Sign Up";
         public const string PasswordReset = "Password Reset";
-    }
-
-    public static class EmailConfirmationExtensions
-    {
-        public static EmailConfirmation ByToken(this IEnumerable<EmailConfirmation> enumerable, Guid token)
-        {
-            return (enumerable != null && token != Guid.Empty)
-                ? enumerable.SingleOrDefault(c => c.Token == token)
-                : null;
-        }
-
     }
 }
