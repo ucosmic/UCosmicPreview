@@ -4,16 +4,16 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Email
 {
-    public class GetEmailMessageByPersonIdAndNumberHandler : IHandleQueries<GetEmailMessageByPersonIdAndNumberQuery, EmailMessage>
+    public class GetEmailMessageByNumberHandler : IHandleQueries<GetEmailMessageByNumberQuery, EmailMessage>
     {
         private readonly IProcessQueries _queryProcessor;
 
-        public GetEmailMessageByPersonIdAndNumberHandler(IProcessQueries queryProcessor)
+        public GetEmailMessageByNumberHandler(IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
         }
 
-        public EmailMessage Handle(GetEmailMessageByPersonIdAndNumberQuery query)
+        public EmailMessage Handle(GetEmailMessageByNumberQuery query)
         {
             if (query == null) throw new ArgumentNullException("query");
 

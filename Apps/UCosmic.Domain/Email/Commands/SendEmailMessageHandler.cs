@@ -34,7 +34,7 @@ namespace UCosmic.Domain.Email
                 if (_retryCount > 1) Thread.Sleep(300);
 
                 emailMessage = _queryProcessor.Execute(
-                    new GetEmailMessageByPersonIdAndNumberQuery
+                    new GetEmailMessageByNumberQuery
                     {
                         PersonId = command.PersonId,
                         Number = command.MessageNumber,

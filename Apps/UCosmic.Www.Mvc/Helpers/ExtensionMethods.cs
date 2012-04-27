@@ -66,7 +66,7 @@ namespace UCosmic.Www.Mvc
         }
 
         #endregion
-        #region Session Shortcuts
+        #region WasSignedInAs Session Shortcuts
 
         private const string WasSignedInAsKey = "WasSignedInAs";
 
@@ -95,6 +95,9 @@ namespace UCosmic.Www.Mvc
             return null;
         }
 
+        #endregion
+        #region FeedbackMessage TempData Shortcuts
+
         public static void FeedbackMessage(this TempDataDictionary tempData, string value)
         {
             if (tempData != null)
@@ -118,6 +121,27 @@ namespace UCosmic.Www.Mvc
                 }
             }
             return null;
+        }
+
+        #endregion
+        #region EmailConfirmation TempData Shortcuts
+
+        private const string EmailConfirmationTicketKey = "EmailConfirmationTicket";
+
+        public static void EmailConfirmationTicket(this TempDataDictionary tempData, string ticket)
+        {
+            if (tempData == null) return;
+            tempData[EmailConfirmationTicketKey] = ticket;
+        }
+
+        public static string EmailConfirmationTicket(this TempDataDictionary tempData, bool keep = true)
+        {
+            if (tempData == null) return null;
+
+            var value = tempData[EmailConfirmationTicketKey];
+            if (keep) tempData.Keep(EmailConfirmationTicketKey);
+
+            return value != null ? value.ToString() : null;
         }
 
         #endregion

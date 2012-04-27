@@ -55,7 +55,7 @@ namespace UCosmic.Domain.People
                 if (confirmation != null)
                 {
                     IsConfirmed = true;
-                    confirmation.ConfirmedOnUtc = DateTime.UtcNow;
+                    confirmation.RedeemedOnUtc = DateTime.UtcNow;
                     confirmation.SecretCode = null;
                     return true;
                 }

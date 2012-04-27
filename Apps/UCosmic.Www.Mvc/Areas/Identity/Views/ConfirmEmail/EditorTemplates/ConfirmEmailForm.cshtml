@@ -1,9 +1,9 @@
-﻿@using UCosmic.Www.Mvc.Areas.Identity.Models.Deprecated
-@model ConfirmEmailForgotPasswordForm
-<div id="confirm_email_editor" class="half-form">
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.ConfirmEmailForm
+<div id="confirm_email_editor">
     <div class="hidden-input">
         @Html.EditorFor(m => m.Token)
-        @Html.EditorFor(m => m.EmailAddressValue)
+        @Html.EditorFor(m => m.Intent)
+        @Html.EditorFor(m => m.IsUrlConfirmation)
     </div>
     <div class="field" data-ucosmic-val="css">
         <span class="label" data-ucosmic-val-hide="error" data-ucosmic-val-show="valid" data-ucosmic-focused-class="focused">
@@ -26,6 +26,7 @@
         </div>
     </div>
     <div>
-        <input type="submit" value="Confirm Email Ownership" />
+        <input type="submit" value="Confirm Email Address" />
+        @Html.Partial(MVC.Shared.Views.form_submitted_spinner)
     </div>
 </div>

@@ -69,6 +69,18 @@ namespace UCosmic.Domain.People
                 : null;
         }
 
+        internal static Person ByEmailConfirmation(this IQueryable<Person> queryable, Guid token)
+        {
+            return queryable.SingleOrDefault(p => p.Emails.Any(e => e.Confirmations.Any(c => c.Token == token)));
+        }
+
+        internal static EmailConfirmation GetEmailConfirmation(this Person owner, Guid token)
+        {
+            return owner != null
+                ? owner.Emails.SelectManyConfirmations().ByToken(token)
+                : null;
+        }
+
         internal static Affiliation GetAffiliation(this Person owner, int establishmentId)
         {
             return owner.Affiliations.ByEstablishmentId(establishmentId);

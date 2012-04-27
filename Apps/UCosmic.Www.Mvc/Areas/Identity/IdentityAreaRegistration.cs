@@ -32,6 +32,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             SignOnRouter.RegisterRoutes(context);
             Saml2IntegrationProfiler.RegisterProfiles();
 
+            ConfirmEmailRouter.RegisterRoutes(context);
+            ConfirmEmailProfiler.RegisterProfiles();
+            ConfirmQueryProfiler.RegisterProfiles();
+
             //// default route
             //context.MapRoute(
             //    "Identity_default",

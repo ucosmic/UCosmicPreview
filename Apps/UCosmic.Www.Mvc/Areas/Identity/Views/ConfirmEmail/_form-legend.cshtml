@@ -1,0 +1,9 @@
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.ConfirmEmailForm
+@if (!Model.IsUrlConfirmation)
+{
+    <text>Enter Confirmation Code</text>
+}
+else
+{
+    <text>Confirm with URL</text>
+}

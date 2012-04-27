@@ -1,0 +1,49 @@
+﻿@using UCosmic.Domain.People
+@model UCosmic.Www.Mvc.Areas.Identity.Models.ConfirmEmailForm
+@if (!Model.IsUrlConfirmation)
+{
+    <h2>
+        ...or confirm with URL</h2>
+    <p>
+        When you receive your confirmation email, it will also have a URL in it.
+    </p>
+    <p>
+        You can click that URL or copy and paste it into your browser to confirm ownership.
+    </p>
+    if (Model.Intent == EmailConfirmationIntent.SignUp)
+    {
+    <p>
+        If you have already used the URL to confirm ownership and set up a password, you
+        can safely close this page.
+    </p>
+    }
+    else if (Model.Intent == EmailConfirmationIntent.PasswordReset)
+    {
+    <p>
+        If you have already used the URL to confirm ownership and reset your password, you
+        can safely close this page.
+    </p>
+    }
+}
+else if (Model.Intent == EmailConfirmationIntent.SignUp)
+{
+    <p>
+        The web page you used to sign up and send the confirmation email may still be open
+        in another tab or window.
+    </p>
+    <p>
+        After you confirm your email address and create a password, you can safely close
+        that page.
+    </p>
+}
+else if (Model.Intent == EmailConfirmationIntent.PasswordReset)
+{
+    <p>
+        The web page you used to reset your password and send the confirmation email may still be open
+        in another tab or window.
+    </p>
+    <p>
+        After you confirm your email address and reset your password, you can safely close
+        that page.
+    </p>
+}

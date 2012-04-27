@@ -131,12 +131,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             {
                 // arrange
                 const string secretCode = "its a secret";
-                var tokenConfirmation = new Domain.People.EmailConfirmation
+                var tokenConfirmation = new EmailConfirmation
                 {
                     SecretCode = secretCode,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
                     Intent = EmailConfirmationIntent.SignUp,
-                    ConfirmedOnUtc = null,
+                    RedeemedOnUtc = null,
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -152,7 +152,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                         new EmailAddress
                         {
                             //IsCurrent = false,
-                            Confirmations = new List<Domain.People.EmailConfirmation>
+                            Confirmations = new List<EmailConfirmation>
                             {
                                 tokenConfirmation
                             }
@@ -189,12 +189,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             {
                 // arrange
                 const string secretCode = "its a secret";
-                var tokenConfirmation = new Domain.People.EmailConfirmation
+                var tokenConfirmation = new EmailConfirmation
                 {
                     SecretCode = secretCode,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
                     Intent = EmailConfirmationIntent.SignUp,
-                    ConfirmedOnUtc = null,
+                    RedeemedOnUtc = null,
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -209,7 +209,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 {
                     new EmailAddress
                     {
-                        Confirmations = new List<Domain.People.EmailConfirmation>
+                        Confirmations = new List<EmailConfirmation>
                         {
                             tokenConfirmation
                         }
@@ -246,12 +246,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             {
                 // arrange
                 const string secretCode = "its a secret";
-                var tokenConfirmation = new Domain.People.EmailConfirmation
+                var tokenConfirmation = new EmailConfirmation
                 {
                     SecretCode = secretCode,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
                     Intent = "Some other intent",
-                    ConfirmedOnUtc = null,
+                    RedeemedOnUtc = null,
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -266,7 +266,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 {
                     new EmailAddress
                     {
-                        Confirmations = new List<Domain.People.EmailConfirmation>
+                        Confirmations = new List<EmailConfirmation>
                         {
                             tokenConfirmation
                         }
@@ -303,12 +303,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             {
                 // arrange
                 const string secretCode = "its a secret";
-                var tokenConfirmation = new Domain.People.EmailConfirmation
+                var tokenConfirmation = new EmailConfirmation
                 {
                     SecretCode = secretCode.ToUpper(),
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
                     Intent = EmailConfirmationIntent.SignUp,
-                    ConfirmedOnUtc = null,
+                    RedeemedOnUtc = null,
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -323,7 +323,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                 {
                     new EmailAddress
                     {
-                        Confirmations = new List<Domain.People.EmailConfirmation>
+                        Confirmations = new List<EmailConfirmation>
                         {
                             tokenConfirmation
                         }
@@ -360,12 +360,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             {
                 // arrange
                 const string secretCode = "its a secret";
-                var tokenConfirmation = new Domain.People.EmailConfirmation
+                var tokenConfirmation = new EmailConfirmation
                 {
                     SecretCode = secretCode,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
                     Intent = EmailConfirmationIntent.SignUp,
-                    ConfirmedOnUtc = null,
+                    RedeemedOnUtc = null,
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -384,7 +384,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                     {
                         new EmailAddress
                         {
-                            Confirmations = new List<Domain.People.EmailConfirmation>
+                            Confirmations = new List<EmailConfirmation>
                             {
                                 tokenConfirmation
                             }
@@ -414,12 +414,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             {
                 // arrange
                 const string secretCode = "its a secret";
-                var tokenConfirmation = new Domain.People.EmailConfirmation
+                var tokenConfirmation = new EmailConfirmation
                 {
                     SecretCode = secretCode,
                     ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                     Intent = EmailConfirmationIntent.SignUp,
-                    ConfirmedOnUtc = null,
+                    RedeemedOnUtc = null,
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -434,7 +434,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                     {
                         new EmailAddress
                         {
-                            Confirmations = new List<Domain.People.EmailConfirmation>
+                            Confirmations = new List<EmailConfirmation>
                             {
                                 tokenConfirmation
                             }
@@ -465,12 +465,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             {
                 // arrange
                 const string secretCode = "its a secret";
-                var tokenConfirmation = new Domain.People.EmailConfirmation
+                var tokenConfirmation = new EmailConfirmation
                 {
                     SecretCode = secretCode,
                     ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                     Intent = EmailConfirmationIntent.SignUp,
-                    ConfirmedOnUtc = null,
+                    RedeemedOnUtc = null,
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -489,7 +489,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                     {
                         new EmailAddress
                         {
-                            Confirmations = new List<Domain.People.EmailConfirmation>
+                            Confirmations = new List<EmailConfirmation>
                             {
                                 tokenConfirmation
                             }
@@ -520,12 +520,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
             {
                 // arrange
                 const string secretCode = "its a secret";
-                var tokenConfirmation = new Domain.People.EmailConfirmation
+                var tokenConfirmation = new EmailConfirmation
                 {
                     SecretCode = secretCode,
                     ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                     Intent = EmailConfirmationIntent.SignUp,
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -544,7 +544,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
                     {
                         new EmailAddress
                         {
-                            Confirmations = new List<Domain.People.EmailConfirmation>
+                            Confirmations = new List<EmailConfirmation>
                             {
                                 tokenConfirmation
                             }

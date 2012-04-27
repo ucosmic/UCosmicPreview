@@ -261,7 +261,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 return View(deniedView, new ConfirmDeniedPage(ConfirmDeniedPage.DeniedBecause.MemberIsSignedUp));
 
             // when person is not registered but confirmation has already been redeemed
-            if (confirmation.ConfirmedOnUtc.HasValue)
+            if (confirmation.RedeemedOnUtc.HasValue)
                 return View(deniedView, new ConfirmDeniedPage(ConfirmDeniedPage.DeniedBecause.ConfirmationIsRedeemed));
 
             return null;
@@ -331,7 +331,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             // confirmation should not be null at this point, but protect against it
             if (confirmation == null || !confirmation.EmailAddress.IsConfirmed
-                || !confirmation.ConfirmedOnUtc.HasValue)
+                || !confirmation.RedeemedOnUtc.HasValue)
                 return View(deniedView, new CreateDeniedPage(CreateDeniedPage.DeniedBecause.ConfirmationDoesNotExist));
 
             // passwords can only be created within the expiration window

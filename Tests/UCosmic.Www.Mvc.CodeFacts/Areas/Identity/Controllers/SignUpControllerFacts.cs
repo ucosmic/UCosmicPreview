@@ -859,7 +859,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -980,7 +980,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -1041,7 +1041,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -1106,7 +1106,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -1455,7 +1455,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -1576,7 +1576,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -1637,7 +1637,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -1702,7 +1702,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -1770,7 +1770,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
                     SecretCode = secretCode,
-                    ConfirmedOnUtc = null,
+                    RedeemedOnUtc = null,
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -1831,7 +1831,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 memberSigner.Verify(m => m.IsSignedUp(It.Is<string>(s => s == emailAddress.Value)),
                     Times.Once());
                 emailAddress.IsConfirmed.ShouldBeTrue();
-                confirmation.ConfirmedOnUtc.ShouldNotEqual(null);
+                confirmation.RedeemedOnUtc.ShouldNotEqual(null);
             }
         }
 
@@ -1918,7 +1918,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     SecretCode = secretCode,
                     ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                     Intent = EmailConfirmationIntent.SignUp,
-                    ConfirmedOnUtc = null,
+                    RedeemedOnUtc = null,
                 };
                 var model = new ConfirmEmailForm
                 {
@@ -2080,7 +2080,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
                 };
                 #region Person Aggregate
 
@@ -2133,7 +2133,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = null,
+                    RedeemedOnUtc = null,
                 };
                 #region Person Aggregate
 
@@ -2186,7 +2186,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
                 };
                 #region Person Aggregate
 
@@ -2239,7 +2239,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                 };
                 #region Person Aggregate
 
@@ -2293,7 +2293,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                 };
                 #region Person Aggregate
 
@@ -2352,7 +2352,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                 };
                 #region Person Aggregate
 
@@ -2567,7 +2567,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
                 };
                 #region Person Aggregate
 
@@ -2620,7 +2620,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = null,
+                    RedeemedOnUtc = null,
                 };
                 #region Person Aggregate
 
@@ -2673,7 +2673,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 0)),
                 };
                 #region Person Aggregate
 
@@ -2726,7 +2726,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                 };
                 #region Person Aggregate
 
@@ -2780,7 +2780,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     Intent = EmailConfirmationIntent.SignUp,
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                 };
                 #region Person Aggregate
 
@@ -2839,7 +2839,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var tokenConfirmation = new EmailConfirmation
                 {
                     Intent = EmailConfirmationIntent.SignUp,
-                    ConfirmedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
+                    RedeemedOnUtc = DateTime.UtcNow.Subtract(new TimeSpan(0, 1, 0)),
                     ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
                 };
                 var model = new CreatePasswordForm

@@ -1,0 +1,39 @@
+﻿@using UCosmic.Domain.People
+@model string
+@if (Model == EmailConfirmationIntent.SignUp)
+{
+    <p>
+        For security purposes, email confirmation codes are only valid for two (2) hours
+        after they are issued.
+    </p>
+    <p>
+        Please <a href="@Url.Action(MVC.Identity.SignUp.SendEmail())">sign up again</a>,
+        and confirm your email address within the 2 hour window.
+    </p>
+    <p>
+        You will then be able to set up your password and sign in.
+    </p>
+}
+else if (Model == EmailConfirmationIntent.PasswordReset)
+{
+    <p>
+        For security purposes, password reset codes are only valid for two (2) hours after
+        they are issued.
+    </p>
+    <p>
+        To reset your password, please <a href="@Url.Action(MVC.Passwords.ForgotPassword.Get())">
+            click here to generate a new password reset email</a>.
+    </p>
+    <p>
+        You must then use your secret confirmation code to reset your password within 2
+        hours.
+    </p>
+}
+else
+{
+    <p>
+        An unexpected error was encountered while trying to confirm ownership of your email
+        address. Please click the Feedback &amp; Support button at the bottom of this page
+        to notify us of this error.
+    </p>
+}

@@ -65,8 +65,14 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Api\BaseQuery.cs" />
+    <Compile Include="Email\Commands\RedeemEmailConfirmationCommand.cs" />
+    <Compile Include="Email\Commands\RedeemEmailConfirmationHandler.cs" />
+    <Compile Include="Email\Commands\RedeemEmailConfirmationValidator.cs" />
     <Compile Include="Email\Commands\SendEmailMessageCommand.cs" />
     <Compile Include="Email\Commands\SendEmailMessageHandler.cs" />
+    <Compile Include="Email\Commands\ValidateEmailConfirmation.cs" />
+    <Compile Include="Email\Queries\GetEmailConfirmationHandler.cs" />
+    <Compile Include="Email\Queries\GetEmailConfirmationQuery.cs" />
     <Compile Include="Email\Queries\GetMailMessageQuery.cs" />
     <Compile Include="Email\Queries\GetMailMessageHandler.cs" />
     <Compile Include="Email\Queries\EmailTemplateQueries.cs" />
@@ -74,8 +80,8 @@
     <Compile Include="Email\Queries\GetEmailTemplateByNameQuery.cs" />
     <Compile Include="Email\Queries\ComposeEmailMessageHandler.cs" />
     <Compile Include="Email\Queries\ComposeEmailMessageQuery.cs" />
-    <Compile Include="Email\Queries\GetEmailMessageByPersonIdAndNumberHandler.cs" />
-    <Compile Include="Email\Queries\GetEmailMessageByPersonIdAndNumberQuery.cs" />
+    <Compile Include="Email\Queries\GetEmailMessageByNumberHandler.cs" />
+    <Compile Include="Email\Queries\GetEmailMessageByNumberQuery.cs" />
     <Compile Include="Establishments\Commands\ValidateEstablishment.cs" />
     <Compile Include="Establishments\Queries\BaseEstablishmentQuery.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentByIdHandler.cs" />
@@ -176,8 +182,8 @@
     <Compile Include="People\Queries\BasePeopleQuery.cs" />
     <Compile Include="People\Queries\BasePersonQuery.cs" />
     <Compile Include="People\Queries\AffiliationQueries.cs" />
-    <Compile Include="Email\Queries\GetEmailConfirmationFormattersHandler.cs" />
-    <Compile Include="Email\Queries\GetEmailConfirmationFormattersQuery.cs" />
+    <Compile Include="Email\Queries\GetConfirmEmailFormattersHandler.cs" />
+    <Compile Include="Email\Queries\GetConfirmEmailFormattersQuery.cs" />
     <Compile Include="People\Queries\EmailMessageQueries.cs" />
     <Compile Include="People\Queries\FindPeopleWithLastNameHandler.cs" />
     <Compile Include="People\Queries\FindPeopleWithLastNameQuery.cs" />

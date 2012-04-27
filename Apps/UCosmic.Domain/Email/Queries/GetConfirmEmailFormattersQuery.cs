@@ -4,9 +4,9 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Email
 {
-    public class GetEmailConfirmationFormattersQuery : IDefineQuery<IDictionary<string, string>>
+    public class GetConfirmEmailFormattersQuery : IDefineQuery<IDictionary<string, string>>
     {
-        public GetEmailConfirmationFormattersQuery(EmailConfirmation confirmation)
+        public GetConfirmEmailFormattersQuery(EmailConfirmation confirmation)
         {
             if (confirmation == null) throw new ArgumentNullException("confirmation");
             Confirmation = confirmation;

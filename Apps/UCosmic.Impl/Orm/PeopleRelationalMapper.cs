@@ -84,6 +84,7 @@ namespace UCosmic.Impl.Orm
                 HasKey(p => p.Id);
 
                 Property(p => p.SecretCode).HasMaxLength(15);
+                Property(p => p.Ticket).HasMaxLength(256);
                 Property(p => p.Intent).IsRequired().HasMaxLength(20);
             }
         }
