@@ -89,6 +89,8 @@
     <Compile Include="Email\Commands\SendConfirmEmailMessageCommand.cs" />
     <Compile Include="Email\Commands\SendConfirmEmailMessageHandler.cs" />
     <Compile Include="Email\Commands\SendConfirmEmailMessageValidator.cs" />
+    <Compile Include="Identity\Commands\ResetPassword.cs" />
+    <Compile Include="Identity\Commands\ValidatePassword.cs" />
     <Compile Include="Identity\Commands\ValidateUser.cs" />
     <Compile Include="Identity\Commands\ValidatePrincipal.cs" />
     <Compile Include="Api\EntityExtensions.cs" />

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -64,7 +65,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             // set temp data values
             TempData.EmailConfirmationTicket(command.Ticket);
 
-            return new EmptyResult();
+            return RedirectToTicketAction(model);
         }
 
         [NonAction]
@@ -84,10 +85,28 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             // if confirmation is already redeemed, forward to ticketed step
             if (ModelState.ContainsKey(ConfirmEmailForm.IsRedeemedPropertyName) &&
                 ModelState[ConfirmEmailForm.IsRedeemedPropertyName].Errors.Any())
-                return PartialView(MVC.Identity.ConfirmEmail.Views._denied,
-                    new ConfirmDeniedModel(ConfirmDeniedBecause.ConfirmationIsExpired, model.Intent));
+                return RedirectToTicketAction(model);
 
             return PartialView(MVC.Identity.ConfirmEmail.Views.confirm_email, model);
+        }
+
+        [NonAction]
+        private ActionResult RedirectToTicketAction(ConfirmEmailForm model)
+        {
+            switch (model.Intent)
+            {
+                case EmailConfirmationIntent.PasswordReset:
+                    return RedirectToRoute(new
+                    {
+                        area = MVC.Passwords.Name,
+                        controller = MVC.Passwords.ResetPassword.Name,
+                        action = MVC.Passwords.ResetPassword.ActionNames.Get,
+                        token = model.Token,
+                    });
+            }
+            throw new NotSupportedException(string.Format(
+                "The email confirmation intent '{0}' is not supported.",
+                    model.Intent));
         }
 
         public static readonly IDictionary<string, string> SuccessMessageForIntent = new Dictionary<string, string>

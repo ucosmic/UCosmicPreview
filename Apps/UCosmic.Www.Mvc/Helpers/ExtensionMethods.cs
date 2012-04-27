@@ -131,7 +131,9 @@ namespace UCosmic.Www.Mvc
         public static void EmailConfirmationTicket(this TempDataDictionary tempData, string ticket)
         {
             if (tempData == null) return;
-            tempData[EmailConfirmationTicketKey] = ticket;
+            if (string.IsNullOrWhiteSpace(ticket))
+                tempData.Remove(EmailConfirmationTicketKey);
+            else tempData[EmailConfirmationTicketKey] = ticket;
         }
 
         public static string EmailConfirmationTicket(this TempDataDictionary tempData, bool keep = true)

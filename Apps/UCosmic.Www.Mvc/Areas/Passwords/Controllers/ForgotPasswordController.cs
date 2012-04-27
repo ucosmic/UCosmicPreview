@@ -66,9 +66,8 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
 
     public class ForgotPasswordServices
     {
-        public ForgotPasswordServices(
-            IProcessQueries queryProcessor
-        , IHandleCommands<SendConfirmEmailMessageCommand> commandHandler
+        public ForgotPasswordServices(IProcessQueries queryProcessor
+            , IHandleCommands<SendConfirmEmailMessageCommand> commandHandler
         )
         {
             QueryProcessor = queryProcessor;

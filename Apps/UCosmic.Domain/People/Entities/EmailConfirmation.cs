@@ -39,9 +39,11 @@ namespace UCosmic.Domain.People
 
         public DateTime IssuedOnUtc { get; protected internal set; }
 
+        public DateTime ExpiresOnUtc { get; protected internal set; }
+
         public DateTime? RedeemedOnUtc { get; set; }
 
-        public DateTime ExpiresOnUtc { get; protected internal set; }
+        public DateTime? RetiredOnUtc { get; set; }
 
         public bool IsExpired { get { return (DateTime.UtcNow > ExpiresOnUtc); } }
 

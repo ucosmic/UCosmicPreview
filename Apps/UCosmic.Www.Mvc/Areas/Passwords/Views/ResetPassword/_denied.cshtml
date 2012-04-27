@@ -1,0 +1,16 @@
+﻿@{
+    Layout = MVC.Shared.Views.layout;
+    ViewBag.Title = "Your password reset window has expired";
+}
+<div class="wrap-960">
+    <p>
+        An unexpected error occurred while trying to reset your password.
+    </p>
+    <p>
+        To protect your account, you must <a href="@Url.Action(MVC.Passwords.ForgotPassword.Get())">
+            click here to begin the password reset process again</a>.
+    </p>
+    <p>
+        Please be sure to reset your password within 2 hours
+    </p>
+</div>

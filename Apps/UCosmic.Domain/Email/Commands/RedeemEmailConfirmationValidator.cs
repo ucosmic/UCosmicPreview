@@ -32,7 +32,7 @@ namespace UCosmic.Domain.Email
 
                 // confirmation cannot be redeemed
                 .Must(ValidateEmailConfirmationIsNotRedeemed).WithMessage(
-                    ValidateEmailConfirmation.FailedBecauseIRedeemed,
+                    ValidateEmailConfirmation.FailedBecauseIsRedeemed,
                         p => p.Token, p => _confirmation.RedeemedOnUtc)
             ;
 

@@ -2,6 +2,7 @@
 using UCosmic.Domain.People;
 using System.Linq.Expressions;
 using System.Collections.Generic;
+
 namespace UCosmic.Domain.Email
 {
     public static class ValidateEmailConfirmation
@@ -64,13 +65,25 @@ namespace UCosmic.Domain.Email
         #endregion
         #region Is not redeemed
 
-        public const string FailedBecauseIRedeemed =
+        public const string FailedBecauseIsRedeemed =
             "The email confirmation '{0}' was redeemed on {1}.";
 
         public static bool IsNotRedeemed(EmailConfirmation confirmation)
         {
             // return true (valid) if confirmation is not redeemed
             return confirmation != null && !confirmation.IsRedeemed;
+        }
+
+        #endregion
+        #region Is redeemed
+
+        public const string FailedBecauseIsNotRedeemed =
+            "The email confirmation '{0}' has not been redeemed.";
+
+        public static bool IsRedeemed(EmailConfirmation confirmation)
+        {
+            // return true (valid) if confirmation is redeemed
+            return confirmation != null && confirmation.IsRedeemed;
         }
 
         #endregion
@@ -89,6 +102,24 @@ namespace UCosmic.Domain.Email
         {
             // return true (valid) if confirmation secret matches
             return confirmation != null && confirmation.SecretCode == secretCode;
+        }
+
+        #endregion
+        #region Ticket cannot be empty
+
+        public const string FailedBecauseTicketWasEmpty =
+            "A ticket is required to redeem a password reset.";
+
+        #endregion
+        #region Ticket must match
+
+        public const string FailedBecauseTicketWasIncorrect =
+            "The ticket '{0}' is not valid for email confirmation '{1}'.";
+
+        public static bool TicketIsCorrect(EmailConfirmation confirmation, string ticket)
+        {
+            // return true (valid) if confirmation ticket matches
+            return confirmation != null && confirmation.Ticket == ticket;
         }
 
         #endregion

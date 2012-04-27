@@ -55,10 +55,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 .Must(ValidateEmailConfirmationTokenMatchesEntity).WithMessage(
                     ValidateEmailConfirmationFailedBecauseOfInconsistentData)
 
-                // secret must match entity
-                .Must(ValidateEmailConfirmationSecretCodeIsCorrect).WithMessage(
-                    ValidateEmailConfirmationFailedBecauseSecretCodeWasIncorrect)
-
                 // intent cannot be empty
                 .Must(ValidateEmailConfirmationIntentIsNotEmpty).WithMessage(
                     ValidateEmailConfirmationFailedBecauseOfInconsistentData)
@@ -66,6 +62,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 // intent must match entity
                 .Must(ValidateEmailConfirmationIntentIsCorrect).WithMessage(
                     ValidateEmailConfirmationFailedBecauseOfInconsistentData)
+            ;
+
+            RuleFor(p => p.SecretCode)
+
+                // secret must match entity
+                .Must(ValidateEmailConfirmationSecretCodeIsCorrect).WithMessage(
+                    ValidateEmailConfirmationFailedBecauseSecretCodeWasIncorrect)
+                    .Unless(p => _confirmation != null && _confirmation.IsRedeemed)
             ;
 
             RuleFor(p => p.IsExpired)
@@ -137,8 +141,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             {
                 CreateMap<EmailConfirmation, ConfirmEmailForm>()
                     .ForMember(d => d.SecretCode, opt => opt.Ignore())
-                    .ForMember(d => d.IsUrlConfirmation, o => o
-                        .MapFrom(s => !string.IsNullOrWhiteSpace(s.SecretCode)))
+                    .ForMember(d => d.IsUrlConfirmation, o => o.Ignore())
                 ;
             }
         }

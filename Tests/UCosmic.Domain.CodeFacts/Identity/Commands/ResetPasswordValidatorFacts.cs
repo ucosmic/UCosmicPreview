@@ -4,12 +4,13 @@ using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
+using UCosmic.Domain.Email;
 using UCosmic.Domain.People;
 
-namespace UCosmic.Domain.Email
+namespace UCosmic.Domain.Identity
 {
     // ReSharper disable UnusedMember.Global
-    public class RedeemEmailConfirmationValidatorFacts
+    public class ResetPasswordValidatorFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -18,7 +19,7 @@ namespace UCosmic.Domain.Email
             [TestMethod]
             public void IsInvalidWhen_IsEmpty()
             {
-                var command = new RedeemEmailConfirmationCommand { Token = Guid.Empty };
+                var command = new ResetPasswordCommand { Token = Guid.Empty };
                 var scenarioOptions = new ScenarioOptions();
                 var validator = CreateValidator(scenarioOptions);
 
@@ -38,7 +39,7 @@ namespace UCosmic.Domain.Email
             [TestMethod]
             public void IsInvalidWhen_MatchesNoEntity()
             {
-                var command = new RedeemEmailConfirmationCommand { Token = Guid.NewGuid() };
+                var command = new ResetPasswordCommand { Token = Guid.NewGuid() };
                 var scenarioOptions = new ScenarioOptions();
                 scenarioOptions.MockQueryProcessor.Setup(
                     m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
@@ -61,13 +62,13 @@ namespace UCosmic.Domain.Email
             [TestMethod]
             public void IsInvalidWhen_MatchesExpiredEntity()
             {
-                var command = new RedeemEmailConfirmationCommand { Token = Guid.NewGuid() };
+                var command = new ResetPasswordCommand { Token = Guid.NewGuid() };
                 var confirmation = new EmailConfirmation
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(-1),
                 };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(m => 
+                scenarioOptions.MockQueryProcessor.Setup(m =>
                     m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
                     .Returns(confirmation);
                 var validator = CreateValidator(scenarioOptions);
@@ -86,13 +87,12 @@ namespace UCosmic.Domain.Email
             }
 
             [TestMethod]
-            public void IsInvalidWhen_MatchesRedeemedEntity()
+            public void IsInvalidWhen_MatchesUnredeemedEntity()
             {
-                var command = new RedeemEmailConfirmationCommand { Token = Guid.NewGuid() };
+                var command = new ResetPasswordCommand { Token = Guid.NewGuid() };
                 var confirmation = new EmailConfirmation
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
-                    RedeemedOnUtc = DateTime.UtcNow,
                 };
                 var scenarioOptions = new ScenarioOptions();
                 scenarioOptions.MockQueryProcessor.Setup(m =>
@@ -108,21 +108,22 @@ namespace UCosmic.Domain.Email
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    ValidateEmailConfirmation.FailedBecauseIsRedeemed,
-                        command.Token, confirmation.RedeemedOnUtc));
+                    ValidateEmailConfirmation.FailedBecauseIsNotRedeemed,
+                        command.Token));
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
             public void IsValidWhen_IsNotEmpty_AndMatches_Unexpired_UnRedeemed_Entity()
             {
-                var command = new RedeemEmailConfirmationCommand { Token = Guid.NewGuid() };
+                var command = new ResetPasswordCommand { Token = Guid.NewGuid() };
                 var scenarioOptions = new ScenarioOptions();
                 scenarioOptions.MockQueryProcessor.Setup(m =>
                     m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
                     .Returns(new EmailConfirmation
                     {
                         ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
+                        RedeemedOnUtc = DateTime.UtcNow,
                     });
                 var validator = CreateValidator(scenarioOptions);
 
@@ -134,12 +135,12 @@ namespace UCosmic.Domain.Email
         }
 
         [TestClass]
-        public class TheSecretCodeProperty
+        public class TheTicketProperty
         {
             [TestMethod]
             public void IsInvalidWhen_IsNull()
             {
-                var command = new RedeemEmailConfirmationCommand();
+                var command = new ResetPasswordCommand();
                 var scenarioOptions = new ScenarioOptions();
                 scenarioOptions.MockQueryProcessor.Setup(
                     m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
@@ -150,18 +151,18 @@ namespace UCosmic.Domain.Email
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "SecretCode");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Ticket");
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ValidateEmailConfirmation.FailedBecauseSecretCodeWasEmpty);
+                    ValidateEmailConfirmation.FailedBecauseTicketWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
             public void IsInvalidWhen_IsEmptyString()
             {
-                var command = new RedeemEmailConfirmationCommand { SecretCode = string.Empty };
+                var command = new ResetPasswordCommand { Ticket = string.Empty };
                 var scenarioOptions = new ScenarioOptions();
                 scenarioOptions.MockQueryProcessor.Setup(
                     m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
@@ -172,18 +173,18 @@ namespace UCosmic.Domain.Email
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "SecretCode");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Ticket");
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ValidateEmailConfirmation.FailedBecauseSecretCodeWasEmpty);
+                    ValidateEmailConfirmation.FailedBecauseTicketWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
             public void IsInvalidWhen_IsWhiteSpace()
             {
-                var command = new RedeemEmailConfirmationCommand { SecretCode = "\t" };
+                var command = new ResetPasswordCommand { Ticket = "\t" };
                 var scenarioOptions = new ScenarioOptions();
                 scenarioOptions.MockQueryProcessor.Setup(
                     m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
@@ -194,18 +195,18 @@ namespace UCosmic.Domain.Email
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "SecretCode");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Ticket");
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ValidateEmailConfirmation.FailedBecauseSecretCodeWasEmpty);
+                    ValidateEmailConfirmation.FailedBecauseTicketWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
             public void IsInvalidWhen_Confirmation_WasNull()
             {
-                var command = new RedeemEmailConfirmationCommand { SecretCode = "test" };
+                var command = new ResetPasswordCommand { Ticket = "test" };
                 var scenarioOptions = new ScenarioOptions();
                 scenarioOptions.MockQueryProcessor.Setup(
                     m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
@@ -216,12 +217,12 @@ namespace UCosmic.Domain.Email
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "SecretCode");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Ticket");
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    ValidateEmailConfirmation.FailedBecauseSecretCodeWasIncorrect, 
-                        command.SecretCode, Guid.Empty));
+                    ValidateEmailConfirmation.FailedBecauseTicketWasIncorrect,
+                        command.Ticket, Guid.Empty));
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -230,12 +231,12 @@ namespace UCosmic.Domain.Email
             {
                 var confirmation = new EmailConfirmation
                 {
-                    SecretCode = "tomatto",
+                    Ticket = "tomatto",
                 };
-                var command = new RedeemEmailConfirmationCommand
+                var command = new ResetPasswordCommand
                 {
                     Token = confirmation.Token,
-                    SecretCode = "tomato"
+                    Ticket = "tomato"
                 };
                 var scenarioOptions = new ScenarioOptions();
                 scenarioOptions.MockQueryProcessor.Setup(
@@ -247,12 +248,12 @@ namespace UCosmic.Domain.Email
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "SecretCode");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Ticket");
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    ValidateEmailConfirmation.FailedBecauseSecretCodeWasIncorrect,
-                        command.SecretCode, confirmation.Token));
+                    ValidateEmailConfirmation.FailedBecauseTicketWasIncorrect,
+                        command.Ticket, confirmation.Token));
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -261,12 +262,12 @@ namespace UCosmic.Domain.Email
             {
                 var confirmation = new EmailConfirmation
                 {
-                    SecretCode = "tomato",
+                    Ticket = "tomato",
                 };
-                var command = new RedeemEmailConfirmationCommand
+                var command = new ResetPasswordCommand
                 {
                     Token = confirmation.Token,
-                    SecretCode = "tomato"
+                    Ticket = "tomato"
                 };
                 var scenarioOptions = new ScenarioOptions();
                 scenarioOptions.MockQueryProcessor.Setup(
@@ -276,7 +277,7 @@ namespace UCosmic.Domain.Email
 
                 var results = validator.Validate(command);
 
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "SecretCode");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Ticket");
                 error.ShouldBeNull();
             }
         }
@@ -287,7 +288,7 @@ namespace UCosmic.Domain.Email
             [TestMethod]
             public void IsInvalidWhen_IsNull()
             {
-                var command = new RedeemEmailConfirmationCommand();
+                var command = new ResetPasswordCommand();
                 var scenarioOptions = new ScenarioOptions();
                 scenarioOptions.MockQueryProcessor.Setup(
                     m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
@@ -309,7 +310,7 @@ namespace UCosmic.Domain.Email
             [TestMethod]
             public void IsInvalidWhen_IsEmptyString()
             {
-                var command = new RedeemEmailConfirmationCommand { Intent = string.Empty };
+                var command = new ResetPasswordCommand { Intent = string.Empty };
                 var scenarioOptions = new ScenarioOptions();
                 scenarioOptions.MockQueryProcessor.Setup(
                     m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
@@ -331,7 +332,7 @@ namespace UCosmic.Domain.Email
             [TestMethod]
             public void IsInvalidWhen_IsWhiteSpace()
             {
-                var command = new RedeemEmailConfirmationCommand { Intent = "\t" };
+                var command = new ResetPasswordCommand { Intent = "\t" };
                 var scenarioOptions = new ScenarioOptions();
                 scenarioOptions.MockQueryProcessor.Setup(
                     m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
@@ -353,7 +354,7 @@ namespace UCosmic.Domain.Email
             [TestMethod]
             public void IsInvalidWhen_Confirmation_WasNull()
             {
-                var command = new RedeemEmailConfirmationCommand { Intent = "test" };
+                var command = new ResetPasswordCommand { Intent = "test" };
                 var scenarioOptions = new ScenarioOptions();
                 scenarioOptions.MockQueryProcessor.Setup(
                     m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
@@ -380,7 +381,7 @@ namespace UCosmic.Domain.Email
                 {
                     Intent = "tomatto",
                 };
-                var command = new RedeemEmailConfirmationCommand
+                var command = new ResetPasswordCommand
                 {
                     Token = confirmation.Token,
                     Intent = "tomato"
@@ -411,10 +412,10 @@ namespace UCosmic.Domain.Email
                 {
                     SecretCode = "tomato",
                 };
-                var command = new RedeemEmailConfirmationCommand
+                var command = new ResetPasswordCommand
                 {
                     Token = confirmation.Token,
-                    SecretCode = "tomato"
+                    //SecretCode = "tomato"
                 };
                 var scenarioOptions = new ScenarioOptions();
                 scenarioOptions.MockQueryProcessor.Setup(
@@ -429,6 +430,276 @@ namespace UCosmic.Domain.Email
             }
         }
 
+        [TestClass]
+        public class ThePasswordProperty
+        {
+            [TestMethod]
+            public void IsInvalidWhen_IsNull()
+            {
+                var command = new ResetPasswordCommand();
+                var scenarioOptions = new ScenarioOptions();
+                scenarioOptions.MockQueryProcessor.Setup(
+                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(new EmailConfirmation());
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Password");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(
+                    ValidatePassword.FailedBecausePasswordWasEmpty);
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_IsEmptyString()
+            {
+                var command = new ResetPasswordCommand { Password = string.Empty };
+                var scenarioOptions = new ScenarioOptions();
+                scenarioOptions.MockQueryProcessor.Setup(
+                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(new EmailConfirmation());
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Password");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(
+                    ValidatePassword.FailedBecausePasswordWasEmpty);
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_IsWhiteSpace()
+            {
+                var command = new ResetPasswordCommand { Password = "\t" };
+                var scenarioOptions = new ScenarioOptions();
+                scenarioOptions.MockQueryProcessor.Setup(
+                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(new EmailConfirmation());
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Password");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(
+                    ValidatePassword.FailedBecausePasswordWasEmpty);
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_Length_IsLessThanSixCharacters()
+            {
+                var command = new ResetPasswordCommand { Password = "12345" };
+                var scenarioOptions = new ScenarioOptions();
+                scenarioOptions.MockQueryProcessor.Setup(
+                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(new EmailConfirmation());
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Password");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(
+                    ValidatePassword.FailedBecausePasswordWasTooShort);
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsValidWhen_Length_IsSixCharactersOrMore()
+            {
+                var command = new ResetPasswordCommand { Password = "123456" };
+                var scenarioOptions = new ScenarioOptions();
+                scenarioOptions.MockQueryProcessor.Setup(
+                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(null as EmailConfirmation);
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Password");
+                error.ShouldBeNull();
+            }
+        }
+
+        [TestClass]
+        public class ThePasswordConfirmationProperty
+        {
+            [TestMethod]
+            public void IsInvalidWhen_IsNull()
+            {
+                var command = new ResetPasswordCommand();
+                var scenarioOptions = new ScenarioOptions();
+                scenarioOptions.MockQueryProcessor.Setup(
+                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(new EmailConfirmation());
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(
+                    ValidatePassword.FailedBecausePasswordConfirmationWasEmpty);
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_IsEmptyString()
+            {
+                var command = new ResetPasswordCommand { PasswordConfirmation = string.Empty };
+                var scenarioOptions = new ScenarioOptions();
+                scenarioOptions.MockQueryProcessor.Setup(
+                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(new EmailConfirmation());
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(
+                    ValidatePassword.FailedBecausePasswordConfirmationWasEmpty);
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_IsWhiteSpace()
+            {
+                var command = new ResetPasswordCommand { PasswordConfirmation = string.Empty };
+                var scenarioOptions = new ScenarioOptions();
+                scenarioOptions.MockQueryProcessor.Setup(
+                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(new EmailConfirmation());
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(
+                    ValidatePassword.FailedBecausePasswordConfirmationWasEmpty);
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_DoesNotEqualPassword_AndPasswordIsValid()
+            {
+                var command = new ResetPasswordCommand
+                {
+                    Password = "123456",
+                    PasswordConfirmation = "12345",
+                };
+                var scenarioOptions = new ScenarioOptions();
+                scenarioOptions.MockQueryProcessor.Setup(
+                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(null as EmailConfirmation);
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(
+                    ValidatePassword.FailedBecausePasswordConfirmationDidNotEqualPassword);
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsValidWhen_PasswordIsEmpty()
+            {
+                var command = new ResetPasswordCommand
+                {
+                    Password = string.Empty,
+                    PasswordConfirmation = "123",
+                };
+                var scenarioOptions = new ScenarioOptions();
+                scenarioOptions.MockQueryProcessor.Setup(
+                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(null as EmailConfirmation);
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                error.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void IsValidWhen_PasswordIsIncorrectLength()
+            {
+                var command = new ResetPasswordCommand
+                {
+                    Password = "123",
+                    PasswordConfirmation = "1234",
+                };
+                var scenarioOptions = new ScenarioOptions();
+                scenarioOptions.MockQueryProcessor.Setup(
+                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(null as EmailConfirmation);
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                error.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void IsValidWhen_EqualsPassword_AndPasswordIsValid()
+            {
+                var command = new ResetPasswordCommand
+                {
+                    Password = "123456",
+                    PasswordConfirmation = "123456",
+                };
+                var scenarioOptions = new ScenarioOptions();
+                scenarioOptions.MockQueryProcessor.Setup(
+                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(null as EmailConfirmation);
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                error.ShouldBeNull();
+            }
+        }
+
         private class ScenarioOptions
         {
             internal ScenarioOptions()
@@ -439,13 +710,13 @@ namespace UCosmic.Domain.Email
             internal readonly Mock<IProcessQueries> MockQueryProcessor;
         }
 
-        private static RedeemEmailConfirmationValidator CreateValidator(ScenarioOptions scenarioOptions = null)
+        private static ResetPasswordValidator CreateValidator(ScenarioOptions scenarioOptions = null)
         {
             scenarioOptions = scenarioOptions ?? new ScenarioOptions();
-            return new RedeemEmailConfirmationValidator(scenarioOptions.MockQueryProcessor.Object);
+            return new ResetPasswordValidator(scenarioOptions.MockQueryProcessor.Object);
         }
 
-        private static Expression<Func<GetEmailConfirmationQuery, bool>> ConfirmationQueryBasedOn(RedeemEmailConfirmationCommand command)
+        private static Expression<Func<GetEmailConfirmationQuery, bool>> ConfirmationQueryBasedOn(ResetPasswordCommand command)
         {
             Expression<Func<GetEmailConfirmationQuery, bool>> confirmationQueryBasedOn = q => q.Token == command.Token;
             return confirmationQueryBasedOn;
