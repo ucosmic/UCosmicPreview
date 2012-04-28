@@ -10,7 +10,7 @@ namespace UCosmic.Domain.Email
         #region Token cannot be empty
 
         public const string FailedBecauseTokenWasEmpty =
-            "The email confirmation token '{0}' is not valid.";
+            "Email confirmation token '{0}' is not valid.";
 
         #endregion
         #region Token matches entity

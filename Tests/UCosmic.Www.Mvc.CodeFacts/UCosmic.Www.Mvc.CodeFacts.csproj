@@ -156,6 +156,11 @@
     <Compile Include="Areas\My\Models\UpdateNameFormFacts.cs" />
     <Compile Include="Areas\Passwords\Controllers\ForgotPasswordRouterFacts.cs" />
     <Compile Include="Areas\Passwords\Models\ForgotPasswordProfilerFacts.cs" />
+    <Compile Include="Areas\Passwords\Models\ResetPasswordFormFacts.cs" />
+    <Compile Include="Areas\Passwords\Models\ResetPasswordFormProfilerFacts.cs" />
+    <Compile Include="Areas\Passwords\Models\ResetPasswordFormValidatorFacts.cs" />
+    <Compile Include="Areas\Passwords\Models\ResetPasswordQueryProfilerFacts.cs" />
+    <Compile Include="Areas\Passwords\Models\ResetPasswordQueryValidatorFacts.cs" />
     <Compile Include="Areas\People\Controllers\PersonInfoControllerFacts.cs" />
     <Compile Include="Areas\People\Controllers\PersonInfoRouterFacts.cs" />
     <Compile Include="Areas\People\Controllers\PersonNameRouterFacts.cs" />
