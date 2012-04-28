@@ -39,11 +39,14 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsInvalidWhen_MatchesNoEntity()
             {
-                var command = new ResetPasswordCommand { Token = Guid.NewGuid() };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(null as EmailConfirmation);
+                var command = new ResetPasswordCommand
+                {
+                    Token = Guid.NewGuid()
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    Command = command,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -62,15 +65,19 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsInvalidWhen_MatchesExpiredEntity()
             {
-                var command = new ResetPasswordCommand { Token = Guid.NewGuid() };
-                var confirmation = new EmailConfirmation
+                var confirmation =  new EmailConfirmation
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(-1),
                 };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(m =>
-                    m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
+                var command = new ResetPasswordCommand
+                {
+                    Token = Guid.NewGuid()
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -87,17 +94,53 @@ namespace UCosmic.Domain.Identity
             }
 
             [TestMethod]
+            public void IsInvalidWhen_MatchesRetiredEntity()
+            {
+                var command = new ResetPasswordCommand
+                {
+                    Token = Guid.NewGuid()
+                };
+                var confirmation = new EmailConfirmation
+                {
+                    RetiredOnUtc = DateTime.UtcNow.AddMinutes(-1),
+                    RedeemedOnUtc = DateTime.UtcNow,
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Token");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ValidateEmailConfirmation.FailedBecauseIsRetired,
+                        command.Token, confirmation.RetiredOnUtc));
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
             public void IsInvalidWhen_MatchesUnredeemedEntity()
             {
-                var command = new ResetPasswordCommand { Token = Guid.NewGuid() };
                 var confirmation = new EmailConfirmation
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                 };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(m =>
-                    m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
+                var command = new ResetPasswordCommand
+                {
+                    Token = Guid.NewGuid()
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -114,17 +157,196 @@ namespace UCosmic.Domain.Identity
             }
 
             [TestMethod]
-            public void IsValidWhen_IsNotEmpty_AndMatches_Unexpired_UnRedeemed_Entity()
+            public void IsInvalidWhen_MatchesUnconfirmedEmail()
             {
-                var command = new ResetPasswordCommand { Token = Guid.NewGuid() };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(m =>
-                    m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation
+                var command = new ResetPasswordCommand
+                {
+                    Token = Guid.NewGuid()
+                };
+                var confirmation = new EmailConfirmation
+                {
+                    RedeemedOnUtc = DateTime.UtcNow,
+                    ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
+                    EmailAddress = new EmailAddress
                     {
-                        ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
-                        RedeemedOnUtc = DateTime.UtcNow,
-                    });
+                        Value = "user@domain.tld",
+                    },
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Token");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ValidateEmailAddress.FailedBecauseIsNotConfirmed,
+                        confirmation.EmailAddress.Value));
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_MatchesNoUser()
+            {
+                var command = new ResetPasswordCommand
+                {
+                    Token = Guid.NewGuid()
+                };
+                var confirmation = new EmailConfirmation
+                {
+                    RedeemedOnUtc = DateTime.UtcNow,
+                    ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
+                    EmailAddress = new EmailAddress
+                    {
+                        IsConfirmed = true,
+                        Person = new Person
+                        {
+                            DisplayName = "Adam West"
+                        }
+                    }
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Token");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ValidatePerson.FailedBecauseUserWasNull,
+                        confirmation.EmailAddress.Person.DisplayName));
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_MatchesSamlUser()
+            {
+                var command = new ResetPasswordCommand
+                {
+                    Token = Guid.NewGuid()
+                };
+                var confirmation = new EmailConfirmation
+                {
+                    RedeemedOnUtc = DateTime.UtcNow,
+                    ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
+                    EmailAddress = new EmailAddress
+                    {
+                        IsConfirmed = true,
+                        Person = new Person
+                        {
+                            User = new User
+                            {
+                                EduPersonTargetedId = "something",
+                            }
+                        }
+                    }
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Token");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ValidateUser.FailedBecauseEduPersonTargetedIdWasNotEmpty,
+                        confirmation.EmailAddress.Person.User.Name));
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_MatchesUser_WithNoLocalAccount()
+            {
+                var command = new ResetPasswordCommand
+                {
+                    Token = Guid.NewGuid()
+                };
+                var confirmation = new EmailConfirmation
+                {
+                    RedeemedOnUtc = DateTime.UtcNow,
+                    ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
+                    EmailAddress = new EmailAddress
+                    {
+                        IsConfirmed = true,
+                        Person = new Person
+                        {
+                            User = new User
+                            {
+                                Name = "something",
+                            }
+                        }
+                    }
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Token");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ValidateUser.FailedBecauseNameMatchedNoLocalMember,
+                        confirmation.EmailAddress.Person.User.Name));
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsValidWhen_MatchesEntity_Unexpired_Unretired_Redeemed_WithNonSamlLocalUser()
+            {
+                var command = new ResetPasswordCommand
+                {
+                    Token = Guid.NewGuid()
+                };
+                var confirmation = new EmailConfirmation
+                {
+                    ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
+                    RedeemedOnUtc = DateTime.UtcNow,
+                    EmailAddress = new EmailAddress
+                    {
+                        IsConfirmed = true,
+                        Person = new Person
+                        {
+                            User = new User
+                            {
+                                Name = "local"
+                            }
+                        }
+                    }
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    Command = command,
+                    EmailConfirmation = confirmation,
+                    LocalMemberExists = true,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -142,9 +364,6 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new ResetPasswordCommand();
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -164,9 +383,6 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new ResetPasswordCommand { Ticket = string.Empty };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -186,9 +402,6 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new ResetPasswordCommand { Ticket = "\t" };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -204,44 +417,22 @@ namespace UCosmic.Domain.Identity
             }
 
             [TestMethod]
-            public void IsInvalidWhen_Confirmation_WasNull()
-            {
-                var command = new ResetPasswordCommand { Ticket = "test" };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(null as EmailConfirmation);
-                var validator = CreateValidator(scenarioOptions);
-
-                var results = validator.Validate(command);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Ticket");
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(string.Format(
-                    ValidateEmailConfirmation.FailedBecauseTicketWasIncorrect,
-                        command.Ticket, Guid.Empty));
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
             public void IsInvalidWhen_IsIncorrectMatch()
             {
                 var confirmation = new EmailConfirmation
                 {
-                    Ticket = "tomatto",
+                    Ticket = "ticket1",
                 };
                 var command = new ResetPasswordCommand
                 {
                     Token = confirmation.Token,
-                    Ticket = "tomato"
+                    Ticket = "ticket2"
                 };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -269,10 +460,24 @@ namespace UCosmic.Domain.Identity
                     Token = confirmation.Token,
                     Ticket = "tomato"
                 };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Ticket");
+                error.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void IsValidWhen_IsNotEmpty_AndConfirmationWasNull()
+            {
+                var command = new ResetPasswordCommand { Ticket = "test" };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -290,9 +495,6 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new ResetPasswordCommand();
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -312,9 +514,6 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new ResetPasswordCommand { Intent = string.Empty };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -334,9 +533,6 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new ResetPasswordCommand { Intent = "\t" };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -352,44 +548,22 @@ namespace UCosmic.Domain.Identity
             }
 
             [TestMethod]
-            public void IsInvalidWhen_Confirmation_WasNull()
-            {
-                var command = new ResetPasswordCommand { Intent = "test" };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(null as EmailConfirmation);
-                var validator = CreateValidator(scenarioOptions);
-
-                var results = validator.Validate(command);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Intent");
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(string.Format(
-                    ValidateEmailConfirmation.FailedBecauseIntentWasIncorrect,
-                        command.Intent, Guid.Empty));
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
             public void IsInvalidWhen_IsIncorrectMatch()
             {
                 var confirmation = new EmailConfirmation
                 {
-                    Intent = "tomatto",
+                    Intent = "intent1",
                 };
                 var command = new ResetPasswordCommand
                 {
                     Token = confirmation.Token,
-                    Intent = "tomato"
+                    Intent = "intent2"
                 };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -415,17 +589,30 @@ namespace UCosmic.Domain.Identity
                 var command = new ResetPasswordCommand
                 {
                     Token = confirmation.Token,
-                    //SecretCode = "tomato"
                 };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
 
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "SecretCode");
+                error.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void IsValidWhen_IsNotEmpty_AndConfirmationWasNull()
+            {
+                var command = new ResetPasswordCommand { Intent = "test" };
+                var scenarioOptions = new ScenarioOptions();
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Intent");
                 error.ShouldBeNull();
             }
         }
@@ -438,9 +625,6 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new ResetPasswordCommand();
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -460,9 +644,6 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new ResetPasswordCommand { Password = string.Empty };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -482,9 +663,6 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new ResetPasswordCommand { Password = "\t" };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -504,9 +682,6 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new ResetPasswordCommand { Password = "12345" };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -526,9 +701,6 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new ResetPasswordCommand { Password = "123456" };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(null as EmailConfirmation);
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -546,9 +718,6 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new ResetPasswordCommand();
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -568,9 +737,6 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new ResetPasswordCommand { PasswordConfirmation = string.Empty };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -590,9 +756,6 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new ResetPasswordCommand { PasswordConfirmation = string.Empty };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -616,9 +779,6 @@ namespace UCosmic.Domain.Identity
                     PasswordConfirmation = "12345",
                 };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(null as EmailConfirmation);
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -642,9 +802,6 @@ namespace UCosmic.Domain.Identity
                     PasswordConfirmation = "123",
                 };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(null as EmailConfirmation);
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -664,9 +821,6 @@ namespace UCosmic.Domain.Identity
                     PasswordConfirmation = "1234",
                 };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(null as EmailConfirmation);
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -686,9 +840,6 @@ namespace UCosmic.Domain.Identity
                     PasswordConfirmation = "123456",
                 };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(null as EmailConfirmation);
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -702,18 +853,28 @@ namespace UCosmic.Domain.Identity
 
         private class ScenarioOptions
         {
-            internal ScenarioOptions()
-            {
-                MockQueryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-            }
-
-            internal readonly Mock<IProcessQueries> MockQueryProcessor;
+            internal ResetPasswordCommand Command { get; set; }
+            internal EmailConfirmation EmailConfirmation { get; set; }
+            internal bool LocalMemberExists { get; set; }
         }
 
         private static ResetPasswordValidator CreateValidator(ScenarioOptions scenarioOptions = null)
         {
             scenarioOptions = scenarioOptions ?? new ScenarioOptions();
-            return new ResetPasswordValidator(scenarioOptions.MockQueryProcessor.Object);
+            var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+            queryProcessor.Setup(m => m
+                .Execute(It.Is(ConfirmationQueryBasedOn(scenarioOptions.Command))))
+                .Returns(scenarioOptions.EmailConfirmation);
+            var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+            if (scenarioOptions.EmailConfirmation != null && 
+                scenarioOptions.EmailConfirmation.EmailAddress != null && 
+                scenarioOptions.EmailConfirmation.EmailAddress.Person != null && 
+                scenarioOptions.EmailConfirmation.EmailAddress.Person.User != null &&
+                !string.IsNullOrWhiteSpace(scenarioOptions.EmailConfirmation.EmailAddress.Person.User.Name))
+                memberSigner.Setup(m => m
+                    .IsSignedUp(scenarioOptions.EmailConfirmation.EmailAddress.Person.User.Name))
+                    .Returns(scenarioOptions.LocalMemberExists);
+            return new ResetPasswordValidator(queryProcessor.Object, memberSigner.Object);
         }
 
         private static Expression<Func<GetEmailConfirmationQuery, bool>> ConfirmationQueryBasedOn(ResetPasswordCommand command)

@@ -49,6 +49,8 @@ namespace UCosmic.Domain.People
 
         public bool IsRedeemed { get { return RedeemedOnUtc.HasValue; } }
 
+        public bool IsRetired { get { return RetiredOnUtc.HasValue; } }
+
         public EmailMessage ComposeConfirmationMessage(EmailTemplate template,
             string startUrl, string confirmationUrl, IManageConfigurations config)
         {
