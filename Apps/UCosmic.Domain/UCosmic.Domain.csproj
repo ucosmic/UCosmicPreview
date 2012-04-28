@@ -86,9 +86,7 @@
     <Compile Include="Establishments\Queries\BaseEstablishmentQuery.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentByIdHandler.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentByIdQuery.cs" />
-    <Compile Include="Email\Commands\SendConfirmEmailMessageCommand.cs" />
-    <Compile Include="Email\Commands\SendConfirmEmailMessageHandler.cs" />
-    <Compile Include="Email\Commands\SendConfirmEmailMessageValidator.cs" />
+    <Compile Include="Email\Commands\SendConfirmEmailMessage.cs" />
     <Compile Include="Identity\Commands\ResetPassword.cs" />
     <Compile Include="Identity\Commands\ValidatePassword.cs" />
     <Compile Include="Identity\Commands\ValidateUser.cs" />
