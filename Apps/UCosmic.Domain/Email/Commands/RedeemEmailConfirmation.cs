@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentValidation;
+using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Email
@@ -36,7 +37,8 @@ namespace UCosmic.Domain.Email
 
             confirmation.RedeemedOnUtc = DateTime.UtcNow;
             confirmation.SecretCode = null;
-            confirmation.Ticket = RandomSecretCreator.CreateSecret(256);
+            confirmation.Ticket = _queryProcessor.Execute(
+                new GenerateRandomSecretQuery(256));
             command.Ticket = confirmation.Ticket;
             _entities.Update(confirmation);
         }

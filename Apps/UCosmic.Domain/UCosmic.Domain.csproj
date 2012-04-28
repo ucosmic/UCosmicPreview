@@ -139,6 +139,7 @@
     <Compile Include="Identity\Queries\BaseUsersQuery.cs" />
     <Compile Include="Identity\Queries\FindRolesGrantedToUserNameHandler.cs" />
     <Compile Include="Identity\Queries\FindRolesGrantedToUserNameQuery.cs" />
+    <Compile Include="Identity\Queries\GenerateRandomSecret.cs" />
     <Compile Include="Identity\Queries\GetUserByEduPersonTargetedIdHandler.cs" />
     <Compile Include="Identity\Queries\GetUserByEduPersonTargetedIdQuery.cs" />
     <Compile Include="Identity\Queries\GetUserByEntityIdHandler.cs" />

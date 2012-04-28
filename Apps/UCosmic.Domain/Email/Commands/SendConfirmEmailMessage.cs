@@ -11,17 +11,17 @@ namespace UCosmic.Domain.Email
         public string EmailAddress { get; set; }
         public string Intent { get; set; }
 
-        internal string EmailTemplateName
+        internal string TemplateName
         {
             get
             {
                 switch (Intent)
                 {
                     case EmailConfirmationIntent.PasswordReset:
-                        return Email.EmailTemplateName.PasswordResetConfirmation;
+                        return EmailTemplateName.PasswordResetConfirmation;
 
                     case EmailConfirmationIntent.SignUp:
-                        return Email.EmailTemplateName.SignUpConfirmation;
+                        return EmailTemplateName.SignUpConfirmation;
                 }
                 throw new NotSupportedException(string.Format(
                     "Email confirmation intent '{0}' is not supported.",
@@ -67,8 +67,14 @@ namespace UCosmic.Domain.Email
             var email = person.GetEmail(command.EmailAddress);
 
             // create the confirmation
+            var secretCode = _queryProcessor.Execute(
+                new GenerateRandomSecretQuery(12));
             var confirmation = new EmailConfirmation
-                (email, command.Intent);
+            {
+                EmailAddress = email,
+                Intent = command.Intent,
+                SecretCode = secretCode,
+            };
             command.ConfirmationToken = confirmation.Token;
             _entities.Create(confirmation);
 
@@ -76,7 +82,7 @@ namespace UCosmic.Domain.Email
             var template = _queryProcessor.Execute(
                 new GetEmailTemplateByNameQuery
                 {
-                    Name = command.EmailTemplateName,
+                    Name = command.TemplateName,
                 }
             );
 
