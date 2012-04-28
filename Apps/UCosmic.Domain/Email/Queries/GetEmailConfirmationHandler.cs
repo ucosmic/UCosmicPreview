@@ -22,6 +22,7 @@ namespace UCosmic.Domain.Email
                 new Expression<Func<Person, object>>[]
                 {
                     p => p.Emails.Select(e => e.Confirmations),
+                    p => p.User,
                 };
 
             return _entities.People

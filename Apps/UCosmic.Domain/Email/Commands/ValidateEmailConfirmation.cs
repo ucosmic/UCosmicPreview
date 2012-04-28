@@ -87,6 +87,18 @@ namespace UCosmic.Domain.Email
         }
 
         #endregion
+        #region Is not retired
+
+        public const string FailedBecauseIsRetired =
+            "The email confirmation '{0}' was retired on {1}.";
+
+        public static bool IsNotRetired(EmailConfirmation confirmation)
+        {
+            // return true (valid) if confirmation is not redeemed
+            return confirmation != null && !confirmation.IsRetired;
+        }
+
+        #endregion
         #region Secret cannot be empty
 
         public const string FailedBecauseSecretCodeWasEmpty =

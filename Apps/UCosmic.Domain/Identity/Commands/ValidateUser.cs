@@ -48,7 +48,7 @@ namespace UCosmic.Domain.Identity
         #region Name matches local member
 
         public const string FailedBecauseNameMatchedNoLocalMember =
-            "User with name '{0}' cannot be created because it already exists.";
+            "User with name '{0}' does not have a local membership account.";
 
         public static bool NameMatchesLocalMember(string name, ISignMembers memberSigner)
         {
