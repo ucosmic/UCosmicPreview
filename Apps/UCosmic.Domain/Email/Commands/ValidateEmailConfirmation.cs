@@ -144,7 +144,7 @@ namespace UCosmic.Domain.Email
         #region Intent must match
 
         public const string FailedBecauseIntentWasIncorrect =
-            "The secret code '{0}' is not valid for email confirmation '{1}'.";
+            "The intent '{0}' is not valid for email confirmation '{1}'.";
 
         public static bool IntentIsCorrect(EmailConfirmation confirmation, string intent)
         {
