@@ -5,16 +5,22 @@ using FluentValidation.Results;
 
 namespace UCosmic.Domain.People
 {
-    public class FindPeopleWithLastNameHandler : IHandleQueries<FindPeopleWithLastNameQuery, Person[]>
+    public class FindPeopleWithEmailQuery : BasePeopleQuery, IDefineQuery<Person[]>
+    {
+        public string Term { get; set; }
+        public StringMatchStrategy TermMatchStrategy { get; set; }
+    }
+
+    public class FindPeopleWithEmailHandler : IHandleQueries<FindPeopleWithEmailQuery, Person[]>
     {
         private readonly IQueryEntities _entities;
 
-        public FindPeopleWithLastNameHandler(IQueryEntities entities)
+        public FindPeopleWithEmailHandler(IQueryEntities entities)
         {
             _entities = entities;
         }
 
-        public Person[] Handle(FindPeopleWithLastNameQuery query)
+        public Person[] Handle(FindPeopleWithEmailQuery query)
         {
             if (query == null) throw new ArgumentNullException("query");
 
@@ -26,7 +32,7 @@ namespace UCosmic.Domain.People
 
             var results = _entities.People
                 .EagerLoad(query.EagerLoad, _entities)
-                .WithLastName(query.Term, query.TermMatchStrategy)
+                .WithEmail(query.Term, query.TermMatchStrategy)
                 .OrderBy(query.OrderBy)
             ;
 

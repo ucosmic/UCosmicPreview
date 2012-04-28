@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace UCosmic.Domain.People
 {
-    public static class EmailAddressQueries
+    public static class QueryEmailAddresses
     {
         public static EmailAddress ByValue(this IEnumerable<EmailAddress> enumerable, string value)
         {

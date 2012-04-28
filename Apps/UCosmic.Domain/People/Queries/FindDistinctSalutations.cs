@@ -3,22 +3,27 @@ using System.Linq;
 
 namespace UCosmic.Domain.People
 {
-    public class FindDistinctSuffixesHandler : IHandleQueries<FindDistinctSuffixesQuery, string[]>
+    public class FindDistinctSalutationsQuery : IDefineQuery<string[]>
+    {
+        public string[] Exclude { get; set; }
+    }
+
+    public class FindDistinctSalutationsHandler : IHandleQueries<FindDistinctSalutationsQuery, string[]>
     {
         private readonly IQueryEntities _entities;
 
-        public FindDistinctSuffixesHandler(IQueryEntities entities)
+        public FindDistinctSalutationsHandler(IQueryEntities entities)
         {
             _entities = entities;
         }
 
-        public string[] Handle(FindDistinctSuffixesQuery query)
+        public string[] Handle(FindDistinctSalutationsQuery query)
         {
             if (query == null) throw new ArgumentNullException("query");
 
             var results = _entities.People
-                .WithNonEmptySuffix()
-                .SelectSuffixes()
+                .WithNonEmptySalutation()
+                .SelectSalutations()
                 .Distinct()
             ;
 

@@ -1,9 +1,25 @@
 ﻿using System;
 using System.Linq.Expressions;
+using System.Security.Principal;
+using FluentValidation;
 using UCosmic.Domain.Identity;
 
 namespace UCosmic.Domain.People
 {
+    public class UpdateMyNameCommand
+    {
+        public IPrincipal Principal { get; set; }
+        public bool IsDisplayNameDerived { get; set; }
+        public string DisplayName { get; set; }
+        public string Salutation { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string Suffix { get; set; }
+        public int ChangeCount { get; internal set; }
+        public bool ChangedState { get { return ChangeCount > 0; } }
+    }
+
     public class UpdateMyNameHandler : IHandleCommands<UpdateMyNameCommand>
     {
         private readonly IProcessQueries _queryProcessor;
@@ -65,6 +81,45 @@ namespace UCosmic.Domain.People
 
             // store
             if (command.ChangeCount > 0) _entities.Update(user.Person);
+        }
+    }
+
+    public class UpdateMyNameValidator : AbstractValidator<UpdateMyNameCommand>
+    {
+        private readonly IProcessQueries _queryProcessor;
+
+        public UpdateMyNameValidator(IProcessQueries queryProcessor)
+        {
+            _queryProcessor = queryProcessor;
+            CascadeMode = CascadeMode.StopOnFirstFailure;
+
+            RuleFor(p => p.DisplayName)
+
+                // display name cannot be empty
+                .NotEmpty().WithMessage(
+                    ValidatePerson.FailedBecauseDisplayNameWasEmpty)
+            ;
+
+            RuleFor(p => p.Principal)
+
+                // principal cannot be null
+                .NotEmpty().WithMessage(
+                    ValidatePrincipal.FailedBecausePrincipalWasNull)
+
+                // principal identity name cannot be null or whitespace
+                .Must(ValidatePrincipal.IdentityNameIsNotEmpty).WithMessage(
+                    ValidatePrincipal.FailedBecauseIdentityNameWasEmpty)
+
+                // principal identity name must match User.Name entity property
+                .Must(ValidatePrincipalIdentityNameMatchesUser).WithMessage(
+                    ValidatePrincipal.FailedBecauseIdentityNameMatchedNoUser,
+                        p => p.Principal.Identity.Name)
+            ;
+        }
+
+        private bool ValidatePrincipalIdentityNameMatchesUser(IPrincipal principal)
+        {
+            return ValidatePrincipal.IdentityNameMatchesUser(principal, _queryProcessor);
         }
     }
 }

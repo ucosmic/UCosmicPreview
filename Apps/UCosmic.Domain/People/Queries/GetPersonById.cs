@@ -2,6 +2,11 @@
 
 namespace UCosmic.Domain.People
 {
+    public class GetPersonByIdQuery : BasePersonQuery, IDefineQuery<Person>
+    {
+        public int Id { get; set; }
+    }
+
     public class GetPersonByIdHandler : IHandleQueries<GetPersonByIdQuery, Person>
     {
         private readonly IQueryEntities _entities;

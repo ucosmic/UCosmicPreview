@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace UCosmic.Domain.People
 {
-    internal static class PersonQueries
+    internal static class QueryPeople
     {
         internal static Person ByEmail(this IQueryable<Person> queryable, string email)
         {

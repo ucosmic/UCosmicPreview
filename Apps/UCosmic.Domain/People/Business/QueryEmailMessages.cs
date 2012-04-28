@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace UCosmic.Domain.People
 {
-    internal static class EmailMessageQueries
+    internal static class QueryEmailMessages
     {
         internal static EmailMessage ByNumber(this IEnumerable<EmailMessage> enumerable, int number)
         {
