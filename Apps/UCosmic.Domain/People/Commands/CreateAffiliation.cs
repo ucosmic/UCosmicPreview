@@ -58,76 +58,47 @@ namespace UCosmic.Domain.People
 
     public class CreateAffiliationValidator : AbstractValidator<CreateAffiliationCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
-
         public CreateAffiliationValidator(IProcessQueries queryProcessor)
         {
-            _queryProcessor = queryProcessor;
+            Person person = null;
+            Establishment establishment = null;
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
-            RuleFor(p => p.EstablishmentId)
+            var establishmentLoad = new Expression<Func<Establishment, object>>[]
+            {
+                e => e.Type.Category,
+            };
+            var personLoad = new Expression<Func<Person, object>>[]
+            {
+                p => p.Affiliations.Select(a => a.Establishment)
+            };
 
+
+            RuleFor(p => p.EstablishmentId)
                 // establishment id must exist in database
-                .Must(ValidateEstablishmentIdMatchesEntity).WithMessage(
-                    ValidateEstablishment.FailedBecauseIdMatchedNoEntity,
+                .Must(p => ValidateEstablishment.IdMatchesEntity(p, queryProcessor, establishmentLoad, out establishment))
+                    .WithMessage(ValidateEstablishment.FailedBecauseIdMatchedNoEntity,
                         p => p.EstablishmentId)
             ;
 
             RuleFor(p => p.IsClaimingStudent)
-
                 // cannot claim student unless affiliation establishment is an academic institution
-                .Must(ValidateAffiliationEstablishmentIsInstitutionWhenIsClaimingStudent).WithMessage(
-                    ValidateAffiliation.FailedBecauseIsClaimingStudentButEstablishmentIsNotInstitution,
+                .Must(p => ValidateAffiliation.EstablishmentIsInstitutionWhenIsClaimingStudent(p, establishment))
+                    .When(p => establishment != null)
+                    .WithMessage(ValidateAffiliation.FailedBecauseIsClaimingStudentButEstablishmentIsNotInstitution,
                         p => p.EstablishmentId)
             ;
 
             RuleFor(p => p.PersonId)
-
                 // person id must exist in database
-                .Must(ValidatePersonIdMatchesEntity).WithMessage(
-                    ValidatePerson.FailedBecauseIdMatchedNoEntity,
+                .Must(p => ValidatePerson.IdMatchesEntity(p, queryProcessor, personLoad, out person))
+                    .WithMessage(ValidatePerson.FailedBecauseIdMatchedNoEntity,
                         p => p.PersonId)
-
                 // cannot create a duplicate affiliation
-                .Must(ValidatePersonIsNotAlreadyAffiliatedWithEstablishment).WithMessage(
-                    ValidatePerson.FailedBecausePersonIsAlreadyAffiliatedWithEstablishment,
+                .Must((o, p) => ValidatePerson.IsNotAlreadyAffiliatedWithEstablishment(person, o.EstablishmentId))
+                    .WithMessage(ValidatePerson.FailedBecausePersonIsAlreadyAffiliatedWithEstablishment,
                         p => p.PersonId, p => p.EstablishmentId)
             ;
-        }
-
-        private Person _person;
-        private Establishment _establishment;
-
-        private bool ValidateEstablishmentIdMatchesEntity(int establishmentId)
-        {
-            return ValidateEstablishment.IdMatchesEntity(establishmentId, _queryProcessor,
-                new Expression<Func<Establishment, object>>[]
-                {
-                    e => e.Type.Category,
-                },
-                out _establishment
-            );
-        }
-
-        private bool ValidatePersonIdMatchesEntity(int personId)
-        {
-            return ValidatePerson.IdMatchesEntity(personId, _queryProcessor,
-                new Expression<Func<Person, object>>[]
-                {
-                    p => p.Affiliations.Select(a => a.Establishment)
-                },
-                out _person
-            );
-        }
-
-        private bool ValidateAffiliationEstablishmentIsInstitutionWhenIsClaimingStudent(bool isClaimingStudent)
-        {
-            return ValidateAffiliation.EstablishmentIsInstitutionWhenIsClaimingStudent(isClaimingStudent, _establishment);
-        }
-
-        private bool ValidatePersonIsNotAlreadyAffiliatedWithEstablishment(CreateAffiliationCommand command, int personId)
-        {
-            return ValidatePerson.IsNotAlreadyAffiliatedWithEstablishment(_person, command.EstablishmentId);
         }
     }
 }

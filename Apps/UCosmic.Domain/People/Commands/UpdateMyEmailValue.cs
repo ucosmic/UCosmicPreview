@@ -53,70 +53,49 @@ namespace UCosmic.Domain.People
 
     public class UpdateMyEmailValueValidator : AbstractValidator<UpdateMyEmailValueCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
-
         public UpdateMyEmailValueValidator(IProcessQueries queryProcessor)
         {
-            _queryProcessor = queryProcessor;
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
+            EmailAddress email = null;
+
             RuleFor(p => p.Principal)
-
                 // principal cannot be null
-                .NotEmpty().WithMessage(
-                    ValidatePrincipal.FailedBecausePrincipalWasNull)
-
+                .NotEmpty()
+                    .WithMessage(ValidatePrincipal.FailedBecausePrincipalWasNull)
                 // principal identity name cannot be null or whitespace
-                .Must(ValidatePrincipal.IdentityNameIsNotEmpty).WithMessage(
-                    ValidatePrincipal.FailedBecauseIdentityNameWasEmpty)
-
+                .Must(ValidatePrincipal.IdentityNameIsNotEmpty)
+                    .WithMessage(ValidatePrincipal.FailedBecauseIdentityNameWasEmpty)
                 // principal identity name must match User.Name entity property
-                .Must(ValidatePrincipalIdentityNameMatchesUser).WithMessage(
-                    ValidatePrincipal.FailedBecauseIdentityNameMatchedNoUser,
+                .Must(p => ValidatePrincipal.IdentityNameMatchesUser(p, queryProcessor))
+                    .WithMessage(ValidatePrincipal.FailedBecauseIdentityNameMatchedNoUser,
                         p => p.Principal.Identity.Name)
             ;
 
             RuleFor(p => p.Number)
-
                 // number must match email for user
-                .Must(ValidateEmailAddressNumberAndPrincipalMatchesEntity).WithMessage(
-                    ValidateEmailAddress.FailedBecauseNumberAndPrincipalMatchedNoEntity,
+                .Must((o, p) => ValidateEmailAddress.NumberAndPrincipalMatchesEntity(p, o.Principal, queryProcessor, out email))
+                    .WithMessage(ValidateEmailAddress.FailedBecauseNumberAndPrincipalMatchedNoEntity,
                         p => p.Number)
             ;
 
             RuleFor(p => p.NewValue)
-
                 // new email address cannot be empty
-                .NotEmpty().WithMessage(
-                    ValidateEmailAddress.FailedBecauseValueWasEmpty)
-
+                .NotEmpty()
+                    .WithMessage(ValidateEmailAddress.FailedBecauseValueWasEmpty)
                 // must be valid against email address regular expression
-                .EmailAddress().WithMessage(
-                    ValidateEmailAddress.FailedBecauseValueWasNotValidEmailAddress,
-                        p => p.NewValue)
-
-                // must match previous spelling case insensitively
-                .Must(ValidateEmailAddressNewValueMatchesCurrentValueCaseInsensitively).WithMessage(
-                    ValidateEmailAddress.FailedBecauseNewValueDidNotMatchCurrentValueCaseInvsensitively,
+                .EmailAddress()
+                    .WithMessage(ValidateEmailAddress.FailedBecauseValueWasNotValidEmailAddress,
                         p => p.NewValue)
             ;
-        }
 
-        private EmailAddress _email;
-
-        private bool ValidatePrincipalIdentityNameMatchesUser(IPrincipal principal)
-        {
-            return ValidatePrincipal.IdentityNameMatchesUser(principal, _queryProcessor);
-        }
-
-        private bool ValidateEmailAddressNumberAndPrincipalMatchesEntity(UpdateMyEmailValueCommand command, int number)
-        {
-            return ValidateEmailAddress.NumberAndPrincipalMatchesEntity(number, command.Principal, _queryProcessor, out _email);
-        }
-
-        private bool ValidateEmailAddressNewValueMatchesCurrentValueCaseInsensitively(string newValue)
-        {
-            return ValidateEmailAddress.NewValueMatchesCurrentValueCaseInsensitively(newValue, _email);
+            RuleFor(p => p.NewValue)
+                // must match previous spelling case insensitively
+                .Must(p => ValidateEmailAddress.NewValueMatchesCurrentValueCaseInsensitively(p, email))
+                .When(p => email != null)
+                    .WithMessage(ValidateEmailAddress.FailedBecauseNewValueDidNotMatchCurrentValueCaseInvsensitively,
+                        p => p.NewValue)
+            ;
         }
     }
 }

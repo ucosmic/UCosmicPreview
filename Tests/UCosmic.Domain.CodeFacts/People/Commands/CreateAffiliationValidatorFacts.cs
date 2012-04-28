@@ -16,7 +16,7 @@ namespace UCosmic.Domain.People
         public class TheEstablishmentIdProperty
         {
             [TestMethod]
-            public void IsInvalidWhen_EstablishmentId_DoesNotMatchEstablishment()
+            public void IsInvalidWhen_DoesNotMatchEstablishment()
             {
                 const int establishmentId = 6;
                 var command = new CreateAffiliationCommand { EstablishmentId = establishmentId };
@@ -41,7 +41,7 @@ namespace UCosmic.Domain.People
             }
 
             [TestMethod]
-            public void IsValidWhen_EstablishmentId_MatchesEstablishment_WithAnyTypeCategory()
+            public void IsValidWhen_MatchesEstablishment_WithAnyTypeCategory()
             {
                 const int establishmentId = 6;
                 var command = new CreateAffiliationCommand { EstablishmentId = establishmentId };
@@ -129,6 +129,27 @@ namespace UCosmic.Domain.People
                             },
                         },
                     });
+                queryProcessor.Setup(m => m.Execute(It.Is(PersonQueryBasedOn(command))))
+                    .Returns(null as Person);
+                var validator = new CreateAffiliationValidator(queryProcessor.Object);
+
+                var results = validator.Validate(command);
+
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "IsClaimingStudent");
+                error.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void ValidWhen_IsTrue_AndEstablishmentWasNull()
+            {
+                const bool isClaimingStudent = true;
+                var command = new CreateAffiliationCommand
+                {
+                    IsClaimingStudent = isClaimingStudent
+                };
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.Is(EstablishmentQueryBasedOn(command))))
+                    .Returns(null as Establishment);
                 queryProcessor.Setup(m => m.Execute(It.Is(PersonQueryBasedOn(command))))
                     .Returns(null as Person);
                 var validator = new CreateAffiliationValidator(queryProcessor.Object);
