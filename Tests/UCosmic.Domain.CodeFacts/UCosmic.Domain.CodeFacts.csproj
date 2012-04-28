@@ -87,7 +87,7 @@
     <Compile Include="Api\IQueryEntitiesFacts.cs" />
     <Compile Include="Api\EntityQueryCriteriaFacts.cs" />
     <Compile Include="Email\RandomSecretCreatorFacts.cs" />
-    <Compile Include="Email\EmailTemplateFacts.cs" />
+    <Compile Include="Email\Entities\EmailTemplateFacts.cs" />
     <Compile Include="Establishments\Entities\InstitutionInfoFacts.cs" />
     <Compile Include="Establishments\Entities\EstablishmentEmailDomainFacts.cs" />
     <Compile Include="Establishments\Entities\EstablishmentNameFacts.cs" />
