@@ -102,51 +102,52 @@ namespace UCosmic.Domain.Identity
             ;
 
             // when confirmation is not null,
-            When(p => confirmation != null, () => {
-            RuleFor(p => p.Token)
-                // it cannot be expired
-                .Must(p => ValidateEmailConfirmation.IsNotExpired(confirmation))
-                    .WithMessage(ValidateEmailConfirmation.FailedBecauseIsExpired,
-                        o => o.Token, p => confirmation.ExpiresOnUtc)
-                // it cannot be retired
-                .Must(t => ValidateEmailConfirmation.IsNotRetired(confirmation))
-                    .WithMessage(ValidateEmailConfirmation.FailedBecauseIsRetired,
-                        o => o.Token, p => confirmation.RetiredOnUtc)
-                // it cannot be redeemed
-                .Must(t => ValidateEmailConfirmation.IsRedeemed(confirmation))
-                    .WithMessage(ValidateEmailConfirmation.FailedBecauseIsNotRedeemed,
-                        o => o.Token)
-                // email address must be confirmed
-                .Must(t => ValidateEmailAddress.IsConfirmed(confirmation.EmailAddress))
-                    .WithMessage(ValidateEmailAddress.FailedBecauseIsNotConfirmed,
-                        o => confirmation.EmailAddress.Value)
-                // it must be attached to a user
-                .Must(t => ValidatePerson.UserIsNotNull(confirmation.EmailAddress.Person))
-                    .WithMessage(ValidatePerson.FailedBecauseUserWasNull,
-                        o => confirmation.EmailAddress.Person.DisplayName)
-                // user cannot have a saml account
-                .Must(t => ValidateUser.EduPersonTargetedIdIsEmpty(confirmation.EmailAddress.Person.User))
-                    .WithMessage(ValidateUser.FailedBecauseEduPersonTargetedIdWasNotEmpty,
-                        o => confirmation.EmailAddress.Person.User.Name)
-                // user name must match local member account
-                .Must(t => ValidateUser.NameMatchesLocalMember(confirmation.EmailAddress.Person.User.Name, memberSigner))
-                    .WithMessage(ValidateUser.FailedBecauseNameMatchedNoLocalMember,
-                        o => confirmation.EmailAddress.Person.User.Name)
-            ;
+            When(p => confirmation != null, () => 
+            {
+                RuleFor(p => p.Token)
+                    // it cannot be expired
+                    .Must(p => ValidateEmailConfirmation.IsNotExpired(confirmation))
+                        .WithMessage(ValidateEmailConfirmation.FailedBecauseIsExpired,
+                            p => confirmation.Token, p => confirmation.ExpiresOnUtc)
+                    // it cannot be retired
+                    .Must(p => ValidateEmailConfirmation.IsNotRetired(confirmation))
+                        .WithMessage(ValidateEmailConfirmation.FailedBecauseIsRetired,
+                            p => confirmation.Token, p => confirmation.RetiredOnUtc)
+                    // it cannot be redeemed
+                    .Must(p => ValidateEmailConfirmation.IsRedeemed(confirmation))
+                        .WithMessage(ValidateEmailConfirmation.FailedBecauseIsNotRedeemed,
+                            p => confirmation.Token)
+                    // email address must be confirmed
+                    .Must(p => ValidateEmailAddress.IsConfirmed(confirmation.EmailAddress))
+                        .WithMessage(ValidateEmailAddress.FailedBecauseIsNotConfirmed,
+                            p => confirmation.EmailAddress.Value)
+                    // it must be attached to a user
+                    .Must(p => ValidatePerson.UserIsNotNull(confirmation.EmailAddress.Person))
+                        .WithMessage(ValidatePerson.FailedBecauseUserWasNull,
+                            p => confirmation.EmailAddress.Person.DisplayName)
+                    // user cannot have a saml account
+                    .Must(p => ValidateUser.EduPersonTargetedIdIsEmpty(confirmation.EmailAddress.Person.User))
+                        .WithMessage(ValidateUser.FailedBecauseEduPersonTargetedIdWasNotEmpty,
+                            p => confirmation.EmailAddress.Person.User.Name)
+                    // user name must match local member account
+                    .Must(p => ValidateUser.NameMatchesLocalMember(confirmation.EmailAddress.Person.User.Name, memberSigner))
+                        .WithMessage(ValidateUser.FailedBecauseNameMatchedNoLocalMember,
+                            p => confirmation.EmailAddress.Person.User.Name)
+                ;
 
-            RuleFor(p => p.Ticket)
-                // its ticket must match the command ticket
-                .Must(p => ValidateEmailConfirmation.TicketIsCorrect(confirmation, p))
-                    .WithMessage(ValidateEmailConfirmation.FailedBecauseTicketWasIncorrect,
-                        p => p.Ticket, p => p.Token)
-            ;
+                RuleFor(p => p.Ticket)
+                    // its ticket must match the command ticket
+                    .Must(p => ValidateEmailConfirmation.TicketIsCorrect(confirmation, p))
+                        .WithMessage(ValidateEmailConfirmation.FailedBecauseTicketWasIncorrect,
+                            p => p.Ticket, p => p.Token)
+                ;
 
-            RuleFor(p => p.Intent)
-                // its intent must match the command intent
-                .Must(p => ValidateEmailConfirmation.IntentIsCorrect(confirmation, p))
-                    .WithMessage(ValidateEmailConfirmation.FailedBecauseIntentWasIncorrect,
-                        p => p.Intent, p => p.Token)
-            ;
+                RuleFor(p => p.Intent)
+                    // its intent must match the command intent
+                    .Must(p => ValidateEmailConfirmation.IntentIsCorrect(confirmation, p))
+                        .WithMessage(ValidateEmailConfirmation.FailedBecauseIntentWasIncorrect,
+                            p => p.Intent, p => p.Token)
+                ;
             });
         }
     }

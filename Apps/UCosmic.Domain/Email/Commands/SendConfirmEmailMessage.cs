@@ -116,15 +116,12 @@ namespace UCosmic.Domain.Email
             };
 
             RuleFor(p => p.EmailAddress)
-
                 // email address cannot be empty
                 .NotEmpty()
                     .WithMessage(ValidateEmailAddress.FailedBecauseValueWasEmpty)
-
                 // must be valid against email address regular expression
                 .EmailAddress()
                     .WithMessage(ValidateEmailAddress.FailedBecauseValueWasNotValidEmailAddress)
-
                 // the email address must match a person
                 .Must(p => ValidateEmailAddress.ValueMatchesPerson(p, queryProcessor, eagerLoad, out person))
                     .WithMessage(ValidateEmailAddress.FailedBecauseValueMatchedNoPerson,
@@ -133,26 +130,23 @@ namespace UCosmic.Domain.Email
 
             // when person is not null,
             When(p => person != null, () =>
-            RuleFor(p => p.EmailAddress)
-                // the matched person must have a user
-                .Must(p => ValidatePerson.UserIsNotNull(person))
-                    .WithMessage(ValidatePerson.FailedBecauseUserWasNull,
-                        p => person.DisplayName)
-
-                // the user must not have a SAML account
-                .Must(p => ValidateUser.EduPersonTargetedIdIsEmpty(person.User))
-                    .WithMessage(ValidateUser.FailedBecauseEduPersonTargetedIdWasNotEmpty,
-                        p => person.User.Name)
-
-                // the email address' person's user's name must match a local member account
-                .Must(p => ValidateUser.NameMatchesLocalMember(person.User.Name, memberSigner))
-                    .WithMessage(ValidateUser.FailedBecauseNameMatchedNoLocalMember,
-                        p => person.User.Name)
-
-                // the email address must be confirmed
-                .Must(p => ValidateEmailAddress.IsConfirmed(person.GetEmail(p)))
-                    .WithMessage(ValidateEmailAddress.FailedBecauseIsNotConfirmed,
-                        p => p.EmailAddress)
+                RuleFor(p => p.EmailAddress)
+                    // the matched person must have a user
+                    .Must(p => ValidatePerson.UserIsNotNull(person))
+                        .WithMessage(ValidatePerson.FailedBecauseUserWasNull,
+                            p => person.DisplayName)
+                    // the user must not have a SAML account
+                    .Must(p => ValidateUser.EduPersonTargetedIdIsEmpty(person.User))
+                        .WithMessage(ValidateUser.FailedBecauseEduPersonTargetedIdWasNotEmpty,
+                            p => person.User.Name)
+                    // the email address' person's user's name must match a local member account
+                    .Must(p => ValidateUser.NameMatchesLocalMember(person.User.Name, memberSigner))
+                        .WithMessage(ValidateUser.FailedBecauseNameMatchedNoLocalMember,
+                            p => person.User.Name)
+                    // the email address must be confirmed
+                    .Must(p => ValidateEmailAddress.IsConfirmed(person.GetEmail(p)))
+                        .WithMessage(ValidateEmailAddress.FailedBecauseIsNotConfirmed,
+                            p => p.EmailAddress)
             );
         }
     }

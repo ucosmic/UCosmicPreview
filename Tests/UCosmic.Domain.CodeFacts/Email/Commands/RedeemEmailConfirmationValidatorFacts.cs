@@ -38,11 +38,14 @@ namespace UCosmic.Domain.Email
             [TestMethod]
             public void IsInvalidWhen_MatchesNoEntity()
             {
-                var command = new RedeemEmailConfirmationCommand { Token = Guid.NewGuid() };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(null as EmailConfirmation);
+                var command = new RedeemEmailConfirmationCommand
+                {
+                    Token = Guid.NewGuid()
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    Command = command,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -61,15 +64,19 @@ namespace UCosmic.Domain.Email
             [TestMethod]
             public void IsInvalidWhen_MatchesExpiredEntity()
             {
-                var command = new RedeemEmailConfirmationCommand { Token = Guid.NewGuid() };
                 var confirmation = new EmailConfirmation
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(-1),
                 };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(m => 
-                    m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
+                var command = new RedeemEmailConfirmationCommand
+                {
+                    Token = confirmation.Token,
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    Command = command, 
+                    EmailConfirmation = confirmation,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -88,16 +95,20 @@ namespace UCosmic.Domain.Email
             [TestMethod]
             public void IsInvalidWhen_MatchesRedeemedEntity()
             {
-                var command = new RedeemEmailConfirmationCommand { Token = Guid.NewGuid() };
                 var confirmation = new EmailConfirmation
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                     RedeemedOnUtc = DateTime.UtcNow,
                 };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(m =>
-                    m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
+                var command = new RedeemEmailConfirmationCommand
+                {
+                    Token = confirmation.Token,
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    Command = command,
+                    EmailConfirmation = confirmation,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -114,16 +125,53 @@ namespace UCosmic.Domain.Email
             }
 
             [TestMethod]
-            public void IsValidWhen_IsNotEmpty_AndMatches_Unexpired_UnRedeemed_Entity()
+            public void IsInvalidWhen_MatchesRetiredEntity()
             {
-                var command = new RedeemEmailConfirmationCommand { Token = Guid.NewGuid() };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(m =>
-                    m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation
-                    {
-                        ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
-                    });
+                var confirmation = new EmailConfirmation
+                {
+                    ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
+                    RetiredOnUtc = DateTime.UtcNow.AddMinutes(-1),
+                };
+                var command = new RedeemEmailConfirmationCommand
+                {
+                    Token = confirmation.Token,
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    Command = command,
+                    EmailConfirmation = confirmation,
+                };
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Token");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ValidateEmailConfirmation.FailedBecauseIsRetired,
+                        command.Token, confirmation.RetiredOnUtc));
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsValidWhen_IsNotEmpty_AndMatchesEntity_Unexpired_UnRedeemed_Unretired()
+            {
+                var confirmation = new EmailConfirmation
+                {
+                    ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
+                };
+                var command = new RedeemEmailConfirmationCommand
+                {
+                    Token = confirmation.Token,
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    Command = command,
+                    EmailConfirmation = confirmation,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -141,9 +189,6 @@ namespace UCosmic.Domain.Email
             {
                 var command = new RedeemEmailConfirmationCommand();
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -163,9 +208,6 @@ namespace UCosmic.Domain.Email
             {
                 var command = new RedeemEmailConfirmationCommand { SecretCode = string.Empty };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -185,9 +227,6 @@ namespace UCosmic.Domain.Email
             {
                 var command = new RedeemEmailConfirmationCommand { SecretCode = "\t" };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -203,44 +242,22 @@ namespace UCosmic.Domain.Email
             }
 
             [TestMethod]
-            public void IsInvalidWhen_Confirmation_WasNull()
-            {
-                var command = new RedeemEmailConfirmationCommand { SecretCode = "test" };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(null as EmailConfirmation);
-                var validator = CreateValidator(scenarioOptions);
-
-                var results = validator.Validate(command);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "SecretCode");
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(string.Format(
-                    ValidateEmailConfirmation.FailedBecauseSecretCodeWasIncorrect, 
-                        command.SecretCode, Guid.Empty));
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
             public void IsInvalidWhen_IsIncorrectMatch()
             {
                 var confirmation = new EmailConfirmation
                 {
-                    SecretCode = "tomatto",
+                    SecretCode = "secret1",
                 };
                 var command = new RedeemEmailConfirmationCommand
                 {
                     Token = confirmation.Token,
-                    SecretCode = "tomato"
+                    SecretCode = "secret2"
                 };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -261,17 +278,34 @@ namespace UCosmic.Domain.Email
             {
                 var confirmation = new EmailConfirmation
                 {
-                    SecretCode = "tomato",
+                    SecretCode = "secret",
                 };
                 var command = new RedeemEmailConfirmationCommand
                 {
                     Token = confirmation.Token,
-                    SecretCode = "tomato"
+                    SecretCode = "secret"
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "SecretCode");
+                error.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void IsValidWhen_IsNotEmpty_AndConfirmationWasNull()
+            {
+                var command = new RedeemEmailConfirmationCommand
+                {
+                    SecretCode = "test"
                 };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -289,9 +323,6 @@ namespace UCosmic.Domain.Email
             {
                 var command = new RedeemEmailConfirmationCommand();
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -311,9 +342,6 @@ namespace UCosmic.Domain.Email
             {
                 var command = new RedeemEmailConfirmationCommand { Intent = string.Empty };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -333,9 +361,6 @@ namespace UCosmic.Domain.Email
             {
                 var command = new RedeemEmailConfirmationCommand { Intent = "\t" };
                 var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(new EmailConfirmation());
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -351,44 +376,22 @@ namespace UCosmic.Domain.Email
             }
 
             [TestMethod]
-            public void IsInvalidWhen_Confirmation_WasNull()
-            {
-                var command = new RedeemEmailConfirmationCommand { Intent = "test" };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(null as EmailConfirmation);
-                var validator = CreateValidator(scenarioOptions);
-
-                var results = validator.Validate(command);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Intent");
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(string.Format(
-                    ValidateEmailConfirmation.FailedBecauseIntentWasIncorrect,
-                        command.Intent, Guid.Empty));
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
             public void IsInvalidWhen_IsIncorrectMatch()
             {
                 var confirmation = new EmailConfirmation
                 {
-                    Intent = "tomatto",
+                    Intent = "intent1",
                 };
                 var command = new RedeemEmailConfirmationCommand
                 {
                     Token = confirmation.Token,
-                    Intent = "tomato"
+                    Intent = "intent2"
                 };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -416,10 +419,11 @@ namespace UCosmic.Domain.Email
                     Token = confirmation.Token,
                     SecretCode = "tomato"
                 };
-                var scenarioOptions = new ScenarioOptions();
-                scenarioOptions.MockQueryProcessor.Setup(
-                    m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -427,22 +431,38 @@ namespace UCosmic.Domain.Email
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "SecretCode");
                 error.ShouldBeNull();
             }
+
+            [TestMethod]
+            public void IsValidWhen_Confirmation_WasNull()
+            {
+                var command = new RedeemEmailConfirmationCommand
+                {
+                    Intent = "test"
+                };
+                var scenarioOptions = new ScenarioOptions();
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Intent");
+                error.ShouldBeNull();
+            }
         }
 
         private class ScenarioOptions
         {
-            internal ScenarioOptions()
-            {
-                MockQueryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-            }
-
-            internal readonly Mock<IProcessQueries> MockQueryProcessor;
+            internal RedeemEmailConfirmationCommand Command { get; set; }
+            internal EmailConfirmation EmailConfirmation { get; set; }
         }
 
         private static RedeemEmailConfirmationValidator CreateValidator(ScenarioOptions scenarioOptions = null)
         {
             scenarioOptions = scenarioOptions ?? new ScenarioOptions();
-            return new RedeemEmailConfirmationValidator(scenarioOptions.MockQueryProcessor.Object);
+            var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+            queryProcessor.Setup(m => m
+                .Execute(It.Is(ConfirmationQueryBasedOn(scenarioOptions.Command))))
+                .Returns(scenarioOptions.EmailConfirmation);
+            return new RedeemEmailConfirmationValidator(queryProcessor.Object);
         }
 
         private static Expression<Func<GetEmailConfirmationQuery, bool>> ConfirmationQueryBasedOn(RedeemEmailConfirmationCommand command)

@@ -89,7 +89,7 @@ namespace UCosmic.Domain.Identity
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
                     ValidateEmailConfirmation.FailedBecauseIsExpired,
-                        command.Token, confirmation.ExpiresOnUtc));
+                        confirmation.Token, confirmation.ExpiresOnUtc));
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -121,7 +121,7 @@ namespace UCosmic.Domain.Identity
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
                     ValidateEmailConfirmation.FailedBecauseIsRetired,
-                        command.Token, confirmation.RetiredOnUtc));
+                        confirmation.Token, confirmation.RetiredOnUtc));
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -152,7 +152,7 @@ namespace UCosmic.Domain.Identity
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
                     ValidateEmailConfirmation.FailedBecauseIsNotRedeemed,
-                        command.Token));
+                        confirmation.Token));
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -862,9 +862,10 @@ namespace UCosmic.Domain.Identity
         {
             scenarioOptions = scenarioOptions ?? new ScenarioOptions();
             var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-            queryProcessor.Setup(m => m
-                .Execute(It.Is(ConfirmationQueryBasedOn(scenarioOptions.Command))))
-                .Returns(scenarioOptions.EmailConfirmation);
+            if (scenarioOptions.Command != null)
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(ConfirmationQueryBasedOn(scenarioOptions.Command))))
+                    .Returns(scenarioOptions.EmailConfirmation);
             var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
             if (scenarioOptions.EmailConfirmation != null && 
                 scenarioOptions.EmailConfirmation.EmailAddress != null && 
