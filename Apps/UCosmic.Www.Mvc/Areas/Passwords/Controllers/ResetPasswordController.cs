@@ -8,6 +8,7 @@ using UCosmic.Domain.Identity;
 using UCosmic.Www.Mvc.Areas.Passwords.Models;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Routes;
+using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
 {
@@ -37,7 +38,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("reset-password")]
-        [ValidateEmailConfirmationTicket]
+        [ValidateEmailConfirmationTicket(EmailConfirmationIntent.PasswordReset)]
         public virtual ActionResult Get(ResetPasswordQuery query)
         {
             if (query == null) return HttpNotFound();
@@ -61,7 +62,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
         [ValidateAntiForgeryToken]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("reset-password")]
-        [ValidateEmailConfirmationTicket]
+        [ValidateEmailConfirmationTicket(EmailConfirmationIntent.PasswordReset)]
         public virtual ActionResult Post(ResetPasswordForm model)
         {
             if (model == null) return HttpNotFound();
@@ -97,8 +98,8 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
                 return PartialView(MVC.Passwords.ResetPassword.Views._denied);
 
             // deny the action if the intent is not to reset password
-            if (ModelState.ContainsKey(ResetPasswordQuery.IntentPropertyName) &&
-                ModelState[ResetPasswordQuery.IntentPropertyName].Errors.Any())
+            if (ModelState.ContainsKey(ValidateEmailConfirmationTicketAttribute.IntentPropertyName) &&
+                ModelState[ValidateEmailConfirmationTicketAttribute.IntentPropertyName].Errors.Any())
                 return PartialView(MVC.Passwords.ResetPassword.Views._denied);
 
             return PartialView(MVC.Passwords.ResetPassword.Views.reset_password, model);

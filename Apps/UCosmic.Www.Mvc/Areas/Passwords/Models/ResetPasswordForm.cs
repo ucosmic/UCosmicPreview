@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq.Expressions;
 using System.Web.Mvc;
 using AutoMapper;
 using FluentValidation;
@@ -17,36 +16,41 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
         public Guid Token { get; set; }
         public const string TokenPropertyName = "Token";
 
-        [UIHint("StrengthMeteredPassword")]
+        [UIHint(PasswordUiHint)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password", Prompt = "Enter your new password")]
+        [Display(Name = PasswordDisplayName, Prompt = PasswordDisplayPrompt)]
         public string Password { get; set; }
+        public const string PasswordUiHint = "StrengthMeteredPassword";
+        public const string PasswordDisplayName = "Password";
+        public const string PasswordDisplayPrompt = "Enter your new password";
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirmation", Prompt = "Enter the same password again to confirm")]
+        [Display(Name = PasswordConfirmationDisplayName, Prompt = PasswordConfirmationDisplayPrompt)]
         [Remote("ValidatePasswordConfirmation", "ResetPassword", "Passwords", HttpMethod = "POST", AdditionalFields = "Password")]
         public string PasswordConfirmation { get; set; }
+        public const string PasswordConfirmationDisplayName = "Confirmation";
+        public const string PasswordConfirmationDisplayPrompt = "Enter the same password again to confirm";
         public const string PasswordConfirmationPropertyName = "PasswordConfirmation";
-
-        internal string Intent { get; set; }
     }
 
-    public class ResetPasswordValidator : AbstractValidator<ResetPasswordForm>
+    public class ResetPasswordFormValidator : AbstractValidator<ResetPasswordForm>
     {
-        private readonly IProcessQueries _queryProcessor;
+        public const string FailedBecausePasswordWasEmpty = "Password is required.";
+        public const string FailedBecausePasswordWasTooShort = "Your password must be at least {0} characters long.";
+        public const string FailedBecausePasswordConfirmationWasEmpty = "Password confirmation is required.";
+        public const string FailedBecausePasswordConfirmationDidNotEqualPassword = "The password and confirmation password do not match.";
 
-        public ResetPasswordValidator(IProcessQueries queryProcessor)
+        public ResetPasswordFormValidator(IProcessQueries queryProcessor)
         {
-            _queryProcessor = queryProcessor;
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(p => p.Token)
                 .NotEmpty()
-                .Must(ValidateEmailConfirmationTokenMatchesEntity)
-            ;
-
-            RuleFor(p => p.Intent)
-                .Equal(EmailConfirmationIntent.PasswordReset)
+                    .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenWasEmpty,
+                        p => p.Token)
+                .Must(p => ValidateEmailConfirmation.TokenMatchesEntity(p, queryProcessor))
+                    .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenMatchedNoEntity,
+                        p => p.Token)
             ;
 
             RuleFor(p => p.Password)
@@ -59,40 +63,26 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
             ;
 
             RuleFor(p => p.PasswordConfirmation)
-                .NotEmpty().WithMessage(FailedBecausePasswordConfirmationWasEmpty)
+                .NotEmpty()
+                    .WithMessage(FailedBecausePasswordConfirmationWasEmpty)
             ;
 
             RuleFor(p => p.PasswordConfirmation)
-                .Equal(p => p.Password).WithMessage(FailedBecausePasswordConfirmationDidNotEqualPassword)
-                .Unless(p => string.IsNullOrWhiteSpace(p.PasswordConfirmation)
-                    || string.IsNullOrWhiteSpace(p.PasswordConfirmation)
-                    || p.Password.Length < ValidatePassword.MinimumLength)
+                .Equal(p => p.Password)
+                    .Unless(p =>
+                        string.IsNullOrWhiteSpace(p.PasswordConfirmation) ||
+                        string.IsNullOrWhiteSpace(p.Password) ||
+                        p.Password.Length < ValidatePassword.MinimumLength)
+                    .WithMessage(FailedBecausePasswordConfirmationDidNotEqualPassword)
             ;
         }
-
-        private EmailConfirmation _confirmation;
-
-        private bool ValidateEmailConfirmationTokenMatchesEntity(ResetPasswordForm model, Guid token)
-        {
-            var isValid = ValidateEmailConfirmation.TokenMatchesEntity(model.Token, _queryProcessor, out _confirmation);
-            if (_confirmation != null) model.Intent = _confirmation.Intent;
-            return isValid;
-        }
-
-        public const string FailedBecausePasswordWasEmpty = "Password is required.";
-
-        public const string FailedBecausePasswordWasTooShort = "Your password must be at least {0} characters long.";
-
-        public const string FailedBecausePasswordConfirmationWasEmpty = "Password confirmation is required.";
-
-        public const string FailedBecausePasswordConfirmationDidNotEqualPassword = "The password and confirmation password do not match.";
     }
 
-    public static class ResetPasswordProfiler
+    public static class ResetPasswordFormProfiler
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(ResetPasswordProfiler));
+            DefaultModelMapper.RegisterProfiles(typeof(ResetPasswordFormProfiler));
         }
 
         // ReSharper disable UnusedMember.Local

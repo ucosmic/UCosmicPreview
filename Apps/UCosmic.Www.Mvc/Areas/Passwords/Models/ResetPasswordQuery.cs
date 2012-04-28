@@ -2,7 +2,6 @@
 using AutoMapper;
 using FluentValidation;
 using UCosmic.Domain.Email;
-using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Passwords.Models
@@ -10,49 +9,32 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
     public class ResetPasswordQuery
     {
         public Guid Token { get; set; }
-        public string Intent { get; set; }
-        public const string IntentPropertyName = "Intent";
     }
 
-    public class ResetQueryValidator : AbstractValidator<ResetPasswordQuery>
+    public class ResetPasswordQueryValidator : AbstractValidator<ResetPasswordQuery>
     {
-        private readonly IProcessQueries _queryProcessor;
-
-        public ResetQueryValidator(IProcessQueries queryProcessor)
+        public ResetPasswordQueryValidator(IProcessQueries queryProcessor)
         {
-            _queryProcessor = queryProcessor;
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(p => p.Token)
-
+                // cannot be empty guid
+                .NotEmpty()
+                    .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenWasEmpty, p =>
+                        p.Token)
                 // token must match a confirmation
-                .Must(ValidateEmailConfirmationTokenMatchesEntity)
+                .Must(p => ValidateEmailConfirmation.TokenMatchesEntity(p, queryProcessor))
+                    .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenMatchedNoEntity,
+                        p => p.Token)
             ;
-
-            RuleFor(p => p.Intent)
-
-                // intent must match confirmation
-                .Equal(EmailConfirmationIntent.PasswordReset)
-                .Unless(p => _confirmation == null)
-            ;
-        }
-
-        private EmailConfirmation _confirmation;
-
-        private bool ValidateEmailConfirmationTokenMatchesEntity(ResetPasswordQuery model, Guid token)
-        {
-            var isValid = ValidateEmailConfirmation.TokenMatchesEntity(token, _queryProcessor, out _confirmation);
-            if (_confirmation == null) return isValid;
-            model.Intent = _confirmation.Intent;
-            return isValid;
         }
     }
 
-    public static class ResetQueryProfiler
+    public static class ResetPasswordQueryProfiler
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(ResetQueryProfiler));
+            DefaultModelMapper.RegisterProfiles(typeof(ResetPasswordQueryProfiler));
         }
 
         // ReSharper disable UnusedMember.Local

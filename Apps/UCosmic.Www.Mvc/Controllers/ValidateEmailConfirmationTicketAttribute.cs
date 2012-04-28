@@ -8,8 +8,17 @@ namespace UCosmic.Www.Mvc.Controllers
     public class ValidateEmailConfirmationTicketAttribute : ActionFilterAttribute
     {
         public const string TicketPropertyName = "Ticket";
+        public const string IntentPropertyName = "Intent";
+
+        public string Intent { get; private set; }
 
         public IProcessQueries QueryProcessor { get; set; }
+
+        public ValidateEmailConfirmationTicketAttribute(string intent)
+        {
+            if (intent == null) throw new ArgumentNullException("intent");
+            Intent = intent;
+        }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -49,6 +58,10 @@ namespace UCosmic.Www.Mvc.Controllers
 
             else if (token == Guid.Empty || confirmation == null)
                 AddModelError(filterContext, tokenKey);
+
+            // make sure the intent matches
+            else if (confirmation.Intent != Intent)
+                AddModelError(filterContext, IntentPropertyName);
         }
 
         private static void AddModelError(ControllerContext controllerContext, string key)

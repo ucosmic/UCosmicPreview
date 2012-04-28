@@ -17,8 +17,8 @@ namespace UCosmic.Www.Mvc.Areas.Passwords
             ForgotPasswordProfiler.RegisterProfiles();
 
             ResetPasswordRouter.RegisterRoutes(context);
-            ResetPasswordProfiler.RegisterProfiles();
-            ResetQueryProfiler.RegisterProfiles();
+            ResetPasswordFormProfiler.RegisterProfiles();
+            ResetPasswordQueryProfiler.RegisterProfiles();
 
             //context.MapRoute(
             //    "Passwords_default",
