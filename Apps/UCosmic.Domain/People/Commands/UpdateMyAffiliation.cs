@@ -78,51 +78,34 @@ namespace UCosmic.Domain.People
 
     public class UpdateMyAffiliationValidator : AbstractValidator<UpdateMyAffiliationCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
-
         public UpdateMyAffiliationValidator(IProcessQueries queryProcessor)
         {
-            _queryProcessor = queryProcessor;
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
+            var eagerLoad = new Expression<Func<Establishment, object>>[]
+            {
+                e => e.Type.Category,
+            };
+
             RuleFor(p => p.Principal)
-
                 // principal cannot be null
-                .NotEmpty().WithMessage(
-                    ValidatePrincipal.FailedBecausePrincipalWasNull)
-
+                .NotEmpty()
+                    .WithMessage(ValidatePrincipal.FailedBecausePrincipalWasNull)
                 // principal.identity.name cannot be null, empty, or whitespace
-                .Must(ValidatePrincipal.IdentityNameIsNotEmpty).WithMessage(
-                    ValidatePrincipal.FailedBecauseIdentityNameWasEmpty)
-
+                .Must(ValidatePrincipal.IdentityNameIsNotEmpty)
+                    .WithMessage(ValidatePrincipal.FailedBecauseIdentityNameWasEmpty)
                 // principal.identity.name must match User.Name entity property
-                .Must(ValidatePrincipalIdentityNameMatchesUser).WithMessage(
-                    ValidatePrincipal.FailedBecauseIdentityNameMatchedNoUser,
+                .Must(p => ValidatePrincipal.IdentityNameMatchesUser(p, queryProcessor))
+                    .WithMessage(ValidatePrincipal.FailedBecauseIdentityNameMatchedNoUser,
                         p => p.Principal.Identity.Name)
             ;
 
             RuleFor(p => p.EstablishmentId)
-
                 // establishment id must exist in database
-                .Must(ValidateEstablishmentIdMatchesEntity).WithMessage(
-                    ValidateEstablishment.FailedBecauseIdMatchedNoEntity,
+                .Must(p => ValidateEstablishment.IdMatchesEntity(p, queryProcessor, eagerLoad))
+                    .WithMessage(ValidateEstablishment.FailedBecauseIdMatchedNoEntity,
                         p => p.EstablishmentId)
             ;
-        }
-
-        private bool ValidatePrincipalIdentityNameMatchesUser(IPrincipal principal)
-        {
-            return ValidatePrincipal.IdentityNameMatchesUser(principal, _queryProcessor);
-        }
-
-        private bool ValidateEstablishmentIdMatchesEntity(int establishmentId)
-        {
-            return ValidateEstablishment.IdMatchesEntity(establishmentId, _queryProcessor,
-                new Expression<Func<Establishment, object>>[]
-                {
-                    e => e.Type.Category,
-                }
-            );
         }
     }
 }

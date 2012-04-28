@@ -18,7 +18,9 @@ namespace UCosmic.Domain.People
             {
                 var command = new UpdateMyNameCommand { DisplayName = null };
                 var validator = new UpdateMyNameValidator(null);
+
                 var results = validator.Validate(command);
+
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "DisplayName");
@@ -33,7 +35,9 @@ namespace UCosmic.Domain.People
             {
                 var command = new UpdateMyNameCommand { DisplayName = string.Empty };
                 var validator = new UpdateMyNameValidator(null);
+
                 var results = validator.Validate(command);
+
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "DisplayName");
@@ -48,7 +52,9 @@ namespace UCosmic.Domain.People
             {
                 var command = new UpdateMyNameCommand { DisplayName = "\t" };
                 var validator = new UpdateMyNameValidator(null);
+
                 var results = validator.Validate(command);
+
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "DisplayName");
@@ -63,7 +69,9 @@ namespace UCosmic.Domain.People
             {
                 var command = new UpdateMyNameCommand { DisplayName = "Adam West" };
                 var validator = new UpdateMyNameValidator(null);
+
                 var results = validator.Validate(command);
+
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "DisplayName");
                 error.ShouldBeNull();
             }
@@ -80,7 +88,9 @@ namespace UCosmic.Domain.People
                     Principal = null,
                 };
                 var validator = new UpdateMyNameValidator(null);
+
                 var results = validator.Validate(command);
+
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Principal");
@@ -102,7 +112,9 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                 };
                 var validator = new UpdateMyNameValidator(null);
+
                 var results = validator.Validate(command);
+
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Principal");
@@ -122,7 +134,9 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                 };
                 var validator = new UpdateMyNameValidator(null);
+
                 var results = validator.Validate(command);
+
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Principal");
@@ -142,7 +156,9 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                 };
                 var validator = new UpdateMyNameValidator(null);
+
                 var results = validator.Validate(command);
+
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Principal");
@@ -165,7 +181,9 @@ namespace UCosmic.Domain.People
                 queryProcessor.Setup(m => m.Execute(It.Is<GetUserByNameQuery>(q => q.Name == command.Principal.Identity.Name)))
                     .Returns(null as User);
                 var validator = new UpdateMyNameValidator(queryProcessor.Object);
+
                 var results = validator.Validate(command);
+
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Principal");
@@ -190,7 +208,9 @@ namespace UCosmic.Domain.People
                 queryProcessor.Setup(m => m.Execute(It.Is<GetUserByNameQuery>(q => q.Name == command.Principal.Identity.Name)))
                     .Returns(new User());
                 var validator = new UpdateMyNameValidator(queryProcessor.Object);
+
                 var results = validator.Validate(command);
+
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Principal");
                 error.ShouldBeNull();
             }
