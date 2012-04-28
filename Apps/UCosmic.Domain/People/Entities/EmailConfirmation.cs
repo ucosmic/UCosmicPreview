@@ -13,16 +13,6 @@ namespace UCosmic.Domain.People
             ExpiresOnUtc = DateTime.UtcNow.AddHours(2);
         }
 
-        protected internal EmailConfirmation(EmailAddress emailAddress, string intent, int secretCodeLength = 12)
-            : this()
-        {
-            Intent = intent;
-            SecretCode = RandomSecretCreator.CreateSecret(secretCodeLength);
-            // ReSharper disable DoNotCallOverridableMethodsInConstructor
-            EmailAddress = emailAddress;
-            // ReSharper restore DoNotCallOverridableMethodsInConstructor
-        }
-
         public int Id { get; protected internal set; }
 
         public int PersonId { get; protected internal set; }

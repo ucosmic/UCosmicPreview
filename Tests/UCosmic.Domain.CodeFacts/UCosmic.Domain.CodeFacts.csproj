@@ -75,6 +75,8 @@
     </Compile>
     <Compile Include="Email\Commands\RedeemEmailConfirmationHandlerFacts.cs" />
     <Compile Include="Email\Commands\RedeemEmailConfirmationValidatorFacts.cs" />
+    <Compile Include="Email\Commands\SendConfirmEmailMessageCommandFacts.cs" />
+    <Compile Include="Email\Commands\SendConfirmEmailMessageHandlerFacts.cs" />
     <Compile Include="Email\Commands\SendConfirmEmailMessageValidatorFacts.cs" />
     <Compile Include="Establishments\Commands\SignOnSamlUserHandlerFacts.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentByIdHandlerFacts.cs" />
@@ -97,6 +99,8 @@
     <Compile Include="Etc\AutoMapperFacts.cs" />
     <Compile Include="Etc\UnicodeToAsciiConverterFacts.cs" />
     <Compile Include="Identity\Commands\ResetPasswordValidatorFacts.cs" />
+    <Compile Include="Identity\Queries\GenerateRandomSecretHandlerFacts.cs" />
+    <Compile Include="Identity\Queries\GenerateRandomSecretQueryFacts.cs" />
     <Compile Include="Identity\RoleGrantFacts.cs" />
     <Compile Include="Identity\RoleFacts.cs" />
     <Compile Include="Identity\UserFacts.cs" />
