@@ -1,9 +1,16 @@
 ﻿using System;
 using System.Linq.Expressions;
+using System.Security.Principal;
 using UCosmic.Domain.Identity;
 
 namespace UCosmic.Domain.People
 {
+    public class GetMyEmailAddressByNumberQuery : IDefineQuery<EmailAddress>
+    {
+        public IPrincipal Principal { get; set; }
+        public int Number { get; set; }
+    }
+
     public class GetMyEmailAddressByNumberHandler : IHandleQueries<GetMyEmailAddressByNumberQuery, EmailAddress>
     {
         private readonly IProcessQueries _queryProcessor;

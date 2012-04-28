@@ -5,6 +5,12 @@ using FluentValidation.Results;
 
 namespace UCosmic.Domain.People
 {
+    public class FindPeopleWithFirstNameQuery : BasePeopleQuery, IDefineQuery<Person[]>
+    {
+        public string Term { get; set; }
+        public StringMatchStrategy TermMatchStrategy { get; set; }
+    }
+
     public class FindPeopleWithFirstNameHandler : IHandleQueries<FindPeopleWithFirstNameQuery, Person[]>
     {
         private readonly IQueryEntities _entities;

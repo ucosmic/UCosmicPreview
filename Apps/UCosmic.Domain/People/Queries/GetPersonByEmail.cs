@@ -2,22 +2,27 @@
 
 namespace UCosmic.Domain.People
 {
-    public class GetPersonByGuidHandler : IHandleQueries<GetPersonByGuidQuery, Person>
+    public class GetPersonByEmailQuery : BasePersonQuery, IDefineQuery<Person>
+    {
+        public string Email { get; set; }
+    }
+
+    public class GetPersonByEmailHandler : IHandleQueries<GetPersonByEmailQuery, Person>
     {
         private readonly IQueryEntities _entities;
 
-        public GetPersonByGuidHandler(IQueryEntities entities)
+        public GetPersonByEmailHandler(IQueryEntities entities)
         {
             _entities = entities;
         }
 
-        public Person Handle(GetPersonByGuidQuery query)
+        public Person Handle(GetPersonByEmailQuery query)
         {
             if (query == null) throw new ArgumentNullException("query");
 
             return _entities.People
                 .EagerLoad(query.EagerLoad, _entities)
-                .By(query.Guid)
+                .ByEmail(query.Email)
             ;
         }
     }
