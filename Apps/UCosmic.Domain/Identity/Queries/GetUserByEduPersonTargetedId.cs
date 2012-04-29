@@ -1,0 +1,24 @@
+﻿namespace UCosmic.Domain.Identity
+{
+    public class GetUserByEduPersonTargetedIdQuery : BaseUsersQuery, IDefineQuery<User>
+    {
+        public string EduPersonTargetedId { get; set; }
+    }
+
+    public class GetUserByEduPersonTargetedIdHandler : IHandleQueries<GetUserByEduPersonTargetedIdQuery, User>
+    {
+        private readonly IQueryEntities _entities;
+
+        public GetUserByEduPersonTargetedIdHandler(IQueryEntities entities)
+        {
+            _entities = entities;
+        }
+
+        public User Handle(GetUserByEduPersonTargetedIdQuery query)
+        {
+            return _entities.Users
+                .ByEduPersonTargetedId(query.EduPersonTargetedId)
+            ;
+        }
+    }
+}
