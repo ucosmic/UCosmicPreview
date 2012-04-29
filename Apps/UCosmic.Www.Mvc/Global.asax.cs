@@ -100,6 +100,7 @@ namespace UCosmic.Www.Mvc
                 provider =>
                 {
                     provider.ValidatorFactory = new FluentValidatorFactory(DependencyInjector.Current);
+                    provider.AddImplicitRequiredValidator = false;
                 }
             );
         }

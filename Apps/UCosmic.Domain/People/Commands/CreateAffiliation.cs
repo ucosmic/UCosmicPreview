@@ -60,9 +60,10 @@ namespace UCosmic.Domain.People
     {
         public CreateAffiliationValidator(IProcessQueries queryProcessor)
         {
+            CascadeMode = CascadeMode.StopOnFirstFailure;
+
             Person person = null;
             Establishment establishment = null;
-            CascadeMode = CascadeMode.StopOnFirstFailure;
 
             var establishmentLoad = new Expression<Func<Establishment, object>>[]
             {
@@ -72,7 +73,6 @@ namespace UCosmic.Domain.People
             {
                 p => p.Affiliations.Select(a => a.Establishment)
             };
-
 
             RuleFor(p => p.EstablishmentId)
                 // establishment id must exist in database

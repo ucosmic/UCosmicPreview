@@ -14,7 +14,6 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
     {
         [HiddenInput(DisplayValue = false)]
         public Guid Token { get; set; }
-        public const string TokenPropertyName = "Token";
 
         [UIHint(PasswordUiHint)]
         [DataType(DataType.Password)]
@@ -45,29 +44,34 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(p => p.Token)
+                // cannot be empty guid
                 .NotEmpty()
                     .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenWasEmpty,
                         p => p.Token)
+                // matches email confirmation entity
                 .Must(p => ValidateEmailConfirmation.TokenMatchesEntity(p, queryProcessor))
                     .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenMatchedNoEntity,
                         p => p.Token)
             ;
 
             RuleFor(p => p.Password)
+                // cannot be empty
                 .NotEmpty()
                     .WithMessage(FailedBecausePasswordWasEmpty)
-
+                // at least 6 characters long
                 .Length(ValidatePassword.MinimumLength, int.MaxValue)
                     .WithMessage(FailedBecausePasswordWasTooShort,
                         p => ValidatePassword.MinimumLength)
             ;
 
             RuleFor(p => p.PasswordConfirmation)
+                // can never be empty
                 .NotEmpty()
                     .WithMessage(FailedBecausePasswordConfirmationWasEmpty)
             ;
 
             RuleFor(p => p.PasswordConfirmation)
+                // equals password unless empty or password failed validation
                 .Equal(p => p.Password)
                     .Unless(p =>
                         string.IsNullOrWhiteSpace(p.PasswordConfirmation) ||

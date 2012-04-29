@@ -58,7 +58,7 @@ namespace UCosmic.Domain.People
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Principal");
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(ValidatePrincipal.FailedBecauseIdentityNameWasEmpty);
+                error.ErrorMessage.ShouldEqual(ValidatePrincipal.FailedBecausePrincipalWasNull);
                 // ReSharper restore PossibleNullReferenceException
             }
 

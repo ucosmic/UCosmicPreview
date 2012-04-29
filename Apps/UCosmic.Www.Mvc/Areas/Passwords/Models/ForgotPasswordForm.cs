@@ -17,9 +17,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
         [Display(Name = EmailAddressDisplayName, Prompt = EmailAddressDisplayPrompt)]
         [Remote("ValidateEmailAddress", "ForgotPassword", "Passwords", HttpMethod = "POST")]
         public string EmailAddress { get; set; }
-        public const string EmailAddressPropertyName = "EmailAddress";
-        public const string EmailAddressDisplayName = "Email Address";
+        public const string EmailAddressDisplayName = "Email address";
         public const string EmailAddressDisplayPrompt = "Enter the email address you used when you signed up";
+        public const string EmailAddressPropertyName = "EmailAddress";
 
         [HiddenInput(DisplayValue = false)]
         public string ReturnUrl { get; set; }
@@ -27,102 +27,56 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
     public class ForgotPasswordValidator : AbstractValidator<ForgotPasswordForm>
     {
-        private readonly IProcessQueries _queryProcessor;
-        private readonly ISignMembers _memberSigner;
+        public const string FailedBecauseEmailAddressWasEmpty = "Email address is required.";
+        public const string FailedBecauseEmailAddressWasNotValidEmailAddress = "This is not a valid email address.";
+        public const string FailedBecauseUserNameMatchedNoLocalMember = "A user account for the email address '{0}' could not be found.";
+        public const string FailedBecauseEduPersonTargetedIdWasNotEmpty = "Your password cannot be reset because you have a Single Sign On account with your employer.";
 
         public ForgotPasswordValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
         {
-            _queryProcessor = queryProcessor;
-            _memberSigner = memberSigner;
             CascadeMode = CascadeMode.StopOnFirstFailure;
+
+            Person person = null;
+            var eagerLoad = new Expression<Func<Person, object>>[]
+            {
+                p => p.Emails,
+                p => p.User
+            };
 
             RuleFor(p => p.EmailAddress)
 
                 // email address cannot be empty
-                .NotEmpty().WithMessage(
-                    FailedBecauseEmailAddressWasEmpty)
+                .NotEmpty()
+                    .WithMessage(FailedBecauseEmailAddressWasEmpty)
 
                 // must be valid against email address regular expression
-                .EmailAddress().WithMessage(
-                    FailedBecauseEmailAddressWasNotValidEmailAddress)
+                .EmailAddress()
+                    .WithMessage(FailedBecauseEmailAddressWasNotValidEmailAddress)
 
                 // the email address must match a person
-                .Must(ValidateEmailAddressValueMatchesPerson).WithMessage(
-                    FailedBecauseEmailAddressValueMatchedNoPerson,
+                .Must(p => ValidateEmailAddress.ValueMatchesPerson(p, queryProcessor, eagerLoad, out person))
+                    .WithMessage(FailedBecauseUserNameMatchedNoLocalMember,
                         p => p.EmailAddress)
 
                 // the matched person must have a user
-                .Must(ValidatePersonUserIsNotNull).WithMessage(
-                    FailedBecauseEmailAddressValueMatchedNoUser,
+                .Must(p => ValidatePerson.UserIsNotNull(person))
+                    .WithMessage(FailedBecauseUserNameMatchedNoLocalMember,
                         p => p.EmailAddress)
 
                 // the user must not have a SAML account
-                .Must(ValidateUserEduPersonTargetedIdIsEmpty).WithMessage(
-                    FailedBecauseEduPersonTargetedIdWasNotEmpty,
-                        p => p.EmailAddress)
+                .Must(p => ValidateUser.EduPersonTargetedIdIsEmpty(person.User))
+                    .WithMessage(FailedBecauseEduPersonTargetedIdWasNotEmpty)
 
                 // the email address' person's user's name must match a local member account
-                .Must(ValidateUserNameMatchesLocalMember).WithMessage(
-                    FailedBecauseUserNameMatchedNoLocalMember,
+                .Must(p => ValidateUser.NameMatchesLocalMember(person.User.Name, memberSigner))
+                    .WithMessage(FailedBecauseUserNameMatchedNoLocalMember,
                         p => p.EmailAddress)
 
                 // the email address must be confirmed
-                .Must(ValidateEmailAddressIsConfirmed).WithMessage(
-                    ValidateEmailAddress.FailedBecauseIsNotConfirmed,
+                .Must(p => ValidateEmailAddress.IsConfirmed(person.Emails.ByValue(p)))
+                    .WithMessage(ValidateEmailAddress.FailedBecauseIsNotConfirmed,
                         p => p.EmailAddress)
             ;
-        }
-
-        private Person _person;
-
-        internal const string FailedBecauseEmailAddressWasEmpty
-            = "Email Address is required.";//
-
-        internal const string FailedBecauseEmailAddressWasNotValidEmailAddress
-            = "This is not a valid email address.";//
-
-        internal const string FailedBecauseEmailAddressValueMatchedNoPerson
-            = "A user account for the email address '{0}' could not be found.";
-
-        private bool ValidateEmailAddressValueMatchesPerson(string emailAddress)
-        {
-            return ValidateEmailAddress.ValueMatchesPerson(emailAddress, _queryProcessor,
-                new Expression<Func<Person, object>>[]
-                    {
-                        p => p.Emails,
-                        p => p.User
-                    },
-                out _person
-            );
-        }
-
-        internal const string FailedBecauseEmailAddressValueMatchedNoUser
-            = FailedBecauseEmailAddressValueMatchedNoPerson;
-
-        private bool ValidatePersonUserIsNotNull(string emailAddress)
-        {
-            return ValidatePerson.UserIsNotNull(_person);
-        }
-
-        internal const string FailedBecauseEduPersonTargetedIdWasNotEmpty
-            = "Your password cannot be reset because you have a Single Sign On account with your employer.";
-
-        private bool ValidateUserEduPersonTargetedIdIsEmpty(string emailAddress)
-        {
-            return ValidateUser.EduPersonTargetedIdIsEmpty(_person.User);
-        }
-
-        internal const string FailedBecauseUserNameMatchedNoLocalMember
-            = FailedBecauseEmailAddressValueMatchedNoPerson;
-
-        private bool ValidateUserNameMatchesLocalMember(string emailAddress)
-        {
-            return ValidateUser.NameMatchesLocalMember(_person.User.Name, _memberSigner);
-        }
-
-        private bool ValidateEmailAddressIsConfirmed(string emailAddress)
-        {
-            return ValidateEmailAddress.IsConfirmed(_person.Emails.ByValue(emailAddress));
         }
     }
 

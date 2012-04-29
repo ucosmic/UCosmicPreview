@@ -102,7 +102,6 @@
     <Compile Include="Decorators\SaveChangesAndDisposeDecorator.cs" />
     <Compile Include="Web\SmtpMailSender.cs" />
     <Compile Include="Web\DotNetFormsAuthentication.cs" />
-    <Compile Include="Fluent\FluentValidationCommandDecorator.cs" />
     <Compile Include="Fluent\FluentValidatorFactory.cs" />
     <Compile Include="Simple\SimpleDecoratorContext.cs" />
     <Compile Include="Simple\SimpleDecoratorExtensions.cs" />

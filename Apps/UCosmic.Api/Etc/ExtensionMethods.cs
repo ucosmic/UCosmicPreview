@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Principal;
 using System.Text;
 using System.Web;
 
@@ -9,6 +10,16 @@ namespace UCosmic
 {
     public static class ExtensionMethods
     {
+        #region Security
+
+        public static IPrincipal AsPrincipal(this string principalIdentityName)
+        {
+            if (principalIdentityName == null) return null;
+            var principal = new GenericPrincipal(new GenericIdentity(principalIdentityName), null);
+            return principal;
+        }
+
+        #endregion
         #region Url Encoding & Decoding
 
         public static string UrlEncoded(this string value)

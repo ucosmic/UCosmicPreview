@@ -43,7 +43,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    UpdateNameValidator.DisplayNameRequiredErrorMessage);
+                    UpdateNameValidator.FailedBecauseDisplayNameWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -59,7 +59,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    UpdateNameValidator.DisplayNameRequiredErrorMessage);
+                    UpdateNameValidator.FailedBecauseDisplayNameWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -75,7 +75,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    UpdateNameValidator.DisplayNameRequiredErrorMessage);
+                    UpdateNameValidator.FailedBecauseDisplayNameWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 

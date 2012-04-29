@@ -208,7 +208,6 @@
     <Compile Include="Areas\Identity\Models\ConfirmDeniedModel.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailForm.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailQuery.cs" />
-    <Compile Include="Areas\Identity\Models\Saml2IntegrationProfiler.cs" />
     <Compile Include="Areas\Identity\Models\RoleSearchResultProfiler.cs" />
     <Compile Include="Areas\Identity\Models\RoleFormProfiler.cs" />
     <Compile Include="Areas\My\Controllers\UpdateAffiliationController.cs" />
@@ -221,13 +220,6 @@
     <Compile Include="Areas\My\Controllers\ProfileController.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameController.cs" />
     <Compile Include="Areas\My\Models\UpdateAffiliationForm.cs" />
-    <Compile Include="Areas\My\Models\UpdateEmailValueProfiler.cs" />
-    <Compile Include="Areas\My\Models\UpdateEmailValueValidator.cs" />
-    <Compile Include="Areas\My\Models\UpdateAffiliationProfiler.cs" />
-    <Compile Include="Areas\My\Models\UpdateAffiliationValidator.cs" />
-    <Compile Include="Areas\My\Models\UpdateNameValidator.cs" />
-    <Compile Include="Areas\My\Models\UpdateNameProfiler.cs" />
-    <Compile Include="Areas\My\Models\ProfileProfiler.cs" />
     <Compile Include="Areas\My\Models\ProfileInfo.cs" />
     <Compile Include="Areas\My\Models\UpdateNameForm.cs" />
     <Compile Include="Areas\My\MyAreaRegistration.cs" />
@@ -269,8 +261,6 @@
     <Compile Include="Areas\Identity\Models\Deprecated\Password\ForgotPasswordEmailAttribute.cs" />
     <Compile Include="Areas\Identity\Models\Deprecated\NoDuplicateGrantsAttribute.cs" />
     <Compile Include="Areas\Identity\Models\SignOnBeginForm.cs" />
-    <Compile Include="Areas\Identity\Models\SignOnEmailAddressValidator.cs" />
-    <Compile Include="Areas\Identity\Models\SignOnBeginFormValidator.cs" />
     <Compile Include="Areas\Identity\Controllers\RolesServices.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOnServices.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsRouteMapper.cs" />

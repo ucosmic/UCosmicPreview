@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
+namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     // ReSharper disable UnusedMember.Global
     public class Saml2IntegrationInfoFacts

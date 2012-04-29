@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 using UCosmic.Www.Mvc.Models;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
+namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     // ReSharper disable UnusedMember.Global
     public class SignOnBeginFormFacts
@@ -24,30 +24,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
         }
 
         [TestClass]
-        public class TheEmailAddressDisplayNameField
-        {
-            [TestMethod]
-            public void IsPublic()
-            {
-                SignOnBeginForm.EmailAddressDisplayName.ShouldEqual("Email Address");
-            }
-        }
-
-        [TestClass]
-        public class TheEmailAddressWatermarkField
-        {
-            [TestMethod]
-            public void IsPublic()
-            {
-                SignOnBeginForm.EmailAddressWatermark.ShouldEqual("Enter your work email address");
-            }
-        }
-
-        [TestClass]
         public class TheEmailAddressProperty
         {
             [TestMethod]
-            public void IsDecoratedWith_DataType_Using_EmailAddress()
+            public void IsDecoratedWith_DataType_UsingEmailAddress()
             {
                 Expression<Func<SignOnBeginForm, string>> property = p => p.EmailAddress;
                 var attributes = property.GetAttributes<SignOnBeginForm, string, DataTypeAttribute>();
@@ -57,7 +37,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
             }
 
             [TestMethod]
-            public void IsDecoratedWith_UIHint_Using_SignOnEmailAddress()
+            public void IsDecoratedWith_UIHint_UsingSignOnEmailAddress()
             {
                 Expression<Func<SignOnBeginForm, string>> property = p => p.EmailAddress;
                 var attributes = property.GetAttributes<SignOnBeginForm, string, UIHintAttribute>();
@@ -67,7 +47,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
             }
 
             [TestMethod]
-            public void IsDecoratedWith_Display_Using_EmailAddressDisplayName()
+            public void IsDecoratedWith_Display_UsingName()
             {
                 Expression<Func<SignOnBeginForm, string>> property = p => p.EmailAddress;
                 var attributes = property.GetAttributes<SignOnBeginForm, string, DisplayAttribute>();
@@ -77,22 +57,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
             }
 
             [TestMethod]
-            public void IsDecoratedWith_Display_Using_EmailAddressWatermarkPrompt()
+            public void IsDecoratedWith_Display_UsingPrompt()
             {
                 Expression<Func<SignOnBeginForm, string>> property = p => p.EmailAddress;
                 var attributes = property.GetAttributes<SignOnBeginForm, string, DisplayAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
-                attributes[0].Prompt.ShouldEqual(SignOnBeginForm.EmailAddressWatermark);
-            }
-
-            [TestMethod]
-            public void HasPublicSetter()
-            {
-                new SignOnBeginForm
-                {
-                    EmailAddress = "someone@domain.tld"
-                };
+                attributes[0].Prompt.ShouldEqual(SignOnBeginForm.EmailAddressDisplayPrompt);
             }
         }
 
@@ -107,15 +78,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();
-            }
-
-            [TestMethod]
-            public void HasPublicSetter()
-            {
-                new SignOnBeginForm
-                {
-                    ReturnUrl = "/path/to/resource"
-                };
             }
         }
     }
