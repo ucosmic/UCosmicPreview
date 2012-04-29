@@ -51,7 +51,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(ProfileProfiler));
+            RootModelProfiler.RegisterProfiles(typeof(ProfileProfiler));
         }
 
         // ReSharper disable UnusedMember.Local

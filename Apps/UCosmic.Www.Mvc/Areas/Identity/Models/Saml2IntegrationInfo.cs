@@ -18,7 +18,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(Saml2IntegrationProfiler));
+            RootModelProfiler.RegisterProfiles(typeof(Saml2IntegrationProfiler));
         }
 
         // ReSharper disable UnusedMember.Local

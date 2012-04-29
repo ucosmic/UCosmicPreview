@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using System.Web.Routing;
 using AutoMapper;
 using UCosmic.Domain.Identity;
 using UCosmic.Www.Mvc.Areas.My.Models;
@@ -9,6 +10,21 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
+    public class UpdateNameServices
+    {
+        public UpdateNameServices(
+            IProcessQueries queryProcessor
+            , IHandleCommands<UpdateMyNameCommand> commandHandler
+        )
+        {
+            QueryProcessor = queryProcessor;
+            CommandHandler = commandHandler;
+        }
+
+        public IProcessQueries QueryProcessor { get; private set; }
+        public IHandleCommands<UpdateMyNameCommand> CommandHandler { get; private set; }
+    }
+
     [Authorize]
     public partial class UpdateNameController : BaseController
     {
@@ -65,5 +81,42 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
         public const string SuccessMessage = "Your info was successfully updated.";
         public const string NoChangesMessage = "No changes were made.";
+    }
+
+    public static class UpdateNameRouter
+    {
+        private static readonly string Area = MVC.My.Name;
+        private static readonly string Controller = MVC.My.UpdateName.Name;
+
+        public static void RegisterRoutes(AreaRegistrationContext context)
+        {
+            RootActionRouter.RegisterRoutes(typeof(UpdateNameRouter), context, Area, Controller);
+        }
+
+        // ReSharper disable UnusedMember.Global
+
+        public static class Get
+        {
+            public const string Route = "my/name/edit";
+            private static readonly string Action = MVC.My.UpdateName.ActionNames.Get;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("GET"), };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
+        public static class Put
+        {
+            public const string Route = "my/name";
+            private static readonly string Action = MVC.My.UpdateName.ActionNames.Put;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("POST", "PUT"), };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
     }
 }

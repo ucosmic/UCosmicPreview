@@ -44,7 +44,7 @@ namespace UCosmic.Www.Mvc
             RouteTable.Routes.Clear();
             AreaRegistration.RegisterAllAreas();
             MvcApplication.RegisterRoutes(RouteTable.Routes);
-            AutoMapperConfig.Configure();
+            AutoMapperRegistration.RegisterAllProfiles();
         }
 
         private static class AreaRegistration

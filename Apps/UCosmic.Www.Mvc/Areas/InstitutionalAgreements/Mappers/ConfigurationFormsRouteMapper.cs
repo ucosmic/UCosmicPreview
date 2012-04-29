@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using UCosmic.Www.Mvc.Routes;
+using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
 {
@@ -11,7 +11,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouter.RegisterRoutes(typeof(ConfigurationFormsRouteMapper), context, Area, Controller);
+            RootActionRouter.RegisterRoutes(typeof(ConfigurationFormsRouteMapper), context, Area, Controller);
         }
 
         public static class Add

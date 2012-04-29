@@ -99,7 +99,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(ConfirmEmailFormProfiler));
+            RootModelProfiler.RegisterProfiles(typeof(ConfirmEmailFormProfiler));
         }
 
         // ReSharper disable UnusedMember.Local

@@ -1,11 +1,27 @@
 ﻿using System.Web.Mvc;
+using System.Web.Routing;
 using AutoMapper;
-using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.My.Models;
+using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
+    public class UpdateAffiliationServices
+    {
+        public UpdateAffiliationServices(
+            IProcessQueries queryProcessor
+            , IHandleCommands<UpdateMyAffiliationCommand> commandHandler
+        )
+        {
+            QueryProcessor = queryProcessor;
+            CommandHandler = commandHandler;
+        }
+
+        public IProcessQueries QueryProcessor { get; private set; }
+        public IHandleCommands<UpdateMyAffiliationCommand> CommandHandler { get; private set; }
+    }
+
     [Authorize]
     public partial class UpdateAffiliationController : BaseController
     {
@@ -60,5 +76,52 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
         public const string SuccessMessage = "Your affiliation info was successfully updated.";
         public const string NoChangesMessage = "No changes were made.";
+    }
+
+    public static class UpdateAffiliationRouter
+    {
+        private static readonly string Area = MVC.My.Name;
+        private static readonly string Controller = MVC.My.UpdateAffiliation.Name;
+
+        public static void RegisterRoutes(AreaRegistrationContext context)
+        {
+            RootActionRouter.RegisterRoutes(typeof(UpdateAffiliationRouter), context, Area, Controller);
+        }
+
+        // ReSharper disable UnusedMember.Global
+
+        public static class Get
+        {
+            public const string Route = "my/affiliations/{establishmentId}/edit";
+            private static readonly string Action = MVC.My.UpdateAffiliation.ActionNames.Get;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                    establishmentId = new PositiveIntegerRouteConstraint(),
+                };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
+        public static class Put
+        {
+            public const string Route = "my/affiliations/{establishmentId}";
+            private static readonly string Action = MVC.My.UpdateAffiliation.ActionNames.Put;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new
+                {
+                    httpMethod = new HttpMethodConstraint("POST", "PUT"),
+                    establishmentId = new PositiveIntegerRouteConstraint(),
+                };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
+        // ReSharper restore UnusedMember.Global
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using UCosmic.Www.Mvc.Routes;
+using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Common.Mappers
 {
@@ -12,7 +12,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouter.RegisterRoutes(typeof(HealthRouteMapper), context, Area, Controller);
+            RootActionRouter.RegisterRoutes(typeof(HealthRouteMapper), context, Area, Controller);
         }
 
         public static class SampleCachedPage

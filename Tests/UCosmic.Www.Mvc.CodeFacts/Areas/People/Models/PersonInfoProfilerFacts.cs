@@ -145,6 +145,21 @@ namespace UCosmic.Www.Mvc.Areas.People.Models
                 model.DefaultEmail.ShouldNotBeNull();
                 model.DefaultEmail.ShouldEqual(value);
             }
+
+            [TestMethod]
+            public void AutoMapper_CanConstruct_AndSetProperties()
+            {
+                new PersonInfoModel
+                {
+                    EntityId = Guid.NewGuid(),
+                    Salutation = null,
+                    FirstName = null,
+                    MiddleName = null,
+                    LastName = null,
+                    Suffix = null,
+                    DefaultEmail = null,
+                };
+            }
         }
     }
 }

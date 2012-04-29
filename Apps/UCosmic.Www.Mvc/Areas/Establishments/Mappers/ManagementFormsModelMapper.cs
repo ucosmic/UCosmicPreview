@@ -11,7 +11,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(ManagementFormsModelMapper));
+            RootModelProfiler.RegisterProfiles(typeof(ManagementFormsModelMapper));
         }
 
         // ReSharper disable UnusedMember.Local

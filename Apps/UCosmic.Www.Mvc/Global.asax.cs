@@ -37,7 +37,7 @@ namespace UCosmic.Www.Mvc
             SetUpFluentValidation();
 
             // configure automapper
-            AutoMapperConfig.Configure();
+            AutoMapperRegistration.RegisterAllProfiles();
 
             // seed the database
             SeedDb();

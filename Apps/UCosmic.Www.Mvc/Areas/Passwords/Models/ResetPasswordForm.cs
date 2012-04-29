@@ -86,7 +86,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(ResetPasswordFormProfiler));
+            RootModelProfiler.RegisterProfiles(typeof(ResetPasswordFormProfiler));
         }
 
         // ReSharper disable UnusedMember.Local

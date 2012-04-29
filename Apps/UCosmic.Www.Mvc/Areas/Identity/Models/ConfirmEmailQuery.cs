@@ -56,7 +56,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(ConfirmEmailQueryProfiler));
+            RootModelProfiler.RegisterProfiles(typeof(ConfirmEmailQueryProfiler));
         }
 
         // ReSharper disable UnusedMember.Local

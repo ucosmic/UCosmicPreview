@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using UCosmic.Www.Mvc.Routes;
+using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -12,7 +12,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
             if (!WebConfig.IsDeployedToCloud)
-                DefaultRouter.RegisterRoutes(typeof(SignOnRouter), context, Area, Controller);
+                RootActionRouter.RegisterRoutes(typeof(SignOnRouter), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global

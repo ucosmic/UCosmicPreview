@@ -9,7 +9,6 @@ using UCosmic.Domain.Email;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;
-using UCosmic.Www.Mvc.Routes;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -144,7 +143,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouter.RegisterRoutes(typeof(ConfirmEmailRouter), context, Area, Controller);
+            RootActionRouter.RegisterRoutes(typeof(ConfirmEmailRouter), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global

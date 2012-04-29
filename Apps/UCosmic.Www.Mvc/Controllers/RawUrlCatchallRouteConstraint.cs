@@ -1,7 +1,7 @@
 using System.Web;
 using System.Web.Routing;
 
-namespace UCosmic.Www.Mvc.Routes
+namespace UCosmic.Www.Mvc.Controllers
 {
     public class RawUrlCatchallRouteConstraint : IRouteConstraint
     {
