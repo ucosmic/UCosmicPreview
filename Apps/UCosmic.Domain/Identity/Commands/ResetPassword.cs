@@ -51,6 +51,7 @@ namespace UCosmic.Domain.Identity
         public ResetPasswordValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
+
             EmailConfirmation confirmation = null;
 
             RuleFor(p => p.Token)

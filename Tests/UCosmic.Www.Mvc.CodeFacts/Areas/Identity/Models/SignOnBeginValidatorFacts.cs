@@ -7,10 +7,10 @@ using Should;
 using UCosmic.Domain.Establishments;
 using UCosmic.Impl;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
+namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class SignOnBeginFormValidatorFacts
+    public class SignOnBeginValidatorFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -26,7 +26,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
                 var validator = container.GetInstance<IValidator<SignOnBeginForm>>();
 
                 validator.ShouldNotBeNull();
-                validator.ShouldBeType<SignOnBeginFormValidator>();
+                validator.ShouldBeType<SignOnBeginValidator>();
             }
         }
 
@@ -34,9 +34,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
         public class TheEmailAddressProperty
         {
             [TestMethod]
-            public void IsInvalidWhen_EmailAddress_IsNull()
+            public void IsInvalidWhen_IsNull()
             {
-                var validator = new SignOnBeginFormValidator(null);
+                var validator = new SignOnBeginValidator(null);
                 var model = new SignOnBeginForm { EmailAddress = null };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
@@ -45,14 +45,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    SignOnEmailAddressValidatorRules.RequiredMessage);
+                    SignOnBeginValidator.FailedBecauseEmailAddressWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void IsInvalidWhen_EmailAddress_IsEmpty()
+            public void IsInvalidWhen_IsEmpty()
             {
-                var validator = new SignOnBeginFormValidator(null);
+                var validator = new SignOnBeginValidator(null);
                 var model = new SignOnBeginForm { EmailAddress = string.Empty };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
@@ -61,14 +61,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    SignOnEmailAddressValidatorRules.RequiredMessage);
+                    SignOnBeginValidator.FailedBecauseEmailAddressWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void IsInvalidWhen_EmailAddress_IsWhiteSpace()
+            public void IsInvalidWhen_IsWhiteSpace()
             {
-                var validator = new SignOnBeginFormValidator(null);
+                var validator = new SignOnBeginValidator(null);
                 var model = new SignOnBeginForm { EmailAddress = " \t " };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
@@ -77,14 +77,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    SignOnEmailAddressValidatorRules.RequiredMessage);
+                    SignOnBeginValidator.FailedBecauseEmailAddressWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void IsInvalidWhen_EmailAddress_IsMissingTldExtension()
+            public void IsInvalidWhen_IsNotValidEmailAddress()
             {
-                var validator = new SignOnBeginFormValidator(null);
+                var validator = new SignOnBeginValidator(null);
                 var model = new SignOnBeginForm { EmailAddress = "email@domain" };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
@@ -93,19 +93,19 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    SignOnEmailAddressValidatorRules.RegexMessage);
+                    SignOnBeginValidator.FailedBecauseEmailAddressIsNotValidEmailAddress);
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void IsInvalidWhen_EmailAddress_HasNoMatchingEstablishment()
+            public void IsInvalidWhen_HasNoMatchingEstablishment()
             {
                 const string emailAddress = "email@domain.tld";
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(
                     It.Is<GetEstablishmentByEmailQuery>(q => q.Email == emailAddress)))
                         .Returns(null as Establishment);
-                var validator = new SignOnBeginFormValidator(queryProcessor.Object);
+                var validator = new SignOnBeginValidator(queryProcessor.Object);
                 var model = new SignOnBeginForm { EmailAddress = emailAddress };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
@@ -114,19 +114,19 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    SignOnBeginFormValidator.FailedBecauseEstablishmentIsNotEligible, emailAddress));
+                    SignOnBeginValidator.FailedBecauseEstablishmentIsNotEligible, emailAddress));
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void IsInvalidWhen_EmailAddress_MatchingEstablishment_IsNotMember()
+            public void IsInvalidWhen_MatchingEstablishment_IsNotMember()
             {
                 const string emailAddress = "email@domain.tld";
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(
                     It.Is<GetEstablishmentByEmailQuery>(q => q.Email == emailAddress)))
                         .Returns(new Establishment { IsMember = false, });
-                var validator = new SignOnBeginFormValidator(queryProcessor.Object);
+                var validator = new SignOnBeginValidator(queryProcessor.Object);
                 var model = new SignOnBeginForm { EmailAddress = emailAddress };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
@@ -135,17 +135,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models.SignOn
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    SignOnBeginFormValidator.FailedBecauseEstablishmentIsNotEligible, emailAddress));
+                    SignOnBeginValidator.FailedBecauseEstablishmentIsNotEligible, emailAddress));
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
-            public void IsValidWhen_EmailAddress_IsValidEmailAddress_AndBelongsToMemberEstablishment()
+            public void IsValidWhen_IsValidEmailAddress_AndBelongsToMemberEstablishment()
             {
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.IsAny<GetEstablishmentByEmailQuery>()))
                     .Returns(new Establishment { IsMember = true, });
-                var validator = new SignOnBeginFormValidator(queryProcessor.Object);
+                var validator = new SignOnBeginValidator(queryProcessor.Object);
                 var model = new SignOnBeginForm { EmailAddress = "email@domain.tld" };
                 var results = validator.Validate(model);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");

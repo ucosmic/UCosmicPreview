@@ -73,7 +73,7 @@ namespace UCosmic.Domain.People
         #region Number and Principal matches entity
 
         public const string FailedBecauseNumberAndPrincipalMatchedNoEntity =
-            "Email with number '{0}' could not be found for user.";
+            "Email with number '{0}' could not be found for user {1}.";
 
         public static bool NumberAndPrincipalMatchesEntity(int number, IPrincipal principal, IProcessQueries queryProcessor,
             out EmailAddress entity)

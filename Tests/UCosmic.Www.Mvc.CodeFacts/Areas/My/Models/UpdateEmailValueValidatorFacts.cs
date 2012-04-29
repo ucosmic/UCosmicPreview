@@ -140,7 +140,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
                     ValidateEmailAddress.FailedBecauseNumberAndPrincipalMatchedNoEntity,
-                        form.Number));
+                        form.Number, form.PersonUserName));
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -167,7 +167,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
                     ValidateEmailAddress.FailedBecauseNumberAndPrincipalMatchedNoEntity,
-                        form.Number));
+                        form.Number, form.PersonUserName));
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -207,16 +207,16 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
 
         private static Expression<Func<GetMyEmailAddressByNumberQuery, bool>> EmailQueryBasedOn(UpdateEmailValueForm form)
         {
-            Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailQueryBasedOn = q =>
-                q.Principal.Identity.Name == form.PersonUserName &&
+            Expression<Func<GetMyEmailAddressByNumberQuery, bool>> queryBasedOn = q =>
+                q.Principal == null &&
                 q.Number == form.Number
             ;
-            if (form.PersonUserName == null)
-                emailQueryBasedOn = q =>
-                    q.Principal.Identity.Name == string.Empty &&
+            if (form.PersonUserName != null)
+                queryBasedOn = q =>
+                    q.Principal.Identity.Name == form.PersonUserName &&
                     q.Number == form.Number
                 ;
-            return emailQueryBasedOn;
+            return queryBasedOn;
         }
     }
 }

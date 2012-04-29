@@ -185,7 +185,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    ResetPasswordFormValidator.FailedBecausePasswordWasTooShort, 
+                    ResetPasswordFormValidator.FailedBecausePasswordWasTooShort,
                         ValidatePassword.MinimumLength));
                 // ReSharper restore PossibleNullReferenceException
             }

@@ -11,59 +11,52 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
     {
         public Guid Token { get; set; }
         public string SecretCode { get; set; }
-        public string Intent { get; set; }
         public bool IsExpired { get; set; }
         public bool IsRedeemed { get; set; }
     }
 
-    public class ConfirmQueryValidator : AbstractValidator<ConfirmEmailQuery>
+    public class ConfirmEmailQueryValidator : AbstractValidator<ConfirmEmailQuery>
     {
-        private readonly IProcessQueries _queryProcessor;
-
-        public ConfirmQueryValidator(IProcessQueries queryProcessor)
+        public ConfirmEmailQueryValidator(IProcessQueries queryProcessor)
         {
-            _queryProcessor = queryProcessor;
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
-            RuleFor(p => p.Token)
+            EmailConfirmation confirmation = null;
 
-                // token must match a confirmation
-                .Must(ValidateEmailConfirmationTokenMatchesEntity)
+            RuleFor(p => p.Token)
+                // cannot be empty guid
+                .NotEmpty()
+                    .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenWasEmpty,
+                        p => p.Token)
+                // must match a confirmation
+                .Must(p => ValidateEmailConfirmation.TokenMatchesEntity(p, queryProcessor, out confirmation))
+                    .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenMatchedNoEntity,
+                        p => p.Token)
             ;
 
             RuleFor(p => p.IsExpired)
-
                 // cannot be expired
-                .Equal(false)
-                .Unless(p => _confirmation == null)
+                .Must(p => !confirmation.IsExpired)
+                    .When(p => confirmation != null)
+                    .WithMessage(ValidateEmailConfirmation.FailedBecauseIsExpired,
+                        p => confirmation.Token, p => confirmation.ExpiresOnUtc)
             ;
 
             RuleFor(p => p.IsRedeemed)
-
                 // cannot be redeemed
-                .Equal(false)
-                .Unless(p => _confirmation == null)
+                .Must(p => !confirmation.IsRedeemed)
+                    .When(p => confirmation != null)
+                    .WithMessage(ValidateEmailConfirmation.FailedBecauseIsRedeemed,
+                        p => confirmation.Token, p => confirmation.RedeemedOnUtc)
             ;
-        }
-
-        private EmailConfirmation _confirmation;
-
-        private bool ValidateEmailConfirmationTokenMatchesEntity(ConfirmEmailQuery model, Guid token)
-        {
-            var isValid = ValidateEmailConfirmation.TokenMatchesEntity(token, _queryProcessor, out _confirmation);
-            if (_confirmation == null) return isValid;
-            model.Intent = _confirmation.Intent;
-            model.IsExpired = _confirmation.IsExpired;
-            model.IsRedeemed = _confirmation.IsRedeemed;
-            return isValid;
         }
     }
 
-    public static class ConfirmQueryProfiler
+    public static class ConfirmEmailQueryProfiler
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(ConfirmQueryProfiler));
+            DefaultModelMapper.RegisterProfiles(typeof(ConfirmEmailQueryProfiler));
         }
 
         // ReSharper disable UnusedMember.Local
@@ -75,6 +68,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 CreateMap<ConfirmEmailQuery, ConfirmEmailForm>()
                     .ForMember(d => d.IsUrlConfirmation, o => o
                         .MapFrom(s => !string.IsNullOrWhiteSpace(s.SecretCode)))
+                    .ForMember(d => d.Intent, o => o.Ignore())
                 ;
             }
         }

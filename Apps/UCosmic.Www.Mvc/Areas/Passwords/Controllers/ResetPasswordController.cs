@@ -5,6 +5,7 @@ using AutoMapper;
 using FluentValidation.Mvc;
 using UCosmic.Domain.Email;
 using UCosmic.Domain.Identity;
+using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Areas.Passwords.Models;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Routes;
@@ -88,8 +89,8 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
         private ActionResult DeniedView(ResetPasswordForm model)
         {
             // return 404 if the confirmation could not be found
-            if (ModelState.ContainsKey(ResetPasswordForm.TokenPropertyName) &&
-                ModelState[ResetPasswordForm.TokenPropertyName].Errors.Any())
+            if (ModelState.ContainsKey(ConfirmEmailForm.TokenPropertyName) &&
+                ModelState[ConfirmEmailForm.TokenPropertyName].Errors.Any())
                 return HttpNotFound();
 
             // deny the action if the ticket is not valid

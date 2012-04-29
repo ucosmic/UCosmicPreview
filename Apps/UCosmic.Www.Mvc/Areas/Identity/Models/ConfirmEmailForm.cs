@@ -36,101 +36,70 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public const string IsRedeemedPropertyName = "IsRedeemed";
     }
 
-    public class ConfirmEmailValidator : AbstractValidator<ConfirmEmailForm>
+    public class ConfirmEmailFormValidator : AbstractValidator<ConfirmEmailForm>
     {
-        private readonly IProcessQueries _queryProcessor;
+        public const string FailedBecauseSecretCodeWasEmpty = "Please enter a confirmation code.";
+        public const string FailedBecauseSecretCodeWasIncorrect = "Invalid confirmation code, please try again.";
+        public const string FailedBecauseOfInconsistentData = "An unexpected error occurred while trying to confirm your email address.";
 
-        public ConfirmEmailValidator(IProcessQueries queryProcessor)
+        public ConfirmEmailFormValidator(IProcessQueries queryProcessor)
         {
-            _queryProcessor = queryProcessor;
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
+            EmailConfirmation confirmation = null;
+
             RuleFor(p => p.SecretCode)
-
                 // secret cannot be empty
-                .NotEmpty().WithMessage(
-                    ValidateEmailConfirmationFailedBecauseSecretCodeWasEmpty)
-
+                .NotEmpty()
+                    .WithMessage(FailedBecauseSecretCodeWasEmpty)
                 // token must match a confirmation
-                .Must(ValidateEmailConfirmationTokenMatchesEntity).WithMessage(
-                    ValidateEmailConfirmationFailedBecauseOfInconsistentData)
-
+                .Must((o, p) => ValidateEmailConfirmation.TokenMatchesEntity(o.Token, queryProcessor, out confirmation))
+                    .WithMessage(FailedBecauseOfInconsistentData)
                 // intent cannot be empty
-                .Must(ValidateEmailConfirmationIntentIsNotEmpty).WithMessage(
-                    ValidateEmailConfirmationFailedBecauseOfInconsistentData)
-
+                .Must((o, p) => !string.IsNullOrWhiteSpace(o.Intent))
+                    .WithMessage(FailedBecauseOfInconsistentData)
                 // intent must match entity
-                .Must(ValidateEmailConfirmationIntentIsCorrect).WithMessage(
-                    ValidateEmailConfirmationFailedBecauseOfInconsistentData)
+                .Must((o, p) => ValidateEmailConfirmation.IntentIsCorrect(confirmation, o.Intent))
+                    .WithMessage(FailedBecauseOfInconsistentData)
             ;
 
             RuleFor(p => p.SecretCode)
-
                 // secret must match entity
-                .Must(ValidateEmailConfirmationSecretCodeIsCorrect).WithMessage(
-                    ValidateEmailConfirmationFailedBecauseSecretCodeWasIncorrect)
-                    .Unless(p => _confirmation != null && _confirmation.IsRedeemed)
+                .Must(p => ValidateEmailConfirmation.SecretCodeIsCorrect(confirmation, p))
+                // allow redeemed confirmation to pass through for redirect..?
+                    //.Unless(p => confirmation != null && confirmation.IsRedeemed)
+                    .When(p =>
+                        !string.IsNullOrWhiteSpace(p.SecretCode) &&
+                        !string.IsNullOrWhiteSpace(p.Intent) &&
+                        confirmation != null &&
+                        !confirmation.IsRedeemed &&
+                        ValidateEmailConfirmation.IntentIsCorrect(confirmation, p.Intent))
+                    .WithMessage(FailedBecauseSecretCodeWasIncorrect)
             ;
 
             RuleFor(p => p.IsExpired)
-
                 // cannot be expired
-                .Must(ValidateEmailConfirmationIsNotExpired)
-                .Unless(p => _confirmation == null)
+                .Must(p => ValidateEmailConfirmation.IsNotExpired(confirmation))
+                    .When(p => confirmation != null)
+                    .WithMessage(ValidateEmailConfirmation.FailedBecauseIsExpired,
+                        p => confirmation.Token, p => confirmation.ExpiresOnUtc)
             ;
 
             RuleFor(p => p.IsRedeemed)
-
                 // cannot be redeemed
-                .Must(ValidateEmailConfirmationIsNotRedeemed)
-                .Unless(p => _confirmation == null)
+                .Must(p => ValidateEmailConfirmation.IsNotRedeemed(confirmation))
+                    .When(p => confirmation != null)
+                    .WithMessage(ValidateEmailConfirmation.FailedBecauseIsRedeemed,
+                        p => confirmation.Token, p => confirmation.RedeemedOnUtc)
             ;
-        }
-
-        private EmailConfirmation _confirmation;
-
-        public const string ValidateEmailConfirmationFailedBecauseSecretCodeWasEmpty = "Please enter a confirmation code.";
-
-        public const string ValidateEmailConfirmationFailedBecauseOfInconsistentData = "An unexpected error occurred while trying to confirm your email address.";
-
-        private bool ValidateEmailConfirmationTokenMatchesEntity(ConfirmEmailForm model, string secretCode)
-        {
-            return ValidateEmailConfirmation.TokenMatchesEntity(model.Token, _queryProcessor, out _confirmation);
-        }
-
-        public const string ValidateEmailConfirmationFailedBecauseSecretCodeWasIncorrect = "Invalid confirmation code, please try again.";
-
-        private bool ValidateEmailConfirmationSecretCodeIsCorrect(string secretCode)
-        {
-            return ValidateEmailConfirmation.SecretCodeIsCorrect(_confirmation, secretCode);
-        }
-
-        private static bool ValidateEmailConfirmationIntentIsNotEmpty(ConfirmEmailForm model, string secretCode)
-        {
-            return !string.IsNullOrWhiteSpace(model.Intent);
-        }
-
-        private bool ValidateEmailConfirmationIntentIsCorrect(ConfirmEmailForm model, string secretCode)
-        {
-            return ValidateEmailConfirmation.IntentIsCorrect(_confirmation, model.Intent);
-        }
-
-        private bool ValidateEmailConfirmationIsNotExpired(bool isExpired)
-        {
-            return ValidateEmailConfirmation.IsNotExpired(_confirmation);
-        }
-
-        private bool ValidateEmailConfirmationIsNotRedeemed(bool isRedeemed)
-        {
-            return ValidateEmailConfirmation.IsNotRedeemed(_confirmation);
         }
     }
 
-    public static class ConfirmEmailProfiler
+    public static class ConfirmEmailFormProfiler
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(ConfirmEmailProfiler));
+            DefaultModelMapper.RegisterProfiles(typeof(ConfirmEmailFormProfiler));
         }
 
         // ReSharper disable UnusedMember.Local

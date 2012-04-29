@@ -26,23 +26,6 @@ namespace UCosmic.Domain
                 .Returns((IQueryable<TEntity> arg0, EntityQueryCriteria<TEntity> arg1) => FuncApply(arg0, arg1));
         }
 
-        public static IPrincipal AsPrincipal(this string principalIdentityName)
-        {
-            if (principalIdentityName == null)
-            {
-                var identity = new Mock<IIdentity>(MockBehavior.Strict);
-                var principal = new Mock<IPrincipal>(MockBehavior.Strict);
-                identity.Setup(p => p.Name).Returns(null as string);
-                principal.Setup(p => p.Identity).Returns(identity.Object);
-                return principal.Object;
-            }
-            else
-            {
-                var principal = new GenericPrincipal(new GenericIdentity(principalIdentityName), null);
-                return principal;
-            }
-        }
-
         // ReSharper disable UnusedParameter.Local
         private static IQueryable<TEntity> FuncApply<TEntity>(IQueryable<TEntity> queryable, EntityQueryCriteria<TEntity> criteria)
         // ReSharper restore UnusedParameter.Local

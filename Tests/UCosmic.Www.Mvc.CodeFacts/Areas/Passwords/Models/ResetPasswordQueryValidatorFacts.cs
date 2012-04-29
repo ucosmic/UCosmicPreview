@@ -36,6 +36,8 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
         [TestClass]
         public class TheTokenProperty
         {
+            private const string PropertyName = "Token";
+
             [TestMethod]
             public void IsInvalidWhen_IsEmpty()
             {
@@ -48,8 +50,8 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 var results = validator.Validate(validated);
 
                 results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, Int32.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Token");
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(String.Format(
@@ -74,8 +76,8 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 var results = validator.Validate(validated);
 
                 results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, Int32.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Token");
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(String.Format(
@@ -99,7 +101,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
                 var results = validator.Validate(validated);
 
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Token");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldBeNull();
             }
         }

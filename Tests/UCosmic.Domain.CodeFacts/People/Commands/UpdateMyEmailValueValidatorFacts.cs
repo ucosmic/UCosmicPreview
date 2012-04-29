@@ -49,7 +49,7 @@ namespace UCosmic.Domain.People
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Principal");
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(ValidatePrincipal.FailedBecauseIdentityNameWasEmpty);
+                error.ErrorMessage.ShouldEqual(ValidatePrincipal.FailedBecausePrincipalWasNull);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -162,7 +162,7 @@ namespace UCosmic.Domain.People
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
                     ValidateEmailAddress.FailedBecauseNumberAndPrincipalMatchedNoEntity,
-                        command.Number));
+                        command.Number, command.Principal.Identity.Name));
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -187,6 +187,30 @@ namespace UCosmic.Domain.People
                     {
                         Value = command.NewValue,
                     });
+                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
+
+                var results = validator.Validate(command);
+
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Number");
+                error.ShouldBeNull();
+            }
+
+            [TestMethod]
+            public void IsValidWhen_PrincipalWasNull()
+            {
+                const string principalIdentityName = "user@domain.tld";
+                var command = new UpdateMyEmailValueCommand
+                {
+                    Number = 1,
+                    NewValue = principalIdentityName.ToUpper(),
+                };
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(UserQueryBasedOn(command))))
+                    .Returns(null as User);
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(EmailQueryBasedOn(command))))
+                    .Returns(null as EmailAddress);
                 var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
 
                 var results = validator.Validate(command);
@@ -275,9 +299,19 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsInvalidWhen_DoesNotMatchPreviousSpelling_CaseInsensitively()
             {
-                var command = new UpdateMyEmailValueCommand { NewValue = "user@domain.tld", };
+                const string principalIdentityName = "user@sub.domain.tld";
+                var principal = principalIdentityName.AsPrincipal();
+                var command = new UpdateMyEmailValueCommand
+                {
+                    Principal = principal,
+                    NewValue = "user@domain.tld",
+                };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command))))
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(UserQueryBasedOn(command))))
+                    .Returns(null as User);
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(EmailQueryBasedOn(command))))
                     .Returns(new EmailAddress { Value = "user@domain2.tld" });
                 var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
 

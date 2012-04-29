@@ -75,8 +75,9 @@ namespace UCosmic.Domain.People
             RuleFor(p => p.Number)
                 // number must match email for user
                 .Must((o, p) => ValidateEmailAddress.NumberAndPrincipalMatchesEntity(p, o.Principal, queryProcessor, out email))
+                    .When(p => p.Principal != null && p.Principal.Identity.Name != null)
                     .WithMessage(ValidateEmailAddress.FailedBecauseNumberAndPrincipalMatchedNoEntity,
-                        p => p.Number)
+                        p => p.Number, p => p.Principal.Identity.Name)
             ;
 
             RuleFor(p => p.NewValue)
