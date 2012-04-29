@@ -11,4 +11,12 @@
         public ConfirmDeniedBecause Reason { get; private set; }
         public string Intent { get; private set; }
     }
+
+    public enum ConfirmDeniedBecause
+    {
+        //UserIsSignedUp = 0,
+        //MemberIsSignedUp = 1,
+        ConfirmationIsExpired = 2,
+        //ConfirmationIsRedeemed = 3
+    }
 }

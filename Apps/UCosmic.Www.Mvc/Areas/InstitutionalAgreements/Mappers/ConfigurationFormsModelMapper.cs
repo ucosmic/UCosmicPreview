@@ -10,7 +10,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(ConfigurationFormsModelMapper));
+            RootModelProfiler.RegisterProfiles(typeof(ConfigurationFormsModelMapper));
         }
 
         // ReSharper disable UnusedMember.Local

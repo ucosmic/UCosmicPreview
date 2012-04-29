@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Web.Mvc;
+using AutoMapper;
+using UCosmic.Domain.Identity;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
@@ -45,5 +48,44 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [HiddenInput(DisplayValue = false)]
             public bool IsDeleted { get; set; }
         }
+    }
+
+    public static class RoleFormProfiler
+    {
+        public static void RegisterProfiles()
+        {
+            RootModelProfiler.RegisterProfiles(typeof(RoleFormProfiler));
+        }
+
+        // ReSharper disable UnusedMember.Local
+
+        private class EntityToViewModelProfile : Profile
+        {
+            protected override void Configure()
+            {
+                CreateMap<Role, RoleForm>()
+                    .ForMember(target => target.ReturnUrl, opt => opt.Ignore())
+                    .ForMember(d => d.Grants, o => o.MapFrom(s => s.Grants.OrderBy(g => g.User.Name)))
+                ;
+                CreateMap<RoleGrant, RoleForm.RoleGrantForm>();
+                CreateMap<User, RoleForm.RoleGrantForm.UserForm>();
+                CreateMap<User, RoleForm.RoleGrantForm>()
+                    .ForMember(target => target.User, opt => opt
+                        .ResolveUsing(source => new RoleForm.RoleGrantForm.UserForm
+                        {
+                            EntityId = source.EntityId,
+                            Name = source.Name
+                        }))
+                ;
+                CreateMap<User, AutoCompleteOption>()
+                    .ForMember(target => target.value, opt => opt
+                        .ResolveUsing(source => source.EntityId.ToString()))
+                    .ForMember(target => target.label, opt => opt
+                        .ResolveUsing(source => source.Name))
+                ;
+            }
+        }
+
+        // ReSharper restore UnusedMember.Local
     }
 }

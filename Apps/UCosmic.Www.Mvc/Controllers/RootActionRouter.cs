@@ -2,9 +2,9 @@ using System;
 using System.Reflection;
 using System.Web.Mvc;
 
-namespace UCosmic.Www.Mvc.Routes
+namespace UCosmic.Www.Mvc.Controllers
 {
-    public static class DefaultRouter
+    public static class RootActionRouter
     {
         public static void RegisterRoutes(Type routeMapper, AreaRegistrationContext context, string area, string controller)
         {

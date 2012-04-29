@@ -204,43 +204,26 @@
     </Compile>
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailController.cs" />
     <Compile Include="Areas\Identity\Controllers\Saml2MetadataServices.cs" />
-    <Compile Include="Areas\Identity\Models\ConfirmDeniedBecause.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmDeniedModel.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailForm.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailQuery.cs" />
-    <Compile Include="Areas\Identity\Models\RoleSearchResultProfiler.cs" />
-    <Compile Include="Areas\Identity\Models\RoleFormProfiler.cs" />
     <Compile Include="Areas\My\Controllers\UpdateAffiliationController.cs" />
     <Compile Include="Areas\My\Controllers\UpdateEmailValueController.cs" />
-    <Compile Include="Areas\My\Controllers\UpdateAffiliationServices.cs" />
-    <Compile Include="Areas\My\Controllers\UpdateAffiliationRouter.cs" />
-    <Compile Include="Areas\My\Controllers\UpdateNameServices.cs" />
-    <Compile Include="Areas\My\Controllers\UpdateNameRouter.cs" />
-    <Compile Include="Areas\My\Controllers\ProfileServices.cs" />
     <Compile Include="Areas\My\Controllers\ProfileController.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameController.cs" />
     <Compile Include="Areas\My\Models\UpdateAffiliationForm.cs" />
     <Compile Include="Areas\My\Models\ProfileInfo.cs" />
     <Compile Include="Areas\My\Models\UpdateNameForm.cs" />
     <Compile Include="Areas\My\MyAreaRegistration.cs" />
-    <Compile Include="Areas\My\Controllers\ProfileRouter.cs" />
-    <Compile Include="Areas\My\Controllers\UpdateEmailValueRouter.cs" />
-    <Compile Include="Areas\My\Controllers\UpdateEmailValueServices.cs" />
     <Compile Include="Areas\Passwords\Controllers\ResetPasswordController.cs" />
     <Compile Include="Areas\Passwords\Controllers\ForgotPasswordController.cs" />
     <Compile Include="Areas\Passwords\Models\ResetPasswordQuery.cs" />
     <Compile Include="Areas\Passwords\Models\ResetPasswordForm.cs" />
     <Compile Include="Areas\Passwords\Models\ForgotPasswordForm.cs" />
     <Compile Include="Areas\Passwords\PasswordsAreaRegistration.cs" />
-    <Compile Include="Areas\People\Controllers\PersonInfoRouter.cs" />
-    <Compile Include="Areas\People\Controllers\PersonInfoServices.cs" />
     <Compile Include="Areas\People\Controllers\PersonInfoController.cs" />
     <Compile Include="Areas\People\Controllers\PersonNameController.cs" />
-    <Compile Include="Areas\People\Controllers\PersonNameServices.cs" />
-    <Compile Include="Areas\People\Controllers\PersonNameRouter.cs" />
-    <Compile Include="Areas\People\Models\PersonInfoProfiler.cs" />
     <Compile Include="Areas\People\Models\GenerateDisplayNameForm.cs" />
-    <Compile Include="Areas\People\Models\GenerateDisplayNameProfiler.cs" />
     <Compile Include="Areas\People\Models\PersonInfoModel.cs" />
     <Compile Include="Areas\People\PeopleAreaRegistration.cs" />
     <Compile Include="Controllers\ValidateEmailConfirmationTicketAttribute.cs" />
@@ -376,10 +359,7 @@
     <Compile Include="People.PersonNameController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="People.SharedController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Routes\PositiveIntegerRouteConstraint.cs" />
+    <Compile Include="Controllers\PositiveIntegerRouteConstraint.cs" />
     <Compile Include="Models\IReturnUrl.cs" />
     <Compile Include="Controllers\NullLayoutOnAjaxRequestAttribute.cs" />
     <Compile Include="Controllers\OpenTopTabAttribute.cs" />
@@ -462,16 +442,16 @@
     <Compile Include="Helpers\NullDisplayCssClassHtml.cs" />
     <Compile Include="Helpers\RadioButtonsHtml.cs" />
     <Compile Include="Helpers\GroupedSelectExtensions.cs" />
-    <Compile Include="Models\AutoMapperConfig.cs" />
+    <Compile Include="Models\AutoMapperRegistration.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\EnforceHttpsAttribute.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DefaultModelMapper.cs" />
-    <Compile Include="Routes\DefaultRouter.cs" />
-    <Compile Include="Routes\RawUrlCatchallRouteConstraint.cs" />
+    <Compile Include="Models\RootModelProfiler.cs" />
+    <Compile Include="Controllers\RootActionRouter.cs" />
+    <Compile Include="Controllers\RawUrlCatchallRouteConstraint.cs" />
     <Compile Include="Models\AllowedFileExtensionsAttribute.cs" />
     <Compile Include="Models\AutoCompleteOption.cs" />
     <Compile Include="Models\FileExtensionRequiredAttribute.cs" />
@@ -481,8 +461,8 @@
     <Compile Include="Models\NoDuplicateValuesAttribute.cs" />
     <Compile Include="Models\RequiredIfAttribute.cs" />
     <Compile Include="Models\UserVoiceLink.cs" />
-    <Compile Include="Routes\RequiredIfPresentRouteConstraint.cs" />
-    <Compile Include="Routes\NonEmptyGuidRouteConstraint.cs" />
+    <Compile Include="Controllers\RequiredIfPresentRouteConstraint.cs" />
+    <Compile Include="Controllers\NonEmptyGuidRouteConstraint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecruitmentAgencies.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -1128,12 +1108,12 @@
   <ItemGroup>
     <Folder Include="App_Data\mail\" />
     <Folder Include="Areas\Common\Views\Shared\" />
-    <Folder Include="Areas\People\Views\Shared\" />
     <Folder Include="Areas\RecruitmentAgencies\Controllers\" />
     <Folder Include="Areas\RecruitmentAgencies\Models\" />
     <Folder Include="Areas\RecruitmentAgencies\Views\Shared\" />
     <Folder Include="content\mail\" />
     <Folder Include="content\themes\api\consortium\" />
+    <Folder Include="Routes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

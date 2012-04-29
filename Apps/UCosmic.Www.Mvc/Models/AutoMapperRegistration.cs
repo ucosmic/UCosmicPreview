@@ -3,19 +3,19 @@ using AutoMapper;
 
 namespace UCosmic.Www.Mvc.Models
 {
-    public static class AutoMapperConfig
+    public static class AutoMapperRegistration
     {
-        private static readonly ICollection<Profile> RegisteredProfiles;
+        private static readonly ICollection<Profile> ProfilesToRegister;
 
-        static AutoMapperConfig()
+        static AutoMapperRegistration()
         {
-            RegisteredProfiles = new List<Profile>();
+            ProfilesToRegister = new List<Profile>();
         }
 
-        public static void RegisterProfiles(IEnumerable<Profile> profiles)
+        public static void AddProfiles(IEnumerable<Profile> profiles)
         {
             foreach (var profile in profiles)
-                RegisteredProfiles.Add(profile);
+                ProfilesToRegister.Add(profile);
         }
 
         // We are no longer putting mapping configurations here.
@@ -23,12 +23,12 @@ namespace UCosmic.Www.Mvc.Models
         // ModelMapper.cs file.  For example, mappings for the ManagementForms 
         // controller in the Establishments area will go in the 
         // ~/Areas/Establishments/Mappers/ManagementFormsModelMapper.cs file.
-        public static void Configure()
+        public static void RegisterAllProfiles()
         {
-            DefaultModelMapper.RegisterProfiles();
+            RootModelProfiler.RegisterProfiles();
             Mapper.Initialize(configuration =>
             {
-                foreach (var profile in RegisteredProfiles)
+                foreach (var profile in ProfilesToRegister)
                     configuration.AddProfile(profile);
             });
         }

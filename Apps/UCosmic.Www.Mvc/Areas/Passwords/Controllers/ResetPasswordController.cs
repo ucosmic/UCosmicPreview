@@ -8,7 +8,6 @@ using UCosmic.Domain.Identity;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Areas.Passwords.Models;
 using UCosmic.Www.Mvc.Controllers;
-using UCosmic.Www.Mvc.Routes;
 using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
@@ -123,7 +122,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouter.RegisterRoutes(typeof(ResetPasswordRouter), context, Area, Controller);
+            RootActionRouter.RegisterRoutes(typeof(ResetPasswordRouter), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global

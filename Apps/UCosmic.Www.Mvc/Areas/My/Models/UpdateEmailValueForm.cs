@@ -63,7 +63,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
     {
         public static void RegisterProfiles()
         {
-            DefaultModelMapper.RegisterProfiles(typeof(UpdateEmailValueProfiler));
+            RootModelProfiler.RegisterProfiles(typeof(UpdateEmailValueProfiler));
         }
 
         // ReSharper disable UnusedMember.Local

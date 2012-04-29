@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using UCosmic.Www.Mvc.Routes;
+using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
 {
@@ -12,7 +12,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouter.RegisterRoutes(typeof(SupplementalFormsRouteMapper), context, Area, Controller);
+            RootActionRouter.RegisterRoutes(typeof(SupplementalFormsRouteMapper), context, Area, Controller);
         }
 
         public static class FindPlaces

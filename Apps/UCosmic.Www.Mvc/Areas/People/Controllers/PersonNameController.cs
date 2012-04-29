@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.UI;
 using AutoMapper;
 using UCosmic.Domain.People;
@@ -10,6 +11,18 @@ using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.People.Controllers
 {
+    public class PersonNameServices
+    {
+        public PersonNameServices(
+            IProcessQueries queryProcessor
+        )
+        {
+            QueryProcessor = queryProcessor;
+        }
+
+        public IProcessQueries QueryProcessor { get; private set; }
+    }
+
     [Authorize]
     public partial class PersonNameController : BaseController
     {
@@ -93,5 +106,56 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         }
 
         #endregion
+    }
+
+    public static class PersonNameRouter
+    {
+        private static readonly string Area = MVC.People.Name;
+        private static readonly string Controller = MVC.People.PersonName.Name;
+
+        public static void RegisterRoutes(AreaRegistrationContext context)
+        {
+            RootActionRouter.RegisterRoutes(typeof(PersonNameRouter), context, Area, Controller);
+        }
+
+        // ReSharper disable UnusedMember.Global
+
+        public static class GenerateDisplayName
+        {
+            public const string Route = "people/generate-display-name";
+            private static readonly string Action = MVC.People.PersonName.ActionNames.GenerateDisplayName;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("POST"), };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
+        public static class AutoCompleteSalutations
+        {
+            public const string Route = "people/salutations";
+            private static readonly string Action = MVC.People.PersonName.ActionNames.AutoCompleteSalutations;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("GET"), };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
+        public static class AutoCompleteSuffixes
+        {
+            public const string Route = "people/suffixes";
+            private static readonly string Action = MVC.People.PersonName.ActionNames.AutoCompleteSuffixes;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("GET"), };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
+        // ReSharper restore UnusedMember.Global
     }
 }

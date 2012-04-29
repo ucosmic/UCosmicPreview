@@ -7,18 +7,18 @@ using UCosmic.Domain.Files;
 
 namespace UCosmic.Www.Mvc.Models
 {
-    public static class DefaultModelMapper
+    public static class RootModelProfiler
     {
         public static void RegisterProfiles()
         {
-            RegisterProfiles(typeof(DefaultModelMapper));
+            RegisterProfiles(typeof(RootModelProfiler));
         }
 
         public static void RegisterProfiles(Type modelMapper)
         {
             var nestedProfiles = modelMapper.GetNestedTypes(BindingFlags.NonPublic | BindingFlags.CreateInstance);
             var profiles = nestedProfiles.Select(Activator.CreateInstance).OfType<Profile>().ToList();
-            AutoMapperConfig.RegisterProfiles(profiles.ToArray());
+            AutoMapperRegistration.AddProfiles(profiles.ToArray());
         }
 
         // ReSharper disable UnusedMember.Local

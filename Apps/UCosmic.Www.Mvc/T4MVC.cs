@@ -103,7 +103,6 @@ namespace T4MVC {
         public readonly string Name = "People";
         public UCosmic.Www.Mvc.Areas.People.Controllers.PersonInfoController PersonInfo = new UCosmic.Www.Mvc.Areas.People.Controllers.T4MVC_PersonInfoController();
         public UCosmic.Www.Mvc.Areas.People.Controllers.PersonNameController PersonName = new UCosmic.Www.Mvc.Areas.People.Controllers.T4MVC_PersonNameController();
-        public T4MVC.People.SharedController Shared = new T4MVC.People.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class RecruitmentAgenciesClass {

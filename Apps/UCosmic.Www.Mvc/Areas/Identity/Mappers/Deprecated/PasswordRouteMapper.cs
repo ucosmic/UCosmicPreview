@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using UCosmic.Www.Mvc.Routes;
+using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
 {
@@ -11,7 +11,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            DefaultRouter.RegisterRoutes(typeof(PasswordRouteMapper), context, Area, Controller);
+            RootActionRouter.RegisterRoutes(typeof(PasswordRouteMapper), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global
