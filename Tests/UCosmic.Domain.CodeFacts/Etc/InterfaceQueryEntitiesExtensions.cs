@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Security.Principal;
 using Moq;
 using UCosmic.Domain.Email;
 using UCosmic.Domain.Establishments;

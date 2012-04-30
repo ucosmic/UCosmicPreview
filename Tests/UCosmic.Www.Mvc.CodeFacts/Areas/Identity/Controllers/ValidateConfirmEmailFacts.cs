@@ -343,11 +343,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 filterContext.Result.ShouldNotBeNull();
                 filterContext.Result.ShouldBeType<RedirectToRouteResult>();
-                var redirectRoute = (RedirectToRouteResult)filterContext.Result;
-                redirectRoute.RouteValues["area"].ShouldEqual(MVC.Passwords.Name);
-                redirectRoute.RouteValues["controller"].ShouldEqual(MVC.Passwords.ResetPassword.Name);
-                redirectRoute.RouteValues["action"].ShouldEqual(MVC.Passwords.ResetPassword.ActionNames.Get);
-                redirectRoute.RouteValues["token"].ShouldEqual(confirmation.Token);
+                var routeResult = (RedirectToRouteResult)filterContext.Result;
+                routeResult.Permanent.ShouldBeFalse();
+                routeResult.RouteValues["area"].ShouldEqual(MVC.Passwords.Name);
+                routeResult.RouteValues["controller"].ShouldEqual(MVC.Passwords.ResetPassword.Name);
+                routeResult.RouteValues["action"].ShouldEqual(MVC.Passwords.ResetPassword.ActionNames.Get);
+                routeResult.RouteValues["token"].ShouldEqual(confirmation.Token);
             }
 
             [TestMethod]
