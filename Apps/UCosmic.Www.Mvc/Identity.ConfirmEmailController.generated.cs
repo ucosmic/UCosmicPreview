@@ -98,11 +98,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public class T4MVC_ConfirmEmailController: UCosmic.Www.Mvc.Areas.Identity.Controllers.ConfirmEmailController {
         public T4MVC_ConfirmEmailController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Get(System.Guid token, string secretCode, string intent) {
+        public override System.Web.Mvc.ActionResult Get(System.Guid token, string secretCode) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
             callInfo.RouteValueDictionary.Add("token", token);
             callInfo.RouteValueDictionary.Add("secretCode", secretCode);
-            callInfo.RouteValueDictionary.Add("intent", intent);
             return callInfo;
         }
 

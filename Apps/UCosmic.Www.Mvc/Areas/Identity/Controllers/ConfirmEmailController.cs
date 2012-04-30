@@ -39,12 +39,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [ActionName("confirm-email")]
         [OpenTopTab(TopTabName.Home)]
         [ValidateConfirmEmail("token")]
-        public virtual ActionResult Get(Guid token, string secretCode, string intent)
+        public virtual ActionResult Get(Guid token, string secretCode)
         {
             // get the confirmation from the db
             var confirmation = _services.QueryProcessor.Execute(
                 new GetEmailConfirmationQuery(token)
             );
+            if (confirmation == null) return HttpNotFound();
 
             // convert to viewmodel then set the secret code if url confirmation
             var model = Mapper.Map<ConfirmEmailForm>(confirmation);
@@ -65,15 +66,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             if (model == null) return HttpNotFound();
 
+            if (!ModelState.IsValid) return PartialView(model);
+
             // execute the command
             var command = Mapper.Map<RedeemEmailConfirmationCommand>(model);
             _services.CommandHandler.Handle(command);
 
-            // set feedback message
-            SetFeedbackMessage(SuccessMessageForIntent[model.Intent]);
-
             // set temp data values
             TempData.EmailConfirmationTicket(command.Ticket);
+
+            // set feedback message
+            SetFeedbackMessage(SuccessMessageForIntent[model.Intent]);
 
             // redirect to ticketed action
             var redeemedRoute = ValidateConfirmEmailAttribute
