@@ -51,7 +51,6 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
 
                 action.DefaultAreaRoutes(MVC.People.Name).ShouldMapToNothing();
             }
-
         }
 
         [TestClass]
@@ -94,7 +93,6 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
 
                 action.DefaultAreaRoutes(MVC.People.Name).ShouldMapToNothing();
             }
-
         }
 
         [TestClass]
@@ -137,7 +135,6 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
 
                 action.DefaultAreaRoutes(MVC.People.Name).ShouldMapToNothing();
             }
-
         }
 
         [TestClass]
@@ -180,7 +177,6 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
 
                 action.DefaultAreaRoutes(MVC.People.Name).ShouldMapToNothing();
             }
-
         }
 
         [TestClass]
@@ -223,7 +219,6 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
 
                 action.DefaultAreaRoutes(MVC.People.Name).ShouldMapToNothing();
             }
-
         }
     }
 }

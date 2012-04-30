@@ -18,17 +18,17 @@ namespace UCosmic.Www.Mvc.Areas.Common
             MVC.Common.Skins.Name,
         };
 
-        [TestClass]
-        public class RegisterArea_Method
-        {
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotMapped()
-            {
-                Area.DefaultAreaRoutes().ShouldMapToNothing();
-                foreach (var controller in Controllers)
-                    Area.DefaultAreaRoutes(controller).ShouldMapToNothing();
-            }
-        }
+        //[TestClass]
+        //public class RegisterArea_Method
+        //{
+        //    [TestMethod]
+        //    public void DefaultAreaUrls_AreNotMapped()
+        //    {
+        //        Area.DefaultAreaRoutes().ShouldMapToNothing();
+        //        foreach (var controller in Controllers)
+        //            Area.DefaultAreaRoutes(controller).ShouldMapToNothing();
+        //    }
+        //}
 
         [TestClass]
         public class AreaName_Property
