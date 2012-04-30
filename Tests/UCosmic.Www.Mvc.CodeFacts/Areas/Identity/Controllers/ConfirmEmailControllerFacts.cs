@@ -79,7 +79,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
-                attributes[0].TokenParamName.ShouldEqual("token");
+                attributes[0].ParamName.ShouldEqual("token");
             }
 
             [TestMethod]
@@ -190,7 +190,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     SecretCode = "very secret",
                 };
-                var secretCode = string.Empty;
+                var secretCode = String.Empty;
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
                     .Returns(confirmation);
@@ -334,7 +334,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
-                attributes[0].TokenParamName.ShouldEqual("model");
+                attributes[0].ParamName.ShouldEqual("model");
             }
 
             [TestMethod]
@@ -359,7 +359,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 };
                 var services = new ConfirmEmailServices(null, null);
                 var controller = new ConfirmEmailController(services);
-                controller.ModelState.AddModelError("error", string.Empty);
+                controller.ModelState.AddModelError("error", String.Empty);
 
                 var result = controller.Post(form);
 
@@ -383,8 +383,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Intent = EmailConfirmationIntent.PasswordReset,
                     SecretCode = "secret",
                 };
-                var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>
-                    (MockBehavior.Strict);
+                var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>(MockBehavior.Strict);
                 commandHandler.Setup(m => m.Handle(It.Is(ConfirmationCommandBasedOn(form))));
                 var services = new ConfirmEmailServices(null, commandHandler.Object);
                 var controller = new ConfirmEmailController(services);
@@ -405,8 +404,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Intent = EmailConfirmationIntent.PasswordReset,
                     SecretCode = "secret",
                 };
-                var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>
-                    (MockBehavior.Strict);
+                var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>(MockBehavior.Strict);
                 commandHandler.Setup(m => m.Handle(It.Is(ConfirmationCommandBasedOn(form))))
                     .Callback((RedeemEmailConfirmationCommand command) =>
                         command.Ticket = TwoFiftySixLengthString1);
@@ -430,8 +428,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Intent = EmailConfirmationIntent.PasswordReset,
                     SecretCode = "secret",
                 };
-                var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>
-                    (MockBehavior.Strict);
+                var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>(MockBehavior.Strict);
                 commandHandler.Setup(m => m.Handle(It.Is(ConfirmationCommandBasedOn(form))));
                 var services = new ConfirmEmailServices(null, commandHandler.Object);
                 var controller = new ConfirmEmailController(services);
@@ -454,8 +451,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Intent = EmailConfirmationIntent.SignUp,
                     SecretCode = "secret",
                 };
-                var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>
-                    (MockBehavior.Strict);
+                var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>(MockBehavior.Strict);
                 commandHandler.Setup(m => m.Handle(It.Is(ConfirmationCommandBasedOn(form))));
                 var services = new ConfirmEmailServices(null, commandHandler.Object);
                 var controller = new ConfirmEmailController(services);
@@ -487,8 +483,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Intent = EmailConfirmationIntent.PasswordReset,
                     SecretCode = "secret",
                 };
-                var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>
-                    (MockBehavior.Strict);
+                var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>(MockBehavior.Strict);
                 commandHandler.Setup(m => m.Handle(It.Is(ConfirmationCommandBasedOn(form))));
                 var services = new ConfirmEmailServices(null, commandHandler.Object);
                 var controller = new ConfirmEmailController(services);
@@ -514,8 +509,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Intent = EmailConfirmationIntent.SignUp,
                     SecretCode = "secret",
                 };
-                var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>
-                    (MockBehavior.Strict);
+                var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>(MockBehavior.Strict);
                 commandHandler.Setup(m => m.Handle(It.Is(ConfirmationCommandBasedOn(form))));
                 var services = new ConfirmEmailServices(null, commandHandler.Object);
                 var controller = new ConfirmEmailController(services);
@@ -595,6 +589,70 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 result.ShouldBeType<JsonResult>();
                 result.JsonRequestBehavior.ShouldEqual(JsonRequestBehavior.DenyGet);
                 result.Data.ShouldEqual(errorMessage);
+            }
+        }
+
+
+        [TestClass]
+        public class TheGetRedeemedRouteValuesMethod
+        {
+            [TestMethod]
+            public void ReturnsRouteValues_ForResetPasswordIntent()
+            {
+                var token = Guid.NewGuid();
+                const string intent = EmailConfirmationIntent.PasswordReset;
+
+                var result = ConfirmEmailController.GetRedeemedRouteValues(token, intent);
+
+                result.ShouldNotBeNull();
+                result["area"].ShouldEqual(MVC.Passwords.Name);
+                result["controller"].ShouldEqual(MVC.Passwords.ResetPassword.Name);
+                result["action"].ShouldEqual(MVC.Passwords.ResetPassword.ActionNames.Get);
+                result["token"].ShouldEqual(token);
+            }
+
+            [TestMethod]
+            public void ThrowsNotSupportedException_ForSignUpIntent()
+            {
+                var token = Guid.NewGuid();
+                const string intent = EmailConfirmationIntent.SignUp;
+                NotSupportedException exception = null;
+
+                try
+                {
+                    ConfirmEmailController.GetRedeemedRouteValues(token, intent);
+                }
+                catch (NotSupportedException ex)
+                {
+                    exception = ex;
+                }
+
+                exception.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                exception.Message.ShouldContain(intent);
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void ThrowsNotSupportedException_ForUnexpectedIntent()
+            {
+                var token = Guid.NewGuid();
+                const string intent = "unexpected";
+                NotSupportedException exception = null;
+
+                try
+                {
+                    ConfirmEmailController.GetRedeemedRouteValues(token, intent);
+                }
+                catch (NotSupportedException ex)
+                {
+                    exception = ex;
+                }
+
+                exception.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                exception.Message.ShouldContain(intent);
+                // ReSharper restore PossibleNullReferenceException
             }
         }
 

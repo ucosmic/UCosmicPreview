@@ -1,14 +1,14 @@
-﻿using System.Linq;
+﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
 using AutoMapper;
 using FluentValidation.Mvc;
 using UCosmic.Domain.Email;
 using UCosmic.Domain.Identity;
-using UCosmic.Www.Mvc.Areas.Identity.Models;
+using UCosmic.Domain.People;
+using UCosmic.Www.Mvc.Areas.Identity.Controllers;
 using UCosmic.Www.Mvc.Areas.Passwords.Models;
 using UCosmic.Www.Mvc.Controllers;
-using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
 {
@@ -38,36 +38,39 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("reset-password")]
-        [ValidateEmailConfirmationTicket(EmailConfirmationIntent.PasswordReset)]
-        public virtual ActionResult Get(ResetPasswordQuery query)
+        //[ValidateEmailConfirmationTicket(EmailConfirmationIntent.PasswordReset)]
+        [ValidateRedeemTicket("token", EmailConfirmationIntent.PasswordReset)]
+        public virtual ActionResult Get(Guid token)
         {
-            if (query == null) return HttpNotFound();
-
-            // return denial view if there is a problem
-            var model = Mapper.Map<ResetPasswordForm>(query);
-            if (!ModelState.IsValid) return DeniedView(model);
-
-            // query to map domain values into the model
+            // get the confirmation from the db
             var confirmation = _services.QueryProcessor.Execute(
-                new GetEmailConfirmationQuery(query.Token)
+                new GetEmailConfirmationQuery(token)
             );
 
             // convert confirmation to form
-            model = Mapper.Map<ResetPasswordForm>(confirmation);
+            var model = Mapper.Map<ResetPasswordForm>(confirmation);
 
+            // return partial view
             return PartialView(model);
+        }
+
+        [HttpPost]
+        public virtual JsonResult ValidatePasswordConfirmation(
+            [CustomizeValidator(Properties = ResetPasswordForm.PasswordConfirmationPropertyName)] ResetPasswordForm model)
+        {
+            return ValidateRemote(ResetPasswordForm.PasswordConfirmationPropertyName);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("reset-password")]
-        [ValidateEmailConfirmationTicket(EmailConfirmationIntent.PasswordReset)]
+        [ValidateRedeemTicket("model", EmailConfirmationIntent.PasswordReset)]
         public virtual ActionResult Post(ResetPasswordForm model)
         {
             if (model == null) return HttpNotFound();
 
-            if (!ModelState.IsValid) return DeniedView(model);
+            if (!ModelState.IsValid) return PartialView(model);
 
             // execute command
             var command = Mapper.Map<ResetPasswordCommand>(model);
@@ -84,35 +87,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
             return RedirectToAction(MVC.Identity.SignOn.Begin());
         }
 
-        [NonAction]
-        private ActionResult DeniedView(ResetPasswordForm model)
-        {
-            // return 404 if the confirmation could not be found
-            if (ModelState.ContainsKey(ConfirmEmailForm.TokenPropertyName) &&
-                ModelState[ConfirmEmailForm.TokenPropertyName].Errors.Any())
-                return HttpNotFound();
-
-            // deny the action if the ticket is not valid
-            if (ModelState.ContainsKey(ValidateEmailConfirmationTicketAttribute.TicketPropertyName) &&
-                ModelState[ValidateEmailConfirmationTicketAttribute.TicketPropertyName].Errors.Any())
-                return PartialView(MVC.Passwords.ResetPassword.Views._denied_crash);
-
-            // deny the action if the intent is not to reset password
-            if (ModelState.ContainsKey(ValidateEmailConfirmationTicketAttribute.IntentPropertyName) &&
-                ModelState[ValidateEmailConfirmationTicketAttribute.IntentPropertyName].Errors.Any())
-                return PartialView(MVC.Passwords.ResetPassword.Views._denied_crash);
-
-            return PartialView(MVC.Passwords.ResetPassword.Views.reset_password, model);
-        }
-
         public const string SuccessMessage = "You can now use your new password to sign in.";
-
-        [HttpPost]
-        public virtual JsonResult ValidatePasswordConfirmation(
-            [CustomizeValidator(Properties = ResetPasswordForm.PasswordConfirmationPropertyName)] ResetPasswordForm model)
-        {
-            return ValidateRemote(ResetPasswordForm.PasswordConfirmationPropertyName);
-        }
     }
 
     public static class ResetPasswordRouter
@@ -145,12 +120,16 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
 
         public static class Post
         {
-            public const string Route = "reset-password2";
+            public const string Route = Get.Route;
             private static readonly string Action = MVC.Passwords.ResetPassword.ActionNames.Post;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST"), };
+                var constraints = new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                    token = new NonEmptyGuidRouteConstraint(),
+                };
                 context.MapRoute(null, Route, defaults, constraints);
             }
         }

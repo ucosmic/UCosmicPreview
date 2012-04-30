@@ -14,7 +14,7 @@ using UCosmic.Impl;
 namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class ResetPasswordFormValidatorFacts
+    public class ResetPasswordValidatorFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -30,7 +30,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 var validator = container.GetInstance<IValidator<ResetPasswordForm>>();
 
                 validator.ShouldNotBeNull();
-                validator.ShouldBeType<ResetPasswordFormValidator>();
+                validator.ShouldBeType<ResetPasswordValidator>();
             }
         }
 
@@ -44,7 +44,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     Token = Guid.Empty,
                 };
-                var validator = new ResetPasswordFormValidator(null);
+                var validator = new ResetPasswordValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -70,7 +70,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
                     .Returns(null as EmailConfirmation);
-                var validator = new ResetPasswordFormValidator(queryProcessor.Object);
+                var validator = new ResetPasswordValidator(queryProcessor.Object);
 
                 var results = validator.Validate(validated);
 
@@ -96,7 +96,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
                     .Returns(new EmailConfirmation());
-                var validator = new ResetPasswordFormValidator(queryProcessor.Object);
+                var validator = new ResetPasswordValidator(queryProcessor.Object);
 
                 var results = validator.Validate(validated);
 
@@ -112,7 +112,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
             public void IsInvalidWhen_IsNull()
             {
                 var validated = new ResetPasswordForm();
-                var validator = new ResetPasswordFormValidator(null);
+                var validator = new ResetPasswordValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -122,7 +122,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ResetPasswordFormValidator.FailedBecausePasswordWasEmpty);
+                    ResetPasswordValidator.FailedBecausePasswordWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -133,7 +133,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     Password = string.Empty
                 };
-                var validator = new ResetPasswordFormValidator(null);
+                var validator = new ResetPasswordValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -143,7 +143,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ResetPasswordFormValidator.FailedBecausePasswordWasEmpty);
+                    ResetPasswordValidator.FailedBecausePasswordWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -154,7 +154,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     Password = "   ",
                 };
-                var validator = new ResetPasswordFormValidator(null);
+                var validator = new ResetPasswordValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -164,7 +164,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ResetPasswordFormValidator.FailedBecausePasswordWasEmpty);
+                    ResetPasswordValidator.FailedBecausePasswordWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -175,7 +175,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     Password = "12345",
                 };
-                var validator = new ResetPasswordFormValidator(null);
+                var validator = new ResetPasswordValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -185,7 +185,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    ResetPasswordFormValidator.FailedBecausePasswordWasTooShort,
+                    ResetPasswordValidator.FailedBecausePasswordWasTooShort,
                         ValidatePassword.MinimumLength));
                 // ReSharper restore PossibleNullReferenceException
             }
@@ -201,7 +201,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
                     .Returns(new EmailConfirmation());
-                var validator = new ResetPasswordFormValidator(queryProcessor.Object);
+                var validator = new ResetPasswordValidator(queryProcessor.Object);
 
                 var results = validator.Validate(validated);
 
@@ -217,7 +217,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
             public void IsInvalidWhen_IsNull()
             {
                 var validated = new ResetPasswordForm();
-                var validator = new ResetPasswordFormValidator(null);
+                var validator = new ResetPasswordValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -227,7 +227,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ResetPasswordFormValidator.FailedBecausePasswordConfirmationWasEmpty);
+                    ResetPasswordValidator.FailedBecausePasswordConfirmationWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -238,7 +238,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     PasswordConfirmation = string.Empty
                 };
-                var validator = new ResetPasswordFormValidator(null);
+                var validator = new ResetPasswordValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -248,7 +248,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ResetPasswordFormValidator.FailedBecausePasswordConfirmationWasEmpty);
+                    ResetPasswordValidator.FailedBecausePasswordConfirmationWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -259,7 +259,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     PasswordConfirmation = "   ",
                 };
-                var validator = new ResetPasswordFormValidator(null);
+                var validator = new ResetPasswordValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -269,7 +269,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ResetPasswordFormValidator.FailedBecausePasswordConfirmationWasEmpty);
+                    ResetPasswordValidator.FailedBecausePasswordConfirmationWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -281,7 +281,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                     Password = "123456",
                     PasswordConfirmation = "123457",
                 };
-                var validator = new ResetPasswordFormValidator(null);
+                var validator = new ResetPasswordValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -291,7 +291,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ResetPasswordFormValidator.FailedBecausePasswordConfirmationDidNotEqualPassword);
+                    ResetPasswordValidator.FailedBecausePasswordConfirmationDidNotEqualPassword);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -302,7 +302,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     PasswordConfirmation = "123",
                 };
-                var validator = new ResetPasswordFormValidator(null);
+                var validator = new ResetPasswordValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -318,7 +318,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                     Password = string.Empty,
                     PasswordConfirmation = "123",
                 };
-                var validator = new ResetPasswordFormValidator(null);
+                var validator = new ResetPasswordValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -334,7 +334,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                     Password = " \t ",
                     PasswordConfirmation = "123",
                 };
-                var validator = new ResetPasswordFormValidator(null);
+                var validator = new ResetPasswordValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -350,7 +350,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                     Password = "123456",
                     PasswordConfirmation = "123456",
                 };
-                var validator = new ResetPasswordFormValidator(null);
+                var validator = new ResetPasswordValidator(null);
 
                 var results = validator.Validate(validated);
 

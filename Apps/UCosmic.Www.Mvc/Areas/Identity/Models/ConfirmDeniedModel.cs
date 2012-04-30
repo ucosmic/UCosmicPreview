@@ -18,6 +18,7 @@
         //MemberIsSignedUp = 1,
         IsExpired = 2,
         IsRetired = 3,
+        OtherCrash = 4,
         //ConfirmationIsRedeemed = 3
     }
 }

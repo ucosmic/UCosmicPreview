@@ -14,7 +14,7 @@ using System.Diagnostics;
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
     // ReSharper disable UnusedMember.Global
-    public class ValidateConfirmEmailFacts
+    public class ValidateConfirmEmailAttributeFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -36,18 +36,18 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 exception.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
-                exception.ParamName.ShouldEqual("tokenParamName");
+                exception.ParamName.ShouldEqual("paramName");
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
             public void SetsTokenParamValue_UsingArg()
             {
-                const string tokenParamName = "test";
+                const string paramName = "test";
 
-                var attribute = new ValidateConfirmEmailAttribute(tokenParamName);
+                var attribute = new ValidateConfirmEmailAttribute(paramName);
 
-                attribute.TokenParamName.ShouldEqual(tokenParamName);
+                attribute.ParamName.ShouldEqual(paramName);
             }
         }
 
@@ -57,8 +57,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void CanBeSet_ByIocContainer()
             {
-                const string tokenParamName = "test";
-                var attribute = new ValidateConfirmEmailAttribute(tokenParamName)
+                const string paramName = "test";
+                var attribute = new ValidateConfirmEmailAttribute(paramName)
                 {
                     QueryProcessor = null
                 };
@@ -70,10 +70,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public class TheGetTokenMethod
         {
             [TestMethod]
-            public void ThrowsInvalidOperationException_WhenTokenParamName_IsNotFound()
+            public void ThrowsInvalidOperationException_WhenParamName_IsNotFound()
             {
-                const string tokenParamName = "some value";
-                var attribute = new ValidateConfirmEmailAttribute(tokenParamName);
+                const string paramName = "some value";
+                var attribute = new ValidateConfirmEmailAttribute(paramName);
                 var filterContext = CreateFilterContext(null, null);
                 InvalidOperationException exception = null;
 
@@ -88,16 +88,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 exception.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
-                exception.Message.ShouldContain(tokenParamName);
+                exception.Message.ShouldContain(paramName);
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
             public void ThrowsInvalidOperationException_WhenTokenParamValue_IsNotFound()
             {
-                const string tokenParamName = "some value";
-                var attribute = new ValidateConfirmEmailAttribute(tokenParamName);
-                var filterContext = CreateFilterContext(tokenParamName, "not a guid or interface");
+                const string paramName = "some value";
+                var attribute = new ValidateConfirmEmailAttribute(paramName);
+                var filterContext = CreateFilterContext(paramName, "not a guid or interface");
                 InvalidOperationException exception = null;
 
                 try
@@ -111,17 +111,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 exception.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
-                exception.Message.ShouldContain(tokenParamName);
+                exception.Message.ShouldContain(paramName);
                 // ReSharper restore PossibleNullReferenceException
             }
 
             [TestMethod]
             public void ReturnsToken_FromScalarParameter()
             {
-                const string tokenParamName = "some value";
+                const string paramName = "some value";
                 var tokenValue = Guid.NewGuid();
-                var attribute = new ValidateConfirmEmailAttribute(tokenParamName);
-                var filterContext = CreateFilterContext(tokenParamName, tokenValue, false);
+                var attribute = new ValidateConfirmEmailAttribute(paramName);
+                var filterContext = CreateFilterContext(paramName, tokenValue, false);
 
                 var value = attribute.GetToken(filterContext);
 
@@ -132,78 +132,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsToken_FromModeledParameter()
             {
                 var tokenValue = Guid.NewGuid();
-                const string tokenParamName = "some value";
-                var attribute = new ValidateConfirmEmailAttribute(tokenParamName);
+                const string paramName = "some value";
+                var attribute = new ValidateConfirmEmailAttribute(paramName);
                 var modeled = new Mock<IModelEmailConfirmation>(MockBehavior.Strict);
                 modeled.Setup(p => p.Token).Returns(tokenValue);
-                var filterContext = CreateFilterContext(tokenParamName, tokenValue, true);
+                var filterContext = CreateFilterContext(paramName, tokenValue, true);
 
                 var value = attribute.GetToken(filterContext);
 
                 value.ShouldEqual(tokenValue);
-            }
-        }
-
-        [TestClass]
-        public class TheGetRedeemedRouteValuesMethod
-        {
-            [TestMethod]
-            public void ReturnsRouteValues_ForResetPasswordIntent()
-            {
-                var token = Guid.NewGuid();
-                const string intent = EmailConfirmationIntent.PasswordReset;
-
-                var result = ValidateConfirmEmailAttribute.GetRedeemedRouteValues(token, intent);
-
-                result.ShouldNotBeNull();
-                result["area"].ShouldEqual(MVC.Passwords.Name);
-                result["controller"].ShouldEqual(MVC.Passwords.ResetPassword.Name);
-                result["action"].ShouldEqual(MVC.Passwords.ResetPassword.ActionNames.Get);
-                result["token"].ShouldEqual(token);
-            }
-
-            [TestMethod]
-            public void ThrowsNotSupportedException_ForSignUpIntent()
-            {
-                var token = Guid.NewGuid();
-                const string intent = EmailConfirmationIntent.SignUp;
-                NotSupportedException exception = null;
-
-                try
-                {
-                    ValidateConfirmEmailAttribute.GetRedeemedRouteValues(token, intent);
-                }
-                catch (NotSupportedException ex)
-                {
-                    exception = ex;
-                }
-
-                exception.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                exception.Message.ShouldContain(intent);
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
-            public void ThrowsNotSupportedException_ForUnexpectedIntent()
-            {
-                var token = Guid.NewGuid();
-                const string intent = "unexpected";
-                NotSupportedException exception = null;
-
-                try
-                {
-                    ValidateConfirmEmailAttribute.GetRedeemedRouteValues(token, intent);
-                }
-                catch (NotSupportedException ex)
-                {
-                    exception = ex;
-                }
-
-                exception.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                exception.Message.ShouldContain(intent);
-                // ReSharper restore PossibleNullReferenceException
             }
         }
 
@@ -213,16 +150,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void SetsResult_To404_WhenToken_IsEmptyGuid()
             {
-                const string tokenParamName = "some value";
+                const string paramName = "some value";
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(Guid.Empty))))
                     .Returns(new EmailConfirmation());
-                var attribute = new ValidateConfirmEmailAttribute(tokenParamName)
+                var attribute = new ValidateConfirmEmailAttribute(paramName)
                 {
                     QueryProcessor = queryProcessor.Object,
                 };
-                var filterContext = CreateFilterContext(tokenParamName, Guid.Empty);
+                var filterContext = CreateFilterContext(paramName, Guid.Empty);
 
                 attribute.OnActionExecuting(filterContext);
 
@@ -233,17 +170,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void SetsResult_To404_WhenToken_MatchesNoEntity()
             {
-                const string tokenParamName = "some value";
+                const string paramName = "some value";
                 var tokenValue = Guid.NewGuid();
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(tokenValue))))
                     .Returns(null as EmailConfirmation);
-                var attribute = new ValidateConfirmEmailAttribute(tokenParamName)
+                var attribute = new ValidateConfirmEmailAttribute(paramName)
                 {
                     QueryProcessor = queryProcessor.Object,
                 };
-                var filterContext = CreateFilterContext(tokenParamName, tokenValue);
+                var filterContext = CreateFilterContext(paramName, tokenValue);
 
                 attribute.OnActionExecuting(filterContext);
 
@@ -257,7 +194,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void SetsResult_ToPartialExpiredDenial_WhenToken_MatchesExpiredEntity()
             {
-                const string tokenParamName = "some value";
+                const string paramName = "some value";
                 var confirmation = new EmailConfirmation
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddSeconds(-5),
@@ -267,11 +204,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
                     .Returns(confirmation);
-                var attribute = new ValidateConfirmEmailAttribute(tokenParamName)
+                var attribute = new ValidateConfirmEmailAttribute(paramName)
                 {
                     QueryProcessor = queryProcessor.Object,
                 };
-                var filterContext = CreateFilterContext(tokenParamName, confirmation.Token);
+                var filterContext = CreateFilterContext(paramName, confirmation.Token);
 
                 attribute.OnActionExecuting(filterContext);
 
@@ -289,7 +226,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void SetsResult_ToPartialRetiredDenial_WhenToken_MatchesExpiredEntity()
             {
-                const string tokenParamName = "some value";
+                const string paramName = "some value";
                 var confirmation = new EmailConfirmation
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
@@ -300,11 +237,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
                     .Returns(confirmation);
-                var attribute = new ValidateConfirmEmailAttribute(tokenParamName)
+                var attribute = new ValidateConfirmEmailAttribute(paramName)
                 {
                     QueryProcessor = queryProcessor.Object,
                 };
-                var filterContext = CreateFilterContext(tokenParamName, confirmation.Token);
+                var filterContext = CreateFilterContext(paramName, confirmation.Token);
 
                 attribute.OnActionExecuting(filterContext);
 
@@ -322,7 +259,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void SetsResult_ToResetPasswordRoute_WhenToken_MatchesRedeemedEntity()
             {
-                const string tokenParamName = "some value";
+                const string paramName = "some value";
                 var confirmation = new EmailConfirmation
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
@@ -333,11 +270,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
                     .Returns(confirmation);
-                var attribute = new ValidateConfirmEmailAttribute(tokenParamName)
+                var attribute = new ValidateConfirmEmailAttribute(paramName)
                 {
                     QueryProcessor = queryProcessor.Object,
                 };
-                var filterContext = CreateFilterContext(tokenParamName, confirmation.Token);
+                var filterContext = CreateFilterContext(paramName, confirmation.Token);
 
                 attribute.OnActionExecuting(filterContext);
 
@@ -354,7 +291,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void SetsNoResult_WhenTokenMatchesEntity_Unexpired_Unredeemed_Unretired()
             {
-                const string tokenParamName = "some value";
+                const string paramName = "some value";
                 var confirmation = new EmailConfirmation
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
@@ -364,11 +301,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
                     .Returns(confirmation);
-                var attribute = new ValidateConfirmEmailAttribute(tokenParamName)
+                var attribute = new ValidateConfirmEmailAttribute(paramName)
                 {
                     QueryProcessor = queryProcessor.Object,
                 };
-                var filterContext = CreateFilterContext(tokenParamName, confirmation.Token);
+                var filterContext = CreateFilterContext(paramName, confirmation.Token);
 
                 attribute.OnActionExecuting(filterContext);
 
