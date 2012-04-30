@@ -39,39 +39,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             }
 
             [TestMethod]
-            public void IgnoresIntent()
-            {
-                var source = new ConfirmEmailQuery();
-
-                var destination = Mapper.Map<ConfirmEmailForm>(source);
-
-                destination.Intent.ShouldBeNull();
-            }
-
-            [TestMethod]
-            public void MapsIsExpired()
+            public void MapsIntent()
             {
                 var source = new ConfirmEmailQuery
                 {
-                    IsExpired = true,
+                    Intent = "intent",
                 };
 
                 var destination = Mapper.Map<ConfirmEmailForm>(source);
 
-                destination.IsExpired.ShouldEqual(source.IsExpired);
-            }
-
-            [TestMethod]
-            public void MapsIsRedeemed()
-            {
-                var source = new ConfirmEmailQuery
-                {
-                    IsRedeemed = true,
-                };
-
-                var destination = Mapper.Map<ConfirmEmailForm>(source);
-
-                destination.IsRedeemed.ShouldEqual(source.IsRedeemed);
+                destination.Intent.ShouldEqual(source.Intent);
             }
 
             [TestMethod]

@@ -79,7 +79,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _denied = "~/Areas/Passwords/Views/ResetPassword/_denied.cshtml";
+            public readonly string _denied_crash = "~/Areas/Passwords/Views/ResetPassword/_denied-crash.cshtml";
+            public readonly string _denied_expired = "~/Areas/Passwords/Views/ResetPassword/_denied-expired.cshtml";
+            public readonly string _denied_retired = "~/Areas/Passwords/Views/ResetPassword/_denied-retired.cshtml";
             public readonly string reset_password = "~/Areas/Passwords/Views/ResetPassword/reset-password.cshtml";
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }

@@ -80,15 +80,15 @@ namespace UCosmic.Domain.Email
             {
                 RuleFor(p => p.Token)
                     // it cannot be expired
-                    .Must(p => ValidateEmailConfirmation.IsNotExpired(confirmation))
+                    .Must(p => !confirmation.IsExpired)
                         .WithMessage(ValidateEmailConfirmation.FailedBecauseIsExpired,
                             p => confirmation.Token, p => confirmation.ExpiresOnUtc)
                     // it cannot be redeemed
-                    .Must(p => ValidateEmailConfirmation.IsNotRedeemed(confirmation))
+                    .Must(p => !confirmation.IsRedeemed)
                         .WithMessage(ValidateEmailConfirmation.FailedBecauseIsRedeemed,
                             p => confirmation.Token, p => confirmation.RedeemedOnUtc)
                     // it cannot be retired
-                    .Must(p => ValidateEmailConfirmation.IsNotRetired(confirmation))
+                    .Must(p => !confirmation.IsRetired)
                         .WithMessage(ValidateEmailConfirmation.FailedBecauseIsRetired,
                             p => confirmation.Token, p => confirmation.RetiredOnUtc)
                 ;

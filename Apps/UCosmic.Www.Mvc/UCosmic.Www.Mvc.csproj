@@ -228,6 +228,7 @@
     <Compile Include="Areas\People\PeopleAreaRegistration.cs" />
     <Compile Include="Controllers\ValidateEmailConfirmationTicketAttribute.cs" />
     <Compile Include="Controllers\NullLayoutOnChildActionAttribute.cs" />
+    <Compile Include="Areas\Identity\Controllers\ValidateConfirmEmailAttribute.cs" />
     <Compile Include="Helpers\SimpleInjectorMVC3.cs" />
     <Compile Include="Helpers\SimpleInjectorMVC3Extensions.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
@@ -329,6 +330,7 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ComboBoxOptions.cs" />
+    <Compile Include="Models\IModelEmailConfirmation.cs" />
     <Compile Include="My.ProfileController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1055,16 +1057,20 @@
     <Content Include="Areas\Passwords\Views\ForgotPassword\EditorTemplates\ForgotPasswordForm.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\confirm-email.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\EditorTemplates\ConfirmEmailForm.cshtml" />
-    <Content Include="Areas\Identity\Views\ConfirmEmail\_denied.cshtml" />
-    <Content Include="Areas\Identity\Views\ConfirmEmail\_denied-expired.cshtml" />
+    <Content Include="Areas\Identity\Views\SignUp\_denied-expired.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\_form-instructions.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\_form-legend.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\_right.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\_styles.cshtml" />
     <Content Include="Areas\Passwords\Views\ResetPassword\reset-password.cshtml" />
-    <Content Include="Areas\Passwords\Views\ResetPassword\_denied.cshtml" />
+    <Content Include="Areas\Passwords\Views\ResetPassword\_denied-crash.cshtml" />
     <Content Include="Areas\Passwords\Views\ResetPassword\EditorTemplates\ResetPasswordForm.cshtml" />
     <Content Include="Areas\Passwords\Views\Shared\EditorTemplates\StrengthMeteredPassword.cshtml" />
+    <Content Include="Areas\Passwords\Views\ResetPassword\_denied-expired.cshtml" />
+    <Content Include="Areas\Identity\Views\ConfirmEmail\_denied.cshtml" />
+    <Content Include="Areas\Identity\Views\SignUp\_denied-retired.cshtml" />
+    <Content Include="Areas\Passwords\Views\ResetPassword\_denied-retired.cshtml" />
+    <Content Include="Areas\Identity\Views\ConfirmEmail\_denied-crash.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />

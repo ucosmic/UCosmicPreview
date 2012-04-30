@@ -9,11 +9,17 @@ using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    public class ConfirmEmailForm
+    public class ConfirmEmailForm : IModelEmailConfirmation
     {
         [HiddenInput(DisplayValue = false)]
         public Guid Token { get; set; }
         public const string TokenPropertyName = "Token";
+
+        [HiddenInput(DisplayValue = false)]
+        public string Intent { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public bool IsUrlConfirmation { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = SecretCodeDisplayName, Prompt = SecretCodeDisplayPrompt)]
@@ -22,18 +28,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public const string SecretCodePropertyName = "SecretCode";
         public const string SecretCodeDisplayName = "Confirmation Code";
         public const string SecretCodeDisplayPrompt = "Copy & paste your secret Confirmation Code here";
-
-        [HiddenInput(DisplayValue = false)]
-        public string Intent { get; set; }
-
-        [HiddenInput(DisplayValue = false)]
-        public bool IsUrlConfirmation { get; set; }
-
-        public bool IsExpired { get; set; }
-        public const string IsExpiredPropertyName = "IsExpired";
-
-        public bool IsRedeemed { get; set; }
-        public const string IsRedeemedPropertyName = "IsRedeemed";
     }
 
     public class ConfirmEmailFormValidator : AbstractValidator<ConfirmEmailForm>
@@ -76,22 +70,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                         ValidateEmailConfirmation.IntentIsCorrect(confirmation, p.Intent))
                     .WithMessage(FailedBecauseSecretCodeWasIncorrect)
             ;
-
-            RuleFor(p => p.IsExpired)
-                // cannot be expired
-                .Must(p => ValidateEmailConfirmation.IsNotExpired(confirmation))
-                    .When(p => confirmation != null)
-                    .WithMessage(ValidateEmailConfirmation.FailedBecauseIsExpired,
-                        p => confirmation.Token, p => confirmation.ExpiresOnUtc)
-            ;
-
-            RuleFor(p => p.IsRedeemed)
-                // cannot be redeemed
-                .Must(p => ValidateEmailConfirmation.IsNotRedeemed(confirmation))
-                    .When(p => confirmation != null)
-                    .WithMessage(ValidateEmailConfirmation.FailedBecauseIsRedeemed,
-                        p => confirmation.Token, p => confirmation.RedeemedOnUtc)
-            ;
         }
     }
 
@@ -109,6 +87,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             protected override void Configure()
             {
                 CreateMap<EmailConfirmation, ConfirmEmailForm>()
+                    // SECRET CODE MUST NOT MAP FROM ENTITY TO MODEL!
                     .ForMember(d => d.SecretCode, opt => opt.Ignore())
                     .ForMember(d => d.IsUrlConfirmation, o => o.Ignore())
                 ;

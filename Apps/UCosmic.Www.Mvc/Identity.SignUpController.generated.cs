@@ -85,6 +85,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
+            public readonly string _denied_expired = "~/Areas/Identity/Views/SignUp/_denied-expired.cshtml";
+            public readonly string _denied_retired = "~/Areas/Identity/Views/SignUp/_denied-retired.cshtml";
             public readonly string confirm_denied = "~/Areas/Identity/Views/SignUp/confirm-denied.cshtml";
             public readonly string confirm_email = "~/Areas/Identity/Views/SignUp/confirm-email.cshtml";
             public readonly string create_denied = "~/Areas/Identity/Views/SignUp/create-denied.cshtml";

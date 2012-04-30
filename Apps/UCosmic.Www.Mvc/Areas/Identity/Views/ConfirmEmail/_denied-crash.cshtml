@@ -1,0 +1,15 @@
+﻿@using UCosmic.Www.Mvc.Models
+<div class="wrap-960">
+    <p>
+        An unexpected error was encountered while trying to confirm ownership of your email
+        address.
+    </p>
+    <p>
+        Please @Html.Partial(MVC.Shared.Views.uservoice_link,
+            new UserVoiceLink(Request, ViewData)
+            {
+                Text = "tell us what you were doing when this error occurred",
+                TextAfter = "."
+            })
+    </p>
+</div>

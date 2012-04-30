@@ -40,36 +40,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             }
 
             [TestMethod]
-            public void MapsIsExpired()
-            {
-                var source = new EmailConfirmation
-                {
-                    ExpiresOnUtc = DateTime.UtcNow.AddMinutes(-1),
-                };
-
-                var destination = Mapper.Map<ConfirmEmailForm>(source);
-
-                destination.ShouldNotBeNull();
-                destination.IsExpired.ShouldBeTrue();
-                destination.IsExpired.ShouldEqual(source.IsExpired);
-            }
-
-            [TestMethod]
-            public void MapsIsRedeemed()
-            {
-                var source = new EmailConfirmation
-                {
-                    RedeemedOnUtc = DateTime.UtcNow.AddMinutes(-1),
-                };
-
-                var destination = Mapper.Map<ConfirmEmailForm>(source);
-
-                destination.ShouldNotBeNull();
-                destination.IsRedeemed.ShouldBeTrue();
-                destination.IsRedeemed.ShouldEqual(source.IsRedeemed);
-            }
-
-            [TestMethod]
             public void IgnoresSecretCode()
             {
                 var source = new EmailConfirmation
@@ -79,6 +49,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 var destination = Mapper.Map<ConfirmEmailForm>(source);
 
+                // SECRET CODE MUST NOT MAP FROM ENTITY TO MODEL!
                 destination.ShouldNotBeNull();
                 destination.SecretCode.ShouldBeNull();
             }
