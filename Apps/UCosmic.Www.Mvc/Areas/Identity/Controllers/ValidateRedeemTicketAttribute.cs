@@ -26,11 +26,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             // when the base class has set a result, is retired or expired
             if (filterContext.Result != null) return;
-            var tempData = filterContext.Controller.TempData;
 
             // when ticket or intent is invalid, crash
-            if (EmailConfirmation.Ticket != tempData.EmailConfirmationTicket() ||
-                EmailConfirmation.Intent != Intent)
+            var ticket = filterContext.Controller.TempData.EmailConfirmationTicket();
+            if (EmailConfirmation.Ticket != ticket || EmailConfirmation.Intent != Intent)
             {
                 HandleDenial(filterContext, ConfirmDeniedBecause.OtherCrash);
             }

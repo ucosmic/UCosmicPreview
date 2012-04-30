@@ -11,6 +11,8 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
     public class ForgotPasswordRouterFacts
     // ReSharper restore UnusedMember.Global
     {
+        private static readonly string AreaName = MVC.Passwords.Name;
+
         [TestClass]
         public class TheGetRoute
         {
@@ -30,7 +32,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
             [TestMethod]
             public void Outbound_WithGet_MapsToUrl()
             {
-                OutBoundRoute.Of(Action).InArea(MVC.Passwords.Name)
+                OutBoundRoute.Of(Action).InArea(AreaName)
                     .WithMethod(HttpVerbs.Get).AppRelativeUrl()
                     .ShouldEqual(Url);
             }
@@ -38,7 +40,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
             [TestMethod]
             public void Defaults_MapToNothing()
             {
-                Action.DefaultAreaRoutes(MVC.Passwords.Name).ShouldMapToNothing();
+                Action.DefaultAreaRoutes(AreaName).ShouldMapToNothing();
             }
 
             private static readonly string Url = ForgotPasswordRouter.Get.Route.ToAppRelativeUrl();
@@ -59,7 +61,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
             [TestMethod]
             public void Outbound_WithPost_MapsToUrl()
             {
-                OutBoundRoute.Of(Action).InArea(MVC.Passwords.Name)
+                OutBoundRoute.Of(Action).InArea(AreaName)
                     .WithMethod(HttpVerbs.Post).AppRelativeUrl()
                     .ShouldEqual(Url);
             }
@@ -67,7 +69,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
             [TestMethod]
             public void Defaults_MapToNothing()
             {
-                Action.DefaultAreaRoutes(MVC.Passwords.Name).ShouldMapToNothing();
+                Action.DefaultAreaRoutes(AreaName).ShouldMapToNothing();
             }
 
             private static readonly string Url = ForgotPasswordRouter.Post.Route.ToAppRelativeUrl();
@@ -95,7 +97,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
             [TestMethod]
             public void Outbound_WithPost_MapsToUrl()
             {
-                OutBoundRoute.Of(Action).InArea(MVC.Passwords.Name)
+                OutBoundRoute.Of(Action).InArea(AreaName)
                     .WithMethod(HttpVerbs.Post).AppRelativeUrl()
                     .ShouldEqual(Url);
             }
@@ -103,7 +105,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
             [TestMethod]
             public void Defaults_MapToNothing()
             {
-                Action.DefaultAreaRoutes(MVC.Passwords.Name)
+                Action.DefaultAreaRoutes(AreaName)
                     .ShouldMapToNothing();
             }
 

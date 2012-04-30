@@ -26,6 +26,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
         public IHandleCommands<ResetPasswordCommand> CommandHandler { get; private set; }
     }
 
+    [EnforceHttps]
     public partial class ResetPasswordController : BaseController
     {
         private readonly ResetPasswordServices _services;
@@ -38,14 +39,17 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("reset-password")]
-        //[ValidateEmailConfirmationTicket(EmailConfirmationIntent.PasswordReset)]
         [ValidateRedeemTicket("token", EmailConfirmationIntent.PasswordReset)]
         public virtual ActionResult Get(Guid token)
         {
+            // skip when there is an empty token
+            if (token == Guid.Empty) return HttpNotFound();
+
             // get the confirmation from the db
             var confirmation = _services.QueryProcessor.Execute(
                 new GetEmailConfirmationQuery(token)
             );
+            if (confirmation == null) return HttpNotFound();
 
             // convert confirmation to form
             var model = Mapper.Map<ResetPasswordForm>(confirmation);
@@ -62,6 +66,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
         }
 
         [HttpPost]
+        [UnitOfWork]
         [ValidateAntiForgeryToken]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("reset-password")]
