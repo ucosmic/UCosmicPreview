@@ -9,6 +9,19 @@ using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
 {
+    public class ForgotPasswordServices
+    {
+        public ForgotPasswordServices(
+            IHandleCommands<SendConfirmEmailMessageCommand> commandHandler
+        )
+        {
+            CommandHandler = commandHandler;
+        }
+
+        public IHandleCommands<SendConfirmEmailMessageCommand> CommandHandler { get; private set; }
+    }
+
+    [EnforceHttps]
     public partial class ForgotPasswordController : BaseController
     {
         private readonly ForgotPasswordServices _services;
@@ -29,6 +42,14 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
         }
 
         [HttpPost]
+        [OutputCache(VaryByParam = "*", Duration = 1800)]
+        public virtual JsonResult ValidateEmailAddress(
+            [CustomizeValidator(Properties = ForgotPasswordForm.EmailAddressPropertyName)] ForgotPasswordForm model)
+        {
+            return ValidateRemote(ForgotPasswordForm.EmailAddressPropertyName);
+        }
+
+        [HttpPost]
         [UnitOfWork]
         [ValidateAntiForgeryToken]
         [OpenTopTab(TopTabName.Home)]
@@ -39,10 +60,14 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
 
             if (!ModelState.IsValid) return PartialView(model);
 
-            // execute command, set feedback message, and redirect
+            // execute command
             var command = Mapper.Map<SendConfirmEmailMessageCommand>(model);
             _services.CommandHandler.Handle(command);
+
+            // flash feedback message
             SetFeedbackMessage(string.Format(SuccessMessageFormat, model.EmailAddress));
+
+            // redirect to confirm email
             return RedirectToRoute(new
             {
                 area = MVC.Identity.Name,
@@ -53,28 +78,6 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
         }
 
         public const string SuccessMessageFormat = "A password reset email has been sent to {0}.";
-
-        [HttpPost]
-        [OutputCache(VaryByParam = "*", Duration = 1800)]
-        public virtual JsonResult ValidateEmailAddress(
-            [CustomizeValidator(Properties = ForgotPasswordForm.EmailAddressPropertyName)] ForgotPasswordForm model)
-        {
-            return ValidateRemote(ForgotPasswordForm.EmailAddressPropertyName);
-        }
-    }
-
-    public class ForgotPasswordServices
-    {
-        public ForgotPasswordServices(IProcessQueries queryProcessor
-            , IHandleCommands<SendConfirmEmailMessageCommand> commandHandler
-        )
-        {
-            QueryProcessor = queryProcessor;
-            CommandHandler = commandHandler;
-        }
-
-        public IProcessQueries QueryProcessor { get; private set; }
-        public IHandleCommands<SendConfirmEmailMessageCommand> CommandHandler { get; private set; }
     }
 
     public static class ForgotPasswordRouter

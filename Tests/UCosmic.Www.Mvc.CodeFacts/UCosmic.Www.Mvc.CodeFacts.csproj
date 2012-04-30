@@ -159,6 +159,7 @@
     <Compile Include="Areas\My\Models\UpdateNameValidatorFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameProfilerFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameFormFacts.cs" />
+    <Compile Include="Areas\Passwords\Controllers\ForgotPasswordControllerFacts.cs" />
     <Compile Include="Areas\Passwords\Controllers\ForgotPasswordRouterFacts.cs" />
     <Compile Include="Areas\Passwords\Models\ForgotPasswordFormFacts.cs" />
     <Compile Include="Areas\Passwords\Models\ForgotPasswordProfilerFacts.cs" />
