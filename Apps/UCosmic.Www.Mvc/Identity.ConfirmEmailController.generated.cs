@@ -79,7 +79,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _denied_expired = "~/Areas/Identity/Views/ConfirmEmail/_denied-expired.cshtml";
+            public readonly string _denied_crash = "~/Areas/Identity/Views/ConfirmEmail/_denied-crash.cshtml";
             public readonly string _denied = "~/Areas/Identity/Views/ConfirmEmail/_denied.cshtml";
             public readonly string _form_instructions = "~/Areas/Identity/Views/ConfirmEmail/_form-instructions.cshtml";
             public readonly string _form_legend = "~/Areas/Identity/Views/ConfirmEmail/_form-legend.cshtml";
@@ -98,9 +98,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public class T4MVC_ConfirmEmailController: UCosmic.Www.Mvc.Areas.Identity.Controllers.ConfirmEmailController {
         public T4MVC_ConfirmEmailController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Get(UCosmic.Www.Mvc.Areas.Identity.Models.ConfirmEmailQuery query) {
+        public override System.Web.Mvc.ActionResult Get(System.Guid token, string secretCode, string intent) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
-            callInfo.RouteValueDictionary.Add("query", query);
+            callInfo.RouteValueDictionary.Add("token", token);
+            callInfo.RouteValueDictionary.Add("secretCode", secretCode);
+            callInfo.RouteValueDictionary.Add("intent", intent);
             return callInfo;
         }
 

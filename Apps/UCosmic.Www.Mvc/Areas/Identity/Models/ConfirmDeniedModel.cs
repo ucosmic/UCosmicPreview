@@ -16,7 +16,8 @@
     {
         //UserIsSignedUp = 0,
         //MemberIsSignedUp = 1,
-        ConfirmationIsExpired = 2,
+        IsExpired = 2,
+        IsRetired = 3,
         //ConfirmationIsRedeemed = 3
     }
 }

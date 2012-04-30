@@ -95,12 +95,12 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
             // deny the action if the ticket is not valid
             if (ModelState.ContainsKey(ValidateEmailConfirmationTicketAttribute.TicketPropertyName) &&
                 ModelState[ValidateEmailConfirmationTicketAttribute.TicketPropertyName].Errors.Any())
-                return PartialView(MVC.Passwords.ResetPassword.Views._denied);
+                return PartialView(MVC.Passwords.ResetPassword.Views._denied_crash);
 
             // deny the action if the intent is not to reset password
             if (ModelState.ContainsKey(ValidateEmailConfirmationTicketAttribute.IntentPropertyName) &&
                 ModelState[ValidateEmailConfirmationTicketAttribute.IntentPropertyName].Errors.Any())
-                return PartialView(MVC.Passwords.ResetPassword.Views._denied);
+                return PartialView(MVC.Passwords.ResetPassword.Views._denied_crash);
 
             return PartialView(MVC.Passwords.ResetPassword.Views.reset_password, model);
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 using AutoMapper;
@@ -12,6 +11,21 @@ using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
+    public class ConfirmEmailServices
+    {
+        public ConfirmEmailServices(IProcessQueries queryProcessor
+            , IHandleCommands<RedeemEmailConfirmationCommand> commandHandler
+        )
+        {
+            QueryProcessor = queryProcessor;
+            CommandHandler = commandHandler;
+        }
+
+        public IProcessQueries QueryProcessor { get; private set; }
+        public IHandleCommands<RedeemEmailConfirmationCommand> CommandHandler { get; private set; }
+    }
+
+    [EnforceHttps]
     public partial class ConfirmEmailController : BaseController
     {
         private readonly ConfirmEmailServices _services;
@@ -24,22 +38,20 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [HttpGet]
         [ActionName("confirm-email")]
         [OpenTopTab(TopTabName.Home)]
-        public virtual ActionResult Get(ConfirmEmailQuery query)
+        [ValidateConfirmEmail("token")]
+        public virtual ActionResult Get(Guid token, string secretCode, string intent)
         {
-            if (query == null) return HttpNotFound();
-
-            // first map the secret code into the model
-            var model = Mapper.Map<ConfirmEmailForm>(query);
-            if (!ModelState.IsValid) return DeniedView(model);
-
-            // query to map domain values into the model
+            // get the confirmation from the db
             var confirmation = _services.QueryProcessor.Execute(
-                new GetEmailConfirmationQuery(query.Token)
+                new GetEmailConfirmationQuery(token)
             );
 
-            // map everything except the secret code
-            Mapper.Map(confirmation, model);
+            // convert to viewmodel then set the secret code if url confirmation
+            var model = Mapper.Map<ConfirmEmailForm>(confirmation);
+            model.SecretCode = secretCode;
+            model.IsUrlConfirmation = !string.IsNullOrWhiteSpace(secretCode);
 
+            // return partial view
             return PartialView(model);
         }
 
@@ -48,11 +60,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [ValidateAntiForgeryToken]
         [ActionName("confirm-email")]
         [OpenTopTab(TopTabName.Home)]
+        [ValidateConfirmEmail("model")]
         public virtual ActionResult Post(ConfirmEmailForm model)
         {
             if (model == null) return HttpNotFound();
-
-            if (!ModelState.IsValid) return DeniedView(model);
 
             // execute the command
             var command = Mapper.Map<RedeemEmailConfirmationCommand>(model);
@@ -64,48 +75,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             // set temp data values
             TempData.EmailConfirmationTicket(command.Ticket);
 
-            return RedirectToTicketAction(model);
-        }
-
-        [NonAction]
-        private ActionResult DeniedView(ConfirmEmailForm model)
-        {
-            // return 404 if the confirmation could not be found
-            if (ModelState.ContainsKey(ConfirmEmailForm.TokenPropertyName) &&
-                ModelState[ConfirmEmailForm.TokenPropertyName].Errors.Any())
-                return HttpNotFound();
-
-            // confirmations can only be redeemed within 2 hours of issuance.
-            if (ModelState.ContainsKey(ConfirmEmailForm.IsExpiredPropertyName) &&
-                ModelState[ConfirmEmailForm.IsExpiredPropertyName].Errors.Any())
-                return PartialView(MVC.Identity.ConfirmEmail.Views._denied,
-                    new ConfirmDeniedModel(ConfirmDeniedBecause.ConfirmationIsExpired, model.Intent));
-
-            // if confirmation is already redeemed, forward to ticketed step
-            if (ModelState.ContainsKey(ConfirmEmailForm.IsRedeemedPropertyName) &&
-                ModelState[ConfirmEmailForm.IsRedeemedPropertyName].Errors.Any())
-                return RedirectToTicketAction(model);
-
-            return PartialView(MVC.Identity.ConfirmEmail.Views.confirm_email, model);
-        }
-
-        [NonAction]
-        private ActionResult RedirectToTicketAction(ConfirmEmailForm model)
-        {
-            switch (model.Intent)
-            {
-                case EmailConfirmationIntent.PasswordReset:
-                    return RedirectToRoute(new
-                    {
-                        area = MVC.Passwords.Name,
-                        controller = MVC.Passwords.ResetPassword.Name,
-                        action = MVC.Passwords.ResetPassword.ActionNames.Get,
-                        token = model.Token,
-                    });
-            }
-            throw new NotSupportedException(string.Format(
-                "The email confirmation intent '{0}' is not supported.",
-                    model.Intent));
+            // redirect to ticketed action
+            var redeemedRoute = ValidateConfirmEmailAttribute
+                .GetRedeemedRouteValues(model.Token, model.Intent);
+            return RedirectToRoute(redeemedRoute);
         }
 
         public static readonly IDictionary<string, string> SuccessMessageForIntent = new Dictionary<string, string>
@@ -120,20 +93,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             return ValidateRemote(ConfirmEmailForm.SecretCodePropertyName);
         }
-    }
-
-    public class ConfirmEmailServices
-    {
-        public ConfirmEmailServices(IProcessQueries queryProcessor
-            , IHandleCommands<RedeemEmailConfirmationCommand> commandHandler
-        )
-        {
-            QueryProcessor = queryProcessor;
-            CommandHandler = commandHandler;
-        }
-
-        public IProcessQueries QueryProcessor { get; private set; }
-        public IHandleCommands<RedeemEmailConfirmationCommand> CommandHandler { get; private set; }
     }
 
     public static class ConfirmEmailRouter

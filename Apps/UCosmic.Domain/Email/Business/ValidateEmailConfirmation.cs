@@ -56,23 +56,11 @@ namespace UCosmic.Domain.Email
         public const string FailedBecauseIsExpired =
             "The email confirmation '{0}' expired on {1}.";
 
-        public static bool IsNotExpired(EmailConfirmation confirmation)
-        {
-            // return true (valid) if confirmation is not expired
-            return confirmation != null && !confirmation.IsExpired;
-        }
-
         #endregion
         #region Is not redeemed
 
         public const string FailedBecauseIsRedeemed =
             "The email confirmation '{0}' was redeemed on {1}.";
-
-        public static bool IsNotRedeemed(EmailConfirmation confirmation)
-        {
-            // return true (valid) if confirmation is not redeemed
-            return confirmation != null && !confirmation.IsRedeemed;
-        }
 
         #endregion
         #region Is redeemed
@@ -80,23 +68,11 @@ namespace UCosmic.Domain.Email
         public const string FailedBecauseIsNotRedeemed =
             "The email confirmation '{0}' has not been redeemed.";
 
-        public static bool IsRedeemed(EmailConfirmation confirmation)
-        {
-            // return true (valid) if confirmation is redeemed
-            return confirmation != null && confirmation.IsRedeemed;
-        }
-
         #endregion
         #region Is not retired
 
         public const string FailedBecauseIsRetired =
             "The email confirmation '{0}' was retired on {1}.";
-
-        public static bool IsNotRetired(EmailConfirmation confirmation)
-        {
-            // return true (valid) if confirmation is not redeemed
-            return confirmation != null && !confirmation.IsRetired;
-        }
 
         #endregion
         #region Secret cannot be empty

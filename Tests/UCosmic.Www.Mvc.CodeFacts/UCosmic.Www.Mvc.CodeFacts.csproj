@@ -127,12 +127,12 @@
     <Compile Include="Areas\Identity\Controllers\SignInControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOnControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignUpControllerFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\ValidateConfirmEmailFacts.cs" />
     <Compile Include="Areas\Identity\Mappers\RolesRouteMapperFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailFormProfilerFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailFormValidatorFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailQueryProfilerFacts.cs" />
-    <Compile Include="Areas\Identity\Models\ConfirmEmailQueryValidatorFacts.cs" />
     <Compile Include="Areas\Identity\Models\Saml2IntegrationInfoFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignOnBeginFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignOnBeginValidatorFacts.cs" />
