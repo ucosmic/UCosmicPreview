@@ -125,6 +125,7 @@
     <Compile Include="Areas\Establishments\Mappers\ManagementFormsRouteMapperFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailRouterFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\ValidateRedeemTicketAttributeFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\RolesControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignInControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOnControllerFacts.cs" />
@@ -159,6 +160,8 @@
     <Compile Include="Areas\My\Models\UpdateNameValidatorFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameProfilerFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameFormFacts.cs" />
+    <Compile Include="Areas\Passwords\Controllers\ResetPasswordControllerFacts.cs" />
+    <Compile Include="Areas\Passwords\Controllers\ResetPasswordRouterFacts.cs" />
     <Compile Include="Areas\Passwords\Controllers\ForgotPasswordControllerFacts.cs" />
     <Compile Include="Areas\Passwords\Controllers\ForgotPasswordRouterFacts.cs" />
     <Compile Include="Areas\Passwords\Models\ForgotPasswordFormFacts.cs" />

@@ -149,10 +149,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<PartialViewResult>();
-                var partialView = (PartialViewResult) result;
+                var partialView = (PartialViewResult)result;
                 partialView.Model.ShouldNotBeNull();
                 partialView.Model.ShouldBeType<ConfirmEmailForm>();
-                var model = (ConfirmEmailForm) partialView.Model;
+                var model = (ConfirmEmailForm)partialView.Model;
                 model.SecretCode.ShouldEqual(secretCode);
                 model.SecretCode.ShouldNotEqual(confirmation.SecretCode);
             }
@@ -365,10 +365,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<PartialViewResult>();
-                var partialView = (PartialViewResult) result;
+                var partialView = (PartialViewResult)result;
                 partialView.Model.ShouldNotBeNull();
                 partialView.Model.ShouldBeType<ConfirmEmailForm>();
-                var model = (ConfirmEmailForm) partialView.Model;
+                var model = (ConfirmEmailForm)partialView.Model;
                 model.ShouldEqual(form);
                 model.Intent.ShouldEqual(form.Intent);
                 model.SecretCode.ShouldEqual(form.SecretCode);
@@ -492,7 +492,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<RedirectToRouteResult>();
-                var routeResult = (RedirectToRouteResult) result;
+                var routeResult = (RedirectToRouteResult)result;
                 routeResult.Permanent.ShouldBeFalse();
                 routeResult.RouteValues["area"].ShouldEqual(MVC.Passwords.Name);
                 routeResult.RouteValues["controller"].ShouldEqual(MVC.Passwords.ResetPassword.Name);
