@@ -257,7 +257,7 @@ namespace UCosmic.Www.Mvc
         public string AppRelativeUrl()
         {
             var url = Url();
-            return (url != null) ? url.ToAppRelativeUrl() : null ;
+            return (url != null) ? url.ToAppRelativeUrl() : null;
         }
     }
 
