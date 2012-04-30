@@ -57,6 +57,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         }
 
         [HttpPost]
+        public virtual JsonResult ValidateSecretCode(
+            [CustomizeValidator(Properties = ConfirmEmailForm.SecretCodePropertyName)] ConfirmEmailForm model)
+        {
+            return ValidateRemote(ConfirmEmailForm.SecretCodePropertyName);
+        }
+
+        [HttpPost]
         [UnitOfWork]
         [ValidateAntiForgeryToken]
         [ActionName("confirm-email")]
@@ -89,13 +96,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             { EmailConfirmationIntent.SignUp, "Your email address has been confirmed. Please create your password now." },
             { EmailConfirmationIntent.PasswordReset, "Your email address has been confirmed. Please reset your password now." },
         };
-
-        [HttpPost]
-        public virtual JsonResult ValidateSecretCode(
-            [CustomizeValidator(Properties = ConfirmEmailForm.SecretCodePropertyName)] ConfirmEmailForm model)
-        {
-            return ValidateRemote(ConfirmEmailForm.SecretCodePropertyName);
-        }
     }
 
     public static class ConfirmEmailRouter
