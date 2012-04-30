@@ -8,7 +8,7 @@ using UCosmic.Domain.People;
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class ConfirmEmailFormProfilerFacts
+    public class ConfirmEmailProfilerFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]

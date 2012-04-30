@@ -10,7 +10,7 @@ using UCosmic.Domain.People;
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class ConfirmEmailFormValidatorFacts
+    public class ConfirmEmailValidatorFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -22,7 +22,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             public void IsInvalidWhen_IsNull()
             {
                 var validated = new ConfirmEmailForm();
-                var validator = new ConfirmEmailFormValidator(null);
+                var validator = new ConfirmEmailValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -32,7 +32,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ConfirmEmailFormValidator.FailedBecauseSecretCodeWasEmpty);
+                    ConfirmEmailValidator.FailedBecauseSecretCodeWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -43,7 +43,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     SecretCode = String.Empty
                 };
-                var validator = new ConfirmEmailFormValidator(null);
+                var validator = new ConfirmEmailValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -53,7 +53,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ConfirmEmailFormValidator.FailedBecauseSecretCodeWasEmpty);
+                    ConfirmEmailValidator.FailedBecauseSecretCodeWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -64,7 +64,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     SecretCode = "   ",
                 };
-                var validator = new ConfirmEmailFormValidator(null);
+                var validator = new ConfirmEmailValidator(null);
 
                 var results = validator.Validate(validated);
 
@@ -74,7 +74,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ConfirmEmailFormValidator.FailedBecauseSecretCodeWasEmpty);
+                    ConfirmEmailValidator.FailedBecauseSecretCodeWasEmpty);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -90,7 +90,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
                     .Returns(null as EmailConfirmation);
-                var validator = new ConfirmEmailFormValidator(queryProcessor.Object);
+                var validator = new ConfirmEmailValidator(queryProcessor.Object);
 
                 var results = validator.Validate(validated);
 
@@ -100,7 +100,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ConfirmEmailFormValidator.FailedBecauseOfInconsistentData);
+                    ConfirmEmailValidator.FailedBecauseOfInconsistentData);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -116,7 +116,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
                     .Returns(new EmailConfirmation());
-                var validator = new ConfirmEmailFormValidator(queryProcessor.Object);
+                var validator = new ConfirmEmailValidator(queryProcessor.Object);
 
                 var results = validator.Validate(validated);
 
@@ -126,7 +126,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ConfirmEmailFormValidator.FailedBecauseOfInconsistentData);
+                    ConfirmEmailValidator.FailedBecauseOfInconsistentData);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -143,7 +143,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
                     .Returns(new EmailConfirmation());
-                var validator = new ConfirmEmailFormValidator(queryProcessor.Object);
+                var validator = new ConfirmEmailValidator(queryProcessor.Object);
 
                 var results = validator.Validate(validated);
 
@@ -153,7 +153,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ConfirmEmailFormValidator.FailedBecauseOfInconsistentData);
+                    ConfirmEmailValidator.FailedBecauseOfInconsistentData);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -170,7 +170,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
                     .Returns(new EmailConfirmation());
-                var validator = new ConfirmEmailFormValidator(queryProcessor.Object);
+                var validator = new ConfirmEmailValidator(queryProcessor.Object);
 
                 var results = validator.Validate(validated);
 
@@ -180,7 +180,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ConfirmEmailFormValidator.FailedBecauseOfInconsistentData);
+                    ConfirmEmailValidator.FailedBecauseOfInconsistentData);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -200,7 +200,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     {
                         Intent = "intent2",
                     });
-                var validator = new ConfirmEmailFormValidator(queryProcessor.Object);
+                var validator = new ConfirmEmailValidator(queryProcessor.Object);
 
                 var results = validator.Validate(validated);
 
@@ -210,7 +210,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ConfirmEmailFormValidator.FailedBecauseOfInconsistentData);
+                    ConfirmEmailValidator.FailedBecauseOfInconsistentData);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -231,7 +231,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                         Intent = "intent1",
                         SecretCode = "secret2"
                     });
-                var validator = new ConfirmEmailFormValidator(queryProcessor.Object);
+                var validator = new ConfirmEmailValidator(queryProcessor.Object);
 
                 var results = validator.Validate(validated);
 
@@ -241,7 +241,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ConfirmEmailFormValidator.FailedBecauseSecretCodeWasIncorrect);
+                    ConfirmEmailValidator.FailedBecauseSecretCodeWasIncorrect);
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -263,7 +263,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                         SecretCode = "secret2",
                         RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-10),
                     });
-                var validator = new ConfirmEmailFormValidator(queryProcessor.Object);
+                var validator = new ConfirmEmailValidator(queryProcessor.Object);
 
                 var results = validator.Validate(validated);
 
@@ -288,7 +288,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                         Intent = "intent1",
                         SecretCode = "secret1",
                     });
-                var validator = new ConfirmEmailFormValidator(queryProcessor.Object);
+                var validator = new ConfirmEmailValidator(queryProcessor.Object);
 
                 var results = validator.Validate(validated);
 

@@ -33,8 +33,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             Saml2IntegrationProfiler.RegisterProfiles();
 
             ConfirmEmailRouter.RegisterRoutes(context);
-            ConfirmEmailFormProfiler.RegisterProfiles();
-            ConfirmEmailQueryProfiler.RegisterProfiles();
+            ConfirmEmailProfiler.RegisterProfiles();
 
             //// default route
             //context.MapRoute(
