@@ -107,7 +107,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
                 action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
             }
-
         }
 
         [TestClass]
@@ -200,7 +199,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
                 action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
             }
-
         }
 
         [TestClass]
@@ -291,7 +289,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
                 action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
             }
-
         }
     }
 }

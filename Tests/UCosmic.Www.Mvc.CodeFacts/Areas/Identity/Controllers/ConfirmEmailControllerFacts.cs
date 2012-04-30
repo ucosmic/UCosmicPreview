@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using FluentValidation.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
@@ -531,6 +533,68 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 exception.ShouldNotBeNull();
                 result.ShouldBeNull();
+            }
+        }
+
+        [TestClass]
+        public class TheValidateSecretCodeMethod
+        {
+            [TestMethod]
+            public void IsDecoratedWith_HttpPost()
+            {
+                Expression<Func<ConfirmEmailController, ActionResult>> method = m => m.ValidateSecretCode(null);
+
+                var attributes = method.GetAttributes<ConfirmEmailController, ActionResult, HttpPostAttribute>();
+                attributes.ShouldNotBeNull();
+                attributes.Length.ShouldEqual(1);
+                attributes[0].ShouldNotBeNull();
+            }
+
+            [TestMethod]
+            public void ViewModelArgument_IsDecoratedWith_CustomizeValidator_ForSecretCodeProperty()
+            {
+                Expression<Func<ConfirmEmailController, JsonResult>> methodExpression = m => m.ValidateSecretCode(null);
+                var methodCallExpression = (MethodCallExpression)methodExpression.Body;
+                var methodInfo = methodCallExpression.Method;
+                var methodArg = methodInfo.GetParameters().Single();
+                var attributes = methodArg.GetCustomAttributes(typeof(CustomizeValidatorAttribute), false);
+
+                attributes.ShouldNotBeNull();
+                attributes.Length.ShouldEqual(1);
+                attributes[0].ShouldNotBeNull();
+                attributes[0].ShouldBeType<CustomizeValidatorAttribute>();
+                var customizeValidator = (CustomizeValidatorAttribute)attributes[0];
+                customizeValidator.Properties.ShouldEqual(ConfirmEmailForm.SecretCodePropertyName);
+            }
+
+            [TestMethod]
+            public void ReturnsTrue_WhenModelStateIsValid()
+            {
+                var model = new ConfirmEmailForm();
+                var controller = new ConfirmEmailController(null);
+
+                var result = controller.ValidateSecretCode(model);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.JsonRequestBehavior.ShouldEqual(JsonRequestBehavior.DenyGet);
+                result.Data.ShouldEqual(true);
+            }
+
+            [TestMethod]
+            public void ReturnsErrorMessage_WhenModelStateIsInvalid_ForValueProperty()
+            {
+                const string errorMessage = "Here is your error message.";
+                var model = new ConfirmEmailForm();
+                var controller = new ConfirmEmailController(null);
+                controller.ModelState.AddModelError(ConfirmEmailForm.SecretCodePropertyName, errorMessage);
+
+                var result = controller.ValidateSecretCode(model);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<JsonResult>();
+                result.JsonRequestBehavior.ShouldEqual(JsonRequestBehavior.DenyGet);
+                result.Data.ShouldEqual(errorMessage);
             }
         }
 
