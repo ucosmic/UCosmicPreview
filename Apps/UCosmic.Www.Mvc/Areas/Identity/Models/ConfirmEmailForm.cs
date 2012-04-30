@@ -30,13 +30,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public const string SecretCodeDisplayPrompt = "Copy & paste your secret Confirmation Code here";
     }
 
-    public class ConfirmEmailFormValidator : AbstractValidator<ConfirmEmailForm>
+    public class ConfirmEmailValidator : AbstractValidator<ConfirmEmailForm>
     {
         public const string FailedBecauseSecretCodeWasEmpty = "Please enter a confirmation code.";
         public const string FailedBecauseSecretCodeWasIncorrect = "Invalid confirmation code, please try again.";
         public const string FailedBecauseOfInconsistentData = "An unexpected error occurred while trying to confirm your email address.";
 
-        public ConfirmEmailFormValidator(IProcessQueries queryProcessor)
+        public ConfirmEmailValidator(IProcessQueries queryProcessor)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -73,11 +73,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         }
     }
 
-    public static class ConfirmEmailFormProfiler
+    public static class ConfirmEmailProfiler
     {
         public static void RegisterProfiles()
         {
-            RootModelProfiler.RegisterProfiles(typeof(ConfirmEmailFormProfiler));
+            RootModelProfiler.RegisterProfiles(typeof(ConfirmEmailProfiler));
         }
 
         // ReSharper disable UnusedMember.Local

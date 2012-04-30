@@ -206,7 +206,6 @@
     <Compile Include="Areas\Identity\Controllers\Saml2MetadataServices.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmDeniedModel.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailForm.cs" />
-    <Compile Include="Areas\Identity\Models\ConfirmEmailQuery.cs" />
     <Compile Include="Areas\My\Controllers\UpdateAffiliationController.cs" />
     <Compile Include="Areas\My\Controllers\UpdateEmailValueController.cs" />
     <Compile Include="Areas\My\Controllers\ProfileController.cs" />
