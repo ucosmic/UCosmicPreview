@@ -50,7 +50,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             // convert to viewmodel then set the secret code if url confirmation
             var model = Mapper.Map<ConfirmEmailForm>(confirmation);
             model.SecretCode = secretCode;
-            model.IsUrlConfirmation = !string.IsNullOrWhiteSpace(secretCode);
+            model.IsUrlConfirmation = !String.IsNullOrWhiteSpace(secretCode);
 
             // return partial view
             return PartialView(model);
@@ -86,16 +86,34 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             SetFeedbackMessage(SuccessMessageForIntent[model.Intent]);
 
             // redirect to ticketed action
-            var redeemedRoute = ValidateConfirmEmailAttribute
-                .GetRedeemedRouteValues(model.Token, model.Intent);
+            var redeemedRoute = GetRedeemedRouteValues(model.Token, model.Intent);
             return RedirectToRoute(redeemedRoute);
         }
 
         public static readonly IDictionary<string, string> SuccessMessageForIntent = new Dictionary<string, string>
-        {
+                                                                                     {
             { EmailConfirmationIntent.SignUp, "Your email address has been confirmed. Please create your password now." },
             { EmailConfirmationIntent.PasswordReset, "Your email address has been confirmed. Please reset your password now." },
         };
+
+        internal static RouteValueDictionary GetRedeemedRouteValues(Guid token, string intent)
+        {
+            switch (intent)
+            {
+                case EmailConfirmationIntent.PasswordReset:
+                    return new RouteValueDictionary(new
+                    {
+                        area = MVC.Passwords.Name,
+                        controller = MVC.Passwords.ResetPassword.Name,
+                        action = MVC.Passwords.ResetPassword.ActionNames.Get,
+                        token,
+                    });
+                default:
+                    throw new NotSupportedException(String.Format(
+                        "The email confirmation intent '{0}' is not supported.",
+                        intent));
+            }
+        }
     }
 
     public static class ConfirmEmailRouter

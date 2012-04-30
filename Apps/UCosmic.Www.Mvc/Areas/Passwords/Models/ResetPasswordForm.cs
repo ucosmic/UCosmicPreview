@@ -10,7 +10,7 @@ using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 {
-    public class ResetPasswordForm
+    public class ResetPasswordForm : IModelEmailConfirmation
     {
         [HiddenInput(DisplayValue = false)]
         public Guid Token { get; set; }
@@ -32,14 +32,14 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
         public const string PasswordConfirmationPropertyName = "PasswordConfirmation";
     }
 
-    public class ResetPasswordFormValidator : AbstractValidator<ResetPasswordForm>
+    public class ResetPasswordValidator : AbstractValidator<ResetPasswordForm>
     {
         public const string FailedBecausePasswordWasEmpty = "Password is required.";
         public const string FailedBecausePasswordWasTooShort = "Your password must be at least {0} characters long.";
         public const string FailedBecausePasswordConfirmationWasEmpty = "Password confirmation is required.";
         public const string FailedBecausePasswordConfirmationDidNotEqualPassword = "The password and confirmation password do not match.";
 
-        public ResetPasswordFormValidator(IProcessQueries queryProcessor)
+        public ResetPasswordValidator(IProcessQueries queryProcessor)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -82,11 +82,11 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
         }
     }
 
-    public static class ResetPasswordFormProfiler
+    public static class ResetPasswordProfiler
     {
         public static void RegisterProfiles()
         {
-            RootModelProfiler.RegisterProfiles(typeof(ResetPasswordFormProfiler));
+            RootModelProfiler.RegisterProfiles(typeof(ResetPasswordProfiler));
         }
 
         // ReSharper disable UnusedMember.Local

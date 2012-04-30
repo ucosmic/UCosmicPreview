@@ -129,7 +129,7 @@
     <Compile Include="Areas\Identity\Controllers\SignInControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOnControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignUpControllerFacts.cs" />
-    <Compile Include="Areas\Identity\Controllers\ValidateConfirmEmailFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\ValidateConfirmEmailAttributeFacts.cs" />
     <Compile Include="Areas\Identity\Mappers\RolesRouteMapperFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailProfilerFacts.cs" />
@@ -165,10 +165,8 @@
     <Compile Include="Areas\Passwords\Models\ForgotPasswordProfilerFacts.cs" />
     <Compile Include="Areas\Passwords\Models\ForgotPasswordValidatorFacts.cs" />
     <Compile Include="Areas\Passwords\Models\ResetPasswordFormFacts.cs" />
-    <Compile Include="Areas\Passwords\Models\ResetPasswordFormProfilerFacts.cs" />
-    <Compile Include="Areas\Passwords\Models\ResetPasswordFormValidatorFacts.cs" />
-    <Compile Include="Areas\Passwords\Models\ResetPasswordQueryProfilerFacts.cs" />
-    <Compile Include="Areas\Passwords\Models\ResetPasswordQueryValidatorFacts.cs" />
+    <Compile Include="Areas\Passwords\Models\ResetPasswordProfilerFacts.cs" />
+    <Compile Include="Areas\Passwords\Models\ResetPasswordValidatorFacts.cs" />
     <Compile Include="Areas\People\Controllers\PersonInfoControllerFacts.cs" />
     <Compile Include="Areas\People\Controllers\PersonInfoRouterFacts.cs" />
     <Compile Include="Areas\People\Controllers\PersonNameRouterFacts.cs" />

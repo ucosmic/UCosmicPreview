@@ -33,13 +33,13 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers {
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult Post() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.Post);
+        public System.Web.Mvc.JsonResult ValidateEmailAddress() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidateEmailAddress);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.JsonResult ValidateEmailAddress() {
-            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidateEmailAddress);
+        public System.Web.Mvc.ActionResult Post() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Post);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -57,15 +57,15 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string Get = "forgot-password";
-            public readonly string Post = "forgot-password";
             public readonly string ValidateEmailAddress = "ValidateEmailAddress";
+            public readonly string Post = "forgot-password";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Get = "forgot-password";
-            public const string Post = "forgot-password";
             public const string ValidateEmailAddress = "ValidateEmailAddress";
+            public const string Post = "forgot-password";
         }
 
 
@@ -92,14 +92,14 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Post(UCosmic.Www.Mvc.Areas.Passwords.Models.ForgotPasswordForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
+        public override System.Web.Mvc.JsonResult ValidateEmailAddress(UCosmic.Www.Mvc.Areas.Passwords.Models.ForgotPasswordForm model) {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateEmailAddress);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
 
-        public override System.Web.Mvc.JsonResult ValidateEmailAddress(UCosmic.Www.Mvc.Areas.Passwords.Models.ForgotPasswordForm model) {
-            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateEmailAddress);
+        public override System.Web.Mvc.ActionResult Post(UCosmic.Www.Mvc.Areas.Passwords.Models.ForgotPasswordForm model) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }

@@ -204,6 +204,7 @@
     </Compile>
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailController.cs" />
     <Compile Include="Areas\Identity\Controllers\Saml2MetadataServices.cs" />
+    <Compile Include="Areas\Identity\Controllers\ValidateRedeemTicketAttribute.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmDeniedModel.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailForm.cs" />
     <Compile Include="Areas\My\Controllers\UpdateAffiliationController.cs" />
@@ -216,7 +217,6 @@
     <Compile Include="Areas\My\MyAreaRegistration.cs" />
     <Compile Include="Areas\Passwords\Controllers\ResetPasswordController.cs" />
     <Compile Include="Areas\Passwords\Controllers\ForgotPasswordController.cs" />
-    <Compile Include="Areas\Passwords\Models\ResetPasswordQuery.cs" />
     <Compile Include="Areas\Passwords\Models\ResetPasswordForm.cs" />
     <Compile Include="Areas\Passwords\Models\ForgotPasswordForm.cs" />
     <Compile Include="Areas\Passwords\PasswordsAreaRegistration.cs" />
@@ -225,7 +225,6 @@
     <Compile Include="Areas\People\Models\GenerateDisplayNameForm.cs" />
     <Compile Include="Areas\People\Models\PersonInfoModel.cs" />
     <Compile Include="Areas\People\PeopleAreaRegistration.cs" />
-    <Compile Include="Controllers\ValidateEmailConfirmationTicketAttribute.cs" />
     <Compile Include="Controllers\NullLayoutOnChildActionAttribute.cs" />
     <Compile Include="Areas\Identity\Controllers\ValidateConfirmEmailAttribute.cs" />
     <Compile Include="Helpers\SimpleInjectorMVC3.cs" />
@@ -1070,6 +1069,7 @@
     <Content Include="Areas\Identity\Views\SignUp\_denied-retired.cshtml" />
     <Content Include="Areas\Passwords\Views\ResetPassword\_denied-retired.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\_denied-crash.cshtml" />
+    <Content Include="Areas\Identity\Views\SignUp\_denied-crash.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />

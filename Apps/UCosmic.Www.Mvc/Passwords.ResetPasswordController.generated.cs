@@ -38,13 +38,13 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers {
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult Post() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.Post);
+        public System.Web.Mvc.JsonResult ValidatePasswordConfirmation() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidatePasswordConfirmation);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.JsonResult ValidatePasswordConfirmation() {
-            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidatePasswordConfirmation);
+        public System.Web.Mvc.ActionResult Post() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Post);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -62,15 +62,15 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string Get = "reset-password";
-            public readonly string Post = "reset-password";
             public readonly string ValidatePasswordConfirmation = "ValidatePasswordConfirmation";
+            public readonly string Post = "reset-password";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Get = "reset-password";
-            public const string Post = "reset-password";
             public const string ValidatePasswordConfirmation = "ValidatePasswordConfirmation";
+            public const string Post = "reset-password";
         }
 
 
@@ -95,20 +95,20 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers {
     public class T4MVC_ResetPasswordController: UCosmic.Www.Mvc.Areas.Passwords.Controllers.ResetPasswordController {
         public T4MVC_ResetPasswordController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Get(UCosmic.Www.Mvc.Areas.Passwords.Models.ResetPasswordQuery query) {
+        public override System.Web.Mvc.ActionResult Get(System.Guid token) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
-            callInfo.RouteValueDictionary.Add("query", query);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult Post(UCosmic.Www.Mvc.Areas.Passwords.Models.ResetPasswordForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
-            callInfo.RouteValueDictionary.Add("model", model);
+            callInfo.RouteValueDictionary.Add("token", token);
             return callInfo;
         }
 
         public override System.Web.Mvc.JsonResult ValidatePasswordConfirmation(UCosmic.Www.Mvc.Areas.Passwords.Models.ResetPasswordForm model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidatePasswordConfirmation);
+            callInfo.RouteValueDictionary.Add("model", model);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Post(UCosmic.Www.Mvc.Areas.Passwords.Models.ResetPasswordForm model) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }

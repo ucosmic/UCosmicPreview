@@ -38,13 +38,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult Post() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.Post);
+        public System.Web.Mvc.JsonResult ValidateSecretCode() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidateSecretCode);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.JsonResult ValidateSecretCode() {
-            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidateSecretCode);
+        public System.Web.Mvc.ActionResult Post() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Post);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -62,15 +62,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string Get = "confirm-email";
-            public readonly string Post = "confirm-email";
             public readonly string ValidateSecretCode = "ValidateSecretCode";
+            public readonly string Post = "confirm-email";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Get = "confirm-email";
-            public const string Post = "confirm-email";
             public const string ValidateSecretCode = "ValidateSecretCode";
+            public const string Post = "confirm-email";
         }
 
 
@@ -105,14 +105,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Post(UCosmic.Www.Mvc.Areas.Identity.Models.ConfirmEmailForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
+        public override System.Web.Mvc.JsonResult ValidateSecretCode(UCosmic.Www.Mvc.Areas.Identity.Models.ConfirmEmailForm model) {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateSecretCode);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
 
-        public override System.Web.Mvc.JsonResult ValidateSecretCode(UCosmic.Www.Mvc.Areas.Identity.Models.ConfirmEmailForm model) {
-            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateSecretCode);
+        public override System.Web.Mvc.ActionResult Post(UCosmic.Www.Mvc.Areas.Identity.Models.ConfirmEmailForm model) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
