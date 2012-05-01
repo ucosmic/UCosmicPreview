@@ -4,16 +4,15 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcContrib.TestHelper;
 using Should;
-using UCosmic.Www.Mvc.Areas.Identity.Controllers;
-using UCosmic.Www.Mvc.Areas.Identity.Models;
+using UCosmic.Www.Mvc.Areas.Roles.Models;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
+namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
 {
     // ReSharper disable UnusedMember.Global
-    public class RolesRouteMapperFacts
+    public class RolesRouterFacts
     // ReSharper restore UnusedMember.Global
     {
-        private static readonly string Area = MVC.Identity.Name;
+        private static readonly string Area = MVC.Roles.Name;
 
         [TestClass]
         public class Put

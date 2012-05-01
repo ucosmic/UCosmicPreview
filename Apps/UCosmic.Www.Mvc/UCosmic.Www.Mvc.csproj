@@ -224,6 +224,7 @@
     <Compile Include="Areas\People\Models\GenerateDisplayNameForm.cs" />
     <Compile Include="Areas\People\Models\PersonInfoModel.cs" />
     <Compile Include="Areas\People\PeopleAreaRegistration.cs" />
+    <Compile Include="Areas\Roles\RolesAreaRegistration.cs" />
     <Compile Include="Areas\Saml\Controllers\ListIdentityProvidersController.cs" />
     <Compile Include="Areas\Saml\SamlAreaRegistration.cs" />
     <Compile Include="Controllers\NullLayoutOnChildActionAttribute.cs" />
@@ -241,7 +242,7 @@
     <Compile Include="Areas\Saml\Models\IdentityProviderListItem.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOnController.cs" />
     <Compile Include="Areas\Identity\Models\Deprecated\Password\ForgotPasswordEmailAttribute.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\NoDuplicateGrantsAttribute.cs" />
+    <Compile Include="Areas\Roles\Models\NoDuplicateGrantsAttribute.cs" />
     <Compile Include="Areas\Identity\Models\SignOnBeginForm.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsRouteMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsModelMapper.cs" />
@@ -293,9 +294,6 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Identity.PasswordController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Identity.RolesController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Identity.SharedController.generated.cs">
@@ -385,7 +383,7 @@
     <Compile Include="Controllers\TryAuthorizeAttribute.cs" />
     <Compile Include="Controllers\AuthorizeForImpersonationAttribute.cs" />
     <Compile Include="Areas\Identity\Controllers\Deprecated\SignInController.cs" />
-    <Compile Include="Areas\Identity\Controllers\RolesController.cs" />
+    <Compile Include="Areas\Roles\Controllers\RolesController.cs" />
     <Compile Include="Areas\Identity\Controllers\Deprecated\EmailConfirmationController.cs" />
     <Compile Include="Areas\Identity\Controllers\Deprecated\PasswordController.cs" />
     <Compile Include="Areas\Identity\Controllers\Deprecated\SignUpController.cs" />
@@ -394,8 +392,8 @@
     <Compile Include="Areas\Identity\Models\Deprecated\SignIn\SignInAsForm.cs" />
     <Compile Include="Areas\Identity\Models\Deprecated\SignIn\SignInForm.cs" />
     <Compile Include="Areas\Identity\Models\Deprecated\SignIn\SignInNavInfo.cs" />
-    <Compile Include="Areas\Identity\Models\RoleForm.cs" />
-    <Compile Include="Areas\Identity\Models\RoleSearchResult.cs" />
+    <Compile Include="Areas\Roles\Models\RoleForm.cs" />
+    <Compile Include="Areas\Roles\Models\RoleSearchResult.cs" />
     <Compile Include="Areas\Identity\Models\Deprecated\EmailConfirmation\ConfirmEmailForgotPasswordForm.cs" />
     <Compile Include="Areas\Identity\Models\Deprecated\Password\ChangePasswordForm.cs" />
     <Compile Include="Areas\Identity\Models\Deprecated\Password\ForgotPasswordForm.cs" />
@@ -458,6 +456,9 @@
     <Compile Include="Controllers\NonEmptyGuidRouteConstraint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecruitmentAgencies.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Roles.RolesController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Saml.ListIdentityProvidersController.generated.cs">
@@ -1070,6 +1071,9 @@
     <Content Include="Areas\Identity\Views\ConfirmEmail\_denied-crash.cshtml" />
     <Content Include="Areas\Identity\Views\SignUp\_denied-crash.cshtml" />
     <Content Include="Areas\Saml\Views\Web.config" />
+    <Content Include="Areas\Roles\Views\Web.config" />
+    <Content Include="Areas\Roles\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Saml\Views\_ViewStart.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />
@@ -1207,10 +1211,10 @@
     <Content Include="Areas\Identity\Views\SignIn\sign-in.cshtml" />
     <Content Include="Areas\Identity\Views\SignIn\_sign-on-status.cshtml" />
     <Content Include="Areas\Identity\Views\SignIn\sign-out.cshtml" />
-    <Content Include="Areas\Identity\Views\Roles\browse.cshtml" />
-    <Content Include="Areas\Identity\Views\Roles\form.cshtml" />
-    <Content Include="Areas\Identity\Views\Roles\EditorTemplates\RoleForm.cshtml" />
-    <Content Include="Areas\Identity\Views\Roles\EditorTemplates\RoleGrantForm.cshtml" />
+    <Content Include="Areas\Roles\Views\Roles\browse.cshtml" />
+    <Content Include="Areas\Roles\Views\Roles\form.cshtml" />
+    <Content Include="Areas\Roles\Views\Roles\EditorTemplates\RoleForm.cshtml" />
+    <Content Include="Areas\Roles\Views\Roles\EditorTemplates\RoleGrantForm.cshtml" />
     <Content Include="Areas\Identity\Views\EmailConfirmation\confirm-password-reset.cshtml" />
     <Content Include="Areas\Identity\Views\EmailConfirmation\EditorTemplates\ConfirmEmailForgotPasswordForm.cshtml" />
     <Content Include="Areas\Identity\Views\EmailConfirmation\EditorTemplates\ConfirmEmailForm.cshtml" />

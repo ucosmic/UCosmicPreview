@@ -13,6 +13,7 @@ using UCosmic.Www.Mvc.Areas.My;
 using UCosmic.Www.Mvc.Areas.Passwords;
 using UCosmic.Www.Mvc.Areas.People;
 using UCosmic.Www.Mvc.Areas.RecruitmentAgencies;
+using UCosmic.Www.Mvc.Areas.Roles;
 using UCosmic.Www.Mvc.Areas.Saml;
 using UCosmic.Www.Mvc.Models;
 
@@ -84,6 +85,7 @@ namespace UCosmic.Www.Mvc
                     new PasswordsAreaRegistration(),
                     new PeopleAreaRegistration(),
                     new RecruitmentAgenciesAreaRegistration(),
+                    new RolesAreaRegistration(),
                     new SamlAreaRegistration(),
 
                 }.ToList().ForEach(area => RegisterArea(area, RouteTable.Routes));

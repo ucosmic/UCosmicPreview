@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UCosmic.Www.Mvc.Areas.Identity.Models.RoleSearchResult>
+﻿@model IEnumerable<UCosmic.Www.Mvc.Areas.Roles.Models.RoleSearchResult>
 @{
     ViewBag.Title = "Browse role authorizations";
 }
@@ -23,7 +23,7 @@
             {
                 <tr>
                     <td class="no-wrap">
-                        <a href="@Url.Action(MVC.Identity.Roles.Form(item.Slug))">@Html.DisplayFor(m => item.Name)</a>
+                        <a href="@Url.Action(MVC.Roles.Roles.Form(item.Slug))">@Html.DisplayFor(m => item.Name)</a>
                     </td>
                     <td>
                         @Html.DisplayFor(m => item.Description)

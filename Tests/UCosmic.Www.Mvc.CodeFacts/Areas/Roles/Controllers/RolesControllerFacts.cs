@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
@@ -6,11 +7,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
 using UCosmic.Domain.Identity;
-using UCosmic.Www.Mvc.Areas.Identity.Models;
+using UCosmic.Www.Mvc.Areas.Roles.Models;
 using UCosmic.Www.Mvc.Controllers;
-using System.Collections.Generic;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
+namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
 {
     // ReSharper disable UnusedMember.Global
     public class RolesControllerFacts

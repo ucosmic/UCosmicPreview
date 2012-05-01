@@ -1,4 +1,4 @@
-﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.RoleForm
+﻿@model UCosmic.Www.Mvc.Areas.Roles.Models.RoleForm
 <div id="role_form_editor" data-ucosmic-entity-id="@Model.EntityId">
     <fieldset>
         <legend>Basic Role Info</legend>
@@ -66,8 +66,8 @@
                             @Html.ValidationMessageFor(m => m.Grants)
                         </div>
                         <ul id="members_list" class="listbox" 
-                            data-ucosmic-autocomplete-url="@Url.Action(MVC.Identity.Roles.AutoCompleteUserName())"
-                            data-ucosmic-add-url="@Url.Action(MVC.Identity.Roles.AddUserName())"
+                            data-ucosmic-autocomplete-url="@Url.Action(MVC.Roles.Roles.AutoCompleteUserName())"
+                            data-ucosmic-add-url="@Url.Action(MVC.Roles.Roles.AddUserName())"
                         >
                             <li class="member empty"><b>[No Members]</b></li>
                             @foreach (var grant in Model.Grants)

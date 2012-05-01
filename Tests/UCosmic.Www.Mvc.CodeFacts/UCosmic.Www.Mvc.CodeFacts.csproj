@@ -121,18 +121,19 @@
     <Compile Include="Areas\Common\Mappers\HealthRouteMapperFacts.cs" />
     <Compile Include="Areas\Common\Mappers\ErrorsRouteMapperFacts.cs" />
     <Compile Include="Areas\Common\Mappers\FeaturesRouteMapperFacts.cs" />
+    <Compile Include="Areas\Roles\RolesAreaRegistrationFacts.cs" />
     <Compile Include="Areas\Saml\SamlAreaRegistrationFacts.cs" />
     <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapperFacts.cs" />
     <Compile Include="Areas\Establishments\Mappers\ManagementFormsRouteMapperFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailRouterFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ValidateRedeemTicketAttributeFacts.cs" />
-    <Compile Include="Areas\Identity\Controllers\RolesControllerFacts.cs" />
+    <Compile Include="Areas\Roles\Controllers\RolesControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignInControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOnControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignUpControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ValidateConfirmEmailAttributeFacts.cs" />
-    <Compile Include="Areas\Identity\Mappers\RolesRouteMapperFacts.cs" />
+    <Compile Include="Areas\Roles\Controllers\RolesRouterFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailProfilerFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailValidatorFacts.cs" />
@@ -208,7 +209,9 @@
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\Establishments\Controllers\" />
     <Folder Include="Areas\Establishments\Models\" />
+    <Folder Include="Areas\Identity\Mappers\" />
     <Folder Include="Areas\InstitutionalAgreements\Controllers\" />
+    <Folder Include="Areas\Roles\Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Apps\UCosmic.Api\UCosmic.Api.csproj">

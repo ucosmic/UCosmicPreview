@@ -7,11 +7,11 @@ using System.Web.Routing;
 using AutoMapper;
 using UCosmic.Domain;
 using UCosmic.Domain.Identity;
-using UCosmic.Www.Mvc.Areas.Identity.Models;
+using UCosmic.Www.Mvc.Areas.Roles.Models;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Models;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
+namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
 {
     public class RolesServices
     {
@@ -138,8 +138,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
     public static class RolesRouter
     {
-        private static readonly string Area = MVC.Identity.Name;
-        private static readonly string Controller = MVC.Identity.Roles.Name;
+        private static readonly string Area = MVC.Roles.Name;
+        private static readonly string Controller = MVC.Roles.Roles.Name;
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
@@ -151,7 +151,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public static class Browse
         {
             public const string Route = "roles";
-            private static readonly string Action = MVC.Identity.Roles.ActionNames.Browse;
+            private static readonly string Action = MVC.Roles.Roles.ActionNames.Browse;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };
@@ -163,7 +163,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public static class Form
         {
             public const string Route = "roles/{slug}/edit";
-            private static readonly string Action = MVC.Identity.Roles.ActionNames.Form;
+            private static readonly string Action = MVC.Roles.Roles.ActionNames.Form;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new
@@ -183,7 +183,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public static class Put
         {
             public const string Route = "roles/{slug}";
-            private static readonly string Action = MVC.Identity.Roles.ActionNames.Put;
+            private static readonly string Action = MVC.Roles.Roles.ActionNames.Put;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action };
@@ -198,7 +198,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public static class AutoCompleteUserName
         {
             public const string Route = "roles/manage/autocomplete-username.json";
-            private static readonly string Action = MVC.Identity.Roles.ActionNames.AutoCompleteUserName;
+            private static readonly string Action = MVC.Roles.Roles.ActionNames.AutoCompleteUserName;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };
@@ -210,7 +210,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public static class AddUserName
         {
             public const string Route = "roles/manage/add-role-member.partial.html";
-            private static readonly string Action = MVC.Identity.Roles.ActionNames.AddUserName;
+            private static readonly string Action = MVC.Roles.Roles.ActionNames.AddUserName;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };
