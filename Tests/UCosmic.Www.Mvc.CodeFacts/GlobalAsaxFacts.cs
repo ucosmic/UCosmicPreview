@@ -13,6 +13,7 @@ using UCosmic.Www.Mvc.Areas.My;
 using UCosmic.Www.Mvc.Areas.Passwords;
 using UCosmic.Www.Mvc.Areas.People;
 using UCosmic.Www.Mvc.Areas.RecruitmentAgencies;
+using UCosmic.Www.Mvc.Areas.Saml;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc
@@ -42,7 +43,7 @@ namespace UCosmic.Www.Mvc
                 filters.ShouldNotBeNull();
                 filters.Count.ShouldBeInRange(1, int.MaxValue);
 
-                var expectedFilter = filters.SingleOrDefault(filter => 
+                var expectedFilter = filters.SingleOrDefault(filter =>
                     typeof(ElmahHandleErrorAttribute) == filter.Instance.GetType());
                 expectedFilter.ShouldNotBeNull();
             }
@@ -82,7 +83,8 @@ namespace UCosmic.Www.Mvc
                     new MyAreaRegistration(),
                     new PasswordsAreaRegistration(),
                     new PeopleAreaRegistration(),
-                    new RecruitmentAgenciesAreaRegistration(), 
+                    new RecruitmentAgenciesAreaRegistration(),
+                    new SamlAreaRegistration(),
 
                 }.ToList().ForEach(area => RegisterArea(area, RouteTable.Routes));
             }

@@ -121,6 +121,7 @@
     <Compile Include="Areas\Common\Mappers\HealthRouteMapperFacts.cs" />
     <Compile Include="Areas\Common\Mappers\ErrorsRouteMapperFacts.cs" />
     <Compile Include="Areas\Common\Mappers\FeaturesRouteMapperFacts.cs" />
+    <Compile Include="Areas\Saml\SamlAreaRegistrationFacts.cs" />
     <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapperFacts.cs" />
     <Compile Include="Areas\Establishments\Mappers\ManagementFormsRouteMapperFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailControllerFacts.cs" />
