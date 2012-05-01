@@ -224,6 +224,7 @@
     <Compile Include="Areas\People\Models\GenerateDisplayNameForm.cs" />
     <Compile Include="Areas\People\Models\PersonInfoModel.cs" />
     <Compile Include="Areas\People\PeopleAreaRegistration.cs" />
+    <Compile Include="Areas\Saml\Controllers\ListIdentityProvidersController.cs" />
     <Compile Include="Areas\Saml\SamlAreaRegistration.cs" />
     <Compile Include="Controllers\NullLayoutOnChildActionAttribute.cs" />
     <Compile Include="Areas\Identity\Controllers\ValidateConfirmEmailAttribute.cs" />
@@ -235,9 +236,9 @@
     <Compile Include="Areas\Common\Controllers\HealthController.cs" />
     <Compile Include="Areas\Common\Controllers\NavigationController.cs" />
     <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapper.cs" />
-    <Compile Include="Areas\Identity\Controllers\Saml2MetadataController.cs" />
-    <Compile Include="Areas\Identity\Models\Saml2EntityDescriptorModel.cs" />
-    <Compile Include="Areas\Identity\Models\Saml2IntegrationInfo.cs" />
+    <Compile Include="Areas\Saml\Controllers\ServiceProviderMetadataController.cs" />
+    <Compile Include="Areas\Saml\Models\ServiceProviderEntityDescriptor.cs" />
+    <Compile Include="Areas\Saml\Models\IdentityProviderListItem.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOnController.cs" />
     <Compile Include="Areas\Identity\Models\Deprecated\Password\ForgotPasswordEmailAttribute.cs" />
     <Compile Include="Areas\Identity\Models\Deprecated\NoDuplicateGrantsAttribute.cs" />
@@ -295,9 +296,6 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Identity.RolesController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Identity.Saml2MetadataController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Identity.SharedController.generated.cs">
@@ -460,6 +458,12 @@
     <Compile Include="Controllers\NonEmptyGuidRouteConstraint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecruitmentAgencies.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Saml.ListIdentityProvidersController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Saml.ServiceProviderMetadataController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="SharedController.generated.cs">
@@ -1026,7 +1030,7 @@
     <Content Include="Areas\Common\Views\Features\february-2012-preview-2.cshtml" />
     <Content Include="Areas\Identity\Views\SignOn\sign-on.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnBeginForm.cshtml" />
-    <Content Include="Areas\Identity\Views\SignOn\providers.cshtml" />
+    <Content Include="Areas\Saml\Views\ListIdentityProviders\providers.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnEmailAddress.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnPassword.cshtml" />
     <Content Include="Areas\My\Views\Web.config" />
@@ -1112,8 +1116,6 @@
     <Folder Include="Areas\RecruitmentAgencies\Controllers\" />
     <Folder Include="Areas\RecruitmentAgencies\Models\" />
     <Folder Include="Areas\RecruitmentAgencies\Views\Shared\" />
-    <Folder Include="Areas\Saml\Controllers\" />
-    <Folder Include="Areas\Saml\Models\" />
     <Folder Include="content\mail\" />
     <Folder Include="content\themes\api\consortium\" />
     <Folder Include="Routes\" />
@@ -1223,7 +1225,7 @@
     <Content Include="Areas\Identity\Views\Password\forgot-password.cshtml" />
     <Content Include="Areas\Identity\Views\Password\reset-password-expired.cshtml" />
     <Content Include="Areas\Identity\Views\Password\reset-password.cshtml" />
-    <Content Include="Areas\Identity\Views\Saml2Metadata\Index.cshtml" />
+    <Content Include="Areas\Saml\Views\ServiceProviderMetadata\metadata.cshtml" />
     <Content Include="Areas\My\Views\UpdateEmailValue\_form.cshtml" />
     <Content Include="Areas\My\Views\UpdateEmailValue\update-email-value.cshtml" />
     <Content Include="Areas\My\Views\Shared\EditorTemplates\UpdateEmailValueForm.cshtml" />

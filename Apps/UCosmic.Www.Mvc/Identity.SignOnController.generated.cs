@@ -59,7 +59,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             public readonly string ValidateEmailAddress = "ValidateEmailAddress";
             public readonly string Begin = "sign-on";
             public readonly string Saml2Post = "post";
-            public readonly string Saml2Integrations = "providers";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -67,7 +66,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             public const string ValidateEmailAddress = "ValidateEmailAddress";
             public const string Begin = "sign-on";
             public const string Saml2Post = "post";
-            public const string Saml2Integrations = "providers";
         }
 
 
@@ -76,7 +74,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string providers = "~/Areas/Identity/Views/SignOn/providers.cshtml";
             public readonly string sign_on = "~/Areas/Identity/Views/SignOn/sign-on.cshtml";
         }
     }
@@ -105,11 +102,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
 
         public override System.Web.Mvc.ActionResult Saml2Post() {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Saml2Post);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult Saml2Integrations() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Saml2Integrations);
             return callInfo;
         }
 

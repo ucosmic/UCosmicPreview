@@ -2,14 +2,14 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using UCosmic.Impl;
-using UCosmic.Www.Mvc.Areas.Identity.Models;
+using UCosmic.Www.Mvc.Areas.Saml.Models;
 using UCosmic.Www.Mvc.Controllers;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
+namespace UCosmic.Www.Mvc.Areas.Saml.Controllers
 {
-    public class Saml2MetadataServices
+    public class ServiceProviderMetadataServices
     {
-        public Saml2MetadataServices(IManageConfigurations configurationManager
+        public ServiceProviderMetadataServices(IManageConfigurations configurationManager
             , IStoreSamlCertificates samlCertificates
         )
         {
@@ -22,11 +22,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
     }
 
     [EnforceHttps]
-    public partial class Saml2MetadataController : Controller
+    public partial class ServiceProviderMetadataController : Controller
     {
-        private readonly Saml2MetadataServices _services;
+        private readonly ServiceProviderMetadataServices _services;
 
-        public Saml2MetadataController(Saml2MetadataServices services)
+        public ServiceProviderMetadataController(ServiceProviderMetadataServices services)
         {
             _services = services;
         }
@@ -35,7 +35,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             var encryptionCertificate = _services.SamlCertificates.GetEncryptionCertificate();
             var signingCertificate = _services.SamlCertificates.GetSigningCertificate();
-            var model = new Saml2EntityDescriptorModel
+            var model = new ServiceProviderEntityDescriptor
             {
                 SigningX509SubjectName = signingCertificate.SubjectName.Name,
                 SigningX509Certificate = Convert.ToBase64String(signingCertificate.RawData),
@@ -49,7 +49,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             if ("xml".Equals(contentType, StringComparison.OrdinalIgnoreCase))
                 Response.ContentType = "text/xml";
 
-            return View(model);
+            return View(Views.metadata, model);
         }
 
         public virtual ViewResult Development(string contentType = null)
@@ -57,7 +57,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             var samlCertificates = new PublicSamlCertificateStorage();
             var encryptionCertificate = samlCertificates.GetEncryptionCertificate();
             var signingCertificate = samlCertificates.GetSigningCertificate();
-            var model = new Saml2EntityDescriptorModel
+            var model = new ServiceProviderEntityDescriptor
             {
                 SigningX509SubjectName = signingCertificate.SubjectName.Name,
                 SigningX509Certificate = Convert.ToBase64String(signingCertificate.RawData),
@@ -71,18 +71,18 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             if ("xml".Equals(contentType, StringComparison.OrdinalIgnoreCase))
                 Response.ContentType = "text/xml";
 
-            return View(Views.Index, model);
+            return View(Views.metadata, model);
         }
     }
 
-    public static class Saml2MetadataRouter
+    public static class ServiceProviderMetadataRouter
     {
-        private static readonly string Area = MVC.Identity.Name;
-        private static readonly string Controller = MVC.Identity.Saml2Metadata.Name;
+        private static readonly string Area = MVC.Saml.Name;
+        private static readonly string Controller = MVC.Saml.ServiceProviderMetadata.Name;
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            RootActionRouter.RegisterRoutes(typeof(Saml2MetadataRouter), context, Area, Controller);
+            RootActionRouter.RegisterRoutes(typeof(ServiceProviderMetadataRouter), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global
@@ -90,7 +90,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public static class Index
         {
             public const string Route = "sign-on/saml/2/metadata";
-            private static readonly string Action = MVC.Identity.Saml2Metadata.ActionNames.Index;
+            private static readonly string Action = MVC.Saml.ServiceProviderMetadata.ActionNames.Index;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 if (WebConfig.IsDeployedToCloud) return;
@@ -104,7 +104,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public static class Development
         {
             public const string Route = "sign-on/saml/2/metadata/develop";
-            private static readonly string Action = MVC.Identity.Saml2Metadata.ActionNames.Development;
+            private static readonly string Action = MVC.Saml.ServiceProviderMetadata.ActionNames.Development;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };

@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Models
+namespace UCosmic.Www.Mvc.Areas.Saml.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class Saml2IntegrationInfoFacts
+    public class IdentityProviderListItemFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -12,7 +12,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void HasPublicSetter()
             {
-                new Saml2IntegrationInfo
+                new IdentityProviderListItem
                 {
                     OfficialName = "official name"
                 };
@@ -25,7 +25,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void HasPublicSetter()
             {
-                new Saml2IntegrationInfo
+                new IdentityProviderListItem
                 {
                     EmailDomains = null
                 };
@@ -42,7 +42,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 [TestMethod]
                 public void HasPublicSetter()
                 {
-                    new Saml2IntegrationInfo.EmailDomainInfo
+                    new IdentityProviderListItem.EmailDomain
                     {
                         Value = "@domain.tld"
                     };
