@@ -20,10 +20,10 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
-    public partial class Saml2MetadataController {
+namespace UCosmic.Www.Mvc.Areas.Saml.Controllers {
+    public partial class ListIdentityProvidersController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected Saml2MetadataController(Dummy d) { }
+        protected ListIdentityProvidersController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -33,27 +33,25 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public Saml2MetadataController Actions { get { return MVC.Identity.Saml2Metadata; } }
+        public ListIdentityProvidersController Actions { get { return MVC.Saml.ListIdentityProviders; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "Identity";
+        public readonly string Area = "Saml";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Saml2Metadata";
+        public readonly string Name = "ListIdentityProviders";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Saml2Metadata";
+        public const string NameConst = "ListIdentityProviders";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Index = "Index";
-            public readonly string Development = "Development";
+            public readonly string Get = "providers";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Index = "Index";
-            public const string Development = "Development";
+            public const string Get = "providers";
         }
 
 
@@ -62,23 +60,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string Index = "~/Areas/Identity/Views/Saml2Metadata/Index.cshtml";
+            public readonly string providers = "~/Areas/Saml/Views/ListIdentityProviders/providers.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_Saml2MetadataController: UCosmic.Www.Mvc.Areas.Identity.Controllers.Saml2MetadataController {
-        public T4MVC_Saml2MetadataController() : base(Dummy.Instance) { }
+    public class T4MVC_ListIdentityProvidersController: UCosmic.Www.Mvc.Areas.Saml.Controllers.ListIdentityProvidersController {
+        public T4MVC_ListIdentityProvidersController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ViewResult Index(string contentType) {
-            var callInfo = new T4MVC_ViewResult(Area, Name, ActionNames.Index);
-            callInfo.RouteValueDictionary.Add("contentType", contentType);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ViewResult Development(string contentType) {
-            var callInfo = new T4MVC_ViewResult(Area, Name, ActionNames.Development);
-            callInfo.RouteValueDictionary.Add("contentType", contentType);
+        public override System.Web.Mvc.ActionResult Get() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
             return callInfo;
         }
 

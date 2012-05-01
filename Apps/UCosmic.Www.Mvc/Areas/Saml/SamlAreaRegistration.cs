@@ -1,4 +1,6 @@
 ﻿using System.Web.Mvc;
+using UCosmic.Www.Mvc.Areas.Saml.Controllers;
+using UCosmic.Www.Mvc.Areas.Saml.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Saml
 {
@@ -11,6 +13,11 @@ namespace UCosmic.Www.Mvc.Areas.Saml
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
+            ServiceProviderMetadataRouter.RegisterRoutes(context);
+
+            IdentityProviderListItemModelProfiler.RegisterProfiles();
+            ListIdentityProvidersRouter.RegisterRoutes(context);
+
             //context.MapRoute(
             //    "Saml_default",
             //    "Saml/{controller}/{action}/{id}",

@@ -1,6 +1,6 @@
-﻿namespace UCosmic.Www.Mvc.Areas.Identity.Models
+﻿namespace UCosmic.Www.Mvc.Areas.Saml.Models
 {
-    public class Saml2EntityDescriptorModel
+    public class ServiceProviderEntityDescriptor
     {
         public string EntityId { get; set; }
 

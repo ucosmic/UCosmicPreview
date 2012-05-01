@@ -136,7 +136,7 @@
     <Compile Include="Areas\Identity\Models\ConfirmEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailProfilerFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailValidatorFacts.cs" />
-    <Compile Include="Areas\Identity\Models\Saml2IntegrationInfoFacts.cs" />
+    <Compile Include="Areas\Saml\Models\IdentityProviderListItemFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignOnBeginFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignOnBeginValidatorFacts.cs" />
     <Compile Include="Areas\Identity\Models\Deprecated\SignUp\CreatePasswordFormFacts.cs" />

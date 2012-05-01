@@ -27,10 +27,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             RoleFormProfiler.RegisterProfiles();
             RoleSearchResultProfiler.RegisterProfiles();
 
-            Saml2MetadataRouter.RegisterRoutes(context);
-
             SignOnRouter.RegisterRoutes(context);
-            Saml2IntegrationProfiler.RegisterProfiles();
 
             ConfirmEmailRouter.RegisterRoutes(context);
             ConfirmEmailProfiler.RegisterProfiles();

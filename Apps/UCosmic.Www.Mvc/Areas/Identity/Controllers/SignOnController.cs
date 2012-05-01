@@ -3,7 +3,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
-using AutoMapper;
 using FluentValidation.Mvc;
 using UCosmic.Domain.Establishments;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
@@ -165,22 +164,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         }
 
         #endregion
-        #region Saml2Integrations
-
-        [HttpGet]
-        [ActionName("providers")]
-        [OpenTopTab(TopTabName.Home)]
-        public virtual ActionResult Saml2Integrations()
-        {
-            var entities = _services.QueryProcessor.Execute(
-                new FindSamlIntegratedEstablishmentsQuery()
-            );
-
-            var models = Mapper.Map<Saml2IntegrationInfo[]>(entities);
-            return View(models);
-        }
-
-        #endregion
     }
 
     public static class SignOnRouter
@@ -227,18 +210,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 var defaults = new { area, controller, action = Action, };
                 var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
-                context.MapRoute(null, Route, defaults, constraints);
-            }
-        }
-
-        public static class Saml2Integrations
-        {
-            public const string Route = "sign-on/saml/2/providers";
-            private static readonly string Action = MVC.Identity.SignOn.ActionNames.Saml2Integrations;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
                 context.MapRoute(null, Route, defaults, constraints);
             }
         }

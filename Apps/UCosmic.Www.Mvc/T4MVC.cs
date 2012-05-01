@@ -39,6 +39,8 @@ public static class MVC {
     public static PeopleClass People { get { return s_People; } }
     static readonly RecruitmentAgenciesClass s_RecruitmentAgencies = new RecruitmentAgenciesClass();
     public static RecruitmentAgenciesClass RecruitmentAgencies { get { return s_RecruitmentAgencies; } }
+    static readonly SamlClass s_Saml = new SamlClass();
+    public static SamlClass Saml { get { return s_Saml; } }
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
@@ -70,7 +72,6 @@ namespace T4MVC {
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignInController SignIn = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignInController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignUpController SignUp = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignUpController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.RolesController Roles = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_RolesController();
-        public UCosmic.Www.Mvc.Areas.Identity.Controllers.Saml2MetadataController Saml2Metadata = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_Saml2MetadataController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignOnController SignOn = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignOnController();
         public T4MVC.Identity.SharedController Shared = new T4MVC.Identity.SharedController();
     }
@@ -108,6 +109,12 @@ namespace T4MVC {
     public class RecruitmentAgenciesClass {
         public readonly string Name = "RecruitmentAgencies";
         public T4MVC.RecruitmentAgencies.SharedController Shared = new T4MVC.RecruitmentAgencies.SharedController();
+    }
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class SamlClass {
+        public readonly string Name = "Saml";
+        public UCosmic.Www.Mvc.Areas.Saml.Controllers.ListIdentityProvidersController ListIdentityProviders = new UCosmic.Www.Mvc.Areas.Saml.Controllers.T4MVC_ListIdentityProvidersController();
+        public UCosmic.Www.Mvc.Areas.Saml.Controllers.ServiceProviderMetadataController ServiceProviderMetadata = new UCosmic.Www.Mvc.Areas.Saml.Controllers.T4MVC_ServiceProviderMetadataController();
     }
 }
 
