@@ -203,7 +203,6 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailController.cs" />
-    <Compile Include="Areas\Identity\Controllers\Saml2MetadataServices.cs" />
     <Compile Include="Areas\Identity\Controllers\ValidateRedeemTicketAttribute.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmDeniedModel.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailForm.cs" />
@@ -239,12 +238,9 @@
     <Compile Include="Areas\Identity\Models\Saml2EntityDescriptorModel.cs" />
     <Compile Include="Areas\Identity\Models\Saml2IntegrationInfo.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOnController.cs" />
-    <Compile Include="Areas\Identity\Controllers\SignOnRouter.cs" />
     <Compile Include="Areas\Identity\Models\Deprecated\Password\ForgotPasswordEmailAttribute.cs" />
     <Compile Include="Areas\Identity\Models\Deprecated\NoDuplicateGrantsAttribute.cs" />
     <Compile Include="Areas\Identity\Models\SignOnBeginForm.cs" />
-    <Compile Include="Areas\Identity\Controllers\RolesServices.cs" />
-    <Compile Include="Areas\Identity\Controllers\SignOnServices.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsRouteMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsModelMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\PublicSearchModelMapper.cs" />
@@ -383,8 +379,6 @@
     <Compile Include="Areas\Establishments\EstablishmentsAreaRegistration.cs" />
     <Compile Include="Areas\Establishments\Models\ManagementForms\EstablishmentForm.cs" />
     <Compile Include="Areas\Establishments\Models\ManagementForms\EstablishmentSearchResult.cs" />
-    <Compile Include="Areas\Identity\Controllers\Saml2MetadataRouter.cs" />
-    <Compile Include="Areas\Identity\Controllers\RolesRouter.cs" />
     <Compile Include="Areas\Identity\Mappers\Deprecated\PasswordModelMapper.cs" />
     <Compile Include="Areas\Identity\Mappers\Deprecated\PasswordRouteMapper.cs" />
     <Compile Include="Areas\Identity\Mappers\Deprecated\EmailConfirmationModelMapper.cs" />

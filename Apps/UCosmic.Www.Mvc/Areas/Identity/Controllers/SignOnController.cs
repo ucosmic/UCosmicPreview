@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using System.Web.Routing;
 using AutoMapper;
 using FluentValidation.Mvc;
 using UCosmic.Domain.Establishments;
@@ -10,6 +11,31 @@ using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
+    public class SignOnServices
+    {
+        public SignOnServices(
+            ISignUsers userSigner
+            , ISignMembers members
+            , IProcessQueries queryProcessor
+            , IHandleCommands<SendSamlAuthnRequestCommand> authnRequestHandler
+            , IHandleCommands<SignOnSamlUserCommand> authnResponseHandler
+        )
+        {
+            UserSigner = userSigner;
+            Members = members;
+            QueryProcessor = queryProcessor;
+            SendSamlAuthnRequestHandler = authnRequestHandler;
+            SignOnSamlUserHandler = authnResponseHandler;
+        }
+
+        public ISignUsers UserSigner { get; private set; }
+        public ISignMembers Members { get; private set; }
+        public IProcessQueries QueryProcessor { get; private set; }
+        public IHandleCommands<SendSamlAuthnRequestCommand> SendSamlAuthnRequestHandler { get; private set; }
+        public IHandleCommands<SignOnSamlUserCommand> SignOnSamlUserHandler { get; private set; }
+
+    }
+
     public partial class SignOnController : BaseController
     {
         #region Construction & DI
@@ -155,5 +181,68 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         }
 
         #endregion
+    }
+
+    public static class SignOnRouter
+    {
+        private static readonly string Area = MVC.Identity.Name;
+        private static readonly string Controller = MVC.Identity.SignOn.Name;
+
+        public static void RegisterRoutes(AreaRegistrationContext context)
+        {
+            if (!WebConfig.IsDeployedToCloud)
+                RootActionRouter.RegisterRoutes(typeof(SignOnRouter), context, Area, Controller);
+        }
+
+        // ReSharper disable UnusedMember.Global
+
+        public static class Begin
+        {
+            public const string Route = "sign-on";
+            private static readonly string Action = MVC.Identity.SignOn.ActionNames.Begin;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("GET", "POST") };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
+        public static class ValidateEmailAddress
+        {
+            public const string Route = "sign-on/validate/email";
+            private static readonly string Action = MVC.Identity.SignOn.ActionNames.ValidateEmailAddress;
+            public static void MapRoutes(AreaRegistrationContext routes, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
+                routes.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+        public static class Saml2Post
+        {
+            public const string Route = "sign-on/saml/2/post";
+            private static readonly string Action = MVC.Identity.SignOn.ActionNames.Saml2Post;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
+        public static class Saml2Integrations
+        {
+            public const string Route = "sign-on/saml/2/providers";
+            private static readonly string Action = MVC.Identity.SignOn.ActionNames.Saml2Integrations;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
+        // ReSharper restore UnusedMember.Global
     }
 }
