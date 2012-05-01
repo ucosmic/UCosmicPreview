@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using MvcContrib.TestHelper;
 using Should;
 using UCosmic.Domain;
 using UCosmic.Domain.Email;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
-using UCosmic.Www.Mvc.Areas.Identity.Mappers;
 using UCosmic.Www.Mvc.Areas.Identity.Models.SignIn;
 using UCosmic.Www.Mvc.Areas.Identity.Models.SignUp;
 using UCosmic.Www.Mvc.Controllers;
@@ -30,19 +27,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [TestClass]
         public class SendEmail_Get
         {
-            [TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
-            public void HasOneRoute_SignUp()
-            {
-                Expression<Func<SignUpController, ActionResult>> action =
-                    controller => controller.SendEmail();
-                var url = SignUpRouteMapper.SendEmail.Route.ToAppRelativeUrl();
-
-                OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
-                url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
-                url.WithMethodsExcept(HttpVerbs.Get, HttpVerbs.Post).ShouldMapToNothing();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
-
             [TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
             public void ReturnsInputForm_WithNullEmailAddress_Always()
             {
@@ -66,19 +50,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [TestClass]
         public class SendEmail_Post
         {
-            [TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
-            public void HasOneRoute_SignUp()
-            {
-                Expression<Func<SignUpController, ActionResult>> action =
-                    controller => controller.SendEmail(null);
-                var url = SignUpRouteMapper.SendEmail.Route.ToAppRelativeUrl();
-
-                OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
-                url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
-                url.WithMethodsExcept(HttpVerbs.Get, HttpVerbs.Post).ShouldMapToNothing();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
-
             [TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
             public void Returns404_WhenModelIsNull()
             {
@@ -387,19 +358,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public class ValidateSendEmail_Post
         {
             [TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
-            public void HasOneRoute_SignUp_Validate_emailAddress()
-            {
-                Expression<Func<SignUpController, ActionResult>> action =
-                    controller => controller.ValidateSendEmail(null);
-                var url = SignUpRouteMapper.ValidateSendEmail.Route.ToAppRelativeUrl();
-
-                OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
-                url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
-                url.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
-
-            [TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
             public void ReturnsErrorMessage_WhenModelIsInvalid()
             {
                 // arrange
@@ -475,49 +433,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [TestClass]
         public class ConfirmEmail_Get
         {
-            //[TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
-            //public void HasOneRoute_SignUp_ConfirmEmail_token_secretCode()
-            //{
-            //    var token = Guid.NewGuid();
-            //    const string secretCode = "its a secret";
-            //    var routeUrl = SignUpRouteMapper.ConfirmEmail.RouteForGet.ToAppRelativeUrl();
-            //    var urlFormat = routeUrl.Replace("token", "0").Replace("secretCode", "1");
-
-            //    // ~/sign-up/validate/[Guid]
-            //    Expression<Func<SignUpController, ActionResult>> actionWithoutSecretCode =
-            //        controller => controller.ConfirmEmail(token, string.Empty);
-            //    var urlWithoutSecretCode = string.Format(urlFormat, token, string.Empty);
-            //    urlWithoutSecretCode = urlWithoutSecretCode.WithoutTrailingSlash();
-            //    OutBoundRoute.Of(actionWithoutSecretCode).InArea(Area).AppRelativeUrl().ShouldEqual(urlWithoutSecretCode);
-            //    urlWithoutSecretCode.WithMethod(HttpVerbs.Get).ShouldMapTo(actionWithoutSecretCode);
-            //    urlWithoutSecretCode.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            //    actionWithoutSecretCode.DefaultAreaRoutes(Area).ShouldMapToNothing();
-
-            //    // ~/sign-up/validate/[Guid]/secret
-            //    Expression<Func<SignUpController, ActionResult>> actionWithSecretCode =
-            //        controller => controller.ConfirmEmail(token, secretCode);
-            //    var urlWithSecretCode = string.Format(urlFormat, token, secretCode.UrlPathEncoded());
-            //    OutBoundRoute.Of(actionWithSecretCode).InArea(Area).AppRelativeUrl().ShouldEqual(urlWithSecretCode);
-            //    urlWithSecretCode = urlWithSecretCode.UrlDecoded();
-            //    urlWithSecretCode.WithMethod(HttpVerbs.Get).ShouldMapTo(actionWithSecretCode);
-            //    urlWithSecretCode.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            //    actionWithSecretCode.DefaultAreaRoutes(Area).ShouldMapToNothing();
-
-            //    // ~/sign-up/validate/Guid.Empty
-            //    Expression<Func<SignUpController, ActionResult>> actionWithEmptyToken =
-            //        controller => controller.ConfirmEmail(Guid.Empty, string.Empty);
-            //    var urlWithEmptyToken = string.Format(urlFormat, Guid.Empty, string.Empty);
-            //    urlWithEmptyToken = urlWithEmptyToken.WithoutTrailingSlash();
-            //    OutBoundRoute.Of(actionWithEmptyToken).InArea(Area).AppRelativeUrl().ShouldNotEqual(urlWithEmptyToken);
-            //    urlWithEmptyToken.WithAnyMethod().ShouldMapToNothing();
-            //    actionWithEmptyToken.DefaultAreaRoutes(Area).ShouldMapToNothing();
-
-            //    // ~/sign-up/validate/not a Guid
-            //    var urlWithInvalidToken = string.Format(urlFormat, "not a Guid", string.Empty);
-            //    urlWithInvalidToken = urlWithInvalidToken.WithoutTrailingSlash();
-            //    urlWithInvalidToken.WithAnyMethod().ShouldMapToNothing();
-            //}
-
             [TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
             public void Returns404_WhenTokenIsEmpty()
             {
@@ -1169,19 +1084,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [TestClass]
         public class ConfirmEmail_Post
         {
-            //[TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
-            //public void HasOneRoute_SignUp_ConfirmEmail()
-            //{
-            //    Expression<Func<SignUpController, ActionResult>> action =
-            //        controller => controller.ConfirmEmail(null);
-            //    var url = SignUpRouteMapper.ConfirmEmail.RouteForPost.ToAppRelativeUrl();
-
-            //    OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
-            //    url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
-            //    url.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
-            //    action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            //}
-
             [TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
             public void Returns404_WhenModelIsNull()
             {
@@ -1838,49 +1740,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [TestClass]
         public class ValidateConfirmEmail_Post
         {
-            //[TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
-            //public void HasOneRoute_SignUp_ConfirmEmail_Validate_token_secretCode()
-            //{
-            //    var token = Guid.NewGuid();
-            //    const string secretCode = "its a secret";
-            //    var routeUrl = SignUpRouteMapper.ValidateConfirmEmail.Route.ToAppRelativeUrl();
-            //    var urlFormat = routeUrl.Replace("token", "0").Replace("secretCode", "1").ToAppRelativeUrl();
-
-            //    // ~/sign-up/confirm-email/validate/[Guid]
-            //    Expression<Func<SignUpController, ActionResult>> actionWithoutSecretCode =
-            //        controller => controller.ValidateConfirmEmail(token, string.Empty);
-            //    var urlWithoutSecretCode = string.Format(urlFormat, token, string.Empty);
-            //    urlWithoutSecretCode = urlWithoutSecretCode.WithoutTrailingSlash();
-            //    OutBoundRoute.Of(actionWithoutSecretCode).InArea(Area).AppRelativeUrl().ShouldEqual(urlWithoutSecretCode);
-            //    urlWithoutSecretCode.WithMethod(HttpVerbs.Post).ShouldMapTo(actionWithoutSecretCode);
-            //    urlWithoutSecretCode.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
-            //    actionWithoutSecretCode.DefaultAreaRoutes(Area).ShouldMapToNothing();
-
-            //    // ~/sign-up/confirm-email/validate/[Guid]/secret
-            //    Expression<Func<SignUpController, ActionResult>> actionWithSecretCode =
-            //        controller => controller.ValidateConfirmEmail(token, secretCode);
-            //    var urlWithSecretCode = string.Format(urlFormat, token, secretCode.UrlPathEncoded());
-            //    OutBoundRoute.Of(actionWithSecretCode).InArea(Area).AppRelativeUrl().ShouldEqual(urlWithSecretCode);
-            //    urlWithSecretCode = urlWithSecretCode.UrlDecoded();
-            //    urlWithSecretCode.WithMethod(HttpVerbs.Post).ShouldMapTo(actionWithSecretCode);
-            //    urlWithSecretCode.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
-            //    actionWithSecretCode.DefaultAreaRoutes(Area).ShouldMapToNothing();
-
-            //    // ~/sign-up/confirm-email/validate/Guid.Empty
-            //    Expression<Func<SignUpController, ActionResult>> actionWithEmptyToken =
-            //        controller => controller.ValidateConfirmEmail(Guid.Empty, string.Empty);
-            //    var urlWithEmptyToken = string.Format(urlFormat, Guid.Empty, string.Empty);
-            //    urlWithEmptyToken = urlWithEmptyToken.WithoutTrailingSlash();
-            //    OutBoundRoute.Of(actionWithEmptyToken).InArea(Area).AppRelativeUrl().ShouldNotEqual(urlWithEmptyToken);
-            //    urlWithEmptyToken.WithAnyMethod().ShouldMapToNothing();
-            //    actionWithEmptyToken.DefaultAreaRoutes(Area).ShouldMapToNothing();
-
-            //    // ~/sign-up/confirm-email/validate/not a Guid
-            //    var urlWithInvalidToken = string.Format(urlFormat, "not a Guid", string.Empty);
-            //    urlWithInvalidToken = urlWithInvalidToken.WithoutTrailingSlash();
-            //    urlWithInvalidToken.WithAnyMethod().ShouldMapToNothing();
-            //}
-
             [TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
             public void ReturnsErrorMessage_WhenModelIsInvalid()
             {
@@ -1965,19 +1824,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [TestClass]
         public class CreatePassword_Get
         {
-            //[TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
-            //public void HasOneRoute_SignUp_CreatePassword()
-            //{
-            //    Expression<Func<SignUpController, ActionResult>> action =
-            //       controller => controller.CreatePassword();
-            //    var url = SignUpRouteMapper.CreatePassword.Route.ToAppRelativeUrl();
-
-            //    OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
-            //    url.WithMethods(HttpVerbs.Get).ShouldMapTo(action);
-            //    url.WithMethodsExcept(HttpVerbs.Get, HttpVerbs.Post).ShouldMapToNothing();
-            //    action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            //}
-
             [TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
             public void Returns404_WhenConfirmationTokenTempDataIsLost()
             {
@@ -2409,19 +2255,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [TestClass]
         public class CreatePassword_Post
         {
-            [TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
-            public void HasOneRoute_SignUp_CreatePassword()
-            {
-                Expression<Func<SignUpController, ActionResult>> action =
-                   controller => controller.CreatePassword(null);
-                var url = SignUpRouteMapper.CreatePassword.Route.ToAppRelativeUrl();
-
-                OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
-                url.WithMethods(HttpVerbs.Post).ShouldMapTo(action);
-                url.WithMethodsExcept(HttpVerbs.Get, HttpVerbs.Post).ShouldMapToNothing();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
-
             [TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
             public void Returns404_WhenModelIsNull()
             {
@@ -2911,19 +2744,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [TestClass]
         public class SignIn_Get
         {
-            //[TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
-            //public void HasOneRoute_SignUp_SignIn()
-            //{
-            //    Expression<Func<SignUpController, ActionResult>> action =
-            //        controller => controller.SignIn();
-            //    var url = SignUpRouteMapper.SignIn.Route.ToAppRelativeUrl();
-
-            //    OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
-            //    url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
-            //    url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            //    action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            //}
-
             [TestMethod, TestCategory("Identity"), TestCategory("SignUp")]
             public void RedirectsToSignIn_WhenConfirmationTokenIsNotInTempData()
             {

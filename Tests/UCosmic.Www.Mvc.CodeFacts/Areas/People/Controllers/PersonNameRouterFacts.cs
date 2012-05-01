@@ -42,15 +42,6 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 OutBoundRoute.Of(action).InArea(MVC.People.Name).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);
             }
-
-            [TestMethod]
-            public void Defaults_WithPostAction_MapToNothing()
-            {
-                Expression<Func<PersonNameController, ActionResult>> action =
-                    controller => controller.GenerateDisplayName(null);
-
-                action.DefaultAreaRoutes(MVC.People.Name).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -84,15 +75,6 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 OutBoundRoute.Of(action).InArea(MVC.People.Name).WithMethod(HttpVerbs.Get)
                     .AppRelativeUrl().ShouldEqual(url);
             }
-
-            [TestMethod]
-            public void Defaults_WithGetAction_MapToNothing()
-            {
-                Expression<Func<PersonNameController, ActionResult>> action =
-                    controller => controller.AutoCompleteSalutations(null);
-
-                action.DefaultAreaRoutes(MVC.People.Name).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -125,15 +107,6 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
 
                 OutBoundRoute.Of(action).InArea(MVC.People.Name).WithMethod(HttpVerbs.Get)
                     .AppRelativeUrl().ShouldEqual(url);
-            }
-
-            [TestMethod]
-            public void Defaults_WithGetAction_MapToNothing()
-            {
-                Expression<Func<PersonNameController, ActionResult>> action =
-                    controller => controller.AutoCompleteSuffixes(null);
-
-                action.DefaultAreaRoutes(MVC.People.Name).ShouldMapToNothing();
             }
         }
     }

@@ -17,13 +17,11 @@ namespace UCosmic.Www.Mvc.Areas.Establishments
 
             SupplementalFormsRouteMapper.RegisterRoutes(context);
 
-            //// default route
             //context.MapRoute(
             //    "Establishments_default",
             //    "Establishments/{controller}/{action}/{id}",
             //    new { action = "Index", id = UrlParameter.Optional }
             //);
-
         }
     }
 }

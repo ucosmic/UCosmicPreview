@@ -87,26 +87,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
                 OutBoundRoute.Of(action).InArea(MVC.My.Name).WithMethod(HttpVerbs.Get).AppRelativeUrl().ShouldEqual(url);
             }
-
-            [TestMethod]
-            public void Defaults_ForGetAction_AndEstablishmentId0_MapToNothing()
-            {
-                const int establishmentId = 0;
-                Expression<Func<UpdateAffiliationController, ActionResult>> action =
-                    controller => controller.Get(establishmentId);
-
-                action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void Defaults_ForGetAction_AndPositiveEstablishmentId_MapToNothing()
-            {
-                const int establishmentId = 7;
-                Expression<Func<UpdateAffiliationController, ActionResult>> action =
-                    controller => controller.Get(establishmentId);
-
-                action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -189,15 +169,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
                 OutBoundRoute.Of(action).InArea(MVC.My.Name).WithMethod(HttpVerbs.Post)
                     .HavingViewModelProperty(establishmentIdParam, establishmentId).AppRelativeUrl().ShouldEqual(url);
-            }
-
-            [TestMethod]
-            public void Defaults_WithPutAction_MapToNothing()
-            {
-                Expression<Func<UpdateAffiliationController, ActionResult>> action =
-                    controller => controller.Put(null);
-
-                action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
             }
         }
     }

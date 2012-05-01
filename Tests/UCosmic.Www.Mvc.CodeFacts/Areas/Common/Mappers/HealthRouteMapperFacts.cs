@@ -41,14 +41,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 var url = HealthRouteMapper.SampleCachedPage.Route.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<HealthController, ActionResult>> action =
-                    controller => controller.SampleCachedPage();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -77,14 +69,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 var url = HealthRouteMapper.RunEstablishmentHierarchy.Route.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<HealthController, ActionResult>> action =
-                    controller => controller.RunEstablishmentHierarchy();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
             }
         }
 
@@ -115,14 +99,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 var url = HealthRouteMapper.RunInstitutionalAgreementHierarchy.Route.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<HealthController, ActionResult>> action =
-                    controller => controller.RunInstitutionalAgreementHierarchy();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -151,14 +127,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 var url = HealthRouteMapper.RunEstablishmentImport.Route.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<HealthController, ActionResult>> action =
-                    controller => controller.RunEstablishmentImport();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
             }
         }
     }

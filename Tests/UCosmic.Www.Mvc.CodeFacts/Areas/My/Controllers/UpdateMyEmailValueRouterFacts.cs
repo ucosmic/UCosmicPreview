@@ -87,26 +87,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
                 OutBoundRoute.Of(action).InArea(MVC.My.Name).WithMethod(HttpVerbs.Get).AppRelativeUrl().ShouldEqual(url);
             }
-
-            [TestMethod]
-            public void Defaults_ForGetAction_AndNumber0_MapToNothing()
-            {
-                const int number = 0;
-                Expression<Func<UpdateEmailValueController, ActionResult>> action =
-                    controller => controller.Get(number);
-
-                action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void Defaults_ForGetAction_AndPositiveNumber_MapToNothing()
-            {
-                const int number = 7;
-                Expression<Func<UpdateEmailValueController, ActionResult>> action =
-                    controller => controller.Get(number);
-
-                action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -190,15 +170,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 OutBoundRoute.Of(action).InArea(MVC.My.Name).WithMethod(HttpVerbs.Post)
                     .HavingViewModelProperty(numberParam, number).AppRelativeUrl().ShouldEqual(url);
             }
-
-            [TestMethod]
-            public void Defaults_WithPutAction_MapToNothing()
-            {
-                Expression<Func<UpdateEmailValueController, ActionResult>> action =
-                    controller => controller.Put(null);
-
-                action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -279,15 +250,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
                 OutBoundRoute.Of(action).InArea(MVC.My.Name).WithMethod(HttpVerbs.Post)
                     .HavingViewModelProperty(numberParam, number).AppRelativeUrl().ShouldEqual(url);
-            }
-
-            [TestMethod]
-            public void Defaults_WithPostAction_MapToNothing()
-            {
-                Expression<Func<UpdateEmailValueController, ActionResult>> action =
-                    controller => controller.ValidateValue(null);
-
-                action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
             }
         }
     }

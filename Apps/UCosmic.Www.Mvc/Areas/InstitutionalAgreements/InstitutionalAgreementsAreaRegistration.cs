@@ -21,13 +21,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
             PublicSearchRouteMapper.RegisterRoutes(context);
             PublicSearchModelMapper.RegisterProfiles();
 
-            //// default route
             //context.MapRoute(
             //    "InstitutionalAgreements_default",
             //    "InstitutionalAgreements/{controller}/{action}/{id}",
             //    new { action = "Index", id = UrlParameter.Optional }
             //);
-
         }
     }
 }

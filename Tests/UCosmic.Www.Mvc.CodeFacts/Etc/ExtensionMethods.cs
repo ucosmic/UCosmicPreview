@@ -40,51 +40,6 @@ namespace UCosmic.Www.Mvc
             return string.Format("{0}{1}", url, queryString);
         }
 
-        public static IEnumerable<RouteData> DefaultAreaRoutes<TController>(
-            this Expression<Func<TController, ActionResult>> action, string areaName)
-        {
-            var methodCall = (MethodCallExpression)action.Body;
-            var actionName1 = methodCall.Method.ActionName();
-            var actionName2 = methodCall.Method.Name;
-            var controllerName = typeof(TController).Name.Replace("Controller", "");
-            var routeDatas = new List<RouteData>();
-            var areaSegment = (!string.IsNullOrWhiteSpace(areaName)) ? areaName + "/" : string.Empty;
-
-            if (actionName1.Equals("Index", StringComparison.OrdinalIgnoreCase))
-                routeDatas.AddRange(string.Format("~/{0}{1}", areaSegment, controllerName)
-                    .ToAppRelativeUrl().WithAnyMethod());
-
-            routeDatas.AddRange(string.Format("~/{0}{1}/{2}", areaSegment, controllerName, actionName1)
-                .ToAppRelativeUrl().WithAnyMethod());
-
-            routeDatas.AddRange(string.Format("~/{0}{1}/{2}/Id", areaSegment, controllerName, actionName1)
-                .ToAppRelativeUrl().WithAnyMethod());
-
-            if (!actionName1.Equals(actionName2))
-            {
-                routeDatas.AddRange(string.Format("~/{0}{1}/{2}", areaSegment, controllerName, actionName2)
-                    .ToAppRelativeUrl().WithAnyMethod());
-
-                routeDatas.AddRange(string.Format("~/{0}{1}/{2}/Id", areaSegment, controllerName, actionName2)
-                    .ToAppRelativeUrl().WithAnyMethod());
-            }
-
-            return routeDatas;
-        }
-
-        public static IEnumerable<RouteData> DefaultAreaRoutes(this string areaName, string controllerName = null)
-        {
-            var routeDatas = new List<RouteData>();
-
-            var url = string.Format("~/{0}", areaName);
-            if (!string.IsNullOrWhiteSpace(controllerName))
-                url = string.Format("{0}/{1}", url, controllerName);
-
-            routeDatas.AddRange(url.WithAnyMethod());
-
-            return routeDatas;
-        }
-
         public static IEnumerable<RouteData> WithMethodsExcept(this string url, params HttpVerbs[] httpVerbs)
         {
             return url.IncludeOrExcludeMethods(false, httpVerbs);

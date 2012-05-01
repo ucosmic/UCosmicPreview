@@ -41,15 +41,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
                 OutBoundRoute.Of(action).InArea(MVC.My.Name).WithMethod(HttpVerbs.Get).AppRelativeUrl().ShouldEqual(url);
             }
-
-            [TestMethod]
-            public void Defaults_ForGetAction_MapToNothing()
-            {
-                Expression<Func<UpdateNameController, ActionResult>> action =
-                    controller => controller.Get();
-
-                action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -103,14 +94,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
 
                 OutBoundRoute.Of(action).InArea(MVC.My.Name).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);
-            }
-
-            [TestMethod]
-            public void Defaults_WithPutAction_MapToNothing()
-            {
-                Expression<Func<UpdateNameController, ActionResult>> action =
-                    controller => controller.Put(null);
-                action.DefaultAreaRoutes(MVC.My.Name).ShouldMapToNothing();
             }
         }
     }

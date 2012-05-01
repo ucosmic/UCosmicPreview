@@ -34,14 +34,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 var url = ErrorsRouteMapper.NotFound.Route.ToAppRelativeUrl();
                 url.WithAnyMethod().ShouldMapTo(action);
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<ErrorsController, ActionResult>> action =
-                    controller => controller.NotFound();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -63,14 +55,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                     controller => controller.FileUploadTooLarge(null);
                 var url = ErrorsRouteMapper.FileUploadTooLarge.Route.ToAppRelativeUrl();
                 url.WithAnyMethod().ShouldMapTo(action);
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<ErrorsController, ActionResult>> action =
-                    controller => controller.FileUploadTooLarge(null);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
             }
         }
 
@@ -125,23 +109,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                     .Replace("{*url}", attemptedUrl);
                 url.WithAnyMethod().ShouldMapTo(action);
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted_ForActionWithNullArg()
-            {
-                Expression<Func<ErrorsController, ActionResult>> action =
-                   controller => controller.NotAuthorized(null);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted_ForActionWithNonNullArg()
-            {
-                const string attemptedUrl = "path/to/action";
-                Expression<Func<ErrorsController, ActionResult>> action =
-                   controller => controller.NotAuthorized(attemptedUrl);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -164,14 +131,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 var url = ErrorsRouteMapper.BadRequest.Route.ToAppRelativeUrl();
                 url.WithAnyMethod().ShouldMapTo(action);
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<ErrorsController, ActionResult>> action =
-                    controller => controller.BadRequest();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -193,14 +152,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                     controller => controller.Unexpected();
                 var url = ErrorsRouteMapper.Unexpected.Route.ToAppRelativeUrl();
                 url.WithAnyMethod().ShouldMapTo(action);
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<ErrorsController, ActionResult>> action =
-                    controller => controller.Unexpected();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
             }
         }
 
@@ -231,14 +182,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 var url = ErrorsRouteMapper.Throw.Route.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<ErrorsController, ActionResult>> action =
-                    controller => controller.Throw();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -267,14 +210,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 var url = ErrorsRouteMapper.LogAjaxError.Route.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<ErrorsController, ActionResult>> action =
-                    controller => controller.LogAjaxError(null);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
             }
         }
 

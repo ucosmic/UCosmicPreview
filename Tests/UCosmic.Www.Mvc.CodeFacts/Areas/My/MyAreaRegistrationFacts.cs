@@ -4,20 +4,20 @@ using System.Web.Routing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 
-namespace UCosmic.Www.Mvc.Areas.Common
+namespace UCosmic.Www.Mvc.Areas.My
 {
     // ReSharper disable UnusedMember.Global
-    public class CommonAreaRegistrationFacts
+    public class MyAreaRegistrationFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
         public class TheAreaNameProperty
         {
             [TestMethod]
-            public void Equals_Common_LowerCase()
+            public void Equals_My_LowerCase()
             {
-                var areaRegistration = new CommonAreaRegistration();
-                areaRegistration.AreaName.ShouldEqual("common");
+                var areaRegistration = new MyAreaRegistration();
+                areaRegistration.AreaName.ShouldEqual("my");
             }
         }
 
@@ -28,10 +28,10 @@ namespace UCosmic.Www.Mvc.Areas.Common
             public void RegistersNoDefaultRoute()
             {
                 RouteTable.Routes.Where(r => r is Route).Cast<Route>()
-                    .SingleOrDefault(r => r.Url.Equals("Common/{controller}/{action}/{id}",
+                    .SingleOrDefault(r => r.Url.Equals("My/{controller}/{action}/{id}", 
                         StringComparison.OrdinalIgnoreCase))
                     .ShouldBeNull();
-                RouteTable.Routes["Common_default"].ShouldBeNull();
+                RouteTable.Routes["My_default"].ShouldBeNull();
             }
         }
     }

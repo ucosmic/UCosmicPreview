@@ -98,15 +98,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     .ShouldBeNull();
             }
 
-            [TestMethod]
-            public void Defaults_WithGet_AndGuidToken_AndNonNullSecretCode_MapToNothing()
-            {
-                var token = Guid.NewGuid();
-                const string secretCode = "secret";
-                Action(token, secretCode).DefaultAreaRoutes(AreaName)
-                    .ShouldMapToNothing();
-            }
-
             private const string Route = ConfirmEmailRouter.Get.Route;
             private const string TokenParam = "{token}";
             private const string SecretCodeParam = "{secretCode}";
@@ -179,12 +170,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     .WithMethod(HttpVerbs.Put)
                     .HavingViewModelProperty("token", Guid.NewGuid())
                     .AppRelativeUrl().ShouldBeNull();
-            }
-
-            [TestMethod]
-            public void Defaults_WithPostAction_MapToNothing()
-            {
-                Action.DefaultAreaRoutes(AreaName).ShouldMapToNothing();
             }
 
             private const string Route = ConfirmEmailRouter.Post.Route;

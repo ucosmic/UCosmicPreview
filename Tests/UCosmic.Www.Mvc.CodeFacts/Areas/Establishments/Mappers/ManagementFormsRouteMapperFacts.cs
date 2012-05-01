@@ -57,14 +57,6 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 var url = ManagementFormsRouteMapper.Browse.Routes[0].ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Head).ShouldMapToNothing();
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<ManagementFormsController, ActionResult>> action =
-                   controller => controller.Browse();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -91,18 +83,8 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             [TestMethod]
             public void InBoundUrl_ForAdd_WithNonGetMethod_IsNotRouted()
             {
-                Expression<Func<ManagementFormsController, ActionResult>> action =
-                    controller => controller.Form(null);
                 var url = ManagementFormsRouteMapper.Form.RouteForAdd.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_ForAdd_AreNotRouted()
-            {
-                Expression<Func<ManagementFormsController, ActionResult>> action =
-                    controller => controller.Form(null);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
             }
 
             [TestMethod]
@@ -131,20 +113,9 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             public void InBoundUrl_FoEdit_WithNonGetMethod_IsNotRouted()
             {
                 var entityId = Guid.NewGuid();
-                Expression<Func<ManagementFormsController, ActionResult>> action =
-                    controller => controller.Form(entityId);
                 var url = ManagementFormsRouteMapper.Form.RouteForEdit.ToAppRelativeUrl()
                     .Replace("{entityId}", entityId.ToString());
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_ForEdit_AreNotRouted()
-            {
-                var entityId = Guid.NewGuid();
-                Expression<Func<ManagementFormsController, ActionResult>> action =
-                    controller => controller.Form(entityId);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
             }
         }
 
@@ -178,20 +149,9 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             public void InBoundUrl_WithNonPutAndPostMethods_IsNotRouted()
             {
                 var model = new EstablishmentForm { EntityId = Guid.NewGuid() };
-                Expression<Func<ManagementFormsController, ActionResult>> action =
-                    controller => controller.Put(model);
                 var url = ManagementFormsRouteMapper.Put.Route.ToAppRelativeUrl()
                     .Replace("{entityId}", model.EntityId.ToString());
                 url.WithMethodsExcept(HttpVerbs.Put, HttpVerbs.Post).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                var model = new EstablishmentForm { EntityId = Guid.NewGuid() };
-                Expression<Func<ManagementFormsController, ActionResult>> action =
-                    controller => controller.Put(model);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
             }
         }
 
@@ -219,18 +179,8 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             [TestMethod]
             public void InBoundUrl_WithNonGetMethod_IsNotRouted()
             {
-                Expression<Func<ManagementFormsController, ActionResult>> action =
-                    controller => controller.NewName();
                 var url = ManagementFormsRouteMapper.NewName.Route.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<ManagementFormsController, ActionResult>> action =
-                    controller => controller.NewName();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
             }
         }
     }

@@ -47,16 +47,6 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 var url = SupplementalFormsRouteMapper.FindPlaces.Route.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                const double latitude = 1.1;
-                const double longitude = -1.1;
-                Expression<Func<SupplementalFormsController, ActionResult>> action =
-                   controller => controller.FindPlaces(latitude, longitude);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -136,25 +126,6 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                     .Replace("{establishmentId}", establishmentId.ToString());
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted_ForActionWithNullArg()
-            {
-                var establishmentId = Guid.NewGuid();
-                Expression<Func<SupplementalFormsController, ActionResult>> action =
-                   controller => controller.Locate(establishmentId, null);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted_ForActionWithNonNullArg()
-            {
-                var establishmentId = Guid.NewGuid();
-                const string attemptedUrl = "path/to/action";
-                Expression<Func<SupplementalFormsController, ActionResult>> action =
-                   controller => controller.Locate(establishmentId, attemptedUrl);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -183,14 +154,6 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             {
                 var url = SupplementalFormsRouteMapper.Locate.RouteForPost.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<SupplementalFormsController, ActionResult>> action =
-                   controller => controller.Locate(null);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
             }
         }
     }

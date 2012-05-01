@@ -66,14 +66,6 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
                     .ShouldBeNull();
             }
 
-            [TestMethod]
-            public void Defaults_WithGet_AndGuidToken_AndNonNullSecretCode_MapToNothing()
-            {
-                var token = Guid.NewGuid();
-                Action(token).DefaultAreaRoutes(AreaName)
-                    .ShouldMapToNothing();
-            }
-
             private const string Route = ResetPasswordRouter.Get.Route;
             private const string TokenParam = "{token}";
 
@@ -144,12 +136,6 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
                     .WithMethod(HttpVerbs.Delete)
                     .HavingViewModelProperty("token", Guid.NewGuid())
                     .AppRelativeUrl().ShouldBeNull();
-            }
-
-            [TestMethod]
-            public void Defaults_WithPostAction_MapToNothing()
-            {
-                Action.DefaultAreaRoutes(AreaName).ShouldMapToNothing();
             }
 
             private const string Route = ResetPasswordRouter.Post.Route;

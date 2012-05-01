@@ -55,15 +55,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             }
 
             [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted_ForActionWithCurrentVersionArg()
-            {
-                const string currentVersion = FeaturesRouteMapper.Releases.CurrentVersion;
-                Expression<Func<FeaturesController, ActionResult>> action =
-                    controller => controller.Releases(currentVersion);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
-
-            [TestMethod]
             public void OutBoundUrl_OfAction_WithNullArg_IsRoutedTo_Features()
             {
                 Expression<Func<FeaturesController, ActionResult>> action =
@@ -78,14 +69,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 var url = FeaturesRouteMapper.Releases.Routes[1].ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted_ForActionWithNullVersionArg()
-            {
-                Expression<Func<FeaturesController, ActionResult>> action =
-                    controller => controller.Releases(null);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
             }
 
             [TestMethod]
@@ -118,15 +101,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 url = url.Replace("{version}", otherVersion);
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted_ForActionWithNonCurrentVersionArg()
-            {
-                const string otherVersion = "version";
-                Expression<Func<FeaturesController, ActionResult>> action =
-                    controller => controller.Releases(otherVersion);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -155,14 +129,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 var url = FeaturesRouteMapper.ReleasesNav.Route.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<FeaturesController, ActionResult>> action =
-                    controller => controller.ReleasesNav();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
             }
         }
     }
