@@ -224,6 +224,7 @@
     <Compile Include="Areas\People\Models\GenerateDisplayNameForm.cs" />
     <Compile Include="Areas\People\Models\PersonInfoModel.cs" />
     <Compile Include="Areas\People\PeopleAreaRegistration.cs" />
+    <Compile Include="Areas\Saml\SamlAreaRegistration.cs" />
     <Compile Include="Controllers\NullLayoutOnChildActionAttribute.cs" />
     <Compile Include="Areas\Identity\Controllers\ValidateConfirmEmailAttribute.cs" />
     <Compile Include="Helpers\SimpleInjectorMVC3.cs" />
@@ -1064,6 +1065,7 @@
     <Content Include="Areas\Passwords\Views\ResetPassword\_denied-retired.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\_denied-crash.cshtml" />
     <Content Include="Areas\Identity\Views\SignUp\_denied-crash.cshtml" />
+    <Content Include="Areas\Saml\Views\Web.config" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />
@@ -1110,6 +1112,8 @@
     <Folder Include="Areas\RecruitmentAgencies\Controllers\" />
     <Folder Include="Areas\RecruitmentAgencies\Models\" />
     <Folder Include="Areas\RecruitmentAgencies\Views\Shared\" />
+    <Folder Include="Areas\Saml\Controllers\" />
+    <Folder Include="Areas\Saml\Models\" />
     <Folder Include="content\mail\" />
     <Folder Include="content\themes\api\consortium\" />
     <Folder Include="Routes\" />
