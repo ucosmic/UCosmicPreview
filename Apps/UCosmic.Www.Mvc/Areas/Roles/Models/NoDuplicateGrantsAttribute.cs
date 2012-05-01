@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Models
+namespace UCosmic.Www.Mvc.Areas.Roles.Models
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public class NoDuplicateGrantsAttribute : ValidationAttribute
@@ -45,7 +45,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             {
                 return true;
             }
-            throw new NotImplementedException(
+            throw new NotSupportedException(
                 "The NoDuplicateGrantsAttribute only operates on IList<RoleGrantForm> values.");
         }
     }

@@ -20,7 +20,7 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
+namespace UCosmic.Www.Mvc.Areas.Roles.Controllers {
     public partial class RolesController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RolesController(Dummy d) { }
@@ -53,9 +53,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public RolesController Actions { get { return MVC.Identity.Roles; } }
+        public RolesController Actions { get { return MVC.Roles.Roles; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "Identity";
+        public readonly string Area = "Roles";
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Name = "Roles";
         [GeneratedCode("T4MVC", "2.0")]
@@ -88,8 +88,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string browse = "~/Areas/Identity/Views/Roles/browse.cshtml";
-            public readonly string form = "~/Areas/Identity/Views/Roles/form.cshtml";
+            public readonly string browse = "~/Areas/Roles/Views/Roles/browse.cshtml";
+            public readonly string form = "~/Areas/Roles/Views/Roles/form.cshtml";
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{
@@ -100,7 +100,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_RolesController: UCosmic.Www.Mvc.Areas.Identity.Controllers.RolesController {
+    public class T4MVC_RolesController: UCosmic.Www.Mvc.Areas.Roles.Controllers.RolesController {
         public T4MVC_RolesController() : base(Dummy.Instance) { }
 
         public override System.Web.Mvc.ActionResult Browse() {
@@ -114,7 +114,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Put(UCosmic.Www.Mvc.Areas.Identity.Models.RoleForm model) {
+        public override System.Web.Mvc.ActionResult Put(UCosmic.Www.Mvc.Areas.Roles.Models.RoleForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Put);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;

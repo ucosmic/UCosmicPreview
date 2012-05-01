@@ -7,7 +7,7 @@ using AutoMapper;
 using UCosmic.Domain.Identity;
 using UCosmic.Www.Mvc.Models;
 
-namespace UCosmic.Www.Mvc.Areas.Identity.Models
+namespace UCosmic.Www.Mvc.Areas.Roles.Models
 {
     public class RoleForm : IReturnUrl
     {

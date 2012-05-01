@@ -23,10 +23,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             PasswordRouteMapper.RegisterRoutes(context);
             PasswordModelMapper.RegisterProfiles();
 
-            RolesRouter.RegisterRoutes(context);
-            RoleFormProfiler.RegisterProfiles();
-            RoleSearchResultProfiler.RegisterProfiles();
-
             SignOnRouter.RegisterRoutes(context);
 
             ConfirmEmailRouter.RegisterRoutes(context);
