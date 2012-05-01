@@ -41,14 +41,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 var url = QaRouteMapper.DeliverQaMail.Route.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<QaController, ActionResult>> action =
-                   controller => controller.DeliverQaMail();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -77,14 +69,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 var url = QaRouteMapper.ResetQaMail.Route.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<QaController, ActionResult>> action =
-                   controller => controller.ResetQaMail();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
             }
         }
     }

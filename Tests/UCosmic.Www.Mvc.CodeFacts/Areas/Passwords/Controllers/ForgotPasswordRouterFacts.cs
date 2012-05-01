@@ -37,12 +37,6 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
                     .ShouldEqual(Url);
             }
 
-            [TestMethod]
-            public void Defaults_MapToNothing()
-            {
-                Action.DefaultAreaRoutes(AreaName).ShouldMapToNothing();
-            }
-
             private static readonly string Url = ForgotPasswordRouter.Get.Route.ToAppRelativeUrl();
 
             private static readonly Expression<Func<ForgotPasswordController, ActionResult>>
@@ -64,12 +58,6 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
                 OutBoundRoute.Of(Action).InArea(AreaName)
                     .WithMethod(HttpVerbs.Post).AppRelativeUrl()
                     .ShouldEqual(Url);
-            }
-
-            [TestMethod]
-            public void Defaults_MapToNothing()
-            {
-                Action.DefaultAreaRoutes(AreaName).ShouldMapToNothing();
             }
 
             private static readonly string Url = ForgotPasswordRouter.Post.Route.ToAppRelativeUrl();
@@ -100,13 +88,6 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
                 OutBoundRoute.Of(Action).InArea(AreaName)
                     .WithMethod(HttpVerbs.Post).AppRelativeUrl()
                     .ShouldEqual(Url);
-            }
-
-            [TestMethod]
-            public void Defaults_MapToNothing()
-            {
-                Action.DefaultAreaRoutes(AreaName)
-                    .ShouldMapToNothing();
             }
 
             private static readonly string Url = ForgotPasswordRouter.ValidateEmailAddress.Route

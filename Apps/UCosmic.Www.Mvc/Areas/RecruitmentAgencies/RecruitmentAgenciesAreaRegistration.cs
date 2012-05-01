@@ -6,10 +6,7 @@ namespace UCosmic.Www.Mvc.Areas.RecruitmentAgencies
     {
         public override string AreaName
         {
-            get
-            {
-                return "RecruitmentAgencies";
-            }
+            get { return "RecruitmentAgencies"; }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)

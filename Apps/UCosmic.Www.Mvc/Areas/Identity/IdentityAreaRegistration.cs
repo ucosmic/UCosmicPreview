@@ -35,7 +35,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             ConfirmEmailRouter.RegisterRoutes(context);
             ConfirmEmailProfiler.RegisterProfiles();
 
-            //// default route
             //context.MapRoute(
             //    "Identity_default",
             //    "Identity/{controller}/{action}/{id}",

@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.Linq;
+using System.Web.Routing;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 
 namespace UCosmic.Www.Mvc.Areas.Establishments
@@ -7,34 +10,28 @@ namespace UCosmic.Www.Mvc.Areas.Establishments
     public class EstablishmentsAreaRegistrationFacts
     // ReSharper restore UnusedMember.Global
     {
-        private static readonly string Area = MVC.Establishments.Name;
-        private static readonly string[] Controllers = new[]
-        {
-            MVC.Establishments.ManagementForms.Name,
-            MVC.Establishments.SupplementalForms.Name,
-        };
-
-
         [TestClass]
-        public class RegisterArea_Method
+        public class TheAreaNameProperty
         {
             [TestMethod]
-            public void DefaultAreaUrls_AreNotMapped()
+            public void Equals_Establishments_LowerCase()
             {
-                //Area.DefaultAreaRoutes().ShouldMapToNothing(); // ~/Establishments is mapped
-                foreach (var controller in Controllers)
-                    Area.DefaultAreaRoutes(controller).ShouldMapToNothing();
+                var areaRegistration = new EstablishmentsAreaRegistration();
+                areaRegistration.AreaName.ShouldEqual("establishments");
             }
         }
 
         [TestClass]
-        public class AreaName_Property
+        public class TheRegisterAreaMethod
         {
             [TestMethod]
-            public void IsCommon()
+            public void RegistersNoDefaultRoute()
             {
-                var areaRegistration = new EstablishmentsAreaRegistration();
-                areaRegistration.AreaName.ShouldEqual("establishments");
+                RouteTable.Routes.Where(r => r is Route).Cast<Route>()
+                    .SingleOrDefault(r => r.Url.Equals("Establishments/{controller}/{action}/{id}",
+                        StringComparison.OrdinalIgnoreCase))
+                    .ShouldBeNull();
+                RouteTable.Routes["Establishments_default"].ShouldBeNull();
             }
         }
     }

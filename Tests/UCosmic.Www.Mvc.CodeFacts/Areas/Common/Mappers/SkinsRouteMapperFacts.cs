@@ -47,14 +47,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                     .Replace("{skinContext}", skinContext);
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted_ForActionWithNullCatchall()
-            {
-                Expression<Func<SkinsController, ActionResult>> action =
-                   controller => controller.Change("skin-context", null);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -133,30 +125,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                     .Replace("{content}", content);
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted_ForActionWithNullArg()
-            {
-                Expression<Func<SkinsController, ActionResult>> action =
-                   controller => controller.Sample(null);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted_ForActionWithEmptyArg()
-            {
-                Expression<Func<SkinsController, ActionResult>> action =
-                   controller => controller.Sample(string.Empty);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted_ForActionWithNonEmptyArg()
-            {
-                Expression<Func<SkinsController, ActionResult>> action =
-                   controller => controller.Sample("sample-content");
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -200,22 +168,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                     .Replace("/{skinFile}", string.Empty);
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted_ForActionWithNullArg()
-            {
-                Expression<Func<SkinsController, ActionResult>> action =
-                   controller => controller.Apply(null);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted_ForActionWithNonNullArg()
-            {
-                Expression<Func<SkinsController, ActionResult>> action =
-                   controller => controller.Apply("skin-file");
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
 
         [TestClass]
@@ -244,14 +196,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 var url = SkinsRouteMapper.Logo.Route.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<SkinsController, ActionResult>> action =
-                   controller => controller.Logo();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Elmah.Contrib.Mvc;
@@ -19,8 +20,18 @@ namespace UCosmic.Www.Mvc
     [TestClass]
     public static class GlobalAsaxFacts
     {
+        [AssemblyInitialize]
+        public static void RegisterAllRoutes(TestContext testContext)
+        {
+            // register routes once when the test suite begins
+            RouteTable.Routes.Clear();
+            AreaRegistration.RegisterAllAreas();
+            MvcApplication.RegisterRoutes(RouteTable.Routes);
+            AutoMapperRegistration.RegisterAllProfiles();
+        }
+
         [TestClass]
-        public class RegisterGlobalFilters_Method
+        public class TheRegisterGlobalFiltersMethod
         {
             [TestMethod]
             public void Registers_ElmahHandleErrorAttribute()
@@ -37,14 +48,18 @@ namespace UCosmic.Www.Mvc
             }
         }
 
-        [AssemblyInitialize]
-        public static void RegisterAllRoutes(TestContext testContext)
+        [TestClass]
+        public class TheRegisterRoutesMethod
         {
-            // register routes once when the test suite begins
-            RouteTable.Routes.Clear();
-            AreaRegistration.RegisterAllAreas();
-            MvcApplication.RegisterRoutes(RouteTable.Routes);
-            AutoMapperRegistration.RegisterAllProfiles();
+            [TestMethod]
+            public void RegistersNoDefaultRoute()
+            {
+                RouteTable.Routes.Where(r => r is Route).Cast<Route>()
+                    .SingleOrDefault(r => r.Url.Equals("{controller}/{action}/{id}",
+                        StringComparison.OrdinalIgnoreCase))
+                    .ShouldBeNull();
+                RouteTable.Routes["Default"].ShouldBeNull();
+            }
         }
 
         private static class AreaRegistration

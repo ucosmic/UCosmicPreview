@@ -41,14 +41,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 var url = NavigationRouteMapper.HorizontalTabs.Route.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                Expression<Func<NavigationController, ActionResult>> action =
-                    controller => controller.HorizontalTabs();
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
     }
 }

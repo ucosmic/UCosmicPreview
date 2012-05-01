@@ -19,7 +19,6 @@ namespace UCosmic.Www.Mvc.Areas.Common
             SkinsRouteMapper.RegisterRoutes(context);
             QaRouteMapper.RegisterRoutes(context);
 
-            //// default route
             //context.MapRoute(
             //    "Common_default",
             //    "Common/{controller}/{action}/{id}",

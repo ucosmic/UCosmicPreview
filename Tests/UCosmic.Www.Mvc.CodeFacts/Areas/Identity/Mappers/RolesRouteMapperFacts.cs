@@ -49,15 +49,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Mappers
                     .Replace("{entityId}", model.EntityId.ToString());
                 url.WithMethodsExcept(HttpVerbs.Put, HttpVerbs.Post).ShouldMapToNothing();
             }
-
-            [TestMethod]
-            public void DefaultAreaUrls_AreNotRouted()
-            {
-                var model = new RoleForm { EntityId = Guid.NewGuid() };
-                Expression<Func<RolesController, ActionResult>> action =
-                    controller => controller.Put(model);
-                action.DefaultAreaRoutes(Area).ShouldMapToNothing();
-            }
         }
     }
 }
