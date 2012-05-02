@@ -82,8 +82,8 @@ namespace UCosmic.Domain.Identity
                 .NotEmpty()
                     .WithMessage(ValidatePassword.FailedBecausePasswordWasEmpty)
                 // length must be between 6 and 100 characters
-                .Length(ValidatePassword.MinimumLength, int.MaxValue)
-                    .WithMessage(ValidatePassword.FailedBecausePasswordWasTooShort)
+                .Length(memberSigner.MinimumPasswordLength, int.MaxValue)
+                    .WithMessage(ValidatePassword.FailedBecausePasswordWasTooShort(memberSigner.MinimumPasswordLength))
             ;
 
             RuleFor(p => p.PasswordConfirmation)
@@ -98,7 +98,7 @@ namespace UCosmic.Domain.Identity
                     .Unless(p => 
                         string.IsNullOrWhiteSpace(p.PasswordConfirmation) ||
                         string.IsNullOrWhiteSpace(p.Password) ||
-                        p.Password.Length < ValidatePassword.MinimumLength)
+                        p.Password.Length < memberSigner.MinimumPasswordLength)
                     .WithMessage(ValidatePassword.FailedBecausePasswordConfirmationDidNotEqualPassword)
             ;
 

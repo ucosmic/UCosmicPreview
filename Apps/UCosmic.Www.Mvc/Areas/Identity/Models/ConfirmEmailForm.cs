@@ -9,7 +9,7 @@ using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    public class ConfirmEmailForm : IModelEmailConfirmation
+    public class ConfirmEmailForm : IModelConfirmAndRedeem
     {
         [HiddenInput(DisplayValue = false)]
         public Guid Token { get; set; }

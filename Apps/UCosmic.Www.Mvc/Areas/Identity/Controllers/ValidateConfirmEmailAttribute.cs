@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using UCosmic.Domain.Email;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -53,13 +52,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             if (tokenValue is Guid)
                 token = (Guid)tokenValue;
 
-            else if (tokenValue is IModelEmailConfirmation)
-                token = ((IModelEmailConfirmation)tokenValue).Token;
+            else if (tokenValue is IModelConfirmAndRedeem)
+                token = ((IModelConfirmAndRedeem)tokenValue).Token;
 
             else
                 throw new InvalidOperationException(String.Format(
-                    "Unable to locate the a Guid token for action method parameter '{0}'.",
-                        ParamName));
+                    "The action method parameter '{0}' must either be a Guid " + 
+                    "or implement the '{1}' interface.",
+                        ParamName, typeof(IModelConfirmAndRedeem).FullName));
 
             return token;
         }

@@ -6,11 +6,12 @@ using FluentValidation;
 using UCosmic.Domain.Email;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
+using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 {
-    public class ResetPasswordForm : IModelEmailConfirmation
+    public class ResetPasswordForm : IModelConfirmAndRedeem
     {
         [HiddenInput(DisplayValue = false)]
         public Guid Token { get; set; }
@@ -39,7 +40,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
         public const string FailedBecausePasswordConfirmationWasEmpty = "Password confirmation is required.";
         public const string FailedBecausePasswordConfirmationDidNotEqualPassword = "The password and confirmation password do not match.";
 
-        public ResetPasswordValidator(IProcessQueries queryProcessor)
+        public ResetPasswordValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -59,9 +60,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 .NotEmpty()
                     .WithMessage(FailedBecausePasswordWasEmpty)
                 // at least 6 characters long
-                .Length(ValidatePassword.MinimumLength, int.MaxValue)
+                .Length(memberSigner.MinimumPasswordLength, int.MaxValue)
                     .WithMessage(FailedBecausePasswordWasTooShort,
-                        p => ValidatePassword.MinimumLength)
+                        p => memberSigner.MinimumPasswordLength)
             ;
 
             RuleFor(p => p.PasswordConfirmation)
@@ -76,7 +77,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                     .Unless(p =>
                         string.IsNullOrWhiteSpace(p.PasswordConfirmation) ||
                         string.IsNullOrWhiteSpace(p.Password) ||
-                        p.Password.Length < ValidatePassword.MinimumLength)
+                        p.Password.Length < memberSigner.MinimumPasswordLength)
                     .WithMessage(FailedBecausePasswordConfirmationDidNotEqualPassword)
             ;
         }

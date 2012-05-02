@@ -14,16 +14,21 @@ namespace UCosmic.Www.Mvc.Areas.Identity
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            SignInRouteMapper.RegisterRoutes(context);
-            SignUpRouteMapper.RegisterRoutes(context);
+            OldSignInRouteMapper.RegisterRoutes(context);
+            OldSignUpRouteMapper.RegisterRoutes(context);
 
-            EmailConfirmationRouteMapper.RegisterRoutes(context);
-            EmailConfirmationModelMapper.RegisterProfiles();
+            //EmailConfirmationRouteMapper.RegisterRoutes(context);
+            //EmailConfirmationModelMapper.RegisterProfiles();
 
-            PasswordRouteMapper.RegisterRoutes(context);
-            PasswordModelMapper.RegisterProfiles();
+            OldPasswordRouteMapper.RegisterRoutes(context);
+            //PasswordModelMapper.RegisterProfiles();
 
             SignOnRouter.RegisterRoutes(context);
+            SignInRouter.RegisterRoutes(context);
+            SignOutRouter.RegisterRoutes(context);
+            SignUpRouter.RegisterRoutes(context);
+            SignDownRouter.RegisterRoutes(context);
+            ReceiveSamlAuthnResponseRouter.RegisterRoutes(context);
 
             ConfirmEmailRouter.RegisterRoutes(context);
             ConfirmEmailProfiler.RegisterProfiles();

@@ -27,7 +27,7 @@ If this continues, please notify info@ucosmic.org.">
                 }
             </div>
             <div class="center col">
-                @Html.Partial(MVC.Identity.SignIn.Views.nav, new SignInNavInfo
+                @Html.Partial(MVC.Identity.OldSignIn.Views.nav, new SignInNavInfo
                 {
                     IsSignedIn = Request.IsAuthenticated,
                     IsImpersonator = User.IsInRole(RoleName.AuthenticationAgent),

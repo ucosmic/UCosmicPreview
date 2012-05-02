@@ -78,7 +78,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
-                attributes[0].Fallback.ShouldEqual(SignOnRouter.Begin.Route);
+                attributes[0].Fallback.ShouldEqual(SignInRouter.Get.Route);
             }
 
             [TestMethod]

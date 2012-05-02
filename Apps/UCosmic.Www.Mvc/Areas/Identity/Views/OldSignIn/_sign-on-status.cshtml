@@ -1,0 +1,16 @@
+﻿<div id="identity_top" class="identity">
+    @if (Request.IsAuthenticated)
+    {
+        <div class="signed-in">
+            Signed in as <strong>@User.Identity.Name</strong> <a href="@Url.Action(MVC.Identity.OldSignIn.SignOut(Request.RawUrl))">
+                Sign Out</a>
+        </div>
+    }
+    else
+    {
+        <div class="signed-out">
+            <a href="@Url.Action(MVC.Identity.OldSignIn.SignIn(Request.RawUrl))">
+                Sign In</a> | <a href="@Url.Action(MVC.Identity.OldSignUp.SendEmail())">Sign Up</a>
+        </div>
+    }
+</div>

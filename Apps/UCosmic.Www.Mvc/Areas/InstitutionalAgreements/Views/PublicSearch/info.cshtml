@@ -196,7 +196,7 @@
     @if (!Request.IsAuthenticated || !Model.IsAffiliate)
     {
         <div class="agreement-public">
-            If you have an email address at one of the following domains, please <a href="@Url.Action(MVC.Identity.SignIn.SignIn(Request.RawUrl))">
+            If you have an email address at one of the following domains, please <a href="@Url.Action(MVC.Identity.OldSignIn.SignIn(Request.RawUrl))">
                 sign in to view additional information about this agreement</a>.
             <ul>
                 @foreach (var emailDomain in Model.DistinctEmailDomains)

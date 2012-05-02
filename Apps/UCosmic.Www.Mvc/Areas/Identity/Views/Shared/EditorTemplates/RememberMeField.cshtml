@@ -1,0 +1,11 @@
+﻿@model bool
+<div class="field">
+    <div class="input">
+        <div class="check-box input">
+            <label>
+                @Html.CheckBoxFor(m => m)
+                @ModelMetadata.FromLambdaExpression(m => m, ViewData).DisplayName
+            </label>
+        </div>
+    </div>
+</div>

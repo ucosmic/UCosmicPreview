@@ -143,8 +143,117 @@ namespace UCosmic.Www.Mvc
 
             var value = tempData[EmailConfirmationTicketKey];
             if (keep) tempData.Keep(EmailConfirmationTicketKey);
+            else tempData.Remove(SigningEmailAddressKey);
 
             return value != null ? value.ToString() : null;
+        }
+
+        #endregion
+        #region SigningEmailAddress TempData Shortcuts
+
+        private const string SigningEmailAddressKey = "SigningEmailAddress";
+
+        public static void SigningEmailAddress(this TempDataDictionary tempData, string emailAddress)
+        {
+            if (tempData == null) return;
+            if (string.IsNullOrWhiteSpace(emailAddress))
+                tempData.Remove(SigningEmailAddressKey);
+            else tempData[SigningEmailAddressKey] = emailAddress;
+        }
+
+        public static string SigningEmailAddress(this TempDataDictionary tempData, bool keep = true)
+        {
+            if (tempData == null || !tempData.ContainsKey(SigningEmailAddressKey))
+                return null;
+
+            var value = tempData[SigningEmailAddressKey];
+            if (keep) tempData.Keep(SigningEmailAddressKey);
+            else tempData.Remove(SigningEmailAddressKey);
+
+            return value != null ? value.ToString() : null;
+        }
+
+        #endregion
+        #region SigningEmailAddress Cookie Shortcuts
+
+        public static void SigningEmailAddressCookie(this HttpContextBase httpContext, string emailAddress, bool rememberMe = false)
+        {
+            if (httpContext == null) return;
+            HttpCookie cookie;
+
+            // when email address is null or remember me is false, clear the cookie
+            if (string.IsNullOrWhiteSpace(emailAddress) || !rememberMe)
+                cookie = new HttpCookie(SigningEmailAddressKey, null)
+                {
+                    Expires = DateTime.UtcNow.AddDays(-1),
+                };
+
+            // otherwise when rememberMe is true, set the cookie
+            else
+                cookie = new HttpCookie(SigningEmailAddressKey, emailAddress)
+                {
+                    Expires = DateTime.UtcNow.AddDays(30),
+                    Path = "/",
+                };
+
+            httpContext.Response.SetCookie(cookie);
+        }
+
+        public static string SigningEmailAddressCookie(this HttpContextBase httpContext, bool renew = true)
+        {
+            if (httpContext == null) return null;
+            string value = null;
+
+            // get cookie from request
+            var cookie = httpContext.Request.Cookies[SigningEmailAddressKey];
+            if (cookie != null) value = cookie.Value;
+
+            if (!string.IsNullOrWhiteSpace(value) && renew)
+                httpContext.Response.SetCookie(
+                    new HttpCookie(SigningEmailAddressKey, value)
+                    {
+                        Expires = DateTime.UtcNow.AddDays(30),
+                        Path = "/",
+                    }
+                );
+
+            return value;
+        }
+
+        //public static bool HasSigningEmailAddressCookie(this HttpContextBase httpContext)
+        //{
+        //    if (httpContext == null) return false;
+        //    var cookie = httpContext.Request.Cookies[SigningEmailAddressKey];
+        //    return cookie != null && !string.IsNullOrWhiteSpace(cookie.Value);
+        //}
+
+        #endregion
+        #region FailedPasswordAttempt Session Shortcuts
+
+        private const string FailedPasswordAttemptsKey = "FailedPasswordAttempts";
+
+        public static void FailedPasswordAttempt(this HttpSessionStateBase session)
+        {
+            if (session == null) return;
+
+            session[FailedPasswordAttemptsKey] = session.FailedPasswordAttempts() + 1;
+        }
+
+        public static int FailedPasswordAttempts(this HttpSessionStateBase session, bool keep = true)
+        {
+            if (session != null)
+            {
+                var value = session[FailedPasswordAttemptsKey];
+                if (!keep)
+                {
+                    session.Remove(FailedPasswordAttemptsKey);
+                }
+                if (value != null && value is int)
+                {
+                    return (int)value;
+                }
+            }
+            return 0;
         }
 
         #endregion

@@ -82,12 +82,6 @@ namespace UCosmic.Domain.Establishments
         public const string FailedBecauseEstablishmentIsNotMember =
             "Establishment with id '{0}' is not a member.";
 
-        public static bool IsMember(Establishment entity)
-        {
-            // return true (valid) if establishment is a member
-            return entity.IsMember;
-        }
-
         #endregion
     }
 }

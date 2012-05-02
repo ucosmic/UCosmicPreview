@@ -89,7 +89,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
             SetFeedbackMessage(SuccessMessage);
 
             // redirect to sign on
-            return RedirectToAction(MVC.Identity.SignOn.Begin());
+            return RedirectToAction(MVC.Identity.SignIn.Get());
         }
 
         public const string SuccessMessage = "You can now use your new password to sign in.";

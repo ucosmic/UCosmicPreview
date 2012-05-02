@@ -8,7 +8,6 @@ using Should;
 using UCosmic.Domain.Email;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -348,7 +347,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 if (isModeled && tokenValue is Guid)
                 {
-                    var model = new Mock<IModelEmailConfirmation>(MockBehavior.Strict);
+                    var model = new Mock<IModelConfirmAndRedeem>(MockBehavior.Strict);
                     model.Setup(p => p.Token).Returns((Guid)tokenValue);
                     tokenValue = model.Object;
                 }

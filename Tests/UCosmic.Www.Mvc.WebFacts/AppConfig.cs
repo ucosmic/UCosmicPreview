@@ -195,10 +195,10 @@ namespace UCosmic.Www.Mvc
     public static class RelativeUrl
     {
         public const string Home = "";
-        public const string SignUp = SignUpRouteMapper.SendEmail.Route;
-        public const string SignUpConfirmEmail = SignUpRouteMapper.ConfirmEmail.RouteForPost;
-        public const string SignUpCreatePassword = SignUpRouteMapper.CreatePassword.Route;
-        public const string SignUpCompleted = SignUpRouteMapper.SignIn.Route;
+        public const string SignUp = OldSignUpRouteMapper.SendEmail.Route;
+        public const string SignUpConfirmEmail = OldSignUpRouteMapper.ConfirmEmail.RouteForPost;
+        public const string SignUpCreatePassword = OldSignUpRouteMapper.CreatePassword.Route;
+        public const string SignUpCompleted = OldSignUpRouteMapper.SignIn.Route;
         public const string SignIn = "sign-in";
         public const string Me = "my/profile";
 

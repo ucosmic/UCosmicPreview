@@ -351,7 +351,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
             }
 
             [TestMethod]
-            public void ReturnsRedirect_ToSignOn()
+            public void ReturnsRedirect_ToSignIn()
             {
                 var form = new ResetPasswordForm
                 {
@@ -373,8 +373,8 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
                 var routeResult = (RedirectToRouteResult)result;
                 routeResult.Permanent.ShouldBeFalse();
                 routeResult.RouteValues["area"].ShouldEqual(MVC.Identity.Name);
-                routeResult.RouteValues["controller"].ShouldEqual(MVC.Identity.SignOn.Name);
-                routeResult.RouteValues["action"].ShouldEqual(MVC.Identity.SignOn.ActionNames.Begin);
+                routeResult.RouteValues["controller"].ShouldEqual(MVC.Identity.SignIn.Name);
+                routeResult.RouteValues["action"].ShouldEqual(MVC.Identity.SignIn.ActionNames.Get);
             }
         }
 

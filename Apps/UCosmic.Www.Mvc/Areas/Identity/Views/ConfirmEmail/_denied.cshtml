@@ -11,14 +11,14 @@
             {
                 case ConfirmDeniedBecause.IsExpired:
                     ViewBag.Title = "Your sign up window has expired";
-                    Html.RenderPartial(MVC.Identity.SignUp.Views._denied_expired);
+                    Html.RenderPartial(MVC.Identity.OldSignUp.Views._denied_expired);
                     break;
                 case ConfirmDeniedBecause.IsRetired:
                     ViewBag.Title = "Your password has already been created";
-                    Html.RenderPartial(MVC.Identity.SignUp.Views._denied_retired);
+                    Html.RenderPartial(MVC.Identity.OldSignUp.Views._denied_retired);
                     break;
                 default:
-                    Html.RenderPartial(MVC.Identity.SignUp.Views._denied_crash);
+                    Html.RenderPartial(MVC.Identity.OldSignUp.Views._denied_crash);
                     break;
             }
             break;
