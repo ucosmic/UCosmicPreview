@@ -27,12 +27,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         }
 
         [TestClass]
-        public class TheBeginMethodGet
+        public class TheGetMethod
         {
             [TestMethod]
             public void IsDecoratedWith_HttpGet()
             {
-                Expression<Func<SignOnController, ActionResult>> method = m => m.Begin(null as string);
+                Expression<Func<SignOnController, ActionResult>> method = m => m.Get(null);
 
                 var attributes = method.GetAttributes<SignOnController, ActionResult, HttpGetAttribute>();
                 attributes.ShouldNotBeNull();
@@ -43,7 +43,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void IsDecoratedWith_ActionName_Using_SignOn()
             {
-                Expression<Func<SignOnController, ActionResult>> method = m => m.Begin(null as string);
+                Expression<Func<SignOnController, ActionResult>> method = m => m.Get(null);
 
                 var attributes = method.GetAttributes<SignOnController, ActionResult, ActionNameAttribute>();
                 attributes.ShouldNotBeNull();
@@ -55,7 +55,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void IsDecoratedWith_OpenTopTab_Using_Home()
             {
-                Expression<Func<SignOnController, ActionResult>> method = m => m.Begin(null as string);
+                Expression<Func<SignOnController, ActionResult>> method = m => m.Get(null);
 
                 var attributes = method.GetAttributes<SignOnController, ActionResult, OpenTopTabAttribute>();
                 attributes.ShouldNotBeNull();
@@ -75,15 +75,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Url = new UrlHelper(requestContext)
                 };
 
-                var result = controller.Begin(null as string);
+                var result = controller.Get(null);
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<ViewResult>();
                 var viewResult = (ViewResult) result;
                 viewResult.ViewName.ShouldEqual(string.Empty);
                 viewResult.Model.ShouldNotBeNull();
-                viewResult.Model.ShouldBeType<SignOnBeginForm>();
-                var form = (SignOnBeginForm)viewResult.Model;
+                viewResult.Model.ShouldBeType<SignOnForm>();
+                var form = (SignOnForm)viewResult.Model;
                 form.EmailAddress.ShouldBeNull();
                 form.ReturnUrl.ShouldBeNull();
             }
@@ -95,15 +95,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var services = CreateSignOnServices();
                 var controller = new SignOnController(services);
 
-                var result = controller.Begin(returnUrl);
+                var result = controller.Get(returnUrl);
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<ViewResult>();
                 var viewResult = (ViewResult)result;
                 viewResult.ViewName.ShouldEqual(string.Empty);
                 viewResult.Model.ShouldNotBeNull();
-                viewResult.Model.ShouldBeType<SignOnBeginForm>();
-                var form = (SignOnBeginForm)viewResult.Model;
+                viewResult.Model.ShouldBeType<SignOnForm>();
+                var form = (SignOnForm)viewResult.Model;
                 form.EmailAddress.ShouldBeNull();
                 form.ReturnUrl.ShouldEqual(returnUrl);
             }
@@ -122,27 +122,27 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Url = new UrlHelper(requestContext)
                 };
 
-                var result = controller.Begin(returnUrl);
+                var result = controller.Get(returnUrl);
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<ViewResult>();
                 var viewResult = (ViewResult)result;
                 viewResult.ViewName.ShouldEqual(string.Empty);
                 viewResult.Model.ShouldNotBeNull();
-                viewResult.Model.ShouldBeType<SignOnBeginForm>();
-                var form = (SignOnBeginForm)viewResult.Model;
+                viewResult.Model.ShouldBeType<SignOnForm>();
+                var form = (SignOnForm)viewResult.Model;
                 form.EmailAddress.ShouldBeNull();
                 form.ReturnUrl.ShouldEqual(returnUrl);
             }
         }
 
         [TestClass]
-        public class TheBeginMethodPost
+        public class ThePostMethod
         {
             [TestMethod]
             public void IsDecoratedWith_HttpPost()
             {
-                Expression<Func<SignOnController, ActionResult>> method = m => m.Begin(null as SignOnBeginForm);
+                Expression<Func<SignOnController, ActionResult>> method = m => m.Post(null);
 
                 var attributes = method.GetAttributes<SignOnController, ActionResult, HttpPostAttribute>();
                 attributes.ShouldNotBeNull();
@@ -153,7 +153,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void IsDecoratedWith_ActionName_Using_SignOn()
             {
-                Expression<Func<SignOnController, ActionResult>> method = m => m.Begin(null as string);
+                Expression<Func<SignOnController, ActionResult>> method = m => m.Post(null);
 
                 var attributes = method.GetAttributes<SignOnController, ActionResult, ActionNameAttribute>();
                 attributes.ShouldNotBeNull();
@@ -165,7 +165,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void IsDecoratedWith_OpenTopTab_Using_Home()
             {
-                Expression<Func<SignOnController, ActionResult>> method = m => m.Begin(null as string);
+                Expression<Func<SignOnController, ActionResult>> method = m => m.Post(null);
 
                 var attributes = method.GetAttributes<SignOnController, ActionResult, OpenTopTabAttribute>();
                 attributes.ShouldNotBeNull();
@@ -180,17 +180,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var services = CreateSignOnServices();
                 var controller = new SignOnController(services);
                 controller.ModelState.AddModelError("SomeProperty", "SomeMessage");
-                var model = new SignOnBeginForm { EmailAddress = "invalid email" };
+                var model = new SignOnForm { EmailAddress = "invalid email" };
 
-                var result = controller.Begin(model);
+                var result = controller.Post(model);
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<ViewResult>();
                 var viewResult = (ViewResult)result;
                 viewResult.ViewName.ShouldEqual(string.Empty);
                 viewResult.Model.ShouldNotBeNull();
-                viewResult.Model.ShouldBeType<SignOnBeginForm>();
-                var form = (SignOnBeginForm)viewResult.Model;
+                viewResult.Model.ShouldBeType<SignOnForm>();
+                var form = (SignOnForm)viewResult.Model;
                 form.ShouldEqual(model);
                 form.EmailAddress.ShouldEqual(model.EmailAddress);
                 form.ReturnUrl.ShouldEqual(model.ReturnUrl);
@@ -199,13 +199,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         private static SignOnServices CreateSignOnServices()
         {
-            return new SignOnServices(null, null, null, null, null);
+            return new SignOnServices(null, null, null, null);
         }
-
-        private static SignOnServices CreateSignOnServices(ISignUsers userSigner)
-        {
-            return new SignOnServices(userSigner, null, null, null, null);
-        }
-
     }
 }

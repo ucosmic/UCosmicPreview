@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,8 +9,6 @@ using Should;
 using UCosmic.Domain.Email;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
-using UCosmic.Www.Mvc.Models;
-using System.Diagnostics;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -134,7 +133,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var tokenValue = Guid.NewGuid();
                 const string paramName = "some value";
                 var attribute = new ValidateConfirmEmailAttribute(paramName);
-                var modeled = new Mock<IModelEmailConfirmation>(MockBehavior.Strict);
+                var modeled = new Mock<IModelConfirmAndRedeem>(MockBehavior.Strict);
                 modeled.Setup(p => p.Token).Returns(tokenValue);
                 var filterContext = CreateFilterContext(paramName, tokenValue, true);
 
@@ -323,7 +322,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 if (isModeled.Value && tokenValue is Guid)
                 {
-                    var model = new Mock<IModelEmailConfirmation>(MockBehavior.Strict);
+                    var model = new Mock<IModelConfirmAndRedeem>(MockBehavior.Strict);
                     model.Setup(p => p.Token).Returns((Guid)tokenValue);
                     tokenValue = model.Object;
                 }

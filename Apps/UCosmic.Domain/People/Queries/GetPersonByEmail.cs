@@ -20,6 +20,8 @@ namespace UCosmic.Domain.People
         {
             if (query == null) throw new ArgumentNullException("query");
 
+            if (string.IsNullOrWhiteSpace(query.Email)) return null;
+
             return _entities.People
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByEmail(query.Email)

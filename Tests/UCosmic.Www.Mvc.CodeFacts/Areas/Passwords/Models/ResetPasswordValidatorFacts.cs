@@ -7,7 +7,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
 using UCosmic.Domain.Email;
-using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 using UCosmic.Impl;
 
@@ -44,7 +43,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     Token = Guid.Empty,
                 };
-                var validator = new ResetPasswordValidator(null);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -70,7 +71,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
                     .Returns(null as EmailConfirmation);
-                var validator = new ResetPasswordValidator(queryProcessor.Object);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(queryProcessor.Object, memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -96,7 +99,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
                     .Returns(new EmailConfirmation());
-                var validator = new ResetPasswordValidator(queryProcessor.Object);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(queryProcessor.Object, memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -112,7 +117,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
             public void IsInvalidWhen_IsNull()
             {
                 var validated = new ResetPasswordForm();
-                var validator = new ResetPasswordValidator(null);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -133,7 +140,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     Password = string.Empty
                 };
-                var validator = new ResetPasswordValidator(null);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -154,7 +163,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     Password = "   ",
                 };
-                var validator = new ResetPasswordValidator(null);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -175,7 +186,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     Password = "12345",
                 };
-                var validator = new ResetPasswordValidator(null);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -186,7 +199,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
                     ResetPasswordValidator.FailedBecausePasswordWasTooShort,
-                        ValidatePassword.MinimumLength));
+                        6));
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -201,7 +214,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
                     .Returns(new EmailConfirmation());
-                var validator = new ResetPasswordValidator(queryProcessor.Object);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(queryProcessor.Object, memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -217,7 +232,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
             public void IsInvalidWhen_IsNull()
             {
                 var validated = new ResetPasswordForm();
-                var validator = new ResetPasswordValidator(null);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -238,7 +255,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     PasswordConfirmation = string.Empty
                 };
-                var validator = new ResetPasswordValidator(null);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -259,7 +278,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     PasswordConfirmation = "   ",
                 };
-                var validator = new ResetPasswordValidator(null);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -281,7 +302,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                     Password = "123456",
                     PasswordConfirmation = "123457",
                 };
-                var validator = new ResetPasswordValidator(null);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -302,7 +325,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     PasswordConfirmation = "123",
                 };
-                var validator = new ResetPasswordValidator(null);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -318,7 +343,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                     Password = string.Empty,
                     PasswordConfirmation = "123",
                 };
-                var validator = new ResetPasswordValidator(null);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -334,7 +361,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                     Password = " \t ",
                     PasswordConfirmation = "123",
                 };
-                var validator = new ResetPasswordValidator(null);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
@@ -350,13 +379,25 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                     Password = "123456",
                     PasswordConfirmation = "123456",
                 };
-                var validator = new ResetPasswordValidator(null);
+                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(memberSigner.Object);
 
                 var results = validator.Validate(validated);
 
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
                 error.ShouldBeNull();
             }
+        }
+
+        private static ResetPasswordValidator CreateValidator(IProcessQueries queryProcessor = null, ISignMembers memberSigner = null)
+        {
+            return new ResetPasswordValidator(queryProcessor, memberSigner);
+        }
+
+        private static ResetPasswordValidator CreateValidator(ISignMembers memberSigner)
+        {
+            return new ResetPasswordValidator(null, memberSigner);
         }
 
         private static Expression<Func<GetEmailConfirmationQuery, bool>> ConfirmationQueryBasedOn(ResetPasswordForm validated)

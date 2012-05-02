@@ -33,13 +33,18 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult Get() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Get);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.JsonResult ValidateEmailAddress() {
             return new T4MVC_JsonResult(Area, Name, ActionNames.ValidateEmailAddress);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult Begin() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.Begin);
+        public System.Web.Mvc.ActionResult Post() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Post);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -56,16 +61,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
+            public readonly string Get = "sign-on";
             public readonly string ValidateEmailAddress = "ValidateEmailAddress";
-            public readonly string Begin = "sign-on";
-            public readonly string Saml2Post = "post";
+            public readonly string Post = "sign-on";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
+            public const string Get = "sign-on";
             public const string ValidateEmailAddress = "ValidateEmailAddress";
-            public const string Begin = "sign-on";
-            public const string Saml2Post = "post";
+            public const string Post = "sign-on";
         }
 
 
@@ -74,7 +79,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string sign_on = "~/Areas/Identity/Views/SignOn/sign-on.cshtml";
         }
     }
 
@@ -82,26 +86,21 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public class T4MVC_SignOnController: UCosmic.Www.Mvc.Areas.Identity.Controllers.SignOnController {
         public T4MVC_SignOnController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.JsonResult ValidateEmailAddress(UCosmic.Www.Mvc.Areas.Identity.Models.SignOnBeginForm model) {
+        public override System.Web.Mvc.ActionResult Get(string returnUrl) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
+            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.JsonResult ValidateEmailAddress(UCosmic.Www.Mvc.Areas.Identity.Models.SignOnForm model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateEmailAddress);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Begin(string returnUrl) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Begin);
-            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult Begin(UCosmic.Www.Mvc.Areas.Identity.Models.SignOnBeginForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Begin);
+        public override System.Web.Mvc.ActionResult Post(UCosmic.Www.Mvc.Areas.Identity.Models.SignOnForm model) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
             callInfo.RouteValueDictionary.Add("model", model);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult Saml2Post() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Saml2Post);
             return callInfo;
         }
 

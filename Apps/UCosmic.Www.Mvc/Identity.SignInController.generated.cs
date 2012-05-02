@@ -33,18 +33,18 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult SignIn() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.SignIn);
+        public System.Web.Mvc.ActionResult Get() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Get);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult SignOut() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.SignOut);
+        public System.Web.Mvc.JsonResult ValidatePassword() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidatePassword);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult UndoSignInAs() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.UndoSignInAs);
+        public System.Web.Mvc.ActionResult Post() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Post);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -61,18 +61,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string SignIn = "sign-in";
-            public readonly string SignOut = "sign-out";
-            public readonly string SignInAs = "sign-in-as";
-            public readonly string UndoSignInAs = "undo-sign-in-as";
+            public readonly string Get = "sign-in";
+            public readonly string ValidatePassword = "ValidatePassword";
+            public readonly string Post = "sign-in";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string SignIn = "sign-in";
-            public const string SignOut = "sign-out";
-            public const string SignInAs = "sign-in-as";
-            public const string UndoSignInAs = "undo-sign-in-as";
+            public const string Get = "sign-in";
+            public const string ValidatePassword = "ValidatePassword";
+            public const string Post = "sign-in";
         }
 
 
@@ -81,11 +79,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _sign_on_status = "~/Areas/Identity/Views/SignIn/_sign-on-status.cshtml";
-            public readonly string nav = "~/Areas/Identity/Views/SignIn/nav.cshtml";
-            public readonly string sign_in_as = "~/Areas/Identity/Views/SignIn/sign-in-as.cshtml";
-            public readonly string sign_in = "~/Areas/Identity/Views/SignIn/sign-in.cshtml";
-            public readonly string sign_out = "~/Areas/Identity/Views/SignIn/sign-out.cshtml";
         }
     }
 
@@ -93,38 +86,21 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public class T4MVC_SignInController: UCosmic.Www.Mvc.Areas.Identity.Controllers.SignInController {
         public T4MVC_SignInController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult SignIn(string returnUrl) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.SignIn);
+        public override System.Web.Mvc.ActionResult Get(string returnUrl) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
             callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult SignIn(UCosmic.Www.Mvc.Areas.Identity.Models.SignIn.SignInForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.SignIn);
+        public override System.Web.Mvc.JsonResult ValidatePassword(UCosmic.Www.Mvc.Areas.Identity.Models.SignInForm model) {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidatePassword);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult SignOut(string returnUrl) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.SignOut);
-            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult SignInAs() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.SignInAs);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult SignInAs(UCosmic.Www.Mvc.Areas.Identity.Models.SignIn.SignInAsForm model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.SignInAs);
+        public override System.Web.Mvc.ActionResult Post(UCosmic.Www.Mvc.Areas.Identity.Models.SignInForm model) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
             callInfo.RouteValueDictionary.Add("model", model);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult UndoSignInAs(string returnUrl) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.UndoSignInAs);
-            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
             return callInfo;
         }
 

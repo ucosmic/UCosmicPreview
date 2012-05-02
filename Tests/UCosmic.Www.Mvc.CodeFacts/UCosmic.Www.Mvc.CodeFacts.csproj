@@ -129,20 +129,20 @@
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailRouterFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ValidateRedeemTicketAttributeFacts.cs" />
     <Compile Include="Areas\Roles\Controllers\RolesControllerFacts.cs" />
-    <Compile Include="Areas\Identity\Controllers\SignInControllerFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\OldSignInControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOnControllerFacts.cs" />
-    <Compile Include="Areas\Identity\Controllers\SignUpControllerFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\OldSignUpControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ValidateConfirmEmailAttributeFacts.cs" />
     <Compile Include="Areas\Roles\Controllers\RolesRouterFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailProfilerFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailValidatorFacts.cs" />
     <Compile Include="Areas\Saml\Models\IdentityProviderListItemFacts.cs" />
-    <Compile Include="Areas\Identity\Models\SignOnBeginFormFacts.cs" />
-    <Compile Include="Areas\Identity\Models\SignOnBeginValidatorFacts.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\CreatePasswordFormFacts.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\SendEmailFormFacts.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\ConfirmEmailFormFacts.cs" />
+    <Compile Include="Areas\Identity\Models\SignOnFormFacts.cs" />
+    <Compile Include="Areas\Identity\Models\SignOnValidatorFacts.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\OldCreatePasswordFormFacts.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\OldSendEmailFormFacts.cs" />
+    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\OldConfirmEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\IdentityAreaRegistrationFacts.cs" />
     <Compile Include="Areas\InstitutionalAgreements\InstitutionalAgreementsAreaRegistrationFacts.cs" />
     <Compile Include="Areas\My\Controllers\UpdateMyEmailValueControllerFacts.cs" />
@@ -209,7 +209,6 @@
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\Establishments\Controllers\" />
     <Folder Include="Areas\Establishments\Models\" />
-    <Folder Include="Areas\Identity\Mappers\" />
     <Folder Include="Areas\InstitutionalAgreements\Controllers\" />
     <Folder Include="Areas\Roles\Models\" />
   </ItemGroup>

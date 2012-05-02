@@ -28,13 +28,25 @@ namespace T4MVC.Identity {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
+            public readonly string _sign_in_form = "~/Areas/Identity/Views/Shared/_sign-in-form.cshtml";
+            public readonly string _sign_on_form = "~/Areas/Identity/Views/Shared/_sign-on-form.cshtml";
+            public readonly string sign_in = "~/Areas/Identity/Views/Shared/sign-in.cshtml";
+            public readonly string sign_on = "~/Areas/Identity/Views/Shared/sign-on.cshtml";
+            public readonly string sign_out = "~/Areas/Identity/Views/Shared/sign-out.cshtml";
+            static readonly _DisplayTemplates s_DisplayTemplates = new _DisplayTemplates();
+            public _DisplayTemplates DisplayTemplates { get { return s_DisplayTemplates; } }
+            public partial class _DisplayTemplates{
+                public readonly string EmailAddressField = "EmailAddressField";
+            }
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{
+                public readonly string EmailAddressField = "EmailAddressField";
+                public readonly string OldSignInForm = "OldSignInForm";
+                public readonly string PasswordField = "PasswordField";
+                public readonly string RememberMeField = "RememberMeField";
                 public readonly string SignInForm = "SignInForm";
-                public readonly string SignOnBeginForm = "SignOnBeginForm";
-                public readonly string SignOnEmailAddress = "SignOnEmailAddress";
-                public readonly string SignOnPassword = "SignOnPassword";
+                public readonly string SignOnForm = "SignOnForm";
                 public readonly string StrengthMeteredPassword = "StrengthMeteredPassword";
             }
         }

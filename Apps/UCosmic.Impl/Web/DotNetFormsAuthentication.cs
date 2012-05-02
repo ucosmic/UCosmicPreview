@@ -18,5 +18,10 @@ namespace UCosmic.Impl
             else
                 FormsAuthentication.SetAuthCookie(userName, remember, scope);
         }
+
+        public void SignOff()
+        {
+            FormsAuthentication.SignOut();
+        }
     }
 }

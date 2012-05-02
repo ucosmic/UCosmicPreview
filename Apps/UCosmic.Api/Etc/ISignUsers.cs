@@ -4,5 +4,6 @@
     {
         string DefaultSignedOnUrl { get; }
         void SignOn(string userName, bool remember = false, string scope = null);
+        void SignOff();
     }
 }

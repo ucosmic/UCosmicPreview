@@ -1,0 +1,18 @@
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.SignOnForm
+@using (Html.BeginForm(
+    MVC.Identity.SignOn.ActionNames.Post,
+    MVC.Identity.SignOn.Name,
+    new
+    {
+        area = MVC.Identity.Name,
+        httpMethod = "POST",
+    }
+))
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Begin Sign On</legend>
+        <br />
+        @Html.EditorForModel()
+    </fieldset>
+}

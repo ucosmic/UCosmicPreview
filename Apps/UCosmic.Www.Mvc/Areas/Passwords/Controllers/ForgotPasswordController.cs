@@ -34,7 +34,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("forgot-password")]
-        [ReturnUrlReferrer(SignOnRouter.Begin.Route)]
+        [ReturnUrlReferrer(SignInRouter.Get.Route)]
         public virtual PartialViewResult Get()
         {
             var model = new ForgotPasswordForm();

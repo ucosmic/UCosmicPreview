@@ -65,7 +65,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsInvalidWhen_MatchesExpiredEntity()
             {
-                var confirmation =  new EmailConfirmation
+                var confirmation = new EmailConfirmation
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(-1),
                 };
@@ -681,7 +681,10 @@ namespace UCosmic.Domain.Identity
             public void IsInvalidWhen_Length_IsLessThanSixCharacters()
             {
                 var command = new ResetPasswordCommand { Password = "12345" };
-                var scenarioOptions = new ScenarioOptions();
+                var scenarioOptions = new ScenarioOptions
+                {
+                    MinimumPasswordLength = 6,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -692,7 +695,7 @@ namespace UCosmic.Domain.Identity
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
-                    ValidatePassword.FailedBecausePasswordWasTooShort);
+                    ValidatePassword.FailedBecausePasswordWasTooShort(6));
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -820,7 +823,10 @@ namespace UCosmic.Domain.Identity
                     Password = "123",
                     PasswordConfirmation = "1234",
                 };
-                var scenarioOptions = new ScenarioOptions();
+                var scenarioOptions = new ScenarioOptions
+                {
+                    MinimumPasswordLength = 6,
+                };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
@@ -856,6 +862,7 @@ namespace UCosmic.Domain.Identity
             internal ResetPasswordCommand Command { get; set; }
             internal EmailConfirmation EmailConfirmation { get; set; }
             internal bool LocalMemberExists { get; set; }
+            internal int MinimumPasswordLength { get; set; }
         }
 
         private static ResetPasswordValidator CreateValidator(ScenarioOptions scenarioOptions = null)
@@ -867,9 +874,10 @@ namespace UCosmic.Domain.Identity
                     .Execute(It.Is(ConfirmationQueryBasedOn(scenarioOptions.Command))))
                     .Returns(scenarioOptions.EmailConfirmation);
             var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-            if (scenarioOptions.EmailConfirmation != null && 
-                scenarioOptions.EmailConfirmation.EmailAddress != null && 
-                scenarioOptions.EmailConfirmation.EmailAddress.Person != null && 
+            memberSigner.Setup(p => p.MinimumPasswordLength).Returns(scenarioOptions.MinimumPasswordLength);
+            if (scenarioOptions.EmailConfirmation != null &&
+                scenarioOptions.EmailConfirmation.EmailAddress != null &&
+                scenarioOptions.EmailConfirmation.EmailAddress.Person != null &&
                 scenarioOptions.EmailConfirmation.EmailAddress.Person.User != null &&
                 !string.IsNullOrWhiteSpace(scenarioOptions.EmailConfirmation.EmailAddress.Person.User.Name))
                 memberSigner.Setup(m => m

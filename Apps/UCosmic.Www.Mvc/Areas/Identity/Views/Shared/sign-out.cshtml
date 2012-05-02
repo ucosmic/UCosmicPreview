@@ -1,0 +1,49 @@
+﻿@using UCosmic.Www.Mvc.Areas.Identity.Models
+@model IModelSigningEmail
+@{
+    ViewBag.Title = "You have been signed out of UCosmic";
+    Layout = MVC.Shared.Views.layout;
+    var signInModel = Model is SignInForm ? (SignInForm)Model : null;
+    var signOnModel = Model is SignOnForm ? (SignOnForm)Model : null;
+    var rememberMeDisplayName = signInModel != null
+        ? ModelMetadata.FromLambdaExpression(m => signInModel.RememberMe, ViewData).DisplayName
+        : ModelMetadata.FromLambdaExpression(m => signOnModel.RememberMe, ViewData).DisplayName
+    ;
+}
+<div class="wrap-960 split-form">
+    <div class="left">
+        <p>
+            This browser has been signed out of UCosmic. You will need to sign on again to access
+            protected features.
+        </p>
+        @if (Model.RememberMe)
+        {
+            <p>
+                UCosmic will remember your email address on this browser for another 30 days. After
+                then, it will be forgotten.
+            </p>
+            <p>
+                If you are using a computer you don't own, for example at a hotel or library, you
+                should not let UCosmic remember your email address. <a href="@Url.Action(MVC.Identity.SignDown.Get(Model.ReturnUrl))">
+                    Click here to remove your email address from this browser right now</a>.
+            </p>
+        }
+        else
+        {
+            <p>
+                You can sign on faster next time by having UCosmic remember your email address on
+                this browser. Just check the box labeled <em>@rememberMeDisplayName</em>
+            </p>
+        }
+    </div>
+    <div class="right">
+        @if (signInModel != null)
+        {
+            @Html.Partial(MVC.Identity.Shared.Views._sign_in_form, Model)
+        }
+        else
+        {
+            @Html.Partial(MVC.Identity.Shared.Views._sign_on_form, Model)
+        }
+    </div>
+</div>

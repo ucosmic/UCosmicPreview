@@ -1,0 +1,43 @@
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.SignInForm
+@{
+    ViewBag.Title = "Sign on to UCosmic";
+    Layout = MVC.Shared.Views.layout;
+}
+<div class="wrap-960 split-form">
+    <div class="left">
+        <p>
+            Your institution's sign-on system has not yet been <a
+                href="@Url.Action(MVC.Saml.ListIdentityProviders.Get())">integrated with UCosmic</a>.
+            You can still sign in using your UCosmic account.
+        </p>
+        <p>
+            If <strong>@Model.EmailAddress</strong> is not your email address, <a href="">click
+                here to enter your email address</a>.
+        </p>
+        <p>
+            If you <a href="@Url.Action(MVC.Passwords.ForgotPassword.Get())">forgot your password</a>,
+            you can <a href="@Url.Action(MVC.Passwords.ForgotPassword.Get())">reset it</a> using
+            your email address.
+        </p>
+        <p>
+            If you want to skip typing in your email address next time, check the box labeled
+            <em>@ModelMetadata.FromLambdaExpression(m => m.RememberMe, ViewData).DisplayName</em>
+        </p>
+    </div>
+    <div class="right">
+        @Html.Partial(MVC.Identity.Shared.Views._sign_in_form, Model)
+    </div>
+</div>
+@section Scripts
+{
+
+    <script type="text/javascript">
+        $.validator.setDefaults({
+            onkeyup: false,
+            onfocusout: false,
+            onsubmit: true
+        });
+        $('input[type=password]').focus();
+    </script>
+
+}

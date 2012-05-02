@@ -10,10 +10,10 @@
         #endregion
         #region Password must be between 6 and 100 characters long
 
-        public const int MinimumLength = 6;
-
-        public static readonly string FailedBecausePasswordWasTooShort = string.Format(
-            "Password must be at least {0} characters long.", MinimumLength);
+        public static string FailedBecausePasswordWasTooShort(int minimumLength)
+        {
+            return string.Format("Password must be at least {0} characters long.", minimumLength);
+        }
 
         #endregion
         #region Password confirmation cannot be empty

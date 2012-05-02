@@ -1,0 +1,32 @@
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.SignIn.OldSignInForm
+@{
+    ViewBag.Title = "Sign In to UCosmic";
+    Layout = MVC.Shared.Views.layout;
+}
+<div class="wrap-960 split-form">
+    <div class="left">
+        @using (Html.BeginForm(MVC.Identity.OldSignIn.SignIn()))
+        {
+            <fieldset>
+                <legend>Email &amp; Password</legend>
+                <p>
+                    Enter your email address and password below, then click the <b>Sign In</b> button.
+                </p>
+                @Html.EditorForModel()
+            </fieldset>
+        }
+    </div>
+    <div class="right">
+        <p>
+            Congratulations, you have successfully signed up for UCosmic.com!
+        </p>
+        <p>
+            Use the form on the left to sign in using your email address and password.
+        </p>
+        <p>
+            If you ever <a href="@Url.Action(MVC.Passwords.ForgotPassword.Get())">forget your
+                password</a>, you can <a href="@Url.Action(MVC.Passwords.ForgotPassword.Get())">
+                    reset it</a> using your email address.
+        </p>
+    </div>
+</div>

@@ -69,11 +69,16 @@ namespace T4MVC {
     public class IdentityClass {
         public readonly string Name = "Identity";
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.ConfirmEmailController ConfirmEmail = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_ConfirmEmailController();
-        public UCosmic.Www.Mvc.Areas.Identity.Controllers.EmailConfirmationController EmailConfirmation = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_EmailConfirmationController();
-        public UCosmic.Www.Mvc.Areas.Identity.Controllers.PasswordController Password = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_PasswordController();
+        public UCosmic.Www.Mvc.Areas.Identity.Controllers.OldPasswordController OldPassword = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_OldPasswordController();
+        public UCosmic.Www.Mvc.Areas.Identity.Controllers.OldSignInController OldSignIn = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_OldSignInController();
+        public UCosmic.Www.Mvc.Areas.Identity.Controllers.OldSignUpController OldSignUp = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_OldSignUpController();
+        public UCosmic.Www.Mvc.Areas.Identity.Controllers.ReceiveSamlAuthnResponseController ReceiveSamlAuthnResponse = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_ReceiveSamlAuthnResponseController();
+        public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignDownController SignDown = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignDownController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignInController SignIn = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignInController();
-        public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignUpController SignUp = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignUpController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignOnController SignOn = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignOnController();
+        public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignOutController SignOut = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignOutController();
+        public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignUpController SignUp = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignUpController();
+        public T4MVC.Identity._EmailConfirmationController _EmailConfirmation = new T4MVC.Identity._EmailConfirmationController();
         public T4MVC.Identity.SharedController Shared = new T4MVC.Identity.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -96,6 +101,7 @@ namespace T4MVC {
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class PasswordsClass {
         public readonly string Name = "Passwords";
+        public UCosmic.Www.Mvc.Areas.Passwords.Controllers.CreatePasswordController CreatePassword = new UCosmic.Www.Mvc.Areas.Passwords.Controllers.T4MVC_CreatePasswordController();
         public UCosmic.Www.Mvc.Areas.Passwords.Controllers.ForgotPasswordController ForgotPassword = new UCosmic.Www.Mvc.Areas.Passwords.Controllers.T4MVC_ForgotPasswordController();
         public UCosmic.Www.Mvc.Areas.Passwords.Controllers.ResetPasswordController ResetPassword = new UCosmic.Www.Mvc.Areas.Passwords.Controllers.T4MVC_ResetPasswordController();
         public T4MVC.Passwords.SharedController Shared = new T4MVC.Passwords.SharedController();

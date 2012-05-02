@@ -97,7 +97,7 @@ namespace UCosmic.Domain.Establishments
 
         public bool HasSamlSignOn()
         {
-            return SamlSignOn != null;
+            return SamlSignOn != null && IsMember;
         }
     }
 
