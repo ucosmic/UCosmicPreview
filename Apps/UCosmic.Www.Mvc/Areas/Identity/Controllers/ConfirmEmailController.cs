@@ -91,7 +91,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         }
 
         public static readonly IDictionary<string, string> SuccessMessageForIntent = new Dictionary<string, string>
-                                                                                     {
+        {
             { EmailConfirmationIntent.SignUp, "Your email address has been confirmed. Please create your password now." },
             { EmailConfirmationIntent.PasswordReset, "Your email address has been confirmed. Please reset your password now." },
         };
@@ -106,6 +106,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         area = MVC.Passwords.Name,
                         controller = MVC.Passwords.ResetPassword.Name,
                         action = MVC.Passwords.ResetPassword.ActionNames.Get,
+                        token,
+                    });
+                case EmailConfirmationIntent.SignUp:
+                    return new RouteValueDictionary(new
+                    {
+                        area = MVC.Passwords.Name,
+                        controller = MVC.Passwords.CreatePassword.Name,
+                        action = MVC.Passwords.CreatePassword.ActionNames.Get,
                         token,
                     });
                 default:
@@ -130,7 +138,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         public static class Get
         {
-            public const string Route = "confirm-email2/{token}/{secretCode}";
+            public const string Route = "confirm-email/{token}/{secretCode}";
             private static readonly string Action = MVC.Identity.ConfirmEmail.ActionNames.Get;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
@@ -152,7 +160,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         public static class Post
         {
-            public const string Route = "confirm-email2/{token}";
+            public const string Route = "confirm-email/{token}";
             private static readonly string Action = MVC.Identity.ConfirmEmail.ActionNames.Post;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
@@ -173,7 +181,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         public static class ValidateSecretCode
         {
-            public const string Route = "confirm-email2/validate";
+            public const string Route = "confirm-email/validate";
             private static readonly string Action = MVC.Identity.ConfirmEmail.ActionNames.ValidateSecretCode;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {

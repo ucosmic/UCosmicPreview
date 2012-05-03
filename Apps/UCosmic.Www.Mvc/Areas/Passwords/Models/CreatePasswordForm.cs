@@ -11,7 +11,7 @@ using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 {
-    public class ResetPasswordForm : IModelConfirmAndRedeem
+    public class CreatePasswordForm : IModelConfirmAndRedeem
     {
         [HiddenInput(DisplayValue = false)]
         public Guid Token { get; set; }
@@ -26,21 +26,21 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
         [DataType(DataType.Password)]
         [Display(Name = PasswordConfirmationDisplayName, Prompt = PasswordConfirmationDisplayPrompt)]
-        [Remote("ValidatePasswordConfirmation", "ResetPassword", "Passwords", HttpMethod = "POST", AdditionalFields = "Password")]
+        [Remote("ValidatePasswordConfirmation", "CreatePassword", "Passwords", HttpMethod = "POST", AdditionalFields = "Password")]
         public string PasswordConfirmation { get; set; }
         public const string PasswordConfirmationDisplayName = "Confirmation";
         public const string PasswordConfirmationDisplayPrompt = "Enter the same password again to confirm";
         public const string PasswordConfirmationPropertyName = "PasswordConfirmation";
     }
 
-    public class ResetPasswordValidator : AbstractValidator<ResetPasswordForm>
+    public class CreatePasswordValidator : AbstractValidator<CreatePasswordForm>
     {
         public const string FailedBecausePasswordWasEmpty = "Password is required.";
         public const string FailedBecausePasswordWasTooShort = "Your password must be at least {0} characters long.";
         public const string FailedBecausePasswordConfirmationWasEmpty = "Password confirmation is required.";
         public const string FailedBecausePasswordConfirmationDidNotEqualPassword = "The password and confirmation password do not match.";
 
-        public ResetPasswordValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
+        public CreatePasswordValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -83,11 +83,11 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
         }
     }
 
-    public static class ResetPasswordProfiler
+    public static class CreatePasswordProfiler
     {
         public static void RegisterProfiles()
         {
-            RootModelProfiler.RegisterProfiles(typeof(ResetPasswordProfiler));
+            RootModelProfiler.RegisterProfiles(typeof(CreatePasswordProfiler));
         }
 
         // ReSharper disable UnusedMember.Local
@@ -96,7 +96,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
         {
             protected override void Configure()
             {
-                CreateMap<EmailConfirmation, ResetPasswordForm>()
+                CreateMap<EmailConfirmation, CreatePasswordForm>()
                     .ForMember(d => d.Password, o => o.Ignore())
                     .ForMember(d => d.PasswordConfirmation, o => o.Ignore())
                 ;
@@ -107,7 +107,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
         {
             protected override void Configure()
             {
-                CreateMap<ResetPasswordForm, ResetPasswordCommand>()
+                CreateMap<CreatePasswordForm, CreatePasswordCommand>()
                     .ForMember(d => d.Ticket, o => o.Ignore())
                 ;
             }

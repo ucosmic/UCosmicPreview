@@ -246,32 +246,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             }
 
             [TestMethod]
-            public void IsValidWhen_IsIncorrect_ButConfirmationIsRedeemed()
-            {
-                var validated = new ConfirmEmailForm
-                {
-                    Token = Guid.NewGuid(),
-                    SecretCode = "secret1",
-                    Intent = "intent1",
-                };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(new EmailConfirmation
-                    {
-                        Intent = "intent1",
-                        SecretCode = "secret2",
-                        RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-10),
-                    });
-                var validator = new ConfirmEmailValidator(queryProcessor.Object);
-
-                var results = validator.Validate(validated);
-
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
-                error.ShouldBeNull();
-            }
-
-            [TestMethod]
             public void IsValidWhen_IsCorrect_AndConfirmationIsNotRedeemed()
             {
                 var validated = new ConfirmEmailForm

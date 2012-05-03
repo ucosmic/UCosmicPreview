@@ -256,38 +256,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void SetsResult_ToResetPasswordRoute_WhenToken_MatchesRedeemedEntity()
-            {
-                const string paramName = "some value";
-                var confirmation = new EmailConfirmation
-                {
-                    ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
-                    RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),
-                    Intent = EmailConfirmationIntent.PasswordReset,
-                };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
-                    .Returns(confirmation);
-                var attribute = new ValidateConfirmEmailAttribute(paramName)
-                {
-                    QueryProcessor = queryProcessor.Object,
-                };
-                var filterContext = CreateFilterContext(paramName, confirmation.Token);
-
-                attribute.OnActionExecuting(filterContext);
-
-                filterContext.Result.ShouldNotBeNull();
-                filterContext.Result.ShouldBeType<RedirectToRouteResult>();
-                var routeResult = (RedirectToRouteResult)filterContext.Result;
-                routeResult.Permanent.ShouldBeFalse();
-                routeResult.RouteValues["area"].ShouldEqual(MVC.Passwords.Name);
-                routeResult.RouteValues["controller"].ShouldEqual(MVC.Passwords.ResetPassword.Name);
-                routeResult.RouteValues["action"].ShouldEqual(MVC.Passwords.ResetPassword.ActionNames.Get);
-                routeResult.RouteValues["token"].ShouldEqual(confirmation.Token);
-            }
-
-            [TestMethod]
             public void SetsNoResult_WhenTokenMatchesEntity_Unexpired_Unredeemed_Unretired()
             {
                 const string paramName = "some value";

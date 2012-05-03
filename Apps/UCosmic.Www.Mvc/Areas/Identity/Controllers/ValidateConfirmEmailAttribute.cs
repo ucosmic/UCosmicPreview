@@ -31,10 +31,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             if (!ValidateExpiration(filterContext)) return;
 
             // make sure the token is not retired
-            if (!ValidateRetirement(filterContext)) return;
-
-            // make sure the token is not redeemed
-            ValidateRedemption(filterContext);
+            ValidateRetirement(filterContext);
         }
 
         protected internal Guid GetToken(ActionExecutingContext filterContext)
@@ -90,20 +87,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             return false;
         }
 
-        private bool ValidateRetirement(ActionExecutingContext filterContext)
+        private void ValidateRetirement(ActionExecutingContext filterContext)
         {
-            if (!EmailConfirmation.IsRetired) return true;
+            if (!EmailConfirmation.IsRetired) return;
 
             HandleDenial(filterContext, ConfirmDeniedBecause.IsRetired);
-            return false;
-        }
-
-        protected virtual void ValidateRedemption(ActionExecutingContext filterContext)
-        {
-            if (!EmailConfirmation.IsRedeemed) return;
-
-            filterContext.Result = new RedirectToRouteResult(
-                ConfirmEmailController.GetRedeemedRouteValues(EmailConfirmation.Token, EmailConfirmation.Intent));
         }
 
         protected void HandleDenial(ActionExecutingContext filterContext, ConfirmDeniedBecause reason)

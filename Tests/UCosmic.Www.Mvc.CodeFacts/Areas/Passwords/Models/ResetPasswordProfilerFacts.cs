@@ -94,17 +94,6 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
             }
 
             [TestMethod]
-            public void MapsIntent_FromValue()
-            {
-                var source = new ResetPasswordForm();
-
-                var destination = Mapper.Map<ResetPasswordCommand>(source);
-
-                destination.ShouldNotBeNull();
-                destination.Intent.ShouldEqual(EmailConfirmationIntent.PasswordReset);
-            }
-
-            [TestMethod]
             public void IgnoresTicket()
             {
                 var source = new ResetPasswordForm();

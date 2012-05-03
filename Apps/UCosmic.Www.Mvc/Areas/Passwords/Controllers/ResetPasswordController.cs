@@ -109,7 +109,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
 
         public static class Get
         {
-            public const string Route = "reset-password2/{token}";
+            public const string Route = "reset-password/{token}";
             private static readonly string Action = MVC.Passwords.ResetPassword.ActionNames.Get;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
@@ -141,7 +141,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
 
         public static class ValidatePasswordConfirmation
         {
-            public const string Route = "reset-password2/validate";
+            public const string Route = "reset-password/validate";
             private static readonly string Action = MVC.Passwords.ResetPassword.ActionNames.ValidatePasswordConfirmation;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {

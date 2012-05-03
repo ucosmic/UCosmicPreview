@@ -63,11 +63,44 @@ namespace UCosmic.Domain.Identity
             }
 
             [TestMethod]
+            public void IsInvalidWhen_MatchesUnintendedEntity()
+            {
+                var confirmation = new EmailConfirmation
+                {
+                    ExpiresOnUtc = DateTime.UtcNow.AddMinutes(-1),
+                    Intent = EmailConfirmationIntent.SignUp,
+                };
+                var command = new ResetPasswordCommand
+                {
+                    Token = Guid.NewGuid()
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    EmailConfirmation = confirmation,
+                    Command = command,
+                };
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Token");
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ValidateEmailConfirmation.FailedBecauseIntentWasIncorrect,
+                        confirmation.Intent, confirmation.Token));
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
             public void IsInvalidWhen_MatchesExpiredEntity()
             {
                 var confirmation = new EmailConfirmation
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(-1),
+                    Intent = EmailConfirmationIntent.PasswordReset,
                 };
                 var command = new ResetPasswordCommand
                 {
@@ -102,6 +135,7 @@ namespace UCosmic.Domain.Identity
                 };
                 var confirmation = new EmailConfirmation
                 {
+                    Intent = EmailConfirmationIntent.PasswordReset,
                     RetiredOnUtc = DateTime.UtcNow.AddMinutes(-1),
                     RedeemedOnUtc = DateTime.UtcNow,
                 };
@@ -130,6 +164,7 @@ namespace UCosmic.Domain.Identity
             {
                 var confirmation = new EmailConfirmation
                 {
+                    Intent = EmailConfirmationIntent.PasswordReset,
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                 };
                 var command = new ResetPasswordCommand
@@ -165,6 +200,7 @@ namespace UCosmic.Domain.Identity
                 };
                 var confirmation = new EmailConfirmation
                 {
+                    Intent = EmailConfirmationIntent.PasswordReset,
                     RedeemedOnUtc = DateTime.UtcNow,
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                     EmailAddress = new EmailAddress
@@ -201,6 +237,7 @@ namespace UCosmic.Domain.Identity
                 };
                 var confirmation = new EmailConfirmation
                 {
+                    Intent = EmailConfirmationIntent.PasswordReset,
                     RedeemedOnUtc = DateTime.UtcNow,
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                     EmailAddress = new EmailAddress
@@ -241,6 +278,7 @@ namespace UCosmic.Domain.Identity
                 };
                 var confirmation = new EmailConfirmation
                 {
+                    Intent = EmailConfirmationIntent.PasswordReset,
                     RedeemedOnUtc = DateTime.UtcNow,
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                     EmailAddress = new EmailAddress
@@ -284,6 +322,7 @@ namespace UCosmic.Domain.Identity
                 };
                 var confirmation = new EmailConfirmation
                 {
+                    Intent = EmailConfirmationIntent.PasswordReset,
                     RedeemedOnUtc = DateTime.UtcNow,
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                     EmailAddress = new EmailAddress
@@ -319,7 +358,7 @@ namespace UCosmic.Domain.Identity
             }
 
             [TestMethod]
-            public void IsValidWhen_MatchesEntity_Unexpired_Unretired_Redeemed_WithNonSamlLocalUser()
+            public void IsValidWhen_MatchesEntity_Intended_Unexpired_Unretired_Redeemed_WithNonSamlLocalUser()
             {
                 var command = new ResetPasswordCommand
                 {
@@ -327,6 +366,7 @@ namespace UCosmic.Domain.Identity
                 };
                 var confirmation = new EmailConfirmation
                 {
+                    Intent = EmailConfirmationIntent.PasswordReset,
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                     RedeemedOnUtc = DateTime.UtcNow,
                     EmailAddress = new EmailAddress
@@ -483,136 +523,6 @@ namespace UCosmic.Domain.Identity
                 var results = validator.Validate(command);
 
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Ticket");
-                error.ShouldBeNull();
-            }
-        }
-
-        [TestClass]
-        public class TheIntentProperty
-        {
-            [TestMethod]
-            public void IsInvalidWhen_IsNull()
-            {
-                var command = new ResetPasswordCommand();
-                var scenarioOptions = new ScenarioOptions();
-                var validator = CreateValidator(scenarioOptions);
-
-                var results = validator.Validate(command);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Intent");
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(
-                    ValidateEmailConfirmation.FailedBecauseIntentWasEmpty);
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
-            public void IsInvalidWhen_IsEmptyString()
-            {
-                var command = new ResetPasswordCommand { Intent = string.Empty };
-                var scenarioOptions = new ScenarioOptions();
-                var validator = CreateValidator(scenarioOptions);
-
-                var results = validator.Validate(command);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Intent");
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(
-                    ValidateEmailConfirmation.FailedBecauseIntentWasEmpty);
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
-            public void IsInvalidWhen_IsWhiteSpace()
-            {
-                var command = new ResetPasswordCommand { Intent = "\t" };
-                var scenarioOptions = new ScenarioOptions();
-                var validator = CreateValidator(scenarioOptions);
-
-                var results = validator.Validate(command);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Intent");
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(
-                    ValidateEmailConfirmation.FailedBecauseIntentWasEmpty);
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
-            public void IsInvalidWhen_IsIncorrectMatch()
-            {
-                var confirmation = new EmailConfirmation
-                {
-                    Intent = "intent1",
-                };
-                var command = new ResetPasswordCommand
-                {
-                    Token = confirmation.Token,
-                    Intent = "intent2"
-                };
-                var scenarioOptions = new ScenarioOptions
-                {
-                    EmailConfirmation = confirmation,
-                    Command = command,
-                };
-                var validator = CreateValidator(scenarioOptions);
-
-                var results = validator.Validate(command);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Intent");
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(string.Format(
-                    ValidateEmailConfirmation.FailedBecauseIntentWasIncorrect,
-                        command.Intent, confirmation.Token));
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
-            public void IsValidWhen_IsNotEmpty_AndIsCorrectMatch()
-            {
-                var confirmation = new EmailConfirmation
-                {
-                    SecretCode = "tomato",
-                };
-                var command = new ResetPasswordCommand
-                {
-                    Token = confirmation.Token,
-                };
-                var scenarioOptions = new ScenarioOptions
-                {
-                    EmailConfirmation = confirmation,
-                    Command = command,
-                };
-                var validator = CreateValidator(scenarioOptions);
-
-                var results = validator.Validate(command);
-
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "SecretCode");
-                error.ShouldBeNull();
-            }
-
-            [TestMethod]
-            public void IsValidWhen_IsNotEmpty_AndConfirmationWasNull()
-            {
-                var command = new ResetPasswordCommand { Intent = "test" };
-                var scenarioOptions = new ScenarioOptions();
-                var validator = CreateValidator(scenarioOptions);
-
-                var results = validator.Validate(command);
-
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Intent");
                 error.ShouldBeNull();
             }
         }

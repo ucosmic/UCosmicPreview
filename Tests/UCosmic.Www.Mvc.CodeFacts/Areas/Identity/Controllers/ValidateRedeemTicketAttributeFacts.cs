@@ -196,40 +196,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void SetsResult_ToPartialCrashDenaial_WhenToken_MatchesUnredeemedEntity()
-            {
-                const string paramName = "some value";
-                const string intent = EmailConfirmationIntent.PasswordReset;
-                var confirmation = new EmailConfirmation
-                {
-                    ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
-                    Intent = intent,
-                };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
-                    .Returns(confirmation);
-                var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
-                {
-                    QueryProcessor = queryProcessor.Object,
-                };
-                var controller = new ConfirmEmailController(null);
-                var filterContext = CreateFilterContext(paramName, confirmation.Token, controller);
-
-                attribute.OnActionExecuting(filterContext);
-
-                filterContext.Result.ShouldNotBeNull();
-                filterContext.Result.ShouldBeType<PartialViewResult>();
-                var partialView = (PartialViewResult)filterContext.Result;
-                partialView.ViewName.ShouldEqual(MVC.Identity.ConfirmEmail.Views._denied);
-                partialView.Model.ShouldNotBeNull();
-                partialView.Model.ShouldBeType<ConfirmDeniedModel>();
-                var model = (ConfirmDeniedModel)partialView.Model;
-                model.Reason.ShouldEqual(ConfirmDeniedBecause.OtherCrash);
-                model.Intent.ShouldEqual(confirmation.Intent);
-            }
-
-            [TestMethod]
             public void SetsResult_ToPartialCrashDenaial_WhenIntent_ConflictsWithEntity()
             {
                 const string paramName = "some value";
@@ -268,7 +234,40 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void SetsResult_ToPartialCrashDenaial_WhenTicket_ConflictsWithController()
+            public void SetsResult_ToConfirmEmailRedirect_WhenToken_MatchesUnredeemedEntity()
+            {
+                const string paramName = "some value";
+                const string intent = EmailConfirmationIntent.PasswordReset;
+                var confirmation = new EmailConfirmation
+                {
+                    ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
+                    Intent = intent,
+                };
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
+                    .Returns(confirmation);
+                var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
+                {
+                    QueryProcessor = queryProcessor.Object,
+                };
+                var controller = new ConfirmEmailController(null);
+                var filterContext = CreateFilterContext(paramName, confirmation.Token, controller);
+
+                attribute.OnActionExecuting(filterContext);
+
+                filterContext.Result.ShouldNotBeNull();
+                filterContext.Result.ShouldBeType<RedirectToRouteResult>();
+                var routeResult = (RedirectToRouteResult)filterContext.Result;
+                routeResult.Permanent.ShouldBeFalse();
+                routeResult.RouteValues["area"].ShouldEqual(MVC.Identity.Name);
+                routeResult.RouteValues["controller"].ShouldEqual(MVC.Identity.ConfirmEmail.Name);
+                routeResult.RouteValues["action"].ShouldEqual(MVC.Identity.ConfirmEmail.ActionNames.Get);
+                routeResult.RouteValues["token"].ShouldEqual(confirmation.Token);
+            }
+
+            [TestMethod]
+            public void SetsResult_ToConfirmEmailRedirect_WhenTicket_ConflictsWithController()
             {
                 const string paramName = "some value";
                 const string intent = EmailConfirmationIntent.SignUp;
@@ -295,14 +294,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 attribute.OnActionExecuting(filterContext);
 
                 filterContext.Result.ShouldNotBeNull();
-                filterContext.Result.ShouldBeType<PartialViewResult>();
-                var partialView = (PartialViewResult)filterContext.Result;
-                partialView.ViewName.ShouldEqual(MVC.Identity.ConfirmEmail.Views._denied);
-                partialView.Model.ShouldNotBeNull();
-                partialView.Model.ShouldBeType<ConfirmDeniedModel>();
-                var model = (ConfirmDeniedModel)partialView.Model;
-                model.Reason.ShouldEqual(ConfirmDeniedBecause.OtherCrash);
-                model.Intent.ShouldEqual(confirmation.Intent);
+                filterContext.Result.ShouldBeType<RedirectToRouteResult>();
+                var routeResult = (RedirectToRouteResult)filterContext.Result;
+                routeResult.Permanent.ShouldBeFalse();
+                routeResult.RouteValues["area"].ShouldEqual(MVC.Identity.Name);
+                routeResult.RouteValues["controller"].ShouldEqual(MVC.Identity.ConfirmEmail.Name);
+                routeResult.RouteValues["action"].ShouldEqual(MVC.Identity.ConfirmEmail.ActionNames.Get);
+                routeResult.RouteValues["token"].ShouldEqual(confirmation.Token);
             }
 
             [TestMethod]

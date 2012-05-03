@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using FluentValidation;
+using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 
@@ -115,28 +116,46 @@ namespace UCosmic.Domain.Email
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             Person person = null;
-            var eagerLoad = new Expression<Func<Person, object>>[]
+            var loadPerson = new Expression<Func<Person, object>>[]
             {
                 p => p.Emails,
                 p => p.User
             };
 
+            Establishment establishment = null;
+            var loadEstablishment = new Expression<Func<Establishment, object>>[]
+            {
+                e => e.SamlSignOn,
+            };
+
             RuleFor(p => p.EmailAddress)
-                // email address cannot be empty
+                //cannot be empty
                 .NotEmpty()
                     .WithMessage(ValidateEmailAddress.FailedBecauseValueWasEmpty)
                 // must be valid against email address regular expression
                 .EmailAddress()
                     .WithMessage(ValidateEmailAddress.FailedBecauseValueWasNotValidEmailAddress)
-                // the email address must match a person
-                .Must(p => ValidateEmailAddress.ValueMatchesPerson(p, queryProcessor, eagerLoad, out person))
+                // must match a person
+                .Must(p => ValidateEmailAddress.ValueMatchesPerson(p, queryProcessor, loadPerson, out person))
                     .WithMessage(ValidateEmailAddress.FailedBecauseValueMatchedNoPerson,
                         p => p.EmailAddress)
+                // must match an establishment
+                .Must(p => ValidateEstablishment.EmailMatchesEntity(p, queryProcessor, loadEstablishment, out establishment))
+                    .WithMessage(ValidateEstablishment.FailedBecauseEmailMatchedNoEntity, 
+                        p => p.EmailAddress)
+                // establishment must be a member
+                .Must(p => establishment.IsMember)
+                    .WithMessage(ValidateEstablishment.FailedBecauseEstablishmentIsNotMember,
+                        p => establishment.RevisionId)
             ;
 
             // when person is not null and intent is to reset password,
             When(p => person != null && p.Intent == EmailConfirmationIntent.PasswordReset, () =>
                 RuleFor(p => p.EmailAddress)
+                    // the establishment must not have saml sign on
+                    .Must(p => !establishment.HasSamlSignOn())
+                        .WithMessage(ValidateEstablishment.FailedBecauseEstablishmentHasSamlSignOn,
+                            p => establishment.RevisionId)
                     // the matched person must have a user
                     .Must(p => ValidatePerson.UserIsNotNull(person))
                         .WithMessage(ValidatePerson.FailedBecauseUserWasNull,

@@ -85,9 +85,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _denied_crash = "~/Areas/Identity/Views/OldSignUp/_denied-crash.cshtml";
-            public readonly string _denied_expired = "~/Areas/Identity/Views/OldSignUp/_denied-expired.cshtml";
-            public readonly string _denied_retired = "~/Areas/Identity/Views/OldSignUp/_denied-retired.cshtml";
             public readonly string confirm_denied = "~/Areas/Identity/Views/OldSignUp/confirm-denied.cshtml";
             public readonly string confirm_email = "~/Areas/Identity/Views/OldSignUp/confirm-email.cshtml";
             public readonly string create_denied = "~/Areas/Identity/Views/OldSignUp/create-denied.cshtml";
@@ -98,8 +95,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{
                 public readonly string ConfirmEmailForm = "ConfirmEmailForm";
-                public readonly string CreatePasswordForm = "CreatePasswordForm";
                 public readonly string EmailAddress = "EmailAddress";
+                public readonly string OldCreatePasswordForm = "OldCreatePasswordForm";
                 public readonly string OldSendEmailForm = "OldSendEmailForm";
             }
         }

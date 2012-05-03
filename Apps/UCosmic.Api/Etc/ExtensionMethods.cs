@@ -50,7 +50,7 @@ namespace UCosmic
             if (email.IndexOf(at) != email.LastIndexOf(at)) throw new InvalidOperationException(string.Format(
                 "The string '{0}' has more than one '{1}' characters.", email, at));
 
-            return email.Substring(email.IndexOf(at));
+            return email.Substring(email.LastIndexOf(at));
         }
 
         #endregion

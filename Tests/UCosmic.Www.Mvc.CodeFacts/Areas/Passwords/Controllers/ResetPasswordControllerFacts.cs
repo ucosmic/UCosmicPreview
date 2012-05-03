@@ -389,7 +389,6 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
                 q.Token == model.Token &&
                 q.Password == model.Password &&
                 q.PasswordConfirmation == model.PasswordConfirmation &&
-                q.Intent == EmailConfirmationIntent.PasswordReset &&
                 q.Ticket == ticket
             ;
         }

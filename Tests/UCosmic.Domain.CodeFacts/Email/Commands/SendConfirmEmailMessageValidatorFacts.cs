@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
+using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 
@@ -16,6 +17,8 @@ namespace UCosmic.Domain.Email
         [TestClass]
         public class TheEmailAddressProperty
         {
+            private const string PropertyName = "EmailAddress";
+
             [TestMethod]
             public void IsInvalidWhen_IsNull()
             {
@@ -27,7 +30,7 @@ namespace UCosmic.Domain.Email
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -49,7 +52,7 @@ namespace UCosmic.Domain.Email
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -71,7 +74,7 @@ namespace UCosmic.Domain.Email
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -93,7 +96,7 @@ namespace UCosmic.Domain.Email
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -118,7 +121,7 @@ namespace UCosmic.Domain.Email
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
@@ -128,12 +131,11 @@ namespace UCosmic.Domain.Email
             }
 
             [TestMethod]
-            public void IsInvalidWhen_MatchesPerson_WithNullUser_AndIntentIsResetPassword()
+            public void IsInvalidWhen_MatchesNoEstablishment()
             {
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = "user@domain.tld",
-                    Intent = EmailConfirmationIntent.PasswordReset,
                 };
                 var person = new Person
                 {
@@ -150,7 +152,114 @@ namespace UCosmic.Domain.Email
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ValidateEstablishment.FailedBecauseEmailMatchedNoEntity,
+                        command.EmailAddress));
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_MatchesNonMemberEstablishment()
+            {
+                var command = new SendConfirmEmailMessageCommand
+                {
+                    EmailAddress = "user@domain.tld",
+                };
+                var person = new Person
+                {
+                    DisplayName = "Adam West"
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    Command = command,
+                    Person = person,
+                    Establishment = new Establishment(),
+                };
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ValidateEstablishment.FailedBecauseEstablishmentIsNotMember,
+                        scenarioOptions.Establishment.RevisionId));
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_MatchesSamlEstablishment_AndIntentIsResetPassword()
+            {
+                var command = new SendConfirmEmailMessageCommand
+                {
+                    EmailAddress = "user@domain.tld",
+                    Intent = EmailConfirmationIntent.PasswordReset,
+                };
+                var person = new Person
+                {
+                    DisplayName = "Adam West"
+                };
+                var establishment = new Establishment
+                {
+                    IsMember = true,
+                    SamlSignOn = new EstablishmentSamlSignOn(),
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    Command = command,
+                    Person = person,
+                    Establishment = establishment,
+                };
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ValidateEstablishment.FailedBecauseEstablishmentHasSamlSignOn,
+                        scenarioOptions.Establishment.RevisionId));
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_MatchesPerson_WithNullUser_AndIntentIsResetPassword()
+            {
+                var command = new SendConfirmEmailMessageCommand
+                {
+                    EmailAddress = "user@domain.tld",
+                    Intent = EmailConfirmationIntent.PasswordReset,
+                };
+                var person = new Person
+                {
+                    DisplayName = "Adam West"
+                };
+                var establishment = new Establishment
+                {
+                    IsMember = true,
+                };
+                var scenarioOptions = new ScenarioOptions
+                {
+                    Command = command,
+                    Person = person,
+                    Establishment = establishment,
+                };
+                var validator = CreateValidator(scenarioOptions);
+
+                var results = validator.Validate(command);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
@@ -175,10 +284,15 @@ namespace UCosmic.Domain.Email
                         EduPersonTargetedId = "something",
                     },
                 };
+                var establishment = new Establishment
+                {
+                    IsMember = true,
+                };
                 var scenarioOptions = new ScenarioOptions
                 {
                     Command = command,
                     Person = person,
+                    Establishment = establishment,
                 };
                 var validator = CreateValidator(scenarioOptions);
 
@@ -186,7 +300,7 @@ namespace UCosmic.Domain.Email
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
@@ -210,10 +324,15 @@ namespace UCosmic.Domain.Email
                         Name = "username",
                     },
                 };
+                var establishment = new Establishment
+                {
+                    IsMember = true,
+                };
                 var scenarioOptions = new ScenarioOptions
                 {
                     Command = command,
                     Person = person,
+                    Establishment = establishment,
                 };
                 var validator = CreateValidator(scenarioOptions);
 
@@ -221,7 +340,7 @@ namespace UCosmic.Domain.Email
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
@@ -252,11 +371,16 @@ namespace UCosmic.Domain.Email
                         },
                     },
                 };
+                var establishment = new Establishment
+                {
+                    IsMember = true,
+                };
                 var scenarioOptions = new ScenarioOptions
                 {
                     Command = command,
                     Person = person,
                     LocalMemberExists = true,
+                    Establishment = establishment,
                 };
                 var validator = CreateValidator(scenarioOptions);
 
@@ -264,7 +388,7 @@ namespace UCosmic.Domain.Email
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
@@ -274,7 +398,7 @@ namespace UCosmic.Domain.Email
             }
 
             [TestMethod]
-            public void IsInvalidWhen_MatchesConfirmedEmail_WithPerson_HavingLocalNonSamlUser()
+            public void IsValidWhen_MatchesNonSamlMemberEstablishment_AndConfirmedEmail_WithPersonHavingLocalNonSamlUser()
             {
                 var command = new SendConfirmEmailMessageCommand
                 {
@@ -295,17 +419,22 @@ namespace UCosmic.Domain.Email
                         },
                     },
                 };
+                var establishment = new Establishment
+                {
+                    IsMember = true,
+                };
                 var scenarioOptions = new ScenarioOptions
                 {
                     Command = command,
                     Person = person,
                     LocalMemberExists = true,
+                    Establishment = establishment,
                 };
                 var validator = CreateValidator(scenarioOptions);
 
                 var results = validator.Validate(command);
 
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldBeNull();
             }
         }
@@ -314,6 +443,7 @@ namespace UCosmic.Domain.Email
         {
             internal SendConfirmEmailMessageCommand Command { get; set; }
             internal Person Person { get; set; }
+            internal Establishment Establishment { get; set; }
             internal bool LocalMemberExists { get; set; }
         }
 
@@ -322,9 +452,14 @@ namespace UCosmic.Domain.Email
             scenarioOptions = scenarioOptions ?? new ScenarioOptions();
             var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
             if (scenarioOptions.Command != null)
+            {
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(PersonQueryBasedOn(scenarioOptions.Command))))
                     .Returns(scenarioOptions.Person);
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(EstablishmentQueryBasedOn(scenarioOptions.Command))))
+                    .Returns(scenarioOptions.Establishment);
+            }
             var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
             if (scenarioOptions.Person != null &&
                 scenarioOptions.Person.User != null &&
@@ -337,8 +472,14 @@ namespace UCosmic.Domain.Email
 
         private static Expression<Func<GetPersonByEmailQuery, bool>> PersonQueryBasedOn(SendConfirmEmailMessageCommand command)
         {
-            Expression<Func<GetPersonByEmailQuery, bool>> confirmationQueryBasedOn = q => q.Email == command.EmailAddress;
-            return confirmationQueryBasedOn;
+            Expression<Func<GetPersonByEmailQuery, bool>> queryBasedOn = q => q.Email == command.EmailAddress;
+            return queryBasedOn;
+        }
+
+        private static Expression<Func<GetEstablishmentByEmailQuery, bool>> EstablishmentQueryBasedOn(SendConfirmEmailMessageCommand command)
+        {
+            Expression<Func<GetEstablishmentByEmailQuery, bool>> queryBasedOn = q => q.Email == command.EmailAddress;
+            return queryBasedOn;
         }
     }
 }

@@ -60,13 +60,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             RuleFor(p => p.SecretCode)
                 // secret must match entity
                 .Must(p => ValidateEmailConfirmation.SecretCodeIsCorrect(confirmation, p))
-                // allow redeemed confirmation to pass through for redirect..?
-                    //.Unless(p => confirmation != null && confirmation.IsRedeemed)
                     .When(p =>
                         !string.IsNullOrWhiteSpace(p.SecretCode) &&
                         !string.IsNullOrWhiteSpace(p.Intent) &&
                         confirmation != null &&
-                        !confirmation.IsRedeemed &&
                         ValidateEmailConfirmation.IntentIsCorrect(confirmation, p.Intent))
                     .WithMessage(FailedBecauseSecretCodeWasIncorrect)
             ;
