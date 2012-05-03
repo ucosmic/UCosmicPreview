@@ -37,7 +37,13 @@
         @Html.Partial(MVC.Identity.ConfirmEmail.Views._right)
     </div>
 </div>
-@section Styles
+@section Scripts
 {
-    @Html.Partial(MVC.Identity.ConfirmEmail.Views._styles)
+
+    <script type="text/javascript">
+        $.validator.setDefaults({
+            onkeyup: false
+        });
+    </script>
+
 }

@@ -62,9 +62,12 @@ namespace UCosmic.Domain.Email
             }
 
             [TestMethod]
-            public void ExecutesUpdate_OnEmailConfirmation()
+            public void ExecutesUpdate_OnEmailConfirmation_WhenNotRedeeed()
             {
-                var confirmation = new EmailConfirmation();
+                var confirmation = new EmailConfirmation
+                {
+                    EmailAddress = new EmailAddress(),
+                };
                 var command = new RedeemEmailConfirmationCommand
                 {
                     Token = confirmation.Token,
@@ -86,9 +89,40 @@ namespace UCosmic.Domain.Email
             }
 
             [TestMethod]
-            public void SetsConfirmationProperty_RedeemedOnUtc()
+            public void ExecutesNoUpdate_OnEmailConfirmation_WhenAlreadyRedeeed()
             {
-                var confirmation = new EmailConfirmation();
+                var confirmation = new EmailConfirmation
+                {
+                    EmailAddress = new EmailAddress(),
+                    RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),
+                };
+                var command = new RedeemEmailConfirmationCommand
+                {
+                    Token = confirmation.Token,
+                };
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(confirmation);
+                queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
+                    .Returns(null as string);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                entities.Setup(m => m.Update(It.Is(ConfirmationEntity(confirmation))));
+                var handler = new RedeemEmailConfirmationHandler(
+                    queryProcessor.Object, entities.Object);
+
+                handler.Handle(command);
+
+                entities.Verify(m => m.Update(It.Is(ConfirmationEntity(confirmation))),
+                    Times.Never());
+            }
+
+            [TestMethod]
+            public void SetsEmailAddressProperty_IsConfirmed_ToTrue_WhenNotRedeemed()
+            {
+                var confirmation = new EmailConfirmation
+                {
+                    EmailAddress = new EmailAddress(),
+                };
                 var command = new RedeemEmailConfirmationCommand
                 {
                     Token = confirmation.Token,
@@ -103,6 +137,60 @@ namespace UCosmic.Domain.Email
                 var handler = new RedeemEmailConfirmationHandler(
                     queryProcessor.Object, entities.Object);
 
+                confirmation.EmailAddress.IsConfirmed.ShouldBeFalse();
+                handler.Handle(command);
+
+                confirmation.EmailAddress.IsConfirmed.ShouldBeTrue();
+            }
+
+            [TestMethod]
+            public void SetsNoEmailAddressProperty_IsConfirmed_WhenAlreadyRedeeed()
+            {
+                var confirmation = new EmailConfirmation
+                {
+                    EmailAddress = new EmailAddress(),
+                    RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),
+                };
+                var command = new RedeemEmailConfirmationCommand
+                {
+                    Token = confirmation.Token,
+                };
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(confirmation);
+                queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
+                    .Returns(null as string);
+                var handler = new RedeemEmailConfirmationHandler(
+                    queryProcessor.Object, null);
+
+                confirmation.EmailAddress.IsConfirmed.ShouldBeFalse();
+                handler.Handle(command);
+
+                confirmation.EmailAddress.IsConfirmed.ShouldBeFalse();
+            }
+
+            [TestMethod]
+            public void SetsConfirmationProperty_RedeemedOnUtc_WhenNotRedeeed()
+            {
+                var confirmation = new EmailConfirmation
+                {
+                    EmailAddress = new EmailAddress(),
+                };
+                var command = new RedeemEmailConfirmationCommand
+                {
+                    Token = confirmation.Token,
+                };
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(confirmation);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                entities.Setup(m => m.Update(It.Is(ConfirmationEntity(confirmation))));
+                queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
+                    .Returns(null as string);
+                var handler = new RedeemEmailConfirmationHandler(
+                    queryProcessor.Object, entities.Object);
+
+                confirmation.RedeemedOnUtc.HasValue.ShouldBeFalse();
                 handler.Handle(command);
 
                 confirmation.RedeemedOnUtc.HasValue.ShouldBeTrue();
@@ -113,11 +201,13 @@ namespace UCosmic.Domain.Email
             }
 
             [TestMethod]
-            public void SetsConfirmationProperty_SecretCode_ToNull()
+            public void SetsNoConfirmationProperty_RedeemedOnUtc_WhenAlreadyRedeeed()
             {
+                var redeemedOnUtc = DateTime.UtcNow.AddSeconds(-5);
                 var confirmation = new EmailConfirmation
                 {
-                    SecretCode = "secret",
+                    EmailAddress = new EmailAddress(),
+                    RedeemedOnUtc = redeemedOnUtc,
                 };
                 var command = new RedeemEmailConfirmationCommand
                 {
@@ -128,20 +218,24 @@ namespace UCosmic.Domain.Email
                     .Returns(confirmation);
                 queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
                     .Returns(null as string);
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
-                entities.Setup(m => m.Update(It.Is(ConfirmationEntity(confirmation))));
                 var handler = new RedeemEmailConfirmationHandler(
-                    queryProcessor.Object, entities.Object);
+                    queryProcessor.Object, null);
 
                 handler.Handle(command);
 
-                confirmation.SecretCode.ShouldBeNull();
+                confirmation.RedeemedOnUtc.HasValue.ShouldBeTrue();
+                // ReSharper disable PossibleInvalidOperationException
+                confirmation.RedeemedOnUtc.Value.ShouldEqual(redeemedOnUtc);
+                // ReSharper restore PossibleInvalidOperationException
             }
 
             [TestMethod]
-            public void SetsConfirmationProperty_Ticket()
+            public void SetsConfirmationProperty_Ticket_WhenNotRedeeed()
             {
-                var confirmation = new EmailConfirmation();
+                var confirmation = new EmailConfirmation
+                {
+                    EmailAddress = new EmailAddress(),
+                };
                 var command = new RedeemEmailConfirmationCommand
                 {
                     Token = confirmation.Token,
@@ -156,16 +250,50 @@ namespace UCosmic.Domain.Email
                 var handler = new RedeemEmailConfirmationHandler(
                     queryProcessor.Object, entities.Object);
 
+                confirmation.Ticket.ShouldBeNull();
                 handler.Handle(command);
 
                 confirmation.Ticket.ShouldNotBeNull();
+                confirmation.Ticket.ShouldEqual(TwoFiftySixLengthString2);
                 confirmation.Ticket.Length.ShouldEqual(256);
             }
 
             [TestMethod]
-            public void CopiesTicketValue_ToCommandProperty()
+            public void SetsNoConfirmationProperty_Ticket_WhenAlreadyRedeeed()
             {
-                var confirmation = new EmailConfirmation();
+                var confirmation = new EmailConfirmation
+                {
+                    EmailAddress = new EmailAddress(),
+                    RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),
+                    Ticket = TwoFiftySixLengthString1,
+                };
+                var command = new RedeemEmailConfirmationCommand
+                {
+                    Token = confirmation.Token,
+                };
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(confirmation);
+                queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
+                    .Returns(TwoFiftySixLengthString2);
+                var handler = new RedeemEmailConfirmationHandler(
+                    queryProcessor.Object, null);
+
+                confirmation.Ticket.ShouldEqual(TwoFiftySixLengthString1);
+                handler.Handle(command);
+
+                confirmation.Ticket.ShouldNotBeNull();
+                confirmation.Ticket.ShouldEqual(TwoFiftySixLengthString1);
+                confirmation.Ticket.Length.ShouldEqual(256);
+            }
+
+            [TestMethod]
+            public void CopiesTicketValue_ToCommandProperty_WhenNotRedeeed()
+            {
+                var confirmation = new EmailConfirmation
+                {
+                    EmailAddress = new EmailAddress(),
+                };
                 var command = new RedeemEmailConfirmationCommand
                 {
                     Token = confirmation.Token,
@@ -180,11 +308,42 @@ namespace UCosmic.Domain.Email
                 var handler = new RedeemEmailConfirmationHandler(
                     queryProcessor.Object, entities.Object);
 
+                command.Ticket.ShouldBeNull();
                 handler.Handle(command);
 
                 command.Ticket.ShouldNotBeNull();
                 command.Ticket.Length.ShouldEqual(256);
                 command.Ticket.ShouldEqual(confirmation.Ticket);
+                command.Ticket.ShouldEqual(TwoFiftySixLengthString1);
+            }
+
+            [TestMethod]
+            public void CopiesTicketValue_ToCommandProperty_WhenAlreadyRedeeed()
+            {
+                var confirmation = new EmailConfirmation
+                {
+                    EmailAddress = new EmailAddress(),
+                    RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),
+                    Ticket = TwoFiftySixLengthString2,
+                };
+                var command = new RedeemEmailConfirmationCommand
+                {
+                    Token = confirmation.Token,
+                };
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
+                    .Returns(confirmation);
+                queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
+                    .Returns(TwoFiftySixLengthString1);
+                var handler = new RedeemEmailConfirmationHandler(
+                    queryProcessor.Object, null);
+
+                handler.Handle(command);
+
+                command.Ticket.ShouldNotBeNull();
+                command.Ticket.Length.ShouldEqual(256);
+                command.Ticket.ShouldEqual(confirmation.Ticket);
+                command.Ticket.ShouldEqual(TwoFiftySixLengthString2);
             }
         }
 

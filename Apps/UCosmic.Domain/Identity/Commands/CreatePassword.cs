@@ -5,7 +5,7 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Identity
 {
-    public class ResetPasswordCommand
+    public class CreatePasswordCommand
     {
         public Guid Token { get; set; }
         public string Ticket { get; set; }
@@ -13,13 +13,13 @@ namespace UCosmic.Domain.Identity
         public string PasswordConfirmation { get; set; }
     }
 
-    public class ResetPasswordHandler : IHandleCommands<ResetPasswordCommand>
+    public class CreatePasswordHandler : IHandleCommands<CreatePasswordCommand>
     {
         private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
         private readonly ISignMembers _memberSigner;
 
-        public ResetPasswordHandler(IProcessQueries queryProcessor
+        public CreatePasswordHandler(IProcessQueries queryProcessor
             , ICommandEntities entities
             , ISignMembers memberSigner
         )
@@ -29,7 +29,7 @@ namespace UCosmic.Domain.Identity
             _memberSigner = memberSigner;
         }
 
-        public void Handle(ResetPasswordCommand command)
+        public void Handle(CreatePasswordCommand command)
         {
             if (command == null) throw new ArgumentNullException("command");
 
@@ -38,16 +38,26 @@ namespace UCosmic.Domain.Identity
                 new GetEmailConfirmationQuery(command.Token)
             );
 
-            _memberSigner.ResetPassword(confirmation.EmailAddress.Person.User.Name, command.Password);
+            // set up user accounts
+            var person = confirmation.EmailAddress.Person;
+            person.User = person.User ?? new User();
+            person.User.Name = person.User.Name ?? confirmation.EmailAddress.Value;
+            person.User.IsRegistered = true;
+            person.User.EduPersonTargetedId = null;
+            person.User.EduPersonScopedAffiliations.Clear();
+            person.User.SubjectNameIdentifiers.Clear();
+
             confirmation.RetiredOnUtc = DateTime.UtcNow;
             confirmation.Ticket = null;
             _entities.Update(confirmation);
+
+            _memberSigner.SignUp(confirmation.EmailAddress.Person.User.Name, command.Password);
         }
     }
 
-    public class ResetPasswordValidator : AbstractValidator<ResetPasswordCommand>
+    public class CreatePasswordValidator : AbstractValidator<CreatePasswordCommand>
     {
-        public ResetPasswordValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
+        public CreatePasswordValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -88,7 +98,7 @@ namespace UCosmic.Domain.Identity
             RuleFor(p => p.PasswordConfirmation)
                 // must match password unless password is invalid or password confirmation is empty
                 .Equal(p => p.Password)
-                    .Unless(p => 
+                    .Unless(p =>
                         string.IsNullOrWhiteSpace(p.PasswordConfirmation) ||
                         string.IsNullOrWhiteSpace(p.Password) ||
                         p.Password.Length < memberSigner.MinimumPasswordLength)
@@ -99,8 +109,8 @@ namespace UCosmic.Domain.Identity
             When(p => confirmation != null, () =>
             {
                 RuleFor(p => p.Token)
-                    // its intent must be to reset password
-                    .Must(p => confirmation.Intent == EmailConfirmationIntent.PasswordReset)
+                    // its intent must be to sign up
+                    .Must(p => confirmation.Intent == EmailConfirmationIntent.SignUp)
                         .WithMessage(ValidateEmailConfirmation.FailedBecauseIntentWasIncorrect,
                             p => confirmation.Intent, p => confirmation.Token)
                     // it cannot be expired
@@ -119,17 +129,10 @@ namespace UCosmic.Domain.Identity
                     .Must(p => ValidateEmailAddress.IsConfirmed(confirmation.EmailAddress))
                         .WithMessage(ValidateEmailAddress.FailedBecauseIsNotConfirmed,
                             p => confirmation.EmailAddress.Value)
-                    // it must be attached to a user
-                    .Must(p => ValidatePerson.UserIsNotNull(confirmation.EmailAddress.Person))
-                        .WithMessage(ValidatePerson.FailedBecauseUserWasNull,
-                            p => confirmation.EmailAddress.Person.DisplayName)
-                    // user cannot have a saml account
-                    .Must(p => ValidateUser.EduPersonTargetedIdIsEmpty(confirmation.EmailAddress.Person.User))
-                        .WithMessage(ValidateUser.FailedBecauseEduPersonTargetedIdWasNotEmpty,
-                            p => confirmation.EmailAddress.Person.User.Name)
-                    // user name must match local member account
-                    .Must(p => ValidateUser.NameMatchesLocalMember(confirmation.EmailAddress.Person.User.Name, memberSigner))
-                        .WithMessage(ValidateUser.FailedBecauseNameMatchedNoLocalMember,
+                    // user, if present, cannot match local member account
+                    .Must(p => confirmation.EmailAddress.Person.User == null
+                        || !memberSigner.IsSignedUp(confirmation.EmailAddress.Person.User.Name))
+                        .WithMessage(ValidateUser.FailedBecauseNameMatchedLocalMember,
                             p => confirmation.EmailAddress.Person.User.Name)
                 ;
 

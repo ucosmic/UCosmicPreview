@@ -84,7 +84,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             public readonly string _form_instructions = "~/Areas/Identity/Views/ConfirmEmail/_form-instructions.cshtml";
             public readonly string _form_legend = "~/Areas/Identity/Views/ConfirmEmail/_form-legend.cshtml";
             public readonly string _right = "~/Areas/Identity/Views/ConfirmEmail/_right.cshtml";
-            public readonly string _styles = "~/Areas/Identity/Views/ConfirmEmail/_styles.cshtml";
             public readonly string confirm_email = "~/Areas/Identity/Views/ConfirmEmail/confirm-email.cshtml";
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }

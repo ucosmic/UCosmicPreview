@@ -35,12 +35,17 @@ namespace UCosmic.Domain.Email
                 new GetEmailConfirmationQuery(command.Token)
             );
 
-            confirmation.RedeemedOnUtc = DateTime.UtcNow;
-            confirmation.SecretCode = null;
-            confirmation.Ticket = _queryProcessor.Execute(
-                new GenerateRandomSecretQuery(256));
+            // redeem
+            if (!confirmation.RedeemedOnUtc.HasValue)
+            {
+                confirmation.EmailAddress.IsConfirmed = true;
+                confirmation.RedeemedOnUtc = DateTime.UtcNow;
+                confirmation.Ticket = _queryProcessor.Execute(
+                    new GenerateRandomSecretQuery(256));
+                _entities.Update(confirmation);
+            }
+
             command.Ticket = confirmation.Ticket;
-            _entities.Update(confirmation);
         }
     }
 
@@ -83,10 +88,6 @@ namespace UCosmic.Domain.Email
                     .Must(p => !confirmation.IsExpired)
                         .WithMessage(ValidateEmailConfirmation.FailedBecauseIsExpired,
                             p => confirmation.Token, p => confirmation.ExpiresOnUtc)
-                    // it cannot be redeemed
-                    .Must(p => !confirmation.IsRedeemed)
-                        .WithMessage(ValidateEmailConfirmation.FailedBecauseIsRedeemed,
-                            p => confirmation.Token, p => confirmation.RedeemedOnUtc)
                     // it cannot be retired
                     .Must(p => !confirmation.IsRetired)
                         .WithMessage(ValidateEmailConfirmation.FailedBecauseIsRetired,

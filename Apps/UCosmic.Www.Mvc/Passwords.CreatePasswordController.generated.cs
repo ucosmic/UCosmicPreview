@@ -23,9 +23,6 @@ using T4MVC;
 namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers {
     public partial class CreatePasswordController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public CreatePasswordController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected CreatePasswordController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -38,6 +35,16 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult Get() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.Get);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.JsonResult ValidatePasswordConfirmation() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidatePasswordConfirmation);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult Post() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Post);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -54,14 +61,16 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Get = "Get";
-            public readonly string Post = "Post";
+            public readonly string Get = "create-password";
+            public readonly string ValidatePasswordConfirmation = "ValidatePasswordConfirmation";
+            public readonly string Post = "create-password";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Get = "Get";
-            public const string Post = "Post";
+            public const string Get = "create-password";
+            public const string ValidatePasswordConfirmation = "ValidatePasswordConfirmation";
+            public const string Post = "create-password";
         }
 
 
@@ -70,6 +79,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
+            public readonly string _denied_crash = "~/Areas/Passwords/Views/CreatePassword/_denied-crash.cshtml";
+            public readonly string _denied_expired = "~/Areas/Passwords/Views/CreatePassword/_denied-expired.cshtml";
+            public readonly string _denied_retired = "~/Areas/Passwords/Views/CreatePassword/_denied-retired.cshtml";
         }
     }
 
@@ -83,8 +95,15 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Post() {
+        public override System.Web.Mvc.JsonResult ValidatePasswordConfirmation(UCosmic.Www.Mvc.Areas.Passwords.Models.CreatePasswordForm model) {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidatePasswordConfirmation);
+            callInfo.RouteValueDictionary.Add("model", model);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Post(UCosmic.Www.Mvc.Areas.Passwords.Models.CreatePasswordForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
+            callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
 

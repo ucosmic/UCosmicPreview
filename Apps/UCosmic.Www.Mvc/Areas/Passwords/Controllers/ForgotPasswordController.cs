@@ -37,7 +37,11 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers
         [ReturnUrlReferrer(SignInRouter.Get.Route)]
         public virtual PartialViewResult Get()
         {
-            var model = new ForgotPasswordForm();
+            var model = new ForgotPasswordForm
+            {
+                EmailAddress = HttpContext.SigningEmailAddressCookie() ?? 
+                               TempData.SigningEmailAddress(),
+            };
             return PartialView(model);
         }
 

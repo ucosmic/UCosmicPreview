@@ -8,6 +8,7 @@ using UCosmic.Domain.Email;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Models;
+using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 {
@@ -30,14 +31,20 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
         public const string FailedBecauseEmailAddressWasEmpty = "Email address is required.";
         public const string FailedBecauseEmailAddressWasNotValidEmailAddress = "This is not a valid email address.";
         public const string FailedBecauseUserNameMatchedNoLocalMember = "A user account for the email address '{0}' could not be found.";
-        public const string FailedBecauseEduPersonTargetedIdWasNotEmpty = "Your password cannot be reset because you have a Single Sign On account with your employer.";
+        public const string FailedBecauseEduPersonTargetedIdWasNotEmpty = "Your password cannot be reset because you have a Single Sign On account {0}.";
 
         public ForgotPasswordValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
+            Establishment establishment = null;
+            var loadEstablishment = new Expression<Func<Establishment, object>>[]
+            {
+                e => e.SamlSignOn,
+            };
+
             Person person = null;
-            var eagerLoad = new Expression<Func<Person, object>>[]
+            var loadPerson = new Expression<Func<Person, object>>[]
             {
                 p => p.Emails,
                 p => p.User
@@ -45,7 +52,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
             RuleFor(p => p.EmailAddress)
 
-                // email address cannot be empty
+                // cannot be empty
                 .NotEmpty()
                     .WithMessage(FailedBecauseEmailAddressWasEmpty)
 
@@ -53,8 +60,23 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 .EmailAddress()
                     .WithMessage(FailedBecauseEmailAddressWasNotValidEmailAddress)
 
-                // the email address must match a person
-                .Must(p => ValidateEmailAddress.ValueMatchesPerson(p, queryProcessor, eagerLoad, out person))
+                // must match an establishment
+                .Must(p => ValidateEstablishment.EmailMatchesEntity(p, queryProcessor, loadEstablishment, out establishment))
+                    .WithMessage(FailedBecauseUserNameMatchedNoLocalMember,
+                        p => p.EmailAddress)
+
+                // establishment must be a member
+                .Must(p => establishment.IsMember)
+                    .WithMessage(FailedBecauseUserNameMatchedNoLocalMember,
+                        p => p.EmailAddress)
+
+                // establishment cannot have saml integration
+                .Must(p => !establishment.HasSamlSignOn())
+                    .WithMessage(FailedBecauseEduPersonTargetedIdWasNotEmpty,
+                        p => p.EmailAddress.GetEmailDomain())
+
+                // must match a person
+                .Must(p => ValidateEmailAddress.ValueMatchesPerson(p, queryProcessor, loadPerson, out person))
                     .WithMessage(FailedBecauseUserNameMatchedNoLocalMember,
                         p => p.EmailAddress)
 
@@ -65,7 +87,8 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
                 // the user must not have a SAML account
                 .Must(p => ValidateUser.EduPersonTargetedIdIsEmpty(person.User))
-                    .WithMessage(FailedBecauseEduPersonTargetedIdWasNotEmpty)
+                    .WithMessage(FailedBecauseEduPersonTargetedIdWasNotEmpty, 
+                        p => p.EmailAddress.GetEmailDomain())
 
                 // the email address' person's user's name must match a local member account
                 .Must(p => ValidateUser.NameMatchesLocalMember(person.User.Name, memberSigner))

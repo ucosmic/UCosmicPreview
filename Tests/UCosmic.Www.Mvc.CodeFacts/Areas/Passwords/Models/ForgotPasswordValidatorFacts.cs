@@ -9,6 +9,7 @@ using Should;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 using UCosmic.Impl;
+using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 {
@@ -36,6 +37,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
         [TestClass]
         public class TheEmailAddressProperty
         {
+            private const string PropertyName = "EmailAddress";
             [TestMethod]
             public void IsInvalidWhen_IsNull()
             {
@@ -46,7 +48,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -67,7 +69,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -88,7 +90,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -109,11 +111,95 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
                     ForgotPasswordValidator.FailedBecauseEmailAddressWasNotValidEmailAddress);
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_MatchesNoEstablishment()
+            {
+                var validated = new ForgotPasswordForm
+                {
+                    EmailAddress = "user@domain.tld",
+                };
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
+                    .Returns(null as Establishment);
+                var validator = new ForgotPasswordValidator(queryProcessor.Object, null);
+
+                var results = validator.Validate(validated);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ForgotPasswordValidator.FailedBecauseUserNameMatchedNoLocalMember, 
+                        validated.EmailAddress));
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_MatchesNonMemberEstablishment()
+            {
+                var validated = new ForgotPasswordForm
+                {
+                    EmailAddress = "user@domain.tld",
+                };
+                var establishment = new Establishment();
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
+                    .Returns(establishment);
+                var validator = new ForgotPasswordValidator(queryProcessor.Object, null);
+
+                var results = validator.Validate(validated);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ForgotPasswordValidator.FailedBecauseUserNameMatchedNoLocalMember,
+                        validated.EmailAddress));
+                // ReSharper restore PossibleNullReferenceException
+            }
+
+            [TestMethod]
+            public void IsInvalidWhen_MatchesSamlEstablishment()
+            {
+                var validated = new ForgotPasswordForm
+                {
+                    EmailAddress = "user@domain.tld",
+                };
+                var establishment = new Establishment
+                {
+                    IsMember = true,
+                    SamlSignOn = new EstablishmentSamlSignOn(),
+                };
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
+                    .Returns(establishment);
+                var validator = new ForgotPasswordValidator(queryProcessor.Object, null);
+
+                var results = validator.Validate(validated);
+
+                results.IsValid.ShouldBeFalse();
+                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
+                error.ShouldNotBeNull();
+                // ReSharper disable PossibleNullReferenceException
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ForgotPasswordValidator.FailedBecauseEduPersonTargetedIdWasNotEmpty,
+                        validated.EmailAddress.GetEmailDomain()));
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -124,7 +210,14 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     EmailAddress = "user@domain.tld",
                 };
+                var establishment = new Establishment
+                {
+                    IsMember = true,
+                };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
+                    .Returns(establishment);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(PersonQueryBasedOn(validated))))
                     .Returns(null as Person);
@@ -134,11 +227,11 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    ForgotPasswordValidator.FailedBecauseUserNameMatchedNoLocalMember, 
+                    ForgotPasswordValidator.FailedBecauseUserNameMatchedNoLocalMember,
                         validated.EmailAddress));
                 // ReSharper restore PossibleNullReferenceException
             }
@@ -150,7 +243,14 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                 {
                     EmailAddress = "user@domain.tld",
                 };
+                var establishment = new Establishment
+                {
+                    IsMember = true,
+                };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
+                    .Returns(establishment);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(PersonQueryBasedOn(validated))))
                     .Returns(new Person());
@@ -160,7 +260,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
@@ -183,7 +283,14 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                         EduPersonTargetedId = "something",
                     },
                 };
+                var establishment = new Establishment
+                {
+                    IsMember = true,
+                };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
+                    .Returns(establishment);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(PersonQueryBasedOn(validated))))
                     .Returns(person);
@@ -193,11 +300,12 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(
-                    ForgotPasswordValidator.FailedBecauseEduPersonTargetedIdWasNotEmpty);
+                error.ErrorMessage.ShouldEqual(string.Format(
+                    ForgotPasswordValidator.FailedBecauseEduPersonTargetedIdWasNotEmpty, 
+                        validated.EmailAddress.GetEmailDomain()));
                 // ReSharper restore PossibleNullReferenceException
             }
 
@@ -215,7 +323,14 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                         Name = "user@domain.sub.tld",
                     },
                 };
+                var establishment = new Establishment
+                {
+                    IsMember = true,
+                };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
+                    .Returns(establishment);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(PersonQueryBasedOn(validated))))
                     .Returns(person);
@@ -229,7 +344,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
@@ -259,7 +374,14 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                         },
                     },
                 };
+                var establishment = new Establishment
+                {
+                    IsMember = true,
+                };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
+                    .Returns(establishment);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(PersonQueryBasedOn(validated))))
                     .Returns(person);
@@ -273,7 +395,7 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
@@ -304,7 +426,14 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
                         },
                     },
                 };
+                var establishment = new Establishment
+                {
+                    IsMember = true,
+                };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m
+                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
+                    .Returns(establishment);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(PersonQueryBasedOn(validated))))
                     .Returns(person);
@@ -316,12 +445,17 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Models
 
                 var results = validator.Validate(validated);
 
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldBeNull();
             }
         }
 
         private static Expression<Func<GetPersonByEmailQuery, bool>> PersonQueryBasedOn(ForgotPasswordForm validated)
+        {
+            return q => q.Email == validated.EmailAddress;
+        }
+
+        private static Expression<Func<GetEstablishmentByEmailQuery, bool>> EstablishmentQueryBasedOn(ForgotPasswordForm validated)
         {
             return q => q.Email == validated.EmailAddress;
         }

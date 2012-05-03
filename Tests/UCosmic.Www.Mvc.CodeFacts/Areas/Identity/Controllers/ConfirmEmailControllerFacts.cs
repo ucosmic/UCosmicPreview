@@ -455,18 +455,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 commandHandler.Setup(m => m.Handle(It.Is(ConfirmationCommandBasedOn(form))));
                 var services = new ConfirmEmailServices(null, commandHandler.Object);
                 var controller = new ConfirmEmailController(services);
-                NotSupportedException exception = null;
 
-                try
-                {
-                    controller.Post(form);
-                }
-                catch (NotSupportedException ex)
-                {
-                    exception = ex;
-                }
+                controller.Post(form);
 
-                exception.ShouldNotBeNull();
                 controller.TempData.ShouldNotBeNull();
                 var message = controller.TempData.FeedbackMessage();
                 message.ShouldNotBeNull();
@@ -501,7 +492,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ThrowsException_InsteadOfReturningRedirect_ForSignUp_WhenIntentMatches()
+            public void ReturnsRedirect_ToCreatePassword_WhenIntentMatches()
             {
                 var form = new ConfirmEmailForm
                 {
@@ -513,20 +504,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 commandHandler.Setup(m => m.Handle(It.Is(ConfirmationCommandBasedOn(form))));
                 var services = new ConfirmEmailServices(null, commandHandler.Object);
                 var controller = new ConfirmEmailController(services);
-                ActionResult result = null;
-                NotSupportedException exception = null;
 
-                try
-                {
-                    result = controller.Post(form);
-                }
-                catch (NotSupportedException ex)
-                {
-                    exception = ex;
-                }
+                var result = controller.Post(form);
 
-                exception.ShouldNotBeNull();
-                result.ShouldBeNull();
+                result.ShouldNotBeNull();
+                result.ShouldBeType<RedirectToRouteResult>();
+                var routeResult = (RedirectToRouteResult)result;
+                routeResult.Permanent.ShouldBeFalse();
+                routeResult.RouteValues["area"].ShouldEqual(MVC.Passwords.Name);
+                routeResult.RouteValues["controller"].ShouldEqual(MVC.Passwords.CreatePassword.Name);
+                routeResult.RouteValues["action"].ShouldEqual(MVC.Passwords.CreatePassword.ActionNames.Get);
+                routeResult.RouteValues["token"].ShouldEqual(form.Token);
             }
         }
 
@@ -612,25 +600,18 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ThrowsNotSupportedException_ForSignUpIntent()
+            public void ReturnsRouteValues_ForSignUpIntent()
             {
                 var token = Guid.NewGuid();
                 const string intent = EmailConfirmationIntent.SignUp;
-                NotSupportedException exception = null;
 
-                try
-                {
-                    ConfirmEmailController.GetRedeemedRouteValues(token, intent);
-                }
-                catch (NotSupportedException ex)
-                {
-                    exception = ex;
-                }
+                var result = ConfirmEmailController.GetRedeemedRouteValues(token, intent);
 
-                exception.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                exception.Message.ShouldContain(intent);
-                // ReSharper restore PossibleNullReferenceException
+                result.ShouldNotBeNull();
+                result["area"].ShouldEqual(MVC.Passwords.Name);
+                result["controller"].ShouldEqual(MVC.Passwords.CreatePassword.Name);
+                result["action"].ShouldEqual(MVC.Passwords.CreatePassword.ActionNames.Get);
+                result["token"].ShouldEqual(token);
             }
 
             [TestMethod]

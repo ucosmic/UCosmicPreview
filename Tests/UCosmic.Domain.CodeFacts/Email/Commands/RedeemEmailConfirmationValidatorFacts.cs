@@ -93,38 +93,6 @@ namespace UCosmic.Domain.Email
             }
 
             [TestMethod]
-            public void IsInvalidWhen_MatchesRedeemedEntity()
-            {
-                var confirmation = new EmailConfirmation
-                {
-                    ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
-                    RedeemedOnUtc = DateTime.UtcNow,
-                };
-                var command = new RedeemEmailConfirmationCommand
-                {
-                    Token = confirmation.Token,
-                };
-                var scenarioOptions = new ScenarioOptions
-                {
-                    Command = command,
-                    EmailConfirmation = confirmation,
-                };
-                var validator = CreateValidator(scenarioOptions);
-
-                var results = validator.Validate(command);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Token");
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(string.Format(
-                    ValidateEmailConfirmation.FailedBecauseIsRedeemed,
-                        command.Token, confirmation.RedeemedOnUtc));
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
             public void IsInvalidWhen_MatchesRetiredEntity()
             {
                 var confirmation = new EmailConfirmation
