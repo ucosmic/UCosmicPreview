@@ -67,5 +67,11 @@ namespace UCosmic.Domain.Identity
         }
 
         #endregion
+        #region EduPersonTargetedId must be null
+
+        public const string FailedBecauseNameMatchedLocalMember =
+            "User with name '{0}' already has a local membership account.";
+
+        #endregion
     }
 }

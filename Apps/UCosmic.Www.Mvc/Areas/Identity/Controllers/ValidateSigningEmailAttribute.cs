@@ -169,6 +169,21 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
+        private bool? _isSignUp;
+        private bool IsSignUp
+        {
+            get
+            {
+                if (_isSignUp.HasValue) return _isSignUp.Value;
+
+                var signUpGet = Url.Action(MVC.Identity.SignUp.Get());
+                var signUpPost = Url.Action(MVC.Identity.SignUp.Post());
+                _isSignUp = RequestUrl.AbsolutePath.StartsWith(signUpGet) ||
+                               RequestUrl.AbsolutePath.StartsWith(signUpPost);
+                return _isSignUp.Value;
+            }
+        }
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
@@ -178,6 +193,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             if (!ValidateSignOn(filterContext)) return;
 
             if (!ValidateSignIn(filterContext)) return;
+
+            ValidateSignUp(filterContext);
         }
 
         private void Initialize(ActionExecutingContext filterContext)
@@ -248,7 +265,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             // determine which url to redirect to
             var url = IsPersonLocalMember
                 ? Url.Action(MVC.Identity.SignIn.Get(ReturnUrl))
-                : Url.Action(MVC.Identity.SignUp.Get());
+                : Url.Action(MVC.Identity.SignUp.Get(ReturnUrl));
 
             // set the result and return
             filterContext.Result = new RedirectResult(url);
@@ -263,9 +280,31 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             // delete email from cookie and temp data
             filterContext.HttpContext.SigningEmailAddressCookie(null);
             filterContext.Controller.TempData.SigningEmailAddress(null);
+
+            // redirect to the sign-on page
             var signOnGet = Url.Action(MVC.Identity.SignOn.Get(ReturnUrl));
             filterContext.Result = new RedirectResult(signOnGet);
             return false;
+        }
+
+        private void ValidateSignUp(ActionExecutingContext filterContext)
+        {
+            // do not validate unless this is the sign-up page
+            if (!IsSignUp) return;
+
+            // to sign up, cannot be a saml user or existing member
+            if (Establishment != null &&
+                Establishment.IsMember &&
+                !IsPersonSamlUser && 
+                !IsPersonLocalMember) return;
+
+            // determine which url to redirect to
+            var url = IsPersonLocalMember
+                ? Url.Action(MVC.Identity.SignIn.Get(ReturnUrl))
+                : Url.Action(MVC.Identity.SignOn.Get(ReturnUrl));
+
+            // set the result and return
+            filterContext.Result = new RedirectResult(url);
         }
     }
 }

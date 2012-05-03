@@ -77,6 +77,7 @@
     <Compile Include="Email\Queries\GetEmailMessageByNumber.cs" />
     <Compile Include="Establishments\Business\ValidateEstablishment.cs" />
     <Compile Include="Establishments\Business\BaseEstablishmentQuery.cs" />
+    <Compile Include="Establishments\Commands\SendSignUpMessage.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentById.cs" />
     <Compile Include="Email\Commands\SendConfirmEmailMessage.cs" />
     <Compile Include="Identity\Commands\ResetPassword.cs" />

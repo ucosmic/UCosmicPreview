@@ -91,6 +91,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     HttpContext = HttpContext,
                 }
             );
+
+            // clear the email from temp data
+            TempData.SigningEmailAddress(null);
+
             return new EmptyResult();
         }
     }

@@ -1,20 +1,71 @@
 ﻿using System.Web.Mvc;
+using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;
 using System.Web.Routing;
+using UCosmic.Domain.Establishments;
+using AutoMapper;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
-    public partial class SignUpController : BaseController
+    public class SignUpServices
     {
-        public virtual ActionResult Get()
+        public SignUpServices(IHandleCommands<SendSignUpMessageCommand> commandHandler)
         {
-            return new EmptyResult();
+            CommandHandler = commandHandler;
         }
 
-        public virtual ActionResult Post()
+        public IHandleCommands<SendSignUpMessageCommand> CommandHandler { get; private set; }
+    }
+
+    public partial class SignUpController : BaseController
+    {
+        private readonly SignUpServices _services;
+
+        public SignUpController(SignUpServices services)
         {
-            return new EmptyResult();
+            _services = services;
         }
+
+        [HttpGet]
+        [ActionName("sign-up")]
+        [OpenTopTab(TopTabName.Home)]
+        [ValidateSigningEmail]
+        public virtual ActionResult Get(string returnUrl)
+        {
+            var model = new SignUpForm(HttpContext, TempData, returnUrl);
+            return View(model);
+        }
+
+        [HttpPost]
+        [UnitOfWork]
+        [ActionName("sign-up")]
+        [OpenTopTab(TopTabName.Home)]
+        [ValidateAntiForgeryToken]
+        [ValidateSigningEmail(ParamName = "model")]
+        public virtual ActionResult Post(SignUpForm model)
+        {
+            if (model == null) return HttpNotFound();
+
+            if (!ModelState.IsValid) return PartialView(model);
+
+            // execute command
+            var command = Mapper.Map<SendSignUpMessageCommand>(model);
+            _services.CommandHandler.Handle(command);
+
+            // flash feedback message
+            SetFeedbackMessage(string.Format(SuccessMessageFormat, model.EmailAddress));
+
+            // redirect to confirm email
+            return RedirectToRoute(new
+            {
+                area = MVC.Identity.Name,
+                controller = MVC.Identity.ConfirmEmail.Name,
+                action = MVC.Identity.ConfirmEmail.ActionNames.Get,
+                token = command.ConfirmationToken,
+            });
+        }
+
+        public const string SuccessMessageFormat = "A sign up confirmation email has been sent to {0}.";
     }
 
     public static class SignUpRouter

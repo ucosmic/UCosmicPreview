@@ -74,5 +74,11 @@ namespace UCosmic.Domain.People
         }
 
         #endregion
+        #region User cannot be registered
+
+        public const string FailedBecauseUserIsRegistered =
+            "The person '{0}' is already associated with a registered user.";
+
+        #endregion
     }
 }

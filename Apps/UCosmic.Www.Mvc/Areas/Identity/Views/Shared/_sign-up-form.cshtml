@@ -1,0 +1,19 @@
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.SignUpForm
+@using (Html.BeginForm(
+    MVC.Identity.SignUp.ActionNames.Post,
+    MVC.Identity.SignUp.Name,
+    new
+    {
+        area = MVC.Identity.Name,
+        httpMethod = "POST",
+    }
+))
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Create an account</legend>
+        <br />
+        @Html.EditorForModel()
+    </fieldset>
+}
+

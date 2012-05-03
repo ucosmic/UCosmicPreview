@@ -57,6 +57,7 @@ namespace UCosmic.Domain.Establishments
                 new GetEstablishmentByEmailQuery
                 {
                     Email = email,
+                    EagerLoad = eagerLoad,
                 }
             );
 
@@ -81,6 +82,12 @@ namespace UCosmic.Domain.Establishments
 
         public const string FailedBecauseEstablishmentIsNotMember =
             "Establishment with id '{0}' is not a member.";
+
+        #endregion
+        #region Establishment does not have a saml sign on
+
+        public const string FailedBecauseEstablishmentHasSamlSignOn =
+            "Establishment with id '{0}' is SAML-enabled.";
 
         #endregion
     }

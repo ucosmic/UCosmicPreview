@@ -100,6 +100,7 @@ namespace UCosmic.Impl
             // send emails in a new thread
             container.RegisterRunAsyncCommandHandlerProxy<SendEmailMessageCommand>();
 
+            // register fluent validators on commands
             container.RegisterOpenGenericDecorator(typeof(IHandleCommands<>),
                 typeof(FluentValidationCommandDecorator<>));
 

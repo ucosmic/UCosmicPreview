@@ -1,0 +1,40 @@
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.SignUpForm
+@{
+    ViewBag.Title = "Sign up for a UCosmic user account";
+    Layout = MVC.Shared.Views.layout;
+}
+<div class="wrap-960 split-form">
+    <div class="left">
+        <p>
+            Your institution's sign-on system has not yet been <a href="@Url.Action(MVC.Saml.ListIdentityProviders.Get())">
+                integrated with UCosmic</a>. You can still sign on, but you need to create a
+            UCosmic user account first.
+        </p>
+        <p>
+            To create a UCosmic user account, check the box to the right and then click the
+            <strong>Send Confirmation Email</strong> button.
+        </p>
+        <p>
+            You will then be emailed a message with instructions on how to confirm your identity
+            and create your account password.
+        </p>
+    </div>
+    <div class="right">
+        @Html.Partial(MVC.Identity.Shared.Views._sign_up_form, Model)
+    </div>
+</div>
+@section Scripts
+{
+
+    <script type="text/javascript">
+        $('input[type=checkbox].accept-terms').change(function () {
+            var isChecked = $(this).is(':checked');
+            var submitButton = $(this).closest('form').find('input[type=submit]');
+            if (isChecked)
+                submitButton.removeAttr('disabled');
+            else
+                submitButton.attr('disabled', 'disabled');
+        });
+    </script>
+
+}
