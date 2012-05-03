@@ -30,9 +30,11 @@ namespace T4MVC.Identity {
         public class ViewNames {
             public readonly string _sign_in_form = "~/Areas/Identity/Views/Shared/_sign-in-form.cshtml";
             public readonly string _sign_on_form = "~/Areas/Identity/Views/Shared/_sign-on-form.cshtml";
+            public readonly string _sign_up_form = "~/Areas/Identity/Views/Shared/_sign-up-form.cshtml";
             public readonly string sign_in = "~/Areas/Identity/Views/Shared/sign-in.cshtml";
             public readonly string sign_on = "~/Areas/Identity/Views/Shared/sign-on.cshtml";
             public readonly string sign_out = "~/Areas/Identity/Views/Shared/sign-out.cshtml";
+            public readonly string sign_up = "~/Areas/Identity/Views/Shared/sign-up.cshtml";
             static readonly _DisplayTemplates s_DisplayTemplates = new _DisplayTemplates();
             public _DisplayTemplates DisplayTemplates { get { return s_DisplayTemplates; } }
             public partial class _DisplayTemplates{
@@ -47,6 +49,7 @@ namespace T4MVC.Identity {
                 public readonly string RememberMeField = "RememberMeField";
                 public readonly string SignInForm = "SignInForm";
                 public readonly string SignOnForm = "SignOnForm";
+                public readonly string SignUpForm = "SignUpForm";
                 public readonly string StrengthMeteredPassword = "StrengthMeteredPassword";
             }
         }

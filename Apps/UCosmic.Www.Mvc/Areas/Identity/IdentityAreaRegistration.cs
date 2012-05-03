@@ -24,10 +24,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             //PasswordModelMapper.RegisterProfiles();
 
             SignOnRouter.RegisterRoutes(context);
+
             SignInRouter.RegisterRoutes(context);
+
             SignOutRouter.RegisterRoutes(context);
+
             SignUpRouter.RegisterRoutes(context);
+            SignUpProfiler.RegisterProfiles();
+
             SignDownRouter.RegisterRoutes(context);
+
             ReceiveSamlAuthnResponseRouter.RegisterRoutes(context);
 
             ConfirmEmailRouter.RegisterRoutes(context);

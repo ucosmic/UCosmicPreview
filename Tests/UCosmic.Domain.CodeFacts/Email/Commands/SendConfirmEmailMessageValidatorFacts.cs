@@ -128,11 +128,12 @@ namespace UCosmic.Domain.Email
             }
 
             [TestMethod]
-            public void IsInvalidWhen_MatchesPerson_WithNullUser()
+            public void IsInvalidWhen_MatchesPerson_WithNullUser_AndIntentIsResetPassword()
             {
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = "user@domain.tld",
+                    Intent = EmailConfirmationIntent.PasswordReset,
                 };
                 var person = new Person
                 {
@@ -159,11 +160,12 @@ namespace UCosmic.Domain.Email
             }
 
             [TestMethod]
-            public void IsInvalidWhen_MatchesPerson_WithSamlUser()
+            public void IsInvalidWhen_MatchesPerson_WithSamlUser_AndIntentIsResetPassword()
             {
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = "user@domain.tld",
+                    Intent = EmailConfirmationIntent.PasswordReset,
                 };
                 var person = new Person
                 {
@@ -194,11 +196,12 @@ namespace UCosmic.Domain.Email
             }
 
             [TestMethod]
-            public void IsInvalidWhen_MatchesPerson_WithNoLocalMemberAccount()
+            public void IsInvalidWhen_MatchesPerson_WithNoLocalMemberAccount_AndIntentIsResetPassword()
             {
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = "user@domain.tld",
+                    Intent = EmailConfirmationIntent.PasswordReset,
                 };
                 var person = new Person
                 {
@@ -228,11 +231,12 @@ namespace UCosmic.Domain.Email
             }
 
             [TestMethod]
-            public void IsInvalidWhen_EmailAddress_IsNotConfirmed()
+            public void IsInvalidWhen_EmailAddress_IsNotConfirmed_AndIntentIsResetPassword()
             {
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = "user@domain.tld",
+                    Intent = EmailConfirmationIntent.PasswordReset,
                 };
                 var person = new Person
                 {

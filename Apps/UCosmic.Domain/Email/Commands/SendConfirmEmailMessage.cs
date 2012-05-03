@@ -134,8 +134,8 @@ namespace UCosmic.Domain.Email
                         p => p.EmailAddress)
             ;
 
-            // when person is not null,
-            When(p => person != null, () =>
+            // when person is not null and intent is to reset password,
+            When(p => person != null && p.Intent == EmailConfirmationIntent.PasswordReset, () =>
                 RuleFor(p => p.EmailAddress)
                     // the matched person must have a user
                     .Must(p => ValidatePerson.UserIsNotNull(person))

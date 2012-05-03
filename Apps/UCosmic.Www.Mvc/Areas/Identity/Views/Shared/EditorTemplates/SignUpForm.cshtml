@@ -1,0 +1,21 @@
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.SignUpForm
+<div class="half-form">
+    <div class="hidden-input">
+        @Html.EditorFor(m => m.ReturnUrl)
+    </div>
+    @Html.DisplayFor(m => m.EmailAddress)
+    <div class="field">
+        <div class="input">
+            <div class="check-box input">
+                <label>
+                    @Html.CheckBoxFor(m => m.AcceptTerms, new { @class = "accept-terms" })
+                    @ModelMetadata.FromLambdaExpression(m => m.AcceptTerms, ViewData).DisplayName
+                </label>
+            </div>
+        </div>
+    </div>
+    <div>
+        <input type="submit" value="Send Confirmation Email" disabled="disabled" />
+        @Html.Partial(MVC.Shared.Views.form_submitted_spinner)
+    </div>
+</div>

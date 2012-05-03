@@ -100,7 +100,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
                 public readonly string ConfirmEmailForm = "ConfirmEmailForm";
                 public readonly string CreatePasswordForm = "CreatePasswordForm";
                 public readonly string EmailAddress = "EmailAddress";
-                public readonly string SendEmailForm = "SendEmailForm";
+                public readonly string OldSendEmailForm = "OldSendEmailForm";
             }
         }
     }

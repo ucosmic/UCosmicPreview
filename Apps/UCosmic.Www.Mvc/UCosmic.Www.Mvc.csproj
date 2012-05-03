@@ -213,6 +213,7 @@
     <Compile Include="Areas\Identity\Controllers\ValidateSigningReturnUrlAttribute.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmDeniedModel.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailForm.cs" />
+    <Compile Include="Areas\Identity\Models\SignUpForm.cs" />
     <Compile Include="Areas\Identity\Models\IModelSigningEmail.cs" />
     <Compile Include="Areas\Identity\Models\SignInForm.cs" />
     <Compile Include="Areas\My\Controllers\UpdateAffiliationController.cs" />
@@ -1109,6 +1110,9 @@
     <Content Include="Areas\Identity\Views\Shared\_sign-in-form.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\_sign-on-form.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\sign-out.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\sign-up.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\_sign-up-form.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignUpForm.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />
@@ -1276,7 +1280,7 @@
     <Content Include="Areas\Identity\Views\OldSignUp\EditorTemplates\ConfirmEmailForm.cshtml" />
     <Content Include="Areas\Identity\Views\OldSignUp\EditorTemplates\CreatePasswordForm.cshtml" />
     <Content Include="Areas\Identity\Views\OldSignUp\EditorTemplates\EmailAddress.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignUp\EditorTemplates\SendEmailForm.cshtml" />
+    <Content Include="Areas\Identity\Views\OldSignUp\EditorTemplates\OldSendEmailForm.cshtml" />
     <Content Include="Areas\Identity\Views\OldSignUp\send-email.cshtml" />
     <Content Include="Areas\Identity\Views\OldSignUp\sign-in.cshtml" />
     <Content Include="Areas\Identity\Views\Web.config" />

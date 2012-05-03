@@ -23,9 +23,6 @@ using T4MVC;
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public partial class SignUpController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public SignUpController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected SignUpController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -34,6 +31,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult Get() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Get);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult Post() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Post);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SignUpController Actions { get { return MVC.Identity.SignUp; } }
@@ -49,14 +56,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Get = "Get";
-            public readonly string Post = "Post";
+            public readonly string Get = "sign-up";
+            public readonly string Post = "sign-up";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Get = "Get";
-            public const string Post = "Post";
+            public const string Get = "sign-up";
+            public const string Post = "sign-up";
         }
 
 
@@ -72,13 +79,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public class T4MVC_SignUpController: UCosmic.Www.Mvc.Areas.Identity.Controllers.SignUpController {
         public T4MVC_SignUpController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Get() {
+        public override System.Web.Mvc.ActionResult Get(string returnUrl) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
+            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Post() {
+        public override System.Web.Mvc.ActionResult Post(UCosmic.Www.Mvc.Areas.Identity.Models.SignUpForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
+            callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
 
