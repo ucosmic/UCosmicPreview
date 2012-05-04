@@ -39,12 +39,12 @@ namespace UCosmic.Impl.Seeders
                             developerRoles);
                 var queryProcessor = DependencyInjector.Current.GetService<IProcessQueries>();
                 var findByEmailQuery = new GetPersonByEmailQuery {Email = "ludwigd1@uc.edu"};
-                queryProcessor.Execute(findByEmailQuery).Emails.ByValue("ludwigd11@uc.edu").IsConfirmed = false;
+                queryProcessor.Execute(findByEmailQuery).GetEmail("ludwigd11@uc.edu").IsConfirmed = false;
                 Context.SaveChanges(); // make 1 of ludwigd1's email addresses unconfirmed
 
                 EnsureUser("sodhiha1@uc.edu", "Haritma", "Sodhi", "www.uc.edu", developerRoles);
                 EnsureUser("ganesh_c@uc.edu", "Ganesh", "Chitrothu", "www.uc.edu", developerRoles);
-                EnsureUser("test@terradotta.com", "Terradotta", "Test", "www.terradotta.com", null);
+                EnsureUser("test@terradotta.com", "Terradotta", "Test", "www.terradotta.com");
 
                 // members for non-role-based tests
                 EnsureUser("any1@uc.edu", "Any", "One", "www.uc.edu");

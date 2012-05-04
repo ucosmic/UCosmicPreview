@@ -50,9 +50,18 @@ namespace UCosmic.Domain.People
 
         public virtual ICollection<EmailAddress> Emails { get; protected internal set; }
 
-        public EmailAddress DefaultEmail
+        public EmailAddress DefaultEmail { get { return this.GetDefaultEmail(); } }
+
+        public EmailAddress GetEmail(int number)
         {
-            get { return this.GetDefaultEmail(); }
+            if (Emails == null || !Emails.Any()) return null;
+            return Emails.ByNumber(number);
+        }
+
+        public EmailAddress GetEmail(string value)
+        {
+            if (Emails == null || !Emails.Any()) return null;
+            return Emails.ByValue(value);
         }
 
         public EmailAddress AddEmail(string value, bool isFromSaml = false)
@@ -170,24 +179,24 @@ namespace UCosmic.Domain.People
         }
 
         #endregion
-        #region Operations
+        //#region Operations
 
-        public User SignUp(EmailAddress emailAddress)
-        {
-            if (User == null || !User.IsRegistered)
-            {
-                if (emailAddress != null && Emails.Contains(emailAddress))
-                {
-                    User = User ?? new User();
-                    User.Name = User.Name ?? emailAddress.Value;
-                    User.IsRegistered = true;
-                    return User;
-                }
-            }
-            return null;
-        }
+        //public User SignUp(EmailAddress emailAddress)
+        //{
+        //    if (User == null || !User.IsRegistered)
+        //    {
+        //        if (emailAddress != null && Emails.Contains(emailAddress))
+        //        {
+        //            User = User ?? new User();
+        //            User.Name = User.Name ?? emailAddress.Value;
+        //            User.IsRegistered = true;
+        //            return User;
+        //        }
+        //    }
+        //    return null;
+        //}
 
-        #endregion
+        //#endregion
 
         public override string ToString()
         {

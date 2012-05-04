@@ -69,7 +69,7 @@ namespace UCosmic.Impl
             container.Register<IManageConfigurations, DotNetConfigurationManager>();
             container.Register<ILogExceptions, ElmahExceptionLogger>();
             container.Register<IConsumeHttp, WebRequestHttpConsumer>();
-            container.Register<ISendEmails, MvcEmailSender>();
+            //container.Register<ISendEmails, MvcEmailSender>();
             container.Register<ISendMail, SmtpMailSender>();
 
             // SAML interfaces

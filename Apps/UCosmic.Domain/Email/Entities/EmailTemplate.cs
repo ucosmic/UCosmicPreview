@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UCosmic.Domain.Establishments;
-using UCosmic.Domain.People;
+﻿using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Domain.Email
 {
@@ -26,37 +23,37 @@ namespace UCosmic.Domain.Email
 
         public string BodyFormat { get; set; }
 
-        public EmailMessage ComposeMessageTo(EmailAddress to, IDictionary<string, string> variables, IManageConfigurations config)
-        {
-            var message = new EmailMessage
-            {
-                ToPerson = to.Person,
-                Number = to.Person.Messages.NextNumber(),
+        //public EmailMessage ComposeMessageTo(EmailAddress to, IDictionary<string, string> variables, IManageConfigurations config)
+        //{
+        //    var message = new EmailMessage
+        //    {
+        //        ToPerson = to.Person,
+        //        Number = to.Person.Messages.NextNumber(),
 
-                // subject & body
-                Subject = SubjectFormat.FormatTemplate(variables),
-                Body = BodyFormat.FormatTemplate(variables),
+        //        // subject & body
+        //        Subject = SubjectFormat.FormatTemplate(variables),
+        //        Body = BodyFormat.FormatTemplate(variables),
 
-                // from address (has failsafe from address)
-                FromAddress = FromAddress ??
-                    config.EmailDefaultFromAddress ?? "no-reply@ucosmic.com",
-                FromDisplayName = FromDisplayName ??
-                    config.EmailDefaultFromDisplayName,
+        //        // from address (has failsafe from address)
+        //        FromAddress = FromAddress ??
+        //            config.EmailDefaultFromAddress ?? "no-reply@ucosmic.com",
+        //        FromDisplayName = FromDisplayName ??
+        //            config.EmailDefaultFromDisplayName,
 
-                // reply-to address
-                ReplyToAddress = ReplyToAddress ??
-                    config.EmailDefaultReplyToAddress,
+        //        // reply-to address
+        //        ReplyToAddress = ReplyToAddress ??
+        //            config.EmailDefaultReplyToAddress,
 
-                ReplyToDisplayName = ReplyToDisplayName ??
-                    config.EmailDefaultReplyToDisplayName,
+        //        ReplyToDisplayName = ReplyToDisplayName ??
+        //            config.EmailDefaultReplyToDisplayName,
 
-                FromEmailTemplate = Name,
-                ToAddress = to.Value,
-                ComposedOnUtc = DateTime.UtcNow,
-            };
+        //        FromEmailTemplate = Name,
+        //        ToAddress = to.Value,
+        //        ComposedOnUtc = DateTime.UtcNow,
+        //    };
 
-            return message;
-        }
+        //    return message;
+        //}
     }
 
     public static class EmailTemplateName

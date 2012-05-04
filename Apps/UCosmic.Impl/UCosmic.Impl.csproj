@@ -124,7 +124,7 @@
     <Compile Include="Orm\IdentityRelationalMapper.cs" />
     <Compile Include="Orm\DbSchemaName.cs" />
     <Compile Include="Web\DotNetConfigurationManager.cs" />
-    <Compile Include="Deprecated\MvcEmailSender.cs" />
+    <Compile Include="_OldMvcEmailSender.cs" />
     <Compile Include="Orm\LanguagesRelationalMapper.cs" />
     <Compile Include="Orm\RevisableEntityTypeConfiguration.cs" />
     <Compile Include="Orm\SqlInitializer.cs" />
@@ -140,7 +140,7 @@
     <Compile Include="Saml\ComponentSpaceSaml2MetadataParser.cs" />
     <Compile Include="Web\CustomRoleProvider.cs" />
     <Compile Include="Saml\ComponentSpaceSaml2ServiceProvider.cs" />
-    <Compile Include="Deprecated\SmtpEmailSender.cs" />
+    <Compile Include="_OldSmtpEmailSender.cs" />
     <Compile Include="Web\DotNetMembershipProvider.cs" />
     <Compile Include="Seeders\BaseEstablishmentSeeder.cs" />
     <Compile Include="Seeders\BasePersonSeeder.cs" />

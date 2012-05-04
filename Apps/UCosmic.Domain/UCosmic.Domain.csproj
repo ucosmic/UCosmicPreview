@@ -178,10 +178,10 @@
     <Compile Include="People\PersonFinder.cs" />
     <Compile Include="Places\GeoNamesToponymFinder.cs" />
     <Compile Include="Places\GeoNamesToponymQuery.cs" />
-    <Compile Include="Email\EmailComposer.cs" />
+    <Compile Include="Email\_OldEmailComposer.cs" />
     <Compile Include="Api\IQueryEntities.cs" />
     <Compile Include="Email\RandomSecretCreator.cs" />
-    <Compile Include="Api\ISendEmails.cs" />
+    <Compile Include="Api\_OldISendEmails.cs" />
     <Compile Include="People\Entities\Affiliation.cs" />
     <Compile Include="People\Entities\EmailAddress.cs" />
     <Compile Include="People\Entities\EmailConfirmation.cs" />

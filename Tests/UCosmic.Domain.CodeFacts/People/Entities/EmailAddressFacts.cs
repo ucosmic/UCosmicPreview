@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 
@@ -23,75 +21,75 @@ namespace UCosmic.Domain.People
             }
         }
 
-        [TestClass]
-        public class ConfirmMethod
-        {
-            [TestMethod]
-            public void ReturnsFalse_WhenTokenIsEmptyGuid()
-            {
-                // arrange
-                var emailAddress = new EmailAddress();
+        //[TestClass]
+        //public class ConfirmMethod
+        //{
+        //    [TestMethod]
+        //    public void ReturnsFalse_WhenTokenIsEmptyGuid()
+        //    {
+        //        // arrange
+        //        var emailAddress = new EmailAddress();
 
-                // act
-                var result = emailAddress.Confirm(Guid.Empty, null, null);
+        //        // act
+        //        var result = emailAddress.Confirm(Guid.Empty, null, null);
 
-                // assert
-                result.ShouldBeFalse();
-            }
+        //        // assert
+        //        result.ShouldBeFalse();
+        //    }
 
-            [TestMethod]
-            public void ReturnsTrue_WhenEmailAddressIsAlreadyConfirmed()
-            {
-                // arrange
-                const string intent = "confirmation intent";
-                const string secretCode = "its a secret";
-                var confirmation = new EmailConfirmation
-                {
-                    Intent = intent,
-                    SecretCode = secretCode,
-                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    RedeemedOnUtc = null,
-                };
-                var emailAddress = new EmailAddress
-                {
-                    IsConfirmed = true,
-                    Confirmations = new[] { confirmation, },
-                };
+        //    [TestMethod]
+        //    public void ReturnsTrue_WhenEmailAddressIsAlreadyConfirmed()
+        //    {
+        //        // arrange
+        //        const string intent = "confirmation intent";
+        //        const string secretCode = "its a secret";
+        //        var confirmation = new EmailConfirmation
+        //        {
+        //            Intent = intent,
+        //            SecretCode = secretCode,
+        //            ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+        //            RedeemedOnUtc = null,
+        //        };
+        //        var emailAddress = new EmailAddress
+        //        {
+        //            IsConfirmed = true,
+        //            Confirmations = new[] { confirmation, },
+        //        };
 
-                // act
-                var result = emailAddress.Confirm(confirmation.Token, intent, secretCode);
+        //        // act
+        //        var result = emailAddress.Confirm(confirmation.Token, intent, secretCode);
 
-                // assert
-                result.ShouldBeTrue();
-            }
+        //        // assert
+        //        result.ShouldBeTrue();
+        //    }
 
-            [TestMethod]
-            public void UpdatesConfirmedOnUtc_WhenEmailAddressIsAlreadyConfirmed()
-            {
-                // arrange
-                const string intent = "confirmation intent";
-                const string secretCode = "its a secret";
-                var confirmation = new EmailConfirmation
-                {
-                    Intent = intent,
-                    SecretCode = secretCode,
-                    ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
-                    RedeemedOnUtc = null,
-                };
-                var emailAddress = new EmailAddress
-                {
-                    IsConfirmed = true,
-                    Confirmations = new[] { confirmation, },
-                };
+        //    [TestMethod]
+        //    public void UpdatesConfirmedOnUtc_WhenEmailAddressIsAlreadyConfirmed()
+        //    {
+        //        // arrange
+        //        const string intent = "confirmation intent";
+        //        const string secretCode = "its a secret";
+        //        var confirmation = new EmailConfirmation
+        //        {
+        //            Intent = intent,
+        //            SecretCode = secretCode,
+        //            ExpiresOnUtc = DateTime.UtcNow.Add(new TimeSpan(0, 1, 0)),
+        //            RedeemedOnUtc = null,
+        //        };
+        //        var emailAddress = new EmailAddress
+        //        {
+        //            IsConfirmed = true,
+        //            Confirmations = new[] { confirmation, },
+        //        };
 
-                // act
-                emailAddress.Confirm(confirmation.Token, intent, secretCode);
+        //        // act
+        //        emailAddress.Confirm(confirmation.Token, intent, secretCode);
 
-                // assert
-                var result = emailAddress.Confirmations.Single(c => c.Token == confirmation.Token);
-                result.RedeemedOnUtc.HasValue.ShouldBeTrue();
-            }
-        }
+        //        // assert
+        //        var result = emailAddress.Confirmations.Single(c => c.Token == confirmation.Token);
+        //        result.RedeemedOnUtc.HasValue.ShouldBeTrue();
+        //    }
+        //}
 
         [TestClass]
         public class PersonProperty

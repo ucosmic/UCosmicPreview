@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web.Security;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Identity;
-using UCosmic.Domain.People;
 
 namespace UCosmic.Impl.Seeders
 {
@@ -33,7 +32,7 @@ namespace UCosmic.Impl.Seeders
 
             // make user registered and confirm all email addresses
             foreach (var email in emailsExploded)
-                person.Emails.ByValue(email).IsConfirmed = true;
+                person.GetEmail(email).IsConfirmed = true;
 
             // add grants to user
             if (roleNames != null)
