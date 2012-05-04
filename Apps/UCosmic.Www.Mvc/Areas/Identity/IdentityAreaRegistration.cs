@@ -15,9 +15,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             ConfirmEmailRouter.RegisterRoutes(context);
             CreatePasswordRouter.RegisterRoutes(context);
             ForgotPasswordRouter.RegisterRoutes(context);
+            ListIdentityProvidersRouter.RegisterRoutes(context);
             MyHomeRouter.RegisterRoutes(context);
             ReceiveSamlAuthnResponseRouter.RegisterRoutes(context);
             ResetPasswordRouter.RegisterRoutes(context);
+            ServiceProviderMetadataRouter.RegisterRoutes(context);
             SignDownRouter.RegisterRoutes(context);
             SignInRouter.RegisterRoutes(context);
             SignOnRouter.RegisterRoutes(context);
@@ -28,6 +30,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             UpdateEmailValueRouter.RegisterRoutes(context);
             UpdateNameRouter.RegisterRoutes(context);
             UpdatePasswordRouter.RegisterRoutes(context);
+
 
             //context.MapRoute(
             //    "Identity_default",

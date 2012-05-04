@@ -20,7 +20,7 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace UCosmic.Www.Mvc.Areas.Saml.Controllers {
+namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public partial class ServiceProviderMetadataController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected ServiceProviderMetadataController(Dummy d) { }
@@ -33,9 +33,9 @@ namespace UCosmic.Www.Mvc.Areas.Saml.Controllers {
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ServiceProviderMetadataController Actions { get { return MVC.Saml.ServiceProviderMetadata; } }
+        public ServiceProviderMetadataController Actions { get { return MVC.Identity.ServiceProviderMetadata; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "Saml";
+        public readonly string Area = "Identity";
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Name = "ServiceProviderMetadata";
         [GeneratedCode("T4MVC", "2.0")]
@@ -66,7 +66,7 @@ namespace UCosmic.Www.Mvc.Areas.Saml.Controllers {
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_ServiceProviderMetadataController: UCosmic.Www.Mvc.Areas.Saml.Controllers.ServiceProviderMetadataController {
+    public class T4MVC_ServiceProviderMetadataController: UCosmic.Www.Mvc.Areas.Identity.Controllers.ServiceProviderMetadataController {
         public T4MVC_ServiceProviderMetadataController() : base(Dummy.Instance) { }
 
         public override System.Web.Mvc.ViewResult Index(string contentType) {

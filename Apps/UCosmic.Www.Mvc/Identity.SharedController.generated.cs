@@ -35,7 +35,9 @@ namespace T4MVC.Identity {
             public readonly string confirm_email = "~/Areas/Identity/Views/Shared/confirm-email.cshtml";
             public readonly string create_password = "~/Areas/Identity/Views/Shared/create-password.cshtml";
             public readonly string forgot_password = "~/Areas/Identity/Views/Shared/forgot-password.cshtml";
+            public readonly string metadata = "~/Areas/Identity/Views/Shared/metadata.cshtml";
             public readonly string my_home = "~/Areas/Identity/Views/Shared/my-home.cshtml";
+            public readonly string providers = "~/Areas/Identity/Views/Shared/providers.cshtml";
             public readonly string reset_password = "~/Areas/Identity/Views/Shared/reset-password.cshtml";
             public readonly string sign_in = "~/Areas/Identity/Views/Shared/sign-in.cshtml";
             public readonly string sign_on = "~/Areas/Identity/Views/Shared/sign-on.cshtml";

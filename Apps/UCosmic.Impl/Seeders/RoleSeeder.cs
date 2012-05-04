@@ -24,7 +24,7 @@ namespace UCosmic.Impl.Seeders
 
                 // add authentication agent
                 EnsureRole(RoleName.AuthenticationAgent,
-                    "Authentication Agents can sign in as any user, regardless of establishment."
+                    "Authentication Agents can sign on as any user, regardless of establishment."
                 );
 
                 // add establishment place editor
