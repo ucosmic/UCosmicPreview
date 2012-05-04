@@ -19,9 +19,9 @@
         {
             <fieldset>
                 <legend>
-                    @Html.Partial(MVC.Identity.Shared.Views._confirm_email_legend)
+                    @Html.Partial(MVC.Identity.ConfirmEmail.Views._form_legend_text)
                 </legend>
-                @Html.Partial(MVC.Identity.Shared.Views._confirm_email_instruct)
+                @Html.Partial(MVC.Identity.ConfirmEmail.Views._form_instructions)
                 @Html.AntiForgeryToken()
                 @Html.EditorForModel()
                 @if (Model.Intent == EmailConfirmationIntent.SignUp)
@@ -34,7 +34,7 @@
         }
     </div>
     <div class="right">
-        @Html.Partial(MVC.Identity.Shared.Views._confirm_email_right)
+        @Html.Partial(MVC.Identity.ConfirmEmail.Views._right)
     </div>
 </div>
 @section Scripts

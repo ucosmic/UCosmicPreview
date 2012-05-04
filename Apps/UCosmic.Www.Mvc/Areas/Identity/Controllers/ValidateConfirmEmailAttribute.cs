@@ -99,7 +99,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             var model = new ConfirmDeniedModel(reason, EmailConfirmation.Intent);
             filterContext.Result = new PartialViewResult
             {
-                ViewName = MVC.Identity.Shared.Views._confirm_email_denied,
+                ViewName = MVC.Identity.ConfirmEmail.Views._denied_all,
                 ViewData = new ViewDataDictionary(model),
             };
         }

@@ -132,6 +132,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
             RootActionRouter.RegisterRoutes(typeof(ConfirmEmailRouter), context, Area, Controller);
+            ConfirmEmailProfiler.RegisterProfiles();
         }
 
         // ReSharper disable UnusedMember.Global

@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using UCosmic.Www.Mvc.Areas.Identity.Controllers;
-using UCosmic.Www.Mvc.Areas.Identity.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity
 {
@@ -13,32 +12,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            //OldSignInRouteMapper.RegisterRoutes(context);
-            //OldSignUpRouteMapper.RegisterRoutes(context);
-
-            //EmailConfirmationRouteMapper.RegisterRoutes(context);
-            //EmailConfirmationModelMapper.RegisterProfiles();
-
-            //OldPasswordRouteMapper.RegisterRoutes(context);
-            //PasswordModelMapper.RegisterProfiles();
-
-            SignOnRouter.RegisterRoutes(context);
-
-            SignOverRouter.RegisterRoutes(context);
-
-            SignInRouter.RegisterRoutes(context);
-
-            SignOutRouter.RegisterRoutes(context);
-
-            SignUpRouter.RegisterRoutes(context);
-            SignUpProfiler.RegisterProfiles();
-
-            SignDownRouter.RegisterRoutes(context);
-
-            ReceiveSamlAuthnResponseRouter.RegisterRoutes(context);
-
             ConfirmEmailRouter.RegisterRoutes(context);
-            ConfirmEmailProfiler.RegisterProfiles();
+            ReceiveSamlAuthnResponseRouter.RegisterRoutes(context);
+            SignDownRouter.RegisterRoutes(context);
+            SignInRouter.RegisterRoutes(context);
+            SignOnRouter.RegisterRoutes(context);
+            SignOutRouter.RegisterRoutes(context);
+            SignOverRouter.RegisterRoutes(context);
+            SignUpRouter.RegisterRoutes(context);
 
             //context.MapRoute(
             //    "Identity_default",
