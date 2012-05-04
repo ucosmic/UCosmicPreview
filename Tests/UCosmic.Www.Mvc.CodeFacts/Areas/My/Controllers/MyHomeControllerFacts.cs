@@ -12,7 +12,7 @@ using UCosmic.Www.Mvc.Controllers;
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
     // ReSharper disable UnusedMember.Global
-    public class ProfileControllerFacts
+    public class MyHomeControllerFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -21,7 +21,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_Authorize()
             {
-                var attribute = Attribute.GetCustomAttribute(typeof(ProfileController), typeof(AuthorizeAttribute));
+                var attribute = Attribute.GetCustomAttribute(typeof(MyHomeController), typeof(AuthorizeAttribute));
 
                 attribute.ShouldNotBeNull();
                 attribute.ShouldBeType<AuthorizeAttribute>();
@@ -34,9 +34,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_HttpGet()
             {
-                Expression<Func<ProfileController, ActionResult>> method = m => m.Get();
+                Expression<Func<MyHomeController, ActionResult>> method = m => m.Get();
 
-                var attributes = method.GetAttributes<ProfileController, ActionResult, HttpGetAttribute>();
+                var attributes = method.GetAttributes<MyHomeController, ActionResult, HttpGetAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
@@ -45,9 +45,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_OpenTopTab_UsingHome()
             {
-                Expression<Func<ProfileController, ActionResult>> method = m => m.Get();
+                Expression<Func<MyHomeController, ActionResult>> method = m => m.Get();
 
-                var attributes = method.GetAttributes<ProfileController, ActionResult, OpenTopTabAttribute>();
+                var attributes = method.GetAttributes<MyHomeController, ActionResult, OpenTopTabAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
@@ -57,9 +57,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void IsDecoratedWith_ActionName_UsingProfile()
             {
-                Expression<Func<ProfileController, ActionResult>> method = m => m.Get();
+                Expression<Func<MyHomeController, ActionResult>> method = m => m.Get();
 
-                var attributes = method.GetAttributes<ProfileController, ActionResult, ActionNameAttribute>();
+                var attributes = method.GetAttributes<MyHomeController, ActionResult, ActionNameAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
@@ -148,7 +148,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 result.ShouldBeType<PartialViewResult>();
                 var partialViewResult = (PartialViewResult)result;
                 partialViewResult.Model.ShouldNotBeNull();
-                partialViewResult.Model.ShouldBeType<ProfileInfo>();
+                partialViewResult.Model.ShouldBeType<MyHomeInfo>();
             }
         }
 
@@ -158,15 +158,15 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             internal string PrincipalIdentityName { get; set; }
         }
 
-        private static ProfileController CreateController(ScenarioOptions scenarioOptions = null)
+        private static MyHomeController CreateController(ScenarioOptions scenarioOptions = null)
         {
             scenarioOptions = scenarioOptions ?? new ScenarioOptions();
 
             scenarioOptions.MockQueryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
 
-            var services = new ProfileServices(scenarioOptions.MockQueryProcessor.Object);
+            var services = new MyHomeServices(scenarioOptions.MockQueryProcessor.Object);
 
-            var controller = new ProfileController(services);
+            var controller = new MyHomeController(services);
 
             var builder = ReuseMock.TestControllerBuilder();
 

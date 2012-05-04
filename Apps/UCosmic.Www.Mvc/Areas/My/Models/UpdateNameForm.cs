@@ -54,7 +54,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
 
         public static string ReturnUrl
         {
-            get { return string.Format("~/{0}", ProfileRouter.Get.Route); }
+            get { return string.Format("~/{0}", MyHomeRouter.Get.Route); }
         }
     }
 

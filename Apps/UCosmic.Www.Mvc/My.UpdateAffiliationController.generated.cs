@@ -74,13 +74,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
         public class ViewNames {
             public readonly string _scripts = "~/Areas/My/Views/UpdateAffiliation/_scripts.cshtml";
             public readonly string _styles = "~/Areas/My/Views/UpdateAffiliation/_styles.cshtml";
-            public readonly string update_affiliation = "~/Areas/My/Views/UpdateAffiliation/update-affiliation.cshtml";
-            static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
-            public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
-            public partial class _EditorTemplates{
-                public readonly string EmployeeOrStudentAffiliation = "EmployeeOrStudentAffiliation";
-                public readonly string UpdateAffiliationForm = "UpdateAffiliationForm";
-            }
         }
     }
 

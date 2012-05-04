@@ -8,7 +8,7 @@ using UCosmic.Domain.People;
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
     // ReSharper disable UnusedMember.Global
-    public class ProfileProfilerFacts
+    public class MyHomeProfilerFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -27,7 +27,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                     }
                 };
 
-                var model = Mapper.Map<ProfileInfo>(entity);
+                var model = Mapper.Map<MyHomeInfo>(entity);
 
                 model.ShouldNotBeNull();
                 model.Emails.Length.ShouldEqual(3);
@@ -47,7 +47,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                     }
                 };
 
-                var model = Mapper.Map<ProfileInfo>(entity);
+                var model = Mapper.Map<MyHomeInfo>(entity);
 
                 model.ShouldNotBeNull();
                 model.Emails.Length.ShouldEqual(3);
@@ -70,7 +70,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                     }
                 };
 
-                var model = Mapper.Map<ProfileInfo>(entity);
+                var model = Mapper.Map<MyHomeInfo>(entity);
 
                 model.ShouldNotBeNull();
                 model.Emails.Length.ShouldEqual(6);
@@ -99,7 +99,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                     },
                 };
 
-                var model = Mapper.Map<ProfileInfo>(entity);
+                var model = Mapper.Map<MyHomeInfo>(entity);
 
                 model.ShouldNotBeNull();
                 model.UserEduPersonTargetedId.ShouldEqual(entity.User.EduPersonTargetedId);

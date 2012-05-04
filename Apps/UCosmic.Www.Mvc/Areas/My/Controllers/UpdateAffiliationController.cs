@@ -35,7 +35,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("update-affiliation")]
-        [ReturnUrlReferrer(ProfileRouter.Get.Route)]
+        [ReturnUrlReferrer(MyHomeRouter.Get.Route)]
         public virtual ActionResult Get(int establishmentId)
         {
             // get the affiliation
@@ -86,6 +86,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
             RootActionRouter.RegisterRoutes(typeof(UpdateAffiliationRouter), context, Area, Controller);
+            UpdateAffiliationProfiler.RegisterProfiles();
         }
 
         // ReSharper disable UnusedMember.Global

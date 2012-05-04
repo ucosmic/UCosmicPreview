@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using UCosmic.Www.Mvc.Areas.My.Models;
 using UCosmic.Www.Mvc.Areas.My.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.My
@@ -13,17 +12,10 @@ namespace UCosmic.Www.Mvc.Areas.My
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            UpdateEmailValueRouter.RegisterRoutes(context);
-            UpdateEmailValueProfiler.RegisterProfiles();
-
-            ProfileRouter.RegisterRoutes(context);
-            ProfileProfiler.RegisterProfiles();
-
-            UpdateNameRouter.RegisterRoutes(context);
-            UpdateNameProfiler.RegisterProfiles();
-
+            MyHomeRouter.RegisterRoutes(context);
             UpdateAffiliationRouter.RegisterRoutes(context);
-            UpdateAffiliationProfiler.RegisterProfiles();
+            UpdateEmailValueRouter.RegisterRoutes(context);
+            UpdateNameRouter.RegisterRoutes(context);
 
             //context.MapRoute(
             //    "My_default",

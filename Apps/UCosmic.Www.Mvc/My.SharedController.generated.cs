@@ -28,15 +28,21 @@ namespace T4MVC.My {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
+            public readonly string my_home = "~/Areas/My/Views/Shared/my-home.cshtml";
+            public readonly string update_affiliation = "~/Areas/My/Views/Shared/update-affiliation.cshtml";
+            public readonly string update_email_value = "~/Areas/My/Views/Shared/update-email-value.cshtml";
+            public readonly string update_name = "~/Areas/My/Views/Shared/update-name.cshtml";
             static readonly _DisplayTemplates s_DisplayTemplates = new _DisplayTemplates();
             public _DisplayTemplates DisplayTemplates { get { return s_DisplayTemplates; } }
             public partial class _DisplayTemplates{
-                public readonly string AffiliationInfo = "AffiliationInfo";
-                public readonly string EmailInfo = "EmailInfo";
+                public readonly string MyAffiliation = "MyAffiliation";
+                public readonly string MyEmailAddress = "MyEmailAddress";
             }
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{
+                public readonly string EmployeeOrStudentAffiliation = "EmployeeOrStudentAffiliation";
+                public readonly string UpdateAffiliationForm = "UpdateAffiliationForm";
                 public readonly string UpdateEmailValueForm = "UpdateEmailValueForm";
                 public readonly string UpdateNameForm = "UpdateNameForm";
             }

@@ -201,7 +201,7 @@ namespace UCosmic.Www.Mvc
         //public const string SignUpCreatePassword = OldSignUpRouteMapper.CreatePassword.Route;
         //public const string SignUpCompleted = OldSignUpRouteMapper.SignIn.Route;
         //public const string SignIn = "sign-in";
-        public const string Me = "my/profile";
+        public const string Me = "my/home";
 
         private static readonly Dictionary<string, string> TitleToUrl = new Dictionary<string, string>
         {

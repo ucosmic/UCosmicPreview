@@ -79,8 +79,6 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _form = "~/Areas/My/Views/UpdateEmailValue/_form.cshtml";
-            public readonly string update_email_value = "~/Areas/My/Views/UpdateEmailValue/update-email-value.cshtml";
         }
     }
 

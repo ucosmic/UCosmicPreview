@@ -10,9 +10,9 @@ using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
-    public class ProfileServices
+    public class MyHomeServices
     {
-        public ProfileServices(
+        public MyHomeServices(
             IProcessQueries queryProcessor
         )
         {
@@ -23,17 +23,17 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
     }
 
     [Authorize]
-    public partial class ProfileController : BaseController
+    public partial class MyHomeController : BaseController
     {
-        private readonly ProfileServices _services;
+        private readonly MyHomeServices _services;
 
-        public ProfileController(ProfileServices services)
+        public MyHomeController(MyHomeServices services)
         {
             _services = services;
         }
 
         [HttpGet]
-        [ActionName("profile")]
+        [ActionName("my-home")]
         [OpenTopTab(TopTabName.Home)]
         public virtual ActionResult Get()
         {
@@ -50,32 +50,34 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             );
 
             if (user == null) return HttpNotFound();
-            return PartialView(Mapper.Map<ProfileInfo>(user.Person));
+            return PartialView(Mapper.Map<MyHomeInfo>(user.Person));
         }
 
     }
 
-    public static class ProfileRouter
+    public static class MyHomeRouter
     {
         private static readonly string Area = MVC.My.Name;
-        private static readonly string Controller = MVC.My.Profile.Name;
+        private static readonly string Controller = MVC.My.MyHome.Name;
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            RootActionRouter.RegisterRoutes(typeof(ProfileRouter), context, Area, Controller);
+            RootActionRouter.RegisterRoutes(typeof(MyHomeRouter), context, Area, Controller);
+            MyHomeProfiler.RegisterProfiles();
         }
 
         // ReSharper disable UnusedMember.Global
 
         public static class Get
         {
-            public const string Route = "my/profile";
-            private static readonly string Action = MVC.My.Profile.ActionNames.Get;
+            public const string Route = "my/home";
+            private static readonly string Action = MVC.My.MyHome.ActionNames.Get;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };
                 var constraints = new { httpMethod = new HttpMethodConstraint("GET"), };
                 context.MapRoute(null, Route, defaults, constraints);
+                context.MapRoute(null, "my", defaults, constraints);
             }
         }
 

@@ -5,7 +5,23 @@
 }
 <div class="wrap-960 split-form">
     <div class="left">
-        @Html.Partial(MVC.Identity.Shared.Views._sign_over_form, Model)
+        @using (Html.BeginForm(
+            MVC.Identity.SignOver.ActionNames.Post,
+            MVC.Identity.SignOver.Name,
+            new
+            {
+                area = MVC.Identity.Name,
+                httpMethod = "POST",
+            }
+        ))
+        {
+            @Html.AntiForgeryToken()
+            <fieldset>
+                <legend>Sign On</legend>
+                <br />
+                @Html.EditorForModel()
+            </fieldset>
+        }
     </div>
     <div class="right">
     </div>

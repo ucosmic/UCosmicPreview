@@ -105,9 +105,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         private bool RedirectWithoutReturnUrl(ActionExecutingContext filterContext)
         {
-            //var myProfileUrl = _urlHelper.Action(MVC.My.Profile.Get()).UrlEncoded();
-            //var redirectUrl = string.Format("{0}?{1}={2}",
-            //    _requestUrl.AbsolutePath, ReturnUrlParamName, myProfileUrl);
+            // remove the returnUrl parameter and redirect to page without it
             var redirectUrl = _requestUrl.AbsolutePath;
             filterContext.Result = new RedirectResult(redirectUrl);
             return false;

@@ -91,7 +91,7 @@ namespace T4MVC {
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class MyClass {
         public readonly string Name = "My";
-        public UCosmic.Www.Mvc.Areas.My.Controllers.ProfileController Profile = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_ProfileController();
+        public UCosmic.Www.Mvc.Areas.My.Controllers.MyHomeController MyHome = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_MyHomeController();
         public UCosmic.Www.Mvc.Areas.My.Controllers.UpdateAffiliationController UpdateAffiliation = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_UpdateAffiliationController();
         public UCosmic.Www.Mvc.Areas.My.Controllers.UpdateEmailValueController UpdateEmailValue = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_UpdateEmailValueController();
         public UCosmic.Www.Mvc.Areas.My.Controllers.UpdateNameController UpdateName = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_UpdateNameController();

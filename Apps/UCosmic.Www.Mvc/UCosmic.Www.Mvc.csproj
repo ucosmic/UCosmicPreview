@@ -220,10 +220,10 @@
     <Compile Include="Areas\Identity\Models\SignInForm.cs" />
     <Compile Include="Areas\My\Controllers\UpdateAffiliationController.cs" />
     <Compile Include="Areas\My\Controllers\UpdateEmailValueController.cs" />
-    <Compile Include="Areas\My\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\My\Controllers\MyHomeController.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameController.cs" />
     <Compile Include="Areas\My\Models\UpdateAffiliationForm.cs" />
-    <Compile Include="Areas\My\Models\ProfileInfo.cs" />
+    <Compile Include="Areas\My\Models\MyHomeInfo.cs" />
     <Compile Include="Areas\My\Models\UpdateNameForm.cs" />
     <Compile Include="Areas\My\MyAreaRegistration.cs" />
     <Compile Include="Areas\Identity\Controllers\UpdatePasswordController.cs" />
@@ -355,7 +355,7 @@
     </Compile>
     <Compile Include="Models\ComboBoxOptions.cs" />
     <Compile Include="Areas\Identity\Models\IModelConfirmAndRedeem.cs" />
-    <Compile Include="My.ProfileController.generated.cs">
+    <Compile Include="My.MyHomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="My.SharedController.generated.cs">
@@ -405,7 +405,7 @@
     <Compile Include="Areas\Identity\Controllers\Deprecated\Mappers\_OldEmailConfirmationModelMapper.cs" />
     <Compile Include="Areas\Identity\Controllers\Deprecated\Mappers\_OldEmailConfirmationRouteMapper.cs" />
     <Compile Include="Controllers\TryAuthorizeAttribute.cs" />
-    <Compile Include="Controllers\AuthorizeForImpersonationAttribute.cs" />
+    <Compile Include="Controllers\_OldAuthorizeForImpersonationAttribute.cs" />
     <Compile Include="Areas\Identity\Controllers\Deprecated\_OldSignInController.cs" />
     <Compile Include="Areas\Roles\Controllers\RolesController.cs" />
     <Compile Include="Areas\Identity\Controllers\Deprecated\_OldEmailConfirmationController.cs" />
@@ -1062,20 +1062,19 @@
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\EmailAddressField.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\PasswordField.cshtml" />
     <Content Include="Areas\My\Views\Web.config" />
-    <Content Include="Areas\My\Views\Profile\profile.cshtml" />
+    <Content Include="Areas\My\Views\Shared\my-home.cshtml" />
     <Content Include="Areas\My\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\My\Views\Shared\DisplayTemplates\AffiliationInfo.cshtml" />
-    <Content Include="Areas\My\Views\Shared\DisplayTemplates\EmailInfo.cshtml" />
-    <Content Include="Areas\My\Views\UpdateName\update-name.cshtml" />
-    <Content Include="Areas\My\Views\UpdateName\_form.cshtml" />
+    <Content Include="Areas\My\Views\Shared\DisplayTemplates\MyAffiliation.cshtml" />
+    <Content Include="Areas\My\Views\Shared\DisplayTemplates\MyEmailAddress.cshtml" />
+    <Content Include="Areas\My\Views\Shared\update-name.cshtml" />
     <Content Include="Areas\My\Views\Shared\EditorTemplates\UpdateNameForm.cshtml" />
     <Content Include="Areas\People\Views\Web.config" />
     <Content Include="Areas\People\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\My\Views\UpdateAffiliation\update-affiliation.cshtml" />
-    <Content Include="Areas\My\Views\UpdateAffiliation\EditorTemplates\UpdateAffiliationForm.cshtml" />
+    <Content Include="Areas\My\Views\Shared\update-affiliation.cshtml" />
+    <Content Include="Areas\My\Views\Shared\EditorTemplates\UpdateAffiliationForm.cshtml" />
     <Content Include="Areas\My\Views\UpdateAffiliation\_scripts.cshtml" />
     <Content Include="Areas\My\Views\UpdateAffiliation\_styles.cshtml" />
-    <Content Include="Areas\My\Views\UpdateAffiliation\EditorTemplates\EmployeeOrStudentAffiliation.cshtml" />
+    <Content Include="Areas\My\Views\Shared\EditorTemplates\EmployeeOrStudentAffiliation.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\forgot-password.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\ForgotPasswordForm.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\confirm-email.cshtml" />
@@ -1105,13 +1104,11 @@
     <Content Include="Areas\Identity\Views\Shared\_sign-on-form.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\sign-out.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\sign-up.cshtml" />
-    <Content Include="Areas\Identity\Views\Shared\_sign-up-form.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignUpForm.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\create-password.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\CreatePasswordForm.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\sign-over.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOverForm.cshtml" />
-    <Content Include="Areas\Identity\Views\Shared\_sign-over-form.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\_layout_identity_v1.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\update-password.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\UpdatePasswordForm.cshtml" />
@@ -1270,8 +1267,7 @@
     <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\-old-reset-password-expired.cshtml" />
     <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\-old-reset-password.cshtml" />
     <Content Include="Areas\Saml\Views\Shared\metadata.cshtml" />
-    <Content Include="Areas\My\Views\UpdateEmailValue\_form.cshtml" />
-    <Content Include="Areas\My\Views\UpdateEmailValue\update-email-value.cshtml" />
+    <Content Include="Areas\My\Views\Shared\update-email-value.cshtml" />
     <Content Include="Areas\My\Views\Shared\EditorTemplates\UpdateEmailValueForm.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\OldSignInForm.cshtml" />
     <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignUp\confirm-denied.cshtml" />
