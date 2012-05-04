@@ -125,6 +125,7 @@ namespace T4MVC {
         public readonly string Name = "Saml";
         public UCosmic.Www.Mvc.Areas.Saml.Controllers.ListIdentityProvidersController ListIdentityProviders = new UCosmic.Www.Mvc.Areas.Saml.Controllers.T4MVC_ListIdentityProvidersController();
         public UCosmic.Www.Mvc.Areas.Saml.Controllers.ServiceProviderMetadataController ServiceProviderMetadata = new UCosmic.Www.Mvc.Areas.Saml.Controllers.T4MVC_ServiceProviderMetadataController();
+        public T4MVC.Saml.SharedController Shared = new T4MVC.Saml.SharedController();
     }
 }
 

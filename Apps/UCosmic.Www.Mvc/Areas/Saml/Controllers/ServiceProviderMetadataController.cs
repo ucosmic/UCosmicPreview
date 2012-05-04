@@ -49,7 +49,7 @@ namespace UCosmic.Www.Mvc.Areas.Saml.Controllers
             if ("xml".Equals(contentType, StringComparison.OrdinalIgnoreCase))
                 Response.ContentType = "text/xml";
 
-            return View(Views.metadata, model);
+            return View(MVC.Saml.Shared.Views.metadata, model);
         }
 
         public virtual ViewResult Development(string contentType = null)
@@ -71,7 +71,7 @@ namespace UCosmic.Www.Mvc.Areas.Saml.Controllers
             if ("xml".Equals(contentType, StringComparison.OrdinalIgnoreCase))
                 Response.ContentType = "text/xml";
 
-            return View(Views.metadata, model);
+            return View(MVC.Saml.Shared.Views.metadata, model);
         }
     }
 

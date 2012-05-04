@@ -60,7 +60,6 @@ namespace UCosmic.Www.Mvc.Areas.Saml.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string providers = "~/Areas/Saml/Views/ListIdentityProviders/providers.cshtml";
         }
     }
 

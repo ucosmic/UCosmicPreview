@@ -1,12 +1,7 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
-using AutoMapper;
 using FluentValidation.Mvc;
-using UCosmic.Domain.Email;
 using UCosmic.Domain.Identity;
-using UCosmic.Domain.People;
-using UCosmic.Www.Mvc.Areas.Identity.Controllers;
 using UCosmic.Www.Mvc.Areas.My.Controllers;
 using UCosmic.Www.Mvc.Areas.Passwords.Models;
 using UCosmic.Www.Mvc.Controllers;

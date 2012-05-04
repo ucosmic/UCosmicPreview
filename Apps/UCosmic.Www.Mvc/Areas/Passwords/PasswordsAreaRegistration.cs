@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using UCosmic.Www.Mvc.Areas.Passwords.Controllers;
-using UCosmic.Www.Mvc.Areas.Passwords.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Passwords
 {
@@ -13,15 +12,9 @@ namespace UCosmic.Www.Mvc.Areas.Passwords
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            ForgotPasswordRouter.RegisterRoutes(context);
-            ForgotPasswordProfiler.RegisterProfiles();
-
-            ResetPasswordRouter.RegisterRoutes(context);
-            ResetPasswordProfiler.RegisterProfiles();
-
             CreatePasswordRouter.RegisterRoutes(context);
-            CreatePasswordProfiler.RegisterProfiles();
-
+            ForgotPasswordRouter.RegisterRoutes(context);
+            ResetPasswordRouter.RegisterRoutes(context);
             UpdatePasswordRouter.RegisterRoutes(context);
 
             //context.MapRoute(

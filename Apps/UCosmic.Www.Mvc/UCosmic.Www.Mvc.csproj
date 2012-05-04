@@ -495,6 +495,9 @@
     <Compile Include="Saml.ServiceProviderMetadataController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Saml.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1059,7 +1062,7 @@
     <Content Include="Areas\Common\Views\Features\february-2012-preview-2.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\sign-on.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnForm.cshtml" />
-    <Content Include="Areas\Saml\Views\ListIdentityProviders\providers.cshtml" />
+    <Content Include="Areas\Saml\Views\Shared\providers.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\EmailAddressField.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\PasswordField.cshtml" />
     <Content Include="Areas\My\Views\Web.config" />
@@ -1273,7 +1276,7 @@
     <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\-old-forgot-password.cshtml" />
     <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\-old-reset-password-expired.cshtml" />
     <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\-old-reset-password.cshtml" />
-    <Content Include="Areas\Saml\Views\ServiceProviderMetadata\metadata.cshtml" />
+    <Content Include="Areas\Saml\Views\Shared\metadata.cshtml" />
     <Content Include="Areas\My\Views\UpdateEmailValue\_form.cshtml" />
     <Content Include="Areas\My\Views\UpdateEmailValue\update-email-value.cshtml" />
     <Content Include="Areas\My\Views\Shared\EditorTemplates\UpdateEmailValueForm.cshtml" />
