@@ -48,8 +48,7 @@ namespace UCosmic.Www.Mvc.Areas.Saml.Controllers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            if (!WebConfig.IsDeployedToCloud)
-                RootActionRouter.RegisterRoutes(typeof(ListIdentityProvidersRouter), context, Area, Controller);
+            RootActionRouter.RegisterRoutes(typeof(ListIdentityProvidersRouter), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global
