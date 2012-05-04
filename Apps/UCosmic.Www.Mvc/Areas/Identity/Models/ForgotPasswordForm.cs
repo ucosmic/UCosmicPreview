@@ -96,7 +96,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                         p => p.EmailAddress)
 
                 // the email address must be confirmed
-                .Must(p => ValidateEmailAddress.IsConfirmed(person.Emails.ByValue(p)))
+                .Must(p => ValidateEmailAddress.IsConfirmed(person.GetEmail(p)))
                     .WithMessage(ValidateEmailAddress.FailedBecauseIsNotConfirmed,
                         p => p.EmailAddress)
             ;

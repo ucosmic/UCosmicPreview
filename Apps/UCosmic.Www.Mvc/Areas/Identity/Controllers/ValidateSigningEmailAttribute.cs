@@ -105,7 +105,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             // switch from email address to user name if email is not confirmed
             if (Person == null) return;
-            var emailAddress = Person.Emails.ByValue(EmailAddress);
+            var emailAddress = Person.GetEmail(EmailAddress);
             if (!emailAddress.IsConfirmed && Person.User != null)
                 EmailAddress = Person.User.Name;
         }

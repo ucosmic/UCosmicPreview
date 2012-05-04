@@ -41,20 +41,6 @@ namespace UCosmic.Domain.People
             throw new NotSupportedException(string.Format("StringMatchStrategy '{0}' is not supported.", matchStrategy));
         }
 
-        internal static EmailAddress GetEmail(this Person owner, int number)
-        {
-            return owner != null
-                ? owner.Emails.ByNumber(number)
-                : null;
-        }
-
-        internal static EmailAddress GetEmail(this Person owner, string value)
-        {
-            return owner != null
-                ? owner.Emails.ByValue(value)
-                : null;
-        }
-
         internal static EmailMessage GetMessage(this Person owner, int number)
         {
             return owner != null
