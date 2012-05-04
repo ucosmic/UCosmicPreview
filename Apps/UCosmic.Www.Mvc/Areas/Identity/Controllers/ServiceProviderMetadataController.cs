@@ -2,10 +2,10 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using UCosmic.Impl;
-using UCosmic.Www.Mvc.Areas.Saml.Models;
+using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;
 
-namespace UCosmic.Www.Mvc.Areas.Saml.Controllers
+namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
     public class ServiceProviderMetadataServices
     {
@@ -49,7 +49,7 @@ namespace UCosmic.Www.Mvc.Areas.Saml.Controllers
             if ("xml".Equals(contentType, StringComparison.OrdinalIgnoreCase))
                 Response.ContentType = "text/xml";
 
-            return View(MVC.Saml.Shared.Views.metadata, model);
+            return View(MVC.Identity.Shared.Views.metadata, model);
         }
 
         public virtual ViewResult Development(string contentType = null)
@@ -71,14 +71,14 @@ namespace UCosmic.Www.Mvc.Areas.Saml.Controllers
             if ("xml".Equals(contentType, StringComparison.OrdinalIgnoreCase))
                 Response.ContentType = "text/xml";
 
-            return View(MVC.Saml.Shared.Views.metadata, model);
+            return View(MVC.Identity.Shared.Views.metadata, model);
         }
     }
 
     public static class ServiceProviderMetadataRouter
     {
-        private static readonly string Area = MVC.Saml.Name;
-        private static readonly string Controller = MVC.Saml.ServiceProviderMetadata.Name;
+        private static readonly string Area = MVC.Identity.Name;
+        private static readonly string Controller = MVC.Identity.ServiceProviderMetadata.Name;
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
@@ -90,7 +90,7 @@ namespace UCosmic.Www.Mvc.Areas.Saml.Controllers
         public static class Index
         {
             public const string Route = "sign-on/saml/2/metadata";
-            private static readonly string Action = MVC.Saml.ServiceProviderMetadata.ActionNames.Index;
+            private static readonly string Action = MVC.Identity.ServiceProviderMetadata.ActionNames.Index;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 if (WebConfig.IsDeployedToCloud) return;
@@ -104,7 +104,7 @@ namespace UCosmic.Www.Mvc.Areas.Saml.Controllers
         public static class Development
         {
             public const string Route = "sign-on/saml/2/metadata/develop";
-            private static readonly string Action = MVC.Saml.ServiceProviderMetadata.ActionNames.Development;
+            private static readonly string Action = MVC.Identity.ServiceProviderMetadata.ActionNames.Development;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };

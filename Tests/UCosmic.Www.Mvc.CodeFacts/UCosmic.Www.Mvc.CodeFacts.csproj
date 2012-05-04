@@ -122,7 +122,6 @@
     <Compile Include="Areas\Common\Mappers\ErrorsRouteMapperFacts.cs" />
     <Compile Include="Areas\Common\Mappers\FeaturesRouteMapperFacts.cs" />
     <Compile Include="Areas\Roles\RolesAreaRegistrationFacts.cs" />
-    <Compile Include="Areas\Saml\SamlAreaRegistrationFacts.cs" />
     <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapperFacts.cs" />
     <Compile Include="Areas\Establishments\Mappers\ManagementFormsRouteMapperFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailControllerFacts.cs" />
@@ -137,7 +136,7 @@
     <Compile Include="Areas\Identity\Models\ConfirmEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailProfilerFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailValidatorFacts.cs" />
-    <Compile Include="Areas\Saml\Models\IdentityProviderListItemFacts.cs" />
+    <Compile Include="Areas\Identity\Models\IdentityProviderListItemFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignOnFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignOnValidatorFacts.cs" />
     <Compile Include="Areas\Identity\Models\_OldCreatePasswordFormFacts.cs" />

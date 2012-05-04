@@ -1,4 +1,4 @@
-﻿namespace UCosmic.Www.Mvc.Areas.Saml.Models
+﻿namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     public class ServiceProviderEntityDescriptor
     {

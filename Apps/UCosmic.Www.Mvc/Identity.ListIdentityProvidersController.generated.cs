@@ -20,7 +20,7 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace UCosmic.Www.Mvc.Areas.Saml.Controllers {
+namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public partial class ListIdentityProvidersController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected ListIdentityProvidersController(Dummy d) { }
@@ -33,9 +33,9 @@ namespace UCosmic.Www.Mvc.Areas.Saml.Controllers {
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ListIdentityProvidersController Actions { get { return MVC.Saml.ListIdentityProviders; } }
+        public ListIdentityProvidersController Actions { get { return MVC.Identity.ListIdentityProviders; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "Saml";
+        public readonly string Area = "Identity";
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Name = "ListIdentityProviders";
         [GeneratedCode("T4MVC", "2.0")]
@@ -64,7 +64,7 @@ namespace UCosmic.Www.Mvc.Areas.Saml.Controllers {
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_ListIdentityProvidersController: UCosmic.Www.Mvc.Areas.Saml.Controllers.ListIdentityProvidersController {
+    public class T4MVC_ListIdentityProvidersController: UCosmic.Www.Mvc.Areas.Identity.Controllers.ListIdentityProvidersController {
         public T4MVC_ListIdentityProvidersController() : base(Dummy.Instance) { }
 
         public override System.Web.Mvc.ActionResult Get() {

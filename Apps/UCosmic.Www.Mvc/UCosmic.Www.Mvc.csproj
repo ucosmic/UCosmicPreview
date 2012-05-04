@@ -239,8 +239,7 @@
     <Compile Include="Areas\People\Models\PersonInfoModel.cs" />
     <Compile Include="Areas\People\PeopleAreaRegistration.cs" />
     <Compile Include="Areas\Roles\RolesAreaRegistration.cs" />
-    <Compile Include="Areas\Saml\Controllers\ListIdentityProvidersController.cs" />
-    <Compile Include="Areas\Saml\SamlAreaRegistration.cs" />
+    <Compile Include="Areas\Identity\Controllers\ListIdentityProvidersController.cs" />
     <Compile Include="Controllers\NullLayoutOnChildActionAttribute.cs" />
     <Compile Include="Areas\Identity\Controllers\ValidateConfirmEmailAttribute.cs" />
     <Compile Include="Helpers\SimpleInjectorMVC3.cs" />
@@ -251,9 +250,9 @@
     <Compile Include="Areas\Common\Controllers\HealthController.cs" />
     <Compile Include="Areas\Common\Controllers\NavigationController.cs" />
     <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapper.cs" />
-    <Compile Include="Areas\Saml\Controllers\ServiceProviderMetadataController.cs" />
-    <Compile Include="Areas\Saml\Models\ServiceProviderEntityDescriptor.cs" />
-    <Compile Include="Areas\Saml\Models\IdentityProviderListItem.cs" />
+    <Compile Include="Areas\Identity\Controllers\ServiceProviderMetadataController.cs" />
+    <Compile Include="Areas\Identity\Models\ServiceProviderEntityDescriptor.cs" />
+    <Compile Include="Areas\Identity\Models\IdentityProviderListItem.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOnController.cs" />
     <Compile Include="Areas\Identity\Controllers\Deprecated\Models\_OldPassword\_OldForgotPasswordEmailAttribute.cs" />
     <Compile Include="Areas\Roles\Models\NoDuplicateGrantsAttribute.cs" />
@@ -310,6 +309,9 @@
     <Compile Include="Identity.ForgotPasswordController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Identity.ListIdentityProvidersController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Identity.MyHomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -317,6 +319,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Identity.ResetPasswordController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.ServiceProviderMetadataController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Identity.SharedController.generated.cs">
@@ -479,15 +484,6 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Roles.RolesController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Saml.ListIdentityProvidersController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Saml.ServiceProviderMetadataController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Saml.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="SharedController.generated.cs">
@@ -1054,7 +1050,7 @@
     <Content Include="Areas\Common\Views\Features\february-2012-preview-2.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\sign-on.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOnForm.cshtml" />
-    <Content Include="Areas\Saml\Views\Shared\providers.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\providers.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\EmailAddressField.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\PasswordField.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\my-home.cshtml" />
@@ -1084,10 +1080,8 @@
     <Content Include="Areas\Identity\Views\ResetPassword\_denied-retired.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\_denied-crash.cshtml" />
     <Content Include="Areas\Identity\Views\CreatePassword\_denied-crash.cshtml" />
-    <Content Include="Areas\Saml\Views\Web.config" />
     <Content Include="Areas\Roles\Views\Web.config" />
     <Content Include="Areas\Roles\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Saml\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\sign-in.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignInForm.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\DisplayTemplates\EmailAddressField.cshtml" />
@@ -1258,7 +1252,7 @@
     <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\-old-forgot-password.cshtml" />
     <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\-old-reset-password-expired.cshtml" />
     <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\-old-reset-password.cshtml" />
-    <Content Include="Areas\Saml\Views\Shared\metadata.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\metadata.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\update-email-value.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\UpdateEmailValueForm.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\OldSignInForm.cshtml" />

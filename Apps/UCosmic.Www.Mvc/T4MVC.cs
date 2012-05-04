@@ -37,8 +37,6 @@ public static class MVC {
     public static RecruitmentAgenciesClass RecruitmentAgencies { get { return s_RecruitmentAgencies; } }
     static readonly RolesClass s_Roles = new RolesClass();
     public static RolesClass Roles { get { return s_Roles; } }
-    static readonly SamlClass s_Saml = new SamlClass();
-    public static SamlClass Saml { get { return s_Saml; } }
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
@@ -67,9 +65,11 @@ namespace T4MVC {
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.ConfirmEmailController ConfirmEmail = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_ConfirmEmailController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.CreatePasswordController CreatePassword = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_CreatePasswordController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.ForgotPasswordController ForgotPassword = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_ForgotPasswordController();
+        public UCosmic.Www.Mvc.Areas.Identity.Controllers.ListIdentityProvidersController ListIdentityProviders = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_ListIdentityProvidersController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.MyHomeController MyHome = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_MyHomeController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.ReceiveSamlAuthnResponseController ReceiveSamlAuthnResponse = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_ReceiveSamlAuthnResponseController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.ResetPasswordController ResetPassword = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_ResetPasswordController();
+        public UCosmic.Www.Mvc.Areas.Identity.Controllers.ServiceProviderMetadataController ServiceProviderMetadata = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_ServiceProviderMetadataController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignDownController SignDown = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignDownController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignInController SignIn = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignInController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignOnController SignOn = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignOnController();
@@ -105,13 +105,6 @@ namespace T4MVC {
     public class RolesClass {
         public readonly string Name = "Roles";
         public UCosmic.Www.Mvc.Areas.Roles.Controllers.RolesController Roles = new UCosmic.Www.Mvc.Areas.Roles.Controllers.T4MVC_RolesController();
-    }
-    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class SamlClass {
-        public readonly string Name = "Saml";
-        public UCosmic.Www.Mvc.Areas.Saml.Controllers.ListIdentityProvidersController ListIdentityProviders = new UCosmic.Www.Mvc.Areas.Saml.Controllers.T4MVC_ListIdentityProvidersController();
-        public UCosmic.Www.Mvc.Areas.Saml.Controllers.ServiceProviderMetadataController ServiceProviderMetadata = new UCosmic.Www.Mvc.Areas.Saml.Controllers.T4MVC_ServiceProviderMetadataController();
-        public T4MVC.Saml.SharedController Shared = new T4MVC.Saml.SharedController();
     }
 }
 

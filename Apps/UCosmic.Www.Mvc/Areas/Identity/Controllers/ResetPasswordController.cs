@@ -91,7 +91,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             return RedirectToAction(MVC.Identity.SignIn.Get());
         }
 
-        public const string SuccessMessage = "You can now use your new password to sign in.";
+        public const string SuccessMessage = "You can now use your new password to sign on.";
     }
 
     public static class ResetPasswordRouter

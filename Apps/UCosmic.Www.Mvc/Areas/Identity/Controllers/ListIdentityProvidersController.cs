@@ -2,10 +2,10 @@
 using System.Web.Routing;
 using AutoMapper;
 using UCosmic.Domain.Establishments;
-using UCosmic.Www.Mvc.Areas.Saml.Models;
+using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;
 
-namespace UCosmic.Www.Mvc.Areas.Saml.Controllers
+namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
     public class ListIdentityProvidersServices
     {
@@ -43,8 +43,8 @@ namespace UCosmic.Www.Mvc.Areas.Saml.Controllers
 
     public static class ListIdentityProvidersRouter
     {
-        private static readonly string Area = MVC.Saml.Name;
-        private static readonly string Controller = MVC.Saml.ListIdentityProviders.Name;
+        private static readonly string Area = MVC.Identity.Name;
+        private static readonly string Controller = MVC.Identity.ListIdentityProviders.Name;
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
@@ -57,7 +57,7 @@ namespace UCosmic.Www.Mvc.Areas.Saml.Controllers
         public static class Get
         {
             public const string Route = "sign-on/saml/2/providers";
-            private static readonly string Action = MVC.Saml.ListIdentityProviders.ActionNames.Get;
+            private static readonly string Action = MVC.Identity.ListIdentityProviders.ActionNames.Get;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };

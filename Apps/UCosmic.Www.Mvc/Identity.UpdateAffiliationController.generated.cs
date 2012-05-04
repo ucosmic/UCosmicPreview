@@ -72,8 +72,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _scripts = "~/Areas/Identity/Views/UpdateAffiliation/_scripts.cshtml";
-            public readonly string _styles = "~/Areas/Identity/Views/UpdateAffiliation/_styles.cshtml";
         }
     }
 
