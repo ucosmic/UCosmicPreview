@@ -79,9 +79,6 @@ namespace UCosmic.Www.Mvc.Areas.Passwords.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _denied_crash = "~/Areas/Passwords/Views/CreatePassword/_denied-crash.cshtml";
-            public readonly string _denied_expired = "~/Areas/Passwords/Views/CreatePassword/_denied-expired.cshtml";
-            public readonly string _denied_retired = "~/Areas/Passwords/Views/CreatePassword/_denied-retired.cshtml";
         }
     }
 
