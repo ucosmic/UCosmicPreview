@@ -11,6 +11,8 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
     public class PersonInfoRouterFacts
     // ReSharper restore UnusedMember.Global
     {
+        private static readonly string AreaName = MVC.People.Name;
+
         [TestClass]
         public class TheByEmailRoute
         {
@@ -39,7 +41,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                     controller => controller.ByEmail(null);
                 var url = PersonInfoRouter.ByEmail.Route.ToAppRelativeUrl();
 
-                OutBoundRoute.Of(action).InArea(MVC.People.Name).WithMethod(HttpVerbs.Post)
+                OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);
             }
         }
@@ -72,7 +74,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                     controller => controller.ByGuid();
                 var url = PersonInfoRouter.ByGuid.Route.ToAppRelativeUrl();
 
-                OutBoundRoute.Of(action).InArea(MVC.People.Name).WithMethod(HttpVerbs.Post)
+                OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);
             }
         }
@@ -105,7 +107,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                     controller => controller.WithEmail();
                 var url = PersonInfoRouter.WithEmail.Route.ToAppRelativeUrl();
 
-                OutBoundRoute.Of(action).InArea(MVC.People.Name).WithMethod(HttpVerbs.Post)
+                OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);
             }
         }
@@ -138,7 +140,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                     controller => controller.WithFirstName();
                 var url = PersonInfoRouter.WithFirstName.Route.ToAppRelativeUrl();
 
-                OutBoundRoute.Of(action).InArea(MVC.People.Name).WithMethod(HttpVerbs.Post)
+                OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);
             }
         }
@@ -171,7 +173,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                     controller => controller.WithLastName();
                 var url = PersonInfoRouter.WithLastName.Route.ToAppRelativeUrl();
 
-                OutBoundRoute.Of(action).InArea(MVC.People.Name).WithMethod(HttpVerbs.Post)
+                OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);
             }
         }

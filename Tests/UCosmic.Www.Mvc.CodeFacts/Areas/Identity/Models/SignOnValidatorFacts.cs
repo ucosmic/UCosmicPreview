@@ -33,6 +33,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         [TestClass]
         public class TheEmailAddressProperty
         {
+            private const string PropertyName = "EmailAddress";
+
             [TestMethod]
             public void IsInvalidWhen_IsNull()
             {
@@ -41,7 +43,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -57,7 +59,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -73,7 +75,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -89,7 +91,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -110,7 +112,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
@@ -131,7 +133,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
@@ -148,7 +150,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var validator = new SignOnValidator(queryProcessor.Object);
                 var model = new SignOnForm { EmailAddress = "email@domain.tld" };
                 var results = validator.Validate(model);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "EmailAddress");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldBeNull();
             }
         }

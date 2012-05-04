@@ -1,0 +1,40 @@
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.MyHomeInfo.MyAffiliation
+<div class="affiliation">
+    <div>
+        <span class="affiliation-name">@Model.Establishment.OfficialName</span>
+        @if (!Model.IsAcknowledged)
+        {
+            <span class="affiliation-unacknowledged">You have not yet set up this affiliation.</span>
+            <span class="affiliation-actions"><a href="@Url.Action(MVC.Identity.UpdateAffiliation.Get(Model.EstablishmentId))">
+                Set up affiliation</a></span>
+        }
+        else
+        {
+            <span class="affiliation-actions"><a href="@Url.Action(MVC.Identity.UpdateAffiliation.Get(Model.EstablishmentId))">
+                Edit affiliation info</a></span>
+        }
+    </div>
+    @if (Model.IsAcknowledged)
+    {
+        <div class="affiliation-type-info">
+            @if (Model.IsClaimingEmployee || !Model.Establishment.IsInstitution)
+            {
+                <div class="@Html.NullDisplayCssClassFor(m => Model.JobTitles) is-employee">
+                    @Html.DisplayFor(m => Model.JobTitles).LineBreaksToHtml()
+                </div>
+            }
+            else if (Model.IsClaimingStudent && Model.Establishment.IsInstitution)
+            {
+                <div class="is-student">
+                    Student
+                </div>
+            }
+            else if (Model.Establishment.IsInstitution)
+            {
+                <div class="is-neither">
+                    Neither student nor employee
+                </div>
+            }
+        </div>
+    }
+</div>

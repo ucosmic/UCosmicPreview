@@ -2,7 +2,6 @@
 using System.Web.Routing;
 using FluentValidation.Mvc;
 using UCosmic.Domain.Identity;
-using UCosmic.Www.Mvc.Areas.My.Controllers;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;
 
@@ -50,7 +49,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             // only local members can change passwords
             if (user.EduPersonTargetedId != null || 
                 !_services.MemberSigner.IsSignedUp(User.Identity.Name))
-                return RedirectToAction(MVC.My.MyHome.Get());
+                return RedirectToAction(MVC.Identity.MyHome.Get());
 
             // create view model
             var model = new UpdatePasswordForm();
@@ -95,7 +94,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             // only local members can change passwords
             if (user.EduPersonTargetedId != null ||
                 !_services.MemberSigner.IsSignedUp(User.Identity.Name))
-                return RedirectToAction(MVC.My.MyHome.Get());
+                return RedirectToAction(MVC.Identity.MyHome.Get());
 
             // update the password
             _services.MemberSigner.UpdatePassword(User.Identity.Name, model.CurrentPassword, model.NewPassword);
@@ -107,7 +106,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             SetFeedbackMessage(SuccessMessage);
 
             // redirect to return url
-            return Redirect(model.ReturnUrl ?? Url.Action(MVC.My.MyHome.Get()));
+            return Redirect(model.ReturnUrl ?? Url.Action(MVC.Identity.MyHome.Get()));
         }
 
         public const string SuccessMessage = "Your password has been changed. Use your new password to sign on next time.";

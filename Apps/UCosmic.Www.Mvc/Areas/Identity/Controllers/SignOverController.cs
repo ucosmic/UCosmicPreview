@@ -69,7 +69,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 User.Identity.Name, model.EmailAddress));
 
             // redirect to return url
-            model.ReturnUrl = model.ReturnUrl ?? Url.Action(MVC.My.MyHome.Get());
+            model.ReturnUrl = model.ReturnUrl ?? Url.Action(MVC.Identity.MyHome.Get());
             return Redirect(model.ReturnUrl);
         }
 

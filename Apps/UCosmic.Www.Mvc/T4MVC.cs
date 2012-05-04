@@ -31,8 +31,6 @@ public static class MVC {
     public static IdentityClass Identity { get { return s_Identity; } }
     static readonly InstitutionalAgreementsClass s_InstitutionalAgreements = new InstitutionalAgreementsClass();
     public static InstitutionalAgreementsClass InstitutionalAgreements { get { return s_InstitutionalAgreements; } }
-    static readonly MyClass s_My = new MyClass();
-    public static MyClass My { get { return s_My; } }
     static readonly PeopleClass s_People = new PeopleClass();
     public static PeopleClass People { get { return s_People; } }
     static readonly RecruitmentAgenciesClass s_RecruitmentAgencies = new RecruitmentAgenciesClass();
@@ -69,6 +67,7 @@ namespace T4MVC {
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.ConfirmEmailController ConfirmEmail = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_ConfirmEmailController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.CreatePasswordController CreatePassword = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_CreatePasswordController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.ForgotPasswordController ForgotPassword = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_ForgotPasswordController();
+        public UCosmic.Www.Mvc.Areas.Identity.Controllers.MyHomeController MyHome = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_MyHomeController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.ReceiveSamlAuthnResponseController ReceiveSamlAuthnResponse = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_ReceiveSamlAuthnResponseController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.ResetPasswordController ResetPassword = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_ResetPasswordController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignDownController SignDown = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignDownController();
@@ -77,6 +76,9 @@ namespace T4MVC {
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignOutController SignOut = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignOutController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignOverController SignOver = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignOverController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.SignUpController SignUp = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_SignUpController();
+        public UCosmic.Www.Mvc.Areas.Identity.Controllers.UpdateAffiliationController UpdateAffiliation = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_UpdateAffiliationController();
+        public UCosmic.Www.Mvc.Areas.Identity.Controllers.UpdateEmailValueController UpdateEmailValue = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_UpdateEmailValueController();
+        public UCosmic.Www.Mvc.Areas.Identity.Controllers.UpdateNameController UpdateName = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_UpdateNameController();
         public UCosmic.Www.Mvc.Areas.Identity.Controllers.UpdatePasswordController UpdatePassword = new UCosmic.Www.Mvc.Areas.Identity.Controllers.T4MVC_UpdatePasswordController();
         public T4MVC.Identity.SharedController Shared = new T4MVC.Identity.SharedController();
     }
@@ -87,15 +89,6 @@ namespace T4MVC {
         public UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers.ManagementFormsController ManagementForms = new UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers.T4MVC_ManagementFormsController();
         public UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers.PublicSearchController PublicSearch = new UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers.T4MVC_PublicSearchController();
         public T4MVC.InstitutionalAgreements.SharedController Shared = new T4MVC.InstitutionalAgreements.SharedController();
-    }
-    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class MyClass {
-        public readonly string Name = "My";
-        public UCosmic.Www.Mvc.Areas.My.Controllers.MyHomeController MyHome = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_MyHomeController();
-        public UCosmic.Www.Mvc.Areas.My.Controllers.UpdateAffiliationController UpdateAffiliation = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_UpdateAffiliationController();
-        public UCosmic.Www.Mvc.Areas.My.Controllers.UpdateEmailValueController UpdateEmailValue = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_UpdateEmailValueController();
-        public UCosmic.Www.Mvc.Areas.My.Controllers.UpdateNameController UpdateName = new UCosmic.Www.Mvc.Areas.My.Controllers.T4MVC_UpdateNameController();
-        public T4MVC.My.SharedController Shared = new T4MVC.My.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class PeopleClass {

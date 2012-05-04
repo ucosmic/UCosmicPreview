@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.SpecFlow;
 using UCosmic.Www.Mvc.WebDriver;
-using UCosmic.Www.Mvc.Areas.My.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity
 {

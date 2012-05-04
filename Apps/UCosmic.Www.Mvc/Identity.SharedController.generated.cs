@@ -35,17 +35,23 @@ namespace T4MVC.Identity {
             public readonly string confirm_email = "~/Areas/Identity/Views/Shared/confirm-email.cshtml";
             public readonly string create_password = "~/Areas/Identity/Views/Shared/create-password.cshtml";
             public readonly string forgot_password = "~/Areas/Identity/Views/Shared/forgot-password.cshtml";
+            public readonly string my_home = "~/Areas/Identity/Views/Shared/my-home.cshtml";
             public readonly string reset_password = "~/Areas/Identity/Views/Shared/reset-password.cshtml";
             public readonly string sign_in = "~/Areas/Identity/Views/Shared/sign-in.cshtml";
             public readonly string sign_on = "~/Areas/Identity/Views/Shared/sign-on.cshtml";
             public readonly string sign_out = "~/Areas/Identity/Views/Shared/sign-out.cshtml";
             public readonly string sign_over = "~/Areas/Identity/Views/Shared/sign-over.cshtml";
             public readonly string sign_up = "~/Areas/Identity/Views/Shared/sign-up.cshtml";
+            public readonly string update_affiliation = "~/Areas/Identity/Views/Shared/update-affiliation.cshtml";
+            public readonly string update_email_value = "~/Areas/Identity/Views/Shared/update-email-value.cshtml";
+            public readonly string update_name = "~/Areas/Identity/Views/Shared/update-name.cshtml";
             public readonly string update_password = "~/Areas/Identity/Views/Shared/update-password.cshtml";
             static readonly _DisplayTemplates s_DisplayTemplates = new _DisplayTemplates();
             public _DisplayTemplates DisplayTemplates { get { return s_DisplayTemplates; } }
             public partial class _DisplayTemplates{
                 public readonly string EmailAddressField = "EmailAddressField";
+                public readonly string MyAffiliation = "MyAffiliation";
+                public readonly string MyEmailAddress = "MyEmailAddress";
             }
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
@@ -53,6 +59,7 @@ namespace T4MVC.Identity {
                 public readonly string ConfirmEmailForm = "ConfirmEmailForm";
                 public readonly string CreatePasswordForm = "CreatePasswordForm";
                 public readonly string EmailAddressField = "EmailAddressField";
+                public readonly string EmployeeOrStudentAffiliation = "EmployeeOrStudentAffiliation";
                 public readonly string ForgotPasswordForm = "ForgotPasswordForm";
                 public readonly string OldSignInForm = "OldSignInForm";
                 public readonly string PasswordField = "PasswordField";
@@ -63,6 +70,9 @@ namespace T4MVC.Identity {
                 public readonly string SignOverForm = "SignOverForm";
                 public readonly string SignUpForm = "SignUpForm";
                 public readonly string StrengthMeteredPassword = "StrengthMeteredPassword";
+                public readonly string UpdateAffiliationForm = "UpdateAffiliationForm";
+                public readonly string UpdateEmailValueForm = "UpdateEmailValueForm";
+                public readonly string UpdateNameForm = "UpdateNameForm";
                 public readonly string UpdatePasswordForm = "UpdatePasswordForm";
             }
         }

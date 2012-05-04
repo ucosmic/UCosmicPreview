@@ -36,6 +36,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         [TestClass]
         public class TheTokenProperty
         {
+            private const string PropertyName = "Token";
+
             [TestMethod]
             public void IsInvalidWhen_IsEmpty()
             {
@@ -51,7 +53,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Token");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
@@ -79,7 +81,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Token");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
@@ -105,7 +107,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 var results = validator.Validate(validated);
 
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Token");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldBeNull();
             }
         }
@@ -113,6 +115,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         [TestClass]
         public class ThePasswordProperty
         {
+            private const string PropertyName = "Password";
+
             [TestMethod]
             public void IsInvalidWhen_IsNull()
             {
@@ -125,7 +129,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Password");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -148,7 +152,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Password");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -171,7 +175,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Password");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -194,7 +198,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Password");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
@@ -220,7 +224,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 var results = validator.Validate(validated);
 
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Password");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldBeNull();
             }
         }
@@ -228,6 +232,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         [TestClass]
         public class ThePasswordConfirmationProperty
         {
+            private const string PropertyName = "PasswordConfirmation";
+
             [TestMethod]
             public void IsInvalidWhen_IsNull()
             {
@@ -240,7 +246,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -263,7 +269,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -286,7 +292,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -310,7 +316,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(
@@ -331,7 +337,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 var results = validator.Validate(validated);
 
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldBeNull();
             }
 
@@ -349,7 +355,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 var results = validator.Validate(validated);
 
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldBeNull();
             }
 
@@ -367,7 +373,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 var results = validator.Validate(validated);
 
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldBeNull();
             }
 
@@ -385,7 +391,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 var results = validator.Validate(validated);
 
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PasswordConfirmation");
+                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldBeNull();
             }
         }
