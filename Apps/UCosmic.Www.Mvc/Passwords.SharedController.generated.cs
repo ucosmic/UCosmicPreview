@@ -28,12 +28,22 @@ namespace T4MVC.Passwords {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
+            public readonly string _create_password_crash = "~/Areas/Passwords/Views/Shared/_create-password-crash.cshtml";
+            public readonly string _create_password_expired = "~/Areas/Passwords/Views/Shared/_create-password-expired.cshtml";
+            public readonly string _create_password_retired = "~/Areas/Passwords/Views/Shared/_create-password-retired.cshtml";
+            public readonly string _reset_password_crash = "~/Areas/Passwords/Views/Shared/_reset-password-crash.cshtml";
+            public readonly string _reset_password_expired = "~/Areas/Passwords/Views/Shared/_reset-password-expired.cshtml";
+            public readonly string _reset_password_retired = "~/Areas/Passwords/Views/Shared/_reset-password-retired.cshtml";
             public readonly string create_password = "~/Areas/Passwords/Views/Shared/create-password.cshtml";
+            public readonly string forgot_password = "~/Areas/Passwords/Views/Shared/forgot-password.cshtml";
+            public readonly string reset_password = "~/Areas/Passwords/Views/Shared/reset-password.cshtml";
             public readonly string update_password = "~/Areas/Passwords/Views/Shared/update-password.cshtml";
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{
                 public readonly string CreatePasswordForm = "CreatePasswordForm";
+                public readonly string ForgotPasswordForm = "ForgotPasswordForm";
+                public readonly string ResetPasswordForm = "ResetPasswordForm";
                 public readonly string StrengthMeteredPassword = "StrengthMeteredPassword";
                 public readonly string UpdatePasswordForm = "UpdatePasswordForm";
             }
