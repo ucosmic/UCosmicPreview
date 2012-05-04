@@ -1,0 +1,25 @@
+﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.UpdateNameForm
+@{
+    ViewBag.Title = "Update my name";
+    Layout = MVC.Shared.Views.layout;
+    Layout = (ViewBag.NullLayout == null) ? Layout : null;
+}
+@using (Html.BeginForm(
+    MVC.Identity.UpdateName.ActionNames.Put,
+    MVC.Identity.UpdateName.Name,
+    new
+    {
+        area = MVC.Identity.Name,
+        httpMethod = "POST",
+    }
+))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <fieldset>
+        <legend>My Name</legend>
+        <p>
+            Use the form below to update your name.
+        </p>
+        @Html.EditorForModel()
+    </fieldset>
+}

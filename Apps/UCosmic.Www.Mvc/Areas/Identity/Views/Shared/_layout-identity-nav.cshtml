@@ -8,7 +8,7 @@
 <div class="identity">
     @if (isSignedIn)
     {
-        <a href="@Url.Action(MVC.My.MyHome.Get())" class="signed-in">@User.Identity.Name</a>
+        <a href="@Url.Action(MVC.Identity.MyHome.Get())" class="signed-in">@User.Identity.Name</a>
         <span class="pipe">|</span>
         <a href="@Url.Action(MVC.Identity.SignOut.Get(Request.RawUrl))">Sign Out</a>
         if (isImpersonator || isImpersonating)

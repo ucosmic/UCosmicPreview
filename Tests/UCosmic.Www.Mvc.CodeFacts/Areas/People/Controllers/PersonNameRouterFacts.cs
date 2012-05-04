@@ -11,6 +11,8 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
     public class PersonNameRouterFacts
     // ReSharper restore UnusedMember.Global
     {
+        private static readonly string AreaName = MVC.People.Name;
+
         [TestClass]
         public class TheGenerateDisplayNameRoute
         {
@@ -39,7 +41,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                     controller => controller.GenerateDisplayName(null);
                 var url = PersonNameRouter.GenerateDisplayName.Route.ToAppRelativeUrl();
 
-                OutBoundRoute.Of(action).InArea(MVC.People.Name).WithMethod(HttpVerbs.Post)
+                OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);
             }
         }
@@ -72,7 +74,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                     controller => controller.AutoCompleteSalutations(null);
                 var url = PersonNameRouter.AutoCompleteSalutations.Route.ToAppRelativeUrl();
 
-                OutBoundRoute.Of(action).InArea(MVC.People.Name).WithMethod(HttpVerbs.Get)
+                OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Get)
                     .AppRelativeUrl().ShouldEqual(url);
             }
         }
@@ -105,7 +107,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                     controller => controller.AutoCompleteSuffixes(null);
                 var url = PersonNameRouter.AutoCompleteSuffixes.Route.ToAppRelativeUrl();
 
-                OutBoundRoute.Of(action).InArea(MVC.People.Name).WithMethod(HttpVerbs.Get)
+                OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Get)
                     .AppRelativeUrl().ShouldEqual(url);
             }
         }
