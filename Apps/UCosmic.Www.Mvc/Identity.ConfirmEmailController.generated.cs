@@ -79,6 +79,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
+            public readonly string _denied_all = "~/Areas/Identity/Views/ConfirmEmail/_denied-all.cshtml";
+            public readonly string _denied_crash = "~/Areas/Identity/Views/ConfirmEmail/_denied-crash.cshtml";
+            public readonly string _form_instructions = "~/Areas/Identity/Views/ConfirmEmail/_form-instructions.cshtml";
+            public readonly string _form_legend_text = "~/Areas/Identity/Views/ConfirmEmail/_form-legend-text.cshtml";
+            public readonly string _right = "~/Areas/Identity/Views/ConfirmEmail/_right.cshtml";
         }
     }
 

@@ -28,11 +28,6 @@ namespace T4MVC.Identity {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _confirm_email_crash = "~/Areas/Identity/Views/Shared/_confirm-email-crash.cshtml";
-            public readonly string _confirm_email_denied = "~/Areas/Identity/Views/Shared/_confirm-email-denied.cshtml";
-            public readonly string _confirm_email_instruct = "~/Areas/Identity/Views/Shared/_confirm-email-instruct.cshtml";
-            public readonly string _confirm_email_legend = "~/Areas/Identity/Views/Shared/_confirm-email-legend.cshtml";
-            public readonly string _confirm_email_right = "~/Areas/Identity/Views/Shared/_confirm-email-right.cshtml";
             public readonly string _layout_identity_nav = "~/Areas/Identity/Views/Shared/_layout-identity-nav.cshtml";
             public readonly string _layout_identity_v1 = "~/Areas/Identity/Views/Shared/_layout_identity_v1.cshtml";
             public readonly string _sign_in_form = "~/Areas/Identity/Views/Shared/_sign-in-form.cshtml";
