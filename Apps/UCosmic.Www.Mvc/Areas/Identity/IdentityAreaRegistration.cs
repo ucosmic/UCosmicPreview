@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using UCosmic.Www.Mvc.Areas.Identity.Controllers;
-using UCosmic.Www.Mvc.Areas.Identity.Mappers;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity
@@ -14,16 +13,18 @@ namespace UCosmic.Www.Mvc.Areas.Identity
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            OldSignInRouteMapper.RegisterRoutes(context);
-            OldSignUpRouteMapper.RegisterRoutes(context);
+            //OldSignInRouteMapper.RegisterRoutes(context);
+            //OldSignUpRouteMapper.RegisterRoutes(context);
 
             //EmailConfirmationRouteMapper.RegisterRoutes(context);
             //EmailConfirmationModelMapper.RegisterProfiles();
 
-            OldPasswordRouteMapper.RegisterRoutes(context);
+            //OldPasswordRouteMapper.RegisterRoutes(context);
             //PasswordModelMapper.RegisterProfiles();
 
             SignOnRouter.RegisterRoutes(context);
+
+            SignOverRouter.RegisterRoutes(context);
 
             SignInRouter.RegisterRoutes(context);
 

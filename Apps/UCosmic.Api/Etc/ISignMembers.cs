@@ -9,5 +9,6 @@
         bool Validate(string userName, string password);
         void SignUp(string userName, string password);
         void ResetPassword(string userName, string password);
+        void UpdatePassword(string userName, string oldPassword, string newPassword);
     }
 }

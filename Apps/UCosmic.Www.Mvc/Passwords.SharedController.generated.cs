@@ -29,11 +29,13 @@ namespace T4MVC.Passwords {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
             public readonly string create_password = "~/Areas/Passwords/Views/Shared/create-password.cshtml";
+            public readonly string update_password = "~/Areas/Passwords/Views/Shared/update-password.cshtml";
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{
                 public readonly string CreatePasswordForm = "CreatePasswordForm";
                 public readonly string StrengthMeteredPassword = "StrengthMeteredPassword";
+                public readonly string UpdatePasswordForm = "UpdatePasswordForm";
             }
         }
     }

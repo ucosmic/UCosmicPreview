@@ -214,7 +214,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 filterContext.Result.ShouldNotBeNull();
                 filterContext.Result.ShouldBeType<PartialViewResult>();
                 var partialView = (PartialViewResult)filterContext.Result;
-                partialView.ViewName.ShouldEqual(MVC.Identity.ConfirmEmail.Views._denied);
+                partialView.ViewName.ShouldEqual(MVC.Identity.Shared.Views._confirm_email_denied);
                 partialView.Model.ShouldNotBeNull();
                 partialView.Model.ShouldBeType<ConfirmDeniedModel>();
                 var model = (ConfirmDeniedModel)partialView.Model;
@@ -247,7 +247,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 filterContext.Result.ShouldNotBeNull();
                 filterContext.Result.ShouldBeType<PartialViewResult>();
                 var partialView = (PartialViewResult)filterContext.Result;
-                partialView.ViewName.ShouldEqual(MVC.Identity.ConfirmEmail.Views._denied);
+                partialView.ViewName.ShouldEqual(MVC.Identity.Shared.Views._confirm_email_denied);
                 partialView.Model.ShouldNotBeNull();
                 partialView.Model.ShouldBeType<ConfirmDeniedModel>();
                 var model = (ConfirmDeniedModel)partialView.Model;

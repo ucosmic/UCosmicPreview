@@ -23,6 +23,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public ISignUsers UserSigner { get; private set; }
     }
 
+    [EnforceHttps]
     public partial class SignOutController : BaseController
     {
         private readonly SignOutServices _services;
@@ -75,8 +76,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            if (!WebConfig.IsDeployedToCloud)
-                RootActionRouter.RegisterRoutes(typeof(SignOutRouter), context, Area, Controller);
+            RootActionRouter.RegisterRoutes(typeof(SignOutRouter), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global

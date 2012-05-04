@@ -1,0 +1,49 @@
+﻿@using UCosmic.Domain.People
+@model UCosmic.Www.Mvc.Areas.Identity.Models.ConfirmEmailForm
+@{
+    ViewBag.Title = "Confirm your email address";
+    Layout = MVC.Shared.Views.layout;
+}
+<div class="wrap-960 split-form">
+    <div class="left">
+        @using (Html.BeginForm(
+            MVC.Identity.ConfirmEmail.ActionNames.Post,
+            MVC.Identity.ConfirmEmail.Name,
+            new
+            {
+                area = MVC.Identity.Name,
+                httpMethod = "POST",
+                token = Model.Token,
+            }
+        ))
+        {
+            <fieldset>
+                <legend>
+                    @Html.Partial(MVC.Identity.Shared.Views._confirm_email_legend)
+                </legend>
+                @Html.Partial(MVC.Identity.Shared.Views._confirm_email_instruct)
+                @Html.AntiForgeryToken()
+                @Html.EditorForModel()
+                @if (Model.Intent == EmailConfirmationIntent.SignUp)
+                {
+                    <p>
+                        After confirming, your next step will be to create a password.
+                    </p>
+                }
+            </fieldset>
+        }
+    </div>
+    <div class="right">
+        @Html.Partial(MVC.Identity.Shared.Views._confirm_email_right)
+    </div>
+</div>
+@section Scripts
+{
+
+    <script type="text/javascript">
+        $.validator.setDefaults({
+            onkeyup: false
+        });
+    </script>
+
+}

@@ -1,12 +1,9 @@
 ﻿@using UCosmic.Www.Mvc.Areas.Common.Models.Features
+@using UCosmic.Www.Mvc.Models
 @model IEnumerable<FeaturePreview>
 <p>
-    If this is your first time at UCosmic.com, please <a href="@Url.Action(MVC.Identity.OldSignUp.SendEmail())">
-        sign up</a>.
-</p>
-<p>
-    If you are already signed up, <a href="@Url.Action(MVC.Identity.OldSignIn.SignIn())">
-        sign in</a>.
+    To provide feedback on current and future UCosmic features, please visit our
+    @Html.Partial(MVC.Shared.Views.uservoice_link, new UserVoiceLink(Request, ViewData) { Text = "Feedback & Support forum", Dialog = "close", TextAfter = "." })
 </p>
 <p>
     For more information about the UCosmic software project, please visit the <a href="http://www.ucosmic.org">

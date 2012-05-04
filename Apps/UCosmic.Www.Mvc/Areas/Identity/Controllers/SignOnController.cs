@@ -29,6 +29,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public IHandleCommands<SendSamlAuthnRequestCommand> CommandHandler { get; private set; }
     }
 
+    [EnforceHttps]
     public partial class SignOnController : BaseController
     {
         private readonly SignOnServices _services;
@@ -106,8 +107,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            if (!WebConfig.IsDeployedToCloud)
-                RootActionRouter.RegisterRoutes(typeof(SignOnRouter), context, Area, Controller);
+            RootActionRouter.RegisterRoutes(typeof(SignOnRouter), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global

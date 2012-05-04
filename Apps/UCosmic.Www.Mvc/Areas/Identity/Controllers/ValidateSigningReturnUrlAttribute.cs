@@ -46,9 +46,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 // don't go to sign up page
                 _urlHelper.Action(MVC.Identity.SignUp.Get()),
 
-                // don't go to sign out or down pages
+                // don't go to sign out, over, or down pages
                 _urlHelper.Action(MVC.Identity.SignOut.Get()),
                 _urlHelper.Action(MVC.Identity.SignDown.Get()),
+                _urlHelper.Action(MVC.Identity.SignOver.Get()),
 
                 // don't go to confirm email page
                 _urlHelper.Action(MVC.Identity.ConfirmEmail.Get(guid, null))

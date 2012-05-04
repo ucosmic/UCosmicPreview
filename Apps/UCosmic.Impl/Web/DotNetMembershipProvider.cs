@@ -57,5 +57,19 @@ namespace UCosmic.Impl
                     "Password reset failed for user '{0}'.",
                         userName));
         }
+
+        public void UpdatePassword(string userName, string oldPassword, string newPassword)
+        {
+            var user = Membership.GetUser(userName);
+            if (user == null)
+                throw new InvalidOperationException(string.Format(
+                    "Cannot change password because user '{0}' does not exist.",
+                        userName));
+
+            if (!user.ChangePassword(oldPassword, newPassword))
+                throw new InvalidOperationException(string.Format(
+                    "Password change failed for user '{0}'.",
+                        userName));
+        }
     }
 }

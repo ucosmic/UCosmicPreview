@@ -1,0 +1,15 @@
+﻿<div id="identity_top" class="identity">
+    @if (Request.IsAuthenticated)
+    {
+        <div class="signed-in">
+            Signed in as <strong>@User.Identity.Name</strong> <a href="@Url.Action(MVC.Identity.SignOut.Get(Request.RawUrl))">
+                Sign Out</a>
+        </div>
+    }
+    else
+    {
+        <div class="signed-out">
+            <a href="@Url.Action(MVC.Identity.SignOn.Get(Request.RawUrl))">Sign On</a>
+        </div>
+    }
+</div>

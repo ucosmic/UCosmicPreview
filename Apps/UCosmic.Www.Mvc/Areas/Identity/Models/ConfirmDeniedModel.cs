@@ -14,11 +14,8 @@
 
     public enum ConfirmDeniedBecause
     {
-        //UserIsSignedUp = 0,
-        //MemberIsSignedUp = 1,
         IsExpired = 2,
         IsRetired = 3,
         OtherCrash = 4,
-        //ConfirmationIsRedeemed = 3
     }
 }
