@@ -56,14 +56,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     .Replace(slashGuid, string.Empty),
 
                 // don't go to create password page
-                _urlHelper.Action(MVC.Passwords.CreatePassword.Get(guid))
+                _urlHelper.Action(MVC.Identity.CreatePassword.Get(guid))
                     .Replace(slashGuid, string.Empty),
 
                 // don't go to forgot password page
-                _urlHelper.Action(MVC.Passwords.ForgotPassword.Get()),
+                _urlHelper.Action(MVC.Identity.ForgotPassword.Get()),
 
                 // don't go to reset password page
-                _urlHelper.Action(MVC.Passwords.ResetPassword.Get(guid))
+                _urlHelper.Action(MVC.Identity.ResetPassword.Get(guid))
                     .Replace(slashGuid, string.Empty),
             };
             return invalidReturnUrls;

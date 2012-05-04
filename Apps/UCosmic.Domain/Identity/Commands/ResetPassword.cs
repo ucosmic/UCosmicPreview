@@ -40,6 +40,7 @@ namespace UCosmic.Domain.Identity
 
             _memberSigner.ResetPassword(confirmation.EmailAddress.Person.User.Name, command.Password);
             confirmation.RetiredOnUtc = DateTime.UtcNow;
+            confirmation.SecretCode = null;
             confirmation.Ticket = null;
             _entities.Update(confirmation);
         }
