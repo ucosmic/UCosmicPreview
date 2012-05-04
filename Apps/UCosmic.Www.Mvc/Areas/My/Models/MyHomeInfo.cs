@@ -8,16 +8,17 @@ using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.My.Models
 {
-    public class ProfileInfo
+    public class MyHomeInfo
     {
         public string UserEduPersonTargetedId { get; set; }
+
         public bool CanChangePassword
         {
             get { return string.IsNullOrWhiteSpace(UserEduPersonTargetedId); }
         }
 
-        public EmailInfo[] Emails { get; set; }
-        public class EmailInfo
+        public MyEmailAddress[] Emails { get; set; }
+        public class MyEmailAddress
         {
             public int Number { get; set; }
             public string Value { get; set; }
@@ -25,33 +26,36 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
             public bool IsConfirmed { get; set; }
         }
 
-        public AffiliationInfo[] Affiliations { get; set; }
-        public class AffiliationInfo
+        public MyAffiliation[] Affiliations { get; set; }
+        public class MyAffiliation
         {
             public int EstablishmentId { get; set; }
 
-            public const string JobTitlesNullDisplayText = "[Job Title(s) Unknown]";
             [DisplayFormat(NullDisplayText = JobTitlesNullDisplayText)]
             public string JobTitles { get; set; }
+            public const string JobTitlesNullDisplayText = "[Job Title(s) Unknown]";
 
             public bool IsAcknowledged { get; set; }
+
             public bool IsClaimingStudent { get; set; }
+
             public bool IsClaimingEmployee { get; set; }
 
-            public EstablishmentInfo Establishment { get; set; }
-            public class EstablishmentInfo
+            public EstablishmentModel Establishment { get; set; }
+            public class EstablishmentModel
             {
                 public string OfficialName { get; set; }
+
                 public bool IsInstitution { get; set; }
             }
         }
     }
 
-    public static class ProfileProfiler
+    public static class MyHomeProfiler
     {
         public static void RegisterProfiles()
         {
-            RootModelProfiler.RegisterProfiles(typeof(ProfileProfiler));
+            RootModelProfiler.RegisterProfiles(typeof(MyHomeProfiler));
         }
 
         // ReSharper disable UnusedMember.Local
@@ -60,9 +64,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
         {
             protected override void Configure()
             {
-                CreateMap<Person, ProfileInfo>()
+                CreateMap<Person, MyHomeInfo>()
                     .ForMember(d => d.Emails, o => o.MapFrom(s =>
-                        Mapper.Map<IEnumerable<ProfileInfo.EmailInfo>>(s.Emails
+                        Mapper.Map<IEnumerable<MyHomeInfo.MyEmailAddress>>(s.Emails
                             .OrderByDescending(e => e.IsDefault)
                             .ThenByDescending(e => e.IsConfirmed)
                             .ThenBy(e => e.Value)
@@ -70,11 +74,11 @@ namespace UCosmic.Www.Mvc.Areas.My.Models
                     ))
                 ;
 
-                CreateMap<EmailAddress, ProfileInfo.EmailInfo>();
+                CreateMap<EmailAddress, MyHomeInfo.MyEmailAddress>();
 
-                CreateMap<Affiliation, ProfileInfo.AffiliationInfo>();
+                CreateMap<Affiliation, MyHomeInfo.MyAffiliation>();
 
-                CreateMap<Establishment, ProfileInfo.AffiliationInfo.EstablishmentInfo>();
+                CreateMap<Establishment, MyHomeInfo.MyAffiliation.EstablishmentModel>();
             }
         }
 

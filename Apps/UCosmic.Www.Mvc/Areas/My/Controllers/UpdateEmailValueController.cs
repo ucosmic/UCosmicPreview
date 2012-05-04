@@ -37,7 +37,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("update-email-value")]
-        [ReturnUrlReferrer(ProfileRouter.Get.Route)]
+        [ReturnUrlReferrer(MyHomeRouter.Get.Route)]
         public virtual ActionResult Get(int number)
         {
             // get the email address
@@ -97,6 +97,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
             RootActionRouter.RegisterRoutes(typeof(UpdateEmailValueRouter), context, Area, Controller);
+            UpdateEmailValueProfiler.RegisterProfiles();
         }
 
         // ReSharper disable UnusedMember.Global

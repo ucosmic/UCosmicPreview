@@ -21,9 +21,9 @@ using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
 namespace UCosmic.Www.Mvc.Areas.My.Controllers {
-    public partial class ProfileController {
+    public partial class MyHomeController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected ProfileController(Dummy d) { }
+        protected MyHomeController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -33,25 +33,25 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ProfileController Actions { get { return MVC.My.Profile; } }
+        public MyHomeController Actions { get { return MVC.My.MyHome; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "My";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Profile";
+        public readonly string Name = "MyHome";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Profile";
+        public const string NameConst = "MyHome";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Get = "profile";
+            public readonly string Get = "my-home";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Get = "profile";
+            public const string Get = "my-home";
         }
 
 
@@ -60,13 +60,12 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string profile = "~/Areas/My/Views/Profile/profile.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_ProfileController: UCosmic.Www.Mvc.Areas.My.Controllers.ProfileController {
-        public T4MVC_ProfileController() : base(Dummy.Instance) { }
+    public class T4MVC_MyHomeController: UCosmic.Www.Mvc.Areas.My.Controllers.MyHomeController {
+        public T4MVC_MyHomeController() : base(Dummy.Instance) { }
 
         public override System.Web.Mvc.ActionResult Get() {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);

@@ -8,7 +8,7 @@ using Should;
 namespace UCosmic.Www.Mvc.Areas.My.Controllers
 {
     // ReSharper disable UnusedMember.Global
-    public class ProfileRouterFacts
+    public class MyHomeRouterFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -17,9 +17,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void Inbound_WithGet_MapsToGetAction()
             {
-                Expression<Func<ProfileController, ActionResult>> action =
+                Expression<Func<MyHomeController, ActionResult>> action =
                     controller => controller.Get();
-                var url = ProfileRouter.Get.Route.ToAppRelativeUrl();
+                var url = MyHomeRouter.Get.Route.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
@@ -27,7 +27,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void Inbound_WithNonGet_MapsToNothing()
             {
-                var url = ProfileRouter.Get.Route.ToAppRelativeUrl();
+                var url = MyHomeRouter.Get.Route.ToAppRelativeUrl();
 
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
@@ -35,9 +35,9 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
             [TestMethod]
             public void Outbound_ForGetAction_MapsToUrl()
             {
-                Expression<Func<ProfileController, ActionResult>> action =
+                Expression<Func<MyHomeController, ActionResult>> action =
                     controller => controller.Get();
-                var url = ProfileRouter.Get.Route.ToAppRelativeUrl();
+                var url = MyHomeRouter.Get.Route.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(MVC.My.Name).WithMethod(HttpVerbs.Get).AppRelativeUrl().ShouldEqual(url);
             }

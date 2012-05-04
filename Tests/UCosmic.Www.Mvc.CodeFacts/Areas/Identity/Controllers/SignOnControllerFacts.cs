@@ -113,7 +113,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 const string returnUrl = "/path/to/resource";
                 var userSigner = new Mock<ISignUsers>(MockBehavior.Strict);
-                userSigner.Setup(p => p.DefaultSignedOnUrl).Returns("/my/profile");
+                userSigner.Setup(p => p.DefaultSignedOnUrl).Returns("/my/home");
                 var services = CreateSignOnServices();
                 var builder = ReuseMock.TestControllerBuilder(ControllerCustomization.ForUrlHelper);
                 var requestContext = new RequestContext(builder.HttpContext, new RouteData());

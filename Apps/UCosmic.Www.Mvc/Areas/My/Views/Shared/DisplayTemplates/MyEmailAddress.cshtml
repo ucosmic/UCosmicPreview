@@ -1,4 +1,4 @@
-﻿@model UCosmic.Www.Mvc.Areas.My.Models.ProfileInfo.EmailInfo
+﻿@model UCosmic.Www.Mvc.Areas.My.Models.MyHomeInfo.MyEmailAddress
 <div class="email-address">
     <div class="email-details email-info">
         <span class="email-value"><a href="@Url.Action(MVC.My.UpdateEmailValue.Get(Model.Number))" class="email-action" title="Change spelling">@Model.Value</a>
@@ -20,20 +20,4 @@
                 Primary</span>
         }
     </div>
-    @*<div class="email-actions email-info">
-        <a href="@Url.Action(MVC.My.UpdateEmailValue.Get(Model.Number))" class="email-action">
-            Change spelling</a>
-        @if (!Model.IsConfirmed)
-        {
-            <a href="#" class="email-action email-confirm not-implemented">Send confirmation email</a>
-        }
-        else if (!Model.IsDefault)
-        {
-            <a href="#" class="email-action email-make-primary not-implemented">Make primary</a>
-        }
-        @if (!Model.IsDefault)
-        {
-            <a href="#" class="email-action email-remove not-implemented">Remove</a>
-        }
-    </div>*@
 </div>

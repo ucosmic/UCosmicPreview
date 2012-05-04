@@ -148,11 +148,11 @@
     <Compile Include="Areas\My\Controllers\UpdateMyEmailValueControllerFacts.cs" />
     <Compile Include="Areas\My\Controllers\UpdateAffiliationControllerFacts.cs" />
     <Compile Include="Areas\My\Controllers\UpdateAffiliationRouterFacts.cs" />
-    <Compile Include="Areas\My\Controllers\ProfileControllerFacts.cs" />
-    <Compile Include="Areas\My\Controllers\ProfileRouterFacts.cs" />
+    <Compile Include="Areas\My\Controllers\MyHomeControllerFacts.cs" />
+    <Compile Include="Areas\My\Controllers\MyHomeRouterFacts.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameControllerFacts.cs" />
     <Compile Include="Areas\My\Controllers\UpdateNameRouterFacts.cs" />
-    <Compile Include="Areas\My\Models\ProfileInfoFacts.cs" />
+    <Compile Include="Areas\My\Models\MyHomeInfoFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateEmailValueFormFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateEmailValueProfilerFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateEmailValueValidatorFacts.cs" />
@@ -160,7 +160,7 @@
     <Compile Include="Areas\My\Models\UpdateAffiliationProfilerFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateAffiliationValidatorFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateAffiliationFormFacts.cs" />
-    <Compile Include="Areas\My\Models\ProfileProfilerFacts.cs" />
+    <Compile Include="Areas\My\Models\MyHomeProfilerFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameValidatorFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameProfilerFacts.cs" />
     <Compile Include="Areas\My\Models\UpdateNameFormFacts.cs" />

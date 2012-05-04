@@ -76,7 +76,7 @@ namespace UCosmic.Www.Mvc.Areas.My.Controllers
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
-                attributes[0].Fallback.ShouldEqual(ProfileRouter.Get.Route);
+                attributes[0].Fallback.ShouldEqual(MyHomeRouter.Get.Route);
             }
 
             [TestMethod]

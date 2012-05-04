@@ -36,7 +36,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("update-password")]
-        [ReturnUrlReferrer(ProfileRouter.Get.Route)]
+        [ReturnUrlReferrer(MyHomeRouter.Get.Route)]
         public virtual ActionResult Get()
         {
             // get the user
@@ -50,7 +50,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             // only local members can change passwords
             if (user.EduPersonTargetedId != null || 
                 !_services.MemberSigner.IsSignedUp(User.Identity.Name))
-                return RedirectToAction(MVC.My.Profile.Get());
+                return RedirectToAction(MVC.My.MyHome.Get());
 
             // create view model
             var model = new UpdatePasswordForm();
@@ -95,7 +95,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             // only local members can change passwords
             if (user.EduPersonTargetedId != null ||
                 !_services.MemberSigner.IsSignedUp(User.Identity.Name))
-                return RedirectToAction(MVC.My.Profile.Get());
+                return RedirectToAction(MVC.My.MyHome.Get());
 
             // update the password
             _services.MemberSigner.UpdatePassword(User.Identity.Name, model.CurrentPassword, model.NewPassword);
@@ -107,7 +107,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             SetFeedbackMessage(SuccessMessage);
 
             // redirect to return url
-            return Redirect(model.ReturnUrl ?? Url.Action(MVC.My.Profile.Get()));
+            return Redirect(model.ReturnUrl ?? Url.Action(MVC.My.MyHome.Get()));
         }
 
         public const string SuccessMessage = "Your password has been changed. Use your new password to sign on next time.";
