@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Threading;
-using UCosmic.Www.Mvc.Areas.Identity.Mappers;
+using UCosmic.Www.Mvc.Areas.Identity.Controllers;
 
 namespace UCosmic.Www.Mvc
 {
@@ -195,21 +195,23 @@ namespace UCosmic.Www.Mvc
     public static class RelativeUrl
     {
         public const string Home = "";
-        public const string SignUp = OldSignUpRouteMapper.SendEmail.Route;
-        public const string SignUpConfirmEmail = OldSignUpRouteMapper.ConfirmEmail.RouteForPost;
-        public const string SignUpCreatePassword = OldSignUpRouteMapper.CreatePassword.Route;
-        public const string SignUpCompleted = OldSignUpRouteMapper.SignIn.Route;
-        public const string SignIn = "sign-in";
+        public const string SignOn = SignOnRouter.Get.Route;
+        //public const string SignUp = OldSignUpRouteMapper.SendEmail.Route;
+        //public const string SignUpConfirmEmail = OldSignUpRouteMapper.ConfirmEmail.RouteForPost;
+        //public const string SignUpCreatePassword = OldSignUpRouteMapper.CreatePassword.Route;
+        //public const string SignUpCompleted = OldSignUpRouteMapper.SignIn.Route;
+        //public const string SignIn = "sign-in";
         public const string Me = "my/profile";
 
         private static readonly Dictionary<string, string> TitleToUrl = new Dictionary<string, string>
         {
             { "Home", Home },
-            { "Sign In", SignIn },
-            { "Sign Up", SignUp },
-            { "Sign Up Confirm Email", SignUpConfirmEmail },
-            { "Sign Up Create Password", SignUpCreatePassword },
-            { "Sign Up Completed", SignUpCompleted },
+            { "Sign On", SignOn },
+            //{ "Sign In", SignIn },
+            //{ "Sign Up", SignUp },
+            //{ "Sign Up Confirm Email", SignUpConfirmEmail },
+            //{ "Sign Up Create Password", SignUpCreatePassword },
+            //{ "Sign Up Completed", SignUpCompleted },
         };
 
         public static string For(string title)
@@ -225,7 +227,8 @@ namespace UCosmic.Www.Mvc
     public static class AbsoluteUrl
     {
         public static readonly string Home = RelativeUrl.Home.ToAbsoluteUrl();
-        public static readonly string SignIn = RelativeUrl.SignIn.ToAbsoluteUrl();
+        //public static readonly string SignIn = RelativeUrl.SignIn.ToAbsoluteUrl();
+        public static readonly string SignOn = RelativeUrl.SignOn.ToAbsoluteUrl();
         public static readonly string Me = RelativeUrl.Me.ToAbsoluteUrl();
     }
 

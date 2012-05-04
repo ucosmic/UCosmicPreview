@@ -64,6 +64,11 @@ namespace UCosmic.Domain.Identity
                                 Number = EduPersonScopedAffiliations.NextNumber(),
                             });
         }
+
+        public bool IsInRole(string roleName)
+        {
+            return Grants.ByRole(roleName) != null;
+        }
     }
 
 }

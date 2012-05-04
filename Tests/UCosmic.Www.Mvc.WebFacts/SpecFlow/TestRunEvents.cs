@@ -99,9 +99,9 @@ namespace UCosmic.Www.Mvc.SpecFlow
                         errorExists = false;
 
                         // go to sign in page
-                        firstBrowser.Navigate().GoToUrl(AbsoluteUrl.SignIn);
-                        firstBrowser.WaitUntil(b => b.Url.StartsWith(AbsoluteUrl.SignIn), string.Format(
-                            "Test run failed to initialize in @Browser because it did not arrive at the sign in page."));
+                        firstBrowser.Navigate().GoToUrl(AbsoluteUrl.SignOn);
+                        firstBrowser.WaitUntil(b => b.Url.StartsWith(AbsoluteUrl.SignOn), string.Format(
+                            "Test run failed to initialize in @Browser because it did not arrive at the sign on page."));
 
                         // attempt to sign in
                         var element = firstBrowser.WaitUntil(b => b.FindElement(By.Id("EmailAddress")), string.Format(
@@ -114,7 +114,7 @@ namespace UCosmic.Www.Mvc.SpecFlow
                                                          string.Format(
                                                              "Test run failed to initialize in @Browser because it could not find a sign in submit button."));
                         element.ClickButton();
-                        firstBrowser.WaitUntil(b => b.Url.StartsWith(AbsoluteUrl.SignIn)
+                        firstBrowser.WaitUntil(b => b.Url.StartsWith(AbsoluteUrl.SignOn)
                                                     || b.Url.StartsWith(AbsoluteUrl.Me), string.Format(
                                                         "Test run failed to initialize in @Browser because it did not arrive at the sign in or about me page."));
 

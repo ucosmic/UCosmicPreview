@@ -28,12 +28,22 @@ namespace T4MVC.Identity {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
+            public readonly string _confirm_email_crash = "~/Areas/Identity/Views/Shared/_confirm-email-crash.cshtml";
+            public readonly string _confirm_email_denied = "~/Areas/Identity/Views/Shared/_confirm-email-denied.cshtml";
+            public readonly string _confirm_email_instruct = "~/Areas/Identity/Views/Shared/_confirm-email-instruct.cshtml";
+            public readonly string _confirm_email_legend = "~/Areas/Identity/Views/Shared/_confirm-email-legend.cshtml";
+            public readonly string _confirm_email_right = "~/Areas/Identity/Views/Shared/_confirm-email-right.cshtml";
+            public readonly string _layout_identity_nav = "~/Areas/Identity/Views/Shared/_layout-identity-nav.cshtml";
+            public readonly string _layout_identity_v1 = "~/Areas/Identity/Views/Shared/_layout_identity_v1.cshtml";
             public readonly string _sign_in_form = "~/Areas/Identity/Views/Shared/_sign-in-form.cshtml";
             public readonly string _sign_on_form = "~/Areas/Identity/Views/Shared/_sign-on-form.cshtml";
+            public readonly string _sign_over_form = "~/Areas/Identity/Views/Shared/_sign-over-form.cshtml";
             public readonly string _sign_up_form = "~/Areas/Identity/Views/Shared/_sign-up-form.cshtml";
+            public readonly string confirm_email = "~/Areas/Identity/Views/Shared/confirm-email.cshtml";
             public readonly string sign_in = "~/Areas/Identity/Views/Shared/sign-in.cshtml";
             public readonly string sign_on = "~/Areas/Identity/Views/Shared/sign-on.cshtml";
             public readonly string sign_out = "~/Areas/Identity/Views/Shared/sign-out.cshtml";
+            public readonly string sign_over = "~/Areas/Identity/Views/Shared/sign-over.cshtml";
             public readonly string sign_up = "~/Areas/Identity/Views/Shared/sign-up.cshtml";
             static readonly _DisplayTemplates s_DisplayTemplates = new _DisplayTemplates();
             public _DisplayTemplates DisplayTemplates { get { return s_DisplayTemplates; } }
@@ -43,12 +53,14 @@ namespace T4MVC.Identity {
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{
+                public readonly string ConfirmEmailForm = "ConfirmEmailForm";
                 public readonly string EmailAddressField = "EmailAddressField";
                 public readonly string OldSignInForm = "OldSignInForm";
                 public readonly string PasswordField = "PasswordField";
                 public readonly string RememberMeField = "RememberMeField";
                 public readonly string SignInForm = "SignInForm";
                 public readonly string SignOnForm = "SignOnForm";
+                public readonly string SignOverForm = "SignOverForm";
                 public readonly string SignUpForm = "SignUpForm";
                 public readonly string StrengthMeteredPassword = "StrengthMeteredPassword";
             }

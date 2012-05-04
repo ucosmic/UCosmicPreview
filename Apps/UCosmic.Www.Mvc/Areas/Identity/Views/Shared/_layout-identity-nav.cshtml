@@ -1,0 +1,31 @@
+﻿@using UCosmic
+@{
+    var isSignedIn = Request.IsAuthenticated;
+    var wasSignedInAs = Session.WasSignedInAs();
+    var isImpersonator = User.IsInRole(RoleName.AuthenticationAgent);
+    var isImpersonating = !string.IsNullOrWhiteSpace(wasSignedInAs);
+}
+<div class="identity">
+    @if (isSignedIn)
+    {
+        <a href="@Url.Action(MVC.My.Profile.Get())" class="signed-in">@User.Identity.Name</a>
+        <span class="pipe">|</span>
+        <a href="@Url.Action(MVC.Identity.SignOut.Get(Request.RawUrl))">Sign Out</a>
+        if (isImpersonator || isImpersonating)
+        {
+        <span class="pipe">|</span>
+        <a href="@Url.Action(MVC.Identity.SignOver.Get(Request.RawUrl))">Sign Over</a>
+        }
+        if (isImpersonating)
+        {
+        <span class="pipe">|</span>
+        <a href="@Url.Action(MVC.Identity.SignOver.Undo(Request.RawUrl))" class="sign-out">
+            [@wasSignedInAs]</a>
+        }
+    }
+    else
+    {
+        <a href="@Url.Action(MVC.Identity.SignOn.Get(Request.RawUrl))" class="sign-in">Sign
+            On</a> 
+    }
+</div>

@@ -1,0 +1,45 @@
+﻿@using UCosmic.Domain.People
+@using UCosmic.Www.Mvc.Areas.Identity.Models
+@model ConfirmDeniedModel
+@{
+    Layout = MVC.Shared.Views.layout;
+    ViewBag.Title = "There was a problem confirming your email";
+    switch (Model.Intent)
+    {
+        case EmailConfirmationIntent.SignUp:
+            switch (Model.Reason)
+            {
+                case ConfirmDeniedBecause.IsExpired:
+                    ViewBag.Title = "Your sign up window has expired";
+                    Html.RenderPartial(MVC.Passwords.CreatePassword.Views._denied_expired);
+                    break;
+                case ConfirmDeniedBecause.IsRetired:
+                    ViewBag.Title = "Your password has already been created";
+                    Html.RenderPartial(MVC.Passwords.CreatePassword.Views._denied_retired);
+                    break;
+                default:
+                    Html.RenderPartial(MVC.Passwords.CreatePassword.Views._denied_crash);
+                    break;
+            }
+            break;
+        case EmailConfirmationIntent.PasswordReset:
+            switch (Model.Reason)
+            {
+                case ConfirmDeniedBecause.IsExpired:
+                    ViewBag.Title = "Your password reset window has expired";
+                    Html.RenderPartial(MVC.Passwords.ResetPassword.Views._denied_expired);
+                    break;
+                case ConfirmDeniedBecause.IsRetired:
+                    ViewBag.Title = "Your password has already been reset";
+                    Html.RenderPartial(MVC.Passwords.ResetPassword.Views._denied_retired);
+                    break;
+                default:
+                    Html.RenderPartial(MVC.Passwords.ResetPassword.Views._denied_crash);
+                    break;
+            }
+            break;
+        default:
+            Html.RenderPartial(MVC.Identity.Shared.Views._confirm_email_crash);
+            break;
+    }
+}

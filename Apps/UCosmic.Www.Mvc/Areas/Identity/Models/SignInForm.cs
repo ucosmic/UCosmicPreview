@@ -25,7 +25,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         [UIHint("PasswordField")]
         [DataType(DataType.Password)]
         [Display(Name = "Password", Prompt = "Enter your password")]
-        [Remote("ValidatePassword", "SignIn", "Identity", HttpMethod = "POST", AdditionalFields = "EmailAddress,SubmitButton")]
+        [Remote("ValidatePassword", "SignIn", "Identity", HttpMethod = "POST", AdditionalFields = "EmailAddress")]
         public string Password { get; set; }
         internal const string PasswordPropertyName = "Password";
 
@@ -42,8 +42,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public const string FailedBecausePasswordWasEmpty = "Password is required.";
         public const string FailedBecauseIsLockedOut = "Your account has been locked after {0} incorrect password attempts. Please reset your password.";
         public const string FailedBecausePasswordWasIncorrect = "You entered an incorrect password. You have {0} more attempt{1} before your account is locked.";
+
         private readonly ISignMembers _memberSigner;
         private readonly HttpSessionStateBase _session;
+
         public SignInValidator(ISignMembers memberSigner)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;

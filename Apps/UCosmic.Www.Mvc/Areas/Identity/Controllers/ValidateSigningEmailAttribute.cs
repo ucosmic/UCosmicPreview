@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using UCosmic.Domain.Establishments;
+using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 
@@ -184,6 +186,34 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
+        private bool? _isSignOver;
+        private bool IsSignOver
+        {
+            get
+            {
+                if (_isSignOver.HasValue) return _isSignOver.Value;
+
+                var signOverGet = Url.Action(MVC.Identity.SignOver.Get());
+                var signOverPost = Url.Action(MVC.Identity.SignOver.Post());
+                _isSignOver = RequestUrl.AbsolutePath.StartsWith(signOverGet) ||
+                               RequestUrl.AbsolutePath.StartsWith(signOverPost);
+                return _isSignOver.Value;
+            }
+        }
+
+        private bool? _isSignOverUndo;
+        private bool IsSignOverUndo
+        {
+            get
+            {
+                if (_isSignOverUndo.HasValue) return _isSignOverUndo.Value;
+
+                var signOverUndo = Url.Action(MVC.Identity.SignOver.Undo());
+                _isSignOverUndo = RequestUrl.AbsolutePath.StartsWith(signOverUndo);
+                return _isSignOverUndo.Value;
+            }
+        }
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
@@ -194,7 +224,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             if (!ValidateSignIn(filterContext)) return;
 
-            ValidateSignUp(filterContext);
+            if (!ValidateSignUp(filterContext)) return;
+
+            ValidateSignOver(filterContext);
         }
 
         private void Initialize(ActionExecutingContext filterContext)
@@ -287,16 +319,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             return false;
         }
 
-        private void ValidateSignUp(ActionExecutingContext filterContext)
+        private bool ValidateSignUp(ActionExecutingContext filterContext)
         {
             // do not validate unless this is the sign-up page
-            if (!IsSignUp) return;
+            if (!IsSignUp) return true;
 
             // to sign up, cannot be a saml user or existing member
             if (Establishment != null &&
                 Establishment.IsMember &&
                 !IsPersonSamlUser && 
-                !IsPersonLocalMember) return;
+                !IsPersonLocalMember) return true;
 
             // determine which url to redirect to
             var url = IsPersonLocalMember
@@ -305,6 +337,47 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             // set the result and return
             filterContext.Result = new RedirectResult(url);
+            return false;
+        }
+
+        private void ValidateSignOver(ActionExecutingContext filterContext)
+        {
+            // do not validate unless this is the sign-over page
+            if (!IsSignOver) return;
+
+            // must be impersonating to undo
+            var wasSignedInAs = filterContext.HttpContext.Session.WasSignedInAs();
+            if (IsSignOverUndo && string.IsNullOrWhiteSpace(wasSignedInAs))
+            {
+                filterContext.Result = new HttpNotFoundResult();
+                return;
+            }
+
+            // candidate principal may already be impersonating
+            var userName = wasSignedInAs ??
+                           filterContext.HttpContext.User.Identity.Name;
+
+            // username must have value
+            if (!string.IsNullOrWhiteSpace(userName))
+            {
+                var user = QueryProcessor.Execute(
+                    new GetUserByNameQuery
+                    {
+                        Name = userName,
+                        EagerLoad = new Expression<Func<User, object>>[]
+                        {
+                            u => u.Grants.Select(g => g.Role)
+                        },
+                    }
+                );
+
+                // valid when user is in the authentication agent role
+                if (user != null && user.IsInRole(RoleName.AuthenticationAgent))
+                    return;
+            }
+
+            // set the result and return
+            filterContext.Result = new HttpNotFoundResult();
         }
     }
 }

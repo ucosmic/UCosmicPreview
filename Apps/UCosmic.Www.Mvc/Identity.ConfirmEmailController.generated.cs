@@ -79,17 +79,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _denied_crash = "~/Areas/Identity/Views/ConfirmEmail/_denied-crash.cshtml";
-            public readonly string _denied = "~/Areas/Identity/Views/ConfirmEmail/_denied.cshtml";
-            public readonly string _form_instructions = "~/Areas/Identity/Views/ConfirmEmail/_form-instructions.cshtml";
-            public readonly string _form_legend = "~/Areas/Identity/Views/ConfirmEmail/_form-legend.cshtml";
-            public readonly string _right = "~/Areas/Identity/Views/ConfirmEmail/_right.cshtml";
-            public readonly string confirm_email = "~/Areas/Identity/Views/ConfirmEmail/confirm-email.cshtml";
-            static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
-            public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
-            public partial class _EditorTemplates{
-                public readonly string ConfirmEmailForm = "ConfirmEmailForm";
-            }
         }
     }
 

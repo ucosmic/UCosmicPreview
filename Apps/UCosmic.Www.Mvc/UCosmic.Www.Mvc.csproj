@@ -203,6 +203,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailController.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignOverController.cs" />
     <Compile Include="Areas\Identity\Controllers\SignDownController.cs" />
     <Compile Include="Areas\Identity\Controllers\ValidateSigningEmailAttribute.cs" />
     <Compile Include="Areas\Identity\Controllers\SignUpController.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Areas\Identity\Controllers\ValidateSigningReturnUrlAttribute.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmDeniedModel.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailForm.cs" />
+    <Compile Include="Areas\Identity\Models\SignOverForm.cs" />
     <Compile Include="Areas\Identity\Models\SignUpForm.cs" />
     <Compile Include="Areas\Identity\Models\IModelSigningEmail.cs" />
     <Compile Include="Areas\Identity\Models\SignInForm.cs" />
@@ -224,9 +226,11 @@
     <Compile Include="Areas\My\Models\ProfileInfo.cs" />
     <Compile Include="Areas\My\Models\UpdateNameForm.cs" />
     <Compile Include="Areas\My\MyAreaRegistration.cs" />
+    <Compile Include="Areas\Passwords\Controllers\UpdatePasswordController.cs" />
     <Compile Include="Areas\Passwords\Controllers\ResetPasswordController.cs" />
     <Compile Include="Areas\Passwords\Controllers\ForgotPasswordController.cs" />
     <Compile Include="Areas\Passwords\Controllers\CreatePasswordController.cs" />
+    <Compile Include="Areas\Passwords\Models\UpdatePasswordForm.cs" />
     <Compile Include="Areas\Passwords\Models\CreatePasswordForm.cs" />
     <Compile Include="Areas\Passwords\Models\ResetPasswordForm.cs" />
     <Compile Include="Areas\Passwords\Models\ForgotPasswordForm.cs" />
@@ -253,7 +257,7 @@
     <Compile Include="Areas\Saml\Models\ServiceProviderEntityDescriptor.cs" />
     <Compile Include="Areas\Saml\Models\IdentityProviderListItem.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOnController.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\Password\_ForgotPasswordEmailAttribute.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Models\_OldPassword\_OldForgotPasswordEmailAttribute.cs" />
     <Compile Include="Areas\Roles\Models\NoDuplicateGrantsAttribute.cs" />
     <Compile Include="Areas\Identity\Models\SignOnForm.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsRouteMapper.cs" />
@@ -302,15 +306,6 @@
     <Compile Include="Identity.ConfirmEmailController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Identity.OldPasswordController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Identity.OldSignInController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Identity.OldSignUpController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Identity.ReceiveSamlAuthnResponseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -329,10 +324,10 @@
     <Compile Include="Identity.SignOutController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Identity.SignUpController.generated.cs">
+    <Compile Include="Identity.SignOverController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Identity._EmailConfirmationController.generated.cs">
+    <Compile Include="Identity.SignUpController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="InstitutionalAgreements.ConfigurationFormsController.generated.cs">
@@ -376,6 +371,9 @@
     <Compile Include="Passwords.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Passwords.UpdatePasswordController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="People.PersonInfoController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -406,35 +404,35 @@
     <Compile Include="Areas\Establishments\EstablishmentsAreaRegistration.cs" />
     <Compile Include="Areas\Establishments\Models\ManagementForms\EstablishmentForm.cs" />
     <Compile Include="Areas\Establishments\Models\ManagementForms\EstablishmentSearchResult.cs" />
-    <Compile Include="Areas\Identity\Mappers\Deprecated\_PasswordModelMapper.cs" />
-    <Compile Include="Areas\Identity\Mappers\Deprecated\OldPasswordRouteMapper.cs" />
-    <Compile Include="Areas\Identity\Mappers\Deprecated\_EmailConfirmationModelMapper.cs" />
-    <Compile Include="Areas\Identity\Mappers\Deprecated\_EmailConfirmationRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Mappers\_OldPasswordModelMapper.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Mappers\_OldPasswordRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Mappers\_OldEmailConfirmationModelMapper.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Mappers\_OldEmailConfirmationRouteMapper.cs" />
     <Compile Include="Controllers\TryAuthorizeAttribute.cs" />
     <Compile Include="Controllers\AuthorizeForImpersonationAttribute.cs" />
-    <Compile Include="Areas\Identity\Controllers\Deprecated\OldSignInController.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\_OldSignInController.cs" />
     <Compile Include="Areas\Roles\Controllers\RolesController.cs" />
-    <Compile Include="Areas\Identity\Controllers\Deprecated\_EmailConfirmationController.cs" />
-    <Compile Include="Areas\Identity\Controllers\Deprecated\OldPasswordController.cs" />
-    <Compile Include="Areas\Identity\Controllers\Deprecated\OldSignUpController.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\_OldEmailConfirmationController.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\_OldPasswordController.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\_OldSignUpController.cs" />
     <Compile Include="Areas\Identity\IdentityAreaRegistration.cs" />
-    <Compile Include="Areas\Identity\Mappers\Deprecated\OldSignInRouteMapper.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\SignIn\SignInAsForm.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\SignIn\OldSignInForm.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\SignIn\SignInNavInfo.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Mappers\_OldSignInRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Models\_OldSignIn\_OldSignInAsForm.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Models\_OldSignIn\_OldSignInForm.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Models\_OldSignIn\_OldSignInNavInfo.cs" />
     <Compile Include="Areas\Roles\Models\RoleForm.cs" />
     <Compile Include="Areas\Roles\Models\RoleSearchResult.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\EmailConfirmation\_ConfirmEmailForgotPasswordForm.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\Password\ChangePasswordForm.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\Password\_ForgotPasswordForm.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\Password\_ResetPasswordForm.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Models\_OldEmailConfirmation\_OldConfirmEmailForgotPasswordForm.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Models\_OldPassword\_OldChangePasswordForm.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Models\_OldPassword\_OldForgotPasswordForm.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Models\_OldPassword\_OldResetPasswordForm.cs" />
     <Compile Include="Areas\My\Models\UpdateEmailValueForm.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\OldConfirmDeniedPage.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\OldConfirmEmailForm.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\OldCreateDeniedPage.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\OldCreatePasswordForm.cs" />
-    <Compile Include="Areas\Identity\Models\Deprecated\SignUp\OldSendEmailForm.cs" />
-    <Compile Include="Areas\Identity\Mappers\Deprecated\OldSignUpRouteMapper.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Models\_OldSignUp\_OldConfirmDeniedPage.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Models\_OldSignUp\_OldConfirmEmailForm.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Models\_OldSignUp\_OldCreateDeniedPage.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Models\_OldSignUp\_OldCreatePasswordForm.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Models\_OldSignUp\_OldSendEmailForm.cs" />
+    <Compile Include="Areas\Identity\Controllers\Deprecated\Mappers\_OldSignUpRouteMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Controllers\ConfigurationFormsController.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Controllers\ManagementFormsController.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Controllers\PublicSearchController.cs" />
@@ -1083,21 +1081,21 @@
     <Content Include="Areas\Passwords\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Passwords\Views\ForgotPassword\forgot-password.cshtml" />
     <Content Include="Areas\Passwords\Views\ForgotPassword\EditorTemplates\ForgotPasswordForm.cshtml" />
-    <Content Include="Areas\Identity\Views\ConfirmEmail\confirm-email.cshtml" />
-    <Content Include="Areas\Identity\Views\ConfirmEmail\EditorTemplates\ConfirmEmailForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\confirm-email.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\ConfirmEmailForm.cshtml" />
     <Content Include="Areas\Passwords\Views\CreatePassword\_denied-expired.cshtml" />
-    <Content Include="Areas\Identity\Views\ConfirmEmail\_form-instructions.cshtml" />
-    <Content Include="Areas\Identity\Views\ConfirmEmail\_form-legend.cshtml" />
-    <Content Include="Areas\Identity\Views\ConfirmEmail\_right.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\_confirm-email-instruct.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\_confirm-email-legend.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\_confirm-email-right.cshtml" />
     <Content Include="Areas\Passwords\Views\ResetPassword\reset-password.cshtml" />
     <Content Include="Areas\Passwords\Views\ResetPassword\_denied-crash.cshtml" />
     <Content Include="Areas\Passwords\Views\ResetPassword\EditorTemplates\ResetPasswordForm.cshtml" />
     <Content Include="Areas\Passwords\Views\Shared\EditorTemplates\StrengthMeteredPassword.cshtml" />
     <Content Include="Areas\Passwords\Views\ResetPassword\_denied-expired.cshtml" />
-    <Content Include="Areas\Identity\Views\ConfirmEmail\_denied.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\_confirm-email-denied.cshtml" />
     <Content Include="Areas\Passwords\Views\CreatePassword\_denied-retired.cshtml" />
     <Content Include="Areas\Passwords\Views\ResetPassword\_denied-retired.cshtml" />
-    <Content Include="Areas\Identity\Views\ConfirmEmail\_denied-crash.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\_confirm-email-crash.cshtml" />
     <Content Include="Areas\Passwords\Views\CreatePassword\_denied-crash.cshtml" />
     <Content Include="Areas\Saml\Views\Web.config" />
     <Content Include="Areas\Roles\Views\Web.config" />
@@ -1115,6 +1113,12 @@
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignUpForm.cshtml" />
     <Content Include="Areas\Passwords\Views\Shared\create-password.cshtml" />
     <Content Include="Areas\Passwords\Views\Shared\EditorTemplates\CreatePasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\sign-over.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOverForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\_sign-over-form.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\_layout_identity_v1.cshtml" />
+    <Content Include="Areas\Passwords\Views\Shared\update-password.cshtml" />
+    <Content Include="Areas\Passwords\Views\Shared\EditorTemplates\UpdatePasswordForm.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />
@@ -1163,7 +1167,6 @@
     <Folder Include="Areas\RecruitmentAgencies\Views\Shared\" />
     <Folder Include="content\mail\" />
     <Folder Include="content\themes\api\consortium\" />
-    <Folder Include="Routes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -1247,44 +1250,44 @@
     <Content Include="Areas\Establishments\Views\SupplementalForms\locate.cshtml" />
     <Content Include="Areas\Establishments\Views\Web.config" />
     <Content Include="Areas\Establishments\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignIn\nav.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignIn\sign-in-as.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignIn\sign-in.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignIn\_sign-on-status.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignIn\sign-out.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\_layout-identity-nav.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignIn\sign-in-as.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignIn\sign-in.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignIn\_sign-on-status.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignIn\sign-out.cshtml" />
     <Content Include="Areas\Roles\Views\Roles\browse.cshtml" />
     <Content Include="Areas\Roles\Views\Roles\form.cshtml" />
     <Content Include="Areas\Roles\Views\Roles\EditorTemplates\RoleForm.cshtml" />
     <Content Include="Areas\Roles\Views\Roles\EditorTemplates\RoleGrantForm.cshtml" />
-    <Content Include="Areas\Identity\Views\_EmailConfirmation\confirm-password-reset.cshtml" />
-    <Content Include="Areas\Identity\Views\_EmailConfirmation\EditorTemplates\ConfirmEmailForgotPasswordForm.cshtml" />
-    <Content Include="Areas\Identity\Views\_EmailConfirmation\EditorTemplates\ConfirmEmailForm.cshtml" />
-    <Content Include="Areas\Identity\Views\OldPassword\change-password.cshtml" />
-    <Content Include="Areas\Identity\Views\OldPassword\old-create-password-expired.cshtml" />
-    <Content Include="Areas\Identity\Views\OldPassword\old-create-password.cshtml" />
-    <Content Include="Areas\Identity\Views\OldPassword\EditorTemplates\ChangePasswordForm.cshtml" />
-    <Content Include="Areas\Identity\Views\OldPassword\EditorTemplates\CreatePasswordForm.cshtml" />
-    <Content Include="Areas\Identity\Views\OldPassword\EditorTemplates\ForgotPasswordForm.cshtml" />
-    <Content Include="Areas\Identity\Views\OldPassword\EditorTemplates\ResetPasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldEmailConfirmation\confirm-password-reset.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldEmailConfirmation\EditorTemplates\ConfirmEmailForgotPasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldEmailConfirmation\EditorTemplates\ConfirmEmailForm.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\-old-change-password.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\-old-create-password-expired.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\-old-create-password.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\EditorTemplates\_OldChangePasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\EditorTemplates\_OldCreatePasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\EditorTemplates\_OldForgotPasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\EditorTemplates\_OldResetPasswordForm.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\StrengthMeteredPassword.cshtml" />
-    <Content Include="Areas\Identity\Views\OldPassword\forgot-password.cshtml" />
-    <Content Include="Areas\Identity\Views\OldPassword\reset-password-expired.cshtml" />
-    <Content Include="Areas\Identity\Views\OldPassword\reset-password.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\-old-forgot-password.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\-old-reset-password-expired.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldPassword\-old-reset-password.cshtml" />
     <Content Include="Areas\Saml\Views\ServiceProviderMetadata\metadata.cshtml" />
     <Content Include="Areas\My\Views\UpdateEmailValue\_form.cshtml" />
     <Content Include="Areas\My\Views\UpdateEmailValue\update-email-value.cshtml" />
     <Content Include="Areas\My\Views\Shared\EditorTemplates\UpdateEmailValueForm.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\OldSignInForm.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignUp\confirm-denied.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignUp\confirm-email.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignUp\create-denied.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignUp\create-password.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignUp\EditorTemplates\ConfirmEmailForm.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignUp\EditorTemplates\OldCreatePasswordForm.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignUp\EditorTemplates\EmailAddress.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignUp\EditorTemplates\OldSendEmailForm.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignUp\send-email.cshtml" />
-    <Content Include="Areas\Identity\Views\OldSignUp\sign-in.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignUp\confirm-denied.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignUp\confirm-email.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignUp\create-denied.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignUp\create-password.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignUp\EditorTemplates\ConfirmEmailForm.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignUp\EditorTemplates\OldCreatePasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignUp\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignUp\EditorTemplates\OldSendEmailForm.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignUp\send-email.cshtml" />
+    <Content Include="Areas\Identity\Controllers\Deprecated\Views\_OldSignUp\sign-in.cshtml" />
     <Content Include="Areas\Identity\Views\Web.config" />
     <Content Include="Areas\Identity\Views\_ViewStart.cshtml" />
     <Content Include="Areas\InstitutionalAgreements\Views\ConfigurationForms\add.cshtml" />

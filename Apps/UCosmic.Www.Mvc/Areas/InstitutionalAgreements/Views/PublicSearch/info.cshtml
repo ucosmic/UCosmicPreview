@@ -60,7 +60,7 @@
             </div>
                     if (User.IsInRole(RoleName.EstablishmentLocationAgent))
                     {
-            <div >
+            <div>
                 @foreach (var partner in Model.Partners)
                 {
                     <br />
@@ -138,7 +138,9 @@
                     <span class="bold">@contact.Type</span> <span>@contact.Person.DisplayName</span>
                     @if (Model.IsManager && !string.IsNullOrWhiteSpace(contact.Person.DefaultEmail))
                     {
+@* ReSharper disable Html.PathError *@
                         <a href="mailto:@contact.Person.DefaultEmail">@contact.Person.DefaultEmail</a>
+@* ReSharper restore Html.PathError *@
                     }
                 </div>
             }
@@ -196,8 +198,8 @@
     @if (!Request.IsAuthenticated || !Model.IsAffiliate)
     {
         <div class="agreement-public">
-            If you have an email address at one of the following domains, please <a href="@Url.Action(MVC.Identity.OldSignIn.SignIn(Request.RawUrl))">
-                sign in to view additional information about this agreement</a>.
+            If you have an email address at one of the following domains, please <a href="@Url.Action(MVC.Identity.SignOn.Get(Request.RawUrl))">
+                sign on to view additional information about this agreement</a>.
             <ul>
                 @foreach (var emailDomain in Model.DistinctEmailDomains)
                 {
