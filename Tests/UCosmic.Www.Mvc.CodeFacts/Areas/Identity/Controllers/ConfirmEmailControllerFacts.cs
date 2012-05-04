@@ -485,9 +485,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 result.ShouldBeType<RedirectToRouteResult>();
                 var routeResult = (RedirectToRouteResult)result;
                 routeResult.Permanent.ShouldBeFalse();
-                routeResult.RouteValues["area"].ShouldEqual(MVC.Passwords.Name);
-                routeResult.RouteValues["controller"].ShouldEqual(MVC.Passwords.ResetPassword.Name);
-                routeResult.RouteValues["action"].ShouldEqual(MVC.Passwords.ResetPassword.ActionNames.Get);
+                routeResult.RouteValues["area"].ShouldEqual(MVC.Identity.Name);
+                routeResult.RouteValues["controller"].ShouldEqual(MVC.Identity.ResetPassword.Name);
+                routeResult.RouteValues["action"].ShouldEqual(MVC.Identity.ResetPassword.ActionNames.Get);
                 routeResult.RouteValues["token"].ShouldEqual(form.Token);
             }
 
@@ -511,9 +511,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 result.ShouldBeType<RedirectToRouteResult>();
                 var routeResult = (RedirectToRouteResult)result;
                 routeResult.Permanent.ShouldBeFalse();
-                routeResult.RouteValues["area"].ShouldEqual(MVC.Passwords.Name);
-                routeResult.RouteValues["controller"].ShouldEqual(MVC.Passwords.CreatePassword.Name);
-                routeResult.RouteValues["action"].ShouldEqual(MVC.Passwords.CreatePassword.ActionNames.Get);
+                routeResult.RouteValues["area"].ShouldEqual(MVC.Identity.Name);
+                routeResult.RouteValues["controller"].ShouldEqual(MVC.Identity.CreatePassword.Name);
+                routeResult.RouteValues["action"].ShouldEqual(MVC.Identity.CreatePassword.ActionNames.Get);
                 routeResult.RouteValues["token"].ShouldEqual(form.Token);
             }
         }
@@ -593,9 +593,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = ConfirmEmailController.GetRedeemedRouteValues(token, intent);
 
                 result.ShouldNotBeNull();
-                result["area"].ShouldEqual(MVC.Passwords.Name);
-                result["controller"].ShouldEqual(MVC.Passwords.ResetPassword.Name);
-                result["action"].ShouldEqual(MVC.Passwords.ResetPassword.ActionNames.Get);
+                result["area"].ShouldEqual(MVC.Identity.Name);
+                result["controller"].ShouldEqual(MVC.Identity.ResetPassword.Name);
+                result["action"].ShouldEqual(MVC.Identity.ResetPassword.ActionNames.Get);
                 result["token"].ShouldEqual(token);
             }
 
@@ -608,9 +608,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = ConfirmEmailController.GetRedeemedRouteValues(token, intent);
 
                 result.ShouldNotBeNull();
-                result["area"].ShouldEqual(MVC.Passwords.Name);
-                result["controller"].ShouldEqual(MVC.Passwords.CreatePassword.Name);
-                result["action"].ShouldEqual(MVC.Passwords.CreatePassword.ActionNames.Get);
+                result["area"].ShouldEqual(MVC.Identity.Name);
+                result["controller"].ShouldEqual(MVC.Identity.CreatePassword.Name);
+                result["action"].ShouldEqual(MVC.Identity.CreatePassword.ActionNames.Get);
                 result["token"].ShouldEqual(token);
             }
 

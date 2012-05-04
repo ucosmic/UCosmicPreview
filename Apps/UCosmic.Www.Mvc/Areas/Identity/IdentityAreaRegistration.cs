@@ -13,13 +13,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity
         public override void RegisterArea(AreaRegistrationContext context)
         {
             ConfirmEmailRouter.RegisterRoutes(context);
+            CreatePasswordRouter.RegisterRoutes(context);
+            ForgotPasswordRouter.RegisterRoutes(context);
             ReceiveSamlAuthnResponseRouter.RegisterRoutes(context);
+            ResetPasswordRouter.RegisterRoutes(context);
             SignDownRouter.RegisterRoutes(context);
             SignInRouter.RegisterRoutes(context);
             SignOnRouter.RegisterRoutes(context);
             SignOutRouter.RegisterRoutes(context);
             SignOverRouter.RegisterRoutes(context);
             SignUpRouter.RegisterRoutes(context);
+            UpdatePasswordRouter.RegisterRoutes(context);
 
             //context.MapRoute(
             //    "Identity_default",

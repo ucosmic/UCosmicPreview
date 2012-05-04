@@ -226,15 +226,14 @@
     <Compile Include="Areas\My\Models\ProfileInfo.cs" />
     <Compile Include="Areas\My\Models\UpdateNameForm.cs" />
     <Compile Include="Areas\My\MyAreaRegistration.cs" />
-    <Compile Include="Areas\Passwords\Controllers\UpdatePasswordController.cs" />
-    <Compile Include="Areas\Passwords\Controllers\ResetPasswordController.cs" />
-    <Compile Include="Areas\Passwords\Controllers\ForgotPasswordController.cs" />
-    <Compile Include="Areas\Passwords\Controllers\CreatePasswordController.cs" />
-    <Compile Include="Areas\Passwords\Models\UpdatePasswordForm.cs" />
-    <Compile Include="Areas\Passwords\Models\CreatePasswordForm.cs" />
-    <Compile Include="Areas\Passwords\Models\ResetPasswordForm.cs" />
-    <Compile Include="Areas\Passwords\Models\ForgotPasswordForm.cs" />
-    <Compile Include="Areas\Passwords\PasswordsAreaRegistration.cs" />
+    <Compile Include="Areas\Identity\Controllers\UpdatePasswordController.cs" />
+    <Compile Include="Areas\Identity\Controllers\ResetPasswordController.cs" />
+    <Compile Include="Areas\Identity\Controllers\ForgotPasswordController.cs" />
+    <Compile Include="Areas\Identity\Controllers\CreatePasswordController.cs" />
+    <Compile Include="Areas\Identity\Models\UpdatePasswordForm.cs" />
+    <Compile Include="Areas\Identity\Models\CreatePasswordForm.cs" />
+    <Compile Include="Areas\Identity\Models\ResetPasswordForm.cs" />
+    <Compile Include="Areas\Identity\Models\ForgotPasswordForm.cs" />
     <Compile Include="Areas\People\Controllers\PersonInfoController.cs" />
     <Compile Include="Areas\People\Controllers\PersonNameController.cs" />
     <Compile Include="Areas\People\Models\GenerateDisplayNameForm.cs" />
@@ -306,7 +305,16 @@
     <Compile Include="Identity.ConfirmEmailController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Identity.CreatePasswordController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.ForgotPasswordController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Identity.ReceiveSamlAuthnResponseController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.ResetPasswordController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Identity.SharedController.generated.cs">
@@ -328,6 +336,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Identity.SignUpController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Identity.UpdatePasswordController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="InstitutionalAgreements.ConfigurationFormsController.generated.cs">
@@ -357,21 +368,6 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="My.UpdateNameController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Passwords.CreatePasswordController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Passwords.ForgotPasswordController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Passwords.ResetPasswordController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Passwords.SharedController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Passwords.UpdatePasswordController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="People.PersonInfoController.generated.cs">
@@ -1080,26 +1076,23 @@
     <Content Include="Areas\My\Views\UpdateAffiliation\_scripts.cshtml" />
     <Content Include="Areas\My\Views\UpdateAffiliation\_styles.cshtml" />
     <Content Include="Areas\My\Views\UpdateAffiliation\EditorTemplates\EmployeeOrStudentAffiliation.cshtml" />
-    <Content Include="Areas\Passwords\Views\Web.config" />
-    <Content Include="Areas\Passwords\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\forgot-password.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\EditorTemplates\ForgotPasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\forgot-password.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\ForgotPasswordForm.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\confirm-email.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\ConfirmEmailForm.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\_create-password-expired.cshtml" />
+    <Content Include="Areas\Identity\Views\CreatePassword\_denied-expired.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\_form-instructions.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\_form-legend-text.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\_right.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\reset-password.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\_reset-password-crash.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\EditorTemplates\ResetPasswordForm.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\EditorTemplates\StrengthMeteredPassword.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\_reset-password-expired.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\reset-password.cshtml" />
+    <Content Include="Areas\Identity\Views\ResetPassword\_denied-crash.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\ResetPasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Views\ResetPassword\_denied-expired.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\_denied-all.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\_create-password-retired.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\_reset-password-retired.cshtml" />
+    <Content Include="Areas\Identity\Views\CreatePassword\_denied-retired.cshtml" />
+    <Content Include="Areas\Identity\Views\ResetPassword\_denied-retired.cshtml" />
     <Content Include="Areas\Identity\Views\ConfirmEmail\_denied-crash.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\_create-password-crash.cshtml" />
+    <Content Include="Areas\Identity\Views\CreatePassword\_denied-crash.cshtml" />
     <Content Include="Areas\Saml\Views\Web.config" />
     <Content Include="Areas\Roles\Views\Web.config" />
     <Content Include="Areas\Roles\Views\_ViewStart.cshtml" />
@@ -1114,14 +1107,14 @@
     <Content Include="Areas\Identity\Views\Shared\sign-up.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\_sign-up-form.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignUpForm.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\create-password.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\EditorTemplates\CreatePasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\create-password.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\CreatePasswordForm.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\sign-over.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\SignOverForm.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\_sign-over-form.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\_layout_identity_v1.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\update-password.cshtml" />
-    <Content Include="Areas\Passwords\Views\Shared\EditorTemplates\UpdatePasswordForm.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\update-password.cshtml" />
+    <Content Include="Areas\Identity\Views\Shared\EditorTemplates\UpdatePasswordForm.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />

@@ -11,14 +11,14 @@
             {
                 case ConfirmDeniedBecause.IsExpired:
                     ViewBag.Title = "Your sign up window has expired";
-                    Html.RenderPartial(MVC.Passwords.Shared.Views._create_password_expired);
+                    Html.RenderPartial(MVC.Identity.CreatePassword.Views._denied_expired);
                     break;
                 case ConfirmDeniedBecause.IsRetired:
                     ViewBag.Title = "Your password has already been created";
-                    Html.RenderPartial(MVC.Passwords.Shared.Views._create_password_retired);
+                    Html.RenderPartial(MVC.Identity.CreatePassword.Views._denied_retired);
                     break;
                 default:
-                    Html.RenderPartial(MVC.Passwords.Shared.Views._create_password_crash);
+                    Html.RenderPartial(MVC.Identity.CreatePassword.Views._denied_crash);
                     break;
             }
             break;
@@ -27,14 +27,14 @@
             {
                 case ConfirmDeniedBecause.IsExpired:
                     ViewBag.Title = "Your password reset window has expired";
-                    Html.RenderPartial(MVC.Passwords.Shared.Views._reset_password_expired);
+                    Html.RenderPartial(MVC.Identity.ResetPassword.Views._denied_expired);
                     break;
                 case ConfirmDeniedBecause.IsRetired:
                     ViewBag.Title = "Your password has already been reset";
-                    Html.RenderPartial(MVC.Passwords.Shared.Views._reset_password_retired);
+                    Html.RenderPartial(MVC.Identity.ResetPassword.Views._denied_retired);
                     break;
                 default:
-                    Html.RenderPartial(MVC.Passwords.Shared.Views._reset_password_crash);
+                    Html.RenderPartial(MVC.Identity.ResetPassword.Views._denied_crash);
                     break;
             }
             break;

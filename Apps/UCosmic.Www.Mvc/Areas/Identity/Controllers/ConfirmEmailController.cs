@@ -103,17 +103,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 case EmailConfirmationIntent.PasswordReset:
                     return new RouteValueDictionary(new
                     {
-                        area = MVC.Passwords.Name,
-                        controller = MVC.Passwords.ResetPassword.Name,
-                        action = MVC.Passwords.ResetPassword.ActionNames.Get,
+                        area = MVC.Identity.Name,
+                        controller = MVC.Identity.ResetPassword.Name,
+                        action = MVC.Identity.ResetPassword.ActionNames.Get,
                         token,
                     });
                 case EmailConfirmationIntent.SignUp:
                     return new RouteValueDictionary(new
                     {
-                        area = MVC.Passwords.Name,
-                        controller = MVC.Passwords.CreatePassword.Name,
-                        action = MVC.Passwords.CreatePassword.ActionNames.Get,
+                        area = MVC.Identity.Name,
+                        controller = MVC.Identity.CreatePassword.Name,
+                        action = MVC.Identity.CreatePassword.ActionNames.Get,
                         token,
                     });
                 default:

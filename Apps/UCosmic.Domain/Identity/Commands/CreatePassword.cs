@@ -48,6 +48,7 @@ namespace UCosmic.Domain.Identity
             person.User.SubjectNameIdentifiers.Clear();
 
             confirmation.RetiredOnUtc = DateTime.UtcNow;
+            confirmation.SecretCode = null;
             confirmation.Ticket = null;
             _entities.Update(confirmation);
 

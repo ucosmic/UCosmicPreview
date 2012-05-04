@@ -51,7 +51,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            RootActionRouter.RegisterRoutes(typeof(SignOnRouter), context, Area, Controller);
+            RootActionRouter.RegisterRoutes(typeof(ReceiveSamlAuthnResponseRouter), context, Area, Controller);
         }
 
         // ReSharper disable UnusedMember.Global
