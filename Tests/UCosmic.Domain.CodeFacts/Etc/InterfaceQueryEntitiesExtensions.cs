@@ -1,6 +1,5 @@
 using System.Linq;
 using Moq;
-using UCosmic.Domain.Email;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
 

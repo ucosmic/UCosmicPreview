@@ -6,6 +6,11 @@ namespace UCosmic.Domain.People
 {
     internal static class QueryEmailAddresses
     {
+        internal static EmailAddress Default(this IEnumerable<EmailAddress> enumerable)
+        {
+            return enumerable != null ? enumerable.SingleOrDefault(email => email.IsDefault) : null;
+        }
+
         internal static EmailAddress ByValue(this IEnumerable<EmailAddress> enumerable, string value)
         {
             return enumerable.SingleOrDefault(email => email.Value.Equals(value, StringComparison.OrdinalIgnoreCase));

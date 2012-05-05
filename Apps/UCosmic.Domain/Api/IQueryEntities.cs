@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using UCosmic.Domain.Email;
 using UCosmic.Domain.Establishments;
+using UCosmic.Domain.Files;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Domain.Languages;
 using UCosmic.Domain.People;
 using UCosmic.Domain.Places;
-using UCosmic.Domain.Files;
 
 namespace UCosmic.Domain
 {

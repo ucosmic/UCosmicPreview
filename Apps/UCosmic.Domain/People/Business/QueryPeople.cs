@@ -48,13 +48,6 @@ namespace UCosmic.Domain.People
                 : null;
         }
 
-        internal static EmailAddress GetDefaultEmail(this Person owner)
-        {
-            return owner != null
-                ? owner.Emails.SingleOrDefault(e => e.IsDefault)
-                : null;
-        }
-
         internal static Person ByEmailConfirmation(this IQueryable<Person> queryable, Guid token)
         {
             return queryable.SingleOrDefault(p => p.Emails.Any(e => e.Confirmations.Any(c => c.Token == token)));

@@ -27,7 +27,7 @@ namespace UCosmic.Impl.Seeders
                 var uc = Context.Establishments.ByWebsiteUrl("www.uc.edu");
                 EnsurePerson("Ronald.Cushing@uc.edu;Ronald.Cushing@ucmail.uc.edu;cushinrb@uc.edu;cushinrb@ucmail.uc.edu", "Ron", "Cushing", uc);
                 EnsurePerson("Mary.Watkins@uc.edu;Mary.Watkins@ucmail.uc.edu;watkinml@uc.edu;watkinml@ucmail.uc.edu", "Mary", "Watkins", uc);
-                EnsurePerson("Daniel.Ludwig@uc.edu;Daniel.Ludwig@ucmail.uc.edu;ludwigd@uc.edu;ludwigd@ucmail.uc.edu", "Dan", "Ludwig", uc);
+                //EnsurePerson("Daniel.Ludwig@uc.edu;Daniel.Ludwig@ucmail.uc.edu;ludwigd@uc.edu;ludwigd@ucmail.uc.edu", "Dan", "Ludwig", uc);
 
                 var lehigh = Context.Establishments.ByWebsiteUrl("www.lehigh.edu");
                 EnsurePerson("Debra.Nyby@lehigh.edu;dhn0@lehigh.edu", "Debra", "Nyby", lehigh);

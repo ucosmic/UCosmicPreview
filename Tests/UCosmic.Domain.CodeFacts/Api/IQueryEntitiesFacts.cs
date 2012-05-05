@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
-using UCosmic.Domain.Email;
+using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Domain.Languages;

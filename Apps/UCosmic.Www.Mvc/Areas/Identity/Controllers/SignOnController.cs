@@ -12,21 +12,21 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
     public class SignOnServices
     {
         public SignOnServices(IProcessQueries queryProcessor
-            , ISignUsers userSigner
-            , ISignMembers memberSigner
-            , IHandleCommands<SendSamlAuthnRequestCommand> commandHandler
+            , IProvideSaml2Service samlServiceProvider
+            , IManageConfigurations configurationManager
+            , IHandleCommands<UpdateSamlSignOnMetadataCommand> commandHandler
         )
         {
             QueryProcessor = queryProcessor;
-            UserSigner = userSigner;
-            MemberSigner = memberSigner;
+            SamlServiceProvider = samlServiceProvider;
+            ConfigurationManager = configurationManager;
             CommandHandler = commandHandler;
         }
 
         public IProcessQueries QueryProcessor { get; private set; }
-        public ISignUsers UserSigner { get; private set; }
-        public ISignMembers MemberSigner { get; private set; }
-        public IHandleCommands<SendSamlAuthnRequestCommand> CommandHandler { get; private set; }
+        public IProvideSaml2Service SamlServiceProvider { get; private set; }
+        public IManageConfigurations ConfigurationManager { get; private set; }
+        public IHandleCommands<UpdateSamlSignOnMetadataCommand> CommandHandler { get; private set; }
     }
 
     [EnforceHttps]
@@ -83,21 +83,31 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 }
             );
 
-            // sign on user using saml
+            // update the provider metadata
             _services.CommandHandler.Handle(
-                new SendSamlAuthnRequestCommand
+                new UpdateSamlSignOnMetadataCommand
                 {
                     SamlSignOn = establishment.SamlSignOn,
-                    ReturnUrl = model.ReturnUrl,
-                    HttpContext = HttpContext,
                 }
             );
 
             // clear the email from temp data
             TempData.SigningEmailAddress(null);
 
+            // send the authn request
+            _services.SamlServiceProvider.SendAuthnRequest(
+                establishment.SamlSignOn.SsoLocation,
+                establishment.SamlSignOn.SsoBinding.AsSaml2SsoBinding(),
+                _services.ConfigurationManager.SamlServiceProviderEntityId,
+                model.ReturnUrl ?? Url.Action(MVC.Identity.MyHome.Get()),
+                HttpContext
+            );
+
+            // wait for the authn response
             return new EmptyResult();
         }
+
+        public const string SuccessMessageFormat = "You are now signed on to UCosmic as {0}.";
     }
 
     public static class SignOnRouter

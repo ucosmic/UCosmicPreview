@@ -35,6 +35,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         [HttpGet]
         [ActionName("sign-out")]
+        [ValidateSigningReturnUrl]
         [OpenTopTab(TopTabName.Home)]
         public virtual ActionResult Get(string returnUrl)
         {
@@ -63,10 +64,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             if (establishment != null && !establishment.HasSamlSignOn())
                 return View(new SignInForm(HttpContext, TempData, returnUrl));
 
+            // flash the success message
+            SetFeedbackMessage(SuccessMessage);
+
             // otherwise, return sign on view
             TempData.SigningEmailAddress(null);
             return View(new SignOnForm(HttpContext, returnUrl));
         }
+
+        public const string SuccessMessage = "You have successfully been signed out of UCosmic.";
     }
 
     public static class SignOutRouter

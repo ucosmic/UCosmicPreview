@@ -35,11 +35,6 @@ namespace UCosmic.Domain.People
 
         public string Suffix { get; protected internal set; }
 
-        //public string DeriveDisplayName()
-        //{
-        //    return PersonFactory.DeriveDisplayName(this);
-        //}
-
         #endregion
         #region User
 
@@ -50,7 +45,7 @@ namespace UCosmic.Domain.People
 
         public virtual ICollection<EmailAddress> Emails { get; protected internal set; }
 
-        public EmailAddress DefaultEmail { get { return this.GetDefaultEmail(); } }
+        public EmailAddress DefaultEmail { get { return Emails.Default(); } }
 
         public EmailAddress GetEmail(int number)
         {
@@ -64,43 +59,26 @@ namespace UCosmic.Domain.People
             return Emails.ByValue(value);
         }
 
-        public EmailAddress AddEmail(string value, bool isFromSaml = false)
+        public EmailAddress AddEmail(string value)
         {
             // email may already exist
             var email = Emails.ByValue(value);
-            if (email != null)
-            {
-                email.IsFromSaml = isFromSaml;
-                if (email.IsFromSaml && !email.IsConfirmed)
-                    email.IsConfirmed = true;
-            }
-            else
-            {
-                // create email
-                email = new EmailAddress
-                {
-                    // if person does not already have a default email, this is it
-                    IsDefault = (Emails.Count(a => a.IsDefault) == 0),
-                    Value = value,
-                    IsFromSaml = isFromSaml,
-                    IsConfirmed = isFromSaml,
-                    Person = this,
-                    Number = Emails.NextNumber(),
-                };
+            if (email != null) return email;
 
-                // add & return email
-                Emails.Add(email);
-            }
+            // create email
+            email = new EmailAddress
+            {
+                // if person does not already have a default email, this is it
+                IsDefault = (Emails.Count(a => a.IsDefault) == 0),
+                Value = value,
+                Person = this,
+                Number = Emails.NextNumber(),
+            };
+
+            // add & return email
+            Emails.Add(email);
 
             return email;
-        }
-
-        internal void ResetSamlEmails()
-        {
-            foreach (var email in Emails.FromSaml().ToList())
-            {
-                Emails.Remove(email);
-            }
         }
 
         #endregion

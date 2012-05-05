@@ -55,7 +55,7 @@ namespace UCosmic.Impl.Seeders
                         new InstitutionalAgreementContact
                         {
                             Type = "Seeded Contact",
-                            Person = Context.People.Single(c => c.Emails.Any(e => "ludwigd1@uc.edu".Equals(e.Value, StringComparison.OrdinalIgnoreCase))),
+                            Person = Context.People.Single(c => c.Emails.Any(e => "ludwigd@uc.edu".Equals(e.Value, StringComparison.OrdinalIgnoreCase))),
                         }
                     }
                 });
@@ -92,7 +92,7 @@ namespace UCosmic.Impl.Seeders
                         new InstitutionalAgreementContact
                         {
                             Type = "Seeded Contact",
-                            Person = Context.People.Single(c => c.Emails.Any(e => "ludwigd1@uc.edu".Equals(e.Value, StringComparison.OrdinalIgnoreCase))),
+                            Person = Context.People.Single(c => c.Emails.Any(e => "ludwigd@uc.edu".Equals(e.Value, StringComparison.OrdinalIgnoreCase))),
                         }
                     }
                 });

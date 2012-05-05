@@ -9,8 +9,15 @@ namespace UCosmic.Domain
     {
         internal static int NextNumber(this IEnumerable<IAmNumbered> enumerable)
         {
-            var collection = enumerable.ToList();
-            return collection.Any() ? collection.Max(w => w.Number) + 1 : 1;
+            //return collection.Any() ? collection.Max(w => w.Number) + 1 : 1;
+            var nextNumber = 1;
+            var array = enumerable.OrderBy(e => e.Number).ToArray();
+            foreach (var item in array)
+            {
+                if (item.Number == nextNumber) ++nextNumber;
+                else break;
+            }
+            return nextNumber;
         }
 
         internal static IQueryable<TEntity> WithoutUnitOfWork<TEntity>(this IQueryable<TEntity> queryable, IQueryEntities entities)

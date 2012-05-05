@@ -8,6 +8,7 @@
         bool IsLockedOut(string userName);
         bool Validate(string userName, string password);
         void SignUp(string userName, string password);
+        void Revoke(string userName);
         void ResetPassword(string userName, string password);
         void UpdatePassword(string userName, string oldPassword, string newPassword);
     }

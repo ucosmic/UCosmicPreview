@@ -2,7 +2,7 @@
 using System.Web.Routing;
 using AutoMapper;
 using FluentValidation.Mvc;
-using UCosmic.Domain.Email;
+using UCosmic.Domain.Identity;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;
 
