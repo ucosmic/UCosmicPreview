@@ -9,7 +9,7 @@ using NGeo.Yahoo.PlaceFinder;
 using SimpleInjector;
 using SimpleInjector.Extensions;
 using UCosmic.Domain;
-using UCosmic.Domain.Email;
+using UCosmic.Domain.Identity;
 using UCosmic.Impl.Orm;
 using UCosmic.Impl.Seeders;
 

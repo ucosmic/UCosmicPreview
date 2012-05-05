@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using UCosmic.Domain.Email;
+using UCosmic.Domain.Establishments;
 using UCosmic.Impl.Orm;
 
 namespace UCosmic.Impl.Seeders

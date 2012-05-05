@@ -58,7 +58,6 @@
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
@@ -66,20 +65,23 @@
     </Compile>
     <Compile Include="Api\BaseQuery.cs" />
     <Compile Include="Api\FluentValidationCommandDecorator.cs" />
-    <Compile Include="Email\Commands\RedeemEmailConfirmation.cs" />
-    <Compile Include="Email\Commands\SendEmailMessage.cs" />
-    <Compile Include="Email\Business\ValidateEmailConfirmation.cs" />
-    <Compile Include="Email\Queries\GetEmailConfirmation.cs" />
-    <Compile Include="Email\Queries\GetMailMessage.cs" />
-    <Compile Include="Email\Business\QueryEmailTemplates.cs" />
-    <Compile Include="Email\Queries\GetEmailTemplateByName.cs" />
-    <Compile Include="Email\Queries\ComposeEmailMessage.cs" />
-    <Compile Include="Email\Queries\GetEmailMessageByNumber.cs" />
+    <Compile Include="Identity\Business\QuerySubjectNameIdentifiers.cs" />
+    <Compile Include="Identity\Business\QueryEduPersonScopedAffiliations.cs" />
+    <Compile Include="Identity\Commands\ReceiveSamlAuthnResponse.cs" />
+    <Compile Include="Identity\Commands\RedeemEmailConfirmation.cs" />
+    <Compile Include="Identity\Commands\SendEmailMessage.cs" />
+    <Compile Include="People\Business\ValidateEmailConfirmation.cs" />
+    <Compile Include="People\Queries\GetEmailConfirmation.cs" />
+    <Compile Include="People\Queries\ComposeMailMessage.cs" />
+    <Compile Include="Establishments\Business\QueryEmailTemplates.cs" />
+    <Compile Include="Establishments\Queries\GetEmailTemplateByName.cs" />
+    <Compile Include="People\Queries\ComposeEmailMessage.cs" />
+    <Compile Include="People\Queries\GetEmailMessageByNumber.cs" />
     <Compile Include="Establishments\Business\ValidateEstablishment.cs" />
     <Compile Include="Establishments\Business\BaseEstablishmentQuery.cs" />
-    <Compile Include="Establishments\Commands\SendSignUpMessage.cs" />
+    <Compile Include="Identity\Commands\SendSignUpMessage.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentById.cs" />
-    <Compile Include="Email\Commands\SendConfirmEmailMessage.cs" />
+    <Compile Include="Identity\Commands\SendConfirmEmailMessage.cs" />
     <Compile Include="Identity\Commands\CreatePassword.cs" />
     <Compile Include="Identity\Commands\ResetPassword.cs" />
     <Compile Include="Identity\Business\ValidatePassword.cs" />
@@ -97,9 +99,9 @@
     <Compile Include="Api\RevisableEntityFinder.cs" />
     <Compile Include="Api\RevisableEntityQueries.cs" />
     <Compile Include="Api\RevisableEntityQueryCriteria.cs" />
-    <Compile Include="Email\EmailTemplateQuery.cs" />
-    <Compile Include="Email\EmailTemplateFinder.cs" />
-    <Compile Include="Establishments\Commands\SignOnSamlUser.cs" />
+    <Compile Include="_OldEmailTemplateQuery.cs" />
+    <Compile Include="_OldEmailTemplateFinder.cs" />
+    <Compile Include="Identity\Commands\_OldReceiveSamlAuthnResponse.cs" />
     <Compile Include="Establishments\Commands\UpdateEstablishmentNodeHierarchy.cs" />
     <Compile Include="Establishments\Entities\InstitutionInfo.cs" />
     <Compile Include="Establishments\Queries\FindRootEstablishmentsWithChildren.cs" />
@@ -111,7 +113,7 @@
     <Compile Include="Establishments\EstablishmentQuery.cs" />
     <Compile Include="Establishments\EstablishmentFinder.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentByEmail.cs" />
-    <Compile Include="Establishments\Commands\SendSamlAuthnRequest.cs" />
+    <Compile Include="Identity\Commands\_OldSendSamlAuthnRequest.cs" />
     <Compile Include="Establishments\Commands\UpdateSamlSignOnMetadata.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentBySamlEntityId.cs" />
     <Compile Include="Establishments\Queries\ReceiveSaml2Response.cs" />
@@ -152,7 +154,7 @@
     <Compile Include="People\Business\BasePeopleQuery.cs" />
     <Compile Include="People\Business\BasePersonQuery.cs" />
     <Compile Include="People\Business\QueryAffiliations.cs" />
-    <Compile Include="Email\Queries\GetConfirmEmailFormatters.cs" />
+    <Compile Include="People\Queries\GetConfirmEmailFormatters.cs" />
     <Compile Include="People\Business\QueryEmailMessages.cs" />
     <Compile Include="People\Queries\FindPeopleWithLastName.cs" />
     <Compile Include="People\Queries\FindPeopleWithFirstName.cs" />
@@ -178,15 +180,15 @@
     <Compile Include="People\PersonFinder.cs" />
     <Compile Include="Places\GeoNamesToponymFinder.cs" />
     <Compile Include="Places\GeoNamesToponymQuery.cs" />
-    <Compile Include="Email\_OldEmailComposer.cs" />
+    <Compile Include="_OldEmailComposer.cs" />
     <Compile Include="Api\IQueryEntities.cs" />
-    <Compile Include="Email\RandomSecretCreator.cs" />
+    <Compile Include="_OldRandomSecretCreator.cs" />
     <Compile Include="Api\_OldISendEmails.cs" />
     <Compile Include="People\Entities\Affiliation.cs" />
     <Compile Include="People\Entities\EmailAddress.cs" />
     <Compile Include="People\Entities\EmailConfirmation.cs" />
     <Compile Include="People\Entities\EmailMessage.cs" />
-    <Compile Include="Email\Entities\EmailTemplate.cs" />
+    <Compile Include="Establishments\Entities\EmailTemplate.cs" />
     <Compile Include="Establishments\Entities\Establishment.cs" />
     <Compile Include="Establishments\Entities\EstablishmentAddress.cs" />
     <Compile Include="Establishments\Entities\EstablishmentCategory.cs" />

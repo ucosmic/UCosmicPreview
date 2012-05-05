@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
-using UCosmic.Domain.Email;
+using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;

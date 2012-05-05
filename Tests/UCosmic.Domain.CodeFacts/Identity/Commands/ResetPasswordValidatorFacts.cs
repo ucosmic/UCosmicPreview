@@ -4,7 +4,6 @@ using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
-using UCosmic.Domain.Email;
 using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Identity

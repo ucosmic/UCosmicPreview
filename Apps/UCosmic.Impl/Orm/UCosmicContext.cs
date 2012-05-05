@@ -5,7 +5,6 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Linq.Expressions;
 using UCosmic.Domain;
-using UCosmic.Domain.Email;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.InstitutionalAgreements;

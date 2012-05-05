@@ -2,7 +2,7 @@
 using AutoMapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
-using UCosmic.Domain.Email;
+using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models

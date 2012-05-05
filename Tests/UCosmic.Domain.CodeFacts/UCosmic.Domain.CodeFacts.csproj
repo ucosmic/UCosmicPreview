@@ -73,12 +73,12 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Email\Commands\RedeemEmailConfirmationHandlerFacts.cs" />
-    <Compile Include="Email\Commands\RedeemEmailConfirmationValidatorFacts.cs" />
-    <Compile Include="Email\Commands\SendConfirmEmailMessageCommandFacts.cs" />
-    <Compile Include="Email\Commands\SendConfirmEmailMessageHandlerFacts.cs" />
-    <Compile Include="Email\Commands\SendConfirmEmailMessageValidatorFacts.cs" />
-    <Compile Include="Establishments\Commands\SignOnSamlUserHandlerFacts.cs" />
+    <Compile Include="Identity\Commands\RedeemEmailConfirmationHandlerFacts.cs" />
+    <Compile Include="Identity\Commands\RedeemEmailConfirmationValidatorFacts.cs" />
+    <Compile Include="Identity\Commands\SendConfirmEmailMessageCommandFacts.cs" />
+    <Compile Include="Identity\Commands\SendConfirmEmailMessageHandlerFacts.cs" />
+    <Compile Include="Identity\Commands\SendConfirmEmailMessageValidatorFacts.cs" />
+    <Compile Include="Identity\Commands\_OldSignOnSamlUserHandlerFacts.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentByIdHandlerFacts.cs" />
     <Compile Include="Etc\InterfaceQueryEntitiesExtensions.cs" />
     <Compile Include="Api\RevisableEntityFinderFacts.cs" />
@@ -86,8 +86,8 @@
     <Compile Include="Api\EntityFinderFacts.cs" />
     <Compile Include="Api\IQueryEntitiesFacts.cs" />
     <Compile Include="Api\EntityQueryCriteriaFacts.cs" />
-    <Compile Include="Email\RandomSecretCreatorFacts.cs" />
-    <Compile Include="Email\Entities\EmailTemplateFacts.cs" />
+    <Compile Include="_OldRandomSecretCreatorFacts.cs" />
+    <Compile Include="Establishments\Entities\EmailTemplateFacts.cs" />
     <Compile Include="Establishments\Entities\InstitutionInfoFacts.cs" />
     <Compile Include="Establishments\Entities\EstablishmentEmailDomainFacts.cs" />
     <Compile Include="Establishments\Entities\EstablishmentNameFacts.cs" />

@@ -77,7 +77,7 @@ namespace UCosmic.Impl.Orm
                     .HasForeignKey(d => d.UserId)
                     .WillCascadeOnDelete(true);
 
-                Property(p => p.Value).HasMaxLength(256);
+                Property(p => p.Value).IsRequired().HasMaxLength(256);
             }
         }
 
@@ -95,7 +95,7 @@ namespace UCosmic.Impl.Orm
                     .HasForeignKey(d => d.UserId)
                     .WillCascadeOnDelete(true);
 
-                Property(p => p.Value).HasMaxLength(256);
+                Property(p => p.Value).IsRequired().HasMaxLength(256);
             }
         }
     }

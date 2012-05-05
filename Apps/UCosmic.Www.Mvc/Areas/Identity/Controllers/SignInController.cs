@@ -77,6 +77,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             // sign on the user
             _services.UserSigner.SignOn(model.EmailAddress, model.RememberMe);
 
+            // flash the success message
+            SetFeedbackMessage(string.Format(
+                SignOnController.SuccessMessageFormat,
+                    model.EmailAddress));
+
             // redirect to return url
             var returnUrl = model.ReturnUrl
                             ?? _services.UserSigner.DefaultSignedOnUrl;

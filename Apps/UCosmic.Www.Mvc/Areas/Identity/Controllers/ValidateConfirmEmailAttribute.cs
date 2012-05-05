@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Mvc;
-using UCosmic.Domain.Email;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 

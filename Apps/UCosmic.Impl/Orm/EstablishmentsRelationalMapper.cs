@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
-using UCosmic.Domain.Email;
 using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Impl.Orm

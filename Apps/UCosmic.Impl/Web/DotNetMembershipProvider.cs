@@ -41,6 +41,16 @@ namespace UCosmic.Impl
             Membership.CreateUser(userName, password, userName);
         }
 
+        public void Revoke(string userName)
+        {
+            var user = Membership.GetUser(userName);
+            if (user == null)
+                throw new InvalidOperationException(string.Format(
+                    "Cannot revoke because user '{0}' does not exist.",
+                        userName));
+            Membership.DeleteUser(userName, true);
+        }
+
         public void ResetPassword(string userName, string password)
         {
             var user = Membership.GetUser(userName);

@@ -2,7 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using UCosmic.Domain.Establishments;
+using UCosmic.Domain.Identity;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models

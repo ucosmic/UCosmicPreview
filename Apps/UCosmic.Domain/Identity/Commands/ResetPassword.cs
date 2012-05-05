@@ -1,6 +1,5 @@
 ﻿using System;
 using FluentValidation;
-using UCosmic.Domain.Email;
 using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Identity
