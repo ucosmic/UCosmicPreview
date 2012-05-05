@@ -140,7 +140,31 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ReturnsPartialView_WhenUser_IsFound()
+            public void ReturnsPartialView_WhenUserIsFound_AndIsChildAction()
+            {
+                const string userName = "user@domain.tld";
+                var scenarioOptions = new ScenarioOptions
+                {
+                    PrincipalIdentityName = userName,
+                    IsChildAction = true,
+                };
+                Expression<Func<GetUserByNameQuery, bool>> userByNameQuery =
+                    query => query.Name == userName;
+                var controller = CreateController(scenarioOptions);
+                scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(It.Is(userByNameQuery)))
+                    .Returns(new User { Person = new Person() });
+
+                var result = controller.Get();
+
+                result.ShouldNotBeNull();
+                result.ShouldBeType<PartialViewResult>();
+                var partialViewResult = (PartialViewResult)result;
+                partialViewResult.Model.ShouldNotBeNull();
+                partialViewResult.Model.ShouldBeType<UpdateNameForm>();
+            }
+
+            [TestMethod]
+            public void ReturnsView_WhenUserIsFound_AndIsNotChildAction()
             {
                 const string userName = "user@domain.tld";
                 var scenarioOptions = new ScenarioOptions
@@ -156,10 +180,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Get();
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialViewResult = (PartialViewResult)result;
-                partialViewResult.Model.ShouldNotBeNull();
-                partialViewResult.Model.ShouldBeType<UpdateNameForm>();
+                result.ShouldBeType<ViewResult>();
+                var viewResult = (ViewResult)result;
+                viewResult.Model.ShouldNotBeNull();
+                viewResult.Model.ShouldBeType<UpdateNameForm>();
             }
         }
 
@@ -224,7 +248,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ReturnsPartialView_WhenModelState_IsInvalid()
+            public void ReturnsView_WhenModelState_IsInvalid()
             {
                 var scenarioOptions = new ScenarioOptions();
                 var model = new UpdateNameForm();
@@ -234,11 +258,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Put(model);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialViewResult = (PartialViewResult)result;
-                partialViewResult.Model.ShouldNotBeNull();
-                partialViewResult.Model.ShouldBeType<UpdateNameForm>();
-                partialViewResult.Model.ShouldEqual(model);
+                result.ShouldBeType<ViewResult>();
+                var viewResult = (ViewResult)result;
+                viewResult.Model.ShouldNotBeNull();
+                viewResult.Model.ShouldBeType<UpdateNameForm>();
+                viewResult.Model.ShouldEqual(model);
             }
 
             [TestMethod]
@@ -412,6 +436,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             internal Mock<IProcessQueries> MockQueryProcessor { get; set; }
             internal Mock<IHandleCommands<UpdateMyNameCommand>> MockCommandHandler { get; set; }
             internal string PrincipalIdentityName { get; set; }
+            internal bool IsChildAction { get; set; }
         }
 
         private static UpdateNameController CreateController(ScenarioOptions scenarioOptions = null)
@@ -428,13 +453,21 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             var builder = ReuseMock.TestControllerBuilder();
 
-            builder.HttpContext.User = null;
             if (!string.IsNullOrWhiteSpace(scenarioOptions.PrincipalIdentityName))
-            {
                 builder.HttpContext.User = scenarioOptions.PrincipalIdentityName.AsPrincipal();
-            }
 
             builder.InitializeController(controller);
+
+            if (scenarioOptions.IsChildAction)
+            {
+                var controllerContext = new Mock<ControllerContext>(MockBehavior.Strict);
+                var parentContext = new ViewContext { TempData = new TempDataDictionary() };
+                builder.RouteData.DataTokens.Add("ParentActionViewContext", parentContext);
+                controllerContext.Setup(p => p.IsChildAction).Returns(true);
+                controllerContext.Setup(p => p.HttpContext).Returns(builder.HttpContext);
+                controllerContext.Setup(p => p.RouteData).Returns(builder.RouteData);
+                controller.ControllerContext = controllerContext.Object;
+            }
 
             return controller;
         }

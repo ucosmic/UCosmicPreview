@@ -50,7 +50,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             );
 
             if (email == null) return HttpNotFound();
-            return PartialView(Mapper.Map<UpdateEmailValueForm>(email));
+            return View(Mapper.Map<UpdateEmailValueForm>(email));
         }
 
         [HttpPut]
@@ -64,7 +64,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 return HttpNotFound();
 
             // make sure model state is valid
-            if (!ModelState.IsValid) return PartialView(model);
+            if (!ModelState.IsValid) return View(model);
 
             // execute command, set feedback message, and redirect
             var command = Mapper.Map<UpdateMyEmailValueCommand>(model);

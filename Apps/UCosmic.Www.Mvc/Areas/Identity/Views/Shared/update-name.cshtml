@@ -1,8 +1,6 @@
 ﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.UpdateNameForm
 @{
     ViewBag.Title = "Update my name";
-    Layout = MVC.Shared.Views.layout;
-    Layout = (ViewBag.NullLayout == null) ? Layout : null;
 }
 @using (Html.BeginForm(
     MVC.Identity.UpdateName.ActionNames.Put,

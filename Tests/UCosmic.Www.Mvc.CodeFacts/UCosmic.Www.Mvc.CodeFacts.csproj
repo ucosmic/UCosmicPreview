@@ -144,7 +144,7 @@
     <Compile Include="Areas\Identity\Models\_OldConfirmEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\IdentityAreaRegistrationFacts.cs" />
     <Compile Include="Areas\InstitutionalAgreements\InstitutionalAgreementsAreaRegistrationFacts.cs" />
-    <Compile Include="Areas\Identity\Controllers\UpdateMyEmailValueControllerFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\UpdateEmailValueControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\UpdateAffiliationControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\UpdateAffiliationRouterFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\MyHomeControllerFacts.cs" />
@@ -155,7 +155,7 @@
     <Compile Include="Areas\Identity\Models\UpdateEmailValueFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\UpdateEmailValueProfilerFacts.cs" />
     <Compile Include="Areas\Identity\Models\UpdateEmailValueValidatorFacts.cs" />
-    <Compile Include="Areas\Identity\Controllers\UpdateMyEmailValueRouterFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\UpdatEmailValueRouterFacts.cs" />
     <Compile Include="Areas\Identity\Models\UpdateAffiliationProfilerFacts.cs" />
     <Compile Include="Areas\Identity\Models\UpdateAffiliationValidatorFacts.cs" />
     <Compile Include="Areas\Identity\Models\UpdateAffiliationFormFacts.cs" />

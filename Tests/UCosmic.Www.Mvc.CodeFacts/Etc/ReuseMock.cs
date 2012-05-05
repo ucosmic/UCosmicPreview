@@ -26,9 +26,16 @@ namespace UCosmic.Www.Mvc
                         break;
                 }
 
+
                 TestControllerBuilders.Add(customization, testControllerBuilder);
             }
-            return TestControllerBuilders[customization];
+
+            var builder = TestControllerBuilders[customization];
+            builder.HttpContext.User = null;
+
+            builder.RouteData.DataTokens.Remove("ParentActionViewContext");
+
+            return builder;
         }
     }
 

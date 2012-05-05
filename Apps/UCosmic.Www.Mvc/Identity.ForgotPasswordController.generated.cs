@@ -81,8 +81,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public class T4MVC_ForgotPasswordController: UCosmic.Www.Mvc.Areas.Identity.Controllers.ForgotPasswordController {
         public T4MVC_ForgotPasswordController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.PartialViewResult Get() {
-            var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.Get);
+        public override System.Web.Mvc.ViewResult Get() {
+            var callInfo = new T4MVC_ViewResult(Area, Name, ActionNames.Get);
             return callInfo;
         }
 

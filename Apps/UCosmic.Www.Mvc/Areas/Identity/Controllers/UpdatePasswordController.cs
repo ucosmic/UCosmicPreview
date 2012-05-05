@@ -55,7 +55,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             var model = new UpdatePasswordForm();
 
             // return partial view
-            return PartialView(model);
+            return View(model);
         }
 
         [HttpPost]
@@ -81,7 +81,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             if (model == null) return HttpNotFound();
 
-            if (!ModelState.IsValid) return PartialView(model);
+            if (!ModelState.IsValid) return View(model);
 
             // get the user
             var user = _services.QueryProcessor.Execute(

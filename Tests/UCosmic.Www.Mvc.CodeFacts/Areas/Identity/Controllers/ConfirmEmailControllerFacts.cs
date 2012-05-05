@@ -116,7 +116,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ReturnsPartialView_WhenConfirmation_IsFound()
+            public void ReturnsView_WhenConfirmation_IsFound()
             {
                 var confirmation = new EmailConfirmation();
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
@@ -128,7 +128,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Get(confirmation.Token, null);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
+                result.ShouldBeType<ViewResult>();
             }
 
             [TestMethod]
@@ -148,11 +148,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Get(confirmation.Token, secretCode);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialView = (PartialViewResult)result;
-                partialView.Model.ShouldNotBeNull();
-                partialView.Model.ShouldBeType<ConfirmEmailForm>();
-                var model = (ConfirmEmailForm)partialView.Model;
+                result.ShouldImplement<ViewResultBase>();
+                var viewResultBase = (ViewResultBase)result;
+                viewResultBase.Model.ShouldNotBeNull();
+                viewResultBase.Model.ShouldBeType<ConfirmEmailForm>();
+                var model = (ConfirmEmailForm)viewResultBase.Model;
                 model.SecretCode.ShouldEqual(secretCode);
                 model.SecretCode.ShouldNotEqual(confirmation.SecretCode);
             }
@@ -173,11 +173,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Get(confirmation.Token, null);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialView = (PartialViewResult)result;
-                partialView.Model.ShouldNotBeNull();
-                partialView.Model.ShouldBeType<ConfirmEmailForm>();
-                var model = (ConfirmEmailForm)partialView.Model;
+                result.ShouldImplement<ViewResultBase>();
+                var viewResultBase = (ViewResultBase)result;
+                viewResultBase.Model.ShouldNotBeNull();
+                viewResultBase.Model.ShouldBeType<ConfirmEmailForm>();
+                var model = (ConfirmEmailForm)viewResultBase.Model;
                 model.SecretCode.ShouldBeNull();
                 model.SecretCode.ShouldNotEqual(confirmation.SecretCode);
                 model.IsUrlConfirmation.ShouldBeFalse();
@@ -200,11 +200,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Get(confirmation.Token, secretCode);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialView = (PartialViewResult)result;
-                partialView.Model.ShouldNotBeNull();
-                partialView.Model.ShouldBeType<ConfirmEmailForm>();
-                var model = (ConfirmEmailForm)partialView.Model;
+                result.ShouldImplement<ViewResultBase>();
+                var viewResultBase = (ViewResultBase)result;
+                viewResultBase.Model.ShouldNotBeNull();
+                viewResultBase.Model.ShouldBeType<ConfirmEmailForm>();
+                var model = (ConfirmEmailForm)viewResultBase.Model;
                 model.SecretCode.ShouldEqual(secretCode);
                 model.SecretCode.ShouldNotEqual(confirmation.SecretCode);
                 model.IsUrlConfirmation.ShouldBeFalse();
@@ -227,11 +227,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Get(confirmation.Token, secretCode);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialView = (PartialViewResult)result;
-                partialView.Model.ShouldNotBeNull();
-                partialView.Model.ShouldBeType<ConfirmEmailForm>();
-                var model = (ConfirmEmailForm)partialView.Model;
+                result.ShouldImplement<ViewResultBase>();
+                var viewResultBase = (ViewResultBase)result;
+                viewResultBase.Model.ShouldNotBeNull();
+                viewResultBase.Model.ShouldBeType<ConfirmEmailForm>();
+                var model = (ConfirmEmailForm)viewResultBase.Model;
                 model.SecretCode.ShouldEqual(secretCode);
                 model.SecretCode.ShouldNotEqual(confirmation.SecretCode);
                 model.IsUrlConfirmation.ShouldBeFalse();
@@ -254,11 +254,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Get(confirmation.Token, secretCode);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialView = (PartialViewResult)result;
-                partialView.Model.ShouldNotBeNull();
-                partialView.Model.ShouldBeType<ConfirmEmailForm>();
-                var model = (ConfirmEmailForm)partialView.Model;
+                result.ShouldImplement<ViewResultBase>();
+                var viewResultBase = (ViewResultBase)result;
+                viewResultBase.Model.ShouldNotBeNull();
+                viewResultBase.Model.ShouldBeType<ConfirmEmailForm>();
+                var model = (ConfirmEmailForm)viewResultBase.Model;
                 model.SecretCode.ShouldEqual(secretCode);
                 model.SecretCode.ShouldNotEqual(confirmation.SecretCode);
                 model.IsUrlConfirmation.ShouldBeTrue();
@@ -350,7 +350,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ReturnsPartialView_WhenModelState_IsInvalid()
+            public void ReturnsView_WhenModelState_IsInvalid()
             {
                 var form = new ConfirmEmailForm
                 {
@@ -364,11 +364,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Post(form);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialView = (PartialViewResult)result;
-                partialView.Model.ShouldNotBeNull();
-                partialView.Model.ShouldBeType<ConfirmEmailForm>();
-                var model = (ConfirmEmailForm)partialView.Model;
+                result.ShouldBeType<ViewResult>();
+                var viewResult = (ViewResult)result;
+                viewResult.Model.ShouldNotBeNull();
+                viewResult.Model.ShouldBeType<ConfirmEmailForm>();
+                var model = (ConfirmEmailForm)viewResult.Model;
                 model.ShouldEqual(form);
                 model.Intent.ShouldEqual(form.Intent);
                 model.SecretCode.ShouldEqual(form.SecretCode);

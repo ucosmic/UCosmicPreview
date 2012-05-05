@@ -53,7 +53,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             model.IsUrlConfirmation = !String.IsNullOrWhiteSpace(secretCode);
 
             // return partial view
-            return PartialView(model);
+            return View(model);
         }
 
         [HttpPost]
@@ -73,7 +73,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             if (model == null) return HttpNotFound();
 
-            if (!ModelState.IsValid) return PartialView(model);
+            if (!ModelState.IsValid) return View(model);
 
             // execute the command
             var command = Mapper.Map<RedeemEmailConfirmationCommand>(model);
