@@ -54,7 +54,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             var model = Mapper.Map<ResetPasswordForm>(confirmation);
 
             // return partial view
-            return PartialView(model);
+            return View(model);
         }
 
         [HttpPost]
@@ -74,7 +74,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             if (model == null) return HttpNotFound();
 
-            if (!ModelState.IsValid) return PartialView(model);
+            if (!ModelState.IsValid) return View(model);
 
             // execute command
             var command = Mapper.Map<ResetPasswordCommand>(model);

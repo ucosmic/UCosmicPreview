@@ -167,7 +167,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ReturnsPartialView_WhenModelState_IsInvalid()
+            public void ReturnView_WhenModelState_IsInvalid()
             {
                 var form = new ForgotPasswordForm
                 {
@@ -179,11 +179,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Post(form);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialView = (PartialViewResult)result;
-                partialView.Model.ShouldNotBeNull();
-                partialView.Model.ShouldBeType<ForgotPasswordForm>();
-                var model = (ForgotPasswordForm)partialView.Model;
+                result.ShouldBeType<ViewResult>();
+                var viewResult = (ViewResult)result;
+                viewResult.Model.ShouldNotBeNull();
+                viewResult.Model.ShouldBeType<ForgotPasswordForm>();
+                var model = (ForgotPasswordForm)viewResult.Model;
                 model.ShouldEqual(form);
                 model.EmailAddress.ShouldEqual(form.EmailAddress);
             }

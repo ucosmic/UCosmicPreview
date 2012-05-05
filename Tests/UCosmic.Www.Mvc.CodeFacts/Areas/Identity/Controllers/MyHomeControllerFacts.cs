@@ -129,7 +129,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ReturnsPartialView_WhenUser_IsFound()
+            public void ReturnsView_WhenUser_IsFound()
             {
                 const string userName = "user@domain.tld";
                 var scenarioOptions = new ScenarioOptions
@@ -145,10 +145,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Get();
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialViewResult = (PartialViewResult)result;
-                partialViewResult.Model.ShouldNotBeNull();
-                partialViewResult.Model.ShouldBeType<MyHomeInfo>();
+                result.ShouldBeType<ViewResult>();
+                var viewResult = (ViewResult)result;
+                viewResult.Model.ShouldNotBeNull();
+                viewResult.Model.ShouldBeType<MyHomeInfo>();
             }
         }
 

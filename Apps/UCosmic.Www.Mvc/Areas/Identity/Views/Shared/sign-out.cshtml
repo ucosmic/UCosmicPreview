@@ -2,7 +2,6 @@
 @model IModelSigningEmail
 @{
     ViewBag.Title = "You have been signed out of UCosmic";
-    Layout = MVC.Shared.Views.layout;
     var signInModel = Model is SignInForm ? (SignInForm)Model : null;
     var signOnModel = Model is SignOnForm ? (SignOnForm)Model : null;
     var rememberMeDisplayName = signInModel != null

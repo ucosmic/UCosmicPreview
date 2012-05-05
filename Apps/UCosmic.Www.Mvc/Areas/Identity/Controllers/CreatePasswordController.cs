@@ -53,7 +53,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             var model = Mapper.Map<CreatePasswordForm>(confirmation);
 
             // return partial view
-            return PartialView(model);
+            return View(model);
         }
 
         [HttpPost]
@@ -77,7 +77,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             );
             if (confirmation == null) return HttpNotFound();
 
-            if (!ModelState.IsValid) return PartialView(model);
+            if (!ModelState.IsValid) return View(model);
 
             // execute command
             var command = Mapper.Map<CreatePasswordCommand>(model);

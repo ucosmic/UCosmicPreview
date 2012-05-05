@@ -56,7 +56,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             if (model == null) return HttpNotFound();
 
-            if (!ModelState.IsValid) return PartialView(model);
+            if (!ModelState.IsValid) return View(model);
 
             // sign on
             _services.UserSigner.SignOn(model.EmailAddress);

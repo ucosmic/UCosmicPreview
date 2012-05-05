@@ -34,14 +34,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [OpenTopTab(TopTabName.Home)]
         [ActionName("forgot-password")]
         [ReturnUrlReferrer(SignInRouter.Get.Route)]
-        public virtual PartialViewResult Get()
+        public virtual ViewResult Get()
         {
             var model = new ForgotPasswordForm
             {
                 EmailAddress = HttpContext.SigningEmailAddressCookie() ?? 
                                TempData.SigningEmailAddress(),
             };
-            return PartialView(model);
+            return View(model);
         }
 
         [HttpPost]
@@ -61,7 +61,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             if (model == null) return HttpNotFound();
 
-            if (!ModelState.IsValid) return PartialView(model);
+            if (!ModelState.IsValid) return View(model);
 
             // execute command
             var command = Mapper.Map<SendConfirmEmailMessageCommand>(model);

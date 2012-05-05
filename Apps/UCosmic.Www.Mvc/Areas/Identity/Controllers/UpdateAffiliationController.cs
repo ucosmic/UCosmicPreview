@@ -48,7 +48,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             );
 
             if (affiliation == null) return HttpNotFound();
-            return PartialView(Mapper.Map<UpdateAffiliationForm>(affiliation));
+            return View(Mapper.Map<UpdateAffiliationForm>(affiliation));
         }
 
         [HttpPut]
@@ -61,7 +61,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             if (model == null) return HttpNotFound();
 
             // make sure model state is valid
-            if (!ModelState.IsValid) return PartialView(model);
+            if (!ModelState.IsValid) return View(model);
 
             // execute command, set feedback message, and redirect
             var command = Mapper.Map<UpdateMyAffiliationCommand>(model);

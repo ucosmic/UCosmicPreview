@@ -119,7 +119,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ReturnsPartialView_WhenAffiliation_IsFound()
+            public void ReturnsView_WhenAffiliation_IsFound()
             {
                 const int establishmentId = 2;
                 const string userName = "user@domain.tld";
@@ -135,10 +135,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Get(establishmentId);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialViewResult = (PartialViewResult)result;
-                partialViewResult.Model.ShouldNotBeNull();
-                partialViewResult.Model.ShouldBeType<UpdateAffiliationForm>();
+                result.ShouldBeType<ViewResult>();
+                var viewResult = (ViewResult)result;
+                viewResult.Model.ShouldNotBeNull();
+                viewResult.Model.ShouldBeType<UpdateAffiliationForm>();
             }
         }
 
@@ -203,7 +203,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ReturnsPartialView_WhenModelState_IsInvalid()
+            public void ReturnsView_WhenModelState_IsInvalid()
             {
                 var scenarioOptions = new ScenarioOptions();
                 var model = new UpdateAffiliationForm();
@@ -213,11 +213,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Put(model);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialViewResult = (PartialViewResult)result;
-                partialViewResult.Model.ShouldNotBeNull();
-                partialViewResult.Model.ShouldBeType<UpdateAffiliationForm>();
-                partialViewResult.Model.ShouldEqual(model);
+                result.ShouldBeType<ViewResult>();
+                var viewResult = (ViewResult)result;
+                viewResult.Model.ShouldNotBeNull();
+                viewResult.Model.ShouldBeType<UpdateAffiliationForm>();
+                viewResult.Model.ShouldEqual(model);
             }
 
             [TestMethod]

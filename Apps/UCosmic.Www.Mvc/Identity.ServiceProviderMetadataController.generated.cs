@@ -69,14 +69,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public class T4MVC_ServiceProviderMetadataController: UCosmic.Www.Mvc.Areas.Identity.Controllers.ServiceProviderMetadataController {
         public T4MVC_ServiceProviderMetadataController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ViewResult Index(string contentType) {
-            var callInfo = new T4MVC_ViewResult(Area, Name, ActionNames.Index);
+        public override System.Web.Mvc.PartialViewResult Index(string contentType) {
+            var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.Index);
             callInfo.RouteValueDictionary.Add("contentType", contentType);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ViewResult Development(string contentType) {
-            var callInfo = new T4MVC_ViewResult(Area, Name, ActionNames.Development);
+        public override System.Web.Mvc.PartialViewResult Development(string contentType) {
+            var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.Development);
             callInfo.RouteValueDictionary.Add("contentType", contentType);
             return callInfo;
         }

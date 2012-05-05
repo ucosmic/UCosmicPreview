@@ -53,7 +53,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             );
 
             if (user == null) return HttpNotFound();
-            return PartialView(Mapper.Map<UpdateNameForm>(user.Person));
+
+            var model = Mapper.Map<UpdateNameForm>(user.Person);
+
+            if (ControllerContext.IsChildAction) return PartialView(model);
+            return View(model);
         }
 
         [HttpPut]
@@ -66,7 +70,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             if (model == null) return HttpNotFound();
 
             // make sure model state is valid
-            if (!ModelState.IsValid) return PartialView(model);
+            if (!ModelState.IsValid) return View(model);
 
             // execute command, set feedback message, and redirect
             var command = Mapper.Map<UpdateMyNameCommand>(model);

@@ -13,7 +13,7 @@ using UCosmic.Www.Mvc.Controllers;
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
     // ReSharper disable UnusedMember.Global
-    public class UpdateMyEmailValueControllerFacts
+    public class UpdateEmailValueControllerFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
@@ -119,7 +119,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ReturnsPartialView_WhenEmailAddress_IsFound()
+            public void ReturnsView_WhenEmailAddress_IsFound()
             {
                 const int number = 2;
                 const string userName = "user@domain.tld";
@@ -134,10 +134,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Get(number);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialViewResult = (PartialViewResult)result;
-                partialViewResult.Model.ShouldNotBeNull();
-                partialViewResult.Model.ShouldBeType<UpdateEmailValueForm>();
+                result.ShouldBeType<ViewResult>();
+                var viewResult = (ViewResult)result;
+                viewResult.Model.ShouldNotBeNull();
+                viewResult.Model.ShouldBeType<UpdateEmailValueForm>();
             }
         }
 
@@ -223,7 +223,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ReturnsPartialView_WhenModelState_IsInvalid()
+            public void ReturnsView_WhenModelState_IsInvalid()
             {
                 const string userIdentityName = "user@domain.tld";
                 const string personUserName = "user@domain.tld";
@@ -241,11 +241,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Put(model);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialViewResult = (PartialViewResult)result;
-                partialViewResult.Model.ShouldNotBeNull();
-                partialViewResult.Model.ShouldBeType<UpdateEmailValueForm>();
-                partialViewResult.Model.ShouldEqual(model);
+                result.ShouldBeType<ViewResult>();
+                var viewResult = (ViewResult)result;
+                viewResult.Model.ShouldNotBeNull();
+                viewResult.Model.ShouldBeType<UpdateEmailValueForm>();
+                viewResult.Model.ShouldEqual(model);
             }
 
             [TestMethod]

@@ -128,7 +128,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ReturnsPartialView_WithModel_WhenConfirmation_IsFound()
+            public void ReturnsView_WithModel_WhenConfirmation_IsFound()
             {
                 var confirmation = new EmailConfirmation();
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
@@ -140,11 +140,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Get(confirmation.Token);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialView = (PartialViewResult)result;
-                partialView.Model.ShouldNotBeNull();
-                partialView.Model.ShouldBeType<ResetPasswordForm>();
-                var model = (ResetPasswordForm)partialView.Model;
+                result.ShouldBeType<ViewResult>();
+                var viewResult = (ViewResult)result;
+                viewResult.Model.ShouldNotBeNull();
+                viewResult.Model.ShouldBeType<ResetPasswordForm>();
+                var model = (ResetPasswordForm)viewResult.Model;
                 model.Token.ShouldEqual(confirmation.Token);
                 model.Password.ShouldBeNull();
                 model.PasswordConfirmation.ShouldBeNull();
@@ -237,7 +237,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ReturnsPartialView_WhenModelState_IsInvalid()
+            public void ReturnsView_WhenModelState_IsInvalid()
             {
                 var form = new ResetPasswordForm
                 {
@@ -250,11 +250,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var result = controller.Post(form);
 
                 result.ShouldNotBeNull();
-                result.ShouldBeType<PartialViewResult>();
-                var partialView = (PartialViewResult)result;
-                partialView.Model.ShouldNotBeNull();
-                partialView.Model.ShouldBeType<ResetPasswordForm>();
-                var model = (ResetPasswordForm)partialView.Model;
+                result.ShouldBeType<ViewResult>();
+                var viewResult = (ViewResult)result;
+                viewResult.Model.ShouldNotBeNull();
+                viewResult.Model.ShouldBeType<ResetPasswordForm>();
+                var model = (ResetPasswordForm)viewResult.Model;
                 model.ShouldEqual(form);
                 model.Token.ShouldEqual(form.Token);
             }

@@ -31,7 +31,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             _services = services;
         }
 
-        public virtual ViewResult Index(string contentType = null)
+        public virtual PartialViewResult Index(string contentType = null)
         {
             var encryptionCertificate = _services.SamlCertificates.GetEncryptionCertificate();
             var signingCertificate = _services.SamlCertificates.GetSigningCertificate();
@@ -49,10 +49,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             if ("xml".Equals(contentType, StringComparison.OrdinalIgnoreCase))
                 Response.ContentType = "text/xml";
 
-            return View(MVC.Identity.Shared.Views.metadata, model);
+            return PartialView(MVC.Identity.Shared.Views.metadata, model);
         }
 
-        public virtual ViewResult Development(string contentType = null)
+        public virtual PartialViewResult Development(string contentType = null)
         {
             var samlCertificates = new PublicSamlCertificateStorage();
             var encryptionCertificate = samlCertificates.GetEncryptionCertificate();
@@ -71,7 +71,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             if ("xml".Equals(contentType, StringComparison.OrdinalIgnoreCase))
                 Response.ContentType = "text/xml";
 
-            return View(MVC.Identity.Shared.Views.metadata, model);
+            return PartialView(MVC.Identity.Shared.Views.metadata, model);
         }
     }
 

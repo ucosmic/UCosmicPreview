@@ -42,7 +42,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             // return a sign-in form
             var model = new SignInForm(HttpContext, TempData, returnUrl);
-            return PartialView(model);
+            return View(model);
         }
 
         [HttpPost]

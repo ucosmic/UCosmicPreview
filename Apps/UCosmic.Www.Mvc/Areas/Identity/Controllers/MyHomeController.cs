@@ -50,9 +50,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             );
 
             if (user == null) return HttpNotFound();
-            return PartialView(Mapper.Map<MyHomeInfo>(user.Person));
+            return View(Mapper.Map<MyHomeInfo>(user.Person));
         }
-
     }
 
     public static class MyHomeRouter
