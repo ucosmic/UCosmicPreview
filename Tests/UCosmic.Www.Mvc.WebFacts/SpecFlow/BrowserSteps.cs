@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using TechTalk.SpecFlow;
-using UCosmic.Www.Mvc.Areas.Common.WebPages;
 using UCosmic.Www.Mvc.WebDriver;
 
 namespace UCosmic.Www.Mvc.SpecFlow

@@ -57,22 +57,22 @@ Scenario Outline: Successfully submit Institutional Agreement Edit form after ed
     When I click the "<AgreementTitle>" link
     Then I should see the Institutional Agreement Edit page
 
-    When I <TypeOrNot1> "<Value1>" into the Agreement Type field
-    And I <TypeOrNot2> "<Value2>" into the Summary Description field
-    And I <TypeOrNot3> "<Value3>" into the Start Date field
-    And I <TypeOrNot4> "<Value4>" into the Expiration Date field
-    And I <TypeOrNot5> "<Value5>" into the Current Status field
+    When I do<OrNot1> type "<Value1>" into the Agreement Type field
+    And I do<OrNot2> type "<Value2>" into the Summary Description field
+    And I do<OrNot3> type "<Value3>" into the Start Date field
+    And I do<OrNot4> type "<Value4>" into the Expiration Date field
+    And I do<OrNot5> type "<Value5>" into the Current Status field
     And I click the submit button
     Then I should see the Public Institutional Agreement Detail page
     And I should see the flash feedback message "<Flash>"
 
     When I click the "Edit this agreement" link
     Then I should see the Institutional Agreement Edit page
-    And I should (or shouldn't) see "<Value1>" in the "Agreement type" text box because I <TypeOrNot1> it during the last Institutional Agreement form save
-    And I should (or shouldn't) see "<Value2>" in the "Summary description" text box because I <TypeOrNot2> it during the last Institutional Agreement form save
-    And I should (or shouldn't) see "<Value3>" in the "Start date" text box because I <TypeOrNot3> it during the last Institutional Agreement form save
-    And I should (or shouldn't) see "<Value4>" in the "Expiration date" text box because I <TypeOrNot4> it during the last Institutional Agreement form save
-    And I should (or shouldn't) see "<Value5>" in the "Current status" text box because I <TypeOrNot5> it during the last Institutional Agreement form save
+    And I should<OrNot1> see "<Value1>" in the Agreement Type field
+    And I should<OrNot2> see "<Value2>" in the Summary Description field
+    And I should<OrNot3> see "<Value3>" in the Start Date field
+    And I should<OrNot4> see "<Value4>" in the Expiration Date field
+    And I should<OrNot5> see "<Value5>" in the Current Status field
 
     # need to reset the form to previous state for next scenario example
 	When I type "<AgreementTitle>" into the Summary Description field
@@ -81,28 +81,28 @@ Scenario Outline: Successfully submit Institutional Agreement Edit form after ed
     And I should see an "Edit this agreement" link
 
 Examples:
-| BrowserName       | AgreementTitle        | TypeOrNot1 | Value1 | TypeOrNot2 | Value2                       | TypeOrNot3 | Value3   | TypeOrNot4 | Value4   | TypeOrNot5 | Value5 | Flash                                           |
-| Chrome            | Agreement, UC GC test | don't type |        | don't type |                              | don't type |          | don't type |          | don't type |        | No changes were saved.                          |
-| Chrome            | Agreement, UC GC test | type       | Test   | don't type |                              | don't type |          | don't type |          | don't type |        | Institutional agreement was saved successfully. |
-| Chrome            | Agreement, UC GC test | don't type |        | type       | Agreement, UC GC test edited | don't type |          | don't type |          | don't type |        | Institutional agreement was saved successfully. |
-| Chrome            | Agreement, UC GC test | don't type |        | don't type |                              | type       | 8/7/1976 | don't type |          | don't type |        | Institutional agreement was saved successfully. |
-| Chrome            | Agreement, UC GC test | don't type |        | don't type |                              | don't type |          | type       | 8/6/2056 | don't type |        | Institutional agreement was saved successfully. |
-| Chrome            | Agreement, UC GC test | don't type |        | don't type |                              | don't type |          | don't type |          | type       | Test   | Institutional agreement was saved successfully. |
-| Firefox           | Agreement, UC FF test | don't type |        | don't type |                              | don't type |          | don't type |          | don't type |        | No changes were saved.                          |
-| Firefox           | Agreement, UC FF test | type       | Test   | don't type |                              | don't type |          | don't type |          | don't type |        | Institutional agreement was saved successfully. |
-| Firefox           | Agreement, UC FF test | don't type |        | type       | Agreement, UC FF test edited | don't type |          | don't type |          | don't type |        | Institutional agreement was saved successfully. |
-| Firefox           | Agreement, UC FF test | don't type |        | don't type |                              | type       | 8/7/1976 | don't type |          | don't type |        | Institutional agreement was saved successfully. |
-| Firefox           | Agreement, UC FF test | don't type |        | don't type |                              | don't type |          | type       | 8/6/2056 | don't type |        | Institutional agreement was saved successfully. |
-| Firefox           | Agreement, UC FF test | don't type |        | don't type |                              | don't type |          | don't type |          | type       | Test   | Institutional agreement was saved successfully. |
-| Internet Explorer | Agreement, UC IE test | don't type |        | don't type |                              | don't type |          | don't type |          | don't type |        | No changes were saved.                          |
-| Internet Explorer | Agreement, UC IE test | type       | Test   | don't type |                              | don't type |          | don't type |          | don't type |        | Institutional agreement was saved successfully. |
-| Internet Explorer | Agreement, UC IE test | don't type |        | type       | Agreement, UC IE test edited | don't type |          | don't type |          | don't type |        | Institutional agreement was saved successfully. |
-| Internet Explorer | Agreement, UC IE test | don't type |        | don't type |                              | type       | 8/7/1976 | don't type |          | don't type |        | Institutional agreement was saved successfully. |
-| Internet Explorer | Agreement, UC IE test | don't type |        | don't type |                              | don't type |          | type       | 8/6/2056 | don't type |        | Institutional agreement was saved successfully. |
-| Internet Explorer | Agreement, UC IE test | don't type |        | don't type |                              | don't type |          | don't type |          | type       | Test   | Institutional agreement was saved successfully. |
+| BrowserName       | AgreementTitle        | OrNot1 | Value1 | OrNot2 | Value2                       | OrNot3 | Value3   | OrNot4 | Value4   | OrNot5 | Value5 | Flash                                           |
+| Chrome            | Agreement, UC GC test | n't    |        | n't    |                              | n't    |          | n't    |          | n't    |        | No changes were saved.                          |
+| Chrome            | Agreement, UC GC test |        | Test   | n't    |                              | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Chrome            | Agreement, UC GC test | n't    |        |        | Agreement, UC GC test edited | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Chrome            | Agreement, UC GC test | n't    |        | n't    |                              |        | 8/7/1976 | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Chrome            | Agreement, UC GC test | n't    |        | n't    |                              | n't    |          |        | 8/6/2056 | n't    |        | Institutional agreement was saved successfully. |
+| Chrome            | Agreement, UC GC test | n't    |        | n't    |                              | n't    |          | n't    |          |        | Test   | Institutional agreement was saved successfully. |
+| Firefox           | Agreement, UC FF test | n't    |        | n't    |                              | n't    |          | n't    |          | n't    |        | No changes were saved.                          |
+| Firefox           | Agreement, UC FF test |        | Test   | n't    |                              | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Firefox           | Agreement, UC FF test | n't    |        |        | Agreement, UC FF test edited | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Firefox           | Agreement, UC FF test | n't    |        | n't    |                              |        | 8/7/1976 | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Firefox           | Agreement, UC FF test | n't    |        | n't    |                              | n't    |          |        | 8/6/2056 | n't    |        | Institutional agreement was saved successfully. |
+| Firefox           | Agreement, UC FF test | n't    |        | n't    |                              | n't    |          | n't    |          |        | Test   | Institutional agreement was saved successfully. |
+| Internet Explorer | Agreement, UC IE test | n't    |        | n't    |                              | n't    |          | n't    |          | n't    |        | No changes were saved.                          |
+| Internet Explorer | Agreement, UC IE test |        | Test   | n't    |                              | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Internet Explorer | Agreement, UC IE test | n't    |        |        | Agreement, UC IE test edited | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Internet Explorer | Agreement, UC IE test | n't    |        | n't    |                              |        | 8/7/1976 | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Internet Explorer | Agreement, UC IE test | n't    |        | n't    |                              | n't    |          |        | 8/6/2056 | n't    |        | Institutional agreement was saved successfully. |
+| Internet Explorer | Agreement, UC IE test | n't    |        | n't    |                              | n't    |          | n't    |          |        | Test   | Institutional agreement was saved successfully. |
 
 @InstAgrFormsR0103
-Scenario Outline: Add Institutional Agreement Participant to the list box
+Scenario Outline: Add Institutional Agreement Participant to the list
 
     When I click the "<LinkToForm>" link
     Then I should see the Institutional Agreement <AddOrEdit> page
@@ -111,7 +111,7 @@ Scenario Outline: Add Institutional Agreement Participant to the list box
     Then I should see an autocomplete dropdown menu item "<ParticipantTarget>" for the Participant Search field
 
     When I click the autocomplete dropdown menu item "<ParticipantTarget>" for the Participant Search field
-    Then   I should see "<ParticipantTarget>" in the Participants list box on the Institutional Agreement <AddOrEdit> form
+    Then I should see an item for "<ParticipantTarget>" in the Participants list
 
 Examples:
     | AddOrEdit | LinkToForm            | ParticipantTerm | ParticipantTarget           |
@@ -129,12 +129,12 @@ Scenario Outline: Generate summary description based on participants, type, and 
    When I type "<Term>" into the Participant Search field
    Then I should <OrNot> see an autocomplete dropdown menu item "<Participant>" for the Participant Search field
    And I should <OrNot> click the autocomplete dropdown menu item "<Participant>" for the Participant Search field
-   And I should <OrNot> see "<Participant>" in the Participants list box on the Institutional Agreement add form
+   And I should <OrNot> see an item for "<Participant>" in the Participants list
 
    When I type "<AgreementType>" into the Agreement Type field
    And I type "<Status>" into the Current Status field
-   And I check the "Summary description" automatic generation checkbox on the Institutional Agreement add form
-   Then I should see the Summary description change to "<GenerationExpected>" on the Institutional Agreement add form
+   And I check the Automatically Generate Summary Description checkbox
+   Then I should see "<GenerationExpected>" in the Summary Description field
 
 Examples:
     | OrNot | Term | Participant              | AgreementType               | Status | GenerationExpected                                                                                           |
@@ -153,12 +153,12 @@ Scenario Outline: Generate summary description based on participants, type, and 
    When I type "<Term>" into the Participant Search field
    Then I should <OrNot> see an autocomplete dropdown menu item "<Participant>" for the Participant Search field
    And I should <OrNot> click the autocomplete dropdown menu item "<Participant>" for the Participant Search field
-   And I should <OrNot> see "<Participant>" in the Participants list box on the Institutional Agreement edit form
+   And I should <OrNot> see an item for "<Participant>" in the Participants list
 
    When I type "<AgreementType>" into the Agreement Type field
    And I type "<Status>" into the Current Status field
-   And I check the "Summary description" automatic generation checkbox on the Institutional Agreement edit form
-   Then I should see the Summary description change to "<GenerationExpected>" on the Institutional Agreement edit form
+   And I check the Automatically Generate Summary Description checkbox
+   Then I should see "<GenerationExpected>" in the Summary Description field
 
 Examples:
     | OrNot | Term | Participant              | AgreementType               | Status | GenerationExpected                                                                                           |

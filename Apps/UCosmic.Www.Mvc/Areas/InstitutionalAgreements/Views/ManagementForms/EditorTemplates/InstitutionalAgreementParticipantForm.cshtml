@@ -12,13 +12,13 @@
             </div>
             @if (!string.IsNullOrWhiteSpace(Model.EstablishmentTranslatedNameText) && Model.EstablishmentTranslatedNameText != Model.EstablishmentOfficialName)
             {
-                <b>@Html.DisplayFor(m => m.EstablishmentTranslatedNameText)</b>
+                <strong>@Html.DisplayFor(m => m.EstablishmentTranslatedNameText)</strong>
                 <br />
                 <span style="font-size: 0.85em;">(@Html.DisplayFor(m => m.EstablishmentOfficialName))</span>
             }
             else
             {
-                <b>@Html.DisplayFor(m => m.EstablishmentOfficialName)</b>
+                <strong>@Html.DisplayFor(m => m.EstablishmentOfficialName)</strong>
             }
         </div>
     </div>

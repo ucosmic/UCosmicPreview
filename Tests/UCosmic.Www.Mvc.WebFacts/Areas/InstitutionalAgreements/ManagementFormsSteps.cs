@@ -67,42 +67,42 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
                                  });
         }
 
-        [Given(
-            @"I have \(or haven't\) seen ""(.*)"" in the ""(.*)"" text box because I (.*) it during the last Institutional Agreement form save"
-            )]
-        [When(
-            @"I \(do or do not\) see ""(.*)"" in the ""(.*)"" text box because I (.*) it during the last Institutional Agreement form save"
-            )]
-        [Then(
-            @"I should \(or shouldn't\) see ""(.*)"" in the ""(.*)"" text box because I (.*) it during the last Institutional Agreement form save"
-            )]
-        public void SeeExpectedValueInFormTextBoxBecauseOfLastSave(string expectedValue, string fieldLabel,
-                                                                   string typeOrNot)
-        {
-            // skip step if didn't type into the text box
-            if (typeOrNot != "type" && typeOrNot != "typed") return;
+        //[Given(
+        //    @"I have \(or haven't\) seen ""(.*)"" in the ""(.*)"" text box because I (.*) it during the last Institutional Agreement form save"
+        //    )]
+        //[When(
+        //    @"I \(do or do not\) see ""(.*)"" in the ""(.*)"" text box because I (.*) it during the last Institutional Agreement form save"
+        //    )]
+        //[Then(
+        //    @"I should \(or shouldn't\) see ""(.*)"" in the ""(.*)"" text box because I (.*) it during the last Institutional Agreement form save"
+        //    )]
+        //public void SeeExpectedValueInFormTextBoxBecauseOfLastSave(string expectedValue, string fieldLabel,
+        //                                                           string typeOrNot)
+        //{
+        //    // skip step if didn't type into the text box
+        //    if (typeOrNot != "type" && typeOrNot != "typed") return;
 
-            // translate field name into textbox id
-            var textBoxId = TranslateFormLabelToInputElementId(fieldLabel);
-            var jQuery = string.Format("return $('#{0}').val();", textBoxId);
+        //    // translate field name into textbox id
+        //    var textBoxId = TranslateFormLabelToInputElementId(fieldLabel);
+        //    var jQuery = string.Format("return $('#{0}').val();", textBoxId);
 
-            Browsers.ForEach(browser =>
-                                 {
-                                     // ensure that the text box was located
-                                     var textBox = browser.WaitUntil(b => b.FindElement(By.Id(textBoxId)),
-                                                                     string.Format(
-                                                                         "The '{0}' text box on the Institutional Agreement form could not be found using @Browser.",
-                                                                         fieldLabel));
+        //    Browsers.ForEach(browser =>
+        //                         {
+        //                             // ensure that the text box was located
+        //                             var textBox = browser.WaitUntil(b => b.FindElement(By.Id(textBoxId)),
+        //                                                             string.Format(
+        //                                                                 "The '{0}' text box on the Institutional Agreement form could not be found using @Browser.",
+        //                                                                 fieldLabel));
 
-                                     // check the value
-                                     browser.WaitUntil(
-                                         b =>
-                                         textBox.Displayed && b.ExecuteScript(jQuery).ToString().Equals(expectedValue),
-                                         string.Format(
-                                             "The '{0}' text box on the Institutional Agreement form did not contain expected value '{1}' using @Browser. " +
-                                             "(Actual Value was '{2}')", textBoxId, expectedValue, textBox.Text));
-                                 });
-        }
+        //                             // check the value
+        //                             browser.WaitUntil(
+        //                                 b =>
+        //                                 textBox.Displayed && b.ExecuteScript(jQuery).ToString().Equals(expectedValue),
+        //                                 string.Format(
+        //                                     "The '{0}' text box on the Institutional Agreement form did not contain expected value '{1}' using @Browser. " +
+        //                                     "(Actual Value was '{2}')", textBoxId, expectedValue, textBox.Text));
+        //                         });
+        //}
 
         [Given(
             @"I have (.*) the error message ""(.*)"" for the ""(.*)"" text box on the Institutional Agreement (.*) form"
@@ -198,21 +198,21 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
             });
         }
 
-        [Given(@"I have (.*)ed the ""Summary description"" automatic generation checkbox on the Institutional Agreement (.*) form")]
-        [When( @"I (.*) the ""Summary description"" automatic generation checkbox on the Institutional Agreement (.*) form")]
-        [Then(@"I should (.*) the ""Summary description"" automatic generation checkbox on the Institutional Agreement (.*) form")]
-        public void CheckOrUncheckTheSummaryDescriptionAutomaticGenerationCheckBox(string checkOrUncheck, string addOrEdit)
-        {
-            var shouldCheck = (checkOrUncheck == "check");
-            Browsers.ForEach(browser =>
-            {
-                var checkBox = browser.WaitUntil(b => b.FindElement(By.Id("IsTitleDerived")), string.Format(
-                    "Summary description automatic generation check box does not exist on the Institutional Agreement {0} form using @Browser.",
-                        addOrEdit));
+        //[Given(@"I have (.*)ed the ""Summary description"" automatic generation checkbox on the Institutional Agreement (.*) form")]
+        //[When( @"I (.*) the ""Summary description"" automatic generation checkbox on the Institutional Agreement (.*) form")]
+        //[Then(@"I should (.*) the ""Summary description"" automatic generation checkbox on the Institutional Agreement (.*) form")]
+        //public void CheckOrUncheckTheSummaryDescriptionAutomaticGenerationCheckBox(string checkOrUncheck, string addOrEdit)
+        //{
+        //    var shouldCheck = (checkOrUncheck == "check");
+        //    Browsers.ForEach(browser =>
+        //    {
+        //        var checkBox = browser.WaitUntil(b => b.FindElement(By.Id("IsTitleDerived")), string.Format(
+        //            "Summary description automatic generation check box does not exist on the Institutional Agreement {0} form using @Browser.",
+        //                addOrEdit));
     
-                checkBox.CheckOrUncheckCheckBox(shouldCheck);
-            });
-        }
+        //        checkBox.CheckOrUncheckCheckBox(shouldCheck);
+        //    });
+        //}
 
         [Given(@"I have seen the Summary description change to ""(.*)"" on the Institutional Agreement (.*) form")]
         [When(@"I see the Summary description change to ""(.*)"" on the Institutional Agreement (.*) form")]
@@ -236,60 +236,60 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
                                  });
         }
 
-        [Given(@"I have (.*) ""(.*)"" in the Participants list box on the Institutional Agreement (.*) form")]
-        [When(@"I (.*) ""(.*)"" in the Participants list box on the Institutional Agreement (.*) form")]
-        [Then(@"I should (.*) ""(.*)"" in the Participants list box on the Institutional Agreement (.*) form")]
-        public void SeeParticipantInListBox(string seeOrNot, string expectedParticipant, string addOrEdit)
-        {
-            const string cssSelector = "ul#participants_list li";
-            var shouldSee = (seeOrNot.Trim() == "see" || seeOrNot.Trim() == "seen");
+        //[Given(@"I have (.*) ""(.*)"" in the Participants list box on the Institutional Agreement (.*) form")]
+        //[When(@"I (.*) ""(.*)"" in the Participants list box on the Institutional Agreement (.*) form")]
+        //[Then(@"I should (.*) ""(.*)"" in the Participants list box on the Institutional Agreement (.*) form")]
+        //public void SeeParticipantInListBox(string seeOrNot, string expectedParticipant, string addOrEdit)
+        //{
+        //    const string cssSelector = "ul#participants_list li";
+        //    var shouldSee = (seeOrNot.Trim() == "see" || seeOrNot.Trim() == "seen");
 
-            Browsers.ForEach(browser =>
-                                 {
-                                     if (shouldSee)
-                                     {
-                                         // make sure the target item exists in the list
-                                         browser.WaitUntil(
-                                             b =>
-                                             b.FindElements(By.CssSelector(cssSelector)).SingleOrDefault(
-                                                 li => li.Text.Equals(expectedParticipant)) != null,
-                                             string.Format(
-                                                 "Participants list box does not contain item with text '{0}' on the Institutional Agreement {1} form using {2} browser.",
-                                                 expectedParticipant, addOrEdit, browser.Name()));
-                                         var targetItem =
-                                             browser.FindElements(By.CssSelector(cssSelector)).SingleOrDefault(
-                                                 li => li.Text.Equals(expectedParticipant));
+        //    Browsers.ForEach(browser =>
+        //                         {
+        //                             if (shouldSee)
+        //                             {
+        //                                 // make sure the target item exists in the list
+        //                                 browser.WaitUntil(
+        //                                     b =>
+        //                                     b.FindElements(By.CssSelector(cssSelector)).SingleOrDefault(
+        //                                         li => li.Text.Equals(expectedParticipant)) != null,
+        //                                     string.Format(
+        //                                         "Participants list box does not contain item with text '{0}' on the Institutional Agreement {1} form using {2} browser.",
+        //                                         expectedParticipant, addOrEdit, browser.Name()));
+        //                                 var targetItem =
+        //                                     browser.FindElements(By.CssSelector(cssSelector)).SingleOrDefault(
+        //                                         li => li.Text.Equals(expectedParticipant));
 
-                                         // verify the participant name is displayed
-                                         // ReSharper disable PossibleNullReferenceException
-                                         browser.WaitUntil(
-                                             b => targetItem.Displayed && targetItem.Text.Contains(expectedParticipant),
-                                             string.Format(
-                                             // ReSharper restore PossibleNullReferenceException
-                                                 "Participants list box did not contain expected item '{0}' on the Institutional Agreement {2} form using @Browser. " +
-                                             // ReSharper disable PossibleNullReferenceException
-                                                 "(Actual value was '{1}'.)", expectedParticipant, targetItem.Text,
-                                                 addOrEdit), 15);
-                                         // ReSharper restore PossibleNullReferenceException
-                                     }
-                                     else
-                                     {
-                                         // select all LI items in the UL
-                                         var participantItems =
-                                             browser.WaitUntil(b => b.FindElements(By.CssSelector(cssSelector)),
-                                                               string.Format(
-                                                                   "Participants list box items do not exist on the Institutional Agreement {0} form using @Browser.",
-                                                                   addOrEdit));
+        //                                 // verify the participant name is displayed
+        //                                 // ReSharper disable PossibleNullReferenceException
+        //                                 browser.WaitUntil(
+        //                                     b => targetItem.Displayed && targetItem.Text.Contains(expectedParticipant),
+        //                                     string.Format(
+        //                                     // ReSharper restore PossibleNullReferenceException
+        //                                         "Participants list box did not contain expected item '{0}' on the Institutional Agreement {2} form using @Browser. " +
+        //                                     // ReSharper disable PossibleNullReferenceException
+        //                                         "(Actual value was '{1}'.)", expectedParticipant, targetItem.Text,
+        //                                         addOrEdit), 15);
+        //                                 // ReSharper restore PossibleNullReferenceException
+        //                             }
+        //                             else
+        //                             {
+        //                                 // select all LI items in the UL
+        //                                 var participantItems =
+        //                                     browser.WaitUntil(b => b.FindElements(By.CssSelector(cssSelector)),
+        //                                                       string.Format(
+        //                                                           "Participants list box items do not exist on the Institutional Agreement {0} form using @Browser.",
+        //                                                           addOrEdit));
 
-                                         var targetItem =
-                                             participantItems.SingleOrDefault(li => li.Text.Equals(expectedParticipant));
-                                         browser.WaitUntil(b => targetItem == null || !targetItem.Displayed,
-                                                           string.Format(
-                                                               "Participant list box item with text '{0}' was unexpectedly displayed on the Institutional Agreement {1} form using @Browser.",
-                                                               expectedParticipant, addOrEdit));
-                                     }
-                                 });
-        }
+        //                                 var targetItem =
+        //                                     participantItems.SingleOrDefault(li => li.Text.Equals(expectedParticipant));
+        //                                 browser.WaitUntil(b => targetItem == null || !targetItem.Displayed,
+        //                                                   string.Format(
+        //                                                       "Participant list box item with text '{0}' was unexpectedly displayed on the Institutional Agreement {1} form using @Browser.",
+        //                                                       expectedParticipant, addOrEdit));
+        //                             }
+        //                         });
+        //}
 
         [Given(@"I have clicked the ""(.*)"" submit button on the Institutional Agreement (.*) form")]
         [When(@"I click the ""(.*)"" submit button on the Institutional Agreement (.*) form")]

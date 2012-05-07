@@ -229,6 +229,9 @@
     <Compile Include="SpecFlow\AutoCompleteSteps.cs" />
     <Compile Include="SpecFlow\BrowserSteps.cs" />
     <Compile Include="SpecFlow\CollectionSteps.cs" />
+    <Compile Include="SpecFlow\CheckBoxSteps.cs" />
+    <Compile Include="SpecFlow\InputErrorMessageSteps.cs" />
+    <Compile Include="SpecFlow\TextBoxSteps.cs" />
     <Compile Include="SpecFlow\FileUploadSteps.cs" />
     <Compile Include="SpecFlow\FormSteps.cs" />
     <Compile Include="SpecFlow\LinkSteps.cs" />

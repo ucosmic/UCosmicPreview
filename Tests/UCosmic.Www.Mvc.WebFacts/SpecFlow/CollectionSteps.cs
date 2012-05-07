@@ -3,7 +3,6 @@ using Should;
 using TechTalk.SpecFlow;
 using UCosmic.Www.Mvc.Areas.Common.WebPages;
 using UCosmic.Www.Mvc.WebDriver;
-using OpenQA.Selenium;
 
 namespace UCosmic.Www.Mvc.SpecFlow
 {
@@ -13,16 +12,16 @@ namespace UCosmic.Www.Mvc.SpecFlow
         [Given(@"I (.*) an item for ""(.*)"" in the (.*) list")]
         [When(@"I (.*) an item for ""(.*)"" in the (.*) list")]
         [Then(@"I should (.*) an item for ""(.*)"" in the (.*) list")]
-        public void SeeItemInListBox(string seeOrNot, string expectedValue, string fieldLabel)
+        public void SeeItemInList(string seeOrNot, string expectedValue, string fieldLabel)
         {
             var shouldSee = (seeOrNot.Trim() == "see" || seeOrNot.Trim() == "saw");
 
             Browsers.ForEach(browser =>
             {
                 var page = WebPageFactory.GetPage(browser);
-                var fileItems = page.GetCollectionItems(fieldLabel);
+                var items = page.GetCollectionItems(fieldLabel);
 
-                var targetItems = fileItems.Where(li => li.Text.Equals(expectedValue));
+                var targetItems = items.Where(li => li.Text.Equals(expectedValue));
                 if (shouldSee)
                 {
                     targetItems.Count().ShouldBeInRange(1, int.MaxValue);
@@ -56,15 +55,15 @@ namespace UCosmic.Www.Mvc.SpecFlow
         [Given(@"I clicked the remove icon for ""(.*)"" in the (.*) list")]
         [When(@"I click the remove icon for ""(.*)"" in the (.*) list")]
         [Then(@"I should click the remove icon for ""(.*)"" in the (.*) list")]
-        public void ClickRemoveItem(string fileName, string fieldLabel)
+        public void RemoveItemFromList(string itemText, string fieldLabel)
         {
-            var key = string.Format("RemoveItem-{0}", fileName);
+            var key = string.Format("RemoveItem-{0}", itemText);
 
             Browsers.ForEach(browser =>
             {
                 var page = WebPageFactory.GetPage(browser);
-                var fileItem = page.GetCollectionItem(fieldLabel, key);
-                fileItem.ClickLink();
+                var link = page.GetCollectionItem(fieldLabel, key);
+                link.ClickLink();
             });
         }
     }

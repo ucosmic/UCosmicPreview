@@ -23,16 +23,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity
         {
             var nav = new NavigationSteps();
             var form = new FormSteps();
+            var textBox = new TextBoxSteps();
             var link = new LinkSteps();
 
             nav.GoToPage(NamedUrl.Home);
             nav.GoToPage(NamedUrl.SignOut);
             ClearSigningEmailAddress();
             nav.GoToPage(NamedUrl.SignOn);
-            form.TypeIntoTextBox(email, SignOnForm.EmailAddressLabel);
+            textBox.TypeIntoTextBox(email, SignOnForm.EmailAddressLabel);
             form.ClickLabeledSubmitButton(SignOnForm.SubmitButtonLabel);
             nav.SeePage(NamedUrl.EnterPassword);
-            form.TypeIntoTextBox(password, SignInForm.PasswordLabel);
+            textBox.TypeIntoTextBox(password, SignInForm.PasswordLabel);
             form.ClickLabeledSubmitButton(SignInForm.SubmitButtonLabel);
             nav.SeePage(NamedUrl.PersonalHome);
             link.SeeLinkWithText("Sign Out");

@@ -112,6 +112,24 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
                 string.Format("The field label '{0}' does not exist.", fieldLabel));
         }
 
+        public IWebElement GetCheckBox(string fieldLabel)
+        {
+            if (SpecToWeb.ContainsKey(fieldLabel))
+            {
+                var fieldSelector = SpecToWeb[fieldLabel];
+                var selector = string.Format(
+                    @"{0} {1}",
+                        EditorSelector, fieldSelector
+                ).Trim();
+                return Browser.WaitUntil(b => b.FindElement(By.CssSelector(selector)), string.Format(
+                    "A checkbox for the '{0}' field was not found in @Browser (CSS selector was '{1}').",
+                        fieldLabel, selector));
+            }
+
+            throw new NotSupportedException(
+                string.Format("The field label '{0}' does not exist.", fieldLabel));
+        }
+
         public IEnumerable<IWebElement> GetCollectionItems(string fieldLabel, string subSelector = "ItemText")
         {
             const string keyFormat = "{0}[Collection='{1}']";
