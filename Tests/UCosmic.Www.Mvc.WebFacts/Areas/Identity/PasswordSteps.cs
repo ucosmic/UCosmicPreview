@@ -7,7 +7,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity
 {
     // ReSharper disable UnusedMember.Global
     [Binding]
-    public class PasswordSteps : StepDefinitionBase
+    public class PasswordSteps : BaseStepDefinition
     {
         #region Change Password form
 

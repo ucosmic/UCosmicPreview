@@ -7,7 +7,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
 {
     public abstract class WebPageBase
     {
-        protected abstract string EditorSelector { get; }
+        protected virtual string EditorSelector { get { return null; } }
         protected abstract Dictionary<string, string> SpecToWeb { get; }
 
         protected virtual string EmailExcerptStart { get { return null; } }
@@ -20,19 +20,76 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
             Browser = driver;
         }
 
-        public IWebElement GetTextBox(string fieldLabel)
+        public IWebElement GetTextInputField(string label)
         {
-            if (SpecToWeb.ContainsKey(fieldLabel))
+            if (SpecToWeb.ContainsKey(label))
             {
-                var fieldName = SpecToWeb[fieldLabel];
-                var selector = string.Format(@"{0} input[name=""{1}""]", EditorSelector, fieldName);
-                return Browser.WaitUntil(b => b.FindElement(By.CssSelector(selector)), string.Format(
-                    "A field '{0}' (input element named '{1}') should exist using @Browser.", 
-                        fieldLabel, fieldName));
+                var field = GetInputByName(label) ??
+                            GetTextAreaByName(label) ??
+                            GetInputById(label) ??
+                            GetTextAreaById(label);
+                if (field != null) return field;
             }
 
-            throw new NotImplementedException(
-                string.Format("The field label '{0}' was not expected.", fieldLabel));
+            throw new NotSupportedException(
+                string.Format("The field label '{0}' does not exist.", label));
+        }
+
+        public string GetTextInputValue(string label)
+        {
+            var input = GetTextInputField(label);
+            if (input != null)
+            {
+                var id = input.GetAttribute("id");
+                var jQuery = string.Format("return $('#{0}').val();", id);
+                if (!string.IsNullOrWhiteSpace(id))
+                    return Browser.WaitUntil(b => b.ExecuteScript(jQuery).ToString(),
+                        string.Format("An unexpected error occurred while executing jQuery code '{0}' for input field '{1}' in @Browser.",
+                            jQuery, label));
+            }
+
+            throw new NotSupportedException(
+                string.Format("The field label '{0}' does not exist.", label));
+        }
+
+        private IWebElement GetInputByName(string fieldLabel)
+        {
+            var fieldName = SpecToWeb[fieldLabel];
+            var selector = string.Format(
+                @"{0} input[name=""{1}""]",
+                    EditorSelector, fieldName
+            ).Trim();
+            return Browser.TryFindElement(By.CssSelector(selector));
+        }
+
+        private IWebElement GetTextAreaByName(string fieldLabel)
+        {
+            var fieldName = SpecToWeb[fieldLabel];
+            var selector = string.Format(
+                @"{0} textarea[name=""{1}""]",
+                    EditorSelector, fieldName
+            ).Trim();
+            return Browser.TryFindElement(By.CssSelector(selector));
+        }
+
+        private IWebElement GetInputById(string fieldLabel)
+        {
+            var fieldName = SpecToWeb[fieldLabel];
+            var selector = string.Format(
+                @"{0} input#{1}",
+                    EditorSelector, fieldName
+            ).Trim();
+            return Browser.TryFindElement(By.CssSelector(selector));
+        }
+
+        private IWebElement GetTextAreaById(string fieldLabel)
+        {
+            var fieldName = SpecToWeb[fieldLabel];
+            var selector = string.Format(
+                @"{0} textarea#{1}",
+                    EditorSelector, fieldName
+            ).Trim();
+            return Browser.TryFindElement(By.CssSelector(selector));
         }
 
         public IWebElement GetErrorMessage(string fieldLabel, bool allowNull = false)
@@ -40,17 +97,80 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
             if (SpecToWeb.ContainsKey(fieldLabel))
             {
                 var fieldName = SpecToWeb[fieldLabel];
-                var selector = string.Format(@"{0} .field-validation-error[data-valmsg-for=""{1}""]", EditorSelector, fieldName);
+                var selector = string.Format(
+                    @"{0} .field-validation-error[data-valmsg-for=""{1}""]",
+                        EditorSelector, fieldName
+                ).Trim();
                 if (!allowNull)
                     return Browser.WaitUntil(b => b.FindElement(By.CssSelector(selector)), string.Format(
-                        "An error message for the '{0}' field (element named '{1}') should exist using @Browser.", 
+                        "An error message for the '{0}' field (element named '{1}') should exist using @Browser.",
                             fieldLabel, fieldName));
 
                 return Browser.TryFindElement(By.CssSelector(selector));
             }
 
-            throw new NotImplementedException(
-                string.Format("The field label '{0}' was not expected.", fieldLabel));
+            throw new NotSupportedException(
+                string.Format("The field label '{0}' does not exist.", fieldLabel));
+        }
+
+        public IWebElement GetAutoCompleteMenu(string fieldLabel, bool allowNull = false)
+        {
+            const string keyFormat = "{0}[AutoComplete]";
+            var key = string.Format(keyFormat, fieldLabel);
+            if (SpecToWeb.ContainsKey(key))
+            {
+                var fieldSelector = SpecToWeb[key];
+                var selector = string.Format(
+                    @"{0} {1} .autocomplete-menu ul",
+                        EditorSelector, fieldSelector
+                ).Trim();
+                if (!allowNull)
+                    return Browser.WaitUntil(b => b.FindElement(By.CssSelector(selector)), string.Format(
+                    "An autocomplete menu for the '{0}' field was not found by @Browser (CSS selector was '{1}').",
+                        fieldLabel, selector));
+
+                return Browser.TryFindElement(By.CssSelector(selector));
+            }
+
+            throw new NotSupportedException(
+                string.Format("The field label '{0}' does not exist.", fieldLabel));
+        }
+
+        public IWebElement GetDownArrowButton(string fieldLabel, bool allowNull = false)
+        {
+            const string keyFormat = "{0}[DownArrow]";
+            var key = string.Format(keyFormat, fieldLabel);
+            if (SpecToWeb.ContainsKey(key))
+            {
+                var fieldSelector = SpecToWeb[key];
+                var selector = string.Format(
+                    @"{0} {1}",
+                        EditorSelector, fieldSelector
+                ).Trim();
+                if (!allowNull)
+                    return Browser.WaitUntil(b => b.FindElement(By.CssSelector(selector)), string.Format(
+                    "An dropdown arrow button for the '{0}' field was not found by @Browser (CSS selector was '{1}').",
+                        fieldLabel, selector));
+
+                return Browser.TryFindElement(By.CssSelector(selector));
+            }
+
+            throw new NotSupportedException(
+                string.Format("The field label '{0}' does not exist.", fieldLabel));
+        }
+
+        private const string ErrorTextKeyFormat = "{0}[ErrorText='{1}']";
+
+        public string GetErrorText(string fieldLabel, string messageKey)
+        {
+            var errorTextKey = string.Format(ErrorTextKeyFormat, fieldLabel, messageKey);
+            if (SpecToWeb.ContainsKey(errorTextKey))
+            {
+                return SpecToWeb[errorTextKey];
+            }
+
+            throw new NotSupportedException(
+                string.Format("The error text key '{0}' could not be found.", errorTextKey));
         }
 
         public IWebElement GetButton(string buttonLabel)
@@ -63,8 +183,8 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
                     "An input {1} element with value '{0}' should exist using @Browser.", buttonLabel, buttonType));
             }
 
-            throw new NotImplementedException(
-                string.Format("The button label '{0}' was not expected.", buttonLabel));
+            throw new NotSupportedException(
+                string.Format("The button label '{0}' does not exist.", buttonLabel));
         }
 
         public IWebElement GetCustomContent(string content, bool allowNull = false)
@@ -75,14 +195,14 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
                 var selector = string.Format(@"{0} {1}", EditorSelector, contentSelector);
                 if (!allowNull)
                     return Browser.WaitUntil(b => b.FindElement(By.CssSelector(selector)), string.Format(
-                        "Custom content '{0}' (with CSS selector '{1}') should exist using @Browser.", 
+                        "Custom content '{0}' (with CSS selector '{1}') should exist using @Browser.",
                             content, selector));
 
                 return Browser.TryFindElement(By.CssSelector(selector));
             }
 
-            throw new NotImplementedException(
-                string.Format("Custom content '{0}' was not expected.", content));
+            throw new NotSupportedException(
+                string.Format("Custom content '{0}' does not exist.", content));
         }
 
         public string GetEmailExcerpt(string message)
@@ -95,7 +215,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
                 return secretCode;
             }
 
-            throw new NotImplementedException(
+            throw new NotSupportedException(
                 string.Format("An email was not expected on the '{0}' page.", Browser.Url));
         }
 

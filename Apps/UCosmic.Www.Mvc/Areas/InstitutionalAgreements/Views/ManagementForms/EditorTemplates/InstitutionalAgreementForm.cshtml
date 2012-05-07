@@ -732,12 +732,14 @@
         // derive agreement title
         var originalTitle = $('#' + titleId).val();
         function updateOriginalTitle() {
-            originalTitle = $(this).val();
+            if (!$('#' + isTitleDerivedId).is(':checked'))
+                originalTitle = $(this).val();
         }
         // user entry updates the original title
         $('#' + titleId).keyup(updateOriginalTitle);
         $('#' + titleId).keydown(updateOriginalTitle);
         $('#' + titleId).keypress(updateOriginalTitle);
+        $('#' + titleId).blur(updateOriginalTitle);
         if ($('#' + isTitleDerivedId).is(':checked')) {
             $('#' + titleId).attr('readonly', 'readonly');
         }

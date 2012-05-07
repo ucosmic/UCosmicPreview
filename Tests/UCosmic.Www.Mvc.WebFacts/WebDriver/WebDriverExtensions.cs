@@ -149,6 +149,8 @@ namespace UCosmic.Www.Mvc.WebDriver
         public static T WaitUntil<T>(this IWebDriver browser, Func<IWebDriver, T> condition,
             string failMessage, int? timeoutSeconds = null)
         {
+            failMessage = failMessage ?? "No specific message was given for this failure.";
+
             var timeoutSecondsInt = (timeoutSeconds.HasValue) 
                 ? timeoutSeconds.Value 
                 : AppConfig.DefaultWebDriverWaitSeconds;

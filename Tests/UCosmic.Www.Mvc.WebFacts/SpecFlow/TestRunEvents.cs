@@ -115,7 +115,7 @@ namespace UCosmic.Www.Mvc.SpecFlow
                                                              "Test run failed to initialize in @Browser because it could not find a sign in submit button."));
                         element.ClickButton();
                         firstBrowser.WaitUntil(b => b.Url.StartsWith(AbsoluteUrl.SignOn)
-                                                    || b.Url.StartsWith(AbsoluteUrl.Me), string.Format(
+                                                    || b.Url.StartsWith(AbsoluteUrl.PersonalHome), string.Format(
                                                         "Test run failed to initialize in @Browser because it did not arrive at the sign in or about me page."));
 
                         // look for a transport-level error ysod
@@ -124,8 +124,8 @@ namespace UCosmic.Www.Mvc.SpecFlow
                             continue; // try again
 
                         // go to the about me page
-                        firstBrowser.Navigate().GoToUrl(AbsoluteUrl.Me);
-                        firstBrowser.WaitUntil(b => b.Url.StartsWith(AbsoluteUrl.Me), string.Format(
+                        firstBrowser.Navigate().GoToUrl(AbsoluteUrl.PersonalHome);
+                        firstBrowser.WaitUntil(b => b.Url.StartsWith(AbsoluteUrl.PersonalHome), string.Format(
                             "Test run failed to initialize in @Browser because it did not arrive at the about me page."));
 
                         // attempt to save the form (without making any changes)
@@ -133,7 +133,7 @@ namespace UCosmic.Www.Mvc.SpecFlow
                                                          string.Format(
                                                              "Test run failed to initialize in @Browser because it could not find a submit button for the about me form."));
                         element.ClickButton();
-                        firstBrowser.WaitUntil(b => b.Url.StartsWith(AbsoluteUrl.Me), string.Format(
+                        firstBrowser.WaitUntil(b => b.Url.StartsWith(AbsoluteUrl.PersonalHome), string.Format(
                             "Test run failed to initialize in @Browser because it did not arrive at the about me page."));
 
                         // look for a transport-level error ysod

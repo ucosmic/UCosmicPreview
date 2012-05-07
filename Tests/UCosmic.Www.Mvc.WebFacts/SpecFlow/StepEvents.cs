@@ -39,5 +39,11 @@ namespace UCosmic.Www.Mvc.SpecFlow
                 }
             });
         }
+
+        [BeforeStep]
+        public void ThinkForTenMilliseconds()
+        {
+            10.WaitThisManyMilleseconds();
+        }
     }
 }

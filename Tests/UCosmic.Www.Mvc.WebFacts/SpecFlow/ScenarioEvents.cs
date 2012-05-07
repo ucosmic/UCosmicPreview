@@ -115,7 +115,7 @@ namespace UCosmic.Www.Mvc.SpecFlow
         #endregion
         #region Generated Email
 
-        [BeforeTestRun]
+        //[BeforeTestRun]
         [AfterScenario("GeneratesEmail")]
         public static void DeleteGeneratedEmail()
         {

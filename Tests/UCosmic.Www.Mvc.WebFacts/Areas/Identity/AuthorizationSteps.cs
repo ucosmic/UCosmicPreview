@@ -8,7 +8,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity
 {
     // ReSharper disable UnusedMember.Global
     [Binding]
-    public class AuthorizationSteps : StepDefinitionBase
+    public class AuthorizationSteps : BaseStepDefinition
     {
         #region Role Authorization Form
 

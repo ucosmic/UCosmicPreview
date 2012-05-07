@@ -29,6 +29,11 @@
 
     <script type="text/javascript">
         $('input[type=email]').focus();
+        $.validator.setDefaults({
+            onkeyup: false,
+            onfocusout: false,
+            onsubmit: true
+        });
     </script>
 
 }

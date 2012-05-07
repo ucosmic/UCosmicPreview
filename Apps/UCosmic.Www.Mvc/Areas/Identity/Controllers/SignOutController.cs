@@ -42,17 +42,22 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             // sign out and redirect back to this action
             if (!string.IsNullOrWhiteSpace(User.Identity.Name))
             {
-                TempData.SigningEmailAddress(User.Identity.Name);
+                // flash the success message
+                SetFeedbackMessage(SuccessMessage);
+
+                // remove the signing email from temp data for future reloads
+                TempData.SigningEmailAddress(null);
+
+                // delete the authentication cookie and redirect
                 _services.UserSigner.SignOff();
                 return RedirectToAction(MVC.Identity.SignOut.Get(returnUrl));
             }
 
             // determine which form to show
-            var emailAddress = TempData.SigningEmailAddress();
             var establishment = _services.QueryProcessor.Execute(
                 new GetEstablishmentByEmailQuery
                 {
-                    Email = emailAddress,
+                    Email = HttpContext.SigningEmailAddressCookie(),
                     EagerLoad = new Expression<Func<Establishment, object>>[]
                     {
                         e => e.SamlSignOn,
@@ -60,15 +65,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 }
             );
 
-            // return sign in view for local accounts
+            // return sign in view only if there was a non-saml cookie
             if (establishment != null && !establishment.HasSamlSignOn())
                 return View(new SignInForm(HttpContext, TempData, returnUrl));
 
-            // flash the success message
-            SetFeedbackMessage(SuccessMessage);
-
             // otherwise, return sign on view
-            TempData.SigningEmailAddress(null);
             return View(new SignOnForm(HttpContext, returnUrl));
         }
 

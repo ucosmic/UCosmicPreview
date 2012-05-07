@@ -10,7 +10,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 {
     [Binding]
     // ReSharper disable UnusedMember.Global
-    public class ConfigurationFormsSteps : StepDefinitionBase
+    public class ConfigurationFormsSteps : BaseStepDefinition
     {
         [Given(@"I have clicked the ""(.*)"" submit button in the Institutional Agreement Module Configuration form")]
         [When(@"I click the ""(.*)"" submit button in the Institutional Agreement Module Configuration form")]

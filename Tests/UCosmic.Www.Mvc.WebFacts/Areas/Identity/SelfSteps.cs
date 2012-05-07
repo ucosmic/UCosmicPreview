@@ -8,7 +8,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity
 {
     // ReSharper disable UnusedMember.Global
     [Binding]
-    public class SelfSteps : StepDefinitionBase
+    public class SelfSteps : BaseStepDefinition
     {
         #region My Name form
 
