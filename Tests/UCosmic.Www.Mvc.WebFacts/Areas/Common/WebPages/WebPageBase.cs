@@ -92,6 +92,66 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
             return Browser.TryFindElement(By.CssSelector(selector));
         }
 
+        public IWebElement GetFileUploadField(string fieldLabel)
+        {
+            const string keyFormat = "{0}[FileUpload]";
+            var key = string.Format(keyFormat, fieldLabel);
+            if (SpecToWeb.ContainsKey(key))
+            {
+                var fieldSelector = SpecToWeb[key];
+                var selector = string.Format(
+                    @"{0} {1}",
+                        EditorSelector, fieldSelector
+                ).Trim();
+                return Browser.WaitUntil(b => b.FindElement(By.CssSelector(selector)), string.Format(
+                    "A file upload input for the '{0}' field was not found in @Browser (CSS selector was '{1}').",
+                        fieldLabel, selector));
+            }
+
+            throw new NotSupportedException(
+                string.Format("The field label '{0}' does not exist.", fieldLabel));
+        }
+
+        public IEnumerable<IWebElement> GetCollectionItems(string fieldLabel, string subSelector = "ItemText")
+        {
+            const string keyFormat = "{0}[Collection='{1}']";
+            var key = string.Format(keyFormat, fieldLabel, subSelector);
+            if (SpecToWeb.ContainsKey(key))
+            {
+                var fieldSelector = SpecToWeb[key];
+                var selector = string.Format(
+                    @"{0} {1}",
+                        EditorSelector, fieldSelector
+                ).Trim();
+                return Browser.WaitUntil(b => b.FindElements(By.CssSelector(selector)), string.Format(
+                    "A '{0}' field collection item (with '{1}' sub-selection) was not found in @Browser (CSS selector was '{2}').",
+                        fieldLabel, subSelector, selector));
+            }
+
+            throw new NotSupportedException(
+                string.Format("The field label '{0}' does not exist.", fieldLabel));
+        }
+
+        public IWebElement GetCollectionItem(string fieldLabel, string subSelector)
+        {
+            const string keyFormat = "{0}[Collection='{1}']";
+            var key = string.Format(keyFormat, fieldLabel, subSelector);
+            if (SpecToWeb.ContainsKey(key))
+            {
+                var fieldSelector = SpecToWeb[key];
+                var selector = string.Format(
+                    @"{0} {1}",
+                        EditorSelector, fieldSelector
+                ).Trim();
+                return Browser.WaitUntil(b => b.FindElement(By.CssSelector(selector)), string.Format(
+                    "A '{0}' field collection item (with '{1}' sub-selection) was not found in @Browser (CSS selector was '{2}').",
+                        fieldLabel, subSelector, selector));
+            }
+
+            throw new NotSupportedException(
+                string.Format("The field label '{0}' does not exist.", fieldLabel));
+        }
+
         public IWebElement GetErrorMessage(string fieldLabel, bool allowNull = false)
         {
             if (SpecToWeb.ContainsKey(fieldLabel))
@@ -103,7 +163,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
                 ).Trim();
                 if (!allowNull)
                     return Browser.WaitUntil(b => b.FindElement(By.CssSelector(selector)), string.Format(
-                        "An error message for the '{0}' field (element named '{1}') should exist using @Browser.",
+                        "An error message for the '{0}' field (element named '{1}') should exist in @Browser.",
                             fieldLabel, fieldName));
 
                 return Browser.TryFindElement(By.CssSelector(selector));
@@ -126,8 +186,8 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
                 ).Trim();
                 if (!allowNull)
                     return Browser.WaitUntil(b => b.FindElement(By.CssSelector(selector)), string.Format(
-                    "An autocomplete menu for the '{0}' field was not found by @Browser (CSS selector was '{1}').",
-                        fieldLabel, selector));
+                        "An autocomplete menu for the '{0}' field was not found by @Browser (CSS selector was '{1}').",
+                            fieldLabel, selector));
 
                 return Browser.TryFindElement(By.CssSelector(selector));
             }

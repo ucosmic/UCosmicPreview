@@ -1,124 +1,137 @@
 ﻿@InstAgrForms
 @InstAgrFormsR02
-Feature:  Institutional Agreement Management Preview Revision 2
-		  In order to have centralized online access to documents relating to my Institutional Agreements
-		  As an Institutional Agreement Manager
-		  I want to upload, remove, and generally manage which files are attached to my Institutional Agreements in UCosmic
+Feature: Institutional Agreement Management Preview Revision 2
+    In order to have centralized online access to documents relating to my Institutional Agreements
+    As an Institutional Agreement Manager
+    I want to upload, remove, and generally manage which files are attached to my Institutional Agreements in UCosmic
+
+Background:
+    Given I am signed in as manager1@uc.edu
+    And I am starting from the Institutional Agreement Management page
 
 @InstAgrFormsR0201
-Scenario Outline: Institutional Agreement forms File Attachment successfully display upload input
-	Given I have signed in as "manager1@uc.edu" with password "asdfasdf"
-    And   I have browsed to the "my/institutional-agreements/v1" url
-    When  I click the "<LinkText>" link
-    Then  I should see a page at the "my/institutional-agreements/v1/[PathVar]/<AddOrEdit>" url
-    And   I should see a File Attachment upload input on the Institutional Agreements <AddOrEdit> form
-    Examples: 
+Scenario Outline: File upload input field is displayed in the File Attachments fieldset
+
+    When I click the "<LinkText>" link
+    Then I should see the Institutional Agreement <AddOrEdit> page
+    And I should see a File Attachments upload field
+
+Examples:
     | AddOrEdit | LinkText              |
-    | new       | Add a new agreement   |
-    | edit      | Agreement, UC 01 test |
+    | Add       | Add a new agreement   |
+    | Edit      | Agreement, UC 01 test |
 
-@InstAgrFormsR0202
-@NotInChrome
-Scenario Outline: Institutional Agreement forms File Attachment unsuccessfully add with invalid extension <FileName>
-	Given I have signed in as "manager1@uc.edu" with password "asdfasdf"
-	And   I have browsed to the "my/institutional-agreements/v1" url
-    And   I have clicked the "<LinkText>" link
-    And   I have seen a page at the "my/institutional-agreements/v1/[PathVar]/<AddOrEdit>" url
-    And   I have seen a File Attachment upload input on the Institutional Agreements <AddOrEdit> form
-    When  I select "<FilePath>" as a File Attachment on the Institutional Agreements <AddOrEdit> form
-    Then  I should not see "<FileName>" in the File Attachments list box on the Institutional Agreement <AddOrEdit> form
-    And   I should see an invalid extension error message for the File Attachment upload input on the Institutional Agreement <AddOrEdit> form
-    Examples:  
+@InstAgrFormsR0202 @NotInChrome
+Scenario Outline: Add file attachment fails for invalid file types
+
+    When I click the "<LinkText>" link
+    Then I should see the Institutional Agreement <AddOrEdit> page
+    And I should see a File Attachments upload field
+
+    When I choose the file "<FilePath>" for the File Attachments upload field
+    Then I should not see an item for "<FileName>" in the File Attachments list
+    And I should see the Invalid error message for the File Attachments field
+
+Examples:
     | AddOrEdit | LinkText              | FilePath                                     | FileName           |
-    | new       | Add a new agreement   | C:\\WebDriverFileUploads\\JavaScriptFile1.js | JavaScriptFile1.js |
-    | new       | Add a new agreement   | C:\\WebDriverFileUploads\\VbScriptFile1.vb   | VbScriptFile1.vb   |
-    | new       | Add a new agreement   | C:\\WebDriverFileUploads\\ExtensionlessFile1 | ExtensionlessFile1 |
-    | edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\JavaScriptFile1.js | JavaScriptFile1.js |
-    | edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\VbScriptFile1.vb   | VbScriptFile1.vb   |
-    | edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\ExtensionlessFile1 | ExtensionlessFile1 |
+    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\JavaScriptFile1.js | JavaScriptFile1.js |
+    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\VbScriptFile1.vb   | VbScriptFile1.vb   |
+    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\ExtensionlessFile1 | ExtensionlessFile1 |
+    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\JavaScriptFile1.js | JavaScriptFile1.js |
+    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\VbScriptFile1.vb   | VbScriptFile1.vb   |
+    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\ExtensionlessFile1 | ExtensionlessFile1 |
 
-@InstAgrFormsR0203
-@NotInChrome
-Scenario Outline: Institutional Agreement forms File Attachment successfully add to list box
-	Given I have signed in as "manager1@uc.edu" with password "asdfasdf"
-	And   I have browsed to the "my/institutional-agreements/v1" url
-    And   I have clicked the "<LinkText>" link
-    And   I have seen a page at the "my/institutional-agreements/v1/[PathVar]/<AddOrEdit>" url
-    And   I have seen a File Attachment upload input on the Institutional Agreements <AddOrEdit> form
-    When  I select "<FilePath>" as a File Attachment on the Institutional Agreements <AddOrEdit> form
-    Then  I should see "<FileName>" in the File Attachments list box on the Institutional Agreement <AddOrEdit> form
-    And   I should not see an invalid extension error message for the File Attachment upload input on the Institutional Agreement <AddOrEdit> form
-    Examples:  
+@InstAgrFormsR0203 @NotInChrome
+Scenario Outline: Add file attachment succeeds for allowed file types
+
+    When I click the "<LinkText>" link
+    Then I should see the Institutional Agreement <AddOrEdit> page
+    And I should see a File Attachments upload field
+
+    When I choose the file "<FilePath>" for the File Attachments upload field
+    Then I should see an item for "<FileName>" in the File Attachments list
+    And I should not see the Invalid error message for the File Attachments field
+
+Examples:
     | AddOrEdit | LinkText              | FilePath                                       | FileName             |
-    | new       | Add a new agreement   | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf   | SpecFlow Guide.pdf   |
-    | new       | Add a new agreement   | C:\\WebDriverFileUploads\\WordDocument1.doc    | WordDocument1.doc    |
-    | new       | Add a new agreement   | C:\\WebDriverFileUploads\\WordDocument1.docx   | WordDocument1.docx   |
-    | new       | Add a new agreement   | C:\\WebDriverFileUploads\\OpenDocument1.odt    | OpenDocument1.odt    |
-    | new       | Add a new agreement   | C:\\WebDriverFileUploads\\ExcelWorkbook1.xls   | ExcelWorkbook1.xls   |
-    | new       | Add a new agreement   | C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx  | ExcelWorkbook1.xlsx  |
-    | new       | Add a new agreement   | C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods | OpenSpreadsheet1.ods |
-    | new       | Add a new agreement   | C:\\WebDriverFileUploads\\PowerPoint1.ppt      | PowerPoint1.ppt      |
-    | new       | Add a new agreement   | C:\\WebDriverFileUploads\\PowerPoint1.pptx     | PowerPoint1.pptx     |
-    | edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf   | SpecFlow Guide.pdf   |
-    | edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\WordDocument1.doc    | WordDocument1.doc    |
-    | edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\WordDocument1.docx   | WordDocument1.docx   |
-    | edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\OpenDocument1.odt    | OpenDocument1.odt    |
-    | edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\ExcelWorkbook1.xls   | ExcelWorkbook1.xls   |
-    | edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx  | ExcelWorkbook1.xlsx  |
-    | edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods | OpenSpreadsheet1.ods |
-    | edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\PowerPoint1.ppt      | PowerPoint1.ppt      |
-    | edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\PowerPoint1.pptx     | PowerPoint1.pptx     |
+    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf   | SpecFlow Guide.pdf   |
+    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\WordDocument1.doc    | WordDocument1.doc    |
+    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\WordDocument1.docx   | WordDocument1.docx   |
+    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\OpenDocument1.odt    | OpenDocument1.odt    |
+    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\ExcelWorkbook1.xls   | ExcelWorkbook1.xls   |
+    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx  | ExcelWorkbook1.xlsx  |
+    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods | OpenSpreadsheet1.ods |
+    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\PowerPoint1.ppt      | PowerPoint1.ppt      |
+    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\PowerPoint1.pptx     | PowerPoint1.pptx     |
+    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf   | SpecFlow Guide.pdf   |
+    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\WordDocument1.doc    | WordDocument1.doc    |
+    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\WordDocument1.docx   | WordDocument1.docx   |
+    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\OpenDocument1.odt    | OpenDocument1.odt    |
+    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\ExcelWorkbook1.xls   | ExcelWorkbook1.xls   |
+    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx  | ExcelWorkbook1.xlsx  |
+    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods | OpenSpreadsheet1.ods |
+    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\PowerPoint1.ppt      | PowerPoint1.ppt      |
+    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\PowerPoint1.pptx     | PowerPoint1.pptx     |
 
-@NotInChrome
-@InstAgrFormsR0204
-Scenario Outline: Institutional Agreement forms File Attachment successfully remove from list box
-	Given I have signed in as "manager1@uc.edu" with password "asdfasdf"
-	And   I have browsed to the "my/institutional-agreements/v1" url
-    And   I have clicked the "<LinkText>" link
-    And   I have seen a page at the "my/institutional-agreements/v1/[PathVar]/<AddOrEdit>" url
-    And   I have seen a File Attachment upload input on the Institutional Agreements <AddOrEdit> form
-    And   I have selected "<FilePath>" as a File Attachment on the Institutional Agreements <AddOrEdit> form
-    And   I have seen "<FileName>" in the File Attachments list box on the Institutional Agreement <AddOrEdit> form
-    And   I have not seen an invalid extension error message for the File Attachment upload input on the Institutional Agreement <AddOrEdit> form
-    When  I click the File Attachment remove icon for "<FileName>" on the Institutional Agreements <AddOrEdit> form
-    Then  I should not see "<FileName>" in the File Attachments list box on the Institutional Agreement <AddOrEdit> form
-Examples: 
+@InstAgrFormsR0204 @NotInChrome
+Scenario Outline: Remove file attachment from list succeeds
+
+    When I click the "<LinkText>" link
+    Then I should see the Institutional Agreement <AddOrEdit> page
+    And I should see a File Attachments upload field
+
+    When I choose the file "<FilePath>" for the File Attachments upload field
+    Then I should see an item for "<FileName>" in the File Attachments list
+    And I should not see the Invalid error message for the File Attachments field
+
+    When I click the remove icon for "<FileName>" in the File Attachments list
+    Then I should not see an item for "<FileName>" in the File Attachments list
+
+Examples:
     | AddOrEdit | LinkText              | FilePath                                   | FileName         |
-    | new       | Add a new agreement   | C:\\WebDriverFileUploads\\LargePdf33.8.pdf | LargePdf33.8.pdf |
-    | edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\LargePdf33.8.pdf | LargePdf33.8.pdf |
+    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\LargePdf33.8.pdf | LargePdf33.8.pdf |
+    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\LargePdf33.8.pdf | LargePdf33.8.pdf |
 
-@InstAgrFormsR0205 @NotInChrome @InstAgrFormsFreshTestAgreementUc01
-Scenario Outline: Institutional Agreement forms File Attachment successfully display in files column after edit
-  	Given I have signed in as "manager1@uc.edu" with password "asdfasdf"
-    And   I have browsed to the "my/institutional-agreements/v1" url
-	And   I have clicked the "Agreement, UC 01 test" link
-	And   I have seen a page at the "my/institutional-agreements/v1/[PathVar]/edit" url
-    And   I have seen a File Attachment upload input on the Institutional Agreements <AddOrEdit> form
-    And   I have selected "<FilePath>" as a File Attachment on the Institutional Agreements <AddOrEdit> form
-    And   I have seen "<FileName>" in the File Attachments list box on the Institutional Agreement edit form
-    And   I have not seen an invalid extension error message for the File Attachment upload input on the Institutional Agreement <AddOrEdit> form
-    When  I successfully submit the Institutional Agreement edit form
-	Then  I should see a page at the "institutional-agreements/[PathVar]" url within 30 seconds
-	And   I should see a "<FileName>" link
-    Examples: 
-    | FilePath                                     | FileName           |
-    | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf | SpecFlow Guide.pdf |
-    | C:\\WebDriverFileUploads\\WordDocument1.doc  | WordDocument1.doc  |
-    | C:\\WebDriverFileUploads\\WordDocument1.docx | WordDocument1.docx |
+@InstAgrFormsR0205 @InstAgrFormsFreshTestAgreementUc01
+Scenario Outline: Upload file attachment succeeds and displays link to file after upload
 
-@InstAgrFormsR0206
-@NotInChrome
-Scenario Outline: Institutional Agreement forms File Attachment unsuccessfully add file over 25 mb in size
-	Given I have signed in as "manager1@uc.edu" with password "asdfasdf"
-	And   I have browsed to the "my/institutional-agreements/v1" url
-    And   I have clicked the "Agreement, UC 01 test" link
-    And   I have seen a page at the "my/institutional-agreements/v1/[PathVar]/edit" url
-    And   I have seen a File Attachment upload input on the Institutional Agreements edit form
-    And   I have selected "<FilePath>" as a File Attachment on the Institutional Agreements edit form
-    And   I have seen "<FileName>" in the File Attachments list box on the Institutional Agreement edit form
-    When  I click the "Save Changes" submit button on the Institutional Agreement edit form
-    Then  I should see a page at the "errors/file-upload-too-large.html" url within 60 seconds
-    Examples:  
+    Given I am using the <BrowserName> browser
+
+    When I click the "<AgreementLink>" link
+    Then I should see the Institutional Agreement Edit page
+    And I should see a File Attachments upload field
+
+    When I choose the file "<FilePath>" for the File Attachments upload field
+    Then I should see an item for "<FileName>" in the File Attachments list
+    And I should not see the Invalid error message for the File Attachments field
+
+    When I click the "Save Changes" submit button
+    Then I should see the Public Institutional Agreement Detail page within 30 seconds
+    And I should see a "<FileName>" link
+
+Examples:
+    | BrowserName       | AgreementLink         | FilePath                                     | FileName           |
+    | Firefox           | Agreement, UC 01 test | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf | SpecFlow Guide.pdf |
+    | Firefox           | Agreement, UC 01 test | C:\\WebDriverFileUploads\\WordDocument1.doc  | WordDocument1.doc  |
+    | Firefox           | Agreement, UC 01 test | C:\\WebDriverFileUploads\\WordDocument1.docx | WordDocument1.docx |
+    | Internet Explorer | Agreement, UC 02 test | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf | SpecFlow Guide.pdf |
+    | Internet Explorer | Agreement, UC 02 test | C:\\WebDriverFileUploads\\WordDocument1.doc  | WordDocument1.doc  |
+    | Internet Explorer | Agreement, UC 02 test | C:\\WebDriverFileUploads\\WordDocument1.docx | WordDocument1.docx |
+
+@InstAgrFormsR0206 @NotInChrome
+Scenario Outline: Upload file attachment faile for file over 25 megabytes in size
+
+    When I click the "Agreement, UC 01 test" link
+    Then I should see the Institutional Agreement Edit page
+    And I should see a File Attachments upload field
+
+    When I choose the file "<FilePath>" for the File Attachments upload field
+    Then I should see an item for "<FileName>" in the File Attachments list
+
+    When I click the "Save Changes" submit button
+    Then I should see the File Upload Too Large page within 60 seconds
+
+Examples:
     | FilePath                                   | FileName         |
     | C:\\WebDriverFileUploads\\LargePdf33.8.pdf | LargePdf33.8.pdf |
 

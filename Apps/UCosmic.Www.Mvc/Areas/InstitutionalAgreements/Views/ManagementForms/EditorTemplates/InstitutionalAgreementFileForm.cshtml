@@ -14,7 +14,7 @@
                     <input type="file" id="@Html.IdFor(m => m.PostedFile)" name="@Html.NameFor(m => m.PostedFile)" />
                 </div>
                 <div class="file-ext-invalid" style="display: none;">
-                    <span class="field-validation-error">You may only upload PDF, Microsoft Office, and
+                    <span class="field-validation-error" data-valmsg-for="PostedFile">You may only upload PDF, Microsoft Office, and
                         Open Document files with a pdf, doc, docx, odt, xls, xlsx, ods, ppt, or pptx extension.</span>
                 </div>
             </div>

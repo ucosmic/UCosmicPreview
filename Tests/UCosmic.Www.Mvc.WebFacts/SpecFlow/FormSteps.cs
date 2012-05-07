@@ -24,8 +24,7 @@ namespace UCosmic.Www.Mvc.SpecFlow
                 var button = browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
                     string.Format("Submit button labeled '{0}' was not found by @Browser (using CSS selector {1})",
                         label, cssSelector));
-                90.WaitThisManyMilleseconds();
-                button.Submit();
+                button.ClickButton();
             });
         }
 
@@ -41,8 +40,7 @@ namespace UCosmic.Www.Mvc.SpecFlow
                 var button = browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
                     string.Format("Submit button was not found by @Browser (using CSS selector {0})",
                         cssSelector));
-                100.WaitThisManyMilleseconds();
-                button.Submit();
+                button.ClickButton();
             });
         }
 

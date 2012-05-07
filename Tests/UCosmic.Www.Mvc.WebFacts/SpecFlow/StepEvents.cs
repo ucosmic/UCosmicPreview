@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using UCosmic.Www.Mvc.WebDriver;
+using System.Diagnostics;
 
 namespace UCosmic.Www.Mvc.SpecFlow
 {
@@ -40,10 +41,11 @@ namespace UCosmic.Www.Mvc.SpecFlow
             });
         }
 
-        [BeforeStep]
-        public void ThinkForTenMilliseconds()
-        {
-            10.WaitThisManyMilleseconds();
-        }
+        //[BeforeStep]
+        //[DebuggerStepThrough]
+        //public void ThinkForTenMilliseconds()
+        //{
+        //    10.WaitThisManyMilleseconds();
+        //}
     }
 }

@@ -23,6 +23,19 @@ namespace UCosmic.Www.Mvc.SpecFlow
                             browser.Url, url)));
         }
 
+        [Given(@"I saw the (.*) page within (.*) seconds")]
+        [When(@"I see the (.*) page within (.*) seconds")]
+        [Then(@"I should see the (.*) page within (.*) seconds")]
+        public void SeePageWithinGivenTimeFrame(string title, int timeoutInSeconds)
+        {
+            var url = RelativeUrl.For(title);
+            url = url.ToAbsoluteUrl();
+
+            Browsers.ForEach(browser => browser.WaitUntil(b => b.Url.MatchesUrl(url),
+                string.Format("@Browser is at '{0}' instead of the expected '{1}' URL.",
+                            browser.Url, url), timeoutInSeconds));
+        }
+
         [Given(@"I am starting from the (.*) page")]
         public void GoToPage(string title)
         {

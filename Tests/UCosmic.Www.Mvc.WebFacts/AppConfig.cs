@@ -14,6 +14,7 @@ namespace UCosmic.Www.Mvc
         public const string EnterPassword = "Enter Password";
         public const string SignOut = "Sign Out";
         public const string PersonalHome = "Personal Home";
+        public const string FileUploadTooLarge = "File Upload Too Large";
         public const string InstitutionalAgreementManagement = "Institutional Agreement Management";
         public const string InstitutionalAgreementAdd = "Institutional Agreement Add";
         public const string InstitutionalAgreementEdit = "Institutional Agreement Edit";
@@ -28,6 +29,7 @@ namespace UCosmic.Www.Mvc
         public const string EnterPassword = SignInRouter.Get.Route;
         public const string SignOut = SignOutRouter.Get.Route;
         public const string PersonalHome = MyHomeRouter.Get.Route;
+        public const string FileUploadTooLarge = "errors/file-upload-too-large.html";
         public const string InstitutionalAgreementManagement = "my/institutional-agreements/v1";
         public const string InstitutionalAgreementAdd = "my/institutional-agreements/v1/new";
         public const string InstitutionalAgreementEdit = "my/institutional-agreements/v1/[PathVar]/edit";
@@ -41,6 +43,7 @@ namespace UCosmic.Www.Mvc
             { NamedUrl.EnterPassword, EnterPassword },
             { NamedUrl.SignOut, SignOut },
             { NamedUrl.PersonalHome, PersonalHome },
+            { NamedUrl.FileUploadTooLarge, FileUploadTooLarge },
             { NamedUrl.InstitutionalAgreementManagement, InstitutionalAgreementManagement },
             { NamedUrl.InstitutionalAgreementAdd, InstitutionalAgreementAdd },
             { NamedUrl.InstitutionalAgreementEdit, InstitutionalAgreementEdit },

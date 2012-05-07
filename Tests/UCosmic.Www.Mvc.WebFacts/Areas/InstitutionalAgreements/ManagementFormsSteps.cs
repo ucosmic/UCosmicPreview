@@ -369,164 +369,164 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 
         #region Release / Preview 2: File Attachments
 
-        [Given(@"I have seen a File Attachment upload input on the Institutional Agreements (.*) form")]
-        [When(@"I see a File Attachment upload input on the Institutional Agreements (.*) form")]
-        [Then(@"I should see a File Attachment upload input on the Institutional Agreements (.*) form")]
-        public void SeeFileAttachmentUploadInput(string addOrEdit)
-        {
-            const string cssSelector = "#institutional_agreement_editor ul#file_upload .file-chooser input[type='file']";
+        //[Given(@"I have seen a File Attachment upload input on the Institutional Agreements (.*) form")]
+        //[When(@"I see a File Attachment upload input on the Institutional Agreements (.*) form")]
+        //[Then(@"I should see a File Attachment upload input on the Institutional Agreements (.*) form")]
+        //public void SeeFileAttachmentUploadInput(string addOrEdit)
+        //{
+        //    const string cssSelector = "#institutional_agreement_editor ul#file_upload .file-chooser input[type='file']";
 
-            Browsers.ForEach(browser =>
-                                 {
-                                     var fileUpload = browser.WaitUntil(
-                                         b => b.FindElement(By.CssSelector(cssSelector)), string.Format(
-                                             "A file upload element does not exist on the Institutional Agreements {0} form using @Browser.",
-                                             addOrEdit));
+        //    Browsers.ForEach(browser =>
+        //                         {
+        //                             var fileUpload = browser.WaitUntil(
+        //                                 b => b.FindElement(By.CssSelector(cssSelector)), string.Format(
+        //                                     "A file upload element does not exist on the Institutional Agreements {0} form using @Browser.",
+        //                                     addOrEdit));
 
-                                     browser.WaitUntil(b => fileUpload.Displayed, string.Format(
-                                         "The element at CssSelector '{0}' was not displayed in the Institutional Agreements {1} form using @Browser.",
-                                         cssSelector, addOrEdit));
-                                 });
-        }
+        //                             browser.WaitUntil(b => fileUpload.Displayed, string.Format(
+        //                                 "The element at CssSelector '{0}' was not displayed in the Institutional Agreements {1} form using @Browser.",
+        //                                 cssSelector, addOrEdit));
+        //                         });
+        //}
 
-        [Given(@"I have selected ""(.*)"" as a File Attachment on the Institutional Agreements (.*) form")]
-        [When(@"I select ""(.*)"" as a File Attachment on the Institutional Agreements (.*) form")]
-        [Then(@"I should select ""(.*)"" as a File Attachment on the Institutional Agreements (.*) form")]
-        public void SelectFileToAttach(string filePath, string addOrEdit)
-        {
-            const string cssSelector = "#institutional_agreement_editor ul#file_upload .file-chooser input[type='file']";
+        //[Given(@"I have selected ""(.*)"" as a File Attachment on the Institutional Agreements (.*) form")]
+        //[When(@"I select ""(.*)"" as a File Attachment on the Institutional Agreements (.*) form")]
+        //[Then(@"I should select ""(.*)"" as a File Attachment on the Institutional Agreements (.*) form")]
+        //public void SelectFileToAttach(string filePath, string addOrEdit)
+        //{
+        //    const string cssSelector = "#institutional_agreement_editor ul#file_upload .file-chooser input[type='file']";
 
-            Browsers.ForEach(browser =>
-                                 {
-                                     var fileUpload = browser.WaitUntil(
-                                         b => b.FindElement(By.CssSelector(cssSelector)), string.Format(
-                                             "A file upload element does not exist on the Institutional Agreements {0} form using @Browser.",
-                                             addOrEdit));
+        //    Browsers.ForEach(browser =>
+        //                         {
+        //                             var fileUpload = browser.WaitUntil(
+        //                                 b => b.FindElement(By.CssSelector(cssSelector)), string.Format(
+        //                                     "A file upload element does not exist on the Institutional Agreements {0} form using @Browser.",
+        //                                     addOrEdit));
 
-                                     fileUpload.ChooseFile(filePath);
-                                 });
-        }
+        //                             fileUpload.ChooseFile(filePath);
+        //                         });
+        //}
 
-        [Given(
-            @"I have (.*) an invalid extension error message for the File Attachment upload input on the Institutional Agreement (.*) form"
-            )]
-        [When(
-            @"I (.*) an invalid extension error message for the File Attachment upload input on the Institutional Agreement (.*) form"
-            )]
-        [Then(
-            @"I should (.*) an invalid extension error message for the File Attachment upload input on the Institutional Agreement (.*) form"
-            )]
-        public void SeeFileAttachmentInvalidExtensionErrorMessage(string seeOrNot, string addOrEdit)
-        {
-            const string expectedErrorMessage =
-                "You may only upload PDF, Microsoft Office, and Open Document files with a " +
-                "pdf, doc, docx, odt, xls, xlsx, ods, ppt, or pptx extension.";
-            const string cssSelector =
-                "#institutional_agreement_editor .file-chooser .file-ext-invalid span.field-validation-error";
-            var shouldSee = (seeOrNot == "see" || seeOrNot == "seen");
+        //[Given(
+        //    @"I have (.*) an invalid extension error message for the File Attachment upload input on the Institutional Agreement (.*) form"
+        //    )]
+        //[When(
+        //    @"I (.*) an invalid extension error message for the File Attachment upload input on the Institutional Agreement (.*) form"
+        //    )]
+        //[Then(
+        //    @"I should (.*) an invalid extension error message for the File Attachment upload input on the Institutional Agreement (.*) form"
+        //    )]
+        //public void SeeFileAttachmentInvalidExtensionErrorMessage(string seeOrNot, string addOrEdit)
+        //{
+        //    const string expectedErrorMessage =
+        //        "You may only upload PDF, Microsoft Office, and Open Document files with a " +
+        //        "pdf, doc, docx, odt, xls, xlsx, ods, ppt, or pptx extension.";
+        //    const string cssSelector =
+        //        "#institutional_agreement_editor .file-chooser .file-ext-invalid span.field-validation-error";
+        //    var shouldSee = (seeOrNot == "see" || seeOrNot == "seen");
 
-            Browsers.ForEach(browser =>
-                                 {
-                                     if (shouldSee)
-                                     {
-                                         // ensure that the validation element was located
-                                         var validationElement =
-                                             browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
-                                                               string.Format(
-                                                                   "Extension validation element for the File Attachment upload input on the Institutional Agreement {0} form could not be found using @Browser.",
-                                                                   addOrEdit));
+        //    Browsers.ForEach(browser =>
+        //                         {
+        //                             if (shouldSee)
+        //                             {
+        //                                 // ensure that the validation element was located
+        //                                 var validationElement =
+        //                                     browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
+        //                                                       string.Format(
+        //                                                           "Extension validation element for the File Attachment upload input on the Institutional Agreement {0} form could not be found using @Browser.",
+        //                                                           addOrEdit));
 
-                                         browser.WaitUntil(
-                                             b =>
-                                             validationElement.Displayed &&
-                                             validationElement.Text.Equals(expectedErrorMessage), string.Format(
-                                                 "Expected error message '{0}' was not displayed for the File Attachment upload input on the Institutional Agreement {2} form using @Browser. " +
-                                                 "(Actual error message was '{1}'.)", expectedErrorMessage,
-                                                 validationElement.Text, addOrEdit));
-                                     }
-                                     else
-                                     {
-                                         var validationElement = browser.TryFindElement(By.CssSelector(cssSelector));
-                                         browser.WaitUntil(
-                                             b => validationElement == null || !validationElement.Displayed,
-                                             string.Format(
-                                                 "Extension validation element for the File Attachment upload input on the Institutional Agreement {0} form was unexpectedly displayed using @Browser.",
-                                                 addOrEdit));
-                                     }
-                                 });
-        }
+        //                                 browser.WaitUntil(
+        //                                     b =>
+        //                                     validationElement.Displayed &&
+        //                                     validationElement.Text.Equals(expectedErrorMessage), string.Format(
+        //                                         "Expected error message '{0}' was not displayed for the File Attachment upload input on the Institutional Agreement {2} form using @Browser. " +
+        //                                         "(Actual error message was '{1}'.)", expectedErrorMessage,
+        //                                         validationElement.Text, addOrEdit));
+        //                             }
+        //                             else
+        //                             {
+        //                                 var validationElement = browser.TryFindElement(By.CssSelector(cssSelector));
+        //                                 browser.WaitUntil(
+        //                                     b => validationElement == null || !validationElement.Displayed,
+        //                                     string.Format(
+        //                                         "Extension validation element for the File Attachment upload input on the Institutional Agreement {0} form was unexpectedly displayed using @Browser.",
+        //                                         addOrEdit));
+        //                             }
+        //                         });
+        //}
 
-        [Given(@"I have (.*) ""(.*)"" in the File Attachments list box on the Institutional Agreement (.*) form")]
-        [When(@"I (.*) ""(.*)"" in the File Attachments list box on the Institutional Agreement (.*) form")]
-        [Then(@"I should (.*) ""(.*)"" in the File Attachments list box on the Institutional Agreement (.*) form")]
-        public void SeeFileAttachmentInListBox(string seeOrNot, string expectedFileName, string addOrEdit)
-        {
-            const string cssSelector = "ul#file_attachments li.file-attachment .file-chosen .file-name";
-            var shouldSee = (seeOrNot == "see" || seeOrNot == "seen");
+        //[Given(@"I have (.*) ""(.*)"" in the File Attachments list box on the Institutional Agreement (.*) form")]
+        //[When(@"I (.*) ""(.*)"" in the File Attachments list box on the Institutional Agreement (.*) form")]
+        //[Then(@"I should (.*) ""(.*)"" in the File Attachments list box on the Institutional Agreement (.*) form")]
+        //public void SeeFileAttachmentInListBox(string seeOrNot, string expectedFileName, string addOrEdit)
+        //{
+        //    const string cssSelector = "ul#file_attachments li.file-attachment .file-chosen .file-name";
+        //    var shouldSee = (seeOrNot == "see" || seeOrNot == "seen");
 
-            Browsers.ForEach(browser =>
-            {
-                // select all LI items in the UL
-                var fileItems = browser.WaitUntil(b => b.FindElements(By.CssSelector(cssSelector)), string.Format(
-                    "File Attachments list box items do not exist on the Institutional Agreement {0} form using @Browser.",
-                        addOrEdit));
+        //    Browsers.ForEach(browser =>
+        //    {
+        //        // select all LI items in the UL
+        //        var fileItems = browser.WaitUntil(b => b.FindElements(By.CssSelector(cssSelector)), string.Format(
+        //            "File Attachments list box items do not exist on the Institutional Agreement {0} form using @Browser.",
+        //                addOrEdit));
 
-                var targetItems = fileItems.Where(li => li.Text.Equals(expectedFileName));
-                if (shouldSee)
-                {
-                    //targetItems.Count().ShouldNotEqual(0, string.Format(
-                    //    "File Attachments list box does not contain item with text '{0}' on the Institutional Agreement {1} form using {2} browser.",
-                    //    expectedFileName, addOrEdit, browser.Name()));
-                    targetItems.Count().ShouldNotEqual(0);
+        //        var targetItems = fileItems.Where(li => li.Text.Equals(expectedFileName));
+        //        if (shouldSee)
+        //        {
+        //            //targetItems.Count().ShouldNotEqual(0, string.Format(
+        //            //    "File Attachments list box does not contain item with text '{0}' on the Institutional Agreement {1} form using {2} browser.",
+        //            //    expectedFileName, addOrEdit, browser.Name()));
+        //            targetItems.Count().ShouldNotEqual(0);
 
-                    foreach (var targetItem in targetItems)
-                    {
-                        targetItem.ShouldNotBeNull(string.Format(
-                            "File Attachments list box does not contain item with text '{0}' on the Institutional Agreement {1} form using {2} browser.",
-                                expectedFileName, addOrEdit, browser.Name()));
+        //            foreach (var targetItem in targetItems)
+        //            {
+        //                targetItem.ShouldNotBeNull(string.Format(
+        //                    "File Attachments list box does not contain item with text '{0}' on the Institutional Agreement {1} form using {2} browser.",
+        //                        expectedFileName, addOrEdit, browser.Name()));
 
-                        // verify the participant name is displayed
-                        var item = targetItem;
-                        browser.WaitUntil(b => item.Displayed && item.Text.Contains(expectedFileName), string.Format(
-                            "File Attachments list box did not contain expected item '{0}' on the Institutional Agreement {2} form using @Browser. " +
-                                "(Actual value was '{1}'.)", expectedFileName, targetItem.Text, addOrEdit));
-                    }
-                }
-                else if (targetItems.Any())
-                {
-                    foreach (var targetItem in targetItems)
-                    {
-                        var item = targetItem;
-                        browser.WaitUntil(b => item == null || !item.Displayed, string.Format(
-                            "File Attachments list box item with text '{0}' was unexpectedly displayed on the Institutional Agreement {1} form using @Browser.",
-                                expectedFileName, addOrEdit));
-                    }
-                }
-            });
-        }
+        //                // verify the participant name is displayed
+        //                var item = targetItem;
+        //                browser.WaitUntil(b => item.Displayed && item.Text.Contains(expectedFileName), string.Format(
+        //                    "File Attachments list box did not contain expected item '{0}' on the Institutional Agreement {2} form using @Browser. " +
+        //                        "(Actual value was '{1}'.)", expectedFileName, targetItem.Text, addOrEdit));
+        //            }
+        //        }
+        //        else if (targetItems.Any())
+        //        {
+        //            foreach (var targetItem in targetItems)
+        //            {
+        //                var item = targetItem;
+        //                browser.WaitUntil(b => item == null || !item.Displayed, string.Format(
+        //                    "File Attachments list box item with text '{0}' was unexpectedly displayed on the Institutional Agreement {1} form using @Browser.",
+        //                        expectedFileName, addOrEdit));
+        //            }
+        //        }
+        //    });
+        //}
 
-        [Given(@"I have clicked the File Attachment remove icon for ""(.*)"" on the Institutional Agreements (.*) form")
-        ]
-        [When(@"I click the File Attachment remove icon for ""(.*)"" on the Institutional Agreements (.*) form")]
-        [Then(@"I should click the File Attachment remove icon for ""(.*)"" on the Institutional Agreements (.*) form")]
-        public void ClickFileAttachmentRemoveIcon(string fileName, string addOrEdit)
-        {
-            var cssSelector = string.Format(
-                @"ul#file_attachments li.file-attachment .file-chosen a.remove-button[data-file-name=""{0}""]", fileName);
-            Browsers.ForEach(browser =>
-                                 {
-                                     var link = browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
-                                                                  string.Format(
-                                                                      "File Attachment remove icon for the '{0}' file could not be found on the Institutional Agreement {1} form using @Browser",
-                                                                      fileName, addOrEdit));
+        //[Given(@"I have clicked the File Attachment remove icon for ""(.*)"" on the Institutional Agreements (.*) form")
+        //]
+        //[When(@"I click the File Attachment remove icon for ""(.*)"" on the Institutional Agreements (.*) form")]
+        //[Then(@"I should click the File Attachment remove icon for ""(.*)"" on the Institutional Agreements (.*) form")]
+        //public void ClickFileAttachmentRemoveIcon(string fileName, string addOrEdit)
+        //{
+        //    var cssSelector = string.Format(
+        //        @"ul#file_attachments li.file-attachment .file-chosen a.remove-button[data-file-name=""{0}""]", fileName);
+        //    Browsers.ForEach(browser =>
+        //                         {
+        //                             var link = browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
+        //                                                          string.Format(
+        //                                                              "File Attachment remove icon for the '{0}' file could not be found on the Institutional Agreement {1} form using @Browser",
+        //                                                              fileName, addOrEdit));
 
-                                     browser.WaitUntil(b => link.Displayed, string.Format(
-                                         "File Attachment remove icon for the '{0}' file was not displayed on the Institutional Agreement {1} form using @Browser",
-                                         fileName, addOrEdit));
+        //                             browser.WaitUntil(b => link.Displayed, string.Format(
+        //                                 "File Attachment remove icon for the '{0}' file was not displayed on the Institutional Agreement {1} form using @Browser",
+        //                                 fileName, addOrEdit));
 
-                                     link.ClickLink();
-                                 });
-        }
+        //                             link.ClickLink();
+        //                         });
+        //}
 
         #endregion
 
