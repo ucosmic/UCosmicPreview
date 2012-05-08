@@ -1,61 +1,77 @@
 ﻿@InstAgrForms
 @InstAgrFormsR04
-Feature:  Institutional Agreement Management Preview Revision 4
-		  In order to inform the people about the use of an expiration date field for my Institutional Agreements
-		  As an Institutional Agreement Manager
-		  I want to help the people enter expiration date information attached to my Institutional Agreements in UCosmic
+Feature: Institutional Agreement Management Preview Revision 4
+    In order to inform the people about the use of an expiration date field for my Institutional Agreements
+    As an Institutional Agreement Manager
+    I want to help the people enter expiration date information attached to my Institutional Agreements in UCosmic
 
 #execute these steps before every scenario in this file
 Background: 
-	Given I have signed in as "manager1@uc.edu" with password "asdfasdf"
-	And   I have browsed to the "my/institutional-agreements/v1" url
+    Given I am signed in as manager1@uc.edu
+    And I am starting from the Institutional Agreement Management page
 
 @InstAgrFormsR0401
-Scenario Outline: Institutional Agreement forms display the Help link
-    When  I click the "<LinkText>" link
-    And   I see a page at the "my/institutional-agreements/v1/[PathVar]/<AddOrEdit>" url
-    Then  I should see a "Help" link
- Examples: 
- | AddOrEdit | LinkText              |
- | new       | Add a new agreement   |
- | edit      | Agreement, UC 01 test |
+Scenario Outline: Display Help link for Expiration Date field
+
+    When I click the "<LinkText>" link
+    Then I should see the Institutional Agreement <AddOrEdit> page
+    And I should see a "Help" link
+
+ Examples:
+    | AddOrEdit | LinkText              |
+    | Add       | Add a new agreement   |
+    | Edit      | Agreement, UC 01 test |
 
  @InstAgrFormsR0402
- Scenario Outline: Institutional Agreement forms successfully displays bubble pop up for the Help link
-    Given I have clicked the "<LinkText>" link
-    And   I have seen a page at the "my/institutional-agreements/v1/[PathVar]/<AddOrEdit>" url
-    And   I have seen a "Help" link
-    When  I click the "Help" link
-    Then  I should see a bubble pop up in the Institutional Agreements <AddOrEdit> form
+ Scenario Outline: Display help bubble dialog for Expiration Date field by clicking Help link
+
+    When I click the "<LinkText>" link
+    Then I should see the Institutional Agreement <AddOrEdit> page
+    And I should see a "Help" link
+
+    When I click the "Help" link
+    Then I should see a help bubble dialog
+    And I should see a "Close this popup" link
+
 Examples:
- | AddOrEdit | LinkText              |
- | new       | Add a new agreement   |
- | edit      | Agreement, UC 01 test |
+    | AddOrEdit | LinkText              |
+    | Add       | Add a new agreement   |
+    | Edit      | Agreement, UC 01 test |
  
  @InstAgrFormsR0403
- Scenario Outline: Institutional Agreement forms successfully closes the bubble pop up for the Help link
-    Given I have clicked the "<LinkText>" link
-    And   I have seen a page at the "my/institutional-agreements/v1/[PathVar]/<AddOrEdit>" url
-    And   I have seen a "Help" link
-    And   I have clicked the "Help" link
-    And   I have seen a bubble pop up in the Institutional Agreements <AddOrEdit> form
+ Scenario Outline: Close help bubble dialog by clicking the Close This Popup link
+
+    When I click the "<LinkText>" link
+    Then I should see the Institutional Agreement <AddOrEdit> page
+    And I should see a "Help" link
+
+    When I click the "Help" link
+    Then I should see a help bubble dialog
+    And I should see a "Close this popup" link
+
     When  I click the "Close this popup" link
-    Then  I should not see a bubble pop up in the Institutional Agreements <AddOrEdit> form
+    Then I should not see a help bubble dialog
+
 Examples:
- | AddOrEdit | LinkText              |
- | new       | Add a new agreement   |
- | edit      | Agreement, UC 01 test |
+    | AddOrEdit | LinkText              |
+    | Add       | Add a new agreement   |
+    | Edit      | Agreement, UC 01 test |
 
  @InstAgrFormsR0404
- Scenario Outline: Institutional Agreement forms successfully closes the bubble pop up for the Help link by clicking the help link
-    Given I have clicked the "<LinkText>" link
-    And   I have seen a page at the "my/institutional-agreements/v1/[PathVar]/<AddOrEdit>" url
-    And   I have seen a "Help" link
-    And   I have clicked the "Help" link
-    And   I have seen a bubble pop up in the Institutional Agreements <AddOrEdit> form
+ Scenario Outline: Close help bubble dialog by clicking the Help link a second time
+
+    When I click the "<LinkText>" link
+    Then I should see the Institutional Agreement <AddOrEdit> page
+    And I should see a "Help" link
+
+    When I click the "Help" link
+    Then I should see a help bubble dialog
+    And I should see a "Close this popup" link
+
     When  I click the "Help" link
-    Then  I should not see a bubble pop up in the Institutional Agreements <AddOrEdit> form
+    Then I should not see a help bubble dialog
+
 Examples:
- | AddOrEdit | LinkText              |
- | new       | Add a new agreement   |
- | edit      | Agreement, UC 01 test |
+    | AddOrEdit | LinkText              |
+    | Add       | Add a new agreement   |
+    | Edit      | Agreement, UC 01 test |

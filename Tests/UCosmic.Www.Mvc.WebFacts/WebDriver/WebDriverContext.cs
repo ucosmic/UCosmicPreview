@@ -43,7 +43,5 @@ namespace UCosmic.Www.Mvc.WebDriver
             Browsers.ShouldNotBeNull();
             Browsers.Count.ShouldBeInRange(1, int.MaxValue);
         }
-
     }
-
 }

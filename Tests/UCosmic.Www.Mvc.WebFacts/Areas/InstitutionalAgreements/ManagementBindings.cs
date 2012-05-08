@@ -49,16 +49,35 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
                     "The Add Institutional Agreement Contact modal dialog close icon was not displayed using @Browser.");
 
                 link.Click();
+            });
+        }
 
-                //link.Click();
-                //if (!browser.IsInternetExplorer()) return;
-                //try
-                //{
-                //    link.Click();
-                //}
-                //catch (WebDriverException)
-                //{
-                //}
+        [Given(@"I (.*) a help bubble dialog")]
+        [When(@"I (.*) a help bubble dialog")]
+        [Then(@"I should (.*) a help bubble dialog")]
+        public void SeeHelpDialogBubble(string seeOrNot)
+        {
+            var shouldSee = (seeOrNot.Trim() == "see" || seeOrNot.Trim() == "saw");
+            const string cssSelector = ".jquerybubblepopup .help-bubblepop";
+
+            Browsers.ForEach(browser =>
+            {
+                if (shouldSee)
+                {
+                    var bubblePopup = browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
+                        "A help bubble dialog form was not found in @Browser.");
+
+                    browser.WaitUntil(b => bubblePopup.Displayed,
+                        "A help bubble dialog form was not displayed in @Browser.");
+                }
+                else
+                {
+                    var bubblePopup = browser.WaitUntil(b => b.TryFindElement(By.CssSelector(cssSelector)),
+                        "An error occurred while looking for a help bubble dialog in @Browser.");
+
+                    browser.WaitUntil(b => bubblePopup == null || !bubblePopup.Displayed,
+                        "A help bubble dialog form was unexpectedly displayed in @Browser.");
+                }
             });
         }
     }

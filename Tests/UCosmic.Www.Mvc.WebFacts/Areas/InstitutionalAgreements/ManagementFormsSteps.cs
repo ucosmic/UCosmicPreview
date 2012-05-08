@@ -991,38 +991,38 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 
         #endregion
 
-        [Given(@"I have (.*) a bubble pop up in the Institutional Agreements (.*) form")]
-        [When(@"I (.*) a bubble pop up in the Institutional Agreements (.*) form")]
-        [Then(@"I should (.*) a bubble pop up in the Institutional Agreements (.*) form")]
-        public void SeeABubblePopUpInTheInstitutionalAgreementsAddOrEditPage(string seeOrNot, string addOrEdit)
-        {
-            var shouldSee = (seeOrNot == "see" || seeOrNot == "seen");
+        //[Given(@"I have (.*) a bubble pop up in the Institutional Agreements (.*) form")]
+        //[When(@"I (.*) a bubble pop up in the Institutional Agreements (.*) form")]
+        //[Then(@"I should (.*) a bubble pop up in the Institutional Agreements (.*) form")]
+        //public void SeeABubblePopUpInTheInstitutionalAgreementsAddOrEditPage(string seeOrNot, string addOrEdit)
+        //{
+        //    var shouldSee = (seeOrNot == "see" || seeOrNot == "seen");
 
-            Browsers.ForEach(browser =>
-             {
-                 if (shouldSee)
-                 {
-                     var bubblePopup =
-                         browser.WaitUntil(b => b.FindElement(By.CssSelector(".jquerybubblepopup .help-bubblepop")),
-                             string.Format("The bubble pop up for the Help link in the Institutional Agreements {0} form could not be found using @Browser.",
-                                addOrEdit));
+        //    Browsers.ForEach(browser =>
+        //     {
+        //         if (shouldSee)
+        //         {
+        //             var bubblePopup =
+        //                 browser.WaitUntil(b => b.FindElement(By.CssSelector(".jquerybubblepopup .help-bubblepop")),
+        //                     string.Format("The bubble pop up for the Help link in the Institutional Agreements {0} form could not be found using @Browser.",
+        //                        addOrEdit));
 
-                     browser.WaitUntil(b => bubblePopup.Displayed,
-                         string.Format("The bubble pop up for the Help link was not displayed on the Institutional Agreements {0} form using @Browser.",
-                            addOrEdit));
-                 }
-                 else
-                 {
-                     var bubblePopup = browser.WaitUntil(b => b.TryFindElement(By.CssSelector(".jquerybubblepopup .help-bubblepop")),
-                        string.Format("The bubble pop up for the Help link was unexpectedly displayed on the Institutional Agreements {0} form using @Browser.",
-                            addOrEdit));
+        //             browser.WaitUntil(b => bubblePopup.Displayed,
+        //                 string.Format("The bubble pop up for the Help link was not displayed on the Institutional Agreements {0} form using @Browser.",
+        //                    addOrEdit));
+        //         }
+        //         else
+        //         {
+        //             var bubblePopup = browser.WaitUntil(b => b.TryFindElement(By.CssSelector(".jquerybubblepopup .help-bubblepop")),
+        //                string.Format("The bubble pop up for the Help link was unexpectedly displayed on the Institutional Agreements {0} form using @Browser.",
+        //                    addOrEdit));
 
-                     browser.WaitUntil(b => bubblePopup == null || !bubblePopup.Displayed, string.Format(
-                         "The bubble pop up for the Help link was unexpectedly displayed on the Institutional Agreements {0} form using @Browser.",
-                            addOrEdit));
-                 }
-             });
-        }
+        //             browser.WaitUntil(b => bubblePopup == null || !bubblePopup.Displayed, string.Format(
+        //                 "The bubble pop up for the Help link was unexpectedly displayed on the Institutional Agreements {0} form using @Browser.",
+        //                    addOrEdit));
+        //         }
+        //     });
+        //}
     }
     // ReSharper restore UnusedMember.Global
 }

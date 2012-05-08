@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
-using UCosmic.Www.Mvc.Areas.Identity;
 
 namespace UCosmic.Www.Mvc.WebDriver
 {
@@ -40,6 +39,5 @@ namespace UCosmic.Www.Mvc.WebDriver
                 firefox.IsFirefox().ShouldBeTrue("IWebDriver.IsFirefox should return true if browser is firefox.");
             }
         }
-
     }
 }
