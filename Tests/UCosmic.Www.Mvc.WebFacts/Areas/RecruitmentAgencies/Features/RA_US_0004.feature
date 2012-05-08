@@ -12,7 +12,7 @@ Feature: RA_US_0004 - Configure Recruitment Agency Module Norifications
 Scenario Outline: Recruitment Agency Module Notification Emails Basic Edit
 
     # to prevent concurrency conflicts, use different users/establishments for different browsers
-    Given I am using the <BrowserName> browser
+    Given I am using the <Browser> browser
 
     # basic form layout
     When I sign in as "<UserEmail>" with password "asdfasdf"
@@ -97,7 +97,7 @@ Scenario Outline: Recruitment Agency Module Notification Emails Basic Edit
 
 #to prevent concurrency conflicts, use different users/establishments for different browsers
 Examples:
-    | BrowserName       | UserEmail                | EstablishmentId  | ValidEmailDomain |
-    | Chrome            | supervisor1@uc.edu       | www.uc.edu       | uc.edu           |
-    | Firefox           | supervisor1@suny.edu     | www.suny.edu     | suny.edu         |
-    | Internet Explorer | supervisor1@napier.ac.uk | www.napier.ac.uk | napier.ac.uk     |
+    | Browser | UserEmail                | EstablishmentId  | ValidEmailDomain |
+    | Chrome  | supervisor1@uc.edu       | www.uc.edu       | uc.edu           |
+    | Firefox | supervisor1@suny.edu     | www.suny.edu     | suny.edu         |
+    | MSIE    | supervisor1@napier.ac.uk | www.napier.ac.uk | napier.ac.uk     |

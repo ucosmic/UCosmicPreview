@@ -7,6 +7,22 @@ namespace UCosmic.Www.Mvc.SpecFlow
     [Binding]
     public class FormSteps : BaseStepDefinition
     {
+        [Given(@"I clicked the ""(.*)"" button")]
+        [When(@"I click the ""(.*)"" button")]
+        [Then(@"I should click the ""(.*)"" button")]
+        public void ClickLabeledButton(string label)
+        {
+            var cssSelector = string.Format("form input[type=button][value='{0}']", label);
+
+            Browsers.ForEach(browser =>
+            {
+                var button = browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
+                    string.Format("Button labeled '{0}' was not found by @Browser (using CSS selector {1})",
+                        label, cssSelector));
+                button.ClickButton();
+            });
+        }
+
         [Given(@"I clicked the ""(.*)"" submit button")]
         [When(@"I click the ""(.*)"" submit button")]
         [Then(@"I should click the ""(.*)"" submit button")]

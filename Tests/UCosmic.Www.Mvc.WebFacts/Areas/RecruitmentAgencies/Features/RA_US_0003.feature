@@ -12,7 +12,7 @@ Feature: RA_US_0003 - Configure Recruitment Agency Module Welcome Message
 Scenario Outline: Recruitment Agency Module Welcome Message Basic Edit
 
     # to prevent concurrency conflicts, use different users/establishments for different browsers
-    Given I am using the <BrowserName> browser
+    Given I am using the <Browser> browser
 
     # basic form layout
     When I sign in as "<UserEmail>" with password "asdfasdf"
@@ -86,7 +86,7 @@ Scenario Outline: Recruitment Agency Module Welcome Message Basic Edit
 
 # to prevent concurrency conflicts, use different users/establishments for different browsers
 Examples:
-    | BrowserName       | UserEmail                | EstablishmentId  |
-    | Chrome            | supervisor1@uc.edu       | www.uc.edu       |
-    | Firefox           | supervisor1@suny.edu     | www.suny.edu     |
-    | Internet Explorer | supervisor1@napier.ac.uk | www.napier.ac.uk |
+    | Browser | UserEmail                | EstablishmentId  |
+    | Chrome      | supervisor1@uc.edu       | www.uc.edu       |
+    | Firefox     | supervisor1@suny.edu     | www.suny.edu     |
+    | MSIE        | supervisor1@napier.ac.uk | www.napier.ac.uk |

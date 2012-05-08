@@ -10,9 +10,9 @@ namespace UCosmic.Www.Mvc.SpecFlow
     [Binding]
     public class FileUploadSteps : BaseStepDefinition
     {
-        [Given(@"I saw a (.*) upload field")]
-        [When(@"I see a (.*) upload field")]
-        [Then(@"I should see a (.*) upload field")]
+        [Given(@"I saw a (.*) upload field & button")]
+        [When(@"I see a (.*) upload field & button")]
+        [Then(@"I should see a (.*) upload field & button")]
         public void SeeFileAttachmentUploadInput(string fieldLabel)
         {
             Browsers.ForEach(browser =>

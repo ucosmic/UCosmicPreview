@@ -8,10 +8,10 @@
     {
         <div>
             <div style="float: right; margin-left: 5px;">
-                <a href="#" class="remove-button" data-contact-type-and-display-name="@Model.Type @Model.Person.DisplayName">
+                <a href="#" class="remove-button" data-contact-type-and-display-name="@Model.ContactType @Model.Person.DisplayName">
                     <img src="@Url.Content(Links.content.icons.deletes.delete_hot_16_png)" alt="remove contact icon" title="Remove this contact" /></a>
             </div>
-            <span class="type-and-name"><b>@Model.Type</b> <span>@Model.Person.DisplayName</span></span>
+            <span class="type-and-name"><b>@Model.ContactType</b> <span>@Model.Person.DisplayName</span></span>
             @if (!string.IsNullOrWhiteSpace(Model.Person.DefaultEmail))
             {
                 <br />
@@ -33,7 +33,7 @@
             @Html.HiddenFor(m => m.Person.MiddleName)
             @Html.HiddenFor(m => m.Person.Salutation)
             @Html.HiddenFor(m => m.Person.Suffix)
-            @Html.HiddenFor(m => m.Type)
+            @Html.HiddenFor(m => m.ContactType)
         </div>
     }
 </li>

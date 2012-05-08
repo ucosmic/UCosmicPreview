@@ -134,5 +134,14 @@ namespace UCosmic.Www.Mvc.SpecFlow
                 button.Click();
             });
         }
+
+        [Given(@"I have dismissed all autocomplete dropdown menus")]
+        [When(@"I dismiss all autocomplete dropdown menus")]
+        [Then(@"I should dismiss all autocomplete dropdown menus")]
+        public void DismissAllAutoCompleteDropDownMenus()
+        {
+            const string jQuery = "$('ul.ui-autocomplete').css({display:'none'});";
+            Browsers.ForEach(browser => browser.ExecuteScript(jQuery));
+        }
     }
 }

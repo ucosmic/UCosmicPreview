@@ -182,6 +182,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             protected override void Configure()
             {
                 CreateMap<InstitutionalAgreementContact, InstitutionalAgreementContactForm>()
+                    .ForMember(d => d.ContactType, o => o.MapFrom(s => s.Type))
                 ;
                 CreateMap<Person, InstitutionalAgreementContactForm.PersonForm>()
                     .ForMember(target => target.DefaultEmail, opt => opt
@@ -196,6 +197,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             protected override void Configure()
             {
                 CreateMap<InstitutionalAgreementContactForm, InstitutionalAgreementContact>()
+                    .ForMember(d => d.Type, o => o.MapFrom(s => s.ContactType))
                     .ForMember(e => e.Agreement, opt => opt.Ignore())
                     .ForMember(e => e.RevisionId, opt => opt.Ignore())
                     .ForMember(e => e.CreatedOnUtc, opt => opt.Ignore())

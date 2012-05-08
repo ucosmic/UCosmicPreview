@@ -532,37 +532,37 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 
         #region Release / Preview 3: Add Contact Modal Dialog
 
-        [Given(@"I have (.*) the Add Contact modal dialog on the institutional agreement (.*) form")]
-        [When(@"I (.*) the Add Contact modal dialog on the institutional agreement (.*) form")]
-        [Then(@"I should (.*) the Add Contact modal dialog on the institutional agreement (.*) form")]
-        public void SeeAddContactModalDialog(string seeOrNot, string addOrEdit)
-        {
-            const string cssSelector = "#simplemodal-container";
-            var shouldSee = (seeOrNot == "see" || seeOrNot == "seen");
+        //[Given(@"I have (.*) the Add Contact modal dialog on the institutional agreement (.*) form")]
+        //[When(@"I (.*) the Add Contact modal dialog on the institutional agreement (.*) form")]
+        //[Then(@"I should (.*) the Add Contact modal dialog on the institutional agreement (.*) form")]
+        //public void SeeAddContactModalDialog(string seeOrNot, string addOrEdit)
+        //{
+        //    const string cssSelector = "#simplemodal-container";
+        //    var shouldSee = (seeOrNot == "see" || seeOrNot == "seen");
 
-            Browsers.ForEach(browser =>
-                                 {
-                                     if (shouldSee)
-                                     {
-                                         var contactDiv =
-                                             browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
-                                                               string.Format(
-                                                                   "The Add Contact modal dialog on the Institutional Agreements {0} form could not be found using @Browser.",
-                                                                   addOrEdit));
+        //    Browsers.ForEach(browser =>
+        //                         {
+        //                             if (shouldSee)
+        //                             {
+        //                                 var contactDiv =
+        //                                     browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
+        //                                                       string.Format(
+        //                                                           "The Add Contact modal dialog on the Institutional Agreements {0} form could not be found using @Browser.",
+        //                                                           addOrEdit));
 
-                                         browser.WaitUntil(b => contactDiv.Displayed, string.Format(
-                                             "The Add Contact modal dialog was not displayed on the Institutional Agreements {0} form using @Browser.",
-                                             addOrEdit));
-                                     }
-                                     else
-                                     {
-                                         browser.WaitUntil(b => b.TryFindElement(By.CssSelector(cssSelector)) == null,
-                                                           string.Format(
-                                                               "The Add Contact modal dialog was unexpectedly displayed on the Institutional Agreements {0} form using @Browser.",
-                                                               addOrEdit));
-                                     }
-                                 });
-        }
+        //                                 browser.WaitUntil(b => contactDiv.Displayed, string.Format(
+        //                                     "The Add Contact modal dialog was not displayed on the Institutional Agreements {0} form using @Browser.",
+        //                                     addOrEdit));
+        //                             }
+        //                             else
+        //                             {
+        //                                 browser.WaitUntil(b => b.TryFindElement(By.CssSelector(cssSelector)) == null,
+        //                                                   string.Format(
+        //                                                       "The Add Contact modal dialog was unexpectedly displayed on the Institutional Agreements {0} form using @Browser.",
+        //                                                       addOrEdit));
+        //                             }
+        //                         });
+        //}
 
         [Given(@"I have (.*) a text box for ""(.*)"" on the Add Contact modal dialog")]
         [When(@"I (.*) a text box for ""(.*)"" on the Add Contact modal dialog")]
@@ -596,28 +596,28 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
                                  });
         }
 
-        [Given(@"I have seen a read only text box for ""(.*)"" on the Add Contact modal dialog")]
-        [When(@"I see a read only text box for ""(.*)"" on the Add Contact modal dialog")]
-        [Then(@"I should see a read only text box for ""(.*)"" on the Add Contact modal dialog")]
-        public void SeeAddContactModalDialogReadOnlyTextBox(string fieldLabel)
-        {
-            var textBoxId = TranslateAddContactModalDialogLabelToElementId(fieldLabel);
-            var cssSelector = string.Format("div.{0}-field input[type='text']", textBoxId);
+        //[Given(@"I have seen a read only text box for ""(.*)"" on the Add Contact modal dialog")]
+        //[When(@"I see a read only text box for ""(.*)"" on the Add Contact modal dialog")]
+        //[Then(@"I should see a read only text box for ""(.*)"" on the Add Contact modal dialog")]
+        //public void SeeAddContactModalDialogReadOnlyTextBox(string fieldLabel)
+        //{
+        //    var textBoxId = TranslateAddContactModalDialogLabelToElementId(fieldLabel);
+        //    var cssSelector = string.Format("div.{0}-field input[type='text']", textBoxId);
 
-            Browsers.ForEach(browser =>
-                                 {
-                                     var textBox = browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
-                                                                     string.Format(
-                                                                         "Text box '{0}' (element id '{1}') could not be found on the Add Contact modal dialog using @Browser.",
-                                                                         fieldLabel, textBoxId));
+        //    Browsers.ForEach(browser =>
+        //                         {
+        //                             var textBox = browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
+        //                                                             string.Format(
+        //                                                                 "Text box '{0}' (element id '{1}') could not be found on the Add Contact modal dialog using @Browser.",
+        //                                                                 fieldLabel, textBoxId));
 
-                                     var readOnlyAttribute = textBox.GetAttribute("readonly");
+        //                             var readOnlyAttribute = textBox.GetAttribute("readonly");
 
-                                     browser.WaitUntil(b => readOnlyAttribute.Equals("true"), string.Format(
-                                         "Text box '{0}' (element id '{1}') was unexpectedly not in read only mode on the Add Contact modal dialog using @Browser.",
-                                         fieldLabel, textBoxId));
-                                 });
-        }
+        //                             browser.WaitUntil(b => readOnlyAttribute.Equals("true"), string.Format(
+        //                                 "Text box '{0}' (element id '{1}') was unexpectedly not in read only mode on the Add Contact modal dialog using @Browser.",
+        //                                 fieldLabel, textBoxId));
+        //                         });
+        //}
 
         [Given(@"I have typed ""(.*)"" into the ""(.*)"" text box on the Add Contact modal dialog")]
         [When(@"I type ""(.*)"" into the ""(.*)"" text box on the Add Contact modal dialog")]

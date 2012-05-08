@@ -72,13 +72,13 @@ namespace UCosmic.Www.Mvc.Areas.RecruitmentAgencies.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RecruitmentAgencyModuleNotificationEmailsBasicEdit(string browserName, string userEmail, string establishmentId, string validEmailDomain, string[] exampleTags)
+        public virtual void RecruitmentAgencyModuleNotificationEmailsBasicEdit(string browser, string userEmail, string establishmentId, string validEmailDomain, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Recruitment Agency Module Notification Emails Basic Edit", exampleTags);
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 15
-    testRunner.Given(string.Format("I am using the {0} browser", browserName));
+    testRunner.Given(string.Format("I am using the {0} browser", browser));
 #line 18
     testRunner.When(string.Format("I sign in as \"{0}\" with password \"asdfasdf\"", userEmail));
 #line 19
@@ -217,7 +217,7 @@ this.ScenarioSetup(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "RA_US_0004 - Configure Recruitment Agency Module Norifications")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("RepsModule")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Chrome")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Chrome")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserEmail", "supervisor1@uc.edu")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EstablishmentId", "www.uc.edu")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ValidEmailDomain", "uc.edu")]
@@ -231,7 +231,7 @@ this.ScenarioSetup(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "RA_US_0004 - Configure Recruitment Agency Module Norifications")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("RepsModule")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Firefox")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Firefox")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserEmail", "supervisor1@suny.edu")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EstablishmentId", "www.suny.edu")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ValidEmailDomain", "suny.edu")]
@@ -244,14 +244,14 @@ this.ScenarioSetup(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Recruitment Agency Module Notification Emails Basic Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "RA_US_0004 - Configure Recruitment Agency Module Norifications")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("RepsModule")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Internet Explorer")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Internet Explorer")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MSIE")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserEmail", "supervisor1@napier.ac.uk")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EstablishmentId", "www.napier.ac.uk")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ValidEmailDomain", "napier.ac.uk")]
-        public virtual void RecruitmentAgencyModuleNotificationEmailsBasicEdit_InternetExplorer()
+        public virtual void RecruitmentAgencyModuleNotificationEmailsBasicEdit_MSIE()
         {
-            this.RecruitmentAgencyModuleNotificationEmailsBasicEdit("Internet Explorer", "supervisor1@napier.ac.uk", "www.napier.ac.uk", "napier.ac.uk", ((string[])(null)));
+            this.RecruitmentAgencyModuleNotificationEmailsBasicEdit("MSIE", "supervisor1@napier.ac.uk", "www.napier.ac.uk", "napier.ac.uk", ((string[])(null)));
         }
     }
 }

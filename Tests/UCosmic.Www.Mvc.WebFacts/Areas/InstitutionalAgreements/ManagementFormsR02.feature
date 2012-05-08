@@ -10,11 +10,11 @@ Background:
     And I am starting from the Institutional Agreement Management page
 
 @InstAgrFormsR0201
-Scenario Outline: File upload input field is displayed in the File Attachments fieldset
+Scenario Outline: Display File Attachments upload field
 
     When I click the "<LinkText>" link
     Then I should see the Institutional Agreement <AddOrEdit> page
-    And I should see a File Attachments upload field
+    And I should see a File Attachments upload field & button
 
 Examples:
     | AddOrEdit | LinkText              |
@@ -22,11 +22,11 @@ Examples:
     | Edit      | Agreement, UC 01 test |
 
 @InstAgrFormsR0202 @NotInChrome
-Scenario Outline: Add file attachment fails for invalid file types
+Scenario Outline: Fail to add File Attachment when file type is invalid
 
     When I click the "<LinkText>" link
     Then I should see the Institutional Agreement <AddOrEdit> page
-    And I should see a File Attachments upload field
+    And I should see a File Attachments upload field & button
 
     When I choose the file "<FilePath>" for the File Attachments upload field
     Then I should not see an item for "<FileName>" in the File Attachments list
@@ -42,11 +42,11 @@ Examples:
     | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\ExtensionlessFile1 | ExtensionlessFile1 |
 
 @InstAgrFormsR0203 @NotInChrome
-Scenario Outline: Add file attachment succeeds for allowed file types
+Scenario Outline: Add File Attachment with valid extension to list
 
     When I click the "<LinkText>" link
     Then I should see the Institutional Agreement <AddOrEdit> page
-    And I should see a File Attachments upload field
+    And I should see a File Attachments upload field & button
 
     When I choose the file "<FilePath>" for the File Attachments upload field
     Then I should see an item for "<FileName>" in the File Attachments list
@@ -74,11 +74,11 @@ Examples:
     | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\PowerPoint1.pptx     | PowerPoint1.pptx     |
 
 @InstAgrFormsR0204 @NotInChrome
-Scenario Outline: Remove file attachment from list succeeds
+Scenario Outline: Remove File Attachment from list
 
     When I click the "<LinkText>" link
     Then I should see the Institutional Agreement <AddOrEdit> page
-    And I should see a File Attachments upload field
+    And I should see a File Attachments upload field & button
 
     When I choose the file "<FilePath>" for the File Attachments upload field
     Then I should see an item for "<FileName>" in the File Attachments list
@@ -93,13 +93,13 @@ Examples:
     | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\LargePdf33.8.pdf | LargePdf33.8.pdf |
 
 @InstAgrFormsR0205 @InstAgrFormsFreshTestAgreementUc01
-Scenario Outline: Upload file attachment succeeds and displays link to file after upload
+Scenario Outline: Upload File Attachment and display link to file on Public Detail page
 
-    Given I am using the <BrowserName> browser
+    Given I am using the <Browser> browser
 
     When I click the "<AgreementLink>" link
     Then I should see the Institutional Agreement Edit page
-    And I should see a File Attachments upload field
+    And I should see a File Attachments upload field & button
 
     When I choose the file "<FilePath>" for the File Attachments upload field
     Then I should see an item for "<FileName>" in the File Attachments list
@@ -110,20 +110,20 @@ Scenario Outline: Upload file attachment succeeds and displays link to file afte
     And I should see a "<FileName>" link
 
 Examples:
-    | BrowserName       | AgreementLink         | FilePath                                     | FileName           |
-    | Firefox           | Agreement, UC 01 test | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf | SpecFlow Guide.pdf |
-    | Firefox           | Agreement, UC 01 test | C:\\WebDriverFileUploads\\WordDocument1.doc  | WordDocument1.doc  |
-    | Firefox           | Agreement, UC 01 test | C:\\WebDriverFileUploads\\WordDocument1.docx | WordDocument1.docx |
-    | Internet Explorer | Agreement, UC 02 test | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf | SpecFlow Guide.pdf |
-    | Internet Explorer | Agreement, UC 02 test | C:\\WebDriverFileUploads\\WordDocument1.doc  | WordDocument1.doc  |
-    | Internet Explorer | Agreement, UC 02 test | C:\\WebDriverFileUploads\\WordDocument1.docx | WordDocument1.docx |
+    | Browser | AgreementLink         | FilePath                                     | FileName           |
+    | Firefox | Agreement, UC 01 test | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf | SpecFlow Guide.pdf |
+    | Firefox | Agreement, UC 01 test | C:\\WebDriverFileUploads\\WordDocument1.doc  | WordDocument1.doc  |
+    | Firefox | Agreement, UC 01 test | C:\\WebDriverFileUploads\\WordDocument1.docx | WordDocument1.docx |
+    | MSIE    | Agreement, UC 02 test | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf | SpecFlow Guide.pdf |
+    | MSIE    | Agreement, UC 02 test | C:\\WebDriverFileUploads\\WordDocument1.doc  | WordDocument1.doc  |
+    | MSIE    | Agreement, UC 02 test | C:\\WebDriverFileUploads\\WordDocument1.docx | WordDocument1.docx |
 
 @InstAgrFormsR0206 @NotInChrome
-Scenario Outline: Upload file attachment faile for file over 25 megabytes in size
+Scenario Outline: Fail to upload File attachment over 25 megabytes in size
 
     When I click the "Agreement, UC 01 test" link
     Then I should see the Institutional Agreement Edit page
-    And I should see a File Attachments upload field
+    And I should see a File Attachments upload field & button
 
     When I choose the file "<FilePath>" for the File Attachments upload field
     Then I should see an item for "<FileName>" in the File Attachments list

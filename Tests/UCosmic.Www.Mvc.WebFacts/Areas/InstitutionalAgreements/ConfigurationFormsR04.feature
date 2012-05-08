@@ -582,7 +582,7 @@ Scenario: Institutional Agreement Module Configuration form successfully removes
 @InstAgrConfigR0428
 @InstAgrConfigResetLehigh @InstAgrConfigResetUmn @InstAgrConfigResetUsil
 Scenario Outline: Institutional Agreement Module Configuration form successfully create a configuration
-    Given I am using the <BrowserName> browser
+    Given I am using the <Browser> browser
     And I have signed in as "<Supervisor>" with password "asdfasdf"
 	And   I have browsed to the "my/institutional-agreements/v1" url
     And   I have seen a "Configure module" link
@@ -600,15 +600,15 @@ Scenario Outline: Institutional Agreement Module Configuration form successfully
     Then  I should see top feedback message "Module configuration was set up successfully."
     And   I should see a page at the "my/institutional-agreements/v1" url
 Examples: 
-    | BrowserName       | Supervisor              |
-    | Chrome            | supervisor1@lehigh.edu  |
-    | Firefox           | supervisor1@umn.edu     |
-    | Internet Explorer | supervisor1@usil.edu.pe |
+    | Browser | Supervisor              |
+    | Chrome  | supervisor1@lehigh.edu  |
+    | Firefox | supervisor1@umn.edu     |
+    | MSIE    | supervisor1@usil.edu.pe |
 
 @InstAgrConfigR0429
 @InstAgrConfigResetEdinburgh @InstAgrConfigResetSuny @InstAgrConfigResetBjtu
 Scenario Outline: Institutional Agreement Module Configuration form successfully create and edit configuration
-    Given I am using the <BrowserName> browser
+    Given I am using the <Browser> browser
     And   I have signed in as "<Supervisor>" with password "asdfasdf"
 	And   I have browsed to the "my/institutional-agreements/v1" url
     And   I have seen a "Configure module" link
@@ -635,8 +635,8 @@ Scenario Outline: Institutional Agreement Module Configuration form successfully
     And   I should see top feedback message "Module configuration was saved successfully."
     And   I should see a page at the "my/institutional-agreements/configure" url
 Examples: 
-    | BrowserName       | Supervisor               |
-    | Chrome            | supervisor1@napier.ac.uk |
-    | Firefox           | supervisor1@suny.edu     |
-    | Internet Explorer | supervisor1@bjtu.edu.cn  |
+    | Browser | Supervisor               |
+    | Chrome  | supervisor1@napier.ac.uk |
+    | Firefox | supervisor1@suny.edu     |
+    | MSIE    | supervisor1@bjtu.edu.cn  |
 

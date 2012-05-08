@@ -13,22 +13,22 @@
                             <tbody>
                                 <tr>
                                     <th class="label">
-                                        @Html.LabelFor(m => m.Type) *
+                                        @Html.LabelFor(m => m.ContactType) *
                                     </th>
                                     <td class="value">
                                         <div class="input combobox ContactType-field">
-                                            @Html.EditorFor(m => m.Type, MVC.InstitutionalAgreements.Shared.Views.EditorTemplates.ContactTypeComboBox)
+                                            @Html.EditorFor(m => m.ContactType, MVC.InstitutionalAgreements.Shared.Views.EditorTemplates.ContactTypeComboBox)
                                         </div>
                                         <div class="p" style="display: none;">
                                             Select the contact type, or enter a custom one in the box above.
                                         </div>
                                         <div class="model-validator ContactType-field">
-                                            @Html.ValidationMessageFor(m => m.Type)
+                                            @Html.ValidationMessageFor(m => m.ContactType)
                                         </div>
                                     </td>
                                     <td class="info">
                                         <div class="model-validator ContactType-field">
-                                            @Html.ValidationMessageFor(m => m.Type)
+                                            @Html.ValidationMessageFor(m => m.ContactType)
                                         </div>
                                     </td>
                                 </tr>
@@ -154,7 +154,7 @@
                         </table>
                         @Html.EditorFor(m => m.Person.EntityId)
                         <input id="contact_add_personid" type="hidden" value="" />
-                        <input id="contact_add_next" type="button" value="Add Contact" />
+                        <input id="contact_add_next" type="submit" value="Add Contact" />
                         <input id="contact_add_cancel" type="button" value="Cancel" class="simplemodal-close" />
                     </fieldset>
                 </td>
@@ -163,7 +163,7 @@
                 <td class="right">
                     <div class="contact-step-0">
                         <p>
-                            First select a <em>@Html.LabelFor(m => m.Type)</em> or enter a custom one in the
+                            First select a <em>@Html.LabelFor(m => m.ContactType)</em> or enter a custom one in the
                             text box provided.
                         </p>
                         <p>
@@ -222,7 +222,7 @@
     <script type="text/javascript">
         $(function () {
 
-            //var typeId = '@Html.IdFor(m => m.Type)';
+            //var typeId = '@Html.IdFor(m => m.ContactType)';
             var personEntityId = '@Html.IdFor(m => m.Person.EntityId)', loadPersonEntityId = '@Model.Person.EntityId';
             var salutationId = '@Html.IdFor(m => m.Person.Salutation)', userSalutation = '@Model.Person.Salutation';
             var firstNameId = '@Html.IdFor(m => m.Person.FirstName)', userFirstName = '@Model.Person.FirstName';
@@ -462,6 +462,10 @@
                         }
                     });
                 }
+                return false;
+            });
+
+            $('#contact_add_next').closest('form').submit(function () {
                 return false;
             });
 

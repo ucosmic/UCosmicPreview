@@ -23,7 +23,7 @@ Scenario: My Name form save changes unsuccessfully with invalid input
 @SelfName
 @SelfR0102
 Scenario Outline: My Name form save changes successfully with valid input
-    Given I am using the <BrowserName> browser
+    Given I am using the <Browser> browser
 	And   I have unchecked the DisplayName automatic generation checkbox in the My Name form
 	When  I type "<DisplayName>" into the "DisplayName" text box on the My Name form
 	And   I type "<Salutation>" into the "Salutation" text box on the My Name form
@@ -41,40 +41,40 @@ Scenario Outline: My Name form save changes successfully with valid input
     And   I should see "<LastName>" in the "LastName" text box on the My Name form
     And   I should see "<Suffix>" in the "Suffix" text box on the My Name form
     Examples:
-    | BrowserName       | DisplayName      | Salutation        | FirstName      | MiddleName      | LastName      | Suffix        |
-    | Chrome            | Test DisplayName | Dr.               | TestFirstName1 | TestMiddleName1 | TestLastName1 | Jr.           |
-    | Chrome            | Test DisplayName | Prof.             | TestFirstName2 | TestMiddleName2 | TestLastName2 | PhD           |
-    | Chrome            | Test DisplayName | Custom Salutation | TestFirstName3 | TestMiddleName3 | TestLastName3 | Custom Suffix |
-    | Chrome            | Test DisplayName |                   | TestFirstName4 |                 | TestLastName4 |               |
-    | Chrome            | Test DisplayName |                   |                |                 |               |               |
-    | Chrome            | Test DisplayName | Salutation        |                |                 |               |               |
-    | Chrome            | Test DisplayName |                   | TestFirstName  |                 |               |               |
-    | Chrome            | Test DisplayName |                   |                | TestMiddleName  |               |               |
-    | Chrome            | Test DisplayName |                   |                |                 | TestLastName  |               |
-    | Chrome            | Test DisplayName |                   |                |                 |               | TestSuffix    |
-    | Chrome            | Any One          |                   | Any            |                 | One           |               |
-    | Firefox           | Test DisplayName | Dr.               | TestFirstName1 | TestMiddleName1 | TestLastName1 | Jr.           |
-    | Firefox           | Test DisplayName | Prof.             | TestFirstName2 | TestMiddleName2 | TestLastName2 | PhD           |
-    | Firefox           | Test DisplayName | Custom Salutation | TestFirstName3 | TestMiddleName3 | TestLastName3 | Custom Suffix |
-    | Firefox           | Test DisplayName |                   | TestFirstName4 |                 | TestLastName4 |               |
-    | Firefox           | Test DisplayName |                   |                |                 |               |               |
-    | Firefox           | Test DisplayName | Salutation        |                |                 |               |               |
-    | Firefox           | Test DisplayName |                   | TestFirstName  |                 |               |               |
-    | Firefox           | Test DisplayName |                   |                | TestMiddleName  |               |               |
-    | Firefox           | Test DisplayName |                   |                |                 | TestLastName  |               |
-    | Firefox           | Test DisplayName |                   |                |                 |               | TestSuffix    |
-    | Firefox           | Any One          |                   | Any            |                 | One           |               |
-    | Internet Explorer | Test DisplayName | Dr.               | TestFirstName1 | TestMiddleName1 | TestLastName1 | Jr.           |
-    | Internet Explorer | Test DisplayName | Prof.             | TestFirstName2 | TestMiddleName2 | TestLastName2 | PhD           |
-    | Internet Explorer | Test DisplayName | Custom Salutation | TestFirstName3 | TestMiddleName3 | TestLastName3 | Custom Suffix |
-    | Internet Explorer | Test DisplayName |                   | TestFirstName4 |                 | TestLastName4 |               |
-    | Internet Explorer | Test DisplayName |                   |                |                 |               |               |
-    | Internet Explorer | Test DisplayName | Salutation        |                |                 |               |               |
-    | Internet Explorer | Test DisplayName |                   | TestFirstName  |                 |               |               |
-    | Internet Explorer | Test DisplayName |                   |                | TestMiddleName  |               |               |
-    | Internet Explorer | Test DisplayName |                   |                |                 | TestLastName  |               |
-    | Internet Explorer | Test DisplayName |                   |                |                 |               | TestSuffix    |
-    | Internet Explorer | Any One          |                   | Any            |                 | One           |               |
+    | Browser | DisplayName      | Salutation        | FirstName      | MiddleName      | LastName      | Suffix        |
+    | Chrome  | Test DisplayName | Dr.               | TestFirstName1 | TestMiddleName1 | TestLastName1 | Jr.           |
+    | Chrome  | Test DisplayName | Prof.             | TestFirstName2 | TestMiddleName2 | TestLastName2 | PhD           |
+    | Chrome  | Test DisplayName | Custom Salutation | TestFirstName3 | TestMiddleName3 | TestLastName3 | Custom Suffix |
+    | Chrome  | Test DisplayName |                   | TestFirstName4 |                 | TestLastName4 |               |
+    | Chrome  | Test DisplayName |                   |                |                 |               |               |
+    | Chrome  | Test DisplayName | Salutation        |                |                 |               |               |
+    | Chrome  | Test DisplayName |                   | TestFirstName  |                 |               |               |
+    | Chrome  | Test DisplayName |                   |                | TestMiddleName  |               |               |
+    | Chrome  | Test DisplayName |                   |                |                 | TestLastName  |               |
+    | Chrome  | Test DisplayName |                   |                |                 |               | TestSuffix    |
+    | Chrome  | Any One          |                   | Any            |                 | One           |               |
+    | Firefox | Test DisplayName | Dr.               | TestFirstName1 | TestMiddleName1 | TestLastName1 | Jr.           |
+    | Firefox | Test DisplayName | Prof.             | TestFirstName2 | TestMiddleName2 | TestLastName2 | PhD           |
+    | Firefox | Test DisplayName | Custom Salutation | TestFirstName3 | TestMiddleName3 | TestLastName3 | Custom Suffix |
+    | Firefox | Test DisplayName |                   | TestFirstName4 |                 | TestLastName4 |               |
+    | Firefox | Test DisplayName |                   |                |                 |               |               |
+    | Firefox | Test DisplayName | Salutation        |                |                 |               |               |
+    | Firefox | Test DisplayName |                   | TestFirstName  |                 |               |               |
+    | Firefox | Test DisplayName |                   |                | TestMiddleName  |               |               |
+    | Firefox | Test DisplayName |                   |                |                 | TestLastName  |               |
+    | Firefox | Test DisplayName |                   |                |                 |               | TestSuffix    |
+    | Firefox | Any One          |                   | Any            |                 | One           |               |
+    | MSIE    | Test DisplayName | Dr.               | TestFirstName1 | TestMiddleName1 | TestLastName1 | Jr.           |
+    | MSIE    | Test DisplayName | Prof.             | TestFirstName2 | TestMiddleName2 | TestLastName2 | PhD           |
+    | MSIE    | Test DisplayName | Custom Salutation | TestFirstName3 | TestMiddleName3 | TestLastName3 | Custom Suffix |
+    | MSIE    | Test DisplayName |                   | TestFirstName4 |                 | TestLastName4 |               |
+    | MSIE    | Test DisplayName |                   |                |                 |               |               |
+    | MSIE    | Test DisplayName | Salutation        |                |                 |               |               |
+    | MSIE    | Test DisplayName |                   | TestFirstName  |                 |               |               |
+    | MSIE    | Test DisplayName |                   |                | TestMiddleName  |               |               |
+    | MSIE    | Test DisplayName |                   |                |                 | TestLastName  |               |
+    | MSIE    | Test DisplayName |                   |                |                 |               | TestSuffix    |
+    | MSIE    | Any One          |                   | Any            |                 | One           |               |
 
 @SelfName
 @SelfR0103

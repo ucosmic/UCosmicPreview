@@ -193,7 +193,7 @@ namespace UCosmic.Www.Mvc.WebDriver
     {
         public const string Firefox = "Firefox";
         public const string Chrome = "Chrome";
-        public const string InternetExplorer = "Internet Explorer";
+        public const string InternetExplorer = "MSIE";
         public const string Unknown = "UNKNOWN";
         public const string Null = "NULL";
     }

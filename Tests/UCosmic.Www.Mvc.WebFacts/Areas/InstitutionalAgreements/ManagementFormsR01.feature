@@ -10,7 +10,7 @@ Background:
     And I am starting from the Institutional Agreement Management page
 
 @InstAgrFormsR0101
-Scenario Outline: Fail to submit Institutional Agreement form because required fields are empty
+Scenario Outline: Form submit fails when required fields are empty
 
     When I click the "<LinkToForm>" link
     Then I should see the Institutional Agreement <AddOrEdit> page
@@ -50,10 +50,10 @@ Examples:
     | Edit      | Agreement, UC 01 test | Save Changes  |        |        |        |        | Test   |        |        |        |        | not    |
 
 @InstAgrFormsR0102 @InstAgrFormsFreshTestAgreementUcGc @InstAgrFormsFreshTestAgreementUcFf @InstAgrFormsFreshTestAgreementUcIe
-Scenario Outline: Successfully submit Institutional Agreement Edit form after editing various fields
+Scenario Outline: Edit form submit succeeds after editing various fields
 
     #TODO: this is a very poor test and should be refactored
-    Given I am using the <BrowserName> browser
+    Given I am using the <Browser> browser
     When I click the "<AgreementTitle>" link
     Then I should see the Institutional Agreement Edit page
 
@@ -81,28 +81,28 @@ Scenario Outline: Successfully submit Institutional Agreement Edit form after ed
     And I should see an "Edit this agreement" link
 
 Examples:
-| BrowserName       | AgreementTitle        | OrNot1 | Value1 | OrNot2 | Value2                       | OrNot3 | Value3   | OrNot4 | Value4   | OrNot5 | Value5 | Flash                                           |
-| Chrome            | Agreement, UC GC test | n't    |        | n't    |                              | n't    |          | n't    |          | n't    |        | No changes were saved.                          |
-| Chrome            | Agreement, UC GC test |        | Test   | n't    |                              | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
-| Chrome            | Agreement, UC GC test | n't    |        |        | Agreement, UC GC test edited | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
-| Chrome            | Agreement, UC GC test | n't    |        | n't    |                              |        | 8/7/1976 | n't    |          | n't    |        | Institutional agreement was saved successfully. |
-| Chrome            | Agreement, UC GC test | n't    |        | n't    |                              | n't    |          |        | 8/6/2056 | n't    |        | Institutional agreement was saved successfully. |
-| Chrome            | Agreement, UC GC test | n't    |        | n't    |                              | n't    |          | n't    |          |        | Test   | Institutional agreement was saved successfully. |
-| Firefox           | Agreement, UC FF test | n't    |        | n't    |                              | n't    |          | n't    |          | n't    |        | No changes were saved.                          |
-| Firefox           | Agreement, UC FF test |        | Test   | n't    |                              | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
-| Firefox           | Agreement, UC FF test | n't    |        |        | Agreement, UC FF test edited | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
-| Firefox           | Agreement, UC FF test | n't    |        | n't    |                              |        | 8/7/1976 | n't    |          | n't    |        | Institutional agreement was saved successfully. |
-| Firefox           | Agreement, UC FF test | n't    |        | n't    |                              | n't    |          |        | 8/6/2056 | n't    |        | Institutional agreement was saved successfully. |
-| Firefox           | Agreement, UC FF test | n't    |        | n't    |                              | n't    |          | n't    |          |        | Test   | Institutional agreement was saved successfully. |
-| Internet Explorer | Agreement, UC IE test | n't    |        | n't    |                              | n't    |          | n't    |          | n't    |        | No changes were saved.                          |
-| Internet Explorer | Agreement, UC IE test |        | Test   | n't    |                              | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
-| Internet Explorer | Agreement, UC IE test | n't    |        |        | Agreement, UC IE test edited | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
-| Internet Explorer | Agreement, UC IE test | n't    |        | n't    |                              |        | 8/7/1976 | n't    |          | n't    |        | Institutional agreement was saved successfully. |
-| Internet Explorer | Agreement, UC IE test | n't    |        | n't    |                              | n't    |          |        | 8/6/2056 | n't    |        | Institutional agreement was saved successfully. |
-| Internet Explorer | Agreement, UC IE test | n't    |        | n't    |                              | n't    |          | n't    |          |        | Test   | Institutional agreement was saved successfully. |
+| Browser | AgreementTitle        | OrNot1 | Value1 | OrNot2 | Value2                       | OrNot3 | Value3   | OrNot4 | Value4   | OrNot5 | Value5 | Flash                                           |
+| Chrome  | Agreement, UC GC test | n't    |        | n't    |                              | n't    |          | n't    |          | n't    |        | No changes were saved.                          |
+| Chrome  | Agreement, UC GC test |        | Test   | n't    |                              | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Chrome  | Agreement, UC GC test | n't    |        |        | Agreement, UC GC test edited | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Chrome  | Agreement, UC GC test | n't    |        | n't    |                              |        | 8/7/1976 | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Chrome  | Agreement, UC GC test | n't    |        | n't    |                              | n't    |          |        | 8/6/2056 | n't    |        | Institutional agreement was saved successfully. |
+| Chrome  | Agreement, UC GC test | n't    |        | n't    |                              | n't    |          | n't    |          |        | Test   | Institutional agreement was saved successfully. |
+| Firefox | Agreement, UC FF test | n't    |        | n't    |                              | n't    |          | n't    |          | n't    |        | No changes were saved.                          |
+| Firefox | Agreement, UC FF test |        | Test   | n't    |                              | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Firefox | Agreement, UC FF test | n't    |        |        | Agreement, UC FF test edited | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Firefox | Agreement, UC FF test | n't    |        | n't    |                              |        | 8/7/1976 | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| Firefox | Agreement, UC FF test | n't    |        | n't    |                              | n't    |          |        | 8/6/2056 | n't    |        | Institutional agreement was saved successfully. |
+| Firefox | Agreement, UC FF test | n't    |        | n't    |                              | n't    |          | n't    |          |        | Test   | Institutional agreement was saved successfully. |
+| MSIE    | Agreement, UC IE test | n't    |        | n't    |                              | n't    |          | n't    |          | n't    |        | No changes were saved.                          |
+| MSIE    | Agreement, UC IE test |        | Test   | n't    |                              | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| MSIE    | Agreement, UC IE test | n't    |        |        | Agreement, UC IE test edited | n't    |          | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| MSIE    | Agreement, UC IE test | n't    |        | n't    |                              |        | 8/7/1976 | n't    |          | n't    |        | Institutional agreement was saved successfully. |
+| MSIE    | Agreement, UC IE test | n't    |        | n't    |                              | n't    |          |        | 8/6/2056 | n't    |        | Institutional agreement was saved successfully. |
+| MSIE    | Agreement, UC IE test | n't    |        | n't    |                              | n't    |          | n't    |          |        | Test   | Institutional agreement was saved successfully. |
 
 @InstAgrFormsR0103
-Scenario Outline: Add Institutional Agreement Participant to the list
+Scenario Outline: Add Participant to list
 
     When I click the "<LinkToForm>" link
     Then I should see the Institutional Agreement <AddOrEdit> page

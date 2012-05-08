@@ -83,7 +83,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 #line hidden
         }
         
-        public virtual void FileUploadInputFieldIsDisplayedInTheFileAttachmentsFieldset(string addOrEdit, string linkText, string[] exampleTags)
+        public virtual void DisplayFileAttachmentsUploadField(string addOrEdit, string linkText, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "InstAgrFormsR0201"};
@@ -91,7 +91,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("File upload input field is displayed in the File Attachments fieldset", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display File Attachments upload field", @__tags);
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -101,13 +101,13 @@ this.FeatureBackground();
 #line 16
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
 #line 17
-    testRunner.And("I should see a File Attachments upload field");
+    testRunner.And("I should see a File Attachments upload field & button");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("File upload input field is displayed in the File Attachments fieldset")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display File Attachments upload field")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -115,13 +115,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        public virtual void FileUploadInputFieldIsDisplayedInTheFileAttachmentsFieldset_Add()
+        public virtual void DisplayFileAttachmentsUploadField_Add()
         {
-            this.FileUploadInputFieldIsDisplayedInTheFileAttachmentsFieldset("Add", "Add a new agreement", ((string[])(null)));
+            this.DisplayFileAttachmentsUploadField("Add", "Add a new agreement", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("File upload input field is displayed in the File Attachments fieldset")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display File Attachments upload field")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -129,12 +129,12 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        public virtual void FileUploadInputFieldIsDisplayedInTheFileAttachmentsFieldset_Edit()
+        public virtual void DisplayFileAttachmentsUploadField_Edit()
         {
-            this.FileUploadInputFieldIsDisplayedInTheFileAttachmentsFieldset("Edit", "Agreement, UC 01 test", ((string[])(null)));
+            this.DisplayFileAttachmentsUploadField("Edit", "Agreement, UC 01 test", ((string[])(null)));
         }
         
-        public virtual void AddFileAttachmentFailsForInvalidFileTypes(string addOrEdit, string linkText, string filePath, string fileName, string[] exampleTags)
+        public virtual void FailToAddFileAttachmentWhenFileTypeIsInvalid(string addOrEdit, string linkText, string filePath, string fileName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "InstAgrFormsR0202",
@@ -143,7 +143,7 @@ this.FeatureBackground();
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add file attachment fails for invalid file types", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fail to add File Attachment when file type is invalid", @__tags);
 #line 25
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -153,7 +153,7 @@ this.FeatureBackground();
 #line 28
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
 #line 29
-    testRunner.And("I should see a File Attachments upload field");
+    testRunner.And("I should see a File Attachments upload field & button");
 #line 31
     testRunner.When(string.Format("I choose the file \"{0}\" for the File Attachments upload field", filePath));
 #line 32
@@ -165,7 +165,7 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment fails for invalid file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to add File Attachment when file type is invalid")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -176,13 +176,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\JavaScriptFile1.js")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "JavaScriptFile1.js")]
-        public virtual void AddFileAttachmentFailsForInvalidFileTypes_Variant0()
+        public virtual void FailToAddFileAttachmentWhenFileTypeIsInvalid_Variant0()
         {
-            this.AddFileAttachmentFailsForInvalidFileTypes("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\JavaScriptFile1.js", "JavaScriptFile1.js", ((string[])(null)));
+            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\JavaScriptFile1.js", "JavaScriptFile1.js", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment fails for invalid file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to add File Attachment when file type is invalid")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -193,13 +193,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\VbScriptFile1.vb")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "VbScriptFile1.vb")]
-        public virtual void AddFileAttachmentFailsForInvalidFileTypes_Variant1()
+        public virtual void FailToAddFileAttachmentWhenFileTypeIsInvalid_Variant1()
         {
-            this.AddFileAttachmentFailsForInvalidFileTypes("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\VbScriptFile1.vb", "VbScriptFile1.vb", ((string[])(null)));
+            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\VbScriptFile1.vb", "VbScriptFile1.vb", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment fails for invalid file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to add File Attachment when file type is invalid")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -210,13 +210,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\ExtensionlessFile1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "ExtensionlessFile1")]
-        public virtual void AddFileAttachmentFailsForInvalidFileTypes_Variant2()
+        public virtual void FailToAddFileAttachmentWhenFileTypeIsInvalid_Variant2()
         {
-            this.AddFileAttachmentFailsForInvalidFileTypes("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\ExtensionlessFile1", "ExtensionlessFile1", ((string[])(null)));
+            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\ExtensionlessFile1", "ExtensionlessFile1", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment fails for invalid file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to add File Attachment when file type is invalid")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -227,13 +227,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\JavaScriptFile1.js")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "JavaScriptFile1.js")]
-        public virtual void AddFileAttachmentFailsForInvalidFileTypes_Variant3()
+        public virtual void FailToAddFileAttachmentWhenFileTypeIsInvalid_Variant3()
         {
-            this.AddFileAttachmentFailsForInvalidFileTypes("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\JavaScriptFile1.js", "JavaScriptFile1.js", ((string[])(null)));
+            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\JavaScriptFile1.js", "JavaScriptFile1.js", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment fails for invalid file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to add File Attachment when file type is invalid")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -244,13 +244,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\VbScriptFile1.vb")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "VbScriptFile1.vb")]
-        public virtual void AddFileAttachmentFailsForInvalidFileTypes_Variant4()
+        public virtual void FailToAddFileAttachmentWhenFileTypeIsInvalid_Variant4()
         {
-            this.AddFileAttachmentFailsForInvalidFileTypes("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\VbScriptFile1.vb", "VbScriptFile1.vb", ((string[])(null)));
+            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\VbScriptFile1.vb", "VbScriptFile1.vb", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment fails for invalid file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to add File Attachment when file type is invalid")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -261,12 +261,12 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\ExtensionlessFile1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "ExtensionlessFile1")]
-        public virtual void AddFileAttachmentFailsForInvalidFileTypes_Variant5()
+        public virtual void FailToAddFileAttachmentWhenFileTypeIsInvalid_Variant5()
         {
-            this.AddFileAttachmentFailsForInvalidFileTypes("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\ExtensionlessFile1", "ExtensionlessFile1", ((string[])(null)));
+            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\ExtensionlessFile1", "ExtensionlessFile1", ((string[])(null)));
         }
         
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes(string addOrEdit, string linkText, string filePath, string fileName, string[] exampleTags)
+        public virtual void AddFileAttachmentWithValidExtensionToList(string addOrEdit, string linkText, string filePath, string fileName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "InstAgrFormsR0203",
@@ -275,7 +275,7 @@ this.FeatureBackground();
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add file attachment succeeds for allowed file types", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add File Attachment with valid extension to list", @__tags);
 #line 45
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -285,7 +285,7 @@ this.FeatureBackground();
 #line 48
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
 #line 49
-    testRunner.And("I should see a File Attachments upload field");
+    testRunner.And("I should see a File Attachments upload field & button");
 #line 51
     testRunner.When(string.Format("I choose the file \"{0}\" for the File Attachments upload field", filePath));
 #line 52
@@ -297,7 +297,7 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -308,13 +308,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "SpecFlow Guide.pdf")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant0()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant0()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -325,13 +325,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.doc")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.doc")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant1()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant1()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -342,13 +342,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.docx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.docx")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant2()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant2()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -359,13 +359,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\OpenDocument1.odt")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "OpenDocument1.odt")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant3()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant3()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\OpenDocument1.odt", "OpenDocument1.odt", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\OpenDocument1.odt", "OpenDocument1.odt", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -376,13 +376,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xls")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "ExcelWorkbook1.xls")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant4()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant4()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xls", "ExcelWorkbook1.xls", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xls", "ExcelWorkbook1.xls", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -393,13 +393,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "ExcelWorkbook1.xlsx")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant5()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant5()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx", "ExcelWorkbook1.xlsx", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx", "ExcelWorkbook1.xlsx", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -410,13 +410,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "OpenSpreadsheet1.ods")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant6()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant6()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods", "OpenSpreadsheet1.ods", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods", "OpenSpreadsheet1.ods", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -427,13 +427,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\PowerPoint1.ppt")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "PowerPoint1.ppt")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant7()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant7()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\PowerPoint1.ppt", "PowerPoint1.ppt", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\PowerPoint1.ppt", "PowerPoint1.ppt", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -444,13 +444,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\PowerPoint1.pptx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "PowerPoint1.pptx")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant8()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant8()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\PowerPoint1.pptx", "PowerPoint1.pptx", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\PowerPoint1.pptx", "PowerPoint1.pptx", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -461,13 +461,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "SpecFlow Guide.pdf")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant9()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant9()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -478,13 +478,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.doc")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.doc")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant10()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant10()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -495,13 +495,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.docx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.docx")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant11()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant11()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -512,13 +512,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\OpenDocument1.odt")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "OpenDocument1.odt")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant12()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant12()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\OpenDocument1.odt", "OpenDocument1.odt", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\OpenDocument1.odt", "OpenDocument1.odt", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -529,13 +529,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xls")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "ExcelWorkbook1.xls")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant13()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant13()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xls", "ExcelWorkbook1.xls", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xls", "ExcelWorkbook1.xls", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -546,13 +546,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "ExcelWorkbook1.xlsx")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant14()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant14()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx", "ExcelWorkbook1.xlsx", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx", "ExcelWorkbook1.xlsx", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -563,13 +563,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "OpenSpreadsheet1.ods")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant15()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant15()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods", "OpenSpreadsheet1.ods", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods", "OpenSpreadsheet1.ods", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -580,13 +580,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\PowerPoint1.ppt")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "PowerPoint1.ppt")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant16()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant16()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\PowerPoint1.ppt", "PowerPoint1.ppt", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\PowerPoint1.ppt", "PowerPoint1.ppt", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add file attachment succeeds for allowed file types")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -597,12 +597,12 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\PowerPoint1.pptx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "PowerPoint1.pptx")]
-        public virtual void AddFileAttachmentSucceedsForAllowedFileTypes_Variant17()
+        public virtual void AddFileAttachmentWithValidExtensionToList_Variant17()
         {
-            this.AddFileAttachmentSucceedsForAllowedFileTypes("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\PowerPoint1.pptx", "PowerPoint1.pptx", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\PowerPoint1.pptx", "PowerPoint1.pptx", ((string[])(null)));
         }
         
-        public virtual void RemoveFileAttachmentFromListSucceeds(string addOrEdit, string linkText, string filePath, string fileName, string[] exampleTags)
+        public virtual void RemoveFileAttachmentFromList(string addOrEdit, string linkText, string filePath, string fileName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "InstAgrFormsR0204",
@@ -611,7 +611,7 @@ this.FeatureBackground();
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove file attachment from list succeeds", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove File Attachment from list", @__tags);
 #line 77
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -621,7 +621,7 @@ this.FeatureBackground();
 #line 80
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
 #line 81
-    testRunner.And("I should see a File Attachments upload field");
+    testRunner.And("I should see a File Attachments upload field & button");
 #line 83
     testRunner.When(string.Format("I choose the file \"{0}\" for the File Attachments upload field", filePath));
 #line 84
@@ -637,7 +637,7 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Remove file attachment from list succeeds")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Remove File Attachment from list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -648,13 +648,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "LargePdf33.8.pdf")]
-        public virtual void RemoveFileAttachmentFromListSucceeds_Add()
+        public virtual void RemoveFileAttachmentFromList_Add()
         {
-            this.RemoveFileAttachmentFromListSucceeds("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf", "LargePdf33.8.pdf", ((string[])(null)));
+            this.RemoveFileAttachmentFromList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf", "LargePdf33.8.pdf", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Remove file attachment from list succeeds")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Remove File Attachment from list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -665,12 +665,12 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "LargePdf33.8.pdf")]
-        public virtual void RemoveFileAttachmentFromListSucceeds_Edit()
+        public virtual void RemoveFileAttachmentFromList_Edit()
         {
-            this.RemoveFileAttachmentFromListSucceeds("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf", "LargePdf33.8.pdf", ((string[])(null)));
+            this.RemoveFileAttachmentFromList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf", "LargePdf33.8.pdf", ((string[])(null)));
         }
         
-        public virtual void UploadFileAttachmentSucceedsAndDisplaysLinkToFileAfterUpload(string browserName, string agreementLink, string filePath, string fileName, string[] exampleTags)
+        public virtual void UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage(string browser, string agreementLink, string filePath, string fileName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "InstAgrFormsR0205",
@@ -679,19 +679,19 @@ this.FeatureBackground();
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Upload file attachment succeeds and displays link to file after upload", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Upload File Attachment and display link to file on Public Detail page", @__tags);
 #line 96
 this.ScenarioSetup(scenarioInfo);
 #line 8
 this.FeatureBackground();
 #line 98
-    testRunner.Given(string.Format("I am using the {0} browser", browserName));
+    testRunner.Given(string.Format("I am using the {0} browser", browser));
 #line 100
     testRunner.When(string.Format("I click the \"{0}\" link", agreementLink));
 #line 101
     testRunner.Then("I should see the Institutional Agreement Edit page");
 #line 102
-    testRunner.And("I should see a File Attachments upload field");
+    testRunner.And("I should see a File Attachments upload field & button");
 #line 104
     testRunner.When(string.Format("I choose the file \"{0}\" for the File Attachments upload field", filePath));
 #line 105
@@ -709,108 +709,108 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload file attachment succeeds and displays link to file after upload")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to file on Public Detail page")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0205")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Firefox")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "SpecFlow Guide.pdf")]
-        public virtual void UploadFileAttachmentSucceedsAndDisplaysLinkToFileAfterUpload_Variant0()
+        public virtual void UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage_Variant0()
         {
-            this.UploadFileAttachmentSucceedsAndDisplaysLinkToFileAfterUpload("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload file attachment succeeds and displays link to file after upload")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to file on Public Detail page")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0205")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Firefox")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.doc")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.doc")]
-        public virtual void UploadFileAttachmentSucceedsAndDisplaysLinkToFileAfterUpload_Variant1()
+        public virtual void UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage_Variant1()
         {
-            this.UploadFileAttachmentSucceedsAndDisplaysLinkToFileAfterUpload("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload file attachment succeeds and displays link to file after upload")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to file on Public Detail page")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0205")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Firefox")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.docx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.docx")]
-        public virtual void UploadFileAttachmentSucceedsAndDisplaysLinkToFileAfterUpload_Variant2()
+        public virtual void UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage_Variant2()
         {
-            this.UploadFileAttachmentSucceedsAndDisplaysLinkToFileAfterUpload("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload file attachment succeeds and displays link to file after upload")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to file on Public Detail page")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0205")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Internet Explorer")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 02 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "SpecFlow Guide.pdf")]
-        public virtual void UploadFileAttachmentSucceedsAndDisplaysLinkToFileAfterUpload_Variant3()
+        public virtual void UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage_Variant3()
         {
-            this.UploadFileAttachmentSucceedsAndDisplaysLinkToFileAfterUpload("Internet Explorer", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload file attachment succeeds and displays link to file after upload")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to file on Public Detail page")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0205")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Internet Explorer")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 02 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.doc")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.doc")]
-        public virtual void UploadFileAttachmentSucceedsAndDisplaysLinkToFileAfterUpload_Variant4()
+        public virtual void UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage_Variant4()
         {
-            this.UploadFileAttachmentSucceedsAndDisplaysLinkToFileAfterUpload("Internet Explorer", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload file attachment succeeds and displays link to file after upload")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to file on Public Detail page")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0205")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Internet Explorer")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 02 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.docx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.docx")]
-        public virtual void UploadFileAttachmentSucceedsAndDisplaysLinkToFileAfterUpload_Variant5()
+        public virtual void UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage_Variant5()
         {
-            this.UploadFileAttachmentSucceedsAndDisplaysLinkToFileAfterUpload("Internet Explorer", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
         }
         
-        public virtual void UploadFileAttachmentFaileForFileOver25MegabytesInSize(string filePath, string fileName, string[] exampleTags)
+        public virtual void FailToUploadFileAttachmentOver25MegabytesInSize(string filePath, string fileName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "InstAgrFormsR0206",
@@ -819,7 +819,7 @@ this.FeatureBackground();
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Upload file attachment faile for file over 25 megabytes in size", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fail to upload File attachment over 25 megabytes in size", @__tags);
 #line 122
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -829,7 +829,7 @@ this.FeatureBackground();
 #line 125
     testRunner.Then("I should see the Institutional Agreement Edit page");
 #line 126
-    testRunner.And("I should see a File Attachments upload field");
+    testRunner.And("I should see a File Attachments upload field & button");
 #line 128
     testRunner.When(string.Format("I choose the file \"{0}\" for the File Attachments upload field", filePath));
 #line 129
@@ -843,7 +843,7 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload file attachment faile for file over 25 megabytes in size")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to upload File attachment over 25 megabytes in size")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
@@ -852,9 +852,9 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "LargePdf33.8.pdf")]
-        public virtual void UploadFileAttachmentFaileForFileOver25MegabytesInSize_CWebDriverFileUploadsLargePdf33_8_Pdf()
+        public virtual void FailToUploadFileAttachmentOver25MegabytesInSize_CWebDriverFileUploadsLargePdf33_8_Pdf()
         {
-            this.UploadFileAttachmentFaileForFileOver25MegabytesInSize("C:\\WebDriverFileUploads\\LargePdf33.8.pdf", "LargePdf33.8.pdf", ((string[])(null)));
+            this.FailToUploadFileAttachmentOver25MegabytesInSize("C:\\WebDriverFileUploads\\LargePdf33.8.pdf", "LargePdf33.8.pdf", ((string[])(null)));
         }
     }
 }

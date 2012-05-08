@@ -28,7 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
         [Display(Name = "Contact type")]
         [Required(ErrorMessage = "{0} is required.")]
         [AllowedContactType(ErrorMessage = "Contact type '{0}' is not allowed. Please select a Contact type from the list provided.")]
-        public string Type { get; set; }
+        public string ContactType { get; set; }
 
         public PersonForm Person { get; set; }
         public class PersonForm

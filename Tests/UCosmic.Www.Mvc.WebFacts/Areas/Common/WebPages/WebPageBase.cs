@@ -24,7 +24,8 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
         {
             if (SpecToWeb.ContainsKey(label))
             {
-                var field = GetInputByName(label) ??
+                var field = GetInputBySelector(label) ??
+                            GetInputByName(label) ??
                             GetTextAreaByName(label) ??
                             GetInputById(label) ??
                             GetTextAreaById(label);
@@ -50,6 +51,23 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
 
             throw new NotSupportedException(
                 string.Format("The field label '{0}' does not exist.", label));
+        }
+
+        private IWebElement GetInputBySelector(string fieldLabel)
+        {
+            var webValue = SpecToWeb[fieldLabel];
+            if (webValue.Contains("#") || webValue.Contains(".") ||
+                (webValue.Contains("[") && webValue.Contains("]") && webValue.Contains("=")))
+            {
+                var selector = string.Format(
+                    @"{0} {1}",
+                        EditorSelector, webValue
+                ).Trim();
+                return Browser.WaitUntil(b => b.FindElement(By.CssSelector(selector)),
+                    string.Format("The '{0}' field does not appear to exist in @Browser (CSS selector was '{1}').",
+                        fieldLabel, selector));
+            }
+            return null;
         }
 
         private IWebElement GetInputByName(string fieldLabel)
@@ -174,7 +192,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
         {
             if (SpecToWeb.ContainsKey(fieldLabel))
             {
-                var fieldName = SpecToWeb[fieldLabel];
+                var fieldName = SpecToWeb[fieldLabel].Replace("_", ".");
                 var selector = string.Format(
                     @"{0} .field-validation-error[data-valmsg-for=""{1}""]",
                         EditorSelector, fieldName

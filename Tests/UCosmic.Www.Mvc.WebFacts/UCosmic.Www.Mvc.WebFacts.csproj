@@ -202,7 +202,8 @@
       <DependentUpon>ManagementFormsR04.feature</DependentUpon>
     </Compile>
     <Compile Include="Areas\InstitutionalAgreements\ManagementFormsSteps.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\InstitutionalAgreementForm.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\ManagementForm.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\ManagementBindings.cs" />
     <Compile Include="Areas\RecruitmentAgencies\Features\RA_US_0001.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

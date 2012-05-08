@@ -20,7 +20,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.WebPages
 
             if (relativeUrl.MatchesUrl(RelativeUrl.InstitutionalAgreementAdd) ||
                 relativeUrl.MatchesUrl(RelativeUrl.InstitutionalAgreementEdit))
-                return new InstitutionalAgreementForm(browser);
+                return new ManagementForm(browser);
 
             throw new NotSupportedException(string.Format(
                 "The page factory does not know which page to create for url '{0}'.", relativeUrl));

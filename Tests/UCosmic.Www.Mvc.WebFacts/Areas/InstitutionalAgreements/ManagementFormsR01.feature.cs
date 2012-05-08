@@ -82,7 +82,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 #line hidden
         }
         
-        public virtual void FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty(string addOrEdit, string linkToForm, string submitLabel, string value1, string value2, string value3, string value4, string value5, string orNot1, string orNot2, string orNot3, string orNot4, string orNot5, string[] exampleTags)
+        public virtual void FormSubmitFailsWhenRequiredFieldsAreEmpty(string addOrEdit, string linkToForm, string submitLabel, string value1, string value2, string value3, string value4, string value5, string orNot1, string orNot2, string orNot3, string orNot4, string orNot5, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "InstAgrFormsR0101"};
@@ -90,7 +90,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fail to submit Institutional Agreement form because required fields are empty", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Form submit fails when required fields are empty", @__tags);
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -143,7 +143,7 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to submit Institutional Agreement form because required fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Form submit fails when required fields are empty")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -162,13 +162,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot3", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot4", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "")]
-        public virtual void FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty_Variant0()
+        public virtual void FormSubmitFailsWhenRequiredFieldsAreEmpty_Variant0()
         {
-            this.FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty("Add", "Add a new agreement", "Add Agreement", "", "", "", "", "", "", "", "", "", "", ((string[])(null)));
+            this.FormSubmitFailsWhenRequiredFieldsAreEmpty("Add", "Add a new agreement", "Add Agreement", "", "", "", "", "", "", "", "", "", "", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to submit Institutional Agreement form because required fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Form submit fails when required fields are empty")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -187,13 +187,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot3", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot4", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "")]
-        public virtual void FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty_Variant1()
+        public virtual void FormSubmitFailsWhenRequiredFieldsAreEmpty_Variant1()
         {
-            this.FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty("Add", "Add a new agreement", "Add Agreement", "Test", "", "", "", "", "not", "", "", "", "", ((string[])(null)));
+            this.FormSubmitFailsWhenRequiredFieldsAreEmpty("Add", "Add a new agreement", "Add Agreement", "Test", "", "", "", "", "not", "", "", "", "", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to submit Institutional Agreement form because required fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Form submit fails when required fields are empty")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -212,13 +212,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot3", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot4", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "")]
-        public virtual void FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty_Variant2()
+        public virtual void FormSubmitFailsWhenRequiredFieldsAreEmpty_Variant2()
         {
-            this.FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty("Add", "Add a new agreement", "Add Agreement", "", "Test", "", "", "", "", "not", "", "", "", ((string[])(null)));
+            this.FormSubmitFailsWhenRequiredFieldsAreEmpty("Add", "Add a new agreement", "Add Agreement", "", "Test", "", "", "", "", "not", "", "", "", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to submit Institutional Agreement form because required fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Form submit fails when required fields are empty")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -237,13 +237,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot3", "not")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot4", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "")]
-        public virtual void FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty_Variant3()
+        public virtual void FormSubmitFailsWhenRequiredFieldsAreEmpty_Variant3()
         {
-            this.FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty("Add", "Add a new agreement", "Add Agreement", "", "", "8/6/11", "", "", "", "", "not", "", "", ((string[])(null)));
+            this.FormSubmitFailsWhenRequiredFieldsAreEmpty("Add", "Add a new agreement", "Add Agreement", "", "", "8/6/11", "", "", "", "", "not", "", "", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to submit Institutional Agreement form because required fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Form submit fails when required fields are empty")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -262,13 +262,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot3", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot4", "not")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "")]
-        public virtual void FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty_Variant4()
+        public virtual void FormSubmitFailsWhenRequiredFieldsAreEmpty_Variant4()
         {
-            this.FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty("Add", "Add a new agreement", "Add Agreement", "", "", "", "8/5/15", "", "", "", "", "not", "", ((string[])(null)));
+            this.FormSubmitFailsWhenRequiredFieldsAreEmpty("Add", "Add a new agreement", "Add Agreement", "", "", "", "8/5/15", "", "", "", "", "not", "", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to submit Institutional Agreement form because required fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Form submit fails when required fields are empty")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -287,13 +287,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot3", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot4", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "not")]
-        public virtual void FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty_Variant5()
+        public virtual void FormSubmitFailsWhenRequiredFieldsAreEmpty_Variant5()
         {
-            this.FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty("Add", "Add a new agreement", "Add Agreement", "", "", "", "", "Test", "", "", "", "", "not", ((string[])(null)));
+            this.FormSubmitFailsWhenRequiredFieldsAreEmpty("Add", "Add a new agreement", "Add Agreement", "", "", "", "", "Test", "", "", "", "", "not", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to submit Institutional Agreement form because required fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Form submit fails when required fields are empty")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -312,13 +312,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot3", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot4", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "")]
-        public virtual void FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty_Variant6()
+        public virtual void FormSubmitFailsWhenRequiredFieldsAreEmpty_Variant6()
         {
-            this.FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Save Changes", "", "", "", "", "", "", "", "", "", "", ((string[])(null)));
+            this.FormSubmitFailsWhenRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Save Changes", "", "", "", "", "", "", "", "", "", "", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to submit Institutional Agreement form because required fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Form submit fails when required fields are empty")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -337,13 +337,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot3", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot4", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "")]
-        public virtual void FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty_Variant7()
+        public virtual void FormSubmitFailsWhenRequiredFieldsAreEmpty_Variant7()
         {
-            this.FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Save Changes", "Test", "", "", "", "", "not", "", "", "", "", ((string[])(null)));
+            this.FormSubmitFailsWhenRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Save Changes", "Test", "", "", "", "", "not", "", "", "", "", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to submit Institutional Agreement form because required fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Form submit fails when required fields are empty")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -362,13 +362,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot3", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot4", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "")]
-        public virtual void FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty_Variant8()
+        public virtual void FormSubmitFailsWhenRequiredFieldsAreEmpty_Variant8()
         {
-            this.FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Save Changes", "", "Test", "", "", "", "", "not", "", "", "", ((string[])(null)));
+            this.FormSubmitFailsWhenRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Save Changes", "", "Test", "", "", "", "", "not", "", "", "", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to submit Institutional Agreement form because required fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Form submit fails when required fields are empty")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -387,13 +387,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot3", "not")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot4", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "")]
-        public virtual void FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty_Variant9()
+        public virtual void FormSubmitFailsWhenRequiredFieldsAreEmpty_Variant9()
         {
-            this.FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Save Changes", "", "", "8/6/11", "", "", "", "", "not", "", "", ((string[])(null)));
+            this.FormSubmitFailsWhenRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Save Changes", "", "", "8/6/11", "", "", "", "", "not", "", "", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to submit Institutional Agreement form because required fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Form submit fails when required fields are empty")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -412,13 +412,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot3", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot4", "not")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "")]
-        public virtual void FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty_Variant10()
+        public virtual void FormSubmitFailsWhenRequiredFieldsAreEmpty_Variant10()
         {
-            this.FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Save Changes", "", "", "", "8/5/15", "", "", "", "", "not", "", ((string[])(null)));
+            this.FormSubmitFailsWhenRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Save Changes", "", "", "", "8/5/15", "", "", "", "", "not", "", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to submit Institutional Agreement form because required fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Form submit fails when required fields are empty")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -437,12 +437,12 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot3", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot4", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "not")]
-        public virtual void FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty_Variant11()
+        public virtual void FormSubmitFailsWhenRequiredFieldsAreEmpty_Variant11()
         {
-            this.FailToSubmitInstitutionalAgreementFormBecauseRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Save Changes", "", "", "", "", "Test", "", "", "", "", "not", ((string[])(null)));
+            this.FormSubmitFailsWhenRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Save Changes", "", "", "", "", "Test", "", "", "", "", "not", ((string[])(null)));
         }
         
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields(string browserName, string agreementTitle, string orNot1, string value1, string orNot2, string value2, string orNot3, string value3, string orNot4, string value4, string orNot5, string value5, string flash, string[] exampleTags)
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields(string browser, string agreementTitle, string orNot1, string value1, string orNot2, string value2, string orNot3, string value3, string orNot4, string value4, string orNot5, string value5, string flash, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "InstAgrFormsR0102",
@@ -453,14 +453,13 @@ this.FeatureBackground();
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successfully submit Institutional Agreement Edit form after editing various field" +
-                    "s", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit form submit succeeds after editing various fields", @__tags);
 #line 53
 this.ScenarioSetup(scenarioInfo);
 #line 8
 this.FeatureBackground();
 #line 56
-    testRunner.Given(string.Format("I am using the {0} browser", browserName));
+    testRunner.Given(string.Format("I am using the {0} browser", browser));
 #line 57
     testRunner.When(string.Format("I click the \"{0}\" link", agreementTitle));
 #line 58
@@ -508,8 +507,7 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -518,7 +516,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Chrome")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC GC test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -531,14 +529,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "No changes were saved.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant0()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant0()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Chrome", "Agreement, UC GC test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "No changes were saved.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("Chrome", "Agreement, UC GC test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "No changes were saved.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -547,7 +544,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Chrome")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC GC test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "Test")]
@@ -560,14 +557,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant1()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant1()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Chrome", "Agreement, UC GC test", "", "Test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("Chrome", "Agreement, UC GC test", "", "Test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -576,7 +572,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Chrome")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC GC test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -589,14 +585,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant2()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant2()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Chrome", "Agreement, UC GC test", "n\'t", "", "", "Agreement, UC GC test edited", "n\'t", "", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("Chrome", "Agreement, UC GC test", "n\'t", "", "", "Agreement, UC GC test edited", "n\'t", "", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -605,7 +600,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Chrome")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC GC test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -618,14 +613,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant3()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant3()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Chrome", "Agreement, UC GC test", "n\'t", "", "n\'t", "", "", "8/7/1976", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("Chrome", "Agreement, UC GC test", "n\'t", "", "n\'t", "", "", "8/7/1976", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -634,7 +628,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Chrome")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC GC test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -647,14 +641,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant4()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant4()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Chrome", "Agreement, UC GC test", "n\'t", "", "n\'t", "", "n\'t", "", "", "8/6/2056", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("Chrome", "Agreement, UC GC test", "n\'t", "", "n\'t", "", "n\'t", "", "", "8/6/2056", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -663,7 +656,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Chrome")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC GC test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -676,14 +669,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "Test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant5()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant5()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Chrome", "Agreement, UC GC test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "", "Test", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("Chrome", "Agreement, UC GC test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "", "Test", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -692,7 +684,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 6")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Firefox")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC FF test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -705,14 +697,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "No changes were saved.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant6()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant6()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Firefox", "Agreement, UC FF test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "No changes were saved.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("Firefox", "Agreement, UC FF test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "No changes were saved.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -721,7 +712,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 7")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Firefox")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC FF test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "Test")]
@@ -734,14 +725,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant7()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant7()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Firefox", "Agreement, UC FF test", "", "Test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("Firefox", "Agreement, UC FF test", "", "Test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -750,7 +740,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 8")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Firefox")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC FF test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -763,14 +753,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant8()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant8()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Firefox", "Agreement, UC FF test", "n\'t", "", "", "Agreement, UC FF test edited", "n\'t", "", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("Firefox", "Agreement, UC FF test", "n\'t", "", "", "Agreement, UC FF test edited", "n\'t", "", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -779,7 +768,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 9")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Firefox")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC FF test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -792,14 +781,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant9()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant9()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Firefox", "Agreement, UC FF test", "n\'t", "", "n\'t", "", "", "8/7/1976", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("Firefox", "Agreement, UC FF test", "n\'t", "", "n\'t", "", "", "8/7/1976", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -808,7 +796,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 10")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Firefox")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC FF test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -821,14 +809,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant10()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant10()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Firefox", "Agreement, UC FF test", "n\'t", "", "n\'t", "", "n\'t", "", "", "8/6/2056", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("Firefox", "Agreement, UC FF test", "n\'t", "", "n\'t", "", "n\'t", "", "", "8/6/2056", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -837,7 +824,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 11")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Firefox")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC FF test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -850,14 +837,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "Test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant11()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant11()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Firefox", "Agreement, UC FF test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "", "Test", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("Firefox", "Agreement, UC FF test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "", "Test", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -866,7 +852,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 12")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Internet Explorer")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC IE test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -879,14 +865,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "No changes were saved.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant12()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant12()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Internet Explorer", "Agreement, UC IE test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "No changes were saved.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("MSIE", "Agreement, UC IE test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "No changes were saved.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -895,7 +880,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 13")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Internet Explorer")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC IE test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "Test")]
@@ -908,14 +893,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant13()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant13()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Internet Explorer", "Agreement, UC IE test", "", "Test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("MSIE", "Agreement, UC IE test", "", "Test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -924,7 +908,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 14")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Internet Explorer")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC IE test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -937,14 +921,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant14()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant14()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Internet Explorer", "Agreement, UC IE test", "n\'t", "", "", "Agreement, UC IE test edited", "n\'t", "", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("MSIE", "Agreement, UC IE test", "n\'t", "", "", "Agreement, UC IE test edited", "n\'t", "", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -953,7 +936,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 15")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Internet Explorer")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC IE test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -966,14 +949,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant15()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant15()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Internet Explorer", "Agreement, UC IE test", "n\'t", "", "n\'t", "", "", "8/7/1976", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("MSIE", "Agreement, UC IE test", "n\'t", "", "n\'t", "", "", "8/7/1976", "n\'t", "", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -982,7 +964,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 16")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Internet Explorer")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC IE test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -995,14 +977,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant16()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant16()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Internet Explorer", "Agreement, UC IE test", "n\'t", "", "n\'t", "", "n\'t", "", "", "8/6/2056", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("MSIE", "Agreement, UC IE test", "n\'t", "", "n\'t", "", "n\'t", "", "", "8/6/2056", "n\'t", "", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successfully submit Institutional Agreement Edit form after editing various field" +
-            "s")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Edit form submit succeeds after editing various fields")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -1011,7 +992,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcFf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUcIe")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 17")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Internet Explorer")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementTitle", "Agreement, UC IE test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot1", "n\'t")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value1", "")]
@@ -1024,12 +1005,12 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot5", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Value5", "Test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Flash", "Institutional agreement was saved successfully.")]
-        public virtual void SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields_Variant17()
+        public virtual void EditFormSubmitSucceedsAfterEditingVariousFields_Variant17()
         {
-            this.SuccessfullySubmitInstitutionalAgreementEditFormAfterEditingVariousFields("Internet Explorer", "Agreement, UC IE test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "", "Test", "Institutional agreement was saved successfully.", ((string[])(null)));
+            this.EditFormSubmitSucceedsAfterEditingVariousFields("MSIE", "Agreement, UC IE test", "n\'t", "", "n\'t", "", "n\'t", "", "n\'t", "", "", "Test", "Institutional agreement was saved successfully.", ((string[])(null)));
         }
         
-        public virtual void AddInstitutionalAgreementParticipantToTheList(string addOrEdit, string linkToForm, string participantTerm, string participantTarget, string[] exampleTags)
+        public virtual void AddParticipantToList(string addOrEdit, string linkToForm, string participantTerm, string participantTarget, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "InstAgrFormsR0103"};
@@ -1037,7 +1018,7 @@ this.FeatureBackground();
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Institutional Agreement Participant to the list", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Participant to list", @__tags);
 #line 105
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -1061,7 +1042,7 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Institutional Agreement Participant to the list")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Participant to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -1071,13 +1052,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkToForm", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ParticipantTerm", "alf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ParticipantTarget", "Alfred University (SUNY)")]
-        public virtual void AddInstitutionalAgreementParticipantToTheList_Variant0()
+        public virtual void AddParticipantToList_Variant0()
         {
-            this.AddInstitutionalAgreementParticipantToTheList("Add", "Add a new agreement", "alf", "Alfred University (SUNY)", ((string[])(null)));
+            this.AddParticipantToList("Add", "Add a new agreement", "alf", "Alfred University (SUNY)", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Institutional Agreement Participant to the list")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Participant to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -1087,13 +1068,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkToForm", "Add a new agreement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ParticipantTerm", "beij")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ParticipantTarget", "Beijing Jiaotong University")]
-        public virtual void AddInstitutionalAgreementParticipantToTheList_Variant1()
+        public virtual void AddParticipantToList_Variant1()
         {
-            this.AddInstitutionalAgreementParticipantToTheList("Add", "Add a new agreement", "beij", "Beijing Jiaotong University", ((string[])(null)));
+            this.AddParticipantToList("Add", "Add a new agreement", "beij", "Beijing Jiaotong University", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Institutional Agreement Participant to the list")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Participant to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -1103,13 +1084,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkToForm", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ParticipantTerm", "alf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ParticipantTarget", "Alfred University (SUNY)")]
-        public virtual void AddInstitutionalAgreementParticipantToTheList_Variant2()
+        public virtual void AddParticipantToList_Variant2()
         {
-            this.AddInstitutionalAgreementParticipantToTheList("Edit", "Agreement, UC 01 test", "alf", "Alfred University (SUNY)", ((string[])(null)));
+            this.AddParticipantToList("Edit", "Agreement, UC 01 test", "alf", "Alfred University (SUNY)", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Institutional Agreement Participant to the list")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Participant to list")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR01")]
@@ -1119,9 +1100,9 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkToForm", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ParticipantTerm", "beij")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ParticipantTarget", "Beijing Jiaotong University")]
-        public virtual void AddInstitutionalAgreementParticipantToTheList_Variant3()
+        public virtual void AddParticipantToList_Variant3()
         {
-            this.AddInstitutionalAgreementParticipantToTheList("Edit", "Agreement, UC 01 test", "beij", "Beijing Jiaotong University", ((string[])(null)));
+            this.AddParticipantToList("Edit", "Agreement, UC 01 test", "beij", "Beijing Jiaotong University", ((string[])(null)));
         }
         
         public virtual void GenerateSummaryDescriptionBasedOnParticipantsTypeAndStatusWhenAddingAnAgreement(string orNot, string term, string participant, string agreementType, string status, string generationExpected, string[] exampleTags)

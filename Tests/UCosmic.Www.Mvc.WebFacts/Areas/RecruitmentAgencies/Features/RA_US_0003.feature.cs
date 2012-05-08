@@ -71,13 +71,13 @@ I want to configure a custom message to be displayed to recruitment agency appli
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RecruitmentAgencyModuleWelcomeMessageBasicEdit(string browserName, string userEmail, string establishmentId, string[] exampleTags)
+        public virtual void RecruitmentAgencyModuleWelcomeMessageBasicEdit(string browser, string userEmail, string establishmentId, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Recruitment Agency Module Welcome Message Basic Edit", exampleTags);
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 15
-    testRunner.Given(string.Format("I am using the {0} browser", browserName));
+    testRunner.Given(string.Format("I am using the {0} browser", browser));
 #line 18
     testRunner.When(string.Format("I sign in as \"{0}\" with password \"asdfasdf\"", userEmail));
 #line 19
@@ -185,7 +185,7 @@ this.ScenarioSetup(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "RA_US_0003 - Configure Recruitment Agency Module Welcome Message")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("RepsModule")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Chrome")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Chrome")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserEmail", "supervisor1@uc.edu")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EstablishmentId", "www.uc.edu")]
         public virtual void RecruitmentAgencyModuleWelcomeMessageBasicEdit_Chrome()
@@ -198,7 +198,7 @@ this.ScenarioSetup(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "RA_US_0003 - Configure Recruitment Agency Module Welcome Message")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("RepsModule")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Firefox")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Firefox")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserEmail", "supervisor1@suny.edu")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EstablishmentId", "www.suny.edu")]
         public virtual void RecruitmentAgencyModuleWelcomeMessageBasicEdit_Firefox()
@@ -210,13 +210,13 @@ this.ScenarioSetup(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Recruitment Agency Module Welcome Message Basic Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "RA_US_0003 - Configure Recruitment Agency Module Welcome Message")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("RepsModule")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Internet Explorer")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:BrowserName", "Internet Explorer")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MSIE")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserEmail", "supervisor1@napier.ac.uk")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EstablishmentId", "www.napier.ac.uk")]
-        public virtual void RecruitmentAgencyModuleWelcomeMessageBasicEdit_InternetExplorer()
+        public virtual void RecruitmentAgencyModuleWelcomeMessageBasicEdit_MSIE()
         {
-            this.RecruitmentAgencyModuleWelcomeMessageBasicEdit("Internet Explorer", "supervisor1@napier.ac.uk", "www.napier.ac.uk", ((string[])(null)));
+            this.RecruitmentAgencyModuleWelcomeMessageBasicEdit("MSIE", "supervisor1@napier.ac.uk", "www.napier.ac.uk", ((string[])(null)));
         }
     }
 }
