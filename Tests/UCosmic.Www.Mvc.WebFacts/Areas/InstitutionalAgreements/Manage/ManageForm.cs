@@ -4,9 +4,9 @@ using UCosmic.Www.Mvc.Areas.Common.WebPages;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 {
-    public class ManagementForm : WebPageBase
+    public class ManageForm : WebPageBase
     {
-        public ManagementForm(IWebDriver driver)
+        public ManageForm(IWebDriver driver)
             : base(driver)
         {
             var testContacts = new[]

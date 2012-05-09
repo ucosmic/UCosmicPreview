@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
+namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Manage
 {
     using TechTalk.SpecFlow;
     
@@ -19,23 +19,21 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class InstitutionalAgreementManagementPreviewRevision4Feature
+    public partial class GetHelpWithExpirationDateRequirementFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "ManagementFormsR04.feature"
+#line 1 "ExpirationDateHelp.feature"
 #line hidden
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute()]
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Institutional Agreement Management Preview Revision 4", @"  In order to inform the people about the use of an expiration date field for my Institutional Agreements
-  As an Institutional Agreement Manager
-  I want to help the people enter expiration date information attached to my Institutional Agreements in UCosmic", ProgrammingLanguage.CSharp, new string[] {
-                        "InstAgrForms",
-                        "InstAgrFormsR04"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Get Help With Expiration Date Requirement", "  In order to accommodate my agreements that don\'t have an exact expiration date\r" +
+                    "\n  As an Institutional Agreement Manager\r\n  I want to read an explanation about " +
+                    "why the Expiration Date field is required", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -50,9 +48,9 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
         public virtual void TestInitialize()
         {
             if (((TechTalk.SpecFlow.FeatureContext.Current != null) 
-                        && (TechTalk.SpecFlow.FeatureContext.Current.FeatureInfo.Title != "Institutional Agreement Management Preview Revision 4")))
+                        && (TechTalk.SpecFlow.FeatureContext.Current.FeatureInfo.Title != "Get Help With Expiration Date Requirement")))
             {
-                UCosmic.Www.Mvc.Areas.InstitutionalAgreements.InstitutionalAgreementManagementPreviewRevision4Feature.FeatureSetup(null);
+                UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Manage.GetHelpWithExpirationDateRequirementFeature.FeatureSetup(null);
             }
         }
         
@@ -74,32 +72,26 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
         
         public virtual void FeatureBackground()
         {
-#line 9
-#line 10
+#line 6
+#line 8
     testRunner.Given("I am signed in as manager1@uc.edu");
-#line 11
+#line 9
     testRunner.And("I am starting from the Institutional Agreement Management page");
 #line hidden
         }
         
         public virtual void DisplayHelpLinkForExpirationDateField(string addOrEdit, string linkText, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0401"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display Help link for Expiration Date field", @__tags);
-#line 14
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display Help link for Expiration Date field", exampleTags);
+#line 11
 this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 6
 this.FeatureBackground();
-#line 16
+#line 13
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 17
+#line 14
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 18
+#line 15
     testRunner.And("I should see a \"Help\" link");
 #line hidden
             this.ScenarioCleanup();
@@ -107,10 +99,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display Help link for Expiration Date field")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 4")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR04")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0401")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Get Help With Expiration Date Requirement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -121,10 +110,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display Help link for Expiration Date field")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 4")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR04")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0401")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Get Help With Expiration Date Requirement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -135,28 +121,22 @@ this.FeatureBackground();
         
         public virtual void DisplayHelpBubbleDialogForExpirationDateFieldByClickingHelpLink(string addOrEdit, string linkText, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0402"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display help bubble dialog for Expiration Date field by clicking Help link", @__tags);
-#line 26
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display help bubble dialog for Expiration Date field by clicking Help link", exampleTags);
+#line 22
  this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 6
 this.FeatureBackground();
-#line 28
+#line 24
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 29
+#line 25
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 30
+#line 26
     testRunner.And("I should see a \"Help\" link");
-#line 32
+#line 28
     testRunner.When("I click the \"Help\" link");
-#line 33
+#line 29
     testRunner.Then("I should see a help bubble dialog");
-#line 34
+#line 30
     testRunner.And("I should see a \"Close this popup\" link");
 #line hidden
             this.ScenarioCleanup();
@@ -164,10 +144,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display help bubble dialog for Expiration Date field by clicking Help link")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 4")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR04")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0402")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Get Help With Expiration Date Requirement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -178,10 +155,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display help bubble dialog for Expiration Date field by clicking Help link")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 4")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR04")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0402")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Get Help With Expiration Date Requirement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -192,32 +166,26 @@ this.FeatureBackground();
         
         public virtual void CloseHelpBubbleDialogByClickingTheCloseThisPopupLink(string addOrEdit, string linkText, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0403"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Close help bubble dialog by clicking the Close This Popup link", @__tags);
-#line 42
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Close help bubble dialog by clicking the Close This Popup link", exampleTags);
+#line 37
  this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 6
 this.FeatureBackground();
-#line 44
+#line 39
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 45
+#line 40
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 46
+#line 41
     testRunner.And("I should see a \"Help\" link");
-#line 48
+#line 43
     testRunner.When("I click the \"Help\" link");
-#line 49
+#line 44
     testRunner.Then("I should see a help bubble dialog");
-#line 50
+#line 45
     testRunner.And("I should see a \"Close this popup\" link");
-#line 52
+#line 47
     testRunner.When("I click the \"Close this popup\" link");
-#line 53
+#line 48
     testRunner.Then("I should not see a help bubble dialog");
 #line hidden
             this.ScenarioCleanup();
@@ -225,10 +193,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Close help bubble dialog by clicking the Close This Popup link")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 4")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR04")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0403")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Get Help With Expiration Date Requirement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -239,10 +204,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Close help bubble dialog by clicking the Close This Popup link")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 4")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR04")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0403")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Get Help With Expiration Date Requirement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -253,32 +215,26 @@ this.FeatureBackground();
         
         public virtual void CloseHelpBubbleDialogByClickingTheHelpLinkASecondTime(string addOrEdit, string linkText, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0404"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Close help bubble dialog by clicking the Help link a second time", @__tags);
-#line 61
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Close help bubble dialog by clicking the Help link a second time", exampleTags);
+#line 55
  this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 6
 this.FeatureBackground();
-#line 63
+#line 57
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 64
+#line 58
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 65
+#line 59
     testRunner.And("I should see a \"Help\" link");
-#line 67
+#line 61
     testRunner.When("I click the \"Help\" link");
-#line 68
+#line 62
     testRunner.Then("I should see a help bubble dialog");
-#line 69
+#line 63
     testRunner.And("I should see a \"Close this popup\" link");
-#line 71
+#line 65
     testRunner.When("I click the \"Help\" link");
-#line 72
+#line 66
     testRunner.Then("I should not see a help bubble dialog");
 #line hidden
             this.ScenarioCleanup();
@@ -286,10 +242,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Close help bubble dialog by clicking the Help link a second time")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 4")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR04")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0404")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Get Help With Expiration Date Requirement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -300,10 +253,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Close help bubble dialog by clicking the Help link a second time")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 4")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR04")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0404")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Get Help With Expiration Date Requirement")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]

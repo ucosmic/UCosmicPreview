@@ -1,36 +1,34 @@
-﻿@InstAgrForms
-@InstAgrFormsR02
-Feature: Institutional Agreement Management Preview Revision 2
-    In order to have centralized online access to documents relating to my Institutional Agreements
+﻿Feature: Manage File Attachments
+    In order to quickly access copies of signed agreement documents
     As an Institutional Agreement Manager
-    I want to upload, remove, and generally manage which files are attached to my Institutional Agreements in UCosmic
+    I want to manage a list of File Attachments for each agreement
 
 Background:
+
     Given I am signed in as manager1@uc.edu
     And I am starting from the Institutional Agreement Management page
 
-@InstAgrFormsR0201
 Scenario Outline: Display File Attachments upload field
 
     When I click the "<LinkText>" link
     Then I should see the Institutional Agreement <AddOrEdit> page
-    And I should see a File Attachments upload field & button
+    And I should see a File Attachments upload field
 
 Examples:
     | AddOrEdit | LinkText              |
     | Add       | Add a new agreement   |
     | Edit      | Agreement, UC 01 test |
 
-@InstAgrFormsR0202 @NotInChrome
+@NotInChrome
 Scenario Outline: Fail to add File Attachment when file type is invalid
 
     When I click the "<LinkText>" link
     Then I should see the Institutional Agreement <AddOrEdit> page
-    And I should see a File Attachments upload field & button
+    And I should see a File Attachments upload field
 
     When I choose the file "<FilePath>" for the File Attachments upload field
     Then I should not see an item for "<FileName>" in the File Attachments list
-    And I should see the Invalid error message for the File Attachments field
+    And I should see the Invalid error message for the File Attachments upload field
 
 Examples:
     | AddOrEdit | LinkText              | FilePath                                     | FileName           |
@@ -41,16 +39,16 @@ Examples:
     | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\VbScriptFile1.vb   | VbScriptFile1.vb   |
     | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\ExtensionlessFile1 | ExtensionlessFile1 |
 
-@InstAgrFormsR0203 @NotInChrome
+@NotInChrome
 Scenario Outline: Add File Attachment with valid extension to list
 
     When I click the "<LinkText>" link
     Then I should see the Institutional Agreement <AddOrEdit> page
-    And I should see a File Attachments upload field & button
+    And I should see a File Attachments upload field
 
     When I choose the file "<FilePath>" for the File Attachments upload field
     Then I should see an item for "<FileName>" in the File Attachments list
-    And I should not see the Invalid error message for the File Attachments field
+    And I should not see the Invalid error message for the File Attachments upload field
 
 Examples:
     | AddOrEdit | LinkText              | FilePath                                       | FileName             |
@@ -73,16 +71,16 @@ Examples:
     | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\PowerPoint1.ppt      | PowerPoint1.ppt      |
     | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\PowerPoint1.pptx     | PowerPoint1.pptx     |
 
-@InstAgrFormsR0204 @NotInChrome
+@NotInChrome
 Scenario Outline: Remove File Attachment from list
 
     When I click the "<LinkText>" link
     Then I should see the Institutional Agreement <AddOrEdit> page
-    And I should see a File Attachments upload field & button
+    And I should see a File Attachments upload field
 
     When I choose the file "<FilePath>" for the File Attachments upload field
     Then I should see an item for "<FileName>" in the File Attachments list
-    And I should not see the Invalid error message for the File Attachments field
+    And I should not see the Invalid error message for the File Attachments upload field
 
     When I click the remove icon for "<FileName>" in the File Attachments list
     Then I should not see an item for "<FileName>" in the File Attachments list
@@ -92,18 +90,18 @@ Examples:
     | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\LargePdf33.8.pdf | LargePdf33.8.pdf |
     | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\LargePdf33.8.pdf | LargePdf33.8.pdf |
 
-@InstAgrFormsR0205 @InstAgrFormsFreshTestAgreementUc01
-Scenario Outline: Upload File Attachment and display link to file on Public Detail page
+@UseFreshExampleUcInstitutionalAgreementData
+Scenario Outline: Upload File Attachment and display link to it on Public Detail page
 
     Given I am using the <Browser> browser
 
     When I click the "<AgreementLink>" link
     Then I should see the Institutional Agreement Edit page
-    And I should see a File Attachments upload field & button
+    And I should see a File Attachments upload field
 
     When I choose the file "<FilePath>" for the File Attachments upload field
     Then I should see an item for "<FileName>" in the File Attachments list
-    And I should not see the Invalid error message for the File Attachments field
+    And I should not see the Invalid error message for the File Attachments upload field
 
     When I click the "Save Changes" submit button
     Then I should see the Public Institutional Agreement Detail page within 30 seconds
@@ -118,12 +116,12 @@ Examples:
     | MSIE    | Agreement, UC 02 test | C:\\WebDriverFileUploads\\WordDocument1.doc  | WordDocument1.doc  |
     | MSIE    | Agreement, UC 02 test | C:\\WebDriverFileUploads\\WordDocument1.docx | WordDocument1.docx |
 
-@InstAgrFormsR0206 @NotInChrome
+@NotInChrome
 Scenario Outline: Fail to upload File attachment over 25 megabytes in size
 
     When I click the "Agreement, UC 01 test" link
     Then I should see the Institutional Agreement Edit page
-    And I should see a File Attachments upload field & button
+    And I should see a File Attachments upload field
 
     When I choose the file "<FilePath>" for the File Attachments upload field
     Then I should see an item for "<FileName>" in the File Attachments list

@@ -96,7 +96,7 @@ this.FeatureBackground();
 #line 14
     testRunner.When("I click the \"Next >>\" submit button");
 #line 15
-    testRunner.Then("I should see the Required error message for the Email address field");
+    testRunner.Then("I should see the Required error message for the Email address text field");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -112,11 +112,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line 18
-    testRunner.When("I type \"invalid\" into the Email address field");
+    testRunner.When("I type \"invalid\" into the Email address text field");
 #line 19
     testRunner.And("I click the \"Next >>\" submit button");
 #line 20
-    testRunner.Then("I should see the Invalid error message for the Email address field");
+    testRunner.Then("I should see the Invalid error message for the Email address text field");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -132,12 +132,12 @@ this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line 23
-    testRunner.When("I type \"test@gmail.com\" into the Email address field");
+    testRunner.When("I type \"test@gmail.com\" into the Email address text field");
 #line 24
     testRunner.And("I click the \"Next >>\" submit button");
 #line 25
     testRunner.Then("I should see the \'test@gmail.com is Ineligible\' error message for the Email addre" +
-                    "ss field");
+                    "ss text field");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -155,7 +155,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line 29
-    testRunner.When("I type \"any1@suny.edu\" into the Email address field");
+    testRunner.When("I type \"any1@suny.edu\" into the Email address text field");
 #line 30
     testRunner.And("I click the \"Next >>\" submit button");
 #line 31

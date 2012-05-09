@@ -9,9 +9,8 @@ namespace UCosmic.Www.Mvc.SpecFlow
     [Binding]
     public class AutoCompleteSteps : BaseStepDefinition
     {
-        [Given(@"I (.*) an autocomplete dropdown menu item ""(.*)"" for the (.*) field")]
-        [When(@"I (.*) an autocomplete dropdown menu item ""(.*)"" for the (.*) field")]
-        [Then(@"I should (.*) an autocomplete dropdown menu item ""(.*)"" for the (.*) field")]
+        [When(@"I (.*) an autocomplete dropdown menu item ""(.*)"" for the (.*) text field")]
+        [Then(@"I should (.*) an autocomplete dropdown menu item ""(.*)"" for the (.*) text field")]
         public void SeeAutoCompleteMenuItem(string seeOrNot, string expectedText, string fieldLabel)
         {
             var shouldSee = (seeOrNot.Trim() == "see" || seeOrNot.Trim() == "saw");
@@ -65,9 +64,8 @@ namespace UCosmic.Www.Mvc.SpecFlow
             });
         }
 
-        [Given(@"I (.*)ed the autocomplete dropdown menu item ""(.*)"" for the (.*) field")]
-        [When(@"I (.*) the autocomplete dropdown menu item ""(.*)"" for the (.*) field")]
-        [Then(@"I should (.*) the autocomplete dropdown menu item ""(.*)"" for the (.*) field")]
+        [When(@"I (.*) the autocomplete dropdown menu item ""(.*)"" for the (.*) text field")]
+        [Then(@"I should (.*) the autocomplete dropdown menu item ""(.*)"" for the (.*) text field")]
         public void ClickAutoCompleteMenuItem(string clickOrNot, string expectedText, string fieldLabel)
         {
             if (clickOrNot.Trim() != "click") return;
@@ -112,9 +110,8 @@ namespace UCosmic.Www.Mvc.SpecFlow
             });
         }
 
-        [Given(@"I clicked the autocomplete dropdown arrow button for the (.*) field")]
-        [When(@"I click the autocomplete dropdown arrow button for the (.*) field")]
-        [Then(@"I should click the autocomplete dropdown arrow button for the (.*) field")]
+        [When(@"I click the autocomplete dropdown arrow button for the (.*) text field")]
+        [Then(@"I should click the autocomplete dropdown arrow button for the (.*) text field")]
         public void ClickAutoCompleteDownButton(string fieldLabel)
         {
             //var cssSelector = string.Format(".{0}-field button", textBoxId);
@@ -122,22 +119,16 @@ namespace UCosmic.Www.Mvc.SpecFlow
             {
                 var page = WebPageFactory.GetPage(browser);
                 var button = page.GetDownArrowButton(fieldLabel);
-                //// make sure the element exists
-                //var button = browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)), string.Format(
-                //    "Autocomplete dropdown button for the '{0}' text box does not exist using @Browser", textBoxId));
 
                 // make sure the element is visible
                 browser.WaitUntil(b => button.Displayed, string.Format(
                     "Down arrow button for the '{0}' text box was not displayed using @Browser", fieldLabel));
 
-                //button.ClickButton();
                 button.Click();
             });
         }
 
-        [Given(@"I have dismissed all autocomplete dropdown menus")]
         [When(@"I dismiss all autocomplete dropdown menus")]
-        [Then(@"I should dismiss all autocomplete dropdown menus")]
         public void DismissAllAutoCompleteDropDownMenus()
         {
             const string jQuery = "$('ul.ui-autocomplete').css({display:'none'});";

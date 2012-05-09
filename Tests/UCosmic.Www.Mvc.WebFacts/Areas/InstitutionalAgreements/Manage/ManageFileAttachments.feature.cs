@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
+namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Manage
 {
     using TechTalk.SpecFlow;
     
@@ -19,24 +19,21 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class InstitutionalAgreementManagementPreviewRevision2Feature
+    public partial class ManageFileAttachmentsFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "ManagementFormsR02.feature"
+#line 1 "ManageFileAttachments.feature"
 #line hidden
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute()]
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Institutional Agreement Management Preview Revision 2", "  In order to have centralized online access to documents relating to my Institut" +
-                    "ional Agreements\r\n  As an Institutional Agreement Manager\r\n  I want to upload, r" +
-                    "emove, and generally manage which files are attached to my Institutional Agreeme" +
-                    "nts in UCosmic", ProgrammingLanguage.CSharp, new string[] {
-                        "InstAgrForms",
-                        "InstAgrFormsR02"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Manage File Attachments", "  In order to quickly access copies of signed agreement documents\r\n  As an Instit" +
+                    "utional Agreement Manager\r\n  I want to manage a list of File Attachments for eac" +
+                    "h agreement", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -51,9 +48,9 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
         public virtual void TestInitialize()
         {
             if (((TechTalk.SpecFlow.FeatureContext.Current != null) 
-                        && (TechTalk.SpecFlow.FeatureContext.Current.FeatureInfo.Title != "Institutional Agreement Management Preview Revision 2")))
+                        && (TechTalk.SpecFlow.FeatureContext.Current.FeatureInfo.Title != "Manage File Attachments")))
             {
-                UCosmic.Www.Mvc.Areas.InstitutionalAgreements.InstitutionalAgreementManagementPreviewRevision2Feature.FeatureSetup(null);
+                UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Manage.ManageFileAttachmentsFeature.FeatureSetup(null);
             }
         }
         
@@ -75,43 +72,34 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
         
         public virtual void FeatureBackground()
         {
+#line 6
 #line 8
-#line 9
     testRunner.Given("I am signed in as manager1@uc.edu");
-#line 10
+#line 9
     testRunner.And("I am starting from the Institutional Agreement Management page");
 #line hidden
         }
         
         public virtual void DisplayFileAttachmentsUploadField(string addOrEdit, string linkText, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0201"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display File Attachments upload field", @__tags);
-#line 13
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display File Attachments upload field", exampleTags);
+#line 11
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 15
+#line 13
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 16
+#line 14
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 17
-    testRunner.And("I should see a File Attachments upload field & button");
+#line 15
+    testRunner.And("I should see a File Attachments upload field");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display File Attachments upload field")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0201")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -122,10 +110,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display File Attachments upload field")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0201")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -137,39 +122,35 @@ this.FeatureBackground();
         public virtual void FailToAddFileAttachmentWhenFileTypeIsInvalid(string addOrEdit, string linkText, string filePath, string fileName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "InstAgrFormsR0202",
                     "NotInChrome"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fail to add File Attachment when file type is invalid", @__tags);
-#line 25
+#line 23
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 27
+#line 25
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 28
+#line 26
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
+#line 27
+    testRunner.And("I should see a File Attachments upload field");
 #line 29
-    testRunner.And("I should see a File Attachments upload field & button");
-#line 31
     testRunner.When(string.Format("I choose the file \"{0}\" for the File Attachments upload field", filePath));
-#line 32
+#line 30
     testRunner.Then(string.Format("I should not see an item for \"{0}\" in the File Attachments list", fileName));
-#line 33
-    testRunner.And("I should see the Invalid error message for the File Attachments field");
+#line 31
+    testRunner.And("I should see the Invalid error message for the File Attachments upload field");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to add File Attachment when file type is invalid")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0202")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
@@ -183,10 +164,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to add File Attachment when file type is invalid")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0202")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
@@ -200,10 +178,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to add File Attachment when file type is invalid")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0202")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
@@ -217,10 +192,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to add File Attachment when file type is invalid")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0202")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
@@ -234,10 +206,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to add File Attachment when file type is invalid")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0202")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
@@ -251,10 +220,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to add File Attachment when file type is invalid")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0202")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
@@ -269,39 +235,35 @@ this.FeatureBackground();
         public virtual void AddFileAttachmentWithValidExtensionToList(string addOrEdit, string linkText, string filePath, string fileName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "InstAgrFormsR0203",
                     "NotInChrome"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add File Attachment with valid extension to list", @__tags);
-#line 45
+#line 43
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 47
+#line 45
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 48
+#line 46
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
+#line 47
+    testRunner.And("I should see a File Attachments upload field");
 #line 49
-    testRunner.And("I should see a File Attachments upload field & button");
-#line 51
     testRunner.When(string.Format("I choose the file \"{0}\" for the File Attachments upload field", filePath));
-#line 52
+#line 50
     testRunner.Then(string.Format("I should see an item for \"{0}\" in the File Attachments list", fileName));
-#line 53
-    testRunner.And("I should not see the Invalid error message for the File Attachments field");
+#line 51
+    testRunner.And("I should not see the Invalid error message for the File Attachments upload field");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
@@ -315,10 +277,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
@@ -332,10 +291,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
@@ -349,10 +305,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
@@ -366,10 +319,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
@@ -383,10 +333,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
@@ -400,10 +347,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 6")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
@@ -417,10 +361,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 7")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
@@ -434,10 +375,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 8")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
@@ -451,10 +389,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 9")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
@@ -468,10 +403,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 10")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
@@ -485,10 +417,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 11")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
@@ -502,10 +431,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 12")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
@@ -519,10 +445,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 13")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
@@ -536,10 +459,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 14")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
@@ -553,10 +473,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 15")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
@@ -570,10 +487,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 16")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
@@ -587,10 +501,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add File Attachment with valid extension to list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0203")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 17")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
@@ -605,32 +516,31 @@ this.FeatureBackground();
         public virtual void RemoveFileAttachmentFromList(string addOrEdit, string linkText, string filePath, string fileName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "InstAgrFormsR0204",
                     "NotInChrome"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove File Attachment from list", @__tags);
-#line 77
+#line 75
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 79
+#line 77
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 80
+#line 78
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
+#line 79
+    testRunner.And("I should see a File Attachments upload field");
 #line 81
-    testRunner.And("I should see a File Attachments upload field & button");
-#line 83
     testRunner.When(string.Format("I choose the file \"{0}\" for the File Attachments upload field", filePath));
-#line 84
+#line 82
     testRunner.Then(string.Format("I should see an item for \"{0}\" in the File Attachments list", fileName));
+#line 83
+    testRunner.And("I should not see the Invalid error message for the File Attachments upload field");
 #line 85
-    testRunner.And("I should not see the Invalid error message for the File Attachments field");
-#line 87
     testRunner.When(string.Format("I click the remove icon for \"{0}\" in the File Attachments list", fileName));
-#line 88
+#line 86
     testRunner.Then(string.Format("I should not see an item for \"{0}\" in the File Attachments list", fileName));
 #line hidden
             this.ScenarioCleanup();
@@ -638,10 +548,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Remove File Attachment from list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0204")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
@@ -655,10 +562,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Remove File Attachment from list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0204")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
@@ -670,173 +574,153 @@ this.FeatureBackground();
             this.RemoveFileAttachmentFromList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf", "LargePdf33.8.pdf", ((string[])(null)));
         }
         
-        public virtual void UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage(string browser, string agreementLink, string filePath, string fileName, string[] exampleTags)
+        public virtual void UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage(string browser, string agreementLink, string filePath, string fileName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "InstAgrFormsR0205",
-                    "InstAgrFormsFreshTestAgreementUc01"};
+                    "UseFreshExampleUcInstitutionalAgreementData"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Upload File Attachment and display link to file on Public Detail page", @__tags);
-#line 96
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Upload File Attachment and display link to it on Public Detail page", @__tags);
+#line 94
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 98
+#line 96
     testRunner.Given(string.Format("I am using the {0} browser", browser));
-#line 100
+#line 98
     testRunner.When(string.Format("I click the \"{0}\" link", agreementLink));
-#line 101
+#line 99
     testRunner.Then("I should see the Institutional Agreement Edit page");
+#line 100
+    testRunner.And("I should see a File Attachments upload field");
 #line 102
-    testRunner.And("I should see a File Attachments upload field & button");
-#line 104
     testRunner.When(string.Format("I choose the file \"{0}\" for the File Attachments upload field", filePath));
-#line 105
+#line 103
     testRunner.Then(string.Format("I should see an item for \"{0}\" in the File Attachments list", fileName));
+#line 104
+    testRunner.And("I should not see the Invalid error message for the File Attachments upload field");
 #line 106
-    testRunner.And("I should not see the Invalid error message for the File Attachments field");
-#line 108
     testRunner.When("I click the \"Save Changes\" submit button");
-#line 109
+#line 107
     testRunner.Then("I should see the Public Institutional Agreement Detail page within 30 seconds");
-#line 110
+#line 108
     testRunner.And(string.Format("I should see a \"{0}\" link", fileName));
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to file on Public Detail page")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0205")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to it on Public Detail page")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "SpecFlow Guide.pdf")]
-        public virtual void UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage_Variant0()
+        public virtual void UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage_Variant0()
         {
-            this.UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to file on Public Detail page")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0205")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to it on Public Detail page")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.doc")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.doc")]
-        public virtual void UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage_Variant1()
+        public virtual void UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage_Variant1()
         {
-            this.UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to file on Public Detail page")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0205")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to it on Public Detail page")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 01 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.docx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.docx")]
-        public virtual void UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage_Variant2()
+        public virtual void UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage_Variant2()
         {
-            this.UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to file on Public Detail page")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0205")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to it on Public Detail page")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 02 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "SpecFlow Guide.pdf")]
-        public virtual void UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage_Variant3()
+        public virtual void UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage_Variant3()
         {
-            this.UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to file on Public Detail page")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0205")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to it on Public Detail page")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 02 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.doc")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.doc")]
-        public virtual void UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage_Variant4()
+        public virtual void UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage_Variant4()
         {
-            this.UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to file on Public Detail page")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0205")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Upload File Attachment and display link to it on Public Detail page")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 02 test")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.docx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.docx")]
-        public virtual void UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage_Variant5()
+        public virtual void UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage_Variant5()
         {
-            this.UploadFileAttachmentAndDisplayLinkToFileOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
         }
         
         public virtual void FailToUploadFileAttachmentOver25MegabytesInSize(string filePath, string fileName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "InstAgrFormsR0206",
                     "NotInChrome"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fail to upload File attachment over 25 megabytes in size", @__tags);
-#line 122
+#line 120
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 124
+#line 122
     testRunner.When("I click the \"Agreement, UC 01 test\" link");
-#line 125
+#line 123
     testRunner.Then("I should see the Institutional Agreement Edit page");
+#line 124
+    testRunner.And("I should see a File Attachments upload field");
 #line 126
-    testRunner.And("I should see a File Attachments upload field & button");
-#line 128
     testRunner.When(string.Format("I choose the file \"{0}\" for the File Attachments upload field", filePath));
-#line 129
+#line 127
     testRunner.Then(string.Format("I should see an item for \"{0}\" in the File Attachments list", fileName));
-#line 131
+#line 129
     testRunner.When("I click the \"Save Changes\" submit button");
-#line 132
+#line 130
     testRunner.Then("I should see the File Upload Too Large page within 60 seconds");
 #line hidden
             this.ScenarioCleanup();
@@ -844,10 +728,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to upload File attachment over 25 megabytes in size")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR02")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0206")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf")]

@@ -1,16 +1,13 @@
-﻿@InstAgrForms
-@InstAgrFormsR04
-Feature: Institutional Agreement Management Preview Revision 4
-    In order to inform the people about the use of an expiration date field for my Institutional Agreements
+﻿Feature: Get Help With Expiration Date Requirement
+    In order to accommodate my agreements that don't have an exact expiration date
     As an Institutional Agreement Manager
-    I want to help the people enter expiration date information attached to my Institutional Agreements in UCosmic
+    I want to read an explanation about why the Expiration Date field is required
 
-#execute these steps before every scenario in this file
-Background: 
+Background:
+
     Given I am signed in as manager1@uc.edu
     And I am starting from the Institutional Agreement Management page
 
-@InstAgrFormsR0401
 Scenario Outline: Display Help link for Expiration Date field
 
     When I click the "<LinkText>" link
@@ -22,7 +19,6 @@ Scenario Outline: Display Help link for Expiration Date field
     | Add       | Add a new agreement   |
     | Edit      | Agreement, UC 01 test |
 
- @InstAgrFormsR0402
  Scenario Outline: Display help bubble dialog for Expiration Date field by clicking Help link
 
     When I click the "<LinkText>" link
@@ -38,7 +34,6 @@ Examples:
     | Add       | Add a new agreement   |
     | Edit      | Agreement, UC 01 test |
  
- @InstAgrFormsR0403
  Scenario Outline: Close help bubble dialog by clicking the Close This Popup link
 
     When I click the "<LinkText>" link
@@ -57,7 +52,6 @@ Examples:
     | Add       | Add a new agreement   |
     | Edit      | Agreement, UC 01 test |
 
- @InstAgrFormsR0404
  Scenario Outline: Close help bubble dialog by clicking the Help link a second time
 
     When I click the "<LinkText>" link

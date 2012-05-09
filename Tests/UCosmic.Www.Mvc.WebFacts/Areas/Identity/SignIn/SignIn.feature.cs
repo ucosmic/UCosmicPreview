@@ -83,7 +83,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.SignIn
 #line 12
     testRunner.Then("I should see the Sign On page");
 #line 14
-    testRunner.When("I type \"any1@suny.edu\" into the Email address field");
+    testRunner.When("I type \"any1@suny.edu\" into the Email address text field");
 #line 15
     testRunner.And("I click the \"Next >>\" submit button");
 #line 16
@@ -106,7 +106,7 @@ this.FeatureBackground();
 #line 20
     testRunner.When("I click the \"Sign On\" submit button");
 #line 21
-    testRunner.Then("I should see the Required error message for the Password field");
+    testRunner.Then("I should see the Required error message for the Password text field");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -124,12 +124,12 @@ this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line 25
-    testRunner.When("I type \"incorrect\" into the Password field");
+    testRunner.When("I type \"incorrect\" into the Password text field");
 #line 26
     testRunner.And("I click the \"Sign On\" submit button");
 #line 27
     testRunner.Then("I should see the \'Invalid with 4 remaining attempts\' error message for the Passwo" +
-                    "rd field");
+                    "rd text field");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -145,7 +145,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line 30
-    testRunner.When("I type \"asdfasdf\" into the Password field");
+    testRunner.When("I type \"asdfasdf\" into the Password text field");
 #line 31
     testRunner.And("I click the \"Sign On\" submit button");
 #line 32

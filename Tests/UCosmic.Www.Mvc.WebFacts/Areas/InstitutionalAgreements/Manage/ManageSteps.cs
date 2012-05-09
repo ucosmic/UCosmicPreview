@@ -6,10 +6,8 @@ using UCosmic.Www.Mvc.WebDriver;
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 {
     [Binding]
-    public class ManagementBindings : BaseStepDefinition
+    public class ManageSteps : BaseStepDefinition
     {
-        [Given(@"I did(.*) see  a modal dialog with an Add Institutional Agreement Contact form")]
-        [Given(@"I saw(.*) a modal dialog with an Add Institutional Agreement Contact form")]
         [Then(@"I should(.*) see a modal dialog with an Add Institutional Agreement Contact form")]
         public void SeeAddContactFormInModalDialog(string not)
         {
@@ -52,8 +50,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
             });
         }
 
-        [Given(@"I (.*) a help bubble dialog")]
-        [When(@"I (.*) a help bubble dialog")]
         [Then(@"I should (.*) a help bubble dialog")]
         public void SeeHelpDialogBubble(string seeOrNot)
         {

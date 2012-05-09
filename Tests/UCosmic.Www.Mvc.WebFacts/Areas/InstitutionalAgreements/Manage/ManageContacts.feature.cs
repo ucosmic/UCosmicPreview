@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
+namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Manage
 {
     using TechTalk.SpecFlow;
     
@@ -19,25 +19,21 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class InstitutionalAgreementManagementPreviewRevision3Feature
+    public partial class ManageContactsFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "ManagementFormsR03.feature"
+#line 1 "ManageContacts.feature"
 #line hidden
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute()]
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Institutional Agreement Management Preview Revision 3", "  In order to know which people are responsible for my Institutional Agreements\r\n" +
-                    "  As an Institutional Agreement Manager\r\n  I want to add, remove, and generally " +
-                    "manage the contact information attached to my Institutional Agreements in UCosmi" +
-                    "c", ProgrammingLanguage.CSharp, new string[] {
-                        "InstAgrForms",
-                        "InstAgrFormsR03",
-                        "InstAgrFormsFreshTestAgreementUc01"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Manage Contacts", "  In order to know which people are responsible for my agreements\r\n  As an Instit" +
+                    "utional Agreement Manager\r\n  I want to manage a list of Contacts for each agreem" +
+                    "ent", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -52,9 +48,9 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
         public virtual void TestInitialize()
         {
             if (((TechTalk.SpecFlow.FeatureContext.Current != null) 
-                        && (TechTalk.SpecFlow.FeatureContext.Current.FeatureInfo.Title != "Institutional Agreement Management Preview Revision 3")))
+                        && (TechTalk.SpecFlow.FeatureContext.Current.FeatureInfo.Title != "Manage Contacts")))
             {
-                UCosmic.Www.Mvc.Areas.InstitutionalAgreements.InstitutionalAgreementManagementPreviewRevision3Feature.FeatureSetup(null);
+                UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Manage.ManageContactsFeature.FeatureSetup(null);
             }
         }
         
@@ -76,32 +72,26 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
         
         public virtual void FeatureBackground()
         {
+#line 6
 #line 8
-#line 9
     testRunner.Given("I am signed in as manager1@uc.edu");
-#line 10
+#line 9
     testRunner.And("I am starting from the Institutional Agreement Management page");
 #line hidden
         }
         
         public virtual void DisplayAddContactLink(string addOrEdit, string linkText, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0301"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display Add Contact link", @__tags);
-#line 13
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display Add Contact link", exampleTags);
+#line 11
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 15
+#line 13
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 16
+#line 14
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 17
+#line 15
     testRunner.And("I should see an \"Add Contact\" link");
 #line hidden
             this.ScenarioCleanup();
@@ -109,11 +99,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display Add Contact link")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0301")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -124,11 +110,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display Add Contact link")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0301")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -139,26 +121,20 @@ this.FeatureBackground();
         
         public virtual void DisplayModalDialogByClickingAddContactLink(string addOrEdit, string linkText, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0302"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display modal dialog by clicking Add Contact link", @__tags);
-#line 25
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display modal dialog by clicking Add Contact link", exampleTags);
+#line 22
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 27
+#line 24
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 28
+#line 25
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 29
+#line 26
     testRunner.And("I should see an \"Add Contact\" link");
-#line 31
+#line 28
     testRunner.When("I click the \"Add Contact\" link");
-#line 32
+#line 29
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
 #line hidden
             this.ScenarioCleanup();
@@ -166,11 +142,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display modal dialog by clicking Add Contact link")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0302")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -181,11 +153,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display modal dialog by clicking Add Contact link")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0302")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -194,44 +162,34 @@ this.FeatureBackground();
             this.DisplayModalDialogByClickingAddContactLink("Edit", "Agreement, UC 01 test", ((string[])(null)));
         }
         
-        public virtual void AddContactFailsWhenRequiredFieldsAreEmpty(string addOrEdit, string linkText, string text, string field, string orNot, string errorMessage, string[] exampleTags)
+        public virtual void AddContactFailsWhenRequiredTextFieldsAreEmpty(string addOrEdit, string linkText, string text, string field, string orNot, string errorMessage, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0303"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Contact fails when required fields are empty", @__tags);
-#line 40
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Contact fails when required text fields are empty", exampleTags);
+#line 36
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 42
+#line 38
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 43
+#line 39
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 45
+#line 41
     testRunner.When("I click the \"Add Contact\" link");
-#line 46
+#line 42
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 48
-    testRunner.When(string.Format("I type \"{0}\" into the {1} field", text, field));
-#line 49
+#line 44
+    testRunner.When(string.Format("I type \"{0}\" into the {1} text field", text, field));
+#line 45
     testRunner.And("I click the \"Add Contact\" submit button");
-#line 50
-    testRunner.Then(string.Format("I should {0} see the Required error message for the {1} field", orNot, field));
+#line 46
+    testRunner.Then(string.Format("I should {0} see the Required error message for the {1} text field", orNot, field));
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required fields are empty")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0303")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required text fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -239,18 +197,14 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Field", "Contact Type")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ErrorMessage", "Contact type is required.")]
-        public virtual void AddContactFailsWhenRequiredFieldsAreEmpty_Variant0()
+        public virtual void AddContactFailsWhenRequiredTextFieldsAreEmpty_Variant0()
         {
-            this.AddContactFailsWhenRequiredFieldsAreEmpty("Add", "Add a new agreement", "", "Contact Type", "", "Contact type is required.", ((string[])(null)));
+            this.AddContactFailsWhenRequiredTextFieldsAreEmpty("Add", "Add a new agreement", "", "Contact Type", "", "Contact type is required.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required fields are empty")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0303")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required text fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -258,18 +212,14 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Field", "Contact Type")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot", "not")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ErrorMessage", "Contact type is required.")]
-        public virtual void AddContactFailsWhenRequiredFieldsAreEmpty_Variant1()
+        public virtual void AddContactFailsWhenRequiredTextFieldsAreEmpty_Variant1()
         {
-            this.AddContactFailsWhenRequiredFieldsAreEmpty("Add", "Add a new agreement", "Test", "Contact Type", "not", "Contact type is required.", ((string[])(null)));
+            this.AddContactFailsWhenRequiredTextFieldsAreEmpty("Add", "Add a new agreement", "Test", "Contact Type", "not", "Contact type is required.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required fields are empty")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0303")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required text fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -277,18 +227,14 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Field", "First Name")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ErrorMessage", "Contact first name is required.")]
-        public virtual void AddContactFailsWhenRequiredFieldsAreEmpty_Variant2()
+        public virtual void AddContactFailsWhenRequiredTextFieldsAreEmpty_Variant2()
         {
-            this.AddContactFailsWhenRequiredFieldsAreEmpty("Add", "Add a new agreement", "", "First Name", "", "Contact first name is required.", ((string[])(null)));
+            this.AddContactFailsWhenRequiredTextFieldsAreEmpty("Add", "Add a new agreement", "", "First Name", "", "Contact first name is required.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required fields are empty")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0303")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required text fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -296,18 +242,14 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Field", "First Name")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot", "not")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ErrorMessage", "Contact first name is required.")]
-        public virtual void AddContactFailsWhenRequiredFieldsAreEmpty_Variant3()
+        public virtual void AddContactFailsWhenRequiredTextFieldsAreEmpty_Variant3()
         {
-            this.AddContactFailsWhenRequiredFieldsAreEmpty("Add", "Add a new agreement", "Test", "First Name", "not", "Contact first name is required.", ((string[])(null)));
+            this.AddContactFailsWhenRequiredTextFieldsAreEmpty("Add", "Add a new agreement", "Test", "First Name", "not", "Contact first name is required.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required fields are empty")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0303")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required text fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -315,18 +257,14 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Field", "Last Name")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ErrorMessage", "Contact last name is required.")]
-        public virtual void AddContactFailsWhenRequiredFieldsAreEmpty_Variant4()
+        public virtual void AddContactFailsWhenRequiredTextFieldsAreEmpty_Variant4()
         {
-            this.AddContactFailsWhenRequiredFieldsAreEmpty("Add", "Add a new agreement", "", "Last Name", "", "Contact last name is required.", ((string[])(null)));
+            this.AddContactFailsWhenRequiredTextFieldsAreEmpty("Add", "Add a new agreement", "", "Last Name", "", "Contact last name is required.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required fields are empty")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0303")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required text fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -334,18 +272,14 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Field", "Last Name")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot", "not")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ErrorMessage", "Contact last name is required.")]
-        public virtual void AddContactFailsWhenRequiredFieldsAreEmpty_Variant5()
+        public virtual void AddContactFailsWhenRequiredTextFieldsAreEmpty_Variant5()
         {
-            this.AddContactFailsWhenRequiredFieldsAreEmpty("Add", "Add a new agreement", "Test", "Last Name", "not", "Contact last name is required.", ((string[])(null)));
+            this.AddContactFailsWhenRequiredTextFieldsAreEmpty("Add", "Add a new agreement", "Test", "Last Name", "not", "Contact last name is required.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required fields are empty")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0303")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required text fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 6")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -353,18 +287,14 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Field", "Contact Type")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ErrorMessage", "Contact type is required.")]
-        public virtual void AddContactFailsWhenRequiredFieldsAreEmpty_Variant6()
+        public virtual void AddContactFailsWhenRequiredTextFieldsAreEmpty_Variant6()
         {
-            this.AddContactFailsWhenRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "", "Contact Type", "", "Contact type is required.", ((string[])(null)));
+            this.AddContactFailsWhenRequiredTextFieldsAreEmpty("Edit", "Agreement, UC 01 test", "", "Contact Type", "", "Contact type is required.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required fields are empty")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0303")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required text fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 7")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -372,18 +302,14 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Field", "Contact Type")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot", "not")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ErrorMessage", "Contact type is required.")]
-        public virtual void AddContactFailsWhenRequiredFieldsAreEmpty_Variant7()
+        public virtual void AddContactFailsWhenRequiredTextFieldsAreEmpty_Variant7()
         {
-            this.AddContactFailsWhenRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Test", "Contact Type", "not", "Contact type is required.", ((string[])(null)));
+            this.AddContactFailsWhenRequiredTextFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Test", "Contact Type", "not", "Contact type is required.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required fields are empty")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0303")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required text fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 8")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -391,18 +317,14 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Field", "First Name")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ErrorMessage", "Contact first name is required.")]
-        public virtual void AddContactFailsWhenRequiredFieldsAreEmpty_Variant8()
+        public virtual void AddContactFailsWhenRequiredTextFieldsAreEmpty_Variant8()
         {
-            this.AddContactFailsWhenRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "", "First Name", "", "Contact first name is required.", ((string[])(null)));
+            this.AddContactFailsWhenRequiredTextFieldsAreEmpty("Edit", "Agreement, UC 01 test", "", "First Name", "", "Contact first name is required.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required fields are empty")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0303")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required text fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 9")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -410,18 +332,14 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Field", "First Name")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot", "not")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ErrorMessage", "Contact first name is required.")]
-        public virtual void AddContactFailsWhenRequiredFieldsAreEmpty_Variant9()
+        public virtual void AddContactFailsWhenRequiredTextFieldsAreEmpty_Variant9()
         {
-            this.AddContactFailsWhenRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Test", "First Name", "not", "Contact first name is required.", ((string[])(null)));
+            this.AddContactFailsWhenRequiredTextFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Test", "First Name", "not", "Contact first name is required.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required fields are empty")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0303")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required text fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 10")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -429,18 +347,14 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Field", "Last Name")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ErrorMessage", "Contact last name is required.")]
-        public virtual void AddContactFailsWhenRequiredFieldsAreEmpty_Variant10()
+        public virtual void AddContactFailsWhenRequiredTextFieldsAreEmpty_Variant10()
         {
-            this.AddContactFailsWhenRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "", "Last Name", "", "Contact last name is required.", ((string[])(null)));
+            this.AddContactFailsWhenRequiredTextFieldsAreEmpty("Edit", "Agreement, UC 01 test", "", "Last Name", "", "Contact last name is required.", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required fields are empty")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0303")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add Contact fails when required text fields are empty")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 11")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -448,47 +362,38 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Field", "Last Name")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:OrNot", "not")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ErrorMessage", "Contact last name is required.")]
-        public virtual void AddContactFailsWhenRequiredFieldsAreEmpty_Variant11()
+        public virtual void AddContactFailsWhenRequiredTextFieldsAreEmpty_Variant11()
         {
-            this.AddContactFailsWhenRequiredFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Test", "Last Name", "not", "Contact last name is required.", ((string[])(null)));
+            this.AddContactFailsWhenRequiredTextFieldsAreEmpty("Edit", "Agreement, UC 01 test", "Test", "Last Name", "not", "Contact last name is required.", ((string[])(null)));
         }
         
         public virtual void DisplayExampleContactTypeValuesByTypingMatchingText(string addOrEdit, string linkText, string inputValue, string listValue, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0304"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display example Contact Type values by typing matching text", @__tags);
-#line 68
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display example Contact Type values by typing matching text", exampleTags);
+#line 63
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 70
+#line 65
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 71
+#line 66
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 73
+#line 68
     testRunner.When("I click the \"Add Contact\" link");
-#line 74
+#line 69
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 76
-    testRunner.When(string.Format("I type \"{0}\" into the Contact Type field", inputValue));
-#line 77
-    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the Contact Type field", listValue));
+#line 71
+    testRunner.When(string.Format("I type \"{0}\" into the Contact Type text field", inputValue));
+#line 72
+    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the Contact Type text f" +
+                        "ield", listValue));
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display example Contact Type values by typing matching text")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0304")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -501,11 +406,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display example Contact Type values by typing matching text")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0304")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -518,11 +419,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display example Contact Type values by typing matching text")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0304")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -535,11 +432,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display example Contact Type values by typing matching text")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0304")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -552,40 +445,31 @@ this.FeatureBackground();
         
         public virtual void DisplayExampleContactTypeValuesByClickingDownArrowButton(string addOrEdit, string linkText, string listValue, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0305"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display example Contact Type values by clicking down arrow button", @__tags);
-#line 87
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display example Contact Type values by clicking down arrow button", exampleTags);
+#line 81
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 89
+#line 83
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 90
+#line 84
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 92
+#line 86
     testRunner.When("I click the \"Add Contact\" link");
-#line 93
+#line 87
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 95
-    testRunner.When("I click the autocomplete dropdown arrow button for the Contact Type field");
-#line 96
-    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the Contact Type field", listValue));
+#line 89
+    testRunner.When("I click the autocomplete dropdown arrow button for the Contact Type text field");
+#line 90
+    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the Contact Type text f" +
+                        "ield", listValue));
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display example Contact Type values by clicking down arrow button")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0305")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -597,11 +481,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display example Contact Type values by clicking down arrow button")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0305")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -613,11 +493,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display example Contact Type values by clicking down arrow button")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0305")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -629,11 +505,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display example Contact Type values by clicking down arrow button")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0305")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -645,11 +517,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display example Contact Type values by clicking down arrow button")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0305")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -661,11 +529,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display example Contact Type values by clicking down arrow button")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0305")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -677,11 +541,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display example Contact Type values by clicking down arrow button")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0305")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 6")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -693,11 +553,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display example Contact Type values by clicking down arrow button")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0305")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 7")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -709,44 +565,36 @@ this.FeatureBackground();
         
         public virtual void SelectContactTypeByClickingAnExampleItemFromTheDropdownMenu(string addOrEdit, string linkText, string listValue, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0306"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Select Contact Type by clicking an example item from the dropdown menu", @__tags);
-#line 110
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Select Contact Type by clicking an example item from the dropdown menu", exampleTags);
+#line 103
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 112
+#line 105
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 113
+#line 106
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 115
+#line 108
     testRunner.When("I click the \"Add Contact\" link");
-#line 116
+#line 109
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 118
-    testRunner.When("I click the autocomplete dropdown arrow button for the Contact Type field");
-#line 119
-    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the Contact Type field", listValue));
-#line 121
-    testRunner.When(string.Format("I click the autocomplete dropdown menu item \"{0}\" for the Contact Type field", listValue));
-#line 122
-    testRunner.Then(string.Format("I should see \"{0}\" in the Contact Type field", listValue));
+#line 111
+    testRunner.When("I click the autocomplete dropdown arrow button for the Contact Type text field");
+#line 112
+    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the Contact Type text f" +
+                        "ield", listValue));
+#line 114
+    testRunner.When(string.Format("I click the autocomplete dropdown menu item \"{0}\" for the Contact Type text field" +
+                        "", listValue));
+#line 115
+    testRunner.Then(string.Format("I should see \"{0}\" in the Contact Type text field", listValue));
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Select Contact Type by clicking an example item from the dropdown menu")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0306")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -758,11 +606,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Select Contact Type by clicking an example item from the dropdown menu")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0306")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -774,11 +618,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Select Contact Type by clicking an example item from the dropdown menu")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0306")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -790,11 +630,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Select Contact Type by clicking an example item from the dropdown menu")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0306")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -806,28 +642,22 @@ this.FeatureBackground();
         
         public virtual void DismissModalDialogByClickingTheCancelButton(string addOrEdit, string linkText, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0307"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dismiss modal dialog by clicking the cancel button", @__tags);
-#line 132
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dismiss modal dialog by clicking the cancel button", exampleTags);
+#line 124
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 134
+#line 126
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 135
+#line 127
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 137
+#line 129
     testRunner.When("I click the \"Add Contact\" link");
-#line 138
+#line 130
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 140
+#line 132
     testRunner.When("I click the \"Cancel\" button");
-#line 141
+#line 133
     testRunner.Then("I should not see a modal dialog with an Add Institutional Agreement Contact form");
 #line hidden
             this.ScenarioCleanup();
@@ -835,11 +665,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Dismiss modal dialog by clicking the cancel button")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0307")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -850,11 +676,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Dismiss modal dialog by clicking the cancel button")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0307")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -865,28 +687,22 @@ this.FeatureBackground();
         
         public virtual void DismissModalDialogByClickingTheCloseIcon(string addOrEdit, string linkText, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0308"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dismiss modal dialog by clicking the close icon", @__tags);
-#line 149
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dismiss modal dialog by clicking the close icon", exampleTags);
+#line 140
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 151
+#line 142
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 152
+#line 143
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 154
+#line 145
     testRunner.When("I click the \"Add Contact\" link");
-#line 155
+#line 146
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 157
+#line 148
     testRunner.When("I click the Add Institutional Agreement Contact modal dialog close icon");
-#line 158
+#line 149
     testRunner.Then("I should not see a modal dialog with an Add Institutional Agreement Contact form");
 #line hidden
             this.ScenarioCleanup();
@@ -894,11 +710,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Dismiss modal dialog by clicking the close icon")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0308")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -909,11 +721,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Dismiss modal dialog by clicking the close icon")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0308")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -922,182 +730,154 @@ this.FeatureBackground();
             this.DismissModalDialogByClickingTheCloseIcon("Edit", "Agreement, UC 01 test", ((string[])(null)));
         }
         
-        public virtual void DisplayAdditionalPersonNameFieldsByClickingShowAdditionalTextboxesLink(string addOrEdit, string linkText, string[] exampleTags)
+        public virtual void DisplayAdditionalPersonNameTextFieldsByClickingShowAdditionalTextboxesLink(string addOrEdit, string linkText, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0309"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display additional person name fields by clicking Show Additional Textboxes link", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Display additional person name text fields by clicking Show Additional Textboxes " +
+                    "link", exampleTags);
+#line 156
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 158
+    testRunner.When(string.Format("I click the \"{0}\" link", linkText));
+#line 159
+    testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
+#line 161
+    testRunner.When("I click the \"Add Contact\" link");
+#line 162
+    testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
+#line 163
+    testRunner.And("I should see a \"Click here to show additional textboxes\" link");
+#line 165
+    testRunner.When("I click the \"Click here to show additional textboxes\" link");
 #line 166
-this.ScenarioSetup(scenarioInfo);
-#line 8
-this.FeatureBackground();
+    testRunner.Then("I should see a Salutation text field");
+#line 167
+    testRunner.And("I should see a Middle Name Or Initial text field");
 #line 168
-    testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 169
-    testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 171
-    testRunner.When("I click the \"Add Contact\" link");
-#line 172
-    testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 173
-    testRunner.And("I should see a \"Click here to show additional textboxes\" link");
+    testRunner.And("I should see a Suffix text field");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display additional person name text fields by clicking Show Additional Textboxes " +
+            "link")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
+        public virtual void DisplayAdditionalPersonNameTextFieldsByClickingShowAdditionalTextboxesLink_Add()
+        {
+            this.DisplayAdditionalPersonNameTextFieldsByClickingShowAdditionalTextboxesLink("Add", "Add a new agreement", ((string[])(null)));
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display additional person name text fields by clicking Show Additional Textboxes " +
+            "link")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
+        public virtual void DisplayAdditionalPersonNameTextFieldsByClickingShowAdditionalTextboxesLink_Edit()
+        {
+            this.DisplayAdditionalPersonNameTextFieldsByClickingShowAdditionalTextboxesLink("Edit", "Agreement, UC 01 test", ((string[])(null)));
+        }
+        
+        public virtual void HideAdditionalPersonNameTextFieldsByClickingHideAdditionalTextboxesLink(string addOrEdit, string linkText, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Hide additional person name text fields by clicking Hide Additional Textboxes lin" +
+                    "k", exampleTags);
 #line 175
-    testRunner.When("I click the \"Click here to show additional textboxes\" link");
-#line 176
-    testRunner.Then("I should see a Salutation field");
-#line 177
-    testRunner.And("I should see a Middle Name Or Initial field");
-#line 178
-    testRunner.And("I should see a Suffix field");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display additional person name fields by clicking Show Additional Textboxes link")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0309")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        public virtual void DisplayAdditionalPersonNameFieldsByClickingShowAdditionalTextboxesLink_Add()
-        {
-            this.DisplayAdditionalPersonNameFieldsByClickingShowAdditionalTextboxesLink("Add", "Add a new agreement", ((string[])(null)));
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Display additional person name fields by clicking Show Additional Textboxes link")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0309")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        public virtual void DisplayAdditionalPersonNameFieldsByClickingShowAdditionalTextboxesLink_Edit()
-        {
-            this.DisplayAdditionalPersonNameFieldsByClickingShowAdditionalTextboxesLink("Edit", "Agreement, UC 01 test", ((string[])(null)));
-        }
-        
-        public virtual void HideAdditionalPersonNameFieldsByClickingHideAdditionalTextboxesLink(string addOrEdit, string linkText, string[] exampleTags)
-        {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0310"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Hide additional person name fields by clicking Hide Additional Textboxes link", @__tags);
-#line 186
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 188
+#line 177
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 189
+#line 178
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 191
+#line 180
     testRunner.When("I click the \"Add Contact\" link");
-#line 192
+#line 181
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 193
+#line 182
     testRunner.And("I should see a \"Click here to show additional textboxes\" link");
-#line 195
+#line 184
     testRunner.When("I click the \"Click here to show additional textboxes\" link");
-#line 196
-    testRunner.Then("I should see a Salutation field");
-#line 197
-    testRunner.And("I should see a Middle Name Or Initial field");
-#line 198
-    testRunner.And("I should see a Suffix field");
-#line 199
+#line 185
+    testRunner.Then("I should see a Salutation text field");
+#line 186
+    testRunner.And("I should see a Middle Name Or Initial text field");
+#line 187
+    testRunner.And("I should see a Suffix text field");
+#line 188
     testRunner.And("I should see a \"Click here to hide additional textboxes\" link");
-#line 201
+#line 190
     testRunner.When("I click the \"Click here to hide additional textboxes\" link");
-#line 202
-    testRunner.Then("I should not see a Salutation field");
-#line 203
-    testRunner.And("I should not see a Middle Name Or Initial field");
-#line 204
-    testRunner.And("I should not see a Suffix field");
+#line 191
+    testRunner.Then("I should not see a Salutation text field");
+#line 192
+    testRunner.And("I should not see a Middle Name Or Initial text field");
+#line 193
+    testRunner.And("I should not see a Suffix text field");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Hide additional person name fields by clicking Hide Additional Textboxes link")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0310")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Hide additional person name text fields by clicking Hide Additional Textboxes lin" +
+            "k")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        public virtual void HideAdditionalPersonNameFieldsByClickingHideAdditionalTextboxesLink_Add()
+        public virtual void HideAdditionalPersonNameTextFieldsByClickingHideAdditionalTextboxesLink_Add()
         {
-            this.HideAdditionalPersonNameFieldsByClickingHideAdditionalTextboxesLink("Add", "Add a new agreement", ((string[])(null)));
+            this.HideAdditionalPersonNameTextFieldsByClickingHideAdditionalTextboxesLink("Add", "Add a new agreement", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Hide additional person name fields by clicking Hide Additional Textboxes link")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0310")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Hide additional person name text fields by clicking Hide Additional Textboxes lin" +
+            "k")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        public virtual void HideAdditionalPersonNameFieldsByClickingHideAdditionalTextboxesLink_Edit()
+        public virtual void HideAdditionalPersonNameTextFieldsByClickingHideAdditionalTextboxesLink_Edit()
         {
-            this.HideAdditionalPersonNameFieldsByClickingHideAdditionalTextboxesLink("Edit", "Agreement, UC 01 test", ((string[])(null)));
+            this.HideAdditionalPersonNameTextFieldsByClickingHideAdditionalTextboxesLink("Edit", "Agreement, UC 01 test", ((string[])(null)));
         }
         
         public virtual void RevertFromReadOnlyPersonToUserEnteredValuesByClickingClearYourSelectionAndTryAgainLink(string addOrEdit, string linkText, string inputValue, string fieldName, string listValue, string fieldValue, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0311"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Revert from read only person to user entered values by clicking Clear Your Select" +
-                    "ion and Try Again link", @__tags);
-#line 212
+                    "ion and Try Again link", exampleTags);
+#line 200
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 214
+#line 202
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 215
+#line 203
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 217
+#line 205
     testRunner.When("I click the \"Add Contact\" link");
-#line 218
+#line 206
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 220
-    testRunner.When(string.Format("I type \"{0}\" into the {1} field", inputValue, fieldName));
-#line 221
-    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the {1} field", listValue, fieldName));
-#line 223
-    testRunner.When(string.Format("I click the autocomplete dropdown menu item \"{0}\" for the {1} field", listValue, fieldName));
-#line 224
-    testRunner.Then(string.Format("I should see \"{0}\" in the {1} field", fieldValue, fieldName));
-#line 225
+#line 208
+    testRunner.When(string.Format("I type \"{0}\" into the {1} text field", inputValue, fieldName));
+#line 209
+    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the {1} text field", listValue, fieldName));
+#line 211
+    testRunner.When(string.Format("I click the autocomplete dropdown menu item \"{0}\" for the {1} text field", listValue, fieldName));
+#line 212
+    testRunner.Then(string.Format("I should see \"{0}\" in the {1} text field", fieldValue, fieldName));
+#line 213
     testRunner.And("I should see a \"Click here to clear your selection and try again\" link");
-#line 227
+#line 215
     testRunner.When("I click the \"Click here to clear your selection and try again\" link");
-#line 228
-    testRunner.Then(string.Format("I should see \"{0}\" in the {1} field", inputValue, fieldName));
+#line 216
+    testRunner.Then(string.Format("I should see \"{0}\" in the {1} text field", inputValue, fieldName));
 #line hidden
             this.ScenarioCleanup();
         }
@@ -1105,11 +885,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Revert from read only person to user entered values by clicking Clear Your Select" +
             "ion and Try Again link")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0311")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -1125,11 +901,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Revert from read only person to user entered values by clicking Clear Your Select" +
             "ion and Try Again link")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0311")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -1144,54 +916,44 @@ this.FeatureBackground();
         
         public virtual void SelectReadOnlyPersonFromAutocompleteDropdownMenu(string addOrEdit, string linkText, string inputValue, string inputField, string listValue, string firstName, string lastName, string email, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0312"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Select read only person from autocomplete dropdown menu", @__tags);
-#line 236
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Select read only person from autocomplete dropdown menu", exampleTags);
+#line 223
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 238
+#line 225
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 239
+#line 226
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 241
+#line 228
     testRunner.When("I click the \"Add Contact\" link");
-#line 242
+#line 229
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 244
-    testRunner.When(string.Format("I type \"{0}\" into the {1} field", inputValue, inputField));
-#line 245
-    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the {1} field", listValue, inputField));
-#line 247
-    testRunner.When(string.Format("I click the autocomplete dropdown menu item \"{0}\" for the {1} field", listValue, inputField));
-#line 248
-    testRunner.Then(string.Format("I should see \"{0}\" in the First Name field", firstName));
-#line 249
-    testRunner.And("The First Name field should be read only");
-#line 251
-    testRunner.And(string.Format("I should see \"{0}\" in the Last Name field", lastName));
-#line 252
-    testRunner.And("The Last Name field should be read only");
-#line 254
-    testRunner.And(string.Format("I should see \"{0}\" in the Email Address field", email));
-#line 255
-    testRunner.And("The Email Address field should be read only");
+#line 231
+    testRunner.When(string.Format("I type \"{0}\" into the {1} text field", inputValue, inputField));
+#line 232
+    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the {1} text field", listValue, inputField));
+#line 234
+    testRunner.When(string.Format("I click the autocomplete dropdown menu item \"{0}\" for the {1} text field", listValue, inputField));
+#line 235
+    testRunner.Then(string.Format("I should see \"{0}\" in the First Name text field", firstName));
+#line 236
+    testRunner.And("The First Name text field should be read only");
+#line 238
+    testRunner.And(string.Format("I should see \"{0}\" in the Last Name text field", lastName));
+#line 239
+    testRunner.And("The Last Name text field should be read only");
+#line 241
+    testRunner.And(string.Format("I should see \"{0}\" in the Email Address text field", email));
+#line 242
+    testRunner.And("The Email Address text field should be read only");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Select read only person from autocomplete dropdown menu")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0312")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -1208,11 +970,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Select read only person from autocomplete dropdown menu")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0312")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -1229,11 +987,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Select read only person from autocomplete dropdown menu")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0312")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -1250,11 +1004,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Select read only person from autocomplete dropdown menu")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0312")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -1271,11 +1021,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Select read only person from autocomplete dropdown menu")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0312")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -1292,11 +1038,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Select read only person from autocomplete dropdown menu")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0312")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -1313,46 +1055,41 @@ this.FeatureBackground();
         
         public virtual void AddExistingPersonToContactsList(string addOrEdit, string linkText, string contactTypeValue, string personFieldValue, string personFieldName, string listValue, string contactName, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0313"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add existing person to Contacts list", @__tags);
-#line 267
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add existing person to Contacts list", exampleTags);
+#line 253
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 269
+#line 255
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 270
+#line 256
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 272
+#line 258
     testRunner.When("I click the \"Add Contact\" link");
-#line 273
+#line 259
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 275
-    testRunner.When(string.Format("I type \"{0}\" into the {1} field", personFieldValue, personFieldName));
-#line 276
-    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the {1} field", listValue, personFieldName));
-#line 277
-    testRunner.And(string.Format("I should click the autocomplete dropdown menu item \"{0}\" for the {1} field", listValue, personFieldName));
-#line 279
-    testRunner.When(string.Format("I type \"{0}\" into the Contact Type field", contactTypeValue));
-#line 280
-    testRunner.And(string.Format("I see an autocomplete dropdown menu item \"{0}\" for the Contact Type field", contactTypeValue));
-#line 281
-    testRunner.And(string.Format("I click the autocomplete dropdown menu item \"{0}\" for the Contact Type field", contactTypeValue));
-#line 282
-    testRunner.Then(string.Format("I should see \"{0}\" in the Contact Type field", contactTypeValue));
-#line 284
+#line 261
+    testRunner.When(string.Format("I type \"{0}\" into the {1} text field", personFieldValue, personFieldName));
+#line 262
+    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the {1} text field", listValue, personFieldName));
+#line 263
+    testRunner.And(string.Format("I should click the autocomplete dropdown menu item \"{0}\" for the {1} text field", listValue, personFieldName));
+#line 265
+    testRunner.When(string.Format("I type \"{0}\" into the Contact Type text field", contactTypeValue));
+#line 266
+    testRunner.And(string.Format("I see an autocomplete dropdown menu item \"{0}\" for the Contact Type text field", contactTypeValue));
+#line 267
+    testRunner.And(string.Format("I click the autocomplete dropdown menu item \"{0}\" for the Contact Type text field" +
+                        "", contactTypeValue));
+#line 268
+    testRunner.Then(string.Format("I should see \"{0}\" in the Contact Type text field", contactTypeValue));
+#line 270
     testRunner.When("I click the \"Add Contact\" submit button");
-#line 285
+#line 271
     testRunner.Then(string.Format("I should still see the Institutional Agreement {0} page", addOrEdit));
-#line 286
+#line 272
     testRunner.And("I should not see a modal dialog with an Add Institutional Agreement Contact form");
-#line 287
+#line 273
     testRunner.And(string.Format("I should see an item for \"{0}\" in the Contacts list", contactName));
 #line hidden
             this.ScenarioCleanup();
@@ -1360,11 +1097,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add existing person to Contacts list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0313")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -1380,11 +1113,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add existing person to Contacts list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0313")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -1400,11 +1129,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add existing person to Contacts list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0313")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -1420,11 +1145,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add existing person to Contacts list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0313")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -1440,11 +1161,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add existing person to Contacts list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0313")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -1460,11 +1177,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add existing person to Contacts list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0313")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -1480,50 +1193,45 @@ this.FeatureBackground();
         
         public virtual void RemoveContactFromList(string addOrEdit, string linkText, string contactTypeValue, string personFieldValue, string personFieldName, string listValue, string contactName, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "InstAgrFormsR0314"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove Contact from list", @__tags);
-#line 299
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove Contact from list", exampleTags);
+#line 284
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 301
+#line 286
     testRunner.When(string.Format("I click the \"{0}\" link", linkText));
-#line 302
+#line 287
     testRunner.Then(string.Format("I should see the Institutional Agreement {0} page", addOrEdit));
-#line 304
+#line 289
     testRunner.When("I click the \"Add Contact\" link");
-#line 305
+#line 290
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 307
-    testRunner.When(string.Format("I type \"{0}\" into the {1} field", personFieldValue, personFieldName));
-#line 308
-    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the {1} field", listValue, personFieldName));
-#line 309
-    testRunner.And(string.Format("I should click the autocomplete dropdown menu item \"{0}\" for the {1} field", listValue, personFieldName));
-#line 311
-    testRunner.When(string.Format("I type \"{0}\" into the Contact Type field", contactTypeValue));
-#line 312
-    testRunner.And(string.Format("I see an autocomplete dropdown menu item \"{0}\" for the Contact Type field", contactTypeValue));
-#line 313
-    testRunner.And(string.Format("I click the autocomplete dropdown menu item \"{0}\" for the Contact Type field", contactTypeValue));
-#line 314
-    testRunner.Then(string.Format("I should see \"{0}\" in the Contact Type field", contactTypeValue));
-#line 316
+#line 292
+    testRunner.When(string.Format("I type \"{0}\" into the {1} text field", personFieldValue, personFieldName));
+#line 293
+    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the {1} text field", listValue, personFieldName));
+#line 294
+    testRunner.And(string.Format("I should click the autocomplete dropdown menu item \"{0}\" for the {1} text field", listValue, personFieldName));
+#line 296
+    testRunner.When(string.Format("I type \"{0}\" into the Contact Type text field", contactTypeValue));
+#line 297
+    testRunner.And(string.Format("I see an autocomplete dropdown menu item \"{0}\" for the Contact Type text field", contactTypeValue));
+#line 298
+    testRunner.And(string.Format("I click the autocomplete dropdown menu item \"{0}\" for the Contact Type text field" +
+                        "", contactTypeValue));
+#line 299
+    testRunner.Then(string.Format("I should see \"{0}\" in the Contact Type text field", contactTypeValue));
+#line 301
     testRunner.When("I click the \"Add Contact\" submit button");
-#line 317
+#line 302
     testRunner.Then(string.Format("I should still see the Institutional Agreement {0} page", addOrEdit));
-#line 318
+#line 303
     testRunner.And("I should not see a modal dialog with an Add Institutional Agreement Contact form");
-#line 319
+#line 304
     testRunner.And(string.Format("I should see an item for \"{0}\" in the Contacts list", contactName));
-#line 321
+#line 306
     testRunner.When(string.Format("I click the remove icon for \"{0}\" in the Contacts list", contactName));
-#line 322
+#line 307
     testRunner.Then(string.Format("I should not see an item for \"{0}\" in the Contacts list", contactName));
 #line hidden
             this.ScenarioCleanup();
@@ -1531,11 +1239,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Remove Contact from list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0314")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -1551,11 +1255,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Remove Contact from list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0314")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -1571,11 +1271,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Remove Contact from list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0314")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
@@ -1591,11 +1287,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Remove Contact from list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0314")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -1611,11 +1303,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Remove Contact from list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0314")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -1631,11 +1319,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Remove Contact from list")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0314")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
@@ -1652,68 +1336,69 @@ this.FeatureBackground();
         public virtual void StoreAddedContactInNewAgreementAfterSave(string browser, string title, string contactTypeValue, string personFieldValue, string personFieldName, string listValue, string contactName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "InstAgrFormsR0315",
-                    "InstAgrFormsResetTestAgreementsUc"};
+                    "UseFreshExampleUcInstitutionalAgreementData"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Store added contact in new agreement after save", @__tags);
-#line 334
+#line 319
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 336
+#line 321
     testRunner.Given(string.Format("I am using the {0} browser", browser));
-#line 337
+#line 322
     testRunner.When("I click the \"Add a new agreement\" link");
-#line 338
+#line 323
     testRunner.Then("I should see the Institutional Agreement Add page");
-#line 340
-    testRunner.When("I type \"Memorandum of Understanding\" into the Agreement Type field");
-#line 341
-    testRunner.And("I type \"Active\" into the Current Status field");
-#line 342
-    testRunner.And("I type \"9/1/2011\" into the Start Date field");
-#line 343
-    testRunner.And("I type \"8/31/2015\" into the Expiration Date field");
-#line 344
-    testRunner.And(string.Format("I type \"{0}\" into the Summary Description field", title));
-#line 345
+#line 325
+    testRunner.When("I type \"Memorandum of Understanding\" into the Agreement Type text field");
+#line 326
+    testRunner.And("I type \"Active\" into the Current Status text field");
+#line 327
+    testRunner.And("I type \"9/1/2011\" into the Start Date text field");
+#line 328
+    testRunner.And("I type \"8/31/2015\" into the Expiration Date text field");
+#line 329
+    testRunner.And(string.Format("I type \"{0}\" into the Summary Description text field", title));
+#line 330
     testRunner.And("I dismiss all autocomplete dropdown menus");
-#line 346
+#line 331
     testRunner.And("I click the \"Add Contact\" link");
-#line 347
+#line 332
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 349
-    testRunner.When(string.Format("I type \"{0}\" into the {1} field", personFieldValue, personFieldName));
-#line 350
-    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the {1} field", listValue, personFieldName));
-#line 351
-    testRunner.And(string.Format("I should click the autocomplete dropdown menu item \"{0}\" for the {1} field", listValue, personFieldName));
-#line 353
-    testRunner.When(string.Format("I type \"{0}\" into the Contact Type field", contactTypeValue));
-#line 354
-    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the Contact Type field", contactTypeValue));
-#line 355
-    testRunner.And("I should click the autocomplete dropdown arrow button for the Contact Type field");
-#line 357
+#line 334
+    testRunner.When(string.Format("I type \"{0}\" into the {1} text field", personFieldValue, personFieldName));
+#line 335
+    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the {1} text field", listValue, personFieldName));
+#line 336
+    testRunner.And(string.Format("I should click the autocomplete dropdown menu item \"{0}\" for the {1} text field", listValue, personFieldName));
+#line 338
+    testRunner.When(string.Format("I type \"{0}\" into the Contact Type text field", contactTypeValue));
+#line 339
+    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the Contact Type text f" +
+                        "ield", contactTypeValue));
+#line 340
+    testRunner.And("I should click the autocomplete dropdown arrow button for the Contact Type text f" +
+                    "ield");
+#line 342
     testRunner.When("I click the \"Add Contact\" submit button");
-#line 358
+#line 343
     testRunner.Then("I should not see a modal dialog with an Add Institutional Agreement Contact form");
-#line 359
+#line 344
     testRunner.And(string.Format("I should see an item for \"{0}\" in the Contacts list", contactName));
-#line 361
+#line 346
     testRunner.When("I click the \"Add Agreement\" submit button");
-#line 362
+#line 347
     testRunner.Then("I should see the Public Institutional Agreement Detail page");
-#line 363
+#line 348
     testRunner.And("I should see an \"Edit this agreement\" link");
-#line 365
+#line 350
     testRunner.When("I click the \"Edit this agreement\" link");
-#line 366
+#line 351
     testRunner.Then("I should see the Institutional Agreement Edit page");
-#line 367
+#line 352
     testRunner.And(string.Format("I should see an item for \"{0}\" in the Contacts list", contactName));
 #line hidden
             this.ScenarioCleanup();
@@ -1721,12 +1406,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in new agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0315")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Title", "Agreement, UC A1 test")]
@@ -1742,12 +1423,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in new agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0315")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Title", "Agreement, UC B1 test")]
@@ -1763,12 +1440,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in new agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0315")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Title", "Agreement, UC A1 test")]
@@ -1784,12 +1457,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in new agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0315")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Title", "Agreement, UC B1 test")]
@@ -1805,12 +1474,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in new agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0315")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Title", "Agreement, UC A1 test")]
@@ -1826,12 +1491,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in new agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0315")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Title", "Agreement, UC B1 test")]
@@ -1848,84 +1509,86 @@ this.FeatureBackground();
         public virtual void PurgeRemovedContactFromNewAgreementAfterSave(string browser, string title, string contactTypeValue, string personFieldValue, string personFieldName, string listValue, string contactName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "InstAgrFormsR0316",
-                    "InstAgrFormsResetTestAgreementsUc"};
+                    "UseFreshExampleUcInstitutionalAgreementData"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Purge removed contact from new agreement after save", @__tags);
-#line 379
+#line 364
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 381
+#line 366
     testRunner.Given(string.Format("I am using the {0} browser", browser));
-#line 382
+#line 367
     testRunner.When("I click the \"Add a new agreement\" link");
-#line 383
+#line 368
     testRunner.Then("I should see the Institutional Agreement Add page");
-#line 385
-    testRunner.When("I type \"Institutional Collaboration Agreement\" into the Agreement Type field");
-#line 386
-    testRunner.And("I type \"Active\" into the Current Status field");
-#line 387
-    testRunner.And("I type \"9/1/2011\" into the Start Date field");
-#line 388
-    testRunner.And("I type \"8/31/2015\" into the Expiration Date field");
-#line 389
-    testRunner.And(string.Format("I type \"{0}\" into the Summary Description field", title));
-#line 390
+#line 370
+    testRunner.When("I type \"Institutional Collaboration Agreement\" into the Agreement Type text field" +
+                    "");
+#line 371
+    testRunner.And("I type \"Active\" into the Current Status text field");
+#line 372
+    testRunner.And("I type \"9/1/2011\" into the Start Date text field");
+#line 373
+    testRunner.And("I type \"8/31/2015\" into the Expiration Date text field");
+#line 374
+    testRunner.And(string.Format("I type \"{0}\" into the Summary Description text field", title));
+#line 375
     testRunner.And("I dismiss all autocomplete dropdown menus");
-#line 391
+#line 376
     testRunner.And("I click the \"Add Contact\" link");
-#line 392
+#line 377
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 394
-    testRunner.When(string.Format("I type \"{0}\" into the {1} field", personFieldValue, personFieldName));
-#line 395
-    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the {1} field", listValue, personFieldName));
-#line 396
-    testRunner.And(string.Format("I should click the autocomplete dropdown menu item \"{0}\" for the {1} field", listValue, personFieldName));
-#line 398
-    testRunner.When(string.Format("I type \"{0}\" into the Contact Type field", contactTypeValue));
-#line 399
-    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the Contact Type field", contactTypeValue));
-#line 400
-    testRunner.And("I should click the autocomplete dropdown arrow button for the Contact Type field");
-#line 402
+#line 379
+    testRunner.When(string.Format("I type \"{0}\" into the {1} text field", personFieldValue, personFieldName));
+#line 380
+    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the {1} text field", listValue, personFieldName));
+#line 381
+    testRunner.And(string.Format("I should click the autocomplete dropdown menu item \"{0}\" for the {1} text field", listValue, personFieldName));
+#line 383
+    testRunner.When(string.Format("I type \"{0}\" into the Contact Type text field", contactTypeValue));
+#line 384
+    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the Contact Type text f" +
+                        "ield", contactTypeValue));
+#line 385
+    testRunner.And("I should click the autocomplete dropdown arrow button for the Contact Type text f" +
+                    "ield");
+#line 387
     testRunner.When("I click the \"Add Contact\" submit button");
-#line 403
+#line 388
     testRunner.Then("I should not see a modal dialog with an Add Institutional Agreement Contact form");
-#line 404
+#line 389
     testRunner.And(string.Format("I should see an item for \"{0}\" in the Contacts list", contactName));
-#line 406
+#line 391
     testRunner.When("I click the \"Add Agreement\" submit button");
-#line 407
+#line 392
     testRunner.Then("I should see the Public Institutional Agreement Detail page");
-#line 408
+#line 393
     testRunner.And("I should see an \"Edit this agreement\" link");
-#line 410
+#line 395
     testRunner.When("I click the \"Edit this agreement\" link");
-#line 411
+#line 396
     testRunner.Then("I should see the Institutional Agreement Edit page");
-#line 412
+#line 397
     testRunner.And(string.Format("I should see an item for \"{0}\" in the Contacts list", contactName));
-#line 414
+#line 399
     testRunner.When(string.Format("I click the remove icon for \"{0}\" in the Contacts list", contactName));
-#line 415
+#line 400
     testRunner.Then(string.Format("I should not see an item for \"{0}\" in the Contacts list", contactName));
-#line 417
+#line 402
     testRunner.When("I click the \"Save Changes\" submit button");
-#line 418
+#line 403
     testRunner.Then("I should see the Public Institutional Agreement Detail page");
-#line 419
+#line 404
     testRunner.And("I should see an \"Edit this agreement\" link");
-#line 421
+#line 406
     testRunner.When("I click the \"Edit this agreement\" link");
-#line 422
+#line 407
     testRunner.Then("I should see the Institutional Agreement Edit page");
-#line 423
+#line 408
     testRunner.And(string.Format("I should not see an item for \"{0}\" in the Contacts list", contactName));
 #line hidden
             this.ScenarioCleanup();
@@ -1933,12 +1596,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Purge removed contact from new agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0316")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Title", "Agreement, UC A2 test")]
@@ -1954,12 +1613,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Purge removed contact from new agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0316")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Title", "Agreement, UC B2 test")]
@@ -1975,12 +1630,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Purge removed contact from new agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0316")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Title", "Agreement, UC A2 test")]
@@ -1996,12 +1647,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Purge removed contact from new agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0316")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Title", "Agreement, UC B2 test")]
@@ -2017,12 +1664,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Purge removed contact from new agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0316")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Title", "Agreement, UC A2 test")]
@@ -2038,12 +1681,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Purge removed contact from new agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0316")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Title", "Agreement, UC B2 test")]
@@ -2060,56 +1699,57 @@ this.FeatureBackground();
         public virtual void StoreAddedContactInExistingAgreementAfterSave(string browser, string contactTypeValue, string personFieldValue, string personFieldName, string listValue, string contactName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "InstAgrFormsR0317",
-                    "InstAgrFormsResetTestAgreementsUc"};
+                    "UseFreshExampleUcInstitutionalAgreementData"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Store added contact in existing agreement after save", @__tags);
-#line 435
+#line 420
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 437
+#line 422
     testRunner.Given(string.Format("I am using the {0} browser", browser));
-#line 438
+#line 423
     testRunner.When("I click the \"Agreement, UC 01 test\" link");
-#line 439
+#line 424
     testRunner.Then("I should see the Institutional Agreement Edit page");
-#line 441
+#line 426
     testRunner.When("I click the \"Add Contact\" link");
-#line 442
+#line 427
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 444
-    testRunner.When(string.Format("I type \"{0}\" into the {1} field", personFieldValue, personFieldName));
-#line 445
-    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the {1} field", listValue, personFieldName));
-#line 446
-    testRunner.And(string.Format("I should click the autocomplete dropdown menu item \"{0}\" for the {1} field", listValue, personFieldName));
-#line 448
-    testRunner.When(string.Format("I type \"{0}\" into the Contact Type field", contactTypeValue));
-#line 449
-    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the Contact Type field", contactTypeValue));
-#line 450
-    testRunner.And("I should click the autocomplete dropdown arrow button for the Contact Type field");
-#line 452
+#line 429
+    testRunner.When(string.Format("I type \"{0}\" into the {1} text field", personFieldValue, personFieldName));
+#line 430
+    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the {1} text field", listValue, personFieldName));
+#line 431
+    testRunner.And(string.Format("I should click the autocomplete dropdown menu item \"{0}\" for the {1} text field", listValue, personFieldName));
+#line 433
+    testRunner.When(string.Format("I type \"{0}\" into the Contact Type text field", contactTypeValue));
+#line 434
+    testRunner.Then(string.Format("I should see an autocomplete dropdown menu item \"{0}\" for the Contact Type text f" +
+                        "ield", contactTypeValue));
+#line 435
+    testRunner.And("I should click the autocomplete dropdown arrow button for the Contact Type text f" +
+                    "ield");
+#line 437
     testRunner.When("I click the \"Add Contact\" submit button");
-#line 453
+#line 438
     testRunner.Then("I should not see a modal dialog with an Add Institutional Agreement Contact form");
-#line 454
+#line 439
     testRunner.And(string.Format("I should see an item for \"{0}\" in the Contacts list", contactName));
-#line 456
+#line 441
     testRunner.When("I click the \"Save Changes\" submit button");
-#line 457
+#line 442
     testRunner.Then("I should see the Public Institutional Agreement Detail page");
-#line 458
+#line 443
     testRunner.And("I should see an \"Edit this agreement\" link");
-#line 460
+#line 445
     testRunner.When("I click the \"Edit this agreement\" link");
-#line 461
+#line 446
     testRunner.Then("I should see the Institutional Agreement Edit page");
-#line 462
+#line 447
     testRunner.And(string.Format("I should see an item for \"{0}\" in the Contacts list", contactName));
 #line hidden
             this.ScenarioCleanup();
@@ -2117,12 +1757,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in existing agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0317")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ContactTypeValue", "Partner Principal")]
@@ -2137,12 +1773,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in existing agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0317")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ContactTypeValue", "Partner Secondary")]
@@ -2157,12 +1789,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in existing agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0317")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ContactTypeValue", "Home Principal")]
@@ -2177,12 +1805,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in existing agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0317")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ContactTypeValue", "Partner Principal")]
@@ -2197,12 +1821,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in existing agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0317")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ContactTypeValue", "Partner Secondary")]
@@ -2217,12 +1837,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in existing agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0317")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ContactTypeValue", "Home Principal")]
@@ -2237,12 +1853,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in existing agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0317")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 6")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ContactTypeValue", "Partner Principal")]
@@ -2257,12 +1869,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in existing agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0317")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 7")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ContactTypeValue", "Partner Secondary")]
@@ -2277,12 +1885,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Store added contact in existing agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0317")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsResetTestAgreementsUc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 8")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ContactTypeValue", "Home Principal")]
@@ -2298,77 +1902,77 @@ this.FeatureBackground();
         public virtual void PurgeRemovedContactFromExistingAgreementAfterSave(string browser, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "InstAgrFormsR0318",
-                    "InstAgrFormsFreshTestAgreementUc02"};
+                    "UseFreshExampleUcInstitutionalAgreementData"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Purge removed contact from existing agreement after save", @__tags);
-#line 477
+#line 462
 this.ScenarioSetup(scenarioInfo);
-#line 8
+#line 6
 this.FeatureBackground();
-#line 479
+#line 464
     testRunner.Given(string.Format("I am using the {0} browser", browser));
-#line 480
+#line 465
     testRunner.When("I click the \"Agreement, UC 02 test\" link");
-#line 481
+#line 466
     testRunner.Then("I should see the Institutional Agreement Edit page");
-#line 482
+#line 467
     testRunner.And("I should see an \"Add Contact\" link");
-#line 484
+#line 469
     testRunner.When("I click the \"Add Contact\" link");
-#line 485
+#line 470
     testRunner.Then("I should see a modal dialog with an Add Institutional Agreement Contact form");
-#line 487
-    testRunner.When("I type \"Home Principal\" into the Contact Type field");
-#line 488
+#line 472
+    testRunner.When("I type \"Home Principal\" into the Contact Type text field");
+#line 473
     testRunner.Then("I should see an autocomplete dropdown menu item \"Home Principal\" for the Contact " +
-                    "Type field");
-#line 489
-    testRunner.And("I should click the autocomplete dropdown arrow button for the Contact Type field");
-#line 491
-    testRunner.When("I type \"ro\" into the Email Address field");
-#line 492
+                    "Type text field");
+#line 474
+    testRunner.And("I should click the autocomplete dropdown arrow button for the Contact Type text f" +
+                    "ield");
+#line 476
+    testRunner.When("I type \"ro\" into the Email Address text field");
+#line 477
     testRunner.Then("I should see an autocomplete dropdown menu item \"Ron Cushing (Ronald.Cushing@uc.e" +
-                    "du)\" for the Email Address field");
-#line 493
+                    "du)\" for the Email Address text field");
+#line 478
     testRunner.And("I should click the autocomplete dropdown menu item \"Ron Cushing (Ronald.Cushing@u" +
-                    "c.edu)\" for the Email Address field");
-#line 495
+                    "c.edu)\" for the Email Address text field");
+#line 480
     testRunner.When("I click the \"Add Contact\" submit button");
-#line 496
+#line 481
     testRunner.Then("I should not see a modal dialog with an Add Institutional Agreement Contact form");
-#line 497
+#line 482
     testRunner.And("I should see an item for \"Home Principal Ron Cushing\" in the Contacts list");
-#line 499
+#line 484
     testRunner.When("I click the \"Save Changes\" submit button");
-#line 500
+#line 485
     testRunner.Then("I should see the Public Institutional Agreement Detail page");
-#line 501
+#line 486
     testRunner.And("I should see an \"Edit this agreement\" link");
-#line 503
+#line 488
     testRunner.When("I click the \"Edit this agreement\" link");
-#line 504
+#line 489
     testRunner.Then("I should see the Institutional Agreement Edit page");
-#line 505
+#line 490
     testRunner.And("I should see an item for \"Home Principal Ron Cushing\" in the Contacts list");
-#line 507
+#line 492
     testRunner.When("I click the remove icon for \"Home Principal Ron Cushing\" in the Contacts list");
-#line 508
+#line 493
     testRunner.Then("I should not see an item for \"Home Principal Ron Cushing\" in the Contacts list");
-#line 510
+#line 495
     testRunner.When("I click the \"Save Changes\" submit button");
-#line 511
+#line 496
     testRunner.Then("I should see the Public Institutional Agreement Detail page");
-#line 512
+#line 497
     testRunner.And("I should see an \"Edit this agreement\" link");
-#line 514
+#line 499
     testRunner.When("I click the \"Edit this agreement\" link");
-#line 515
+#line 500
     testRunner.Then("I should see the Institutional Agreement Edit page");
-#line 516
+#line 501
     testRunner.And("I should not see an item for \"Home Principal Ron Cushing\" in the Contacts list");
 #line hidden
             this.ScenarioCleanup();
@@ -2376,12 +1980,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Purge removed contact from existing agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0318")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc02")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Chrome")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Chrome")]
         public virtual void PurgeRemovedContactFromExistingAgreementAfterSave_Chrome()
@@ -2391,12 +1991,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Purge removed contact from existing agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0318")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc02")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         public virtual void PurgeRemovedContactFromExistingAgreementAfterSave_Firefox()
@@ -2406,12 +2002,8 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Purge removed contact from existing agreement after save")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Institutional Agreement Management Preview Revision 3")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrForms")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR03")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc01")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsR0318")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("InstAgrFormsFreshTestAgreementUc02")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage Contacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("UseFreshExampleUcInstitutionalAgreementData")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         public virtual void PurgeRemovedContactFromExistingAgreementAfterSave_MSIE()

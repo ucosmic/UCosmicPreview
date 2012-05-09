@@ -1,21 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Impl.Orm;
 using UCosmic.Www.Mvc.SpecFlow;
+using UCosmic.Www.Mvc.WebDriver;
 
-// ReSharper disable UnusedMember.Global
-namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
+namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 {
     [Binding]
-    public class InstitutionalAgreementEvents : TestRunEvents
+    public class ManageEvents : BaseStepDefinition
     {
-        [BeforeScenario("InstAgrFormsFreshTestAgreementUc01")]
-        public static void FreshTestAgreementUc01()
+        [BeforeTestRun]
+        [AfterTestRun]
+        [BeforeScenario("UseFreshExampleUcInstitutionalAgreementData")]
+        public static void ResetExampleUcInstitutionalAgreementData()
+        {
+            RemoveExampleUcInstitutionalAgreementsCreatedByTests();
+            ResetExampleUcTestInstitutionalAgreement1();
+            ResetExampleUcTestInstitutionalAgreement2();
+            ResetExampleUcTestInstitutionalAgreementForGoogleChrome();
+            ResetExampleUcTestInstitutionalAgreementForFirefox();
+            ResetExampleUcTestInstitutionalAgreementForMsie();
+        }
+
+        private static void ResetExampleUcTestInstitutionalAgreement1()
         {
             using (var context = new UCosmicContext(null))
             {
@@ -51,8 +64,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
             }
         }
 
-        [BeforeScenario("InstAgrFormsFreshTestAgreementUc02")]
-        public static void FreshTestAgreementUc02()
+        private static void ResetExampleUcTestInstitutionalAgreement2()
         {
             using (var context = new UCosmicContext(null))
             {
@@ -85,8 +97,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
             }
         }
 
-        [BeforeScenario("InstAgrFormsFreshTestAgreementUcGc")]
-        public static void FreshTestAgreementUcGc()
+        private static void ResetExampleUcTestInstitutionalAgreementForGoogleChrome()
         {
             using (var context = new UCosmicContext(null))
             {
@@ -122,8 +133,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
             }
         }
 
-        [BeforeScenario("InstAgrFormsFreshTestAgreementUcFf")]
-        public static void FreshTestAgreementUcFf()
+        private static void ResetExampleUcTestInstitutionalAgreementForFirefox()
         {
             using (var context = new UCosmicContext(null))
             {
@@ -159,8 +169,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
             }
         }
 
-        [BeforeScenario("InstAgrFormsFreshTestAgreementUcIe")]
-        public static void FreshTestAgreementUcIe()
+        private static void ResetExampleUcTestInstitutionalAgreementForMsie()
         {
             using (var context = new UCosmicContext(null))
             {
@@ -196,10 +205,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
             }
         }
 
-        [BeforeTestRun]
-        [BeforeScenario("InstAgrFormsResetTestAgreementsUc")]
-        [AfterScenario("InstAgrFormsResetTestAgreementsUc")]
-        public static void ResetTestAgreementsUc()
+        private static void RemoveExampleUcInstitutionalAgreementsCreatedByTests()
         {
             var titles = new[]
             {
@@ -218,7 +224,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
             };
             using (var context = new UCosmicContext(null))
             {
-                var agreements = context.InstitutionalAgreements.Where(a => 
+                var agreements = context.InstitutionalAgreements.Where(a =>
                     titles.Contains(a.Title))
                     .ToList();
                 if (agreements.Count <= 0) return;
@@ -226,7 +232,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
                     context.InstitutionalAgreements.Remove(agreement);
                 context.SaveChanges();
             }
-            FreshTestAgreementUc01();
+            //FreshTestAgreementUc01();
         }
 
         [BeforeScenario("InstAgrConfigResetLehigh")]
@@ -278,4 +284,3 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Events
         }
     }
 }
-// ReSharper restore UnusedMember.Global

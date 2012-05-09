@@ -1,15 +1,13 @@
-﻿@InstAgrForms @InstAgrFormsR03 @InstAgrFormsFreshTestAgreementUc01
-Feature: Institutional Agreement Management Preview Revision 3
-    In order to know which people are responsible for my Institutional Agreements
+﻿Feature: Manage Contacts
+    In order to know which people are responsible for my agreements
     As an Institutional Agreement Manager
-    I want to add, remove, and generally manage the contact information attached to my Institutional Agreements in UCosmic
+    I want to manage a list of Contacts for each agreement
 
-#execute these steps before every scenario in this file
 Background:
+
     Given I am signed in as manager1@uc.edu
     And I am starting from the Institutional Agreement Management page
 
-@InstAgrFormsR0301
 Scenario Outline: Display Add Contact link
 
     When I click the "<LinkText>" link
@@ -21,7 +19,6 @@ Examples:
     | Add       | Add a new agreement   |
     | Edit      | Agreement, UC 01 test |
 
-@InstAgrFormsR0302
 Scenario Outline: Display modal dialog by clicking Add Contact link
 
     When I click the "<LinkText>" link
@@ -36,8 +33,7 @@ Examples:
     | Add       | Add a new agreement   |
     | Edit      | Agreement, UC 01 test |
 
-@InstAgrFormsR0303
-Scenario Outline: Add Contact fails when required fields are empty
+Scenario Outline: Add Contact fails when required text fields are empty
 
     When I click the "<LinkText>" link
     Then I should see the Institutional Agreement <AddOrEdit> page
@@ -45,9 +41,9 @@ Scenario Outline: Add Contact fails when required fields are empty
     When I click the "Add Contact" link
     Then I should see a modal dialog with an Add Institutional Agreement Contact form
 
-    When I type "<Text>" into the <Field> field
+    When I type "<Text>" into the <Field> text field
     And I click the "Add Contact" submit button
-    Then I should <OrNot> see the Required error message for the <Field> field
+    Then I should <OrNot> see the Required error message for the <Field> text field
 
 Examples:
     | AddOrEdit | LinkText              | Text | Field        | OrNot | ErrorMessage                    |
@@ -64,7 +60,6 @@ Examples:
     | Edit      | Agreement, UC 01 test |      | Last Name    |       | Contact last name is required.  |
     | Edit      | Agreement, UC 01 test | Test | Last Name    | not   | Contact last name is required.  |
 
-@InstAgrFormsR0304
 Scenario Outline: Display example Contact Type values by typing matching text
 
     When I click the "<LinkText>" link
@@ -73,8 +68,8 @@ Scenario Outline: Display example Contact Type values by typing matching text
     When I click the "Add Contact" link
     Then I should see a modal dialog with an Add Institutional Agreement Contact form
 
-    When  I type "<InputValue>" into the Contact Type field
-    Then I should see an autocomplete dropdown menu item "<ListValue>" for the Contact Type field
+    When  I type "<InputValue>" into the Contact Type text field
+    Then I should see an autocomplete dropdown menu item "<ListValue>" for the Contact Type text field
 
 Examples:
     | AddOrEdit | LinkText              | InputValue | ListValue         |
@@ -83,7 +78,6 @@ Examples:
     | Edit      | Agreement, UC 01 test | Partner S  | Partner Secondary |
     | Edit      | Agreement, UC 01 test | Home P     | Home Principal    |
 
-@InstAgrFormsR0305
 Scenario Outline: Display example Contact Type values by clicking down arrow button
 
     When I click the "<LinkText>" link
@@ -92,8 +86,8 @@ Scenario Outline: Display example Contact Type values by clicking down arrow but
     When I click the "Add Contact" link
     Then I should see a modal dialog with an Add Institutional Agreement Contact form
 
-    When I click the autocomplete dropdown arrow button for the Contact Type field
-    Then I should see an autocomplete dropdown menu item "<ListValue>" for the Contact Type field
+    When I click the autocomplete dropdown arrow button for the Contact Type text field
+    Then I should see an autocomplete dropdown menu item "<ListValue>" for the Contact Type text field
 
 Examples:
     | AddOrEdit | LinkText              | ListValue         |
@@ -106,7 +100,6 @@ Examples:
     | Edit      | Agreement, UC 01 test | Home Principal    |
     | Edit      | Agreement, UC 01 test | Home Secondary    |
 
-@InstAgrFormsR0306
 Scenario Outline: Select Contact Type by clicking an example item from the dropdown menu
 
     When I click the "<LinkText>" link
@@ -115,11 +108,11 @@ Scenario Outline: Select Contact Type by clicking an example item from the dropd
     When I click the "Add Contact" link
     Then I should see a modal dialog with an Add Institutional Agreement Contact form
 
-    When I click the autocomplete dropdown arrow button for the Contact Type field
-    Then I should see an autocomplete dropdown menu item "<ListValue>" for the Contact Type field
+    When I click the autocomplete dropdown arrow button for the Contact Type text field
+    Then I should see an autocomplete dropdown menu item "<ListValue>" for the Contact Type text field
 
-    When I click the autocomplete dropdown menu item "<ListValue>" for the Contact Type field
-    Then I should see "<ListValue>" in the Contact Type field
+    When I click the autocomplete dropdown menu item "<ListValue>" for the Contact Type text field
+    Then I should see "<ListValue>" in the Contact Type text field
 
 Examples:
     | AddOrEdit | LinkText              | ListValue         |
@@ -128,7 +121,6 @@ Examples:
     | Add       | Add a new agreement   | Home Principal    |
     | Edit      | Agreement, UC 01 test | Home Secondary    |
 
-@InstAgrFormsR0307
 Scenario Outline: Dismiss modal dialog by clicking the cancel button
 
     When I click the "<LinkText>" link
@@ -145,7 +137,6 @@ Examples:
     | Add       | Add a new agreement   |
     | Edit      | Agreement, UC 01 test |
 
-@InstAgrFormsR0308
 Scenario Outline: Dismiss modal dialog by clicking the close icon
 
     When I click the "<LinkText>" link
@@ -162,8 +153,7 @@ Examples:
     | Add       | Add a new agreement   |
     | Edit      | Agreement, UC 01 test |
 	
-@InstAgrFormsR0309
-Scenario Outline: Display additional person name fields by clicking Show Additional Textboxes link
+Scenario Outline: Display additional person name text fields by clicking Show Additional Textboxes link
 
     When I click the "<LinkText>" link
     Then I should see the Institutional Agreement <AddOrEdit> page
@@ -173,17 +163,16 @@ Scenario Outline: Display additional person name fields by clicking Show Additio
     And I should see a "Click here to show additional textboxes" link
 
     When  I click the "Click here to show additional textboxes" link
-    Then I should see a Salutation field
-    And I should see a Middle Name Or Initial field
-    And I should see a Suffix field
+    Then I should see a Salutation text field
+    And I should see a Middle Name Or Initial text field
+    And I should see a Suffix text field
 
 Examples:
     | AddOrEdit | LinkText              |
     | Add       | Add a new agreement   |
     | Edit      | Agreement, UC 01 test |
 
-@InstAgrFormsR0310
-Scenario Outline: Hide additional person name fields by clicking Hide Additional Textboxes link
+Scenario Outline: Hide additional person name text fields by clicking Hide Additional Textboxes link
 
     When I click the "<LinkText>" link
     Then I should see the Institutional Agreement <AddOrEdit> page
@@ -193,22 +182,21 @@ Scenario Outline: Hide additional person name fields by clicking Hide Additional
     And I should see a "Click here to show additional textboxes" link
 
     When  I click the "Click here to show additional textboxes" link
-    Then I should see a Salutation field
-    And I should see a Middle Name Or Initial field
-    And I should see a Suffix field
+    Then I should see a Salutation text field
+    And I should see a Middle Name Or Initial text field
+    And I should see a Suffix text field
     And I should see a "Click here to hide additional textboxes" link
 
     When  I click the "Click here to hide additional textboxes" link
-    Then I should not see a Salutation field
-    And I should not see a Middle Name Or Initial field
-    And I should not see a Suffix field
+    Then I should not see a Salutation text field
+    And I should not see a Middle Name Or Initial text field
+    And I should not see a Suffix text field
 
 Examples:
     | AddOrEdit | LinkText              |
     | Add       | Add a new agreement   |
     | Edit      | Agreement, UC 01 test |
 
-@InstAgrFormsR0311
 Scenario Outline: Revert from read only person to user entered values by clicking Clear Your Selection and Try Again link
 
     When I click the "<LinkText>" link
@@ -217,22 +205,21 @@ Scenario Outline: Revert from read only person to user entered values by clickin
     When I click the "Add Contact" link
     Then I should see a modal dialog with an Add Institutional Agreement Contact form
 
-    When I type "<InputValue>" into the <FieldName> field
-    Then I should see an autocomplete dropdown menu item "<ListValue>" for the <FieldName> field
+    When I type "<InputValue>" into the <FieldName> text field
+    Then I should see an autocomplete dropdown menu item "<ListValue>" for the <FieldName> text field
 
-    When I click the autocomplete dropdown menu item "<ListValue>" for the <FieldName> field
-    Then I should see "<FieldValue>" in the <FieldName> field
+    When I click the autocomplete dropdown menu item "<ListValue>" for the <FieldName> text field
+    Then I should see "<FieldValue>" in the <FieldName> text field
     And I should see a "Click here to clear your selection and try again" link
 
     When I click the "Click here to clear your selection and try again" link
-    Then I should see "<InputValue>" in the <FieldName> field
+    Then I should see "<InputValue>" in the <FieldName> text field
 
 Examples:
     | AddOrEdit | LinkText              | InputValue | FieldName  | ListValue                                   | FieldValue |
     | Add       | Add a new agreement   | le         | Last Name  | Leventhal, Mitch (Mitch.Leventhal@suny.edu) | Leventhal  |
     | Edit      | Agreement, UC 01 test | br         | First Name | Brandon Lee (Brandon@terradotta.com)        | Brandon    |
 
-@InstAgrFormsR0312
 Scenario Outline: Select read only person from autocomplete dropdown menu
 
     When I click the "<LinkText>" link
@@ -241,18 +228,18 @@ Scenario Outline: Select read only person from autocomplete dropdown menu
     When I click the "Add Contact" link
     Then I should see a modal dialog with an Add Institutional Agreement Contact form
 
-    When I type "<InputValue>" into the <InputField> field
-    Then I should see an autocomplete dropdown menu item "<ListValue>" for the <InputField> field
+    When I type "<InputValue>" into the <InputField> text field
+    Then I should see an autocomplete dropdown menu item "<ListValue>" for the <InputField> text field
 
-    When I click the autocomplete dropdown menu item "<ListValue>" for the <InputField> field
-    Then I should see "<FirstName>" in the First Name field
-    And The First Name field should be read only
+    When I click the autocomplete dropdown menu item "<ListValue>" for the <InputField> text field
+    Then I should see "<FirstName>" in the First Name text field
+    And The First Name text field should be read only
 
-    And I should see "<LastName>" in the Last Name field
-    And The Last Name field should be read only
+    And I should see "<LastName>" in the Last Name text field
+    And The Last Name text field should be read only
 
-    And I should see "<Email>" in the Email Address field
-    And The Email Address field should be read only
+    And I should see "<Email>" in the Email Address text field
+    And The Email Address text field should be read only
 
 Examples:
     | AddOrEdit | LinkText              | InputValue | InputField    | ListValue                                   | FirstName | LastName  | Email                    |
@@ -263,7 +250,6 @@ Examples:
     | Edit      | Agreement, UC 01 test | le         | Last Name     | Leventhal, Mitch (Mitch.Leventhal@suny.edu) | Mitch     | Leventhal | Mitch.Leventhal@suny.edu |
     | Edit      | Agreement, UC 01 test | cu         | Email Address | Ron Cushing (Ronald.Cushing@uc.edu)         | Ron       | Cushing   | Ronald.Cushing@uc.edu    |
 
-@InstAgrFormsR0313
 Scenario Outline: Add existing person to Contacts list
 
     When I click the "<LinkText>" link
@@ -272,14 +258,14 @@ Scenario Outline: Add existing person to Contacts list
     When I click the "Add Contact" link
     Then I should see a modal dialog with an Add Institutional Agreement Contact form
 
-    When I type "<PersonFieldValue>" into the <PersonFieldName> field
-    Then I should see an autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> field
-    And I should click the autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> field
+    When I type "<PersonFieldValue>" into the <PersonFieldName> text field
+    Then I should see an autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> text field
+    And I should click the autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> text field
 
-    When I type "<ContactTypeValue>" into the Contact Type field
-    And I see an autocomplete dropdown menu item "<ContactTypeValue>" for the Contact Type field
-    And I click the autocomplete dropdown menu item "<ContactTypeValue>" for the Contact Type field
-    Then I should see "<ContactTypeValue>" in the Contact Type field
+    When I type "<ContactTypeValue>" into the Contact Type text field
+    And I see an autocomplete dropdown menu item "<ContactTypeValue>" for the Contact Type text field
+    And I click the autocomplete dropdown menu item "<ContactTypeValue>" for the Contact Type text field
+    Then I should see "<ContactTypeValue>" in the Contact Type text field
 
     When I click the "Add Contact" submit button
     Then I should still see the Institutional Agreement <AddOrEdit> page
@@ -295,7 +281,6 @@ Examples:
     | Edit      | Agreement, UC 01 test | Partner Secondary | le               | Last Name       | Leventhal, Mitch (Mitch.Leventhal@suny.edu) | Partner Secondary Mitch Leventhal |
     | Edit      | Agreement, UC 01 test | Home Principal    | ro               | Email Address   | Ron Cushing (Ronald.Cushing@uc.edu)         | Home Principal Ron Cushing        |
 
-@InstAgrFormsR0314
 Scenario Outline: Remove Contact from list
 
     When I click the "<LinkText>" link
@@ -304,14 +289,14 @@ Scenario Outline: Remove Contact from list
     When I click the "Add Contact" link
     Then I should see a modal dialog with an Add Institutional Agreement Contact form
 
-    When I type "<PersonFieldValue>" into the <PersonFieldName> field
-    Then I should see an autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> field
-    And I should click the autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> field
+    When I type "<PersonFieldValue>" into the <PersonFieldName> text field
+    Then I should see an autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> text field
+    And I should click the autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> text field
 
-    When I type "<ContactTypeValue>" into the Contact Type field
-    And I see an autocomplete dropdown menu item "<ContactTypeValue>" for the Contact Type field
-    And I click the autocomplete dropdown menu item "<ContactTypeValue>" for the Contact Type field
-    Then I should see "<ContactTypeValue>" in the Contact Type field
+    When I type "<ContactTypeValue>" into the Contact Type text field
+    And I see an autocomplete dropdown menu item "<ContactTypeValue>" for the Contact Type text field
+    And I click the autocomplete dropdown menu item "<ContactTypeValue>" for the Contact Type text field
+    Then I should see "<ContactTypeValue>" in the Contact Type text field
 
     When I click the "Add Contact" submit button
     Then I should still see the Institutional Agreement <AddOrEdit> page
@@ -330,29 +315,29 @@ Examples:
     | Edit      | Agreement, UC 01 test | Partner Secondary | le               | Last Name       | Leventhal, Mitch (Mitch.Leventhal@suny.edu) | Partner Secondary Mitch Leventhal |
     | Edit      | Agreement, UC 01 test | Home Principal    | ro               | Email Address   | Ron Cushing (Ronald.Cushing@uc.edu)         | Home Principal Ron Cushing        |
     
-@InstAgrFormsR0315 @InstAgrFormsResetTestAgreementsUc
+@UseFreshExampleUcInstitutionalAgreementData
 Scenario Outline: Store added contact in new agreement after save
 
     Given I am using the <Browser> browser
     When I click the "Add a new agreement" link
     Then I should see the Institutional Agreement Add page
 
-    When I type "Memorandum of Understanding" into the Agreement Type field
-    And I type "Active" into the Current Status field
-    And I type "9/1/2011" into the Start Date field
-    And I type "8/31/2015" into the Expiration Date field
-    And I type "<Title>" into the Summary Description field
+    When I type "Memorandum of Understanding" into the Agreement Type text field
+    And I type "Active" into the Current Status text field
+    And I type "9/1/2011" into the Start Date text field
+    And I type "8/31/2015" into the Expiration Date text field
+    And I type "<Title>" into the Summary Description text field
     And I dismiss all autocomplete dropdown menus
     And I click the "Add Contact" link
     Then I should see a modal dialog with an Add Institutional Agreement Contact form
 
-    When I type "<PersonFieldValue>" into the <PersonFieldName> field
-    Then I should see an autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> field
-    And I should click the autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> field
+    When I type "<PersonFieldValue>" into the <PersonFieldName> text field
+    Then I should see an autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> text field
+    And I should click the autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> text field
 
-    When I type "<ContactTypeValue>" into the Contact Type field
-    Then I should see an autocomplete dropdown menu item "<ContactTypeValue>" for the Contact Type field
-    And I should click the autocomplete dropdown arrow button for the Contact Type field
+    When I type "<ContactTypeValue>" into the Contact Type text field
+    Then I should see an autocomplete dropdown menu item "<ContactTypeValue>" for the Contact Type text field
+    And I should click the autocomplete dropdown arrow button for the Contact Type text field
 
     When I click the "Add Contact" submit button
     Then I should not see a modal dialog with an Add Institutional Agreement Contact form
@@ -375,29 +360,29 @@ Examples:
     | MSIE    | Agreement, UC A1 test | Home Principal    | ro               | Email Address   | Ron Cushing (Ronald.Cushing@uc.edu) | Home Principal Ron Cushing    |
     | MSIE    | Agreement, UC B1 test | Partner Principal | ro               | Email Address   | Ron Cushing (Ronald.Cushing@uc.edu) | Partner Principal Ron Cushing |
 
-@InstAgrFormsR0316 @InstAgrFormsResetTestAgreementsUc
+@UseFreshExampleUcInstitutionalAgreementData
 Scenario Outline: Purge removed contact from new agreement after save
 
     Given I am using the <Browser> browser
     When I click the "Add a new agreement" link
     Then I should see the Institutional Agreement Add page
 
-    When I type "Institutional Collaboration Agreement" into the Agreement Type field
-    And I type "Active" into the Current Status field
-    And I type "9/1/2011" into the Start Date field
-    And I type "8/31/2015" into the Expiration Date field
-    And I type "<Title>" into the Summary Description field
+    When I type "Institutional Collaboration Agreement" into the Agreement Type text field
+    And I type "Active" into the Current Status text field
+    And I type "9/1/2011" into the Start Date text field
+    And I type "8/31/2015" into the Expiration Date text field
+    And I type "<Title>" into the Summary Description text field
     And I dismiss all autocomplete dropdown menus
     And I click the "Add Contact" link
     Then I should see a modal dialog with an Add Institutional Agreement Contact form
 
-    When I type "<PersonFieldValue>" into the <PersonFieldName> field
-    Then I should see an autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> field
-    And I should click the autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> field
+    When I type "<PersonFieldValue>" into the <PersonFieldName> text field
+    Then I should see an autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> text field
+    And I should click the autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> text field
 
-    When I type "<ContactTypeValue>" into the Contact Type field
-    Then I should see an autocomplete dropdown menu item "<ContactTypeValue>" for the Contact Type field
-    And I should click the autocomplete dropdown arrow button for the Contact Type field
+    When I type "<ContactTypeValue>" into the Contact Type text field
+    Then I should see an autocomplete dropdown menu item "<ContactTypeValue>" for the Contact Type text field
+    And I should click the autocomplete dropdown arrow button for the Contact Type text field
 
     When I click the "Add Contact" submit button
     Then I should not see a modal dialog with an Add Institutional Agreement Contact form
@@ -431,7 +416,7 @@ Examples:
     | MSIE    | Agreement, UC A2 test | Home Principal   | ro               | Email Address   | Ron Cushing (Ronald.Cushing@uc.edu)        | Home Principal Ron Cushing     |
     | MSIE    | Agreement, UC B2 test | Home Principal   | mi               | Email Address   | Mitch Leventhal (Mitch.Leventhal@suny.edu) | Home Principal Mitch Leventhal |
 
-@InstAgrFormsR0317 @InstAgrFormsResetTestAgreementsUc
+@UseFreshExampleUcInstitutionalAgreementData
 Scenario Outline: Store added contact in existing agreement after save
 
     Given I am using the <Browser> browser
@@ -441,13 +426,13 @@ Scenario Outline: Store added contact in existing agreement after save
     When I click the "Add Contact" link
     Then I should see a modal dialog with an Add Institutional Agreement Contact form
 
-    When I type "<PersonFieldValue>" into the <PersonFieldName> field
-    Then I should see an autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> field
-    And I should click the autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> field
+    When I type "<PersonFieldValue>" into the <PersonFieldName> text field
+    Then I should see an autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> text field
+    And I should click the autocomplete dropdown menu item "<ListValue>" for the <PersonFieldName> text field
 
-    When I type "<ContactTypeValue>" into the Contact Type field
-    Then I should see an autocomplete dropdown menu item "<ContactTypeValue>" for the Contact Type field
-    And I should click the autocomplete dropdown arrow button for the Contact Type field
+    When I type "<ContactTypeValue>" into the Contact Type text field
+    Then I should see an autocomplete dropdown menu item "<ContactTypeValue>" for the Contact Type text field
+    And I should click the autocomplete dropdown arrow button for the Contact Type text field
 
     When I click the "Add Contact" submit button
     Then I should not see a modal dialog with an Add Institutional Agreement Contact form
@@ -473,7 +458,7 @@ Examples:
     | MSIE    | Partner Secondary | watk             | Last Name       | Watkins, Mary (Mary.Watkins@uc.edu)  | Partner Secondary Mary Watkins |
     | MSIE    | Home Principal    | br               | Email Address   | Brandon Lee (Brandon@terradotta.com) | Home Principal Brandon Lee     |
 
-@InstAgrFormsR0318 @InstAgrFormsFreshTestAgreementUc02
+@UseFreshExampleUcInstitutionalAgreementData
 Scenario Outline: Purge removed contact from existing agreement after save
 
     Given I am using the <Browser> browser
@@ -484,13 +469,13 @@ Scenario Outline: Purge removed contact from existing agreement after save
     When I click the "Add Contact" link
     Then I should see a modal dialog with an Add Institutional Agreement Contact form
 
-    When I type "Home Principal" into the Contact Type field
-    Then I should see an autocomplete dropdown menu item "Home Principal" for the Contact Type field
-    And I should click the autocomplete dropdown arrow button for the Contact Type field
+    When I type "Home Principal" into the Contact Type text field
+    Then I should see an autocomplete dropdown menu item "Home Principal" for the Contact Type text field
+    And I should click the autocomplete dropdown arrow button for the Contact Type text field
 
-    When I type "ro" into the Email Address field
-    Then I should see an autocomplete dropdown menu item "Ron Cushing (Ronald.Cushing@uc.edu)" for the Email Address field
-    And I should click the autocomplete dropdown menu item "Ron Cushing (Ronald.Cushing@uc.edu)" for the Email Address field
+    When I type "ro" into the Email Address text field
+    Then I should see an autocomplete dropdown menu item "Ron Cushing (Ronald.Cushing@uc.edu)" for the Email Address text field
+    And I should click the autocomplete dropdown menu item "Ron Cushing (Ronald.Cushing@uc.edu)" for the Email Address text field
 
     When I click the "Add Contact" submit button
     Then I should not see a modal dialog with an Add Institutional Agreement Contact form

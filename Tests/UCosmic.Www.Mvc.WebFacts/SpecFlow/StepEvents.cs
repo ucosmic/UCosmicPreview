@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using UCosmic.Www.Mvc.WebDriver;
-using System.Diagnostics;
 
 namespace UCosmic.Www.Mvc.SpecFlow
 {

@@ -9,12 +9,10 @@ using UCosmic.Www.Mvc.WebDriver;
 namespace UCosmic.Www.Mvc.SpecFlow
 {
     [Binding]
-    public class InputErrorMessageSteps : BaseStepDefinition
+    public class FieldErrorSteps : BaseStepDefinition
     {
-        [Given(@"I (.*) the (.*) error message for the (.*) field")]
-        [When(@"I (.*) the (.*) error message for the (.*) field")]
-        [Then(@"I should (.*) the (.*) error message for the (.*) field")]
-        public void SeeErrorMessage(string seeOrNot, string messageKey, string fieldLabel)
+        [Then(@"I should (.*) the (.*) error message for the (.*) (text|upload) field")]
+        public void SeeErrorMessage(string seeOrNot, string messageKey, string fieldLabel, string fieldType)
         {
             var shouldSee = (seeOrNot.Trim() == "see" || seeOrNot.Trim() == "saw");
             Browsers.ForEach(browser =>
@@ -43,13 +41,9 @@ namespace UCosmic.Www.Mvc.SpecFlow
             });
         }
 
-        [Given(@"I (.*) the message ""(.*)"" included in (.*) error summaries")]
-        [Given(@"I (.*) the message ""(.*)"" included in (.*) error summary")]
-        [When(@"I (.*) the message ""(.*)"" included in (.*) error summaries")]
-        [When(@"I (.*) the message ""(.*)"" included in (.*) error summary")]
-        [Then(@"I should (.*) the (.*) field's (.*) error message included in (.*) error summaries")]
-        [Then(@"I should (.*) the (.*) field's (.*) error message included in (.*) error summary")]
-        public void SeeErrorMessageInSummaries(string seeOrNot, string fieldLabel, string messageKey, string expectedSummaries)
+        [Then(@"I should (.*) the (.*) (text|upload) field's (.*) error message included in (.*) error summaries")]
+        [Then(@"I should (.*) the (.*) (text|upload) field's (.*) error message included in (.*) error summary")]
+        public void SeeErrorMessageInSummaries(string seeOrNot, string fieldLabel, string fieldType, string messageKey, string expectedSummaries)
         {
             var shouldSee = (seeOrNot.Trim() == "see" || seeOrNot.Trim() == "saw");
             var expectedSummaryCount = 1;

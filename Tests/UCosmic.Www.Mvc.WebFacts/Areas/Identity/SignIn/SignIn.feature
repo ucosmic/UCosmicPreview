@@ -11,23 +11,23 @@ Background:
     When I click the "Sign On" link
     Then I should see the Sign On page
 
-    When I type "any1@suny.edu" into the Email address field
+    When I type "any1@suny.edu" into the Email address text field
     And I click the "Next >>" submit button
     Then I should see the Enter Password page
 
 @ClearSigningEmailAddress
 Scenario: Sign In fails when password is empty
     When I click the "Sign On" submit button
-    Then I should see the Required error message for the Password field
+    Then I should see the Required error message for the Password text field
 
 @ClearSigningEmailAddress
 Scenario: Sign In fails when password is incorrect
-    When I type "incorrect" into the Password field
+    When I type "incorrect" into the Password text field
     And I click the "Sign On" submit button
-    Then I should see the 'Invalid with 4 remaining attempts' error message for the Password field
+    Then I should see the 'Invalid with 4 remaining attempts' error message for the Password text field
 
 Scenario: Sign In succeeds when password is correct
-    When I type "asdfasdf" into the Password field
+    When I type "asdfasdf" into the Password text field
     And I click the "Sign On" submit button
     Then I should see the Personal Home page
     And I should see a "Sign Out" link

@@ -102,13 +102,13 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AppConfig.cs" />
-    <Compile Include="Areas\Common\CommonSteps.cs" />
+    <Compile Include="Areas\Common\_OldCommonSteps.cs" />
     <Compile Include="Areas\Common\Navigation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Navigation.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Common\Steps\SharedSteps.cs" />
+    <Compile Include="Areas\Common\_OldSharedSteps.cs" />
     <Compile Include="Areas\Common\WebPages\WebPageBase.cs" />
     <Compile Include="Areas\Common\WebPages\WebPageFactory.cs" />
     <Compile Include="Areas\Identity\Authentication.feature.cs">
@@ -180,30 +180,46 @@
       <DependentUpon>ConfigurationFormsR04.feature</DependentUpon>
     </Compile>
     <Compile Include="Areas\InstitutionalAgreements\ConfigurationFormsSteps.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\Events\InstitutionalAgreementEvents.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\ManagementFormsR01.feature.cs">
+    <Compile Include="Areas\InstitutionalAgreements\Manage\ManageSteps.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Manage\GenerateSummaryDescription.feature.cs">
+      <DependentUpon>GenerateSummaryDescription.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ManagementFormsR01.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\InstitutionalAgreements\ManagementFormsR02.feature.cs">
+    <Compile Include="Areas\InstitutionalAgreements\Manage\SelectExampleTextValues.feature.cs">
+      <DependentUpon>SelectExampleTextValues.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ManagementFormsR02.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\InstitutionalAgreements\ManagementFormsR03.feature.cs">
+    <Compile Include="Areas\InstitutionalAgreements\Manage\ManageParticipants.feature.cs">
+      <DependentUpon>ManageParticipants.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ManagementFormsR03.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\InstitutionalAgreements\ManagementFormsR04.feature.cs">
+    <Compile Include="Areas\InstitutionalAgreements\Manage\ValidateTextFields.feature.cs">
+      <DependentUpon>ValidateTextFields.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ManagementFormsR04.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\InstitutionalAgreements\ManagementFormsSteps.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\ManagementForm.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\ManagementBindings.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\_OldInstitutionalAgreementEvents.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Manage\ManageFileAttachments.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ManageFileAttachments.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\InstitutionalAgreements\Manage\ManageContacts.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ManageContacts.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\InstitutionalAgreements\Manage\ExpirationDateHelp.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExpirationDateHelp.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\InstitutionalAgreements\_OldManagementFormsSteps.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Manage\ManageForm.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Manage\ManageEvents.cs" />
     <Compile Include="Areas\RecruitmentAgencies\Features\RA_US_0001.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -231,8 +247,8 @@
     <Compile Include="SpecFlow\BrowserSteps.cs" />
     <Compile Include="SpecFlow\CollectionSteps.cs" />
     <Compile Include="SpecFlow\CheckBoxSteps.cs" />
-    <Compile Include="SpecFlow\InputErrorMessageSteps.cs" />
-    <Compile Include="SpecFlow\TextBoxSteps.cs" />
+    <Compile Include="SpecFlow\FieldErrorSteps.cs" />
+    <Compile Include="SpecFlow\TextFieldSteps.cs" />
     <Compile Include="SpecFlow\FileUploadSteps.cs" />
     <Compile Include="SpecFlow\FormSteps.cs" />
     <Compile Include="SpecFlow\LinkSteps.cs" />
@@ -298,21 +314,33 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ConfigurationFormsR04.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\InstitutionalAgreements\ManagementFormsR01.feature">
+    <None Include="Areas\InstitutionalAgreements\Manage\GenerateSummaryDescription.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ManagementFormsR01.feature.cs</LastGenOutput>
+      <LastGenOutput>GenerateSummaryDescription.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\InstitutionalAgreements\ManagementFormsR02.feature">
+    <None Include="Areas\InstitutionalAgreements\Manage\SelectExampleTextValues.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ManagementFormsR02.feature.cs</LastGenOutput>
+      <LastGenOutput>SelectExampleTextValues.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\InstitutionalAgreements\ManagementFormsR03.feature">
+    <None Include="Areas\InstitutionalAgreements\Manage\ManageParticipants.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ManagementFormsR03.feature.cs</LastGenOutput>
+      <LastGenOutput>ManageParticipants.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\InstitutionalAgreements\ManagementFormsR04.feature">
+    <None Include="Areas\InstitutionalAgreements\Manage\ValidateTextFields.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ManagementFormsR04.feature.cs</LastGenOutput>
+      <LastGenOutput>ValidateTextFields.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\InstitutionalAgreements\Manage\ManageFileAttachments.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ManageFileAttachments.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\InstitutionalAgreements\Manage\ManageContacts.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ManageContacts.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\InstitutionalAgreements\Manage\ExpirationDateHelp.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ExpirationDateHelp.feature.cs</LastGenOutput>
     </None>
     <None Include="Areas\RecruitmentAgencies\Features\RA_US_0001.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -354,6 +382,7 @@
     <Content Include="FileUploads\_ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\InstitutionalAgreements\Configure\" />
     <Folder Include="Areas\RecruitmentAgencies\Steps\" />
     <Folder Include="Areas\RecruitmentAgencies\WebPages\" />
   </ItemGroup>

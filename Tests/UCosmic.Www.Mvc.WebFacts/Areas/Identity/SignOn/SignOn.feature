@@ -12,20 +12,20 @@ Background:
 
 Scenario: Sign On fails when email address is empty
     When I click the "Next >>" submit button
-    Then I should see the Required error message for the Email address field
+    Then I should see the Required error message for the Email address text field
 
 Scenario: Sign On fails when email address is invalid
-    When I type "invalid" into the Email address field
+    When I type "invalid" into the Email address text field
     And I click the "Next >>" submit button
-    Then I should see the Invalid error message for the Email address field
+    Then I should see the Invalid error message for the Email address text field
 
 Scenario: Sign On fails when email address is ineligible
-    When I type "test@gmail.com" into the Email address field
+    When I type "test@gmail.com" into the Email address text field
     And I click the "Next >>" submit button
-    Then I should see the 'test@gmail.com is Ineligible' error message for the Email address field
+    Then I should see the 'test@gmail.com is Ineligible' error message for the Email address text field
 
 @ClearSigningEmailAddress
 Scenario: Sign On redirects to Enter Password page for local accounts
-    When I type "any1@suny.edu" into the Email address field
+    When I type "any1@suny.edu" into the Email address text field
     And I click the "Next >>" submit button
     Then I should see the Enter Password page
