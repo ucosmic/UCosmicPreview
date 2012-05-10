@@ -34,7 +34,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [ValidateSigningReturnUrl]
         public virtual ActionResult Get(string returnUrl)
         {
-            var model = new SignOverForm();
+            var model = new SignOverForm
+            {
+                ReturnUrl = returnUrl ??
+                           (Request.UrlReferrer != null
+                                ? Request.UrlReferrer.PathAndQuery
+                                : _services.UserSigner.DefaultSignedOnUrl),
+            };
             return View(model);
         }
 
@@ -65,7 +71,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             Session.WasSignedInAs(Session.WasSignedInAs() ?? User.Identity.Name);
 
             // flash feedback message
-            SetFeedbackMessage(string.Format(SuccessMessageFormat, 
+            SetFeedbackMessage(string.Format(SuccessMessageFormat,
                 User.Identity.Name, model.EmailAddress));
 
             // redirect to return url

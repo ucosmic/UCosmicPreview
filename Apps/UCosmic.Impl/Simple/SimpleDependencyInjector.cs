@@ -58,13 +58,13 @@ namespace UCosmic.Impl
             }
             else
             {
-                //container.Register<IDatabaseInitializer<UCosmicContext>, DropOnModelChangeInitializer>();
+                container.Register<IDatabaseInitializer<UCosmicContext>, DropOnModelChangeInitializer>();
                 //container.Register<IDatabaseInitializer<UCosmicContext>, DropAlwaysInitializer>();
-                container.Register<IDatabaseInitializer<UCosmicContext>, BrownfieldInitializer>();
+                //container.Register<IDatabaseInitializer<UCosmicContext>, BrownfieldInitializer>();
 
-                //container.Register<ISeedDb, DevelopmentDataSqlSeeder>();
+                container.Register<ISeedDb, DevelopmentDataSqlSeeder>();
                 //container.Register<ISeedDb, CompositeDbSeeder>();
-                container.Register<ISeedDb, BrownfieldDbSeeder>();
+                //container.Register<ISeedDb, BrownfieldDbSeeder>();
             }
 
             // register 1 DbContext for all implemented interfaces
@@ -82,7 +82,6 @@ namespace UCosmic.Impl
             container.Register<IManageConfigurations, DotNetConfigurationManager>();
             container.Register<ILogExceptions, ElmahExceptionLogger>();
             container.Register<IConsumeHttp, WebRequestHttpConsumer>();
-            //container.Register<ISendEmails, MvcEmailSender>();
             container.Register<ISendMail, SmtpMailSender>();
 
             // SAML interfaces

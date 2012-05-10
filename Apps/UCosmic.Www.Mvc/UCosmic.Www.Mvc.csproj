@@ -503,11 +503,6 @@
     <Content Include="App_Data\saml\identity-providers\idp.testshib.org.xml" />
     <Content Include="App_Data\saml\identity-providers\login.uc.edu.xml" />
     <Content Include="App_Data\saml\identity-providers\wif-saml2-sample.xml" />
-    <Content Include="App_Data\saml\service-providers\development.xml" />
-    <Content Include="App_Data\saml\service-providers\emulation.xml" />
-    <Content Include="App_Data\saml\service-providers\wif\development.xml" />
-    <Content Include="App_Data\saml\service-providers\wif\emulation.xml" />
-    <Content Include="App_Data\saml\service-providers\wif\preview.xml" />
     <Content Include="app_offline.html" />
     <Content Include="content\icons\cancels\cancel-disabled-hover-16.png" />
     <Content Include="content\icons\cancels\cancel-disabled-hover-24.png" />

@@ -29,6 +29,8 @@ namespace UCosmic.Impl
 
         public string SamlServiceProviderEntityId { get { return GetString(AppSettingsKey.SamlServiceProviderEntityId); } }
         public string SamlCertificateThumbprint { get { return GetString(AppSettingsKey.SamlCertificateThumbprint); } }
+        public string SamlServiceProviderDevelopmentEntityId { get { return GetString(AppSettingsKey.SamlServiceProviderDevelopmentEntityId); } }
+        public string SamlCertificateDevelopmentThumbprint { get { return GetString(AppSettingsKey.SamlCertificateDevelopmentThumbprint); } }
 
         private static string GetString(AppSettingsKey key) { return ConfigurationManager.AppSettings[key.ToString()]; }
 

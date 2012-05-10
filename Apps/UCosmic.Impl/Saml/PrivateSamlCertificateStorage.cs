@@ -7,15 +7,20 @@ namespace UCosmic.Impl
     public class PrivateSamlCertificateStorage : IStoreSamlCertificates
     // ReSharper restore UnusedMember.Global
     {
-        private readonly IManageConfigurations _config;
+        protected readonly IManageConfigurations ConfigurationManager;
 
-        public PrivateSamlCertificateStorage(IManageConfigurations config)
+        public PrivateSamlCertificateStorage(IManageConfigurations configurationManager)
         {
-            _config = config;
+            ConfigurationManager = configurationManager;
         }
 
         public X509Certificate2 GetSigningCertificate() { return GetCertificate(); }
         public X509Certificate2 GetEncryptionCertificate() { return GetCertificate(); }
+
+        protected virtual string Thumbprint
+        {
+            get { return ConfigurationManager.SamlCertificateThumbprint; }
+        }
 
         private X509Certificate2 GetCertificate()
         {
@@ -23,13 +28,12 @@ namespace UCosmic.Impl
             try
             {
                 store.Open(OpenFlags.ReadOnly);
-                var thumbprint = _config.SamlCertificateThumbprint;
-                var certificates = store.Certificates.Find(X509FindType.FindByThumbprint, thumbprint, false);
+                var certificates = store.Certificates.Find(X509FindType.FindByThumbprint, Thumbprint, false);
                 if (certificates.Count < 1)
                 {
                     throw new InvalidOperationException(string.Format(
                         "Could not find certificate with thumbprint '{0}' in My LocalMachine store.",
-                            _config.SamlCertificateThumbprint));
+                            Thumbprint));
                 }
                 return certificates[0];
             }

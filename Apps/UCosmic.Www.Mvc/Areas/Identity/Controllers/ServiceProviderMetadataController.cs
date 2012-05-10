@@ -33,28 +33,20 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         public virtual PartialViewResult Index(string contentType = null)
         {
-            var encryptionCertificate = _services.SamlCertificates.GetEncryptionCertificate();
-            var signingCertificate = _services.SamlCertificates.GetSigningCertificate();
-            var model = new ServiceProviderEntityDescriptor
-            {
-                SigningX509SubjectName = signingCertificate.SubjectName.Name,
-                SigningX509Certificate = Convert.ToBase64String(signingCertificate.RawData),
-                EncryptionX509SubjectName = encryptionCertificate.SubjectName.Name,
-                EncryptionX509Certificate = Convert.ToBase64String(encryptionCertificate.RawData),
-                EntityId = _services.Configuration.SamlServiceProviderEntityId,
-            };
-
-            // NOTE: http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf section 4.1.1 
-            Response.ContentType = "application/samlmetadata+xml";
-            if ("xml".Equals(contentType, StringComparison.OrdinalIgnoreCase))
-                Response.ContentType = "text/xml";
-
-            return PartialView(MVC.Identity.Shared.Views.metadata, model);
+            return Get(contentType);
         }
 
         public virtual PartialViewResult Development(string contentType = null)
         {
-            var samlCertificates = new PublicSamlCertificateStorage();
+            return Get(contentType, false);
+        }
+
+        [NonAction]
+        private PartialViewResult Get(string contentType, bool isPrivate = true)
+        {
+            var samlCertificates = isPrivate
+                ? _services.SamlCertificates // use private storage by default
+                : new PublicSamlCertificateStorage(_services.Configuration);
             var encryptionCertificate = samlCertificates.GetEncryptionCertificate();
             var signingCertificate = samlCertificates.GetSigningCertificate();
             var model = new ServiceProviderEntityDescriptor
@@ -63,10 +55,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 SigningX509Certificate = Convert.ToBase64String(signingCertificate.RawData),
                 EncryptionX509SubjectName = encryptionCertificate.SubjectName.Name,
                 EncryptionX509Certificate = Convert.ToBase64String(encryptionCertificate.RawData),
-                EntityId = "https://develop.ucosmic.com/sign-on/saml/2",
+                EntityId = isPrivate
+                    ? _services.Configuration.SamlServiceProviderEntityId
+                    : _services.Configuration.SamlServiceProviderDevelopmentEntityId,
             };
 
-            // NOTE: http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf section 4.1.1 
+            // NOTE: http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf section 4.1.1
             Response.ContentType = "application/samlmetadata+xml";
             if ("xml".Equals(contentType, StringComparison.OrdinalIgnoreCase))
                 Response.ContentType = "text/xml";

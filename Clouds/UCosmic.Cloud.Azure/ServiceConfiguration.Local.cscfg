@@ -16,6 +16,7 @@
       <Certificate name="azureconfig" thumbprint="9975FCFAF342D1FB73631EB5A1CD9BCEF1F102F6" thumbprintAlgorithm="sha1" />
       <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="9E21695B886500C2741862969E555BB59BBF906C" thumbprintAlgorithm="sha1" />
       <Certificate name="saml.ucosmic.com" thumbprint="1DB0EF13E0877404CC333A5D6A7B9C99E14800C1" thumbprintAlgorithm="sha1" />
+      <Certificate name="saml.ucosmic.dev" thumbprint="1945D599DF7F3B3D6513C87A8CDDF4CE6E0899B6" thumbprintAlgorithm="sha1" />
     </Certificates>
   </Role>
 </ServiceConfiguration>

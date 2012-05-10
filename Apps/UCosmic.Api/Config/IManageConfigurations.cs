@@ -26,5 +26,7 @@
 
         string SamlServiceProviderEntityId { get; }
         string SamlCertificateThumbprint { get; }
+        string SamlServiceProviderDevelopmentEntityId { get; }
+        string SamlCertificateDevelopmentThumbprint { get; }
     }
 }

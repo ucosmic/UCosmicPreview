@@ -30,6 +30,7 @@
       <Certificate name="star.ucosmic.com" storeLocation="LocalMachine" storeName="My" />
       <Certificate name="azureconfig" storeLocation="LocalMachine" storeName="My" />
       <Certificate name="saml.ucosmic.com" storeLocation="LocalMachine" storeName="My" />
+      <Certificate name="saml.ucosmic.dev" storeLocation="LocalMachine" storeName="My" />
     </Certificates>
   </WebRole>
 </ServiceDefinition>

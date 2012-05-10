@@ -7,5 +7,6 @@
     <div>
         <input type="submit" value="Sign On" />
         @Html.Partial(MVC.Shared.Views.form_submitted_spinner)
+        @Html.Partial(MVC.Shared.Views.return_url_cancel_link, Model.ReturnUrl)
     </div>
 </div>
