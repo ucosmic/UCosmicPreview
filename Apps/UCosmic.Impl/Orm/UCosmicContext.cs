@@ -2,8 +2,10 @@ using System;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Identity;
@@ -12,6 +14,7 @@ using UCosmic.Domain.Languages;
 using UCosmic.Domain.People;
 using UCosmic.Domain.Places;
 using UCosmic.Domain.Files;
+using System.Net.Mail;
 
 namespace UCosmic.Impl.Orm
 {
@@ -150,6 +153,41 @@ namespace UCosmic.Impl.Orm
             if (query != null && criteria != null && criteria.IsForInsertOrUpdate)
                 return query.AsNoTracking();
             return query;
+        }
+
+        public override int SaveChanges()
+        {
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch(DbEntityValidationException ex)
+            {
+                var config = new DotNetConfigurationManager();
+                if (!config.IsDeployedToCloud) throw;
+                var mailSender = new SmtpMailSender(config, new ElmahExceptionLogger(config));
+                var message = new MailMessage(config.EmailDefaultFromAddress, config.EmailEmergencyAddresses)
+                {
+                    Subject = "UCosmic caught DbEntityValidationException during SaveChanges.",
+                };
+                var body = new StringBuilder();
+                foreach (var entry in ex.EntityValidationErrors)
+                {
+                    var entityType = entry.Entry.Entity.GetType();
+                    foreach (var error in entry.ValidationErrors)
+                    {
+                        body.Append(entityType.Name);
+                        body.Append('.');
+                        body.Append(error.PropertyName);
+                        body.Append(": \r\n");
+                        body.Append(error.ErrorMessage);
+                        body.Append("\r\n\r\n");
+                    }
+                }
+                message.Body = body.ToString();
+                mailSender.Send(message);
+                throw;
+            }
         }
     }
 }
