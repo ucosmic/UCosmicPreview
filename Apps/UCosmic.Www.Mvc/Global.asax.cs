@@ -83,7 +83,11 @@ namespace UCosmic.Www.Mvc
         {
             // use simple infrastructure injector
             //var injector = new UnityDependencyInjector();
-            var injector = new SimpleDependencyInjector();
+            var containerConfiguration = new ContainerConfiguration
+            {
+                IsDeployedToCloud = WebConfig.IsDeployedToCloud
+            };
+            var injector = new SimpleDependencyInjector(containerConfiguration);
             DependencyInjector.Set(injector);
 
             // use infrastructure service locator for MVC dependency resolution

@@ -16,7 +16,7 @@ namespace UCosmic.Www.Mvc
             [TestMethod]
             public void Returns_Verifyable_Container()
             {
-                var container = SimpleDependencyInjector.Bootstrap();
+                var container = SimpleDependencyInjector.Bootstrap(new ContainerConfiguration());
                 container.Verify();
             }
 
@@ -26,7 +26,7 @@ namespace UCosmic.Www.Mvc
                 var request = new HttpRequest(null, "http://www.site.com", null);
                 HttpContext.Current = new HttpContext(request, new HttpResponse(null));
 
-                var container = SimpleDependencyInjector.Bootstrap();
+                var container = SimpleDependencyInjector.Bootstrap(new ContainerConfiguration());
 
                 var db1 = container.GetInstance<IUnitOfWork>();
                 var db2 = container.GetInstance<IQueryEntities>();

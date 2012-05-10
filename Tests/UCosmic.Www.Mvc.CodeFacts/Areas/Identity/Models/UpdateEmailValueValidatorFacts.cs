@@ -23,7 +23,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             {
                 var request = new HttpRequest(null, "http://www.site.com", null);
                 HttpContext.Current = new HttpContext(request, new HttpResponse(null));
-                var container = SimpleDependencyInjector.Bootstrap();
+                var container = SimpleDependencyInjector.Bootstrap(new ContainerConfiguration());
 
                 var validator = container.GetInstance<IValidator<UpdateEmailValueForm>>();
 

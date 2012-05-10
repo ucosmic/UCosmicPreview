@@ -15,16 +15,21 @@ using UCosmic.Impl.Seeders;
 
 namespace UCosmic.Impl
 {
+    public class ContainerConfiguration
+    {
+        public bool IsDeployedToCloud { get; set; }
+    }
+
     public class SimpleDependencyInjector : IServiceProvider
     {
         private readonly Container _container;
 
-        public SimpleDependencyInjector()
+        public SimpleDependencyInjector(ContainerConfiguration configuration)
         {
-            _container = Bootstrap();
+            _container = Bootstrap(configuration);
         }
 
-        internal static Container Bootstrap()
+        internal static Container Bootstrap(ContainerConfiguration configuration)
         {
             var container = new Container();
 
@@ -46,13 +51,21 @@ namespace UCosmic.Impl
              * When checking in this file, the DropOnModelChangeInitializer and DevelopmentDataSqlSeeder
              * should be active. All other seeders and initializers should be commented out.
              */
-            container.Register<IDatabaseInitializer<UCosmicContext>, DropOnModelChangeInitializer>();
-            //container.Register<IDatabaseInitializer<UCosmicContext>, DropAlwaysInitializer>();
-            //container.Register<IDatabaseInitializer<UCosmicContext>, BrownfieldInitializer>();
+            if (configuration.IsDeployedToCloud)
+            {
+                container.Register<IDatabaseInitializer<UCosmicContext>, BrownfieldInitializer>();
+                container.Register<ISeedDb, BrownfieldDbSeeder>();
+            }
+            else
+            {
+                //container.Register<IDatabaseInitializer<UCosmicContext>, DropOnModelChangeInitializer>();
+                //container.Register<IDatabaseInitializer<UCosmicContext>, DropAlwaysInitializer>();
+                container.Register<IDatabaseInitializer<UCosmicContext>, BrownfieldInitializer>();
 
-            container.Register<ISeedDb, DevelopmentDataSqlSeeder>();
-            //container.Register<ISeedDb, CompositeDbSeeder>();
-            //container.Register<ISeedDb, BrownfieldDbSeeder>();
+                //container.Register<ISeedDb, DevelopmentDataSqlSeeder>();
+                //container.Register<ISeedDb, CompositeDbSeeder>();
+                container.Register<ISeedDb, BrownfieldDbSeeder>();
+            }
 
             // register 1 DbContext for all implemented interfaces
             container.RegisterPerWebRequest<UCosmicContext>();
