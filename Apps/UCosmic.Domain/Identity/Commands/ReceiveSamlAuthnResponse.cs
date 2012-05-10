@@ -9,7 +9,6 @@ namespace UCosmic.Domain.Identity
     public class ReceiveSamlAuthnResponseCommand
     {
         public Saml2Response SamlResponse { get; set; }
-        public string ReturnUrl { get; internal set; }
     }
 
     public class ReceiveSamlAuthnResponseHandler : IHandleCommands<ReceiveSamlAuthnResponseCommand>
@@ -40,9 +39,6 @@ namespace UCosmic.Domain.Identity
             if (command.SamlResponse == null)
                 throw new InvalidOperationException("The SAML Response cannot be null.");
             var samlResponse = command.SamlResponse;
-
-            // set return url
-            command.ReturnUrl = samlResponse.RelayResourceUrl;
 
             // get the trusted establishment for this saml 2 response
             var establishment = GetTrustedIssuingEstablishment(samlResponse);

@@ -6,12 +6,8 @@
         bool IsDeployedToCloud { get; }
 
         string SignUpUrl { get; }
-        string SignUpEmailConfirmationUrlFormat { get; }
-
-        string PasswordResetUrl { get; }
-        string PasswordResetConfirmationUrlFormat { get; }
-
-        string EmailConfirmationUrlFormat { get; }
+        string ForgotPasswordUrl { get; }
+        string ConfirmEmailUrlFormat { get; }
 
         string TestMailServer { get; }
         string TestMailInbox { get; }

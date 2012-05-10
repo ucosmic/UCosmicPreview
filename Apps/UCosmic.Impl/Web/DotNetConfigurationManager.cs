@@ -8,12 +8,9 @@ namespace UCosmic.Impl
         public bool IsDeployedToCloud { get { return IsDeployedTo(DeployToTarget.Preview) || IsDeployedTo(DeployToTarget.Www); } }
 
         public string SignUpUrl { get { return GetString(AppSettingsKey.SignUpUrl); } }
-        public string SignUpEmailConfirmationUrlFormat { get { return GetString(AppSettingsKey.SignUpEmailConfirmationUrlFormat); } }
+        public string ForgotPasswordUrl { get { return GetString(AppSettingsKey.ForgotPasswordUrl); } }
 
-        public string PasswordResetUrl { get { return GetString(AppSettingsKey.PasswordResetUrl); } }
-        public string PasswordResetConfirmationUrlFormat { get { return GetString(AppSettingsKey.PasswordResetConfirmationUrlFormat); } }
-
-        public string EmailConfirmationUrlFormat { get { return GetString(AppSettingsKey.EmailConfirmationUrlFormat); } }
+        public string ConfirmEmailUrlFormat { get { return GetString(AppSettingsKey.ConfirmEmailUrlFormat); } }
 
         public string TestMailServer { get { return GetString(AppSettingsKey.TestMailServer); } }
         public string TestMailInbox { get { return GetString(AppSettingsKey.TestMailInbox); } }

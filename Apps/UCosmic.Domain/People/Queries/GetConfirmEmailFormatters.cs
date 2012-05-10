@@ -30,7 +30,7 @@ namespace UCosmic.Domain.People
             {
                 { "{EmailAddress}", query.Confirmation.EmailAddress.Value },
                 { "{ConfirmationCode}", query.Confirmation.SecretCode },
-                { "{ConfirmationUrl}", string.Format(_configurationManager.EmailConfirmationUrlFormat,
+                { "{ConfirmationUrl}", string.Format(_configurationManager.ConfirmEmailUrlFormat,
                     query.Confirmation.Token,
                     query.Confirmation.SecretCode.UrlEncoded())
                 },
@@ -42,7 +42,7 @@ namespace UCosmic.Domain.People
                     formatters.Add("{StartUrl}", _configurationManager.SignUpUrl);
                     break;
                 case EmailConfirmationIntent.PasswordReset:
-                    formatters.Add("{PasswordResetUrl}", _configurationManager.PasswordResetUrl);
+                    formatters.Add("{PasswordResetUrl}", _configurationManager.ForgotPasswordUrl);
                     break;
             }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Security.Principal;
@@ -14,6 +15,16 @@ namespace UCosmic.Domain.Establishments
             InstitutionInfo = new InstitutionInfo();
             PublicContactInfo = new EstablishmentContactInfo();
             PartnerContactInfo = new EstablishmentContactInfo();
+
+            // ReSharper disable DoNotCallOverridableMethodsInConstructor
+            EmailDomains = new Collection<EstablishmentEmailDomain>();
+            Urls = new Collection<EstablishmentUrl>();
+            Names = new Collection<EstablishmentName>();
+            Affiliates = new Collection<Affiliation>();
+            Ancestors = new Collection<EstablishmentNode>();
+            Children = new Collection<Establishment>();
+            Offspring = new Collection<EstablishmentNode>();
+            // ReSharper restore DoNotCallOverridableMethodsInConstructor
         }
 
         public string OfficialName { get; set; }

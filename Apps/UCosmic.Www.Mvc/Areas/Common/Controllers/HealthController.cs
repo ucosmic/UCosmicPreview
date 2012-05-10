@@ -65,8 +65,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         }
 
         [ActionName("run-institutional-agreement-hierarchy")]
-        [Authorize(Users = "ludwigd1@uc.edu")]
-        //[Authorize(Users = "Daniel.Ludwig@uc.edu")]
+        [Authorize(Users = "Daniel.Ludwig@uc.edu")]
         public virtual ActionResult RunInstitutionalAgreementHierarchy()
         {
             var agreementChanger = new InstitutionalAgreementChanger(_objectCommander, _entityQueries);
@@ -77,8 +76,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         }
 
         [ActionName("run-establishment-import")]
-        [Authorize(Users = "ludwigd1@uc.edu,sodhiha1@uc.edu")]
-        //[Authorize(Users = "Daniel.Ludwig@uc.edu")]
+        [Authorize(Users = "Daniel.Ludwig@uc.edu")]
         public virtual ActionResult RunEstablishmentImport()
         {
             var placeMarks = new KmlPlaceMarks(Server.MapPath(string.Format("~{0}",
@@ -271,6 +269,18 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                     _objectCommander.Insert(establishment, true);
                     ConsoleLog(string.Format("Establishment with website URL '{0}' has been seeded.", establishmentRow.WebsiteUrl), true, true);
                 }
+            }
+
+            // set up USF
+            var usf = new EstablishmentFinder(_entityQueries).FindOne(EstablishmentBy.WebsiteUrl("www.usf.edu"));
+            if (!usf.IsMember)
+            {
+                usf.IsMember = true;
+                usf.EmailDomains.Add(new EstablishmentEmailDomain
+                {
+                    Value = "@usf.edu",
+                });
+                _objectCommander.Update(usf, true);
             }
 
             // add former name for rotterdam dance academy

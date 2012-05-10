@@ -3,7 +3,7 @@
     <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" WantAssertionsSigned="true" AuthnRequestsSigned="true">
         <md:KeyDescriptor use="signing">
             <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
-                <ds:KeyName>saml.ucosmic.dev</ds:KeyName>
+                <ds:KeyName>@Model.SigningX509KeyName</ds:KeyName>
                 <ds:X509Data>
                     <ds:X509SubjectName>
                         @Model.SigningX509SubjectName
@@ -16,7 +16,7 @@
         </md:KeyDescriptor>
         <md:KeyDescriptor use="encryption">
             <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
-                <ds:KeyName>saml.ucosmic.dev</ds:KeyName>
+                <ds:KeyName>@Model.EncryptionX509KeyName</ds:KeyName>
                 <ds:X509Data>
                     <ds:X509SubjectName>
                         @Model.EncryptionX509SubjectName

@@ -396,16 +396,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 attributes[0].ShouldNotBeNull();
             }
 
-            [TestMethod]
-            public void IsDecoratedWith_OutputCache()
-            {
-                Expression<Func<UpdateEmailValueController, ActionResult>> method = m => m.ValidateValue(null);
+            //[TestMethod]
+            //public void IsDecoratedWith_OutputCache()
+            //{
+            //    Expression<Func<UpdateEmailValueController, ActionResult>> method = m => m.ValidateValue(null);
 
-                var attributes = method.GetAttributes<UpdateEmailValueController, ActionResult, OutputCacheAttribute>();
-                attributes.ShouldNotBeNull();
-                attributes.Length.ShouldEqual(1);
-                attributes[0].ShouldNotBeNull();
-            }
+            //    var attributes = method.GetAttributes<UpdateEmailValueController, ActionResult, OutputCacheAttribute>();
+            //    attributes.ShouldNotBeNull();
+            //    attributes.Length.ShouldEqual(1);
+            //    attributes[0].ShouldNotBeNull();
+            //}
 
             [TestMethod]
             public void ViewModelArgument_IsDecoratedWith_CustomizeValidator_ForValueProperty()

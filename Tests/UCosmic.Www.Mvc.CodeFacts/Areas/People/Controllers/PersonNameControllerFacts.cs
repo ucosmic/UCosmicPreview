@@ -43,29 +43,29 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 attributes[0].ShouldNotBeNull();
             }
 
-            [TestMethod]
-            public void IsDecoratedWith_OutputCache_UsingAllParams()
-            {
-                Expression<Func<PersonNameController, ActionResult>> method = m => m.GenerateDisplayName(null);
+            //[TestMethod]
+            //public void IsDecoratedWith_OutputCache_UsingAllParams()
+            //{
+            //    Expression<Func<PersonNameController, ActionResult>> method = m => m.GenerateDisplayName(null);
 
-                var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
-                attributes.ShouldNotBeNull();
-                attributes.Length.ShouldEqual(1);
-                attributes[0].ShouldNotBeNull();
-                attributes[0].VaryByParam.ShouldEqual("*");
-            }
+            //    var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
+            //    attributes.ShouldNotBeNull();
+            //    attributes.Length.ShouldEqual(1);
+            //    attributes[0].ShouldNotBeNull();
+            //    attributes[0].VaryByParam.ShouldEqual("*");
+            //}
 
-            [TestMethod]
-            public void IsDecoratedWith_OutputCache_UsingServerLocation()
-            {
-                Expression<Func<PersonNameController, ActionResult>> method = m => m.GenerateDisplayName(null);
+            //[TestMethod]
+            //public void IsDecoratedWith_OutputCache_UsingServerLocation()
+            //{
+            //    Expression<Func<PersonNameController, ActionResult>> method = m => m.GenerateDisplayName(null);
 
-                var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
-                attributes.ShouldNotBeNull();
-                attributes.Length.ShouldEqual(1);
-                attributes[0].ShouldNotBeNull();
-                attributes[0].Location.ShouldEqual(OutputCacheLocation.Server);
-            }
+            //    var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
+            //    attributes.ShouldNotBeNull();
+            //    attributes.Length.ShouldEqual(1);
+            //    attributes[0].ShouldNotBeNull();
+            //    attributes[0].Location.ShouldEqual(OutputCacheLocation.Server);
+            //}
 
             [TestMethod]
             public void ExecutesQuery_ToGenerateDisplayName()
@@ -143,29 +143,29 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 attributes[0].ShouldNotBeNull();
             }
 
-            [TestMethod]
-            public void IsDecoratedWith_OutputCache_UsingAllParams()
-            {
-                Expression<Func<PersonNameController, ActionResult>> method = m => m.AutoCompleteSalutations(null);
+            //[TestMethod]
+            //public void IsDecoratedWith_OutputCache_UsingAllParams()
+            //{
+            //    Expression<Func<PersonNameController, ActionResult>> method = m => m.AutoCompleteSalutations(null);
 
-                var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
-                attributes.ShouldNotBeNull();
-                attributes.Length.ShouldEqual(1);
-                attributes[0].ShouldNotBeNull();
-                attributes[0].VaryByParam.ShouldEqual("*");
-            }
+            //    var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
+            //    attributes.ShouldNotBeNull();
+            //    attributes.Length.ShouldEqual(1);
+            //    attributes[0].ShouldNotBeNull();
+            //    attributes[0].VaryByParam.ShouldEqual("*");
+            //}
 
-            [TestMethod]
-            public void IsDecoratedWith_OutputCache_UsingServerLocation()
-            {
-                Expression<Func<PersonNameController, ActionResult>> method = m => m.AutoCompleteSalutations(null);
+            //[TestMethod]
+            //public void IsDecoratedWith_OutputCache_UsingServerLocation()
+            //{
+            //    Expression<Func<PersonNameController, ActionResult>> method = m => m.AutoCompleteSalutations(null);
 
-                var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
-                attributes.ShouldNotBeNull();
-                attributes.Length.ShouldEqual(1);
-                attributes[0].ShouldNotBeNull();
-                attributes[0].Location.ShouldEqual(OutputCacheLocation.Server);
-            }
+            //    var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
+            //    attributes.ShouldNotBeNull();
+            //    attributes.Length.ShouldEqual(1);
+            //    attributes[0].ShouldNotBeNull();
+            //    attributes[0].Location.ShouldEqual(OutputCacheLocation.Server);
+            //}
 
             [TestMethod]
             public void ExecutesQuery_ToFindDistinctSalutations()
@@ -296,29 +296,29 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 attributes[0].ShouldNotBeNull();
             }
 
-            [TestMethod]
-            public void IsDecoratedWith_OutputCache_UsingAllParams()
-            {
-                Expression<Func<PersonNameController, ActionResult>> method = m => m.AutoCompleteSuffixes(null);
+            //[TestMethod]
+            //public void IsDecoratedWith_OutputCache_UsingAllParams()
+            //{
+            //    Expression<Func<PersonNameController, ActionResult>> method = m => m.AutoCompleteSuffixes(null);
 
-                var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
-                attributes.ShouldNotBeNull();
-                attributes.Length.ShouldEqual(1);
-                attributes[0].ShouldNotBeNull();
-                attributes[0].VaryByParam.ShouldEqual("*");
-            }
+            //    var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
+            //    attributes.ShouldNotBeNull();
+            //    attributes.Length.ShouldEqual(1);
+            //    attributes[0].ShouldNotBeNull();
+            //    attributes[0].VaryByParam.ShouldEqual("*");
+            //}
 
-            [TestMethod]
-            public void IsDecoratedWith_OutputCache_UsingServerLocation()
-            {
-                Expression<Func<PersonNameController, ActionResult>> method = m => m.AutoCompleteSuffixes(null);
+            //[TestMethod]
+            //public void IsDecoratedWith_OutputCache_UsingServerLocation()
+            //{
+            //    Expression<Func<PersonNameController, ActionResult>> method = m => m.AutoCompleteSuffixes(null);
 
-                var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
-                attributes.ShouldNotBeNull();
-                attributes.Length.ShouldEqual(1);
-                attributes[0].ShouldNotBeNull();
-                attributes[0].Location.ShouldEqual(OutputCacheLocation.Server);
-            }
+            //    var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
+            //    attributes.ShouldNotBeNull();
+            //    attributes.Length.ShouldEqual(1);
+            //    attributes[0].ShouldNotBeNull();
+            //    attributes[0].Location.ShouldEqual(OutputCacheLocation.Server);
+            //}
 
             [TestMethod]
             public void ExecutesQuery_ToFindDistinctSuffixes()

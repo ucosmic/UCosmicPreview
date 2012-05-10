@@ -93,8 +93,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             private static readonly string Action = MVC.Identity.ServiceProviderMetadata.ActionNames.Index;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
-                if (WebConfig.IsDeployedToCloud) return;
-
                 var defaults = new { area, controller, action = Action, };
                 var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
                 context.MapRoute(null, Route, defaults, constraints);

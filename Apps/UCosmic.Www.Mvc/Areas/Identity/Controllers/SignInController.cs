@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using FluentValidation.Mvc;
+using UCosmic.Domain.Establishments;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;
 
@@ -83,9 +84,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     model.EmailAddress));
 
             // redirect to return url
-            var returnUrl = model.ReturnUrl
-                            ?? _services.UserSigner.DefaultSignedOnUrl;
-            return Redirect(returnUrl);
+            var establishment = _services.QueryProcessor.Execute(
+                new GetEstablishmentByEmailQuery
+                {
+                    Email = model.EmailAddress,
+                }
+            );
+            var returnUrl = model.ReturnUrl ??
+                            _services.UserSigner.DefaultSignedOnUrl;
+            var skinsUrl = Url.Action(MVC.Common.Skins.Change(establishment.WebsiteUrl, returnUrl));
+            return Redirect(skinsUrl);
         }
     }
 

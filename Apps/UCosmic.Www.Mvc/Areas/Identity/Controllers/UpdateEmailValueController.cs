@@ -81,7 +81,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public const string NoChangesMessage = "No changes were made.";
 
         [HttpPost]
-        [OutputCache(VaryByParam = "*", Duration = 1800)]
+        //[OutputCache(VaryByParam = "*", Duration = 1800)]
         public virtual JsonResult ValidateValue(
             [CustomizeValidator(Properties = UpdateEmailValueForm.ValuePropertyName)] UpdateEmailValueForm model)
         {

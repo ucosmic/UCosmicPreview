@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Identity;
 using UCosmic.Www.Mvc.Controllers;
 
@@ -7,14 +8,20 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
     public class ReceiveSamlAuthnResponseServices
     {
-        public ReceiveSamlAuthnResponseServices(IProvideSaml2Service samlServiceProvider
+        public ReceiveSamlAuthnResponseServices(IProcessQueries queryProcessor
+            , ISignUsers userSigner
+            , IProvideSaml2Service samlServiceProvider
             , IHandleCommands<ReceiveSamlAuthnResponseCommand> commandHandler
         )
         {
+            QueryProcessor = queryProcessor;
+            UserSigner = userSigner;
             SamlServiceProvider = samlServiceProvider;
             CommandHandler = commandHandler;
         }
 
+        public IProcessQueries QueryProcessor { get; private set; }
+        public ISignUsers UserSigner { get; private set; }
         public IProvideSaml2Service SamlServiceProvider { get; private set; }
         public IHandleCommands<ReceiveSamlAuthnResponseCommand> CommandHandler { get; private set; }
     }
@@ -37,11 +44,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 .ReceiveSamlResponse(Saml2SsoBinding.HttpPost, HttpContext);
 
             // execute command on the saml response object
-            var command = new ReceiveSamlAuthnResponseCommand
-            {
-                SamlResponse = samlResponse,
-            };
-            _services.CommandHandler.Handle(command);
+            _services.CommandHandler.Handle(
+                new ReceiveSamlAuthnResponseCommand
+                {
+                    SamlResponse = samlResponse,
+                }
+            );
 
             // flash the success message
             SetFeedbackMessage(string.Format(
@@ -49,7 +57,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     samlResponse.EduPersonPrincipalName));
 
             // redirect after sign on
-            return Redirect(command.ReturnUrl ?? Url.Action(MVC.Identity.MyHome.Get()));
+            var establishment = _services.QueryProcessor.Execute(
+                new GetEstablishmentBySamlEntityIdQuery
+                {
+                    SamlEntityId = samlResponse.IssuerNameIdentifier,
+                }
+            );
+
+            var returnUrl = samlResponse.RelayResourceUrl ??
+                            _services.UserSigner.DefaultSignedOnUrl;
+            var skinsUrl = Url.Action(MVC.Common.Skins.Change(establishment.WebsiteUrl, returnUrl));
+            return Redirect(skinsUrl);
         }
     }
 

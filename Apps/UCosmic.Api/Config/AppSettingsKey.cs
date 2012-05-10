@@ -16,9 +16,7 @@ namespace UCosmic
         EmailDefaultReplyToAddress,
         EmailDefaultReplyToDisplayName,
         SignUpUrl,
-        SignUpEmailConfirmationUrlFormat,
-        PasswordResetUrl,
-        PasswordResetConfirmationUrlFormat,
-        EmailConfirmationUrlFormat,
+        ForgotPasswordUrl,
+        ConfirmEmailUrlFormat,
     }
 }

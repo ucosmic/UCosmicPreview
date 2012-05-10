@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
-using System.Web.UI;
 using AutoMapper;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.People.Models;
@@ -39,7 +38,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         #region GenerateDisplayName
 
         [HttpPost]
-        [OutputCache(VaryByParam = "*", Duration = 1800, Location = OutputCacheLocation.Server)]
+        //[OutputCache(VaryByParam = "*", Duration = 1800, Location = OutputCacheLocation.Server)]
         public virtual JsonResult GenerateDisplayName(GenerateDisplayNameForm model)
         {
             var query = Mapper.Map<GenerateDisplayNameQuery>(model);
@@ -51,7 +50,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         #region AutoComplete Salutations & Suffixes
 
         [HttpGet]
-        [OutputCache(VaryByParam = "*", Duration = 1800, Location = OutputCacheLocation.Server)]
+        //[OutputCache(VaryByParam = "*", Duration = 1800, Location = OutputCacheLocation.Server)]
         public virtual JsonResult AutoCompleteSalutations(string term)
         {
             var data = _services.QueryProcessor.Execute(
@@ -67,7 +66,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         }
 
         [HttpGet]
-        [OutputCache(VaryByParam = "*", Duration = 1800, Location = OutputCacheLocation.Server)]
+        //[OutputCache(VaryByParam = "*", Duration = 1800, Location = OutputCacheLocation.Server)]
         public virtual JsonResult AutoCompleteSuffixes(string term)
         {
             var data = _services.QueryProcessor.Execute(
