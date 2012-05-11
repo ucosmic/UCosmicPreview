@@ -5,14 +5,16 @@ namespace UCosmic.Domain.People
 {
     public class GetConfirmEmailFormattersQuery : IDefineQuery<IDictionary<string, string>>
     {
-        public GetConfirmEmailFormattersQuery(EmailConfirmation confirmation)
+        public GetConfirmEmailFormattersQuery(EmailConfirmation confirmation, string sendFromUrl)
         {
             if (confirmation == null) throw new ArgumentNullException("confirmation");
+            if (sendFromUrl == null) throw new ArgumentException("Cannot be null or white space.", "sendFromUrl");
             Confirmation = confirmation;
+            SendFromUrl = sendFromUrl;
         }
 
         public EmailConfirmation Confirmation { get; private set; }
-        public IDictionary<string, string> AdditionalFormatters { get; set; }
+        public string SendFromUrl { get; private set; }
     }
 
     public class GetConfirmEmailFormattersHandler : IHandleQueries<GetConfirmEmailFormattersQuery, IDictionary<string, string>>
@@ -34,23 +36,8 @@ namespace UCosmic.Domain.People
                     query.Confirmation.Token,
                     query.Confirmation.SecretCode.UrlEncoded())
                 },
+                { "{SendFromUrl}", string.Format("https://{0}{1}", _configurationManager.DeployedTo, query.SendFromUrl) }
             };
-
-            switch (query.Confirmation.Intent)
-            {
-                case EmailConfirmationIntent.SignUp:
-                    formatters.Add("{StartUrl}", _configurationManager.SignUpUrl);
-                    break;
-                case EmailConfirmationIntent.PasswordReset:
-                    formatters.Add("{PasswordResetUrl}", _configurationManager.ForgotPasswordUrl);
-                    break;
-            }
-
-            if (query.AdditionalFormatters != null && query.AdditionalFormatters.Count > 0)
-                foreach (var additionalFormatter in query.AdditionalFormatters)
-                    if (!formatters.ContainsKey(additionalFormatter.Key))
-                        formatters.Add(additionalFormatter.Key, additionalFormatter.Value);
-                    else formatters[additionalFormatter.Key] = additionalFormatter.Value;
 
             return formatters;
         }

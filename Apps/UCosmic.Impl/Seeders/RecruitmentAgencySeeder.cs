@@ -320,8 +320,8 @@ namespace UCosmic.Impl.Seeders
                 #endregion
                 #region Can-Achieve Guangzhou (Branch)
 
-                latitude = 23.138937;
-                longitude = 113.328751;
+                latitude = 23.13893700002;
+                longitude = 113.32875100002;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
                 Debug.Assert(result.WoeId != null);
                 place = placeFactory.FromWoeId(result.WoeId.Value);

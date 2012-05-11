@@ -65,6 +65,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             // execute command
             var command = Mapper.Map<SendConfirmEmailMessageCommand>(model);
+            command.SendFromUrl = Url.Action(MVC.Identity.ForgotPassword.Get());
             _services.CommandHandler.Handle(command);
 
             // flash feedback message

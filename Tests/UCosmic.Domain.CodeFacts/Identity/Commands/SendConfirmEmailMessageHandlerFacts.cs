@@ -44,6 +44,7 @@ namespace UCosmic.Domain.Identity
                 {
                     EmailAddress = emailAddress,
                     Intent = EmailConfirmationIntent.PasswordReset,
+                    SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command);
                 var handler = CreateHandler(scenarioOptions);
@@ -63,6 +64,7 @@ namespace UCosmic.Domain.Identity
                 {
                     EmailAddress = emailAddress,
                     Intent = EmailConfirmationIntent.PasswordReset,
+                    SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command);
                 var handler = CreateHandler(scenarioOptions);
@@ -82,6 +84,7 @@ namespace UCosmic.Domain.Identity
                 {
                     EmailAddress = emailAddress,
                     Intent = EmailConfirmationIntent.SignUp,
+                    SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command)
                 {
@@ -107,6 +110,7 @@ namespace UCosmic.Domain.Identity
                 {
                     EmailAddress = emailAddress,
                     Intent = EmailConfirmationIntent.SignUp,
+                    SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command)
                 {
@@ -127,6 +131,7 @@ namespace UCosmic.Domain.Identity
                 {
                     EmailAddress = emailAddress,
                     Intent = EmailConfirmationIntent.SignUp,
+                    SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command);
                 var handler = CreateHandler(scenarioOptions);
@@ -146,6 +151,7 @@ namespace UCosmic.Domain.Identity
                 {
                     EmailAddress = emailAddress,
                     Intent = EmailConfirmationIntent.SignUp,
+                    SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command);
                 var handler = CreateHandler(scenarioOptions);
@@ -165,6 +171,7 @@ namespace UCosmic.Domain.Identity
                 {
                     EmailAddress = emailAddress,
                     Intent = EmailConfirmationIntent.SignUp,
+                    SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command);
                 var handler = CreateHandler(scenarioOptions);
@@ -184,6 +191,7 @@ namespace UCosmic.Domain.Identity
                 {
                     EmailAddress = emailAddress,
                     Intent = EmailConfirmationIntent.SignUp,
+                    SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command)
                 {
@@ -206,6 +214,7 @@ namespace UCosmic.Domain.Identity
                 {
                     EmailAddress = emailAddress,
                     Intent = EmailConfirmationIntent.PasswordReset,
+                    SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command)
                 {

@@ -117,6 +117,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             {
                 CreateMap<ForgotPasswordForm, SendConfirmEmailMessageCommand>()
                     .ForMember(d => d.Intent, o => o.UseValue(EmailConfirmationIntent.PasswordReset))
+                    .ForMember(d => d.SendFromUrl, o => o.Ignore())
                     .ForMember(d => d.ConfirmationToken, o => o.Ignore())
                 ;
             }

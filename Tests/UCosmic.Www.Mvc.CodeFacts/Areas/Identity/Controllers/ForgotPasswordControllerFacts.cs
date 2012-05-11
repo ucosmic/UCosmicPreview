@@ -200,6 +200,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 commandHandler.Setup(m => m.Handle(It.Is(SendCommandBasedOn(form))));
                 var services = new ForgotPasswordServices(commandHandler.Object);
                 var controller = new ForgotPasswordController(services);
+                ReuseMock.TestControllerBuilder(ControllerCustomization.ForUrlHelper)
+                    .InitializeController(controller);
 
                 controller.Post(form);
 
@@ -220,6 +222,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 commandHandler.Setup(m => m.Handle(It.Is(SendCommandBasedOn(form))));
                 var services = new ForgotPasswordServices(commandHandler.Object);
                 var controller = new ForgotPasswordController(services);
+                ReuseMock.TestControllerBuilder(ControllerCustomization.ForUrlHelper)
+                    .InitializeController(controller);
 
                 controller.Post(form);
 
@@ -243,6 +247,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 commandHandler.Setup(m => m.Handle(It.Is(SendCommandBasedOn(form))));
                 var services = new ForgotPasswordServices(commandHandler.Object);
                 var controller = new ForgotPasswordController(services);
+                ReuseMock.TestControllerBuilder(ControllerCustomization.ForUrlHelper)
+                    .InitializeController(controller);
 
                 var result = controller.Post(form);
 

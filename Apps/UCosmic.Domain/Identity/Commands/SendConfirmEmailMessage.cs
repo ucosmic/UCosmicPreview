@@ -10,6 +10,7 @@ namespace UCosmic.Domain.Identity
     {
         public string EmailAddress { get; set; }
         public string Intent { get; set; }
+        public string SendFromUrl { get; set; }
 
         internal string TemplateName
         {
@@ -91,7 +92,7 @@ namespace UCosmic.Domain.Identity
                 new ComposeEmailMessageQuery(template, email)
                 {
                     Formatters = _queryProcessor.Execute(
-                        new GetConfirmEmailFormattersQuery(confirmation)
+                        new GetConfirmEmailFormattersQuery(confirmation, command.SendFromUrl)
                     )
                 }
             );

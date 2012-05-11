@@ -23,7 +23,7 @@ namespace UCosmic.Impl.Seeders
             new EstablishmentPreview5Seeder().Seed(context);
             new EstablishmentDecember2011Preview2Seeder().Seed(context);
             new EstablishmentJanuary2011Preview1Seeder().Seed(context);
-            new EstablishmentUcSamlIntegrationSeeder().Seed(context);
+            //new EstablishmentUcSamlIntegrationSeeder().Seed(context);
         }
 
         private class EstablishmentUcSamlIntegrationSeeder : UCosmicDbSeeder

@@ -51,6 +51,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             // execute command
             var command = Mapper.Map<SendSignUpMessageCommand>(model);
+            command.SendFromUrl = Url.Action(MVC.Identity.SignOn.Get());
             _services.CommandHandler.Handle(command);
 
             // flash feedback message

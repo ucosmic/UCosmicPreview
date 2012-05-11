@@ -38,49 +38,6 @@ namespace UCosmic.Domain.People
         public bool IsRedeemed { get { return RedeemedOnUtc.HasValue; } }
 
         public bool IsRetired { get { return RetiredOnUtc.HasValue; } }
-
-        //public EmailMessage ComposeConfirmationMessage(EmailTemplate template,
-        //    string startUrl, string confirmationUrl, IManageConfigurations config)
-        //{
-        //    //var tokenAsString = Token.ToString();
-        //    var variables = new Dictionary<string, string>
-        //    {
-        //        { "{EmailAddress}", EmailAddress.Value },
-        //        { "{ConfirmationCode}", SecretCode },
-        //        { "{StartUrl}", startUrl },
-        //        { "{ConfirmationUrl}", confirmationUrl },
-        //    };
-
-        //    var message = template.ComposeMessageTo(EmailAddress, variables, config);
-        //    EmailAddress.Person.Messages.Add(message);
-        //    return message;
-        //}
-
-        //public IDictionary<string, string> GetMessageVariables(IManageConfigurations config)
-        //{
-        //    var tokenAsString = Token.ToString();
-        //    var variables = new Dictionary<string, string>
-        //    {
-        //        { "{EmailAddress}", EmailAddress.Value },
-        //        { "{ConfirmationCode}", SecretCode },
-        //    };
-        //    switch (Intent)
-        //    {
-        //        case EmailConfirmationIntent.SignUp:
-        //            variables.Add("{ConfirmationUrl}", string.Format(config.SignUpEmailConfirmationUrlFormat,
-        //                tokenAsString, SecretCode.UrlEncoded()));
-        //            variables.Add("{StartUrl}", config.SignUpUrl);
-        //            break;
-
-        //        case EmailConfirmationIntent.PasswordReset:
-        //            variables.Add("{ConfirmationUrl}", string.Format(config.PasswordResetConfirmationUrlFormat,
-        //                tokenAsString, SecretCode.UrlEncoded()));
-        //            variables.Add("{PasswordResetUrl}", config.PasswordResetUrl);
-        //            break;
-        //    }
-        //    return variables;
-        //}
-
     }
 
     // TODO: replace with enum? rename to ResetPassword and CreatePassword?

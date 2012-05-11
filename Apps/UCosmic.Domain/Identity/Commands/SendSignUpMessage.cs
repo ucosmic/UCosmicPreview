@@ -9,6 +9,7 @@ namespace UCosmic.Domain.Identity
     public class SendSignUpMessageCommand
     {
         public string EmailAddress { get; set; }
+        public string SendFromUrl { get; set; }
         public Guid ConfirmationToken { get; internal set; }
     }
 
@@ -87,6 +88,7 @@ namespace UCosmic.Domain.Identity
             {
                 EmailAddress = command.EmailAddress,
                 Intent = EmailConfirmationIntent.SignUp,
+                SendFromUrl = command.SendFromUrl,
             };
             _sendHandler.Handle(sendCommand);
             command.ConfirmationToken = sendCommand.ConfirmationToken;
