@@ -27,10 +27,10 @@ namespace UCosmic.Impl
         public string GeoNamesUserName { get { return GetString(AppSettingsKey.GeoNamesUserName); } }
         public string GeoPlanetAppId { get { return GetString(AppSettingsKey.GeoPlanetAppId); } }
 
-        public string SamlServiceProviderEntityId { get { return GetString(AppSettingsKey.SamlServiceProviderEntityId); } }
-        public string SamlCertificateThumbprint { get { return GetString(AppSettingsKey.SamlCertificateThumbprint); } }
-        public string SamlServiceProviderDevelopmentEntityId { get { return GetString(AppSettingsKey.SamlServiceProviderDevelopmentEntityId); } }
-        public string SamlCertificateDevelopmentThumbprint { get { return GetString(AppSettingsKey.SamlCertificateDevelopmentThumbprint); } }
+        public string SamlRealServiceProviderEntityId { get { return GetString(AppSettingsKey.SamlRealServiceProviderEntityId); } }
+        public string SamlRealCertificateThumbprint { get { return GetString(AppSettingsKey.SamlRealCertificateThumbprint); } }
+        public string SamlTestServiceProviderEntityId { get { return GetString(AppSettingsKey.SamlTestServiceProviderEntityId); } }
+        public string SamlTestCertificateThumbprint { get { return GetString(AppSettingsKey.SamlTestCertificateThumbprint); } }
 
         private static string GetString(AppSettingsKey key) { return ConfigurationManager.AppSettings[key.ToString()]; }
 

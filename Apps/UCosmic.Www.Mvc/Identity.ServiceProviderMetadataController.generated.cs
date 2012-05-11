@@ -46,14 +46,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Index = "Index";
-            public readonly string Development = "Development";
+            public readonly string Real = "Real";
+            public readonly string Test = "Test";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Index = "Index";
-            public const string Development = "Development";
+            public const string Real = "Real";
+            public const string Test = "Test";
         }
 
 
@@ -69,14 +69,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
     public class T4MVC_ServiceProviderMetadataController: UCosmic.Www.Mvc.Areas.Identity.Controllers.ServiceProviderMetadataController {
         public T4MVC_ServiceProviderMetadataController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.PartialViewResult Index(string contentType) {
-            var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.Index);
+        public override System.Web.Mvc.PartialViewResult Real(string contentType) {
+            var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.Real);
             callInfo.RouteValueDictionary.Add("contentType", contentType);
             return callInfo;
         }
 
-        public override System.Web.Mvc.PartialViewResult Development(string contentType) {
-            var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.Development);
+        public override System.Web.Mvc.PartialViewResult Test(string contentType) {
+            var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.Test);
             callInfo.RouteValueDictionary.Add("contentType", contentType);
             return callInfo;
         }

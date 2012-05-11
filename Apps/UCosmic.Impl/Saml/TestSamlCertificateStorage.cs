@@ -1,15 +1,15 @@
 namespace UCosmic.Impl
 {
-    public class PublicSamlCertificateStorage : PrivateSamlCertificateStorage
+    public class TestSamlCertificateStorage : RealSamlCertificateStorage
     {
-        public PublicSamlCertificateStorage(IManageConfigurations configurationManager)
+        public TestSamlCertificateStorage(IManageConfigurations configurationManager)
             : base(configurationManager)
         {
         }
 
         protected override string Thumbprint
         {
-            get { return ConfigurationManager.SamlCertificateDevelopmentThumbprint; }
+            get { return ConfigurationManager.SamlTestCertificateThumbprint; }
         }
     }
 

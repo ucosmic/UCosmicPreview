@@ -24,9 +24,9 @@
         string GeoNamesUserName { get; }
         string GeoPlanetAppId { get; }
 
-        string SamlServiceProviderEntityId { get; }
-        string SamlCertificateThumbprint { get; }
-        string SamlServiceProviderDevelopmentEntityId { get; }
-        string SamlCertificateDevelopmentThumbprint { get; }
+        string SamlRealServiceProviderEntityId { get; }
+        string SamlRealCertificateThumbprint { get; }
+        string SamlTestServiceProviderEntityId { get; }
+        string SamlTestCertificateThumbprint { get; }
     }
 }

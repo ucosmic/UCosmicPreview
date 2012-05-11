@@ -87,7 +87,7 @@ namespace UCosmic.Impl
             // SAML interfaces
             container.Register<IProvideSaml2Service, ComponentSpaceSaml2ServiceProvider>();
             container.Register<IParseSaml2Metadata, ComponentSpaceSaml2MetadataParser>();
-            container.Register<IStoreSamlCertificates, PrivateSamlCertificateStorage>();
+            container.Register<IStoreSamlCertificates, RealSamlCertificateStorage>();
 
             // NGeo interfaces
             container.RegisterPerWebRequest<IConsumeGeoNames, GeoNamesClient>();

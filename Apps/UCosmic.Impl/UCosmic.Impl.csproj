@@ -130,7 +130,7 @@
     <Compile Include="Orm\SqlInitializer.cs" />
     <Compile Include="Orm\UCosmicContext.Views.cs" />
     <Compile Include="Saml\ComponentSpaceSaml2Response.cs" />
-    <Compile Include="Saml\PublicSamlCertificateStorage.cs" />
+    <Compile Include="Saml\TestSamlCertificateStorage.cs" />
     <Compile Include="Web\WebRequestHttpConsumer.cs" />
     <Compile Include="Orm\BrownfieldInitializer.cs" />
     <Compile Include="Unity\UnityHttpContextLifetimeManager.cs" />
@@ -163,7 +163,7 @@
     <Compile Include="Seeders\UCosmicDbSeeder.cs" />
     <Compile Include="Seeders\UserSeeder.cs" />
     <Compile Include="Orm\ObjectCommander.cs" />
-    <Compile Include="Saml\PrivateSamlCertificateStorage.cs" />
+    <Compile Include="Saml\RealSamlCertificateStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Orm\UCosmicContext.cs" />
   </ItemGroup>

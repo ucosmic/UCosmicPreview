@@ -3,13 +3,11 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace UCosmic.Impl
 {
-    // ReSharper disable UnusedMember.Global
-    public class PrivateSamlCertificateStorage : IStoreSamlCertificates
-    // ReSharper restore UnusedMember.Global
+    public class RealSamlCertificateStorage : IStoreSamlCertificates
     {
         protected readonly IManageConfigurations ConfigurationManager;
 
-        public PrivateSamlCertificateStorage(IManageConfigurations configurationManager)
+        public RealSamlCertificateStorage(IManageConfigurations configurationManager)
         {
             ConfigurationManager = configurationManager;
         }
@@ -19,7 +17,7 @@ namespace UCosmic.Impl
 
         protected virtual string Thumbprint
         {
-            get { return ConfigurationManager.SamlCertificateThumbprint; }
+            get { return ConfigurationManager.SamlRealCertificateThumbprint; }
         }
 
         private X509Certificate2 GetCertificate()

@@ -31,22 +31,22 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             _services = services;
         }
 
-        public virtual PartialViewResult Index(string contentType = null)
+        public virtual PartialViewResult Real(string contentType = null)
         {
             return Get(contentType);
         }
 
-        public virtual PartialViewResult Development(string contentType = null)
+        public virtual PartialViewResult Test(string contentType = null)
         {
             return Get(contentType, false);
         }
 
         [NonAction]
-        private PartialViewResult Get(string contentType, bool isPrivate = true)
+        private PartialViewResult Get(string contentType, bool isReal = true)
         {
-            var samlCertificates = isPrivate
-                ? _services.SamlCertificates // use private storage by default
-                : new PublicSamlCertificateStorage(_services.Configuration);
+            var samlCertificates = isReal
+                ? _services.SamlCertificates // use real cert by default
+                : new TestSamlCertificateStorage(_services.Configuration);
             var encryptionCertificate = samlCertificates.GetEncryptionCertificate();
             var signingCertificate = samlCertificates.GetSigningCertificate();
             var model = new ServiceProviderEntityDescriptor
@@ -55,9 +55,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 SigningX509Certificate = Convert.ToBase64String(signingCertificate.RawData),
                 EncryptionX509SubjectName = encryptionCertificate.SubjectName.Name,
                 EncryptionX509Certificate = Convert.ToBase64String(encryptionCertificate.RawData),
-                EntityId = isPrivate
-                    ? _services.Configuration.SamlServiceProviderEntityId
-                    : _services.Configuration.SamlServiceProviderDevelopmentEntityId,
+                EntityId = isReal
+                    ? _services.Configuration.SamlRealServiceProviderEntityId
+                    : _services.Configuration.SamlTestServiceProviderEntityId,
             };
 
             // NOTE: http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf section 4.1.1
@@ -81,10 +81,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         // ReSharper disable UnusedMember.Global
 
-        public static class Index
+        public static class Real
         {
             public const string Route = "sign-on/saml/2/metadata";
-            private static readonly string Action = MVC.Identity.ServiceProviderMetadata.ActionNames.Index;
+            private static readonly string Action = MVC.Identity.ServiceProviderMetadata.ActionNames.Real;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };
@@ -93,10 +93,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public static class Development
+        public static class Test
         {
             public const string Route = "sign-on/saml/2/metadata/develop";
-            private static readonly string Action = MVC.Identity.ServiceProviderMetadata.ActionNames.Development;
+            private static readonly string Action = MVC.Identity.ServiceProviderMetadata.ActionNames.Test;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };

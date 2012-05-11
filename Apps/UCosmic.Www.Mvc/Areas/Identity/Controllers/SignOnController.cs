@@ -98,7 +98,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             _services.SamlServiceProvider.SendAuthnRequest(
                 establishment.SamlSignOn.SsoLocation,
                 establishment.SamlSignOn.SsoBinding.AsSaml2SsoBinding(),
-                _services.ConfigurationManager.SamlServiceProviderEntityId,
+                _services.ConfigurationManager.SamlRealServiceProviderEntityId,
                 model.ReturnUrl ?? Url.Action(MVC.Identity.MyHome.Get()),
                 HttpContext
             );
