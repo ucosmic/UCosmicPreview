@@ -8,7 +8,7 @@ namespace UCosmic.Domain.Identity
     {
         public Guid Token { get; set; }
         public string SecretCode { get; set; }
-        public string Intent { get; set; }
+        public EmailConfirmationIntent Intent { get; set; }
         public string Ticket { get; internal set; }
     }
 
@@ -71,12 +71,6 @@ namespace UCosmic.Domain.Identity
                 // secret cannot be empty
                 .NotEmpty()
                     .WithMessage(ValidateEmailConfirmation.FailedBecauseSecretCodeWasEmpty)
-            ;
-
-            RuleFor(p => p.Intent)
-                // intent cannot be empty
-                .NotEmpty()
-                    .WithMessage(ValidateEmailConfirmation.FailedBecauseIntentWasEmpty)
             ;
 
             // when confirmation is not null,

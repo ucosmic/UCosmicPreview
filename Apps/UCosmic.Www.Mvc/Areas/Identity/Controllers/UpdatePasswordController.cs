@@ -10,15 +10,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
     public class UpdatePasswordServices
     {
         public UpdatePasswordServices(IProcessQueries queryProcessor
-            , ISignMembers memberSigner
+            , IStorePasswords passwords
         )
         {
             QueryProcessor = queryProcessor;
-            MemberSigner = memberSigner;
+            Passwords = passwords;
         }
 
         public IProcessQueries QueryProcessor { get; private set; }
-        public ISignMembers MemberSigner { get; private set; }
+        public IStorePasswords Passwords { get; private set; }
     }
 
     [Authorize]
@@ -48,7 +48,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             // only local members can change passwords
             if (user.EduPersonTargetedId != null || 
-                !_services.MemberSigner.IsSignedUp(User.Identity.Name))
+                !_services.Passwords.Exists(User.Identity.Name))
                 return RedirectToAction(MVC.Identity.MyHome.Get());
 
             // create view model
@@ -93,11 +93,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             // only local members can change passwords
             if (user.EduPersonTargetedId != null ||
-                !_services.MemberSigner.IsSignedUp(User.Identity.Name))
+                !_services.Passwords.Exists(User.Identity.Name))
                 return RedirectToAction(MVC.Identity.MyHome.Get());
 
             // update the password
-            _services.MemberSigner.UpdatePassword(User.Identity.Name, model.CurrentPassword, model.NewPassword);
+            _services.Passwords.Update(User.Identity.Name, model.CurrentPassword, model.NewPassword);
 
             // reset the invalid password attempt window
             Session.FailedPasswordAttempts(false);

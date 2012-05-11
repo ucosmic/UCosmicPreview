@@ -1,0 +1,33 @@
+﻿@*@using UCosmic.Www.Mvc.Areas.Identity.Models.SignUp
+@model OldConfirmEmailForm
+<div id="confirm_email_editor">
+    <div class="hidden-input">
+        @Html.EditorFor(m => m.Token)
+        @Html.EditorFor(m => m.IsUrlConfirmation)
+    </div>
+    <div class="field" data-ucosmic-val="css">
+        <span class="label" data-ucosmic-val-hide="error" data-ucosmic-val-show="valid" data-ucosmic-focused-class="focused">
+            @Html.LabelFor(m => m.SecretCode)
+        </span>
+        <div class="messages" data-ucosmic-focused-class="focused">
+            <span class="validation">@Html.ValidationMessageFor(m => m.SecretCode)</span>
+            <div class="bottom callout border">
+                <div class="bottom callout bg">
+                </div>
+            </div>
+        </div>
+        <div class="input">
+            <div class="text-box input" data-ucosmic-watermark="true" 
+                 data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.SecretCode, ViewData).Watermark)"
+                 data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
+                 data-ucosmic-trim-input="true">
+                @Html.EditorFor(m => m.SecretCode)
+            </div>
+        </div>
+    </div>
+    <div>
+        <input type="submit" value="Confirm Email Address" />
+        @Html.Partial(MVC.Shared.Views.form_submitted_spinner)
+    </div>
+</div>
+*@

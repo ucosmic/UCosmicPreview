@@ -63,7 +63,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void ExecutesUpdate_OnEmailConfirmation_WhenNotRedeeed()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     EmailAddress = new EmailAddress(),
                 };
@@ -90,7 +90,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void ExecutesNoUpdate_OnEmailConfirmation_WhenAlreadyRedeeed()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     EmailAddress = new EmailAddress(),
                     RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),
@@ -118,7 +118,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void SetsEmailAddressProperty_IsConfirmed_ToTrue_WhenNotRedeemed()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     EmailAddress = new EmailAddress(),
                 };
@@ -145,7 +145,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void SetsNoEmailAddressProperty_IsConfirmed_WhenAlreadyRedeeed()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     EmailAddress = new EmailAddress(),
                     RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),
@@ -171,7 +171,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void SetsConfirmationProperty_RedeemedOnUtc_WhenNotRedeeed()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     EmailAddress = new EmailAddress(),
                 };
@@ -203,7 +203,7 @@ namespace UCosmic.Domain.Identity
             public void SetsNoConfirmationProperty_RedeemedOnUtc_WhenAlreadyRedeeed()
             {
                 var redeemedOnUtc = DateTime.UtcNow.AddSeconds(-5);
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     EmailAddress = new EmailAddress(),
                     RedeemedOnUtc = redeemedOnUtc,
@@ -231,7 +231,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void SetsConfirmationProperty_Ticket_WhenNotRedeeed()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     EmailAddress = new EmailAddress(),
                 };
@@ -260,7 +260,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void SetsNoConfirmationProperty_Ticket_WhenAlreadyRedeeed()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     EmailAddress = new EmailAddress(),
                     RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),
@@ -289,7 +289,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void CopiesTicketValue_ToCommandProperty_WhenNotRedeeed()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     EmailAddress = new EmailAddress(),
                 };
@@ -319,7 +319,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void CopiesTicketValue_ToCommandProperty_WhenAlreadyRedeeed()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     EmailAddress = new EmailAddress(),
                     RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),

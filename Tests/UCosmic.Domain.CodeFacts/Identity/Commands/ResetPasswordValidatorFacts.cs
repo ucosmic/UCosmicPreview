@@ -64,10 +64,9 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsInvalidWhen_MatchesUnintendedEntity()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(-1),
-                    Intent = EmailConfirmationIntent.SignUp,
                 };
                 var command = new ResetPasswordCommand
                 {
@@ -96,10 +95,9 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsInvalidWhen_MatchesExpiredEntity()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(-1),
-                    Intent = EmailConfirmationIntent.PasswordReset,
                 };
                 var command = new ResetPasswordCommand
                 {
@@ -132,9 +130,8 @@ namespace UCosmic.Domain.Identity
                 {
                     Token = Guid.NewGuid()
                 };
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
-                    Intent = EmailConfirmationIntent.PasswordReset,
                     RetiredOnUtc = DateTime.UtcNow.AddMinutes(-1),
                     RedeemedOnUtc = DateTime.UtcNow,
                 };
@@ -161,9 +158,8 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsInvalidWhen_MatchesUnredeemedEntity()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
-                    Intent = EmailConfirmationIntent.PasswordReset,
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                 };
                 var command = new ResetPasswordCommand
@@ -197,9 +193,8 @@ namespace UCosmic.Domain.Identity
                 {
                     Token = Guid.NewGuid()
                 };
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
-                    Intent = EmailConfirmationIntent.PasswordReset,
                     RedeemedOnUtc = DateTime.UtcNow,
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                     EmailAddress = new EmailAddress
@@ -234,9 +229,8 @@ namespace UCosmic.Domain.Identity
                 {
                     Token = Guid.NewGuid()
                 };
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
-                    Intent = EmailConfirmationIntent.PasswordReset,
                     RedeemedOnUtc = DateTime.UtcNow,
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                     EmailAddress = new EmailAddress
@@ -275,9 +269,8 @@ namespace UCosmic.Domain.Identity
                 {
                     Token = Guid.NewGuid()
                 };
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
-                    Intent = EmailConfirmationIntent.PasswordReset,
                     RedeemedOnUtc = DateTime.UtcNow,
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                     EmailAddress = new EmailAddress
@@ -319,9 +312,8 @@ namespace UCosmic.Domain.Identity
                 {
                     Token = Guid.NewGuid()
                 };
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
-                    Intent = EmailConfirmationIntent.PasswordReset,
                     RedeemedOnUtc = DateTime.UtcNow,
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                     EmailAddress = new EmailAddress
@@ -363,9 +355,8 @@ namespace UCosmic.Domain.Identity
                 {
                     Token = Guid.NewGuid()
                 };
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
-                    Intent = EmailConfirmationIntent.PasswordReset,
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                     RedeemedOnUtc = DateTime.UtcNow,
                     EmailAddress = new EmailAddress
@@ -458,14 +449,14 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsInvalidWhen_IsIncorrectMatch()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     Ticket = "ticket1",
                 };
                 var command = new ResetPasswordCommand
                 {
                     Token = confirmation.Token,
-                    Ticket = "ticket2"
+                    Ticket = "ticket2",
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
@@ -490,7 +481,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsValidWhen_IsNotEmpty_AndIsCorrectMatch()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     Ticket = "tomato",
                 };
@@ -782,17 +773,17 @@ namespace UCosmic.Domain.Identity
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(scenarioOptions.Command))))
                     .Returns(scenarioOptions.EmailConfirmation);
-            var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-            memberSigner.Setup(p => p.MinimumPasswordLength).Returns(scenarioOptions.MinimumPasswordLength);
+            var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+            passwords.Setup(p => p.MinimumPasswordLength).Returns(scenarioOptions.MinimumPasswordLength);
             if (scenarioOptions.EmailConfirmation != null &&
                 scenarioOptions.EmailConfirmation.EmailAddress != null &&
                 scenarioOptions.EmailConfirmation.EmailAddress.Person != null &&
                 scenarioOptions.EmailConfirmation.EmailAddress.Person.User != null &&
                 !string.IsNullOrWhiteSpace(scenarioOptions.EmailConfirmation.EmailAddress.Person.User.Name))
-                memberSigner.Setup(m => m
-                    .IsSignedUp(scenarioOptions.EmailConfirmation.EmailAddress.Person.User.Name))
+                passwords.Setup(m => m
+                    .Exists(scenarioOptions.EmailConfirmation.EmailAddress.Person.User.Name))
                     .Returns(scenarioOptions.LocalMemberExists);
-            return new ResetPasswordValidator(queryProcessor.Object, memberSigner.Object);
+            return new ResetPasswordValidator(queryProcessor.Object, passwords.Object);
         }
 
         private static Expression<Func<GetEmailConfirmationQuery, bool>> ConfirmationQueryBasedOn(ResetPasswordCommand command)

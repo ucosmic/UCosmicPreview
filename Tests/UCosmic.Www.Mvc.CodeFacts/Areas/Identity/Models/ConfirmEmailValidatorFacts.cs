@@ -104,101 +104,18 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             }
 
             [TestMethod]
-            public void IsInvalidWhen_Intent_IsNull()
-            {
-                var validated = new ConfirmEmailForm
-                {
-                    Token = Guid.NewGuid(),
-                    SecretCode = "secret",
-                };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(new EmailConfirmation());
-                var validator = new ConfirmEmailValidator(queryProcessor.Object);
-
-                var results = validator.Validate(validated);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(
-                    ConfirmEmailValidator.FailedBecauseOfInconsistentData);
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
-            public void IsInvalidWhen_Intent_IsEmptyString()
-            {
-                var validated = new ConfirmEmailForm
-                {
-                    Token = Guid.NewGuid(),
-                    SecretCode = "secret",
-                    Intent = string.Empty,
-                };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(new EmailConfirmation());
-                var validator = new ConfirmEmailValidator(queryProcessor.Object);
-
-                var results = validator.Validate(validated);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(
-                    ConfirmEmailValidator.FailedBecauseOfInconsistentData);
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
-            public void IsInvalidWhen_Intent_IsWhiteSpace()
-            {
-                var validated = new ConfirmEmailForm
-                {
-                    Token = Guid.NewGuid(),
-                    SecretCode = "secret",
-                    Intent = " \r",
-                };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(new EmailConfirmation());
-                var validator = new ConfirmEmailValidator(queryProcessor.Object);
-
-                var results = validator.Validate(validated);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(
-                    ConfirmEmailValidator.FailedBecauseOfInconsistentData);
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
             public void IsInvalidWhen_Intent_IsIncorrect()
             {
                 var validated = new ConfirmEmailForm
                 {
                     Token = Guid.NewGuid(),
                     SecretCode = "secret",
-                    Intent = "intent1",
+                    Intent = EmailConfirmationIntent.CreatePassword,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(new EmailConfirmation
-                    {
-                        Intent = "intent2",
-                    });
+                    .Returns(new EmailConfirmation(EmailConfirmationIntent.ResetPassword));
                 var validator = new ConfirmEmailValidator(queryProcessor.Object);
 
                 var results = validator.Validate(validated);
@@ -220,15 +137,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     Token = Guid.NewGuid(),
                     SecretCode = "secret1",
-                    Intent = "intent1",
+                    Intent = EmailConfirmationIntent.ResetPassword,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(new EmailConfirmation
+                    .Returns(new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                     {
-                        Intent = "intent1",
-                        SecretCode = "secret2"
+                        SecretCode = "secret2",
                     });
                 var validator = new ConfirmEmailValidator(queryProcessor.Object);
 
@@ -251,14 +167,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     Token = Guid.NewGuid(),
                     SecretCode = "secret1",
-                    Intent = "intent1",
+                    Intent = EmailConfirmationIntent.CreatePassword,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(new EmailConfirmation
+                    .Returns(new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                     {
-                        Intent = "intent1",
                         SecretCode = "secret1",
                     });
                 var validator = new ConfirmEmailValidator(queryProcessor.Object);

@@ -18,21 +18,22 @@ namespace UCosmic.Impl.Seeders
             {
                 Context = context;
 
-                #region Sign Up Email Confirmation
+                #region Create Password Confirmation
 
-                var signUpEmailConfirmation = Context.EmailTemplates.SingleOrDefault(e => e.Establishment == null
-                    && e.Name.Equals(EmailTemplateName.SignUpConfirmation, StringComparison.OrdinalIgnoreCase));
-                if (signUpEmailConfirmation == null)
+                var createPasswordName = EmailTemplateName.CreatePasswordConfirmation.AsSentenceFragment();
+                var createPasswordTemplate = Context.EmailTemplates.SingleOrDefault(e => e.Establishment == null
+                    && e.Name.Equals(createPasswordName, StringComparison.OrdinalIgnoreCase));
+                if (createPasswordTemplate == null)
                 {
-                    signUpEmailConfirmation = new EmailTemplate
+                    createPasswordTemplate = new EmailTemplate
                     {
-                        Name = EmailTemplateName.SignUpConfirmation,
+                        Name = createPasswordName,
                     };
-                    Context.EmailTemplates.Add(signUpEmailConfirmation);
+                    Context.EmailTemplates.Add(createPasswordTemplate);
                 }
-                signUpEmailConfirmation.SubjectFormat = "Confirm your email address for UCosmic.com";
-                signUpEmailConfirmation.Instructions =
-@"This is a template for the email sent when a new user signs up for UCosmic.com.
+                createPasswordTemplate.SubjectFormat = "Confirm your email address for UCosmic.com";
+                createPasswordTemplate.Instructions =
+@"This is a template for the email sent when a new user signs up for UCosmic.com. People will use this message to create a password and sign on for the first time.
 
 There are four (4) placeholders that will be used to inject variables into the message body:
 {EmailAddress} <- The email address for which ownership must be confirmed.
@@ -43,7 +44,7 @@ There are four (4) placeholders that will be used to inject variables into the m
 Type the variables between the curly braces {LikeThis} in the template below.
 When a new email is generated from this template, the values will be replaced as long as they appear exactly as above.";
 
-                signUpEmailConfirmation.BodyFormat =
+                createPasswordTemplate.BodyFormat =
 @"You have requested access to UCosmic.com using the email address '{EmailAddress}'.To confirm your ownership of this email address, please do one of the following:
 
 If UCosmic.com is still open in your browser window, go to it and enter the following Confirmation Code:
@@ -63,21 +64,22 @@ Enjoy your UCosmic voyage!";
                 Context.SaveChanges();
 
                 #endregion
-                #region Password Reset Confirmation
+                #region Reset Password Confirmation
 
-                var passwordResetConfirmation = Context.EmailTemplates.SingleOrDefault(e => e.Establishment == null
-                    && e.Name.Equals(EmailTemplateName.PasswordResetConfirmation, StringComparison.OrdinalIgnoreCase));
-                if (passwordResetConfirmation == null)
+                var resetPasswordName = EmailTemplateName.ResetPasswordConfirmation.AsSentenceFragment();
+                var resetPasswordTemplate = Context.EmailTemplates.SingleOrDefault(e => e.Establishment == null
+                    && e.Name.Equals(resetPasswordName, StringComparison.OrdinalIgnoreCase));
+                if (resetPasswordTemplate == null)
                 {
-                    passwordResetConfirmation = new EmailTemplate
+                    resetPasswordTemplate = new EmailTemplate
                     {
-                        Name = EmailTemplateName.PasswordResetConfirmation,
+                        Name = resetPasswordName,
                     };
-                    Context.EmailTemplates.Add(passwordResetConfirmation);
+                    Context.EmailTemplates.Add(resetPasswordTemplate);
                 }
-                passwordResetConfirmation.SubjectFormat = "Password reset instructions for UCosmic.com";
-                passwordResetConfirmation.Instructions =
-@"This is a template for the email sent when a user requests a UCosmic.com password reset.
+                resetPasswordTemplate.SubjectFormat = "Password reset instructions for UCosmic.com";
+                resetPasswordTemplate.Instructions =
+@"This is a template for the email sent when a user requests a UCosmic.com password reset. People will use this message to override a forgotten password.
 
 There are four (4) placeholders that will be used to inject variables into the message body:
 {EmailAddress} <- The email address for which ownership must be confirmed.
@@ -88,7 +90,7 @@ There are four (4) placeholders that will be used to inject variables into the m
 Type the variables between the curly braces {LikeThis} in the template below.
 When a new email is generated from this template, the values will be replaced as long as they appear exactly as above.";
 
-                passwordResetConfirmation.BodyFormat =
+                resetPasswordTemplate.BodyFormat =
 @"You have requested to reset your UCosmic.com password using the email address '{EmailAddress}'. To confirm your ownership of this email address, please do one of the following:
 
 If UCosmic.com is still open in your browser window, go to it and enter the following Confirmation Code:

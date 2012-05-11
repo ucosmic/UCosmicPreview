@@ -39,14 +39,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             }
 
             [TestMethod]
-            public void MapsIntent_UsingValue_EmailConfirmationIntent_PasswordReset()
+            public void MapsIntent_UsingValue_EmailConfirmationIntent_ResetPassword()
             {
                 var model = new ForgotPasswordForm();
 
                 var command = Mapper.Map<SendConfirmEmailMessageCommand>(model);
 
                 command.ShouldNotBeNull();
-                command.Intent.ShouldEqual(EmailConfirmationIntent.PasswordReset);
+                command.Intent.ShouldEqual(EmailConfirmationIntent.ResetPassword);
             }
         }
     }

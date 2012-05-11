@@ -37,7 +37,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("reset-password")]
-        [ValidateRedeemTicket("token", EmailConfirmationIntent.PasswordReset)]
+        [ValidateRedeemTicket("token", EmailConfirmationIntent.ResetPassword)]
         public virtual ActionResult Get(Guid token)
         {
             // skip when there is an empty token
@@ -68,7 +68,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [ValidateAntiForgeryToken]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("reset-password")]
-        [ValidateRedeemTicket("model", EmailConfirmationIntent.PasswordReset)]
+        [ValidateRedeemTicket("model", EmailConfirmationIntent.ResetPassword)]
         public virtual ActionResult Post(ResetPasswordForm model)
         {
             if (model == null) return HttpNotFound();

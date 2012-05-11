@@ -77,7 +77,7 @@ namespace UCosmic.Impl
             container.Register<ICommandObjects, ObjectCommander>();
 
             // general purpose interfaces
-            container.Register<ISignMembers, DotNetMembershipProvider>();
+            container.Register<IStorePasswords, DotNetMembershipProvider>();
             container.Register<ISignUsers, DotNetFormsAuthentication>();
             container.Register<IManageConfigurations, DotNetConfigurationManager>();
             container.Register<ILogExceptions, ElmahExceptionLogger>();

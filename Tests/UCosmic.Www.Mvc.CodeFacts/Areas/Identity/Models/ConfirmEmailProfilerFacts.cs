@@ -17,7 +17,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void MapsToken()
             {
-                var source = new EmailConfirmation();
+                var source = new EmailConfirmation(EmailConfirmationIntent.CreatePassword);
 
                 var destination = Mapper.Map<ConfirmEmailForm>(source);
 
@@ -28,10 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void MapsIntent()
             {
-                var source = new EmailConfirmation
-                {
-                    Intent = "intent",
-                };
+                var source = new EmailConfirmation(EmailConfirmationIntent.ResetPassword);
 
                 var destination = Mapper.Map<ConfirmEmailForm>(source);
 
@@ -42,7 +39,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void IgnoresSecretCode()
             {
-                var source = new EmailConfirmation
+                var source = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     SecretCode = "its a secret",
                 };
@@ -57,7 +54,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void IgnoresIsUrlConfirmation()
             {
-                var source = new EmailConfirmation();
+                var source = new EmailConfirmation(EmailConfirmationIntent.ResetPassword);
 
                 var destination = Mapper.Map<ConfirmEmailForm>(source);
 
@@ -100,7 +97,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             {
                 var source = new ConfirmEmailForm
                 {
-                    Intent = "intent",
+                    Intent = EmailConfirmationIntent.ResetPassword,
                 };
 
                 var destination = Mapper.Map<RedeemEmailConfirmationCommand>(source);

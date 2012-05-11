@@ -16,20 +16,20 @@ namespace UCosmic.Domain.Identity
         private readonly ICommandEntities _entities;
         private readonly IProcessQueries _queryProcessor;
         private readonly ISignUsers _userSigner;
-        private readonly ISignMembers _memberSigner;
+        private readonly IStorePasswords _passwords;
         private readonly IUnitOfWork _unitOfWork;
 
         public ReceiveSamlAuthnResponseHandler(IProcessQueries queryProcessor
             , ICommandEntities entities
             , ISignUsers userSigner
-            , ISignMembers memberSigner
+            , IStorePasswords passwords
             , IUnitOfWork unitOfWork
         )
         {
             _queryProcessor = queryProcessor;
             _entities = entities;
             _userSigner = userSigner;
-            _memberSigner = memberSigner;
+            _passwords = passwords;
             _unitOfWork = unitOfWork;
         }
 
@@ -57,8 +57,8 @@ namespace UCosmic.Domain.Identity
             }
 
             // delete local account if it exists
-            if (!string.IsNullOrWhiteSpace(user.Name) && _memberSigner.IsSignedUp(user.Name))
-                _memberSigner.Revoke(user.Name);
+            if (!string.IsNullOrWhiteSpace(user.Name) && _passwords.Exists(user.Name))
+                _passwords.Destroy(user.Name);
 
             // enforce invariants on user
             user.Name = samlResponse.EduPersonPrincipalName;

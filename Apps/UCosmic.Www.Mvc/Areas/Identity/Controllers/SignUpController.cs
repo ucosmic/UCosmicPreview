@@ -9,12 +9,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
     public class SignUpServices
     {
-        public SignUpServices(IHandleCommands<SendSignUpMessageCommand> commandHandler)
+        public SignUpServices(IHandleCommands<SendCreatePasswordMessageCommand> commandHandler)
         {
             CommandHandler = commandHandler;
         }
 
-        public IHandleCommands<SendSignUpMessageCommand> CommandHandler { get; private set; }
+        public IHandleCommands<SendCreatePasswordMessageCommand> CommandHandler { get; private set; }
     }
 
     [EnforceHttps]
@@ -50,7 +50,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             if (!ModelState.IsValid) return View(model);
 
             // execute command
-            var command = Mapper.Map<SendSignUpMessageCommand>(model);
+            var command = Mapper.Map<SendCreatePasswordMessageCommand>(model);
             command.SendFromUrl = Url.Action(MVC.Identity.SignOn.Get());
             _services.CommandHandler.Handle(command);
 

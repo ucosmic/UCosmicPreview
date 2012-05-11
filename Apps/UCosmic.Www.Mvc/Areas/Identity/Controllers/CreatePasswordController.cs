@@ -36,7 +36,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("create-password")]
-        [ValidateRedeemTicket("token", EmailConfirmationIntent.SignUp)]
+        [ValidateRedeemTicket("token", EmailConfirmationIntent.CreatePassword)]
         public virtual ActionResult Get(Guid token)
         {
             // skip when there is an empty token
@@ -67,7 +67,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [ValidateAntiForgeryToken]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("create-password")]
-        [ValidateRedeemTicket("model", EmailConfirmationIntent.SignUp)]
+        [ValidateRedeemTicket("model", EmailConfirmationIntent.CreatePassword)]
         public virtual ActionResult Post(CreatePasswordForm model)
         {
             if (model == null) return HttpNotFound();

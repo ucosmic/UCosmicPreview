@@ -36,7 +36,7 @@ namespace UCosmic
         {
             return (value != null) ? HttpUtility.UrlDecode(value) : null;
         }
-        
+
         #endregion
         #region Email Addresses
 
@@ -45,12 +45,101 @@ namespace UCosmic
             if (email == null) throw new ArgumentNullException("email");
 
             const char at = '@';
-            if (!email.Contains(at)) throw new InvalidOperationException(string.Format(
-                "The string '{0}' is missing its '{1}' character.", email, at));
-            if (email.IndexOf(at) != email.LastIndexOf(at)) throw new InvalidOperationException(string.Format(
-                "The string '{0}' has more than one '{1}' characters.", email, at));
+            if (!email.Contains(at))
+                throw new InvalidOperationException(
+                    "The string '{0}' is missing its '{1}' character.".FormatWith(email, at));
+            if (email.IndexOf(at) != email.LastIndexOf(at))
+                throw new InvalidOperationException(
+                    "The string '{0}' has more than one '{1}' characters.".FormatWith(email, at));
 
             return email.Substring(email.LastIndexOf(at));
+        }
+
+        #endregion
+        #region String to enum
+
+        private static readonly IDictionary<Type, IDictionary<string, object>> StringsToEnums = new Dictionary<Type, IDictionary<string, object>>();
+
+        public static TEnum AsEnum<TEnum>(this string stringValue) where TEnum : struct, IConvertible
+        {
+            // check invoked argument and constrain generic argument
+            var typeOfEnum = typeof(TEnum);
+            if (stringValue.IsNullOrWhiteSpace())
+                throw new ArgumentException("Cannot be null or whitespace.", "stringValue");
+            if (!typeOfEnum.IsEnum) throw new ArgumentException("TEnum must be an enumerated type.");
+
+            // initialize the dictionary
+            if (!StringsToEnums.ContainsKey(typeOfEnum))
+                StringsToEnums.Add(typeOfEnum, new Dictionary<string, object>());
+
+            // defragment the string
+            stringValue = stringValue.Replace(" ", string.Empty);
+
+            // check the dictionary
+            var pair = StringsToEnums[typeOfEnum];
+            if (pair.ContainsKey(stringValue))
+                return (TEnum)pair[stringValue];
+
+            // parse
+            var parsed = Enum.Parse(typeof(TEnum), stringValue);
+            pair.Add(stringValue, parsed);
+            return (TEnum)pair[stringValue];
+        }
+
+        #endregion
+        #region Enum to string
+
+        private static readonly IDictionary<Type, IDictionary<object, string>> EnumsToStrings = new Dictionary<Type, IDictionary<object, string>>();
+
+        public static string AsSentenceFragment<TEnum>(this TEnum enumValue) where TEnum : struct, IConvertible
+        {
+            // check invoked argument and constrain generic argument
+            var typeOfEnum = typeof(TEnum);
+            if (!typeOfEnum.IsEnum) throw new ArgumentException("TEnum must be an enumerated type.");
+
+            // initialize the dictionary
+            if (!EnumsToStrings.ContainsKey(typeOfEnum))
+                EnumsToStrings.Add(typeOfEnum, new Dictionary<object, string>());
+
+            // check the dictionary
+            var pair = EnumsToStrings[typeOfEnum];
+            if (pair.ContainsKey(enumValue))
+                return pair[enumValue];
+
+            // fragment
+            var fragmented = new StringBuilder();
+            var characters = enumValue.ToInvariantString().ToCharArray();
+            foreach (var character in characters)
+                if (character.ToInvariantString() == character.ToInvariantString().ToUpper())
+                    fragmented.Append(" {0}".FormatWith(character));
+                else
+                    fragmented.Append(character);
+
+            // parse
+            var sentence = fragmented.ToString().Trim();
+            pair.Add(enumValue, sentence);
+            return pair[enumValue];
+        }
+
+        #endregion
+        #region String shortcuts
+
+        public static bool IsNullOrWhiteSpace(this string value)
+        {
+            return string.IsNullOrWhiteSpace(value);
+        }
+
+        public static string FormatWith(this string format, params object[] args)
+        {
+            return string.Format(format, args);
+        }
+
+        #endregion
+        #region Null check shortcut
+
+        public static bool IsNull(this object value)
+        {
+            return value == null;
         }
 
         #endregion
@@ -58,7 +147,7 @@ namespace UCosmic
 
         public static string FormatTemplate(this string template, IEnumerable<KeyValuePair<string, string>> replacements)
         {
-            if (String.IsNullOrWhiteSpace(template))
+            if (template.IsNullOrWhiteSpace())
                 return template;
 
             var content = new StringBuilder(template);
@@ -100,7 +189,7 @@ namespace UCosmic
 
         public static string ToInvariantString(this object value)
         {
-            if (value == null) throw new NullReferenceException();
+            if (value == null) throw new ArgumentNullException("value");
             return value.ToString();
         }
 
@@ -109,7 +198,7 @@ namespace UCosmic
 
         public static byte[] ToHexBytes(this string hex)
         {
-            if (string.IsNullOrWhiteSpace(hex)) return null;
+            if (hex.IsNullOrWhiteSpace()) return null;
 
             var charCount = hex.Length;
             var bytes = new byte[charCount / 2];
@@ -123,7 +212,7 @@ namespace UCosmic
         // ReSharper disable UnusedMember.Global
 
         public static string ToHexString(this byte[] bytes)
-            // ReSharper restore UnusedMember.Global
+        // ReSharper restore UnusedMember.Global
         {
             if (bytes == null || bytes.Length < 1) return null;
 

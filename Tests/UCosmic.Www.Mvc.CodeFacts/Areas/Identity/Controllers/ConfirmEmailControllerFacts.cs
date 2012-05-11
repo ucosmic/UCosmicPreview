@@ -118,7 +118,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void ReturnsView_WhenConfirmation_IsFound()
             {
-                var confirmation = new EmailConfirmation();
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword);
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
                     .Returns(confirmation);
@@ -134,7 +134,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void SetsModelProperty_SecretCode_ToMethodArgValue()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     SecretCode = "very secret",
                 };
@@ -160,7 +160,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void SetsModelProperty_IsUrlConfirmation_ToFalse_WhenMethodArgIsNull()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     SecretCode = "very secret",
                 };
@@ -186,7 +186,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void SetsModelProperty_IsUrlConfirmation_ToFalse_WhenMethodArgIsEmptyString()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     SecretCode = "very secret",
                 };
@@ -213,7 +213,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void SetsModelProperty_IsUrlConfirmation_ToFalse_WhenMethodArgIsWhiteSpace()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     SecretCode = "very secret",
                 };
@@ -240,7 +240,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void SetsModelProperty_IsUrlConfirmation_ToTrue_WhenMethodArgIsNotNullOrWhiteSpace()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     SecretCode = "very secret",
                 };
@@ -354,7 +354,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 var form = new ConfirmEmailForm
                 {
-                    Intent = "wrong",
                     SecretCode = "wrong",
                 };
                 var services = new ConfirmEmailServices(null, null);
@@ -380,7 +379,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var form = new ConfirmEmailForm
                 {
                     Token = Guid.NewGuid(),
-                    Intent = EmailConfirmationIntent.PasswordReset,
+                    Intent = EmailConfirmationIntent.ResetPassword,
                     SecretCode = "secret",
                 };
                 var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>(MockBehavior.Strict);
@@ -401,7 +400,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var form = new ConfirmEmailForm
                 {
                     Token = Guid.NewGuid(),
-                    Intent = EmailConfirmationIntent.PasswordReset,
+                    Intent = EmailConfirmationIntent.ResetPassword,
                     SecretCode = "secret",
                 };
                 var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>(MockBehavior.Strict);
@@ -425,7 +424,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var form = new ConfirmEmailForm
                 {
                     Token = Guid.NewGuid(),
-                    Intent = EmailConfirmationIntent.PasswordReset,
+                    Intent = EmailConfirmationIntent.ResetPassword,
                     SecretCode = "secret",
                 };
                 var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>(MockBehavior.Strict);
@@ -439,16 +438,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var message = controller.TempData.FeedbackMessage();
                 message.ShouldNotBeNull();
                 message.ShouldEqual(ConfirmEmailController.SuccessMessageForIntent
-                    [EmailConfirmationIntent.PasswordReset]);
+                    [EmailConfirmationIntent.ResetPassword]);
             }
 
             [TestMethod]
-            public void FlashesSuccessMessage_ForSignUp_WhenIntentMatches()
+            public void FlashesSuccessMessage_ForCreatePassword_WhenIntentMatches()
             {
                 var form = new ConfirmEmailForm
                 {
                     Token = Guid.NewGuid(),
-                    Intent = EmailConfirmationIntent.SignUp,
+                    Intent = EmailConfirmationIntent.CreatePassword,
                     SecretCode = "secret",
                 };
                 var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>(MockBehavior.Strict);
@@ -462,7 +461,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var message = controller.TempData.FeedbackMessage();
                 message.ShouldNotBeNull();
                 message.ShouldEqual(ConfirmEmailController.SuccessMessageForIntent
-                    [EmailConfirmationIntent.SignUp]);
+                    [EmailConfirmationIntent.CreatePassword]);
             }
 
             [TestMethod]
@@ -471,7 +470,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var form = new ConfirmEmailForm
                 {
                     Token = Guid.NewGuid(),
-                    Intent = EmailConfirmationIntent.PasswordReset,
+                    Intent = EmailConfirmationIntent.ResetPassword,
                     SecretCode = "secret",
                 };
                 var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>(MockBehavior.Strict);
@@ -497,7 +496,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var form = new ConfirmEmailForm
                 {
                     Token = Guid.NewGuid(),
-                    Intent = EmailConfirmationIntent.SignUp,
+                    Intent = EmailConfirmationIntent.CreatePassword,
                     SecretCode = "secret",
                 };
                 var commandHandler = new Mock<IHandleCommands<RedeemEmailConfirmationCommand>>(MockBehavior.Strict);
@@ -588,7 +587,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void ReturnsRouteValues_ForResetPasswordIntent()
             {
                 var token = Guid.NewGuid();
-                const string intent = EmailConfirmationIntent.PasswordReset;
+                const EmailConfirmationIntent intent = EmailConfirmationIntent.ResetPassword;
 
                 var result = ConfirmEmailController.GetRedeemedRouteValues(token, intent);
 
@@ -600,10 +599,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ReturnsRouteValues_ForSignUpIntent()
+            public void ReturnsRouteValues_ForCreatePasswordIntent()
             {
                 var token = Guid.NewGuid();
-                const string intent = EmailConfirmationIntent.SignUp;
+                const EmailConfirmationIntent intent = EmailConfirmationIntent.CreatePassword;
 
                 var result = ConfirmEmailController.GetRedeemedRouteValues(token, intent);
 
@@ -612,28 +611,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 result["controller"].ShouldEqual(MVC.Identity.CreatePassword.Name);
                 result["action"].ShouldEqual(MVC.Identity.CreatePassword.ActionNames.Get);
                 result["token"].ShouldEqual(token);
-            }
-
-            [TestMethod]
-            public void ThrowsNotSupportedException_ForUnexpectedIntent()
-            {
-                var token = Guid.NewGuid();
-                const string intent = "unexpected";
-                NotSupportedException exception = null;
-
-                try
-                {
-                    ConfirmEmailController.GetRedeemedRouteValues(token, intent);
-                }
-                catch (NotSupportedException ex)
-                {
-                    exception = ex;
-                }
-
-                exception.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                exception.Message.ShouldContain(intent);
-                // ReSharper restore PossibleNullReferenceException
             }
         }
 

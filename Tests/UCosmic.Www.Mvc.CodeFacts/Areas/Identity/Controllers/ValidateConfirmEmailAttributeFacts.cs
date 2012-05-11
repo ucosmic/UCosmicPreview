@@ -152,7 +152,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(Guid.Empty))))
-                    .Returns(new EmailConfirmation());
+                    .Returns(new EmailConfirmation(EmailConfirmationIntent.ResetPassword));
                 var attribute = new ValidateConfirmEmailAttribute(paramName)
                 {
                     QueryProcessor = queryProcessor.Object,
@@ -193,10 +193,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void SetsResult_ToPartialExpiredDenial_WhenToken_MatchesExpiredEntity()
             {
                 const string paramName = "some value";
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddSeconds(-5),
-                    Intent = "intent",
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
@@ -225,11 +224,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void SetsResult_ToPartialRetiredDenial_WhenToken_MatchesExpiredEntity()
             {
                 const string paramName = "some value";
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
                     RetiredOnUtc = DateTime.UtcNow.AddSeconds(-5),
-                    Intent = "intent",
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
@@ -258,10 +256,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void SetsNoResult_WhenTokenMatchesEntity_Unexpired_Unredeemed_Unretired()
             {
                 const string paramName = "some value";
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
-                    Intent = EmailConfirmationIntent.PasswordReset,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m

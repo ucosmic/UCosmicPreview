@@ -43,13 +43,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public const string FailedBecauseIsLockedOut = "Your account has been locked after {0} incorrect password attempts. Please reset your password.";
         public const string FailedBecausePasswordWasIncorrect = "You entered an incorrect password. You have {0} more attempt{1} before your account is locked.";
 
-        private readonly ISignMembers _memberSigner;
+        private readonly IStorePasswords _passwords;
         private readonly HttpSessionStateBase _session;
 
-        public SignInValidator(ISignMembers memberSigner)
+        public SignInValidator(IStorePasswords passwords)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
-            _memberSigner = memberSigner;
+            _passwords = passwords;
 
             _session = HttpContext.Current != null && HttpContext.Current.Session != null
                 ? new HttpSessionStateWrapper(HttpContext.Current.Session)
@@ -62,22 +62,22 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 // account cannot be locked out
                 .Must(ValidateIsNotLockedOut)
                     .WithMessage(FailedBecauseIsLockedOut,
-                        p => _memberSigner.MaximumPasswordAttempts)
+                        p => _passwords.MaximumPasswordAttempts)
                 // validate the password
                 .Must(ValidatePasswordIsCorrect)
                     .WithMessage(FailedBecausePasswordWasIncorrect,
-                        p => _memberSigner.MaximumPasswordAttempts - _session.FailedPasswordAttempts(),
-                        p => (_memberSigner.MaximumPasswordAttempts - _session.FailedPasswordAttempts() == 1) ? string.Empty : "s")
+                        p => _passwords.MaximumPasswordAttempts - _session.FailedPasswordAttempts(),
+                        p => (_passwords.MaximumPasswordAttempts - _session.FailedPasswordAttempts() == 1) ? string.Empty : "s")
                 // check lockout again, this may be last attempt
                 .Must(ValidateIsNotLockedOut)
                     .WithMessage(FailedBecauseIsLockedOut,
-                        p => _memberSigner.MaximumPasswordAttempts)
+                        p => _passwords.MaximumPasswordAttempts)
             ;
         }
 
         private bool ValidatePasswordIsCorrect(SignInForm model, string password)
         {
-            var isValid = _memberSigner.Validate(model.EmailAddress, password);
+            var isValid = _passwords.Validate(model.EmailAddress, password);
             if (!isValid)
             {
                 _session.FailedPasswordAttempt();
@@ -89,7 +89,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
         private bool ValidateIsNotLockedOut(SignInForm model, string password)
         {
-            var isLockedOut = _memberSigner.IsLockedOut(model.EmailAddress);
+            var isLockedOut = _passwords.IsLockedOut(model.EmailAddress);
             if (isLockedOut) _session.FailedPasswordAttempts(false);
             return !isLockedOut;
         }

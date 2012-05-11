@@ -14,7 +14,7 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void SetsToken_ToNonEmptyGuid()
             {
-                var entity = new EmailConfirmation();
+                var entity = new EmailConfirmation(EmailConfirmationIntent.CreatePassword);
                 entity.ShouldNotBeNull();
                 entity.Token.ShouldNotEqual(Guid.Empty);
             }
@@ -22,7 +22,7 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void SetsIssuedOnUtc_ToUtcNow()
             {
-                var entity = new EmailConfirmation();
+                var entity = new EmailConfirmation(EmailConfirmationIntent.ResetPassword);
                 entity.ShouldNotBeNull();
                 entity.IssuedOnUtc.ShouldBeInRange(
                     DateTime.UtcNow.AddSeconds(-5),
@@ -32,7 +32,7 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void SetsExpiresOnUtc_ToUtcNow_PlusTwoHours()
             {
-                var entity = new EmailConfirmation();
+                var entity = new EmailConfirmation(EmailConfirmationIntent.CreatePassword);
                 entity.ShouldNotBeNull();
                 entity.ExpiresOnUtc.ShouldBeInRange(
                     DateTime.UtcNow.AddSeconds((60 * 60 * 2) - 5),
@@ -47,7 +47,7 @@ namespace UCosmic.Domain.People
             public void HasGetSet()
             {
                 const int value = 2;
-                var entity = new EmailConfirmation { Id = value };
+                var entity = new EmailConfirmation(EmailConfirmationIntent.ResetPassword) { Id = value };
                 entity.ShouldNotBeNull();
                 entity.Id.ShouldEqual(value);
             }
@@ -60,7 +60,7 @@ namespace UCosmic.Domain.People
             public void HasGetSet()
             {
                 const int value = 0;
-                var entity = new EmailConfirmation { PersonId = value };
+                var entity = new EmailConfirmation(EmailConfirmationIntent.CreatePassword) { PersonId = value };
                 entity.ShouldNotBeNull();
                 entity.PersonId.ShouldEqual(value);
             }
@@ -91,7 +91,7 @@ namespace UCosmic.Domain.People
             public void HasGetSet()
             {
                 var value = DateTime.UtcNow;
-                var entity = new EmailConfirmation { IssuedOnUtc = value };
+                var entity = new EmailConfirmation(EmailConfirmationIntent.ResetPassword) { IssuedOnUtc = value };
                 entity.ShouldNotBeNull();
                 entity.IssuedOnUtc.ShouldEqual(value);
             }

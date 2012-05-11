@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using NGeo.GeoNames;
 using NGeo.Yahoo.GeoPlanet;
@@ -12,9 +11,7 @@ using Place = UCosmic.Domain.Places.Place;
 
 namespace UCosmic.Impl.Seeders
 {
-    // ReSharper disable UnusedMember.Global
     public class RecruitmentAgencySeeder : BaseEstablishmentSeeder
-    // ReSharper restore UnusedMember.Global
     {
         private static readonly IManageConfigurations WebConfig = new DotNetConfigurationManager();
 
@@ -36,6 +33,8 @@ namespace UCosmic.Impl.Seeders
             Place place;
             List<Place> places;
 
+            // ReSharper disable PossibleInvalidOperationException
+
             #region EduGlobal headquarters and branches
 
             var eduGlobalHeaqdquarters = Context.Establishments.SingleOrDefault(a =>
@@ -48,7 +47,6 @@ namespace UCosmic.Impl.Seeders
                 latitude = 39.898716;
                 longitude = 116.417877;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                Debug.Assert(result.WoeId != null);
                 place = placeFactory.FromWoeId(result.WoeId.Value);
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
@@ -92,7 +90,6 @@ namespace UCosmic.Impl.Seeders
                 latitude = 43.891129;
                 longitude = 125.310471;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                Debug.Assert(result.WoeId != null);
                 place = placeFactory.FromWoeId(result.WoeId.Value);
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
@@ -147,7 +144,6 @@ namespace UCosmic.Impl.Seeders
                 latitude = 39.9059830001;
                 longitude = 116.4593730001;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                Debug.Assert(result.WoeId.HasValue);
                 place = placeFactory.FromWoeId(result.WoeId.Value);
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
@@ -190,7 +186,6 @@ namespace UCosmic.Impl.Seeders
                 latitude = 28.194132;
                 longitude = 112.976715;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                Debug.Assert(result.WoeId != null);
                 place = placeFactory.FromWoeId(result.WoeId.Value);
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
@@ -245,7 +240,6 @@ namespace UCosmic.Impl.Seeders
                 latitude = 39.905605;
                 longitude = 116.459831;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                Debug.Assert(result.WoeId != null);
                 place = placeFactory.FromWoeId(result.WoeId.Value);
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
@@ -285,7 +279,6 @@ namespace UCosmic.Impl.Seeders
                 latitude = 32.044769;
                 longitude = 118.789917;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                Debug.Assert(result.WoeId != null);
                 place = placeFactory.FromWoeId(result.WoeId.Value);
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
@@ -323,7 +316,6 @@ namespace UCosmic.Impl.Seeders
                 latitude = 23.13893700002;
                 longitude = 113.32875100002;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                Debug.Assert(result.WoeId != null);
                 place = placeFactory.FromWoeId(result.WoeId.Value);
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
@@ -360,6 +352,7 @@ namespace UCosmic.Impl.Seeders
 
             #endregion
 
+            // ReSharper restore PossibleInvalidOperationException
         }
     }
 }

@@ -10,14 +10,14 @@
     <p>
         You can click that URL or copy and paste it into your browser to confirm ownership.
     </p>
-    if (Model.Intent == EmailConfirmationIntent.SignUp)
+    if (Model.Intent == EmailConfirmationIntent.CreatePassword)
     {
     <p>
         If you have already used the URL to confirm ownership and set up a password, you
         can safely close this page.
     </p>
     }
-    else if (Model.Intent == EmailConfirmationIntent.PasswordReset)
+    else if (Model.Intent == EmailConfirmationIntent.ResetPassword)
     {
     <p>
         If you have already used the URL to confirm ownership and reset your password, you
@@ -25,7 +25,7 @@
     </p>
     }
 }
-else if (Model.Intent == EmailConfirmationIntent.SignUp)
+else if (Model.Intent == EmailConfirmationIntent.CreatePassword)
 {
     <p>
         The web page you used to sign up and send the confirmation email may still be open
@@ -36,7 +36,7 @@ else if (Model.Intent == EmailConfirmationIntent.SignUp)
         that page.
     </p>
 }
-else if (Model.Intent == EmailConfirmationIntent.PasswordReset)
+else if (Model.Intent == EmailConfirmationIntent.ResetPassword)
 {
     <p>
         The web page you used to reset your password and send the confirmation email may still be open

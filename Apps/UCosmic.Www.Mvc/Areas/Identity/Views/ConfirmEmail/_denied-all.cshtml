@@ -5,7 +5,7 @@
     ViewBag.Title = "There was a problem confirming your email";
     switch (Model.Intent)
     {
-        case EmailConfirmationIntent.SignUp:
+        case EmailConfirmationIntent.CreatePassword:
             switch (Model.Reason)
             {
                 case ConfirmDeniedBecause.IsExpired:
@@ -21,7 +21,7 @@
                     break;
             }
             break;
-        case EmailConfirmationIntent.PasswordReset:
+        case EmailConfirmationIntent.ResetPassword:
             switch (Model.Reason)
             {
                 case ConfirmDeniedBecause.IsExpired:

@@ -90,9 +90,9 @@ namespace UCosmic.Domain.Identity
         public const string FailedBecauseNameMatchedNoLocalMember =
             "User with name '{0}' does not have a local membership account.";
 
-        public static bool NameMatchesLocalMember(string name, ISignMembers memberSigner)
+        public static bool NameMatchesLocalMember(string name, IStorePasswords passwords)
         {
-            return memberSigner.IsSignedUp(name);
+            return passwords.Exists(name);
         }
 
         #endregion

@@ -32,7 +32,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public const string FailedBecauseUserNameMatchedNoLocalMember = "A user account for the email address '{0}' could not be found.";
         public const string FailedBecauseEduPersonTargetedIdWasNotEmpty = "Your password cannot be reset because you have a Single Sign On account {0}.";
 
-        public ForgotPasswordValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
+        public ForgotPasswordValidator(IProcessQueries queryProcessor, IStorePasswords passwords)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -90,7 +90,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                         p => p.EmailAddress.GetEmailDomain())
 
                 // the email address' person's user's name must match a local member account
-                .Must(p => ValidateUser.NameMatchesLocalMember(person.User.Name, memberSigner))
+                .Must(p => ValidateUser.NameMatchesLocalMember(person.User.Name, passwords))
                     .WithMessage(FailedBecauseUserNameMatchedNoLocalMember,
                         p => p.EmailAddress)
 
@@ -116,7 +116,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             protected override void Configure()
             {
                 CreateMap<ForgotPasswordForm, SendConfirmEmailMessageCommand>()
-                    .ForMember(d => d.Intent, o => o.UseValue(EmailConfirmationIntent.PasswordReset))
+                    .ForMember(d => d.Intent, o => o.UseValue(EmailConfirmationIntent.ResetPassword))
                     .ForMember(d => d.SendFromUrl, o => o.Ignore())
                     .ForMember(d => d.ConfirmationToken, o => o.Ignore())
                 ;

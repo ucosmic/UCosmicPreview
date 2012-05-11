@@ -6,21 +6,21 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Identity
 {
-    public class SendSignUpMessageCommand
+    public class SendCreatePasswordMessageCommand
     {
         public string EmailAddress { get; set; }
         public string SendFromUrl { get; set; }
         public Guid ConfirmationToken { get; internal set; }
     }
 
-    public class SendSignUpMessageHandler : IHandleCommands<SendSignUpMessageCommand>
+    public class SendCreatePasswordMessageHandler : IHandleCommands<SendCreatePasswordMessageCommand>
     {
         private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IHandleCommands<SendConfirmEmailMessageCommand> _sendHandler;
 
-        public SendSignUpMessageHandler(IProcessQueries queryProcessor
+        public SendCreatePasswordMessageHandler(IProcessQueries queryProcessor
             , ICommandEntities entities
             , IUnitOfWork unitOfWork
             , IHandleCommands<SendConfirmEmailMessageCommand> sendHandler
@@ -32,7 +32,7 @@ namespace UCosmic.Domain.Identity
             _sendHandler = sendHandler;
         }
 
-        public void Handle(SendSignUpMessageCommand command)
+        public void Handle(SendCreatePasswordMessageCommand command)
         {
             if (command == null) throw new ArgumentNullException("command");
 
@@ -87,7 +87,7 @@ namespace UCosmic.Domain.Identity
             var sendCommand = new SendConfirmEmailMessageCommand
             {
                 EmailAddress = command.EmailAddress,
-                Intent = EmailConfirmationIntent.SignUp,
+                Intent = EmailConfirmationIntent.CreatePassword,
                 SendFromUrl = command.SendFromUrl,
             };
             _sendHandler.Handle(sendCommand);
@@ -95,9 +95,9 @@ namespace UCosmic.Domain.Identity
         }
     }
 
-    public class SendSignUpMessageValidator : AbstractValidator<SendSignUpMessageCommand>
+    public class SendCreatePasswordMessageValidator : AbstractValidator<SendCreatePasswordMessageCommand>
     {
-        public SendSignUpMessageValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
+        public SendCreatePasswordMessageValidator(IProcessQueries queryProcessor, IStorePasswords passwords)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -158,7 +158,7 @@ namespace UCosmic.Domain.Identity
                         .WithMessage(ValidatePerson.FailedBecauseUserIsRegistered,
                             p => person.DisplayName)
                     // it must not have a local member account
-                    .Must(p => person.User == null || !memberSigner.IsSignedUp(person.User.Name))
+                    .Must(p => person.User == null || !passwords.Exists(person.User.Name))
                         .WithMessage(ValidateUser.FailedBecauseNameMatchedLocalMember,
                             p => person.User.Name)
             );

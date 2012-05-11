@@ -90,17 +90,18 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             return RedirectToRoute(redeemedRoute);
         }
 
-        public static readonly IDictionary<string, string> SuccessMessageForIntent = new Dictionary<string, string>
-        {
-            { EmailConfirmationIntent.SignUp, "Your email address has been confirmed. Please create your password now." },
-            { EmailConfirmationIntent.PasswordReset, "Your email address has been confirmed. Please reset your password now." },
-        };
+        public static readonly IDictionary<EmailConfirmationIntent, string> SuccessMessageForIntent =
+            new Dictionary<EmailConfirmationIntent, string>
+            {
+                { EmailConfirmationIntent.CreatePassword, "Your email address has been confirmed. Please create your password now." },
+                { EmailConfirmationIntent.ResetPassword, "Your email address has been confirmed. Please reset your password now." },
+            };
 
-        internal static RouteValueDictionary GetRedeemedRouteValues(Guid token, string intent)
+        internal static RouteValueDictionary GetRedeemedRouteValues(Guid token, EmailConfirmationIntent intent)
         {
             switch (intent)
             {
-                case EmailConfirmationIntent.PasswordReset:
+                case EmailConfirmationIntent.ResetPassword:
                     return new RouteValueDictionary(new
                     {
                         area = MVC.Identity.Name,
@@ -108,7 +109,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         action = MVC.Identity.ResetPassword.ActionNames.Get,
                         token,
                     });
-                case EmailConfirmationIntent.SignUp:
+                case EmailConfirmationIntent.CreatePassword:
                     return new RouteValueDictionary(new
                     {
                         area = MVC.Identity.Name,

@@ -334,11 +334,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(PersonQueryBasedOn(validated))))
                     .Returns(person);
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(m => m
-                    .IsSignedUp(It.Is(IsSignedUpBasedOn(person))))
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(m => m
+                    .Exists(It.Is(IsSignedUpBasedOn(person))))
                     .Returns(false);
-                var validator = new ForgotPasswordValidator(queryProcessor.Object, memberSigner.Object);
+                var validator = new ForgotPasswordValidator(queryProcessor.Object, passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -385,11 +385,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(PersonQueryBasedOn(validated))))
                     .Returns(person);
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(m => m
-                    .IsSignedUp(It.Is(IsSignedUpBasedOn(person))))
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(m => m
+                    .Exists(It.Is(IsSignedUpBasedOn(person))))
                     .Returns(true);
-                var validator = new ForgotPasswordValidator(queryProcessor.Object, memberSigner.Object);
+                var validator = new ForgotPasswordValidator(queryProcessor.Object, passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -437,11 +437,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(PersonQueryBasedOn(validated))))
                     .Returns(person);
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(m => m
-                    .IsSignedUp(It.Is(IsSignedUpBasedOn(person))))
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(m => m
+                    .Exists(It.Is(IsSignedUpBasedOn(person))))
                     .Returns(true);
-                var validator = new ForgotPasswordValidator(queryProcessor.Object, memberSigner.Object);
+                var validator = new ForgotPasswordValidator(queryProcessor.Object, passwords.Object);
 
                 var results = validator.Validate(validated);
 

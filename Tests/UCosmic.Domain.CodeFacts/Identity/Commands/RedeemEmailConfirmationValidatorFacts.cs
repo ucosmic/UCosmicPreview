@@ -64,7 +64,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsInvalidWhen_MatchesExpiredEntity()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(-1),
                 };
@@ -95,7 +95,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsInvalidWhen_MatchesRetiredEntity()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                     RetiredOnUtc = DateTime.UtcNow.AddMinutes(-1),
@@ -127,7 +127,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsValidWhen_IsNotEmpty_AndMatchesEntity_Unexpired_UnRedeemed_Unretired()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddMinutes(1),
                 };
@@ -212,14 +212,15 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsInvalidWhen_IsIncorrectMatch()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
                 {
                     SecretCode = "secret1",
                 };
                 var command = new RedeemEmailConfirmationCommand
                 {
                     Token = confirmation.Token,
-                    SecretCode = "secret2"
+                    SecretCode = "secret2",
+                    Intent = EmailConfirmationIntent.ResetPassword,
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
@@ -244,14 +245,15 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsValidWhen_IsNotEmpty_AndIsCorrectMatch()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     SecretCode = "secret",
                 };
                 var command = new RedeemEmailConfirmationCommand
                 {
                     Token = confirmation.Token,
-                    SecretCode = "secret"
+                    SecretCode = "secret",
+                    Intent = EmailConfirmationIntent.CreatePassword,
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
@@ -287,73 +289,13 @@ namespace UCosmic.Domain.Identity
         public class TheIntentProperty
         {
             [TestMethod]
-            public void IsInvalidWhen_IsNull()
-            {
-                var command = new RedeemEmailConfirmationCommand();
-                var scenarioOptions = new ScenarioOptions();
-                var validator = CreateValidator(scenarioOptions);
-
-                var results = validator.Validate(command);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Intent");
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(
-                    ValidateEmailConfirmation.FailedBecauseIntentWasEmpty);
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
-            public void IsInvalidWhen_IsEmptyString()
-            {
-                var command = new RedeemEmailConfirmationCommand { Intent = string.Empty };
-                var scenarioOptions = new ScenarioOptions();
-                var validator = CreateValidator(scenarioOptions);
-
-                var results = validator.Validate(command);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Intent");
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(
-                    ValidateEmailConfirmation.FailedBecauseIntentWasEmpty);
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
-            public void IsInvalidWhen_IsWhiteSpace()
-            {
-                var command = new RedeemEmailConfirmationCommand { Intent = "\t" };
-                var scenarioOptions = new ScenarioOptions();
-                var validator = CreateValidator(scenarioOptions);
-
-                var results = validator.Validate(command);
-
-                results.IsValid.ShouldBeFalse();
-                results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
-                var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Intent");
-                error.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                error.ErrorMessage.ShouldEqual(
-                    ValidateEmailConfirmation.FailedBecauseIntentWasEmpty);
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
             public void IsInvalidWhen_IsIncorrectMatch()
             {
-                var confirmation = new EmailConfirmation
-                {
-                    Intent = "intent1",
-                };
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword);
                 var command = new RedeemEmailConfirmationCommand
                 {
                     Token = confirmation.Token,
-                    Intent = "intent2"
+                    Intent = EmailConfirmationIntent.CreatePassword,
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
@@ -376,16 +318,17 @@ namespace UCosmic.Domain.Identity
             }
 
             [TestMethod]
-            public void IsValidWhen_IsNotEmpty_AndIsCorrectMatch()
+            public void IsValidWhen_IsCorrectMatch()
             {
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     SecretCode = "tomato",
                 };
                 var command = new RedeemEmailConfirmationCommand
                 {
                     Token = confirmation.Token,
-                    SecretCode = "tomato"
+                    SecretCode = "tomato",
+                    Intent = EmailConfirmationIntent.CreatePassword,
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
@@ -403,10 +346,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsValidWhen_Confirmation_WasNull()
             {
-                var command = new RedeemEmailConfirmationCommand
-                {
-                    Intent = "test"
-                };
+                var command = new RedeemEmailConfirmationCommand();
                 var scenarioOptions = new ScenarioOptions();
                 var validator = CreateValidator(scenarioOptions);
 

@@ -24,7 +24,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 try
                 {
-                    new ValidateRedeemTicketAttribute(null, null);
+                    new ValidateRedeemTicketAttribute(null, EmailConfirmationIntent.ResetPassword);
                 }
                 catch (ArgumentNullException ex)
                 {
@@ -38,31 +38,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void ThrowsArgumentNullException_WhenIntentArgIsNull()
-            {
-                ArgumentNullException exception = null;
-
-                try
-                {
-                    new ValidateRedeemTicketAttribute("test", null);
-                }
-                catch (ArgumentNullException ex)
-                {
-                    exception = ex;
-                }
-
-                exception.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                exception.ParamName.ShouldEqual("intent");
-                // ReSharper restore PossibleNullReferenceException
-            }
-
-            [TestMethod]
             public void SetsParamNameProperty_ToParamNameArgValue()
             {
                 const string paramName = "test";
 
-                var attribute = new ValidateRedeemTicketAttribute(paramName, "intent");
+                var attribute = new ValidateRedeemTicketAttribute(paramName, EmailConfirmationIntent.CreatePassword);
 
                 attribute.ParamName.ShouldEqual(paramName);
             }
@@ -70,7 +50,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void SetsIntentProperty_ToIntentArgValue()
             {
-                const string intent = "test";
+                const EmailConfirmationIntent intent = EmailConfirmationIntent.CreatePassword;
 
                 var attribute = new ValidateRedeemTicketAttribute("paramName", intent);
 
@@ -85,11 +65,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void SetsResult_To404_WhenToken_IsEmptyGuid()
             {
                 const string paramName = "some value";
-                const string intent = "some other value";
+                const EmailConfirmationIntent intent = EmailConfirmationIntent.ResetPassword;
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(Guid.Empty))))
-                    .Returns(new EmailConfirmation());
+                    .Returns(new EmailConfirmation(EmailConfirmationIntent.CreatePassword));
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
                     QueryProcessor = queryProcessor.Object,
@@ -106,7 +86,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void SetsResult_To404_WhenToken_MatchesNoEntity()
             {
                 const string paramName = "some value";
-                const string intent = "some other value";
+                const EmailConfirmationIntent intent = EmailConfirmationIntent.CreatePassword;
                 var tokenValue = Guid.NewGuid();
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
@@ -131,11 +111,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void SetsResult_ToPartialExpiredDenial_WhenToken_MatchesExpiredEntity()
             {
                 const string paramName = "some value";
-                const string intent = "some other value";
-                var confirmation = new EmailConfirmation
+                const EmailConfirmationIntent intent = EmailConfirmationIntent.ResetPassword;
+                var confirmation = new EmailConfirmation(intent)
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddSeconds(-5),
-                    Intent = intent,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
@@ -164,12 +143,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void SetsResult_ToPartialRetiredDenial_WhenToken_MatchesExpiredEntity()
             {
                 const string paramName = "some value";
-                const string intent = "some other value";
-                var confirmation = new EmailConfirmation
+                const EmailConfirmationIntent intent = EmailConfirmationIntent.CreatePassword;
+                var confirmation = new EmailConfirmation(intent)
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
                     RetiredOnUtc = DateTime.UtcNow.AddSeconds(-5),
-                    Intent = intent,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
@@ -198,13 +176,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void SetsResult_ToPartialCrashDenaial_WhenIntent_ConflictsWithEntity()
             {
                 const string paramName = "some value";
-                const string intent = EmailConfirmationIntent.PasswordReset;
+                const EmailConfirmationIntent intent = EmailConfirmationIntent.ResetPassword;
                 const string ticket = "ticket value";
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
                     RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),
-                    Intent = EmailConfirmationIntent.SignUp,
                     Ticket = ticket,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
@@ -236,11 +213,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void SetsResult_ToConfirmEmailRedirect_WhenToken_MatchesUnredeemedEntity()
             {
                 const string paramName = "some value";
-                const string intent = EmailConfirmationIntent.PasswordReset;
-                var confirmation = new EmailConfirmation
+                const EmailConfirmationIntent intent = EmailConfirmationIntent.ResetPassword;
+                var confirmation = new EmailConfirmation(intent)
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
-                    Intent = intent,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
@@ -269,13 +245,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void SetsResult_ToConfirmEmailRedirect_WhenTicket_ConflictsWithController()
             {
                 const string paramName = "some value";
-                const string intent = EmailConfirmationIntent.SignUp;
+                const EmailConfirmationIntent intent = EmailConfirmationIntent.CreatePassword;
                 const string ticket = "ticket value";
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(intent)
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
                     RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),
-                    Intent = intent,
                     Ticket = ticket,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
@@ -306,13 +281,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void SetsNoResult_WhenTokenMatchesEntity_Unexpired_Redeemed_Unretired_WithCorrectTicketAndIntent()
             {
                 const string paramName = "some value";
-                const string intent = EmailConfirmationIntent.SignUp;
+                const EmailConfirmationIntent intent = EmailConfirmationIntent.CreatePassword;
                 const string ticket = "ticket value";
-                var confirmation = new EmailConfirmation
+                var confirmation = new EmailConfirmation(intent)
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
                     RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),
-                    Intent = intent,
                     Ticket = ticket,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);

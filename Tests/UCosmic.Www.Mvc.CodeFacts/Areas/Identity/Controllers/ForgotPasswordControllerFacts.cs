@@ -264,7 +264,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             private static Expression<Func<SendConfirmEmailMessageCommand, bool>> SendCommandBasedOn(ForgotPasswordForm model)
             {
-                return q => q.EmailAddress == model.EmailAddress && q.Intent == EmailConfirmationIntent.PasswordReset;
+                return q => q.EmailAddress == model.EmailAddress && q.Intent == EmailConfirmationIntent.ResetPassword;
             }
         }
     }

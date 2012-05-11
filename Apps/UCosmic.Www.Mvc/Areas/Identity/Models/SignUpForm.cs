@@ -45,7 +45,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         {
             protected override void Configure()
             {
-                CreateMap<SignUpForm, SendSignUpMessageCommand>()
+                CreateMap<SignUpForm, SendCreatePasswordMessageCommand>()
                     .ForMember(d => d.SendFromUrl, o => o.Ignore())
                     .ForMember(d => d.ConfirmationToken, o => o.Ignore())
                 ;

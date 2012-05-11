@@ -18,7 +18,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         public IProcessQueries QueryProcessor { get; set; }
 
-        public ISignMembers MemberSigner { get; set; }
+        public IStorePasswords Passwords { get; set; }
 
         private Uri RequestUrl { get; set; }
 
@@ -122,7 +122,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         Person != null && 
                         Person.User != null &&
                         Person.User.IsRegistered && 
-                        MemberSigner.IsSignedUp(Person.User.Name);
+                        Passwords.Exists(Person.User.Name);
                 }
                 return _isPersonLocalMember.Value;
             }

@@ -16,7 +16,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public const string TokenPropertyName = "Token";
 
         [HiddenInput(DisplayValue = false)]
-        public string Intent { get; set; }
+        public EmailConfirmationIntent Intent { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public bool IsUrlConfirmation { get; set; }
@@ -49,9 +49,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 // token must match a confirmation
                 .Must((o, p) => ValidateEmailConfirmation.TokenMatchesEntity(o.Token, queryProcessor, out confirmation))
                     .WithMessage(FailedBecauseOfInconsistentData)
-                // intent cannot be empty
-                .Must((o, p) => !string.IsNullOrWhiteSpace(o.Intent))
-                    .WithMessage(FailedBecauseOfInconsistentData)
                 // intent must match entity
                 .Must((o, p) => ValidateEmailConfirmation.IntentIsCorrect(confirmation, o.Intent))
                     .WithMessage(FailedBecauseOfInconsistentData)
@@ -62,7 +59,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 .Must(p => ValidateEmailConfirmation.SecretCodeIsCorrect(confirmation, p))
                     .When(p =>
                         !string.IsNullOrWhiteSpace(p.SecretCode) &&
-                        !string.IsNullOrWhiteSpace(p.Intent) &&
                         confirmation != null &&
                         ValidateEmailConfirmation.IntentIsCorrect(confirmation, p.Intent))
                     .WithMessage(FailedBecauseSecretCodeWasIncorrect)

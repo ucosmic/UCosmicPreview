@@ -16,16 +16,16 @@ namespace UCosmic.Domain.Identity
     {
         private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
-        private readonly ISignMembers _memberSigner;
+        private readonly IStorePasswords _passwords;
 
         public ResetPasswordHandler(IProcessQueries queryProcessor
             , ICommandEntities entities
-            , ISignMembers memberSigner
+            , IStorePasswords passwords
         )
         {
             _queryProcessor = queryProcessor;
             _entities = entities;
-            _memberSigner = memberSigner;
+            _passwords = passwords;
         }
 
         public void Handle(ResetPasswordCommand command)
@@ -37,7 +37,7 @@ namespace UCosmic.Domain.Identity
                 new GetEmailConfirmationQuery(command.Token)
             );
 
-            _memberSigner.ResetPassword(confirmation.EmailAddress.Person.User.Name, command.Password);
+            _passwords.Reset(confirmation.EmailAddress.Person.User.Name, command.Password);
             confirmation.RetiredOnUtc = DateTime.UtcNow;
             confirmation.SecretCode = null;
             confirmation.Ticket = null;
@@ -47,7 +47,7 @@ namespace UCosmic.Domain.Identity
 
     public class ResetPasswordValidator : AbstractValidator<ResetPasswordCommand>
     {
-        public ResetPasswordValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
+        public ResetPasswordValidator(IProcessQueries queryProcessor, IStorePasswords passwords)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -75,8 +75,8 @@ namespace UCosmic.Domain.Identity
                 .NotEmpty()
                     .WithMessage(ValidatePassword.FailedBecausePasswordWasEmpty)
                 // length must be between 6 and 100 characters
-                .Length(memberSigner.MinimumPasswordLength, int.MaxValue)
-                    .WithMessage(ValidatePassword.FailedBecausePasswordWasTooShort(memberSigner.MinimumPasswordLength))
+                .Length(passwords.MinimumPasswordLength, int.MaxValue)
+                    .WithMessage(ValidatePassword.FailedBecausePasswordWasTooShort(passwords.MinimumPasswordLength))
             ;
 
             RuleFor(p => p.PasswordConfirmation)
@@ -91,7 +91,7 @@ namespace UCosmic.Domain.Identity
                     .Unless(p => 
                         string.IsNullOrWhiteSpace(p.PasswordConfirmation) ||
                         string.IsNullOrWhiteSpace(p.Password) ||
-                        p.Password.Length < memberSigner.MinimumPasswordLength)
+                        p.Password.Length < passwords.MinimumPasswordLength)
                     .WithMessage(ValidatePassword.FailedBecausePasswordConfirmationDidNotEqualPassword)
             ;
 
@@ -100,7 +100,7 @@ namespace UCosmic.Domain.Identity
             {
                 RuleFor(p => p.Token)
                     // its intent must be to reset password
-                    .Must(p => confirmation.Intent == EmailConfirmationIntent.PasswordReset)
+                    .Must(p => confirmation.Intent == EmailConfirmationIntent.ResetPassword)
                         .WithMessage(ValidateEmailConfirmation.FailedBecauseIntentWasIncorrect,
                             p => confirmation.Intent, p => confirmation.Token)
                     // it cannot be expired
@@ -128,7 +128,7 @@ namespace UCosmic.Domain.Identity
                         .WithMessage(ValidateUser.FailedBecauseEduPersonTargetedIdWasNotEmpty,
                             p => confirmation.EmailAddress.Person.User.Name)
                     // user name must match local member account
-                    .Must(p => ValidateUser.NameMatchesLocalMember(confirmation.EmailAddress.Person.User.Name, memberSigner))
+                    .Must(p => ValidateUser.NameMatchesLocalMember(confirmation.EmailAddress.Person.User.Name, passwords))
                         .WithMessage(ValidateUser.FailedBecauseNameMatchedNoLocalMember,
                             p => confirmation.EmailAddress.Person.User.Name)
                 ;

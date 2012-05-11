@@ -78,7 +78,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
                 attributes[0].ParamName.ShouldEqual("token");
-                attributes[0].Intent.ShouldEqual(EmailConfirmationIntent.PasswordReset);
+                attributes[0].Intent.ShouldEqual(EmailConfirmationIntent.ResetPassword);
             }
 
             [TestMethod]
@@ -129,7 +129,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void ReturnsView_WithModel_WhenConfirmation_IsFound()
             {
-                var confirmation = new EmailConfirmation();
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword);
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
                     .Returns(confirmation);
@@ -220,7 +220,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
                 attributes[0].ParamName.ShouldEqual("model");
-                attributes[0].Intent.ShouldEqual(EmailConfirmationIntent.PasswordReset);
+                attributes[0].Intent.ShouldEqual(EmailConfirmationIntent.ResetPassword);
             }
 
             [TestMethod]

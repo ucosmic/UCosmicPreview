@@ -11,17 +11,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
     {
         public SignInServices(IProcessQueries queryProcessor
             , ISignUsers userSigner
-            , ISignMembers memberSigner
+            , IStorePasswords passwords
         )
         {
             QueryProcessor = queryProcessor;
             UserSigner = userSigner;
-            MemberSigner = memberSigner;
+            Passwords = passwords;
         }
 
         public IProcessQueries QueryProcessor { get; private set; }
         public ISignUsers UserSigner { get; private set; }
-        public ISignMembers MemberSigner { get; private set; }
+        public IStorePasswords Passwords { get; private set; }
     }
 
     [EnforceHttps]

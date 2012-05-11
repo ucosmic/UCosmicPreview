@@ -9,20 +9,20 @@ namespace UCosmic.Domain.Identity
     public class SendConfirmEmailMessageCommand
     {
         public string EmailAddress { get; set; }
-        public string Intent { get; set; }
+        public EmailConfirmationIntent Intent { get; set; }
         public string SendFromUrl { get; set; }
 
-        internal string TemplateName
+        internal EmailTemplateName TemplateName
         {
             get
             {
                 switch (Intent)
                 {
-                    case EmailConfirmationIntent.PasswordReset:
-                        return EmailTemplateName.PasswordResetConfirmation;
+                    case EmailConfirmationIntent.ResetPassword:
+                        return EmailTemplateName.ResetPasswordConfirmation;
 
-                    case EmailConfirmationIntent.SignUp:
-                        return EmailTemplateName.SignUpConfirmation;
+                    case EmailConfirmationIntent.CreatePassword:
+                        return EmailTemplateName.CreatePasswordConfirmation;
                 }
                 throw new NotSupportedException(string.Format(
                     "Email confirmation intent '{0}' is not supported.",
@@ -70,10 +70,9 @@ namespace UCosmic.Domain.Identity
             // create the confirmation
             var secretCode = _queryProcessor.Execute(
                 new GenerateRandomSecretQuery(12));
-            var confirmation = new EmailConfirmation
+            var confirmation = new EmailConfirmation(command.Intent)
             {
                 EmailAddress = email,
-                Intent = command.Intent,
                 SecretCode = secretCode,
             };
             command.ConfirmationToken = confirmation.Token;
@@ -83,7 +82,7 @@ namespace UCosmic.Domain.Identity
             var template = _queryProcessor.Execute(
                 new GetEmailTemplateByNameQuery
                 {
-                    Name = command.TemplateName,
+                    Name = command.TemplateName.AsSentenceFragment(),
                 }
             );
 
@@ -111,7 +110,7 @@ namespace UCosmic.Domain.Identity
 
     public class SendConfirmEmailMessageValidator : AbstractValidator<SendConfirmEmailMessageCommand>
     {
-        public SendConfirmEmailMessageValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
+        public SendConfirmEmailMessageValidator(IProcessQueries queryProcessor, IStorePasswords passwords)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -150,7 +149,7 @@ namespace UCosmic.Domain.Identity
             ;
 
             // when person is not null and intent is to reset password,
-            When(p => person != null && p.Intent == EmailConfirmationIntent.PasswordReset, () =>
+            When(p => person != null && p.Intent == EmailConfirmationIntent.ResetPassword, () =>
                 RuleFor(p => p.EmailAddress)
                     // the establishment must not have saml sign on
                     .Must(p => !establishment.HasSamlSignOn())
@@ -165,7 +164,7 @@ namespace UCosmic.Domain.Identity
                         .WithMessage(ValidateUser.FailedBecauseEduPersonTargetedIdWasNotEmpty,
                             p => person.User.Name)
                     // the email address' person's user's name must match a local member account
-                    .Must(p => ValidateUser.NameMatchesLocalMember(person.User.Name, memberSigner))
+                    .Must(p => ValidateUser.NameMatchesLocalMember(person.User.Name, passwords))
                         .WithMessage(ValidateUser.FailedBecauseNameMatchedNoLocalMember,
                             p => person.User.Name)
                     // the email address must be confirmed

@@ -65,12 +65,14 @@
     </Compile>
     <Compile Include="Api\BaseQuery.cs" />
     <Compile Include="Api\FluentValidationCommandDecorator.cs" />
+    <Compile Include="Establishments\Entities\EmailTemplateName.cs" />
     <Compile Include="Identity\Business\QuerySubjectNameIdentifiers.cs" />
     <Compile Include="Identity\Business\QueryEduPersonScopedAffiliations.cs" />
     <Compile Include="Identity\Commands\ReceiveSamlAuthnResponse.cs" />
     <Compile Include="Identity\Commands\RedeemEmailConfirmation.cs" />
     <Compile Include="Identity\Commands\SendEmailMessage.cs" />
     <Compile Include="People\Business\ValidateEmailConfirmation.cs" />
+    <Compile Include="People\Entities\EmailConfirmationIntent.cs" />
     <Compile Include="People\Queries\GetEmailConfirmation.cs" />
     <Compile Include="People\Queries\ComposeMailMessage.cs" />
     <Compile Include="Establishments\Business\QueryEmailTemplates.cs" />

@@ -3,7 +3,7 @@ using System.Web.Security;
 
 namespace UCosmic.Impl
 {
-    public class DotNetMembershipProvider : ISignMembers
+    public class DotNetMembershipProvider : IStorePasswords
     {
         public int MaximumPasswordAttempts
         {
@@ -15,7 +15,7 @@ namespace UCosmic.Impl
             get { return Membership.MinRequiredPasswordLength; }
         }
 
-        public bool IsSignedUp(string userName)
+        public bool Exists(string userName)
         {
             var member = Membership.GetUser(userName);
             return (member != null);
@@ -36,12 +36,12 @@ namespace UCosmic.Impl
             return user.IsLockedOut;
         }
 
-        public void SignUp(string userName, string password)
+        public void Create(string userName, string password)
         {
             Membership.CreateUser(userName, password, userName);
         }
 
-        public void Revoke(string userName)
+        public void Destroy(string userName)
         {
             var user = Membership.GetUser(userName);
             if (user == null)
@@ -51,7 +51,7 @@ namespace UCosmic.Impl
             Membership.DeleteUser(userName, true);
         }
 
-        public void ResetPassword(string userName, string password)
+        public void Reset(string userName, string password)
         {
             var user = Membership.GetUser(userName);
             if (user == null)
@@ -68,7 +68,7 @@ namespace UCosmic.Impl
                         userName));
         }
 
-        public void UpdatePassword(string userName, string oldPassword, string newPassword)
+        public void Update(string userName, string oldPassword, string newPassword)
         {
             var user = Membership.GetUser(userName);
             if (user == null)

@@ -27,32 +27,32 @@ namespace UCosmic.Domain.People
             //    query = query.Where(p => p.Emails.Any(e =>
             //        e.EntityId == finder.EmailEntityId.Value));
 
-            // apply email address
-            if (finder.EmailAddress != null)
-                query = query.Where(p => p.Emails.Any(e =>
-                    e.Value.Equals(finder.EmailAddress, StringComparison.OrdinalIgnoreCase)));
+            //// apply email address
+            //if (finder.EmailAddress != null)
+            //    query = query.Where(p => p.Emails.Any(e =>
+            //        e.Value.Equals(finder.EmailAddress, StringComparison.OrdinalIgnoreCase)));
 
-            // apply email confirmation token
-            if (finder.EmailConfirmationToken != null && finder.EmailConfirmationToken != Guid.Empty
-                && !string.IsNullOrWhiteSpace(finder.EmailConfirmationIntent))
-                query = query.Where(p => p.Emails.Any(e =>
-                    e.Confirmations.Any(c =>
-                        c.Token == finder.EmailConfirmationToken.Value
-                            && c.Intent == finder.EmailConfirmationIntent)));
+            //// apply email confirmation token
+            //if (finder.EmailConfirmationToken != null && finder.EmailConfirmationToken != Guid.Empty
+            //    && finder.EmailConfirmationIntent.HasValue)
+            //    query = query.Where(p => p.Emails.Any(e =>
+            //        e.Confirmations.Any(c =>
+            //            c.Token == finder.EmailConfirmationToken.Value
+            //                && c.Intent == finder.EmailConfirmationIntent)));
 
-            // apply first name starts with
-            if (!string.IsNullOrWhiteSpace(finder.AutoCompleteFirstNamePrefix))
-                query = query.Where(p => p.FirstName != null &&
-                    p.FirstName.Trim().ToLower().StartsWith(finder.AutoCompleteFirstNamePrefix.Trim().ToLower()));
+            //// apply first name starts with
+            //if (!string.IsNullOrWhiteSpace(finder.AutoCompleteFirstNamePrefix))
+            //    query = query.Where(p => p.FirstName != null &&
+            //        p.FirstName.Trim().ToLower().StartsWith(finder.AutoCompleteFirstNamePrefix.Trim().ToLower()));
 
-            // apply last name starts with
-            if (!string.IsNullOrWhiteSpace(finder.AutoCompleteLastNamePrefix))
-                query = query.Where(p => p.LastName != null &&
-                    p.LastName.Trim().ToLower().StartsWith(finder.AutoCompleteLastNamePrefix.Trim().ToLower()));
+            //// apply last name starts with
+            //if (!string.IsNullOrWhiteSpace(finder.AutoCompleteLastNamePrefix))
+            //    query = query.Where(p => p.LastName != null &&
+            //        p.LastName.Trim().ToLower().StartsWith(finder.AutoCompleteLastNamePrefix.Trim().ToLower()));
 
-            // apply email starts with
-            if (!string.IsNullOrWhiteSpace(finder.AutoCompleteEmailTerm))
-                query = query.Where(p => p.Emails.Any(e => e.Value.Contains(finder.AutoCompleteEmailTerm.Trim())));
+            //// apply email starts with
+            //if (!string.IsNullOrWhiteSpace(finder.AutoCompleteEmailTerm))
+            //    query = query.Where(p => p.Emails.Any(e => e.Value.Contains(finder.AutoCompleteEmailTerm.Trim())));
 
             query = FinalizeQuery(query, criteria);
 

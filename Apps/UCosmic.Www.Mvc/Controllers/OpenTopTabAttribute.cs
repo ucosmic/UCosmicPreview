@@ -79,9 +79,6 @@ namespace UCosmic.Www.Mvc.Controllers
         public const string Travel = "Travel";
         public const string CorporateEngagement = "CorporateEngagement";
         public const string GlobalPress = "GlobalPress";
-        //public const string User = "User";
-        //public const string SignIn = "SignIn";
-        //public const string SignUp = "SignUp";
         public const string Home = "Home";
     }
 }

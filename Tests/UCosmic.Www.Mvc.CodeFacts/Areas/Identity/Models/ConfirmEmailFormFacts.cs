@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
+using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
@@ -85,8 +86,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void IsDecoratedWith_HiddenInput_Using_FalseDisplayValue()
             {
-                Expression<Func<ConfirmEmailForm, string>> property = p => p.Intent;
-                var attributes = property.GetAttributes<ConfirmEmailForm, string, HiddenInputAttribute>();
+                Expression<Func<ConfirmEmailForm, EmailConfirmationIntent>> property = p => p.Intent;
+                var attributes = property.GetAttributes<ConfirmEmailForm, EmailConfirmationIntent, HiddenInputAttribute>();
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].DisplayValue.ShouldBeFalse();

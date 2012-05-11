@@ -1,15 +1,17 @@
-﻿namespace UCosmic.Www.Mvc.Areas.Identity.Models
+﻿using UCosmic.Domain.People;
+
+namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
     public class ConfirmDeniedModel
     {
-        public ConfirmDeniedModel(ConfirmDeniedBecause reason, string intent)
+        public ConfirmDeniedModel(ConfirmDeniedBecause reason, EmailConfirmationIntent intent)
         {
             Reason = reason;
             Intent = intent;
         }
 
         public ConfirmDeniedBecause Reason { get; private set; }
-        public string Intent { get; private set; }
+        public EmailConfirmationIntent Intent { get; private set; }
     }
 
     public enum ConfirmDeniedBecause

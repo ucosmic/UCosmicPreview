@@ -1,0 +1,54 @@
+﻿@*@model UCosmic.Www.Mvc.Areas.Identity.Models.SignIn.OldSignInForm
+<div id="sign_in_editor" class="half-form">
+    <div class="hidden-input">
+        @Html.EditorFor(m => m.ReturnUrl)
+    </div>
+    <div class="field" data-ucosmic-val="css">
+        <span class="label" data-ucosmic-val-hide="error" data-ucosmic-val-show="valid" data-ucosmic-focused-class="focused">
+            @Html.LabelFor(m => m.EmailAddress)
+        </span>
+        <div class="messages" data-ucosmic-focused-class="focused">
+            <span class="validation">@Html.ValidationMessageFor(m => m.EmailAddress)</span>
+            <div class="bottom callout border">
+                <div class="bottom callout bg">
+                </div>
+            </div>
+        </div>
+        <div class="input">
+            <div class="text-box input" data-ucosmic-watermark="true" 
+                 data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.EmailAddress, ViewData).Watermark)"
+                 data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
+                 data-ucosmic-trim-input="true">
+                @Html.EditorFor(m => m.EmailAddress)
+            </div>
+        </div>
+    </div>
+    <div class="field" data-ucosmic-val="css">
+        <span class="label" data-ucosmic-val-hide="error" data-ucosmic-val-show="valid" data-ucosmic-focused-class="focused">
+            @Html.LabelFor(m => m.Password)
+        </span>
+        <div class="messages" data-ucosmic-focused-class="focused">
+            <span class="validation">@Html.ValidationMessageFor(m => m.Password)</span>
+            <div class="bottom callout border">
+                <div class="bottom callout bg">
+                </div>
+            </div>
+        </div>
+        <div class="input">
+            <div class="text-box input" data-ucosmic-watermark="true" 
+                data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.Password, ViewData).Watermark)"
+                data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
+                data-ucosmic-trim-input="true">
+                @Html.EditorFor(m => m.Password)
+            </div>
+        </div>
+    </div>
+    <div>
+        <input id="sign_in_submit_button" type="submit" value="Sign In" />
+        @Html.Partial(MVC.Shared.Views.form_submitted_spinner)
+        <a href="@Url.Action(MVC.Identity.OldSignUp.SendEmail())" class="button-sized" data-ucosmic-form-submitting="hide">
+            Sign Up</a> <a href="@Url.Action(MVC.Passwords.ForgotPassword.Get())" class="button-sized float-right" data-ucosmic-form-submitting="hide">
+                I forgot my password</a>
+    </div>
+</div>
+*@

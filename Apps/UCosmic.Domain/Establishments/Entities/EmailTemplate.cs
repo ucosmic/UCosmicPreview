@@ -20,44 +20,5 @@
         public string ReplyToDisplayName { get; set; }
 
         public string BodyFormat { get; set; }
-
-        //public EmailMessage ComposeMessageTo(EmailAddress to, IDictionary<string, string> variables, IManageConfigurations config)
-        //{
-        //    var message = new EmailMessage
-        //    {
-        //        ToPerson = to.Person,
-        //        Number = to.Person.Messages.NextNumber(),
-
-        //        // subject & body
-        //        Subject = SubjectFormat.FormatTemplate(variables),
-        //        Body = BodyFormat.FormatTemplate(variables),
-
-        //        // from address (has failsafe from address)
-        //        FromAddress = FromAddress ??
-        //            config.EmailDefaultFromAddress ?? "no-reply@ucosmic.com",
-        //        FromDisplayName = FromDisplayName ??
-        //            config.EmailDefaultFromDisplayName,
-
-        //        // reply-to address
-        //        ReplyToAddress = ReplyToAddress ??
-        //            config.EmailDefaultReplyToAddress,
-
-        //        ReplyToDisplayName = ReplyToDisplayName ??
-        //            config.EmailDefaultReplyToDisplayName,
-
-        //        FromEmailTemplate = Name,
-        //        ToAddress = to.Value,
-        //        ComposedOnUtc = DateTime.UtcNow,
-        //    };
-
-        //    return message;
-        //}
     }
-
-    public static class EmailTemplateName
-    {
-        public const string SignUpConfirmation = "Sign Up Email Confirmation";
-        public const string PasswordResetConfirmation = "Password Reset Email Confirmation";
-    }
-
 }

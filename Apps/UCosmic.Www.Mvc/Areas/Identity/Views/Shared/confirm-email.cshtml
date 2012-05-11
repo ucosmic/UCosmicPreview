@@ -23,7 +23,7 @@
                 @Html.Partial(MVC.Identity.ConfirmEmail.Views._form_instructions)
                 @Html.AntiForgeryToken()
                 @Html.EditorForModel()
-                @if (Model.Intent == EmailConfirmationIntent.SignUp)
+                @if (Model.Intent == EmailConfirmationIntent.CreatePassword)
                 {
                     <p>
                         After confirming, your next step will be to create a password.

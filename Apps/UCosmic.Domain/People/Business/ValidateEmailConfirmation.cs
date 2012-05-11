@@ -121,7 +121,7 @@ namespace UCosmic.Domain.People
         public const string FailedBecauseIntentWasIncorrect =
             "The intent '{0}' is not valid for email confirmation '{1}'.";
 
-        public static bool IntentIsCorrect(EmailConfirmation confirmation, string intent)
+        public static bool IntentIsCorrect(EmailConfirmation confirmation, EmailConfirmationIntent intent)
         {
             // return true (valid) if confirmation intent matches
             return confirmation != null && confirmation.Intent == intent;

@@ -1,23 +1,22 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
+using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
     public class ValidateRedeemTicketAttribute : ValidateConfirmEmailAttribute
     {
-        public string Intent { get; private set; }
+        public EmailConfirmationIntent Intent { get; private set; }
 
         private ValidateRedeemTicketAttribute(string paramName)
             : base(paramName)
         {
         }
 
-        public ValidateRedeemTicketAttribute(string paramName, string intent)
+        public ValidateRedeemTicketAttribute(string paramName, EmailConfirmationIntent intent)
             : this(paramName)
         {
-            if (intent == null) throw new ArgumentNullException("intent");
             Intent = intent;
         }
 

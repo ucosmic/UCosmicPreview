@@ -16,16 +16,16 @@ namespace UCosmic.Domain.Identity
     {
         private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
-        private readonly ISignMembers _memberSigner;
+        private readonly IStorePasswords _passwords;
 
         public CreatePasswordHandler(IProcessQueries queryProcessor
             , ICommandEntities entities
-            , ISignMembers memberSigner
+            , IStorePasswords passwords
         )
         {
             _queryProcessor = queryProcessor;
             _entities = entities;
-            _memberSigner = memberSigner;
+            _passwords = passwords;
         }
 
         public void Handle(CreatePasswordCommand command)
@@ -51,13 +51,13 @@ namespace UCosmic.Domain.Identity
             confirmation.Ticket = null;
             _entities.Update(confirmation);
 
-            _memberSigner.SignUp(confirmation.EmailAddress.Person.User.Name, command.Password);
+            _passwords.Create(confirmation.EmailAddress.Person.User.Name, command.Password);
         }
     }
 
     public class CreatePasswordValidator : AbstractValidator<CreatePasswordCommand>
     {
-        public CreatePasswordValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
+        public CreatePasswordValidator(IProcessQueries queryProcessor, IStorePasswords passwords)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -85,8 +85,8 @@ namespace UCosmic.Domain.Identity
                 .NotEmpty()
                     .WithMessage(ValidatePassword.FailedBecausePasswordWasEmpty)
                 // length must be between 6 and 100 characters
-                .Length(memberSigner.MinimumPasswordLength, int.MaxValue)
-                    .WithMessage(ValidatePassword.FailedBecausePasswordWasTooShort(memberSigner.MinimumPasswordLength))
+                .Length(passwords.MinimumPasswordLength, int.MaxValue)
+                    .WithMessage(ValidatePassword.FailedBecausePasswordWasTooShort(passwords.MinimumPasswordLength))
             ;
 
             RuleFor(p => p.PasswordConfirmation)
@@ -101,7 +101,7 @@ namespace UCosmic.Domain.Identity
                     .Unless(p =>
                         string.IsNullOrWhiteSpace(p.PasswordConfirmation) ||
                         string.IsNullOrWhiteSpace(p.Password) ||
-                        p.Password.Length < memberSigner.MinimumPasswordLength)
+                        p.Password.Length < passwords.MinimumPasswordLength)
                     .WithMessage(ValidatePassword.FailedBecausePasswordConfirmationDidNotEqualPassword)
             ;
 
@@ -110,7 +110,7 @@ namespace UCosmic.Domain.Identity
             {
                 RuleFor(p => p.Token)
                     // its intent must be to sign up
-                    .Must(p => confirmation.Intent == EmailConfirmationIntent.SignUp)
+                    .Must(p => confirmation.Intent == EmailConfirmationIntent.CreatePassword)
                         .WithMessage(ValidateEmailConfirmation.FailedBecauseIntentWasIncorrect,
                             p => confirmation.Intent, p => confirmation.Token)
                     // it cannot be expired
@@ -131,7 +131,7 @@ namespace UCosmic.Domain.Identity
                             p => confirmation.EmailAddress.Value)
                     // user, if present, cannot match local member account
                     .Must(p => confirmation.EmailAddress.Person.User == null
-                        || !memberSigner.IsSignedUp(confirmation.EmailAddress.Person.User.Name))
+                        || !passwords.Exists(confirmation.EmailAddress.Person.User.Name))
                         .WithMessage(ValidateUser.FailedBecauseNameMatchedLocalMember,
                             p => confirmation.EmailAddress.Person.User.Name)
                 ;

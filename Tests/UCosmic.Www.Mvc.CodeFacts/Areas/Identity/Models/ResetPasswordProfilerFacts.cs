@@ -17,7 +17,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void MapsToken()
             {
-                var source = new EmailConfirmation();
+                var source = new EmailConfirmation(EmailConfirmationIntent.CreatePassword);
 
                 var destination = Mapper.Map<ResetPasswordForm>(source);
 
@@ -28,7 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void IgnoresPassword()
             {
-                var source = new EmailConfirmation();
+                var source = new EmailConfirmation(EmailConfirmationIntent.ResetPassword);
 
                 var destination = Mapper.Map<ResetPasswordForm>(source);
 
@@ -39,7 +39,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void IgnoresPasswordConfirmation()
             {
-                var source = new EmailConfirmation();
+                var source = new EmailConfirmation(EmailConfirmationIntent.CreatePassword);
 
                 var destination = Mapper.Map<ResetPasswordForm>(source);
 

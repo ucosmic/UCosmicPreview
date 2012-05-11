@@ -12,7 +12,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
     {
         public SignOutServices(IProcessQueries queryProcessor
             , ISignUsers userSigner
-            , ISignMembers memberSigner
         )
         {
             QueryProcessor = queryProcessor;

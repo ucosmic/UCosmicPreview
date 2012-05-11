@@ -198,7 +198,7 @@ namespace UCosmic.Domain.Identity
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = "user@domain.tld",
-                    Intent = EmailConfirmationIntent.PasswordReset,
+                    Intent = EmailConfirmationIntent.ResetPassword,
                 };
                 var person = new Person
                 {
@@ -236,7 +236,7 @@ namespace UCosmic.Domain.Identity
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = "user@domain.tld",
-                    Intent = EmailConfirmationIntent.PasswordReset,
+                    Intent = EmailConfirmationIntent.ResetPassword,
                 };
                 var person = new Person
                 {
@@ -273,7 +273,7 @@ namespace UCosmic.Domain.Identity
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = "user@domain.tld",
-                    Intent = EmailConfirmationIntent.PasswordReset,
+                    Intent = EmailConfirmationIntent.ResetPassword,
                 };
                 var person = new Person
                 {
@@ -314,7 +314,7 @@ namespace UCosmic.Domain.Identity
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = "user@domain.tld",
-                    Intent = EmailConfirmationIntent.PasswordReset,
+                    Intent = EmailConfirmationIntent.ResetPassword,
                 };
                 var person = new Person
                 {
@@ -354,7 +354,7 @@ namespace UCosmic.Domain.Identity
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = "user@domain.tld",
-                    Intent = EmailConfirmationIntent.PasswordReset,
+                    Intent = EmailConfirmationIntent.ResetPassword,
                 };
                 var person = new Person
                 {
@@ -459,14 +459,14 @@ namespace UCosmic.Domain.Identity
                     .Execute(It.Is(EstablishmentQueryBasedOn(scenarioOptions.Command))))
                     .Returns(scenarioOptions.Establishment);
             }
-            var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
+            var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
             if (scenarioOptions.Person != null &&
                 scenarioOptions.Person.User != null &&
                 !string.IsNullOrWhiteSpace(scenarioOptions.Person.User.Name))
-                memberSigner.Setup(m => m
-                    .IsSignedUp(scenarioOptions.Person.User.Name))
+                passwords.Setup(m => m
+                    .Exists(scenarioOptions.Person.User.Name))
                     .Returns(scenarioOptions.LocalMemberExists);
-            return new SendConfirmEmailMessageValidator(queryProcessor.Object, memberSigner.Object);
+            return new SendConfirmEmailMessageValidator(queryProcessor.Object, passwords.Object);
         }
 
         private static Expression<Func<GetPersonByEmailQuery, bool>> PersonQueryBasedOn(SendConfirmEmailMessageCommand command)

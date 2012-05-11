@@ -38,7 +38,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public const string FailedBecausePasswordConfirmationWasEmpty = "Password confirmation is required.";
         public const string FailedBecausePasswordConfirmationDidNotEqualPassword = "The password and confirmation password do not match.";
 
-        public ResetPasswordValidator(IProcessQueries queryProcessor, ISignMembers memberSigner)
+        public ResetPasswordValidator(IProcessQueries queryProcessor, IStorePasswords passwords)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -58,9 +58,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 .NotEmpty()
                     .WithMessage(FailedBecausePasswordWasEmpty)
                 // at least 6 characters long
-                .Length(memberSigner.MinimumPasswordLength, int.MaxValue)
+                .Length(passwords.MinimumPasswordLength, int.MaxValue)
                     .WithMessage(FailedBecausePasswordWasTooShort,
-                        p => memberSigner.MinimumPasswordLength)
+                        p => passwords.MinimumPasswordLength)
             ;
 
             RuleFor(p => p.PasswordConfirmation)
@@ -75,7 +75,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     .Unless(p =>
                         string.IsNullOrWhiteSpace(p.PasswordConfirmation) ||
                         string.IsNullOrWhiteSpace(p.Password) ||
-                        p.Password.Length < memberSigner.MinimumPasswordLength)
+                        p.Password.Length < passwords.MinimumPasswordLength)
                     .WithMessage(FailedBecausePasswordConfirmationDidNotEqualPassword)
             ;
         }

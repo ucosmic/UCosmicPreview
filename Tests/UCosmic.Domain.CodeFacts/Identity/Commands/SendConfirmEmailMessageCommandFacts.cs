@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
@@ -18,43 +17,19 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new SendConfirmEmailMessageCommand
                 {
-                    Intent = EmailConfirmationIntent.PasswordReset,
+                    Intent = EmailConfirmationIntent.ResetPassword,
                 };
-                command.TemplateName.ShouldEqual(EmailTemplateName.PasswordResetConfirmation);
+                command.TemplateName.ShouldEqual(EmailTemplateName.ResetPasswordConfirmation);
             }
 
             [TestMethod]
-            public void ReturnsSignUp_WhenIntentMatches()
+            public void ReturnsCreatePassword_WhenIntentMatches()
             {
                 var command = new SendConfirmEmailMessageCommand
                 {
-                    Intent = EmailConfirmationIntent.SignUp,
+                    Intent = EmailConfirmationIntent.CreatePassword,
                 };
-                command.TemplateName.ShouldEqual(EmailTemplateName.SignUpConfirmation);
-            }
-
-            [TestMethod]
-            public void ThrowsNotSupportedException_ForUnexpectedIntent()
-            {
-                NotSupportedException exception = null;
-                var command = new SendConfirmEmailMessageCommand
-                {
-                    Intent = "something unexpected",
-                };
-
-                try
-                {
-                    command.TemplateName.ShouldBeNull();
-                }
-                catch (NotSupportedException ex)
-                {
-                    exception = ex;
-                }
-
-                exception.ShouldNotBeNull();
-                // ReSharper disable PossibleNullReferenceException
-                exception.Message.ShouldContain(command.Intent);
-                // ReSharper restore PossibleNullReferenceException
+                command.TemplateName.ShouldEqual(EmailTemplateName.CreatePasswordConfirmation);
             }
         }
     }

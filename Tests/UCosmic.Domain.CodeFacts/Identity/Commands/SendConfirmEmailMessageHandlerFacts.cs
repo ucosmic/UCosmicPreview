@@ -43,7 +43,7 @@ namespace UCosmic.Domain.Identity
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = emailAddress,
-                    Intent = EmailConfirmationIntent.PasswordReset,
+                    Intent = EmailConfirmationIntent.ResetPassword,
                     SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command);
@@ -63,7 +63,7 @@ namespace UCosmic.Domain.Identity
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = emailAddress,
-                    Intent = EmailConfirmationIntent.PasswordReset,
+                    Intent = EmailConfirmationIntent.ResetPassword,
                     SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command);
@@ -83,7 +83,7 @@ namespace UCosmic.Domain.Identity
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = emailAddress,
-                    Intent = EmailConfirmationIntent.SignUp,
+                    Intent = EmailConfirmationIntent.CreatePassword,
                     SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command)
@@ -109,7 +109,7 @@ namespace UCosmic.Domain.Identity
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = emailAddress,
-                    Intent = EmailConfirmationIntent.SignUp,
+                    Intent = EmailConfirmationIntent.CreatePassword,
                     SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command)
@@ -130,7 +130,7 @@ namespace UCosmic.Domain.Identity
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = emailAddress,
-                    Intent = EmailConfirmationIntent.SignUp,
+                    Intent = EmailConfirmationIntent.CreatePassword,
                     SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command);
@@ -150,7 +150,7 @@ namespace UCosmic.Domain.Identity
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = emailAddress,
-                    Intent = EmailConfirmationIntent.SignUp,
+                    Intent = EmailConfirmationIntent.CreatePassword,
                     SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command);
@@ -170,7 +170,7 @@ namespace UCosmic.Domain.Identity
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = emailAddress,
-                    Intent = EmailConfirmationIntent.SignUp,
+                    Intent = EmailConfirmationIntent.CreatePassword,
                     SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command);
@@ -190,7 +190,7 @@ namespace UCosmic.Domain.Identity
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = emailAddress,
-                    Intent = EmailConfirmationIntent.SignUp,
+                    Intent = EmailConfirmationIntent.CreatePassword,
                     SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command)
@@ -213,7 +213,7 @@ namespace UCosmic.Domain.Identity
                 var command = new SendConfirmEmailMessageCommand
                 {
                     EmailAddress = emailAddress,
-                    Intent = EmailConfirmationIntent.PasswordReset,
+                    Intent = EmailConfirmationIntent.ResetPassword,
                     SendFromUrl = "test",
                 };
                 var scenarioOptions = new ScenarioOptions(command)
@@ -309,7 +309,7 @@ namespace UCosmic.Domain.Identity
 
         private static Expression<Func<GetEmailTemplateByNameQuery, bool>> EmailTemplateQueryBasedOn(SendConfirmEmailMessageCommand command)
         {
-            return q => q.Name == command.TemplateName;
+            return q => q.Name == command.TemplateName.AsSentenceFragment();
         }
 
         private static Expression<Func<GetConfirmEmailFormattersQuery, bool>> FormattersQueryBasedOn(ScenarioOptions scenarioOptions)

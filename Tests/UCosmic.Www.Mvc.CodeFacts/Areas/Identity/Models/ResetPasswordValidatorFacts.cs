@@ -44,9 +44,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     Token = Guid.Empty,
                 };
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(memberSigner.Object);
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -72,9 +72,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
                     .Returns(null as EmailConfirmation);
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(queryProcessor.Object, memberSigner.Object);
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(queryProcessor.Object, passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -99,10 +99,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(new EmailConfirmation());
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(queryProcessor.Object, memberSigner.Object);
+                    .Returns(new EmailConfirmation(EmailConfirmationIntent.ResetPassword));
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(queryProcessor.Object, passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -120,9 +120,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             public void IsInvalidWhen_IsNull()
             {
                 var validated = new ResetPasswordForm();
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(memberSigner.Object);
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -143,9 +143,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     Password = string.Empty
                 };
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(memberSigner.Object);
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -166,9 +166,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     Password = "   ",
                 };
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(memberSigner.Object);
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -189,9 +189,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     Password = "12345",
                 };
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(memberSigner.Object);
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -216,10 +216,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
                 queryProcessor.Setup(m => m
                     .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(new EmailConfirmation());
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(queryProcessor.Object, memberSigner.Object);
+                    .Returns(new EmailConfirmation(EmailConfirmationIntent.ResetPassword));
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(queryProcessor.Object, passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -237,9 +237,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             public void IsInvalidWhen_IsNull()
             {
                 var validated = new ResetPasswordForm();
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(memberSigner.Object);
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -260,9 +260,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     PasswordConfirmation = string.Empty
                 };
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(memberSigner.Object);
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -283,9 +283,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     PasswordConfirmation = "   ",
                 };
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(memberSigner.Object);
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -307,9 +307,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Password = "123456",
                     PasswordConfirmation = "123457",
                 };
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(memberSigner.Object);
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -330,9 +330,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     PasswordConfirmation = "123",
                 };
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(memberSigner.Object);
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -348,9 +348,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Password = string.Empty,
                     PasswordConfirmation = "123",
                 };
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(memberSigner.Object);
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -366,9 +366,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Password = " \t ",
                     PasswordConfirmation = "123",
                 };
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(memberSigner.Object);
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -384,9 +384,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Password = "123456",
                     PasswordConfirmation = "123456",
                 };
-                var memberSigner = new Mock<ISignMembers>(MockBehavior.Strict);
-                memberSigner.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(memberSigner.Object);
+                var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
+                passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
+                var validator = CreateValidator(passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -395,14 +395,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             }
         }
 
-        private static ResetPasswordValidator CreateValidator(IProcessQueries queryProcessor = null, ISignMembers memberSigner = null)
+        private static ResetPasswordValidator CreateValidator(IProcessQueries queryProcessor = null, IStorePasswords passwords = null)
         {
-            return new ResetPasswordValidator(queryProcessor, memberSigner);
+            return new ResetPasswordValidator(queryProcessor, passwords);
         }
 
-        private static ResetPasswordValidator CreateValidator(ISignMembers memberSigner)
+        private static ResetPasswordValidator CreateValidator(IStorePasswords passwords)
         {
-            return new ResetPasswordValidator(null, memberSigner);
+            return new ResetPasswordValidator(null, passwords);
         }
 
         private static Expression<Func<GetEmailConfirmationQuery, bool>> ConfirmationQueryBasedOn(ResetPasswordForm validated)

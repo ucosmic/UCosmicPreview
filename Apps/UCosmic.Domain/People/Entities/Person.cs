@@ -157,24 +157,6 @@ namespace UCosmic.Domain.People
         }
 
         #endregion
-        //#region Operations
-
-        //public User SignUp(EmailAddress emailAddress)
-        //{
-        //    if (User == null || !User.IsRegistered)
-        //    {
-        //        if (emailAddress != null && Emails.Contains(emailAddress))
-        //        {
-        //            User = User ?? new User();
-        //            User.Name = User.Name ?? emailAddress.Value;
-        //            User.IsRegistered = true;
-        //            return User;
-        //        }
-        //    }
-        //    return null;
-        //}
-
-        //#endregion
 
         public override string ToString()
         {
