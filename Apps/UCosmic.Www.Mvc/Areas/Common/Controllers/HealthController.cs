@@ -43,15 +43,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             _updateEstablishmentHierarchy = updateEstablishmentHierarchy;
         }
 
-        [ActionName("sample-cached-page")]
-        //[OutputCache(Duration = 300, VaryByCustom = "User", Location = OutputCacheLocation.Server)]
-        [Authorize(Users = "ludwigd1@uc.edu,sodhiha1@uc.edu")]
-        //[Authorize(Users = "Daniel.Ludwig@uc.edu")]
-        public virtual ActionResult SampleCachedPage()
-        {
-            return View();
-        }
-
         [UnitOfWork]
         [Authorize(Users = "ludwigd1@uc.edu")]
         //[Authorize(Users = "Daniel.Ludwig@uc.edu")]

@@ -15,35 +15,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
         private static readonly string Area = MVC.Common.Name;
 
         [TestClass]
-        public class SampleCachedPage
-        {
-            [TestMethod]
-            public void OutBoundUrl_IsRouted()
-            {
-                Expression<Func<HealthController, ActionResult>> action =
-                    controller => controller.SampleCachedPage();
-                var url = HealthRouteMapper.SampleCachedPage.Route.ToAppRelativeUrl();
-                OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
-            }
-
-            [TestMethod]
-            public void InBoundUrl_WithGetMethod_IsRouted()
-            {
-                Expression<Func<HealthController, ActionResult>> action =
-                    controller => controller.SampleCachedPage();
-                var url = HealthRouteMapper.SampleCachedPage.Route.ToAppRelativeUrl();
-                url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
-            }
-
-            [TestMethod]
-            public void InBoundUrl_WithNonGetMethod_IsNotRouted()
-            {
-                var url = HealthRouteMapper.SampleCachedPage.Route.ToAppRelativeUrl();
-                url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
-            }
-        }
-
-        [TestClass]
         public class RunEstablishmentHierarchy
         {
             [TestMethod]

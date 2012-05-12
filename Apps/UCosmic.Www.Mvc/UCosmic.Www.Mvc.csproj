@@ -1205,7 +1205,6 @@
     <Content Include="Areas\Common\Views\Health\run-establishment-import.cshtml" />
     <Content Include="Areas\Common\Views\Health\run-imager.cshtml" />
     <Content Include="Areas\Common\Views\Health\run-institutional-agreement-hierarchy.cshtml" />
-    <Content Include="Areas\Common\Views\Health\sample-cached-page.cshtml" />
     <Content Include="Areas\Common\Views\Navigation\consortium-footer.cshtml" />
     <Content Include="Areas\Common\Views\Features\releases-nav.cshtml" />
     <Content Include="Areas\Common\Views\Navigation\horizontal-tabs.cshtml" />

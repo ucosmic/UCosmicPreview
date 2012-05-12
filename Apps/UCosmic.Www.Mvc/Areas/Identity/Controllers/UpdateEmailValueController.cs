@@ -24,7 +24,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public IHandleCommands<UpdateMyEmailValueCommand> CommandHandler { get; private set; }
     }
 
-    [Authorize]
+    [Authenticate]
     public partial class UpdateEmailValueController : BaseController
     {
         private readonly UpdateEmailValueServices _services;
@@ -81,7 +81,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public const string NoChangesMessage = "No changes were made.";
 
         [HttpPost]
-        //[OutputCache(VaryByParam = "*", Duration = 1800)]
+        [OutputCache(VaryByParam = "*", VaryByCustom = VaryByCustomUser, Duration = 1800)]
         public virtual JsonResult ValidateValue(
             [CustomizeValidator(Properties = UpdateEmailValueForm.ValuePropertyName)] UpdateEmailValueForm model)
         {

@@ -15,18 +15,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             RootActionRouter.RegisterRoutes(typeof(HealthRouteMapper), context, Area, Controller);
         }
 
-        public static class SampleCachedPage
-        {
-            public const string Route = "health/sample-cached-page";
-            private static readonly string Action = MVC.Common.Health.ActionNames.SampleCachedPage;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, Route, defaults, constraints);
-            }
-        }
-
         public static class RunEstablishmentHierarchy
         {
             public const string Route = "health/run-establishment-hierarchy";

@@ -46,7 +46,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string SampleCachedPage = "sample-cached-page";
             public readonly string RunEstablishmentHierarchy = "run-establishment-hierarchy";
             public readonly string RunInstitutionalAgreementHierarchy = "run-institutional-agreement-hierarchy";
             public readonly string RunEstablishmentImport = "run-establishment-import";
@@ -54,7 +53,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string SampleCachedPage = "sample-cached-page";
             public const string RunEstablishmentHierarchy = "run-establishment-hierarchy";
             public const string RunInstitutionalAgreementHierarchy = "run-institutional-agreement-hierarchy";
             public const string RunEstablishmentImport = "run-establishment-import";
@@ -71,18 +69,12 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
             public readonly string run_establishment_import = "~/Areas/Common/Views/Health/run-establishment-import.cshtml";
             public readonly string run_imager = "~/Areas/Common/Views/Health/run-imager.cshtml";
             public readonly string run_institutional_agreement_hierarchy = "~/Areas/Common/Views/Health/run-institutional-agreement-hierarchy.cshtml";
-            public readonly string sample_cached_page = "~/Areas/Common/Views/Health/sample-cached-page.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class T4MVC_HealthController: UCosmic.Www.Mvc.Areas.Common.Controllers.HealthController {
         public T4MVC_HealthController() : base(Dummy.Instance) { }
-
-        public override System.Web.Mvc.ActionResult SampleCachedPage() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.SampleCachedPage);
-            return callInfo;
-        }
 
         public override System.Web.Mvc.ActionResult RunEstablishmentHierarchy() {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.RunEstablishmentHierarchy);

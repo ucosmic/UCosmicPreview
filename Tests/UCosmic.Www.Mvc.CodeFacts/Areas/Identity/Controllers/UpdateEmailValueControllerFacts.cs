@@ -20,12 +20,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public class TheClass
         {
             [TestMethod]
-            public void IsDecoratedWith_Authorize()
+            public void IsDecoratedWith_Authenticate()
             {
-                var attribute = Attribute.GetCustomAttribute(typeof(UpdateEmailValueController), typeof(AuthorizeAttribute));
+                var attribute = Attribute.GetCustomAttribute(typeof(UpdateEmailValueController), typeof(AuthenticateAttribute));
 
                 attribute.ShouldNotBeNull();
-                attribute.ShouldBeType<AuthorizeAttribute>();
+                attribute.ShouldBeType<AuthenticateAttribute>();
             }
         }
 

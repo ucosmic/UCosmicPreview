@@ -63,7 +63,6 @@ namespace T4MVC.Identity {
                 public readonly string EmailAddressField = "EmailAddressField";
                 public readonly string EmployeeOrStudentAffiliation = "EmployeeOrStudentAffiliation";
                 public readonly string ForgotPasswordForm = "ForgotPasswordForm";
-                public readonly string OldSignInForm = "OldSignInForm";
                 public readonly string PasswordField = "PasswordField";
                 public readonly string RememberMeField = "RememberMeField";
                 public readonly string ResetPasswordForm = "ResetPasswordForm";
