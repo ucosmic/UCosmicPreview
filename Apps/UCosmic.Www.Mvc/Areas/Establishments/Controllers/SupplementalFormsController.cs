@@ -16,7 +16,6 @@ using BoundingBox = UCosmic.Domain.Places.BoundingBox;
 
 namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
 {
-    [EnforceHttps]
     public partial class SupplementalFormsController : BaseController
     {
         private readonly IConsumePlaceFinder _placeFinder;

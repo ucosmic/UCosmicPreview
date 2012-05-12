@@ -25,7 +25,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public IHandleCommands<RedeemEmailConfirmationCommand> CommandHandler { get; private set; }
     }
 
-    [EnforceHttps]
     public partial class ConfirmEmailController : BaseController
     {
         private readonly ConfirmEmailServices _services;

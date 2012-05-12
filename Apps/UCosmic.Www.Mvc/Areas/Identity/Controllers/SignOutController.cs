@@ -22,7 +22,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public ISignUsers UserSigner { get; private set; }
     }
 
-    [EnforceHttps]
     public partial class SignOutController : BaseController
     {
         private readonly SignOutServices _services;

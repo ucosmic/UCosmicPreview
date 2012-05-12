@@ -16,7 +16,6 @@ using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 {
-    [EnforceHttps]
     [Authorize(Roles = RoleName.InstitutionalAgreementManagers)]
     public partial class ManagementFormsController : BaseController
     {

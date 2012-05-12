@@ -24,7 +24,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public IHandleCommands<ResetPasswordCommand> CommandHandler { get; private set; }
     }
 
-    [EnforceHttps]
     public partial class ResetPasswordController : BaseController
     {
         private readonly ResetPasswordServices _services;

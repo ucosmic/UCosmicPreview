@@ -29,7 +29,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public IHandleCommands<UpdateSamlSignOnMetadataCommand> CommandHandler { get; private set; }
     }
 
-    [EnforceHttps]
     public partial class SignOnController : BaseController
     {
         private readonly SignOnServices _services;

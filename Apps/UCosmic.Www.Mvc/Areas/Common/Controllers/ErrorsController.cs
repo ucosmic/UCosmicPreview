@@ -19,7 +19,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             return View();
         }
 
-        [EnforceHttps]
         [ActionName("file-upload-too-large")]
         public virtual ActionResult FileUploadTooLarge(string path)
         {

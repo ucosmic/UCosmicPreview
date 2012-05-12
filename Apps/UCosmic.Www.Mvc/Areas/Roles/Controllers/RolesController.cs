@@ -27,7 +27,6 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
         public IProcessQueries QueryProcessor { get; private set; }
     }
 
-    [EnforceHttps]
     [Authorize(Roles = RoleName.AuthorizationAgent)]
     public partial class RolesController : BaseController
     {

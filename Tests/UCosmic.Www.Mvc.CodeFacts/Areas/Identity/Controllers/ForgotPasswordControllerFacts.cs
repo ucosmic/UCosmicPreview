@@ -19,14 +19,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public class TheClass
         {
             [TestMethod]
-            public void IsDecoratedWith_EnforceHttps()
+            public void Extends_BaseController()
             {
-                var attribute = Attribute.GetCustomAttribute(
-                    typeof(ForgotPasswordController),
-                    typeof(EnforceHttpsAttribute));
-
-                attribute.ShouldNotBeNull();
-                attribute.ShouldBeType<EnforceHttpsAttribute>();
+                var controller = new ForgotPasswordController(null);
+                controller.ShouldImplement<BaseController>();
             }
         }
 

@@ -20,15 +20,6 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
         public class TheClass
         {
             [TestMethod]
-            public void IsDecoratedWith_EnforceHttps()
-            {
-                var attribute = Attribute.GetCustomAttribute(typeof(RolesController), typeof(EnforceHttpsAttribute));
-
-                attribute.ShouldNotBeNull();
-                attribute.ShouldBeType<EnforceHttpsAttribute>();
-            }
-
-            [TestMethod]
             public void IsDecoratedWith_Authorize_Using_Authorization_Roles()
             {
                 var attribute = Attribute.GetCustomAttribute(typeof(RolesController), typeof(AuthorizeAttribute));

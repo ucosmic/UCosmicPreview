@@ -70,6 +70,7 @@ namespace UCosmic.Www.Mvc
         {
             //filters.Add(new HandleErrorAttribute()); // default MVC setting
             filters.Add(new ElmahHandleErrorAttribute());
+            filters.Add(new EnforceHttpsAttribute());
         }
 
         public static void RegisterRoutes(RouteCollection routes)

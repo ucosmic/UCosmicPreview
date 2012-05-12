@@ -13,6 +13,7 @@ using UCosmic.Www.Mvc.Areas.People;
 using UCosmic.Www.Mvc.Areas.RecruitmentAgencies;
 using UCosmic.Www.Mvc.Areas.Roles;
 using UCosmic.Www.Mvc.Models;
+using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc
 {
@@ -43,6 +44,20 @@ namespace UCosmic.Www.Mvc
 
                 var expectedFilter = filters.SingleOrDefault(filter =>
                     typeof(ElmahHandleErrorAttribute) == filter.Instance.GetType());
+                expectedFilter.ShouldNotBeNull();
+            }
+
+            [TestMethod]
+            public void Registers_EnforceHttpsAttribute()
+            {
+                var filters = new GlobalFilterCollection();
+                MvcApplication.RegisterGlobalFilters(filters);
+
+                filters.ShouldNotBeNull();
+                filters.Count.ShouldBeInRange(1, int.MaxValue);
+
+                var expectedFilter = filters.SingleOrDefault(filter =>
+                    typeof(EnforceHttpsAttribute) == filter.Instance.GetType());
                 expectedFilter.ShouldNotBeNull();
             }
         }

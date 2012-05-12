@@ -21,14 +21,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public class TheClass
         {
             [TestMethod]
-            public void IsDecoratedWith_EnforceHttps()
+            public void Extends_BaseController()
             {
-                var attribute = Attribute.GetCustomAttribute(
-                    typeof(ConfirmEmailController),
-                    typeof(EnforceHttpsAttribute));
-
-                attribute.ShouldNotBeNull();
-                attribute.ShouldBeType<EnforceHttpsAttribute>();
+                var controller = new ConfirmEmailController(null);
+                controller.ShouldImplement<BaseController>();
             }
         }
 

@@ -20,7 +20,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public IHandleCommands<SendConfirmEmailMessageCommand> CommandHandler { get; private set; }
     }
 
-    [EnforceHttps]
     public partial class ForgotPasswordController : BaseController
     {
         private readonly ForgotPasswordServices _services;

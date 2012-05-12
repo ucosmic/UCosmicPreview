@@ -26,7 +26,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public IHandleCommands<ReceiveSamlAuthnResponseCommand> CommandHandler { get; private set; }
     }
 
-    [EnforceHttps]
     public partial class ReceiveSamlAuthnResponseController : BaseController
     {
         private readonly ReceiveSamlAuthnResponseServices _services;

@@ -21,7 +21,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public IStoreSamlCertificates SamlCertificates { get; private set; }
     }
 
-    [EnforceHttps]
     public partial class ServiceProviderMetadataController : Controller
     {
         private readonly ServiceProviderMetadataServices _services;

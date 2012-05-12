@@ -352,7 +352,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         #region File Attachments
 
         [HttpGet]
-        [EnforceHttps]
         [ActionName("display-file")]
         public virtual ActionResult DisplayFile(Guid fileId, string fileName)
         {
@@ -380,7 +379,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         }
 
         [HttpGet]
-        [EnforceHttps]
         [ActionName("download-file")]
         public virtual ActionResult DownloadFile(Guid fileId, string fileName)
         {

@@ -24,7 +24,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public IStorePasswords Passwords { get; private set; }
     }
 
-    [EnforceHttps]
     public partial class SignInController : BaseController
     {
         private readonly SignInServices _services;

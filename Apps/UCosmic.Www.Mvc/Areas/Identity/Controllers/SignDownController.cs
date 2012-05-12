@@ -4,7 +4,6 @@ using System.Web.Routing;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
-    [EnforceHttps]
     public partial class SignDownController : BaseController
     {
         [HttpGet]

@@ -22,7 +22,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
     }
 
     [Authorize]
-    [EnforceHttps]
     public partial class UpdatePasswordController : BaseController
     {
         private readonly UpdatePasswordServices _services;

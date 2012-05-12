@@ -17,7 +17,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
     }
 
     [Authorize]
-    [EnforceHttps]
     public partial class SignOverController : BaseController
     {
         private readonly SignOverServices _services;

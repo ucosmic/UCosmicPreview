@@ -17,7 +17,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public IHandleCommands<SendCreatePasswordMessageCommand> CommandHandler { get; private set; }
     }
 
-    [EnforceHttps]
     public partial class SignUpController : BaseController
     {
         private readonly SignUpServices _services;
