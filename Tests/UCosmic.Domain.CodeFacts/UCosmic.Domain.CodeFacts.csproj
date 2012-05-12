@@ -78,7 +78,6 @@
     <Compile Include="Identity\Commands\SendConfirmEmailMessageCommandFacts.cs" />
     <Compile Include="Identity\Commands\SendConfirmEmailMessageHandlerFacts.cs" />
     <Compile Include="Identity\Commands\SendConfirmEmailMessageValidatorFacts.cs" />
-    <Compile Include="Identity\Commands\_OldSignOnSamlUserHandlerFacts.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentByIdHandlerFacts.cs" />
     <Compile Include="Etc\InterfaceQueryEntitiesExtensions.cs" />
     <Compile Include="Api\RevisableEntityFinderFacts.cs" />
@@ -86,7 +85,6 @@
     <Compile Include="Api\EntityFinderFacts.cs" />
     <Compile Include="Api\IQueryEntitiesFacts.cs" />
     <Compile Include="Api\EntityQueryCriteriaFacts.cs" />
-    <Compile Include="_OldRandomSecretCreatorFacts.cs" />
     <Compile Include="Establishments\Entities\EmailTemplateFacts.cs" />
     <Compile Include="Establishments\Entities\InstitutionInfoFacts.cs" />
     <Compile Include="Establishments\Entities\EstablishmentEmailDomainFacts.cs" />

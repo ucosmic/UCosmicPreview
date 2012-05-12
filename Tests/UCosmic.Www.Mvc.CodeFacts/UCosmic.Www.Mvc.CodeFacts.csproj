@@ -128,9 +128,7 @@
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailRouterFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ValidateRedeemTicketAttributeFacts.cs" />
     <Compile Include="Areas\Roles\Controllers\RolesControllerFacts.cs" />
-    <Compile Include="Areas\Identity\Controllers\_OldSignInControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOnControllerFacts.cs" />
-    <Compile Include="Areas\Identity\Controllers\_OldSignUpControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ValidateConfirmEmailAttributeFacts.cs" />
     <Compile Include="Areas\Roles\Controllers\RolesRouterFacts.cs" />
     <Compile Include="Areas\Identity\Models\ConfirmEmailFormFacts.cs" />
@@ -139,9 +137,6 @@
     <Compile Include="Areas\Identity\Models\IdentityProviderListItemFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignOnFormFacts.cs" />
     <Compile Include="Areas\Identity\Models\SignOnValidatorFacts.cs" />
-    <Compile Include="Areas\Identity\Models\_OldCreatePasswordFormFacts.cs" />
-    <Compile Include="Areas\Identity\Models\_OldSendEmailFormFacts.cs" />
-    <Compile Include="Areas\Identity\Models\_OldConfirmEmailFormFacts.cs" />
     <Compile Include="Areas\Identity\IdentityAreaRegistrationFacts.cs" />
     <Compile Include="Areas\InstitutionalAgreements\InstitutionalAgreementsAreaRegistrationFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\UpdateEmailValueControllerFacts.cs" />
@@ -201,14 +196,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Common\Controllers\" />
-    <Folder Include="Areas\Common\Models\" />
-    <Folder Include="Areas\Establishments\Controllers\" />
-    <Folder Include="Areas\Establishments\Models\" />
-    <Folder Include="Areas\InstitutionalAgreements\Controllers\" />
-    <Folder Include="Areas\Roles\Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\Apps\UCosmic.Api\UCosmic.Api.csproj">
       <Project>{F35CDDB3-8277-48E1-9350-E947B41593FC}</Project>

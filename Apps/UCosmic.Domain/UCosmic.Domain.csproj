@@ -101,9 +101,6 @@
     <Compile Include="Api\RevisableEntityFinder.cs" />
     <Compile Include="Api\RevisableEntityQueries.cs" />
     <Compile Include="Api\RevisableEntityQueryCriteria.cs" />
-    <Compile Include="_OldEmailTemplateQuery.cs" />
-    <Compile Include="_OldEmailTemplateFinder.cs" />
-    <Compile Include="Identity\Commands\_OldReceiveSamlAuthnResponse.cs" />
     <Compile Include="Establishments\Commands\UpdateEstablishmentNodeHierarchy.cs" />
     <Compile Include="Establishments\Entities\InstitutionInfo.cs" />
     <Compile Include="Establishments\Queries\FindRootEstablishmentsWithChildren.cs" />
@@ -115,7 +112,6 @@
     <Compile Include="Establishments\EstablishmentQuery.cs" />
     <Compile Include="Establishments\EstablishmentFinder.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentByEmail.cs" />
-    <Compile Include="Identity\Commands\_OldSendSamlAuthnRequest.cs" />
     <Compile Include="Establishments\Commands\UpdateSamlSignOnMetadata.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentBySamlEntityId.cs" />
     <Compile Include="Establishments\Queries\ReceiveSaml2Response.cs" />
@@ -182,10 +178,7 @@
     <Compile Include="People\PersonFinder.cs" />
     <Compile Include="Places\GeoNamesToponymFinder.cs" />
     <Compile Include="Places\GeoNamesToponymQuery.cs" />
-    <Compile Include="_OldEmailComposer.cs" />
     <Compile Include="Api\IQueryEntities.cs" />
-    <Compile Include="_OldRandomSecretCreator.cs" />
-    <Compile Include="Api\_OldISendEmails.cs" />
     <Compile Include="People\Entities\Affiliation.cs" />
     <Compile Include="People\Entities\EmailAddress.cs" />
     <Compile Include="People\Entities\EmailConfirmation.cs" />
