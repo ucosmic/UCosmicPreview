@@ -9,7 +9,8 @@
         @RenderSection("Styles")
     }
 </head>
-<body data-ucosmic-ajax-error-log-url="@Url.Action(MVC.Common.Errors.LogAjaxError())" 
+<body data-ucosmic-sign-on-url="@Url.Action(MVC.Identity.SignOn.Get(Request.RawUrl))"
+    data-ucosmic-ajax-error-log-url="@Url.Action(MVC.Common.Errors.LogAjaxError())"
     data-ucosmic-ajax-error-log-message="An unknown error has occurred.
     @*maintain line break in message*@
 If this continues, please notify info@ucosmic.org.">

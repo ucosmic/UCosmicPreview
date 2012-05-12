@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
-using System.Web.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.People.Models;
+using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.People.Controllers
 {
@@ -20,12 +20,12 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         public class TheClass
         {
             [TestMethod]
-            public void IsDecoratedWith_Authorize()
+            public void IsDecoratedWith_Authenticate()
             {
-                var attribute = Attribute.GetCustomAttribute(typeof(PersonNameController), typeof(AuthorizeAttribute));
+                var attribute = Attribute.GetCustomAttribute(typeof(PersonNameController), typeof(AuthenticateAttribute));
 
                 attribute.ShouldNotBeNull();
-                attribute.ShouldBeType<AuthorizeAttribute>();
+                attribute.ShouldBeType<AuthenticateAttribute>();
             }
         }
 
@@ -43,17 +43,17 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 attributes[0].ShouldNotBeNull();
             }
 
-            //[TestMethod]
-            //public void IsDecoratedWith_OutputCache_UsingAllParams()
-            //{
-            //    Expression<Func<PersonNameController, ActionResult>> method = m => m.GenerateDisplayName(null);
+            [TestMethod]
+            public void IsDecoratedWith_OutputCache_UsingAllParams()
+            {
+                Expression<Func<PersonNameController, ActionResult>> method = m => m.GenerateDisplayName(null);
 
-            //    var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
-            //    attributes.ShouldNotBeNull();
-            //    attributes.Length.ShouldEqual(1);
-            //    attributes[0].ShouldNotBeNull();
-            //    attributes[0].VaryByParam.ShouldEqual("*");
-            //}
+                var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
+                attributes.ShouldNotBeNull();
+                attributes.Length.ShouldEqual(1);
+                attributes[0].ShouldNotBeNull();
+                attributes[0].VaryByParam.ShouldEqual("*");
+            }
 
             //[TestMethod]
             //public void IsDecoratedWith_OutputCache_UsingServerLocation()
@@ -143,17 +143,17 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 attributes[0].ShouldNotBeNull();
             }
 
-            //[TestMethod]
-            //public void IsDecoratedWith_OutputCache_UsingAllParams()
-            //{
-            //    Expression<Func<PersonNameController, ActionResult>> method = m => m.AutoCompleteSalutations(null);
+            [TestMethod]
+            public void IsDecoratedWith_OutputCache_UsingAllParams()
+            {
+                Expression<Func<PersonNameController, ActionResult>> method = m => m.AutoCompleteSalutations(null);
 
-            //    var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
-            //    attributes.ShouldNotBeNull();
-            //    attributes.Length.ShouldEqual(1);
-            //    attributes[0].ShouldNotBeNull();
-            //    attributes[0].VaryByParam.ShouldEqual("*");
-            //}
+                var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
+                attributes.ShouldNotBeNull();
+                attributes.Length.ShouldEqual(1);
+                attributes[0].ShouldNotBeNull();
+                attributes[0].VaryByParam.ShouldEqual("*");
+            }
 
             //[TestMethod]
             //public void IsDecoratedWith_OutputCache_UsingServerLocation()
@@ -296,17 +296,17 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 attributes[0].ShouldNotBeNull();
             }
 
-            //[TestMethod]
-            //public void IsDecoratedWith_OutputCache_UsingAllParams()
-            //{
-            //    Expression<Func<PersonNameController, ActionResult>> method = m => m.AutoCompleteSuffixes(null);
+            [TestMethod]
+            public void IsDecoratedWith_OutputCache_UsingAllParams()
+            {
+                Expression<Func<PersonNameController, ActionResult>> method = m => m.AutoCompleteSuffixes(null);
 
-            //    var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
-            //    attributes.ShouldNotBeNull();
-            //    attributes.Length.ShouldEqual(1);
-            //    attributes[0].ShouldNotBeNull();
-            //    attributes[0].VaryByParam.ShouldEqual("*");
-            //}
+                var attributes = method.GetAttributes<PersonNameController, ActionResult, OutputCacheAttribute>();
+                attributes.ShouldNotBeNull();
+                attributes.Length.ShouldEqual(1);
+                attributes[0].ShouldNotBeNull();
+                attributes[0].VaryByParam.ShouldEqual("*");
+            }
 
             //[TestMethod]
             //public void IsDecoratedWith_OutputCache_UsingServerLocation()

@@ -65,8 +65,8 @@
     });
     $('[data-ucosmic-autocomplete=true]').each(function () {
         var config = $(this);
-        var url = $(this).data('ucosmic-autocomplete-url');
-        var input = $(this).find('input[type=text][id!=""][name!=""]');
+        var url = config.data('ucosmic-autocomplete-url');
+        var input = config.find('input[type=text][id!=""][name!=""]');
         input.autocomplete({
             source: url,
             minLength: 0,

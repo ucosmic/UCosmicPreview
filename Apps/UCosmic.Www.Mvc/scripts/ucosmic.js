@@ -3,10 +3,16 @@
         if (jqXhr.readyState === 0 || jqXhr.status === 0) {
             return; // user clicked link or browser control
         }
-        var message = $('body:first').data('ucosmic-ajax-error-log-message');
+        var config = $('body:first');
+        if (jqXhr.status === 401) {
+            // unauthorized, need to sign on
+            window.location.href = config.data('ucosmic-sign-on-url');
+            return;
+        }
+        var message = config.data('ucosmic-ajax-error-log-message');
         if (message)
             alert(message);
-        var url = $('body:first').data('ucosmic-ajax-error-log-url');
+        var url = config.data('ucosmic-ajax-error-log-url');
         if (url) {
             var args = {
                 ReadyState: (jqXhr) ? jqXhr.readyState : null,

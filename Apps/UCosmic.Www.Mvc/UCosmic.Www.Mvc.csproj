@@ -50,6 +50,9 @@
     <OutputPath>bin\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AspNetHaack">
+      <HintPath>..\..\packages\AspNetHaack.0.0.1\lib\net40\AspNetHaack.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper, Version=2.1.266.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\AutoMapper.2.1.266\lib\net40\AutoMapper.dll</HintPath>
@@ -202,6 +205,7 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Helpers\FormsAuthenticationConfig.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailController.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOverController.cs" />
     <Compile Include="Areas\Identity\Controllers\SignDownController.cs" />
@@ -240,6 +244,7 @@
     <Compile Include="Areas\People\PeopleAreaRegistration.cs" />
     <Compile Include="Areas\Roles\RolesAreaRegistration.cs" />
     <Compile Include="Areas\Identity\Controllers\ListIdentityProvidersController.cs" />
+    <Compile Include="Controllers\AuthenticateAttribute.cs" />
     <Compile Include="Controllers\NullLayoutOnChildActionAttribute.cs" />
     <Compile Include="Areas\Identity\Controllers\ValidateConfirmEmailAttribute.cs" />
     <Compile Include="Helpers\SimpleInjectorMVC3.cs" />

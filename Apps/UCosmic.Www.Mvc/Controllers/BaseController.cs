@@ -5,6 +5,7 @@ namespace UCosmic.Www.Mvc.Controllers
 {
     public abstract partial class BaseController : Controller
     {
+        public const string VaryByCustomUser = "User";
         public const string FeedbackMessageKey = "TopMessage";
         protected const string SharedName = "Shared";
 

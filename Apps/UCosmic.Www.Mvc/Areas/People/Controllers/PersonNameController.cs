@@ -22,7 +22,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         public IProcessQueries QueryProcessor { get; private set; }
     }
 
-    [Authorize]
+    [Authenticate]
     public partial class PersonNameController : BaseController
     {
         #region Construction & DI
@@ -38,7 +38,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         #region GenerateDisplayName
 
         [HttpPost]
-        //[OutputCache(VaryByParam = "*", Duration = 1800, Location = OutputCacheLocation.Server)]
+        [OutputCache(VaryByParam = "*", Duration = 1800)]
         public virtual JsonResult GenerateDisplayName(GenerateDisplayNameForm model)
         {
             var query = Mapper.Map<GenerateDisplayNameQuery>(model);
@@ -50,7 +50,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         #region AutoComplete Salutations & Suffixes
 
         [HttpGet]
-        //[OutputCache(VaryByParam = "*", Duration = 1800, Location = OutputCacheLocation.Server)]
+        [OutputCache(VaryByParam = "*", Duration = 1800)]
         public virtual JsonResult AutoCompleteSalutations(string term)
         {
             var data = _services.QueryProcessor.Execute(
@@ -66,7 +66,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         }
 
         [HttpGet]
-        //[OutputCache(VaryByParam = "*", Duration = 1800, Location = OutputCacheLocation.Server)]
+        [OutputCache(VaryByParam = "*", Duration = 1800)]
         public virtual JsonResult AutoCompleteSuffixes(string term)
         {
             var data = _services.QueryProcessor.Execute(

@@ -11,6 +11,7 @@ using UCosmic.Domain;
 using UCosmic.Impl;
 using UCosmic.Impl.Orm;
 using UCosmic.Impl.Seeders;
+using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc
@@ -122,8 +123,8 @@ namespace UCosmic.Www.Mvc
 
         public override string GetVaryByCustomString(HttpContext context, string custom)
         {
-            return "User".Equals(custom, StringComparison.OrdinalIgnoreCase)
-                ? Thread.CurrentPrincipal.Identity.Name
+            return BaseController.VaryByCustomUser.Equals(custom, StringComparison.OrdinalIgnoreCase)
+                ? User.Identity.Name
                 : base.GetVaryByCustomString(context, custom);
         }
     }
