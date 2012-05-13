@@ -32,7 +32,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public string ReturnUrl { get; set; }
 
         [UIHint("RememberMeField")]
-        [Display(Name = "Remember by email address on this browser.")]
+        [Display(Name = "Remember my email address on this browser.")]
         public bool RememberMe { get; set; }
     }
 

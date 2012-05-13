@@ -30,7 +30,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         internal const string PasswordPropertyName = "Password";
 
         [UIHint("RememberMeField")]
-        [Display(Name = "Remember by email address on this browser.")]
+        [Display(Name = "Remember my email address on this browser.")]
         public bool RememberMe { get; set; }
 
         [HiddenInput(DisplayValue = false)]
