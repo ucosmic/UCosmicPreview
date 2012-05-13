@@ -8,7 +8,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ConfigurationForm
 {
     public class InstitutionalAgreementConfigurationForm
     {
-        private const string DuplicateOptionErrorMessage = "The option '{0}' already exists. Please do not add any duplicate options.";
+        public const string DuplicateOptionErrorMessage = "The option '{0}' already exists. Please do not add any duplicate options.";
 
         public InstitutionalAgreementConfigurationForm()
         {

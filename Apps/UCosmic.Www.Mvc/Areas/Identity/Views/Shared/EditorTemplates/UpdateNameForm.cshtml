@@ -1,5 +1,4 @@
 ﻿@model UCosmic.Www.Mvc.Areas.Identity.Models.UpdateNameForm
-
 <div id="person_self_editor">
     <div class="hidden-input">
         @*@Html.HiddenFor(m => UpdateNameForm.ReturnUrl)*@
@@ -56,15 +55,10 @@
                 <a class="text-box down-arrow">
                     <img class="text-box down-arrow" alt="" src="/content/icons/transparent.png">
                 </a>
-                <div class="autocomplete-menu">
-                </div>
-            </div>
-            <div class="messages" data-ucosmic-focused-class="focused">
-                <div class="top callout border">
-                    <div class="top callout bg">
+                <div style="position: relative;">
+                    <div class="autocomplete-menu">
                     </div>
                 </div>
-                <span class="validation">@Html.ValidationMessageFor(m => m.Salutation)</span>
             </div>
         </div>
     </div>
@@ -77,14 +71,7 @@
                  data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.FirstName, ViewData).NullDisplayText)"
                  data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
                  data-ucosmic-trim-input="true">
-                @Html.EditorFor(m => m.FirstName)
-            </div>
-            <div class="messages" data-ucosmic-focused-class="focused">
-                <div class="top callout border">
-                    <div class="top callout bg">
-                    </div>
-                </div>
-                <span class="validation">@Html.ValidationMessageFor(m => m.FirstName)</span>
+                @Html.TextBoxFor(m => m.FirstName, new { style = "position: inherit;" })
             </div>
         </div>
     </div>
@@ -97,14 +84,7 @@
                  data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.MiddleName, ViewData).NullDisplayText)"
                  data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
                  data-ucosmic-trim-input="true">
-                @Html.EditorFor(m => m.MiddleName)
-            </div>
-            <div class="messages" data-ucosmic-focused-class="focused">
-                <div class="top callout border">
-                    <div class="top callout bg">
-                    </div>
-                </div>
-                <span class="validation">@Html.ValidationMessageFor(m => m.MiddleName)</span>
+                @Html.TextBoxFor(m => m.MiddleName, new { style = "position: inherit;" })
             </div>
         </div>
     </div>
@@ -118,13 +98,6 @@
                  data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
                  data-ucosmic-trim-input="true">
                 @Html.EditorFor(m => m.LastName)
-            </div>
-            <div class="messages" data-ucosmic-focused-class="focused">
-                <div class="top callout border">
-                    <div class="top callout bg">
-                    </div>
-                </div>
-                <span class="validation">@Html.ValidationMessageFor(m => m.LastName)</span>
             </div>
         </div>
     </div>
@@ -146,13 +119,6 @@
                 </a>
                 <div class="autocomplete-menu">
                 </div>
-            </div>
-            <div class="messages" data-ucosmic-focused-class="focused">
-                <div class="top callout border">
-                    <div class="top callout bg">
-                    </div>
-                </div>
-                <span class="validation">@Html.ValidationMessageFor(m => m.Suffix)</span>
             </div>
         </div>
     </div>

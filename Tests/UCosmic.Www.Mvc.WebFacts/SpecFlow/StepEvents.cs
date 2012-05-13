@@ -1,9 +1,8 @@
 ﻿using System;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using UCosmic.Www.Mvc.WebDriver;
 
-namespace UCosmic.Www.Mvc.SpecFlow
+namespace UCosmic.Www.Mvc
 {
     [Binding]
     // ReSharper disable UnusedMember.Global

@@ -7,12 +7,9 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 {
     public class InstitutionalAgreementFileForm
     {
-        public InstitutionalAgreementFileForm()
-        {
-            //EntityId = Guid.NewGuid();
-        }
-
         private const string AllowedExtensions = "PDF, DOC, DOCX, ODT, XLS, XLSX, ODS, PPT, PPTX";
+        public const string InvalidExtensionErrorText =
+            "You may only upload PDF, Microsoft Office, and Open Document files with a pdf, doc, docx, odt, xls, xlsx, ods, ppt, or pptx extension.";
 
         [HiddenInput(DisplayValue = false)]
         public bool IsDeleted { get; set; }

@@ -122,28 +122,12 @@ namespace UCosmic
         }
 
         #endregion
-        #region String shortcuts
-
-        public static bool IsNullOrWhiteSpace(this string value)
-        {
-            return string.IsNullOrWhiteSpace(value);
-        }
+        #region String formatting
 
         public static string FormatWith(this string format, params object[] args)
         {
             return string.Format(format, args);
         }
-
-        #endregion
-        #region Null check shortcut
-
-        public static bool IsNull(this object value)
-        {
-            return value == null;
-        }
-
-        #endregion
-        #region Template Formatting
 
         public static string FormatTemplate(this string template, IEnumerable<KeyValuePair<string, string>> replacements)
         {
@@ -160,6 +144,29 @@ namespace UCosmic
             }
 
             return content.ToString();
+        }
+
+        #endregion
+        #region Null check shortcuts
+
+        public static bool IsNull(this object value)
+        {
+            return value == null;
+        }
+
+        public static bool IsNotNull(this object value)
+        {
+            return !value.IsNull();
+        }
+
+        public static bool IsNullOrWhiteSpace(this string value)
+        {
+            return string.IsNullOrWhiteSpace(value);
+        }
+
+        public static bool IsNotNullOrWhiteSpace(this string value)
+        {
+            return !value.IsNullOrWhiteSpace();
         }
 
         #endregion

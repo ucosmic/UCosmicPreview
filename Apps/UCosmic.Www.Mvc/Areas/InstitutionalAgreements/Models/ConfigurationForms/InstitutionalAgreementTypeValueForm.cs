@@ -12,10 +12,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ConfigurationForm
         [HiddenInput(DisplayValue = false)]
         public int ConfigurationId { get; set; }
 
-        [Display(Name = "Agreement type")]
-        [RequiredIf("IsAdded", true, ErrorMessage = "Please enter an {0} option.")]
+        [Display(Name = TextDisplayName)]
+        [RequiredIf("IsAdded", true, ErrorMessage = TextRequiredErrorFormat)]
         [StringLength(150, ErrorMessage = "{0} cannot contain more than {1} characters.")]
         public string Text { get; set; }
+        public const string TextDisplayName = "Agreement type";
+        public const string TextRequiredErrorFormat = "Please enter an {0} option.";
 
         [HiddenInput(DisplayValue = false)]
         public bool IsAdded { get; set; }

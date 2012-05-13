@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 using Should;
 using UCosmic.Impl;
 
-namespace UCosmic.Www.Mvc.WebDriver
+namespace UCosmic.Www.Mvc
 {
     [TestClass]
     public class WebDriverContext
@@ -14,6 +14,9 @@ namespace UCosmic.Www.Mvc.WebDriver
         [AssemblyInitialize]
         public static void InitializeTestSuite(TestContext testContext)
         {
+            // register routes for UrlHelper
+            GlobalAsaxFacts.RegisterAllRoutes(testContext);
+
             // use unity for dependency injection
             DependencyInjector.Set(new UnityDependencyInjector());
 

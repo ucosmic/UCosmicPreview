@@ -25,10 +25,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
         //[HiddenInput(DisplayValue = false)]
         //public int? AgreementId { get; set; }
 
-        [Display(Name = "Contact type")]
-        [Required(ErrorMessage = "{0} is required.")]
+        [Display(Name = ContactTypeDisplayName)]
+        [Required(ErrorMessage = ContactTypeRequiredErrorFormat)]
         [AllowedContactType(ErrorMessage = "Contact type '{0}' is not allowed. Please select a Contact type from the list provided.")]
         public string ContactType { get; set; }
+        public const string ContactTypeDisplayName = "Contact type";
+        public const string ContactTypeRequiredErrorFormat = "{0} is required.";
 
         public PersonForm Person { get; set; }
         public class PersonForm
@@ -39,16 +41,20 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
             [Display(Name = "Salutation")]
             public string Salutation { get; set; }
 
-            [Display(Name = "First name")]
-            [Required(ErrorMessage = "Contact first name is required.")]
+            [Display(Name = FirstNameDisplayName)]
+            [Required(ErrorMessage = FirstNameRequiredErrorText)]
             public string FirstName { get; set; }
+            public const string FirstNameDisplayName = "First name";
+            public const string FirstNameRequiredErrorText = "Contact first name is required.";
 
             [Display(Name = "Middle name or initial")]
             public string MiddleName { get; set; }
 
-            [Display(Name = "Last name")]
-            [Required(ErrorMessage = "Contact last name is required.")]
+            [Display(Name = LastNameDisplayName)]
+            [Required(ErrorMessage = LastNameRequiredErrorText)]
             public string LastName { get; set; }
+            public const string LastNameDisplayName = "Last name";
+            public const string LastNameRequiredErrorText = "Contact last name is required.";
 
             [Display(Name = "Suffix")]
             public string Suffix { get; set; }

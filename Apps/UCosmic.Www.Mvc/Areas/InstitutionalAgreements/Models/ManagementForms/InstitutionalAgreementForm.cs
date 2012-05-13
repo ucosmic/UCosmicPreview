@@ -51,18 +51,22 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
         #region Type and Status
 
         [UIHint("TypeComboBox")]
-        [Display(Name = "Agreement type")]
-        [Required(ErrorMessage = "{0} is required.")]
+        [Display(Name = TypeDisplayName)]
+        [Required(ErrorMessage = TypeRequiredErrorFormat)]
         [StringLength(150, ErrorMessage = "{0} cannot contain more than {1} characters.")]
         [AllowedType(ErrorMessage = "Agreement type '{0}' is not allowed. Please select an Agreement type from the list provided.")]
         public string Type { get; set; }
+        public const string TypeDisplayName = "Agreement type";
+        public const string TypeRequiredErrorFormat = "{0} is required.";
 
         [UIHint("StatusComboBox")]
-        [Display(Name = "Current status")]
-        [Required(ErrorMessage = "{0} is required.")]
+        [Display(Name = StatusDisplayName)]
+        [Required(ErrorMessage = StatusRequiredErrorFormat)]
         [StringLength(50, ErrorMessage = "{0} cannot contain more than {1} characters.")]
         [AllowedStatus(ErrorMessage = "Current status '{0}' is not allowed. Please select a Current status from the list provided.")]
         public string Status { get; set; }
+        public const string StatusDisplayName = "Current status";
+        public const string StatusRequiredErrorFormat = "{0} is required.";
 
         #endregion
         #region Titles & Description
@@ -70,11 +74,13 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
         [Display(Name = "Check this box to automatically generate the summary description based on the agreement type, participants, and status.")]
         public bool IsTitleDerived { get; set; }
 
-        [Display(Name = "Summary description")]
-        [Required(ErrorMessage = "{0} is required.")]
+        [Display(Name = TitleDisplayName)]
+        [Required(ErrorMessage = TitleRequiredErrorFormat)]
         [StringLength(500, ErrorMessage = "{0} cannot contain more than {1} characters.")]
         [DataType(DataType.MultilineText)]
         public string Title { get; set; }
+        public const string TitleDisplayName = "Summary description";
+        public const string TitleRequiredErrorFormat = "{0} is required.";
 
         [Display(Name = "Additional notes")]
         [StringLength(4000, ErrorMessage = "{0} cannot contain more than {1} characters.")]
@@ -84,17 +90,21 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
         #endregion
         #region Lifetime
 
-        [Display(Name = "Start date")]
-        [Required(ErrorMessage = "{0} is required.")]
+        [Display(Name = StartsOnDisplayName)]
+        [Required(ErrorMessage = StartsOnRequiredErrorFormat)]
         [DataType(DataType.Text)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:M/d/yyyy}")]
         public DateTime? StartsOn { get; set; }
+        public const string StartsOnDisplayName = "Start date";
+        public const string StartsOnRequiredErrorFormat = "{0} is required.";
 
-        [Display(Name = "Expiration date")]
-        [Required(ErrorMessage = "{0} is required.")]
+        [Display(Name = ExpiresOnDisplayName)]
+        [Required(ErrorMessage = ExpiresOnRequiredErrorFormat)]
         [DataType(DataType.Text)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:M/d/yyyy}")]
         public DateTime? ExpiresOn { get; set; }
+        public const string ExpiresOnDisplayName = "Expiration date";
+        public const string ExpiresOnRequiredErrorFormat = "{0} is required.";
 
         [Display(Name = "This expiration date is estimated (agreement should be reviewed by this date).")]
         public bool IsExpirationEstimated { get; set; }

@@ -2,14 +2,10 @@
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using UCosmic.Impl;
-using UCosmic.Www.Mvc.WebDriver;
 
-namespace UCosmic.Www.Mvc.SpecFlow
+namespace UCosmic.Www.Mvc
 {
     [Binding]
-    // ReSharper disable ClassNeverInstantiated.Global
-    // ReSharper disable UnusedMember.Global
-    // ReSharper disable MemberCanBePrivate.Global
     public class ScenarioEvents : TestRunEvents
     {
         #region All Scenarios
@@ -115,7 +111,8 @@ namespace UCosmic.Www.Mvc.SpecFlow
         #endregion
         #region Generated Email
 
-        //[BeforeTestRun]
+        [BeforeTestRun]
+        [AfterTestRun]
         [AfterScenario("GeneratesEmail")]
         public static void DeleteGeneratedEmail()
         {
@@ -123,9 +120,6 @@ namespace UCosmic.Www.Mvc.SpecFlow
         }
         #endregion
     }
-    // ReSharper restore ClassNeverInstantiated.Global
-    // ReSharper restore UnusedMember.Global
-    // ReSharper restore MemberCanBePrivate.Global
 
     public static class ScenarioContextKeys
     {

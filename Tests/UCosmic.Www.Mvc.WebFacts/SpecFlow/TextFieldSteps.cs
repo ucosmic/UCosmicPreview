@@ -1,102 +1,112 @@
-﻿using System;
-using TechTalk.SpecFlow;
-using UCosmic.Www.Mvc.Areas.Common.WebPages;
-using UCosmic.Www.Mvc.WebDriver;
+﻿using TechTalk.SpecFlow;
 
-namespace UCosmic.Www.Mvc.SpecFlow
+namespace UCosmic.Www.Mvc
 {
     [Binding]
     public class TextFieldSteps : BaseStepDefinition
     {
-        [Then(@"I should(.*) see a (.*) text field")]
-        public void SeeTextBox(string seeOrNot, string fieldLabel)
+        [Then(@"I should see a (.*) text field")]
+        [Then(@"I should see an (.*) text field")]
+        public void SeeTextField(string fieldLabel)
         {
-            var shouldSee = string.IsNullOrWhiteSpace(seeOrNot);
             Browsers.ForEach(browser =>
             {
-                var page = WebPageFactory.GetPage(browser);
-                if (shouldSee)
-                {
-                    var textBox = page.GetTextInputField(fieldLabel);
-                    browser.WaitUntil(b => textBox != null && textBox.Displayed,
-                        string.Format("The '{0}' text field was either not found or not displayed in @Browser",
-                            fieldLabel));
-                }
-                else
-                {
-                    try
-                    {
-                        var textBox = page.GetTextInputField(fieldLabel);
-                        browser.WaitUntil(b => textBox == null || !textBox.Displayed,
-                            string.Format("The '{0}' text field was unexpectedly displayed in @Browser",
-                                fieldLabel));
-                    }
-                    catch (NotSupportedException)
-                    {
-                        // input may not exist on page
-                    }
-                }
+                var page = browser.GetPage();
+                var textField = page.GetField(fieldLabel);
+                browser.WaitUntil(b => textField.Displayed,
+                    "The '{0}' text field was not displayed by @Browser"
+                        .FormatWith(fieldLabel));
+            });
+        }
+
+        [Then(@"I should not see a (.*) text field")]
+        [Then(@"I should not see an (.*) text field")]
+        [Then(@"I shouldn't see a (.*) text field")]
+        [Then(@"I shouldn't see an (.*) text field")]
+        public void DoNotSeeTextField(string fieldLabel)
+        {
+            Browsers.ForEach(browser =>
+            {
+                var page = browser.GetPage();
+                var textField = page.GetField(fieldLabel, true);
+                browser.WaitUntil(b => textField == null || !textField.Displayed,
+                    "The '{0}' text field was unexpectedly displayed by @Browser"
+                        .FormatWith(fieldLabel));
             });
         }
 
         [When(@"I type ""(.*)"" into the (.*) text field")]
         [When(@"I do type ""(.*)"" into the (.*) text field")]
-        public void TypeIntoTextBox(string textToType, string fieldLabel)
+        public void TypeIntoTextField(string textToType, string fieldLabel)
         {
             Browsers.ForEach(browser =>
             {
-                var page = WebPageFactory.GetPage(browser);
-                var textBox = page.GetTextInputField(fieldLabel);
-                textBox.Clear();
-                textBox.SendKeys(textToType);
+                var page = browser.GetPage();
+                var textField = page.GetField(fieldLabel);
+                textField.Clear();
+                textField.SendKeys(textToType);
             });
         }
 
         [When(@"I don't type ""(.*)"" into the (.*) text field")]
-        public void DoNotTypeIntoTextBox(string textToType, string fieldLabel)
+        [When(@"I do not type ""(.*)"" into the (.*) text field")]
+        public void DoNotTypeIntoTextField(string textToType, string fieldLabel)
         {
             // place marker step for skipping text typing steps in exampled scenario outlines
         }
 
         [Then(@"I should see ""(.*)"" in the (.*) text field")]
-        public void SeeValueInTextBox(string expectedValue, string fieldLabel)
+        public void SeeValueInTextField(string expectedValue, string fieldLabel)
         {
+            SeeTextField(fieldLabel);
+
             Browsers.ForEach(browser =>
             {
-                var page = WebPageFactory.GetPage(browser);
-                var textBox = page.GetTextInputField(fieldLabel);
-                var value = page.GetTextInputValue(fieldLabel);
-
-                browser.WaitUntil(b => textBox.Displayed && value.Equals(expectedValue),
+                var page = browser.GetPage();
+                browser.WaitUntil(b => page.GetTextInputValue(fieldLabel).Equals(expectedValue),
                     string.Format("The value '{0}' was not displayed in the '{1}' text field by @Browser (actual value was '{2}').",
-                        expectedValue, fieldLabel, textBox.Text));
+                        expectedValue, fieldLabel, page.GetTextInputValue(fieldLabel)));
             });
         }
 
         [Then(@"I shouldn't see ""(.*)"" in the (.*) text field")]
-        public void DoNotSeeValueInTextBox(string unexpectedValue, string fieldLabel)
+        [Then(@"I should not see ""(.*)"" in the (.*) text field")]
+        public void DoNotSeeValueInTextField(string unexpectedValue, string fieldLabel)
         {
+            SeeTextField(fieldLabel);
+
             Browsers.ForEach(browser =>
             {
-                var page = WebPageFactory.GetPage(browser);
-                var textBox = page.GetTextInputField(fieldLabel);
-                var value = page.GetTextInputValue(fieldLabel);
-
-                browser.WaitUntil(b => textBox.Displayed && !value.Equals(unexpectedValue),
+                var page = browser.GetPage();
+                browser.WaitUntil(b => !page.GetTextInputValue(fieldLabel).Equals(unexpectedValue),
                     string.Format("The value '{0}' was unexpectedly displayed in the '{1}' text field by @Browser.",
                         unexpectedValue, fieldLabel));
             });
         }
 
-        [Then(@"The (.*) text field should be read only")]
-        public void CheckTextBoxReadOnlyAttribute(string fieldLabel)
+        [Then(@"the (.*) text field should be read only")]
+        public void EnsureTextFieldIsReadOnly(string fieldLabel)
         {
             Browsers.ForEach(browser =>
             {
-                var page = WebPageFactory.GetPage(browser);
-                var textBox = page.GetTextInputField(fieldLabel);
+                var page = browser.GetPage();
+                var textBox = page.GetField(fieldLabel);
                 browser.WaitUntil(b => textBox.GetAttribute("readonly").Equals("true"),
-                    string.Format("The '{0}' text field is not in read-only mode.",
+                    string.Format("The '{0}' text field is not in read-only mode on @Browser.",
+                        fieldLabel));
+            });
+        }
+
+        [Then(@"the (.*) text field shouldn't be read only")]
+        [Then(@"the (.*) text field should not be read only")]
+        public void EnsureTextFieldIsNotReadOnly(string fieldLabel)
+        {
+            Browsers.ForEach(browser =>
+            {
+                var page = browser.GetPage();
+                var textBox = page.GetField(fieldLabel);
+                browser.WaitUntil(b => textBox.GetAttribute("readonly").Equals("false"),
+                    string.Format("The '{0}' text field is unexpectedly in read-only mode on @Browser.",
                         fieldLabel));
             });
         }

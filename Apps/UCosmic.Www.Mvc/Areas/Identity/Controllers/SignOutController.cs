@@ -37,14 +37,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [OpenTopTab(TopTabName.Home)]
         public virtual ActionResult Get(string returnUrl)
         {
+            // remove the signing email from temp data for future reloads
+            TempData.SigningEmailAddress(null);
+
             // sign out and redirect back to this action
             if (!string.IsNullOrWhiteSpace(User.Identity.Name))
             {
                 // flash the success message
                 SetFeedbackMessage(SuccessMessage);
-
-                // remove the signing email from temp data for future reloads
-                TempData.SigningEmailAddress(null);
 
                 // delete the authentication cookie and redirect
                 _services.UserSigner.SignOff();

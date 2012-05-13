@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 
-namespace UCosmic.Www.Mvc.WebDriver
+namespace UCosmic.Www.Mvc
 {
     public static class WebElementExtensions
     {
@@ -126,7 +126,7 @@ namespace UCosmic.Www.Mvc.WebDriver
 
             // make sure checkbox is visible
             browser.WaitUntil(b => checkBox.Displayed, string.Format(
-                "The checkbox with id '{0}' was not displayed using @Browser.", elementId));
+                "The check box with id '{0}' was not displayed using @Browser.", elementId));
 
             // generate script to find out whether or not the checkbox is checked
             var jQuery = string.Format("return $('#{0}').is(':checked')", elementId);

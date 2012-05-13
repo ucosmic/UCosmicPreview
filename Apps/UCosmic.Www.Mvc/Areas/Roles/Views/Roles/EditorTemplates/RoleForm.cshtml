@@ -69,7 +69,7 @@
                             data-ucosmic-autocomplete-url="@Url.Action(MVC.Roles.Roles.AutoCompleteUserName())"
                             data-ucosmic-add-url="@Url.Action(MVC.Roles.Roles.AddUserName())"
                         >
-                            <li class="member empty"><b>[No Members]</b></li>
+                            <li class="member empty"><strong>[No Members]</strong></li>
                             @foreach (var grant in Model.Grants)
                             {
                                 @Html.EditorFor(m => grant)

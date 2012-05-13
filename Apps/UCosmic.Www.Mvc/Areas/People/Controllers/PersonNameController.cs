@@ -60,7 +60,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 }
             );
 
-            var options = GetAutoCompleteOptions(data, DefaultSalutationValues);
+            var options = GetAutoCompleteOptions(term, data, DefaultSalutationValues);
 
             return Json(options, JsonRequestBehavior.AllowGet);
         }
@@ -76,7 +76,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
                 }
             );
 
-            var options = GetAutoCompleteOptions(data, DefaultSuffixValues);
+            var options = GetAutoCompleteOptions(term, data, DefaultSuffixValues);
 
             return Json(options, JsonRequestBehavior.AllowGet);
         }
@@ -86,13 +86,26 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         public static readonly string[] DefaultSuffixValues = new[] { SalutationAndSuffixNullValueLabel, "Jr.", "Sr.", "PhD", "Esq." };
 
         [NonAction]
-        private static IEnumerable GetAutoCompleteOptions(ICollection<string> data, IEnumerable<string> defaults)
+        private static IEnumerable GetAutoCompleteOptions(string term, ICollection<string> data, IEnumerable<string> defaults)
         {
             // begin with the defaults
             var merged = defaults.ToList();
 
             // mix in the data
-            if (data != null && data.Count > 0) merged.AddRange(data);
+            if (data.IsNotNull() && data.Any()) merged.AddRange(data);
+
+            // to not return anything for exact matches
+            if (term.IsNotNullOrWhiteSpace())
+            {
+                var exact = merged.SingleOrDefault(term.Equals);
+                var others = merged.Where(s => !term.Equals(s) && s.StartsWith(term));
+                if (exact.IsNotNull() && !others.Any())
+                    return Enumerable.Empty<object>();
+            }
+
+            // apply term
+            if (term.IsNotNullOrWhiteSpace())
+                merged = merged.Where(s => s != SalutationAndSuffixNullValueLabel && s.StartsWith(term)).ToList();
 
             // sort and convert to autocomplete anonymous object
             var options = merged.OrderBy(s => s).Select(s => new

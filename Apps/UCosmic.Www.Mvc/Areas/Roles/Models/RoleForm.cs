@@ -27,11 +27,13 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Models
         [StringLength(200, ErrorMessage = "{0} cannot contain more than {1} characters.")]
         public string Name { get; set; }
 
-        [Display(Name = "Description")]
-        [Required(ErrorMessage = "{0} is required.")]
+        [Display(Name = DescriptionDisplayName)]
+        [Required(ErrorMessage = DescriptionRequiredErrorFormat)]
         [StringLength(4000, ErrorMessage = "{0} cannot contain more than {1} characters.")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+        public const string DescriptionDisplayName = "Description";
+        public const string DescriptionRequiredErrorFormat = "{0} is required.";
 
         [ScaffoldColumn(false)]
         [NoDuplicateGrants(ErrorMessage = "The user '{0}' has already been added to this role.")]

@@ -1,104 +1,98 @@
-﻿@Identity @SignUp
-Feature:  Sign Up
-	      In order to sign into UCosmic.com
-	      As a consortium member
-	      I want to sign up and create a password
+﻿Feature: Sign Up
+    In order to sign into UCosmic.com
+    As a consortium member
+    I want to sign up and create a password
 
 Background: 
-    Given I browsed to the Sign Up page
+    Given I am starting from the Sign On page
 
-@SignUpHappy @SignUpSad @SignUp01
-Scenario Outline: Qualify for sign up successfully with an eligible email address after entering an invalid email address
+@GeneratesEmail @UsingFreshExampleUnregisteredEmailAddresses
+Scenario Outline: Sign Up succeeds after receiving secret confirmation code
 
-    When  I type "<InvalidEmail>" into the Email Address text box
-    And   I double click the "<ButtonLabel>" button
-    Then  I should still see the Sign Up page
-    And   I should see an error message "<ErrorMessage>" under the Email Address text box
-    And   I should not see a "Congratulations, your email address is eligible!" message
-    And   I should not see [green checkmark icon] content
+    # go from sign on page to sign up page
+    Given I am using the <Browser> browser
+    When I type "<EligibleEmail>" into the Email Address text field
+    And I click the "Next >>" submit button
+    Then I should see the Sign Up page
+    And the "Email me a confirmation code..." check box should be unchecked
+    And the "Send Confirmation Email" submit button should be disabled
 
-    When  I type "<EligibleEmail>" into the Email Address text box
-    And   I double click the "Check Eligibility" button
-    Then  I should still see the Sign Up page
-    But   I should not see an error message "<ErrorMessage>" under the Email Address text box
-    And   I should see a "Congratulations, your email address is eligible!" message
-    And   I should see [green checkmark icon] content
+    # check box to enable submit button
+    When I check the "Email me a confirmation code..." check box
+    Then the "Send Confirmation Email" submit button should become enabled
 
-Examples: 
-    | InvalidEmail         | ButtonLabel             | ErrorMessage                                                              | EligibleEmail     |
-    |                      | Check Eligibility       | Email Address is required.                                                | new@uc.edu        |
-    | invalid email        | Check Eligibility       | Please enter a valid email address.                                       | new@ucmail.uc.edu |
-    | any1@ineligible1.edu | Check Eligibility       | Sorry, emails ending in '@ineligible1.edu' are not eligible at this time. | new@suny.edu      |
-    | any1@uc.edu          | Check Eligibility       | The email 'any1@uc.edu' has already been signed up.                       | new@umn.edu       |
-    |                      | Send Confirmation Email | Email Address is required.                                                | new@uc.edu        |
-    | invalid mail         | Send Confirmation Email | Please enter a valid email address.                                       | new@ucmail.uc.edu |
-    | any1@ineligible2.edu | Send Confirmation Email | Sorry, emails ending in '@ineligible2.edu' are not eligible at this time. | new@suny.edu      |
-    | any1@umn.edu         | Send Confirmation Email | The email 'any1@umn.edu' has already been signed up.                      | new@umn.edu       |
+    # send the confirmation email
+    When I click the "Send Confirmation Email" submit button
+    Then I should see the Confirm Email Ownership page
+    And I should see the flash feedback message "A sign up confirmation email has been sent to <EligibleEmail>."
 
-@SignUpHappy @SignUpSad @SignUp02 @GeneratesEmail @SignUpResetNewUsers
-Scenario Outline: Receive sign up email confirmation message successfully for <EligibleEmail> using <BrowserName>
+    # make sure confirmation code is not empty
+    When I click the "Confirm Email Address" submit button
+    Then I should see the Required error message for the Confirmation Code text field
 
-    Given I am using the <BrowserName> browser
-    
-    When  I type "<EligibleEmail>" into the Email Address text box
-    And   I click the "Send Confirmation Email" button
-    Then  I should see the Sign Up Confirm Email page
-    And   I should see a temporary "A confirmation email has been sent to <EligibleEmail>" feedback message
-    
-    When  I click the "Confirm Email Address" button
-    Then  I should still see the Sign Up Confirm Email page
-    And   I should see an error message "Please enter a confirmation code." under the Confirmation Code text box
-    
-    When  I type "test" into the Confirmation Code text box
-    And   I click the "Confirm Email Address" button
-    Then  I should still see the Sign Up Confirm Email page
-    But   I should see an error message "Invalid confirmation code, please try again." under the Confirmation Code text box
-    
-    When  I receive an email with subject "Confirm your email address for UCosmic.com"
-    And   I type the emailed code into the Confirmation Code text box
-    And   I click the "Confirm Email Address" button
-    Then  I should see the Sign Up Create Password page
-    And   I should see a temporary "Your email address was successfully confirmed" feedback message
-    
-    When  I click the "Create Password" button
-    Then  I should still see the Sign Up Create Password page
-    And   I should see an error message "Password is required." under the Password text box
-    And   I should see an error message "Password confirmation is required." under the Confirmation text box
-    
-    When  I type "pass" into the Password text box
-    And   I click the "Create Password" button
-    Then  I should still see the Sign Up Create Password page
-    But   I should see an error message "Your password must be at least 6 characters long (but no more than 100)." under the Password text box
-    And   I should see an error message "Password confirmation is required." under the Confirmation text box
-    
-    When  I type "password" into the Password text box
-    And   I click the "Create Password" button
-    Then  I should still see the Sign Up Create Password page
-    But   I should not see any error messages under the Password text box
-    And   I should see an error message "Password confirmation is required." under the Confirmation text box
-    
-    When  I type "pass" into the Confirmation text box
-    And   I click the "Create Password" button
-    Then  I should still see the Sign Up Create Password page
-    But   I should not see any error messages under the Password text box
-    And   I should see an error message "The password and confirmation password do not match." under the Confirmation text box
+    # make sure confirmation code is not incorrect
+    When I type "test" into the Confirmation Code text field
+    And I click the "Confirm Email Address" submit button
+    Then I should see the Invalid error message for the Confirmation Code text field
 
-    When  I type "password" into the Confirmation text box
-    And   I click the "Create Password" button
-    Then  I should see the Sign Up Completed page
-    And   I should see a temporary "Your password was created successfully" feedback message
+    # enter code from email message
+    When I receive mail with the subject "Confirm your email address for UCosmic.com"
+    And I type the mailed code into the Confirmation Code text field
+    And I click the "Confirm Email Address" submit button
+    Then I should see the Create Password page
+    And I should see the flash feedback message "Your email address has been confirmed. Please create your password now."
 
-    When  I click the "Sign In" button
-    Then  I should still see the Sign Up Completed page
-    And   I should see an error message "Password is required." under the Password text box
+    # make sure password fields are not empty
+    When I click the "Create Password" submit button
+    Then I should still see the Create Password page
+    And I should see the Required error message for the Password text field
+    And I should see the Required error message for the Password Confirmation text field
 
-    When  I type "password" into the Password text box
-    And   I click the "Sign In" button
-    Then  I should see a page at the "my/profile" url
+    # make sure password is not too short
+    When I type "pass" into the Password text field
+    And I click the "Create Password" submit button
+    Then I should still see the Create Password page
+    But I should see the 'Too Short' error message for the Password text field
+    And I should see the Required error message for the Password Confirmation text field
 
-Examples: 
-    | BrowserName       | EligibleEmail       |
-    | Chrome            | new@bjtu.edu.cn     |
-    | Firefox           | new@usil.edu.pe     |
-    | Internet Explorer | new@griffith.edu.au |
+    # make sure confirmation is not empty
+    When I type "password" into the Password text field
+    And I click the "Create Password" submit button
+    Then I should still see the Create Password page
+    But I should not see any error messages for the Password text field
+    And I should see the Required error message for the Password Confirmation text field
 
+    # make sure confirmation matches password
+    When I type "pass" into the Password Confirmation text field
+    And I click the "Create Password" submit button
+    Then I should still see the Create Password page
+    But I should not see any error messages for the Password text field
+    And I should see the 'No Match' error message for the Password Confirmation text field
+
+    # proceed creating password
+    When I type "password" into the Password Confirmation text field
+    And I click the "Create Password" submit button
+    Then I should see the Enter Password page
+    And I should see the flash feedback message "You can now use your password to sign on."
+
+    # attempt sign in without entering password
+    When I click the "Sign On" submit button
+    Then I should still see the Enter Password page
+    And I should see the Required error message for the Password text field
+
+    # attempt sign in with incorrect password
+    When I type "incorrect" into the Password text field
+    And I click the "Sign On" submit button
+    Then I should still see the Enter Password page
+    And I should see the 'Invalid with 4 remaining attempts' error message for the Password text field
+
+    # sign in successfully
+    When  I type "password" into the Password text field
+    And   I click the "Sign On" submit button
+    Then  I should see the Personal Home page
+
+Examples:
+    | Browser | EligibleEmail       |
+    | Chrome  | new@bjtu.edu.cn     |
+    | Firefox | new@usil.edu.pe     |
+    | MSIE    | new@griffith.edu.au |

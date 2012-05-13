@@ -10,7 +10,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Support.UI;
 
-namespace UCosmic.Www.Mvc.WebDriver
+namespace UCosmic.Www.Mvc
 {
     public static class WebDriverExtensions
     {
@@ -156,7 +156,7 @@ namespace UCosmic.Www.Mvc.WebDriver
                 : AppConfig.DefaultWebDriverWaitSeconds;
 
             // helper for inserting browser name in failure messages
-            failMessage = failMessage.Replace("@Browser", string.Format("{0} browser", browser.Name()));
+            failMessage = failMessage.Replace("@Browser", browser.Name());
             try
             {
                 // if the condition does not become true within timeoutSeconds, an exception will be thrown.
@@ -182,6 +182,12 @@ namespace UCosmic.Www.Mvc.WebDriver
         public static IWebElement TryFindElement(this IWebDriver browser, By by)
         {
             try { return browser.FindElement(by); }
+            catch { return null; }
+        }
+
+        public static IEnumerable<IWebElement> TryFindElements(this IWebDriver browser, By by)
+        {
+            try { return browser.FindElements(by); }
             catch { return null; }
         }
 

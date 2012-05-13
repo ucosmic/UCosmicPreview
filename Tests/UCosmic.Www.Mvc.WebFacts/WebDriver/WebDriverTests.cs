@@ -1,8 +1,7 @@
-﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 
-namespace UCosmic.Www.Mvc.WebDriver
+namespace UCosmic.Www.Mvc
 {
     [TestClass]
     public class WebDriverTests
@@ -15,29 +14,12 @@ namespace UCosmic.Www.Mvc.WebDriver
         }
 
         [TestMethod]
-        public void WebDriverContext_AuthenticationStepMethod_ShouldBePublic()
-        {
-            var browsers = WebDriverContext.Browsers.ToList();
-            WebDriverContext.Browsers.Clear();
-
-            Assert.Inconclusive();
-
-            //var steps = new AuthenticationSteps();
-            //steps.TypeIntoTextBox("something", "someId");
-            //steps.ClickSignInButton();
-            //steps.SeeATopIdentityAreaWithPartialGreeting("inOrOut", "partialGreeting");
-
-            WebDriverContext.Browsers.AddRange(browsers);
-        }
-
-        [TestMethod]
         public void WebDriverContext_IsFirefox_ExtensionMethodExists()
         {
             var firefox = WebDriverContext.Browsers.Firefox();
             if (firefox != null)
-            {
-                firefox.IsFirefox().ShouldBeTrue("IWebDriver.IsFirefox should return true if browser is firefox.");
-            }
+                firefox.IsFirefox().ShouldBeTrue(
+                    "IWebDriver.IsFirefox should return true if browser is Firefox.");
         }
     }
 }

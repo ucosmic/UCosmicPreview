@@ -102,148 +102,223 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AppConfig.cs" />
-    <Compile Include="Areas\Common\_OldCommonSteps.cs" />
-    <Compile Include="Areas\Common\Navigation.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Navigation.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Common\_OldSharedSteps.cs" />
-    <Compile Include="Areas\Common\WebPages\WebPageBase.cs" />
-    <Compile Include="Areas\Common\WebPages\WebPageFactory.cs" />
-    <Compile Include="Areas\Identity\Authentication.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Authentication.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Identity\AuthenticationSteps.cs" />
-    <Compile Include="Areas\Identity\AuthorizationR04.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AuthorizationR04.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Identity\AuthorizationSteps.cs" />
-    <Compile Include="Areas\Identity\SignIn\SignIn.feature.cs">
-      <DependentUpon>SignIn.feature</DependentUpon>
+    <Compile Include="Areas\Common\Content\FileUploadTooLargePage.cs" />
+    <Compile Include="Areas\Common\Content\HomePage.cs" />
+    <Compile Include="Areas\Identity\Bindings\SignInEvents.cs" />
+    <Compile Include="Areas\Identity\Bindings\UpdatePasswordEvents.cs" />
+    <Compile Include="Areas\Identity\Bindings\UpdateEmailSpellingEvents.cs" />
+    <Compile Include="Areas\Identity\Bindings\UpdateAffiliationEvents.cs" />
+    <Compile Include="Areas\Identity\Bindings\UpdateNameEvents.cs" />
+    <Compile Include="Areas\Identity\Content\ConfirmEmailPage.cs" />
+    <Compile Include="Areas\Identity\Content\ChangePasswordPage.cs" />
+    <Compile Include="Areas\Identity\Content\ResetPasswordPage.cs" />
+    <Compile Include="Areas\Identity\Content\ForgotPasswordPage.cs" />
+    <Compile Include="Areas\Identity\Content\UpdateEmailSpellingPage.cs" />
+    <Compile Include="Areas\Identity\Content\PersonalAffiliationPage.cs" />
+    <Compile Include="Areas\Identity\UpdateName.feature.cs">
+      <DependentUpon>UpdateName.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Areas\Identity\SignIn\SignInBindings.cs" />
-    <Compile Include="Areas\Identity\SignIn\SignInForm.cs" />
-    <Compile Include="Areas\Identity\Events\SignUpEvents.cs" />
-    <Compile Include="Areas\Identity\SamlSignOn.feature.cs">
+    <Compile Include="Areas\Identity\Content\UpdateNameFormContent.cs" />
+    <Compile Include="Areas\Identity\SignOut.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SamlSignOn.feature</DependentUpon>
+      <DependentUpon>SignOut.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Identity\SignOn\SignOn.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SignOn.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Identity\SignOn\SignOnBindings.cs" />
-    <Compile Include="Areas\Identity\SignOn\SignOnForm.cs" />
+    <Compile Include="Areas\Identity\Bindings\SignOutSteps.cs" />
+    <Compile Include="Areas\Identity\Content\CreatePasswordPage.cs" />
+    <Compile Include="Areas\Identity\Content\SignUpPage.cs" />
     <Compile Include="Areas\Identity\SignUp.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SignUp.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Identity\PasswordR03.feature.cs">
+    <Compile Include="Areas\InstitutionalAgreements\Bindings\ConfigureEvents.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\ConfigureContactTypes.feature.cs">
+      <DependentUpon>ConfigureContactTypes.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PasswordR03.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Identity\PasswordR04.feature.cs">
+    <Compile Include="Areas\InstitutionalAgreements\ConfigureCurrentStatuses.feature.cs">
+      <DependentUpon>ConfigureCurrentStatuses.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PasswordR04.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Identity\PasswordSteps.cs" />
-    <Compile Include="Areas\Identity\SelfR01.feature.cs">
+    <Compile Include="Areas\InstitutionalAgreements\ConfigureAgreementTypes.feature.cs">
+      <DependentUpon>ConfigureAgreementTypes.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SelfR01.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Identity\SelfR03.feature.cs">
+    <Compile Include="Areas\InstitutionalAgreements\Content\ConfigureAddPage.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Content\ConfigureEditPage.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Content\ConfigureFormPage.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Content\PublicSearchPage.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Content\ManageAddContactContent.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Content\ManageFormPage.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Content\PublicDetailPage.cs" />
+    <Compile Include="Areas\Roles\Bindings\ManageEvents.cs" />
+    <Compile Include="Areas\Roles\Content\ManageEditPage.cs" />
+    <Compile Include="Areas\Roles\Content\ManageListPage.cs" />
+    <Compile Include="Areas\Roles\GrantAuthorization.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SelfR03.feature</DependentUpon>
+      <DependentUpon>GrantAuthorization.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Identity\SelfSteps.cs" />
-    <Compile Include="Areas\Identity\WebPages\SignUpCompletedPage.cs" />
-    <Compile Include="Areas\Identity\WebPages\SignUpConfirmEmailPage.cs" />
-    <Compile Include="Areas\Identity\WebPages\SignUpCreatePasswordPage.cs" />
-    <Compile Include="Areas\Identity\WebPages\SignUpSendEmailPage.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\ConfigurationFormsR04.feature.cs">
+    <Compile Include="SpecFlow\AutoCompleteSteps.cs" />
+    <Compile Include="SpecFlow\ButtonSteps.cs" />
+    <Compile Include="SpecFlow\RadioButtonSteps.cs" />
+    <Compile Include="WebDriver\Content.cs" />
+    <Compile Include="WebDriver\UrlMatchingExtensions.cs" />
+    <Compile Include="_Deprecated\_OldCommonSteps.cs" />
+    <Compile Include="Areas\Common\NavigateByHyperLink.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ConfigurationFormsR04.feature</DependentUpon>
+      <DependentUpon>NavigateByHyperLink.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\InstitutionalAgreements\ConfigurationFormsSteps.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\Manage\ManageSteps.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\Manage\GenerateSummaryDescription.feature.cs">
+    <Compile Include="_Deprecated\_OldSharedSteps.cs" />
+    <Compile Include="_Deprecated\_OldWebPageBase.cs" />
+    <Compile Include="_Deprecated\_OldWebPageFactory.cs" />
+    <Compile Include="_Deprecated\_OldAuthentication.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_OldAuthentication.feature</DependentUpon>
+    </Compile>
+    <Compile Include="_Deprecated\_OldAuthenticationSteps.cs" />
+    <Compile Include="_Deprecated\_OldAuthorizationR04.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_OldAuthorizationR04.feature</DependentUpon>
+    </Compile>
+    <Compile Include="_Deprecated\_OldAuthorizationSteps.cs" />
+    <Compile Include="Areas\Identity\Content\SignDownPage.cs" />
+    <Compile Include="Areas\Identity\Content\SignInPage.cs" />
+    <Compile Include="Areas\Identity\Content\SignOnPage.cs" />
+    <Compile Include="Areas\Identity\Content\SignOutPage.cs" />
+    <Compile Include="Areas\Identity\Content\MyHomePage.cs" />
+    <Compile Include="Areas\Identity\SignIn.feature.cs">
+      <DependentUpon>SignIn.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Areas\Identity\Bindings\SignInSteps.cs" />
+    <Compile Include="_Deprecated\_OldSignInForm.cs" />
+    <Compile Include="Areas\Identity\Bindings\SignUpEvents.cs" />
+    <Compile Include="Areas\Identity\SignOn.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SignOn.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Identity\Bindings\SignOnEvents.cs" />
+    <Compile Include="_Deprecated\_OldSignOnForm.cs" />
+    <Compile Include="_Deprecated\_OldSignUp.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_OldSignUp.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Identity\UpdatePassword.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UpdatePassword.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Identity\ResetPassword.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResetPassword.feature</DependentUpon>
+    </Compile>
+    <Compile Include="_Deprecated\_OldPasswordSteps.cs" />
+    <Compile Include="Areas\Identity\UpdateAffiliation.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UpdateAffiliation.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Identity\UpdateEmailSpelling.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UpdateEmailSpelling.feature</DependentUpon>
+    </Compile>
+    <Compile Include="_Deprecated\_OldSelfSteps.cs" />
+    <Compile Include="_Deprecated\_OldSignUpCompletedPage.cs" />
+    <Compile Include="_Deprecated\_OldSignUpConfirmEmailPage.cs" />
+    <Compile Include="_Deprecated\_OldSignUpCreatePasswordPage.cs" />
+    <Compile Include="_Deprecated\_OldSignUpSendEmailPage.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\CreateModuleConfiguration.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateModuleConfiguration.feature</DependentUpon>
+    </Compile>
+    <Compile Include="_Deprecated\_OldConfigurationFormsSteps.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Content\ManageEditPage.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Content\ManageAddPage.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Content\ManageListPage.cs" />
+    <Compile Include="WebDriver\UrlHelperExtensions.cs" />
+    <Compile Include="WebDriver\NullWebDriver.cs" />
+    <Compile Include="WebDriver\Page.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Bindings\ManageSteps.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\GenerateSummaryDescription.feature.cs">
       <DependentUpon>GenerateSummaryDescription.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Areas\InstitutionalAgreements\Manage\SelectExampleTextValues.feature.cs">
+    <Compile Include="Areas\InstitutionalAgreements\SelectExampleTextValues.feature.cs">
       <DependentUpon>SelectExampleTextValues.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Areas\InstitutionalAgreements\Manage\ManageParticipants.feature.cs">
+    <Compile Include="Areas\InstitutionalAgreements\ManageParticipants.feature.cs">
       <DependentUpon>ManageParticipants.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Areas\InstitutionalAgreements\Manage\ValidateTextFields.feature.cs">
+    <Compile Include="Areas\InstitutionalAgreements\ValidateTextFields.feature.cs">
       <DependentUpon>ValidateTextFields.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Areas\InstitutionalAgreements\_OldInstitutionalAgreementEvents.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\Manage\ManageFileAttachments.feature.cs">
+    <Compile Include="_Deprecated\_OldInstitutionalAgreementEvents.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\ManageFileAttachments.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ManageFileAttachments.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\InstitutionalAgreements\Manage\ManageContacts.feature.cs">
+    <Compile Include="Areas\InstitutionalAgreements\ManageContacts.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ManageContacts.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\InstitutionalAgreements\Manage\ExpirationDateHelp.feature.cs">
+    <Compile Include="Areas\InstitutionalAgreements\ExpirationDateHelp.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ExpirationDateHelp.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\InstitutionalAgreements\_OldManagementFormsSteps.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\Manage\ManageForm.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\Manage\ManageEvents.cs" />
-    <Compile Include="Areas\RecruitmentAgencies\Features\RA_US_0001.feature.cs">
+    <Compile Include="_Deprecated\_OldManagementFormsSteps.cs" />
+    <Compile Include="_Deprecated\_OldManageForm.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Bindings\ManageEvents.cs" />
+    <Compile Include="Areas\RecruitmentAgencies\RA_US_0001.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RA_US_0001.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\RecruitmentAgencies\Features\RA_US_0002.feature.cs">
+    <Compile Include="Areas\RecruitmentAgencies\RA_US_0002.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RA_US_0002.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\RecruitmentAgencies\Features\RA_US_0003.feature.cs">
+    <Compile Include="Areas\RecruitmentAgencies\RA_US_0003.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RA_US_0003.feature</DependentUpon>
     </Compile>
-    <Compile Include="Areas\RecruitmentAgencies\Features\RA_US_0004.feature.cs">
+    <Compile Include="Areas\RecruitmentAgencies\RA_US_0004.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RA_US_0004.feature</DependentUpon>
     </Compile>
     <Compile Include="Areas\RecruitmentAgencies\TentativeDomainModel\NotificationEmailAddress.cs" />
     <Compile Include="Areas\RecruitmentAgencies\TentativeDomainModel\RecruitmentAgencyConfiguration.cs" />
+    <Compile Include="WebDriver\PageFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpecFlow\AutoCompleteSteps.cs" />
+    <Compile Include="_Deprecated\_OldAutoCompleteSteps.cs" />
     <Compile Include="SpecFlow\BrowserSteps.cs" />
     <Compile Include="SpecFlow\CollectionSteps.cs" />
     <Compile Include="SpecFlow\CheckBoxSteps.cs" />
@@ -266,101 +341,125 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Areas\Common\Navigation.feature">
+    <None Include="Areas\Common\NavigateByHyperLink.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Navigation.feature.cs</LastGenOutput>
+      <LastGenOutput>NavigateByHyperLink.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\Identity\Authentication.feature">
+    <None Include="Areas\Identity\UpdateName.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Authentication.feature.cs</LastGenOutput>
+      <LastGenOutput>UpdateName.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\Identity\AuthorizationR04.feature">
+    <None Include="Areas\Roles\GrantAuthorization.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>AuthorizationR04.feature.cs</LastGenOutput>
+      <LastGenOutput>GrantAuthorization.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\Identity\SignIn\SignIn.feature">
+    <None Include="_Deprecated\_OldAuthentication.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>_OldAuthentication.feature.cs</LastGenOutput>
+    </None>
+    <None Include="_Deprecated\_OldAuthorizationR04.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>_OldAuthorizationR04.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\Identity\SignIn.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SignIn.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\Identity\SamlSignOn.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SamlSignOn.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Areas\Identity\SignOn\SignOn.feature">
+    <None Include="Areas\Identity\SignOn.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SignOn.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\Identity\SignOut.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SignOut.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\InstitutionalAgreements\ConfigureContactTypes.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ConfigureContactTypes.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\InstitutionalAgreements\ConfigureCurrentStatuses.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ConfigureCurrentStatuses.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\InstitutionalAgreements\ConfigureAgreementTypes.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ConfigureAgreementTypes.feature.cs</LastGenOutput>
+    </None>
+    <None Include="_Deprecated\_OldSignUp.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>_OldSignUp.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\Identity\UpdatePassword.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UpdatePassword.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\Identity\ResetPassword.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ResetPassword.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\Identity\UpdateAffiliation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UpdateAffiliation.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Areas\Identity\UpdateEmailSpelling.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UpdateEmailSpelling.feature.cs</LastGenOutput>
     </None>
     <None Include="Areas\Identity\SignUp.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SignUp.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\Identity\PasswordR03.feature">
+    <None Include="Areas\InstitutionalAgreements\CreateModuleConfiguration.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PasswordR03.feature.cs</LastGenOutput>
+      <LastGenOutput>CreateModuleConfiguration.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\Identity\PasswordR04.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PasswordR04.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Areas\Identity\SelfR01.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SelfR01.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Areas\Identity\SelfR03.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SelfR03.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Areas\InstitutionalAgreements\ConfigurationFormsR04.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ConfigurationFormsR04.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Areas\InstitutionalAgreements\Manage\GenerateSummaryDescription.feature">
+    <None Include="Areas\InstitutionalAgreements\GenerateSummaryDescription.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GenerateSummaryDescription.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\InstitutionalAgreements\Manage\SelectExampleTextValues.feature">
+    <None Include="Areas\InstitutionalAgreements\SelectExampleTextValues.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SelectExampleTextValues.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\InstitutionalAgreements\Manage\ManageParticipants.feature">
+    <None Include="Areas\InstitutionalAgreements\ManageParticipants.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ManageParticipants.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\InstitutionalAgreements\Manage\ValidateTextFields.feature">
+    <None Include="Areas\InstitutionalAgreements\ValidateTextFields.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ValidateTextFields.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\InstitutionalAgreements\Manage\ManageFileAttachments.feature">
+    <None Include="Areas\InstitutionalAgreements\ManageFileAttachments.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ManageFileAttachments.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\InstitutionalAgreements\Manage\ManageContacts.feature">
+    <None Include="Areas\InstitutionalAgreements\ManageContacts.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ManageContacts.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\InstitutionalAgreements\Manage\ExpirationDateHelp.feature">
+    <None Include="Areas\InstitutionalAgreements\ExpirationDateHelp.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ExpirationDateHelp.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\RecruitmentAgencies\Features\RA_US_0001.feature">
+    <None Include="Areas\RecruitmentAgencies\RA_US_0001.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RA_US_0001.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\RecruitmentAgencies\Features\RA_US_0002.feature">
+    <None Include="Areas\RecruitmentAgencies\RA_US_0002.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RA_US_0002.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\RecruitmentAgencies\Features\RA_US_0002_scribble_A.pdf" />
-    <None Include="Areas\RecruitmentAgencies\Features\RA_US_0003.feature">
+    <None Include="Areas\RecruitmentAgencies\Scribbles\RA_US_0002_scribble_A.pdf" />
+    <None Include="Areas\RecruitmentAgencies\RA_US_0003.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RA_US_0003.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\RecruitmentAgencies\Features\RA_US_0003_scribble_A.pdf" />
-    <None Include="Areas\RecruitmentAgencies\Features\RA_US_0004.feature">
+    <None Include="Areas\RecruitmentAgencies\Scribbles\RA_US_0003_scribble_A.pdf" />
+    <None Include="Areas\RecruitmentAgencies\RA_US_0004.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RA_US_0004.feature.cs</LastGenOutput>
     </None>
-    <None Include="Areas\RecruitmentAgencies\Features\RA_US_0004_scribble_A.pdf" />
+    <None Include="Areas\RecruitmentAgencies\Scribbles\RA_US_0004_scribble_A.pdf" />
     <None Include="FileUploads\.WordDocument1.doc" />
     <None Include="FileUploads\ExcelWorkbook1.xls" />
     <None Include="FileUploads\ExcelWorkbook1.xlsx" />
@@ -381,11 +480,7 @@
     <Content Include="FileUploads\VbScriptFile1.vb" />
     <Content Include="FileUploads\_ReadMe.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\InstitutionalAgreements\Configure\" />
-    <Folder Include="Areas\RecruitmentAgencies\Steps\" />
-    <Folder Include="Areas\RecruitmentAgencies\WebPages\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\Apps\UCosmic.Api\UCosmic.Api.csproj">
       <Project>{F35CDDB3-8277-48E1-9350-E947B41593FC}</Project>
@@ -402,6 +497,10 @@
     <ProjectReference Include="..\..\Apps\UCosmic.Www.Mvc\UCosmic.Www.Mvc.csproj">
       <Project>{88C2ED63-E921-4E88-AD86-0D835A400C0E}</Project>
       <Name>UCosmic.Www.Mvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UCosmic.Www.Mvc.CodeFacts\UCosmic.Www.Mvc.CodeFacts.csproj">
+      <Project>{50609C51-07A4-4387-8C91-AF9E77B539B9}</Project>
+      <Name>UCosmic.Www.Mvc.CodeFacts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

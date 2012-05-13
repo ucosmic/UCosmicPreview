@@ -41,8 +41,11 @@
 
     <script type="text/javascript">
         $.validator.setDefaults({
-            onkeyup: false
+            onkeyup: false,
+            onfocusout: false,
+            onsubmit: true
         });
+        $('input[type=password]:first').focus();
     </script>
 
 }
