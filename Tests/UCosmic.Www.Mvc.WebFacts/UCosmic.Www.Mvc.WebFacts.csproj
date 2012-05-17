@@ -170,27 +170,11 @@
     <Compile Include="SpecFlow\RadioButtonSteps.cs" />
     <Compile Include="WebDriver\Content.cs" />
     <Compile Include="WebDriver\UrlMatchingExtensions.cs" />
-    <Compile Include="_Deprecated\_OldCommonSteps.cs" />
     <Compile Include="Areas\Common\NavigateByHyperLink.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NavigateByHyperLink.feature</DependentUpon>
     </Compile>
-    <Compile Include="_Deprecated\_OldSharedSteps.cs" />
-    <Compile Include="_Deprecated\_OldWebPageBase.cs" />
-    <Compile Include="_Deprecated\_OldWebPageFactory.cs" />
-    <Compile Include="_Deprecated\_OldAuthentication.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>_OldAuthentication.feature</DependentUpon>
-    </Compile>
-    <Compile Include="_Deprecated\_OldAuthenticationSteps.cs" />
-    <Compile Include="_Deprecated\_OldAuthorizationR04.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>_OldAuthorizationR04.feature</DependentUpon>
-    </Compile>
-    <Compile Include="_Deprecated\_OldAuthorizationSteps.cs" />
     <Compile Include="Areas\Identity\Content\SignDownPage.cs" />
     <Compile Include="Areas\Identity\Content\SignInPage.cs" />
     <Compile Include="Areas\Identity\Content\SignOnPage.cs" />
@@ -202,7 +186,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Areas\Identity\Bindings\SignInSteps.cs" />
-    <Compile Include="_Deprecated\_OldSignInForm.cs" />
     <Compile Include="Areas\Identity\Bindings\SignUpEvents.cs" />
     <Compile Include="Areas\Identity\SignOn.feature.cs">
       <AutoGen>True</AutoGen>
@@ -210,12 +193,6 @@
       <DependentUpon>SignOn.feature</DependentUpon>
     </Compile>
     <Compile Include="Areas\Identity\Bindings\SignOnEvents.cs" />
-    <Compile Include="_Deprecated\_OldSignOnForm.cs" />
-    <Compile Include="_Deprecated\_OldSignUp.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>_OldSignUp.feature</DependentUpon>
-    </Compile>
     <Compile Include="Areas\Identity\UpdatePassword.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -226,7 +203,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResetPassword.feature</DependentUpon>
     </Compile>
-    <Compile Include="_Deprecated\_OldPasswordSteps.cs" />
     <Compile Include="Areas\Identity\UpdateAffiliation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -237,17 +213,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UpdateEmailSpelling.feature</DependentUpon>
     </Compile>
-    <Compile Include="_Deprecated\_OldSelfSteps.cs" />
-    <Compile Include="_Deprecated\_OldSignUpCompletedPage.cs" />
-    <Compile Include="_Deprecated\_OldSignUpConfirmEmailPage.cs" />
-    <Compile Include="_Deprecated\_OldSignUpCreatePasswordPage.cs" />
-    <Compile Include="_Deprecated\_OldSignUpSendEmailPage.cs" />
     <Compile Include="Areas\InstitutionalAgreements\CreateModuleConfiguration.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateModuleConfiguration.feature</DependentUpon>
     </Compile>
-    <Compile Include="_Deprecated\_OldConfigurationFormsSteps.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Content\ManageEditPage.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Content\ManageAddPage.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Content\ManageListPage.cs" />
@@ -275,7 +245,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="_Deprecated\_OldInstitutionalAgreementEvents.cs" />
     <Compile Include="Areas\InstitutionalAgreements\ManageFileAttachments.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -291,8 +260,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExpirationDateHelp.feature</DependentUpon>
     </Compile>
-    <Compile Include="_Deprecated\_OldManagementFormsSteps.cs" />
-    <Compile Include="_Deprecated\_OldManageForm.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Bindings\ManageEvents.cs" />
     <Compile Include="Areas\RecruitmentAgencies\RA_US_0001.feature.cs">
       <AutoGen>True</AutoGen>
@@ -318,7 +285,6 @@
     <Compile Include="Areas\RecruitmentAgencies\TentativeDomainModel\RecruitmentAgencyConfiguration.cs" />
     <Compile Include="WebDriver\PageFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="_Deprecated\_OldAutoCompleteSteps.cs" />
     <Compile Include="SpecFlow\BrowserSteps.cs" />
     <Compile Include="SpecFlow\CollectionSteps.cs" />
     <Compile Include="SpecFlow\CheckBoxSteps.cs" />
@@ -353,14 +319,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GrantAuthorization.feature.cs</LastGenOutput>
     </None>
-    <None Include="_Deprecated\_OldAuthentication.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>_OldAuthentication.feature.cs</LastGenOutput>
-    </None>
-    <None Include="_Deprecated\_OldAuthorizationR04.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>_OldAuthorizationR04.feature.cs</LastGenOutput>
-    </None>
     <None Include="Areas\Identity\SignIn.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SignIn.feature.cs</LastGenOutput>
@@ -384,10 +342,6 @@
     <None Include="Areas\InstitutionalAgreements\ConfigureAgreementTypes.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ConfigureAgreementTypes.feature.cs</LastGenOutput>
-    </None>
-    <None Include="_Deprecated\_OldSignUp.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>_OldSignUp.feature.cs</LastGenOutput>
     </None>
     <None Include="Areas\Identity\UpdatePassword.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
