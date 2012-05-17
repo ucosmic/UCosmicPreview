@@ -24,6 +24,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             nav.GoToPage(SignOutPage.TitleText);
             SignInEvents.ClearSigningEmailAddress();
             nav.GoToPage(SignOnPage.TitleText);
+            nav.SeePage(SignOnPage.TitleText);
             text.TypeIntoTextField(email, SignOnPage.EmailAddressLabel);
             button.ClickLabeledSubmitButton(SignOnPage.SubmitButtonLabel);
             nav.SeePage(SignInPage.TitleText);
