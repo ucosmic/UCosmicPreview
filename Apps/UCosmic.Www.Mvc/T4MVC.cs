@@ -455,11 +455,11 @@ namespace Links {
                           
         }
     
-        public static readonly string jquery_1_7_1_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.7.1-vsdoc.min.js") ? Url("jquery-1.7.1-vsdoc.min.js") : Url("jquery-1.7.1-vsdoc.js");
+        public static readonly string jquery_1_7_2_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.7.2-vsdoc.min.js") ? Url("jquery-1.7.2-vsdoc.min.js") : Url("jquery-1.7.2-vsdoc.js");
                       
-        public static readonly string jquery_1_7_1_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.7.1.min.js") ? Url("jquery-1.7.1.min.js") : Url("jquery-1.7.1.js");
+        public static readonly string jquery_1_7_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.7.2.min.js") ? Url("jquery-1.7.2.min.js") : Url("jquery-1.7.2.js");
                       
-        public static readonly string jquery_1_7_1_min_js = Url("jquery-1.7.1.min.js");
+        public static readonly string jquery_1_7_2_min_js = Url("jquery-1.7.2.min.js");
         public static readonly string jquery_ui_1_8_17_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-ui-1.8.17.min.js") ? Url("jquery-ui-1.8.17.min.js") : Url("jquery-ui-1.8.17.js");
                       
         public static readonly string jquery_ui_1_8_17_min_js = Url("jquery-ui-1.8.17.min.js");
