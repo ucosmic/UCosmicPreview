@@ -90,9 +90,6 @@
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.XML" />
-    <Reference Include="Unity.AutoRegistration">
-      <HintPath>..\..\packages\UnityAutoRegistration.1.0.0.1\lib\net35\Unity.AutoRegistration.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
