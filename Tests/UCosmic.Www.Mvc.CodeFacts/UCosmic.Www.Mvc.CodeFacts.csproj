@@ -49,8 +49,9 @@
     <Reference Include="ComponentSpace.SAML2">
       <HintPath>..\..\Etc\ComponentSpace.SAML2.dll</HintPath>
     </Reference>
-    <Reference Include="Elmah, Version=1.1.11517.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\elmah.1.1\lib\Elmah.dll</HintPath>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
     <Reference Include="Elmah.Contrib.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Elmah.Contrib.Mvc.1.0\lib\net40\Elmah.Contrib.Mvc.dll</HintPath>
@@ -195,7 +196,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\Apps\UCosmic.Api\UCosmic.Api.csproj">
       <Project>{F35CDDB3-8277-48E1-9350-E947B41593FC}</Project>
