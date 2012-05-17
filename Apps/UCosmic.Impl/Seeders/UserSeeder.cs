@@ -57,6 +57,7 @@ namespace UCosmic.Impl.Seeders
                 EnsureUser("any1@fue.edu.eg", "Any", "One", "www.fue.edu.eg");
                 EnsureUser("any1@griffith.edu.au", "Any", "One", "www.griffith.edu.au");
                 EnsureUser("any1@unsw.edu.au", "Any", "One", "www.unsw.edu.au");
+                EnsureUser("any1@usf.edu", "Any", "One", "www.usf.edu");
 
                 // members for manager-role-based tests
                 var managerRoles = new[] { RoleName.InstitutionalAgreementManager };
@@ -70,6 +71,7 @@ namespace UCosmic.Impl.Seeders
                 EnsureUser("manager1@fue.edu.eg", "Manager", "One", "www.fue.edu.eg", managerRoles);
                 EnsureUser("manager1@griffith.edu.au", "Manager", "One", "www.griffith.edu.au", managerRoles);
                 EnsureUser("manager1@unsw.edu.au", "Manager", "One", "www.unsw.edu.au", managerRoles);
+                EnsureUser("manager1@usf.edu", "Manager", "One", "www.usf.edu", managerRoles);
 
                 // members for supervisor-role-based tests
                 var supervisorRoles = new[] { RoleName.InstitutionalAgreementSupervisor };
@@ -83,6 +85,7 @@ namespace UCosmic.Impl.Seeders
                 EnsureUser("supervisor1@fue.edu.eg", "Supervisor", "One", "www.fue.edu.eg", supervisorRoles);
                 EnsureUser("supervisor1@griffith.edu.au", "Supervisor", "One", "www.griffith.edu.au", supervisorRoles);
                 EnsureUser("supervisor1@unsw.edu.au", "Supervisor", "One", "www.unsw.edu.au", supervisorRoles);
+                EnsureUser("supervisor1@usf.edu", "Supervisor", "One", "www.usf.edu", supervisorRoles);
 
                 // members for agent-role-based tests
                 var agentRoles = new[] { RoleName.AuthorizationAgent };

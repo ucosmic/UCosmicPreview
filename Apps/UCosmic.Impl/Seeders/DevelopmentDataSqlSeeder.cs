@@ -5,13 +5,18 @@ using UCosmic.Impl.Orm;
 namespace UCosmic.Impl.Seeders
 {
     // ReSharper disable ClassNeverInstantiated.Global
-    public class DevelopmentDataSqlSeeder : NonContentFileSqlDbSeeder
+    public class DevelopmentDataSqlSeeder : CoreDataSqlSeeder
     // ReSharper restore ClassNeverInstantiated.Global
     {
 
         protected override IEnumerable<string> SqlScripts
         {
-            get { return new[] { "DevelopmentData.sql" }; }
+            get
+            {
+                var baseScripts = base.SqlScripts.ToList();
+                baseScripts.Add("DevelopmentData.sql");
+                return baseScripts.ToArray();
+            }
         }
 
         public override void Seed(UCosmicContext context)

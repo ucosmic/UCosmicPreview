@@ -21,7 +21,7 @@
             get
             {
                 return (SkinName != DefaultSkinName)
-                    ? string.Format("https://{0}", SkinName)
+                    ? string.Format("http://{0}", SkinName)
                     : "/";
             }
         }

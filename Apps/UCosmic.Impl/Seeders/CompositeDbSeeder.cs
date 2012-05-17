@@ -23,8 +23,9 @@ namespace UCosmic.Impl.Seeders
     {
         public void Seed(UCosmicContext context)
         {
-            new LanguageSeeder().Seed(context);
-            new PlaceSeeder().Seed(context);
+            //new LanguageSeeder().Seed(context);
+            //new PlaceSeeder().Seed(context);
+            new CoreDataSqlSeeder().Seed(context);
             new RoleSeeder().Seed(context);
             new EstablishmentSeeder().Seed(context);
             new RecruitmentAgencySeeder().Seed(context);

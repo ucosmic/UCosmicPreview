@@ -514,6 +514,9 @@
     <Content Include="content\skins\default\head-row-shadow.png" />
     <Content Include="content\skins\screen-ie8.css" />
     <Content Include="content\skins\www.uc.edu\head-row-bg.png" />
+    <Content Include="content\skins\www.usf.edu\head-logo.png" />
+    <Content Include="content\skins\www.usf.edu\map-panes.css" />
+    <Content Include="content\skins\www.usf.edu\screen.css" />
     <Content Include="scripts\common\releases.js" />
     <Content Include="scripts\identity\person-form.js" />
     <Content Include="scripts\identity\roles-form.js" />
@@ -1090,6 +1093,7 @@
     <Content Include="scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="scripts\MicrosoftMvcValidation.js" />
     <Content Include="scripts\MicrosoftMvcValidation.debug.js" />
+    <None Include="startup\sql\CoreData.sql" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />

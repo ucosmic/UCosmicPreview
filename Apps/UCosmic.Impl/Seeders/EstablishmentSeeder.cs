@@ -20,10 +20,48 @@ namespace UCosmic.Impl.Seeders
         {
             new EstablishmentPreview1Seeder().Seed(context);
             new EstablishmentPreview3Seeder().Seed(context);
+            new EstablishmentUsfSeeder().Seed(context);
             new EstablishmentPreview5Seeder().Seed(context);
             new EstablishmentDecember2011Preview2Seeder().Seed(context);
             new EstablishmentJanuary2011Preview1Seeder().Seed(context);
             //new EstablishmentUcSamlIntegrationSeeder().Seed(context);
+        }
+
+        private class EstablishmentUsfSeeder : BaseEstablishmentSeeder
+        {
+            public override void Seed(UCosmicContext context)
+            {
+                if (WebConfig.IsDeployedToCloud) return;
+
+                Context = context;
+
+                const string usfUrl = "www.usf.edu";
+                var usf = context.Establishments.SingleOrDefault(e => e.WebsiteUrl == usfUrl);
+                if (usf == null)
+                {
+                    var configurationManager = new DotNetConfigurationManager();
+                    var objectCommander = new ObjectCommander(context);
+                    var geoNames = new GeoNamesClient();
+                    var geoPlanet = new GeoPlanetClient();
+                    var placeFactory = new PlaceFactory(context, objectCommander, geoPlanet, geoNames, configurationManager);
+                    var placeFinderClient = DependencyInjector.Current.GetService<IConsumePlaceFinder>();
+                    const string officialName = "University of South Florida";
+                    usf = EnsureEstablishment(officialName, true, null, GetUniversity(), usfUrl, "@usf.edu;@iac.usf.edu;@mail.usf.edu");
+                    const double latitude = 28.061680;
+                    const double longitude = -82.414803;
+                    var result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
+                    var place = placeFactory.FromWoeId(result.WoeId.Value);
+                    var places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
+                    places.Add(place);
+                    usf.Location = new EstablishmentLocation
+                    {
+                        Center = new Coordinates { Latitude = latitude, Longitude = longitude, },
+                        BoundingBox = place.BoundingBox,
+                        Places = places,
+                    };
+                    context.SaveChanges();
+                }
+            }
         }
 
         private class EstablishmentUcSamlIntegrationSeeder : UCosmicDbSeeder

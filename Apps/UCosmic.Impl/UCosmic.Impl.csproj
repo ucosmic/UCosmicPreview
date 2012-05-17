@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="Decorators\RunAsyncCommandHandlerProxy.cs" />
     <Compile Include="Decorators\SaveChangesAndDisposeDecorator.cs" />
+    <Compile Include="Seeders\CoreDataSqlSeeder.cs" />
     <Compile Include="Web\SmtpMailSender.cs" />
     <Compile Include="Web\DotNetFormsAuthentication.cs" />
     <Compile Include="Fluent\FluentValidatorFactory.cs" />

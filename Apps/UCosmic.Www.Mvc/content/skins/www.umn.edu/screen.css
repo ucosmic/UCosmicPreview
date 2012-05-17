@@ -108,6 +108,9 @@
 .ucosmic > .head a:link, .ucosmic > .head a:visited, .ucosmic > .head a:hover, .ucosmic > .head a:active {
     color: #ffcc33;
 }
+.ucosmic > .head a.ui-state-hover:link, .ucosmic > .head a.ui-state-hover:visited, .ucosmic > .head a.ui-state-hover:hover, .ucosmic > .head a.ui-state-hover:active {
+    color: #000;
+}
 .ucosmic > .head > .center > h1 {
     color: #ffcc33;
 }
