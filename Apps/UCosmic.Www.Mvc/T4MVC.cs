@@ -726,6 +726,18 @@ namespace Links {
                 public static readonly string screen_css = Url("screen.css");
             }
         
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class www_usf_edu {
+                private const string URLPATH = "~/content/skins/www.usf.edu";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string head_logo_1_png = Url("head-logo-1.png");
+                public static readonly string head_logo_png = Url("head-logo.png");
+                public static readonly string map_panes_css = Url("map-panes.css");
+                public static readonly string screen_1_css = Url("screen-1.css");
+                public static readonly string screen_css = Url("screen.css");
+            }
+        
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

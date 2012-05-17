@@ -20,8 +20,11 @@
 
 
 
-
 /* jquery ui-dialog re-theme */
+.ucosmic.modal.ui-dialog .ui-dialog-titlebar {
+    background-color: #006747;
+    color: #CFC493;
+}
 
 
 
@@ -64,84 +67,58 @@
 
 /* hat 33px tall */
 .ucosmic .top-tabs {
-    background-color: #e0d1a5;
-    border-bottom-color: #e0d1a5;
+    border-bottom-color: #006747;
+    background-color: #006747;
 }
 .ucosmic .top-tabs a {
-    color: #006747;
+    color: #e0d1a5;
 }
 .ucosmic .top-tabs a:hover, .ucosmic .top-tabs a.open {
-    background-color: #00573c;
-    color: #e0d1a5;
-    border-color: #e0d1a5;
-    border-bottom-color: transparent;
+    color: #006747;
+    border-color: #006747;
+    border-bottom-color: #fff;
     padding: 2px 8px 0;
 }
 .ucosmic .top-tabs a.docked {
-    background-color: #00573c;
-    color: #e0d1a5;
-    border-color: #006747;
-    border-bottom-color: transparent;
+    color: #006747;
+    border-color: #fff;
     padding: 2px 8px 0;
 }
 .ucosmic .top-tabs a.open.has-sub {
-    color: #fff;
+    color: #006747;
 }
 .ucosmic .top-tabs .sub-nav {
-    border-color: #fff;
-    background-color: #006747;
+    border-color: #006747;
 }
-.ucosmic .top-tabs .sub-nav a {
-    color: #fff;
-    border-left-color: #fff;
+.ucosmic .top-tabs .sub-nav a, .ucosmic .top-tabs .sub-nav a:hover {
+    color: #006747;
+    border-color: transparent;
+    border-left-color: #e0d1a5;
     padding: 1px 6px 1px 10px;
 }
 
 
-
 /* head 77px tall */
 .ucosmic > .head {
-    background-color: #00573c;
-    height: 77px;
-    border-bottom: 0;
-}
-.ucosmic > .head a:link, .ucosmic > .head a:visited, .ucosmic > .head a:hover, .ucosmic > .head a:active {
-    color: #fff;
-}
-.ucosmic > .head a.ui-state-hover:link, .ucosmic > .head a.ui-state-hover:visited, .ucosmic > .head a.ui-state-hover:hover, .ucosmic > .head a.ui-state-hover:active {
-    color: #000;
-}
-
-.ucosmic > .head > .center > .identity {
-    color: #fff;
+    border-bottom-color: #006747;
 }
 .ucosmic > .head > .center > h1 {
-    color: #e0d1a5;
+    color: #006747;
 }
 
 
 
 /* layout skeleton */
-.ucosmic > .torso {
-    top: 111px;
-}
-.ucosmic > .torso > .center {
-    border-top: 0;
-    border-bottom: 0;
-}
-.ucosmic > .torso > .right > div {
-    border-bottom: 0;
-}
 
 
 
 /* footer bar 33px tall */
 .ucosmic > .feet > .footer {
     border-top: solid 1px #00573c;
-    background: #00573c;
+    background: #e0d1a5;
 }
 .ucosmic > .feet > .footer a {
-    color: #e0d1a5;
+    color: #007A0E;
 }
 .ucosmic > .feet > .footer a.button-sized {
     border-top: 0;
