@@ -498,7 +498,7 @@ namespace Links {
                       
         public static readonly string MicrosoftMvcValidation_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/MicrosoftMvcValidation.min.js") ? Url("MicrosoftMvcValidation.min.js") : Url("MicrosoftMvcValidation.js");
                       
-        public static readonly string modernizr_2_0_6_development_only_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.0.6-development-only.min.js") ? Url("modernizr-2.0.6-development-only.min.js") : Url("modernizr-2.0.6-development-only.js");
+        public static readonly string modernizr_2_5_3_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.5.3.min.js") ? Url("modernizr-2.5.3.min.js") : Url("modernizr-2.5.3.js");
                       
         public static readonly string test_html = Url("test.html");
         public static readonly string ucosmic_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ucosmic.min.js") ? Url("ucosmic.min.js") : Url("ucosmic.js");

@@ -1022,7 +1022,7 @@
     <Content Include="scripts\jquery.validate-vsdoc.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
-    <Content Include="scripts\modernizr-2.0.6-development-only.js" />
+    <Content Include="scripts\modernizr-2.5.3.js" />
     <Content Include="scripts\test.html" />
     <Content Include="scripts\ucosmic.js" />
     <Content Include="Areas\InstitutionalAgreements\Views\PublicSearch\_no-context.cshtml" />
