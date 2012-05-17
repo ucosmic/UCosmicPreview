@@ -133,11 +133,13 @@
       <HintPath>..\..\Etc\PKCS12ProtectedConfigurationProvider.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Pluralize">
-      <HintPath>..\..\packages\Pluralizer.0.2.1\lib\net40\Pluralize.dll</HintPath>
+    <Reference Include="Pluralize, Version=0.3.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Pluralizer.0.3.0.1\lib\net40\Pluralize.dll</HintPath>
     </Reference>
-    <Reference Include="Pluralize.Mvc">
-      <HintPath>..\..\packages\Pluralizer.Mvc.0.2.2\lib\net40\Pluralize.Mvc.dll</HintPath>
+    <Reference Include="Pluralize.Mvc, Version=0.3.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Pluralizer.Mvc.0.3.0.1\lib\net40\Pluralize.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="SimpleInjector">
       <HintPath>..\..\packages\SimpleInjector.1.4.0.12049\lib\net35\SimpleInjector.dll</HintPath>
@@ -1231,7 +1233,9 @@
     <Content Include="Areas\InstitutionalAgreements\Views\Shared\EditorTemplates\ContactTypeComboBox.cshtml" />
     <Content Include="Areas\InstitutionalAgreements\Views\Shared\EditorTemplates\StatusComboBox.cshtml" />
     <Content Include="Areas\InstitutionalAgreements\Views\Shared\EditorTemplates\TypeComboBox.cshtml" />
-    <Content Include="Areas\InstitutionalAgreements\Views\Web.config" />
+    <Content Include="Areas\InstitutionalAgreements\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\InstitutionalAgreements\Views\_ViewStart.cshtml" />
     <Content Include="Areas\RecruitmentAgencies\Views\Web.config" />
     <Content Include="Areas\RecruitmentAgencies\Views\_ViewStart.cshtml" />
