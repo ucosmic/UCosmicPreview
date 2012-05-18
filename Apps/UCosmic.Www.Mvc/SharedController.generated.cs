@@ -52,6 +52,8 @@ namespace T4MVC {
                 public readonly string PhoneNumber = "PhoneNumber";
                 public readonly string Search = "Search";
                 public readonly string Time = "Time";
+                public readonly string tinymce_full = "tinymce_full";
+                public readonly string tinymce_full_compressed = "tinymce_full_compressed";
                 public readonly string _Url = "Url";
                 public readonly string Week = "Week";
             }

@@ -147,3 +147,13 @@
     border-top: 0;
     border-bottom: 0;
 }
+
+
+
+/* tiny overrides */
+body.mceContentBody h1, body.mceContentBody h2, body.mceContentBody h3 {
+    color: #00573c;
+}
+body.mceContentBody a {
+    color: #007A0E;
+}

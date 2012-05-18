@@ -169,9 +169,7 @@
                 var text = $(this).data('ucosmic-watermark-text'),
                 cssClass = $(this).data('ucosmic-watermark-class'),
                 focusCssClass = $(this).data('ucosmic-watermark-focused-class'),
-                watermarked = $(this).find('input:first');
-                //watermarked = (watermarked.length > 0) ? watermarked
-                //    : $(this).find('input[type=password]:first');
+                watermarked = $(this).find(':input:first');
                 var watermark = function () {
                     watermarker.hide();
                     if (!watermarked.val()) {

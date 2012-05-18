@@ -1,0 +1,71 @@
+﻿@model UCosmic.Www.Mvc.Areas.Activity.Models.TinyMceModel
+@{
+    ViewBag.Title = "My International Activity";
+}
+<div class="wrap-960 floats">
+    <div class="left" style="width: 580px;">
+        <p class="pull-top">
+            Please tell us about your international activity. It can be as short as a sentence,
+            or several paragraphs long. If you want to copy and paste text from Word, please
+            use the <strong>Paste from Word</strong> button: <span style="display: inline-block; height: 20px; width: 20px;
+                               vertical-align: text-bottom;background:url('@Url.Content(Links.scripts.tinymce.themes.advanced.img.icons_gif)'); background-position: -380px -20px;">
+            </span>
+        </p>
+        <p>
+            If you have already blogged about this activity, add it from your RSS feed instead
+            of entering another description.
+        </p>
+        @using (Html.BeginForm())
+        {
+            <div class="@Html.IdFor(m => m.Title)-field" data-ucosmic-watermark="true" 
+                 data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.Title, ViewData).Watermark)"
+                 data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
+                 data-ucosmic-trim-input="true">
+                @Html.EditorFor(m => m.Title)
+            </div>
+            <br />
+            @Html.EditorFor(m => m.Content)
+            <br />
+            <div>
+                <input type="submit" value="Submit" />
+            </div>
+            <br/><br/>
+        }
+    </div>
+    <div class="right" style="width: 340px; border: solid 0px gray; margin-left: 18px;">
+        <div style="position: fixed;">
+            <h2>
+                Tags
+            </h2>
+        </div>
+    </div>
+</div>
+@section Styles
+{
+    <style type="text/css">
+        .ucosmic .@Html.IdFor(m => m.Title)-field textarea {
+            border: solid 1px;
+            border-color: #999 #ccc #ccc #999;
+            border-radius: 0;
+            padding: 3px 5px;
+            font-size: 24px;
+            font-family: 'Times New Roman';
+            line-height: normal;
+            overflow: auto;
+            min-height: 28px;
+            max-height: 90px;
+            width: 570px;
+            max-width: 570px;
+        }
+        .ucosmic .@Html.IdFor(m => m.Title)-field .watermark {
+            position: absolute;
+            font-size: 24px;
+            font-family: 'Times New Roman';
+            line-height: normal;
+            padding: 3px 5px;
+            color: #777;
+        }
+        .ucosmic .@Html.IdFor(m => m.Title)-field > .input .text-box {
+        }
+    </style>
+}
