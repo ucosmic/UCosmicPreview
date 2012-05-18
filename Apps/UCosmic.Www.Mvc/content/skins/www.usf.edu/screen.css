@@ -71,14 +71,14 @@
     color: #006747;
 }
 .ucosmic .top-tabs a:hover, .ucosmic .top-tabs a.open {
-    background-color: #00573c;
+    background-color: #006747;
     color: #e0d1a5;
     border-color: #e0d1a5;
     border-bottom-color: transparent;
     padding: 2px 8px 0;
 }
 .ucosmic .top-tabs a.docked {
-    background-color: #00573c;
+    background-color: #006747;
     color: #e0d1a5;
     border-color: #006747;
     border-bottom-color: transparent;
@@ -101,7 +101,7 @@
 
 /* head 77px tall */
 .ucosmic > .head {
-    background-color: #00573c;
+    background-color: #006747;
     height: 77px;
     border-bottom: 0;
 }
@@ -137,8 +137,8 @@
 
 /* footer bar 33px tall */
 .ucosmic > .feet > .footer {
-    border-top: solid 1px #00573c;
-    background: #00573c;
+    border-top: solid 1px #006747;
+    background: #006747;
 }
 .ucosmic > .feet > .footer a {
     color: #e0d1a5;

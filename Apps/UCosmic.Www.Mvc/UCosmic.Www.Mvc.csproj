@@ -515,10 +515,8 @@
     <Content Include="content\skins\screen-ie8.css" />
     <Content Include="content\skins\www.uc.edu\head-row-bg.png" />
     <Content Include="content\skins\www.usf.edu\head-logo.png" />
-    <Content Include="content\skins\www.usf.edu\head-logo-1.png" />
     <Content Include="content\skins\www.usf.edu\map-panes.css" />
     <Content Include="content\skins\www.usf.edu\screen.css" />
-    <Content Include="content\skins\www.usf.edu\screen-1.css" />
     <Content Include="scripts\common\releases.js" />
     <Content Include="scripts\identity\person-form.js" />
     <Content Include="scripts\identity\roles-form.js" />
