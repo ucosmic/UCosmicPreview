@@ -22,7 +22,7 @@ namespace UCosmic.Domain.People
 
             return _entities.People
                 .EagerLoad(query.EagerLoad, _entities)
-                .ByRevisionId(query.Id)
+                .ById(query.Id)
             ;
         }
     }

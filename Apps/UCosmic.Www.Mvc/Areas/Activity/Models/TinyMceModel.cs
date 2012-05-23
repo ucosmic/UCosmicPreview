@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace UCosmic.Www.Mvc.Areas.Activity.Models
@@ -12,5 +13,17 @@ namespace UCosmic.Www.Mvc.Areas.Activity.Models
         [AllowHtml]
         [UIHint("TinyMceContent")]
         public string Content { get; set; }
+
+        [DataType(DataType.MultilineText)]
+        [Display(Prompt = "[Enter your tag here]")]
+        public string TagSearch { get; set; }
+
+        public Tag[] Tags { get; set; }
+        public class Tag
+        {
+            public int RevisionId { get; set; }
+            public string TaggedText { get; set; }
+            public Type DomainType { get; set; }
+        }
     }
 }

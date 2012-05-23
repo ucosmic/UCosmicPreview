@@ -46,6 +46,7 @@ namespace T4MVC {
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class ActivityClass {
         public readonly string Name = "Activity";
+        public UCosmic.Www.Mvc.Areas.Activity.Controllers.AutoCompleteTagController AutoCompleteTag = new UCosmic.Www.Mvc.Areas.Activity.Controllers.T4MVC_AutoCompleteTagController();
         public UCosmic.Www.Mvc.Areas.Activity.Controllers.TinyMceController TinyMce = new UCosmic.Www.Mvc.Areas.Activity.Controllers.T4MVC_TinyMceController();
         public T4MVC.Activity.SharedController Shared = new T4MVC.Activity.SharedController();
     }
@@ -382,8 +383,8 @@ public class T4MVC_ActionResult : System.Web.Mvc.ActionResult, IT4MVCActionResul
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public class T4MVC_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult {
-    public T4MVC_JsonResult(string area, string controller, string action): base()  {
+public class T4MVC_PartialViewResult : System.Web.Mvc.PartialViewResult, IT4MVCActionResult {
+    public T4MVC_PartialViewResult(string area, string controller, string action): base()  {
         this.InitMVCT4Result(area, controller, action);
     }
     
@@ -392,8 +393,8 @@ public class T4MVC_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult {
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public class T4MVC_PartialViewResult : System.Web.Mvc.PartialViewResult, IT4MVCActionResult {
-    public T4MVC_PartialViewResult(string area, string controller, string action): base()  {
+public class T4MVC_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult {
+    public T4MVC_JsonResult(string area, string controller, string action): base()  {
         this.InitMVCT4Result(area, controller, action);
     }
     
@@ -1718,6 +1719,7 @@ namespace Links {
                 private const string URLPATH = "~/content/icons/deletes";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string delete_hot_12_png = Url("delete-hot-12.png");
                 public static readonly string delete_hot_16_png = Url("delete-hot-16.png");
             }
         

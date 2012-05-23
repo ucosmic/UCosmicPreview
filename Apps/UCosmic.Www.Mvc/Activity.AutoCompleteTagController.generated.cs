@@ -21,9 +21,9 @@ using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
 namespace UCosmic.Www.Mvc.Areas.Activity.Controllers {
-    public partial class TinyMceController {
+    public partial class AutoCompleteTagController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected TinyMceController(Dummy d) { }
+        protected AutoCompleteTagController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -33,32 +33,30 @@ namespace UCosmic.Www.Mvc.Areas.Activity.Controllers {
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.PartialViewResult AddTag() {
-            return new T4MVC_PartialViewResult(Area, Name, ActionNames.AddTag);
+        public System.Web.Mvc.ActionResult Post() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Post);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public TinyMceController Actions { get { return MVC.Activity.TinyMce; } }
+        public AutoCompleteTagController Actions { get { return MVC.Activity.AutoCompleteTag; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "Activity";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "TinyMce";
+        public readonly string Name = "AutoCompleteTag";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "TinyMce";
+        public const string NameConst = "AutoCompleteTag";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Index = "Index";
-            public readonly string AddTag = "AddTag";
+            public readonly string Post = "Post";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Index = "Index";
-            public const string AddTag = "AddTag";
+            public const string Post = "Post";
         }
 
 
@@ -71,19 +69,13 @@ namespace UCosmic.Www.Mvc.Areas.Activity.Controllers {
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_TinyMceController: UCosmic.Www.Mvc.Areas.Activity.Controllers.TinyMceController {
-        public T4MVC_TinyMceController() : base(Dummy.Instance) { }
+    public class T4MVC_AutoCompleteTagController: UCosmic.Www.Mvc.Areas.Activity.Controllers.AutoCompleteTagController {
+        public T4MVC_AutoCompleteTagController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Index() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Index);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.PartialViewResult AddTag(string domainType, int revisionId, string taggedText) {
-            var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.AddTag);
-            callInfo.RouteValueDictionary.Add("domainType", domainType);
-            callInfo.RouteValueDictionary.Add("revisionId", revisionId);
-            callInfo.RouteValueDictionary.Add("taggedText", taggedText);
+        public override System.Web.Mvc.ActionResult Post(string term, string[] excludes) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
+            callInfo.RouteValueDictionary.Add("term", term);
+            callInfo.RouteValueDictionary.Add("excludes", excludes);
             return callInfo;
         }
 

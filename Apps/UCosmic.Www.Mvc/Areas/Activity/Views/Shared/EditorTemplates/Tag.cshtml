@@ -1,0 +1,8 @@
+﻿@model UCosmic.Www.Mvc.Areas.Activity.Models.TinyMceModel.Tag
+@using (Html.BeginCollectionItem("Tags"))
+{
+    <span class="remove" title="remove this tag"></span><strong>@Model.TaggedText</strong>
+    @Html.HiddenFor(m => m.DomainType)
+    @Html.HiddenFor(m => m.RevisionId)
+    @Html.HiddenFor(m => m.TaggedText)
+}

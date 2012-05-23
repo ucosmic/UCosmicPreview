@@ -51,8 +51,9 @@
     <Reference Include="LinqKit">
       <HintPath>..\..\packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
     </Reference>
-    <Reference Include="NGeo">
-      <HintPath>..\..\packages\NGeo.1.3.1\lib\net40\NGeo.dll</HintPath>
+    <Reference Include="NGeo, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\NGeo.1.4\lib\net40\NGeo.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -65,7 +66,10 @@
     </Compile>
     <Compile Include="Api\BaseQuery.cs" />
     <Compile Include="Api\FluentValidationCommandDecorator.cs" />
+    <Compile Include="Establishments\Business\BaseEstablishmentsQuery.cs" />
+    <Compile Include="Establishments\Business\QueryEstablishmentNames.cs" />
     <Compile Include="Establishments\Entities\EmailTemplateName.cs" />
+    <Compile Include="Establishments\Queries\FindEstablishmentsWithName.cs" />
     <Compile Include="Identity\Business\QuerySubjectNameIdentifiers.cs" />
     <Compile Include="Identity\Business\QueryEduPersonScopedAffiliations.cs" />
     <Compile Include="Identity\Commands\ReceiveSamlAuthnResponse.cs" />
@@ -167,6 +171,10 @@
     <Compile Include="People\Business\QueryEmailAddresses.cs" />
     <Compile Include="People\Queries\GetPersonByEmail.cs" />
     <Compile Include="People\Business\QueryPeople.cs" />
+    <Compile Include="Places\Business\BasePlacesQuery.cs" />
+    <Compile Include="Places\Business\BasePlaceQuery.cs" />
+    <Compile Include="Places\Business\QueryPlaceNames.cs" />
+    <Compile Include="Places\Business\QueryPlaces.cs" />
     <Compile Include="Places\PlaceChanger.cs" />
     <Compile Include="Places\PlaceFinder.cs" />
     <Compile Include="Places\PlaceQuery.cs" />
@@ -226,6 +234,7 @@
     <Compile Include="Places\PlaceFactory.cs" />
     <Compile Include="Places\PlaceName.cs" />
     <Compile Include="Places\PlaceNode.cs" />
+    <Compile Include="Places\Queries\FindPlacesWithName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Api\RevisableEntity.cs" />
     <Compile Include="Identity\Entities\Role.cs" />

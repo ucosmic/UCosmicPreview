@@ -32,7 +32,7 @@ namespace UCosmic.Domain
 
             // apply primary key
             if (criteria.RevisionId.HasValue && criteria.RevisionId != 0)
-                return new[] { query.ByRevisionId(criteria.RevisionId.Value) }.AsQueryable();
+                return new[] { query.ById(criteria.RevisionId.Value) }.AsQueryable();
 
             // apply current, archived, and deleted switches
             if (criteria.IsCurrent.HasValue)

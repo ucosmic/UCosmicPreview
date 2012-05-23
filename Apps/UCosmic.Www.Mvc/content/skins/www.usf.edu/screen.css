@@ -22,6 +22,11 @@
 
 
 /* jquery ui-dialog re-theme */
+.ucosmic.modal.ui-dialog .ui-dialog-titlebar {
+    background-color: #006747;
+    color: #e0d1a5;
+}
+
 
 
 

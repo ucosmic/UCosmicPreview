@@ -146,6 +146,11 @@ namespace UCosmic
             return content.ToString();
         }
 
+        public static bool Contains(this string container, string value, StringComparison comparisonType)
+        {
+            return container.IndexOf(value, comparisonType) >= 0;
+        }
+
         #endregion
         #region Null check shortcuts
 

@@ -1,49 +1,85 @@
 ﻿@model UCosmic.Www.Mvc.Areas.Activity.Models.TinyMceModel
 @{
     ViewBag.Title = "My International Activity";
+    var titleFieldClass = "{0}-field".FormatWith(Html.IdFor(m => m.Title));
+    var tagSearchFieldClass = "{0}-field".FormatWith(Html.IdFor(m => m.TagSearch));
 }
 <div class="wrap-960 floats">
     <div class="left" style="width: 580px;">
         <p class="pull-top">
-            Please tell us about your international activity. It can be as short as a sentence,
-            or several paragraphs long. If you want to copy and paste text from Word, please
-            use the <strong>Paste from Word</strong> button: <span style="display: inline-block; height: 20px; width: 20px;
-                               vertical-align: text-bottom;background:url('@Url.Content(Links.scripts.tinymce.themes.advanced.img.icons_gif)'); background-position: -380px -20px;">
-            </span>
+            If you have already blogged about this activity, <a href="#" data-ucosmic-not-implemented="Add activity from RSS feed">
+                add it from your RSS feed instead</a>.
         </p>
         <p>
-            If you have already blogged about this activity, add it from your RSS feed instead
-            of entering another description.
+            Otherwise, please tell us about your international activity. Begin by entering a
+            <strong>title</strong>:
         </p>
         @using (Html.BeginForm())
         {
-            <div class="@Html.IdFor(m => m.Title)-field" data-ucosmic-watermark="true" 
+            <div class="@titleFieldClass" data-ucosmic-watermark="true"
                  data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.Title, ViewData).Watermark)"
                  data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
                  data-ucosmic-trim-input="true">
                 @Html.EditorFor(m => m.Title)
             </div>
-            <br />
+            <p>
+                Next, <strong>describe</strong> your activity in a few sentences or paragraphs.
+            </p>
+            <p style="font-size: 1em;">
+                To copy and paste from a Word file, please use the <em>Paste from Word</em><span style="display: inline-block; height: 20px; width: 20px;
+                               vertical-align: text-bottom;background:url('@Url.Content(Links.scripts.tinymce.themes.advanced.img.icons_gif)'); background-position: -380px -20px; margin: 0 5px;">
+                </span>button.
+            </p>
             @Html.EditorFor(m => m.Content)
             <br />
             <div>
                 <input type="submit" value="Submit" />
             </div>
-            <br/><br/>
+            <br />
+            <br />
         }
     </div>
     <div class="right" style="width: 340px; border: solid 0px gray; margin-left: 18px;">
-        <div style="position: fixed;">
-            <h2>
-                Tags
-            </h2>
+        <div style="position: fixed; width: 340px;">
+            <p class="pull-top">
+                Along with your activity title and description, please enter between 1 and 10 <strong>
+                    tags</strong>. Tags help UCosmic associate your activity with different categories,
+                partner institutions, and parts of the world. As you type, you may see tag suggestions
+                appear. Simply click them to use them.
+            </p>
+            <p class="pull-bottom" style="font-size: 1em;">
+                <em>Examples</em>: <em>Ludwig Maximillians University</em>, <em>China</em>, <em>Fulbright</em>,
+                <em>Global</em>, <em>Health &amp; Medicine</em>, <em>Mediterranean Sea</em>
+            </p>
+            <div class="@tagSearchFieldClass" data-ucosmic-watermark="true"
+                data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.TagSearch, ViewData).Watermark)"
+                data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
+                data-ucosmic-trim-input="true"
+                data-ucosmic-tag-autocomplete-url="@Url.Action(MVC.Activity.AutoCompleteTag.Post())"
+                data-ucosmic-tag-add-url="@Url.Action(MVC.Activity.TinyMce.AddTag())">
+                @Html.EditorFor(m => m.TagSearch)
+                <div class="autocomplete-menu">
+                </div>
+            </div>
+            <div>
+                <a href="#" disabled="disabled">Add Tag</a>
+            </div>
+            <p class="pull-bottom" style="font-size: 1em;">
+                You can add any tag, regardless of whether it appears in the dropdown after you
+                type it.
+            </p>
+            <ul class="tags ui-helper-clearfix">
+                <li class="empty">
+                    <span>[No tags - add at least one]</span>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
 @section Styles
 {
     <style type="text/css">
-        .ucosmic .@Html.IdFor(m => m.Title)-field textarea {
+        .ucosmic .@titleFieldClass textarea {
             border: solid 1px;
             border-color: #999 #ccc #ccc #999;
             border-radius: 0;
@@ -52,12 +88,12 @@
             font-family: 'Times New Roman';
             line-height: normal;
             overflow: auto;
-            min-height: 28px;
+            min-height: 56px;
             max-height: 90px;
             width: 570px;
             max-width: 570px;
         }
-        .ucosmic .@Html.IdFor(m => m.Title)-field .watermark {
+        .ucosmic .@titleFieldClass .watermark {
             position: absolute;
             font-size: 24px;
             font-family: 'Times New Roman';
@@ -65,7 +101,149 @@
             padding: 3px 5px;
             color: #777;
         }
-        .ucosmic .@Html.IdFor(m => m.Title)-field > .input .text-box {
+        .ucosmic .@tagSearchFieldClass textarea {
+            border: solid 1px;
+            border-color: #999 #ccc #ccc #999;
+            border-radius: 0;
+            padding: 3px 5px;
+            font-size: 18px;
+            font-family: 'Arial';
+            line-height: normal;
+            overflow: auto;
+            height: 44px;
+            width: 330px;
+            max-width: 330px;
+            resize: none;
+        }
+        .ucosmic .@tagSearchFieldClass .watermark {
+            position: absolute;
+            font-size: 18px;
+            font-family: 'Arial';
+            line-height: normal;
+            padding: 3px 5px;
+            color: #777;
+        }
+        .ucosmic .@tagSearchFieldClass .ui-autocomplete {
+            max-height: 300px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .ucosmic ul.tags {
+            border: solid 1px #999;
+            padding: 0 3px 3px 0;
+            margin: 0;
+            list-style: none;
+        }
+        .ucosmic ul.tags li {
+            float: left;
+            padding: 3px 5px;
+            border: solid 1px;
+            border-color: #999 #ccc #ccc #999;
+            margin: 3px 0 0 3px;
+        }
+        .ucosmic ul.tags li span.remove {
+            background: url('/content/icons/deletes/delete-hot-12.png') no-repeat;
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+            cursor: pointer;
+            float: right;
+            margin: 3px 0 0 3px;
         }
     </style>
+}
+@section Scripts
+{
+
+    <script type="text/javascript">
+        $(function () {
+            var config = $('[data-ucosmic-tag-autocomplete-url]');
+            var autocompleteUrl = config.data('ucosmic-tag-autocomplete-url');
+            var addUrl = config.data('ucosmic-tag-add-url');
+            var input = config.find(':input');
+
+            function getTagExcludes() {
+                var excludedTags = [];
+                $('ul.tags li').each(function () {
+                    var taggedText = $(this).find('input[name^="Tags["][name$="].TaggedText"]');
+                    if (!taggedText.length) return;
+                    var excludeTag = taggedText.val();
+                    if ($.inArray(excludeTag, excludedTags) < 0)
+                        excludedTags.push(excludeTag);
+                });
+                return excludedTags;
+            }
+
+            input.autocomplete({
+                // get partial UL/LI view from server
+                source: function (request, response) {
+                    $.ajax({
+                        url: autocompleteUrl,
+                        type: 'post',
+                        cache: true,
+                        traditional: true,
+                        data: {
+                            term: request.term,
+                            excludes: getTagExcludes()
+                        },
+                        success: function (result) {
+                            // map the raw html to autocomplete item
+                            var ul = $(result);
+                            var lis = ul.children('li');
+                            response($.map(lis, function (item) {
+                                return {
+                                    label: $(item).find('.label').text(),
+                                    value: item
+                                };
+                            }));
+                        }
+                    });
+                },
+                minLength: 3,
+                appendTo: '[data-ucosmic-tag-autocomplete-url] .autocomplete-menu',
+                focus: function (event, ui) {
+                    return false;
+                },
+                select: function (event, ui) {
+                    input.val('');
+                    var li = $(ui.item.value);
+                    var domainType = li.data('ucosmic-domain-type');
+                    var revisionId = li.data('ucosmic-revision-id');
+                    var taggedText = ui.item.label;
+                    $.ajax({
+                        url: addUrl,
+                        type: 'post',
+                        data: {
+                            domainType: domainType,
+                            revisionId: revisionId,
+                            taggedText: taggedText
+                        },
+                        success: function (result) {
+                            var data = $(result).children('li:first');
+                            var ul = $('ul.tags');
+                            ul.children('li.empty').hide();
+                            data.appendTo(ul);
+                        }
+                    });
+                    return false;
+                }
+            })
+            // render a customized LI based on the view returned by server
+            .data('autocomplete')._renderItem = function (ul, item) {
+                return $(item.value)
+                    .data('item.autocomplete', item)
+                    .appendTo(ul);
+            };
+
+            // redisplay the menu when autocomplete loses & regains focus
+            input.focus(function () {
+                setTimeout(function () {
+                    var inputValue = input.val();
+                    if (!inputValue) return;
+                    input.autocomplete('search', inputValue);
+                }, 0);
+            });
+        });
+    </script>
+
 }
