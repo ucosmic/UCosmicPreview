@@ -101,69 +101,6 @@
 
     // watermark text box
     $.extend($.ucosmic.obtruders.ux, {
-        watermarkv1: function (selector) {
-            $(selector).find('[data-ucosmic-watermark1=true]').each(function () {
-                var text = $(this).data('ucosmic-watermark1-text'),
-                cssClass = $(this).data('ucosmic-watermark1-class'),
-                focusCssClass = $(this).data('ucosmic-watermark1-focused-class'),
-                watermarked = $(this).find('input[type=text]:first');
-                watermarked = (watermarked.length > 0) ? watermarked
-                    : $(this).find('input[type=password]:first');
-                var watermarker = watermarked.clone(false);
-                var watermark = function () {
-                    watermarker.hide();
-                    if (!watermarked.val()) {
-                        watermarker.show();
-                        if (focusCssClass) {
-                            watermarker.removeClass(focusCssClass);
-                            if (watermarked.is(':focus')) {
-                                watermarker.addClass(focusCssClass);
-                            }
-                        }
-                    }
-                };
-                watermarker.attr('id', '').attr('name', '').addClass(cssClass)
-                    .css({ position: 'relative', top: 0 - watermarked.outerHeight(true) });
-                var attrs = '';
-                if (watermarker.length < 1) return;
-                $.each(watermarker[0].attributes, function () {
-                    if (this.nodeName.indexOf('data-val') === 0) {
-                        attrs += this.nodeName + ' ';
-                    }
-                });
-                if (attrs) {
-                    watermarker.removeAttr($.trim(attrs));
-                }
-                var div = $('<div></div>');
-                watermarker.appendTo(div);
-                var watermarkerHtml = div.html();
-                if (watermarkerHtml.indexOf('type="password"') > 0) {
-                    watermarkerHtml = watermarkerHtml.replace('type="password"', 'type="text"');
-                } else if (watermarkerHtml.indexOf('type=password') > 0) {
-                    watermarkerHtml = watermarkerHtml.replace('type=password', 'type=text');
-                } else if (watermarkerHtml.indexOf("type='password'") > 0) {
-                    watermarkerHtml = watermarkerHtml.replace("type='password'", "type='text'");
-                }
-                $(watermarkerHtml).appendTo($(this));
-                watermarker = $(this).find('input.' + cssClass);
-                watermarker.val(text);
-                watermark();
-                watermarked.on('keydown', function () {
-                    watermarker.hide();
-                    setTimeout(watermark, 0);
-                });
-                watermarked.on('keyup keypress change blur', function () {
-                    watermark();
-                });
-                watermarker.on('click focus', function () {
-                    watermarked.focus();
-                    watermark();
-                });
-            });
-        }
-    });
-
-    $.extend($.ucosmic.obtruders.ux, {
         watermark: function (selector) {
             $(selector).find('[data-ucosmic-watermark=true]').each(function () {
                 var text = $(this).data('ucosmic-watermark-text'),
@@ -240,7 +177,7 @@
                         $(container).find('[data-ucosmic-val-show=valid]').show();
                     }
                 }
-                $(this).find('input[data-val=true]').each(function () {
+                $(this).find(':input[data-val=true], :input.input-validation-error').each(function () {
                     applyHighlight(this);
                 });
                 settings.highlight = function (element, errorClass, validClass) {

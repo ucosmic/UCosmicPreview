@@ -20,10 +20,10 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace UCosmic.Www.Mvc.Areas.Activity.Controllers {
-    public partial class TinyMceController {
+namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
+    public partial class FormController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected TinyMceController(Dummy d) { }
+        protected FormController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -33,32 +33,44 @@ namespace UCosmic.Www.Mvc.Areas.Activity.Controllers {
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.PartialViewResult AddTag() {
-            return new T4MVC_PartialViewResult(Area, Name, ActionNames.AddTag);
+        public System.Web.Mvc.ActionResult Get() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Get);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult Put() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Put);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.JsonResult ValidateTitle() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidateTitle);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public TinyMceController Actions { get { return MVC.Activity.TinyMce; } }
+        public FormController Actions { get { return MVC.Activities.Form; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "Activity";
+        public readonly string Area = "Activities";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "TinyMce";
+        public readonly string Name = "Form";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "TinyMce";
+        public const string NameConst = "Form";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Index = "Index";
-            public readonly string AddTag = "AddTag";
+            public readonly string Get = "form";
+            public readonly string Put = "form";
+            public readonly string ValidateTitle = "ValidateTitle";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Index = "Index";
-            public const string AddTag = "AddTag";
+            public const string Get = "form";
+            public const string Put = "form";
+            public const string ValidateTitle = "ValidateTitle";
         }
 
 
@@ -71,19 +83,24 @@ namespace UCosmic.Www.Mvc.Areas.Activity.Controllers {
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_TinyMceController: UCosmic.Www.Mvc.Areas.Activity.Controllers.TinyMceController {
-        public T4MVC_TinyMceController() : base(Dummy.Instance) { }
+    public class T4MVC_FormController: UCosmic.Www.Mvc.Areas.Activities.Controllers.FormController {
+        public T4MVC_FormController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Index() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Index);
+        public override System.Web.Mvc.ActionResult Get(int number) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
+            callInfo.RouteValueDictionary.Add("number", number);
             return callInfo;
         }
 
-        public override System.Web.Mvc.PartialViewResult AddTag(string domainType, int revisionId, string taggedText) {
-            var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.AddTag);
-            callInfo.RouteValueDictionary.Add("domainType", domainType);
-            callInfo.RouteValueDictionary.Add("revisionId", revisionId);
-            callInfo.RouteValueDictionary.Add("taggedText", taggedText);
+        public override System.Web.Mvc.ActionResult Put(UCosmic.Www.Mvc.Areas.Activities.Models.Form model) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Put);
+            callInfo.RouteValueDictionary.Add("model", model);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.JsonResult ValidateTitle(UCosmic.Www.Mvc.Areas.Activities.Models.Form model) {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateTitle);
+            callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
 

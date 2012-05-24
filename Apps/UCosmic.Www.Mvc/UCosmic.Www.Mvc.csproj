@@ -197,20 +197,26 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Activity.AutoCompleteTagController.generated.cs">
+    <Compile Include="Activities.FormController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Activity.SharedController.generated.cs">
+    <Compile Include="Activities.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Activity.TinyMceController.generated.cs">
+    <Compile Include="Activities.TagListController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Activity\ActivityAreaRegistration.cs" />
-    <Compile Include="Areas\Activity\Controllers\AutoCompleteTagController.cs" />
-    <Compile Include="Areas\Activity\Controllers\TinyMceController.cs" />
-    <Compile Include="Areas\Activity\Models\AutoCompleteTag.cs" />
-    <Compile Include="Areas\Activity\Models\TinyMceModel.cs" />
+    <Compile Include="Activities.TagMenuController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Activities\ActivitiesAreaRegistration.cs" />
+    <Compile Include="Areas\Activities\Controllers\TagListController.cs" />
+    <Compile Include="Areas\Activities\Controllers\TagMenuController.cs" />
+    <Compile Include="Areas\Activities\Controllers\FormController.cs" />
+    <Compile Include="Areas\Activities\Models\ActivityMode.cs" />
+    <Compile Include="Areas\Activities\Models\TagDomainType.cs" />
+    <Compile Include="Areas\Activities\Models\TagMenuItem.cs" />
+    <Compile Include="Areas\Activities\Models\Form.cs" />
     <Compile Include="Helpers\FormsAuthenticationConfig.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailController.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOverController.cs" />
@@ -491,6 +497,7 @@
     <Content Include="App_Data\saml\identity-providers\login.uc.edu.xml" />
     <Content Include="App_Data\saml\identity-providers\wif-saml2-sample.xml" />
     <Content Include="app_offline.html" />
+    <Content Include="content\ReSharper.css" />
     <Content Include="content\icons\cancels\cancel-disabled-hover-16.png" />
     <Content Include="content\icons\cancels\cancel-disabled-hover-24.png" />
     <Content Include="content\icons\cancels\cancel-disabled-opaque-16.png" />
@@ -1341,13 +1348,13 @@
     <Content Include="Areas\Identity\Views\Shared\_layout_identity_v1.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\update-password.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\UpdatePasswordForm.cshtml" />
-    <Content Include="Areas\Activity\Views\Web.config" />
-    <Content Include="Areas\Activity\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Activity\Views\Shared\Index.cshtml" />
-    <Content Include="Areas\Activity\Views\Shared\EditorTemplates\TinyMceContent.cshtml" />
-    <Content Include="Areas\Activity\Views\Shared\_auto-complete-tags.cshtml" />
-    <Content Include="Areas\Activity\Views\Shared\_list-tags.cshtml" />
-    <Content Include="Areas\Activity\Views\Shared\EditorTemplates\Tag.cshtml" />
+    <Content Include="Areas\Activities\Views\Web.config" />
+    <Content Include="Areas\Activities\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Activities\Views\Shared\form.cshtml" />
+    <Content Include="Areas\Activities\Views\Shared\EditorTemplates\TinyMceContent.cshtml" />
+    <Content Include="Areas\Activities\Views\Shared\_tag-menu.cshtml" />
+    <Content Include="Areas\Activities\Views\Shared\_tag-list.cshtml" />
+    <Content Include="Areas\Activities\Views\Shared\EditorTemplates\Tag.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />

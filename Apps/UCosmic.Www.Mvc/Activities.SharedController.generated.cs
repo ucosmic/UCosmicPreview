@@ -20,7 +20,7 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace T4MVC.Activity {
+namespace T4MVC.Activities {
     public class SharedController {
 
         static readonly ViewNames s_views = new ViewNames();
@@ -28,9 +28,9 @@ namespace T4MVC.Activity {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _auto_complete_tags = "~/Areas/Activity/Views/Shared/_auto-complete-tags.cshtml";
-            public readonly string _list_tags = "~/Areas/Activity/Views/Shared/_list-tags.cshtml";
-            public readonly string Index = "~/Areas/Activity/Views/Shared/Index.cshtml";
+            public readonly string _tag_list = "~/Areas/Activities/Views/Shared/_tag-list.cshtml";
+            public readonly string _tag_menu = "~/Areas/Activities/Views/Shared/_tag-menu.cshtml";
+            public readonly string form = "~/Areas/Activities/Views/Shared/form.cshtml";
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{

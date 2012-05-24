@@ -23,8 +23,8 @@ using T4MVC;
 
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 public static class MVC {
-    static readonly ActivityClass s_Activity = new ActivityClass();
-    public static ActivityClass Activity { get { return s_Activity; } }
+    static readonly ActivitiesClass s_Activities = new ActivitiesClass();
+    public static ActivitiesClass Activities { get { return s_Activities; } }
     static readonly CommonClass s_Common = new CommonClass();
     public static CommonClass Common { get { return s_Common; } }
     static readonly EstablishmentsClass s_Establishments = new EstablishmentsClass();
@@ -44,11 +44,12 @@ public static class MVC {
 
 namespace T4MVC {
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class ActivityClass {
-        public readonly string Name = "Activity";
-        public UCosmic.Www.Mvc.Areas.Activity.Controllers.AutoCompleteTagController AutoCompleteTag = new UCosmic.Www.Mvc.Areas.Activity.Controllers.T4MVC_AutoCompleteTagController();
-        public UCosmic.Www.Mvc.Areas.Activity.Controllers.TinyMceController TinyMce = new UCosmic.Www.Mvc.Areas.Activity.Controllers.T4MVC_TinyMceController();
-        public T4MVC.Activity.SharedController Shared = new T4MVC.Activity.SharedController();
+    public class ActivitiesClass {
+        public readonly string Name = "Activities";
+        public UCosmic.Www.Mvc.Areas.Activities.Controllers.FormController Form = new UCosmic.Www.Mvc.Areas.Activities.Controllers.T4MVC_FormController();
+        public UCosmic.Www.Mvc.Areas.Activities.Controllers.TagListController TagList = new UCosmic.Www.Mvc.Areas.Activities.Controllers.T4MVC_TagListController();
+        public UCosmic.Www.Mvc.Areas.Activities.Controllers.TagMenuController TagMenu = new UCosmic.Www.Mvc.Areas.Activities.Controllers.T4MVC_TagMenuController();
+        public T4MVC.Activities.SharedController Shared = new T4MVC.Activities.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class CommonClass {
@@ -383,8 +384,8 @@ public class T4MVC_ActionResult : System.Web.Mvc.ActionResult, IT4MVCActionResul
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public class T4MVC_PartialViewResult : System.Web.Mvc.PartialViewResult, IT4MVCActionResult {
-    public T4MVC_PartialViewResult(string area, string controller, string action): base()  {
+public class T4MVC_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult {
+    public T4MVC_JsonResult(string area, string controller, string action): base()  {
         this.InitMVCT4Result(area, controller, action);
     }
     
@@ -393,8 +394,8 @@ public class T4MVC_PartialViewResult : System.Web.Mvc.PartialViewResult, IT4MVCA
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public class T4MVC_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult {
-    public T4MVC_JsonResult(string area, string controller, string action): base()  {
+public class T4MVC_PartialViewResult : System.Web.Mvc.PartialViewResult, IT4MVCActionResult {
+    public T4MVC_PartialViewResult(string area, string controller, string action): base()  {
         this.InitMVCT4Result(area, controller, action);
     }
     
@@ -1823,6 +1824,7 @@ namespace Links {
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
         }
     
+        public static readonly string ReSharper_css = Url("ReSharper.css");
         public static readonly string Site_css = Url("Site.css");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class skins {

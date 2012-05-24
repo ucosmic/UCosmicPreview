@@ -1,0 +1,408 @@
+﻿@using UCosmic.Www.Mvc.Areas.Activities.Models
+@model Form
+@{
+    ViewBag.Title = "My International Activity";
+}
+@using (Html.BeginForm(
+    MVC.Activities.Form.ActionNames.Put,
+    MVC.Activities.Form.Name,
+    new
+    {
+        area = MVC.Activities.Name,
+        httpMethod = "PUT",
+        number = Model.Number,
+    }
+))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <div class="wrap-960 floats">
+        <div class="left" style="width: 580px;">
+            <p class="pull-top">
+                If you have already blogged about this activity, <a href="#" data-ucosmic-not-implemented="Add activity from RSS feed">
+                    add it from your RSS feed instead</a>.
+            </p>
+            <p>
+                Otherwise, tell us about your international activity. Begin by entering a <strong>title</strong>:
+            </p>
+            <div class="field title-field" data-ucosmic-val="css">
+                <div class="messages">
+                    <span class="validation">
+                        @Html.ValidationMessageFor(m => m.TitleValidator)
+                    </span>
+                    <div class="bottom callout border">
+                        <div class="bottom callout bg">
+                        </div>
+                    </div>
+                </div>
+                <div class="input">
+                    <div class="text-box input" data-ucosmic-watermark="true"
+                         data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.Title, ViewData).Watermark)"
+                         data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
+                         data-ucosmic-trim-input="true">
+                        @Html.EditorFor(m => m.Title)
+                    </div>
+                </div>
+                <div style="display: none;">
+                    @Html.EditorFor(m => m.TitleValidator)
+                </div>
+            </div>
+            <p>
+                Next, <strong>describe</strong> your activity in a few sentences or paragraphs.
+            </p>
+            <p class="normal-text">
+                To copy and paste from a Word file, use the <em>Paste from Word</em><span style="display: inline-block; height: 20px; width: 20px;
+                               vertical-align: text-bottom;background:url('@Url.Content(Links.scripts.tinymce.themes.advanced.img.icons_gif)'); background-position: -380px -20px; margin: 0 5px;">
+                </span>button.
+            </p>
+            @Html.EditorFor(m => m.Content)
+            <ol class="mode-radios">
+                <li class="ui-helper-clearfix">
+                    <label>
+                        @Html.RadioButtonFor(m => m.Mode, ActivityMode.Draft, new { id = "Mode_{0}".FormatWith(ActivityMode.Draft), })
+                        <span>This activity is in <strong>Draft</strong> mode. After I click the <strong>Save</strong>
+                            button, only I will be able to see it.</span>
+                    </label>
+                </li>
+                <li class="ui-helper-clearfix">
+                    <label>
+                        @Html.RadioButtonFor(m => m.Mode, ActivityMode.Public, new { id = "Mode_{0}".FormatWith(ActivityMode.Public), })
+                        <span>This activity is in <strong>Public</strong> mode. After I click the <strong>Save</strong>
+                            button, anyone will be able to see it.</span>
+                    </label>
+                </li>
+                <li class="ui-helper-clearfix">
+                    <label>
+                        @Html.RadioButtonFor(m => m.Mode, ActivityMode.Protected, new { id = "Mode_{0}".FormatWith(ActivityMode.Protected), })
+                        <span>This activity is in <strong>Protected</strong> mode. After I click the <strong>
+                            Save</strong> button, only I and my institution's International Office will be able
+                            to see it.</span>
+                    </label>
+                </li>
+            </ol>
+            <p class="normal-text">
+                <input type="submit" value="Save" />
+                @Html.Partial(MVC.Shared.Views.return_url_cancel_link, Model.ReturnUrl)
+                @Html.Partial(MVC.Shared.Views.form_submitted_spinner)
+                @Html.EditorFor(m => m.ReturnUrl)
+                @Html.EditorFor(m => m.Number)
+                @Html.EditorFor(m => m.SelectedMode)
+            </p>
+        </div>
+        <div class="right" style="width: 340px; border: solid 0px gray; margin-left: 18px;">
+            <div style="position: fixed; width: 340px;">
+                <p class="pull-top">
+                    Along with title and description, enter between 1 and 10 <strong>tags</strong>.
+                    Tags help UCosmic associate your activity with different categories, partner institutions,
+                    and parts of the world. As you type, you may see tag suggestions appear. You can
+                    either select a suggestion or enter custom text.
+                </p>
+                @Html.Partial(MVC.Activities.Shared.Views._tag_list, Model.Tags ?? Enumerable.Empty<Form.Tag>())
+                <div>
+                    <a href="#" class="add-tag" style="display: none;">Add Tag</a> <span class="add-tag-disabled">
+                        Enter at least 2 characters in the text box below.</span>
+                </div>
+                <p class="normal-text pull-bottom">
+                    <em>Examples</em>: <em>Ludwig Maximilian University of Munich</em>, <em>China</em>,
+                    <em>Fulbright</em>, <em>Global</em>, <em>Health &amp; Medicine</em>, <em>Mediterranean
+                        Sea</em>
+                </p>
+                <div class="tag-search-field" data-ucosmic-watermark="true"
+                    data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.TagSearch, ViewData).Watermark)"
+                    data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
+                    data-ucosmic-trim-input="true"
+                    data-ucosmic-tag-autocomplete-url="@Url.Action(MVC.Activities.TagMenu.Post())"
+                    data-ucosmic-tag-add-url="@Url.Action(MVC.Activities.TagList.Add())">
+                    @Html.EditorFor(m => m.TagSearch)
+                    <div class="autocomplete-menu">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section Styles
+{
+    <style type="text/css">
+        .ucosmic .field {
+            padding: 0;
+        }
+        .ucosmic .field > .input {
+            width: auto;
+        }
+        .ucosmic .text-box.input {
+            border: none;
+            padding: 0;
+            border-radius: 0;
+            -moz-border-radius: 0;
+            height: auto;
+        }
+        .ucosmic .input-validation-error .text-box.input {
+            background: transparent;
+        }
+        .ucosmic textarea.input-validation-error {
+            color: #000;
+        }
+        .ucosmic .title-field textarea {
+            border: solid 1px;
+            border-color: #999 #ccc #ccc #999;
+            border-radius: 0;
+            padding: 3px 5px;
+            font-size: 24px;
+            font-family: 'Times New Roman';
+            line-height: normal;
+            overflow: auto;
+            min-height: 56px;
+            max-height: 90px;
+            width: 570px;
+            max-width: 570px;
+        }
+        .ucosmic .input-validation-error .input span.focused.watermark {
+            color: #777;
+        }
+        .ucosmic .title-field .input span.watermark {
+            position: absolute;
+            font-size: 24px;
+            font-family: 'Times New Roman';
+            line-height: normal;
+            padding: 3px 5px;
+            color: #777;
+            height: auto;
+        }
+        .ucosmic .tag-search-field textarea {
+            border: solid 1px;
+            border-color: #999 #ccc #ccc #999;
+            border-radius: 0;
+            padding: 3px 5px;
+            font-size: 18px;
+            font-family: 'Arial';
+            line-height: normal;
+            overflow: auto;
+            height: 44px;
+            width: 330px;
+            max-width: 330px;
+            resize: none;
+        }
+        .ucosmic .tag-search-field .watermark {
+            position: absolute;
+            font-size: 18px;
+            font-family: 'Arial';
+            line-height: normal;
+            padding: 3px 5px;
+            color: #777;
+        }
+        .ucosmic .tag-search-field .ui-autocomplete {
+            max-height: 300px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .ucosmic ol.tags {
+            border: solid 1px #999;
+            padding: 0 3px 3px 0;
+            margin: 0;
+            list-style: none;
+        }
+        .ucosmic ol.tags li {
+            float: left;
+            padding: 3px 5px;
+            border: solid 1px;
+            border-color: #999 #ccc #ccc #999;
+            margin: 3px 0 0 3px;
+        }
+        .ucosmic ol.tags li span.remove {
+            background: url('/content/icons/deletes/delete-hot-12.png') no-repeat;
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+            cursor: pointer;
+            float: right;
+            margin: 3px 0 0 3px;
+        }
+        .ucosmic ol.mode-radios {
+            list-style: none;
+            margin: 1em 0;
+            padding: 0;
+        }
+        .ucosmic ol.mode-radios li {
+            margin: 0 0 1em;
+        }
+        .ucosmic ol.mode-radios li input[type=radio] {
+            float: left;
+        }
+        .ucosmic ol.mode-radios li span {
+            display: inline-block;
+            float: left;
+            margin: 0 0 0 5px;
+            padding: 0;
+            width: 550px;
+            font-size: 1em;
+        }
+        .ucosmic .normal-text {
+            font-size: 1em;
+        }
+    </style>
+}
+@section Scripts
+{
+
+    <script type="text/javascript">
+        $.validator.setDefaults({
+            ignore: ''
+        });
+
+        $(function () {
+            var config = $('[data-ucosmic-tag-autocomplete-url]');
+            var autocompleteUrl = config.data('ucosmic-tag-autocomplete-url');
+            var addUrl = config.data('ucosmic-tag-add-url');
+            var input = config.find(':input');
+
+            function getTagExcludes() {
+                var excludedTags = [];
+                $('ol.tags li').each(function () {
+                    var taggedText = $(this).find('input[name^="Tags["][name$="].TaggedText"]');
+                    if (!taggedText.length) return;
+                    // make sure item is not deleted
+                    var isDeleted = taggedText.parents('li').find('input[name^="Tags["][name$="].IsDeleted"][value$=rue]');
+                    if (isDeleted.length) return;
+                    var excludeTag = taggedText.val();
+                    if ($.inArray(excludeTag, excludedTags) < 0)
+                        excludedTags.push(excludeTag);
+                });
+                return excludedTags;
+            }
+
+            input.autocomplete({
+                // get partial OL/LI view from server
+                source: function (request, response) {
+                    $.ajax({
+                        url: autocompleteUrl,
+                        type: 'post',
+                        cache: true,
+                        traditional: true,
+                        data: {
+                            term: request.term,
+                            excludes: getTagExcludes()
+                        },
+                        success: function (result) {
+                            // map the raw html to autocomplete item
+                            var ol = $(result);
+                            var lis = ol.children('li');
+                            response($.map(lis, function (item) {
+                                return {
+                                    label: $(item).find('.label').text(),
+                                    value: item
+                                };
+                            }));
+                        }
+                    });
+                },
+                minLength: 2,
+                appendTo: '[data-ucosmic-tag-autocomplete-url] .autocomplete-menu',
+                focus: function () {
+                    return false;
+                },
+                select: function (event, ui) {
+                    var li = $(ui.item.value);
+                    var domainType = li.data('ucosmic-domain-type');
+                    var revisionId = li.data('ucosmic-revision-id');
+                    var taggedText = ui.item.label;
+                    addTag(domainType, revisionId, taggedText);
+                    return false;
+                }
+            })
+            // render a customized LI based on the view returned by server
+            .data('autocomplete')._renderItem = function (ul, item) {
+                return $(item.value)
+                    .data('item.autocomplete', item)
+                    .appendTo(ul);
+            };
+
+            // redisplay the menu when autocomplete loses & regains focus
+            input.focus(function () {
+                setTimeout(function () {
+                    var inputValue = input.val();
+                    if (!inputValue) return;
+                    input.autocomplete('search', inputValue);
+                }, 0);
+            });
+
+            // remove tag
+            $('ol.tags').on('click', '.remove', function () {
+                var li = $(this).parents('li');
+                var ol = li.parent();
+                var isDeleted = li.find('input[name^="Tags["][name$="].IsDeleted"]');
+                isDeleted.val(true);
+                li.hide('slide', { direction: 'left' }, 250, function () {
+                    // how many items are still shown?
+                    var lis = ol.find('input[name^="Tags["][name$="].IsDeleted"][value$=alse]');
+                    if (!lis.length) {
+                        ol.children('li.empty').show('slide', { direction: 'left' }, 250);
+                    }
+                });
+            });
+
+            // add tag
+            function addTag(domainType, revisionId, taggedText) {
+                input.val('');
+                setAddButtonDisplay();
+                $.ajax({
+                    url: addUrl,
+                    type: 'post',
+                    data: {
+                        domainType: domainType,
+                        revisionId: revisionId,
+                        taggedText: taggedText
+                    },
+                    success: function (result) {
+                        var ol = $('ol.tags');
+                        var data = $(result).children('li').not('.empty');
+                        data.hide();
+                        data.appendTo(ol);
+                        var empty = ol.children('li.empty');
+                        if (empty.is(':visible'))
+                            empty.hide('slide', { direction: 'left' }, 250, function () {
+                                data.show('slide', { direction: 'left' }, 250);
+                            });
+                        else
+                            data.show('slide', { direction: 'left' }, 250);
+                    }
+                });
+            }
+
+            $('a.add-tag').click(function () {
+                addTag('Custom', null, $.trim(input.val()));
+                return false;
+            });
+
+            function setAddButtonDisplay() {
+                var link = $('a.add-tag');
+                var info = $('.add-tag-disabled');
+                var value = $.trim(input.val());
+                if (value && value.length > 1) {
+                    link.show();
+                    info.hide();
+                }
+                else {
+                    link.hide();
+                    info.show();
+                }
+            }
+
+            input.on('keyup change', setAddButtonDisplay);
+
+            function updateSelectedMode() {
+                var value = $('input[type=radio][name=Mode]:checked').val();
+                $('input#SelectedMode').val(value);
+                $('input#TitleValidator').val($('input#TitleValidator').val() + value);
+            }
+
+            updateSelectedMode();
+            $('input[type=radio][name=Mode]').on('click change', updateSelectedMode);
+            $('textarea#Title').on('keyup change', function() {
+                alert($('input#TitleValidator').val());
+                $('input#TitleValidator').val($('input#TitleValidator').val() + $(this).val());
+                alert($('input#TitleValidator').val());
+            });
+        });
+    </script>
+
+}

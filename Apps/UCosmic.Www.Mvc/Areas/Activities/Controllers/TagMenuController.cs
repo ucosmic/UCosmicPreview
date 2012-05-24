@@ -2,41 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Routing;
 using AutoMapper;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Places;
-using UCosmic.Www.Mvc.Areas.Activity.Models;
+using UCosmic.Www.Mvc.Areas.Activities.Models;
 using UCosmic.Www.Mvc.Controllers;
 
-namespace UCosmic.Www.Mvc.Areas.Activity.Controllers
+namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
 {
-    public class AutoCompleteTagServices
+    public class TagMenuServices
     {
-        public AutoCompleteTagServices(IProcessQueries queryProcessor
+        public TagMenuServices(IProcessQueries queryProcessor
         )
         {
             QueryProcessor = queryProcessor;
         }
 
-        public IProcessQueries QueryProcessor { get; set; }
+        public IProcessQueries QueryProcessor { get; private set; }
     }
 
-    public partial class AutoCompleteTagController : BaseController
+    public partial class TagMenuController : BaseController
     {
-        private readonly AutoCompleteTagServices _services;
+        private readonly TagMenuServices _services;
 
-        public AutoCompleteTagController(AutoCompleteTagServices services)
+        public TagMenuController(TagMenuServices services)
         {
             _services = services;
         }
 
         [HttpPost]
-        public virtual ActionResult Post(string term, string[] excludes)
+        public virtual PartialViewResult Post(string term, string[] excludes)
         {
             const StringComparison caseInsensitive = StringComparison.OrdinalIgnoreCase;
             const StringMatchStrategy contains = StringMatchStrategy.Contains;
-            const int maxResults = 12;
+            const int maxResults = 50;
 
             // get places
             var places = _services.QueryProcessor.Execute(
@@ -49,7 +50,7 @@ namespace UCosmic.Www.Mvc.Areas.Activity.Controllers
             );
 
             // explain place matches
-            var placeTags = Mapper.Map<AutoCompleteTag[]>(places);
+            var placeTags = Mapper.Map<TagMenuItem[]>(places);
             foreach (var placeTag in placeTags.Where(t => !t.TaggedText.Contains(term, caseInsensitive)))
             {
                 var matchingName = places.ById(placeTag.RevisionId).Names.AsQueryable().FirstOrDefault
@@ -68,7 +69,7 @@ namespace UCosmic.Www.Mvc.Areas.Activity.Controllers
             );
 
             // explain establishment matches
-            var establishmentTags = Mapper.Map<AutoCompleteTag[]>(establishments);
+            var establishmentTags = Mapper.Map<TagMenuItem[]>(establishments);
             foreach (var establishmentTag in establishmentTags.Where(t => !t.TaggedText.Contains(term, caseInsensitive)))
             {
                 var establishment = establishments.ById(establishmentTag.RevisionId);
@@ -78,7 +79,7 @@ namespace UCosmic.Www.Mvc.Areas.Activity.Controllers
             }
 
             // merge
-            var tags = new List<AutoCompleteTag>();
+            var tags = new List<TagMenuItem>();
             tags.AddRange(placeTags);
             tags.AddRange(establishmentTags);
             tags = tags.OrderBy(t => t.TaggedText).Take(maxResults).ToList();
@@ -93,18 +94,39 @@ namespace UCosmic.Www.Mvc.Areas.Activity.Controllers
 
             // remove all excluded tags
             if (excludes != null && excludes.Any())
-            {
                 foreach (var exclude in excludes)
-                {
-                    var excludeTags = tags.Where(t => t.TaggedText.Equals(exclude)).ToArray();
-                    foreach (var excludeTag in excludeTags)
-                    {
+                    foreach (var excludeTag in tags.Where(t => t.TaggedText.Equals(exclude)).ToArray())
                         tags.Remove(excludeTag);
-                    }
-                }
-            }
 
-            return PartialView(MVC.Activity.Shared.Views._auto_complete_tags, tags);
+            return PartialView(MVC.Activities.Shared.Views._tag_menu, tags);
         }
+    }
+
+    public static class TagMenuRouter
+    {
+        private static readonly string Area = MVC.Activities.Name;
+        private static readonly string Controller = MVC.Activities.TagMenu.Name;
+
+        public static void RegisterRoutes(AreaRegistrationContext context)
+        {
+            RootActionRouter.RegisterRoutes(typeof(TagMenuRouter), context, Area, Controller);
+            TagMenuItemProfiler.RegisterProfiles();
+        }
+
+        // ReSharper disable UnusedMember.Global
+
+        public static class Post
+        {
+            public const string Route = "activities/tags/menu";
+            private static readonly string Action = MVC.Activities.TagMenu.ActionNames.Post;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("POST"), };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
+        // ReSharper restore UnusedMember.Global
     }
 }
