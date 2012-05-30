@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
+using LinqKit;
 
 namespace UCosmic.Domain.Establishments
 {
@@ -59,128 +60,11 @@ namespace UCosmic.Domain.Establishments
 
         internal static IQueryable<Establishment> WithName(this IQueryable<Establishment> queryable, string term, StringMatchStrategy matchStrategy)
         {
-            var currentLanguage = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-            switch (matchStrategy)
-            {
-                case StringMatchStrategy.Equals:
-                    return queryable.Where(
-                        establishment =>
-                        establishment.Names.Any
-                        (
-                            name =>
-                            (
-                                name.IsOfficialName
-                                &&
-                                (
-                                    name.Text.Equals(term, StringComparison.OrdinalIgnoreCase)
-                                    ||
-                                    (
-                                        name.AsciiEquivalent != null
-                                        &&
-                                        name.AsciiEquivalent.Equals(term, StringComparison.OrdinalIgnoreCase)
-                                    )
-                                )
-                            )
-                            ||
-                            (
-                                !name.IsOfficialName
-                                &&
-                                name.TranslationToLanguage != null
-                                &&
-                                name.TranslationToLanguage.TwoLetterIsoCode == currentLanguage
-                                &&
-                                (
-                                    name.Text.Equals(term)
-                                    ||
-                                    (
-                                        name.AsciiEquivalent != null
-                                        &&
-                                        name.AsciiEquivalent.Equals(term)
-                                    )
-                                )
-                            )
-                        )
-                    );
-                case StringMatchStrategy.StartsWith:
-                    return queryable.Where(
-                        establishment =>
-                        establishment.Names.Any
-                        (
-                            name =>
-                            (
-                                name.IsOfficialName
-                                &&
-                                (
-                                    name.Text.StartsWith(term)
-                                    ||
-                                    (
-                                        name.AsciiEquivalent != null
-                                        &&
-                                        name.AsciiEquivalent.StartsWith(term)
-                                    )
-                                )
-                            )
-                            ||
-                            (
-                                !name.IsOfficialName
-                                &&
-                                name.TranslationToLanguage != null
-                                &&
-                                name.TranslationToLanguage.TwoLetterIsoCode == currentLanguage
-                                &&
-                                (
-                                    name.Text.StartsWith(term)
-                                    ||
-                                    (
-                                        name.AsciiEquivalent != null
-                                        &&
-                                        name.AsciiEquivalent.StartsWith(term)
-                                    )
-                                )
-                            )
-                        )
-                    );
-                case StringMatchStrategy.Contains:
-                    return queryable.Where(
-                        establishment =>
-                        establishment.Names.Any
-                        (
-                            name =>
-                            (
-                                name.IsOfficialName
-                                &&
-                                (
-                                    name.Text.Contains(term)
-                                    ||
-                                    (
-                                        name.AsciiEquivalent != null
-                                        &&
-                                        name.AsciiEquivalent.Contains(term)
-                                    )
-                                )
-                            )
-                            ||
-                            (
-                                !name.IsOfficialName
-                                &&
-                                name.TranslationToLanguage != null
-                                &&
-                                name.TranslationToLanguage.TwoLetterIsoCode == currentLanguage
-                                &&
-                                (
-                                    name.Text.Contains(term)
-                                    ||
-                                    (
-                                        name.AsciiEquivalent != null
-                                        &&
-                                        name.AsciiEquivalent.Contains(term)
-                                    )
-                                )
-                            )
-                        )
-                    );
-            }
-            throw new NotSupportedException(string.Format("StringMatchStrategy '{0}' is not supported.", matchStrategy));
+            var names = QueryEstablishmentNames.SearchTermMatches(term, matchStrategy);
+            // ReSharper disable ConvertClosureToMethodGroup
+            Expression<Func<Establishment, bool>> establishments = establishment => establishment.Names.Any(name => names.Invoke(name));
+            // ReSharper restore ConvertClosureToMethodGroup
+            return queryable.AsExpandable().Where(establishments.Expand());
         }
     }
 }

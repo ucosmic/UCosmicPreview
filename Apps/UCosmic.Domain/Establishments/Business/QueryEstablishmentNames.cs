@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq.Expressions;
 using System.Globalization;
+using System.Linq.Expressions;
 using LinqKit;
 
 namespace UCosmic.Domain.Establishments
@@ -9,26 +9,44 @@ namespace UCosmic.Domain.Establishments
     {
         public static Expression<Func<EstablishmentName, bool>> SearchTermMatches(string term, StringMatchStrategy matchStrategy, StringComparison? stringComparison = null)
         {
-            var textOrAsciiMatches = 
+            var textOrAsciiMatches =
                 TextMatches(term, matchStrategy, stringComparison)
                 .Or
                 (
                     AsciiEquivalentMatches(term, matchStrategy, stringComparison)
                 )
+                .Expand()
             ;
-            var officialNameMatches = IsOfficialName().And(textOrAsciiMatches);
+            var officialNameMatches =
+                IsOfficialName()
+                .And
+                (
+                    textOrAsciiMatches
+                )
+            ;
             var nonOfficialNameMatches =
-                IsNotOfficialName().And(TranslationToLanguageMatchesCurrentUiCulture()).And(textOrAsciiMatches);
+                IsNotOfficialName()
+                .And
+                (
+                    TranslationToLanguageMatchesCurrentUiCulture()
+                )
+                .And
+                (
+                    textOrAsciiMatches
+                )
+                .Expand()
+            ;
             var nameMatches =
                 officialNameMatches
                 .Or
                 (
                     nonOfficialNameMatches
-                );
+                )
+            ;
             return nameMatches;
         }
 
-        internal static Expression<Func<EstablishmentName, bool>> TranslationToLanguageMatchesCurrentUiCulture()
+        private static Expression<Func<EstablishmentName, bool>> TranslationToLanguageMatchesCurrentUiCulture()
         {
             var currentLanguage = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
             return name =>
@@ -36,17 +54,17 @@ namespace UCosmic.Domain.Establishments
                 name.TranslationToLanguage.TwoLetterIsoCode == currentLanguage;
         }
 
-        internal static Expression<Func<EstablishmentName, bool>> IsOfficialName()
+        private static Expression<Func<EstablishmentName, bool>> IsOfficialName()
         {
             return name => name.IsOfficialName;
         }
 
-        internal static Expression<Func<EstablishmentName, bool>> IsNotOfficialName()
+        private static Expression<Func<EstablishmentName, bool>> IsNotOfficialName()
         {
             return name => !name.IsOfficialName;
         }
 
-        internal static Expression<Func<EstablishmentName, bool>> TextMatches(string term, StringMatchStrategy matchStrategy, StringComparison? stringComparison = null)
+        private static Expression<Func<EstablishmentName, bool>> TextMatches(string term, StringMatchStrategy matchStrategy, StringComparison? stringComparison = null)
         {
             Expression<Func<EstablishmentName, bool>> expression;
             switch (matchStrategy)
@@ -75,7 +93,7 @@ namespace UCosmic.Domain.Establishments
             return expression;
         }
 
-        internal static Expression<Func<EstablishmentName, bool>> AsciiEquivalentMatches(string term, StringMatchStrategy matchStrategy, StringComparison? stringComparison = null)
+        private static Expression<Func<EstablishmentName, bool>> AsciiEquivalentMatches(string term, StringMatchStrategy matchStrategy, StringComparison? stringComparison = null)
         {
             Expression<Func<EstablishmentName, bool>> expression;
             switch (matchStrategy)
@@ -101,7 +119,7 @@ namespace UCosmic.Domain.Establishments
                 default:
                     throw new NotSupportedException(string.Format("StringMatchStrategy '{0}' is not supported.", matchStrategy));
             }
-            return AsciiEquivalentIsNotNull().And(expression);
+            return AsciiEquivalentIsNotNull().And(expression).Expand();
         }
 
         private static Expression<Func<EstablishmentName, bool>> AsciiEquivalentIsNotNull()

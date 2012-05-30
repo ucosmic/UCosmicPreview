@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using LinqKit;
@@ -10,9 +9,13 @@ namespace UCosmic.Domain.Places
     {
         internal static IQueryable<Place> WithName(this IQueryable<Place> queryable, string term, StringMatchStrategy matchStrategy)
         {
-            var matchesName = PredicateBuilder.False<Place>()
-                .Or(OfficialNameMatches(term, matchStrategy))
-                .Or(NonOfficialNameMatches(term, matchStrategy));
+            var matchesName =
+                OfficialNameMatches(term, matchStrategy)
+                .Or
+                (
+                    NonOfficialNameMatches(term, matchStrategy)
+                )
+            ;
 
             return queryable.AsExpandable().Where(matchesName);
         }
@@ -35,61 +38,13 @@ namespace UCosmic.Domain.Places
 
         private static Expression<Func<Place, bool>> NonOfficialNameMatches(string term, StringMatchStrategy matchStrategy)
         {
-            //// using this predicate causes the 'name' parameter to not be bound
-            //var predicate = 
-            //    QueryPlaceNames.PlaceNameTranslationToLanguageMatchesCurrentUiCulture()
-            //    .And
-            //    (
-            //        QueryPlaceNames.PlaceNameTextMatches(term, matchStrategy)
-            //        .Or
-            //        (
-            //            QueryPlaceNames.PlaceNameAsciiEquivalentMatches(term, matchStrategy)
-            //        )
-            //    )
-            //;
-            //return place => place.Names.AsQueryable().Any(predicate);
-
-            var currentLanguage = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-            switch (matchStrategy)
-            {
-                case StringMatchStrategy.Equals:
-                    return place => place.Names.Any(name =>
-                        name.TranslationToLanguage != null &&
-                        name.TranslationToLanguage.TwoLetterIsoCode == currentLanguage &&
-                        (
-                            name.Text.Equals(term, StringComparison.OrdinalIgnoreCase) ||
-                            (
-                                name.AsciiEquivalent != null &&
-                                name.AsciiEquivalent.Equals(term, StringComparison.OrdinalIgnoreCase)
-                            )
-                        )
-                    );
-                case StringMatchStrategy.StartsWith:
-                    return place => place.Names.Any(name =>
-                        name.TranslationToLanguage != null &&
-                        name.TranslationToLanguage.TwoLetterIsoCode == currentLanguage &&
-                        (
-                            name.Text.StartsWith(term) ||
-                            (
-                                name.AsciiEquivalent != null &&
-                                name.AsciiEquivalent.StartsWith(term)
-                            )
-                        )
-                    );
-                case StringMatchStrategy.Contains:
-                    return place => place.Names.Any(name =>
-                        name.TranslationToLanguage != null &&
-                        name.TranslationToLanguage.TwoLetterIsoCode == currentLanguage &&
-                        (
-                            name.Text.Contains(term) ||
-                            (
-                                name.AsciiEquivalent != null &&
-                                name.AsciiEquivalent.Contains(term)
-                            )
-                        )
-                    );
-            }
-            throw new NotSupportedException(string.Format("StringMatchStrategy '{0}' is not supported.", matchStrategy));
+            // using this predicate causes the 'name' parameter to not be bound
+            // fixed: http://stackoverflow.com/questions/10689506/unable-to-refactor-using-linq-to-entities-and-linqkit-predicatebuilder
+            var names = QueryPlaceNames.SearchTermMatches(term, matchStrategy);
+            // ReSharper disable ConvertClosureToMethodGroup
+            Expression<Func<Place, bool>> places = place => place.Names.Any(name => names.Invoke(name));
+            // ReSharper restore ConvertClosureToMethodGroup
+            return places.Expand();
         }
     }
 }

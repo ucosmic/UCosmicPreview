@@ -18,11 +18,13 @@ namespace UCosmic.Domain.Places
                     (
                         AsciiEquivalentMatches(term, matchStrategy, stringComparison)
                     )
-                );
+                    .Expand()
+                )
+            ;
             return nameMatches;
         }
 
-        internal static Expression<Func<PlaceName, bool>> TranslationToLanguageMatchesCurrentUiCulture()
+        private static Expression<Func<PlaceName, bool>> TranslationToLanguageMatchesCurrentUiCulture()
         {
             var currentLanguage = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
             return name =>
@@ -30,7 +32,7 @@ namespace UCosmic.Domain.Places
                 name.TranslationToLanguage.TwoLetterIsoCode == currentLanguage;
         }
 
-        internal static Expression<Func<PlaceName, bool>> TextMatches(string term, StringMatchStrategy matchStrategy, StringComparison? stringComparison = null)
+        private static Expression<Func<PlaceName, bool>> TextMatches(string term, StringMatchStrategy matchStrategy, StringComparison? stringComparison = null)
         {
             Expression<Func<PlaceName, bool>> expression;
             switch (matchStrategy)
@@ -59,7 +61,7 @@ namespace UCosmic.Domain.Places
             return expression;
         }
 
-        internal static Expression<Func<PlaceName, bool>> AsciiEquivalentMatches(string term, StringMatchStrategy matchStrategy, StringComparison? stringComparison = null)
+        private static Expression<Func<PlaceName, bool>> AsciiEquivalentMatches(string term, StringMatchStrategy matchStrategy, StringComparison? stringComparison = null)
         {
             Expression<Func<PlaceName, bool>> expression;
             switch (matchStrategy)
@@ -85,7 +87,7 @@ namespace UCosmic.Domain.Places
                 default:
                     throw new NotSupportedException(string.Format("StringMatchStrategy '{0}' is not supported.", matchStrategy));
             }
-            return AsciiEquivalentIsNotNull().And(expression);
+            return AsciiEquivalentIsNotNull().And(expression).Expand();
         }
 
         private static Expression<Func<PlaceName, bool>> AsciiEquivalentIsNotNull()
