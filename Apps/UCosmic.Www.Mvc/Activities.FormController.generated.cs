@@ -41,11 +41,6 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
         public System.Web.Mvc.ActionResult Put() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.Put);
         }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.JsonResult ValidateTitle() {
-            return new T4MVC_JsonResult(Area, Name, ActionNames.ValidateTitle);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public FormController Actions { get { return MVC.Activities.Form; } }
@@ -63,14 +58,12 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
         public class ActionNamesClass {
             public readonly string Get = "form";
             public readonly string Put = "form";
-            public readonly string ValidateTitle = "ValidateTitle";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Get = "form";
             public const string Put = "form";
-            public const string ValidateTitle = "ValidateTitle";
         }
 
 
@@ -94,12 +87,6 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
 
         public override System.Web.Mvc.ActionResult Put(UCosmic.Www.Mvc.Areas.Activities.Models.Form model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Put);
-            callInfo.RouteValueDictionary.Add("model", model);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.JsonResult ValidateTitle(UCosmic.Www.Mvc.Areas.Activities.Models.Form model) {
-            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateTitle);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }

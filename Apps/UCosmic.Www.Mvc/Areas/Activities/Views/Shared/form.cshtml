@@ -11,6 +11,11 @@
         area = MVC.Activities.Name,
         httpMethod = "PUT",
         number = Model.Number,
+    },
+    FormMethod.Post,
+    new
+    {
+        @class = "activity",
     }
 ))
 {
@@ -27,7 +32,7 @@
             <div class="field title-field" data-ucosmic-val="css">
                 <div class="messages">
                     <span class="validation">
-                        @Html.ValidationMessageFor(m => m.TitleValidator)
+                        @Html.ValidationMessageFor(m => m.Title)
                     </span>
                     <div class="bottom callout border">
                         <div class="bottom callout bg">
@@ -42,9 +47,6 @@
                         @Html.EditorFor(m => m.Title)
                     </div>
                 </div>
-                <div style="display: none;">
-                    @Html.EditorFor(m => m.TitleValidator)
-                </div>
             </div>
             <p>
                 Next, <strong>describe</strong> your activity in a few sentences or paragraphs.
@@ -52,9 +54,24 @@
             <p class="normal-text">
                 To copy and paste from a Word file, use the <em>Paste from Word</em><span style="display: inline-block; height: 20px; width: 20px;
                                vertical-align: text-bottom;background:url('@Url.Content(Links.scripts.tinymce.themes.advanced.img.icons_gif)'); background-position: -380px -20px; margin: 0 5px;">
-                </span>button.
+                                                                                    </span>button.
             </p>
-            @Html.EditorFor(m => m.Content)
+            <div class="field" data-ucosmic-val="css">
+                <div class="messages">
+                    <span class="validation">
+                        @Html.ValidationMessageFor(m => m.Content)
+                    </span>
+                    <div class="bottom callout border">
+                        <div class="bottom callout bg">
+                        </div>
+                    </div>
+                </div>
+                <div class="input">
+                    <div class="text-box input">
+                        @Html.EditorFor(m => m.Content)
+                    </div>
+                </div>
+            </div>
             <ol class="mode-radios">
                 <li class="ui-helper-clearfix">
                     <label>
@@ -85,7 +102,7 @@
                 @Html.Partial(MVC.Shared.Views.form_submitted_spinner)
                 @Html.EditorFor(m => m.ReturnUrl)
                 @Html.EditorFor(m => m.Number)
-                @Html.EditorFor(m => m.SelectedMode)
+                @*@Html.EditorFor(m => m.SelectedMode)*@
             </p>
         </div>
         <div class="right" style="width: 340px; border: solid 0px gray; margin-left: 18px;">
@@ -389,18 +406,9 @@
 
             input.on('keyup change', setAddButtonDisplay);
 
-            function updateSelectedMode() {
-                var value = $('input[type=radio][name=Mode]:checked').val();
-                $('input#SelectedMode').val(value);
-                $('input#TitleValidator').val($('input#TitleValidator').val() + value);
-            }
-
-            updateSelectedMode();
-            $('input[type=radio][name=Mode]').on('click change', updateSelectedMode);
-            $('textarea#Title').on('keyup change', function() {
-                alert($('input#TitleValidator').val());
-                $('input#TitleValidator').val($('input#TitleValidator').val() + $(this).val());
-                alert($('input#TitleValidator').val());
+            // sync tinymce content to validate before submitting form
+            $('form.activity input[type=submit]').click(function () {
+                tinyMCE.triggerSave();
             });
         });
     </script>

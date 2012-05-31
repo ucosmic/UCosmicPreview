@@ -9,14 +9,13 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
     {
         [DataType(DataType.MultilineText)]
         [Display(Prompt = "[Enter the title or main heading of your activity here]")]
+        [RequiredIfClient("Mode", ComparisonType.IsNotEqualTo, ActivityMode.Draft, ErrorMessage = FormValidator.FailedBecauseTitleWasEmpty)]
         public string Title { get; set; }
         public const string TitlePropertyName = "Title";
 
-        [Remote("ValidateTitle", "Form", "Activities", HttpMethod = "POST", AdditionalFields = "Title,SelectedMode")]
-        public string TitleValidator { get { return TitlePropertyName; } }
-
         [AllowHtml]
         [UIHint("TinyMceContent")]
+        [RequiredIfClient("Mode", ComparisonType.IsNotEqualTo, ActivityMode.Draft, ErrorMessage = FormValidator.FailedBecauseContentWasEmpty)]
         public string Content { get; set; }
 
         [DataType(DataType.MultilineText)]
@@ -24,9 +23,6 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
         public string TagSearch { get; set; }
 
         public ActivityMode Mode { get; set; }
-
-        [HiddenInput(DisplayValue = false)]
-        public ActivityMode SelectedMode { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public int Number { get; set; }
@@ -46,16 +42,19 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
 
     public class FormValidator : AbstractValidator<Form>
     {
+        public const string FailedBecauseTitleWasEmpty = "Title is required.";
+        public const string FailedBecauseContentWasEmpty = "Description is required.";
+
         public FormValidator()
         {
-            When(m => m.SelectedMode != ActivityMode.Draft, () =>
+            When(m => m.Mode != ActivityMode.Draft, () =>
             {
                 RuleFor(m => m.Title)
                     .NotEmpty()
-                    .WithMessage("Title is required.");
+                    .WithMessage(FailedBecauseTitleWasEmpty);
                 RuleFor(m => m.Content)
                     .NotEmpty()
-                    .WithMessage("Description is required.");
+                    .WithMessage(FailedBecauseContentWasEmpty);
             });
         }
     }

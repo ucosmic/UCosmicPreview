@@ -468,7 +468,7 @@
     <Compile Include="Helpers\GroupedSelectListItem.cs" />
     <Compile Include="Models\JQueryAjaxException.cs" />
     <Compile Include="Models\NoDuplicateValuesAttribute.cs" />
-    <Compile Include="Models\RequiredIfAttribute.cs" />
+    <Compile Include="Models\RequiredIfClientAttribute.cs" />
     <Compile Include="Models\UserVoiceLink.cs" />
     <Compile Include="Controllers\RequiredIfPresentRouteConstraint.cs" />
     <Compile Include="Controllers\NonEmptyGuidRouteConstraint.cs" />

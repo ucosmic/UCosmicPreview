@@ -144,7 +144,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms
             public int ForEstablishmentRevisionId { get; set; }
 
             [Display(Name = "Establishment Name")]
-            [RequiredIf("IsAdded", true, ErrorMessage = "{0} is required.")]
+            [RequiredIfClient("IsAdded", ComparisonType.IsEqualTo, true, ErrorMessage = "{0} is required.")]
             [StringLength(500, ErrorMessage = "{0} cannot contain more than {1} characters.")]
             public string Text { get; set; }
 

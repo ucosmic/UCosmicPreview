@@ -13,7 +13,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ConfigurationForm
         public int ConfigurationId { get; set; }
 
         [Display(Name = TextDisplayName)]
-        [RequiredIf("IsAdded", true, ErrorMessage = TextRequiredErrorFormat)]
+        [RequiredIfClient("IsAdded", ComparisonType.IsEqualTo, true, ErrorMessage = TextRequiredErrorFormat)]
         [StringLength(150, ErrorMessage = "{0} cannot contain more than {1} characters.")]
         public string Text { get; set; }
         public const string TextDisplayName = "Contact type";

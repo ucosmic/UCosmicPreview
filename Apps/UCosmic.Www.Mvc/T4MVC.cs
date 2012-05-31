@@ -384,8 +384,8 @@ public class T4MVC_ActionResult : System.Web.Mvc.ActionResult, IT4MVCActionResul
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public class T4MVC_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult {
-    public T4MVC_JsonResult(string area, string controller, string action): base()  {
+public class T4MVC_PartialViewResult : System.Web.Mvc.PartialViewResult, IT4MVCActionResult {
+    public T4MVC_PartialViewResult(string area, string controller, string action): base()  {
         this.InitMVCT4Result(area, controller, action);
     }
     
@@ -394,8 +394,8 @@ public class T4MVC_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult {
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-public class T4MVC_PartialViewResult : System.Web.Mvc.PartialViewResult, IT4MVCActionResult {
-    public T4MVC_PartialViewResult(string area, string controller, string action): base()  {
+public class T4MVC_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult {
+    public T4MVC_JsonResult(string area, string controller, string action): base()  {
         this.InitMVCT4Result(area, controller, action);
     }
     
