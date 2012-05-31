@@ -4,18 +4,24 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Web.Mvc;
 
-// TODO: shares code with RangeIfClient attribute
+// TODO: shares code with RequiredIfClient attribute
 namespace UCosmic.Www.Mvc.Models
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
-    public class RequiredIfClientAttribute : ValidationAttribute, IClientValidatable
+    public class RangeIfClientAttribute : ValidationAttribute, IClientValidatable
     {
-        public RequiredIfClientAttribute(string otherProperty, ComparisonType comparisonType, object otherComparisonValue)
+        public RangeIfClientAttribute(int minimum, int maximum, string otherProperty, ComparisonType comparisonType, object otherComparisonValue)
         {
+            Minimum = minimum;
+            Maximum = maximum;
             OtherProperty = otherProperty;
             ComparisonType = comparisonType;
             OtherComparisonValue = otherComparisonValue;
         }
+
+        private int Minimum { get; set; }
+
+        private int Maximum { get; set; }
 
         private string OtherProperty { get; set; }
 
@@ -38,7 +44,7 @@ namespace UCosmic.Www.Mvc.Models
             var rule = new ModelClientValidationRule
             {
                 ErrorMessage = string.Format(ErrorMessage, metadata.GetDisplayName()),
-                ValidationType = "requiredif",
+                ValidationType = "rangeif",
             };
 
             var viewContext = (ViewContext)context;
@@ -58,6 +64,8 @@ namespace UCosmic.Www.Mvc.Models
             }
             viewContext.ViewData.TemplateInfo.HtmlFieldPrefix = oldPrefix;
 
+            rule.ValidationParameters.Add("minimum", Minimum);
+            rule.ValidationParameters.Add("maximum", Maximum);
             rule.ValidationParameters.Add("otherinputname", otherInputName);
             rule.ValidationParameters.Add("comparisontype", ComparisonType);
             rule.ValidationParameters.Add("othercomparisonvalue", OtherComparisonValue);

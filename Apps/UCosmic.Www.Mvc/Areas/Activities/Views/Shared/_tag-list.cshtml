@@ -1,11 +1,16 @@
 ﻿@model IEnumerable<UCosmic.Www.Mvc.Areas.Activities.Models.Form.Tag>
 @{
-    var emptyLiDisplay = Model != null && Model.Any() ? "none" : "list-item";
+    var emptyLiDisplay = Model != null && Model.Any(t => !t.IsDeleted) ? "none" : "list-item";
 }
 <ol class="tags ui-helper-clearfix">
-    <li class="empty" style="display: @emptyLiDisplay;"><strong>[No tags so far, add at least one]</strong></li>
-    @foreach (var tag in Model)
+    <li class="empty" style="display: @emptyLiDisplay;"><strong>[No tags so far, add at
+        least one]</strong></li>
+    @if (Model != null)
     {
-        <li>@Html.EditorFor(m => m)</li>
+        foreach (var tag in Model)
+        {
+            var tagLiDisplay = tag.IsDeleted ? "none" : "list-item";
+        <li style="display: @tagLiDisplay;">@Html.EditorFor(m => tag)</li>
+        }
     }
 </ol>

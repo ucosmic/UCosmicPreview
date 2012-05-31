@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Web.Mvc;
 using FluentValidation;
 using UCosmic.Www.Mvc.Models;
@@ -30,6 +31,10 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
         [HiddenInput(DisplayValue = false)]
         public string ReturnUrl { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
+        [RangeIfClient(1, int.MaxValue, "Mode", ComparisonType.IsNotEqualTo, ActivityMode.Draft, ErrorMessage = FormValidator.FailedBecauseTagsWasEmpty)]
+        public int TagCount { get; set; }
+
         public Tag[] Tags { get; set; }
         public class Tag
         {
@@ -44,6 +49,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
     {
         public const string FailedBecauseTitleWasEmpty = "Title is required.";
         public const string FailedBecauseContentWasEmpty = "Description is required.";
+        public const string FailedBecauseTagsWasEmpty = "At least 1 tag is required.";
 
         public FormValidator()
         {
@@ -55,6 +61,9 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                 RuleFor(m => m.Content)
                     .NotEmpty()
                     .WithMessage(FailedBecauseContentWasEmpty);
+                RuleFor(m => m.TagCount)
+                    .Must((o, p) => o.Tags != null && o.Tags.Any(t => !t.IsDeleted))
+                    .WithMessage(FailedBecauseTagsWasEmpty);
             });
         }
     }

@@ -54,7 +54,7 @@
             <p class="normal-text">
                 To copy and paste from a Word file, use the <em>Paste from Word</em><span style="display: inline-block; height: 20px; width: 20px;
                                vertical-align: text-bottom;background:url('@Url.Content(Links.scripts.tinymce.themes.advanced.img.icons_gif)'); background-position: -380px -20px; margin: 0 5px;">
-                                                                                    </span>button.
+                </span>button.
             </p>
             <div class="field" data-ucosmic-val="css">
                 <div class="messages">
@@ -102,7 +102,6 @@
                 @Html.Partial(MVC.Shared.Views.form_submitted_spinner)
                 @Html.EditorFor(m => m.ReturnUrl)
                 @Html.EditorFor(m => m.Number)
-                @*@Html.EditorFor(m => m.SelectedMode)*@
             </p>
         </div>
         <div class="right" style="width: 340px; border: solid 0px gray; margin-left: 18px;">
@@ -113,7 +112,21 @@
                     and parts of the world. As you type, you may see tag suggestions appear. You can
                     either select a suggestion or enter custom text.
                 </p>
-                @Html.Partial(MVC.Activities.Shared.Views._tag_list, Model.Tags ?? Enumerable.Empty<Form.Tag>())
+                <div class="field" data-ucosmic-val="css">
+                    <div class="messages">
+                        <span class="validation">
+                            @Html.ValidationMessageFor(m => m.TagCount)
+                        </span>
+                        <div class="bottom callout border">
+                            <div class="bottom callout bg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input">
+                        @Html.Partial(MVC.Activities.Shared.Views._tag_list, Model.Tags ?? Enumerable.Empty<Form.Tag>())
+                        @Html.EditorFor(m => m.TagCount)
+                    </div>
+                </div>
                 <div>
                     <a href="#" class="add-tag" style="display: none;">Add Tag</a> <span class="add-tag-disabled">
                         Enter at least 2 characters in the text box below.</span>
@@ -355,6 +368,7 @@
                         ol.children('li.empty').show('slide', { direction: 'left' }, 250);
                     }
                 });
+                updateTagCount();
             });
 
             // add tag
@@ -381,6 +395,7 @@
                             });
                         else
                             data.show('slide', { direction: 'left' }, 250);
+                        updateTagCount();
                     }
                 });
             }
@@ -403,6 +418,12 @@
                     info.show();
                 }
             }
+
+            function updateTagCount() {
+                var tags = $('ol.tags').find('input[name^="Tags["][name$="].IsDeleted"][value$=alse]');
+                $('#TagCount').val(tags.length);
+            }
+            updateTagCount();
 
             input.on('keyup change', setAddButtonDisplay);
 

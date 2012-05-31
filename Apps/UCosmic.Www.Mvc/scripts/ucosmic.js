@@ -1285,6 +1285,7 @@ $(function () {
     };
 })(jQuery);
 
+// TODO: share code between RangeIf and RequiredIf
 // unobtrusive client validation for RequiredIf rule
 $.validator.unobtrusive.adapters.add('requiredif', ['otherinputname', 'comparisontype', 'othercomparisonvalue'],
     function (options) {
@@ -1296,11 +1297,10 @@ $.validator.unobtrusive.adapters.add('requiredif', ['otherinputname', 'compariso
         options.messages['requiredif'] = options.message;
     }
 );
-    $.validator.addMethod('requiredif',
+$.validator.addMethod('requiredif',
     function (thisValue, thisElement, parameters) {
         var comparisonType = parameters['comparisontype'];
-        // get the target value (as a string, 
-        // that's what actual value will be)
+        // get the target value (as a string, that's what actual value will be)
         var otherComparisonValue = parameters['othercomparisonvalue'];
         otherComparisonValue = otherComparisonValue ? otherComparisonValue.toString() : '';
 
@@ -1315,11 +1315,51 @@ $.validator.unobtrusive.adapters.add('requiredif', ['otherinputname', 'compariso
             otherComparedValue = otherInput.attr('checked').toString();
         }
 
-        // if the condition is true, reuse the existing 
-        // required field validator functionality
+        // if the condition is true, reuse the existing required field validator functionality
         if ((otherComparisonValue === otherComparedValue && comparisonType === 'IsEqualTo') ||
             (otherComparisonValue != otherComparedValue && comparisonType === 'IsNotEqualTo'))
             return $.validator.methods.required.call(
+              this, thisValue, thisElement, parameters);
+
+        return true;
+    }
+);
+
+// unobtrusive client validation for RangeIf rule
+    $.validator.unobtrusive.adapters.add('rangeif', ['minimum', 'maximum', 'otherinputname', 'comparisontype', 'othercomparisonvalue'],
+    function (options) {
+        options.rules['rangeif'] = {
+            0: options.params['minimum'],
+            1: options.params['maximum'],
+            otherinputname: options.params['otherinputname'],
+            comparisontype: options.params['comparisontype'],
+            othercomparisonvalue: options.params['othercomparisonvalue']
+        };
+        options.messages['rangeif'] = options.message;
+    }
+);
+    $.validator.addMethod('rangeif',
+    function (thisValue, thisElement, parameters) {
+        var comparisonType = parameters['comparisontype'];
+        // get the target value (as a string, that's what actual value will be)
+        var otherComparisonValue = parameters['othercomparisonvalue'];
+        otherComparisonValue = otherComparisonValue ? otherComparisonValue.toString() : '';
+
+        // get the current value of the target control
+        var otherInput = $(':input[name="' + parameters['otherinputname'] + '"]');
+        var otherType = otherInput.attr('type');
+        var otherComparedValue = otherInput.val();
+        if (otherType == 'radio') {
+            otherComparedValue = otherInput.filter(':checked').val();
+        }
+        if (otherType == 'checkbox') {
+            otherComparedValue = otherInput.attr('checked').toString();
+        }
+
+        // if the condition is true, reuse the existing range field validator functionality
+        if ((otherComparisonValue === otherComparedValue && comparisonType === 'IsEqualTo') ||
+            (otherComparisonValue != otherComparedValue && comparisonType === 'IsNotEqualTo'))
+            return $.validator.methods.range.call(
               this, thisValue, thisElement, parameters);
 
         return true;

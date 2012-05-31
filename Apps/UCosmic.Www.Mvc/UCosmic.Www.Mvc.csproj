@@ -387,6 +387,7 @@
     </Compile>
     <Compile Include="Models\ComboBoxOptions.cs" />
     <Compile Include="Areas\Identity\Models\IModelConfirmAndRedeem.cs" />
+    <Compile Include="Models\RangeIfClientAttribute.cs" />
     <Compile Include="People.PersonInfoController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

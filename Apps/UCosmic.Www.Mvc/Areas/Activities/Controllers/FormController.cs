@@ -50,13 +50,6 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
                 return View(model);
             return View(model);
         }
-
-        //[HttpPost]
-        //public virtual JsonResult ValidateTitle(
-        //    [CustomizeValidator(Properties = Form.TitlePropertyName)] Form model)
-        //{
-        //    return ValidateRemote(Form.TitlePropertyName);
-        //}
     }
 
     public static class FormRouter
