@@ -69,13 +69,18 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         }
 
         [HttpPut]
-        [ActionName("form")]
-        [OpenTopTab(TopTabName.FacultyStaff)]
-        public virtual ActionResult Put(Form model)
+        public virtual JsonResult Put(Form model)
         {
-            if (!ModelState.IsValid)
-                return View(model);
-            return View(model);
+            var message = ModelState.IsValid ? SuccessMessage : null;
+            return Json(message);
+        }
+
+        public const string SuccessMessage = "Your changes have been saved successfully.";
+
+        [HttpPut]
+        public virtual JsonResult Draft(Form model)
+        {
+            return Json(null);
         }
     }
 
@@ -124,6 +129,22 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         {
             public const string Route = "my/activities/{number}";
             private static readonly string Action = MVC.Activities.Form.ActionNames.Put;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new
+                {
+                    httpMethod = new HttpMethodConstraint("POST", "PUT"),
+                    number = new PositiveIntegerRouteConstraint(),
+                };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
+        public static class Draft
+        {
+            public const string Route = "my/activities/{number}/draft";
+            private static readonly string Action = MVC.Activities.Form.ActionNames.Draft;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };

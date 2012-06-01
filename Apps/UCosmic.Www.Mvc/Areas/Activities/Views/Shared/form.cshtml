@@ -17,6 +17,7 @@
     new
     {
         @class = "activity",
+        data_ucosmic_draft_url = Url.Action(MVC.Activities.Form.Draft()),
     }
 ))
 {
@@ -99,7 +100,8 @@
             </ol>
             <p class="normal-text">
                 <input type="submit" value="Save" />
-                @Html.Partial(MVC.Shared.Views.return_url_cancel_link, Model.ReturnUrl)
+                <a href="@Model.ReturnUrl" class="button-sized cancel-form" data-ucosmic-form-submitting="hide">
+                    I'm Finished</a>
                 @Html.Partial(MVC.Shared.Views.form_submitted_spinner)
                 @Html.EditorFor(m => m.ReturnUrl)
                 @Html.EditorFor(m => m.Number)
@@ -360,6 +362,7 @@
             var autocompleteUrl = config.data('ucosmic-tag-autocomplete-url');
             var addUrl = config.data('ucosmic-tag-add-url');
             var input = config.find(':input');
+            var draftInterval;
 
             function getTagExcludes() {
                 var excludedTags = [];
@@ -521,6 +524,44 @@
                     widget.css('margin-left', 0);
                 }
             });
+
+            // post form using ajax
+            $('form.activity').submit(function (e) {
+                var form = $(this);
+                var isValid = form.valid();
+                if (isValid) {
+                    stopDrafting();
+                    $.ucosmic.unobtrusive.startFormSubmit(form);
+                    $.post(form.attr('action'), form.serialize())
+                        .complete(function () {
+                            $.ucosmic.unobtrusive.endFormSubmit(form);
+                            startDrafting();
+                        })
+                        .success(function (result) {
+                            if (result) {
+                                $('[data-ucosmic-feedback=true] [data-ucosmic-feedback=message]').text(result);
+                                $.ucosmic.obtruders.ux.userActionFeedback(document);
+                            }
+                        })
+                    ;
+                }
+                e.preventDefault();
+                return false;
+            });
+
+            function startDrafting() {
+                draftInterval = setInterval(function () {
+                    var form = $('form.activity');
+                    var url = form.data('ucosmic-draft-url');
+                    $.post(url, form.serialize());
+                }, 5000);
+            }
+
+            startDrafting();
+
+            function stopDrafting() {
+                clearInterval(draftInterval);
+            }
         });
     </script>
 

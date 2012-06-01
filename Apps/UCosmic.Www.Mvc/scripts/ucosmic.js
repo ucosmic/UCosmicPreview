@@ -221,23 +221,33 @@
     });
 
     // submit form once
+    $.extend($.ucosmic.unobtrusive, {
+        startFormSubmit: function (selector) {
+            selector.find('[data-ucosmic-form-submitting=show]').show();
+            selector.find('[data-ucosmic-form-submitting=hide]').hide();
+            var button = selector.find('input[type="submit"]');
+            setTimeout(function () {
+                button.attr('disabled', 'disabled');
+            }, 0);
+        }
+    });
+    $.extend($.ucosmic.unobtrusive, {
+        endFormSubmit: function (selector) {
+            selector.find('[data-ucosmic-form-submitting=show]').hide();
+            selector.find('[data-ucosmic-form-submitting=hide]').show();
+            var button = selector.find('input[type="submit"]');
+            setTimeout(function () {
+                button.removeAttr('disabled');
+            }, 1);
+        }
+    });
     $.extend($.ucosmic.obtruders.ux, {
         oneFormSubmit: function (selector) {
             $(selector).on('invalid-form.validate', 'form', function () {
-                $(this).find('[data-ucosmic-form-submitting=show]').hide();
-                $(this).find('[data-ucosmic-form-submitting=hide]').show();
-                var button = $(this).find('input[type="submit"]');
-                setTimeout(function () {
-                    button.removeAttr('disabled');
-                }, 1);
+                $.ucosmic.unobtrusive.endFormSubmit($(this));
             });
             $(selector).on('submit', 'form', function () {
-                $(this).find('[data-ucosmic-form-submitting=show]').show();
-                $(this).find('[data-ucosmic-form-submitting=hide]').hide();
-                var button = $(this).find('input[type="submit"]');
-                setTimeout(function () {
-                    button.attr('disabled', 'disabled');
-                }, 0);
+                $.ucosmic.unobtrusive.startFormSubmit($(this));
             });
         }
     });
