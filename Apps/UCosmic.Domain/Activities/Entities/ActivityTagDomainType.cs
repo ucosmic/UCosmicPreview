@@ -1,6 +1,6 @@
-namespace UCosmic.Www.Mvc.Areas.Activities.Models
+namespace UCosmic.Domain.Activities
 {
-    public enum TagDomainType
+    public enum ActivityTagDomainType
     {
         Custom = 1,
         Place = 2,

@@ -33,6 +33,5 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             nav.SeePage(MyHomePage.TitleText);
             link.SeeLinkWithText("Sign Out");
         }
-
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using UCosmic.Domain.Activities;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Files;
 using UCosmic.Domain.Identity;
@@ -37,6 +38,8 @@ namespace UCosmic.Domain
 
         IQueryable<InstitutionalAgreement> InstitutionalAgreements { get; }
         IQueryable<InstitutionalAgreementConfiguration> InstitutionalAgreementConfigurations { get; }
+
+        IQueryable<Activity> Activities { get; }
 
         TEntity FindByPrimaryKey<TEntity>(IQueryable<TEntity> entitiyQuery, params object[] primaryKeyValues)
             where TEntity : Entity;

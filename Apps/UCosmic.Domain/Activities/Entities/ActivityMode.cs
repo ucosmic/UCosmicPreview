@@ -1,4 +1,4 @@
-﻿namespace UCosmic.Www.Mvc.Areas.Activities.Models
+﻿namespace UCosmic.Domain.Activities
 {
     public enum ActivityMode
     {

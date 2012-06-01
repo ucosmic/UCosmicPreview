@@ -56,12 +56,14 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
+            public readonly string New = "New";
             public readonly string Get = "form";
             public readonly string Put = "form";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
+            public const string New = "New";
             public const string Get = "form";
             public const string Put = "form";
         }
@@ -78,6 +80,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class T4MVC_FormController: UCosmic.Www.Mvc.Areas.Activities.Controllers.FormController {
         public T4MVC_FormController() : base(Dummy.Instance) { }
+
+        public override System.Web.Mvc.ActionResult New() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.New);
+            return callInfo;
+        }
 
         public override System.Web.Mvc.ActionResult Get(int number) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);

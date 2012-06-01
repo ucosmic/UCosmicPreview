@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using UCosmic.Domain.Activities;
 using UCosmic.Www.Mvc.Areas.Activities.Models;
 using UCosmic.Www.Mvc.Controllers;
 
@@ -19,7 +20,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         }
 
         [HttpPost]
-        public virtual PartialViewResult Add(TagDomainType domainType, int? revisionId, string taggedText)
+        public virtual PartialViewResult Add(ActivityTagDomainType domainType, int? revisionId, string taggedText)
         {
             var tags = new[]
             {

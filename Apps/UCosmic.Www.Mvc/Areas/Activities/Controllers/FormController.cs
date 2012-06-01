@@ -1,23 +1,30 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Linq.Expressions;
+using System.Web.Mvc;
 using System.Web.Routing;
-using FluentValidation.Mvc;
+using UCosmic.Domain.Activities;
 using UCosmic.Www.Mvc.Areas.Activities.Models;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Areas.Identity.Controllers;
+using AutoMapper;
 
 namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
 {
     public class FormServices
     {
         public FormServices(IProcessQueries queryProcessor
+            , IHandleCommands<CreateNewActivityCommand> createCommandHandler
         )
         {
             QueryProcessor = queryProcessor;
+            CreateCommandHandler = createCommandHandler;
         }
 
         public IProcessQueries QueryProcessor { get; private set; }
+        public IHandleCommands<CreateNewActivityCommand> CreateCommandHandler { get; private set; }
     }
 
+    [Authenticate]
     public partial class FormController : BaseController
     {
         private readonly FormServices _services;
@@ -28,16 +35,36 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         }
 
         [HttpGet]
+        [UnitOfWork]
+        public virtual ActionResult New()
+        {
+            var command = new CreateNewActivityCommand
+            {
+                Principal = User,
+            };
+            _services.CreateCommandHandler.Handle(command);
+            return RedirectToAction(MVC.Activities.Form.Get(command.CreatedActivity.Number));
+        }
+
+        [HttpGet]
         [ActionName("form")]
+        [HttpNotFoundOnNullModel]
         [ReturnUrlReferrer(MyHomeRouter.Get.Route)]
         [OpenTopTab(TopTabName.FacultyStaff)]
         public virtual ActionResult Get(int number)
         {
-            var model = new Form
-            {
-                Number = number,
-                Mode = ActivityMode.Draft,
-            };
+            var activity = _services.QueryProcessor.Execute(
+                new GetMyActivityByNumberQuery
+                {
+                    Principal = User,
+                    Number = number,
+                    EagerLoad = new Expression<Func<Activity, object>>[]
+                    {
+                        a => a.DraftedTags,
+                    },
+                }
+            );
+            var model = Mapper.Map<Form>(activity);
             return View(model);
         }
 
@@ -60,9 +87,22 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
             RootActionRouter.RegisterRoutes(typeof(FormRouter), context, Area, Controller);
+            FormProfiler.RegisterProfiles();
         }
 
         // ReSharper disable UnusedMember.Global
+
+        public static class New
+        {
+            public const string Route = "my/activities/new";
+            private static readonly string Action = MVC.Activities.Form.ActionNames.New;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new { httpMethod = new HttpMethodConstraint("GET"), };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
 
         public static class Get
         {

@@ -213,10 +213,9 @@
     <Compile Include="Areas\Activities\Controllers\TagListController.cs" />
     <Compile Include="Areas\Activities\Controllers\TagMenuController.cs" />
     <Compile Include="Areas\Activities\Controllers\FormController.cs" />
-    <Compile Include="Areas\Activities\Models\ActivityMode.cs" />
-    <Compile Include="Areas\Activities\Models\TagDomainType.cs" />
     <Compile Include="Areas\Activities\Models\TagMenuItem.cs" />
     <Compile Include="Areas\Activities\Models\Form.cs" />
+    <Compile Include="Controllers\HttpNotFoundOnNullModelAttribute.cs" />
     <Compile Include="Helpers\FormsAuthenticationConfig.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailController.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOverController.cs" />

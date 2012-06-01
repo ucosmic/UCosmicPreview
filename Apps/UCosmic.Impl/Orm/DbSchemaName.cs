@@ -9,5 +9,6 @@ namespace UCosmic.Impl.Orm
         public const string People = "People";
         public const string Establishments = "Establishments";
         public const string InstitutionalAgreements = "InstitutionalAgreements";
+        public const string Activities = "Activities";
     }
 }

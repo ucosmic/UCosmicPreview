@@ -72,7 +72,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
     public class T4MVC_TagListController: UCosmic.Www.Mvc.Areas.Activities.Controllers.TagListController {
         public T4MVC_TagListController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.PartialViewResult Add(UCosmic.Www.Mvc.Areas.Activities.Models.TagDomainType domainType, int? revisionId, string taggedText) {
+        public override System.Web.Mvc.PartialViewResult Add(UCosmic.Domain.Activities.ActivityTagDomainType domainType, int? revisionId, string taggedText) {
             var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.Add);
             callInfo.RouteValueDictionary.Add("domainType", domainType);
             callInfo.RouteValueDictionary.Add("revisionId", revisionId);

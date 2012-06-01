@@ -5,6 +5,7 @@ using System.Web.Routing;
 using Elmah.Contrib.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
+using UCosmic.Www.Mvc.Areas.Activities;
 using UCosmic.Www.Mvc.Areas.Common;
 using UCosmic.Www.Mvc.Areas.Establishments;
 using UCosmic.Www.Mvc.Areas.Identity;
@@ -12,8 +13,8 @@ using UCosmic.Www.Mvc.Areas.InstitutionalAgreements;
 using UCosmic.Www.Mvc.Areas.People;
 using UCosmic.Www.Mvc.Areas.RecruitmentAgencies;
 using UCosmic.Www.Mvc.Areas.Roles;
-using UCosmic.Www.Mvc.Models;
 using UCosmic.Www.Mvc.Controllers;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc
 {
@@ -89,6 +90,7 @@ namespace UCosmic.Www.Mvc
             {
                 new System.Web.Mvc.AreaRegistration[]
                 {
+                    new ActivitiesAreaRegistration(),
                     new CommonAreaRegistration(), 
                     new EstablishmentsAreaRegistration(), 
                     new IdentityAreaRegistration(), 

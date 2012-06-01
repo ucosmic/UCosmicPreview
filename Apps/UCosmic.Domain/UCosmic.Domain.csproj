@@ -64,6 +64,18 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Activities\Business\BaseActivitiesQuery.cs" />
+    <Compile Include="Activities\Business\BaseActivityQuery.cs" />
+    <Compile Include="Activities\Business\QueryActivities.cs" />
+    <Compile Include="Activities\Commands\CreateNewActivity.cs" />
+    <Compile Include="Activities\Entities\Activity.cs" />
+    <Compile Include="Activities\Entities\ActivityMode.cs" />
+    <Compile Include="Activities\Entities\ActivityTag.cs" />
+    <Compile Include="Activities\Entities\ActivityValues.cs" />
+    <Compile Include="Activities\Entities\ActivityTagDomainType.cs" />
+    <Compile Include="Activities\Entities\DraftedTag.cs" />
+    <Compile Include="Activities\Queries\GetMyActivityByNumber.cs" />
+    <Compile Include="Activities\Queries\FindActivitiesWithPersonId.cs" />
     <Compile Include="Api\BaseQuery.cs" />
     <Compile Include="Api\FluentValidationCommandDecorator.cs" />
     <Compile Include="Establishments\Business\BaseEstablishmentsQuery.cs" />
@@ -77,6 +89,7 @@
     <Compile Include="Identity\Commands\SendEmailMessage.cs" />
     <Compile Include="People\Business\ValidateEmailConfirmation.cs" />
     <Compile Include="People\Entities\EmailConfirmationIntent.cs" />
+    <Compile Include="People\Queries\GetMyPerson.cs" />
     <Compile Include="People\Queries\GetEmailConfirmation.cs" />
     <Compile Include="People\Queries\ComposeMailMessage.cs" />
     <Compile Include="Establishments\Business\QueryEmailTemplates.cs" />

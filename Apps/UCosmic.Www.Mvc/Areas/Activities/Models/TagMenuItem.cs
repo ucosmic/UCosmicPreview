@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using UCosmic.Domain.Activities;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Places;
 using UCosmic.Www.Mvc.Models;
@@ -13,7 +14,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
         public string TaggedText { get; set; }
         public string MatchingText { get; set; }
         public string TaggedType { get; set; }
-        public TagDomainType DomainType { get; set; }
+        public ActivityTagDomainType DomainType { get; set; }
         public IEnumerable<string> TaggedHierarchy { get; set; }
         public IEnumerable<string> PlaceHierarchy { get; set; }
     }
@@ -32,7 +33,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                 CreateMap<Place, TagMenuItem>()
                     .ForMember(d => d.TaggedText, o => o.MapFrom(s => s.OfficialName))
                     .ForMember(d => d.MatchingText, o => o.Ignore())
-                    .ForMember(d => d.DomainType, o => o.UseValue(TagDomainType.Place))
+                    .ForMember(d => d.DomainType, o => o.UseValue(ActivityTagDomainType.Place))
                     .ForMember(d => d.TaggedType, o => o.MapFrom(s => s.GeoPlanetPlace != null ? s.GeoPlanetPlace.Type.EnglishName : "Place"))
                     .ForMember(d => d.TaggedHierarchy, o => o.ResolveUsing(s =>
                         {
@@ -56,7 +57,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                 CreateMap<Establishment, TagMenuItem>()
                     .ForMember(d => d.TaggedText, o => o.MapFrom(s => s.TranslatedName.Text))
                     .ForMember(d => d.MatchingText, o => o.Ignore())
-                    .ForMember(d => d.DomainType, o => o.UseValue(TagDomainType.Establishment))
+                    .ForMember(d => d.DomainType, o => o.UseValue(ActivityTagDomainType.Establishment))
                     .ForMember(d => d.TaggedType, o => o.MapFrom(s => s.Type.EnglishName))
                     .ForMember(d => d.TaggedHierarchy, o => o.ResolveUsing(s =>
                     {

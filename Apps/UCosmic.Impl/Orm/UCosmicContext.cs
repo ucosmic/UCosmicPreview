@@ -5,16 +5,17 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net.Mail;
 using System.Text;
 using UCosmic.Domain;
+using UCosmic.Domain.Activities;
 using UCosmic.Domain.Establishments;
+using UCosmic.Domain.Files;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Domain.Languages;
 using UCosmic.Domain.People;
 using UCosmic.Domain.Places;
-using UCosmic.Domain.Files;
-using System.Net.Mail;
 
 namespace UCosmic.Impl.Orm
 {
@@ -76,6 +77,9 @@ namespace UCosmic.Impl.Orm
             get { return InstitutionalAgreementConfigurations; }
         }
 
+        public IDbSet<Activity> Activities { get; set; }
+        IQueryable<Activity> IQueryEntities.Activities { get { return Activities; } }
+
         // ReSharper restore UnusedAutoPropertyAccessor.Global
         // ReSharper restore MemberCanBePrivate.Global
 
@@ -95,6 +99,8 @@ namespace UCosmic.Impl.Orm
             EstablishmentsRelationalMapper.AddConfigurations(modelBuilder);
 
             InstitutionalAgreementsRelationalMapper.AddConfigurations(modelBuilder);
+
+            ActivitiesRelationalMapper.AddConfigurations(modelBuilder);
         }
 
         public void Create(Entity entity)
