@@ -4,24 +4,24 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Activities
 {
-    public class CreateNewActivityCommand
+    public class CreateMyNewActivityCommand
     {
         public IPrincipal Principal { get; set; }
         public Activity CreatedActivity { get; internal set; }
     }
 
-    public class CreateNewActivityHandler : IHandleCommands<CreateNewActivityCommand>
+    public class CreateMyNewActivityHandler : IHandleCommands<CreateMyNewActivityCommand>
     {
         private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
 
-        public CreateNewActivityHandler(IProcessQueries queryProcessor, ICommandEntities entities)
+        public CreateMyNewActivityHandler(IProcessQueries queryProcessor, ICommandEntities entities)
         {
             _queryProcessor = queryProcessor;
             _entities = entities;
         }
 
-        public void Handle(CreateNewActivityCommand command)
+        public void Handle(CreateMyNewActivityCommand command)
         {
             if (command == null) throw new ArgumentNullException("command");
 

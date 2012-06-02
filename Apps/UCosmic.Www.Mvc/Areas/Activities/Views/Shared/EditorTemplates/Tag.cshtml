@@ -1,9 +1,9 @@
 ﻿@model UCosmic.Www.Mvc.Areas.Activities.Models.Form.Tag
 @using (Html.BeginCollectionItem("Tags"))
 {
-    <span class="remove" title="remove this tag"></span><strong>@Model.TaggedText</strong>
+    <span class="remove" title="remove this tag"></span><strong>@Model.Text</strong>
     @Html.HiddenFor(m => m.DomainType)
-    @Html.HiddenFor(m => m.RevisionId)
-    @Html.HiddenFor(m => m.TaggedText)
+    @Html.HiddenFor(m => m.DomainKey)
+    @Html.HiddenFor(m => m.Text)
     @Html.HiddenFor(m => m.IsDeleted)
 }

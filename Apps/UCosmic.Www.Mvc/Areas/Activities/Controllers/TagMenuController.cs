@@ -51,9 +51,9 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
 
             // explain place matches
             var placeTags = Mapper.Map<TagMenuItem[]>(places);
-            foreach (var placeTag in placeTags.Where(t => !t.TaggedText.Contains(term, caseInsensitive)))
+            foreach (var placeTag in placeTags.Where(t => !t.Text.Contains(term, caseInsensitive)))
             {
-                var matchingName = places.ById(placeTag.RevisionId).Names.AsQueryable().FirstOrDefault
+                var matchingName = places.ById(placeTag.DomainKey).Names.AsQueryable().FirstOrDefault
                     (QueryPlaceNames.SearchTermMatches(term, contains, caseInsensitive));
                 placeTag.MatchingText = matchingName != null ? matchingName.Text : null;
             }
@@ -70,9 +70,9 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
 
             // explain establishment matches
             var establishmentTags = Mapper.Map<TagMenuItem[]>(establishments);
-            foreach (var establishmentTag in establishmentTags.Where(t => !t.TaggedText.Contains(term, caseInsensitive)))
+            foreach (var establishmentTag in establishmentTags.Where(t => !t.Text.Contains(term, caseInsensitive)))
             {
-                var establishment = establishments.ById(establishmentTag.RevisionId);
+                var establishment = establishments.ById(establishmentTag.DomainKey);
                 var matchingName = establishment.Names.AsQueryable().FirstOrDefault
                     (QueryEstablishmentNames.SearchTermMatches(term, contains, caseInsensitive));
                 establishmentTag.MatchingText = matchingName != null ? matchingName.Text : null;
@@ -82,10 +82,10 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             var tags = new List<TagMenuItem>();
             tags.AddRange(placeTags);
             tags.AddRange(establishmentTags);
-            tags = tags.OrderBy(t => t.TaggedText).Take(maxResults).ToList();
+            tags = tags.OrderBy(t => t.Text).Take(maxResults).ToList();
 
             // place exact match(es) at the top
-            var exacts = tags.Where(t => t.TaggedText.Equals(term, caseInsensitive)).ToArray();
+            var exacts = tags.Where(t => t.Text.Equals(term, caseInsensitive)).ToArray();
             foreach (var exact in exacts)
             {
                 tags.Remove(exact);
@@ -95,7 +95,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             // remove all excluded tags
             if (excludes != null && excludes.Any())
                 foreach (var exclude in excludes)
-                    foreach (var excludeTag in tags.Where(t => t.TaggedText.Equals(exclude)).ToArray())
+                    foreach (var excludeTag in tags.Where(t => t.Text.Equals(exclude)).ToArray())
                         tags.Remove(excludeTag);
 
             return PartialView(MVC.Activities.Shared.Views._tag_menu, tags);

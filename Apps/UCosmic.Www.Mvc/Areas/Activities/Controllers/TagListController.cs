@@ -20,15 +20,15 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         }
 
         [HttpPost]
-        public virtual PartialViewResult Add(ActivityTagDomainType domainType, int? revisionId, string taggedText)
+        public virtual PartialViewResult Add(ActivityTagDomainType domainType, int? domainKey, string text)
         {
             var tags = new[]
             {
                 new Form.Tag
                 {
                     DomainType = domainType,
-                    RevisionId = revisionId,
-                    TaggedText = taggedText,
+                    DomainKey = domainKey,
+                    Text = text,
                 },
             };
             return PartialView(MVC.Activities.Shared.Views._tag_list, tags);

@@ -1339,8 +1339,8 @@ $.validator.addMethod('requiredif',
     $.validator.unobtrusive.adapters.add('rangeif', ['minimum', 'maximum', 'otherinputname', 'comparisontype', 'othercomparisonvalue'],
     function (options) {
         options.rules['rangeif'] = {
-            0: options.params['minimum'],
-            1: options.params['maximum'],
+            0: parseFloat(options.params['minimum']),
+            1: parseFloat(options.params['maximum']),
             otherinputname: options.params['otherinputname'],
             comparisontype: options.params['comparisontype'],
             othercomparisonvalue: options.params['othercomparisonvalue']
@@ -1370,7 +1370,7 @@ $.validator.addMethod('requiredif',
         if ((otherComparisonValue === otherComparedValue && comparisonType === 'IsEqualTo') ||
             (otherComparisonValue != otherComparedValue && comparisonType === 'IsNotEqualTo'))
             return $.validator.methods.range.call(
-              this, thisValue, thisElement, parameters);
+              this, parseFloat(thisValue), thisElement, parameters);
 
         return true;
     }

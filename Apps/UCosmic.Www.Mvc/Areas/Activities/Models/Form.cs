@@ -24,9 +24,6 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
 
         public ActivityMode Mode { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
-        public int Number { get; set; }
-
         [DataType(DataType.MultilineText)]
         [Display(Prompt = "[Enter tags here]")]
         public string TagSearch { get; set; }
@@ -38,8 +35,8 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
         public Tag[] Tags { get; set; }
         public class Tag
         {
-            public int? RevisionId { get; set; }
-            public string TaggedText { get; set; }
+            public string Text { get; set; }
+            public int? DomainKey { get; set; }
             public ActivityTagDomainType DomainType { get; set; }
             public bool IsDeleted { get; set; }
         }
@@ -107,9 +104,35 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                 ;
 
                 CreateMap<DraftedTag, Form.Tag>()
-                    .ForMember(d => d.TaggedText, o => o.MapFrom(s => s.Text))
-                    .ForMember(d => d.RevisionId, o => o.MapFrom(s => s.DomainKey))
                     .ForMember(d => d.IsDeleted, o => o.Ignore())
+                ;
+            }
+        }
+
+        private class ModelToDraftCommandProfile : Profile
+        {
+            protected override void Configure()
+            {
+                CreateMap<Form, DraftMyActivityCommand>()
+                    .ForMember(d => d.Principal, o => o.Ignore())
+                    .ForMember(d => d.Number, o => o.Ignore())
+                ;
+
+                CreateMap<Form.Tag, DraftMyActivityCommand.Tag>()
+                ;
+            }
+        }
+
+        private class ModelToUpdateCommandProfile : Profile
+        {
+            protected override void Configure()
+            {
+                CreateMap<Form, UpdateMyActivityCommand>()
+                    .ForMember(d => d.Principal, o => o.Ignore())
+                    .ForMember(d => d.Number, o => o.Ignore())
+                ;
+
+                CreateMap<Form.Tag, UpdateMyActivityCommand.Tag>()
                 ;
             }
         }

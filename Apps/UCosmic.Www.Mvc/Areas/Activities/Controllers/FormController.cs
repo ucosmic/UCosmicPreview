@@ -2,26 +2,32 @@
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AutoMapper;
 using UCosmic.Domain.Activities;
 using UCosmic.Www.Mvc.Areas.Activities.Models;
-using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Areas.Identity.Controllers;
-using AutoMapper;
+using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
 {
     public class FormServices
     {
         public FormServices(IProcessQueries queryProcessor
-            , IHandleCommands<CreateNewActivityCommand> createCommandHandler
+            , IHandleCommands<CreateMyNewActivityCommand> createCommandHandler
+            , IHandleCommands<DraftMyActivityCommand> draftCommandHandler
+            , IHandleCommands<UpdateMyActivityCommand> updateCommandHandler
         )
         {
             QueryProcessor = queryProcessor;
             CreateCommandHandler = createCommandHandler;
+            DraftCommandHandler = draftCommandHandler;
+            UpdateCommandHandler = updateCommandHandler;
         }
 
         public IProcessQueries QueryProcessor { get; private set; }
-        public IHandleCommands<CreateNewActivityCommand> CreateCommandHandler { get; private set; }
+        public IHandleCommands<CreateMyNewActivityCommand> CreateCommandHandler { get; private set; }
+        public IHandleCommands<DraftMyActivityCommand> DraftCommandHandler { get; private set; }
+        public IHandleCommands<UpdateMyActivityCommand> UpdateCommandHandler { get; private set; }
     }
 
     [Authenticate]
@@ -38,7 +44,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         [UnitOfWork]
         public virtual ActionResult New()
         {
-            var command = new CreateNewActivityCommand
+            var command = new CreateMyNewActivityCommand
             {
                 Principal = User,
             };
@@ -69,8 +75,17 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         }
 
         [HttpPut]
+        [UnitOfWork]
         public virtual JsonResult Put(Form model)
         {
+            var number = int.Parse(ControllerContext.RouteData.Values["number"].ToString());
+            var command = new UpdateMyActivityCommand
+            {
+                Principal = User,
+                Number = number,
+            };
+            Mapper.Map(model, command);
+            _services.UpdateCommandHandler.Handle(command);
             var message = ModelState.IsValid ? SuccessMessage : null;
             return Json(message);
         }
@@ -78,8 +93,17 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         public const string SuccessMessage = "Your changes have been saved successfully.";
 
         [HttpPut]
+        [UnitOfWork]
         public virtual JsonResult Draft(Form model)
         {
+            var number = int.Parse(ControllerContext.RouteData.Values["number"].ToString());
+            var command = new DraftMyActivityCommand
+            {
+                Principal = User,
+                Number = number,
+            };
+            Mapper.Map(model, command);
+            _services.DraftCommandHandler.Handle(command);
             return Json(null);
         }
     }

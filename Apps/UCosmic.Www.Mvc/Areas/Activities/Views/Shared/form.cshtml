@@ -11,7 +11,6 @@
     {
         area = MVC.Activities.Name,
         httpMethod = "PUT",
-        number = Model.Number,
     },
     FormMethod.Post,
     new
@@ -104,7 +103,6 @@
                     I'm Finished</a>
                 @Html.Partial(MVC.Shared.Views.form_submitted_spinner)
                 @Html.EditorFor(m => m.ReturnUrl)
-                @Html.EditorFor(m => m.Number)
             </p>
         </div>
         <div class="right" style="width: 340px; border: solid 0px gray; margin-left: 18px;">
@@ -367,7 +365,7 @@
             function getTagExcludes() {
                 var excludedTags = [];
                 $('ol.tags li').each(function () {
-                    var taggedText = $(this).find('input[name^="Tags["][name$="].TaggedText"]');
+                    var taggedText = $(this).find('input[name^="Tags["][name$="].Text"]');
                     if (!taggedText.length) return;
                     // make sure item is not deleted
                     var isDeleted = taggedText.parents('li').find('input[name^="Tags["][name$="].IsDeleted"][value$=rue]');
@@ -412,9 +410,9 @@
                 select: function (event, ui) {
                     var li = $(ui.item.value);
                     var domainType = li.data('ucosmic-domain-type');
-                    var revisionId = li.data('ucosmic-revision-id');
-                    var taggedText = ui.item.label;
-                    addTag(domainType, revisionId, taggedText);
+                    var domainKey = li.data('ucosmic-domain-key');
+                    var text = ui.item.label;
+                    addTag(domainType, domainKey, text);
                     return false;
                 }
             })
@@ -451,7 +449,7 @@
             });
 
             // add tag
-            function addTag(domainType, revisionId, taggedText) {
+            function addTag(domainType, domainKey, text) {
                 input.val('');
                 setAddButtonDisplay();
                 $.ajax({
@@ -459,8 +457,8 @@
                     type: 'post',
                     data: {
                         domainType: domainType,
-                        revisionId: revisionId,
-                        taggedText: taggedText
+                        domainKey: domainKey,
+                        text: text
                     },
                     success: function (result) {
                         var ol = $('ol.tags');
@@ -553,12 +551,13 @@
                 draftInterval = setInterval(function () {
                     var form = $('form.activity');
                     var url = form.data('ucosmic-draft-url');
+                    tinyMCE.triggerSave();
                     $.post(url, form.serialize());
                 }, 5000);
             }
-
+            
             startDrafting();
-
+            
             function stopDrafting() {
                 clearInterval(draftInterval);
             }

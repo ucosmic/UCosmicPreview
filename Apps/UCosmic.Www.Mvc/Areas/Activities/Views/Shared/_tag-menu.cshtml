@@ -2,8 +2,8 @@
 <ol>
     @foreach (var item in Model)
     {
-        <li data-ucosmic-domain-type="@item.DomainType" data-ucosmic-revision-id="@item.RevisionId">
-            <a style="font-family: Arial;"><span class="label"><strong>@item.TaggedText</strong></span>
+        <li data-ucosmic-domain-type="@item.DomainType" data-ucosmic-domain-key="@item.DomainKey">
+            <a style="font-family: Arial;"><span class="label"><strong>@item.Text</strong></span>
                 @if (item.MatchingText.IsNotNullOrWhiteSpace())
                 {
                     <span style="font-size: 0.9em;">(@item.MatchingText)</span>
