@@ -76,9 +76,8 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
 
         [HttpPut]
         [UnitOfWork]
-        public virtual JsonResult Put(Form model)
+        public virtual JsonResult Put(int number, Form model)
         {
-            var number = int.Parse(ControllerContext.RouteData.Values["number"].ToString());
             var command = new UpdateMyActivityCommand
             {
                 Principal = User,
@@ -94,9 +93,8 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
 
         [HttpPut]
         [UnitOfWork]
-        public virtual JsonResult Draft(Form model)
+        public virtual JsonResult Draft(int number, Form model)
         {
-            var number = int.Parse(ControllerContext.RouteData.Values["number"].ToString());
             var command = new DraftMyActivityCommand
             {
                 Principal = User,

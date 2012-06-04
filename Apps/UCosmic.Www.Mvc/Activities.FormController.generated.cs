@@ -99,14 +99,16 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.JsonResult Put(UCosmic.Www.Mvc.Areas.Activities.Models.Form model) {
+        public override System.Web.Mvc.JsonResult Put(int number, UCosmic.Www.Mvc.Areas.Activities.Models.Form model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.Put);
+            callInfo.RouteValueDictionary.Add("number", number);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
 
-        public override System.Web.Mvc.JsonResult Draft(UCosmic.Www.Mvc.Areas.Activities.Models.Form model) {
+        public override System.Web.Mvc.JsonResult Draft(int number, UCosmic.Www.Mvc.Areas.Activities.Models.Form model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.Draft);
+            callInfo.RouteValueDictionary.Add("number", number);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
