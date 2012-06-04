@@ -6,7 +6,7 @@
     var skin = Request.Cookies["skin"];
     if (skin != null)
     {
-        var skinCss = Url.Content("~/content/skins/{0}/screen.css".FormatWith(skin.Value));
+        var skinCss = Url.Content("~/content/skins/{0}/tinymce.css".FormatWith(skin.Value));
         contentCss = "{0},{1}".FormatWith(contentCss, skinCss);
     }
 }
