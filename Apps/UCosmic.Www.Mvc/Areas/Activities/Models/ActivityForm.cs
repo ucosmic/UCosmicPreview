@@ -9,17 +9,17 @@ using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Activities.Models
 {
-    public class Form : IReturnUrl
+    public class ActivityForm : IReturnUrl
     {
         [DataType(DataType.MultilineText)]
         [Display(Prompt = "[Enter the title or main heading of your activity here]")]
-        [RequiredIfClient("Mode", ComparisonType.IsNotEqualTo, ActivityMode.Draft, ErrorMessage = FormValidator.FailedBecauseTitleWasEmpty)]
+        [RequiredIfClient("Mode", ComparisonType.IsNotEqualTo, ActivityMode.Draft, ErrorMessage = ActivityValidator.FailedBecauseTitleWasEmpty)]
         public string Title { get; set; }
         public const string TitlePropertyName = "Title";
 
         [AllowHtml]
         [UIHint("TinyMceContent")]
-        [RequiredIfClient("Mode", ComparisonType.IsNotEqualTo, ActivityMode.Draft, ErrorMessage = FormValidator.FailedBecauseContentWasEmpty)]
+        [RequiredIfClient("Mode", ComparisonType.IsNotEqualTo, ActivityMode.Draft, ErrorMessage = ActivityValidator.FailedBecauseContentWasEmpty)]
         public string Content { get; set; }
 
         public ActivityMode Mode { get; set; }
@@ -29,7 +29,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
         public string TagSearch { get; set; }
 
         [HiddenInput(DisplayValue = false)]
-        [RangeIfClient(1, int.MaxValue, "Mode", ComparisonType.IsNotEqualTo, ActivityMode.Draft, ErrorMessage = FormValidator.FailedBecauseTagsWasEmpty)]
+        [RangeIfClient(1, int.MaxValue, "Mode", ComparisonType.IsNotEqualTo, ActivityMode.Draft, ErrorMessage = ActivityValidator.FailedBecauseTagsWasEmpty)]
         public int TagCount { get; set; }
 
         public Tag[] Tags { get; set; }
@@ -43,7 +43,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
 
         [DataType(DataType.Date)]
         [Display(Prompt = "[Start Date]")]
-        [RequiredIfClient("Mode", ComparisonType.IsNotEqualTo, ActivityMode.Draft, ErrorMessage = FormValidator.FailedBecauseStartsOnWasEmpty)]
+        [RequiredIfClient("Mode", ComparisonType.IsNotEqualTo, ActivityMode.Draft, ErrorMessage = ActivityValidator.FailedBecauseStartsOnWasEmpty)]
         public DateTime? StartsOn { get; set; }
 
         [DataType(DataType.Date)]
@@ -54,14 +54,14 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
         public string ReturnUrl { get; set; }
     }
 
-    public class FormValidator : AbstractValidator<Form>
+    public class ActivityValidator : AbstractValidator<ActivityForm>
     {
         public const string FailedBecauseTitleWasEmpty = "Title is required.";
         public const string FailedBecauseContentWasEmpty = "Description is required.";
         public const string FailedBecauseTagsWasEmpty = "At least 1 tag is required.";
         public const string FailedBecauseStartsOnWasEmpty = "Start date is required.";
 
-        public FormValidator()
+        public ActivityValidator()
         {
             When(m => m.Mode != ActivityMode.Draft, () =>
             {
@@ -81,29 +81,29 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
         }
     }
 
-    public static class FormProfiler
+    public static class ActivityProfiler
     {
         public static void RegisterProfiles()
         {
-            RootModelProfiler.RegisterProfiles(typeof(FormProfiler));
+            RootModelProfiler.RegisterProfiles(typeof(ActivityProfiler));
         }
 
         private class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {
-                CreateMap<Activity, Form>()
+                CreateMap<Activity, ActivityForm>()
                     .ForMember(d => d.Title, o => o.MapFrom(s => s.DraftedValues.Title))
                     .ForMember(d => d.Content, o => o.MapFrom(s => s.DraftedValues.Content))
                     .ForMember(d => d.StartsOn, o => o.MapFrom(s => s.DraftedValues.StartsOn))
                     .ForMember(d => d.EndsOn, o => o.MapFrom(s => s.DraftedValues.EndsOn))
-                    .ForMember(d => d.Tags, o => o.MapFrom(s => Mapper.Map<Form.Tag[]>(s.DraftedTags)))
+                    .ForMember(d => d.Tags, o => o.MapFrom(s => Mapper.Map<ActivityForm.Tag[]>(s.DraftedTags)))
                     .ForMember(d => d.TagSearch, o => o.Ignore())
                     .ForMember(d => d.TagCount, o => o.Ignore())
                     .ForMember(d => d.ReturnUrl, o => o.Ignore())
                 ;
 
-                CreateMap<DraftedTag, Form.Tag>()
+                CreateMap<DraftedTag, ActivityForm.Tag>()
                     .ForMember(d => d.IsDeleted, o => o.Ignore())
                 ;
             }
@@ -113,12 +113,12 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
         {
             protected override void Configure()
             {
-                CreateMap<Form, DraftMyActivityCommand>()
+                CreateMap<ActivityForm, DraftMyActivityCommand>()
                     .ForMember(d => d.Principal, o => o.Ignore())
                     .ForMember(d => d.Number, o => o.Ignore())
                 ;
 
-                CreateMap<Form.Tag, DraftMyActivityCommand.Tag>()
+                CreateMap<ActivityForm.Tag, DraftMyActivityCommand.Tag>()
                 ;
             }
         }
@@ -127,12 +127,12 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
         {
             protected override void Configure()
             {
-                CreateMap<Form, UpdateMyActivityCommand>()
+                CreateMap<ActivityForm, UpdateMyActivityCommand>()
                     .ForMember(d => d.Principal, o => o.Ignore())
                     .ForMember(d => d.Number, o => o.Ignore())
                 ;
 
-                CreateMap<Form.Tag, UpdateMyActivityCommand.Tag>()
+                CreateMap<ActivityForm.Tag, UpdateMyActivityCommand.Tag>()
                 ;
             }
         }

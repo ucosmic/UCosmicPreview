@@ -10,9 +10,9 @@ using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
 {
-    public class FormServices
+    public class ActivityFormServices
     {
-        public FormServices(IProcessQueries queryProcessor
+        public ActivityFormServices(IProcessQueries queryProcessor
             , IHandleCommands<CreateMyNewActivityCommand> createCommandHandler
             , IHandleCommands<DraftMyActivityCommand> draftCommandHandler
             , IHandleCommands<UpdateMyActivityCommand> updateCommandHandler
@@ -31,11 +31,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
     }
 
     [Authenticate]
-    public partial class FormController : BaseController
+    public partial class ActivityFormController : BaseController
     {
-        private readonly FormServices _services;
+        private readonly ActivityFormServices _services;
 
-        public FormController(FormServices services)
+        public ActivityFormController(ActivityFormServices services)
         {
             _services = services;
         }
@@ -49,7 +49,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
                 Principal = User,
             };
             _services.CreateCommandHandler.Handle(command);
-            return RedirectToAction(MVC.Activities.Form.Get(command.CreatedActivity.Number));
+            return RedirectToAction(MVC.Activities.ActivityForm.Get(command.CreatedActivity.Number));
         }
 
         [HttpGet]
@@ -70,13 +70,13 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
                     },
                 }
             );
-            var model = Mapper.Map<Form>(activity);
+            var model = Mapper.Map<ActivityForm>(activity);
             return View(model);
         }
 
         [HttpPut]
         [UnitOfWork]
-        public virtual JsonResult Put(int number, Form model)
+        public virtual JsonResult Put(int number, ActivityForm model)
         {
             var command = new UpdateMyActivityCommand
             {
@@ -93,7 +93,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
 
         [HttpPut]
         [UnitOfWork]
-        public virtual JsonResult Draft(int number, Form model)
+        public virtual JsonResult Draft(int number, ActivityForm model)
         {
             var command = new DraftMyActivityCommand
             {
@@ -106,15 +106,15 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         }
     }
 
-    public static class FormRouter
+    public static class ActivityFormRouter
     {
         private static readonly string Area = MVC.Activities.Name;
-        private static readonly string Controller = MVC.Activities.Form.Name;
+        private static readonly string Controller = MVC.Activities.ActivityForm.Name;
 
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
-            RootActionRouter.RegisterRoutes(typeof(FormRouter), context, Area, Controller);
-            FormProfiler.RegisterProfiles();
+            RootActionRouter.RegisterRoutes(typeof(ActivityFormRouter), context, Area, Controller);
+            ActivityProfiler.RegisterProfiles();
         }
 
         // ReSharper disable UnusedMember.Global
@@ -122,7 +122,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         public static class New
         {
             public const string Route = "my/activities/new";
-            private static readonly string Action = MVC.Activities.Form.ActionNames.New;
+            private static readonly string Action = MVC.Activities.ActivityForm.ActionNames.New;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };
@@ -134,7 +134,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         public static class Get
         {
             public const string Route = "my/activities/{number}/edit";
-            private static readonly string Action = MVC.Activities.Form.ActionNames.Get;
+            private static readonly string Action = MVC.Activities.ActivityForm.ActionNames.Get;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };
@@ -150,7 +150,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         public static class Put
         {
             public const string Route = "my/activities/{number}";
-            private static readonly string Action = MVC.Activities.Form.ActionNames.Put;
+            private static readonly string Action = MVC.Activities.ActivityForm.ActionNames.Put;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };
@@ -166,7 +166,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         public static class Draft
         {
             public const string Route = "my/activities/{number}/draft";
-            private static readonly string Action = MVC.Activities.Form.ActionNames.Draft;
+            private static readonly string Action = MVC.Activities.ActivityForm.ActionNames.Draft;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
             {
                 var defaults = new { area, controller, action = Action, };

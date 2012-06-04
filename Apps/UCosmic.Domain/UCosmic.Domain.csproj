@@ -76,6 +76,7 @@
     <Compile Include="Activities\Entities\ActivityValues.cs" />
     <Compile Include="Activities\Entities\ActivityTagDomainType.cs" />
     <Compile Include="Activities\Entities\DraftedTag.cs" />
+    <Compile Include="Activities\Queries\FindMyActivities.cs" />
     <Compile Include="Activities\Queries\GetMyActivityByNumber.cs" />
     <Compile Include="Activities\Queries\FindActivitiesWithPersonId.cs" />
     <Compile Include="Api\BaseQuery.cs" />

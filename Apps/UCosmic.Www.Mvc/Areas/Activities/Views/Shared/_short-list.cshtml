@@ -1,0 +1,29 @@
+﻿@using UCosmic.Www.Mvc.Areas.Activities.Controllers
+@model IEnumerable<UCosmic.Www.Mvc.Areas.Activities.Models.ActivityListItem>
+<fieldset>
+    <legend>My Recently Edited Activities</legend>
+    @if (!Model.Any())
+    {
+        <p class="pull-bottom">
+            You have not yet added any activities.<br />
+            <a href="@Url.Action(MVC.Activities.ActivityForm.New())">Click here to add your first
+                one</a>.
+        </p>
+    }
+    else
+    {
+        <ol style="margin: 1em 0; padding: 0; list-style: none;">
+            @foreach (var item in Model)
+            {
+                <li>@item.Mode: <strong style="font-size: 1.2em;"><a href="@Url.Action(MVC.Activities.ActivityForm.Get(item.Number))">@item.Title</a></strong></li>
+            }
+        </ol>
+        <div style="font-size: 1.1em;">
+            <a href="@Url.Action(MVC.Activities.ActivityForm.New())">Create a new activity</a>
+            @if (Model.Count() == ActivityListController.ShortListLength && Model.First().Total > ActivityListController.ShortListLength)
+            {
+                <span>|</span> <a href="#" data-ucosmic-not-implemented="Show all activities">Show all (@(Model.First().Total - ActivityListController.ShortListLength) more)</a>
+            }
+        </div>
+    }
+</fieldset>

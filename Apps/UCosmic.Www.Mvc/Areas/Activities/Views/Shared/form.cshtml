@@ -1,12 +1,12 @@
 ﻿@using UCosmic.Domain.Activities
 @using UCosmic.Www.Mvc.Areas.Activities.Models
-@model Form
+@model ActivityForm
 @{
     ViewBag.Title = "My International Activity";
 }
 @using (Html.BeginForm(
-    MVC.Activities.Form.ActionNames.Put,
-    MVC.Activities.Form.Name,
+    MVC.Activities.ActivityForm.ActionNames.Put,
+    MVC.Activities.ActivityForm.Name,
     new
     {
         area = MVC.Activities.Name,
@@ -16,7 +16,7 @@
     new
     {
         @class = "activity",
-        data_ucosmic_draft_url = Url.Action(MVC.Activities.Form.Draft()),
+        data_ucosmic_draft_url = Url.Action(MVC.Activities.ActivityForm.Draft()),
     }
 ))
 {
@@ -124,7 +124,7 @@
                         </div>
                     </div>
                     <div class="input">
-                        @Html.Partial(MVC.Activities.Shared.Views._tag_list, Model.Tags ?? Enumerable.Empty<Form.Tag>())
+                        @Html.Partial(MVC.Activities.Shared.Views._tag_list, Model.Tags ?? Enumerable.Empty<ActivityForm.Tag>())
                         @Html.EditorFor(m => m.TagCount)
                     </div>
                 </div>

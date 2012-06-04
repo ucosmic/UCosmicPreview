@@ -197,7 +197,10 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Activities.FormController.generated.cs">
+    <Compile Include="Activities.ActivityFormController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Activities.ActivityListController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Activities.SharedController.generated.cs">
@@ -210,11 +213,13 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\Activities\ActivitiesAreaRegistration.cs" />
+    <Compile Include="Areas\Activities\Controllers\ActivityListController.cs" />
     <Compile Include="Areas\Activities\Controllers\TagListController.cs" />
     <Compile Include="Areas\Activities\Controllers\TagMenuController.cs" />
-    <Compile Include="Areas\Activities\Controllers\FormController.cs" />
+    <Compile Include="Areas\Activities\Controllers\ActivityFormController.cs" />
+    <Compile Include="Areas\Activities\Models\ActivityListItem.cs" />
     <Compile Include="Areas\Activities\Models\TagMenuItem.cs" />
-    <Compile Include="Areas\Activities\Models\Form.cs" />
+    <Compile Include="Areas\Activities\Models\ActivityForm.cs" />
     <Compile Include="Controllers\HttpNotFoundOnNullModelAttribute.cs" />
     <Compile Include="Helpers\FormsAuthenticationConfig.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailController.cs" />
@@ -1355,6 +1360,7 @@
     <Content Include="Areas\Activities\Views\Shared\_tag-menu.cshtml" />
     <Content Include="Areas\Activities\Views\Shared\_tag-list.cshtml" />
     <Content Include="Areas\Activities\Views\Shared\EditorTemplates\Tag.cshtml" />
+    <Content Include="Areas\Activities\Views\Shared\_short-list.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />
@@ -1390,6 +1396,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\mail\" />
+    <Folder Include="Areas\Activities\Views\Shared\DisplayTemplates\" />
     <Folder Include="Areas\Common\Views\Shared\" />
     <Folder Include="Areas\RecruitmentAgencies\Controllers\" />
     <Folder Include="Areas\RecruitmentAgencies\Models\" />

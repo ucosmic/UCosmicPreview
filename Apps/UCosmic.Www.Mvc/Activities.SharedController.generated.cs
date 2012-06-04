@@ -28,9 +28,14 @@ namespace T4MVC.Activities {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
+            public readonly string _short_list = "~/Areas/Activities/Views/Shared/_short-list.cshtml";
             public readonly string _tag_list = "~/Areas/Activities/Views/Shared/_tag-list.cshtml";
             public readonly string _tag_menu = "~/Areas/Activities/Views/Shared/_tag-menu.cshtml";
             public readonly string form = "~/Areas/Activities/Views/Shared/form.cshtml";
+            static readonly _DisplayTemplates s_DisplayTemplates = new _DisplayTemplates();
+            public _DisplayTemplates DisplayTemplates { get { return s_DisplayTemplates; } }
+            public partial class _DisplayTemplates{
+            }
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{

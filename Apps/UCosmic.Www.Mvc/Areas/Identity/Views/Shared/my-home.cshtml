@@ -7,6 +7,7 @@
         @Html.Action(MVC.Identity.UpdateName.Get())
     </div>
     <div class="right">
+        @Html.Action(MVC.Activities.ActivityList.ShortList())
         <fieldset>
             <legend>My Email Address(es)</legend>
             <p>
@@ -89,13 +90,13 @@
             font-weight: bold;
             color: #c00;
         }
-        .ucosmic .email-actions a, .ucosmic #email-actions span a, .ucosmic #email-actions a, .ucosmic .affiliation-actions a, .ucosmic .email-respel {
+        @*.ucosmic .email-actions a, .ucosmic #email-actions span a, .ucosmic #email-actions a, .ucosmic .affiliation-actions a, .ucosmic .email-respel {
             display: inline-block;
             padding: 0 5px;
             background: #ddd;
             border: solid 1px #ccc;
             margin: 3px 0.5em 0 0;
-        }
+        }*@
         .ucosmic a.not-implemented:link, .ucosmic a.not-implemented:visited {
             color: #333;
         }

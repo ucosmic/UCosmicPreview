@@ -24,7 +24,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         {
             var tags = new[]
             {
-                new Form.Tag
+                new ActivityForm.Tag
                 {
                     DomainType = domainType,
                     DomainKey = domainKey,

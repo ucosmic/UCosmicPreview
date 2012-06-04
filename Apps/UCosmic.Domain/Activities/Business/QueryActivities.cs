@@ -11,12 +11,21 @@ namespace UCosmic.Domain.Activities
             return queryable;
         }
 
+        internal static IQueryable<Activity> ByUserName(this IQueryable<Activity> queryable, string userName)
+        {
+            return queryable.Where(
+                a => 
+                a.Person.User != null && 
+                a.Person.User.Name.Equals(userName, StringComparison.OrdinalIgnoreCase)
+            );
+        }
+
         internal static Activity ByUserNameAndNumber(this IQueryable<Activity> queryable, string userName, int number)
         {
             return queryable.SingleOrDefault(
-                a => 
-                a.Person.User != null && 
-                a.Person.User.Name.Equals(userName, StringComparison.OrdinalIgnoreCase) && 
+                a =>
+                a.Person.User != null &&
+                a.Person.User.Name.Equals(userName, StringComparison.OrdinalIgnoreCase) &&
                 a.Number == number
             );
         }

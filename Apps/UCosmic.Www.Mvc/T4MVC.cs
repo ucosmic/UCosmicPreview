@@ -46,7 +46,8 @@ namespace T4MVC {
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class ActivitiesClass {
         public readonly string Name = "Activities";
-        public UCosmic.Www.Mvc.Areas.Activities.Controllers.FormController Form = new UCosmic.Www.Mvc.Areas.Activities.Controllers.T4MVC_FormController();
+        public UCosmic.Www.Mvc.Areas.Activities.Controllers.ActivityFormController ActivityForm = new UCosmic.Www.Mvc.Areas.Activities.Controllers.T4MVC_ActivityFormController();
+        public UCosmic.Www.Mvc.Areas.Activities.Controllers.ActivityListController ActivityList = new UCosmic.Www.Mvc.Areas.Activities.Controllers.T4MVC_ActivityListController();
         public UCosmic.Www.Mvc.Areas.Activities.Controllers.TagListController TagList = new UCosmic.Www.Mvc.Areas.Activities.Controllers.T4MVC_TagListController();
         public UCosmic.Www.Mvc.Areas.Activities.Controllers.TagMenuController TagMenu = new UCosmic.Www.Mvc.Areas.Activities.Controllers.T4MVC_TagMenuController();
         public T4MVC.Activities.SharedController Shared = new T4MVC.Activities.SharedController();

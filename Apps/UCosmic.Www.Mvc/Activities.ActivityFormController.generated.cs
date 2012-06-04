@@ -21,9 +21,9 @@ using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
 namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
-    public partial class FormController {
+    public partial class ActivityFormController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected FormController(Dummy d) { }
+        protected ActivityFormController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -48,13 +48,13 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public FormController Actions { get { return MVC.Activities.Form; } }
+        public ActivityFormController Actions { get { return MVC.Activities.ActivityForm; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "Activities";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Form";
+        public readonly string Name = "ActivityForm";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Form";
+        public const string NameConst = "ActivityForm";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -85,8 +85,8 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_FormController: UCosmic.Www.Mvc.Areas.Activities.Controllers.FormController {
-        public T4MVC_FormController() : base(Dummy.Instance) { }
+    public class T4MVC_ActivityFormController: UCosmic.Www.Mvc.Areas.Activities.Controllers.ActivityFormController {
+        public T4MVC_ActivityFormController() : base(Dummy.Instance) { }
 
         public override System.Web.Mvc.ActionResult New() {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.New);
@@ -99,14 +99,14 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.JsonResult Put(int number, UCosmic.Www.Mvc.Areas.Activities.Models.Form model) {
+        public override System.Web.Mvc.JsonResult Put(int number, UCosmic.Www.Mvc.Areas.Activities.Models.ActivityForm model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.Put);
             callInfo.RouteValueDictionary.Add("number", number);
             callInfo.RouteValueDictionary.Add("model", model);
             return callInfo;
         }
 
-        public override System.Web.Mvc.JsonResult Draft(int number, UCosmic.Www.Mvc.Areas.Activities.Models.Form model) {
+        public override System.Web.Mvc.JsonResult Draft(int number, UCosmic.Www.Mvc.Areas.Activities.Models.ActivityForm model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.Draft);
             callInfo.RouteValueDictionary.Add("number", number);
             callInfo.RouteValueDictionary.Add("model", model);
