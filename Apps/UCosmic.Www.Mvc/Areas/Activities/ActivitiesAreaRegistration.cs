@@ -17,11 +17,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities
             TagMenuRouter.RegisterRoutes(context);
             TagListRouter.RegisterRoutes(context);
 
-            context.MapRoute(
-                "Activities_default",
-                "Activities/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
-            );
+            //context.MapRoute(
+            //    "Activities_default",
+            //    "Activities/{controller}/{action}/{id}",
+            //    new { action = "Index", id = UrlParameter.Optional }
+            //);
         }
     }
 }

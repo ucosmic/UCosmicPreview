@@ -75,6 +75,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
                 },
                 OrderBy = new Dictionary<Expression<Func<Activity, object>>, OrderByDirection>
                 {
+                    { a => a.DraftedValues.Title, OrderByDirection.Ascending },
                     { a => a.Values.Title, OrderByDirection.Ascending },
                 },
             };

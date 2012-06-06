@@ -16,18 +16,21 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             , IHandleCommands<CreateMyNewActivityCommand> createCommandHandler
             , IHandleCommands<DraftMyActivityCommand> draftCommandHandler
             , IHandleCommands<UpdateMyActivityCommand> updateCommandHandler
+            , IHandleCommands<PurgeMyActivityCommand> purgeCommandHandler
         )
         {
             QueryProcessor = queryProcessor;
             CreateCommandHandler = createCommandHandler;
             DraftCommandHandler = draftCommandHandler;
             UpdateCommandHandler = updateCommandHandler;
+            PurgeCommandHandler = purgeCommandHandler;
         }
 
         public IProcessQueries QueryProcessor { get; private set; }
         public IHandleCommands<CreateMyNewActivityCommand> CreateCommandHandler { get; private set; }
         public IHandleCommands<DraftMyActivityCommand> DraftCommandHandler { get; private set; }
         public IHandleCommands<UpdateMyActivityCommand> UpdateCommandHandler { get; private set; }
+        public IHandleCommands<PurgeMyActivityCommand> PurgeCommandHandler { get; private set; }
     }
 
     [Authenticate]
@@ -53,10 +56,10 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         }
 
         [HttpGet]
-        [ActionName("activity-form")]
         [HttpNotFoundOnNullModel]
-        [ReturnUrlReferrer(MyHomeRouter.Get.Route)]
+        [ActionName("activity-form")]
         [OpenTopTab(TopTabName.FacultyStaff)]
+        [ReturnUrlReferrer(MyHomeRouter.Get.Route)]
         public virtual ActionResult Get(int number)
         {
             var activity = _services.QueryProcessor.Execute(
@@ -103,6 +106,40 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             Mapper.Map(model, command);
             _services.DraftCommandHandler.Handle(command);
             return Json(null);
+        }
+
+        [HttpGet]
+        [ActionName("activity-delete")]
+        [OpenTopTab(TopTabName.FacultyStaff)]
+        public virtual ViewResult Delete(int number, string returnUrl)
+        {
+            var activity = _services.QueryProcessor.Execute(
+                new GetMyActivityByNumberQuery
+                {
+                    Principal = User,
+                    Number = number,
+                    EagerLoad = new Expression<Func<Activity, object>>[]
+                    {
+                        a => a.DraftedTags,
+                    },
+                }
+            );
+            var model = Mapper.Map<ActivityForm>(activity);
+            model.ReturnUrl = returnUrl;
+            return View(model);
+        }
+
+        [HttpDelete]
+        [UnitOfWork]
+        public virtual ActionResult Destroy(int number, string returnUrl)
+        {
+            var command = new PurgeMyActivityCommand
+            {
+                Principal = User,
+                Number = number,
+            };
+            _services.PurgeCommandHandler.Handle(command);
+            return Redirect(returnUrl);
         }
     }
 
@@ -156,7 +193,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
                 var defaults = new { area, controller, action = Action, };
                 var constraints = new
                 {
-                    httpMethod = new HttpMethodConstraint("POST", "PUT"),
+                    httpMethod = new HttpMethodOverrideConstraint("POST", "PUT" ),
                     number = new PositiveIntegerRouteConstraint(),
                 };
                 context.MapRoute(null, Route, defaults, constraints);
@@ -173,6 +210,38 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
                 var constraints = new
                 {
                     httpMethod = new HttpMethodConstraint("POST", "PUT"),
+                    number = new PositiveIntegerRouteConstraint(),
+                };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
+        public static class Delete
+        {
+            public const string Route = "my/activities/{number}/delete";
+            private static readonly string Action = MVC.Activities.ActivityForm.ActionNames.Delete;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                    number = new PositiveIntegerRouteConstraint(),
+                };
+                context.MapRoute(null, Route, defaults, constraints);
+            }
+        }
+
+        public static class Destroy
+        {
+            public const string Route = "my/activities/{number}";
+            private static readonly string Action = MVC.Activities.ActivityForm.ActionNames.Destroy;
+            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            {
+                var defaults = new { area, controller, action = Action, };
+                var constraints = new
+                {
+                    httpMethod = new HttpMethodOverrideConstraint("POST", "DELETE"),
                     number = new PositiveIntegerRouteConstraint(),
                 };
                 context.MapRoute(null, Route, defaults, constraints);

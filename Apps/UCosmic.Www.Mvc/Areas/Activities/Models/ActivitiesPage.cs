@@ -39,7 +39,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                 CreateMap<PagedResult<Activity>, ActivitiesPage>()
                     .ConstructUsing(s =>
                         new ActivitiesPage(
-                            Mapper.Map<ActivitiesPage.Item[]>(s.Results).OrderBy(i => i.Title),
+                            Mapper.Map<ActivitiesPage.Item[]>(s.Results),
                             s.TotalResults
                         )
                     )

@@ -46,6 +46,16 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
         public System.Web.Mvc.JsonResult Draft() {
             return new T4MVC_JsonResult(Area, Name, ActionNames.Draft);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ViewResult Delete() {
+            return new T4MVC_ViewResult(Area, Name, ActionNames.Delete);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult Destroy() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Destroy);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActivityFormController Actions { get { return MVC.Activities.ActivityForm; } }
@@ -65,6 +75,8 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
             public readonly string Get = "activity-form";
             public readonly string Put = "Put";
             public readonly string Draft = "Draft";
+            public readonly string Delete = "activity-delete";
+            public readonly string Destroy = "Destroy";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -73,6 +85,8 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
             public const string Get = "activity-form";
             public const string Put = "Put";
             public const string Draft = "Draft";
+            public const string Delete = "activity-delete";
+            public const string Destroy = "Destroy";
         }
 
 
@@ -110,6 +124,20 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.Draft);
             callInfo.RouteValueDictionary.Add("number", number);
             callInfo.RouteValueDictionary.Add("model", model);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ViewResult Delete(int number, string returnUrl) {
+            var callInfo = new T4MVC_ViewResult(Area, Name, ActionNames.Delete);
+            callInfo.RouteValueDictionary.Add("number", number);
+            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Destroy(int number, string returnUrl) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Destroy);
+            callInfo.RouteValueDictionary.Add("number", number);
+            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
             return callInfo;
         }
 

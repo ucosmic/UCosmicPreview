@@ -24,6 +24,8 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
 
         public ActivityMode Mode { get; set; }
 
+        public int Number { get; set; }
+
         [DataType(DataType.MultilineText)]
         [Display(Prompt = "[Enter tags here]")]
         public string TagSearch { get; set; }

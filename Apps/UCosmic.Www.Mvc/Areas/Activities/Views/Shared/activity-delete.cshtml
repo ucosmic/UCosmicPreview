@@ -1,0 +1,91 @@
+﻿@model UCosmic.Www.Mvc.Areas.Activities.Models.ActivityForm
+@{
+    ViewBag.Title = "Delete My Activity";
+}
+@using (Html.BeginForm(
+    MVC.Activities.ActivityForm.ActionNames.Destroy,
+    MVC.Activities.ActivityForm.Name,
+    new
+    {
+        area = MVC.Activities.Name,
+        httpMethod = "DELETE",
+    }
+))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <div class="wrap-960">
+        <p>
+            Are you sure you want to permanently delete the following activity? You will not
+            be able to undo this action.
+        </p>
+        <h1>
+            @(Model.Title ?? "New Activity #{0}".FormatWith(Model.Number))
+        </h1>
+        @Html.Raw(Model.Content)
+        @if (Model.StartsOn.HasValue || Model.EndsOn.HasValue)
+        {
+            <p>
+                @Html.DisplayFor(m => m.StartsOn)
+                @if (Model.StartsOn.HasValue && Model.EndsOn.HasValue)
+                {
+                    <span>- </span>
+                }
+                @Html.DisplayFor(m => m.EndsOn)
+            </p>
+        }
+        <ol class="tags ui-helper-clearfix">
+            @if (!Model.Tags.Any())
+            {
+                <li>[Untagged]</li>
+            }
+            else
+            {
+                foreach (var tag in Model.Tags)
+                {
+                <li>
+                    @tag.Text
+                </li>
+                }
+            }
+        </ol>
+        <p>
+            <input type="submit" value="Confirm delete" />
+            <a href="#" class="cancel-form" data-ucosmic-form-submitting="hide">Do
+                not delete</a>
+            @Html.Partial(MVC.Shared.Views.form_submitted_spinner)
+            @Html.EditorFor(m => m.ReturnUrl)
+        </p>
+    </div>
+}
+@section Styles
+{
+    <style type="text/css">
+        .ucosmic ol.tags {
+            padding: 0;
+            margin: 3px 0 0;
+            list-style: none;
+        }
+        .ucosmic ol.tags li {
+            float: left;
+            padding: 3px 5px;
+            border: solid 1px #ccc;
+            margin: 0 5px 0 0;
+        }
+        .ucosmic a.cancel-form {
+            margin-left: 10px;
+        }
+    </style>
+}
+@section Scripts
+{
+
+    <script type="text/javascript">
+        $(function () {
+            $('a.cancel-form').click(function () {
+                window.history.go(-1);
+                return false;
+            });
+        });
+    </script>
+
+}

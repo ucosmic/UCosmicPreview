@@ -67,6 +67,7 @@
     <Compile Include="Activities\Business\BaseActivitiesQuery.cs" />
     <Compile Include="Activities\Business\BaseActivityQuery.cs" />
     <Compile Include="Activities\Business\QueryActivities.cs" />
+    <Compile Include="Activities\Commands\PurgeMyActivity.cs" />
     <Compile Include="Activities\Commands\DraftMyActivity.cs" />
     <Compile Include="Activities\Commands\CreateMyNewActivity.cs" />
     <Compile Include="Activities\Commands\UpdateMyActivity.cs" />

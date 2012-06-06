@@ -49,6 +49,7 @@ namespace UCosmic.Domain.Activities
                     },
                 }
             );
+            if (activity == null) return;
 
             activity.DraftedValues.Title = command.Title;
             activity.DraftedValues.Content = command.Content;

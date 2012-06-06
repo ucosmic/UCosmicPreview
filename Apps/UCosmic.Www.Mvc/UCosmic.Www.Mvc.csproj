@@ -220,6 +220,7 @@
     <Compile Include="Areas\Activities\Models\ActivitiesPage.cs" />
     <Compile Include="Areas\Activities\Models\TagMenuItem.cs" />
     <Compile Include="Areas\Activities\Models\ActivityForm.cs" />
+    <Compile Include="Controllers\HttpMethodOverrideConstraint.cs" />
     <Compile Include="Controllers\HttpNotFoundOnNullModelAttribute.cs" />
     <Compile Include="Helpers\FormsAuthenticationConfig.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailController.cs" />
@@ -1363,6 +1364,7 @@
     <Content Include="Areas\Activities\Views\Shared\EditorTemplates\Tag.cshtml" />
     <Content Include="Areas\Activities\Views\Shared\_short-list.cshtml" />
     <Content Include="Areas\Activities\Views\Shared\activities-page.cshtml" />
+    <Content Include="Areas\Activities\Views\Shared\activity-delete.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />
@@ -1398,7 +1400,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\mail\" />
-    <Folder Include="Areas\Activities\Views\Shared\DisplayTemplates\" />
     <Folder Include="Areas\Common\Views\Shared\" />
     <Folder Include="Areas\RecruitmentAgencies\Controllers\" />
     <Folder Include="Areas\RecruitmentAgencies\Models\" />
