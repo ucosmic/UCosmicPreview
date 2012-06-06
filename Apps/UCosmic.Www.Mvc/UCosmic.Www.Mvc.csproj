@@ -217,7 +217,7 @@
     <Compile Include="Areas\Activities\Controllers\TagListController.cs" />
     <Compile Include="Areas\Activities\Controllers\TagMenuController.cs" />
     <Compile Include="Areas\Activities\Controllers\ActivityFormController.cs" />
-    <Compile Include="Areas\Activities\Models\ActivityListItem.cs" />
+    <Compile Include="Areas\Activities\Models\ActivitiesPage.cs" />
     <Compile Include="Areas\Activities\Models\TagMenuItem.cs" />
     <Compile Include="Areas\Activities\Models\ActivityForm.cs" />
     <Compile Include="Controllers\HttpNotFoundOnNullModelAttribute.cs" />
@@ -391,6 +391,7 @@
     </Compile>
     <Compile Include="Models\ComboBoxOptions.cs" />
     <Compile Include="Areas\Identity\Models\IModelConfirmAndRedeem.cs" />
+    <Compile Include="Models\PageOf.cs" />
     <Compile Include="Models\RangeIfClientAttribute.cs" />
     <Compile Include="People.PersonInfoController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -1355,12 +1356,13 @@
     <Content Include="Areas\Identity\Views\Shared\EditorTemplates\UpdatePasswordForm.cshtml" />
     <Content Include="Areas\Activities\Views\Web.config" />
     <Content Include="Areas\Activities\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Activities\Views\Shared\form.cshtml" />
+    <Content Include="Areas\Activities\Views\Shared\activity-form.cshtml" />
     <Content Include="Areas\Activities\Views\Shared\EditorTemplates\TinyMceContent.cshtml" />
     <Content Include="Areas\Activities\Views\Shared\_tag-menu.cshtml" />
     <Content Include="Areas\Activities\Views\Shared\_tag-list.cshtml" />
     <Content Include="Areas\Activities\Views\Shared\EditorTemplates\Tag.cshtml" />
     <Content Include="Areas\Activities\Views\Shared\_short-list.cshtml" />
+    <Content Include="Areas\Activities\Views\Shared\activities-page.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />

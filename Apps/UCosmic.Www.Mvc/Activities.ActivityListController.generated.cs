@@ -47,11 +47,13 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string ShortList = "_short-list";
+            public readonly string Page = "activities-page";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string ShortList = "_short-list";
+            public const string Page = "activities-page";
         }
 
 
@@ -69,6 +71,12 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
 
         public override System.Web.Mvc.PartialViewResult ShortList() {
             var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.ShortList);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Page(int pageNumber) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Page);
+            callInfo.RouteValueDictionary.Add("pageNumber", pageNumber);
             return callInfo;
         }
 

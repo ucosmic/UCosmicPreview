@@ -62,7 +62,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string New = "New";
-            public readonly string Get = "form";
+            public readonly string Get = "activity-form";
             public readonly string Put = "Put";
             public readonly string Draft = "Draft";
         }
@@ -70,7 +70,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string New = "New";
-            public const string Get = "form";
+            public const string Get = "activity-form";
             public const string Put = "Put";
             public const string Draft = "Draft";
         }

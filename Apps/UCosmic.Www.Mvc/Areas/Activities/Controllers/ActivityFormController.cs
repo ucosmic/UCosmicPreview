@@ -53,7 +53,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         }
 
         [HttpGet]
-        [ActionName("form")]
+        [ActionName("activity-form")]
         [HttpNotFoundOnNullModel]
         [ReturnUrlReferrer(MyHomeRouter.Get.Route)]
         [OpenTopTab(TopTabName.FacultyStaff)]

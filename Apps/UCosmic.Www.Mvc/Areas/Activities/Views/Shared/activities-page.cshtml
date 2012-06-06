@@ -1,0 +1,65 @@
+﻿@model UCosmic.Www.Mvc.Areas.Activities.Models.ActivitiesPage
+@{
+    ViewBag.Title = "My International Activities";
+}
+<div class="wrap-960">
+    @if (!Model.Any())
+    {
+        <p>
+            You have not yet added any activities.<br />
+            <a href="@Url.Action(MVC.Activities.ActivityForm.New())">Click here to add your first
+                one</a>.
+        </p>
+    }
+    else
+    {
+        <div style="font-size: 1.1em;">
+            <a href="@Url.Action(MVC.Activities.ActivityForm.New())">Create a new activity</a>
+        </div>
+        <ol style="margin: 1em 0; padding: 0; list-style: none; border-bottom: solid 1px #ccc;">
+            @foreach (var item in Model)
+            {
+                <li style="padding: 1em 0; border-top: solid 1px #ccc;">
+                    <div>
+                        <strong style="font-size: 1.2em;"><a href="@Url.Action(MVC.Activities.ActivityForm.Get(item.Number))">@item.Title</a></strong>
+                        <span style="line-height: 1.2em;">(@item.Mode)</span>
+                    </div>
+                    <ol class="tags ui-helper-clearfix">
+                        @if (!item.Tags.Any())
+                        {
+                            <li>[Untagged]</li>
+                        }
+                        else
+                        {
+                            foreach (var tag in item.Tags)
+                            {
+                            <li>
+                                @tag.Text
+                            </li>
+                            }
+                        }
+                    </ol>
+                </li>
+            }
+        </ol>
+        <div style="font-size: 1.1em;">
+            <a href="@Url.Action(MVC.Activities.ActivityForm.New())">Create a new activity</a>
+        </div>
+    }
+</div>
+@section Styles
+{
+    <style type="text/css">
+        .ucosmic ol.tags {
+            padding: 0;
+            margin: 3px 0 0;
+            list-style: none;
+        }
+        .ucosmic ol.tags li {
+            float: left;
+            padding: 3px 5px;
+            border: solid 1px #ccc;
+            margin: 0 5px 0 0;
+        }
+    </style>
+}

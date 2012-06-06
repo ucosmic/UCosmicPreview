@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Linq;
 using System.Security.Principal;
 
 namespace UCosmic.Domain.Activities
 {
-    public class FindMyActivitiesQuery : BaseActivitiesQuery, IDefineQuery<Activity[]>
+    public class FindMyActivitiesQuery : BaseActivitiesQuery, IDefineQuery<PagedResult<Activity>>
     {
         public IPrincipal Principal { get; set; }
-        public int? MaxResults { get; set; }
-        public int Total { get; internal set; }
+        public PagerOptions PagerOptions { get; set; }
     }
 
-    public class FindMyActivitiesHandler : IHandleQueries<FindMyActivitiesQuery, Activity[]>
+    public class FindMyActivitiesHandler : IHandleQueries<FindMyActivitiesQuery, PagedResult<Activity>>
     {
         private readonly IQueryEntities _entities;
 
@@ -20,7 +18,7 @@ namespace UCosmic.Domain.Activities
             _entities = entities;
         }
 
-        public Activity[] Handle(FindMyActivitiesQuery query)
+        public PagedResult<Activity> Handle(FindMyActivitiesQuery query)
         {
             if (query == null) throw new ArgumentNullException("query");
 
@@ -30,14 +28,9 @@ namespace UCosmic.Domain.Activities
                 .OrderBy(query.OrderBy)
             ;
 
-            query.Total = results.Count();
+            var pagedResults = new PagedResult<Activity>(results, query.PagerOptions);
 
-            if (query.MaxResults.HasValue && query.MaxResults > 0)
-            {
-                results = results.Take(query.MaxResults.Value);
-            }
-
-            return results.ToArray();
+            return pagedResults;
         }
     }
 }

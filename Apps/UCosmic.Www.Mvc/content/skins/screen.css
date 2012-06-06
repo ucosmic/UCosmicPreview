@@ -659,7 +659,7 @@ img {
 .ucosmic .wrap-960 {
     width: 940px;
     margin: 2em 0 0 20px;
-    padding: 0;
+    padding: 0 0 1em;
 }
 .ucosmic .wrap-960.split-form, .ucosmic .wrap-960 .split-form {
     position: relative;

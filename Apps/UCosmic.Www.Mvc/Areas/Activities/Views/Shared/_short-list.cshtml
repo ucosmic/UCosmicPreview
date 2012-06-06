@@ -1,5 +1,5 @@
 ﻿@using UCosmic.Www.Mvc.Areas.Activities.Controllers
-@model IEnumerable<UCosmic.Www.Mvc.Areas.Activities.Models.ActivityListItem>
+@model UCosmic.Www.Mvc.Areas.Activities.Models.ActivitiesPage
 <fieldset>
     <legend>My Recently Edited Activities</legend>
     @if (!Model.Any())
@@ -20,9 +20,10 @@
         </ol>
         <div style="font-size: 1.1em;">
             <a href="@Url.Action(MVC.Activities.ActivityForm.New())">Create a new activity</a>
-            @if (Model.Count() == ActivityListController.ShortListLength && Model.First().Total > ActivityListController.ShortListLength)
+            @if (Model.Count() == ActivityListController.ShortListLength && Model.TotalResults > ActivityListController.ShortListLength)
             {
-                <span>|</span> <a href="#" data-ucosmic-not-implemented="Show all activities">Show all (@(Model.First().Total - ActivityListController.ShortListLength) more)</a>
+                <span>|</span> <a href="@Url.Action(MVC.Activities.ActivityList.Page())">Show all (@(Model.TotalResults - ActivityListController.ShortListLength)
+                    more)</a>
             }
         </div>
     }

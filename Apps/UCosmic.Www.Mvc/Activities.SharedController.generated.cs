@@ -31,7 +31,8 @@ namespace T4MVC.Activities {
             public readonly string _short_list = "~/Areas/Activities/Views/Shared/_short-list.cshtml";
             public readonly string _tag_list = "~/Areas/Activities/Views/Shared/_tag-list.cshtml";
             public readonly string _tag_menu = "~/Areas/Activities/Views/Shared/_tag-menu.cshtml";
-            public readonly string form = "~/Areas/Activities/Views/Shared/form.cshtml";
+            public readonly string activities_page = "~/Areas/Activities/Views/Shared/activities-page.cshtml";
+            public readonly string activity_form = "~/Areas/Activities/Views/Shared/activity-form.cshtml";
             static readonly _DisplayTemplates s_DisplayTemplates = new _DisplayTemplates();
             public _DisplayTemplates DisplayTemplates { get { return s_DisplayTemplates; } }
             public partial class _DisplayTemplates{
