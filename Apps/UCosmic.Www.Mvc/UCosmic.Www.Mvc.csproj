@@ -1365,6 +1365,7 @@
     <Content Include="Areas\Activities\Views\Shared\_short-list.cshtml" />
     <Content Include="Areas\Activities\Views\Shared\activities-page.cshtml" />
     <Content Include="Areas\Activities\Views\Shared\activity-delete.cshtml" />
+    <Content Include="Areas\Common\Views\Features\june-2012-preview-1.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />

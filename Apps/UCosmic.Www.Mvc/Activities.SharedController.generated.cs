@@ -34,10 +34,6 @@ namespace T4MVC.Activities {
             public readonly string activities_page = "~/Areas/Activities/Views/Shared/activities-page.cshtml";
             public readonly string activity_delete = "~/Areas/Activities/Views/Shared/activity-delete.cshtml";
             public readonly string activity_form = "~/Areas/Activities/Views/Shared/activity-form.cshtml";
-            static readonly _DisplayTemplates s_DisplayTemplates = new _DisplayTemplates();
-            public _DisplayTemplates DisplayTemplates { get { return s_DisplayTemplates; } }
-            public partial class _DisplayTemplates{
-            }
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{

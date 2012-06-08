@@ -29,7 +29,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
 
         public static class Releases
         {
-            public const string CurrentVersion = "february-2012-preview-2";
+            public const string CurrentVersion = "june-2012-preview-1";
             public static readonly string[] Routes = { string.Empty, "releases/{version}" };
             private static readonly string Action = MVC.Common.Features.ActionNames.Releases;
             public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
