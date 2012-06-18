@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
 using AutoMapper;
@@ -33,11 +34,12 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         }
 
         [HttpPost]
+        [OutputCache(Duration = 1800, VaryByParam = "*")]
         public virtual PartialViewResult Post(string term, string[] excludes)
         {
             const StringComparison caseInsensitive = StringComparison.OrdinalIgnoreCase;
             const StringMatchStrategy contains = StringMatchStrategy.Contains;
-            const int maxResults = 50;
+            const int maxResults = 30;
 
             // get places
             var places = _services.QueryProcessor.Execute(
@@ -46,6 +48,12 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
                     Term = term,
                     TermMatchStrategy = contains,
                     MaxResults = maxResults,
+                    EagerLoad = new Expression<Func<Place, object>>[]
+                    {
+                        p => p.GeoPlanetPlace.Type,
+                        p => p.Ancestors.Select(a => a.Ancestor),
+                        p => p.Names.Select(n => n.TranslationToLanguage),
+                    },
                 }
             );
 
@@ -65,6 +73,13 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
                     Term = term,
                     TermMatchStrategy = contains,
                     MaxResults = maxResults,
+                    EagerLoad = new Expression<Func<Establishment, object>>[]
+                    {
+                        e => e.Names.Select(n => n.TranslationToLanguage),
+                        e => e.Ancestors.Select(a => a.Ancestor),
+                        e => e.Location.Places,
+                        e => e.Type,
+                    },
                 }
             );
 

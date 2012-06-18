@@ -45,6 +45,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             return View(model);
         }
 
+        //[HttpGet]
+        //public virtual RedirectToRouteResult Test()
+        //{
+        //    _services.UserSigner.SignOn("ludwigd@uc.edu");
+        //    return RedirectToAction(MVC.Identity.MyHome.Get());
+        //}
+
         [HttpPost]
         public virtual JsonResult ValidatePassword(
             [CustomizeValidator(Properties = SignInForm.PasswordPropertyName)] SignInForm model)

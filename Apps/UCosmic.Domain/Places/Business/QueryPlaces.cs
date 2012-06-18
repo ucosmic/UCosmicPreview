@@ -11,10 +11,10 @@ namespace UCosmic.Domain.Places
         {
             var matchesName =
                 OfficialNameMatches(term, matchStrategy)
-                .Or
-                (
-                    NonOfficialNameMatches(term, matchStrategy)
-                )
+                //.Or
+                //(
+                //    NonOfficialNameMatches(term, matchStrategy)
+                //)
             ;
 
             return queryable.AsExpandable().Where(matchesName);
