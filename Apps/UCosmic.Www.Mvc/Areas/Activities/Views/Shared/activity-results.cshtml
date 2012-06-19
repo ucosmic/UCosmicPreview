@@ -1,0 +1,53 @@
+﻿@using UCosmic.Www.Mvc.Areas.Activities.Controllers
+@model UCosmic.Www.Mvc.Areas.Activities.Models.ActivityResults
+@{
+    ViewBag.Title = "Search Institutional Agreements";
+}
+@section HeadCenter
+{
+    @using (Html.BeginForm(
+        MVC.Activities.ActivitySearch.ActionNames.Get,
+        MVC.Activities.ActivitySearch.Name,
+        new
+        {
+            area = MVC.Activities.Name,
+            keyword = string.Empty,
+        },
+        FormMethod.Get
+    ))
+    {
+        <div class="button-sized search row">
+            <div class="input col">
+                <div class="emptybox">
+                    <div class="text-box input" data-ucosmic-watermark="true"
+                        data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.Keyword, ViewData).Watermark)"
+                        data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
+                        data-ucosmic-trim-input="true" data-ucosmic-autocomplete="true"
+                        @*data-ucosmic-autocomplete-url="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.AutoCompleteKeyword(Model.ContextEstablishment.WebsiteUrl, null))"*@
+                    >
+                        @Html.TextBoxFor(m => m.Keyword, new { autocomplete = "off" })
+                        <div class="autocomplete-menu">
+                        </div>
+                    </div>
+                    <a class="text-box empty-icon">
+                        <img src="@Url.Content(Links.content.icons.transparent_png)" alt="" />
+                        <span class="no-display">Clear this text box</span></a>
+                </div>
+            </div>
+            <div class="buttons col">
+                <input type="submit" value="Search" />
+                <span class="no-display"><a href="#" class="button-sized" data-ucosmic-not-implemented="true">
+                    Advanced search</a></span>
+            </div>
+        </div>
+    }
+}
+<div class="wrap-960">
+    @if (!Model.Any())
+    {
+        <p>
+            <strong>@Model.TenantName</strong> has no activities.
+        </p>
+    }
+    Here are the results
+</div>

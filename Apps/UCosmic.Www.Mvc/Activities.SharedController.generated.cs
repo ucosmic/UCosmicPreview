@@ -34,6 +34,7 @@ namespace T4MVC.Activities {
             public readonly string activities_page = "~/Areas/Activities/Views/Shared/activities-page.cshtml";
             public readonly string activity_delete = "~/Areas/Activities/Views/Shared/activity-delete.cshtml";
             public readonly string activity_form = "~/Areas/Activities/Views/Shared/activity-form.cshtml";
+            public readonly string activity_results = "~/Areas/Activities/Views/Shared/activity-results.cshtml";
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{

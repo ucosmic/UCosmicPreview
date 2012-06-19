@@ -87,6 +87,7 @@
     <Compile Include="Establishments\Business\BaseEstablishmentsQuery.cs" />
     <Compile Include="Establishments\Business\QueryEstablishmentNames.cs" />
     <Compile Include="Establishments\Entities\EmailTemplateName.cs" />
+    <Compile Include="Establishments\Queries\GetEstablishmentByUrl.cs" />
     <Compile Include="Establishments\Queries\FindEstablishmentsWithName.cs" />
     <Compile Include="Identity\Business\QuerySubjectNameIdentifiers.cs" />
     <Compile Include="Identity\Business\QueryEduPersonScopedAffiliations.cs" />

@@ -14,6 +14,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities
         {
             ActivityListRouter.RegisterRoutes(context);
             ActivityFormRouter.RegisterRoutes(context);
+            ActivitySearchRouter.RegisterRoutes(context);
             TagMenuRouter.RegisterRoutes(context);
             TagListRouter.RegisterRoutes(context);
 

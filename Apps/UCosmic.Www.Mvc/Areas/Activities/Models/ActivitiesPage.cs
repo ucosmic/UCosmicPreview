@@ -43,6 +43,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                             s.TotalResults
                         )
                     )
+                    .ForMember(d => d.Items, o => o.Ignore())
                 ;
 
                 CreateMap<Activity, ActivitiesPage.Item>()

@@ -22,6 +22,20 @@ namespace UCosmic.Domain.Establishments
             return establishment;
         }
 
+        internal static Establishment ByUrl(this IQueryable<Establishment> queryable, string url)
+        {
+            var establishment = queryable.SingleOrDefault
+            (
+                e =>
+                e.Urls.Any
+                (
+                    u =>
+                    u.Value.Equals(url, StringComparison.OrdinalIgnoreCase)
+                )
+            );
+            return establishment;
+        }
+
         internal static Establishment BySamlEntityId(this IQueryable<Establishment> queryable, string entityId)
         {
             if (entityId == null) throw new ArgumentNullException("entityId");

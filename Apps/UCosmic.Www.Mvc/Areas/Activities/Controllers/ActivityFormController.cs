@@ -74,6 +74,8 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
                 }
             );
             var model = Mapper.Map<ActivityForm>(activity);
+            if (model.Mode == ActivityMode.Protected)
+                model.Mode = ActivityMode.Public;
             return View(model);
         }
 
@@ -86,6 +88,8 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
                 Principal = User,
                 Number = number,
             };
+            if (model.Mode == ActivityMode.Protected)
+                model.Mode = ActivityMode.Public;
             Mapper.Map(model, command);
             _services.UpdateCommandHandler.Handle(command);
             var message = ModelState.IsValid ? SuccessMessage : null;
@@ -103,6 +107,8 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
                 Principal = User,
                 Number = number,
             };
+            if (model.Mode == ActivityMode.Protected)
+                model.Mode = ActivityMode.Public;
             Mapper.Map(model, command);
             _services.DraftCommandHandler.Handle(command);
             return Json(null);
