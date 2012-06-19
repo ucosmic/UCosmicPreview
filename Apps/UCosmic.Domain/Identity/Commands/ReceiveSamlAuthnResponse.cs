@@ -102,7 +102,7 @@ namespace UCosmic.Domain.Identity
                 user.Person.AffiliateWith(establishment);
 
             // remove previous saml mails, add new ones, and update existing ones
-            var oldSamlMails = user.Person.Emails.FromSaml();
+            var oldSamlMails = user.Person.Emails.FromSaml().ToArray();
             var newSamlMails = samlResponse.Mails ?? new string[] {};
             newSamlMails = newSamlMails.Where(s => !string.IsNullOrWhiteSpace(s)).ToArray();
             foreach (var oldSamlMail in oldSamlMails)
