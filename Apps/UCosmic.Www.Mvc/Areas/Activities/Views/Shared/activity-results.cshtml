@@ -1,7 +1,7 @@
-﻿@using UCosmic.Www.Mvc.Areas.Activities.Controllers
-@model UCosmic.Www.Mvc.Areas.Activities.Models.ActivityResults
+﻿@model UCosmic.Www.Mvc.Areas.Activities.Models.ActivityResults
 @{
-    ViewBag.Title = "Search Institutional Agreements";
+    ViewBag.Title = "Search Activities";
+    ViewBag.GoogleMapsApiScript = new object();
 }
 @section HeadCenter
 {
@@ -23,7 +23,7 @@
                         data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.Keyword, ViewData).Watermark)"
                         data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
                         data-ucosmic-trim-input="true" data-ucosmic-autocomplete="true"
-                        @*data-ucosmic-autocomplete-url="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.AutoCompleteKeyword(Model.ContextEstablishment.WebsiteUrl, null))"*@
+                        data-ucosmic-autocomplete-url="@Url.Action(MVC.Activities.ActivitySearch.AutoCompleteKeyword())"
                     >
                         @Html.TextBoxFor(m => m.Keyword, new { autocomplete = "off" })
                         <div class="autocomplete-menu">
@@ -49,5 +49,134 @@
             <strong>@Model.TenantName</strong> has no activities.
         </p>
     }
-    Here are the results
+    else
+    {
+        <ol style="margin: 1em 0; padding: 0; list-style: none; border-bottom: solid 1px #ccc;">
+            @foreach (var item in Model)
+            {
+                <li style="padding: 1em 0; border-top: solid 1px #ccc;">
+                    <div>
+                        <strong style="font-size: 1.2em;"><a href="@Url.Action(MVC.Activities.ActivityInfo.Get(item.EntityId))" 
+                                                             data-ucosmic-dialog="960" data-dialog-title="@item.Person.DisplayName">@item.Title</a>
+                            <span>@item.Person.DisplayName,</span> </strong><span>@Html.DisplayFor(m => item.StartsOn)</span>
+                    </div>
+                </li>
+            }
+        </ol>
+    }
 </div>
+<div id="dialog_landing" style="display: none; padding: 1em 0 1em 20px;">
+</div>
+@section Styles
+{
+    <style type="text/css">
+        .ucosmic .u-map-canvas {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+}
+@section Scripts
+{
+
+    <script type="text/javascript">
+        $(function () {
+            var autoCompleteSelectHandler = function (event, ui) {
+                $(this).val(ui.item.value);
+                $(this).closest('form').submit();
+            };
+            var autoCompleteOpenHandler = function () {
+                var inputWrapper = $(this).parents('.text-box.input');
+                var button = $(this).parents('.emptybox').find('a.text-box.empty-icon');
+                var ul = inputWrapper.find('.ui-autocomplete');
+
+                var oldLeft = ul.position().left;
+                var leftAdjustment = parseInt(inputWrapper.css('padding-left'))
+                    + parseInt(inputWrapper.css('border-left-width'));
+                var newLeft = oldLeft - leftAdjustment;
+                ul.css('left', newLeft);
+
+                var oldTop = ul.position().top;
+                var topAdjustment = parseInt(inputWrapper.css('padding-bottom')) +
+                        parseInt(inputWrapper.css('border-bottom-width'));
+                var newTop = oldTop + topAdjustment;
+                ul.css('top', newTop);
+
+                var oldWidth = ul.width();
+                var widthAdjustment = parseInt(inputWrapper.css('padding-left'))
+                + parseInt(button.width())
+                + parseInt(button.css('border-left-width'))
+                + parseInt(inputWrapper.css('border-left-width'))
+                + parseInt(inputWrapper.css('border-right-width'));
+                var newWidth = oldWidth + widthAdjustment;
+                ul.css('width', newWidth);
+            };
+
+            $('[data-ucosmic-autocomplete=true]').each(function () {
+                var url = $(this).data('ucosmic-autocomplete-url');
+                var input = $(this).find('input[type=text]');
+                input.autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: url,
+                            type: 'POST',
+                            data: {
+                                term: request.term
+                            },
+                            success: function (data) {
+                                response($.map(data, function (item) {
+                                    return {
+                                        label: item,
+                                        value: item
+                                    };
+                                }));
+                            }
+                        });
+                    }
+                    , minLength: 1
+                    , appendTo: $(this).find('.autocomplete-menu')
+                    , select: autoCompleteSelectHandler
+                    , open: autoCompleteOpenHandler
+                });
+
+                var originalKeyword = input.val();
+
+                input.parents('.emptybox').find('a.text-box.empty-icon').click(function () {
+                    input.val('');
+                    if (originalKeyword) input.closest('form').submit();
+                    else input.focus();
+                });
+
+                $(document).click(function () {
+                    input.autocomplete('close');
+                });
+            });
+        });
+
+        var dialogLanding = $('#dialog_landing');
+        dialogLanding.dialog({
+            title: 'Institutional agreement details',
+            autoOpen: false,
+            resizable: false,
+            draggable: false,
+            dialogClass: 'ucosmic modal',
+            width: 'auto',
+            height: 500,
+            modal: true
+        });
+        $('a[data-ucosmic-dialog=960]').each(function () {
+            $(this).on('click', function () {
+                var url = $(this).attr('href');
+                var title = $(this).data('dialog-title');
+                dialogLanding.html('')
+                    .load(url, function () {
+                        dialogLanding.dialog({ title: title });
+                        dialogLanding.dialog('open');
+                        $.ucosmic.obtrude(dialogLanding);
+                    });
+                return false;
+            });
+        });
+    </script>
+
+}

@@ -1,30 +1,32 @@
 ﻿using System;
-using System.Security.Principal;
 
 namespace UCosmic.Domain.Activities
 {
-    public class FindMyActivitiesQuery : BaseActivitiesQuery, IDefineQuery<PagedResult<Activity>>
+    public class FindTenantActivitiesByKeywordQuery : BaseActivitiesQuery, IDefineQuery<PagedResult<Activity>>
     {
-        public IPrincipal Principal { get; set; }
+        public object Tenant { get; set; }
+        public string Keyword { get; set; }
         public PagerOptions PagerOptions { get; set; }
     }
 
-    public class FindMyActivitiesHandler : IHandleQueries<FindMyActivitiesQuery, PagedResult<Activity>>
+    public class FindTenantActivitiesByKeywordHandler : IHandleQueries<FindTenantActivitiesByKeywordQuery, PagedResult<Activity>>
     {
         private readonly IQueryEntities _entities;
 
-        public FindMyActivitiesHandler(IQueryEntities entities)
+        public FindTenantActivitiesByKeywordHandler(IQueryEntities entities)
         {
             _entities = entities;
         }
 
-        public PagedResult<Activity> Handle(FindMyActivitiesQuery query)
+        public PagedResult<Activity> Handle(FindTenantActivitiesByKeywordQuery query)
         {
             if (query == null) throw new ArgumentNullException("query");
 
             var results = _entities.Activities
                 .EagerLoad(query.EagerLoad, _entities)
-                .WithUserName(query.Principal.Identity.Name)
+                .WithTenant(query.Tenant)
+                .WithMode(ActivityMode.Public)
+                .WithKeyword(query.Keyword)
                 .OrderBy(query.OrderBy)
             ;
 

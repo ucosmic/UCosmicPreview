@@ -56,6 +56,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
 
         [HttpGet]
         [ActionName("activities-page")]
+        [OpenTopTab(TopTabName.FacultyStaff)]
         public virtual ActionResult Page(int pageNumber = 1)
         {
             if (pageNumber < 1)

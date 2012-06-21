@@ -77,6 +77,8 @@
     <Compile Include="Activities\Entities\ActivityValues.cs" />
     <Compile Include="Activities\Entities\ActivityTagDomainType.cs" />
     <Compile Include="Activities\Entities\DraftedTag.cs" />
+    <Compile Include="Activities\Queries\GetActivityByEntityId.cs" />
+    <Compile Include="Activities\Queries\FindTenantActivitiesByKeyword.cs" />
     <Compile Include="Activities\Queries\FindMyActivities.cs" />
     <Compile Include="Activities\Queries\GetMyActivityByNumber.cs" />
     <Compile Include="Activities\Queries\FindActivitiesWithPersonId.cs" />
@@ -255,6 +257,7 @@
     <Compile Include="Places\PlaceName.cs" />
     <Compile Include="Places\PlaceNode.cs" />
     <Compile Include="Places\Queries\FindPlacesWithName.cs" />
+    <Compile Include="Places\Queries\GetPlaceById.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Api\RevisableEntity.cs" />
     <Compile Include="Identity\Entities\Role.cs" />

@@ -21,9 +21,9 @@ using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
 namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
-    public partial class ActivitySearchController {
+    public partial class ActivityIndexController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected ActivitySearchController(Dummy d) { }
+        protected ActivityIndexController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -31,39 +31,27 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult Get() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.Get);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.JsonResult AutoCompleteKeyword() {
-            return new T4MVC_JsonResult(Area, Name, ActionNames.AutoCompleteKeyword);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActivitySearchController Actions { get { return MVC.Activities.ActivitySearch; } }
+        public ActivityIndexController Actions { get { return MVC.Activities.ActivityIndex; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "Activities";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "ActivitySearch";
+        public readonly string Name = "ActivityIndex";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "ActivitySearch";
+        public const string NameConst = "ActivityIndex";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Get = "activity-results";
-            public readonly string AutoCompleteKeyword = "AutoCompleteKeyword";
+            public readonly string Get = "Get";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Get = "activity-results";
-            public const string AutoCompleteKeyword = "AutoCompleteKeyword";
+            public const string Get = "Get";
         }
 
 
@@ -76,20 +64,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_ActivitySearchController: UCosmic.Www.Mvc.Areas.Activities.Controllers.ActivitySearchController {
-        public T4MVC_ActivitySearchController() : base(Dummy.Instance) { }
+    public class T4MVC_ActivityIndexController: UCosmic.Www.Mvc.Areas.Activities.Controllers.ActivityIndexController {
+        public T4MVC_ActivityIndexController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Get(string establishment, string keyword) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
-            callInfo.RouteValueDictionary.Add("establishment", establishment);
-            callInfo.RouteValueDictionary.Add("keyword", keyword);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.JsonResult AutoCompleteKeyword(string establishment, string term) {
-            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.AutoCompleteKeyword);
-            callInfo.RouteValueDictionary.Add("establishment", establishment);
-            callInfo.RouteValueDictionary.Add("term", term);
+        public override System.Web.Mvc.RedirectToRouteResult Get() {
+            var callInfo = new T4MVC_RedirectToRouteResult(Area, Name, ActionNames.Get);
             return callInfo;
         }
 

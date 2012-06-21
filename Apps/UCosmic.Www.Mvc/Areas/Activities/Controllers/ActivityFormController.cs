@@ -73,6 +73,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
                     },
                 }
             );
+            if (activity == null) return HttpNotFound();
             var model = Mapper.Map<ActivityForm>(activity);
             if (model.Mode == ActivityMode.Protected)
                 model.Mode = ActivityMode.Public;

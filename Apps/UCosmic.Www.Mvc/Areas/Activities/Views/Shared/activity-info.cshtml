@@ -1,0 +1,21 @@
+﻿@model UCosmic.Www.Mvc.Areas.Activities.Models.ActivityInfo
+@{
+    ViewBag.Title = "Activity by {0}".FormatWith(Model.Person.DisplayName);
+    ViewBag.GoogleMapsApiScript = new object();
+}
+@section HeadCenter
+{
+    <h1>@Html.DisplayFor(m => m.Person.DisplayName)</h1>
+}
+<div class="wrap-960">
+    @Html.Partial(MVC.Activities.Shared.Views._activity_info, Model)
+</div>
+@section Styles
+{
+    <style type="text/css">
+        .ucosmic .u-map-canvas {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+}

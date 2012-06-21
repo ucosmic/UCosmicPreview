@@ -1,0 +1,63 @@
+﻿@model UCosmic.Www.Mvc.Areas.Activities.Models.ActivityInfo
+<div style="float: right; width: 340px; margin: 0 10px;">
+    @{
+        var zoomLevel = string.Empty;
+        var center = (Model.PlaceMarks.Length == 1) ? "{0},{1}".FormatWith(Model.PlaceMarks[0].CenterLatitude, Model.PlaceMarks[0].CenterLongitude) : string.Empty;
+    }
+    <div class="u-map-google" data-ucosmic-map-zoom="@zoomLevel" data-ucosmic-map-zoom-scroll-wheel="false"
+                 data-ucosmic-map-center="@center"
+                 data-ucosmic-map-bounds-north-east="@Model.MapBoundingBox.Northeast.Latitude,@Model.MapBoundingBox.Northeast.Longitude"
+                 data-ucosmic-map-bounds-south-west="@Model.MapBoundingBox.Southwest.Latitude,@Model.MapBoundingBox.Southwest.Longitude"
+                 data-ucosmic-map-bounds-fit="if-no-zoom"
+                >
+        <div class="u-map-canvas">
+        </div>
+        <div class="u-map-markers no-display">
+            @foreach (var placeMark in Model.PlaceMarks)
+            {
+                <div data-ucosmic-map="marker" 
+                             data-ucosmic-map-center="@placeMark.CenterLatitude,@placeMark.CenterLongitude" 
+                             data-ucosmic-map-title="@placeMark.Title">
+                </div>
+            }
+        </div>
+    </div>
+    <ol style="padding: 0; margin: 1em 0 0; list-style: none;">
+        @foreach (var tag in Model.Tags)
+        {
+            <li style="border: solid 1px #999; padding: 3px 5px; margin: 0 0 3px; display: inline-block;">@tag.Text</li>
+        }
+    </ol>
+</div>
+<h2>
+    @Html.DisplayFor(m => m.Title)
+</h2>
+@Html.DisplayFor(m => m.Content)
+<p>
+    @Model.Person.DisplayName
+    @if (Model.Person.DefaultAffiliationJobTitles.IsNotNullOrWhiteSpace())
+    {
+        <br />
+        @Model.Person.DefaultAffiliationJobTitles
+    }
+    else if (Model.Person.UserName.Equals(User.Identity.Name))
+    {
+        <br />
+        <a href="@Url.Action(MVC.Identity.UpdateAffiliation.Get(Model.Person.DefaultAffiliationEstablishmentId))">
+            Set up my Job Titles</a>
+    }
+    <br />
+    @Model.Person.DefaultAffiliationEstablishmentOfficialName
+</p>
+<div class="management">
+    @if (Model.Person.UserName.Equals(User.Identity.Name))
+    {
+        <a href="@Url.Action(MVC.Activities.ActivityForm.Get(Model.Number))" class="button-sized" style="padding-left: 0; border-left: 0;">
+            Edit this activity</a>
+    }
+    @if (Request.IsAjaxRequest())
+    {
+        <a href="@Url.Action(MVC.Activities.ActivityInfo.Get(Model.EntityId))" class="button-sized" target="_blank">
+            View in separate window</a>
+    }
+</div>

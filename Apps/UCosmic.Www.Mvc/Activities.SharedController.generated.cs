@@ -28,12 +28,14 @@ namespace T4MVC.Activities {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
+            public readonly string _activity_info = "~/Areas/Activities/Views/Shared/_activity-info.cshtml";
             public readonly string _short_list = "~/Areas/Activities/Views/Shared/_short-list.cshtml";
             public readonly string _tag_list = "~/Areas/Activities/Views/Shared/_tag-list.cshtml";
             public readonly string _tag_menu = "~/Areas/Activities/Views/Shared/_tag-menu.cshtml";
             public readonly string activities_page = "~/Areas/Activities/Views/Shared/activities-page.cshtml";
             public readonly string activity_delete = "~/Areas/Activities/Views/Shared/activity-delete.cshtml";
             public readonly string activity_form = "~/Areas/Activities/Views/Shared/activity-form.cshtml";
+            public readonly string activity_info = "~/Areas/Activities/Views/Shared/activity-info.cshtml";
             public readonly string activity_results = "~/Areas/Activities/Views/Shared/activity-results.cshtml";
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }

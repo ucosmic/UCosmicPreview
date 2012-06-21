@@ -228,6 +228,55 @@ namespace UCosmic.Www.Mvc
         //}
 
         #endregion
+        #region Skin Cookie Shortcuts
+
+        private const string SkinKey = "skin";
+
+        public static void SkinCookie(this HttpContextBase httpContext, string value)
+        {
+            if (httpContext == null) return;
+            HttpCookie cookie;
+
+            // when value is null or whitespace, clear the value
+            if (string.IsNullOrWhiteSpace(value))
+                cookie = new HttpCookie(SkinKey, null)
+                {
+                    Expires = DateTime.UtcNow.AddDays(-1),
+                };
+
+            // otherwise set the cookie
+            else
+                cookie = new HttpCookie(SkinKey, value)
+                {
+                    Expires = DateTime.UtcNow.AddDays(30),
+                    Path = "/",
+                };
+
+            httpContext.Response.SetCookie(cookie);
+        }
+
+        public static string SkinCookie(this HttpContextBase httpContext, bool renew = true)
+        {
+            if (httpContext == null) return null;
+            string value = null;
+
+            // get cookie from request
+            var cookie = httpContext.Request.Cookies[SkinKey];
+            if (cookie != null) value = cookie.Value;
+
+            if (!string.IsNullOrWhiteSpace(value) && renew)
+                httpContext.Response.SetCookie(
+                    new HttpCookie(SkinKey, value)
+                    {
+                        Expires = DateTime.UtcNow.AddDays(30),
+                        Path = "/",
+                    }
+                );
+
+            return value;
+        }
+
+        #endregion
         #region FailedPasswordAttempt Session Shortcuts
 
         private const string FailedPasswordAttemptsKey = "FailedPasswordAttempts";

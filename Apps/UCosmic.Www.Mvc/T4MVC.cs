@@ -47,6 +47,8 @@ namespace T4MVC {
     public class ActivitiesClass {
         public readonly string Name = "Activities";
         public UCosmic.Www.Mvc.Areas.Activities.Controllers.ActivityFormController ActivityForm = new UCosmic.Www.Mvc.Areas.Activities.Controllers.T4MVC_ActivityFormController();
+        public UCosmic.Www.Mvc.Areas.Activities.Controllers.ActivityIndexController ActivityIndex = new UCosmic.Www.Mvc.Areas.Activities.Controllers.T4MVC_ActivityIndexController();
+        public UCosmic.Www.Mvc.Areas.Activities.Controllers.ActivityInfoController ActivityInfo = new UCosmic.Www.Mvc.Areas.Activities.Controllers.T4MVC_ActivityInfoController();
         public UCosmic.Www.Mvc.Areas.Activities.Controllers.ActivityListController ActivityList = new UCosmic.Www.Mvc.Areas.Activities.Controllers.T4MVC_ActivityListController();
         public UCosmic.Www.Mvc.Areas.Activities.Controllers.ActivitySearchController ActivitySearch = new UCosmic.Www.Mvc.Areas.Activities.Controllers.T4MVC_ActivitySearchController();
         public UCosmic.Www.Mvc.Areas.Activities.Controllers.TagListController TagList = new UCosmic.Www.Mvc.Areas.Activities.Controllers.T4MVC_TagListController();
@@ -398,6 +400,16 @@ public class T4MVC_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult {
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 public class T4MVC_ViewResult : System.Web.Mvc.ViewResult, IT4MVCActionResult {
     public T4MVC_ViewResult(string area, string controller, string action): base()  {
+        this.InitMVCT4Result(area, controller, action);
+    }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+public class T4MVC_RedirectToRouteResult : System.Web.Mvc.RedirectToRouteResult, IT4MVCActionResult {
+    public T4MVC_RedirectToRouteResult(string area, string controller, string action): base(" ", default(System.Web.Routing.RouteValueDictionary), default(bool))  {
         this.InitMVCT4Result(area, controller, action);
     }
     

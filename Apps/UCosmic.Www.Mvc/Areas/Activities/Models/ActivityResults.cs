@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using AutoMapper;
 using UCosmic.Domain;
@@ -25,8 +26,13 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
 
         public class ActivityResult
         {
-            public int Number { get; set; }
+            public Guid EntityId { get; set; }
+
             public string Title { get; set; }
+
+            [DisplayFormat(DataFormatString = "{0:M/d/yyyy}")]
+            public DateTime StartsOn { get; set; }
+
             public Owner Person { get; set; }
             public class Owner
             {
@@ -61,6 +67,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
 
                 CreateMap<Activity, ActivityResults.ActivityResult>()
                     .ForMember(d => d.Title, o => o.MapFrom(s => s.Values.Title))
+                    .ForMember(d => d.StartsOn, o => o.MapFrom(s => s.Values.StartsOn))
                 ;
 
                 CreateMap<Person, ActivityResults.ActivityResult.Owner>()

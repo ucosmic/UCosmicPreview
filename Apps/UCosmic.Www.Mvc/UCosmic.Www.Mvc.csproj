@@ -200,6 +200,12 @@
     <Compile Include="Activities.ActivityFormController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Activities.ActivityIndexController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Activities.ActivityInfoController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Activities.ActivityListController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -216,12 +222,15 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\Activities\ActivitiesAreaRegistration.cs" />
+    <Compile Include="Areas\Activities\Controllers\ActivityInfoController.cs" />
     <Compile Include="Areas\Activities\Controllers\ActivityListController.cs" />
     <Compile Include="Areas\Activities\Controllers\ActivitySearchController.cs" />
+    <Compile Include="Areas\Activities\Controllers\ActivityIndexController.cs" />
     <Compile Include="Areas\Activities\Controllers\TagListController.cs" />
     <Compile Include="Areas\Activities\Controllers\TagMenuController.cs" />
     <Compile Include="Areas\Activities\Controllers\ActivityFormController.cs" />
     <Compile Include="Areas\Activities\Models\ActivitiesPage.cs" />
+    <Compile Include="Areas\Activities\Models\ActivityInfo.cs" />
     <Compile Include="Areas\Activities\Models\ActivityResults.cs" />
     <Compile Include="Areas\Activities\Models\TagMenuItem.cs" />
     <Compile Include="Areas\Activities\Models\ActivityForm.cs" />
@@ -1372,6 +1381,8 @@
     <Content Include="Areas\Activities\Views\Shared\activity-delete.cshtml" />
     <Content Include="Areas\Common\Views\Features\june-2012-preview-1.cshtml" />
     <Content Include="Areas\Activities\Views\Shared\activity-results.cshtml" />
+    <Content Include="Areas\Activities\Views\Shared\activity-info.cshtml" />
+    <Content Include="Areas\Activities\Views\Shared\_activity-info.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />
