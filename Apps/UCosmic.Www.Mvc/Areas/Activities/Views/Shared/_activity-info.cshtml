@@ -38,7 +38,7 @@
     @if (Model.Person.DefaultAffiliationJobTitles.IsNotNullOrWhiteSpace())
     {
         <br />
-        @Model.Person.DefaultAffiliationJobTitles
+        @Html.Raw(Model.Person.DefaultAffiliationJobTitles.Replace("\r\n", "<br />"))
     }
     else if (Model.Person.UserName.Equals(User.Identity.Name))
     {

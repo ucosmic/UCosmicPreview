@@ -77,6 +77,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
             public readonly string gherkin = "~/Areas/Common/Views/Features/gherkin.cshtml";
             public readonly string global_press_module = "~/Areas/Common/Views/Features/global-press-module.cshtml";
             public readonly string june_2012_preview_1 = "~/Areas/Common/Views/Features/june-2012-preview-1.cshtml";
+            public readonly string june_2012_preview_2 = "~/Areas/Common/Views/Features/june-2012-preview-2.cshtml";
             public readonly string preview_1 = "~/Areas/Common/Views/Features/preview-1.cshtml";
             public readonly string preview_2 = "~/Areas/Common/Views/Features/preview-2.cshtml";
             public readonly string preview_3 = "~/Areas/Common/Views/Features/preview-3.cshtml";
