@@ -519,6 +519,7 @@
     <Content Include="App_Data\saml\identity-providers\login.uc.edu.xml" />
     <Content Include="App_Data\saml\identity-providers\wif-saml2-sample.xml" />
     <Content Include="app_offline.html" />
+    <Content Include="content\images\agreements-visibility-900.png" />
     <Content Include="content\images\facac-modal-1.png" />
     <Content Include="content\ReSharper.css" />
     <Content Include="content\icons\cancels\cancel-disabled-hover-16.png" />
@@ -1386,6 +1387,7 @@
     <Content Include="Areas\Activities\Views\Shared\activity-info.cshtml" />
     <Content Include="Areas\Activities\Views\Shared\_activity-info.cshtml" />
     <Content Include="Areas\Common\Views\Features\june-2012-preview-2.cshtml" />
+    <Content Include="Areas\Common\Views\Features\july-2012-preview-1.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\PlacesData.sql" />

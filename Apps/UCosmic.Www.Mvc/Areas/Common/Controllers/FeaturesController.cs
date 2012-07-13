@@ -25,6 +25,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 { "february-2012-preview-2",     "February 2012 Preview 2 Feature Summary" },
                 { "june-2012-preview-1",         "June 2012 Preview 1 Feature Summary" },
                 { "june-2012-preview-2",         "June 2012 Preview 2 Feature Summary" },
+                { "july-2012-preview-1",         "July 2012 Preview 1 Feature Summary" },
             };
             if (allowedVersions.ContainsKey(version.ToLower()))
             {
@@ -102,6 +103,14 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             model.Add(new FeaturePreview
             {
                 Name = "UCosmic June 2012 Preview 1",
+                Version = version,
+                IsCurrentlyViewed = (version == currentVersion),
+            });
+
+            version = "july-2012-preview-1";
+            model.Add(new FeaturePreview
+            {
+                Name = "UCosmic July 2012 Preview 2",
                 Version = version,
                 IsCurrentlyViewed = (version == currentVersion),
             });
