@@ -226,6 +226,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             if (scalars.StartsOn != entity.StartsOn) ++changes;
             if (scalars.ExpiresOn != entity.ExpiresOn) ++changes;
             if (scalars.IsExpirationEstimated != entity.IsExpirationEstimated) ++changes;
+            if (scalars.Visibility != entity.Visibility) ++changes;
 
             entity.Title = scalars.Title;
             entity.IsTitleDerived = scalars.IsTitleDerived;
@@ -236,6 +237,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             entity.StartsOn = scalars.StartsOn;
             entity.ExpiresOn = scalars.ExpiresOn;
             entity.IsExpirationEstimated = scalars.IsExpirationEstimated;
+            entity.Visibility = scalars.Visibility;
 
             return changes;
         }

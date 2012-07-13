@@ -124,6 +124,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                     .ForMember(e => e.IsCurrent, opt => opt.Ignore())
                     .ForMember(e => e.IsArchived, opt => opt.Ignore())
                     .ForMember(e => e.IsDeleted, opt => opt.Ignore())
+                    .ForMember(e => e.VisibilityText, opt => opt.Ignore())
                 ;
             }
         }
@@ -163,6 +164,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                     .ForMember(e => e.IsCurrent, opt => opt.Ignore())
                     .ForMember(e => e.IsArchived, opt => opt.Ignore())
                     .ForMember(e => e.IsDeleted, opt => opt.Ignore())
+                    .ForMember(e => e.Visibility, opt => opt.Ignore())
+                    .ForMember(e => e.VisibilityText, opt => opt.Ignore())
                 ;
             }
         }

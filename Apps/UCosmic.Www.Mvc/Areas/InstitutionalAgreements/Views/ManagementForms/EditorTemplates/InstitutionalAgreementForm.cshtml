@@ -392,6 +392,51 @@
             </tbody>
         </table>
     </fieldset>
+    <fieldset>
+        <legend>Overall Visibility</legend>
+        <p>
+            Select one of the options below to control the overall visibility of this entire
+            agreement. For example, you can use these options to show / hide the agreement to
+            / from the public in search results.
+        </p>
+        <div>
+            <label>
+                @Html.RadioButton(Html.NameFor(m => m.Visibility).ToString(),
+                    InstitutionalAgreementVisibilityOption.Public,
+                    Model.Visibility == InstitutionalAgreementVisibilityOption.Public,
+                    new
+                    {
+                        id = string.Format("{0}_{1}", Html.IdFor(m => m.Visibility), InstitutionalAgreementVisibilityOption.Public)
+                    })
+                <strong>Public:</strong> Allow anyone on the Internet to find this agreement.
+            </label>
+        </div>
+        <div>
+            <label>
+                @Html.RadioButton(Html.NameFor(m => m.Visibility).ToString(),
+                    InstitutionalAgreementVisibilityOption.Protected,
+                    Model.Visibility == InstitutionalAgreementVisibilityOption.Protected,
+                    new
+                    {
+                        id = string.Format("{0}_{1}", Html.IdFor(m => m.Visibility), InstitutionalAgreementVisibilityOption.Protected)
+                    })
+                <strong>Protected:</strong> Hide this agreement from the public, but allow my employees
+                and students to find it.
+            </label>
+        </div>
+        <div>
+            <label>
+                @Html.RadioButton(Html.NameFor(m => m.Visibility).ToString(),
+                    InstitutionalAgreementVisibilityOption.Private,
+                    Model.Visibility == InstitutionalAgreementVisibilityOption.Private,
+                    new
+                    {
+                        id = string.Format("{0}_{1}", Html.IdFor(m => m.Visibility), InstitutionalAgreementVisibilityOption.Private)
+                    })
+                <strong>Private:</strong> Allow only UCosmic administrators to find this agreement.
+            </label>
+        </div>
+    </fieldset>
     <div id="modal_box">
     </div>
     <div class="hidden-input">

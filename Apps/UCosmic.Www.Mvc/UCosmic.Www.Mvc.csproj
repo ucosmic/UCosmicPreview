@@ -234,6 +234,7 @@
     <Compile Include="Areas\Activities\Models\ActivityResults.cs" />
     <Compile Include="Areas\Activities\Models\TagMenuItem.cs" />
     <Compile Include="Areas\Activities\Models\ActivityForm.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementVisibilityOption.cs" />
     <Compile Include="Controllers\HttpMethodOverrideConstraint.cs" />
     <Compile Include="Controllers\HttpNotFoundOnNullModelAttribute.cs" />
     <Compile Include="Helpers\FormsAuthenticationConfig.cs" />

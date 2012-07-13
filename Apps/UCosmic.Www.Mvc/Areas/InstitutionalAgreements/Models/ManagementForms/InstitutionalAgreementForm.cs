@@ -113,6 +113,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
         public bool? IsAutoRenew { get; set; }
 
         #endregion
+        #region Visibility
+
+        public InstitutionalAgreementVisibilityOption Visibility { get; set; }
+
+        #endregion
         #region Collections
 
         [ScaffoldColumn(false)]
