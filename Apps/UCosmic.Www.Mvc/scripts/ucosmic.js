@@ -1276,8 +1276,8 @@ $(function () {
                 .attr('title', settings.buttonTitle)
                 .insertAfter($this)
                 .click(onClick)
-                .height($this.outerHeight())
-                .html('<span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"></span>');
+                .height($this.outerHeight(true));
+                //.html('<span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"></span>'); //caused weirdness in chrome
 
             $this.width($this.width() - button.outerWidth(true));
             if ($.browser.mozilla && parseInt($.browser.version) >= 2) {
