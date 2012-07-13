@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UCosmic
+namespace UCosmic.IoC
 {
     // NOTE: Service Locator pattern should be avoided in most places. Try to use constructor injection instead.
     public static class DependencyInjector

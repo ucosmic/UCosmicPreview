@@ -66,8 +66,6 @@
     <Compile Include="Ioc\IProcessQueries.cs" />
     <Compile Include="Etc\ISignUsers.cs" />
     <Compile Include="Etc\StringMatchStrategy.cs" />
-    <Compile Include="Ioc\DependencyInjector.cs" />
-    <Compile Include="Ioc\DependencyInjectorExtensions.cs" />
     <Compile Include="Etc\ILogExceptions.cs" />
     <Compile Include="Config\IManageConfigurations.cs" />
     <Compile Include="Etc\RoleName.cs" />

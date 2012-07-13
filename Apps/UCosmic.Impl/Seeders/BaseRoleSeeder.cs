@@ -1,5 +1,6 @@
 using System.Data;
 using UCosmic.Domain.Identity;
+using UCosmic.IoC;
 
 namespace UCosmic.Impl.Seeders
 {

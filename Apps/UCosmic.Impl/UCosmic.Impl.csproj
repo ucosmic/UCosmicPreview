@@ -101,6 +101,8 @@
     <Compile Include="Decorators\SaveChangesAndDisposeDecorator.cs" />
     <Compile Include="Orm\ActivitiesRelationalMapper.cs" />
     <Compile Include="Seeders\CoreDataSqlSeeder.cs" />
+    <Compile Include="Simple\DependencyInjector.cs" />
+    <Compile Include="Simple\DependencyInjectorExtensions.cs" />
     <Compile Include="Web\SmtpMailSender.cs" />
     <Compile Include="Web\DotNetFormsAuthentication.cs" />
     <Compile Include="Fluent\FluentValidatorFactory.cs" />

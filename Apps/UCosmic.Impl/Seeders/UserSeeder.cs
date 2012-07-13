@@ -2,6 +2,7 @@ using System.Linq;
 using System.Web.Security;
 using UCosmic.Domain.People;
 using UCosmic.Impl.Orm;
+using UCosmic.IoC;
 
 namespace UCosmic.Impl.Seeders
 {

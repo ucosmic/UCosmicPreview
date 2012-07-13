@@ -9,6 +9,7 @@ using NGeo.Yahoo.PlaceFinder;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Places;
 using UCosmic.Impl.Orm;
+using UCosmic.IoC;
 
 namespace UCosmic.Impl.Seeders
 {
