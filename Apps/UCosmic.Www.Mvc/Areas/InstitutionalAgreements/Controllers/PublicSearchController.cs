@@ -146,7 +146,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                         { a => a.StartsOn, OrderByDirection.Descending },
                     },
                 }
-            );
+            ).ToList();
 
             #region old code
 
@@ -280,6 +280,15 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 
             #endregion
 
+            foreach (var agreement in agreements.ToArray())
+            {
+                // remove agreements that are not visible
+                if (agreement.Visibility == InstitutionalAgreementVisibility.Protected && !isAffiliate)
+                    agreements.Remove(agreement);
+                else if (agreement.Visibility == InstitutionalAgreementVisibility.Private && !isSupervisor && !isManager)
+                    agreements.Remove(agreement);
+            }
+
             var partners = agreements.SelectMany(a => a.Participants).Where(a => !a.IsOwner)
                 .Select(p => p.Establishment).Distinct(new RevisableEntityEqualityComparer())
                 .Cast<Establishment>();
@@ -335,6 +344,16 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             var isManager = isAffiliate && (User.IsInRole(RoleName.InstitutionalAgreementManager)
                 || User.IsInRole(RoleName.InstitutionalAgreementSupervisor));
 
+            // hide from the public
+            if (agreement.Visibility == InstitutionalAgreementVisibility.Protected && !isAffiliate)
+            {
+                return HttpNotFound();
+            }
+            if (agreement.Visibility == InstitutionalAgreementVisibility.Private && !isManager)
+            {
+                return HttpNotFound();
+            }
+
             var model = Mapper.Map<AgreementInfo>(agreement);
             model.IsAffiliate = isAffiliate;
             model.IsManager = isManager;
@@ -367,6 +386,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 if (agreement != null && agreement.Files != null && agreement.Files.Count > 0
                     && agreement.IsOwnedBy(User))
                 {
+                    if (agreement.Visibility == InstitutionalAgreementVisibility.Private &&
+                        !User.IsInRole(RoleName.InstitutionalAgreementManager) &&
+                        !User.IsInRole(RoleName.InstitutionalAgreementSupervisor))
+                    {
+                        return HttpNotFound();
+                    }
                     var file = agreement.Files.SingleOrDefault(f => f.EntityId.Equals(fileId));
                     if (file != null)
                     {
@@ -394,6 +419,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 if (agreement != null && agreement.Files != null && agreement.Files.Count > 0
                     && agreement.IsOwnedBy(User))
                 {
+                    if (agreement.Visibility == InstitutionalAgreementVisibility.Private &&
+                        !User.IsInRole(RoleName.InstitutionalAgreementManager) &&
+                        !User.IsInRole(RoleName.InstitutionalAgreementSupervisor))
+                    {
+                        return HttpNotFound();
+                    }
                     var file = agreement.Files.SingleOrDefault(f => f.EntityId.Equals(fileId));
                     if (file != null)
                     {
