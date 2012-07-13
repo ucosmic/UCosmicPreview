@@ -96,6 +96,7 @@
     <Compile Include="Identity\Commands\ReceiveSamlAuthnResponse.cs" />
     <Compile Include="Identity\Commands\RedeemEmailConfirmation.cs" />
     <Compile Include="Identity\Commands\SendEmailMessage.cs" />
+    <Compile Include="InstitutionalAgreements\InstitutionalAgreementVisibility.cs" />
     <Compile Include="People\Business\ValidateEmailConfirmation.cs" />
     <Compile Include="People\Entities\EmailConfirmationIntent.cs" />
     <Compile Include="People\Queries\GetMyPerson.cs" />

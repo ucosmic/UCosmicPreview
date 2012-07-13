@@ -136,6 +136,7 @@ namespace UCosmic.Impl.Orm
                 Property(p => p.Type).IsRequired().HasMaxLength(150);
                 Property(p => p.Status).IsRequired().HasMaxLength(50);
                 Property(p => p.Description).IsMaxLength();
+                Property(p => p.VisibilityText).HasColumnName("Visibility").IsRequired().HasMaxLength(20);
             }
         }
 

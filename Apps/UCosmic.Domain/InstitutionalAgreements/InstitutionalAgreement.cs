@@ -20,6 +20,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             _children = new List<InstitutionalAgreement>();
             _ancestors = new List<InstitutionalAgreementNode>();
             _offspring = new List<InstitutionalAgreementNode>();
+            Visibility = InstitutionalAgreementVisibility.Public;
         }
 
         public bool IsTitleDerived { get; set; }
@@ -159,6 +160,13 @@ namespace UCosmic.Domain.InstitutionalAgreements
             Files.Add(file);
             fileFactory.Purge(looseFile.EntityId);
             return 1;
+        }
+
+        public string VisibilityText { get; protected set; }
+        public InstitutionalAgreementVisibility Visibility
+        {
+            get { return VisibilityText.AsEnum<InstitutionalAgreementVisibility>(); }
+            protected internal set { VisibilityText = value.AsSentenceFragment(); }
         }
 
         public string DeriveTitle()
