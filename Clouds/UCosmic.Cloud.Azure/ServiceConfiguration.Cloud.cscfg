@@ -3,7 +3,7 @@
   <Role name="UCosmic.Www.Mvc">
     <Instances count="2" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=ucosmicdiagnostics;AccountKey=here" />
       <Setting name="UCosmic.Www.Mvc.DeployedToEmulator" value="false" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="UCosmicBriarhill" />
