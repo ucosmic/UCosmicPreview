@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using UCosmic.Domain;
 
 namespace UCosmic.Impl
 {

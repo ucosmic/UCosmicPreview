@@ -1,3 +1,5 @@
+using UCosmic.Domain;
+
 namespace UCosmic.Impl
 {
     public class TestSamlCertificateStorage : RealSamlCertificateStorage

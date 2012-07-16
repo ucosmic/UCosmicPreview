@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Web.Security;
+using UCosmic.Domain;
 using UCosmic.Domain.People;
 using UCosmic.Impl.Orm;
 using UCosmic.IoC;

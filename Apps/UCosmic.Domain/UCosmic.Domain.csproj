@@ -82,6 +82,7 @@
     <Compile Include="Activities\Queries\FindMyActivities.cs" />
     <Compile Include="Activities\Queries\GetMyActivityByNumber.cs" />
     <Compile Include="Activities\Queries\FindActivitiesWithPersonId.cs" />
+    <Compile Include="Api\IManageConfigurations.cs" />
     <Compile Include="Api\PagerOptions.cs" />
     <Compile Include="Api\PagedResult.cs" />
     <Compile Include="Api\BaseQuery.cs" />

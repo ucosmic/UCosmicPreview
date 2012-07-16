@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Threading;
 using System.Web;
+using UCosmic.Domain;
 
 namespace UCosmic.Impl
 {
