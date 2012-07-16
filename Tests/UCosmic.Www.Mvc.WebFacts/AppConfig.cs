@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Threading;
+using UCosmic.Impl;
 
 namespace UCosmic.Www.Mvc
 {
@@ -180,7 +181,7 @@ namespace UCosmic.Www.Mvc
 
         public static string TestMailInbox
         {
-            get { return ConfigurationManager.AppSettings[AppSettingsKey.TestMailInbox.ToString()]; }
+            get { return new DotNetConfigurationManager().TestMailInbox; }
         }
 
         public static string TestMailReset

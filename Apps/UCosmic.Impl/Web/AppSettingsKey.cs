@@ -1,4 +1,4 @@
-namespace UCosmic
+namespace UCosmic.Impl
 {
     public enum AppSettingsKey
     {
