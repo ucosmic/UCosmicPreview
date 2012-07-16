@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
-using UCosmic.Domain;
-using UCosmic.Domain.Activities;
 using UCosmic.Domain.Establishments;
 using UCosmic.Www.Mvc.Areas.Activities.Models;
 using UCosmic.Www.Mvc.Controllers;
-using AutoMapper;
 
 namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
 {
