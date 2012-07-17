@@ -7,7 +7,7 @@ using System.Threading;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
-using UCosmic.IoC;
+using UCosmic.Impl;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 {

@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
-using UCosmic.IoC;
 
 namespace UCosmic.Impl.Seeders
 {

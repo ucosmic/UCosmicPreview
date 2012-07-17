@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Web.Mvc;
-using UCosmic.IoC;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 {
     public partial class ErrorsController : Controller
     {
+        private readonly ILogExceptions _exceptionLogger;
+
+        public ErrorsController(ILogExceptions exceptionLogger)
+        {
+            _exceptionLogger = exceptionLogger;
+        }
+
         [ActionName("not-found")]
         public virtual ActionResult NotFound()
         {
@@ -71,8 +77,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         [ActionName("log-ajax-error")]
         public virtual JsonResult LogAjaxError(JQueryAjaxException model)
         {
-            var exceptionLogger = DependencyInjector.Current.GetService<ILogExceptions>();
-            exceptionLogger.LogException(model);
+            _exceptionLogger.LogException(model);
             return Json(null, JsonRequestBehavior.AllowGet);
         }
 

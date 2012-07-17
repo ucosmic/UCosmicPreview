@@ -5,9 +5,9 @@ using System.ServiceProcess;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using UCosmic.Domain;
+using UCosmic.Impl;
 using UCosmic.Impl.Orm;
 using UCosmic.Impl.Seeders;
-using UCosmic.IoC;
 using UCosmic.Www.Mvc.Areas.Identity;
 
 namespace UCosmic.Www.Mvc

@@ -10,7 +10,6 @@ using UCosmic.Domain;
 using UCosmic.Impl;
 using UCosmic.Impl.Orm;
 using UCosmic.Impl.Seeders;
-using UCosmic.IoC;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Models;
 

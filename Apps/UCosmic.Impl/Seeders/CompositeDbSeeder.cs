@@ -2,7 +2,6 @@ using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Impl.Orm;
-using UCosmic.IoC;
 
 namespace UCosmic.Impl.Seeders
 {

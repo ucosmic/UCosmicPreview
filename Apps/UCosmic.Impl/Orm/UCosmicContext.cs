@@ -28,9 +28,6 @@ namespace UCosmic.Impl.Orm
                 Database.SetInitializer(initializer);
         }
 
-        // ReSharper disable UnusedAutoPropertyAccessor.Global
-        // ReSharper disable MemberCanBePrivate.Global
-
         public IDbSet<LooseFile> Files { get; set; }
         IQueryable<LooseFile> IQueryEntities.Files { get { return Files; } }
 
@@ -79,9 +76,6 @@ namespace UCosmic.Impl.Orm
 
         public IDbSet<Activity> Activities { get; set; }
         IQueryable<Activity> IQueryEntities.Activities { get { return Activities; } }
-
-        // ReSharper restore UnusedAutoPropertyAccessor.Global
-        // ReSharper restore MemberCanBePrivate.Global
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

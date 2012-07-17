@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Should;
 using UCosmic.Impl;
-using UCosmic.IoC;
 
 namespace UCosmic.Www.Mvc
 {

@@ -10,7 +10,7 @@ using NGeo.Yahoo.PlaceFinder;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Places;
-using UCosmic.IoC;
+using UCosmic.Impl;
 using UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms;
 using UCosmic.Www.Mvc.Controllers;
 using BoundingBox = UCosmic.Domain.Places.BoundingBox;

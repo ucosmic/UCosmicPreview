@@ -18,9 +18,6 @@ namespace UCosmic.Www.Mvc
             DataGroupNameField = "GroupName";
         }
 
-        // ReSharper disable MemberCanBePrivate.Global
-        // ReSharper disable UnusedAutoPropertyAccessor.Global
-        
         public new object SelectedValue { get; private set; }
 
         public string DataGroupKeyField
@@ -34,9 +31,6 @@ namespace UCosmic.Www.Mvc
             get;
             private set;
         }
-
-        // ReSharper restore MemberCanBePrivate.Global
-        // ReSharper restore UnusedAutoPropertyAccessor.Global
 
         private static IEnumerable ToEnumerable(object selectedValue)
         {

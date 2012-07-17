@@ -23,9 +23,6 @@ using T4MVC;
 namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
     public partial class ErrorsController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ErrorsController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected ErrorsController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

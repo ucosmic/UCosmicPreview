@@ -9,7 +9,7 @@ using UCosmic.Domain.Activities;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
 using UCosmic.Domain.Places;
-using UCosmic.IoC;
+using UCosmic.Impl;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Activities.Models
