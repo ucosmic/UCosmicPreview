@@ -133,6 +133,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Pluralizer.Mvc.0.3.0.1\lib\net40\Pluralize.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceProviderExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceProviderExtensions.1.0\lib\net40\ServiceProviderExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="SimpleInjector">
       <HintPath>..\..\packages\SimpleInjector.1.4.0.12049\lib\net35\SimpleInjector.dll</HintPath>
     </Reference>

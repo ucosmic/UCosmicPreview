@@ -2,10 +2,10 @@
 UCosmic is a suite of web tools used by academia for international strategic planning and other global concerns. For more information, please visit [the UCosmic Consortium](http://www.ucosmic.org).
 
 ## License
-This UCosmic software is subject to the terms of the [Microsoft Public License (Ms-PL)](http://www.opensource.org/licenses/MS-PL). 
+This UCosmic software is subject to the terms of the [Microsoft Public License (Ms-PL)](http://www.opensource.org/licenses/MS-PL).
 
 ## Setup
-For detailed instructions on getting UCosmic up and running, please [read the wiki](https://github.com/ucosmic/ucosmic/wiki). 
+For detailed instructions on getting UCosmic up and running, please [read the wiki](https://github.com/ucosmic/ucosmic/wiki).
 
 ## Thanks to
 <div style="position: relative; background: #7d255b url(http://www.jetbrains.com/resharper/features/rs/rs1/rs468x60_violet.gif) no-repeat 10px 50%;

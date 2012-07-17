@@ -73,6 +73,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\NGeo.1.4\lib\net40\NGeo.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceProviderExtensions">
+      <HintPath>..\..\packages\ServiceProviderExtensions.1.0\lib\net40\ServiceProviderExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="SimpleInjector">
       <HintPath>..\..\packages\SimpleInjector.1.4.0.12049\lib\net35\SimpleInjector.dll</HintPath>
     </Reference>
@@ -102,7 +105,6 @@
     <Compile Include="Orm\ActivitiesRelationalMapper.cs" />
     <Compile Include="Seeders\CoreDataSqlSeeder.cs" />
     <Compile Include="Simple\DependencyInjector.cs" />
-    <Compile Include="Simple\DependencyInjectorExtensions.cs" />
     <Compile Include="Web\AppSettingsKey.cs" />
     <Compile Include="Web\DeployToTarget.cs" />
     <Compile Include="Web\SmtpMailSender.cs" />
