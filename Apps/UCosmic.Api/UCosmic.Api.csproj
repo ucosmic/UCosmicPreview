@@ -58,7 +58,6 @@
     <Compile Include="Ioc\IHandleCommands.cs" />
     <Compile Include="Ioc\IHandleQueries.cs" />
     <Compile Include="Ioc\IProcessQueries.cs" />
-    <Compile Include="Etc\StringMatchStrategy.cs" />
     <Compile Include="Etc\RoleName.cs" />
     <Compile Include="Saml\IParseSaml2Metadata.cs" />
     <Compile Include="Saml\IProvideSaml2Service.cs" />
@@ -69,7 +68,6 @@
     <Compile Include="Saml\Saml2SsoBindingUri.cs" />
     <Compile Include="Saml\SamlAttributeFriendlyName.cs" />
     <Compile Include="Saml\SamlAttributeFriendlyNameString.cs" />
-    <Compile Include="Etc\UnicodeToAsciiConverter.cs" />
     <Compile Include="Saml\SamlAttributeName.cs" />
     <Compile Include="Saml\SamlAttributeNameString.cs" />
   </ItemGroup>

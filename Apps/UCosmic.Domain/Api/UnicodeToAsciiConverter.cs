@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace UCosmic
+namespace UCosmic.Domain
 {
     /// <summary>
     /// Provides text conversion from unicode to ASCII equivalents.
