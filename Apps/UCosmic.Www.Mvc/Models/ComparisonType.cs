@@ -1,4 +1,4 @@
-﻿namespace UCosmic
+﻿namespace UCosmic.Www.Mvc.Models
 {
     public enum ComparisonType
     {
