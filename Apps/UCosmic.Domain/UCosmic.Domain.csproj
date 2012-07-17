@@ -85,7 +85,6 @@
     <Compile Include="Api\CaseInsensitiveStringComparer.cs" />
     <Compile Include="Api\IAmNumbered.cs" />
     <Compile Include="Api\IConsumeHttp.cs" />
-    <Compile Include="Api\IHaveText.cs" />
     <Compile Include="Api\ILogExceptions.cs" />
     <Compile Include="Api\IManageConfigurations.cs" />
     <Compile Include="Api\ISendMail.cs" />
@@ -95,6 +94,7 @@
     <Compile Include="Api\PagedResult.cs" />
     <Compile Include="Api\BaseQuery.cs" />
     <Compile Include="Api\FluentValidationCommandDecorator.cs" />
+    <Compile Include="Api\RoleName.cs" />
     <Compile Include="Api\StringMatchStrategy.cs" />
     <Compile Include="Api\UnicodeToAsciiConverter.cs" />
     <Compile Include="Establishments\Business\BaseEstablishmentsQuery.cs" />

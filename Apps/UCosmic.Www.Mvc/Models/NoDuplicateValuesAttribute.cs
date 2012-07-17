@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using UCosmic.Domain;
 
 namespace UCosmic.Www.Mvc.Models
 {

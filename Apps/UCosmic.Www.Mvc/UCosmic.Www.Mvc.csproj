@@ -414,6 +414,7 @@
     <Compile Include="Models\ComboBoxOptions.cs" />
     <Compile Include="Areas\Identity\Models\IModelConfirmAndRedeem.cs" />
     <Compile Include="Models\ComparisonType.cs" />
+    <Compile Include="Models\IHaveText.cs" />
     <Compile Include="Models\PageOf.cs" />
     <Compile Include="Models\RangeIfClientAttribute.cs" />
     <Compile Include="People.PersonInfoController.generated.cs">

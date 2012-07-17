@@ -1,4 +1,4 @@
-﻿namespace UCosmic.Domain
+﻿namespace UCosmic.Www.Mvc.Models
 {
     public interface IHaveText
     {
