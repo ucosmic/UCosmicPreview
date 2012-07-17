@@ -82,6 +82,7 @@
     <Compile Include="Activities\Queries\FindMyActivities.cs" />
     <Compile Include="Activities\Queries\GetMyActivityByNumber.cs" />
     <Compile Include="Activities\Queries\FindActivitiesWithPersonId.cs" />
+    <Compile Include="Api\CaseInsensitiveStringComparer.cs" />
     <Compile Include="Api\IAmNumbered.cs" />
     <Compile Include="Api\IConsumeHttp.cs" />
     <Compile Include="Api\IHaveText.cs" />
