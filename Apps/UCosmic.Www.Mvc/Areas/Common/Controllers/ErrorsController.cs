@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using UCosmic.Domain;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Common.Controllers

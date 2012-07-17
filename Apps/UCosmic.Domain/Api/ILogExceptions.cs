@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UCosmic
+namespace UCosmic.Domain
 {
     public interface ILogExceptions
     {
