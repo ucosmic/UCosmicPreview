@@ -1607,10 +1607,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UCosmic.Api\UCosmic.Api.csproj">
-      <Project>{F35CDDB3-8277-48E1-9350-E947B41593FC}</Project>
-      <Name>UCosmic.Api</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UCosmic.Domain\UCosmic.Domain.csproj">
       <Project>{77D96E4B-A424-4F8C-B773-8D1528EE99A0}</Project>
       <Name>UCosmic.Domain</Name>

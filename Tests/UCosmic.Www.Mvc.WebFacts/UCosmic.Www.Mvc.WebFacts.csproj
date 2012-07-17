@@ -442,10 +442,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\Apps\UCosmic.Api\UCosmic.Api.csproj">
-      <Project>{F35CDDB3-8277-48E1-9350-E947B41593FC}</Project>
-      <Name>UCosmic.Api</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Apps\UCosmic.Domain\UCosmic.Domain.csproj">
       <Project>{77D96E4B-A424-4F8C-B773-8D1528EE99A0}</Project>
       <Name>UCosmic.Domain</Name>

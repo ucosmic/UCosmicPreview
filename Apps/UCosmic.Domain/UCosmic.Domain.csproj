@@ -296,12 +296,6 @@
     <Compile Include="Api\RevisableEntityExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UCosmic.Api\UCosmic.Api.csproj">
-      <Project>{F35CDDB3-8277-48E1-9350-E947B41593FC}</Project>
-      <Name>UCosmic.Api</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
