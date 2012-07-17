@@ -60,6 +60,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
@@ -87,16 +88,30 @@
     <Compile Include="Api\ExtensionMethods.cs" />
     <Compile Include="Api\IAmNumbered.cs" />
     <Compile Include="Api\IConsumeHttp.cs" />
+    <Compile Include="Api\IDefineQuery.cs" />
+    <Compile Include="Api\IHandleCommands.cs" />
+    <Compile Include="Api\IHandleQueries.cs" />
     <Compile Include="Api\ILogExceptions.cs" />
     <Compile Include="Api\IManageConfigurations.cs" />
+    <Compile Include="Api\IParseSaml2Metadata.cs" />
+    <Compile Include="Api\IProcessQueries.cs" />
+    <Compile Include="Api\IProvideSaml2Service.cs" />
     <Compile Include="Api\ISendMail.cs" />
     <Compile Include="Api\ISignUsers.cs" />
     <Compile Include="Api\IStorePasswords.cs" />
+    <Compile Include="Api\IStoreSamlCertificates.cs" />
     <Compile Include="Api\PagerOptions.cs" />
     <Compile Include="Api\PagedResult.cs" />
     <Compile Include="Api\BaseQuery.cs" />
     <Compile Include="Api\FluentValidationCommandDecorator.cs" />
     <Compile Include="Api\RoleName.cs" />
+    <Compile Include="Api\Saml2Response.cs" />
+    <Compile Include="Api\Saml2SsoBinding.cs" />
+    <Compile Include="Api\Saml2SsoBindingUri.cs" />
+    <Compile Include="Api\SamlAttributeFriendlyName.cs" />
+    <Compile Include="Api\SamlAttributeFriendlyNameString.cs" />
+    <Compile Include="Api\SamlAttributeName.cs" />
+    <Compile Include="Api\SamlAttributeNameString.cs" />
     <Compile Include="Api\StringMatchStrategy.cs" />
     <Compile Include="Api\UnicodeToAsciiConverter.cs" />
     <Compile Include="Establishments\Business\BaseEstablishmentsQuery.cs" />
