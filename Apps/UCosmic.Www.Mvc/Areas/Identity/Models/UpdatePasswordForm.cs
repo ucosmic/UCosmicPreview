@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using FluentValidation;
+using UCosmic.Domain;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models

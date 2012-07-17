@@ -57,14 +57,11 @@
     <Compile Include="Ioc\IDefineQuery.cs" />
     <Compile Include="Ioc\IHandleCommands.cs" />
     <Compile Include="Ioc\IHandleQueries.cs" />
-    <Compile Include="Etc\IHaveText.cs" />
     <Compile Include="Ioc\IProcessQueries.cs" />
-    <Compile Include="Etc\ISignUsers.cs" />
     <Compile Include="Etc\StringMatchStrategy.cs" />
     <Compile Include="Etc\RoleName.cs" />
     <Compile Include="Saml\IParseSaml2Metadata.cs" />
     <Compile Include="Saml\IProvideSaml2Service.cs" />
-    <Compile Include="Etc\IStorePasswords.cs" />
     <Compile Include="Saml\IStoreSamlCertificates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Saml\Saml2Response.cs" />

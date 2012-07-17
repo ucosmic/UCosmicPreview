@@ -1,4 +1,4 @@
-﻿namespace UCosmic
+﻿namespace UCosmic.Domain
 {
     public interface ISignUsers
     {

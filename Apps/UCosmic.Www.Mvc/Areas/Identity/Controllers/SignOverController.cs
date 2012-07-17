@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using FluentValidation.Mvc;
+using UCosmic.Domain;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;
 using System.Web.Routing;
