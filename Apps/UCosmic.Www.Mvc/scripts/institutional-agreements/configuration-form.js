@@ -210,6 +210,7 @@
             var li = $(this).find('li.appender .hidden-input .is-added input[value="False"]').parents('li.appender');
             li.remove(); // find and remove the add-new li element so that model state is valid
         });
+        return true;
     });
 
     // update combobox on radio button change

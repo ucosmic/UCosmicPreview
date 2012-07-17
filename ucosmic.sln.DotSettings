@@ -1,0 +1,14 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip/=1CF30064_002DFA30_002D4231_002DB2F9_002D3CD513B29E67_002Fd_003AOrm_002Ff_003AUCosmicContext_002EViews_002Ecs/@EntryIndexedValue">1CF30064-FA30-4231-B2F9-3CD513B29E67/d:Orm/f:UCosmicContext.Views.cs</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip/=88C2ED63_002DE921_002D4E88_002DAD86_002D0D835A400C0E_002Fd_003Ascripts_002Fd_003Atinymce/@EntryIndexedValue">88C2ED63-E921-4E88-AD86-0D835A400C0E/d:scripts/d:tinymce</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip/=88C2ED63_002DE921_002D4E88_002DAD86_002D0D835A400C0E_002Ff_003AT4MVC_002Ecs/@EntryIndexedValue">88C2ED63-E921-4E88-AD86-0D835A400C0E/f:T4MVC.cs</s:String>
+	<s:String x:Key="/Default/CodeInspection/GeneratedCode/GeneratedFileMasks/=jquery_002Dui_002D_002A_002Ejs/@EntryIndexedValue">jquery-ui-*.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/GeneratedCode/GeneratedFileMasks/=jquery_002D_002A_002Ejs/@EntryIndexedValue">jquery-*.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/GeneratedCode/GeneratedFileMasks/=jquery_002Esimplemodal_002D_002A_002Ejs/@EntryIndexedValue">jquery.simplemodal-*.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/GeneratedCode/GeneratedFileMasks/=jquery_002Etinywatermark_002D_002A_002Ejs/@EntryIndexedValue">jquery.tinywatermark-*.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/GeneratedCode/GeneratedFileMasks/=jquery_002Eunobtrusive_002Dajax_002A_002Ejs/@EntryIndexedValue">jquery.unobtrusive-ajax*.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/GeneratedCode/GeneratedFileMasks/=jquery_002Evalidate_002A_002Ejs/@EntryIndexedValue">jquery.validate*.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/GeneratedCode/GeneratedFileMasks/=MicrosoftAjax_002A_002Ejs/@EntryIndexedValue">MicrosoftAjax*.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/GeneratedCode/GeneratedFileMasks/=MicrosoftMvc_002A_002Ejs/@EntryIndexedValue">MicrosoftMvc*.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/GeneratedCode/GeneratedFileMasks/=modernizr_002D_002A_002Ejs/@EntryIndexedValue">modernizr-*.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/GeneratedCode/GeneratedFileMasks/=_002A_002Efeature_002Ecs/@EntryIndexedValue">*.feature.cs</s:String></wpf:ResourceDictionary>
