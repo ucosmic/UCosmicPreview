@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Web.Security;
+using ServiceLocatorPattern;
 using UCosmic.Domain;
 using UCosmic.Domain.People;
 using UCosmic.Impl.Orm;
@@ -38,7 +39,7 @@ namespace UCosmic.Impl.Seeders
                 };
                 EnsureUser("Daniel.Ludwig@uc.edu;ludwigd@ucmail.uc.edu;ludwigd@uc.edu;Daniel.Ludwig@ucmail.uc.edu", "Dan", "Ludwig", "www.uc.edu",
                             developerRoles);
-                var queryProcessor = DependencyInjector.Current.GetService<IProcessQueries>();
+                var queryProcessor = ServiceProviderLocator.Current.GetService<IProcessQueries>();
                 var findByEmailQuery = new GetPersonByEmailQuery { Email = "Daniel.Ludwig@ucmail.uc.edu" };
                 queryProcessor.Execute(findByEmailQuery).GetEmail("Daniel.Ludwig@ucmail.uc.edu").IsConfirmed = false;
                 Context.SaveChanges(); // make 1 of ludwigd's email addresses unconfirmed

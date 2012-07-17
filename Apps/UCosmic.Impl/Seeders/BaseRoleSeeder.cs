@@ -1,4 +1,5 @@
 using System.Data;
+using ServiceLocatorPattern;
 using UCosmic.Domain.Identity;
 
 namespace UCosmic.Impl.Seeders
@@ -7,7 +8,7 @@ namespace UCosmic.Impl.Seeders
     {
         protected void EnsureRole(string roleName, string roleDescription)
         {
-            var facade = DependencyInjector.Current.GetService<RoleFacade>();
+            var facade = ServiceProviderLocator.Current.GetService<RoleFacade>();
             var role = facade.CreateOrUpdate(roleName, roleDescription);
             Context.Entry(role).State = role.RevisionId == 0 ? EntityState.Added : EntityState.Modified;
         }

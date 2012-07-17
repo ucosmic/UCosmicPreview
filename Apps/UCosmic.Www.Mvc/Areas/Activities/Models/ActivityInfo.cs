@@ -5,11 +5,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 using AutoMapper;
+using ServiceLocatorPattern;
 using UCosmic.Domain.Activities;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
 using UCosmic.Domain.Places;
-using UCosmic.Impl;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Activities.Models
@@ -104,7 +104,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                     .ForMember(d => d.EndsOn, o => o.MapFrom(s => s.Values.EndsOn))
                     .ForMember(d => d.PlaceMarks, o => o.ResolveUsing(s =>
                     {
-                        var queryProcessor = DependencyInjector.Current.GetService<IProcessQueries>();
+                        var queryProcessor = ServiceProviderLocator.Current.GetService<IProcessQueries>();
                         var placeMarks = new List<ActivityInfo.PlaceMark>();
                         foreach (var tag in s.Tags.Where(t => t.DomainType != ActivityTagDomainType.Custom))
                         {

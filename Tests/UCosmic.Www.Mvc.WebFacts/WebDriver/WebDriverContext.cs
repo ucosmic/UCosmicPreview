@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using ServiceLocatorPattern;
 using Should;
 using UCosmic.Impl;
 
@@ -18,7 +19,7 @@ namespace UCosmic.Www.Mvc
             GlobalAsaxFacts.RegisterAllRoutes(testContext);
 
             // use unity for dependency injection
-            DependencyInjector.Set(new UnityDependencyInjector());
+            ServiceProviderLocator.SetProvider(new UnityDependencyInjector());
 
             // for the Chrome driver to start, chromedriver.exe should automatically copy from
             // the test project to /bin/Debug during build.
@@ -30,7 +31,7 @@ namespace UCosmic.Www.Mvc
             // Trusted sites, and Restricted sites.
 
             // inject browser dependencies from unity into static Browsers list property
-            Browsers = new List<IWebDriver>(DependencyInjector.Current.GetServices<IWebDriver>());
+            Browsers = new List<IWebDriver>(ServiceProviderLocator.Current.GetServices<IWebDriver>());
         }
 
         [AssemblyCleanup]

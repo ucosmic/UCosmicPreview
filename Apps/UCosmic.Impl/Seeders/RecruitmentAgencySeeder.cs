@@ -3,6 +3,7 @@ using System.Linq;
 using NGeo.GeoNames;
 using NGeo.Yahoo.GeoPlanet;
 using NGeo.Yahoo.PlaceFinder;
+using ServiceLocatorPattern;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Places;
@@ -26,7 +27,7 @@ namespace UCosmic.Impl.Seeders
             var geoNames = new GeoNamesClient();
             var geoPlanet = new GeoPlanetClient();
             var placeFactory = new PlaceFactory(context, objectCommander, geoPlanet, geoNames, configurationManager);
-            var placeFinderClient = DependencyInjector.Current.GetService<IConsumePlaceFinder>();
+            var placeFinderClient = ServiceProviderLocator.Current.GetService<IConsumePlaceFinder>();
             double latitude;
             double longitude;
             Result result;

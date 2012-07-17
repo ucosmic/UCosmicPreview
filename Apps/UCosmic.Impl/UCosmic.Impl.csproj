@@ -76,6 +76,9 @@
     <Reference Include="ServiceProviderExtensions">
       <HintPath>..\..\packages\ServiceProviderExtensions.1.0\lib\net40\ServiceProviderExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceProviderLocator">
+      <HintPath>..\..\packages\ServiceProviderLocator.1.0\lib\net40\ServiceProviderLocator.dll</HintPath>
+    </Reference>
     <Reference Include="SimpleInjector">
       <HintPath>..\..\packages\SimpleInjector.1.4.0.12049\lib\net35\SimpleInjector.dll</HintPath>
     </Reference>
@@ -104,7 +107,6 @@
     <Compile Include="Decorators\SaveChangesAndDisposeDecorator.cs" />
     <Compile Include="Orm\ActivitiesRelationalMapper.cs" />
     <Compile Include="Seeders\CoreDataSqlSeeder.cs" />
-    <Compile Include="Simple\DependencyInjector.cs" />
     <Compile Include="Web\AppSettingsKey.cs" />
     <Compile Include="Web\DeployToTarget.cs" />
     <Compile Include="Web\SmtpMailSender.cs" />

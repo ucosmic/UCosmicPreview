@@ -1,3 +1,4 @@
+using ServiceLocatorPattern;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
@@ -35,10 +36,10 @@ namespace UCosmic.Impl.Seeders
             new InstitutionalAgreementSeeder().Seed(context);
             new InstitutionalAgreementConfigurationSeeder().Seed(context);
 
-            var commander = DependencyInjector.Current.GetService<ICommandObjects>();
-            var queries = DependencyInjector.Current.GetService<IQueryEntities>();
+            var commander = ServiceProviderLocator.Current.GetService<ICommandObjects>();
+            var queries = ServiceProviderLocator.Current.GetService<IQueryEntities>();
 
-            var updateEstablishmentHierarchy = DependencyInjector.Current
+            var updateEstablishmentHierarchy = ServiceProviderLocator.Current
                 .GetService<IHandleCommands<UpdateEstablishmentNodeHierarchyCommand>>();
             updateEstablishmentHierarchy.Handle(new UpdateEstablishmentNodeHierarchyCommand());
             commander.SaveChanges();

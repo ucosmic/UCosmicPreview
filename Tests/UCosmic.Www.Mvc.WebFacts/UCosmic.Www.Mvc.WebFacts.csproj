@@ -65,6 +65,9 @@
     <Reference Include="ServiceProviderExtensions">
       <HintPath>..\..\packages\ServiceProviderExtensions.1.0\lib\net40\ServiceProviderExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceProviderLocator">
+      <HintPath>..\..\packages\ServiceProviderLocator.1.0\lib\net40\ServiceProviderLocator.dll</HintPath>
+    </Reference>
     <Reference Include="Should">
       <HintPath>..\..\packages\Should.1.1.12.0\lib\Should.dll</HintPath>
     </Reference>

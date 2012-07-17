@@ -7,10 +7,10 @@ using AutoMapper;
 using NGeo.GeoNames;
 using NGeo.Yahoo.GeoPlanet;
 using NGeo.Yahoo.PlaceFinder;
+using ServiceLocatorPattern;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Places;
-using UCosmic.Impl;
 using UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms;
 using UCosmic.Www.Mvc.Controllers;
 using BoundingBox = UCosmic.Domain.Places.BoundingBox;
@@ -175,7 +175,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
             }
             catch (Exception ex)
             {
-                var exceptionLogger = DependencyInjector.Current.GetService<ILogExceptions>();
+                var exceptionLogger = ServiceProviderLocator.Current.GetService<ILogExceptions>();
                 exceptionLogger.LogException(ex);
 
                 if (ex is NotSupportedException)

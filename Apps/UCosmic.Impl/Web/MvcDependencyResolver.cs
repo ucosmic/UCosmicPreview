@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using ServiceLocatorPattern;
 
 namespace UCosmic.Impl
 {
@@ -11,7 +12,7 @@ namespace UCosmic.Impl
 
         public MvcDependencyResolver()
         {
-            _injector = DependencyInjector.Current;
+            _injector = ServiceProviderLocator.Current;
         }
 
         public object GetService(Type serviceType)

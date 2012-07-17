@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Elmah.Contrib.Mvc;
 using FluentValidation.Mvc;
+using ServiceLocatorPattern;
 using UCosmic.Domain;
 using UCosmic.Impl;
 using UCosmic.Impl.Orm;
@@ -82,21 +83,19 @@ namespace UCosmic.Www.Mvc
 
         private static void SetUpDependencyInjection()
         {
-            // use simple infrastructure injector
-            //var injector = new UnityDependencyInjector();
             var containerConfiguration = new ContainerConfiguration
             {
                 IsDeployedToCloud = WebConfig.IsDeployedToCloud
             };
-            var injector = new SimpleDependencyInjector(containerConfiguration);
-            DependencyInjector.Set(injector);
+            var serviceProvider = new SimpleDependencyInjector(containerConfiguration);
+            ServiceProviderLocator.SetProvider(serviceProvider);
 
             // use infrastructure service locator for MVC dependency resolution
             DependencyResolver.SetResolver(new MvcDependencyResolver());
 
             var providers = FilterProviders.Providers.OfType<FilterAttributeFilterProvider>().ToList();
             providers.ForEach(provider => FilterProviders.Providers.Remove(provider));
-            FilterProviders.Providers.Add(DependencyInjector.Current.GetService<SimpleFilterAttributeFilterProvider>());
+            FilterProviders.Providers.Add(ServiceProviderLocator.Current.GetService<SimpleFilterAttributeFilterProvider>());
         }
 
         private static void SetUpFluentValidation()
@@ -104,7 +103,7 @@ namespace UCosmic.Www.Mvc
             FluentValidationModelValidatorProvider.Configure(
                 provider =>
                 {
-                    provider.ValidatorFactory = new FluentValidatorFactory(DependencyInjector.Current);
+                    provider.ValidatorFactory = new FluentValidatorFactory(ServiceProviderLocator.Current);
                     provider.AddImplicitRequiredValidator = false;
                 }
             );
@@ -113,9 +112,9 @@ namespace UCosmic.Www.Mvc
         private static void SeedDb()
         {
             // check DI for database seeder
-            var seeder = DependencyInjector.Current.GetService<ISeedDb>();
+            var seeder = ServiceProviderLocator.Current.GetService<ISeedDb>();
             if (seeder == null) return;
-            using (var context = DependencyInjector.Current.GetService<IUnitOfWork>())
+            using (var context = ServiceProviderLocator.Current.GetService<IUnitOfWork>())
             {
                 seeder.Seed(context as UCosmicContext);
             }

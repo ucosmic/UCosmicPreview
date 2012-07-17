@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
+using ServiceLocatorPattern;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
-using UCosmic.Impl;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 {
@@ -24,7 +24,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
                 if (ownerForms.Count > 0)
                 {
                     var participantIds = ownerForms.Select(form => form.EstablishmentEntityId).ToList();
-                    var entityQueries = DependencyInjector.Current.GetService<IQueryEntities>();
+                    var entityQueries = ServiceProviderLocator.Current.GetService<IQueryEntities>();
                     var establishments = new EstablishmentFinder(entityQueries);
 
                     Expression<Func<Affiliation, bool>> myDefaultAffiliation = affiliation =>

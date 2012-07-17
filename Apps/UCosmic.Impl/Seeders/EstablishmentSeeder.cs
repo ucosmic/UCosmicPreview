@@ -6,6 +6,7 @@ using System.Linq;
 using NGeo.GeoNames;
 using NGeo.Yahoo.GeoPlanet;
 using NGeo.Yahoo.PlaceFinder;
+using ServiceLocatorPattern;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Places;
@@ -45,7 +46,7 @@ namespace UCosmic.Impl.Seeders
                     var geoNames = new GeoNamesClient();
                     var geoPlanet = new GeoPlanetClient();
                     var placeFactory = new PlaceFactory(context, objectCommander, geoPlanet, geoNames, configurationManager);
-                    var placeFinderClient = DependencyInjector.Current.GetService<IConsumePlaceFinder>();
+                    var placeFinderClient = ServiceProviderLocator.Current.GetService<IConsumePlaceFinder>();
                     const string officialName = "University of South Florida";
                     usf = EnsureEstablishment(officialName, true, null, GetUniversity(), usfUrl, "@usf.edu;@iac.usf.edu;@mail.usf.edu");
                     const double latitude = 28.061680;
@@ -74,7 +75,7 @@ namespace UCosmic.Impl.Seeders
                 Context = context;
 
                 var uc = context.Establishments.Single(e => e.WebsiteUrl == "www.uc.edu");
-                var samlHandler = DependencyInjector.Current.GetService<IHandleCommands<UpdateSamlSignOnInfoCommand>>();
+                var samlHandler = ServiceProviderLocator.Current.GetService<IHandleCommands<UpdateSamlSignOnInfoCommand>>();
                 samlHandler.Handle(
                     new UpdateSamlSignOnInfoCommand
                     {
@@ -117,7 +118,7 @@ namespace UCosmic.Impl.Seeders
                     context.Establishments.Add(testshib);
                     context.SaveChanges();
 
-                    var samlHandler = DependencyInjector.Current.GetService<IHandleCommands<UpdateSamlSignOnInfoCommand>>();
+                    var samlHandler = ServiceProviderLocator.Current.GetService<IHandleCommands<UpdateSamlSignOnInfoCommand>>();
                     samlHandler.Handle(
                         new UpdateSamlSignOnInfoCommand
                         {
@@ -146,9 +147,9 @@ namespace UCosmic.Impl.Seeders
 
                 var config = new DotNetConfigurationManager();
                 var commander = new ObjectCommander(context);
-                var geoPlanet = DependencyInjector.Current.GetService<IConsumeGeoPlanet>();
-                var geoNames = DependencyInjector.Current.GetService<IConsumeGeoNames>();
-                _placeFinderClient = DependencyInjector.Current.GetService<IConsumePlaceFinder>();
+                var geoPlanet = ServiceProviderLocator.Current.GetService<IConsumeGeoPlanet>();
+                var geoNames = ServiceProviderLocator.Current.GetService<IConsumeGeoNames>();
+                _placeFinderClient = ServiceProviderLocator.Current.GetService<IConsumePlaceFinder>();
                 _placeFactory = new PlaceFactory(context, commander, geoPlanet, geoNames, config);
                 Seed("www.ufl.edu", 29.643528, -82.350685);
                 Seed("www.ufrj.br", -22.862494, -43.223907);

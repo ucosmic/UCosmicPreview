@@ -3,9 +3,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.ServiceProcess;
 using OpenQA.Selenium;
+using ServiceLocatorPattern;
 using TechTalk.SpecFlow;
 using UCosmic.Domain;
-using UCosmic.Impl;
 using UCosmic.Impl.Orm;
 using UCosmic.Impl.Seeders;
 using UCosmic.Www.Mvc.Areas.Identity;
@@ -72,10 +72,10 @@ namespace UCosmic.Www.Mvc
         {
             if (!AppConfig.InitializeAndSeedDbBeforeTestRun) return;
 
-            var initializer = DependencyInjector.Current.GetService<IDatabaseInitializer<UCosmicContext>>();
-            var seeder = DependencyInjector.Current.GetService<ISeedDb>();
+            var initializer = ServiceProviderLocator.Current.GetService<IDatabaseInitializer<UCosmicContext>>();
+            var seeder = ServiceProviderLocator.Current.GetService<ISeedDb>();
 
-            var context = (UCosmicContext) DependencyInjector.Current.GetService<IUnitOfWork>();
+            var context = (UCosmicContext)ServiceProviderLocator.Current.GetService<IUnitOfWork>();
             if (initializer != null)
             {
                 Database.SetInitializer(initializer);

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using ServiceLocatorPattern;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
 
@@ -9,9 +10,9 @@ namespace UCosmic.Impl.Seeders
     {
         protected Person EnsurePerson(string emails, string firstName, string lastName, Establishment employedBy, bool registerUser = true)
         {
-            var queryProcessor = DependencyInjector.Current.GetService<IProcessQueries>();
-            var createPersonHandler = DependencyInjector.Current.GetService<IHandleCommands<CreatePersonCommand>>();
-            var createAffiliationHandler = DependencyInjector.Current.GetService<IHandleCommands<CreateAffiliationCommand>>();
+            var queryProcessor = ServiceProviderLocator.Current.GetService<IProcessQueries>();
+            var createPersonHandler = ServiceProviderLocator.Current.GetService<IHandleCommands<CreatePersonCommand>>();
+            var createAffiliationHandler = ServiceProviderLocator.Current.GetService<IHandleCommands<CreateAffiliationCommand>>();
 
             var emailsExploded = emails.Explode(";").ToArray();
             var defaultEmail = emailsExploded.First();
