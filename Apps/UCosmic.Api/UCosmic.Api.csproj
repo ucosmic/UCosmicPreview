@@ -54,7 +54,6 @@
     <Compile Include="Etc\CaseInsensitiveStringComparer.cs" />
     <Compile Include="Etc\ComparisonType.cs" />
     <Compile Include="Etc\ExtensionMethods.cs" />
-    <Compile Include="Etc\IAmNumbered.cs" />
     <Compile Include="Etc\IConsumeHttp.cs" />
     <Compile Include="Etc\ISendMail.cs" />
     <Compile Include="Ioc\IDefineQuery.cs" />
