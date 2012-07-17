@@ -85,6 +85,7 @@
     <Compile Include="Api\IAmNumbered.cs" />
     <Compile Include="Api\ILogExceptions.cs" />
     <Compile Include="Api\IManageConfigurations.cs" />
+    <Compile Include="Api\ISendMail.cs" />
     <Compile Include="Api\PagerOptions.cs" />
     <Compile Include="Api\PagedResult.cs" />
     <Compile Include="Api\BaseQuery.cs" />

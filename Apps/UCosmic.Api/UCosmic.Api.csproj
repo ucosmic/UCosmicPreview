@@ -55,7 +55,6 @@
     <Compile Include="Etc\ComparisonType.cs" />
     <Compile Include="Etc\ExtensionMethods.cs" />
     <Compile Include="Etc\IConsumeHttp.cs" />
-    <Compile Include="Etc\ISendMail.cs" />
     <Compile Include="Ioc\IDefineQuery.cs" />
     <Compile Include="Ioc\IHandleCommands.cs" />
     <Compile Include="Ioc\IHandleQueries.cs" />

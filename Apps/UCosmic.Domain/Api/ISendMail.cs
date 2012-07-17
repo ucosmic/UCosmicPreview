@@ -1,6 +1,6 @@
 ﻿using System.Net.Mail;
 
-namespace UCosmic
+namespace UCosmic.Domain
 {
     public interface ISendMail
     {
