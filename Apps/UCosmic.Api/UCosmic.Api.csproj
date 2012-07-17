@@ -67,9 +67,7 @@
     <Compile Include="Saml\SamlAttributeName.cs" />
     <Compile Include="Saml\SamlAttributeNameString.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Etc\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
