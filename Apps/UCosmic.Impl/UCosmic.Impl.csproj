@@ -142,7 +142,7 @@
     <Compile Include="Web\WebRequestHttpConsumer.cs" />
     <Compile Include="Orm\BrownfieldInitializer.cs" />
     <Compile Include="Unity\UnityHttpContextLifetimeManager.cs" />
-    <Compile Include="Unity\UnityDependencyInjector.cs" />
+    <Compile Include="Unity\UnityServiceProvider.cs" />
     <Compile Include="Web\ElmahExceptionLogger.cs" />
     <Compile Include="Web\MvcDependencyResolver.cs" />
     <Compile Include="Saml\ComponentSpaceSaml2MetadataParser.cs" />

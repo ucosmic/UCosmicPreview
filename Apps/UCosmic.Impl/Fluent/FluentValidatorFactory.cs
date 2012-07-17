@@ -1,20 +1,20 @@
-﻿using FluentValidation;
-using System;
+﻿using System;
+using FluentValidation;
 
 namespace UCosmic.Impl
 {
     public class FluentValidatorFactory : ValidatorFactoryBase
     {
-        private IServiceProvider Injector { get; set; }
+        private readonly IServiceProvider _serviceProvider;
 
-        public FluentValidatorFactory(IServiceProvider injector)
+        public FluentValidatorFactory(IServiceProvider serviceProvider)
         {
-            Injector = injector;
+            _serviceProvider = serviceProvider;
         }
 
         public override IValidator CreateInstance(Type validatorType)
         {
-            return Injector.GetService(validatorType) as IValidator;
+            return _serviceProvider.GetService(validatorType) as IValidator;
         }
     }
 }

@@ -6,11 +6,11 @@ using Microsoft.Practices.Unity.Configuration;
 
 namespace UCosmic.Impl
 {
-    public class UnityDependencyInjector : IServiceProvider
+    public class UnityServiceProvider : IServiceProvider
     {
         internal readonly IUnityContainer Container;
 
-        public UnityDependencyInjector()
+        public UnityServiceProvider()
         {
             Container = new UnityContainer().LoadConfiguration();
         }
