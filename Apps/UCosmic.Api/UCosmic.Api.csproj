@@ -51,7 +51,6 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Etc\ExtensionMethods.cs" />
     <Compile Include="Ioc\IDefineQuery.cs" />
     <Compile Include="Ioc\IHandleCommands.cs" />
     <Compile Include="Ioc\IHandleQueries.cs" />
@@ -68,7 +67,9 @@
     <Compile Include="Saml\SamlAttributeName.cs" />
     <Compile Include="Saml\SamlAttributeNameString.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Etc\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
