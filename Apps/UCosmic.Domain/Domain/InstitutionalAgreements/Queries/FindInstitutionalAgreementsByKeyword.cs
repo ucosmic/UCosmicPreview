@@ -2,6 +2,12 @@
 
 namespace UCosmic.Domain.InstitutionalAgreements
 {
+    public class FindInstitutionalAgreementsByKeywordQuery : BaseEntitiesQuery<InstitutionalAgreement>, IDefineQuery<InstitutionalAgreement[]>
+    {
+        public string Keyword { get; set; }
+        public int EstablishmentId { get; set; }
+    }
+
     public class FindInstitutionalAgreementsByKeywordHandler : IHandleQueries<FindInstitutionalAgreementsByKeywordQuery, InstitutionalAgreement[]>
     {
         private readonly IQueryEntities _entities;

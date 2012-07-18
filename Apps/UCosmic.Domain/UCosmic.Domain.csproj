@@ -122,7 +122,7 @@
     <Compile Include="Domain\Identity\Commands\ReceiveSamlAuthnResponse.cs" />
     <Compile Include="Domain\Identity\Commands\RedeemEmailConfirmation.cs" />
     <Compile Include="Domain\Identity\Commands\SendEmailMessage.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementVisibility.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Entities\InstitutionalAgreementVisibility.cs" />
     <Compile Include="Domain\Languages\Business\QueryLanguages.cs" />
     <Compile Include="Domain\Languages\Queries\FindAllLanguages.cs" />
     <Compile Include="Domain\Languages\Queries\GetLanguageByIsoCode.cs" />
@@ -185,8 +185,7 @@
     <Compile Include="Domain\Identity\Business\QueryRoleGrants.cs" />
     <Compile Include="Domain\Identity\RoleFacade.cs" />
     <Compile Include="Domain\Identity\Business\QueryRoles.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\FindInstitutionalAgreementsByKeywordQuery.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\FindInstitutionalAgreementsByKeywordHandler.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Queries\FindInstitutionalAgreementsByKeyword.cs" />
     <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementChanger.cs" />
     <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementQueries.cs" />
     <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementQuery.cs" />
@@ -255,13 +254,13 @@
     <Compile Include="Domain\Establishments\Entities\EstablishmentSamlSignOn.cs" />
     <Compile Include="Domain\Establishments\Entities\EstablishmentType.cs" />
     <Compile Include="Domain\Establishments\Entities\EstablishmentUrl.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreement.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementConfiguration.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementContact.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementFieldValue.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementFile.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementNode.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementParticipant.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Entities\InstitutionalAgreement.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Entities\InstitutionalAgreementConfiguration.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Entities\InstitutionalAgreementContact.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Entities\InstitutionalAgreementFieldValue.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Entities\InstitutionalAgreementFile.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Entities\InstitutionalAgreementNode.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Entities\InstitutionalAgreementParticipant.cs" />
     <Compile Include="Domain\Languages\Entities\Language.cs" />
     <Compile Include="Domain\Languages\Entities\LanguageName.cs" />
     <Compile Include="Domain\People\Entities\Person.cs" />
@@ -310,7 +309,10 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Domain\InstitutionalAgreements\Commands\" />
+    <Folder Include="Domain\InstitutionalAgreements\Deprecated\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
