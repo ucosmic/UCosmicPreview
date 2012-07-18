@@ -51,9 +51,9 @@
     <Reference Include="LinqKit">
       <HintPath>..\..\packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
     </Reference>
-    <Reference Include="NGeo, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="NGeo, Version=1.4.4581.28852, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\NGeo.1.4\lib\net40\NGeo.dll</HintPath>
+      <HintPath>..\..\packages\NGeo.1.4.4581.28852\lib\net40\NGeo.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -66,8 +66,6 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Domain\Activities\Business\BaseActivitiesQuery.cs" />
-    <Compile Include="Domain\Activities\Business\BaseActivityQuery.cs" />
     <Compile Include="Domain\Activities\Business\QueryActivities.cs" />
     <Compile Include="Domain\Activities\Commands\PurgeMyActivity.cs" />
     <Compile Include="Domain\Activities\Commands\DraftMyActivity.cs" />
@@ -102,7 +100,8 @@
     <Compile Include="Api\IStoreSamlCertificates.cs" />
     <Compile Include="Api\PagerOptions.cs" />
     <Compile Include="Api\PagedResult.cs" />
-    <Compile Include="Api\BaseQuery.cs" />
+    <Compile Include="Domain\BaseEntitiesQuery.cs" />
+    <Compile Include="Domain\BaseEntityQuery.cs" />
     <Compile Include="Api\FluentValidationCommandDecorator.cs" />
     <Compile Include="Api\RoleName.cs" />
     <Compile Include="Api\Saml2Response.cs" />
@@ -114,7 +113,6 @@
     <Compile Include="Api\SamlAttributeNameString.cs" />
     <Compile Include="Api\StringMatchStrategy.cs" />
     <Compile Include="Api\UnicodeToAsciiConverter.cs" />
-    <Compile Include="Domain\Establishments\Business\BaseEstablishmentsQuery.cs" />
     <Compile Include="Domain\Establishments\Business\QueryEstablishmentNames.cs" />
     <Compile Include="Domain\Establishments\Entities\EmailTemplateName.cs" />
     <Compile Include="Domain\Establishments\Queries\GetEstablishmentByUrl.cs" />
@@ -125,6 +123,9 @@
     <Compile Include="Domain\Identity\Commands\RedeemEmailConfirmation.cs" />
     <Compile Include="Domain\Identity\Commands\SendEmailMessage.cs" />
     <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementVisibility.cs" />
+    <Compile Include="Domain\Languages\Business\QueryLanguages.cs" />
+    <Compile Include="Domain\Languages\Queries\FindAllLanguages.cs" />
+    <Compile Include="Domain\Languages\Queries\GetLanguageByIsoCode.cs" />
     <Compile Include="Domain\People\Business\ValidateEmailConfirmation.cs" />
     <Compile Include="Domain\People\Entities\EmailConfirmationIntent.cs" />
     <Compile Include="Domain\People\Queries\GetMyPerson.cs" />
@@ -135,7 +136,6 @@
     <Compile Include="Domain\People\Queries\ComposeEmailMessage.cs" />
     <Compile Include="Domain\People\Queries\GetEmailMessageByNumber.cs" />
     <Compile Include="Domain\Establishments\Business\ValidateEstablishment.cs" />
-    <Compile Include="Domain\Establishments\Business\BaseEstablishmentQuery.cs" />
     <Compile Include="Domain\Identity\Commands\SendSignUpMessage.cs" />
     <Compile Include="Domain\Establishments\Queries\GetEstablishmentById.cs" />
     <Compile Include="Domain\Identity\Commands\SendConfirmEmailMessage.cs" />
@@ -144,10 +144,10 @@
     <Compile Include="Domain\Identity\Business\ValidatePassword.cs" />
     <Compile Include="Domain\Identity\Business\ValidateUser.cs" />
     <Compile Include="Domain\Identity\Business\ValidatePrincipal.cs" />
-    <Compile Include="Api\EntityExtensions.cs" />
+    <Compile Include="Domain\EntityExtensions.cs" />
     <Compile Include="Api\OrderByDirection.cs" />
     <Compile Include="Api\RevisableEntityFacade.cs" />
-    <Compile Include="Api\Entity.cs" />
+    <Compile Include="Domain\Entity.cs" />
     <Compile Include="Api\EntityFinder.cs" />
     <Compile Include="Api\ICommandEntities.cs" />
     <Compile Include="Api\ICommandObjects.cs" />
@@ -176,8 +176,6 @@
     <Compile Include="Domain\Identity\Entities\EduPersonScopedAffiliation.cs" />
     <Compile Include="Domain\Identity\Entities\SubjectNameIdentifier.cs" />
     <Compile Include="Domain\Identity\Queries\AutoCompleteUsersByName.cs" />
-    <Compile Include="Domain\Identity\Business\BaseUserQuery.cs" />
-    <Compile Include="Domain\Identity\Business\BaseUsersQuery.cs" />
     <Compile Include="Domain\Identity\Queries\FindRolesGrantedToUserName.cs" />
     <Compile Include="Domain\Identity\Queries\GenerateRandomSecret.cs" />
     <Compile Include="Domain\Identity\Queries\GetUserByEduPersonTargetedId.cs" />
@@ -192,7 +190,7 @@
     <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementChanger.cs" />
     <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementQueries.cs" />
     <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementQuery.cs" />
-    <Compile Include="Domain\Languages\LanguageQuery.cs" />
+    <Compile Include="Domain\Languages\Deprecated\_LanguageQuery.cs" />
     <Compile Include="Domain\People\Commands\UpdateMyEmailValue.cs" />
     <Compile Include="Domain\People\Business\ValidateEmailAddress.cs" />
     <Compile Include="Domain\People\Commands\CreateAffiliation.cs" />
@@ -202,10 +200,8 @@
     <Compile Include="Domain\People\Business\ValidateAffiliation.cs" />
     <Compile Include="Domain\People\Business\ValidatePerson.cs" />
     <Compile Include="Domain\People\PersonExtensions.cs" />
-    <Compile Include="Domain\People\PersonFactory.cs" />
+    <Compile Include="Domain\People\Deprecated\_PersonFactory.cs" />
     <Compile Include="Domain\People\PersonQuery.cs" />
-    <Compile Include="Domain\People\Business\BasePeopleQuery.cs" />
-    <Compile Include="Domain\People\Business\BasePersonQuery.cs" />
     <Compile Include="Domain\People\Business\QueryAffiliations.cs" />
     <Compile Include="Domain\People\Queries\GetConfirmEmailFormatters.cs" />
     <Compile Include="Domain\People\Business\QueryEmailMessages.cs" />
@@ -222,21 +218,26 @@
     <Compile Include="Domain\People\Business\QueryEmailAddresses.cs" />
     <Compile Include="Domain\People\Queries\GetPersonByEmail.cs" />
     <Compile Include="Domain\People\Business\QueryPeople.cs" />
-    <Compile Include="Domain\Places\Business\BasePlacesQuery.cs" />
-    <Compile Include="Domain\Places\Business\BasePlaceQuery.cs" />
+    <Compile Include="Domain\Places\Business\QueryGeoNamesTimeZones.cs" />
+    <Compile Include="Domain\Places\Business\QueryGeoNamesFeatures.cs" />
+    <Compile Include="Domain\Places\Business\QueryGeoNamesFeatureClasses.cs" />
+    <Compile Include="Domain\Places\Business\QueryGeoNamesToponyms.cs" />
+    <Compile Include="Domain\Places\Business\KnownWoeIds.cs" />
+    <Compile Include="Domain\Places\Business\QueryGeoPlanetPlaces.cs" />
+    <Compile Include="Domain\Places\Business\QueryGeoPlanetPlaceTypes.cs" />
     <Compile Include="Domain\Places\Business\QueryPlaceNames.cs" />
     <Compile Include="Domain\Places\Business\QueryPlaces.cs" />
-    <Compile Include="Domain\Places\PlaceChanger.cs" />
-    <Compile Include="Domain\Places\PlaceFinder.cs" />
-    <Compile Include="Domain\Places\PlaceQuery.cs" />
-    <Compile Include="Domain\Places\GeoPlanetPlaceQuery.cs" />
-    <Compile Include="Domain\Places\GeoPlanetPlaceFinder.cs" />
-    <Compile Include="Domain\Places\GeoNameFinder.cs" />
+    <Compile Include="Domain\Places\Deprecated\_PlaceChanger.cs" />
+    <Compile Include="Domain\Places\Deprecated\_PlaceFinder.cs" />
+    <Compile Include="Domain\Places\Deprecated\_PlaceQuery.cs" />
+    <Compile Include="Domain\Places\Deprecated\_GeoPlanetPlaceQuery.cs" />
+    <Compile Include="Domain\Places\Deprecated\_GeoPlanetPlaceFinder.cs" />
+    <Compile Include="Domain\Places\Deprecated\_GeoNameFinder.cs" />
     <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementFinder.cs" />
-    <Compile Include="Domain\Languages\LanguageFinder.cs" />
+    <Compile Include="Domain\Languages\Deprecated\_LanguageFinder.cs" />
     <Compile Include="Domain\People\PersonFinder.cs" />
-    <Compile Include="Domain\Places\GeoNamesToponymFinder.cs" />
-    <Compile Include="Domain\Places\GeoNamesToponymQuery.cs" />
+    <Compile Include="Domain\Places\Deprecated\_GeoNamesToponymFinder.cs" />
+    <Compile Include="Domain\Places\Deprecated\_GeoNamesToponymQuery.cs" />
     <Compile Include="Api\IQueryEntities.cs" />
     <Compile Include="Domain\People\Entities\Affiliation.cs" />
     <Compile Include="Domain\People\Entities\EmailAddress.cs" />
@@ -261,30 +262,40 @@
     <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementFile.cs" />
     <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementNode.cs" />
     <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementParticipant.cs" />
-    <Compile Include="Domain\Languages\Language.cs" />
-    <Compile Include="Domain\Languages\LanguageName.cs" />
+    <Compile Include="Domain\Languages\Entities\Language.cs" />
+    <Compile Include="Domain\Languages\Entities\LanguageName.cs" />
     <Compile Include="Domain\People\Entities\Person.cs" />
-    <Compile Include="Domain\Places\BoundingBox.cs" />
-    <Compile Include="Domain\Places\Coordinates.cs" />
-    <Compile Include="Domain\Places\GeoNamesAlternateName.cs" />
-    <Compile Include="Domain\Places\GeoNamesConverter.cs" />
-    <Compile Include="Domain\Places\GeoNamesCountry.cs" />
-    <Compile Include="Domain\Places\GeoNamesFeature.cs" />
-    <Compile Include="Domain\Places\GeoNamesFeatureClass.cs" />
-    <Compile Include="Domain\Places\GeoNamesTimeZone.cs" />
-    <Compile Include="Domain\Places\GeoNamesToponym.cs" />
-    <Compile Include="Domain\Places\GeoNamesToponymNode.cs" />
-    <Compile Include="Domain\Places\GeoPlanetAdmin.cs" />
-    <Compile Include="Domain\Places\GeoPlanetConverter.cs" />
-    <Compile Include="Domain\Places\GeoPlanetLocality.cs" />
-    <Compile Include="Domain\Places\GeoPlanetPlace.cs" />
-    <Compile Include="Domain\Places\GeoPlanetPlaceBelongTo.cs" />
-    <Compile Include="Domain\Places\GeoPlanetPlaceNode.cs" />
-    <Compile Include="Domain\Places\GeoPlanetPlaceType.cs" />
-    <Compile Include="Domain\Places\Place.cs" />
-    <Compile Include="Domain\Places\PlaceFactory.cs" />
-    <Compile Include="Domain\Places\PlaceName.cs" />
-    <Compile Include="Domain\Places\PlaceNode.cs" />
+    <Compile Include="Domain\Places\Entities\BoundingBox.cs" />
+    <Compile Include="Domain\Places\Entities\Coordinates.cs" />
+    <Compile Include="Domain\Places\Entities\GeoNamesAlternateName.cs" />
+    <Compile Include="Domain\Places\Business\GeoNamesConverter.cs" />
+    <Compile Include="Domain\Places\Entities\GeoNamesCountry.cs" />
+    <Compile Include="Domain\Places\Entities\GeoNamesFeature.cs" />
+    <Compile Include="Domain\Places\Entities\GeoNamesFeatureClass.cs" />
+    <Compile Include="Domain\Places\Entities\GeoNamesTimeZone.cs" />
+    <Compile Include="Domain\Places\Entities\GeoNamesToponym.cs" />
+    <Compile Include="Domain\Places\Entities\GeoNamesToponymNode.cs" />
+    <Compile Include="Domain\Places\Entities\GeoPlanetAdmin.cs" />
+    <Compile Include="Domain\Places\Business\GeoPlanetConverter.cs" />
+    <Compile Include="Domain\Places\Entities\GeoPlanetLocality.cs" />
+    <Compile Include="Domain\Places\Entities\GeoPlanetPlace.cs" />
+    <Compile Include="Domain\Places\Entities\GeoPlanetPlaceBelongTo.cs" />
+    <Compile Include="Domain\Places\Entities\GeoPlanetPlaceNode.cs" />
+    <Compile Include="Domain\Places\Entities\GeoPlanetPlaceType.cs" />
+    <Compile Include="Domain\Places\Entities\Place.cs" />
+    <Compile Include="Domain\Places\Deprecated\_PlaceFactory.cs" />
+    <Compile Include="Domain\Places\Entities\PlaceName.cs" />
+    <Compile Include="Domain\Places\Entities\PlaceNode.cs" />
+    <Compile Include="Domain\Places\Queries\GetGeoPlanetPlaceByGeoNameId.cs" />
+    <Compile Include="Domain\Places\Queries\GetPlaceByGeoNameId.cs" />
+    <Compile Include="Domain\Places\Queries\GetGeoNamesTimeZoneById.cs" />
+    <Compile Include="Domain\Places\Queries\GetGeoNamesFeatureByCode.cs" />
+    <Compile Include="Domain\Places\Queries\GetGeoNamesFeatureClassByCode.cs" />
+    <Compile Include="Domain\Places\Queries\GetGeoNamesToponymByGeoNameId.cs" />
+    <Compile Include="Domain\Places\Queries\GetGeoNameIdByWoeId.cs" />
+    <Compile Include="Domain\Places\Queries\GetPlaceByWoeId.cs" />
+    <Compile Include="Domain\Places\Queries\GetGeoPlanetPlaceTypeByCode.cs" />
+    <Compile Include="Domain\Places\Queries\GetGeoPlanetPlaceByWoeId.cs" />
     <Compile Include="Domain\Places\Queries\FindPlacesWithName.cs" />
     <Compile Include="Domain\Places\Queries\GetPlaceById.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2,7 +2,7 @@
 
 namespace UCosmic.Domain.Identity
 {
-    public class GetUserByEntityIdQuery : BaseUserQuery, IDefineQuery<User>
+    public class GetUserByEntityIdQuery : BaseEntityQuery<User>, IDefineQuery<User>
     {
         public Guid EntityId { get; set; }
     }

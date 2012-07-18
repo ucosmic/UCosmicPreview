@@ -3,7 +3,7 @@ using System.Security.Principal;
 
 namespace UCosmic.Domain.Activities
 {
-    public class FindMyActivitiesQuery : BaseActivitiesQuery, IDefineQuery<PagedResult<Activity>>
+    public class FindMyActivitiesQuery : BaseEntitiesQuery<Activity>, IDefineQuery<PagedResult<Activity>>
     {
         public IPrincipal Principal { get; set; }
         public PagerOptions PagerOptions { get; set; }

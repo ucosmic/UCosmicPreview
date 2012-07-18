@@ -19,7 +19,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
     {
         private readonly InstitutionalAgreementFinder _agreements;
         private readonly EstablishmentFinder _establishments;
-        private readonly PlaceFinder _places;
+        //private readonly PlaceFinder _places;
         private readonly IProcessQueries _queryProcessor;
 
         public PublicSearchController(IQueryEntities entityQueries, IProcessQueries queryProcessor)
@@ -27,7 +27,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             _queryProcessor = queryProcessor;
             _agreements = new InstitutionalAgreementFinder(entityQueries);
             _establishments = new EstablishmentFinder(entityQueries);
-            _places = new PlaceFinder(entityQueries);
+            //_places = new PlaceFinder(entityQueries);
         }
 
         [NonAction]
@@ -311,8 +311,14 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 
             if (!string.IsNullOrWhiteSpace(keyword))
             {
-                var places = _places.FindMany(PlacesWith.AutoCompleteTerm(keyword));
-                if (places.Count == 1)
+                //var places = _places.FindMany(PlacesWith.AutoCompleteTerm(keyword));
+                var places = _queryProcessor.Execute(
+                    new FindPlacesWithNameQuery
+                    {
+                        Term = keyword,
+                        TermMatchStrategy = StringMatchStrategy.StartsWith,
+                    });
+                if (places.Length == 1)
                     model.MapBoundingBox = places.Single().BoundingBox;
             }
 
@@ -442,8 +448,19 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         public virtual JsonResult AutoCompleteKeyword(string establishmentUrl, string term)
         {
             const int maxResults = 15;
-            var places = _places.FindMany(PlacesWith.AutoCompleteTerm(term, maxResults)
-                .EagerLoad(p => p.Names.Select(n => n.TranslationToLanguage)));
+            //var places = _places.FindMany(PlacesWith.AutoCompleteTerm(term, maxResults)
+            //    .EagerLoad(p => p.Names.Select(n => n.TranslationToLanguage)));
+            var places = _queryProcessor.Execute(
+                new FindPlacesWithNameQuery
+                    {
+                        Term = term,
+                        MaxResults = maxResults,
+                        TermMatchStrategy = StringMatchStrategy.StartsWith,
+                        EagerLoad = new Expression<Func<Place, object>>[]
+                        {
+                            p => p.Names.Select(n => n.TranslationToLanguage)
+                        }
+                    });
             var placeNames = places.Select(p => (p.OfficialName.StartsWith(term, StringComparison.OrdinalIgnoreCase))
                 ? p.OfficialName
                 : p.Names.First(n => n.TranslationToLanguage != null && n.TranslationToLanguage.TwoLetterIsoCode.Equals(

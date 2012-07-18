@@ -26,11 +26,7 @@ namespace UCosmic.Domain.Activities
             if (command == null) throw new ArgumentNullException("command");
 
             var person = _queryProcessor.Execute(
-                new GetMyPersonQuery
-                {
-                    Principal = command.Principal,
-                }
-            );
+                new GetMyPersonQuery(command.Principal));
 
             var otherActivities = _queryProcessor.Execute(
                 new FindActivitiesWithPersonIdQuery

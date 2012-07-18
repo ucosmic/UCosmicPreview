@@ -2,7 +2,7 @@
 
 namespace UCosmic.Domain.Places
 {
-    public class GetPlaceByIdQuery : BasePlaceQuery, IDefineQuery<Place>
+    public class GetPlaceByIdQuery : BaseEntityQuery<Place>, IDefineQuery<Place>
     {
         public int Id { get; set; }
     }

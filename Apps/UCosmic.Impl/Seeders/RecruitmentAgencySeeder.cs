@@ -26,7 +26,7 @@ namespace UCosmic.Impl.Seeders
             var objectCommander = new ObjectCommander(context);
             var geoNames = new GeoNamesClient();
             var geoPlanet = new GeoPlanetClient();
-            var placeFactory = new PlaceFactory(context, objectCommander, geoPlanet, geoNames, configurationManager);
+            //var placeFactory = new PlaceFactory(context, objectCommander, geoPlanet, geoNames, configurationManager);
             var placeFinderClient = ServiceProviderLocator.Current.GetService<IConsumePlaceFinder>();
             double latitude;
             double longitude;
@@ -48,7 +48,12 @@ namespace UCosmic.Impl.Seeders
                 latitude = 39.898716;
                 longitude = 116.417877;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                place = placeFactory.FromWoeId(result.WoeId.Value);
+                //place = placeFactory.FromWoeId(result.WoeId.Value);
+                place = ServiceProviderLocator.Current.GetService<IProcessQueries>().Execute(
+                    new GetPlaceByWoeIdQuery
+                    {
+                        WoeId = result.WoeId.Value,
+                    });
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
                 eduGlobalHeaqdquarters = new Establishment
@@ -91,7 +96,12 @@ namespace UCosmic.Impl.Seeders
                 latitude = 43.891129;
                 longitude = 125.310471;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                place = placeFactory.FromWoeId(result.WoeId.Value);
+                //place = placeFactory.FromWoeId(result.WoeId.Value);
+                place = ServiceProviderLocator.Current.GetService<IProcessQueries>().Execute(
+                    new GetPlaceByWoeIdQuery
+                    {
+                        WoeId = result.WoeId.Value,
+                    });
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
                 var eduGlobalChangchun = new Establishment
@@ -145,7 +155,12 @@ namespace UCosmic.Impl.Seeders
                 latitude = 39.9059830001;
                 longitude = 116.4593730001;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                place = placeFactory.FromWoeId(result.WoeId.Value);
+                //place = placeFactory.FromWoeId(result.WoeId.Value);
+                place = ServiceProviderLocator.Current.GetService<IProcessQueries>().Execute(
+                    new GetPlaceByWoeIdQuery
+                    {
+                        WoeId = result.WoeId.Value,
+                    });
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
                 eicHeaqdquarters = new Establishment
@@ -187,7 +202,12 @@ namespace UCosmic.Impl.Seeders
                 latitude = 28.194132;
                 longitude = 112.976715;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                place = placeFactory.FromWoeId(result.WoeId.Value);
+                //place = placeFactory.FromWoeId(result.WoeId.Value);
+                place = ServiceProviderLocator.Current.GetService<IProcessQueries>().Execute(
+                    new GetPlaceByWoeIdQuery
+                    {
+                        WoeId = result.WoeId.Value,
+                    });
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
                 var eicChangsha = new Establishment
@@ -241,7 +261,12 @@ namespace UCosmic.Impl.Seeders
                 latitude = 39.905605;
                 longitude = 116.459831;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                place = placeFactory.FromWoeId(result.WoeId.Value);
+                //place = placeFactory.FromWoeId(result.WoeId.Value);
+                place = ServiceProviderLocator.Current.GetService<IProcessQueries>().Execute(
+                    new GetPlaceByWoeIdQuery
+                    {
+                        WoeId = result.WoeId.Value,
+                    });
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
                 canachieveHeadquarters = new Establishment
@@ -280,7 +305,12 @@ namespace UCosmic.Impl.Seeders
                 latitude = 32.044769;
                 longitude = 118.789917;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                place = placeFactory.FromWoeId(result.WoeId.Value);
+                //place = placeFactory.FromWoeId(result.WoeId.Value);
+                place = ServiceProviderLocator.Current.GetService<IProcessQueries>().Execute(
+                    new GetPlaceByWoeIdQuery
+                    {
+                        WoeId = result.WoeId.Value,
+                    });
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
                 var canAchieveNanjing = new Establishment
@@ -317,7 +347,12 @@ namespace UCosmic.Impl.Seeders
                 latitude = 23.13893700002;
                 longitude = 113.32875100002;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                place = placeFactory.FromWoeId(result.WoeId.Value);
+                //place = placeFactory.FromWoeId(result.WoeId.Value);
+                place = ServiceProviderLocator.Current.GetService<IProcessQueries>().Execute(
+                    new GetPlaceByWoeIdQuery
+                    {
+                        WoeId = result.WoeId.Value,
+                    });
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
                 var canAchieveGuangzhou = new Establishment

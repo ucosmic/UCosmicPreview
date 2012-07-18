@@ -21,17 +21,19 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
     {
         #region Construction & DI
 
+        private readonly IProcessQueries _queryProcessor;
         private readonly InstitutionalAgreementFinder _agreements;
         private readonly InstitutionalAgreementChanger _agreementChanger;
-        private readonly PersonFinder _people;
+        //private readonly PersonFinder _people;
         private readonly EstablishmentFinder _establishments;
         private readonly FileFactory _fileFactory;
 
-        public ManagementFormsController(IQueryEntities entityQueries, ICommandObjects objectCommander)
+        public ManagementFormsController(IProcessQueries queryProcessor, IQueryEntities entityQueries, ICommandObjects objectCommander)
         {
+            _queryProcessor = queryProcessor;
             _agreements = new InstitutionalAgreementFinder(entityQueries);
             _agreementChanger = new InstitutionalAgreementChanger(objectCommander, entityQueries);
-            _people = new PersonFinder(entityQueries);
+            //_people = new PersonFinder(entityQueries);
             _establishments = new EstablishmentFinder(entityQueries);
             _fileFactory = new FileFactory(objectCommander, entityQueries);
         }
@@ -86,7 +88,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             if (!entityId.HasValue)
             {
                 // find person's default affiliation
-                var person = _people.FindOne(PersonBy.Principal(User));
+                //var person = _people.FindOne(PersonBy.Principal(User));
+                var person = _queryProcessor.Execute(new GetMyPersonQuery(User));
                 if (person == null || person.DefaultAffiliation == null) return HttpNotFound();
 
                 model = new InstitutionalAgreementForm
@@ -135,7 +138,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 else
                 {
                     // find person's default affiliation
-                    var person = _people.FindOne(PersonBy.Principal(User));
+                    //var person = _people.FindOne(PersonBy.Principal(User));
+                    var person = _queryProcessor.Execute(new GetMyPersonQuery(User));
                     if (person == null || person.DefaultAffiliation == null) return HttpNotFound();
                 }
 
@@ -145,8 +149,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 if (ModelState.IsValid)
                 {
                     var scalars = Mapper.Map<InstitutionalAgreement>(model);
-                    var changes = _agreementChanger.CreateOrModify(User, scalars, model.Umbrella.EntityId, 
-                        model.Participants.Where(m => m.IsDeleted).Select(m => m.EstablishmentEntityId), 
+                    var changes = _agreementChanger.CreateOrModify(User, scalars, model.Umbrella.EntityId,
+                        model.Participants.Where(m => m.IsDeleted).Select(m => m.EstablishmentEntityId),
                         model.Participants.Where(m => !m.IsDeleted).Select(m => m.EstablishmentEntityId),
                         model.Contacts.Where(m => m.IsDeleted).Select(m => m.EntityId),
                         Mapper.Map<IEnumerable<InstitutionalAgreementContact>>(model.Contacts.Where(m => !m.IsDeleted)),
@@ -254,9 +258,19 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 if (ModelState.IsValid)
                 {
                     model.Person.DisplayName = model.Person.EntityId.HasValue
-                        ? _people.FindOne(By<Person>.EntityId(model.Person.EntityId.Value)).DisplayName
-                        : PersonFactory.DeriveDisplayName(model.Person.LastName, model.Person.FirstName,
-                            model.Person.MiddleName, model.Person.Salutation, model.Person.Suffix);
+                        //? _people.FindOne(By<Person>.EntityId(model.Person.EntityId.Value)).DisplayName
+                        ? _queryProcessor.Execute(new GetPersonByGuidQuery { Guid = model.Person.EntityId.Value }).DisplayName
+                        //: PersonFactory.DeriveDisplayName(model.Person.LastName, model.Person.FirstName,
+                        //    model.Person.MiddleName, model.Person.Salutation, model.Person.Suffix);
+                        : _queryProcessor.Execute(
+                            new GenerateDisplayNameQuery
+                            {
+                                FirstName = model.Person.FirstName,
+                                LastName = model.Person.LastName,
+                                MiddleName = model.Person.MiddleName,
+                                Salutation = model.Person.Salutation,
+                                Suffix = model.Person.Suffix,
+                            });
                     return PartialView(MVC.InstitutionalAgreements.ManagementForms.Views.add_contact, model);
                 }
                 throw new NotSupportedException("Is client-side validation enabled?");
@@ -285,7 +299,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             var agreement = Mapper.Map<InstitutionalAgreement>(model);
             if (model.ParticipantEstablishmentIds != null)
             {
-                var person = _people.FindOne(PersonBy.Principal(User));
+                //var person = _people.FindOne(PersonBy.Principal(User));
+                var person = _queryProcessor.Execute(new GetMyPersonQuery(User));
                 var establishments = _establishments.FindMany(
                     With<Establishment>.EntityIds(model.ParticipantEstablishmentIds)
                         .EagerLoad(e => e.Affiliates.Select(a => a.Person))

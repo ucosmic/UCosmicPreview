@@ -1,6 +1,6 @@
 ﻿namespace UCosmic.Domain.Establishments
 {
-    public class GetEstablishmentBySamlEntityIdQuery : BaseEstablishmentQuery, IDefineQuery<Establishment>
+    public class GetEstablishmentBySamlEntityIdQuery : BaseEntitiesQuery<Establishment>, IDefineQuery<Establishment>
     {
         public string SamlEntityId { get; set; }
     }

@@ -5,7 +5,7 @@ using LinqKit;
 
 namespace UCosmic.Domain.Places
 {
-    public static class QueryPlaces
+    internal static class QueryPlaces
     {
         internal static IQueryable<Place> WithName(this IQueryable<Place> queryable, string term, StringMatchStrategy matchStrategy)
         {
@@ -18,6 +18,16 @@ namespace UCosmic.Domain.Places
             ;
 
             return queryable.AsExpandable().Where(matchesName);
+        }
+
+        internal static Place ByWoeId(this IQueryable<Place> queryable, int woeId)
+        {
+            return queryable.SingleOrDefault(p => p.GeoPlanetPlace != null && p.GeoPlanetPlace.WoeId == woeId);
+        }
+
+        internal static Place ByGeoNameId(this IQueryable<Place> queryable, int geoNameId)
+        {
+            return queryable.SingleOrDefault(p => p.GeoNamesToponym != null && p.GeoNamesToponym.GeoNameId == geoNameId);
         }
 
         private static Expression<Func<Place, bool>> OfficialNameMatches(string term, StringMatchStrategy matchStrategy)

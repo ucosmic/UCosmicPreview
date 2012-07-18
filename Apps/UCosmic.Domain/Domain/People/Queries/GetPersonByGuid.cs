@@ -2,7 +2,7 @@
 
 namespace UCosmic.Domain.People
 {
-    public class GetPersonByGuidQuery : BasePersonQuery, IDefineQuery<Person>
+    public class GetPersonByGuidQuery : BaseEntityQuery<Person>, IDefineQuery<Person>
     {
         public Guid Guid { get; set; }
     }

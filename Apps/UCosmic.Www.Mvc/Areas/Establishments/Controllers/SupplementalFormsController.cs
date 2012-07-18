@@ -19,19 +19,21 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
 {
     public partial class SupplementalFormsController : BaseController
     {
+        private readonly IProcessQueries _queryProcessor;
         private readonly IConsumePlaceFinder _placeFinder;
-        private readonly PlaceFactory _placeFactory;
+        //private readonly PlaceFactory _placeFactory;
         private readonly EstablishmentFinder _establishmentFinder;
         private readonly ICommandObjects _objectCommander;
 
-        public SupplementalFormsController(IConsumePlaceFinder placeFinder, IConsumeGeoNames geoNames, 
+        public SupplementalFormsController(IProcessQueries queryProcessor, IConsumePlaceFinder placeFinder, IConsumeGeoNames geoNames, 
             IConsumeGeoPlanet geoPlanet, IQueryEntities entityQueries, ICommandObjects objectCommander, 
             IManageConfigurations config)
         {
+            _queryProcessor = queryProcessor;
             _establishmentFinder = new EstablishmentFinder(entityQueries);
             _objectCommander = objectCommander;
             _placeFinder = placeFinder;
-            _placeFactory = new PlaceFactory(entityQueries, objectCommander, geoPlanet, geoNames, config);
+            //_placeFactory = new PlaceFactory(entityQueries, objectCommander, geoPlanet, geoNames, config);
         }
 
         [ActionName("locate")]
@@ -90,7 +92,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                     if (!oldCenter.HasValue)
                     {
                         var builder = new SupplementalLocationPlacesBuilder(
-                            establishment, _placeFinder, _placeFactory, _objectCommander);
+                            establishment, _queryProcessor, _placeFinder, _objectCommander);
                         var thread = new Thread(builder.Build);
                         thread.Start();
                     }
@@ -114,7 +116,12 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                 var woeId = results.Single().WoeId;
                 if (woeId != null)
                 {
-                    var place = _placeFactory.FromWoeId(woeId.Value);
+                    //var place = _placeFactory.FromWoeId(woeId.Value);
+                    var place = _queryProcessor.Execute(
+                        new GetPlaceByWoeIdQuery
+                        {
+                            WoeId = woeId.Value,
+                        });
                     var places = place.Ancestors.OrderByDescending(n => n.Separation)
                         .Select(n => n.Ancestor).ToList();
                     places.Add(place);
@@ -131,17 +138,22 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
     public class SupplementalLocationPlacesBuilder
     {
         private readonly Establishment _establishment;
+        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandObjects _objectCommander;
         private readonly IConsumePlaceFinder _placeFinder;
-        private readonly PlaceFactory _placeFactory;
+        //private readonly PlaceFactory _placeFactory;
 
-        public SupplementalLocationPlacesBuilder(Establishment establishment, IConsumePlaceFinder placeFinder,
-            PlaceFactory placeFactory, ICommandObjects objectCommander)
+        public SupplementalLocationPlacesBuilder(Establishment establishment
+            , IProcessQueries queryProcessor
+            , IConsumePlaceFinder placeFinder
+            //, PlaceFactory placeFactory
+            , ICommandObjects objectCommander)
         {
             _establishment = establishment;
+            _queryProcessor = queryProcessor;
             _objectCommander = objectCommander;
             _placeFinder = placeFinder;
-            _placeFactory = placeFactory;
+            //_placeFactory = placeFactory;
         }
 
         public void Build()
@@ -166,7 +178,12 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                     throw new NotSupportedException(string.Format(
                         "Could not find WOE ID for coordinates {0},{1}", latitude, longitude));
                 }
-                var place = _placeFactory.FromWoeId(result.WoeId.Value);
+                //var place = _placeFactory.FromWoeId(result.WoeId.Value);
+                var place = _queryProcessor.Execute(
+                    new GetPlaceByWoeIdQuery
+                    {
+                        WoeId = result.WoeId.Value,
+                    });
                 var places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
                 _establishment.Location.Places.Clear();

@@ -16,22 +16,24 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
     {
         #region Construction & DI
 
+        private readonly IProcessQueries _queryProcessor;
         private readonly EstablishmentFinder _establishments;
         private readonly EstablishmentTypeFinder _establishmentTypes;
-        private readonly LanguageFinder _languages;
+        //private readonly LanguageFinder _languages;
 
-        public ManagementFormsController(IQueryEntities entityQueries)
+        public ManagementFormsController(IProcessQueries queryProcessor, IQueryEntities entityQueries)
         {
+            _queryProcessor = queryProcessor;
             _establishments = new EstablishmentFinder(entityQueries);
             _establishmentTypes = new EstablishmentTypeFinder(entityQueries);
-            _languages = new LanguageFinder(entityQueries);
+            //_languages = new LanguageFinder(entityQueries);
         }
 
         #endregion
         #region List
 
         [ActionName("browse")]
-        [Authorize(Users = "ludwigd1@uc.edu,ajith_i@uc.edu,sodhiha1@uc.edu,ganesh_c@uc.edu")]
+        [Authorize(Users = "Daniel.Ludwig@uc.edu")]
         //[Authorize(Users = "Daniel.Ludwig@uc.edu")]
         public virtual ActionResult Browse()
         {
@@ -119,14 +121,24 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         {
             return _languageOptions ??
             (
-                _languageOptions = _languages
-                    .FindMany(With<Language>.DefaultCriteria())
-                    .Select(e => new SelectListItem
+                //_languageOptions = _languages
+                //    .FindMany(With<Language>.DefaultCriteria())
+                //    .Select(e => new SelectListItem
+                //        {
+                //            Text = e.TranslatedName.Text,
+                //            Value = e.RevisionId.ToInvariantString(),
+                //        }
+                //    )
+                //    .OrderBy(s => s.Text)
+                //    .ToArray()
+                _languageOptions = _queryProcessor
+                    .Execute(new FindAllLanguagesQuery())
+                    .Select(l => 
+                        new SelectListItem
                         {
-                            Text = e.TranslatedName.Text,
-                            Value = e.RevisionId.ToInvariantString(),
-                        }
-                    )
+                            Text = l.TranslatedName.Text,
+                            Value = l.RevisionId.ToInvariantString(),
+                        })
                     .OrderBy(s => s.Text)
                     .ToArray()
             );
@@ -137,7 +149,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         #region Partials
 
         [ActionName("new-establishment-alternatename-option")]
-        [Authorize(Users = "ludwigd1@uc.edu,ajith_i@uc.edu,sodhiha1@uc.edu,ganesh_c@uc.edu")]
+        [Authorize(Users = "Daniel.Ludwig@uc.edu")]
         //[Authorize(Users = "Daniel.Ludwig@uc.edu")]
         public virtual PartialViewResult NewName()
         {
@@ -150,7 +162,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         #region Json
 
         [ActionName("validate-duplicate-option")]
-        [Authorize(Users = "ludwigd1@uc.edu,ajith_i@uc.edu,sodhiha1@uc.edu,ganesh_c@uc.edu")]
+        [Authorize(Users = "Daniel.Ludwig@uc.edu")]
         public virtual JsonResult ValidateDuplicateOption(string name, List<string> values)
         {
             var model = new EstablishmentForm();

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace UCosmic.Domain.Identity
 {
-    public class AutoCompleteUsersByNameQuery : BaseUsersQuery, IDefineQuery<User[]>
+    public class AutoCompleteUsersByNameQuery : BaseEntitiesQuery<User>, IDefineQuery<User[]>
     {
         public string Term { get; set; }
         public IEnumerable<Guid> ExcludeEntityIds { get; set; }

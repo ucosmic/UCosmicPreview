@@ -5,7 +5,7 @@ using FluentValidation.Results;
 
 namespace UCosmic.Domain.Establishments
 {
-    public class FindEstablishmentsWithNameQuery : BaseEstablishmentsQuery, IDefineQuery<Establishment[]>
+    public class FindEstablishmentsWithNameQuery : BaseEntitiesQuery<Establishment>, IDefineQuery<Establishment[]>
     {
         public string Term { get; set; }
         public int MaxResults { get; set; }

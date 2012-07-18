@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace UCosmic.Domain
+namespace UCosmic
 {
     public class CaseInsensitiveStringComparer : IEqualityComparer<string>
     {

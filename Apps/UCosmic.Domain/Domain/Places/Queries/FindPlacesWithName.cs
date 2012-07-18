@@ -5,7 +5,7 @@ using FluentValidation.Results;
 
 namespace UCosmic.Domain.Places
 {
-    public class FindPlacesWithNameQuery : BasePlacesQuery, IDefineQuery<Place[]>
+    public class FindPlacesWithNameQuery : BaseEntitiesQuery<Place>, IDefineQuery<Place[]>
     {
         public string Term { get; set; }
         public int MaxResults { get; set; }

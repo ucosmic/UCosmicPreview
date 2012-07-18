@@ -2,7 +2,7 @@
 
 namespace UCosmic.Domain.Establishments
 {
-    public class GetEstablishmentByUrlQuery : BaseEstablishmentQuery, IDefineQuery<Establishment>
+    public class GetEstablishmentByUrlQuery : BaseEntityQuery<Establishment>, IDefineQuery<Establishment>
     {
         public string Url { get; set; }
     }

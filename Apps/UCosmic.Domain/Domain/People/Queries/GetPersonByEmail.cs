@@ -2,7 +2,7 @@
 
 namespace UCosmic.Domain.People
 {
-    public class GetPersonByEmailQuery : BasePersonQuery, IDefineQuery<Person>
+    public class GetPersonByEmailQuery : BaseEntityQuery<Person>, IDefineQuery<Person>
     {
         public string Email { get; set; }
     }

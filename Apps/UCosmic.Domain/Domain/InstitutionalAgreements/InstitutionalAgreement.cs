@@ -123,6 +123,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             if (contact.Person.EntityId != Guid.Empty)
                 contact.Person = personFinder.FindOne(By<Person>.EntityId(contact.Person.EntityId)
                     .ForInsertOrUpdate());
+                //contact.Person = queryProcessor.Execute(new GetPersonByGuidQuery { Guid = contact.Person.EntityId });
             contact.EntityId = Guid.NewGuid();
             Contacts.Add(contact);
             return 1;

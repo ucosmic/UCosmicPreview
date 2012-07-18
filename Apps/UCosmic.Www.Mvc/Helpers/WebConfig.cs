@@ -25,5 +25,9 @@ namespace UCosmic.Www.Mvc
             return (request != null && request.IsAuthenticated);
         }
 
+
+        public static string GeoPlanetAppId { get { return Config.GeoPlanetAppId; } }
+
+        public static string GeoNamesUserName { get { return Config.GeoNamesUserName; } }
     }
 }

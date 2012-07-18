@@ -45,14 +45,20 @@ namespace UCosmic.Impl.Seeders
                     var objectCommander = new ObjectCommander(context);
                     var geoNames = new GeoNamesClient();
                     var geoPlanet = new GeoPlanetClient();
-                    var placeFactory = new PlaceFactory(context, objectCommander, geoPlanet, geoNames, configurationManager);
+                    //var placeFactory = new PlaceFactory(context, objectCommander, geoPlanet, geoNames, configurationManager);
                     var placeFinderClient = ServiceProviderLocator.Current.GetService<IConsumePlaceFinder>();
                     const string officialName = "University of South Florida";
                     usf = EnsureEstablishment(officialName, true, null, GetUniversity(), usfUrl, "@usf.edu;@iac.usf.edu;@mail.usf.edu");
                     const double latitude = 28.061680;
                     const double longitude = -82.414803;
                     var result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
-                    var place = placeFactory.FromWoeId(result.WoeId.Value);
+                    //var place = placeFactory.FromWoeId(result.WoeId.Value);
+                    var place = ServiceProviderLocator.Current.GetService<IProcessQueries>().Execute(
+                        new GetPlaceByWoeIdQuery
+                        {
+                            WoeId = result.WoeId.Value,
+                        }
+                    );
                     var places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                     places.Add(place);
                     usf.Location = new EstablishmentLocation
@@ -136,7 +142,7 @@ namespace UCosmic.Impl.Seeders
         public class EstablishmentDecember2011Preview2Seeder : BaseEstablishmentSeeder
         // ReSharper restore MemberCanBePrivate.Global
         {
-            private PlaceFactory _placeFactory;
+            //private PlaceFactory _placeFactory;
             private IConsumePlaceFinder _placeFinderClient;
 
             public override void Seed(UCosmicContext context)
@@ -150,7 +156,7 @@ namespace UCosmic.Impl.Seeders
                 var geoPlanet = ServiceProviderLocator.Current.GetService<IConsumeGeoPlanet>();
                 var geoNames = ServiceProviderLocator.Current.GetService<IConsumeGeoNames>();
                 _placeFinderClient = ServiceProviderLocator.Current.GetService<IConsumePlaceFinder>();
-                _placeFactory = new PlaceFactory(context, commander, geoPlanet, geoNames, config);
+                //_placeFactory = new PlaceFactory(context, commander, geoPlanet, geoNames, config);
                 Seed("www.ufl.edu", 29.643528, -82.350685);
                 Seed("www.ufrj.br", -22.862494, -43.223907);
                 Seed("www.ufpr.br", -25.434137, -49.267353);
@@ -175,7 +181,12 @@ namespace UCosmic.Impl.Seeders
                 var result = _placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
                 if (result.WoeId.HasValue)
                 {
-                    var place = _placeFactory.FromWoeId(result.WoeId.Value);
+                    //var place = _placeFactory.FromWoeId(result.WoeId.Value);
+                    var place = ServiceProviderLocator.Current.GetService<IProcessQueries>().Execute(
+                        new GetPlaceByWoeIdQuery
+                        {
+                            WoeId = result.WoeId.Value,
+                        });
                     var places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                     places.Add(place);
                     est.Location.BoundingBox = place.BoundingBox;

@@ -2,7 +2,7 @@
 
 namespace UCosmic.Domain.Activities
 {
-    public class GetActivityByEntityIdQuery : BaseActivityQuery, IDefineQuery<Activity>
+    public class GetActivityByEntityIdQuery : BaseEntityQuery<Activity>, IDefineQuery<Activity>
     {
         public Guid EntityId { get; set; }
     }

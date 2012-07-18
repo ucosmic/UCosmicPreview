@@ -3,9 +3,14 @@ using System.Security.Principal;
 
 namespace UCosmic.Domain.People
 {
-    public class GetMyPersonQuery : BasePersonQuery, IDefineQuery<Person>
+    public class GetMyPersonQuery : BaseEntityQuery<Person>, IDefineQuery<Person>
     {
-        public IPrincipal Principal { get; set; }
+        public GetMyPersonQuery(IPrincipal principal)
+        {
+            Principal = principal;
+        }
+
+        internal IPrincipal Principal { get; private set; }
     }
 
     public class GetMyPersonHandler : IHandleQueries<GetMyPersonQuery, Person>

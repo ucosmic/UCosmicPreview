@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace UCosmic.Domain.Activities
 {
-    public class FindActivitiesWithPersonIdQuery : BaseActivitiesQuery, IDefineQuery<Activity[]>
+    public class FindActivitiesWithPersonIdQuery : BaseEntitiesQuery<Activity>, IDefineQuery<Activity[]>
     {
         public int PersonId { get; set; }
     }

@@ -85,7 +85,9 @@ namespace UCosmic.Www.Mvc
         {
             var containerConfiguration = new ContainerConfiguration
             {
-                IsDeployedToCloud = WebConfig.IsDeployedToCloud
+                IsDeployedToCloud = WebConfig.IsDeployedToCloud,
+                GeoPlanetAppId = WebConfig.GeoPlanetAppId,
+                GeoNamesUserName = WebConfig.GeoNamesUserName,
             };
             var serviceProvider = new SimpleDependencyInjector(containerConfiguration);
             ServiceProviderLocator.SetProvider(serviceProvider);

@@ -2,7 +2,7 @@
 
 namespace UCosmic.Domain.People
 {
-    public class GetPersonByIdQuery : BasePersonQuery, IDefineQuery<Person>
+    public class GetPersonByIdQuery : BaseEntityQuery<Person>, IDefineQuery<Person>
     {
         public int Id { get; set; }
     }

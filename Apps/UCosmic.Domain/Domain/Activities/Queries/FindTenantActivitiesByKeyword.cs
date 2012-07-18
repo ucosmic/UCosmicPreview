@@ -2,7 +2,7 @@
 
 namespace UCosmic.Domain.Activities
 {
-    public class FindTenantActivitiesByKeywordQuery : BaseActivitiesQuery, IDefineQuery<PagedResult<Activity>>
+    public class FindTenantActivitiesByKeywordQuery : BaseEntitiesQuery<Activity>, IDefineQuery<PagedResult<Activity>>
     {
         public object Tenant { get; set; }
         public string Keyword { get; set; }

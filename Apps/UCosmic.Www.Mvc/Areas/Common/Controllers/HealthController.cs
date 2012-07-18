@@ -22,24 +22,26 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 {
     public partial class HealthController : Controller
     {
+        private readonly IProcessQueries _queryProcessor;
         private readonly IQueryEntities _entityQueries;
         private readonly ICommandObjects _objectCommander;
-        private readonly IConsumeGeoPlanet _geoPlanet;
-        private readonly IConsumeGeoNames _geoNames;
+        //private readonly IConsumeGeoPlanet _geoPlanet;
+        //private readonly IConsumeGeoNames _geoNames;
         private readonly IConsumePlaceFinder _placeFinder;
-        private readonly IManageConfigurations _config;
+        //private readonly IManageConfigurations _config;
         private readonly IHandleCommands<UpdateEstablishmentNodeHierarchyCommand> _updateEstablishmentHierarchy;
 
-        public HealthController(IQueryEntities entityQueries, ICommandObjects objectCommander,
+        public HealthController(IProcessQueries queryProcessor, IQueryEntities entityQueries, ICommandObjects objectCommander,
             IConsumeGeoNames geoNames, IConsumeGeoPlanet geoPlanet, IConsumePlaceFinder placeFinder,
             IManageConfigurations config, IHandleCommands<UpdateEstablishmentNodeHierarchyCommand> updateEstablishmentHierarchy)
         {
+            _queryProcessor = queryProcessor;
             _entityQueries = entityQueries;
             _objectCommander = objectCommander;
-            _geoNames = geoNames;
-            _geoPlanet = geoPlanet;
+            //_geoNames = geoNames;
+            //_geoPlanet = geoPlanet;
             _placeFinder = placeFinder;
-            _config = config;
+            //_config = config;
             _updateEstablishmentHierarchy = updateEstablishmentHierarchy;
         }
 
@@ -74,8 +76,9 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 Links.content.kml.establishment_import_kml)));
             var establishmentRows = new EstablishmentRows(Server.MapPath(string.Format("~{0}",
                 Links.content.kml.establishment_import_tsv)));
-            var placeFactory = new PlaceFactory(_entityQueries, _objectCommander, _geoPlanet, _geoNames, _config);
-            var en = new LanguageFinder(_entityQueries).FindOne(LanguageBy.IsoCode("en"));
+            //var placeFactory = new PlaceFactory(_entityQueries, _objectCommander, _geoPlanet, _geoNames, _config);
+            //var en = new LanguageFinder(_entityQueries).FindOne(LanguageBy.IsoCode("en"));
+            var en = _queryProcessor.Execute(new GetLanguageByIsoCodeQuery { IsoCode = "en" });
             var university = new EstablishmentTypeFinder(_entityQueries).FindOne(EstablishmentTypeBy.EnglishName("University"));
 
             foreach (var placeMark in placeMarks)
@@ -170,7 +173,12 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                         }
                         else
                         {
-                            var place = placeFactory.FromWoeId(result.WoeId.Value);
+                            //var place = placeFactory.FromWoeId(result.WoeId.Value);
+                            var place = _queryProcessor.Execute(
+                                new GetPlaceByWoeIdQuery
+                                {
+                                    WoeId = result.WoeId.Value,
+                                });
                             places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                             places.Add(place);
                         }
@@ -196,7 +204,12 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                     }
                     else
                     {
-                        var place = placeFactory.FromWoeId(result.WoeId.Value);
+                        //var place2 = placeFactory.FromWoeId(result.WoeId.Value);
+                        var place = _queryProcessor.Execute(
+                            new GetPlaceByWoeIdQuery
+                            {
+                                WoeId = result.WoeId.Value,
+                            });
                         places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                         places.Add(place);
                     }
@@ -262,27 +275,27 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 }
             }
 
-            // set up USF
-            var usf = new EstablishmentFinder(_entityQueries).FindOne(EstablishmentBy.WebsiteUrl("www.usf.edu"));
-            if (!usf.IsMember)
-            {
-                usf.IsMember = true;
-                usf.EmailDomains.Add(new EstablishmentEmailDomain
-                {
-                    Value = "@usf.edu",
-                });
-                _objectCommander.Update(usf, true);
-            }
+            //// set up USF
+            //var usf = new EstablishmentFinder(_entityQueries).FindOne(EstablishmentBy.WebsiteUrl("www.usf.edu"));
+            //if (!usf.IsMember)
+            //{
+            //    usf.IsMember = true;
+            //    usf.EmailDomains.Add(new EstablishmentEmailDomain
+            //    {
+            //        Value = "@usf.edu",
+            //    });
+            //    _objectCommander.Update(usf, true);
+            //}
 
-            // add former name for rotterdam dance academy
-            const string rdaName = "Rotterdam Dance Academy";
-            var codarts = new EstablishmentFinder(_entityQueries).FindOne(EstablishmentBy.WebsiteUrl("www.codarts.nl").ForInsertOrUpdate());
-            var rda = codarts.Names.SingleOrDefault(n => n.Text == "Rotterdam Dance Academy");
-            if (rda == null)
-            {
-                codarts.Names.Add(new EstablishmentName { Text = rdaName, IsFormerName = true, TranslationToLanguage = en });
-                _objectCommander.Update(codarts, true);
-            }
+            //// add former name for rotterdam dance academy
+            //const string rdaName = "Rotterdam Dance Academy";
+            //var codarts = new EstablishmentFinder(_entityQueries).FindOne(EstablishmentBy.WebsiteUrl("www.codarts.nl").ForInsertOrUpdate());
+            //var rda = codarts.Names.SingleOrDefault(n => n.Text == "Rotterdam Dance Academy");
+            //if (rda == null)
+            //{
+            //    codarts.Names.Add(new EstablishmentName { Text = rdaName, IsFormerName = true, TranslationToLanguage = en });
+            //    _objectCommander.Update(codarts, true);
+            //}
 
             ViewBag.Console = _consoleLog.ToString();
             return View();

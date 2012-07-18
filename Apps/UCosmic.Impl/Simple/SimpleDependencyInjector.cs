@@ -18,6 +18,8 @@ namespace UCosmic.Impl
     public class ContainerConfiguration
     {
         public bool IsDeployedToCloud { get; set; }
+        public string GeoPlanetAppId { get; set; }
+        public string GeoNamesUserName { get; set; }
     }
 
     public class SimpleDependencyInjector : IServiceProvider
@@ -91,7 +93,9 @@ namespace UCosmic.Impl
 
             // NGeo interfaces
             container.RegisterPerWebRequest<IConsumeGeoNames, GeoNamesClient>();
+            container.RegisterPerWebRequest<IContainGeoNames>(() => new GeoNamesContainer(configuration.GeoNamesUserName));
             container.RegisterPerWebRequest<IConsumeGeoPlanet, GeoPlanetClient>();
+            container.RegisterPerWebRequest<IContainGeoPlanet>(() => new GeoPlanetContainer(configuration.GeoPlanetAppId));
             container.RegisterPerWebRequest<IConsumePlaceFinder, PlaceFinderClient>();
 
             // load assemblies for IoC reflection

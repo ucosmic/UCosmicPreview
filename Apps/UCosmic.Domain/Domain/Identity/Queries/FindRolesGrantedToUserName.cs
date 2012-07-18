@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace UCosmic.Domain.Identity
 {
-    public class FindRolesGrantedToUserNameQuery : BaseUserQuery, IDefineQuery<Role[]>
+    public class FindRolesGrantedToUserNameQuery : BaseEntitiesQuery<Role>, IDefineQuery<Role[]>
     {
         public string UserName { get; set; }
     }
@@ -22,6 +22,7 @@ namespace UCosmic.Domain.Identity
             if (query == null) throw new ArgumentNullException("query");
 
             return _entities.Roles
+                .EagerLoad(query.EagerLoad, _entities)
                 .GrantedTo(query.UserName)
                 .ToArray()
             ;

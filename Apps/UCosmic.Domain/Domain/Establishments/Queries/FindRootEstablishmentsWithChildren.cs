@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace UCosmic.Domain.Establishments
 {
-    public class FindRootEstablishmentsWithChildrenQuery : BaseEstablishmentQuery, IDefineQuery<ICollection<Establishment>>
+    public class FindRootEstablishmentsWithChildrenQuery : BaseEntitiesQuery<Establishment>, IDefineQuery<ICollection<Establishment>>
     {
     }
 
@@ -22,6 +22,7 @@ namespace UCosmic.Domain.Establishments
                 .EagerLoad(query.EagerLoad, _entities)
                 .IsRoot()
                 .WithAnyChildren()
+                .OrderBy(query.OrderBy)
                 .ToList()
             ;
         }

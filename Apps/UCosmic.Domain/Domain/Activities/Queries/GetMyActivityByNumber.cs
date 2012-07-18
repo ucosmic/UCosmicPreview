@@ -3,7 +3,7 @@ using System.Security.Principal;
 
 namespace UCosmic.Domain.Activities
 {
-    public class GetMyActivityByNumberQuery : BaseActivityQuery, IDefineQuery<Activity>
+    public class GetMyActivityByNumberQuery : BaseEntityQuery<Activity>, IDefineQuery<Activity>
     {
         public IPrincipal Principal { get; set; }
         public int Number { get; set; }

@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace UCosmic.Domain.People
 {
-    public class GetEmailMessageByNumberQuery : BaseQuery, IDefineQuery<EmailMessage>
+    public class GetEmailMessageByNumberQuery : BaseEntityQuery<EmailMessage>, IDefineQuery<EmailMessage>
     {
         public int PersonId { get; set; }
         public int Number { get; set; }

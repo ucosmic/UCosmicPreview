@@ -2,7 +2,7 @@
 
 namespace UCosmic.Domain.Establishments
 {
-    public class FindSamlIntegratedEstablishmentsQuery : BaseEstablishmentQuery, IDefineQuery<Establishment[]>
+    public class FindSamlIntegratedEstablishmentsQuery : BaseEntitiesQuery<Establishment>, IDefineQuery<Establishment[]>
     {
     }
 
@@ -20,6 +20,7 @@ namespace UCosmic.Domain.Establishments
             return _entities.Establishments
                 .EagerLoad(query.EagerLoad, _entities)
                 .SamlIntegrated()
+                .OrderBy(query.OrderBy)
                 .ToArray()
             ;
         }

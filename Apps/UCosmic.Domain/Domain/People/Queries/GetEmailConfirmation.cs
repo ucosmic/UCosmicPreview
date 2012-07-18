@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace UCosmic.Domain.People
 {
-    public class GetEmailConfirmationQuery : BasePersonQuery, IDefineQuery<EmailConfirmation>
+    public class GetEmailConfirmationQuery : BaseEntityQuery<Person>, IDefineQuery<EmailConfirmation>
     {
         public GetEmailConfirmationQuery(Guid token)
         {
