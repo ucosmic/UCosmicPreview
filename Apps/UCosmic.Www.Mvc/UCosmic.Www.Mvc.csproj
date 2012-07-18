@@ -117,9 +117,9 @@
       <HintPath>..\..\Packages\WindowsAzure.Caching.1.6.0.0\lib\net35-full\Microsoft.WindowsFabric.Data.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NGeo, Version=1.4.4581.28852, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="NGeo, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\NGeo.1.4.4581.28852\lib\net40\NGeo.dll</HintPath>
+      <HintPath>..\..\packages\NGeo.1.5\lib\net40\NGeo.dll</HintPath>
     </Reference>
     <Reference Include="PKCS12ProtectedConfigurationProvider">
       <HintPath>..\..\Etc\PKCS12ProtectedConfigurationProvider.dll</HintPath>
