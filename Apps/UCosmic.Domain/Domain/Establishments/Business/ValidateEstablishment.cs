@@ -21,9 +21,8 @@ namespace UCosmic.Domain.Establishments
             }
 
             entity = queryProcessor.Execute(
-                new GetEstablishmentByIdQuery
+                new GetEstablishmentByIdQuery(id)
                 {
-                    Id = id,
                     EagerLoad = eagerLoad,
                 }
             );

@@ -133,9 +133,8 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                             else if (tag.DomainType == ActivityTagDomainType.Establishment && tag.DomainKey.HasValue)
                             {
                                 var establishment = queryProcessor.Execute(
-                                    new GetEstablishmentByIdQuery
+                                    new GetEstablishmentByIdQuery(tag.DomainKey.Value)
                                     {
-                                        Id = tag.DomainKey.Value,
                                         EagerLoad = new Expression<Func<Establishment, object>>[]
                                         {
                                             e => e.Location,

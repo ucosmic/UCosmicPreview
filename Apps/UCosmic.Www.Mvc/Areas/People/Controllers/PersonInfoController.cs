@@ -66,9 +66,8 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             if (guid == Guid.Empty) return Json(null);
 
             var person = _services.QueryProcessor.Execute(
-                new GetPersonByGuidQuery
+                new GetPersonByGuidQuery(guid)
                 {
-                    Guid = guid,
                     EagerLoad = PersonInfoEagerLoad,
                 }
             );

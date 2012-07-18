@@ -4,7 +4,12 @@ namespace UCosmic.Domain.Establishments
 {
     public class GetEstablishmentByIdQuery : BaseEntitiesQuery<Establishment>, IDefineQuery<Establishment>
     {
-        public int Id { get; set; }
+        public GetEstablishmentByIdQuery(int id)
+        {
+            Id = id;
+        }
+
+        public int Id { get; private set; }
     }
 
     public class GetEstablishmentByIdHandler : IHandleQueries<GetEstablishmentByIdQuery, Establishment>

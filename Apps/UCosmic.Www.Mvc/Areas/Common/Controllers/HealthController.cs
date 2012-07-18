@@ -6,8 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using System.Xml;
-using NGeo.GeoNames;
-using NGeo.Yahoo.GeoPlanet;
 using NGeo.Yahoo.PlaceFinder;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
@@ -29,11 +27,19 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         //private readonly IConsumeGeoNames _geoNames;
         private readonly IConsumePlaceFinder _placeFinder;
         //private readonly IManageConfigurations _config;
-        private readonly IHandleCommands<UpdateEstablishmentNodeHierarchyCommand> _updateEstablishmentHierarchy;
+        private readonly IHandleCommands<UpdateEstablishmentHierarchiesCommand> _updateEstablishmentHierarchy;
+        private readonly IHandleCommands<UpdateInstitutionalAgreementHierarchiesCommand> _updateInstitutionalAgreementHierarchy;
 
-        public HealthController(IProcessQueries queryProcessor, IQueryEntities entityQueries, ICommandObjects objectCommander,
-            IConsumeGeoNames geoNames, IConsumeGeoPlanet geoPlanet, IConsumePlaceFinder placeFinder,
-            IManageConfigurations config, IHandleCommands<UpdateEstablishmentNodeHierarchyCommand> updateEstablishmentHierarchy)
+        public HealthController(IProcessQueries queryProcessor
+            , IQueryEntities entityQueries
+            , ICommandObjects objectCommander
+            //, IConsumeGeoNames geoNames
+            //, IConsumeGeoPlanet geoPlanet
+            , IConsumePlaceFinder placeFinder
+            //, IManageConfigurations config
+            , IHandleCommands<UpdateEstablishmentHierarchiesCommand> updateEstablishmentHierarchy
+            , IHandleCommands<UpdateInstitutionalAgreementHierarchiesCommand> updateInstitutionalAgreementHierarchy
+        )
         {
             _queryProcessor = queryProcessor;
             _entityQueries = entityQueries;
@@ -43,6 +49,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             _placeFinder = placeFinder;
             //_config = config;
             _updateEstablishmentHierarchy = updateEstablishmentHierarchy;
+            _updateInstitutionalAgreementHierarchy = updateInstitutionalAgreementHierarchy;
         }
 
         [UnitOfWork]
@@ -52,7 +59,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         public virtual ActionResult RunEstablishmentHierarchy()
         {
             _updateEstablishmentHierarchy.Handle(
-                new UpdateEstablishmentNodeHierarchyCommand()
+                new UpdateEstablishmentHierarchiesCommand()
             );
             return View();
         }
@@ -61,10 +68,9 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         [Authorize(Users = "Daniel.Ludwig@uc.edu")]
         public virtual ActionResult RunInstitutionalAgreementHierarchy()
         {
-            var agreementChanger = new InstitutionalAgreementChanger(_objectCommander, _entityQueries);
-            agreementChanger.DeriveNodes();
-            _objectCommander.SaveChanges();
-
+            _updateInstitutionalAgreementHierarchy.Handle(
+                new UpdateInstitutionalAgreementHierarchiesCommand()
+            );
             return View();
         }
 

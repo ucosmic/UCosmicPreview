@@ -38,15 +38,15 @@ namespace UCosmic.Impl.Seeders
             new InstitutionalAgreementConfigurationSeeder().Seed(context);
 
             var commander = ServiceProviderLocator.Current.GetService<ICommandObjects>();
-            var queries = ServiceProviderLocator.Current.GetService<IQueryEntities>();
 
             var updateEstablishmentHierarchy = ServiceProviderLocator.Current
-                .GetService<IHandleCommands<UpdateEstablishmentNodeHierarchyCommand>>();
-            updateEstablishmentHierarchy.Handle(new UpdateEstablishmentNodeHierarchyCommand());
+                .GetService<IHandleCommands<UpdateEstablishmentHierarchiesCommand>>();
+            updateEstablishmentHierarchy.Handle(new UpdateEstablishmentHierarchiesCommand());
             commander.SaveChanges();
 
-            var institutionalAgreementChanger = new InstitutionalAgreementChanger(commander, queries);
-            institutionalAgreementChanger.DeriveNodes();
+            var updateInstitutionalAgreementHierarchy = ServiceProviderLocator.Current
+                .GetService<IHandleCommands<UpdateInstitutionalAgreementHierarchiesCommand>>();
+            updateInstitutionalAgreementHierarchy.Handle(new UpdateInstitutionalAgreementHierarchiesCommand());
             commander.SaveChanges();
         }
     }

@@ -23,19 +23,25 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 
         private readonly IProcessQueries _queryProcessor;
         private readonly InstitutionalAgreementFinder _agreements;
-        private readonly InstitutionalAgreementChanger _agreementChanger;
+        //private readonly InstitutionalAgreementChanger _agreementChanger;
         //private readonly PersonFinder _people;
         private readonly EstablishmentFinder _establishments;
         private readonly FileFactory _fileFactory;
+        private readonly IHandleCommands<CreateOrUpdateInstitutionalAgreementCommand> _commandHandler;
 
-        public ManagementFormsController(IProcessQueries queryProcessor, IQueryEntities entityQueries, ICommandObjects objectCommander)
+        public ManagementFormsController(IProcessQueries queryProcessor
+            , IQueryEntities entityQueries
+            , ICommandObjects objectCommander
+            , IHandleCommands<CreateOrUpdateInstitutionalAgreementCommand> commandHandler
+        )
         {
             _queryProcessor = queryProcessor;
             _agreements = new InstitutionalAgreementFinder(entityQueries);
-            _agreementChanger = new InstitutionalAgreementChanger(objectCommander, entityQueries);
+            //_agreementChanger = new InstitutionalAgreementChanger(objectCommander, entityQueries);
             //_people = new PersonFinder(entityQueries);
             _establishments = new EstablishmentFinder(entityQueries);
             _fileFactory = new FileFactory(objectCommander, entityQueries);
+            _commandHandler = commandHandler;
         }
 
         #endregion
@@ -119,6 +125,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         }
 
         [HttpPost]
+        [UnitOfWork]
         [ActionName("post")]
         public virtual ActionResult Post(InstitutionalAgreementForm model)
         {
@@ -148,16 +155,42 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var scalars = Mapper.Map<InstitutionalAgreement>(model);
-                    var changes = _agreementChanger.CreateOrModify(User, scalars, model.Umbrella.EntityId,
-                        model.Participants.Where(m => m.IsDeleted).Select(m => m.EstablishmentEntityId),
-                        model.Participants.Where(m => !m.IsDeleted).Select(m => m.EstablishmentEntityId),
-                        model.Contacts.Where(m => m.IsDeleted).Select(m => m.EntityId),
-                        Mapper.Map<IEnumerable<InstitutionalAgreementContact>>(model.Contacts.Where(m => !m.IsDeleted)),
-                        model.Files.Where(m => m.IsDeleted).Select(m => m.EntityId),
-                        model.Files.Where(m => !m.IsDeleted).Select(m => m.EntityId)
-                    );
-                    SetFeedbackMessage(changes > 0
+                    //var scalars = Mapper.Map<InstitutionalAgreement>(model);
+                    //var changes = _agreementChanger.CreateOrModify(User, scalars, model.Umbrella.EntityId,
+                    //    model.Participants.Where(m => m.IsDeleted).Select(m => m.EstablishmentEntityId),
+                    //    model.Participants.Where(m => !m.IsDeleted).Select(m => m.EstablishmentEntityId),
+                    //    model.Contacts.Where(m => m.IsDeleted).Select(m => m.EntityId),
+                    //    Mapper.Map<IEnumerable<InstitutionalAgreementContact>>(model.Contacts.Where(m => !m.IsDeleted)),
+                    //    model.Files.Where(m => m.IsDeleted).Select(m => m.EntityId),
+                    //    model.Files.Where(m => !m.IsDeleted).Select(m => m.EntityId)
+                    //);
+                    // todo -- use automapper for this
+                    var command = new CreateOrUpdateInstitutionalAgreementCommand(User)
+                    {
+                        RevisionId = model.RevisionId,
+                        Title = model.Title,
+                        IsTitleDerived = model.IsTitleDerived,
+                        Type = model.Type,
+                        Status = model.Status,
+                        Description = model.Description,
+                        IsAutoRenew = model.IsAutoRenew,
+                        StartsOn = model.StartsOnValue,
+                        ExpiresOn = model.ExpiresOnValue,
+                        IsExpirationEstimated = model.IsExpirationEstimated,
+                        //Visibility = model.Visibility,
+                        UmbrellaEntityId = model.Umbrella.EntityId,
+                        RemoveParticipantEstablishmentEntityIds = model.Participants.Where(m => m.IsDeleted).Select(m => m.EstablishmentEntityId),
+                        AddParticipantEstablishmentEntityIds = model.Participants.Where(m => !m.IsDeleted).Select(m => m.EstablishmentEntityId),
+                        RemoveContactEntityIds = model.Contacts.Where(m => m.IsDeleted).Select(m => m.EntityId),
+                        AddContacts = Mapper.Map<IEnumerable<InstitutionalAgreementContact>>(model.Contacts.Where(m => !m.IsDeleted)),
+                        RemoveFileEntityIds = model.Files.Where(m => m.IsDeleted).Select(m => m.EntityId),
+                        AddFileEntityIds = model.Files.Where(m => !m.IsDeleted).Select(m => m.EntityId),
+                    };
+                    _commandHandler.Handle(command);
+                    //SetFeedbackMessage(changes > 0
+                    //    ? "Institutional agreement was saved successfully."
+                    //    : "No changes were saved.");
+                    SetFeedbackMessage(command.ChangeCount > 0
                         ? "Institutional agreement was saved successfully."
                         : "No changes were saved.");
                     return RedirectToAction(MVC.InstitutionalAgreements.PublicSearch.Info(model.EntityId));
@@ -259,7 +292,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 {
                     model.Person.DisplayName = model.Person.EntityId.HasValue
                         //? _people.FindOne(By<Person>.EntityId(model.Person.EntityId.Value)).DisplayName
-                        ? _queryProcessor.Execute(new GetPersonByGuidQuery { Guid = model.Person.EntityId.Value }).DisplayName
+                        ? _queryProcessor.Execute(new GetPersonByGuidQuery(model.Person.EntityId.Value)).DisplayName
                         //: PersonFactory.DeriveDisplayName(model.Person.LastName, model.Person.FirstName,
                         //    model.Person.MiddleName, model.Person.Salutation, model.Person.Suffix);
                         : _queryProcessor.Execute(

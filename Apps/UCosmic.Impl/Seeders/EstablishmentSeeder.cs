@@ -124,15 +124,16 @@ namespace UCosmic.Impl.Seeders
                     context.Establishments.Add(testshib);
                     context.SaveChanges();
 
-                    var samlHandler = ServiceProviderLocator.Current.GetService<IHandleCommands<UpdateSamlSignOnInfoCommand>>();
-                    samlHandler.Handle(
-                        new UpdateSamlSignOnInfoCommand
-                        {
-                            Establishment = testshib,
-                            EntityId = "https://idp.testshib.org/idp/shibboleth",
-                            MetadataUrl = "https://idp.testshib.org/idp/shibboleth",
-                        }
-                    );
+                    //// this won't seed if the testshib metadata url cannot be reached
+                    //var samlHandler = ServiceProviderLocator.Current.GetService<IHandleCommands<UpdateSamlSignOnInfoCommand>>();
+                    //samlHandler.Handle(
+                    //    new UpdateSamlSignOnInfoCommand
+                    //    {
+                    //        Establishment = testshib,
+                    //        EntityId = "https://idp.testshib.org/idp/shibboleth",
+                    //        MetadataUrl = "https://idp.testshib.org/idp/shibboleth",
+                    //    }
+                    //);
                     context.SaveChanges();
                 }
             }

@@ -1,51 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace UCosmic.Domain.Establishments
 {
-    public class UpdateEstablishmentNodeHierarchyCommand
+    public class UpdateEstablishmentHierarchyCommand
     {
+        public UpdateEstablishmentHierarchyCommand(Establishment establishment)
+        {
+            if (establishment == null) throw new ArgumentNullException("establishment");
+            Establishment = establishment;
+        }
+
+        public Establishment Establishment { get; private set; }
     }
 
-    public class UpdateEstablishmentNodeHierarchyHandler : IHandleCommands<UpdateEstablishmentNodeHierarchyCommand>
+    public class UpdateEstablishmentHierarchyHandler : IHandleCommands<UpdateEstablishmentHierarchyCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
 
-        public UpdateEstablishmentNodeHierarchyHandler(IProcessQueries queryProcessor, ICommandEntities entities)
+        public UpdateEstablishmentHierarchyHandler(ICommandEntities entities)
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
         }
 
-        public void Handle(UpdateEstablishmentNodeHierarchyCommand command)
+        public void Handle(UpdateEstablishmentHierarchyCommand command)
         {
-            // get all root-level establishments with children
-            var establishments = _queryProcessor.Execute(
-                new FindRootEstablishmentsWithChildrenQuery
-                {
-                    EagerLoad = new Expression<Func<Establishment, object>>[]
-                    {
-                        e => e.Offspring.Select(o => o.Ancestor.Parent),
-                        e => e.Offspring.Select(o => o.Offspring.Parent),
-                        e => e.Offspring.Select(o => o.Ancestor.Children),
-                        e => e.Offspring.Select(o => o.Offspring.Children),
-                        e => e.Children.Select(c => c.Children.Select(g => g.Children)),
-                        e => e.Children.Select(c => c.Ancestors.Select(a => a.Ancestor))
-                    }
-                }
-            );
+            if (command == null) throw new ArgumentNullException("command");
 
-            // derive nodes for each parent
-            foreach (var parent in establishments)
-                DeriveNodes(parent);
-        }
-
-        private void DeriveNodes(Establishment establishment)
-        {
-            var parent = establishment;
+            var parent = command.Establishment;
             while (parent.Parent != null)
                 parent = parent.Parent;
 
@@ -61,7 +44,7 @@ namespace UCosmic.Domain.Establishments
 
             // delete all of this parent's offspring nodes
             while (parent.Offspring.FirstOrDefault() != null)
-                _entities.Purge(parent.Offspring.FirstOrDefault());
+                _entities.Purge(parent.Offspring.First());
 
             // operate recursively over children
             foreach (var child in parent.Children.Current())

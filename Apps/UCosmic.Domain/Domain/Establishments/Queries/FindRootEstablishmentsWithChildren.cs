@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 namespace UCosmic.Domain.Establishments
 {
-    public class FindRootEstablishmentsWithChildrenQuery : BaseEntitiesQuery<Establishment>, IDefineQuery<ICollection<Establishment>>
+    public class FindRootEstablishmentsWithChildrenQuery : BaseEntitiesQuery<Establishment>, IDefineQuery<Establishment[]>
     {
     }
 
-    public class FindRootEstablishmentsWithChildrenHandler : IHandleQueries<FindRootEstablishmentsWithChildrenQuery, ICollection<Establishment>>
+    public class FindRootEstablishmentsWithChildrenHandler : IHandleQueries<FindRootEstablishmentsWithChildrenQuery, Establishment[]>
     {
         private readonly IQueryEntities _entities;
 
@@ -16,14 +15,14 @@ namespace UCosmic.Domain.Establishments
             _entities = entities;
         }
 
-        public ICollection<Establishment> Handle(FindRootEstablishmentsWithChildrenQuery query)
+        public Establishment[] Handle(FindRootEstablishmentsWithChildrenQuery query)
         {
             return _entities.Establishments
                 .EagerLoad(query.EagerLoad, _entities)
                 .IsRoot()
                 .WithAnyChildren()
                 .OrderBy(query.OrderBy)
-                .ToList()
+                .ToArray()
             ;
         }
     }

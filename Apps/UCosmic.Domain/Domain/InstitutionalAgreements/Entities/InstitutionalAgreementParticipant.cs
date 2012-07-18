@@ -17,6 +17,12 @@ namespace UCosmic.Domain.InstitutionalAgreements
 
         public bool IsOwner { get; set; }
 
+        internal int Remove(ICommandEntities entities)
+        {
+            entities.Purge(this);
+            return 1;
+        }
+
         internal int Remove(ICommandObjects commander)
         {
             commander.Delete(this);

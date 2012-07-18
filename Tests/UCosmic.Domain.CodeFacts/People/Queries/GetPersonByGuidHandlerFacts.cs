@@ -37,7 +37,7 @@ namespace UCosmic.Domain.People
             public void ReturnsNull_WhenGuidCannotBeMatched()
             {
                 var guid = Guid.NewGuid();
-                var query = new GetPersonByGuidQuery { Guid = guid };
+                var query = new GetPersonByGuidQuery(guid);
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new Person[] { }.AsQueryable);
                 var handler = new GetPersonByGuidHandler(entities.Object);
@@ -51,7 +51,7 @@ namespace UCosmic.Domain.People
             public void ReturnsPerson_WhenGuidCanBeMatched()
             {
                 var guid = Guid.NewGuid();
-                var query = new GetPersonByGuidQuery { Guid = guid };
+                var query = new GetPersonByGuidQuery(guid);
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
                 entities.Setup(p => p.People).Returns(new[]
                 {

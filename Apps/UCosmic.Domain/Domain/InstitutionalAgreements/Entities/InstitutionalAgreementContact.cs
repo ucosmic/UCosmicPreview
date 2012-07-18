@@ -15,5 +15,11 @@ namespace UCosmic.Domain.InstitutionalAgreements
             commander.Delete(this);
             return 1;
         }
+
+        internal int Remove(ICommandEntities entities)
+        {
+            entities.Purge(this);
+            return 1;
+        }
     }
 }

@@ -4,7 +4,14 @@ namespace UCosmic.Domain.People
 {
     public class GetPersonByGuidQuery : BaseEntityQuery<Person>, IDefineQuery<Person>
     {
-        public Guid Guid { get; set; }
+        public GetPersonByGuidQuery(Guid guid)
+        {
+            if (guid == Guid.Empty)
+                throw new ArgumentException("Cannot be empty", "guid");
+            Guid = guid;
+        }
+
+        public Guid Guid { get; private set; }
     }
 
     public class GetPersonByGuidHandler : IHandleQueries<GetPersonByGuidQuery, Person>

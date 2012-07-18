@@ -44,7 +44,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
             public Guid? EntityId { get; set; }
 
             [ScaffoldColumn(false)]
-            public IEnumerable<SelectListItem> Options { get; set; } 
+            public IEnumerable<SelectListItem> Options { get; set; }
         }
 
         #endregion
@@ -95,6 +95,15 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
         [DataType(DataType.Text)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:M/d/yyyy}")]
         public DateTime? StartsOn { get; set; }
+        internal DateTime StartsOnValue
+        {
+            get
+            {
+                if (!StartsOn.HasValue)
+                    throw new InvalidOperationException("The model is not valid.");
+                return StartsOn.Value;
+            }
+        }
         public const string StartsOnDisplayName = "Start date";
         public const string StartsOnRequiredErrorFormat = "{0} is required.";
 
@@ -103,6 +112,15 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
         [DataType(DataType.Text)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:M/d/yyyy}")]
         public DateTime? ExpiresOn { get; set; }
+        internal DateTime ExpiresOnValue
+        {
+            get
+            {
+                if (!ExpiresOn.HasValue)
+                    throw new InvalidOperationException("The model is not valid.");
+                return ExpiresOn.Value;
+            }
+        }
         public const string ExpiresOnDisplayName = "Expiration date";
         public const string ExpiresOnRequiredErrorFormat = "{0} is required.";
 

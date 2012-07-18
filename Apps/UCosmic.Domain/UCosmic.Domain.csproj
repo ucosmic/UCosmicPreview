@@ -114,15 +114,25 @@
     <Compile Include="Api\StringMatchStrategy.cs" />
     <Compile Include="Api\UnicodeToAsciiConverter.cs" />
     <Compile Include="Domain\Establishments\Business\QueryEstablishmentNames.cs" />
+    <Compile Include="Domain\Establishments\Commands\UpdateEstablishmentHierarchy.cs" />
     <Compile Include="Domain\Establishments\Entities\EmailTemplateName.cs" />
+    <Compile Include="Domain\Establishments\Queries\GetEstablishmentByGuid.cs" />
     <Compile Include="Domain\Establishments\Queries\GetEstablishmentByUrl.cs" />
     <Compile Include="Domain\Establishments\Queries\FindEstablishmentsWithName.cs" />
+    <Compile Include="Domain\Files\Queries\GetLooseFileByGuid.cs" />
     <Compile Include="Domain\Identity\Business\QuerySubjectNameIdentifiers.cs" />
     <Compile Include="Domain\Identity\Business\QueryEduPersonScopedAffiliations.cs" />
     <Compile Include="Domain\Identity\Commands\ReceiveSamlAuthnResponse.cs" />
     <Compile Include="Domain\Identity\Commands\RedeemEmailConfirmation.cs" />
     <Compile Include="Domain\Identity\Commands\SendEmailMessage.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Business\QueryInstitutionalAgreements.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Commands\UpdateInstitutionalAgreementHierarchy.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Queries\GetInstitutionalAgreementByGuid.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Commands\CreateOrUpdateInstitutionalAgreement.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Queries\GetInstitutionalAgreementById.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Commands\UpdateInstitutionalAgreementHierarchies.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Entities\InstitutionalAgreementVisibility.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Queries\FindRootInstitutionalAgreementsWithChildren.cs" />
     <Compile Include="Domain\Languages\Business\QueryLanguages.cs" />
     <Compile Include="Domain\Languages\Queries\FindAllLanguages.cs" />
     <Compile Include="Domain\Languages\Queries\GetLanguageByIsoCode.cs" />
@@ -156,7 +166,7 @@
     <Compile Include="Api\RevisableEntityFinder.cs" />
     <Compile Include="Api\RevisableEntityQueries.cs" />
     <Compile Include="Api\RevisableEntityQueryCriteria.cs" />
-    <Compile Include="Domain\Establishments\Commands\UpdateEstablishmentNodeHierarchy.cs" />
+    <Compile Include="Domain\Establishments\Commands\UpdateEstablishmentHierarchies.cs" />
     <Compile Include="Domain\Establishments\Entities\InstitutionInfo.cs" />
     <Compile Include="Domain\Establishments\Queries\FindRootEstablishmentsWithChildren.cs" />
     <Compile Include="Domain\Establishments\Queries\FindSamlIntegratedEstablishments.cs" />
@@ -186,7 +196,7 @@
     <Compile Include="Domain\Identity\RoleFacade.cs" />
     <Compile Include="Domain\Identity\Business\QueryRoles.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\FindInstitutionalAgreementsByKeyword.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementChanger.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Deprecated\_InstitutionalAgreementChanger.cs" />
     <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementQueries.cs" />
     <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementQuery.cs" />
     <Compile Include="Domain\Languages\Deprecated\_LanguageQuery.cs" />
@@ -309,10 +319,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Domain\InstitutionalAgreements\Commands\" />
-    <Folder Include="Domain\InstitutionalAgreements\Deprecated\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,7 +10,7 @@ namespace UCosmic.Domain.People
             Principal = principal;
         }
 
-        internal IPrincipal Principal { get; private set; }
+        public IPrincipal Principal { get; private set; }
     }
 
     public class GetMyPersonHandler : IHandleQueries<GetMyPersonQuery, Person>
