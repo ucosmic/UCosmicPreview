@@ -21,8 +21,10 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
     public partial class HealthController : Controller
     {
         private readonly IProcessQueries _queryProcessor;
-        private readonly IQueryEntities _entityQueries;
-        private readonly ICommandObjects _objectCommander;
+        //private readonly IQueryEntities _entityQueries;
+        //private readonly ICommandObjects _objectCommander2;
+        private readonly ICommandEntities _entities;
+        private readonly IUnitOfWork _unitOfWork;
         //private readonly IConsumeGeoPlanet _geoPlanet;
         //private readonly IConsumeGeoNames _geoNames;
         private readonly IConsumePlaceFinder _placeFinder;
@@ -31,8 +33,10 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         private readonly IHandleCommands<UpdateInstitutionalAgreementHierarchiesCommand> _updateInstitutionalAgreementHierarchy;
 
         public HealthController(IProcessQueries queryProcessor
-            , IQueryEntities entityQueries
-            , ICommandObjects objectCommander
+            //, IQueryEntities entityQueries
+            //, ICommandObjects objectCommander
+            , ICommandEntities entities
+            , IUnitOfWork unitOfWork
             //, IConsumeGeoNames geoNames
             //, IConsumeGeoPlanet geoPlanet
             , IConsumePlaceFinder placeFinder
@@ -42,8 +46,10 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         )
         {
             _queryProcessor = queryProcessor;
-            _entityQueries = entityQueries;
-            _objectCommander = objectCommander;
+            //_entityQueries = entityQueries;
+            //_objectCommander2 = objectCommander;
+            _entities = entities;
+            _unitOfWork = unitOfWork;
             //_geoNames = geoNames;
             //_geoPlanet = geoPlanet;
             _placeFinder = placeFinder;
@@ -85,7 +91,8 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             //var placeFactory = new PlaceFactory(_entityQueries, _objectCommander, _geoPlanet, _geoNames, _config);
             //var en = new LanguageFinder(_entityQueries).FindOne(LanguageBy.IsoCode("en"));
             var en = _queryProcessor.Execute(new GetLanguageByIsoCodeQuery { IsoCode = "en" });
-            var university = new EstablishmentTypeFinder(_entityQueries).FindOne(EstablishmentTypeBy.EnglishName("University"));
+            //var university = new EstablishmentTypeFinder(_entityQueries).FindOne(EstablishmentTypeBy.EnglishName("University"));
+            var university = _queryProcessor.Execute(new GetEstablishmentTypeByEnglishNameQuery("University"));
 
             foreach (var placeMark in placeMarks)
             {
@@ -194,7 +201,8 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                         establishment.Location.Places = places;
                         establishment.Location.BoundingBox = (places.Count > 0) ? places.Last().BoundingBox : new BoundingBox();
                         //context.SaveChanges();
-                        _objectCommander.SaveChanges();
+                        //_objectCommander.SaveChanges();
+                        _unitOfWork.SaveChanges();
                         ConsoleLog(string.Format("Updated location of seeded establishment with website URL '{0}'.", establishmentRow.WebsiteUrl), true, true);
                         continue;
                     }
@@ -277,7 +285,9 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 
                     //context.Establishments.Add(establishment);
                     //context.SaveChanges();
-                    _objectCommander.Insert(establishment, true);
+                    //_objectCommander.Insert(establishment, true);
+                    _entities.Create(establishment);
+                    _unitOfWork.SaveChanges();
                     ConsoleLog(string.Format("Establishment with website URL '{0}' has been seeded.", establishmentRow.WebsiteUrl), true, true);
                 }
             }

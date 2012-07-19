@@ -19,14 +19,14 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
 
         private readonly IProcessQueries _queryProcessor;
         //private readonly EstablishmentFinder _establishments;
-        private readonly EstablishmentTypeFinder _establishmentTypes;
+        //private readonly EstablishmentTypeFinder _establishmentTypes2;
         //private readonly LanguageFinder _languages;
 
-        public ManagementFormsController(IProcessQueries queryProcessor, IQueryEntities entityQueries)
+        public ManagementFormsController(IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
             //_establishments = new EstablishmentFinder(entityQueries);
-            _establishmentTypes = new EstablishmentTypeFinder(entityQueries);
+            //_establishmentTypes2 = new EstablishmentTypeFinder(entityQueries);
             //_languages = new LanguageFinder(entityQueries);
         }
 
@@ -107,11 +107,19 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         {
             return _typeOptions ??
             (
-                _typeOptions = _establishmentTypes
-                    .FindMany(With<EstablishmentType>.DefaultCriteria()
-                        .OrderBy(p => p.Category.EnglishName)
-                        .OrderBy(p => p.EnglishName)
-                    )
+                //_typeOptions = _establishmentTypes2
+                //    .FindMany(With<EstablishmentType>.DefaultCriteria()
+                //        .OrderBy(p => p.Category.EnglishName)
+                //        .OrderBy(p => p.EnglishName)
+                //    )
+                _typeOptions = _queryProcessor.Execute(new FindAllEstablishmentTypesQuery
+                                                           {
+                        OrderBy = new Dictionary<Expression<Func<EstablishmentType, object>>, OrderByDirection>
+                        {
+                            { t => t.Category.EnglishName, OrderByDirection.Ascending },
+                            { t => t.EnglishName, OrderByDirection.Ascending },
+                        },
+                    })
                     .Select(e => new GroupedSelectListItem
                         {
                             GroupKey = e.Category.RevisionId.ToInvariantString(),
