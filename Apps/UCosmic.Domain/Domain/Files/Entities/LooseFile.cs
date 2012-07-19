@@ -2,9 +2,9 @@
 {
     public class LooseFile : RevisableEntity
     {
-        public byte[] Content { get; internal set; }
-        public int Length { get; internal set; }
-        public string MimeType { get; internal set; }
-        public string Name { get; internal set; }
+        public byte[] Content { get; protected internal set; }
+        public int Length { get; protected internal set; }
+        public string MimeType { get; protected internal set; }
+        public string Name { get; protected internal set; }
     }
 }

@@ -42,33 +42,43 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
         public class TheBrowseMethod
         {
             [TestMethod]
-            public void Invokes_Roles_Get()
+            public void Invokes_Query()
             {
-                var roles = new Mock<RoleFacade>(MockBehavior.Strict);
-                roles.Setup(m => m.Get()).Returns(new[] { new Role { Name = "role 1" }, new Role { Name = "role 2" }, });
-                var controller = new RolesController(CreateRolesServices(roles.Object));
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.IsAny<FindAllRolesQuery>()))
+                    .Returns(new[]
+                    {
+                        new Role { Name = "role 1" },
+                        new Role { Name = "role 2" },
+                    });
+                var controller = new RolesController(CreateRolesServices(queryProcessor.Object));
 
                 var result = controller.Browse();
 
                 result.ShouldNotBeNull();
-                roles.Verify(r => r.Get(), Times.Once());
+                queryProcessor.Verify(r => r.Execute(It.IsAny<FindAllRolesQuery>()), Times.Once());
             }
 
             [TestMethod]
             public void Returns_RoleSearchResults()
             {
-                var roles = new Mock<RoleFacade>(MockBehavior.Strict);
-                roles.Setup(m => m.Get()).Returns(new[] { new Role { Name = "role 1" }, new Role { Name = "role 2" }, });
-                var controller = new RolesController(CreateRolesServices(roles.Object));
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.IsAny<FindAllRolesQuery>()))
+                    .Returns(new[]
+                    {
+                        new Role { Name = "role 1" },
+                        new Role { Name = "role 2" },
+                    });
+                var controller = new RolesController(CreateRolesServices(queryProcessor.Object));
 
                 var result = controller.Browse();
 
                 result.ShouldNotBeNull();
                 result.ShouldBeType<ViewResult>();
-                var viewResult = (ViewResult) result;
+                var viewResult = (ViewResult)result;
                 viewResult.Model.ShouldNotBeNull();
                 viewResult.Model.ShouldImplement<IEnumerable<RoleSearchResult>>();
-                var strongModel = ((IEnumerable<RoleSearchResult>) viewResult.Model).ToArray();
+                var strongModel = ((IEnumerable<RoleSearchResult>)viewResult.Model).ToArray();
                 strongModel.Length.ShouldEqual(2);
             }
 
@@ -137,9 +147,9 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
             public void Returns404_WhenSlug_DoesNotMatchRole()
             {
                 const string slug = "role-1";
-                var roles = new Mock<RoleFacade>(MockBehavior.Strict);
-                roles.Setup(m => m.GetBySlug(slug)).Returns(null as Role);
-                var controller = new RolesController(CreateRolesServices(roles.Object));
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.IsAny<GetRoleBySlugQuery>())).Returns(null as Role);
+                var controller = new RolesController(CreateRolesServices(queryProcessor.Object));
 
                 var result = controller.Form(slug);
 
@@ -152,14 +162,15 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
             {
                 const string slug = "role-1";
                 const string name = "Role 1";
-                var roles = new Mock<RoleFacade>(MockBehavior.Strict);
-                roles.Setup(m => m.GetBySlug(slug)).Returns(new Role { Name = name });
-                var controller = new RolesController(CreateRolesServices(roles.Object));
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.IsAny<GetRoleBySlugQuery>())).
+                    Returns(new Role { Name = name });
+                var controller = new RolesController(CreateRolesServices(queryProcessor.Object));
 
                 var result = controller.Form(slug);
 
                 result.ShouldNotBeNull();
-                roles.Verify(r => r.GetBySlug(slug), Times.Once());
+                queryProcessor.Verify(r => r.Execute(It.IsAny<GetRoleBySlugQuery>()), Times.Once());
             }
 
             [TestMethod]
@@ -167,9 +178,10 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
             {
                 const string slug = "role-1";
                 const string name = "Role 1";
-                var roles = new Mock<RoleFacade>(MockBehavior.Strict);
-                roles.Setup(m => m.GetBySlug(slug)).Returns(new Role { Name = name });
-                var controller = new RolesController(CreateRolesServices(roles.Object));
+                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+                queryProcessor.Setup(m => m.Execute(It.IsAny<GetRoleBySlugQuery>()))
+                    .Returns(new Role { Name = name });
+                var controller = new RolesController(CreateRolesServices(queryProcessor.Object));
 
                 var result = controller.Form(slug);
 
@@ -181,7 +193,6 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
                 var strongModel = (RoleForm)viewResult.Model;
                 strongModel.Name.ShouldEqual(name);
             }
-
         }
 
         private static RolesServices CreateRolesServices()
@@ -189,9 +200,9 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
             return new RolesServices(null, null);
         }
 
-        private static RolesServices CreateRolesServices(RoleFacade roles)
+        private static RolesServices CreateRolesServices(IProcessQueries queryProcessor)
         {
-            return new RolesServices(roles, null);
+            return new RolesServices(queryProcessor, null);
         }
     }
 }

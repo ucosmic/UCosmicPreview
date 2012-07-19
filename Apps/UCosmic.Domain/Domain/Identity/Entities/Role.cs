@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace UCosmic.Domain.Identity
@@ -32,28 +31,28 @@ namespace UCosmic.Domain.Identity
         }
 
         #endregion
-        #region Operations
+        //#region Operations
 
-        public int RevokeUser(Guid userEntityId, ICommandEntities commander)
-        {
-            var grant = Grants.ByUser(userEntityId);
-            return (grant != null) ? grant.Revoke(commander) : 0;
-        }
+        ////internal int RevokeUser(Guid userEntityId, ICommandEntities commander)
+        ////{
+        ////    var grant = Grants.ByUser(userEntityId);
+        ////    return (grant != null) ? grant.Revoke(commander) : 0;
+        ////}
 
-        public int GrantUser(Guid userEntityId, IQueryEntities query)
-        {
-            var grant = Grants.ByUser(userEntityId);
-            if (grant != null) return 0;
+        ////internal int GrantUser(Guid userEntityId, IQueryEntities query)
+        ////{
+        ////    var grant = Grants.ByUser(userEntityId);
+        ////    if (grant != null) return 0;
 
-            var user = query.Users.By(userEntityId);
-            if (user == null)
-                throw new InvalidOperationException(string.Format(
-                    "Unable to find User with EntityId '{0}'.", userEntityId));
+        ////    var user = query.Users.By(userEntityId);
+        ////    if (user == null)
+        ////        throw new InvalidOperationException(string.Format(
+        ////            "Unable to find User with EntityId '{0}'.", userEntityId));
 
-            Grants.Add(new RoleGrant { User = user, });
-            return 1;
-        }
+        ////    Grants.Add(new RoleGrant { User = user, });
+        ////    return 1;
+        ////}
 
-        #endregion
+        //#endregion
     }
 }

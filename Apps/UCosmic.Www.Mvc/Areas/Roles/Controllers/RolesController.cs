@@ -15,23 +15,24 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
 {
     public class RolesServices
     {
-        public RolesServices(RoleFacade roles
-            , IProcessQueries queryProcessor
+        public RolesServices(IProcessQueries queryProcessor
+            //, RoleFacade roles
+            , IHandleCommands<UpdateRoleCommand> updateHandler
         )
         {
-            Roles = roles;
+            //Roles = roles;
             QueryProcessor = queryProcessor;
+            UpdateHandler = updateHandler;
         }
 
-        public RoleFacade Roles { get; private set; }
         public IProcessQueries QueryProcessor { get; private set; }
+        //public RoleFacade Roles { get; private set; }
+        public IHandleCommands<UpdateRoleCommand> UpdateHandler { get; private set; }
     }
 
     [Authorize(Roles = RoleName.AuthorizationAgent)]
     public partial class RolesController : BaseController
     {
-        #region Construction & DI
-
         private readonly RolesServices _services;
 
         public RolesController(RolesServices services)
@@ -39,13 +40,12 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
             _services = services;
         }
 
-        #endregion
-
         [HttpGet]
         [ActionName("browse")]
         public virtual ActionResult Browse()
         {
-            var entities = _services.Roles.Get();
+            //var entities = _services.Roles.Get();
+            var entities = _services.QueryProcessor.Execute(new FindAllRolesQuery());
             var models = Mapper.Map<RoleSearchResult[]>(entities);
             return View(models);
         }
@@ -57,7 +57,8 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
         {
             if (!string.IsNullOrWhiteSpace(slug))
             {
-                var entity = _services.Roles.GetBySlug(slug);
+                //var entity = _services.Roles.GetBySlug(slug);
+                var entity = _services.QueryProcessor.Execute(new GetRoleBySlugQuery(slug));
                 if (entity != null)
                 {
                     var model = Mapper.Map<RoleForm>(entity);
@@ -76,11 +77,22 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var changes = _services.Roles.Update(User, model.EntityId, model.Description,
-                        model.Grants.Where(g => g.IsDeleted).Select(g => g.User.EntityId),
-                        model.Grants.Where(g => !g.IsDeleted).Select(g => g.User.EntityId)
-                    );
-                    SetFeedbackMessage(changes > 0
+                    var command = new UpdateRoleCommand(User)
+                    {
+                        EntityId = model.EntityId,
+                        Description = model.Description,
+                        RevokedUserEntityIds = model.Grants.Where(g => g.IsDeleted).Select(g => g.User.EntityId),
+                        GrantedUserEntityIds = model.Grants.Where(g => !g.IsDeleted).Select(g => g.User.EntityId),
+                    };
+                    //var changes = _services.Roles.Update(User, model.EntityId, model.Description,
+                    //    model.Grants.Where(g => g.IsDeleted).Select(g => g.User.EntityId),
+                    //    model.Grants.Where(g => !g.IsDeleted).Select(g => g.User.EntityId)
+                    //);
+                    _services.UpdateHandler.Handle(command);
+                    //SetFeedbackMessage(changes > 0
+                    //    ? "Role has been successfully saved."
+                    //    : "No changes were made.");
+                    SetFeedbackMessage(command.ChangeCount > 0
                         ? "Role has been successfully saved."
                         : "No changes were made.");
                     return Redirect(model.ReturnUrl);

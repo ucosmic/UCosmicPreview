@@ -14,10 +14,10 @@ namespace UCosmic.Domain.Identity
 
         public virtual Establishment ForEstablishment { get; protected internal set; }
 
-        protected internal int Revoke(ICommandEntities commander)
-        {
-            commander.Purge(this);
-            return 1;
-        }
+        //protected internal int Revoke(ICommandEntities commander)
+        //{
+        //    commander.Purge(this);
+        //    return 1;
+        //}
     }
 }

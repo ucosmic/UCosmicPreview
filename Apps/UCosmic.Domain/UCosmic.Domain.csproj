@@ -124,9 +124,16 @@
     <Compile Include="Domain\Files\Queries\GetLooseFileByGuid.cs" />
     <Compile Include="Domain\Identity\Business\QuerySubjectNameIdentifiers.cs" />
     <Compile Include="Domain\Identity\Business\QueryEduPersonScopedAffiliations.cs" />
+    <Compile Include="Domain\Identity\Commands\GrantRoleToUser.cs" />
+    <Compile Include="Domain\Identity\Commands\RevokeRoleFromUser.cs" />
+    <Compile Include="Domain\Identity\Commands\CreateRole.cs" />
+    <Compile Include="Domain\Identity\Commands\UpdateRole.cs" />
     <Compile Include="Domain\Identity\Commands\ReceiveSamlAuthnResponse.cs" />
     <Compile Include="Domain\Identity\Commands\RedeemEmailConfirmation.cs" />
     <Compile Include="Domain\Identity\Commands\SendEmailMessage.cs" />
+    <Compile Include="Domain\Identity\Queries\GetRoleByGuid.cs" />
+    <Compile Include="Domain\Identity\Queries\GetRoleBySlug.cs" />
+    <Compile Include="Domain\Identity\Queries\FindAllRoles.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Business\QueryInstitutionalAgreements.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Commands\UpdateInstitutionalAgreementHierarchy.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\FindEstablishmentsWithInstitutionalAgreements.cs" />
@@ -201,7 +208,7 @@
     <Compile Include="Domain\Identity\Queries\GetUserByName.cs" />
     <Compile Include="Domain\Identity\Business\QueryUsers.cs" />
     <Compile Include="Domain\Identity\Business\QueryRoleGrants.cs" />
-    <Compile Include="Domain\Identity\RoleFacade.cs" />
+    <Compile Include="Domain\Identity\Deprecated\_RoleFacade.cs" />
     <Compile Include="Domain\Identity\Business\QueryRoles.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\FindInstitutionalAgreementsByKeyword.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Deprecated\_InstitutionalAgreementChanger.cs" />

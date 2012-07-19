@@ -3,7 +3,6 @@ using System.Linq;
 using System.Web.Security;
 using UCosmic.Domain.Identity;
 using UCosmic.Impl.Orm;
-using UCosmic.Domain;
 
 namespace UCosmic.Impl
 {

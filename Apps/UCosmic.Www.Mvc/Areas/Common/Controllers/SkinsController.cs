@@ -1,11 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
-using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Www.Mvc.Areas.Common.Models.Skins;
 using UCosmic.Www.Mvc.Controllers;
-using System.IO;
 
 namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 {

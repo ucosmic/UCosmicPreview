@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using NGeo.GeoNames;
-using NGeo.Yahoo.GeoPlanet;
 using NGeo.Yahoo.PlaceFinder;
 using ServiceLocatorPattern;
 using UCosmic.Domain;
@@ -22,10 +20,10 @@ namespace UCosmic.Impl.Seeders
 
             Context = context;
 
-            var configurationManager = new DotNetConfigurationManager();
-            var objectCommander = new ObjectCommander(context);
-            var geoNames = new GeoNamesClient();
-            var geoPlanet = new GeoPlanetClient();
+            //var configurationManager = new DotNetConfigurationManager();
+            //var objectCommander = new ObjectCommander(context);
+            //var geoNames = new GeoNamesClient();
+            //var geoPlanet = new GeoPlanetClient();
             //var placeFactory = new PlaceFactory(context, objectCommander, geoPlanet, geoNames, configurationManager);
             var placeFinderClient = ServiceProviderLocator.Current.GetService<IConsumePlaceFinder>();
             double latitude;
@@ -45,8 +43,8 @@ namespace UCosmic.Impl.Seeders
             {
                 #region EduGlobal Beijing (HQ)
 
-                latitude = 39.898716;
-                longitude = 116.417877;
+                latitude = 39.89871600001;
+                longitude = 116.4178770000002;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
                 //place = placeFactory.FromWoeId(result.WoeId.Value);
                 place = ServiceProviderLocator.Current.GetService<IProcessQueries>().Execute(

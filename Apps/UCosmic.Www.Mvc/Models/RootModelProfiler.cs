@@ -73,6 +73,7 @@ namespace UCosmic.Www.Mvc.Models
                         .ResolveUsing(source => source.ContentType))
                     .ForMember(target => target.Name, opt => opt
                         .ResolveUsing(source => source.FileName.GetFileName()))
+                    .ForMember(target => target.CreatedLooseFile, opt => opt.Ignore())
                 ;
             }
         }
