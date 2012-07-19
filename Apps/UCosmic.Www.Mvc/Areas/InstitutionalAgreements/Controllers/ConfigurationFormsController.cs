@@ -23,7 +23,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
     {
         #region Construction & DI
 
-        public ConfigurationFormsController() { }
+        private readonly IProcessQueries _queryProcessor;
+
+        public ConfigurationFormsController(IProcessQueries queryProcessor)
+        {
+            _queryProcessor = queryProcessor;
+        }
 
         #endregion
         #region Add / Set Up
@@ -49,7 +54,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 else
                 {
                     // when configuration does not exist, get the default affiliation for the currently signed in user
-                    var person = GetConfigurationSupervisor(context);
+                    var person = GetConfigurationSupervisor();
                     if (person == null)
                         return HttpNotFound();
 
@@ -92,7 +97,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                         }
 
                         // configuration must have a ForEstablishmentId, and all items should be added
-                        var person = context.People.ForThreadPrincipal();
+                        //var person = context.People.ForThreadPrincipal();
+                        var person = _queryProcessor.Execute(new GetMyPersonQuery(User));
                         var establishment = person.DefaultAffiliation.Establishment;
                         model.ForEstablishmentId = establishment.RevisionId;
 
@@ -136,7 +142,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 else
                 {
                     // when configuration does not exist, get the default affiliation for the currently signed in user
-                    var person = GetConfigurationSupervisor(context);
+                    var person = GetConfigurationSupervisor();
                     if (person == null)
                         return HttpNotFound();
 
@@ -514,12 +520,13 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             model.AllowedContactTypeValues.Insert(0, new InstitutionalAgreementContactTypeValueForm { ConfigurationId = model.RevisionId });
         }
 
-        private static Person GetConfigurationSupervisor(UCosmicContext context)
+        private Person GetConfigurationSupervisor()
         {
-            var person = context.People
-                //.Including(p => p.User)
-                //.Including(p => p.Affiliations.Select(a => a.Establishment.Parent))
-                .ForThreadPrincipal();
+            //var person = context.People
+            //    //.Including(p => p.User)
+            //    //.Including(p => p.Affiliations.Select(a => a.Establishment.Parent))
+            //    .ForThreadPrincipal();
+            var person = _queryProcessor.Execute(new GetMyPersonQuery(User));
 
             // do not show anything to null users, unaffiliated users, non-member affiliations, or member-by-parent affiliations
             if (person == null || person.DefaultAffiliation == null || !person.DefaultAffiliation.Establishment.IsMember

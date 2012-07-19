@@ -159,22 +159,22 @@ namespace UCosmic.Domain.InstitutionalAgreements
             var contact = Contacts.SingleOrDefault(g => g.EntityId == contactEntityId);
             return (contact != null) ? contact.Remove(entities) : 0;
         }
-        internal int AddContact(InstitutionalAgreementContact contact, PersonFinder personFinder)
-        {
-            if (contact.EntityId != Guid.Empty)
-            {
-                var entity = Contacts.SingleOrDefault(e => e.EntityId == contact.EntityId);
-                if (entity != null) return 0;
-            }
+        //internal int AddContact(InstitutionalAgreementContact contact, PersonFinder personFinder)
+        //{
+        //    if (contact.EntityId != Guid.Empty)
+        //    {
+        //        var entity = Contacts.SingleOrDefault(e => e.EntityId == contact.EntityId);
+        //        if (entity != null) return 0;
+        //    }
 
-            if (contact.Person.EntityId != Guid.Empty)
-                contact.Person = personFinder.FindOne(By<Person>.EntityId(contact.Person.EntityId)
-                    .ForInsertOrUpdate());
-                //contact.Person = queryProcessor.Execute(new GetPersonByGuidQuery { Guid = contact.Person.EntityId });
-            contact.EntityId = Guid.NewGuid();
-            Contacts.Add(contact);
-            return 1;
-        }
+        //    if (contact.Person.EntityId != Guid.Empty)
+        //        contact.Person = personFinder.FindOne(By<Person>.EntityId(contact.Person.EntityId)
+        //            .ForInsertOrUpdate());
+        //        //contact.Person = queryProcessor.Execute(new GetPersonByGuidQuery { Guid = contact.Person.EntityId });
+        //    contact.EntityId = Guid.NewGuid();
+        //    Contacts.Add(contact);
+        //    return 1;
+        //}
         internal int AddContact(InstitutionalAgreementContact contact, IProcessQueries queryProcessor)
         {
             if (contact.EntityId != Guid.Empty)

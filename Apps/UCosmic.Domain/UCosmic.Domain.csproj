@@ -223,9 +223,9 @@
     <Compile Include="Domain\People\Commands\CreatePerson.cs" />
     <Compile Include="Domain\People\Business\ValidateAffiliation.cs" />
     <Compile Include="Domain\People\Business\ValidatePerson.cs" />
-    <Compile Include="Domain\People\PersonExtensions.cs" />
+    <Compile Include="Domain\People\Deprecated\_PersonExtensions.cs" />
     <Compile Include="Domain\People\Deprecated\_PersonFactory.cs" />
-    <Compile Include="Domain\People\PersonQuery.cs" />
+    <Compile Include="Domain\People\Deprecated\_PersonQuery.cs" />
     <Compile Include="Domain\People\Business\QueryAffiliations.cs" />
     <Compile Include="Domain\People\Queries\GetConfirmEmailFormatters.cs" />
     <Compile Include="Domain\People\Business\QueryEmailMessages.cs" />
@@ -259,7 +259,7 @@
     <Compile Include="Domain\Places\Deprecated\_GeoNameFinder.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Deprecated\_InstitutionalAgreementFinder.cs" />
     <Compile Include="Domain\Languages\Deprecated\_LanguageFinder.cs" />
-    <Compile Include="Domain\People\PersonFinder.cs" />
+    <Compile Include="Domain\People\Deprecated\_PersonFinder.cs" />
     <Compile Include="Domain\Places\Deprecated\_GeoNamesToponymFinder.cs" />
     <Compile Include="Domain\Places\Deprecated\_GeoNamesToponymQuery.cs" />
     <Compile Include="Api\IQueryEntities.cs" />
