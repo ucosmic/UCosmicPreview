@@ -20,19 +20,17 @@ namespace UCosmic.Domain
             return nextNumber;
         }
 
-        internal static IQueryable<TEntity> WithoutUnitOfWork<TEntity>(this IQueryable<TEntity> queryable, IQueryEntities entities)
-            where TEntity : Entity
-        {
-            return entities.WithoutUnitOfWork(queryable);
-        }
-
-        private static IQueryable<TEntity> EagerLoad<TEntity>(this IQueryable<TEntity> queryable, Expression<Func<TEntity, object>> expression, IQueryEntities entities)
+        private static IQueryable<TEntity> EagerLoad<TEntity>(this IQueryable<TEntity> queryable,
+            Expression<Func<TEntity, object>> expression,
+            IQueryEntities entities)
             where TEntity : Entity
         {
             return entities.EagerLoad(queryable, expression);
         }
 
-        internal static IQueryable<TEntity> EagerLoad<TEntity>(this IQueryable<TEntity> queryable, IEnumerable<Expression<Func<TEntity, object>>> expressions, IQueryEntities entities)
+        internal static IQueryable<TEntity> EagerLoad<TEntity>(this IQueryable<TEntity> queryable,
+            IEnumerable<Expression<Func<TEntity, object>>> expressions,
+            IQueryEntities entities)
             where TEntity : Entity
         {
             if (expressions != null)
@@ -40,7 +38,8 @@ namespace UCosmic.Domain
             return queryable;
         }
 
-        internal static IQueryable<TEntity> OrderBy<TEntity>(this IQueryable<TEntity> queryable, IEnumerable<KeyValuePair<Expression<Func<TEntity, object>>, OrderByDirection>> expressions)
+        internal static IQueryable<TEntity> OrderBy<TEntity>(this IQueryable<TEntity> queryable,
+            IEnumerable<KeyValuePair<Expression<Func<TEntity, object>>, OrderByDirection>> expressions)
         {
             // http://stackoverflow.com/a/9155222/304832
             if (expressions != null)
