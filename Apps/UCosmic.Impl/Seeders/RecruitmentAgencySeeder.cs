@@ -85,13 +85,14 @@ namespace UCosmic.Impl.Seeders
                         Email = "infobeijing@eduglobal.com",
                     },
                 };
+                EnsureOfficialName(eduGlobalHeaqdquarters);
                 Context.Establishments.Add(eduGlobalHeaqdquarters);
                 Context.SaveChanges();
 
                 #endregion
                 #region EduGlobal Changchun (Branch)
 
-                latitude = 43.891129;
+                latitude = 43.8911290000001;
                 longitude = 125.310471;
                 result = placeFinderClient.Find(new PlaceByCoordinates(latitude, longitude)).Single();
                 //place = placeFactory.FromWoeId(result.WoeId.Value);
@@ -133,6 +134,7 @@ namespace UCosmic.Impl.Seeders
                         Email = "lina.wang@eduglobal.com",
                     },
                 };
+                EnsureOfficialName(eduGlobalChangchun);
                 Context.Establishments.Add(eduGlobalChangchun);
 
                 #endregion
@@ -192,6 +194,7 @@ namespace UCosmic.Impl.Seeders
                         Email = "beijing@eic.org.cn",
                     },
                 };
+                EnsureOfficialName(eicHeaqdquarters);
                 Context.Establishments.Add(eicHeaqdquarters);
 
                 #endregion
@@ -239,6 +242,7 @@ namespace UCosmic.Impl.Seeders
                         Email = "changsha@eic.org.cn",
                     },
                 };
+                EnsureOfficialName(eicChangsha);
                 Context.Establishments.Add(eicChangsha);
 
                 #endregion
@@ -249,10 +253,10 @@ namespace UCosmic.Impl.Seeders
             #endregion
             #region Can-Achieve headquarters and branches
 
-            var canachieveHeadquarters = Context.Establishments.SingleOrDefault(a =>
+            var canAchieveHeadquarters = Context.Establishments.SingleOrDefault(a =>
                 a.WebsiteUrl == "www.can-achieve.com.cn" && a.Parent == null
                 && a.Type.EnglishName == "Recruitment Agency");
-            if (canachieveHeadquarters == null)
+            if (canAchieveHeadquarters == null)
             {
                 #region Can-Achieve Beijing (HQ)
 
@@ -267,7 +271,7 @@ namespace UCosmic.Impl.Seeders
                     });
                 places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
-                canachieveHeadquarters = new Establishment
+                canAchieveHeadquarters = new Establishment
                 {
                     Type = GetRecruitmentAgency(),
                     OfficialName = "Can Achieve Group Beijing",
@@ -295,7 +299,8 @@ namespace UCosmic.Impl.Seeders
                     },
 
                 };
-                Context.Establishments.Add(canachieveHeadquarters);
+                EnsureOfficialName(canAchieveHeadquarters);
+                Context.Establishments.Add(canAchieveHeadquarters);
 
                 #endregion
                 #region Can-Achieve Nanjing (Branch)
@@ -313,7 +318,7 @@ namespace UCosmic.Impl.Seeders
                 places.Add(place);
                 var canAchieveNanjing = new Establishment
                 {
-                    Parent = canachieveHeadquarters,
+                    Parent = canAchieveHeadquarters,
                     Type = GetRecruitmentAgency(),
                     OfficialName = "Can Achieve Group Nanjing",
                     Location = new EstablishmentLocation
@@ -337,6 +342,7 @@ namespace UCosmic.Impl.Seeders
                         Email = "",
                     },
                 };
+                EnsureOfficialName(canAchieveNanjing);
                 Context.Establishments.Add(canAchieveNanjing);
 
                 #endregion
@@ -355,7 +361,7 @@ namespace UCosmic.Impl.Seeders
                 places.Add(place);
                 var canAchieveGuangzhou = new Establishment
                 {
-                    Parent = canachieveHeadquarters,
+                    Parent = canAchieveHeadquarters,
                     Type = GetRecruitmentAgency(),
                     OfficialName = "Can Achieve Group Guangzhou",
                     Location = new EstablishmentLocation
@@ -379,6 +385,7 @@ namespace UCosmic.Impl.Seeders
                         Email = "",
                     },
                 };
+                EnsureOfficialName(canAchieveGuangzhou);
                 Context.Establishments.Add(canAchieveGuangzhou);
 
                 #endregion
@@ -387,6 +394,18 @@ namespace UCosmic.Impl.Seeders
             #endregion
 
             // ReSharper restore PossibleInvalidOperationException
+        }
+
+        private void EnsureOfficialName(Establishment establishment)
+        {
+            if (establishment.Names.Any(n => n.IsOfficialName)) return;
+
+            establishment.Names.Add(new EstablishmentName
+            {
+                IsOfficialName = true,
+                Text = establishment.OfficialName,
+                                            
+            });
         }
     }
 }

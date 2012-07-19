@@ -150,20 +150,21 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 //var establishments = context.Establishments.Where(e => establishmentRow.WebsiteUrl
                 //    .Equals(e.WebsiteUrl, StringComparison.OrdinalIgnoreCase)
                 //    || e.Urls.Any(u => u.Value.Equals(establishmentRow.WebsiteUrl, StringComparison.OrdinalIgnoreCase))).ToList();
-                var establishmentFinder = new EstablishmentFinder(_entityQueries);
-                var establishments = establishmentFinder.FindMany(EstablishmentBy.WebsiteUrl(establishmentRow.WebsiteUrl)
-                    .ForInsertOrUpdate());
+                //var establishmentFinder = new EstablishmentFinder(_entityQueries);
+                //var establishments = establishmentFinder.FindMany(EstablishmentBy.WebsiteUrl(establishmentRow.WebsiteUrl)
+                //    .ForInsertOrUpdate());
+                var establishments = new[] { _queryProcessor.Execute(new GetEstablishmentByUrlQuery(establishmentRow.WebsiteUrl)) };
                 Establishment establishment;
 
                 // skip when the database contains more than 1 matching institution (needs correction)
-                if (establishments.Count > 1)
+                if (establishments.Length > 1)
                 {
                     ConsoleLog(string.Format("Skipping, found multiple seeded establishments with website URL '{0}' -- NEEDS CORRECTED.", establishmentRow.WebsiteUrl), false, true);
                     continue;
                 }
 
                 // when exactly 1 establishment exists in the db, check its geography
-                if (establishments.Count == 1)
+                if (establishments.Length == 1)
                 {
                     ConsoleLog(string.Format("Establishment with website URL '{0}' is already seeded", establishmentRow.WebsiteUrl));
                     establishment = establishments.Single();

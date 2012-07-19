@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Web.Mvc;
 using AutoMapper;
-using NGeo.GeoNames;
-using NGeo.Yahoo.GeoPlanet;
 using NGeo.Yahoo.PlaceFinder;
 using ServiceLocatorPattern;
 using UCosmic.Domain;
@@ -22,15 +21,20 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         private readonly IProcessQueries _queryProcessor;
         private readonly IConsumePlaceFinder _placeFinder;
         //private readonly PlaceFactory _placeFactory;
-        private readonly EstablishmentFinder _establishmentFinder;
+        //private readonly EstablishmentFinder _establishmentFinder;
         private readonly ICommandObjects _objectCommander;
 
-        public SupplementalFormsController(IProcessQueries queryProcessor, IConsumePlaceFinder placeFinder, IConsumeGeoNames geoNames, 
-            IConsumeGeoPlanet geoPlanet, IQueryEntities entityQueries, ICommandObjects objectCommander, 
-            IManageConfigurations config)
+        public SupplementalFormsController(IProcessQueries queryProcessor
+            , IConsumePlaceFinder placeFinder
+            //, IConsumeGeoNames geoNames
+            //, IConsumeGeoPlanet geoPlanet
+            //, IQueryEntities entityQueries
+            , ICommandObjects objectCommander
+            //, IManageConfigurations config
+        )
         {
             _queryProcessor = queryProcessor;
-            _establishmentFinder = new EstablishmentFinder(entityQueries);
+            //_establishmentFinder = new EstablishmentFinder(entityQueries);
             _objectCommander = objectCommander;
             _placeFinder = placeFinder;
             //_placeFactory = new PlaceFactory(entityQueries, objectCommander, geoPlanet, geoNames, config);
@@ -41,10 +45,18 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         {
             if (establishmentId != Guid.Empty)
             {
-                var establishment = _establishmentFinder
-                    .FindOne(By<Establishment>.EntityId(establishmentId)
-                        .EagerLoad(e => e.Location)
-                    );
+                //var dep = true;
+                //var establishment = _establishmentFinder
+                //    .FindOne(By<Establishment>.EntityId(establishmentId)
+                //        .EagerLoad(e => e.Location)
+                //    );
+                var establishment = _queryProcessor.Execute(new GetEstablishmentByGuidQuery(establishmentId)
+                {
+                    EagerLoad = new Expression<Func<Establishment, object>>[]
+                    {
+                        e => e.Location,
+                    }
+                });
                 if (establishment != null)
                 {
                     var model = Mapper.Map<EstablishmentForm>(establishment);
@@ -61,10 +73,17 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         {
             if (model != null)
             {
-                var establishment = _establishmentFinder.FindOne(By<Establishment>.EntityId(model.EntityId)
-                    .EagerLoad(e => e.Location)
-                    .ForInsertOrUpdate()
-                );
+                //var establishment = _establishmentFinder.FindOne(By<Establishment>.EntityId(model.EntityId)
+                //    .EagerLoad(e => e.Location)
+                //    .ForInsertOrUpdate()
+                //);
+                var establishment = _queryProcessor.Execute(new GetEstablishmentByGuidQuery(model.EntityId)
+                {
+                    EagerLoad = new Expression<Func<Establishment, object>>[]
+                    {
+                        e => e.Location,
+                    }
+                });
                 if (establishment != null)
                 {
                     var oldCenter = establishment.Location.Center;

@@ -71,10 +71,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             var models = Mapper.Map<ActivityResults>(activities);
             //var models = new ActivityResults(Enumerable.Empty<ActivityResults.ActivityResult>(), 0);
             var tenant = _services.QueryProcessor.Execute(
-                new GetEstablishmentByUrlQuery
-                {
-                    Url = establishment,
-                }
+                new GetEstablishmentByUrlQuery(establishment)
             );
             Mapper.Map(tenant, models);
             return View(models);

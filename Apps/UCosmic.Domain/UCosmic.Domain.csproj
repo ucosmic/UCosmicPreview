@@ -116,6 +116,8 @@
     <Compile Include="Domain\Establishments\Business\QueryEstablishmentNames.cs" />
     <Compile Include="Domain\Establishments\Commands\UpdateEstablishmentHierarchy.cs" />
     <Compile Include="Domain\Establishments\Entities\EmailTemplateName.cs" />
+    <Compile Include="Domain\Establishments\Queries\FindEstablishmentsWithGuids.cs" />
+    <Compile Include="Domain\Establishments\Queries\FindAllEstablishments.cs" />
     <Compile Include="Domain\Establishments\Queries\GetEstablishmentByGuid.cs" />
     <Compile Include="Domain\Establishments\Queries\GetEstablishmentByUrl.cs" />
     <Compile Include="Domain\Establishments\Queries\FindEstablishmentsWithName.cs" />
@@ -189,8 +191,8 @@
     <Compile Include="Domain\Establishments\Business\QueryEstablishments.cs" />
     <Compile Include="Domain\Establishments\EstablishmentTypeFinder.cs" />
     <Compile Include="Domain\Establishments\EstablishmentTypeQuery.cs" />
-    <Compile Include="Domain\Establishments\EstablishmentQuery.cs" />
-    <Compile Include="Domain\Establishments\EstablishmentFinder.cs" />
+    <Compile Include="_Deprecated\_EstablishmentQuery.cs" />
+    <Compile Include="_Deprecated\_EstablishmentFinder.cs" />
     <Compile Include="Domain\Establishments\Queries\GetEstablishmentByEmail.cs" />
     <Compile Include="Domain\Establishments\Commands\UpdateSamlSignOnMetadata.cs" />
     <Compile Include="Domain\Establishments\Queries\GetEstablishmentBySamlEntityId.cs" />

@@ -4,7 +4,14 @@ namespace UCosmic.Domain.Establishments
 {
     public class GetEstablishmentByUrlQuery : BaseEntityQuery<Establishment>, IDefineQuery<Establishment>
     {
-        public string Url { get; set; }
+        public GetEstablishmentByUrlQuery(string url)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+                throw new ArgumentException("Cannot be null or white space.", "url");
+            Url = url;
+        }
+
+        public string Url { get; private set; }
     }
 
     public class GetEstablishmentByUrlHandler : IHandleQueries<GetEstablishmentByUrlQuery, Establishment>

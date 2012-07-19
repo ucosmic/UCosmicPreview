@@ -10,11 +10,15 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 {
     public partial class SkinsController : BaseController
     {
-        private readonly EstablishmentFinder _establishments;
+        private readonly IProcessQueries _queryProcessor;
+        //private readonly EstablishmentFinder _establishments;
 
-        public SkinsController(IQueryEntities entityQueries)
+        public SkinsController(IProcessQueries queryProcessor
+            //, IQueryEntities entityQueries
+        )
         {
-            _establishments = new EstablishmentFinder(entityQueries);
+            //_establishments = new EstablishmentFinder(entityQueries);
+            _queryProcessor = queryProcessor;
         }
 
         [RedirectToRawUrl]
@@ -27,9 +31,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                     !skinContext.Equals("ucosmic", StringComparison.OrdinalIgnoreCase) && 
                     !skinContext.Equals("remove", StringComparison.OrdinalIgnoreCase))
                 {
-                    var establishment = _establishments.FindOne(EstablishmentBy.WebsiteUrl(skinContext));
+                    //var establishment = _establishments.FindOne(EstablishmentBy.WebsiteUrl(skinContext));
+                    var establishment = _queryProcessor.Execute(new GetEstablishmentByUrlQuery(skinContext));
                     if (establishment == null && !skinContext.StartsWith("www.", StringComparison.OrdinalIgnoreCase))
-                        establishment = _establishments.FindOne(EstablishmentBy.WebsiteUrl(string.Format("www.{0}", skinContext)));
+                        //establishment = _establishments.FindOne(EstablishmentBy.WebsiteUrl(string.Format("www.{0}", skinContext)));
+                        establishment = _queryProcessor.Execute(new GetEstablishmentByUrlQuery(string.Format("www.{0}", skinContext)));
 
                     if (establishment != null && !string.IsNullOrWhiteSpace(establishment.WebsiteUrl))
                     {

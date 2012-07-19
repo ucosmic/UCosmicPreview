@@ -64,9 +64,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 if (_isEstablishmentSet) return _establishment;
                 _establishment = QueryProcessor.Execute(
-                    new GetEstablishmentByEmailQuery
+                    new GetEstablishmentByEmailQuery(EmailAddress)
                     {
-                        Email = EmailAddress,
                         EagerLoad = new Expression<Func<Establishment, object>>[]
                         {
                             e => e.SamlSignOn,

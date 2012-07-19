@@ -38,9 +38,8 @@ namespace UCosmic.Domain.Identity
 
             // get the establishment
             var establishment = _queryProcessor.Execute(
-                new GetEstablishmentByEmailQuery
+                new GetEstablishmentByEmailQuery(command.EmailAddress)
                 {
-                    Email = command.EmailAddress,
                     EagerLoad = new Expression<Func<Establishment, object>>[]
                     {
                         e => e.Type.Category,

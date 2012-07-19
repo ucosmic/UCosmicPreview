@@ -18,15 +18,15 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
     public partial class PublicSearchController : BaseController
     {
         //private readonly InstitutionalAgreementFinder _agreements;
-        private readonly EstablishmentFinder _establishments;
+        //private readonly EstablishmentFinder _establishments;
         //private readonly PlaceFinder _places;
         private readonly IProcessQueries _queryProcessor;
 
-        public PublicSearchController(IQueryEntities entityQueries, IProcessQueries queryProcessor)
+        public PublicSearchController(IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
             //_agreements = new InstitutionalAgreementFinder(entityQueries);
-            _establishments = new EstablishmentFinder(entityQueries);
+            //_establishments = new EstablishmentFinder(entityQueries);
             //_places = new PlaceFinder(entityQueries);
         }
 
@@ -37,7 +37,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             {
                 if (Request.IsAuthenticated)
                 {
-                    var establishment = _establishments.FindOne(EstablishmentBy.EmailDomain(User.Identity.Name));
+                    //var establishment = _establishments.FindOne(EstablishmentBy.EmailDomain(User.Identity.Name));
+                    var establishment = _queryProcessor.Execute(new GetEstablishmentByEmailQuery(User.Identity.Name));
                     if (establishment != null)
                         establishmentUrl = establishment.WebsiteUrl;
                 }
@@ -62,7 +63,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             //while (rootEstablishment.Parent != null)
             //    rootEstablishment = rootEstablishment.Parent;
 
-            var childEstablishments = 
+            var childEstablishments =
                 //_agreements2.FindMany(With<InstitutionalAgreement>.DefaultCriteria()
                 //    .EagerLoad(a => a.Participants.Select(p => p.Establishment.Ancestors)))
                 //.Where(a => a.Participants.Any(p => p.IsOwner &&
@@ -140,11 +141,20 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
 
             // load the establishment by url as the context for the results
-            var context = _establishments.FindOne(EstablishmentBy.WebsiteUrl(establishmentUrl)
-                .EagerLoad(e => e.Names.Select(n => n.TranslationToLanguage))
-                .EagerLoad(e => e.Location)
-                .EagerLoad(e => e.Ancestors)
-            );
+            //var context = _establishments.FindOne(EstablishmentBy.WebsiteUrl(establishmentUrl)
+            //    .EagerLoad(e => e.Names.Select(n => n.TranslationToLanguage))
+            //    .EagerLoad(e => e.Location)
+            //    .EagerLoad(e => e.Ancestors)
+            //);
+            var context = _queryProcessor.Execute(new GetEstablishmentByUrlQuery(establishmentUrl)
+            {
+                EagerLoad = new Expression<Func<Establishment, object>>[]
+                {
+                    e => e.Names.Select(n => n.TranslationToLanguage),
+                    e => e.Location,
+                    e => e.Ancestors,
+                }
+            });
 
             // determine whether or not the current user is an affiliate of the establishment
             var isAffiliate = context.HasDefaultAffiliate(User);
@@ -357,7 +367,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             if (agreementId == Guid.Empty) return HttpNotFound();
 
             var agreement = _queryProcessor.Execute(new GetInstitutionalAgreementByGuidQuery(agreementId)
-            //var agreement = _agreements2.FindOne(By<InstitutionalAgreement>.EntityId(agreementId)
+                //var agreement = _agreements2.FindOne(By<InstitutionalAgreement>.EntityId(agreementId)
                 //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Affiliates.Select(f => f.Person.User)))
                 //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places.Select(l => l.GeoPlanetPlace.Type)))
                 //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places.Select(l => l.Ancestors)))
@@ -494,7 +504,17 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                         CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, StringComparison.OrdinalIgnoreCase)).Text
             ).OrderBy(s => s);
 
-            var establishments = _establishments.FindMany(EstablishmentsWith.AutoCompleteTerm(term, maxResults).OrderBy(e => e.OfficialName));
+            //var establishments = _establishments.FindMany(EstablishmentsWith.AutoCompleteTerm(term, maxResults).OrderBy(e => e.OfficialName));
+            var establishments = _queryProcessor.Execute(new FindEstablishmentsWithNameQuery
+            {
+                Term = term,
+                TermMatchStrategy = StringMatchStrategy.Contains,
+                MaxResults = maxResults,
+                OrderBy = new Dictionary<Expression<Func<Establishment, object>>, OrderByDirection>
+                {
+                    { e => e.OfficialName, OrderByDirection.Ascending },
+                },
+            });
             var establishmentNames = establishments.Select(e => e.OfficialName);
 
             // todo: should be able to select contacts from encapsulated operation

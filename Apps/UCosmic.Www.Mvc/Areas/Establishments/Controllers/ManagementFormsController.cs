@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 using AutoMapper;
 using UCosmic.Domain;
@@ -17,14 +18,14 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         #region Construction & DI
 
         private readonly IProcessQueries _queryProcessor;
-        private readonly EstablishmentFinder _establishments;
+        //private readonly EstablishmentFinder _establishments;
         private readonly EstablishmentTypeFinder _establishmentTypes;
         //private readonly LanguageFinder _languages;
 
         public ManagementFormsController(IProcessQueries queryProcessor, IQueryEntities entityQueries)
         {
             _queryProcessor = queryProcessor;
-            _establishments = new EstablishmentFinder(entityQueries);
+            //_establishments = new EstablishmentFinder(entityQueries);
             _establishmentTypes = new EstablishmentTypeFinder(entityQueries);
             //_languages = new LanguageFinder(entityQueries);
         }
@@ -37,7 +38,14 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         //[Authorize(Users = "Daniel.Ludwig@uc.edu")]
         public virtual ActionResult Browse()
         {
-            var entities = _establishments.FindMany(new EstablishmentQuery().OrderBy(e => e.OfficialName));
+            //var entities = _establishments.FindMany(new EstablishmentQuery().OrderBy(e => e.OfficialName));
+            var entities = _queryProcessor.Execute(new FindAllEstablishmentsQuery
+            {
+                OrderBy = new Dictionary<Expression<Func<Establishment, object>>, OrderByDirection>
+                {
+                    { e => e.OfficialName, OrderByDirection.Ascending },
+                },
+            });
             var models = Mapper.Map<IEnumerable<EstablishmentSearchResult>>(entities);
             return View(models);
         }
@@ -57,7 +65,8 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
             if (entityId.HasValue)
             {
                 // only check the db when the entity id is present
-                var establishment = _establishments.FindOne(By<Establishment>.EntityId(entityId.Value));
+                //var establishment = _establishments.FindOne(By<Establishment>.EntityId(entityId.Value));
+                var establishment = _queryProcessor.Execute(new GetEstablishmentByGuidQuery(entityId.Value));
                 if (establishment == null) return HttpNotFound();
                 model = Mapper.Map<EstablishmentForm>(establishment);
             }
@@ -170,7 +179,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
             var validationContext = new ValidationContext(model, null, null);
             var isValid = false;
 
-            if (string.Compare(name, typeof(EstablishmentForm.EstablishmentNameForm).FullName, false) == 0)
+            if (string.Compare(name, typeof(EstablishmentForm.EstablishmentNameForm).FullName, StringComparison.Ordinal) == 0)
             {
                 values.ForEach(t => model.Names.Add(new EstablishmentForm.EstablishmentNameForm { Text = t }));
                 validationContext.MemberName = "AlternateNames";

@@ -89,9 +89,9 @@
     <Compile Include="Establishments\Entities\InstitutionInfoFacts.cs" />
     <Compile Include="Establishments\Entities\EstablishmentEmailDomainFacts.cs" />
     <Compile Include="Establishments\Entities\EstablishmentNameFacts.cs" />
-    <Compile Include="Establishments\EstablishmentFinderFacts.cs" />
+    <Compile Include="_Deprecated\_EstablishmentFinderFacts.cs" />
     <Compile Include="Establishments\Entities\EstablishmentNodeFacts.cs" />
-    <Compile Include="Establishments\EstablishmentQueryFacts.cs" />
+    <Compile Include="_Deprecated\_EstablishmentQueryFacts.cs" />
     <Compile Include="Establishments\Entities\EstablishmentFacts.cs" />
     <Compile Include="Establishments\Entities\EstablishmentTypeFacts.cs" />
     <Compile Include="Etc\AutoMapperFacts.cs" />

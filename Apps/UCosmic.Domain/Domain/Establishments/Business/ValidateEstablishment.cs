@@ -53,9 +53,8 @@ namespace UCosmic.Domain.Establishments
             IEnumerable<Expression<Func<Establishment, object>>> eagerLoad, out Establishment entity)
         {
             entity = queryProcessor.Execute(
-                new GetEstablishmentByEmailQuery
+                new GetEstablishmentByEmailQuery(email)
                 {
-                    Email = email,
                     EagerLoad = eagerLoad,
                 }
             );

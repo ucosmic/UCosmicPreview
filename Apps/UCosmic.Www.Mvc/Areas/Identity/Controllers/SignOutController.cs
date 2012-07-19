@@ -54,9 +54,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             // determine which form to show
             var establishment = _services.QueryProcessor.Execute(
-                new GetEstablishmentByEmailQuery
+                new GetEstablishmentByEmailQuery(HttpContext.SigningEmailAddressCookie())
                 {
-                    Email = HttpContext.SigningEmailAddressCookie(),
                     EagerLoad = new Expression<Func<Establishment, object>>[]
                     {
                         e => e.SamlSignOn,

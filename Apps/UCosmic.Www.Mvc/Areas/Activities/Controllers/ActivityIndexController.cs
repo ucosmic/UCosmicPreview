@@ -34,11 +34,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             if (User.Identity.Name.IsNotNullOrWhiteSpace())
             {
                 var tenant = _services.QueryProcessor.Execute(
-                    new GetEstablishmentByEmailQuery
-                    {
-                        Email = User.Identity.Name,
-                    }
-                );
+                    new GetEstablishmentByEmailQuery(User.Identity.Name));
                 if (tenant != null)
                 {
                     if (tenantUrl.IsNullOrWhiteSpace())

@@ -82,29 +82,29 @@ namespace UCosmic.Domain.InstitutionalAgreements
             var participant = Participants.SingleOrDefault(g => g.Establishment.EntityId == establishmentEntityId);
             return (participant != null) ? participant.Remove(commander) : 0;
         }
-        internal int AddParticipant(IPrincipal principal, Guid establishmentEntityId, EstablishmentFinder establishmentFinder)
-        {
-            var participant = Participants.SingleOrDefault(g => g.Establishment.EntityId == establishmentEntityId);
-            if (participant != null) return 0;
+        //internal int AddParticipant(IPrincipal principal, Guid establishmentEntityId, EstablishmentFinder establishmentFinder)
+        //{
+        //    var participant = Participants.SingleOrDefault(g => g.Establishment.EntityId == establishmentEntityId);
+        //    if (participant != null) return 0;
 
-            var establishment = establishmentFinder.FindOne(By<Establishment>.EntityId(establishmentEntityId)
-                .EagerLoad(e => e.Affiliates.Select(a => a.Person.User))
-                .EagerLoad(e => e.Names.Select(n => n.TranslationToLanguage))
-                .EagerLoad(e => e.Ancestors.Select(h => h.Ancestor.Affiliates.Select(a => a.Person.User)))
-                .EagerLoad(e => e.Ancestors.Select(h => h.Ancestor.Names.Select(n => n.TranslationToLanguage)))
-                .ForInsertOrUpdate()
-            );
+        //    var establishment = establishmentFinder.FindOne(By<Establishment>.EntityId(establishmentEntityId)
+        //        .EagerLoad(e => e.Affiliates.Select(a => a.Person.User))
+        //        .EagerLoad(e => e.Names.Select(n => n.TranslationToLanguage))
+        //        .EagerLoad(e => e.Ancestors.Select(h => h.Ancestor.Affiliates.Select(a => a.Person.User)))
+        //        .EagerLoad(e => e.Ancestors.Select(h => h.Ancestor.Names.Select(n => n.TranslationToLanguage)))
+        //        .ForInsertOrUpdate()
+        //    );
 
-            // for establishment to be an owning participant, the principal must be affiliated with
-            // the establishment or one of the establishment's ancestors.
-            participant = new InstitutionalAgreementParticipant
-            {
-                Establishment = establishment,
-            };
-            participant.DeriveIsOwner(principal);
-            Participants.Add(participant);
-            return 1;
-        }
+        //    // for establishment to be an owning participant, the principal must be affiliated with
+        //    // the establishment or one of the establishment's ancestors.
+        //    participant = new InstitutionalAgreementParticipant
+        //    {
+        //        Establishment = establishment,
+        //    };
+        //    participant.DeriveIsOwner(principal);
+        //    Participants.Add(participant);
+        //    return 1;
+        //}
         internal int AddParticipant(IPrincipal principal, Guid establishmentEntityId, IProcessQueries queryProcessor)
         {
             var participant = Participants.SingleOrDefault(g => g.Establishment.EntityId == establishmentEntityId);

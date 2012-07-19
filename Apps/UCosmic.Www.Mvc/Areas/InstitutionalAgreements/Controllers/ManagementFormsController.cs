@@ -25,14 +25,14 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         //private readonly InstitutionalAgreementFinder _agreements;
         //private readonly InstitutionalAgreementChanger _agreementChanger;
         //private readonly PersonFinder _people;
-        private readonly EstablishmentFinder _establishments;
+        //private readonly EstablishmentFinder _establishments;
         //private readonly FileFactory _fileFactory;
         private readonly IHandleCommands<CreateOrUpdateInstitutionalAgreementCommand> _commandHandler;
         private readonly IHandleCommands<CreateLooseFileCommand> _createFileHandler;
         private readonly IHandleCommands<PurgeLooseFileCommand> _purgeFileHandler;
 
         public ManagementFormsController(IProcessQueries queryProcessor
-            , IQueryEntities entityQueries
+            //, IQueryEntities entityQueries
             //, ICommandObjects objectCommander
             , IHandleCommands<CreateOrUpdateInstitutionalAgreementCommand> commandHandler
             , IHandleCommands<CreateLooseFileCommand> createFileHandler
@@ -43,7 +43,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             //_agreements = new InstitutionalAgreementFinder(entityQueries);
             //_agreementChanger = new InstitutionalAgreementChanger(objectCommander, entityQueries);
             //_people = new PersonFinder(entityQueries);
-            _establishments = new EstablishmentFinder(entityQueries);
+            //_establishments = new EstablishmentFinder(entityQueries);
             //_fileFactory = new FileFactory(objectCommander, entityQueries);
             _commandHandler = commandHandler;
             _createFileHandler = createFileHandler;
@@ -265,12 +265,21 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         [ActionName("add-participant")]
         public virtual ActionResult AddParticipant(int agreementId, Guid establishmentId)
         {
-            var establishment = _establishments
-                .FindOne(By<Establishment>.EntityId(establishmentId)
-                    .EagerLoad(e => e.Affiliates.Select(a => a.Person.User))
-                    .EagerLoad(e => e.Ancestors.Select(h => h.Ancestor.Affiliates.Select(a => a.Person.User)))
-                    .EagerLoad(e => e.Names.Select(n => n.TranslationToLanguage))
-                );
+            //var establishment = _establishments
+            //    .FindOne(By<Establishment>.EntityId(establishmentId)
+            //        .EagerLoad(e => e.Affiliates.Select(a => a.Person.User))
+            //        .EagerLoad(e => e.Ancestors.Select(h => h.Ancestor.Affiliates.Select(a => a.Person.User)))
+            //        .EagerLoad(e => e.Names.Select(n => n.TranslationToLanguage))
+            //    );
+            var establishment = _queryProcessor.Execute(new GetEstablishmentByGuidQuery(establishmentId)
+            {
+                EagerLoad = new Expression<Func<Establishment, object>>[]
+                {
+                    e => e.Affiliates.Select(a => a.Person.User),
+                    e => e.Ancestors.Select(h => h.Ancestor.Affiliates.Select(a => a.Person.User)),
+                    e => e.Names.Select(n => n.TranslationToLanguage),
+                },
+            });
             if (establishment != null)
             {
                 Expression<Func<Affiliation, bool>> myDefaultAffiliation = affiliation =>
@@ -373,11 +382,20 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             {
                 //var person = _people.FindOne(PersonBy.Principal(User));
                 var person = _queryProcessor.Execute(new GetMyPersonQuery(User));
-                var establishments = _establishments.FindMany(
-                    With<Establishment>.EntityIds(model.ParticipantEstablishmentIds)
-                        .EagerLoad(e => e.Affiliates.Select(a => a.Person))
-                        .EagerLoad(e => e.Ancestors)
-                );
+                //var establishments = _establishments.FindMany(
+                //    With<Establishment>.EntityIds(model.ParticipantEstablishmentIds)
+                //        .EagerLoad(e => e.Affiliates.Select(a => a.Person))
+                //        .EagerLoad(e => e.Ancestors)
+                //);
+                var establishments = _queryProcessor.Execute(
+                    new FindEstablishmentsWithGuidsQuery(model.ParticipantEstablishmentIds)
+                    {
+                        EagerLoad = new Expression<Func<Establishment, object>>[]
+                        {
+                            e => e.Affiliates.Select(a => a.Person),
+                            e => e.Ancestors,
+                        },
+                    });
                 foreach (var establishment in establishments)
                 {
                     agreement.Participants.Add(new InstitutionalAgreementParticipant
@@ -396,12 +414,22 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         public virtual ActionResult AutoCompleteEstablishmentNames(string term, List<Guid> excludeEstablishmentIds)
         {
             // get matching official establishment names and their children
-            var data = _establishments
-                .FindMany(
-                    EstablishmentsWith.AutoCompleteTerm(term, excludeEstablishmentIds, 50)
-                        .OrderBy(e => new { e.Ancestors.Count })
-                        .OrderBy(e => e.OfficialName)
-                );
+            //var data = _establishments
+            //    .FindMany(
+            //        EstablishmentsWith.AutoCompleteTerm(term, excludeEstablishmentIds, 50)
+            //            .OrderBy(e => new { e.Ancestors.Count })
+            //            .OrderBy(e => e.OfficialName)
+            //    );
+            var data = _queryProcessor.Execute(new FindEstablishmentsWithNameQuery
+            {
+                Term = term,
+                TermMatchStrategy = StringMatchStrategy.Contains,
+                OrderBy = new Dictionary<Expression<Func<Establishment, object>>, OrderByDirection>
+                {
+                    { e => new { e.Ancestors.Count }, OrderByDirection.Ascending },
+                    { e => e.OfficialName, OrderByDirection.Ascending },
+                },
+            });
 
             // cast into autocomplete options
             var options = data.AsEnumerable().Select(e => new AutoCompleteOption

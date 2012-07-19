@@ -73,9 +73,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             // get the establishment for this email address
             var establishment = _services.QueryProcessor.Execute(
-                new GetEstablishmentByEmailQuery
+                new GetEstablishmentByEmailQuery(model.EmailAddress)
                 {
-                    Email = model.EmailAddress,
                     EagerLoad = new Expression<Func<Establishment, object>>[]
                     {
                         e => e.SamlSignOn,

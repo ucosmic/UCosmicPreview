@@ -92,11 +92,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             // redirect to return url
             var establishment = _services.QueryProcessor.Execute(
-                new GetEstablishmentByEmailQuery
-                {
-                    Email = model.EmailAddress,
-                }
-            );
+                new GetEstablishmentByEmailQuery(model.EmailAddress));
             var returnUrl = model.ReturnUrl ??
                             _services.UserSigner.DefaultSignedOnUrl;
             var skinsUrl = Url.Action(MVC.Common.Skins.Change(establishment.WebsiteUrl, returnUrl));
