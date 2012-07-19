@@ -210,27 +210,27 @@ namespace UCosmic.Domain.InstitutionalAgreements
             var file = Files.SingleOrDefault(g => g.EntityId == fileEntityId);
             return (file != null) ? file.Remove(entities) : 0;
         }
-        internal int AddFile(Guid fileEntityId, FileFactory fileFactory)
-        {
-            var file = Files.SingleOrDefault(g => g.EntityId == fileEntityId);
-            if (file != null) return 0;
+        //internal int AddFile(Guid fileEntityId, FileFactory fileFactory)
+        //{
+        //    var file = Files.SingleOrDefault(g => g.EntityId == fileEntityId);
+        //    if (file != null) return 0;
 
-            var looseFile = fileFactory.FindOne(By<LooseFile>.EntityId(fileEntityId));
-            if (looseFile == null) return 0;
+        //    var looseFile = fileFactory.FindOne(By<LooseFile>.EntityId(fileEntityId));
+        //    if (looseFile == null) return 0;
 
-            // for establishment to be an owning participant, the principal must be affiliated with
-            // the establishment or one of the establishment's ancestors.
-            file = new InstitutionalAgreementFile
-            {
-                Content = looseFile.Content,
-                Length = looseFile.Length,
-                MimeType = looseFile.MimeType,
-                Name = looseFile.Name,
-            };
-            Files.Add(file);
-            fileFactory.Purge(looseFile.EntityId);
-            return 1;
-        }
+        //    // for establishment to be an owning participant, the principal must be affiliated with
+        //    // the establishment or one of the establishment's ancestors.
+        //    file = new InstitutionalAgreementFile
+        //    {
+        //        Content = looseFile.Content,
+        //        Length = looseFile.Length,
+        //        MimeType = looseFile.MimeType,
+        //        Name = looseFile.Name,
+        //    };
+        //    Files.Add(file);
+        //    fileFactory.Purge(looseFile.EntityId);
+        //    return 1;
+        //}
         internal int AddFile(Guid fileEntityId, IProcessQueries queryProcessor, ICommandEntities entities)
         {
             var file = Files.SingleOrDefault(g => g.EntityId == fileEntityId);

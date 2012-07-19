@@ -26,13 +26,17 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         //private readonly InstitutionalAgreementChanger _agreementChanger;
         //private readonly PersonFinder _people;
         private readonly EstablishmentFinder _establishments;
-        private readonly FileFactory _fileFactory;
+        //private readonly FileFactory _fileFactory;
         private readonly IHandleCommands<CreateOrUpdateInstitutionalAgreementCommand> _commandHandler;
+        private readonly IHandleCommands<CreateLooseFileCommand> _createFileHandler;
+        private readonly IHandleCommands<PurgeLooseFileCommand> _purgeFileHandler;
 
         public ManagementFormsController(IProcessQueries queryProcessor
             , IQueryEntities entityQueries
-            , ICommandObjects objectCommander
+            //, ICommandObjects objectCommander
             , IHandleCommands<CreateOrUpdateInstitutionalAgreementCommand> commandHandler
+            , IHandleCommands<CreateLooseFileCommand> createFileHandler
+            , IHandleCommands<PurgeLooseFileCommand> purgeFileHandler
         )
         {
             _queryProcessor = queryProcessor;
@@ -40,8 +44,10 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             //_agreementChanger = new InstitutionalAgreementChanger(objectCommander, entityQueries);
             //_people = new PersonFinder(entityQueries);
             _establishments = new EstablishmentFinder(entityQueries);
-            _fileFactory = new FileFactory(objectCommander, entityQueries);
+            //_fileFactory = new FileFactory(objectCommander, entityQueries);
             _commandHandler = commandHandler;
+            _createFileHandler = createFileHandler;
+            _purgeFileHandler = purgeFileHandler;
         }
 
         #endregion
@@ -225,13 +231,23 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             {
                 if (formFile.IsDeleted && formFile.EntityId != Guid.Empty && formFile.RevisionId == 0)
                 {
-                    _fileFactory.Purge(formFile.EntityId, true);
+                    //_fileFactory.Purge(formFile.EntityId, true);
+                    _purgeFileHandler.Handle(new PurgeLooseFileCommand(formFile.EntityId));
                     formFile.EntityId = Guid.Empty;
                 }
                 else if (!formFile.IsDeleted && formFile.PostedFile != null && formFile.IsValidPostedFile)
                 {
-                    var looseFile = Mapper.Map<LooseFile>(formFile.PostedFile);
-                    looseFile = _fileFactory.Create(looseFile.Content, looseFile.MimeType, looseFile.Name);
+                    //var looseFile = Mapper.Map<LooseFile>(formFile.PostedFile);
+                    //looseFile = _fileFactory.Create(looseFile.Content, looseFile.MimeType, looseFile.Name);
+                    //command = new CreateLooseFileCommand
+                    //{
+                    //    Content = looseFile.Content,
+                    //    MimeType = looseFile.MimeType,
+                    //    Name = looseFile.Name,
+                    //};
+                    var command = Mapper.Map<CreateLooseFileCommand>(formFile.PostedFile);
+                    _createFileHandler.Handle(command);
+                    var looseFile = command.CreatedLooseFile;
                     Mapper.Map(looseFile, formFile);
                 }
             }

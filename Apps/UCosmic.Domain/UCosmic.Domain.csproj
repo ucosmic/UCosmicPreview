@@ -119,6 +119,8 @@
     <Compile Include="Domain\Establishments\Queries\GetEstablishmentByGuid.cs" />
     <Compile Include="Domain\Establishments\Queries\GetEstablishmentByUrl.cs" />
     <Compile Include="Domain\Establishments\Queries\FindEstablishmentsWithName.cs" />
+    <Compile Include="Domain\Files\Commands\PurgeLooseFile.cs" />
+    <Compile Include="Domain\Files\Commands\CreateLooseFile.cs" />
     <Compile Include="Domain\Files\Queries\GetLooseFileByGuid.cs" />
     <Compile Include="Domain\Identity\Business\QuerySubjectNameIdentifiers.cs" />
     <Compile Include="Domain\Identity\Business\QueryEduPersonScopedAffiliations.cs" />
@@ -186,9 +188,9 @@
     <Compile Include="Domain\Establishments\Commands\UpdateSamlSignOnMetadata.cs" />
     <Compile Include="Domain\Establishments\Queries\GetEstablishmentBySamlEntityId.cs" />
     <Compile Include="Domain\Establishments\Queries\ReceiveSaml2Response.cs" />
-    <Compile Include="Domain\Files\FileFactory.cs" />
-    <Compile Include="Domain\Files\LooseFile.cs" />
-    <Compile Include="Domain\Files\FileFinder.cs" />
+    <Compile Include="Domain\Files\Deprecated\_FileFactory.cs" />
+    <Compile Include="Domain\Files\Entities\LooseFile.cs" />
+    <Compile Include="Domain\Files\Deprecated\_FileFinder.cs" />
     <Compile Include="Domain\Identity\Entities\EduPersonScopedAffiliation.cs" />
     <Compile Include="Domain\Identity\Entities\SubjectNameIdentifier.cs" />
     <Compile Include="Domain\Identity\Queries\AutoCompleteUsersByName.cs" />

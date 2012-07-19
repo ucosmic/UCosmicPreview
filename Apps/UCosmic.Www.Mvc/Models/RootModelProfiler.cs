@@ -23,11 +23,44 @@ namespace UCosmic.Www.Mvc.Models
 
         // ReSharper disable UnusedMember.Local
 
-        private class LooseFileFromHttpPostedFileBaseProfile : Profile
+        //private class LooseFileFromHttpPostedFileBaseProfile : Profile
+        //{
+        //    protected override void Configure()
+        //    {
+        //        CreateMap<HttpPostedFileBase, LooseFile>()
+        //            .ForMember(target => target.Content, opt => opt
+        //                .ResolveUsing(source =>
+        //                {
+        //                    var contentLength = source.ContentLength;
+        //                    var content = new byte[contentLength];
+        //                    source.InputStream.Read(content, 0, contentLength);
+        //                    return content;
+        //                }))
+        //            .ForMember(target => target.Length, opt => opt
+        //                .ResolveUsing(source => source.ContentLength))
+        //            .ForMember(target => target.MimeType, opt => opt
+        //                .ResolveUsing(source => source.ContentType))
+        //            .ForMember(target => target.Name, opt => opt
+        //                .ResolveUsing(source => source.FileName.GetFileName()))
+        //            .ForMember(target => target.EntityId, opt => opt.Ignore())
+        //            .ForMember(target => target.CreatedByPrincipal, opt => opt.Ignore())
+        //            .ForMember(target => target.CreatedOnUtc, opt => opt.Ignore())
+        //            .ForMember(target => target.UpdatedByPrincipal, opt => opt.Ignore())
+        //            .ForMember(target => target.UpdatedOnUtc, opt => opt.Ignore())
+        //            .ForMember(target => target.IsCurrent, opt => opt.Ignore())
+        //            .ForMember(target => target.IsArchived, opt => opt.Ignore())
+        //            .ForMember(target => target.IsDeleted, opt => opt.Ignore())
+        //            .ForMember(target => target.RevisionId, opt => opt.Ignore())
+        //            .ForMember(target => target.Version, opt => opt.Ignore())
+        //        ;
+        //    }
+        //}
+
+        private class HttpPostedFileBaseToCreateLooseFileCommand : Profile
         {
             protected override void Configure()
             {
-                CreateMap<HttpPostedFileBase, LooseFile>()
+                CreateMap<HttpPostedFileBase, CreateLooseFileCommand>()
                     .ForMember(target => target.Content, opt => opt
                         .ResolveUsing(source =>
                         {
@@ -36,22 +69,10 @@ namespace UCosmic.Www.Mvc.Models
                             source.InputStream.Read(content, 0, contentLength);
                             return content;
                         }))
-                    .ForMember(target => target.Length, opt => opt
-                        .ResolveUsing(source => source.ContentLength))
                     .ForMember(target => target.MimeType, opt => opt
                         .ResolveUsing(source => source.ContentType))
                     .ForMember(target => target.Name, opt => opt
                         .ResolveUsing(source => source.FileName.GetFileName()))
-                    .ForMember(target => target.EntityId, opt => opt.Ignore())
-                    .ForMember(target => target.CreatedByPrincipal, opt => opt.Ignore())
-                    .ForMember(target => target.CreatedOnUtc, opt => opt.Ignore())
-                    .ForMember(target => target.UpdatedByPrincipal, opt => opt.Ignore())
-                    .ForMember(target => target.UpdatedOnUtc, opt => opt.Ignore())
-                    .ForMember(target => target.IsCurrent, opt => opt.Ignore())
-                    .ForMember(target => target.IsArchived, opt => opt.Ignore())
-                    .ForMember(target => target.IsDeleted, opt => opt.Ignore())
-                    .ForMember(target => target.RevisionId, opt => opt.Ignore())
-                    .ForMember(target => target.Version, opt => opt.Ignore())
                 ;
             }
         }
