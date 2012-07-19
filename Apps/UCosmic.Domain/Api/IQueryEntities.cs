@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using UCosmic.Domain;
 using UCosmic.Domain.Activities;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Files;
@@ -10,10 +11,12 @@ using UCosmic.Domain.Languages;
 using UCosmic.Domain.People;
 using UCosmic.Domain.Places;
 
-namespace UCosmic.Domain
+namespace UCosmic
 {
     public interface IQueryEntities
     {
+        IQueryable<TEntity> Get<TEntity>() where TEntity : Entity;
+
         IQueryable<Language> Languages { get; }
 
         IQueryable<LooseFile> Files { get; }

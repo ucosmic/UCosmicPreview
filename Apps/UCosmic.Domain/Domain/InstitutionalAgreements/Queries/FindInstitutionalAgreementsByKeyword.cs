@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace UCosmic.Domain.InstitutionalAgreements
 {
@@ -19,9 +20,11 @@ namespace UCosmic.Domain.InstitutionalAgreements
 
         public InstitutionalAgreement[] Handle(FindInstitutionalAgreementsByKeywordQuery query)
         {
+            if (query == null) throw new ArgumentNullException("query");
+
             var queryable = _entities.InstitutionalAgreements
                 .EagerLoad(query.EagerLoad, _entities)
-                .OwnedBy(query.EstablishmentId)
+                .OwnedByEstablishment(query.EstablishmentId)
                 .MatchingPlaceParticipantOrContact(query.Keyword)
                 .OrderBy(query.OrderBy);
 

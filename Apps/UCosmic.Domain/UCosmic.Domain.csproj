@@ -127,6 +127,12 @@
     <Compile Include="Domain\Identity\Commands\SendEmailMessage.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Business\QueryInstitutionalAgreements.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Commands\UpdateInstitutionalAgreementHierarchy.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Queries\FindEstablishmentsWithInstitutionalAgreements.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Queries\FindInstitutionalAgreementsOwnedByEstablishment.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Queries\GetMyInstitutionalAgreementByFileGuid.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Queries\FindInstitutionalAgreementUmbrellaCandidates.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Queries\GetMyInstitutionalAgreementByGuid.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Queries\FindMyInstitutionalAgreements.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\GetInstitutionalAgreementByGuid.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Commands\CreateOrUpdateInstitutionalAgreement.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\GetInstitutionalAgreementById.cs" />
@@ -197,8 +203,8 @@
     <Compile Include="Domain\Identity\Business\QueryRoles.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\FindInstitutionalAgreementsByKeyword.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Deprecated\_InstitutionalAgreementChanger.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementQueries.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementQuery.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Deprecated\_InstitutionalAgreementQueries.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Deprecated\_InstitutionalAgreementQuery.cs" />
     <Compile Include="Domain\Languages\Deprecated\_LanguageQuery.cs" />
     <Compile Include="Domain\People\Commands\UpdateMyEmailValue.cs" />
     <Compile Include="Domain\People\Business\ValidateEmailAddress.cs" />
@@ -242,7 +248,7 @@
     <Compile Include="Domain\Places\Deprecated\_GeoPlanetPlaceQuery.cs" />
     <Compile Include="Domain\Places\Deprecated\_GeoPlanetPlaceFinder.cs" />
     <Compile Include="Domain\Places\Deprecated\_GeoNameFinder.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\InstitutionalAgreementFinder.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Deprecated\_InstitutionalAgreementFinder.cs" />
     <Compile Include="Domain\Languages\Deprecated\_LanguageFinder.cs" />
     <Compile Include="Domain\People\PersonFinder.cs" />
     <Compile Include="Domain\Places\Deprecated\_GeoNamesToponymFinder.cs" />

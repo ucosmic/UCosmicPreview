@@ -22,7 +22,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         #region Construction & DI
 
         private readonly IProcessQueries _queryProcessor;
-        private readonly InstitutionalAgreementFinder _agreements;
+        //private readonly InstitutionalAgreementFinder _agreements;
         //private readonly InstitutionalAgreementChanger _agreementChanger;
         //private readonly PersonFinder _people;
         private readonly EstablishmentFinder _establishments;
@@ -36,7 +36,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         )
         {
             _queryProcessor = queryProcessor;
-            _agreements = new InstitutionalAgreementFinder(entityQueries);
+            //_agreements = new InstitutionalAgreementFinder(entityQueries);
             //_agreementChanger = new InstitutionalAgreementChanger(objectCommander, entityQueries);
             //_people = new PersonFinder(entityQueries);
             _establishments = new EstablishmentFinder(entityQueries);
@@ -51,9 +51,18 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         [ActionName("browse")]
         public virtual ActionResult Browse()
         {
-            var agreementEntities = _agreements.FindMany(
-                InstitutionalAgreementsWith.PrincipalContext(User)
-                    .OrderBy(e => e.Title)
+            //var agreementEntities = _agreements.FindMany(
+            //    InstitutionalAgreementsWith.PrincipalContext(User)
+            //        .OrderBy(e => e.Title)
+            //);
+            var agreementEntities = _queryProcessor.Execute(
+                new FindMyInstitutionalAgreementsQuery(User)
+                {
+                    OrderBy = new Dictionary<Expression<Func<InstitutionalAgreement, object>>, OrderByDirection>
+                    {
+                        { e => e.Title, OrderByDirection.Ascending },
+                    },
+                }
             );
 
             var locationEntities = agreementEntities.SelectMany(a => a.Participants).Where(a => !a.IsOwner)
@@ -112,9 +121,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             else
             {
                 // find agreement
-                var agreement = _agreements
-                    .FindOne(By<InstitutionalAgreement>.EntityId(entityId.Value))
-                    .OwnedBy(User);
+                //var agreement = _agreements
+                //    .FindOne(By<InstitutionalAgreement>.EntityId(entityId.Value))
+                //    .OwnedBy(User);
+                var agreement = _queryProcessor.Execute(
+                    new GetMyInstitutionalAgreementByGuidQuery(User, entityId.Value)
+                );
                 if (agreement == null) return HttpNotFound();
 
                 model = Mapper.Map<InstitutionalAgreementForm>(agreement);
@@ -137,9 +149,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 if (model.RevisionId != 0)
                 {
                     // find agreement
-                    var agreement = _agreements
-                        .FindOne(By<InstitutionalAgreement>.EntityId(model.EntityId)
-                    ).OwnedBy(User);
+                    //var agreement = _agreements
+                    //    .FindOne(By<InstitutionalAgreement>.EntityId(model.EntityId)
+                    //).OwnedBy(User);
+                    var agreement = _queryProcessor.Execute(
+                        new GetMyInstitutionalAgreementByGuidQuery(User, model.EntityId));
                     if (agreement == null) return HttpNotFound();
                 }
                 else
@@ -193,7 +207,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                     SetFeedbackMessage(command.ChangeCount > 0
                         ? "Institutional agreement was saved successfully."
                         : "No changes were saved.");
-                    return RedirectToAction(MVC.InstitutionalAgreements.PublicSearch.Info(model.EntityId));
+                    return RedirectToAction(MVC.InstitutionalAgreements.PublicSearch.Info(command.EntityId));
                     //var hex = agreement.Files.ToList()[0].File.Content.ToHexString();
                 }
 
@@ -317,7 +331,16 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         [NonAction]
         private IEnumerable<SelectListItem> GetUmbrellaOptions(int agreementId)
         {
-            var entities = _agreements.GetUmbrellaOptions(agreementId, User).OrderBy(e => e.Title);
+            //var entities = _agreements.GetUmbrellaOptions(agreementId, User).OrderBy(e => e.Title);
+            var entities = _queryProcessor.Execute(
+                new FindInstitutionalAgreementUmbrellaCandidatesQuery(User)
+                {
+                    ForInstitutionalAgreementRevisionId = agreementId,
+                    OrderBy = new Dictionary<Expression<Func<InstitutionalAgreement, object>>, OrderByDirection>
+                    {
+                        { a => a.Title, OrderByDirection.Ascending },
+                    }
+                });
             var models = Mapper.Map<IEnumerable<InstitutionalAgreementUmbrellaOption>>(entities);
             return new SelectList(models, "EntityId", "ShortTitle");
         }

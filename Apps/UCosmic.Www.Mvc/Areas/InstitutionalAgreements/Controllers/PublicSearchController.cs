@@ -17,7 +17,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 {
     public partial class PublicSearchController : BaseController
     {
-        private readonly InstitutionalAgreementFinder _agreements;
+        //private readonly InstitutionalAgreementFinder _agreements;
         private readonly EstablishmentFinder _establishments;
         //private readonly PlaceFinder _places;
         private readonly IProcessQueries _queryProcessor;
@@ -25,7 +25,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         public PublicSearchController(IQueryEntities entityQueries, IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
-            _agreements = new InstitutionalAgreementFinder(entityQueries);
+            //_agreements = new InstitutionalAgreementFinder(entityQueries);
             _establishments = new EstablishmentFinder(entityQueries);
             //_places = new PlaceFinder(entityQueries);
         }
@@ -62,11 +62,21 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             //while (rootEstablishment.Parent != null)
             //    rootEstablishment = rootEstablishment.Parent;
 
-            var childEstablishments = _agreements.FindMany(With<InstitutionalAgreement>.DefaultCriteria()
-                    .EagerLoad(a => a.Participants.Select(p => p.Establishment.Ancestors)))
-                .Where(a => a.Participants.Any(p => p.IsOwner &&
-                    (p.Establishment.EntityId == rootEstablishment.EntityId ||
-                    p.Establishment.Ancestors.Any(h => h.Ancestor.EntityId == rootEstablishment.EntityId))))
+            var childEstablishments = 
+                //_agreements2.FindMany(With<InstitutionalAgreement>.DefaultCriteria()
+                //    .EagerLoad(a => a.Participants.Select(p => p.Establishment.Ancestors)))
+                //.Where(a => a.Participants.Any(p => p.IsOwner &&
+                //    (p.Establishment.EntityId == rootEstablishment.EntityId ||
+                //    p.Establishment.Ancestors.Any(h => h.Ancestor.EntityId == rootEstablishment.EntityId))))
+                _queryProcessor.Execute(
+                    new FindInstitutionalAgreementsOwnedByEstablishmentQuery(rootEstablishment.EntityId)
+                    {
+                        EagerLoad = new Expression<Func<InstitutionalAgreement, object>>[]
+                        {
+                            a => a.Participants.Select(p => p.Establishment.Ancestors),
+                        }
+                    }
+                )
                 .SelectMany(a => a.Participants.Where(p => p.IsOwner)).Select(p => p.Establishment)
                 .Distinct(new RevisableEntityEqualityComparer()).Cast<Establishment>()
                 .OrderBy(e => e.Ancestors.Count).ThenBy(e => e.OfficialName);
@@ -108,11 +118,23 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             // when request is not authenticated, present list of establishments to choose from
             if (establishmentUrl.Equals("my", StringComparison.OrdinalIgnoreCase))
             {
-                var owners = _agreements.FindMany(With<InstitutionalAgreement>.DefaultCriteria())
-                    .SelectMany(a => a.Participants).Where(p => p.IsOwner)
-                    .Select(p => p.Establishment).Where(e => e.Ancestors.Count == 0 && !string.IsNullOrWhiteSpace(e.WebsiteUrl))
-                    .Distinct(new RevisableEntityEqualityComparer()).Cast<Establishment>()
-                    .OrderBy(e => e.OfficialName);
+                var owners = _queryProcessor.Execute(
+                    new FindEstablishmentsWithInstitutionalAgreementsQuery
+                    {
+                        OrderBy = new Dictionary<Expression<Func<Establishment, object>>, OrderByDirection>
+                        {
+                            { e => e.OfficialName, OrderByDirection.Ascending },
+                        }
+                    }
+                );
+                //var owners = _agreements.FindMany(With<InstitutionalAgreement>.DefaultCriteria())
+                //    .SelectMany(a => a.Participants)
+                //    .Where(p => p.IsOwner)
+                //    .Select(p => p.Establishment)
+                //    .Where(e => !e.Ancestors.Any() && !string.IsNullOrWhiteSpace(e.WebsiteUrl))
+                //    .Distinct()
+                //    //.Cast<Establishment>()
+                //    .OrderBy(e => e.OfficialName);
                 var ownerModels = Mapper.Map<IEnumerable<EstablishmentInfo>>(owners);
                 return View(Views.no_context, ownerModels);
             }
@@ -334,7 +356,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             if (agreementId == Guid.Empty) return HttpNotFound();
 
-            var agreement = _agreements.FindOne(By<InstitutionalAgreement>.EntityId(agreementId)
+            var agreement = _queryProcessor.Execute(new GetInstitutionalAgreementByGuidQuery(agreementId)
+            //var agreement = _agreements2.FindOne(By<InstitutionalAgreement>.EntityId(agreementId)
                 //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Affiliates.Select(f => f.Person.User)))
                 //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places.Select(l => l.GeoPlanetPlace.Type)))
                 //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places.Select(l => l.Ancestors)))
@@ -383,14 +406,16 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             if (fileId != Guid.Empty)
             {
                 // find agreement
-                var agreement = _agreements.FindOne(InstitutionalAgreementBy.FileEntityId(fileId));
+                //var agreement = _agreements2.FindOne(InstitutionalAgreementBy.FileEntityId(fileId));
+                var agreement = _queryProcessor.Execute(new GetMyInstitutionalAgreementByFileGuidQuery(User, fileId));
 
                 // make sure user owns this agreement
                 //var person = _people.FindOne(PersonBy.Principal(User));
                 //if (agreement != null && agreement.Files != null && agreement.Files.Count > 0
                 //    && agreement.Participants.Where(p => p.IsOwner).Any(p => person.IsAffiliatedWith(p.Establishment)))
                 if (agreement != null && agreement.Files != null && agreement.Files.Count > 0
-                    && agreement.IsOwnedBy(User))
+                    //&& agreement.IsOwnedBy(User)
+                )
                 {
                     if (agreement.Visibility == InstitutionalAgreementVisibility.Private &&
                         !User.IsInRole(RoleName.InstitutionalAgreementManager) &&
@@ -416,14 +441,16 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             if (fileId != Guid.Empty)
             {
                 // find agreement
-                var agreement = _agreements.FindOne(InstitutionalAgreementBy.FileEntityId(fileId));
+                //var agreement = _agreements2.FindOne(InstitutionalAgreementBy.FileEntityId(fileId));
+                var agreement = _queryProcessor.Execute(new GetMyInstitutionalAgreementByFileGuidQuery(User, fileId));
 
                 // make sure user owns this agreement
                 //var person = _people.FindOne(PersonBy.Principal(User));
                 //if (agreement != null && agreement.Files != null && agreement.Files.Count > 0
                 //    && agreement.Participants.Where(p => p.IsOwner).Any(p => person.IsAffiliatedWith(p.Establishment)))
                 if (agreement != null && agreement.Files != null && agreement.Files.Count > 0
-                    && agreement.IsOwnedBy(User))
+                    //&& agreement.IsOwnedBy(User)
+                )
                 {
                     if (agreement.Visibility == InstitutionalAgreementVisibility.Private &&
                         !User.IsInRole(RoleName.InstitutionalAgreementManager) &&
@@ -470,15 +497,20 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             var establishments = _establishments.FindMany(EstablishmentsWith.AutoCompleteTerm(term, maxResults).OrderBy(e => e.OfficialName));
             var establishmentNames = establishments.Select(e => e.OfficialName);
 
-            var contacts = _agreements.FindMany(InstitutionalAgreementsWith.OwnedByEstablishmentUrl(establishmentUrl))
+            // todo: should be able to select contacts from encapsulated operation
+            //var contacts = _agreements.FindMany(InstitutionalAgreementsWith.OwnedByEstablishmentUrl(establishmentUrl))
+            var contacts = _queryProcessor.Execute(new FindInstitutionalAgreementsOwnedByEstablishmentQuery(establishmentUrl))
                 .SelectMany(a => a.Contacts).Where(c =>
                     (c.Person.FirstName != null && c.Person.FirstName.StartsWith(term, StringComparison.OrdinalIgnoreCase)) ||
                     (c.Person.LastName != null && c.Person.LastName.StartsWith(term, StringComparison.OrdinalIgnoreCase)) ||
                     c.Person.DisplayName.StartsWith(term, StringComparison.OrdinalIgnoreCase));
             var contactNames = contacts.Select(c => c.Person.DisplayName).OrderBy(s => s);
 
-            var autoCompletes = placeNames.Union(establishmentNames).Union(contactNames)
-                .Distinct().Take(maxResults);
+            var autoCompletes = placeNames
+                .Union(establishmentNames)
+                .Union(contactNames)
+                .Distinct()
+                .Take(maxResults);
 
             var options = autoCompletes.Select(p => new AutoCompleteOption(p)).ToList();
             return Json(options);
@@ -488,11 +520,24 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         [ChildActionOnly]
         public virtual ActionResult GetChildEstablishmentsWithAgreements(Guid parentId)
         {
-            var owners = _agreements.FindMany(With<InstitutionalAgreement>.DefaultCriteria())
-                .SelectMany(a => a.Participants).Where(p => p.IsOwner)
-                .Select(p => p.Establishment).Where(e => e.Parent != null && e.Parent.EntityId == parentId && !string.IsNullOrWhiteSpace(e.WebsiteUrl))
-                .Distinct(new RevisableEntityEqualityComparer()).Cast<Establishment>()
-                .OrderBy(e => e.OfficialName);
+            //var owners = _agreements.FindMany(With<InstitutionalAgreement>.DefaultCriteria())
+            //    .SelectMany(a => a.Participants)
+            //    .Where(p => p.IsOwner)
+            //    .Select(p => p.Establishment)
+            //    .Where(e => e.Parent != null && e.Parent.EntityId == parentId && !string.IsNullOrWhiteSpace(e.WebsiteUrl))
+            //    //.Distinct(new RevisableEntityEqualityComparer())
+            //    .Distinct()
+            //    //.Cast<Establishment>()
+            //    .OrderBy(e => e.OfficialName);
+            var owners = _queryProcessor.Execute(
+                new FindEstablishmentsWithInstitutionalAgreementsQuery(parentId)
+                {
+                    OrderBy = new Dictionary<Expression<Func<Establishment, object>>, OrderByDirection>
+                    {
+                        { e => e.OfficialName, OrderByDirection.Ascending },
+                    }
+                }
+            );
             var ownerModels = Mapper.Map<IEnumerable<EstablishmentInfo>>(owners);
             return PartialView(Views._no_context, ownerModels);
         }

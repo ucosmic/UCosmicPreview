@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace UCosmic.Domain.InstitutionalAgreements
 {
@@ -19,6 +20,8 @@ namespace UCosmic.Domain.InstitutionalAgreements
 
         public InstitutionalAgreement[] Handle(FindRootInstitutionalAgreementsWithChildrenQuery query)
         {
+            if (query == null) throw new ArgumentNullException("query");
+
             return _entities.InstitutionalAgreements
                 .EagerLoad(query.EagerLoad, _entities)
                 .IsRoot()

@@ -34,6 +34,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
         public IEnumerable<Guid> RemoveFileEntityIds { get; set; }
         public IEnumerable<Guid> AddFileEntityIds { get; set; }
         public int ChangeCount { get; internal set; }
+        public Guid EntityId { get; internal set; }
     }
 
     public class CreateOrUpdateInstitutionalAgreementHandler : IHandleCommands<CreateOrUpdateInstitutionalAgreementCommand>
@@ -148,12 +149,14 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 foreach (var addedFileEntityId in command.AddFileEntityIds)
                     command.ChangeCount += entity.AddFile(addedFileEntityId, _queryProcessor, _entities);
 
+            command.EntityId = entity.EntityId;
             if (entity.RevisionId == 0 || command.ChangeCount > 0)
             {
                 if (entity.RevisionId == 0) _entities.Create(entity);
                 else if (command.ChangeCount > 0) _entities.Update(entity);
                 DeriveNodes(entity, previousUmbrella);
                 //_unitOfWork.SaveChanges();
+                command.RevisionId = entity.RevisionId;
             }
         }
 
