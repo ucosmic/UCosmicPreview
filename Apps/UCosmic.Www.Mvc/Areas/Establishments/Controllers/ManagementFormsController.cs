@@ -5,7 +5,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using AutoMapper;
-using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Languages;
 using UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms;

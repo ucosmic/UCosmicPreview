@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UCosmic.Domain
+namespace UCosmic
 {
     public interface IUnitOfWork : IDisposable
     {

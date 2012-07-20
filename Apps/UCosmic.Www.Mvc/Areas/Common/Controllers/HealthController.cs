@@ -7,7 +7,6 @@ using System.Text;
 using System.Web.Mvc;
 using System.Xml;
 using NGeo.Yahoo.PlaceFinder;
-using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Domain.Languages;

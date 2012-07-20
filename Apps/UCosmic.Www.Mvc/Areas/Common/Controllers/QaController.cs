@@ -2,7 +2,6 @@
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
-using UCosmic.Domain;
 
 namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 {

@@ -7,7 +7,6 @@ using System.Web.Routing;
 using Elmah.Contrib.Mvc;
 using FluentValidation.Mvc;
 using ServiceLocatorPattern;
-using UCosmic.Domain;
 using UCosmic.Impl;
 using UCosmic.Impl.Orm;
 using UCosmic.Impl.Seeders;

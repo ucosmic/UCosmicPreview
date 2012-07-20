@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using AutoMapper;
 using FluentValidation;
-using UCosmic.Domain;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Models;

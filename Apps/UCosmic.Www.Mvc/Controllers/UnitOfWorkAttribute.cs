@@ -1,5 +1,4 @@
 using System.Web.Mvc;
-using UCosmic.Domain;
 
 namespace UCosmic.Www.Mvc.Controllers
 {

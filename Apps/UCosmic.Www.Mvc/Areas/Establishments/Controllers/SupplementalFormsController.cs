@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using AutoMapper;
 using NGeo.Yahoo.PlaceFinder;
 using ServiceLocatorPattern;
-using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Places;
 using UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms;

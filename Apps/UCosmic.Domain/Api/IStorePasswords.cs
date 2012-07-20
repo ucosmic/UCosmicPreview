@@ -1,4 +1,4 @@
-﻿namespace UCosmic.Domain
+﻿namespace UCosmic
 {
     public interface IStorePasswords
     {

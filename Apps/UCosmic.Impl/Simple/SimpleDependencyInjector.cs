@@ -8,7 +8,6 @@ using NGeo.Yahoo.GeoPlanet;
 using NGeo.Yahoo.PlaceFinder;
 using SimpleInjector;
 using SimpleInjector.Extensions;
-using UCosmic.Domain;
 using UCosmic.Domain.Identity;
 using UCosmic.Impl.Orm;
 using UCosmic.Impl.Seeders;

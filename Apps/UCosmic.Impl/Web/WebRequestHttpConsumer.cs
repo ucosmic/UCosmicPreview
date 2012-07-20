@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Net;
-using UCosmic.Domain;
 
 namespace UCosmic.Impl
 {

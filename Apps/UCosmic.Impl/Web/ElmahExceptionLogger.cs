@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Mail;
 using Elmah;
-using UCosmic.Domain;
 
 namespace UCosmic.Impl
 {

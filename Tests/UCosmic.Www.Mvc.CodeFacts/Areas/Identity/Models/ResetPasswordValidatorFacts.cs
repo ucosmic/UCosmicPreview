@@ -6,7 +6,6 @@ using FluentValidation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
-using UCosmic.Domain;
 using UCosmic.Domain.People;
 using UCosmic.Impl;
 

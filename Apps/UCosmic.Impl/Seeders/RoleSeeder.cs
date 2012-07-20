@@ -1,4 +1,3 @@
-using UCosmic.Domain;
 using UCosmic.Impl.Orm;
 
 namespace UCosmic.Impl.Seeders

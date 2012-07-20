@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Web.Security;
 using ServiceLocatorPattern;
-using UCosmic.Domain;
 using UCosmic.Domain.People;
 using UCosmic.Impl.Orm;
 

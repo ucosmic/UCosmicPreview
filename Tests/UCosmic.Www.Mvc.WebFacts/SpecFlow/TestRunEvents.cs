@@ -5,7 +5,6 @@ using System.ServiceProcess;
 using OpenQA.Selenium;
 using ServiceLocatorPattern;
 using TechTalk.SpecFlow;
-using UCosmic.Domain;
 using UCosmic.Impl.Orm;
 using UCosmic.Impl.Seeders;
 using UCosmic.Www.Mvc.Areas.Identity;

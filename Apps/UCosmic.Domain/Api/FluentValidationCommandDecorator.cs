@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace UCosmic.Domain
+namespace UCosmic
 {
     public class FluentValidationCommandDecorator<TCommand> : IHandleCommands<TCommand>
     {

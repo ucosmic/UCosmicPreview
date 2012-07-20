@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
-using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;

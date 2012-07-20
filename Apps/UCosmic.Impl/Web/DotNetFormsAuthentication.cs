@@ -1,5 +1,4 @@
 ﻿using System.Web.Security;
-using UCosmic.Domain;
 
 namespace UCosmic.Impl
 {

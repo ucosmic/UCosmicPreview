@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using UCosmic.Domain;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Impl.Orm;
 
