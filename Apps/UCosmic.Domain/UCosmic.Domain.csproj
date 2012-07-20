@@ -181,10 +181,10 @@
     <Compile Include="Api\ICommandEntities.cs" />
     <Compile Include="_Deprecated\_ICommandObjects.cs" />
     <Compile Include="Api\IUnitOfWork.cs" />
-    <Compile Include="Api\EntityQueryCriteria.cs" />
+    <Compile Include="_Deprecated\_EntityQueryCriteria.cs" />
     <Compile Include="_Deprecated\_RevisableEntityFinder.cs" />
     <Compile Include="Api\RevisableEntityQueries.cs" />
-    <Compile Include="Api\RevisableEntityQueryCriteria.cs" />
+    <Compile Include="_Deprecated\_RevisableEntityQueryCriteria.cs" />
     <Compile Include="Domain\Establishments\Commands\UpdateEstablishmentHierarchies.cs" />
     <Compile Include="Domain\Establishments\Entities\InstitutionInfo.cs" />
     <Compile Include="Domain\Establishments\Queries\FindRootEstablishmentsWithChildren.cs" />
