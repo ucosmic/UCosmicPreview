@@ -177,12 +177,12 @@
     <Compile Include="Api\OrderByDirection.cs" />
     <Compile Include="Api\RevisableEntityFacade.cs" />
     <Compile Include="Domain\Entity.cs" />
-    <Compile Include="Api\EntityFinder.cs" />
+    <Compile Include="_Deprecated\_EntityFinder.cs" />
     <Compile Include="Api\ICommandEntities.cs" />
     <Compile Include="_Deprecated\_ICommandObjects.cs" />
     <Compile Include="Api\IUnitOfWork.cs" />
     <Compile Include="Api\EntityQueryCriteria.cs" />
-    <Compile Include="Api\RevisableEntityFinder.cs" />
+    <Compile Include="_Deprecated\_RevisableEntityFinder.cs" />
     <Compile Include="Api\RevisableEntityQueries.cs" />
     <Compile Include="Api\RevisableEntityQueryCriteria.cs" />
     <Compile Include="Domain\Establishments\Commands\UpdateEstablishmentHierarchies.cs" />

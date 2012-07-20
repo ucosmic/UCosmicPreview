@@ -80,9 +80,9 @@
     <Compile Include="Identity\Commands\SendConfirmEmailMessageValidatorFacts.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentByIdHandlerFacts.cs" />
     <Compile Include="Etc\InterfaceQueryEntitiesExtensions.cs" />
-    <Compile Include="Api\RevisableEntityFinderFacts.cs" />
+    <Compile Include="_Deprecated\_RevisableEntityFinderFacts.cs" />
     <Compile Include="Api\RevisableEntityQueryCriteriaFacts.cs" />
-    <Compile Include="Api\EntityFinderFacts.cs" />
+    <Compile Include="_Deprecated\_EntityFinderFacts.cs" />
     <Compile Include="Api\IQueryEntitiesFacts.cs" />
     <Compile Include="Api\EntityQueryCriteriaFacts.cs" />
     <Compile Include="Establishments\Entities\EmailTemplateFacts.cs" />
