@@ -47,16 +47,16 @@ namespace UCosmic
         TEntity FindByPrimaryKey<TEntity>(IQueryable<TEntity> entitiyQuery, params object[] primaryKeyValues)
             where TEntity : Entity;
 
-        IQueryable<TEntity> ApplyInsertOrUpdate<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
-            where TEntity : Entity;
-
-        IQueryable<TEntity> ApplyEagerLoading<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
-            where TEntity : Entity;
-
         IQueryable<TEntity> EagerLoad<TEntity>(IQueryable<TEntity> query, Expression<Func<TEntity, object>> expression)
             where TEntity : Entity;
 
-        IQueryable<TEntity> WithoutUnitOfWork<TEntity>(IQueryable<TEntity> query)
-            where TEntity : Entity;
+        //IQueryable<TEntity> ApplyInsertOrUpdate<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
+        //    where TEntity : Entity;
+
+        //IQueryable<TEntity> ApplyEagerLoading<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
+        //    where TEntity : Entity;
+
+        //IQueryable<TEntity> WithoutUnitOfWork<TEntity>(IQueryable<TEntity> query)
+        //    where TEntity : Entity;
     }
 }

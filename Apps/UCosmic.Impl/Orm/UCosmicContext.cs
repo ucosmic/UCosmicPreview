@@ -102,6 +102,21 @@ namespace UCosmic.Impl.Orm
             return Set<TEntity>();
         }
 
+        public TEntity FindByPrimaryKey<TEntity>(IQueryable<TEntity> entitiyQuery, params object[] primaryKeyValues)
+            where TEntity : Entity
+        {
+            var dbSet = (IDbSet<TEntity>)entitiyQuery;
+            return dbSet.Find(primaryKeyValues);
+        }
+
+        public IQueryable<TEntity> EagerLoad<TEntity>(IQueryable<TEntity> query, Expression<Func<TEntity, object>> expression)
+            where TEntity : Entity
+        {
+            if (query != null && expression != null)
+                query = query.Include(expression);
+            return query;
+        }
+
         public void Create(Entity entity)
         {
             var entry = Entry(entity);
@@ -120,45 +135,30 @@ namespace UCosmic.Impl.Orm
             entry.State = EntityState.Deleted;
         }
 
-        public IQueryable<TEntity> EagerLoad<TEntity>(IQueryable<TEntity> query, Expression<Func<TEntity, object>> expression)
-            where TEntity : Entity
-        {
-            if (query != null && expression != null)
-                query = query.Include(expression);
-            return query;
-        }
+        //public IQueryable<TEntity> WithoutUnitOfWork<TEntity>(IQueryable<TEntity> query)
+        //    where TEntity : Entity
+        //{
+        //    if (query != null)
+        //        query = query.AsNoTracking();
+        //    return query;
+        //}
 
-        public IQueryable<TEntity> WithoutUnitOfWork<TEntity>(IQueryable<TEntity> query)
-            where TEntity : Entity
-        {
-            if (query != null)
-                query = query.AsNoTracking();
-            return query;
-        }
+        //public IQueryable<TEntity> ApplyEagerLoading<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
+        //    where TEntity : Entity
+        //{
+        //    if (query != null && criteria != null && criteria.ToBeEagerLoaded != null && criteria.ToBeEagerLoaded.Count > 0)
+        //        query = criteria.ToBeEagerLoaded.Aggregate(query, (lastInclude, nextInclude) =>
+        //            lastInclude.Include(nextInclude));
+        //    return query;
+        //}
 
-        public IQueryable<TEntity> ApplyEagerLoading<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
-            where TEntity : Entity
-        {
-            if (query != null && criteria != null && criteria.ToBeEagerLoaded != null && criteria.ToBeEagerLoaded.Count > 0)
-                query = criteria.ToBeEagerLoaded.Aggregate(query, (lastInclude, nextInclude) =>
-                    lastInclude.Include(nextInclude));
-            return query;
-        }
-
-        public TEntity FindByPrimaryKey<TEntity>(IQueryable<TEntity> entitiyQuery, params object[] primaryKeyValues)
-            where TEntity : Entity
-        {
-            var dbSet = (IDbSet<TEntity>)entitiyQuery;
-            return dbSet.Find(primaryKeyValues);
-        }
-
-        public IQueryable<TEntity> ApplyInsertOrUpdate<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
-            where TEntity : Entity
-        {
-            if (query != null && criteria != null && criteria.IsForInsertOrUpdate)
-                return query.AsNoTracking();
-            return query;
-        }
+        //public IQueryable<TEntity> ApplyInsertOrUpdate<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
+        //    where TEntity : Entity
+        //{
+        //    if (query != null && criteria != null && criteria.IsForInsertOrUpdate)
+        //        return query.AsNoTracking();
+        //    return query;
+        //}
 
         public override int SaveChanges()
         {

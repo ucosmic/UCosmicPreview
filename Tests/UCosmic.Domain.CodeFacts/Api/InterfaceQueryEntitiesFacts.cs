@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
@@ -17,7 +16,7 @@ namespace UCosmic.Domain
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
-        public class IQueryableProperties
+        public class InterfaceQueryableProperties
         {
             [TestMethod]
             public void Languages_HasGet()
@@ -125,46 +124,46 @@ namespace UCosmic.Domain
             }
         }
 
-        [TestClass]
-        public class ApplyInsertOrUpdateMethod
-        {
-            [TestMethod]
-            public void ReturnsIQueryableGeneric()
-            {
-                var genericIQueryable = new List<Entity>().AsQueryable();
+        //[TestClass]
+        //public class ApplyInsertOrUpdateMethod
+        //{
+        //    [TestMethod]
+        //    public void ReturnsIQueryableGeneric()
+        //    {
+        //        var genericIQueryable = new List<Entity>().AsQueryable();
 
-                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
-                mockQueries
-                    .Setup(p => p.ApplyInsertOrUpdate(
-                        It.IsAny<IQueryable<Entity>>(),
-                        It.IsAny<EntityQueryCriteria<Entity>>()))
-                    .Returns(genericIQueryable);
-                var queries = mockQueries.Object;
+        //        var mockQueries = new Mock<IQueryEntities>(MockBehavior.Strict);
+        //        mockQueries
+        //            .Setup(p => p.ApplyInsertOrUpdate(
+        //                It.IsAny<IQueryable<Entity>>(),
+        //                It.IsAny<EntityQueryCriteria<Entity>>()))
+        //            .Returns(genericIQueryable);
+        //        var queries = mockQueries.Object;
 
-                var resultIQueryable = queries.ApplyInsertOrUpdate(genericIQueryable, null);
-                resultIQueryable.ShouldEqual(genericIQueryable);
-            }
-        }
+        //        var resultIQueryable = queries.ApplyInsertOrUpdate(genericIQueryable, null);
+        //        resultIQueryable.ShouldEqual(genericIQueryable);
+        //    }
+        //}
 
-        [TestClass]
-        public class ApplyEagerLoadingMethod
-        {
-            [TestMethod]
-            public void ReturnsIQueryableGeneric()
-            {
-                var genericIQueryable = new List<Entity>().AsQueryable();
+        //[TestClass]
+        //public class ApplyEagerLoadingMethod
+        //{
+        //    [TestMethod]
+        //    public void ReturnsIQueryableGeneric()
+        //    {
+        //        var genericIQueryable = new List<Entity>().AsQueryable();
 
-                var mockQueries = new Mock<IQueryEntities>(MockBehavior.Default);
-                mockQueries
-                    .Setup(p => p.ApplyEagerLoading(
-                        It.IsAny<IQueryable<Entity>>(),
-                        It.IsAny<EntityQueryCriteria<Entity>>()))
-                    .Returns(genericIQueryable);
-                var queries = mockQueries.Object;
+        //        var mockQueries = new Mock<IQueryEntities>(MockBehavior.Default);
+        //        mockQueries
+        //            .Setup(p => p.ApplyEagerLoading(
+        //                It.IsAny<IQueryable<Entity>>(),
+        //                It.IsAny<EntityQueryCriteria<Entity>>()))
+        //            .Returns(genericIQueryable);
+        //        var queries = mockQueries.Object;
 
-                var resultIQueryable = queries.ApplyInsertOrUpdate(genericIQueryable, null);
-                resultIQueryable.ShouldEqual(genericIQueryable);
-            }
-        }
+        //        var resultIQueryable = queries.ApplyInsertOrUpdate(genericIQueryable, null);
+        //        resultIQueryable.ShouldEqual(genericIQueryable);
+        //    }
+        //}
     }
 }
