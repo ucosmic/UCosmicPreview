@@ -110,7 +110,6 @@ namespace UCosmic.Impl.Orm
         public TEntity FindByPrimaryKey<TEntity>(params object[] primaryKeyValues)
             where TEntity : Entity
         {
-            //var dbSet = (IDbSet<TEntity>)entitiyQuery;
             return Set<TEntity>().Find(primaryKeyValues);
         }
 
@@ -122,22 +121,26 @@ namespace UCosmic.Impl.Orm
             return query;
         }
 
-        public void Create(Entity entity)
+        public void Create<TEntity>(TEntity entity) where TEntity: Entity
         {
-            var entry = Entry(entity);
-            entry.State = EntityState.Added;
+            //var entry = Entry(entity);
+            //entry.State = EntityState.Added;
+            if (Entry(entity).State == EntityState.Detached)
+                Set<TEntity>().Add(entity);
         }
 
-        public void Update(Entity entity)
+        public void Update<TEntity>(TEntity entity) where TEntity : Entity
         {
             var entry = Entry(entity);
             entry.State = EntityState.Modified;
         }
 
-        public void Purge(Entity entity)
+        public void Purge<TEntity>(TEntity entity) where TEntity : Entity
         {
-            var entry = Entry(entity);
-            entry.State = EntityState.Deleted;
+            //var entry = Entry(entity);
+            //entry.State = EntityState.Deleted;
+            if (Entry(entity).State != EntityState.Deleted)
+                Set<TEntity>().Remove(entity);
         }
 
         //public IQueryable<TEntity> WithoutUnitOfWork<TEntity>(IQueryable<TEntity> query)

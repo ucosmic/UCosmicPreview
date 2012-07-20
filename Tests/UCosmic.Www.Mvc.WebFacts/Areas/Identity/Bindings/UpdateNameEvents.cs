@@ -13,18 +13,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity
         [BeforeScenario("UsingFreshExamplePersonNameForAny1AtUsil")]
         public static void ResetExamplePersonNameForAny1AtUsil()
         {
-            var entities = ServiceProviderLocator.Current.GetService<IQueryEntities>();
-            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+            var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
             UpdatePasswordEvents.ResetExamplePasswords();
-                var person = entities.Get<Person>().Single(p => Any1AtUsilDotEduDotPe.Equals(p.User.Name));
+                var person = db.Queries.Get<Person>().Single(p => Any1AtUsilDotEduDotPe.Equals(p.User.Name));
                 person.DisplayName = Any1AtUsilDotEduDotPe;
                 person.Salutation = null;
                 person.FirstName = null;
                 person.MiddleName = null;
                 person.LastName = null;
                 person.Suffix = null;
-                unitOfWork.SaveChanges();
+                db.UnitOfWork.SaveChanges();
         }
     }
 }

@@ -28,14 +28,13 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 
         private static void RemoveInstitutionalAgreementConfigurationFor(string url)
         {
-            var entities = ServiceProviderLocator.Current.GetService<ICommandEntities>();
-            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+            var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
-            var config = entities.Get<InstitutionalAgreementConfiguration>().SingleOrDefault(c =>
+            var config = db.Queries.Get<InstitutionalAgreementConfiguration>().SingleOrDefault(c =>
                 url.Equals(c.ForEstablishment.WebsiteUrl));
             if (config == null) return;
-            entities.Purge(config);
-            unitOfWork.SaveChanges();
+            db.Commands.Purge(config);
+            db.UnitOfWork.SaveChanges();
         }
     }
 }

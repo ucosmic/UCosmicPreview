@@ -10,7 +10,7 @@ namespace UCosmic.Domain.Identity
             if (roleGuid == Guid.Empty) throw new ArgumentException("Cannot be empty", "roleGuid");
             if (userGuid == Guid.Empty) throw new ArgumentException("Cannot be empty", "userGuid");
             RoleGuid = roleGuid;
-            UserGuid = RoleGuid;
+            UserGuid = userGuid;
         }
 
         public Guid RoleGuid { get; private set; }

@@ -11,14 +11,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity
         [BeforeScenario("UsingFreshExampleEmailSpellingForAny1AtUsil")]
         public static void ResetExampleEmailSpellingForAny1AtUsil()
         {
-            var entities = ServiceProviderLocator.Current.GetService<IQueryEntities>();
-            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+            var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
             UpdatePasswordEvents.ResetExamplePasswords();
-            var person = entities.Get<Person>()
+            var person = db.Queries.Get<Person>()
                 .Single(p => UpdateNameEvents.Any1AtUsilDotEduDotPe.Equals(p.User.Name));
             person.DefaultEmail.Value = UpdateNameEvents.Any1AtUsilDotEduDotPe.ToLower();
-            unitOfWork.SaveChanges();
+            db.UnitOfWork.SaveChanges();
         }
     }
 }

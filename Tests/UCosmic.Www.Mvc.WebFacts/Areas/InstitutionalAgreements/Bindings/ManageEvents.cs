@@ -26,17 +26,16 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 
         private static void ResetExampleUcTestInstitutionalAgreement1()
         {
-            var entities = ServiceProviderLocator.Current.GetService<ICommandEntities>();
-            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+            var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
             var entityId = new Guid("e8b53211-5b60-4b75-9c1a-e82f881a33a0");
-            var agreement = entities.Get<InstitutionalAgreement>().SingleOrDefault(a => a.EntityId == entityId);
+            var agreement = db.Queries.Get<InstitutionalAgreement>().SingleOrDefault(a => a.EntityId == entityId);
             if (agreement != null)
             {
-                entities.Purge(agreement);
-                unitOfWork.SaveChanges();
+                db.Commands.Purge(agreement);
+                db.UnitOfWork.SaveChanges();
             }
-            var uc = entities.Get<Establishment>().ByEmail("@uc.edu");
+            var uc = db.Queries.Get<Establishment>().ByEmail("@uc.edu");
             agreement = new InstitutionalAgreement
             {
                 EntityId = entityId,
@@ -51,28 +50,27 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
                 Participants = new List<InstitutionalAgreementParticipant>
                 {
                     new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
-                    new InstitutionalAgreementParticipant{ Establishment = entities.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufl.edu"), },
-                    new InstitutionalAgreementParticipant{ Establishment = entities.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufrj.br"), },
-                    new InstitutionalAgreementParticipant{ Establishment = entities.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufpr.br"), },
+                    new InstitutionalAgreementParticipant{ Establishment = db.Queries.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufl.edu"), },
+                    new InstitutionalAgreementParticipant{ Establishment = db.Queries.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufrj.br"), },
+                    new InstitutionalAgreementParticipant{ Establishment = db.Queries.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufpr.br"), },
                 },
             };
-            entities.Create(agreement);
-            unitOfWork.SaveChanges();
+            db.Commands.Create(agreement);
+            db.UnitOfWork.SaveChanges();
         }
 
         private static void ResetExampleUcTestInstitutionalAgreement2()
         {
-            var entities = ServiceProviderLocator.Current.GetService<ICommandEntities>();
-            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+            var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
             var entityId = new Guid("e8b53211-2222-2222-9c1a-e82f881a33a0");
-            var agreement = entities.Get<InstitutionalAgreement>().SingleOrDefault(a => a.EntityId == entityId);
+            var agreement = db.Queries.Get<InstitutionalAgreement>().SingleOrDefault(a => a.EntityId == entityId);
             if (agreement != null)
             {
-                entities.Purge(agreement);
-                unitOfWork.SaveChanges();
+                db.Commands.Purge(agreement);
+                db.UnitOfWork.SaveChanges();
             }
-            var uc = entities.Get<Establishment>().ByEmail("@uc.edu");
+            var uc = db.Queries.Get<Establishment>().ByEmail("@uc.edu");
             agreement = new InstitutionalAgreement
             {
                 EntityId = entityId,
@@ -89,23 +87,22 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
                     new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
                 },
             };
-            entities.Create(agreement);
-            unitOfWork.SaveChanges();
+            db.Commands.Create(agreement);
+            db.UnitOfWork.SaveChanges();
         }
 
         private static void ResetExampleUcTestInstitutionalAgreementForGoogleChrome()
         {
-            var entities = ServiceProviderLocator.Current.GetService<ICommandEntities>();
-            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+            var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
             var entityId = new Guid("ccb53211-5b60-4b75-9c1a-e82f881a33a0");
-            var agreement = entities.Get<InstitutionalAgreement>().SingleOrDefault(a => a.EntityId == entityId);
+            var agreement = db.Queries.Get<InstitutionalAgreement>().SingleOrDefault(a => a.EntityId == entityId);
             if (agreement != null)
             {
-                entities.Purge(agreement);
-                unitOfWork.SaveChanges();
+                db.Commands.Purge(agreement);
+                db.UnitOfWork.SaveChanges();
             }
-            var uc = entities.Get<Establishment>().ByEmail("@uc.edu");
+            var uc = db.Queries.Get<Establishment>().ByEmail("@uc.edu");
             agreement = new InstitutionalAgreement
             {
                 EntityId = entityId,
@@ -120,28 +117,27 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
                 Participants = new List<InstitutionalAgreementParticipant>
                 {
                     new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
-                    new InstitutionalAgreementParticipant{ Establishment = entities.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufl.edu"), },
-                    new InstitutionalAgreementParticipant{ Establishment = entities.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufrj.br"), },
-                    new InstitutionalAgreementParticipant{ Establishment = entities.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufpr.br"), },
+                    new InstitutionalAgreementParticipant{ Establishment = db.Queries.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufl.edu"), },
+                    new InstitutionalAgreementParticipant{ Establishment = db.Queries.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufrj.br"), },
+                    new InstitutionalAgreementParticipant{ Establishment = db.Queries.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufpr.br"), },
                 },
             };
-            entities.Create(agreement);
-            unitOfWork.SaveChanges();
+            db.Commands.Create(agreement);
+            db.UnitOfWork.SaveChanges();
         }
 
         private static void ResetExampleUcTestInstitutionalAgreementForFirefox()
         {
-            var entities = ServiceProviderLocator.Current.GetService<ICommandEntities>();
-            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+            var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
             var entityId = new Guid("ffb53211-5b60-4b75-9c1a-e82f881a33a0");
-            var agreement = entities.Get<InstitutionalAgreement>().SingleOrDefault(a => a.EntityId == entityId);
+            var agreement = db.Queries.Get<InstitutionalAgreement>().SingleOrDefault(a => a.EntityId == entityId);
             if (agreement != null)
             {
-                entities.Purge(agreement);
-                unitOfWork.SaveChanges();
+                db.Commands.Purge(agreement);
+                db.UnitOfWork.SaveChanges();
             }
-            var uc = entities.Get<Establishment>().ByEmail("@uc.edu");
+            var uc = db.Queries.Get<Establishment>().ByEmail("@uc.edu");
             agreement = new InstitutionalAgreement
             {
                 EntityId = entityId,
@@ -156,28 +152,27 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
                 Participants = new List<InstitutionalAgreementParticipant>
                 {
                     new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
-                    new InstitutionalAgreementParticipant{ Establishment = entities.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufl.edu"), },
-                    new InstitutionalAgreementParticipant{ Establishment = entities.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufrj.br"), },
-                    new InstitutionalAgreementParticipant{ Establishment = entities.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufpr.br"), },
+                    new InstitutionalAgreementParticipant{ Establishment = db.Queries.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufl.edu"), },
+                    new InstitutionalAgreementParticipant{ Establishment = db.Queries.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufrj.br"), },
+                    new InstitutionalAgreementParticipant{ Establishment = db.Queries.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufpr.br"), },
                 },
             };
-            entities.Create(agreement);
-            unitOfWork.SaveChanges();
+            db.Commands.Create(agreement);
+            db.UnitOfWork.SaveChanges();
         }
 
         private static void ResetExampleUcTestInstitutionalAgreementForMsie()
         {
-            var entities = ServiceProviderLocator.Current.GetService<ICommandEntities>();
-            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+            var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
             var entityId = new Guid("eeb53211-5b60-4b75-9c1a-e82f881a33a0");
-            var agreement = entities.Get<InstitutionalAgreement>().SingleOrDefault(a => a.EntityId == entityId);
+            var agreement = db.Queries.Get<InstitutionalAgreement>().SingleOrDefault(a => a.EntityId == entityId);
             if (agreement != null)
             {
-                entities.Purge(agreement);
-                unitOfWork.SaveChanges();
+                db.Commands.Purge(agreement);
+                db.UnitOfWork.SaveChanges();
             }
-            var uc = entities.Get<Establishment>().ByEmail("@uc.edu");
+            var uc = db.Queries.Get<Establishment>().ByEmail("@uc.edu");
             agreement = new InstitutionalAgreement
             {
                 EntityId = entityId,
@@ -192,13 +187,13 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
                 Participants = new List<InstitutionalAgreementParticipant>
                 {
                     new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
-                    new InstitutionalAgreementParticipant{ Establishment = entities.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufl.edu"), },
-                    new InstitutionalAgreementParticipant{ Establishment = entities.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufrj.br"), },
-                    new InstitutionalAgreementParticipant{ Establishment = entities.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufpr.br"), },
+                    new InstitutionalAgreementParticipant{ Establishment = db.Queries.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufl.edu"), },
+                    new InstitutionalAgreementParticipant{ Establishment = db.Queries.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufrj.br"), },
+                    new InstitutionalAgreementParticipant{ Establishment = db.Queries.Get<Establishment>().Single(e => e.WebsiteUrl == "www.ufpr.br"), },
                 },
             };
-            entities.Create(agreement);
-            unitOfWork.SaveChanges();
+            db.Commands.Create(agreement);
+            db.UnitOfWork.SaveChanges();
         }
 
         private static void RemoveExampleUcInstitutionalAgreementsCreatedByTests()
@@ -219,16 +214,16 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
                 "Agreement, UC B test",
             };
 
-            var entities = ServiceProviderLocator.Current.GetService<ICommandEntities>();
-            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+            var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
-            var agreements = entities.Get<InstitutionalAgreement>().Where(a =>
+            var agreements = db.Queries.Get<InstitutionalAgreement>().Where(a =>
                 titles.Contains(a.Title))
                 .ToList();
             if (agreements.Count <= 0) return;
             foreach (var agreement in agreements)
-                entities.Purge(agreement);
-            unitOfWork.SaveChanges();
+                db.Commands.Purge(agreement);
+            db.UnitOfWork.SaveChanges();
+
             //FreshTestAgreementUc01();
         }
     }

@@ -16,8 +16,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity
         {
             var membersToClear = new[] { "new@bjtu.edu.cn", "new@usil.edu.pe", "new@griffith.edu.au" };
 
-            var entities = ServiceProviderLocator.Current.GetService<ICommandEntities>();
-            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+            var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
             foreach (var memberToClear in membersToClear)
             {
@@ -25,17 +24,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity
                 if (member != null)
                     Membership.DeleteUser(memberToClear);
 
-                var person = entities.Get<Person>().SingleOrDefault(p => p.User != null
+                var person = db.Queries.Get<Person>().SingleOrDefault(p => p.User != null
                     && memberToClear.Equals(p.User.Name, StringComparison.OrdinalIgnoreCase))
-                    ?? entities.Get<Person>().SingleOrDefault(p => p.Emails.Any(
+                    ?? db.Queries.Get<Person>().SingleOrDefault(p => p.Emails.Any(
                         e => memberToClear.Equals(e.Value, StringComparison.OrdinalIgnoreCase)));
 
                 if (person == null) continue;
                 if (person.User != null)
-                    entities.Purge(person.User);
-                entities.Purge(person);
+                    db.Commands.Purge(person.User);
+                db.Commands.Purge(person);
             }
-            unitOfWork.SaveChanges();
+            db.UnitOfWork.SaveChanges();
         }
     }
 }

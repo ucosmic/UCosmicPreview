@@ -16,29 +16,27 @@ namespace UCosmic.Www.Mvc.Areas.Roles
         {
             RemoveExampleRoleData();
 
-            var entities = ServiceProviderLocator.Current.GetService<ICommandEntities>();
-            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+            var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
             var role = new Role
             {
                 Name = TestRoleName,
                 Description = "This role is for testing in the web facts project",
             };
-            entities.Create(role);
-            unitOfWork.SaveChanges();
+            db.Commands.Create(role);
+            db.UnitOfWork.SaveChanges();
         }
 
         [AfterTestRun]
         [AfterScenario("UsingFreshExampleRoleData")]
         public static void RemoveExampleRoleData()
         {
-            var entities = ServiceProviderLocator.Current.GetService<ICommandEntities>();
-            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+            var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
-            var role = entities.Get<Role>().SingleOrDefault(r => TestRoleName.Equals(r.Name));
+            var role = db.Queries.Get<Role>().SingleOrDefault(r => TestRoleName.Equals(r.Name));
             if (role == null) return;
-            entities.Purge(role);
-            unitOfWork.SaveChanges();
+            db.Commands.Purge(role);
+            db.UnitOfWork.SaveChanges();
         }
     }
 }

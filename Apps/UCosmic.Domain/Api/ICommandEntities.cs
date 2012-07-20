@@ -4,8 +4,8 @@ namespace UCosmic
 {
     public interface ICommandEntities : IQueryEntities
     {
-        void Create(Entity entity);
-        void Update(Entity entity);
-        void Purge(Entity entity);
+        void Create<TEntity>(TEntity entity) where TEntity : Entity;
+        void Update<TEntity>(TEntity entity) where TEntity : Entity;
+        void Purge<TEntity>(TEntity entity) where TEntity : Entity;
     }
 }

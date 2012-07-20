@@ -13,14 +13,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity
         {
             UpdatePasswordEvents.ResetExamplePasswords();
 
-            var entities = ServiceProviderLocator.Current.GetService<IQueryEntities>();
-            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+            var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
-            var person = entities.Get<Person>()
+            var person = db.Queries.Get<Person>()
                 .Single(p => UpdateNameEvents.Any1AtUsilDotEduDotPe.Equals(p.User.Name));
             person.DefaultAffiliation.IsAcknowledged = false;
             person.DefaultAffiliation.JobTitles = "Dir. Co. XPR-4";
-            unitOfWork.SaveChanges();
+            db.UnitOfWork.SaveChanges();
         }
     }
 }
