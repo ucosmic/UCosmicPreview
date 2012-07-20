@@ -7,33 +7,6 @@ namespace UCosmic
 {
     public interface IQueryEntities
     {
-        //IQueryable<Language> Languages { get; }
-
-        //IQueryable<LooseFile> Files { get; }
-
-        //IQueryable<Place> Places { get; }
-
-        //IQueryable<GeoNamesToponym> GeoNamesToponyms { get; }
-        //IQueryable<GeoNamesFeatureClass> GeoNamesFeatureClasses { get; }
-        //IQueryable<GeoNamesFeature> GeoNamesFeatures { get; }
-        //IQueryable<GeoNamesTimeZone> GeoNamesTimeZones { get; }
-
-        //IQueryable<GeoPlanetPlace> GeoPlanetPlaces { get; }
-        //IQueryable<GeoPlanetPlaceType> GeoPlanetPlaceTypes { get; }
-
-        //IQueryable<User> Users { get; }
-        //IQueryable<Role> Roles { get; }
-
-        //IQueryable<Person> People { get; }
-        //IQueryable<Establishment> Establishments { get; }
-        //IQueryable<EstablishmentType> EstablishmentTypes { get; }
-        //IQueryable<EmailTemplate> EmailTemplates { get; }
-
-        //IQueryable<InstitutionalAgreement> InstitutionalAgreements { get; }
-        //IQueryable<InstitutionalAgreementConfiguration> InstitutionalAgreementConfigurations { get; }
-
-        //IQueryable<Activity> Activities { get; }
-
         IQueryable<TEntity> Get<TEntity>() where TEntity : Entity;
 
         IQueryable<TEntity> Read<TEntity>() where TEntity : Entity;
@@ -43,14 +16,5 @@ namespace UCosmic
 
         IQueryable<TEntity> EagerLoad<TEntity>(IQueryable<TEntity> query, Expression<Func<TEntity, object>> expression)
             where TEntity : Entity;
-
-        //IQueryable<TEntity> ApplyInsertOrUpdate<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
-        //    where TEntity : Entity;
-
-        //IQueryable<TEntity> ApplyEagerLoading<TEntity>(IQueryable<TEntity> query, EntityQueryCriteria<TEntity> criteria)
-        //    where TEntity : Entity;
-
-        //IQueryable<TEntity> WithoutUnitOfWork<TEntity>(IQueryable<TEntity> query)
-        //    where TEntity : Entity;
     }
 }

@@ -6,33 +6,35 @@ using NGeo.Yahoo.GeoPlanet;
 
 namespace UCosmic.Domain.Places
 {
-    public class GetGeoPlanetPlaceByWoeIdQuery : BaseEntityQuery<GeoPlanetPlace>, IDefineQuery<GeoPlanetPlace>
+    public class SingleGeoPlanetPlace : IDefineQuery<GeoPlanetPlace>
     {
-        public int WoeId { get; set; }
+        public SingleGeoPlanetPlace(int woeId)
+        {
+            WoeId = woeId;
+        }
+
+        public int WoeId { get; private set; }
     }
 
-    public class GetGeoPlanetPlaceByWoeIdHandler : IHandleQueries<GetGeoPlanetPlaceByWoeIdQuery, GeoPlanetPlace>
+    public class SingleGeoPlanetPlaceHandler : IHandleQueries<SingleGeoPlanetPlace, GeoPlanetPlace>
     {
         private readonly ICommandEntities _entities;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IContainGeoPlanet _geoPlanet;
 
-        public GetGeoPlanetPlaceByWoeIdHandler(ICommandEntities entities, IUnitOfWork unitOfWork, IContainGeoPlanet geoPlanet)
+        public SingleGeoPlanetPlaceHandler(ICommandEntities entities
+            , IContainGeoPlanet geoPlanet
+        )
         {
             _entities = entities;
-            _unitOfWork = unitOfWork;
             _geoPlanet = geoPlanet;
         }
 
-        public GeoPlanetPlace Handle(GetGeoPlanetPlaceByWoeIdQuery query)
+        public GeoPlanetPlace Handle(SingleGeoPlanetPlace query)
         {
             if (query == null) throw new ArgumentNullException("query");
 
             // first look in the db
-            var place = _entities.Get<GeoPlanetPlace>()
-                .EagerLoad(query.EagerLoad, _entities)
-                .ByWoeId(query.WoeId)
-            ;
+            var place = _entities.FindByPrimaryKey<GeoPlanetPlace>(query.WoeId);
             if (place != null) return place;
 
             // invoke geoplanet service
@@ -45,14 +47,7 @@ namespace UCosmic.Domain.Places
             // map parent
             var ancestors = _geoPlanet.Ancestors(query.WoeId, RequestView.Long);
             if (ancestors != null && ancestors.Items.Count > 0)
-            {
-                //place.Parent = FindOne(ancestors.First().WoeId);
-                place.Parent = Handle(
-                    new GetGeoPlanetPlaceByWoeIdQuery
-                    {
-                        WoeId = ancestors.First().WoeId,
-                    });
-            }
+                place.Parent = Handle(new SingleGeoPlanetPlace(ancestors.First().WoeId));
 
             // add all belongtos
             place.BelongTos = place.BelongTos ?? new List<GeoPlanetPlaceBelongTo>();
@@ -65,34 +60,20 @@ namespace UCosmic.Domain.Places
                     place.BelongTos.Add(new GeoPlanetPlaceBelongTo
                     {
                         Rank = rank++,
-                        //BelongsTo = FindOne(geoPlanetBelongTo.WoeId)
-                        BelongsTo = Handle(
-                            new GetGeoPlanetPlaceByWoeIdQuery
-                            {
-                                WoeId = geoPlanetBelongTo.WoeId,
-                            }
-                        )
+                        BelongsTo = Handle(new SingleGeoPlanetPlace(geoPlanetBelongTo.WoeId))
                     });
                 }
             }
 
             // ensure no duplicate place types are added to db
-            //place.Type = EntityQueries.FindByPrimaryKey(EntityQueries.GeoPlanetPlaceTypes, place.Type.Code)
-            //    ?? _geoPlanet.Type(place.Type.Code, _config.GeoPlanetAppId, RequestView.Long)
-            //        .ToEntity();
-            place.Type = new GetGeoPlanetPlaceTypeByCodeHandler(_entities, _geoPlanet)
-                .Handle(
-                    new GetGeoPlanetPlaceTypeByCodeQuery
-                    {
-                        Code = place.Type.Code,
-                    });
+            place.Type = new SingleGeoPlanetPlaceTypeHandler(_entities, _geoPlanet)
+                .Handle(new SingleGeoPlanetPlaceType(place.Type.Code));
 
             // map ancestors
             DeriveNodes(place);
 
             // add to db and save
             _entities.Create(place);
-            _unitOfWork.SaveChanges();
 
             return place;
         }

@@ -5,38 +5,39 @@ using NGeo.GeoNames;
 
 namespace UCosmic.Domain.Places
 {
-    public class GetGeoNamesToponymByGeoNameIdQuery : BaseEntityQuery<GeoNamesToponym>, IDefineQuery<GeoNamesToponym>
+    public class SingleGeoNamesToponym : IDefineQuery<GeoNamesToponym>
     {
-        public int GeoNameId { get; set; }
+        public SingleGeoNamesToponym(int geoNameId)
+        {
+            GeoNameId = geoNameId;
+        }
+
+        public int GeoNameId { get; private set; }
     }
 
-    public class GetGeoNamesToponymByGeoNameIdHandler : IHandleQueries<GetGeoNamesToponymByGeoNameIdQuery, GeoNamesToponym>
+    public class SingleGeoNamesToponymHandler : IHandleQueries<SingleGeoNamesToponym, GeoNamesToponym>
     {
         private readonly ICommandEntities _entities;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IContainGeoNames _geoNames;
         private ReadOnlyCollection<Country> _geoNamesCountries;
 
-        public GetGeoNamesToponymByGeoNameIdHandler(ICommandEntities entities, IUnitOfWork unitOfWork, IContainGeoNames geoNames)
+        public SingleGeoNamesToponymHandler(ICommandEntities entities
+            , IContainGeoNames geoNames
+        )
         {
             _entities = entities;
-            _unitOfWork = unitOfWork;
             _geoNames = geoNames;
         }
 
-        public GeoNamesToponym Handle(GetGeoNamesToponymByGeoNameIdQuery query)
+        public GeoNamesToponym Handle(SingleGeoNamesToponym query)
         {
             if (query == null) throw new ArgumentNullException("query");
 
             // first look in the db
-            var toponym = _entities.Get<GeoNamesToponym>()
-                .EagerLoad(query.EagerLoad, _entities)
-                .ByGeoNameId(query.GeoNameId)
-            ;
+            var toponym = _entities.FindByPrimaryKey<GeoNamesToponym>(query.GeoNameId);
             if (toponym != null) return toponym;
 
             // invoke geonames service
-            //var geoNamesToponym = _geoNames.Get(geoNameId, _config.GeoNamesUserName);
             var geoNamesToponym = _geoNames.Get(query.GeoNameId);
             if (geoNamesToponym == null) return null;
 
@@ -46,39 +47,20 @@ namespace UCosmic.Domain.Places
             // map parent
             var geoNamesHierarchy = _geoNames.Hierarchy(query.GeoNameId, ResultStyle.Short);
             if (geoNamesHierarchy != null && geoNamesHierarchy.Items.Count > 1)
-                toponym.Parent = Handle(
-                    new GetGeoNamesToponymByGeoNameIdQuery
-                    {
-                        GeoNameId = geoNamesHierarchy.Items[geoNamesHierarchy.Items.Count - 2].GeoNameId,
-                    });
+                toponym.Parent = Handle(new SingleGeoNamesToponym(
+                    geoNamesHierarchy.Items[geoNamesHierarchy.Items.Count - 2].GeoNameId));
 
             //// ensure no duplicate features or time zones are added to the db
-            //toponym.Feature.Class = EntityQueries.FindByPrimaryKey(EntityQueries.GeoNamesFeatureClasses, toponym.Feature.ClassCode)
-            //    ?? toponym.Feature.Class;
-            toponym.Feature.Class = new GetGeoNamesFeatureClassByCodeHandler(_entities)
-                .Handle(
-                    new GetGeoNamesFeatureClassByCodeQuery
-                    {
-                        Code = toponym.Feature.ClassCode
-                    })
+            toponym.Feature.Class = new SingleGeoNamesFeatureClassHandler(_entities)
+                .Handle(new SingleGeoNamesFeatureClass(toponym.Feature.ClassCode))
                 ?? toponym.Feature.Class;
-            //toponym.Feature = EntityQueries.FindByPrimaryKey(EntityQueries.GeoNamesFeatures, toponym.FeatureCode)
-            //    ?? toponym.Feature;
-            toponym.Feature = new GetGeoNamesFeatureByCodeHandler(_entities)
-                .Handle(
-                    new GetGeoNamesFeatureByCodeQuery
-                    {
-                        Code = toponym.FeatureCode,
-                    })
+
+            toponym.Feature = new SingleGeoNamesFeatureHandler(_entities)
+                .Handle(new SingleGeoNamesFeature(toponym.FeatureCode))
                 ?? toponym.Feature;
-            //toponym.TimeZone = EntityQueries.FindByPrimaryKey(EntityQueries.GeoNamesTimeZones, toponym.TimeZoneId)
-            //    ?? toponym.TimeZone;
-            toponym.TimeZone = new GetGeoNamesTimeZoneByIdHandler(_entities)
-                .Handle(
-                    new GetGeoNamesTimeZoneByIdQuery
-                    {
-                        TimeZoneId = toponym.TimeZoneId
-                    })
+
+            toponym.TimeZone = new SingleGeoNamesTimeZoneHandler(_entities)
+                .Handle(new SingleGeoNamesTimeZone(toponym.TimeZoneId))
                 ?? toponym.TimeZone;
 
             // map country
@@ -92,7 +74,6 @@ namespace UCosmic.Domain.Places
 
             // add to db and save
             _entities.Create(toponym);
-            _unitOfWork.SaveChanges();
 
             return toponym;
         }

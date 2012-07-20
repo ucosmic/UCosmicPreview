@@ -28,7 +28,6 @@ namespace UCosmic.Domain.Places
             if (query == null) throw new ArgumentNullException("query");
 
             // first look in the db
-            //var place = _places.FindOne(PlaceBy.GeoNameId(geoNameId).ForInsertOrUpdate());
             var place = _entities.Get<Place>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByGeoNameId(query.GeoNameId)
@@ -36,12 +35,8 @@ namespace UCosmic.Domain.Places
             if (place != null) return place;
 
             // load toponym from storage
-            //var toponym = _toponyms.FindOne(geoNameId);
             var toponym = _queryProcessor.Execute(
-                new GetGeoNamesToponymByGeoNameIdQuery
-                {
-                    GeoNameId = query.GeoNameId,
-                });
+                new SingleGeoNamesToponym(query.GeoNameId));
 
             // convert toponym to place
             place = toponym.ToPlace();
@@ -49,7 +44,6 @@ namespace UCosmic.Domain.Places
             // match place hierarchy to toponym hierarchy
             if (toponym.Parent != null)
             {
-                //place.Parent = FromGeoNameId(toponym.Parent.GeoNameId);
                 place.Parent = Handle(
                     new GetPlaceByGeoNameIdQuery
                     {
@@ -60,12 +54,8 @@ namespace UCosmic.Domain.Places
             // try to match to geoplanet
             if (place.GeoPlanetPlace == null && place.GeoNamesToponym != null)
             {
-                //place.GeoPlanetPlace = _geoPlanetPlaces.FindByGeoNameId(place.GeoNamesToponym.GeoNameId);
                 place.GeoPlanetPlace = _queryProcessor.Execute(
-                    new GetGeoPlanetPlaceByGeoNameIdQuery
-                    {
-                        GeoNameId = place.GeoNamesToponym.GeoNameId,
-                    });
+                    new SingleGeoPlanetPlaceByGeoNameId(place.GeoNamesToponym.GeoNameId));
             }
 
             // add to db & save

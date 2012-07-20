@@ -42,11 +42,7 @@ namespace UCosmic.Domain.Places
 
                 // load toponym from storage
                 //var woe = _geoPlanetPlaces.FindOne(woeId);
-                var woe = _queryProcessor.Execute(
-                    new GetGeoPlanetPlaceByWoeIdQuery
-                    {
-                        WoeId = query.WoeId,
-                    });
+                var woe = _queryProcessor.Execute(new SingleGeoPlanetPlace(query.WoeId));
 
                 // convert to entity
                 place = woe.ToPlace();
@@ -60,19 +56,12 @@ namespace UCosmic.Domain.Places
                 {
                     //var geoNameId = _geoPlanetPlaces.FindGeoNameId(place.GeoPlanetPlace.WoeId);
                     var geoNameId = _queryProcessor.Execute(
-                        new GetGeoNameIdByWoeIdQuery
-                        {
-                            WoeId = place.GeoPlanetPlace.WoeId,
-                        }
-                    );
+                        new GeoNameIdByWoeId(place.GeoPlanetPlace.WoeId));
                     if (geoNameId.HasValue)
                     {
                         //place.GeoNamesToponym = _toponyms.FindOne(geoNameId.Value);
                         place.GeoNamesToponym = _queryProcessor.Execute(
-                            new GetGeoNamesToponymByGeoNameIdQuery
-                            {
-                                GeoNameId = geoNameId.Value,
-                            });
+                            new SingleGeoNamesToponym(geoNameId.Value));
                         if (place.GeoNamesToponym != null)
                         {
                             place.Names = place.GeoNamesToponym.AlternateNames.ToEntities(_queryProcessor);

@@ -3,21 +3,26 @@ using NGeo.Yahoo.GeoPlanet;
 
 namespace UCosmic.Domain.Places
 {
-    public class GetGeoNameIdByWoeIdQuery : IDefineQuery<int?>
+    public class GeoNameIdByWoeId : IDefineQuery<int?>
     {
-        public int WoeId { get; set; }
+        public GeoNameIdByWoeId(int woeId)
+        {
+            WoeId = woeId;
+        }
+
+        public int WoeId { get; private set; }
     }
 
-    public class GetGeoNameIdByWoeIdHandler : IHandleQueries<GetGeoNameIdByWoeIdQuery, int?>
+    public class GeoNameIdByWoeIdHandler : IHandleQueries<GeoNameIdByWoeId, int?>
     {
         private readonly IContainGeoPlanet _geoPlanet;
 
-        public GetGeoNameIdByWoeIdHandler(IContainGeoPlanet geoPlanet)
+        public GeoNameIdByWoeIdHandler(IContainGeoPlanet geoPlanet)
         {
             _geoPlanet = geoPlanet;
         }
 
-        public int? Handle(GetGeoNameIdByWoeIdQuery query)
+        public int? Handle(GeoNameIdByWoeId query)
         {
             if (query == null) throw new ArgumentNullException("query");
 
