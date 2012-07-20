@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using ServiceLocatorPattern;
 using TechTalk.SpecFlow;
-using UCosmic.Impl.Orm;
+using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.Identity
 {
@@ -11,13 +12,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity
         public static void ResetExampleUnacknowledgedAffiliationForAny1AtUsil()
         {
             UpdatePasswordEvents.ResetExamplePasswords();
-            using (var context = new UCosmicContext(null))
-            {
-                var person = context.People.Single(p => UpdateNameEvents.Any1AtUsilDotEduDotPe.Equals(p.User.Name));
-                person.DefaultAffiliation.IsAcknowledged = false;
-                person.DefaultAffiliation.JobTitles = "Dir. Co. XPR-4";
-                context.SaveChanges();
-            }
+
+            var entities = ServiceProviderLocator.Current.GetService<IQueryEntities>();
+            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+
+            var person = entities.Get<Person>()
+                .Single(p => UpdateNameEvents.Any1AtUsilDotEduDotPe.Equals(p.User.Name));
+            person.DefaultAffiliation.IsAcknowledged = false;
+            person.DefaultAffiliation.JobTitles = "Dir. Co. XPR-4";
+            unitOfWork.SaveChanges();
         }
     }
 }

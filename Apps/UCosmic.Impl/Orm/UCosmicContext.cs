@@ -19,7 +19,9 @@ namespace UCosmic.Impl.Orm
 {
     public class UCosmicContext : DbContext, IUnitOfWork, ICommandEntities
     {
-        public UCosmicContext(IDatabaseInitializer<UCosmicContext> initializer)
+        public UCosmicContext(
+            IDatabaseInitializer<UCosmicContext> initializer
+        )
         {
             // inject initializer if passed
             if (initializer != null)
@@ -100,11 +102,16 @@ namespace UCosmic.Impl.Orm
             return Set<TEntity>();
         }
 
-        public TEntity FindByPrimaryKey<TEntity>(IQueryable<TEntity> entitiyQuery, params object[] primaryKeyValues)
+        public IQueryable<TEntity> Read<TEntity>() where TEntity : Entity
+        {
+            return Set<TEntity>().AsNoTracking();
+        }
+
+        public TEntity FindByPrimaryKey<TEntity>(params object[] primaryKeyValues)
             where TEntity : Entity
         {
-            var dbSet = (IDbSet<TEntity>)entitiyQuery;
-            return dbSet.Find(primaryKeyValues);
+            //var dbSet = (IDbSet<TEntity>)entitiyQuery;
+            return Set<TEntity>().Find(primaryKeyValues);
         }
 
         public IQueryable<TEntity> EagerLoad<TEntity>(IQueryable<TEntity> query, Expression<Func<TEntity, object>> expression)

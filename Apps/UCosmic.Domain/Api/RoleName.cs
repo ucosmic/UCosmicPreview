@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+using System.Security.Principal;
 namespace UCosmic
 {
     public static class RoleName
@@ -10,5 +13,13 @@ namespace UCosmic
         public const string InstitutionalAgreementManagers = "Institutional Agreement Supervisor,Institutional Agreement Manager";
 
         public const string EstablishmentLocationAgent = "Establishment Location Agent";
+
+        public static bool IsInAnyRoles(this IPrincipal principal, string commaSeparatedRoles)
+        {
+            if (string.IsNullOrWhiteSpace(commaSeparatedRoles))
+                throw new ArgumentException("Cannot be null or white space.", "commaSeparatedRoles");
+            var splitRoles = commaSeparatedRoles.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            return splitRoles.Any(principal.IsInRole);
+        }
     }
 }

@@ -6,8 +6,6 @@ namespace UCosmic.Domain.Establishments
     {
         public GetEstablishmentByEmailQuery(string email)
         {
-            if (string.IsNullOrWhiteSpace(email)) 
-                throw new ArgumentException("Cannot be null or white space.", "email");
             Email = email;
         }
         public string Email { get; private set; }

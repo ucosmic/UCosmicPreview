@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using ServiceLocatorPattern;
 using TechTalk.SpecFlow;
-using UCosmic.Impl.Orm;
+using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.Identity
 {
@@ -10,13 +11,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity
         [BeforeScenario("UsingFreshExampleEmailSpellingForAny1AtUsil")]
         public static void ResetExampleEmailSpellingForAny1AtUsil()
         {
+            var entities = ServiceProviderLocator.Current.GetService<IQueryEntities>();
+            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+
             UpdatePasswordEvents.ResetExamplePasswords();
-            using (var context = new UCosmicContext(null))
-            {
-                var person = context.People.Single(p => UpdateNameEvents.Any1AtUsilDotEduDotPe.Equals(p.User.Name));
-                person.DefaultEmail.Value = UpdateNameEvents.Any1AtUsilDotEduDotPe.ToLower();
-                context.SaveChanges();
-            }
+            var person = entities.Get<Person>()
+                .Single(p => UpdateNameEvents.Any1AtUsilDotEduDotPe.Equals(p.User.Name));
+            person.DefaultEmail.Value = UpdateNameEvents.Any1AtUsilDotEduDotPe.ToLower();
+            unitOfWork.SaveChanges();
         }
     }
 }

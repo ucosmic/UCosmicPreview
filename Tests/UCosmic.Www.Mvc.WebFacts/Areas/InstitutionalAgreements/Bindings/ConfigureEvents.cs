@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using ServiceLocatorPattern;
 using TechTalk.SpecFlow;
-using UCosmic.Impl.Orm;
+using UCosmic.Domain.InstitutionalAgreements;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 {
@@ -27,14 +28,14 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 
         private static void RemoveInstitutionalAgreementConfigurationFor(string url)
         {
-            using (var context = new UCosmicContext(null))
-            {
-                var config = context.InstitutionalAgreementConfigurations.SingleOrDefault(c =>
-                    url.Equals(c.ForEstablishment.WebsiteUrl));
-                if (config == null) return;
-                context.InstitutionalAgreementConfigurations.Remove(config);
-                context.SaveChanges();
-            }
+            var entities = ServiceProviderLocator.Current.GetService<ICommandEntities>();
+            var unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+
+            var config = entities.Get<InstitutionalAgreementConfiguration>().SingleOrDefault(c =>
+                url.Equals(c.ForEstablishment.WebsiteUrl));
+            if (config == null) return;
+            entities.Purge(config);
+            unitOfWork.SaveChanges();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         {
             var model = new HorizontalTabsInfo
             {
-                DisplayAgreementsTab = User.IsInRole(RoleName.InstitutionalAgreementManager) || User.IsInRole(RoleName.InstitutionalAgreementSupervisor),
+                DisplayAgreementsTab = User.IsInAnyRoles(RoleName.InstitutionalAgreementManagers),
                 DisplayProfileTab = Request.IsAuthenticated,
             };
             return PartialView(model);

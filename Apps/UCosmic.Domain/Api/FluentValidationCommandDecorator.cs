@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System.Diagnostics;
+using FluentValidation;
 
 namespace UCosmic
 {
@@ -15,6 +16,7 @@ namespace UCosmic
             _validator = validator;
         }
 
+        [DebuggerStepThrough]
         public void Handle(TCommand command)
         {
             _validator.ValidateAndThrow(command);

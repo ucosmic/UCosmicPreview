@@ -139,7 +139,10 @@
     <Compile Include="Domain\Identity\Queries\GetRoleBySlug.cs" />
     <Compile Include="Domain\Identity\Queries\FindAllRoles.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Business\QueryInstitutionalAgreements.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Commands\UpdateInstitutionalAgreementConfiguration.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Commands\UpdateInstitutionalAgreementHierarchy.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Queries\GetInstitutionalAgreementConfigurationByGuid.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Queries\GetMyInstitutionalAgreementConfiguration.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\FindEstablishmentsWithInstitutionalAgreements.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\FindInstitutionalAgreementsOwnedByEstablishment.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\GetMyInstitutionalAgreementByFileGuid.cs" />

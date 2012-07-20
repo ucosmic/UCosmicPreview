@@ -36,7 +36,9 @@ namespace UCosmic
 
         IQueryable<TEntity> Get<TEntity>() where TEntity : Entity;
 
-        TEntity FindByPrimaryKey<TEntity>(IQueryable<TEntity> entitiyQuery, params object[] primaryKeyValues)
+        IQueryable<TEntity> Read<TEntity>() where TEntity : Entity;
+
+        TEntity FindByPrimaryKey<TEntity>(params object[] primaryKeyValues)
             where TEntity : Entity;
 
         IQueryable<TEntity> EagerLoad<TEntity>(IQueryable<TEntity> query, Expression<Func<TEntity, object>> expression)

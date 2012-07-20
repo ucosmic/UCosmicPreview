@@ -380,8 +380,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 
             var owners = agreement.Participants.Where(p => p.IsOwner).Select(p => p.Establishment).ToList();
             var isAffiliate = owners.Aggregate(false, (current, owner) => current || owner.HasDefaultAffiliate(User));
-            var isManager = isAffiliate && (User.IsInRole(RoleName.InstitutionalAgreementManager)
-                || User.IsInRole(RoleName.InstitutionalAgreementSupervisor));
+            var isManager = isAffiliate && User.IsInAnyRoles(RoleName.InstitutionalAgreementManagers);
 
             // hide from the public
             if (agreement.Visibility == InstitutionalAgreementVisibility.Protected && !isAffiliate)
