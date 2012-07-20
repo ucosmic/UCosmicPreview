@@ -76,7 +76,7 @@ namespace UCosmic.Impl
             container.Register<ICommandEntities>(container.GetInstance<UCosmicContext>);
 
             // other interfaces related to DbContext
-            container.Register<ICommandObjects, ObjectCommander>();
+            //container.Register<ICommandObjects, ObjectCommander>();
 
             // general purpose interfaces
             container.Register<IStorePasswords, DotNetMembershipProvider>();

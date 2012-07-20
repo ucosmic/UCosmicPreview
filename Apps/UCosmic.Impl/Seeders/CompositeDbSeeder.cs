@@ -1,5 +1,4 @@
 using ServiceLocatorPattern;
-using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Impl.Orm;
@@ -37,17 +36,15 @@ namespace UCosmic.Impl.Seeders
             new InstitutionalAgreementSeeder().Seed(context);
             new InstitutionalAgreementConfigurationSeeder().Seed(context);
 
-            var commander = ServiceProviderLocator.Current.GetService<ICommandObjects>();
-
             var updateEstablishmentHierarchy = ServiceProviderLocator.Current
                 .GetService<IHandleCommands<UpdateEstablishmentHierarchiesCommand>>();
             updateEstablishmentHierarchy.Handle(new UpdateEstablishmentHierarchiesCommand());
-            commander.SaveChanges();
+            context.SaveChanges();
 
             var updateInstitutionalAgreementHierarchy = ServiceProviderLocator.Current
                 .GetService<IHandleCommands<UpdateInstitutionalAgreementHierarchiesCommand>>();
             updateInstitutionalAgreementHierarchy.Handle(new UpdateInstitutionalAgreementHierarchiesCommand());
-            commander.SaveChanges();
+            context.SaveChanges();
         }
     }
 }

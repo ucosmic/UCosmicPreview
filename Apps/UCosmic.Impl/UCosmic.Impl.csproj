@@ -169,7 +169,7 @@
     <Compile Include="Seeders\RoleSeeder.cs" />
     <Compile Include="Seeders\UCosmicDbSeeder.cs" />
     <Compile Include="Seeders\UserSeeder.cs" />
-    <Compile Include="Orm\ObjectCommander.cs" />
+    <Compile Include="Deprecated\_ObjectCommander.cs" />
     <Compile Include="Saml\RealSamlCertificateStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Orm\UCosmicContext.cs" />

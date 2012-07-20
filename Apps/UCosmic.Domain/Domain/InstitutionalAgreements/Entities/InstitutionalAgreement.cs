@@ -77,11 +77,11 @@ namespace UCosmic.Domain.InstitutionalAgreements
             var participant = Participants.SingleOrDefault(g => g.Establishment.EntityId == establishmentEntityId);
             return (participant != null) ? participant.Remove(entities) : 0;
         }
-        internal int RemoveParticipant(Guid establishmentEntityId, ICommandObjects commander)
-        {
-            var participant = Participants.SingleOrDefault(g => g.Establishment.EntityId == establishmentEntityId);
-            return (participant != null) ? participant.Remove(commander) : 0;
-        }
+        //internal int RemoveParticipant(Guid establishmentEntityId, ICommandObjects commander)
+        //{
+        //    var participant = Participants.SingleOrDefault(g => g.Establishment.EntityId == establishmentEntityId);
+        //    return (participant != null) ? participant.Remove(commander) : 0;
+        //}
         //internal int AddParticipant(IPrincipal principal, Guid establishmentEntityId, EstablishmentFinder establishmentFinder)
         //{
         //    var participant = Participants.SingleOrDefault(g => g.Establishment.EntityId == establishmentEntityId);
@@ -147,12 +147,12 @@ namespace UCosmic.Domain.InstitutionalAgreements
             get { return _contacts; }
             set { _contacts = value; }
         }
-        internal int RemoveContact(Guid contactEntityId, ICommandObjects commander)
-        {
-            if (contactEntityId == Guid.Empty) return 0;
-            var contact = Contacts.SingleOrDefault(g => g.EntityId == contactEntityId);
-            return (contact != null) ? contact.Remove(commander) : 0;
-        }
+        //internal int RemoveContact(Guid contactEntityId, ICommandObjects commander)
+        //{
+        //    if (contactEntityId == Guid.Empty) return 0;
+        //    var contact = Contacts.SingleOrDefault(g => g.EntityId == contactEntityId);
+        //    return (contact != null) ? contact.Remove(commander) : 0;
+        //}
         internal int RemoveContact(Guid contactEntityId, ICommandEntities entities)
         {
             if (contactEntityId == Guid.Empty) return 0;
@@ -198,12 +198,12 @@ namespace UCosmic.Domain.InstitutionalAgreements
             get { return _files; }
             set { _files = value; }
         }
-        internal int RemoveFile(Guid fileEntityId, ICommandObjects commander)
-        {
-            if (fileEntityId == Guid.Empty) return 0;
-            var file = Files.SingleOrDefault(g => g.EntityId == fileEntityId);
-            return (file != null) ? file.Remove(commander) : 0;
-        }
+        //internal int RemoveFile(Guid fileEntityId, ICommandObjects commander)
+        //{
+        //    if (fileEntityId == Guid.Empty) return 0;
+        //    var file = Files.SingleOrDefault(g => g.EntityId == fileEntityId);
+        //    return (file != null) ? file.Remove(commander) : 0;
+        //}
         internal int RemoveFile(Guid fileEntityId, ICommandEntities entities)
         {
             if (fileEntityId == Guid.Empty) return 0;

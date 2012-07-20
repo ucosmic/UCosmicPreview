@@ -23,11 +23,11 @@ namespace UCosmic.Domain.InstitutionalAgreements
             return 1;
         }
 
-        internal int Remove(ICommandObjects commander)
-        {
-            commander.Delete(this);
-            return 1;
-        }
+        //internal int Remove(ICommandObjects commander)
+        //{
+        //    commander.Delete(this);
+        //    return 1;
+        //}
 
         public override string ToString()
         {

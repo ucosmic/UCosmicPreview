@@ -9,11 +9,11 @@
         public string MimeType { get; set; }
         public string Name { get; set; }
 
-        internal int Remove(ICommandObjects commander)
-        {
-            commander.Delete(this);
-            return 1;
-        }
+        //internal int Remove(ICommandObjects commander)
+        //{
+        //    commander.Delete(this);
+        //    return 1;
+        //}
 
         internal int Remove(ICommandEntities entities)
         {

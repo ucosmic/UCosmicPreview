@@ -179,7 +179,7 @@
     <Compile Include="Domain\Entity.cs" />
     <Compile Include="Api\EntityFinder.cs" />
     <Compile Include="Api\ICommandEntities.cs" />
-    <Compile Include="Api\ICommandObjects.cs" />
+    <Compile Include="_Deprecated\_ICommandObjects.cs" />
     <Compile Include="Api\IUnitOfWork.cs" />
     <Compile Include="Api\EntityQueryCriteria.cs" />
     <Compile Include="Api\RevisableEntityFinder.cs" />

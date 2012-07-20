@@ -22,20 +22,26 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         private readonly IConsumePlaceFinder _placeFinder;
         //private readonly PlaceFactory _placeFactory;
         //private readonly EstablishmentFinder _establishmentFinder;
-        private readonly ICommandObjects _objectCommander;
+        //private readonly ICommandObjects _objectCommander2;
+        private readonly ICommandEntities _entities;
+        private readonly IUnitOfWork _unitOfWork;
 
         public SupplementalFormsController(IProcessQueries queryProcessor
             , IConsumePlaceFinder placeFinder
             //, IConsumeGeoNames geoNames
             //, IConsumeGeoPlanet geoPlanet
             //, IQueryEntities entityQueries
-            , ICommandObjects objectCommander
+            //, ICommandObjects objectCommander
+            , ICommandEntities entities
+            , IUnitOfWork unitOfWork
             //, IManageConfigurations config
         )
         {
             _queryProcessor = queryProcessor;
             //_establishmentFinder = new EstablishmentFinder(entityQueries);
-            _objectCommander = objectCommander;
+            //_objectCommander = objectCommander;
+            _entities = entities;
+            _unitOfWork = unitOfWork;
             _placeFinder = placeFinder;
             //_placeFactory = new PlaceFactory(entityQueries, objectCommander, geoPlanet, geoNames, config);
         }
@@ -107,11 +113,14 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                         },
                     };
                     //_establishments.UnitOfWork.SaveChanges();
-                    _objectCommander.Update(establishment, true);
+                    //_objectCommander.Update(establishment, true);
+                    _entities.Update(establishment);
+                    _unitOfWork.SaveChanges();
                     if (!oldCenter.HasValue)
                     {
                         var builder = new SupplementalLocationPlacesBuilder(
-                            establishment, _queryProcessor, _placeFinder, _objectCommander);
+                            //establishment, _queryProcessor, _placeFinder, _objectCommander2);
+                            establishment, _queryProcessor, _placeFinder, _entities, _unitOfWork);
                         var thread = new Thread(builder.Build);
                         thread.Start();
                     }
@@ -158,7 +167,9 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
     {
         private readonly Establishment _establishment;
         private readonly IProcessQueries _queryProcessor;
-        private readonly ICommandObjects _objectCommander;
+        //private readonly ICommandObjects _objectCommander;
+        private readonly ICommandEntities _entities;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IConsumePlaceFinder _placeFinder;
         //private readonly PlaceFactory _placeFactory;
 
@@ -166,11 +177,16 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
             , IProcessQueries queryProcessor
             , IConsumePlaceFinder placeFinder
             //, PlaceFactory placeFactory
-            , ICommandObjects objectCommander)
+            //, ICommandObjects objectCommander
+            , ICommandEntities entities
+            , IUnitOfWork unitOfWork
+        )
         {
             _establishment = establishment;
             _queryProcessor = queryProcessor;
-            _objectCommander = objectCommander;
+            //_objectCommander = objectCommander;
+            _entities = entities;
+            _unitOfWork = unitOfWork;
             _placeFinder = placeFinder;
             //_placeFactory = placeFactory;
         }
@@ -207,7 +223,9 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                 places.Add(place);
                 _establishment.Location.Places.Clear();
                 _establishment.Location.Places = places;
-                _objectCommander.Update(_establishment, true);
+                //_objectCommander.Update(_establishment, true);
+                _entities.Update(_establishment);
+                _unitOfWork.SaveChanges();
             }
             catch (Exception ex)
             {

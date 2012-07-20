@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
-using NGeo.GeoNames;
-using NGeo.Yahoo.GeoPlanet;
 using NGeo.Yahoo.PlaceFinder;
 using ServiceLocatorPattern;
 using UCosmic.Domain;
@@ -41,10 +39,10 @@ namespace UCosmic.Impl.Seeders
                 var usf = context.Establishments.SingleOrDefault(e => e.WebsiteUrl == usfUrl);
                 if (usf == null)
                 {
-                    var configurationManager = new DotNetConfigurationManager();
-                    var objectCommander = new ObjectCommander(context);
-                    var geoNames = new GeoNamesClient();
-                    var geoPlanet = new GeoPlanetClient();
+                    //var configurationManager = new DotNetConfigurationManager();
+                    //var objectCommander = new ObjectCommander(context);
+                    //var geoNames = new GeoNamesClient();
+                    //var geoPlanet = new GeoPlanetClient();
                     //var placeFactory = new PlaceFactory(context, objectCommander, geoPlanet, geoNames, configurationManager);
                     var placeFinderClient = ServiceProviderLocator.Current.GetService<IConsumePlaceFinder>();
                     const string officialName = "University of South Florida";
@@ -152,10 +150,10 @@ namespace UCosmic.Impl.Seeders
 
                 Context = context;
 
-                var config = new DotNetConfigurationManager();
-                var commander = new ObjectCommander(context);
-                var geoPlanet = ServiceProviderLocator.Current.GetService<IConsumeGeoPlanet>();
-                var geoNames = ServiceProviderLocator.Current.GetService<IConsumeGeoNames>();
+                //var config = new DotNetConfigurationManager();
+                //var commander = new ObjectCommander(context);
+                //var geoPlanet = ServiceProviderLocator.Current.GetService<IConsumeGeoPlanet>();
+                //var geoNames = ServiceProviderLocator.Current.GetService<IConsumeGeoNames>();
                 _placeFinderClient = ServiceProviderLocator.Current.GetService<IConsumePlaceFinder>();
                 //_placeFactory = new PlaceFactory(context, commander, geoPlanet, geoNames, config);
                 Seed("www.ufl.edu", 29.643528, -82.350685);

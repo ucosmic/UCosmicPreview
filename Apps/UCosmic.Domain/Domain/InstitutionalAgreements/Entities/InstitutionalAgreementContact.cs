@@ -10,11 +10,11 @@ namespace UCosmic.Domain.InstitutionalAgreements
 
         public virtual Person Person { get; set; }
 
-        internal int Remove(ICommandObjects commander)
-        {
-            commander.Delete(this);
-            return 1;
-        }
+        //internal int Remove(ICommandObjects commander)
+        //{
+        //    commander.Delete(this);
+        //    return 1;
+        //}
 
         internal int Remove(ICommandEntities entities)
         {
