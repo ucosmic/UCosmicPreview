@@ -29,7 +29,7 @@ namespace UCosmic.Domain.Places
             if (query == null) throw new ArgumentNullException("query");
 
             // first look in the db
-            var toponym = _entities.GeoNamesToponyms
+            var toponym = _entities.Get<GeoNamesToponym>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByGeoNameId(query.GeoNameId)
             ;

@@ -22,7 +22,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            return _entities.InstitutionalAgreements
+            return _entities.Get<InstitutionalAgreement>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .IsRoot()
                 .WithAnyChildren()

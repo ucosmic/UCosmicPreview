@@ -23,7 +23,7 @@ namespace UCosmic.Domain.Places
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var result = _entities.GeoPlanetPlaceTypes
+            var result = _entities.Get<GeoPlanetPlaceType>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByCode(query.Code)
             ;

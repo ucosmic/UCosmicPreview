@@ -20,7 +20,7 @@ namespace UCosmic.Domain.Places
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var result = _entities.GeoNamesFeatureClasses
+            var result = _entities.Get<GeoNamesFeatureClass>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByCode(query.Code)
             ;

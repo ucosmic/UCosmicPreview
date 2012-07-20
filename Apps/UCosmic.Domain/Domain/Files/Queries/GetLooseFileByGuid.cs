@@ -26,7 +26,7 @@ namespace UCosmic.Domain.Files
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            return _entities.Files
+            return _entities.Get<LooseFile>()
                 .ById(query.Guid)
             ;
         }

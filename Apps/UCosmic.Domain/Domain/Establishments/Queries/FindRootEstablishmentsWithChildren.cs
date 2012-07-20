@@ -17,7 +17,7 @@ namespace UCosmic.Domain.Establishments
 
         public Establishment[] Handle(FindRootEstablishmentsWithChildrenQuery query)
         {
-            return _entities.Establishments
+            return _entities.Get<Establishment>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .IsRoot()
                 .WithAnyChildren()

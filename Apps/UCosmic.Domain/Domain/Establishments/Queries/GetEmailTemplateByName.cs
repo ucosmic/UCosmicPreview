@@ -18,13 +18,13 @@
         public EmailTemplate Handle(GetEmailTemplateByNameQuery query)
         {
             // get the template
-            var template = _entities.EmailTemplates
+            var template = _entities.Get<EmailTemplate>()
                 .ByName(query.Name, query.EstablishmentId)
             ;
 
             // fall back to default
             if (template == null && query.EstablishmentId.HasValue)
-                template = _entities.EmailTemplates
+                template = _entities.Get<EmailTemplate>()
                     .ByName(query.Name, null)
                 ;
 

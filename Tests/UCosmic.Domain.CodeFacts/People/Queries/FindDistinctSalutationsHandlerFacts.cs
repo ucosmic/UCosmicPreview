@@ -38,7 +38,7 @@ namespace UCosmic.Domain.People
             {
                 var query = new FindDistinctSalutationsQuery();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.People).Returns(new[]
+                entities.Setup(p => p.Get<Person>()).Returns(new[]
                 {
                     new Person{ Salutation = null },
                     new Person{ Salutation = "H.R.H." },
@@ -57,7 +57,7 @@ namespace UCosmic.Domain.People
             {
                 var query = new FindDistinctSalutationsQuery();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.People).Returns(new[]
+                entities.Setup(p => p.Get<Person>()).Returns(new[]
                 {
                     new Person{ Salutation = string.Empty },
                     new Person{ Salutation = "H.R.H." },
@@ -76,7 +76,7 @@ namespace UCosmic.Domain.People
             {
                 var query = new FindDistinctSalutationsQuery();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.People).Returns(new[]
+                entities.Setup(p => p.Get<Person>()).Returns(new[]
                 {
                     new Person{ Salutation = "\r " },
                     new Person{ Salutation = "H.R.H." },
@@ -95,7 +95,7 @@ namespace UCosmic.Domain.People
             {
                 var query = new FindDistinctSalutationsQuery();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.People).Returns(new[]
+                entities.Setup(p => p.Get<Person>()).Returns(new[]
                 {
                     new Person{ Salutation = "H.R.H." },
                     new Person{ Salutation = "H.R.H." },
@@ -122,7 +122,7 @@ namespace UCosmic.Domain.People
                     }
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.People).Returns(new[]
+                entities.Setup(p => p.Get<Person>()).Returns(new[]
                 {
                     new Person{ Salutation = "Dr." },
                     new Person{ Salutation = "Mr." },

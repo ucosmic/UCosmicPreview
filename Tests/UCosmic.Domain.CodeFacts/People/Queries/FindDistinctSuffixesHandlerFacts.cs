@@ -38,7 +38,7 @@ namespace UCosmic.Domain.People
             {
                 var query = new FindDistinctSuffixesQuery();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.People).Returns(new[]
+                entities.Setup(p => p.Get<Person>()).Returns(new[]
                 {
                     new Person{ Suffix = null },
                     new Person{ Suffix = "S1" },
@@ -57,7 +57,7 @@ namespace UCosmic.Domain.People
             {
                 var query = new FindDistinctSuffixesQuery();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.People).Returns(new[]
+                entities.Setup(p => p.Get<Person>()).Returns(new[]
                 {
                     new Person{ Suffix = string.Empty },
                     new Person{ Suffix = "S1" },
@@ -76,7 +76,7 @@ namespace UCosmic.Domain.People
             {
                 var query = new FindDistinctSuffixesQuery();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.People).Returns(new[]
+                entities.Setup(p => p.Get<Person>()).Returns(new[]
                 {
                     new Person{ Suffix = "\r " },
                     new Person{ Suffix = "S1" },
@@ -95,7 +95,7 @@ namespace UCosmic.Domain.People
             {
                 var query = new FindDistinctSuffixesQuery();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.People).Returns(new[]
+                entities.Setup(p => p.Get<Person>()).Returns(new[]
                 {
                     new Person{ Suffix = "S1" },
                     new Person{ Suffix = "S1" },
@@ -122,7 +122,7 @@ namespace UCosmic.Domain.People
                     }
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.People).Returns(new[]
+                entities.Setup(p => p.Get<Person>()).Returns(new[]
                 {
                     new Person{ Suffix = "S1" },
                     new Person{ Suffix = "S2" },

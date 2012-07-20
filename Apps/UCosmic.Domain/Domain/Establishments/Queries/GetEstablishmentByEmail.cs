@@ -29,7 +29,7 @@ namespace UCosmic.Domain.Establishments
             if (string.IsNullOrWhiteSpace(query.Email) || !query.Email.Contains("@"))
                 return null;
 
-            return _entities.Establishments
+            return _entities.Get<Establishment>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByEmail(query.Email)
             ;

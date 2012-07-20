@@ -37,7 +37,7 @@ namespace UCosmic.Domain.Places
                     new ValidationFailure("MaxResults", "MaxResults must be greater than or equal to zero", query.MaxResults),
                 });
 
-            var results = _entities.Places
+            var results = _entities.Get<Place>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .WithName(query.Term, query.TermMatchStrategy)
                 .OrderBy(query.OrderBy);

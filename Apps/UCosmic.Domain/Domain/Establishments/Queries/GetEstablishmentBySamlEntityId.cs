@@ -16,7 +16,7 @@
 
         public Establishment Handle(GetEstablishmentBySamlEntityIdQuery query)
         {
-            return _entities.Establishments
+            return _entities.Get<Establishment>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .BySamlEntityId(query.SamlEntityId)
             ;

@@ -20,7 +20,7 @@ namespace UCosmic.Domain.Places
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var result = _entities.GeoNamesTimeZones
+            var result = _entities.Get<GeoNamesTimeZone>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByTimeZoneId(query.TimeZoneId)
             ;

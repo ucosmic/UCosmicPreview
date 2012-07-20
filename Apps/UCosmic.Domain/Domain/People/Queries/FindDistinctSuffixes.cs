@@ -21,7 +21,7 @@ namespace UCosmic.Domain.People
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var results = _entities.People
+            var results = _entities.Get<Person>()
                 .WithNonEmptySuffix()
                 .SelectSuffixes()
                 .Distinct()

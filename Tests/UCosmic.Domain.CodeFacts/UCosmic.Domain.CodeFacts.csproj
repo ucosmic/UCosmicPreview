@@ -83,7 +83,7 @@
     <Compile Include="_Deprecated\_RevisableEntityFinderFacts.cs" />
     <Compile Include="_Deprecated\_RevisableEntityQueryCriteriaFacts.cs" />
     <Compile Include="_Deprecated\_EntityFinderFacts.cs" />
-    <Compile Include="Api\InterfaceQueryEntitiesFacts.cs" />
+    <Compile Include="_Deprecated\_InterfaceQueryEntitiesFacts.cs" />
     <Compile Include="_Deprecated\_EntityQueryCriteriaFacts.cs" />
     <Compile Include="Establishments\Entities\EmailTemplateFacts.cs" />
     <Compile Include="Establishments\Entities\InstitutionInfoFacts.cs" />

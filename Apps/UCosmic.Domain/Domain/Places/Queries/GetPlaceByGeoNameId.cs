@@ -29,7 +29,7 @@ namespace UCosmic.Domain.Places
 
             // first look in the db
             //var place = _places.FindOne(PlaceBy.GeoNameId(geoNameId).ForInsertOrUpdate());
-            var place = _entities.Places
+            var place = _entities.Get<Place>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByGeoNameId(query.GeoNameId)
             ;

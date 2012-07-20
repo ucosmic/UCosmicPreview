@@ -37,7 +37,7 @@ namespace UCosmic.Domain.Establishments
                     new ValidationFailure("MaxResults", "MaxResults must be greater than or equal to zero", query.MaxResults),
                 });
 
-            var results = _entities.Establishments
+            var results = _entities.Get<Establishment>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .WithName(query.Term, query.TermMatchStrategy)
                 .OrderBy(query.OrderBy);

@@ -16,7 +16,7 @@
 
         public User Handle(GetUserByEduPersonTargetedIdQuery query)
         {
-            return _entities.Users
+            return _entities.Get<User>()
                 .ByEduPersonTargetedId(query.EduPersonTargetedId)
             ;
         }

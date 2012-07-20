@@ -29,7 +29,7 @@ namespace UCosmic.Domain.Places
             if (query == null) throw new ArgumentNullException("query");
 
             // first look in the db
-            var place = _entities.GeoPlanetPlaces
+            var place = _entities.Get<GeoPlanetPlace>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByWoeId(query.WoeId)
             ;

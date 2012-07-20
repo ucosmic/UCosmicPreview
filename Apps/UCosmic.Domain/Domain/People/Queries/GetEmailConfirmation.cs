@@ -35,7 +35,7 @@ namespace UCosmic.Domain.People
                     p => p.User,
                 };
 
-            return _entities.People
+            return _entities.Get<Person>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByEmailConfirmation(query.Token)
                 .GetEmailConfirmation(query.Token)

@@ -38,7 +38,7 @@ namespace UCosmic.Domain.People
             {
                 var query = new GetPersonByIdQuery();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.People).Returns(new Person[] { }.AsQueryable);
+                entities.Setup(p => p.Get<Person>()).Returns(new Person[] { }.AsQueryable);
                 var handler = new GetPersonByIdHandler(entities.Object);
 
                 var result = handler.Handle(query);
@@ -55,7 +55,7 @@ namespace UCosmic.Domain.People
                     Id = id,
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.People).Returns(new[]
+                entities.Setup(p => p.Get<Person>()).Returns(new[]
                 {
                     new Person
                     {
