@@ -1,4 +1,6 @@
-﻿namespace UCosmic.Domain
+﻿using UCosmic.Domain;
+
+namespace UCosmic
 {
     public interface ICommandEntities : IQueryEntities
     {
