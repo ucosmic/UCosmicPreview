@@ -27,7 +27,11 @@ namespace UCosmic.Impl.Seeders
                 var updateHandler = ServiceProviderLocator.Current.GetService<IHandleCommands<UpdateRoleCommand>>();
                 IIdentity identity = new GenericIdentity(GetType().Name);
                 IPrincipal principal = new GenericPrincipal(identity, new[] { RoleName.AuthorizationAgent });
-                updateHandler.Handle(new UpdateRoleCommand(principal) { Description = roleDescription, });
+                updateHandler.Handle(new UpdateRoleCommand(principal)
+                {
+                    EntityId = role.EntityId,
+                    Description = roleDescription,
+                });
             }
         }
     }
