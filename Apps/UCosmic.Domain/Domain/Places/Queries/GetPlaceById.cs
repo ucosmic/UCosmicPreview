@@ -22,7 +22,7 @@ namespace UCosmic.Domain.Places
 
             var result = _entities.Query<Place>()
                 .EagerLoad(query.EagerLoad, _entities)
-                .ById(query.Id)
+                .By(query.Id)
             ;
 
             return result;

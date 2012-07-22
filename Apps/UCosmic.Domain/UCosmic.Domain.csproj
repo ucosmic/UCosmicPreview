@@ -331,7 +331,7 @@
     <Compile Include="Domain\Identity\Entities\RoleGrant.cs" />
     <Compile Include="Domain\Identity\Entities\User.cs" />
     <Compile Include="Api\RevisableEntityEqualityComparer.cs" />
-    <Compile Include="Api\RevisableEntityExtensions.cs" />
+    <Compile Include="_Deprecated\_RevisableEntityExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

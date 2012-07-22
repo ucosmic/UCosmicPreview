@@ -1,11 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UCosmic.Domain;
 
-namespace UCosmic.Domain
+namespace UCosmic
 {
-    internal static class RevisableEntityQueries
+    public static class RevisableEntityQueries
     {
+        public static TRevisableEntity By<TRevisableEntity>(this IEnumerable<TRevisableEntity> enumerable, Guid entityId)
+            where TRevisableEntity : RevisableEntity
+        {
+            return enumerable.AsQueryable().By(entityId);
+        }
+
+        public static TRevisableEntity By<TRevisableEntity>(this IEnumerable<TRevisableEntity> enumerable, int revisionId)
+            where TRevisableEntity : RevisableEntity
+        {
+            return enumerable.AsQueryable().By(revisionId);
+        }
+
         internal static TRevisableEntity By<TRevisableEntity>(this IQueryable<TRevisableEntity> queryable, Guid entityId)
             where TRevisableEntity : RevisableEntity
         {

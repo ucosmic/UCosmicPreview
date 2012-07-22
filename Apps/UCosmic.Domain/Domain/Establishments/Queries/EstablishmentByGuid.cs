@@ -29,7 +29,7 @@ namespace UCosmic.Domain.Establishments
 
             return _entities.Query<Establishment>()
                 .EagerLoad(query.EagerLoad, _entities)
-                .ById(query.Guid)
+                .By(query.Guid)
             ;
         }
     }

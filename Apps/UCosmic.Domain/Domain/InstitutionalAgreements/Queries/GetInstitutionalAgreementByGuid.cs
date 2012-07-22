@@ -28,7 +28,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
 
             return _entities.Query<InstitutionalAgreement>()
                 .EagerLoad(query.EagerLoad, _entities)
-                .ById(query.Guid)
+                .By(query.Guid)
             ;
         }
     }

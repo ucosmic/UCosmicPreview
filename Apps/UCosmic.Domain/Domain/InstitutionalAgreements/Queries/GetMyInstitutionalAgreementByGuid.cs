@@ -33,7 +33,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             return _entities.Query<InstitutionalAgreement>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ForTenantUser(query.Principal)
-                .ById(query.Guid)
+                .By(query.Guid)
             ;
         }
     }
