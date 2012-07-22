@@ -2,8 +2,8 @@
 using System.Linq;
 using NGeo.Yahoo.PlaceFinder;
 using ServiceLocatorPattern;
-using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
+using UCosmic.Domain.Languages;
 using UCosmic.Domain.Places;
 using UCosmic.Impl.Orm;
 using Place = UCosmic.Domain.Places.Place;
@@ -68,12 +68,12 @@ namespace UCosmic.Impl.Seeders
                         {
                             new EstablishmentAddress
                             {
-                                TranslationToLanguage = context.Languages.Current().Single(l => l.TwoLetterIsoCode == "en"),
+                                TranslationToLanguage = context.Set<Language>().Single(l => l.TwoLetterIsoCode == "en"),
                                 Text = "7F North Office Tower, Beijing New World Centre\r\n3B Chongwenmenwai St\r\n100062 Beijing\r\nPR China",
                             },
                             new EstablishmentAddress
                             {
-                                TranslationToLanguage = context.Languages.Current().Single(l => l.TwoLetterIsoCode == "zh"),
+                                TranslationToLanguage = context.Set<Language>().Single(l => l.TwoLetterIsoCode == "zh"),
                                 Text = "中国北京崇文区崇文门外大街3号B\r\n北京新世界中心写字楼B座7层\r\n邮编：100062",
                             },
                         },
@@ -117,12 +117,12 @@ namespace UCosmic.Impl.Seeders
                         {
                             new EstablishmentAddress
                             {
-                                TranslationToLanguage = context.Languages.Current().Single(l => l.TwoLetterIsoCode == "en"),
+                                TranslationToLanguage = context.Set<Language>().Single(l => l.TwoLetterIsoCode == "en"),
                                 Text = "Songhuajiang University,\r\nNo.758 Qianjin Street, Changchun City,\r\nJilin Province\r\n130000, P.R.China",
                             },
                             new EstablishmentAddress
                             {
-                                TranslationToLanguage = context.Languages.Current().Single(l => l.TwoLetterIsoCode == "zh"),
+                                TranslationToLanguage = context.Set<Language>().Single(l => l.TwoLetterIsoCode == "zh"),
                                 Text = "吉林省长春市前进大街758号松花江大学\r\n邮编：130000",
                             },
                         },
@@ -177,12 +177,12 @@ namespace UCosmic.Impl.Seeders
                         {
                             new EstablishmentAddress
                             {
-                                TranslationToLanguage = context.Languages.Current().Single(l => l.TwoLetterIsoCode == "en"),
+                                TranslationToLanguage = context.Set<Language>().Single(l => l.TwoLetterIsoCode == "en"),
                                 Text = "Room 1203, Block A, Jianwai SOHO\r\n39 East 3rd Ring Road\r\nChaoyang District, Beijing\r\nChina  100022",
                             },
                             new EstablishmentAddress
                             {
-                                TranslationToLanguage = context.Languages.Current().Single(l => l.TwoLetterIsoCode == "zh"),
+                                TranslationToLanguage = context.Set<Language>().Single(l => l.TwoLetterIsoCode == "zh"),
                                 Text = "北京市朝阳区东三环中路39号建外SOHO A座\r\n12,15层国贸办公区",
                             },
                         },
@@ -225,12 +225,12 @@ namespace UCosmic.Impl.Seeders
                         {
                             new EstablishmentAddress
                             {
-                                TranslationToLanguage = context.Languages.Current().Single(l => l.TwoLetterIsoCode == "en"),
+                                TranslationToLanguage = context.Set<Language>().Single(l => l.TwoLetterIsoCode == "en"),
                                 Text = "Floor 24, Pinghetang Business Mansion\r\nNo. 88 Huangxing Middle Road\r\nChangsha City, Hunan Province\r\nChina",
                             },
                             new EstablishmentAddress
                             {
-                                TranslationToLanguage = context.Languages.Current().Single(l => l.TwoLetterIsoCode == "zh"),
+                                TranslationToLanguage = context.Set<Language>().Single(l => l.TwoLetterIsoCode == "zh"),
                                 Text = "长沙市黄兴中路88号平和堂商务楼24楼启德教育\r\n中心",
                             },
                         },
@@ -285,7 +285,7 @@ namespace UCosmic.Impl.Seeders
                         {
                             new EstablishmentAddress
                             {
-                                TranslationToLanguage = context.Languages.Current().Single(l => l.TwoLetterIsoCode == "en"),
+                                TranslationToLanguage = context.Set<Language>().Single(l => l.TwoLetterIsoCode == "en"),
                                 Text = "802, Tower B, JianWai SOHO, Office Building\r\nChaoyang District\r\nBeijing China, 100022",
                             },
                         },
@@ -330,7 +330,7 @@ namespace UCosmic.Impl.Seeders
                         {
                             new EstablishmentAddress
                             {
-                                TranslationToLanguage = context.Languages.Current().Single(l => l.TwoLetterIsoCode == "en"),
+                                TranslationToLanguage = context.Set<Language>().Single(l => l.TwoLetterIsoCode == "en"),
                                 Text = "A 12F Deji Mansion, No. 188 Changjiang Road\r\nNanjing, Jiangsu Province\r\nChina, 210018",
                             },
                         },
@@ -373,7 +373,7 @@ namespace UCosmic.Impl.Seeders
                         {
                             new EstablishmentAddress
                             {
-                                TranslationToLanguage = context.Languages.Current().Single(l => l.TwoLetterIsoCode == "en"),
+                                TranslationToLanguage = context.Set<Language>().Single(l => l.TwoLetterIsoCode == "en"),
                                 Text = "Room 511, Nanfang Securities Building\r\nNo.140-148, Tiyu Dong Road",
                             },
                         },

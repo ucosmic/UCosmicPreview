@@ -22,7 +22,7 @@ namespace UCosmic.Domain.Establishments
         {
             if (string.IsNullOrWhiteSpace(languageIsoCode)) return null;
 
-            return Addresses.Current().SingleOrDefault(a =>
+            return Addresses.SingleOrDefault(a =>
                 a.TranslationToLanguage.TwoLetterIsoCode.Equals(languageIsoCode, StringComparison.OrdinalIgnoreCase) ||
                 a.TranslationToLanguage.ThreeLetterIsoCode.Equals(languageIsoCode, StringComparison.OrdinalIgnoreCase) ||
                 a.TranslationToLanguage.ThreeLetterIsoBibliographicCode.Equals(languageIsoCode, StringComparison.OrdinalIgnoreCase));
@@ -32,8 +32,8 @@ namespace UCosmic.Domain.Establishments
         {
             get
             {
-                if (Addresses.Current().Count() == 1)
-                    return Addresses.Current().Single();
+                if (Addresses.Count == 1)
+                    return Addresses.Single();
 
                 var currentUiAddress = TranslateAddressTo(
                     CultureInfo.CurrentUICulture.TwoLetterISOLanguageName);

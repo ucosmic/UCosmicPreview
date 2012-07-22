@@ -55,7 +55,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 _entities.Purge(umbrella.Offspring.First());
 
             // operate recursively over children
-            foreach (var child in umbrella.Children.Current())
+            foreach (var child in umbrella.Children)
             {
                 // ensure that the child's ancestor nodes are not null
                 child.Ancestors = child.Ancestors ?? new List<InstitutionalAgreementNode>();
@@ -72,7 +72,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
         private static void BuildNodesRecursive(InstitutionalAgreement umbrella)
         {
             // operate recursively over children
-            foreach (var child in umbrella.Children.Current())
+            foreach (var child in umbrella.Children)
             {
                 // create & add ancestor node for this child
                 var node = new InstitutionalAgreementNode

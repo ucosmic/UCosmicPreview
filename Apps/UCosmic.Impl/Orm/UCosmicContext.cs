@@ -28,7 +28,7 @@ namespace UCosmic.Impl.Orm
                 Database.SetInitializer(initializer);
         }
 
-        public IDbSet<Language> Languages { get; set; }
+        //public IDbSet<Language> Languages { get; set; }
         public IDbSet<Place> Places { get; set; }
         public IDbSet<User> Users { get; set; }
         public IDbSet<Role> Roles { get; set; }

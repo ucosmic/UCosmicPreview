@@ -8,6 +8,7 @@ using ServiceLocatorPattern;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Places;
 using UCosmic.Impl.Orm;
+using UCosmic.Domain.Languages;
 
 namespace UCosmic.Impl.Seeders
 {
@@ -258,7 +259,7 @@ namespace UCosmic.Impl.Seeders
                 var hintedEstablishmentNames = Context.Establishments.SelectMany(e => e.Names.Where(n => n.TranslationToHint != null)).ToList();
                 hintedEstablishmentNames.ForEach(n =>
                 {
-                    n.TranslationToLanguage = Context.Languages.SingleOrDefault(l => l.TwoLetterIsoCode == n.TranslationToHint);
+                    n.TranslationToLanguage = Context.Set<Language>().SingleOrDefault(l => l.TwoLetterIsoCode == n.TranslationToHint);
                     n.TranslationToHint = null;
                 });
                 Context.SaveChanges();

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UCosmic.Impl.Orm;
+using UCosmic.Domain.Languages;
 
 namespace UCosmic.Impl.Seeders
 {
@@ -24,7 +25,7 @@ namespace UCosmic.Impl.Seeders
 
         public override void Seed(UCosmicContext context)
         {
-            if (!context.Languages.Any())
+            if (!context.Set<Language>().Any())
                 base.Seed(context);
         }
 

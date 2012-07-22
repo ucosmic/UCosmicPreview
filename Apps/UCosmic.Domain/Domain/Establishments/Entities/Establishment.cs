@@ -35,7 +35,7 @@ namespace UCosmic.Domain.Establishments
         {
             if (string.IsNullOrWhiteSpace(languageIsoCode)) return null;
 
-            return Names.Current().FirstOrDefault(establishmentName => establishmentName.TranslationToLanguage != null && !establishmentName.IsFormerName && (
+            return Names.FirstOrDefault(establishmentName => establishmentName.TranslationToLanguage != null && !establishmentName.IsFormerName && (
                 establishmentName.TranslationToLanguage.TwoLetterIsoCode.Equals(languageIsoCode, StringComparison.OrdinalIgnoreCase) ||
                 establishmentName.TranslationToLanguage.ThreeLetterIsoCode.Equals(languageIsoCode, StringComparison.OrdinalIgnoreCase) ||
                 establishmentName.TranslationToLanguage.ThreeLetterIsoBibliographicCode.Equals(languageIsoCode, StringComparison.OrdinalIgnoreCase)));
@@ -47,7 +47,7 @@ namespace UCosmic.Domain.Establishments
             {
                 var currentUiName = TranslateNameTo(
                     CultureInfo.CurrentUICulture.TwoLetterISOLanguageName);
-                return currentUiName ?? TranslateNameTo("en") ?? Names.Current().Single(n => n.IsOfficialName);
+                return currentUiName ?? TranslateNameTo("en") ?? Names.Single(n => n.IsOfficialName);
             }
         }
 

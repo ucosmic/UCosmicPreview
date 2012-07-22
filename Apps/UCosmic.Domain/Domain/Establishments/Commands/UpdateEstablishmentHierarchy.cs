@@ -47,7 +47,7 @@ namespace UCosmic.Domain.Establishments
                 _entities.Purge(parent.Offspring.First());
 
             // operate recursively over children
-            foreach (var child in parent.Children.Current())
+            foreach (var child in parent.Children)
             {
                 // ensure that the child's ancestor nodes are not null
                 child.Ancestors = child.Ancestors ?? new List<EstablishmentNode>();
@@ -64,7 +64,7 @@ namespace UCosmic.Domain.Establishments
         private static void BuildNodesRecursive(Establishment parent)
         {
             // operate recursively over children
-            foreach (var child in parent.Children.Current())
+            foreach (var child in parent.Children)
             {
                 // create & add ancestor node for this child
                 var node = new EstablishmentNode

@@ -19,7 +19,7 @@ namespace UCosmic.Domain.Languages
         {
             if (string.IsNullOrWhiteSpace(languageIsoCode)) return null;
 
-            return Names.Current().SingleOrDefault(languageName =>
+            return Names.SingleOrDefault(languageName =>
                 languageName.TranslationToLanguage.TwoLetterIsoCode.Equals(languageIsoCode, StringComparison.OrdinalIgnoreCase) ||
                 languageName.TranslationToLanguage.ThreeLetterIsoCode.Equals(languageIsoCode, StringComparison.OrdinalIgnoreCase) ||
                 languageName.TranslationToLanguage.ThreeLetterIsoBibliographicCode.Equals(languageIsoCode, StringComparison.OrdinalIgnoreCase));
@@ -29,10 +29,10 @@ namespace UCosmic.Domain.Languages
         {
             get
             {
-                if (Names.Current().Count() == 1)
-                    return Names.Current().Single();
+                if (Names.Count() == 1)
+                    return Names.Single();
 
-                var nativeName = Names.Current().SingleOrDefault(languageName =>
+                var nativeName = Names.SingleOrDefault(languageName =>
                     languageName.TranslationToLanguage == this);
 
                 return nativeName;
