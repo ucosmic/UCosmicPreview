@@ -177,7 +177,7 @@
     <Compile Include="Domain\Identity\Business\ValidatePrincipal.cs" />
     <Compile Include="Domain\EntityExtensions.cs" />
     <Compile Include="Api\OrderByDirection.cs" />
-    <Compile Include="Api\RevisableEntityFacade.cs" />
+    <Compile Include="_Deprecated\_RevisableEntityFacade.cs" />
     <Compile Include="Domain\Entity.cs" />
     <Compile Include="_Deprecated\_EntityFinder.cs" />
     <Compile Include="Api\ICommandEntities.cs" />
