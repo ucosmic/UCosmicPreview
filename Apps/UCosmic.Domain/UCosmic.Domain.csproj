@@ -111,7 +111,7 @@
     <Compile Include="Api\SamlAttributeName.cs" />
     <Compile Include="Api\SamlAttributeNameString.cs" />
     <Compile Include="Api\StringMatchStrategy.cs" />
-    <Compile Include="Api\UnicodeToAsciiConverter.cs" />
+    <Compile Include="Domain\UnicodeToAsciiConverter.cs" />
     <Compile Include="Domain\Establishments\Business\QueryEstablishmentUrls.cs" />
     <Compile Include="Domain\Establishments\Business\QueryEstablishmentNames.cs" />
     <Compile Include="Domain\Establishments\Commands\UpdateEstablishmentHierarchy.cs" />
