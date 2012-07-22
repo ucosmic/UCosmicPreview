@@ -326,7 +326,7 @@
     <Compile Include="Domain\Places\Queries\FindPlacesWithName.cs" />
     <Compile Include="Domain\Places\Queries\GetPlaceById.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Api\RevisableEntity.cs" />
+    <Compile Include="Domain\RevisableEntity.cs" />
     <Compile Include="Domain\Identity\Entities\Role.cs" />
     <Compile Include="Domain\Identity\Entities\RoleGrant.cs" />
     <Compile Include="Domain\Identity\Entities\User.cs" />

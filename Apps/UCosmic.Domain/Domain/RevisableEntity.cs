@@ -13,13 +13,13 @@ namespace UCosmic.Domain
             IsCurrent = true;
         }
 
-        public int RevisionId { get; set; }
+        public int RevisionId { get; protected internal set; }
 
         public Guid EntityId { get; set; }
 
-        public DateTime CreatedOnUtc { get; set; }
+        public DateTime CreatedOnUtc { get; protected internal set; }
 
-        public string CreatedByPrincipal { get; set; }
+        public string CreatedByPrincipal { get; protected internal set; }
 
         public DateTime? UpdatedOnUtc { get; protected internal set; }
 
@@ -27,7 +27,7 @@ namespace UCosmic.Domain
 
         public byte[] Version { get; protected internal set; }
 
-        public bool IsCurrent { get; set; }
+        public bool IsCurrent { get; protected internal set; }
 
         public bool IsArchived { get; protected internal set; }
 
