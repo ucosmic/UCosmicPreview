@@ -11,12 +11,10 @@ namespace UCosmic.Domain.Activities
 
     public class UpdateMyActivityHandler : IHandleCommands<UpdateMyActivityCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
 
-        public UpdateMyActivityHandler(IProcessQueries queryProcessor, ICommandEntities entities)
+        public UpdateMyActivityHandler(ICommandEntities entities)
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
         }
 
@@ -24,18 +22,13 @@ namespace UCosmic.Domain.Activities
         {
             if (command == null) throw new ArgumentNullException("command");
 
-            var activity = _queryProcessor.Execute(
-                new GetMyActivityByNumberQuery
+            var activity = _entities.Get2<Activity>()
+                .EagerLoad(new Expression<Func<Activity, object>>[]
                 {
-                    Principal = command.Principal,
-                    Number = command.Number,
-                    EagerLoad = new Expression<Func<Activity, object>>[]
-                    {
-                        t => t.Tags,
-                        t => t.DraftedTags,
-                    },
-                }
-            );
+                    t => t.Tags,
+                    t => t.DraftedTags,
+                }, _entities)
+                .ByUserNameAndNumber(command.Principal.Identity.Name, command.Number);
 
             activity.Mode = command.Mode;
             activity.Values.Title = command.Title;

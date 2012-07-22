@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Security.Principal;
 
 namespace UCosmic.Domain.Activities
@@ -11,12 +12,10 @@ namespace UCosmic.Domain.Activities
 
     public class PurgeMyActivityHandler : IHandleCommands<PurgeMyActivityCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
 
-        public PurgeMyActivityHandler(IProcessQueries queryProcessor, ICommandEntities entities)
+        public PurgeMyActivityHandler(ICommandEntities entities)
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
         }
 
@@ -24,13 +23,13 @@ namespace UCosmic.Domain.Activities
         {
             if (command == null) throw new ArgumentNullException("command");
 
-            var activity = _queryProcessor.Execute(
-                new GetMyActivityByNumberQuery
+            var activity = _entities.Get2<Activity>()
+                .EagerLoad(new Expression<Func<Activity, object>>[]
                 {
-                    Principal = command.Principal,
-                    Number = command.Number,
-                }
-            );
+                    t => t.Tags,
+                    t => t.DraftedTags,
+                }, _entities)
+                .ByUserNameAndNumber(command.Principal.Identity.Name, command.Number);
 
             _entities.Purge(activity);
         }

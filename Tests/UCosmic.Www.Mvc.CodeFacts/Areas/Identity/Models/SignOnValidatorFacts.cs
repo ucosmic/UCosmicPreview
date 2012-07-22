@@ -4,6 +4,7 @@ using FluentValidation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
+using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Impl;
 
@@ -103,11 +104,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             public void IsInvalidWhen_HasNoMatchingEstablishment()
             {
                 const string emailAddress = "email@domain.tld";
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(
-                    It.Is<GetEstablishmentByEmailQuery>(q => q.Email == emailAddress)))
-                        .Returns(null as Establishment);
-                var validator = new SignOnValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                var validator = new SignOnValidator(entities.Object);
                 var model = new SignOnForm { EmailAddress = emailAddress };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
@@ -124,11 +123,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             public void IsInvalidWhen_MatchingEstablishment_IsNotMember()
             {
                 const string emailAddress = "email@domain.tld";
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(
-                    It.Is<GetEstablishmentByEmailQuery>(q => q.Email == emailAddress)))
-                        .Returns(new Establishment { IsMember = false, });
-                var validator = new SignOnValidator(queryProcessor.Object);
+                var establishment = new Establishment
+                {
+                    IsMember = false,
+                    EmailDomains = new[] { new EstablishmentEmailDomain { Value = "@domain.tld", } }
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                var validator = new SignOnValidator(entities.Object);
                 var model = new SignOnForm { EmailAddress = emailAddress };
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
@@ -144,10 +146,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void IsValidWhen_IsValidEmailAddress_AndBelongsToMemberEstablishment()
             {
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.IsAny<GetEstablishmentByEmailQuery>()))
-                    .Returns(new Establishment { IsMember = true, });
-                var validator = new SignOnValidator(queryProcessor.Object);
+                var establishment = new Establishment
+                {
+                    IsMember = true,
+                    EmailDomains = new[] { new EstablishmentEmailDomain { Value = "@domain.tld", } }
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                var validator = new SignOnValidator(entities.Object);
                 var model = new SignOnForm { EmailAddress = "email@domain.tld" };
                 var results = validator.Validate(model);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);

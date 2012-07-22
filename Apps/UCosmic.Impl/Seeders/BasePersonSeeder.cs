@@ -10,18 +10,21 @@ namespace UCosmic.Impl.Seeders
     {
         protected Person EnsurePerson(string emails, string firstName, string lastName, Establishment employedBy, bool registerUser = true)
         {
-            var queryProcessor = ServiceProviderLocator.Current.GetService<IProcessQueries>();
+            var entities = ServiceProviderLocator.Current.GetService<ICommandEntities>();
             var createPersonHandler = ServiceProviderLocator.Current.GetService<IHandleCommands<CreatePersonCommand>>();
             var createAffiliationHandler = ServiceProviderLocator.Current.GetService<IHandleCommands<CreateAffiliationCommand>>();
 
             var emailsExploded = emails.Explode(";").ToArray();
             var defaultEmail = emailsExploded.First();
-            var person = queryProcessor.Execute(
-                new GetPersonByEmailQuery
-                {
-                    Email = defaultEmail
-                }
-            );
+            var emailAddress = entities.Get2<EmailAddress>()
+                .SingleOrDefault(e => e.Value.Equals(defaultEmail, StringComparison.OrdinalIgnoreCase));
+            var person = (emailAddress != null) ? emailAddress.Person : null;
+            //var person = queryProcessor.Execute(
+            //    new GetPersonByEmailQuery
+            //    {
+            //        Email = defaultEmail
+            //    }
+            //);
             if (person != null) return person;
             //person = new Person
             //{
@@ -45,7 +48,7 @@ namespace UCosmic.Impl.Seeders
 
             foreach (var email in emails.Explode(";"))
             {
-                var emailAddress = person.AddEmail(email);
+                emailAddress = person.AddEmail(email);
                 emailAddress.IsConfirmed = true;
                 emailAddress.IsDefault = email == defaultEmail;
                 //person.Emails.Add(new EmailAddress { Value = email, IsDefault = (email == defaultEmail), IsConfirmed = true, });

@@ -20,7 +20,7 @@ namespace UCosmic.Domain.Languages
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var result = _entities.Get<Language>()
+            var result = _entities.Read<Language>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .OrderBy(query.OrderBy)
             ;

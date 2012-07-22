@@ -36,7 +36,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public const string FailedBecauseSecretCodeWasIncorrect = "Invalid confirmation code, please try again.";
         public const string FailedBecauseOfInconsistentData = "An unexpected error occurred while trying to confirm your email address.";
 
-        public ConfirmEmailValidator(IProcessQueries queryProcessor)
+        public ConfirmEmailValidator(IQueryEntities entities)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -47,7 +47,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 .NotEmpty()
                     .WithMessage(FailedBecauseSecretCodeWasEmpty)
                 // token must match a confirmation
-                .Must((o, p) => ValidateEmailConfirmation.TokenMatchesEntity(o.Token, queryProcessor, out confirmation))
+                .Must((o, p) => ValidateEmailConfirmation.TokenMatchesEntity(o.Token, entities, out confirmation))
                     .WithMessage(FailedBecauseOfInconsistentData)
                 // intent must match entity
                 .Must((o, p) => ValidateEmailConfirmation.IntentIsCorrect(confirmation, o.Intent))

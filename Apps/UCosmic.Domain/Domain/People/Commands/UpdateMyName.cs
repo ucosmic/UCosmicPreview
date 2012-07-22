@@ -22,12 +22,10 @@ namespace UCosmic.Domain.People
 
     public class UpdateMyNameHandler : IHandleCommands<UpdateMyNameCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
 
-        public UpdateMyNameHandler(IProcessQueries queryProcessor, ICommandEntities entities)
+        public UpdateMyNameHandler(ICommandEntities entities)
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
         }
 
@@ -36,16 +34,12 @@ namespace UCosmic.Domain.People
             if (command == null) throw new ArgumentNullException("command");
 
             // get the person for the principal
-            var user = _queryProcessor.Execute(
-                new GetUserByNameQuery
+            var user = _entities.Get2<User>()
+                .EagerLoad(new Expression<Func<User, object>>[]
                 {
-                    Name = command.Principal.Identity.Name,
-                    EagerLoad = new Expression<Func<User, object>>[]
-                    {
-                        u => u.Person,
-                    },
-                }
-            );
+                    u => u.Person,
+                }, _entities)
+                .ByName(command.Principal.Identity.Name);
 
             // update fields
             if (user.Person.IsDisplayNameDerived != command.IsDisplayNameDerived) command.ChangeCount++;
@@ -53,7 +47,7 @@ namespace UCosmic.Domain.People
 
             if (user.Person.DisplayName != command.DisplayName) command.ChangeCount++;
             user.Person.DisplayName = command.IsDisplayNameDerived
-                ? _queryProcessor.Execute(
+                ? new GenerateDisplayNameHandler().Handle(
                     new GenerateDisplayNameQuery
                     {
                         Salutation = command.Salutation,
@@ -86,7 +80,7 @@ namespace UCosmic.Domain.People
 
     public class UpdateMyNameValidator : AbstractValidator<UpdateMyNameCommand>
     {
-        public UpdateMyNameValidator(IProcessQueries queryProcessor)
+        public UpdateMyNameValidator(IQueryEntities entities)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -104,7 +98,7 @@ namespace UCosmic.Domain.People
                 .Must(ValidatePrincipal.IdentityNameIsNotEmpty)
                     .WithMessage(ValidatePrincipal.FailedBecauseIdentityNameWasEmpty)
                 // principal identity name must match User.Name entity property
-                .Must(p => ValidatePrincipal.IdentityNameMatchesUser(p, queryProcessor))
+                .Must(p => ValidatePrincipal.IdentityNameMatchesUser(p, entities))
                     .WithMessage(ValidatePrincipal.FailedBecauseIdentityNameMatchedNoUser,
                         p => p.Principal.Identity.Name)
             ;

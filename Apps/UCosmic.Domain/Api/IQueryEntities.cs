@@ -7,7 +7,7 @@ namespace UCosmic
 {
     public interface IQueryEntities
     {
-        IQueryable<TEntity> Get<TEntity>() where TEntity : Entity;
+        //IQueryable<TEntity> Get1<TEntity>() where TEntity : Entity;
 
         IQueryable<TEntity> Read<TEntity>() where TEntity : Entity;
 

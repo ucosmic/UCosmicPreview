@@ -1,6 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using AutoMapper;
+using UCosmic.Domain.InstitutionalAgreements;
+using UCosmic.Www.Mvc.Models;
+using System.Web;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 {
@@ -8,13 +12,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
     {
         public InstitutionalAgreementContactForm()
         {
-            //EntityId = Guid.NewGuid();
-            //PersonEntityId = Guid.NewGuid();
             Person = new PersonForm();
         }
-
-        //[HiddenInput(DisplayValue = false)]
-        //public int RevisionId { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public bool IsDeleted { get; set; }
@@ -22,8 +21,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
         [HiddenInput(DisplayValue = false)]
         public Guid EntityId { get; set; }
 
-        //[HiddenInput(DisplayValue = false)]
-        //public int? AgreementId { get; set; }
+        [HiddenInput(DisplayValue = false)]
+        public Guid AgreementEntityId { get; set; }
 
         [Display(Name = ContactTypeDisplayName)]
         [Required(ErrorMessage = ContactTypeRequiredErrorFormat)]
@@ -77,47 +76,26 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
                 ErrorMessage = "This is not a valid email address.")]
             public string DefaultEmail { get; set; }
         }
+    }
 
-        //[HiddenInput(DisplayValue = false)]
-        //public int PersonId { get; set; }
+    public static class InstitutionalAgreementContactProfiler
+    {
+        public static void RegisterProfiles()
+        {
+            RootModelProfiler.RegisterProfiles(typeof(InstitutionalAgreementContactProfiler));
+        }
 
-        //[HiddenInput(DisplayValue = false)]
-        //public Guid PersonEntityId { get; set; }
-
-        //[Display(Name = "Salutation")]
-        //public string PersonSalutation { get; set; }
-
-        //[Display(Name = "First name")]
-        //[Required(ErrorMessage = "Contact first name is required.")]
-        //public string PersonFirstName { get; set; }
-
-        //[Display(Name = "Middle name or initial")]
-        //public string PersonMiddleName { get; set; }
-
-        //[Display(Name = "Last name")]
-        //[Required(ErrorMessage = "Contact last name is required.")]
-        //public string PersonLastName { get; set; }
-
-        //[Display(Name = "Suffix")]
-        //public string PersonSuffix { get; set; }
-
-        //private string _personDisplayName;
-        //public string PersonDisplayName
-        //{
-        //    get
-        //    {
-        //        return !string.IsNullOrWhiteSpace(_personDisplayName)
-        //            ? _personDisplayName
-        //            : string.Format("{0} {1} {2} {3} {4}", PersonSalutation,
-        //                PersonFirstName, PersonMiddleName, PersonLastName, PersonSuffix);
-        //    }
-        //    set { _personDisplayName = value; }
-        //}
-
-        //[Display(Name = "Email address")]
-        //[RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
-        //    ErrorMessage = "This is not a valid email address.")]
-        //public string PersonDefaultEmail { get; set; }
-
+        internal class ModelToCommandProfile : Profile
+        {
+            protected override void Configure()
+            {
+                CreateMap<InstitutionalAgreementContactForm, AddContactToAgreementCommand>()
+                    .ConstructUsing((Func<ResolutionContext, AddContactToAgreementCommand>)
+                        (r => new AddContactToAgreementCommand(HttpContext.Current.User)))
+                    .ForMember(d => d.Principal, o => o.Ignore())
+                    .ForMember(d => d.IsNewlyAdded, o => o.Ignore())
+                ;
+            }
+        }
     }
 }

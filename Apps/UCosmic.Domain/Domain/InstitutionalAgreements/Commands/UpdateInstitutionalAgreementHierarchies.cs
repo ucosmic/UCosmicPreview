@@ -10,17 +10,14 @@ namespace UCosmic.Domain.InstitutionalAgreements
 
     public class UpdateInstitutionalAgreementHierarchiesHandler : IHandleCommands<UpdateInstitutionalAgreementHierarchiesCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
-        //private readonly ICommandEntities _entities;
+        private readonly ICommandEntities _entities;
         private readonly IHandleCommands<UpdateInstitutionalAgreementHierarchyCommand> _hierarchyHandler;
 
-        public UpdateInstitutionalAgreementHierarchiesHandler(IProcessQueries queryProcessor
-            //, ICommandEntities entities
+        public UpdateInstitutionalAgreementHierarchiesHandler(ICommandEntities entities
             , IHandleCommands<UpdateInstitutionalAgreementHierarchyCommand> hierarchyHandler
         )
         {
-            _queryProcessor = queryProcessor;
-            //_entities = entities;
+            _entities = entities;
             _hierarchyHandler = hierarchyHandler;
         }
 
@@ -35,95 +32,24 @@ namespace UCosmic.Domain.InstitutionalAgreements
         {
             if (command == null) throw new ArgumentNullException("command");
 
-            var agreements = _queryProcessor.Execute(
-                new FindRootInstitutionalAgreementsWithChildrenQuery
+            var agreements = _entities.Get2<InstitutionalAgreement>()
+                .EagerLoad(new Expression<Func<InstitutionalAgreement, object>>[]
                 {
-                    EagerLoad = new Expression<Func<InstitutionalAgreement, object>>[]
-                    {
-                        e => e.Offspring.Select(o => o.Ancestor.Umbrella),
-                        e => e.Offspring.Select(o => o.Offspring.Umbrella),
-                        e => e.Offspring.Select(o => o.Ancestor.Children),
-                        e => e.Offspring.Select(o => o.Offspring.Children),
-                        e => e.Children.Select(c => c.Children.Select(g => g.Children)),
-                        e => e.Children.Select(c => c.Ancestors.Select(a => a.Ancestor))
-                    }
-                }
-            );
+                    e => e.Offspring.Select(o => o.Ancestor.Umbrella),
+                    e => e.Offspring.Select(o => o.Offspring.Umbrella),
+                    e => e.Offspring.Select(o => o.Ancestor.Children),
+                    e => e.Offspring.Select(o => o.Offspring.Children),
+                    e => e.Children.Select(c => c.Children.Select(g => g.Children)),
+                    e => e.Children.Select(c => c.Ancestors.Select(a => a.Ancestor))
+                }, _entities)
+                .IsRoot()
+                .WithAnyChildren()
+                .ToArray()
+            ;
 
             // derive nodes for each parent
             foreach (var parent in agreements)
-                //DeriveNodes(parent);
                 _hierarchyHandler.Handle(new UpdateInstitutionalAgreementHierarchyCommand(parent));
         }
-
-        //private void DeriveNodes(InstitutionalAgreement agreement)
-        //{
-        //    var umbrella = agreement;
-        //    while (umbrella.Umbrella != null)
-        //        umbrella = umbrella.Umbrella;
-
-        //    ClearNodesRecursive(umbrella);
-        //    BuildNodesRecursive(umbrella);
-        //}
-
-        //private void ClearNodesRecursive(InstitutionalAgreement umbrella)
-        //{
-        //    // ensure that the offspring and children properties are not null
-        //    umbrella.Offspring = umbrella.Offspring ?? new List<InstitutionalAgreementNode>();
-        //    umbrella.Children = umbrella.Children ?? new List<InstitutionalAgreement>();
-
-        //    // delete all of this umbrella's offspring nodes
-        //    while (umbrella.Offspring.FirstOrDefault() != null)
-        //        _entities.Purge(umbrella.Offspring.First());
-
-        //    // operate recursively over children
-        //    foreach (var child in umbrella.Children.Current())
-        //    {
-        //        // ensure that the child's ancestor nodes are not null
-        //        child.Ancestors = child.Ancestors ?? new List<InstitutionalAgreementNode>();
-
-        //        // delete each of the child's ancestor nodes
-        //        while (child.Ancestors.FirstOrDefault() != null)
-        //            _entities.Purge(child.Ancestors.First());
-
-        //        // run this method again on the child
-        //        ClearNodesRecursive(child);
-        //    }
-        //}
-
-        //private static void BuildNodesRecursive(InstitutionalAgreement umbrella)
-        //{
-        //    // operate recursively over children
-        //    foreach (var child in umbrella.Children.Current())
-        //    {
-        //        // create & add ancestor node for this child
-        //        var node = new InstitutionalAgreementNode
-        //        {
-        //            Ancestor = umbrella,
-        //            Offspring = child,
-        //            Separation = 1,
-        //        };
-        //        child.Ancestors.Add(node);
-
-        //        // ensure the umbrella's ancestors nodes are not null
-        //        umbrella.Ancestors = umbrella.Ancestors ?? new List<InstitutionalAgreementNode>();
-
-        //        // loop over the umbrella's ancestors
-        //        foreach (var ancestor in umbrella.Ancestors)
-        //        {
-        //            // create & add ancestor node for this child
-        //            node = new InstitutionalAgreementNode
-        //            {
-        //                Ancestor = ancestor.Ancestor,
-        //                Offspring = child,
-        //                Separation = ancestor.Separation + 1,
-        //            };
-        //            child.Ancestors.Add(node);
-        //        }
-
-        //        // run this method again on the child
-        //        BuildNodesRecursive(child);
-        //    }
-        //}
     }
 }

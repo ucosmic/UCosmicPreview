@@ -53,22 +53,18 @@ namespace UCosmic.Domain.Identity
             if (command == null) throw new ArgumentNullException("command");
 
             // get the person
-            var person = _queryProcessor.Execute(
-                new GetPersonByEmailQuery
+            var person = _entities.Get2<Person>()
+                .EagerLoad(new Expression<Func<Person, object>>[]
                 {
-                    Email = command.EmailAddress,
-                    EagerLoad = new Expression<Func<Person, object>>[]
-                    {
-                        p => p.Emails,
-                    },
-                }
-            );
+                    p => p.Emails,
+                }, _entities)
+                .ByEmail(command.EmailAddress);
 
             // get the email
             var email = person.GetEmail(command.EmailAddress);
 
             // create the confirmation
-            var secretCode = _queryProcessor.Execute(
+            var secretCode = GenerateRandomSecretHandler.Handle(
                 new GenerateRandomSecretQuery(12));
             var confirmation = new EmailConfirmation(command.Intent)
             {
@@ -110,7 +106,7 @@ namespace UCosmic.Domain.Identity
 
     public class SendConfirmEmailMessageValidator : AbstractValidator<SendConfirmEmailMessageCommand>
     {
-        public SendConfirmEmailMessageValidator(IProcessQueries queryProcessor, IStorePasswords passwords)
+        public SendConfirmEmailMessageValidator(IQueryEntities entities, IStorePasswords passwords)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -135,11 +131,11 @@ namespace UCosmic.Domain.Identity
                 .EmailAddress()
                     .WithMessage(ValidateEmailAddress.FailedBecauseValueWasNotValidEmailAddress)
                 // must match a person
-                .Must(p => ValidateEmailAddress.ValueMatchesPerson(p, queryProcessor, loadPerson, out person))
+                .Must(p => ValidateEmailAddress.ValueMatchesPerson(p, entities, loadPerson, out person))
                     .WithMessage(ValidateEmailAddress.FailedBecauseValueMatchedNoPerson,
                         p => p.EmailAddress)
                 // must match an establishment
-                .Must(p => ValidateEstablishment.EmailMatchesEntity(p, queryProcessor, loadEstablishment, out establishment))
+                .Must(p => ValidateEstablishment.EmailMatchesEntity(p, entities, loadEstablishment, out establishment))
                     .WithMessage(ValidateEstablishment.FailedBecauseEmailMatchedNoEntity, 
                         p => p.EmailAddress)
                 // establishment must be a member

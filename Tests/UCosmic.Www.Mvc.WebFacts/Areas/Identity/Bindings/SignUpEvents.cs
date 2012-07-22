@@ -24,9 +24,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity
                 if (member != null)
                     Membership.DeleteUser(memberToClear);
 
-                var person = db.Queries.Get<Person>().SingleOrDefault(p => p.User != null
+                var person = db.Commands.Get2<Person>().SingleOrDefault(p => p.User != null
                     && memberToClear.Equals(p.User.Name, StringComparison.OrdinalIgnoreCase))
-                    ?? db.Queries.Get<Person>().SingleOrDefault(p => p.Emails.Any(
+                    ?? db.Commands.Get2<Person>().SingleOrDefault(p => p.Emails.Any(
                         e => memberToClear.Equals(e.Value, StringComparison.OrdinalIgnoreCase)));
 
                 if (person == null) continue;

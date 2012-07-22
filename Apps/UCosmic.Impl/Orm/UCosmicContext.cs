@@ -58,7 +58,12 @@ namespace UCosmic.Impl.Orm
             ActivitiesRelationalMapper.AddConfigurations(modelBuilder);
         }
 
-        public IQueryable<TEntity> Get<TEntity>() where TEntity : Entity
+        //public IQueryable<TEntity> Get1<TEntity>() where TEntity : Entity
+        //{
+        //    return Set<TEntity>();
+        //}
+
+        public IQueryable<TEntity> Get2<TEntity>() where TEntity : Entity
         {
             return Set<TEntity>();
         }

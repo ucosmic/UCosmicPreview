@@ -14,19 +14,16 @@ namespace UCosmic.Domain.Identity
     public class ReceiveSamlAuthnResponseHandler : IHandleCommands<ReceiveSamlAuthnResponseCommand>
     {
         private readonly ICommandEntities _entities;
-        private readonly IProcessQueries _queryProcessor;
         private readonly ISignUsers _userSigner;
         private readonly IStorePasswords _passwords;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ReceiveSamlAuthnResponseHandler(IProcessQueries queryProcessor
-            , ICommandEntities entities
+        public ReceiveSamlAuthnResponseHandler(ICommandEntities entities
             , ISignUsers userSigner
             , IStorePasswords passwords
             , IUnitOfWork unitOfWork
         )
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
             _userSigner = userSigner;
             _passwords = passwords;
@@ -141,16 +138,12 @@ namespace UCosmic.Domain.Identity
         {
             var issuerNameIdentifier = samlResponse.IssuerNameIdentifier;
 
-            var establishment = _queryProcessor.Execute(
-                new GetEstablishmentBySamlEntityIdQuery
-                {
-                    SamlEntityId = issuerNameIdentifier,
-                    EagerLoad = new Expression<Func<Establishment, object>>[]
+            var establishment = _entities.Get2<Establishment>()
+                .EagerLoad(new Expression<Func<Establishment, object>>[]
                     {
                         e => e.SamlSignOn,
-                    },
-                }
-            );
+                    }, _entities)
+                .BySamlEntityId(issuerNameIdentifier);
 
             // when getting by the saml entity id, establishment is immediately trusted if found
             var isIssuerTrusted = establishment != null;
@@ -172,25 +165,17 @@ namespace UCosmic.Domain.Identity
 
         private User GetUserByEduPersonTargetedId(Saml2Response samlResponse)
         {
-            var user = _queryProcessor.Execute(
-                new GetUserByEduPersonTargetedIdQuery
-                {
-                    EduPersonTargetedId = samlResponse.EduPersonTargetedId,
-                    EagerLoad = _loadUser,
-                }
-            );
+            var user = _entities.Get2<User>()
+                .EagerLoad(_loadUser, _entities)
+                .ByEduPersonTargetedId(samlResponse.EduPersonTargetedId);
             return user;
         }
 
         private User GetUserByName(Saml2Response samlResponse)
         {
-            var user = _queryProcessor.Execute(
-                new GetUserByNameQuery
-                {
-                    Name = samlResponse.EduPersonPrincipalName,
-                    EagerLoad = _loadUser,
-                }
-            );
+            var user = _entities.Get2<User>()
+                .EagerLoad(_loadUser, _entities)
+                .ByName(samlResponse.EduPersonPrincipalName);
             return user;
         }
 
@@ -238,13 +223,9 @@ namespace UCosmic.Domain.Identity
 
         private Person GetPersonByEmail(string email)
         {
-            var person = _queryProcessor.Execute(
-                new GetPersonByEmailQuery
-                {
-                    Email = email,
-                    EagerLoad = _loadPerson,
-                }
-            );
+            var person = _entities.Get2<Person>()
+                .EagerLoad(_loadPerson, _entities)
+                .ByEmail(email);
             return person;
         }
 

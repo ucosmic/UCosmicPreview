@@ -25,18 +25,15 @@ namespace UCosmic.Domain.Identity
 
     public class UpdateRoleHandler : IHandleCommands<UpdateRoleCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
         private readonly IHandleCommands<RevokeRoleFromUserCommand> _revokeHandler;
         private readonly IHandleCommands<GrantRoleToUserCommand> _grantHandler;
 
-        public UpdateRoleHandler(IProcessQueries queryProcessor
-            , ICommandEntities entities
+        public UpdateRoleHandler(ICommandEntities entities
             , IHandleCommands<RevokeRoleFromUserCommand> revokeHandler
             , IHandleCommands<GrantRoleToUserCommand> grantHandler
         )
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
             _revokeHandler = revokeHandler;
             _grantHandler = grantHandler;
@@ -51,15 +48,12 @@ namespace UCosmic.Domain.Identity
                     "User '{0}' does not have privileges to invoke this function.",
                         command.Principal.Identity.Name));
 
-            var entity = _queryProcessor.Execute(
-                new GetRoleByGuidQuery(command.EntityId)
+            var entity = _entities.Get2<Role>()
+                .EagerLoad(new Expression<Func<Role, object>>[]
                 {
-                    EagerLoad = new Expression<Func<Role, object>>[]
-                    {
-                        r => r.Grants.Select(g => g.User)
-                    }
-                }
-            );
+                    r => r.Grants.Select(g => g.User)
+                }, _entities)
+                .By(command.EntityId);
 
             if (entity == null) throw new InvalidOperationException(string.Format(
                 "Entity '{0}' could not be found.", command.EntityId));
@@ -69,8 +63,6 @@ namespace UCosmic.Domain.Identity
             entity.Description = command.Description;
 
             if (command.RevokedUserEntityIds != null)
-                //    foreach (var revokedUserEntityId in command.RevokedUserEntityIds)
-                //        command.ChangeCount += entity.RevokeUser(revokedUserEntityId, _entities);
                 foreach (var revokedUserEntityId in command.RevokedUserEntityIds)
                 {
                     var revoke = new RevokeRoleFromUserCommand(entity.EntityId, revokedUserEntityId);
@@ -79,8 +71,6 @@ namespace UCosmic.Domain.Identity
                 }
 
             if (command.GrantedUserEntityIds != null)
-                //foreach (var grantedUserEntityId in command.GrantedUserEntityIds)
-                //    command.ChangeCount += entity.GrantUser(grantedUserEntityId, _entities);
                 foreach (var grantedUserEntityId in command.GrantedUserEntityIds)
                 {
                     var grant = new GrantRoleToUserCommand(entity, grantedUserEntityId);

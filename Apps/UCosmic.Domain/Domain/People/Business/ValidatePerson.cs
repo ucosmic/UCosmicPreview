@@ -17,7 +17,7 @@ namespace UCosmic.Domain.People
         public const string FailedBecauseIdMatchedNoEntity =
             "Person with id '{0}' could not be found.";
 
-        public static bool IdMatchesEntity(int id, IProcessQueries queryProcessor,
+        public static bool IdMatchesEntity(int id, IQueryEntities entities,
             IEnumerable<Expression<Func<Person, object>>> eagerLoad, out Person entity)
         {
             if (id < 0)
@@ -26,28 +26,23 @@ namespace UCosmic.Domain.People
                 return false;
             }
 
-            entity = queryProcessor.Execute(
-                new GetPersonByIdQuery
-                {
-                    Id = id,
-                    EagerLoad = eagerLoad,
-                }
-            );
+            entity = entities.Read<Person>()
+                .EagerLoad(eagerLoad, entities).By(id);
 
             // return true (valid) if there is an entity
             return entity != null;
         }
 
-        public static bool IdMatchesEntity(int id, IProcessQueries queryProcessor,
+        public static bool IdMatchesEntity(int id, IQueryEntities entities,
             IEnumerable<Expression<Func<Person, object>>> eagerLoad = null)
         {
             Person entity;
-            return IdMatchesEntity(id, queryProcessor, eagerLoad, out entity);
+            return IdMatchesEntity(id, entities, eagerLoad, out entity);
         }
 
-        public static bool IdMatchesEntity(int id, IProcessQueries queryProcessor, out Person entity)
+        public static bool IdMatchesEntity(int id, IQueryEntities entities, out Person entity)
         {
-            return IdMatchesEntity(id, queryProcessor, null, out entity);
+            return IdMatchesEntity(id, entities, null, out entity);
         }
 
         #endregion

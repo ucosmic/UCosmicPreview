@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Security.Principal;
-using UCosmic.Domain.Establishments;
-using UCosmic.Domain.People;
+﻿using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Domain.InstitutionalAgreements
 {
@@ -17,18 +12,6 @@ namespace UCosmic.Domain.InstitutionalAgreements
 
         public bool IsOwner { get; set; }
 
-        internal int Remove(ICommandEntities entities)
-        {
-            entities.Purge(this);
-            return 1;
-        }
-
-        //internal int Remove(ICommandObjects commander)
-        //{
-        //    commander.Delete(this);
-        //    return 1;
-        //}
-
         public override string ToString()
         {
             return string.Format("{0}, {1}",
@@ -36,17 +19,29 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 Establishment.OfficialName);
         }
 
-        internal void DeriveIsOwner(IPrincipal principal)
-        {
-            Expression<Func<Affiliation, bool>> principalDefaultAffiliation =
-                affiliation => affiliation.IsDefault && affiliation.Person.User != null &&
-                               affiliation.Person.User.Name.Equals(principal.Identity.Name,
-                                                                       StringComparison.OrdinalIgnoreCase);
-            IsOwner = 
-                Establishment.Affiliates.AsQueryable().Any(principalDefaultAffiliation) 
-                ||
-                Establishment.Ancestors.Any(n => n.Ancestor.Affiliates.AsQueryable().Any(principalDefaultAffiliation));
-        }
+        //internal int Remove(ICommandEntities entities)
+        //{
+        //    entities.Purge(this);
+        //    return 1;
+        //}
+
+        //internal int Remove(ICommandObjects commander)
+        //{
+        //    commander.Delete(this);
+        //    return 1;
+        //}
+
+        //internal void DeriveIsOwner(IPrincipal principal)
+        //{
+        //    Expression<Func<Affiliation, bool>> principalDefaultAffiliation =
+        //        affiliation => affiliation.IsDefault && affiliation.Person.User != null &&
+        //                       affiliation.Person.User.Name.Equals(principal.Identity.Name,
+        //                                                               StringComparison.OrdinalIgnoreCase);
+        //    IsOwner = 
+        //        Establishment.Affiliates.AsQueryable().Any(principalDefaultAffiliation) 
+        //        ||
+        //        Establishment.Ancestors.Any(n => n.Ancestor.Affiliates.AsQueryable().Any(principalDefaultAffiliation));
+        //}
 
     }
 }

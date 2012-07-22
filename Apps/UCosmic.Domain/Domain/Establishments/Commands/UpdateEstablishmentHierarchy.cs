@@ -4,27 +4,27 @@ using System.Linq;
 
 namespace UCosmic.Domain.Establishments
 {
-    public class UpdateEstablishmentHierarchyCommand
+    internal class UpdateEstablishmentHierarchyCommand
     {
-        public UpdateEstablishmentHierarchyCommand(Establishment establishment)
+        internal UpdateEstablishmentHierarchyCommand(Establishment establishment)
         {
             if (establishment == null) throw new ArgumentNullException("establishment");
             Establishment = establishment;
         }
 
-        public Establishment Establishment { get; private set; }
+        internal Establishment Establishment { get; private set; }
     }
 
-    public class UpdateEstablishmentHierarchyHandler : IHandleCommands<UpdateEstablishmentHierarchyCommand>
+    internal class UpdateEstablishmentHierarchyHandler
     {
         private readonly ICommandEntities _entities;
 
-        public UpdateEstablishmentHierarchyHandler(ICommandEntities entities)
+        internal UpdateEstablishmentHierarchyHandler(ICommandEntities entities)
         {
             _entities = entities;
         }
 
-        public void Handle(UpdateEstablishmentHierarchyCommand command)
+        internal void Handle(UpdateEstablishmentHierarchyCommand command)
         {
             if (command == null) throw new ArgumentNullException("command");
 

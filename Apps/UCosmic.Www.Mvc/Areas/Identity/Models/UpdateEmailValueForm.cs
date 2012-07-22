@@ -35,7 +35,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public const string FailedBecausePreviousSpellingDoesNotMatchValueCaseInsensitively
             = "You can only change lowercase letters to uppercase (or vice versa) when changing the spelling of your email address.";
 
-        public UpdateEmailValueValidator(IProcessQueries queryProcessor)
+        public UpdateEmailValueValidator(IQueryEntities entities)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -49,7 +49,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 .EmailAddress()
                     .WithMessage(FailedBecausePreviousSpellingDoesNotMatchValueCaseInsensitively)
                 // validate the number within the Value property b/c remote only validates this property
-                .Must((o, p) => ValidateEmailAddress.NumberAndPrincipalMatchesEntity(o.Number, o.PersonUserName.AsPrincipal(), queryProcessor, out email))
+                .Must((o, p) => ValidateEmailAddress.NumberAndPrincipalMatchesEntity(o.Number, o.PersonUserName.AsPrincipal(), entities, out email))
                     .WithMessage(ValidateEmailAddress.FailedBecauseNumberAndPrincipalMatchedNoEntity,
                         p => p.Number, p => p.PersonUserName)
                 // must match previous spelling case insensitively

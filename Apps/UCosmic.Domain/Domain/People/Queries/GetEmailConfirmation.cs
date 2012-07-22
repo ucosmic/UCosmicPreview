@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
 
 namespace UCosmic.Domain.People
 {
-    public class GetEmailConfirmationQuery : BaseEntityQuery<Person>, IDefineQuery<EmailConfirmation>
+    public class GetEmailConfirmationQuery : BaseEntityQuery<EmailConfirmation>, IDefineQuery<EmailConfirmation>
     {
         public GetEmailConfirmationQuery(Guid token)
         {
@@ -28,18 +26,9 @@ namespace UCosmic.Domain.People
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            query.EagerLoad = query.EagerLoad ??
-                new Expression<Func<Person, object>>[]
-                {
-                    p => p.Emails.Select(e => e.Confirmations),
-                    p => p.User,
-                };
-
-            return _entities.Get<Person>()
+            return _entities.Read<EmailConfirmation>()
                 .EagerLoad(query.EagerLoad, _entities)
-                .ByEmailConfirmation(query.Token)
-                .GetEmailConfirmation(query.Token)
-            ;
+                .ByToken(query.Token);
         }
     }
 }

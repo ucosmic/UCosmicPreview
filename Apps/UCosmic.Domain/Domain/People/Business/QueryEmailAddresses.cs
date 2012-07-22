@@ -16,6 +16,15 @@ namespace UCosmic.Domain.People
             return enumerable.SingleOrDefault(email => email.Value.Equals(value, StringComparison.OrdinalIgnoreCase));
         }
 
+        internal static EmailAddress ByUserNameAndNumber(this IQueryable<EmailAddress> queryable, string userName, int number)
+        {
+            return queryable.SingleOrDefault(email => 
+                email.Person.User != null && 
+                email.Person.User.Name != null &&
+                email.Person.User.Name.Equals(userName, StringComparison.OrdinalIgnoreCase) && 
+                email.Number == number);
+        }
+
         internal static EmailAddress ByNumber(this IEnumerable<EmailAddress> enumerable, int number)
         {
             return enumerable.SingleOrDefault(email => email.Number == number);

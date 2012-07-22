@@ -177,10 +177,9 @@ namespace UCosmic.Domain.People
                 {
                     Principal = principal,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is<GetUserByNameQuery>(q => q.Name == command.Principal.Identity.Name)))
-                    .Returns(null as User);
-                var validator = new UpdateMyNameValidator(queryProcessor.Object);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<User>()).Returns(new User[] { }.AsQueryable);
+                var validator = new UpdateMyNameValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -204,10 +203,13 @@ namespace UCosmic.Domain.People
                 {
                     Principal = principal,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is<GetUserByNameQuery>(q => q.Name == command.Principal.Identity.Name)))
-                    .Returns(new User());
-                var validator = new UpdateMyNameValidator(queryProcessor.Object);
+                var user = new User
+                {
+                    Name = principal.Identity.Name,
+                };
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<User>()).Returns(new[] { user }.AsQueryable);
+                var validator = new UpdateMyNameValidator(entities.Object);
 
                 var results = validator.Validate(command);
 

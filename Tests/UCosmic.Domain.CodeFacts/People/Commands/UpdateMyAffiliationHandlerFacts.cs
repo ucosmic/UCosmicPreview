@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
+using UCosmic.Domain.Identity;
 
 namespace UCosmic.Domain.People
 {
@@ -17,7 +19,7 @@ namespace UCosmic.Domain.People
             public void ThrowsArgumentNullException_WhenCommandArgIsNull()
             {
                 ArgumentNullException exception = null;
-                var handler = new UpdateMyAffiliationHandler(null, null);
+                var handler = new UpdateMyAffiliationHandler(null);
                 try
                 {
                     handler.Handle(null);
@@ -42,10 +44,14 @@ namespace UCosmic.Domain.People
                 {
                     Principal = principal,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(AffiliationQueryBasedOn(command))))
-                    .Returns(null as Affiliation);
-                var handler = new UpdateMyAffiliationHandler(queryProcessor.Object, null);
+                var affiliation = new Affiliation
+                {
+                    EstablishmentId = command.EstablishmentId,
+                    Person = new Person { User = new User { Name = principal.Identity.Name } },
+                };
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
+                var handler = new UpdateMyAffiliationHandler(entities.Object);
                 NullReferenceException exception = null;
 
                 try
@@ -57,8 +63,7 @@ namespace UCosmic.Domain.People
                     exception = ex;
                 }
 
-                queryProcessor.Verify(m => m.Execute(It.Is(AffiliationQueryBasedOn(command))), 
-                    Times.Once());
+                entities.Verify(m => m.Get2<Affiliation>(), Times.Once());
                 exception.ShouldNotBeNull();
             }
 
@@ -72,12 +77,15 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                     EstablishmentId = 4,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(AffiliationQueryBasedOn(command))))
-                    .Returns(new Affiliation());
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var affiliation = new Affiliation
+                {
+                    EstablishmentId = command.EstablishmentId,
+                    Person = new Person { User = new User { Name = principal.Identity.Name } },
+                };
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(AffiliationBasedOn(command))));
-                var handler = new UpdateMyAffiliationHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyAffiliationHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -94,15 +102,16 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                     EstablishmentId = 4,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(AffiliationQueryBasedOn(command))))
-                    .Returns(new Affiliation
-                    {
-                        IsAcknowledged = true,
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var affiliation = new Affiliation
+                {
+                    EstablishmentId = command.EstablishmentId,
+                    IsAcknowledged = true,
+                    Person = new Person { User = new User { Name = principal.Identity.Name } },
+                };
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(AffiliationBasedOn(command))));
-                var handler = new UpdateMyAffiliationHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyAffiliationHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -120,14 +129,17 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                     EstablishmentId = 4,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(AffiliationQueryBasedOn(command))))
-                    .Returns(new Affiliation());
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var affiliation = new Affiliation
+                {
+                    EstablishmentId = command.EstablishmentId,
+                    Person = new Person { User = new User { Name = principal.Identity.Name } },
+                };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
-                var handler = new UpdateMyAffiliationHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyAffiliationHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -147,18 +159,19 @@ namespace UCosmic.Domain.People
                     EstablishmentId = 4,
                     JobTitles = "new value",
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(AffiliationQueryBasedOn(command))))
-                    .Returns(new Affiliation
-                    {
-                        JobTitles = "old value",
-                        IsAcknowledged = true,
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var affiliation = new Affiliation
+                {
+                    JobTitles = "old value",
+                    IsAcknowledged = true,
+                    EstablishmentId = command.EstablishmentId,
+                    Person = new Person { User = new User { Name = principal.Identity.Name } },
+                };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
-                var handler = new UpdateMyAffiliationHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyAffiliationHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -178,18 +191,19 @@ namespace UCosmic.Domain.People
                     EstablishmentId = 4,
                     IsClaimingStudent = true,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(AffiliationQueryBasedOn(command))))
-                    .Returns(new Affiliation
-                    {
-                        IsClaimingStudent = false,
-                        IsAcknowledged = true,
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var affiliation = new Affiliation
+                {
+                    IsClaimingStudent = false,
+                    IsAcknowledged = true,
+                    EstablishmentId = command.EstablishmentId,
+                    Person = new Person { User = new User { Name = principal.Identity.Name } },
+                };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
-                var handler = new UpdateMyAffiliationHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyAffiliationHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -209,18 +223,19 @@ namespace UCosmic.Domain.People
                     EstablishmentId = 4,
                     IsClaimingEmployee = true,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(AffiliationQueryBasedOn(command))))
-                    .Returns(new Affiliation
-                    {
-                        IsClaimingEmployee = false,
-                        IsAcknowledged = true,
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var affiliation = new Affiliation
+                {
+                    IsClaimingEmployee = false,
+                    IsAcknowledged = true,
+                    EstablishmentId = command.EstablishmentId,
+                    Person = new Person { User = new User { Name = principal.Identity.Name } },
+                };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
-                var handler = new UpdateMyAffiliationHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyAffiliationHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -240,18 +255,19 @@ namespace UCosmic.Domain.People
                     EstablishmentId = 4,
                     IsClaimingInternationalOffice = true,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(AffiliationQueryBasedOn(command))))
-                    .Returns(new Affiliation
-                    {
-                        IsClaimingInternationalOffice = false,
-                        IsAcknowledged = true,
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var affiliation = new Affiliation
+                {
+                    IsClaimingInternationalOffice = false,
+                    IsAcknowledged = true,
+                    EstablishmentId = command.EstablishmentId,
+                    Person = new Person { User = new User { Name = principal.Identity.Name } },
+                };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
-                var handler = new UpdateMyAffiliationHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyAffiliationHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -271,18 +287,19 @@ namespace UCosmic.Domain.People
                     EstablishmentId = 4,
                     IsClaimingAdministrator = true,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(AffiliationQueryBasedOn(command))))
-                    .Returns(new Affiliation
-                    {
-                        IsClaimingAdministrator = false,
-                        IsAcknowledged = true,
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var affiliation = new Affiliation
+                {
+                    IsClaimingAdministrator = false,
+                    IsAcknowledged = true,
+                    EstablishmentId = command.EstablishmentId,
+                    Person = new Person { User = new User { Name = principal.Identity.Name } },
+                };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
-                var handler = new UpdateMyAffiliationHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyAffiliationHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -302,18 +319,19 @@ namespace UCosmic.Domain.People
                     EstablishmentId = 4,
                     IsClaimingFaculty = true,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(AffiliationQueryBasedOn(command))))
-                    .Returns(new Affiliation
-                    {
-                        IsClaimingFaculty = false,
-                        IsAcknowledged = true,
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var affiliation = new Affiliation
+                {
+                    IsClaimingFaculty = false,
+                    IsAcknowledged = true,
+                    EstablishmentId = command.EstablishmentId,
+                    Person = new Person { User = new User { Name = principal.Identity.Name } },
+                };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
-                var handler = new UpdateMyAffiliationHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyAffiliationHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -333,30 +351,24 @@ namespace UCosmic.Domain.People
                     EstablishmentId = 4,
                     IsClaimingStaff = true,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(AffiliationQueryBasedOn(command))))
-                    .Returns(new Affiliation
-                    {
-                        IsClaimingStaff = false,
-                        IsAcknowledged = true,
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var affiliation = new Affiliation
+                {
+                    IsClaimingStaff = false,
+                    IsAcknowledged = true,
+                    EstablishmentId = command.EstablishmentId,
+                    Person = new Person { User = new User { Name = principal.Identity.Name } },
+                };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
-                var handler = new UpdateMyAffiliationHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyAffiliationHandler(entities.Object);
 
                 handler.Handle(command);
 
                 command.ChangeCount.ShouldEqual(1);
                 outAffiliation.IsClaimingStaff.ShouldEqual(command.IsClaimingStaff);
-            }
-
-            private static Expression<Func<GetMyAffiliationByEstablishmentIdQuery, bool>> AffiliationQueryBasedOn(UpdateMyAffiliationCommand command)
-            {
-                Expression<Func<GetMyAffiliationByEstablishmentIdQuery, bool>> queryFromCommandParameters =
-                    q => q.Principal == command.Principal && q.EstablishmentId == command.EstablishmentId;
-                return queryFromCommandParameters;
             }
 
             private static Expression<Func<Affiliation, bool>> AffiliationBasedOn(UpdateMyAffiliationCommand command)

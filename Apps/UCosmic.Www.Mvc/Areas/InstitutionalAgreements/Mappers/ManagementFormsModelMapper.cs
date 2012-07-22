@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using AutoMapper;
-using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Files;
 using UCosmic.Domain.InstitutionalAgreements;
@@ -27,20 +25,21 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             {
                 // convert entity to model
                 CreateMap<InstitutionalAgreement, InstitutionalAgreementSearchResult>()
-                    .ForMember(dto => dto.Files, opt => opt.ResolveUsing<InstitutionalAgreementToSearchResultFilesResolver>());
+                    //.ForMember(dto => dto.Files, o => o.ResolveUsing<InstitutionalAgreementToSearchResultFilesResolver>())
+                ;
             }
 
-            private class InstitutionalAgreementToSearchResultFilesResolver : ValueResolver<InstitutionalAgreement, IList<InstitutionalAgreementFileInfo>>
-            {
-                protected override IList<InstitutionalAgreementFileInfo> ResolveCore(InstitutionalAgreement source)
-                {
-                    if (source.Files == null) return null;
+            //private class InstitutionalAgreementToSearchResultFilesResolver : ValueResolver<InstitutionalAgreement, IList<InstitutionalAgreementFileInfo>>
+            //{
+            //    protected override IList<InstitutionalAgreementFileInfo> ResolveCore(InstitutionalAgreement source)
+            //    {
+            //        if (source.Files == null) return null;
 
-                    var currentFiles = source.Files.Current();
-                    var currentFileInfos = Mapper.Map<IList<InstitutionalAgreementFileInfo>>(currentFiles);
-                    return currentFileInfos;
-                }
-            }
+            //        var currentFiles = source.Files.Current();
+            //        var currentFileInfos = Mapper.Map<IList<InstitutionalAgreementFileInfo>>(currentFiles);
+            //        return currentFileInfos;
+            //    }
+            //}
         }
 
         private class EntityToInstitutionalAgreementMapSearchResultProfile : Profile
@@ -56,7 +55,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             protected override void Configure()
             {
                 CreateMap<EstablishmentLocation, InstitutionalAgreementParticipantMarker>()
-                    .ForMember(t => t.Agreements, opt => opt.Ignore())
+                    .ForMember(t => t.Agreements, o => o.Ignore())
                 ;
             }
         }
@@ -66,42 +65,42 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             protected override void Configure()
             {
                 CreateMap<InstitutionalAgreement, InstitutionalAgreementForm>()
-                    .ForMember(target => target.ReturnUrl, opt => opt.Ignore())
-                    .ForMember(target => target.Files, opt => opt.ResolveUsing<InstitutionalAgreementToFormFilesResolver>())
-                    .ForMember(target => target.Contacts, opt => opt.ResolveUsing<InstitutionalAgreementToFormContactsResolver>())
-                    .ForMember(target => target.Umbrella, opt => opt
-                        .ResolveUsing(source => source.Umbrella != null 
-                            ? Mapper.Map<InstitutionalAgreementForm.UmbrellaForm>(source.Umbrella) 
+                    .ForMember(d => d.ReturnUrl, o => o.Ignore())
+                    //.ForMember(d => d.Files, o => o.ResolveUsing<InstitutionalAgreementToFormFilesResolver>())
+                    //.ForMember(d => d.Contacts, o => o.ResolveUsing<InstitutionalAgreementToFormContactsResolver>())
+                    .ForMember(d => d.Umbrella, o => o
+                        .ResolveUsing(s => s.Umbrella != null 
+                            ? Mapper.Map<InstitutionalAgreementForm.UmbrellaForm>(s.Umbrella) 
                             : new InstitutionalAgreementForm.UmbrellaForm()))
                 ;
                 CreateMap<InstitutionalAgreement, InstitutionalAgreementForm.UmbrellaForm>()
-                    .ForMember(target => target.Options, opt => opt.Ignore())
+                    .ForMember(target => target.Options, o => o.Ignore())
                 ;
             }
 
-            private class InstitutionalAgreementToFormFilesResolver : ValueResolver<InstitutionalAgreement, IList<InstitutionalAgreementFileForm>>
-            {
-                protected override IList<InstitutionalAgreementFileForm> ResolveCore(InstitutionalAgreement source)
-                {
-                    if (source.Files == null) return null;
+            //private class InstitutionalAgreementToFormFilesResolver : ValueResolver<InstitutionalAgreement, IList<InstitutionalAgreementFileForm>>
+            //{
+            //    protected override IList<InstitutionalAgreementFileForm> ResolveCore(InstitutionalAgreement source)
+            //    {
+            //        if (source.Files == null) return null;
 
-                    var currentEntities = source.Files.Current();
-                    var currentModels = Mapper.Map<IList<InstitutionalAgreementFileForm>>(currentEntities);
-                    return currentModels;
-                }
-            }
+            //        var currentEntities = source.Files.Current();
+            //        var currentModels = Mapper.Map<IList<InstitutionalAgreementFileForm>>(currentEntities);
+            //        return currentModels;
+            //    }
+            //}
 
-            private class InstitutionalAgreementToFormContactsResolver : ValueResolver<InstitutionalAgreement, IList<InstitutionalAgreementContactForm>>
-            {
-                protected override IList<InstitutionalAgreementContactForm> ResolveCore(InstitutionalAgreement source)
-                {
-                    if (source.Contacts == null) return null;
+            //private class InstitutionalAgreementToFormContactsResolver : ValueResolver<InstitutionalAgreement, IList<InstitutionalAgreementContactForm>>
+            //{
+            //    protected override IList<InstitutionalAgreementContactForm> ResolveCore(InstitutionalAgreement source)
+            //    {
+            //        if (source.Contacts == null) return null;
 
-                    var currentEntities = source.Contacts.Current();
-                    var currentModels = Mapper.Map<IList<InstitutionalAgreementContactForm>>(currentEntities);
-                    return currentModels;
-                }
-            }
+            //        var currentEntities = source.Contacts.Current();
+            //        var currentModels = Mapper.Map<IList<InstitutionalAgreementContactForm>>(currentEntities);
+            //        return currentModels;
+            //    }
+            //}
         }
 
         private class EntityFromInstitutionalAgreementFormProfile : Profile
@@ -109,22 +108,22 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             protected override void Configure()
             {
                 CreateMap<InstitutionalAgreementForm, InstitutionalAgreement>()
-                    .ForMember(e => e.Umbrella, opt => opt.Ignore())
-                    .ForMember(e => e.Ancestors, opt => opt.Ignore())
-                    .ForMember(e => e.Children, opt => opt.Ignore())
-                    .ForMember(e => e.Offspring, opt => opt.Ignore())
-                    .ForMember(e => e.Contacts, opt => opt.Ignore())
-                    .ForMember(e => e.Participants, opt => opt.Ignore())
-                    .ForMember(e => e.Files, opt => opt.Ignore())
-                    .ForMember(e => e.CreatedOnUtc, opt => opt.Ignore())
-                    .ForMember(e => e.CreatedByPrincipal, opt => opt.Ignore())
-                    .ForMember(e => e.UpdatedOnUtc, opt => opt.Ignore())
-                    .ForMember(e => e.UpdatedByPrincipal, opt => opt.Ignore())
-                    .ForMember(e => e.Version, opt => opt.Ignore())
-                    .ForMember(e => e.IsCurrent, opt => opt.Ignore())
-                    .ForMember(e => e.IsArchived, opt => opt.Ignore())
-                    .ForMember(e => e.IsDeleted, opt => opt.Ignore())
-                    .ForMember(e => e.VisibilityText, opt => opt.Ignore())
+                    .ForMember(e => e.Umbrella, o => o.Ignore())
+                    .ForMember(e => e.Ancestors, o => o.Ignore())
+                    .ForMember(e => e.Children, o => o.Ignore())
+                    .ForMember(e => e.Offspring, o => o.Ignore())
+                    .ForMember(e => e.Contacts, o => o.Ignore())
+                    .ForMember(e => e.Participants, o => o.Ignore())
+                    .ForMember(e => e.Files, o => o.Ignore())
+                    .ForMember(e => e.CreatedOnUtc, o => o.Ignore())
+                    .ForMember(e => e.CreatedByPrincipal, o => o.Ignore())
+                    .ForMember(e => e.UpdatedOnUtc, o => o.Ignore())
+                    .ForMember(e => e.UpdatedByPrincipal, o => o.Ignore())
+                    .ForMember(e => e.Version, o => o.Ignore())
+                    .ForMember(e => e.IsCurrent, o => o.Ignore())
+                    .ForMember(e => e.IsArchived, o => o.Ignore())
+                    .ForMember(e => e.IsDeleted, o => o.Ignore())
+                    .ForMember(e => e.VisibilityText, o => o.Ignore())
                 ;
             }
         }
@@ -142,30 +141,30 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             protected override void Configure()
             {
                 CreateMap<InstitutionalAgreementDeriveTitleInput, InstitutionalAgreement>()
-                    .ForMember(e => e.Umbrella, opt => opt.Ignore())
-                    .ForMember(e => e.Ancestors, opt => opt.Ignore())
-                    .ForMember(e => e.Children, opt => opt.Ignore())
-                    .ForMember(e => e.Offspring, opt => opt.Ignore())
-                    .ForMember(e => e.StartsOn, opt => opt.Ignore())
-                    .ForMember(e => e.ExpiresOn, opt => opt.Ignore())
-                    .ForMember(e => e.IsExpirationEstimated, opt => opt.Ignore())
-                    .ForMember(e => e.Description, opt => opt.Ignore())
-                    .ForMember(e => e.IsAutoRenew, opt => opt.Ignore())
-                    .ForMember(e => e.Participants, opt => opt.Ignore())
-                    .ForMember(e => e.Contacts, opt => opt.Ignore())
-                    .ForMember(e => e.Files, opt => opt.Ignore())
-                    .ForMember(e => e.RevisionId, opt => opt.Ignore())
-                    .ForMember(e => e.EntityId, opt => opt.Ignore())
-                    .ForMember(e => e.CreatedOnUtc, opt => opt.Ignore())
-                    .ForMember(e => e.CreatedByPrincipal, opt => opt.Ignore())
-                    .ForMember(e => e.UpdatedOnUtc, opt => opt.Ignore())
-                    .ForMember(e => e.UpdatedByPrincipal, opt => opt.Ignore())
-                    .ForMember(e => e.Version, opt => opt.Ignore())
-                    .ForMember(e => e.IsCurrent, opt => opt.Ignore())
-                    .ForMember(e => e.IsArchived, opt => opt.Ignore())
-                    .ForMember(e => e.IsDeleted, opt => opt.Ignore())
-                    .ForMember(e => e.Visibility, opt => opt.Ignore())
-                    .ForMember(e => e.VisibilityText, opt => opt.Ignore())
+                    .ForMember(e => e.Umbrella, o => o.Ignore())
+                    .ForMember(e => e.Ancestors, o => o.Ignore())
+                    .ForMember(e => e.Children, o => o.Ignore())
+                    .ForMember(e => e.Offspring, o => o.Ignore())
+                    .ForMember(e => e.StartsOn, o => o.Ignore())
+                    .ForMember(e => e.ExpiresOn, o => o.Ignore())
+                    .ForMember(e => e.IsExpirationEstimated, o => o.Ignore())
+                    .ForMember(e => e.Description, o => o.Ignore())
+                    .ForMember(e => e.IsAutoRenew, o => o.Ignore())
+                    .ForMember(e => e.Participants, o => o.Ignore())
+                    .ForMember(e => e.Contacts, o => o.Ignore())
+                    .ForMember(e => e.Files, o => o.Ignore())
+                    .ForMember(e => e.RevisionId, o => o.Ignore())
+                    .ForMember(e => e.EntityId, o => o.Ignore())
+                    .ForMember(e => e.CreatedOnUtc, o => o.Ignore())
+                    .ForMember(e => e.CreatedByPrincipal, o => o.Ignore())
+                    .ForMember(e => e.UpdatedOnUtc, o => o.Ignore())
+                    .ForMember(e => e.UpdatedByPrincipal, o => o.Ignore())
+                    .ForMember(e => e.Version, o => o.Ignore())
+                    .ForMember(e => e.IsCurrent, o => o.Ignore())
+                    .ForMember(e => e.IsArchived, o => o.Ignore())
+                    .ForMember(e => e.IsDeleted, o => o.Ignore())
+                    .ForMember(e => e.Visibility, o => o.Ignore())
+                    .ForMember(e => e.VisibilityText, o => o.Ignore())
                 ;
             }
         }
@@ -175,7 +174,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             protected override void Configure()
             {
                 CreateMap<InstitutionalAgreementParticipant, InstitutionalAgreementParticipantForm>()
-                    .ForMember(target => target.IsDeleted, opt => opt.Ignore())
+                    .ForMember(target => target.IsDeleted, o => o.Ignore())
                 ;
             }
         }
@@ -188,7 +187,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                     .ForMember(d => d.ContactType, o => o.MapFrom(s => s.Type))
                 ;
                 CreateMap<Person, InstitutionalAgreementContactForm.PersonForm>()
-                    .ForMember(target => target.DefaultEmail, opt => opt
+                    .ForMember(target => target.DefaultEmail, o => o
                         .ResolveUsing(source => source.Emails.SingleOrDefault(e => e.IsDefault)))
                 ;
 
@@ -201,20 +200,20 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             {
                 CreateMap<InstitutionalAgreementContactForm, InstitutionalAgreementContact>()
                     .ForMember(d => d.Type, o => o.MapFrom(s => s.ContactType))
-                    .ForMember(e => e.Agreement, opt => opt.Ignore())
-                    .ForMember(e => e.RevisionId, opt => opt.Ignore())
-                    .ForMember(e => e.CreatedOnUtc, opt => opt.Ignore())
-                    .ForMember(e => e.CreatedByPrincipal, opt => opt.Ignore())
-                    .ForMember(e => e.UpdatedOnUtc, opt => opt.Ignore())
-                    .ForMember(e => e.UpdatedByPrincipal, opt => opt.Ignore())
-                    .ForMember(e => e.Version, opt => opt.Ignore())
-                    .ForMember(e => e.IsCurrent, opt => opt.Ignore())
-                    .ForMember(e => e.IsArchived, opt => opt.Ignore())
-                    .ForMember(e => e.IsDeleted, opt => opt.Ignore())
+                    .ForMember(e => e.Agreement, o => o.Ignore())
+                    .ForMember(e => e.RevisionId, o => o.Ignore())
+                    .ForMember(e => e.CreatedOnUtc, o => o.Ignore())
+                    .ForMember(e => e.CreatedByPrincipal, o => o.Ignore())
+                    .ForMember(e => e.UpdatedOnUtc, o => o.Ignore())
+                    .ForMember(e => e.UpdatedByPrincipal, o => o.Ignore())
+                    .ForMember(e => e.Version, o => o.Ignore())
+                    .ForMember(e => e.IsCurrent, o => o.Ignore())
+                    .ForMember(e => e.IsArchived, o => o.Ignore())
+                    .ForMember(e => e.IsDeleted, o => o.Ignore())
                 ;
                 CreateMap<InstitutionalAgreementContactForm.PersonForm, Person>()
-                    .ForMember(target => target.IsDisplayNameDerived, opt => opt.UseValue(true))
-                    .ForMember(target => target.Emails, opt => opt
+                    .ForMember(target => target.IsDisplayNameDerived, o => o.UseValue(true))
+                    .ForMember(target => target.Emails, o => o
                         .ResolveUsing(source => source.DefaultEmail == null ? null :
                             new[]
                             {
@@ -224,18 +223,18 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                                     IsDefault = true,
                                 }
                             }))
-                    .ForMember(e => e.RevisionId, opt => opt.Ignore())
-                    .ForMember(e => e.User, opt => opt.Ignore())
-                    .ForMember(e => e.Affiliations, opt => opt.Ignore())
-                    .ForMember(e => e.Messages, opt => opt.Ignore())
-                    .ForMember(e => e.CreatedOnUtc, opt => opt.Ignore())
-                    .ForMember(e => e.CreatedByPrincipal, opt => opt.Ignore())
-                    .ForMember(e => e.UpdatedOnUtc, opt => opt.Ignore())
-                    .ForMember(e => e.UpdatedByPrincipal, opt => opt.Ignore())
-                    .ForMember(e => e.Version, opt => opt.Ignore())
-                    .ForMember(e => e.IsCurrent, opt => opt.Ignore())
-                    .ForMember(e => e.IsArchived, opt => opt.Ignore())
-                    .ForMember(e => e.IsDeleted, opt => opt.Ignore())
+                    .ForMember(e => e.RevisionId, o => o.Ignore())
+                    .ForMember(e => e.User, o => o.Ignore())
+                    .ForMember(e => e.Affiliations, o => o.Ignore())
+                    .ForMember(e => e.Messages, o => o.Ignore())
+                    .ForMember(e => e.CreatedOnUtc, o => o.Ignore())
+                    .ForMember(e => e.CreatedByPrincipal, o => o.Ignore())
+                    .ForMember(e => e.UpdatedOnUtc, o => o.Ignore())
+                    .ForMember(e => e.UpdatedByPrincipal, o => o.Ignore())
+                    .ForMember(e => e.Version, o => o.Ignore())
+                    .ForMember(e => e.IsCurrent, o => o.Ignore())
+                    .ForMember(e => e.IsArchived, o => o.Ignore())
+                    .ForMember(e => e.IsDeleted, o => o.Ignore())
                 ;
             }
         }
@@ -245,7 +244,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             protected override void Configure()
             {
                 CreateMap<InstitutionalAgreementFile, InstitutionalAgreementFileForm>()
-                    .ForMember(m => m.PostedFile, opt => opt.Ignore())
+                    .ForMember(m => m.PostedFile, o => o.Ignore())
                 ;
             }
         }
@@ -255,7 +254,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             protected override void Configure()
             {
                 CreateMap<LooseFile, InstitutionalAgreementFileForm>()
-                    .ForMember(target => target.PostedFile, opt => opt.UseValue(null))
+                    .ForMember(target => target.PostedFile, o => o.UseValue(null))
                 ;
             }
         }

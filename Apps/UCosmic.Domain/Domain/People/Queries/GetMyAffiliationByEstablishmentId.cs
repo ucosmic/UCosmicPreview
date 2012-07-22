@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Principal;
-using UCosmic.Domain.Identity;
 
 namespace UCosmic.Domain.People
 {
@@ -14,33 +12,24 @@ namespace UCosmic.Domain.People
 
     public class GetMyAffiliationByEstablishmentIdHandler : IHandleQueries<GetMyAffiliationByEstablishmentIdQuery, Affiliation>
     {
-        private readonly IProcessQueries _queryProcessor;
+        private readonly IQueryEntities _entities;
 
-        public GetMyAffiliationByEstablishmentIdHandler(IProcessQueries queryProcessor)
+        public GetMyAffiliationByEstablishmentIdHandler(IQueryEntities entities)
         {
-            _queryProcessor = queryProcessor;
+            _entities = entities;
         }
 
         public Affiliation Handle(GetMyAffiliationByEstablishmentIdQuery query)
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var user = _queryProcessor.Execute(
-                new GetUserByNameQuery
+            return _entities.Read<Affiliation>()
+                .EagerLoad(new Expression<Func<Affiliation, object>>[]
                 {
-                    Name = query.Principal.Identity.Name,
-                    EagerLoad = new Expression<Func<User, object>>[]
-                    {
-                        u => u.Person.Affiliations.Select(a => a.Establishment),
-                    },
-                }
-            );
-
-            if (user == null) return null;
-
-            var affiliation = user.Person.GetAffiliation(query.EstablishmentId);
-
-            return affiliation;
+                    a => a.Person,
+                    a => a.Establishment,
+                }, _entities)
+                .ByUserNameAndEstablishmentId(query.Principal.Identity.Name, query.EstablishmentId);
         }
     }
 }

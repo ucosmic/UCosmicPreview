@@ -25,12 +25,10 @@ namespace UCosmic.Domain.Activities
 
     public class DraftMyActivityHandler : IHandleCommands<DraftMyActivityCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
 
-        public DraftMyActivityHandler(IProcessQueries queryProcessor, ICommandEntities entities)
+        public DraftMyActivityHandler(ICommandEntities entities)
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
         }
 
@@ -38,17 +36,12 @@ namespace UCosmic.Domain.Activities
         {
             if (command == null) throw new ArgumentNullException("command");
 
-            var activity = _queryProcessor.Execute(
-                new GetMyActivityByNumberQuery
+            var activity = _entities.Get2<Activity>()
+                .EagerLoad(new Expression<Func<Activity, object>>[]
                 {
-                    Principal = command.Principal,
-                    Number = command.Number,
-                    EagerLoad = new Expression<Func<Activity, object>>[]
-                    {
-                        t => t.DraftedTags,
-                    },
-                }
-            );
+                    t => t.DraftedTags,
+                }, _entities)
+                .ByUserNameAndNumber(command.Principal.Identity.Name, command.Number);
             if (activity == null) return;
 
             activity.DraftedValues.Title = command.Title;

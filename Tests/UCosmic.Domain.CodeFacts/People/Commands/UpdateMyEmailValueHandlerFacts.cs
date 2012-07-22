@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Linq.Expressions;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
+using UCosmic.Domain.Identity;
 
 namespace UCosmic.Domain.People
 {
@@ -17,7 +18,7 @@ namespace UCosmic.Domain.People
             public void ThrowsArgumentNullException_WhenCommandArgIsNull()
             {
                 ArgumentNullException exception = null;
-                var handler = new UpdateMyEmailValueHandler(null, null);
+                var handler = new UpdateMyEmailValueHandler(null);
                 try
                 {
                     handler.Handle(null);
@@ -36,31 +37,27 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void ExecutesQuery_ToGetEmailAddress_ByUserNameAndNumber()
             {
-                var command = new UpdateMyEmailValueCommand();
-                Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailAddressQueryFromCommand = q =>
-                    q.Principal == command.Principal && q.Number == command.Number;
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(emailAddressQueryFromCommand)))
-                    .Returns(null as EmailAddress);
-                var handler = new UpdateMyEmailValueHandler(queryProcessor.Object, null);
+                var princial = "".AsPrincipal();
+                var command = new UpdateMyEmailValueCommand { Principal = princial, };
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
+                var handler = new UpdateMyEmailValueHandler(entities.Object);
 
                 handler.Handle(command);
 
-                queryProcessor.Verify(m => m.Execute(It.Is(emailAddressQueryFromCommand)), Times.Once());
+                //queryProcessor.Verify(m => m.Execute(It.Is(emailAddressQueryFromCommand)), Times.Once());
+                entities.Verify(m => m.Get2<EmailAddress>(), Times.Once());
             }
 
             [TestMethod]
             public void DoesNotUpdate_WhenEmailAddressIsNull()
             {
-                var command = new UpdateMyEmailValueCommand();
-                Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailAddressQueryFromCommand = q =>
-                    q.Principal == command.Principal && q.Number == command.Number;
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(emailAddressQueryFromCommand)))
-                    .Returns(null as EmailAddress);
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var princial = "".AsPrincipal();
+                var command = new UpdateMyEmailValueCommand { Principal = princial, };
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
                 entities.Setup(m => m.Update(It.IsAny<EmailAddress>()));
-                var handler = new UpdateMyEmailValueHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyEmailValueHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -71,16 +68,18 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void DoesNotUpdate_WhenNewValue_IsSameAsOldSpelling()
             {
+                var princial = "".AsPrincipal();
                 const string value = "user@domain.tld";
-                var command = new UpdateMyEmailValueCommand { NewValue = value };
-                Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailAddressQueryFromCommand = q =>
-                    q.Principal == command.Principal && q.Number == command.Number;
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(emailAddressQueryFromCommand)))
-                    .Returns(new EmailAddress { Value = value });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var command = new UpdateMyEmailValueCommand { NewValue = value, Principal = princial, };
+                var emailAddress = new EmailAddress
+                {
+                    Value = value,
+                    Person = new Person { User = new User { Name = princial.Identity.Name } },
+                };
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
                 entities.Setup(m => m.Update(It.IsAny<EmailAddress>()));
-                var handler = new UpdateMyEmailValueHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyEmailValueHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -93,17 +92,19 @@ namespace UCosmic.Domain.People
             {
                 const string newValue = "User@Domain.Tld";
                 const string oldValue = "user@domain.tld";
+                var princial = "".AsPrincipal();
+                var emailAddress = new EmailAddress
+                {
+                    Value = oldValue,
+                    Person = new Person { User = new User { Name = princial.Identity.Name, } }
+                };
                 EmailAddress updatedEntity = null;
-                var command = new UpdateMyEmailValueCommand { NewValue = newValue };
-                Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailAddressQueryFromCommand = q =>
-                    q.Principal == command.Principal && q.Number == command.Number;
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(emailAddressQueryFromCommand)))
-                    .Returns(new EmailAddress { Value = oldValue });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var command = new UpdateMyEmailValueCommand { NewValue = newValue, Principal = princial, };
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is<EmailAddress>(a => a.Value == newValue)))
                     .Callback((Entity entity) => updatedEntity = (EmailAddress)entity);
-                var handler = new UpdateMyEmailValueHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyEmailValueHandler(entities.Object);
 
                 handler.Handle(command);
 

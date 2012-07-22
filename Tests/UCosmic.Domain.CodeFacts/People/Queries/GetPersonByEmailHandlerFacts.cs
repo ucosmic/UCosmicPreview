@@ -38,7 +38,7 @@ namespace UCosmic.Domain.People
             {
                 var query = new GetPersonByEmailQuery();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.Get<Person>()).Returns(new Person[] { }.AsQueryable);
+                entities.Setup(p => p.Read<Person>()).Returns(new Person[] { }.AsQueryable);
                 var handler = new GetPersonByEmailHandler(entities.Object);
 
                 var result = handler.Handle(query);
@@ -54,8 +54,8 @@ namespace UCosmic.Domain.People
                 {
                     Email = email,
                 };
-                var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.Get<Person>()).Returns(new[]
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(p => p.Read<Person>()).Returns(new[]
                 {
                     new Person
                     {

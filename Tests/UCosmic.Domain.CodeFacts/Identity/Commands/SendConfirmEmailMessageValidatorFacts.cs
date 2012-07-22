@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
@@ -113,6 +112,7 @@ namespace UCosmic.Domain.Identity
                 var scenarioOptions = new ScenarioOptions
                 {
                     Command = command,
+                    Person = new Person(),
                 };
                 var validator = CreateValidator(scenarioOptions);
 
@@ -138,12 +138,20 @@ namespace UCosmic.Domain.Identity
                 };
                 var person = new Person
                 {
-                    DisplayName = "Adam West"
+                    DisplayName = "Adam West",
+                    Emails = new Collection<EmailAddress>
+                    {
+                        new EmailAddress { Value = command.EmailAddress, },
+                    },
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
                     Command = command,
                     Person = person,
+                    Establishment = new Establishment
+                    {
+                        EmailDomains = new Collection<EstablishmentEmailDomain>(),
+                    },
                 };
                 var validator = CreateValidator(scenarioOptions);
 
@@ -169,13 +177,23 @@ namespace UCosmic.Domain.Identity
                 };
                 var person = new Person
                 {
-                    DisplayName = "Adam West"
+                    DisplayName = "Adam West",
+                    Emails = new Collection<EmailAddress>
+                    {
+                        new EmailAddress { Value = command.EmailAddress, },
+                    },
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
                     Command = command,
                     Person = person,
-                    Establishment = new Establishment(),
+                    Establishment = new Establishment
+                    {
+                        EmailDomains = new Collection<EstablishmentEmailDomain>
+                        {
+                            new EstablishmentEmailDomain { Value = "@domain.tld" },
+                        },
+                    },
                 };
                 var validator = CreateValidator(scenarioOptions);
 
@@ -202,12 +220,20 @@ namespace UCosmic.Domain.Identity
                 };
                 var person = new Person
                 {
-                    DisplayName = "Adam West"
+                    DisplayName = "Adam West",
+                    Emails = new Collection<EmailAddress>
+                    {
+                        new EmailAddress { Value = command.EmailAddress, },
+                    },
                 };
                 var establishment = new Establishment
                 {
                     IsMember = true,
                     SamlSignOn = new EstablishmentSamlSignOn(),
+                    EmailDomains = new Collection<EstablishmentEmailDomain>
+                    {
+                        new EstablishmentEmailDomain { Value = "@domain.tld", },
+                    },
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
@@ -240,11 +266,19 @@ namespace UCosmic.Domain.Identity
                 };
                 var person = new Person
                 {
-                    DisplayName = "Adam West"
+                    DisplayName = "Adam West",
+                    Emails = new Collection<EmailAddress>
+                    {
+                        new EmailAddress { Value = command.EmailAddress, },
+                    },
                 };
                 var establishment = new Establishment
                 {
                     IsMember = true,
+                    EmailDomains = new Collection<EstablishmentEmailDomain>
+                    {
+                        new EstablishmentEmailDomain { Value = "@domain.tld", },
+                    },
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
@@ -282,10 +316,18 @@ namespace UCosmic.Domain.Identity
                         Name = "username",
                         EduPersonTargetedId = "something",
                     },
+                    Emails = new Collection<EmailAddress>
+                    {
+                        new EmailAddress { Value = command.EmailAddress, },
+                    },
                 };
                 var establishment = new Establishment
                 {
                     IsMember = true,
+                    EmailDomains = new Collection<EstablishmentEmailDomain>
+                    {
+                        new EstablishmentEmailDomain{ Value = "@domain.tld" }
+                    }
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
@@ -322,10 +364,18 @@ namespace UCosmic.Domain.Identity
                     {
                         Name = "username",
                     },
+                    Emails = new Collection<EmailAddress>
+                    {
+                        new EmailAddress { Value = command.EmailAddress, },
+                    },
                 };
                 var establishment = new Establishment
                 {
                     IsMember = true,
+                    EmailDomains = new Collection<EstablishmentEmailDomain>
+                    {
+                        new EstablishmentEmailDomain { Value = "@domain.tld", },
+                    },
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
@@ -373,6 +423,10 @@ namespace UCosmic.Domain.Identity
                 var establishment = new Establishment
                 {
                     IsMember = true,
+                    EmailDomains = new Collection<EstablishmentEmailDomain>
+                    {
+                        new EstablishmentEmailDomain { Value = "@domain.tld" },
+                    }
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
@@ -421,6 +475,10 @@ namespace UCosmic.Domain.Identity
                 var establishment = new Establishment
                 {
                     IsMember = true,
+                    EmailDomains = new Collection<EstablishmentEmailDomain>
+                    {
+                        new EstablishmentEmailDomain { Value = "@domain.tld" },
+                    },
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
@@ -449,15 +507,11 @@ namespace UCosmic.Domain.Identity
         private static SendConfirmEmailMessageValidator CreateValidator(ScenarioOptions scenarioOptions = null)
         {
             scenarioOptions = scenarioOptions ?? new ScenarioOptions();
-            var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
+            var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
             if (scenarioOptions.Command != null)
             {
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(PersonQueryBasedOn(scenarioOptions.Command))))
-                    .Returns(scenarioOptions.Person);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(EstablishmentQueryBasedOn(scenarioOptions.Command))))
-                    .Returns(scenarioOptions.Establishment);
+                entities.Setup(m => m.Read<Person>()).Returns(new[] { scenarioOptions.Person }.AsQueryable);
+                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { scenarioOptions.Establishment }.AsQueryable);
             }
             var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
             if (scenarioOptions.Person != null &&
@@ -466,19 +520,7 @@ namespace UCosmic.Domain.Identity
                 passwords.Setup(m => m
                     .Exists(scenarioOptions.Person.User.Name))
                     .Returns(scenarioOptions.LocalMemberExists);
-            return new SendConfirmEmailMessageValidator(queryProcessor.Object, passwords.Object);
-        }
-
-        private static Expression<Func<GetPersonByEmailQuery, bool>> PersonQueryBasedOn(SendConfirmEmailMessageCommand command)
-        {
-            Expression<Func<GetPersonByEmailQuery, bool>> queryBasedOn = q => q.Email == command.EmailAddress;
-            return queryBasedOn;
-        }
-
-        private static Expression<Func<GetEstablishmentByEmailQuery, bool>> EstablishmentQueryBasedOn(SendConfirmEmailMessageCommand command)
-        {
-            Expression<Func<GetEstablishmentByEmailQuery, bool>> queryBasedOn = q => q.Email == command.EmailAddress;
-            return queryBasedOn;
+            return new SendConfirmEmailMessageValidator(entities.Object, passwords.Object);
         }
     }
 }

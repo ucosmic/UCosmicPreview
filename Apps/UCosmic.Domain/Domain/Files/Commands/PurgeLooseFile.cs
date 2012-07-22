@@ -15,13 +15,11 @@ namespace UCosmic.Domain.Files
 
     public class PurgeLooseFileHandler : IHandleCommands<PurgeLooseFileCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
         private readonly IUnitOfWork _unitOfWork;
 
-        public PurgeLooseFileHandler(IProcessQueries queryProcessor, ICommandEntities entities, IUnitOfWork unitOfWork)
+        public PurgeLooseFileHandler(ICommandEntities entities, IUnitOfWork unitOfWork)
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
             _unitOfWork = unitOfWork;
         }
@@ -30,8 +28,8 @@ namespace UCosmic.Domain.Files
         {
             if (command == null) throw new ArgumentNullException("command");
 
-            var entity = _queryProcessor.Execute(
-                new GetLooseFileByGuidQuery(command.Guid));
+            var entity = _entities.Get2<LooseFile>()
+                .ById(command.Guid);
 
             if (entity == null) return;
 

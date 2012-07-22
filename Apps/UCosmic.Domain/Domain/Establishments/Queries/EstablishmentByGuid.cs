@@ -2,9 +2,9 @@
 
 namespace UCosmic.Domain.Establishments
 {
-    public class GetEstablishmentByGuidQuery : BaseEntitiesQuery<Establishment>, IDefineQuery<Establishment>
+    public class EstablishmentByGuid : BaseEntitiesQuery<Establishment>, IDefineQuery<Establishment>
     {
-        public GetEstablishmentByGuidQuery(Guid guid)
+        public EstablishmentByGuid(Guid guid)
         {
             if (guid == Guid.Empty) 
                 throw new ArgumentException("Cannot be empty", "guid");
@@ -14,20 +14,20 @@ namespace UCosmic.Domain.Establishments
         public Guid Guid { get; private set; }
     }
 
-    public class GetEstablishmentByGuidHandler : IHandleQueries<GetEstablishmentByGuidQuery, Establishment>
+    public class HandleEstablishmentByGuid : IHandleQueries<EstablishmentByGuid, Establishment>
     {
         private readonly IQueryEntities _entities;
 
-        public GetEstablishmentByGuidHandler(IQueryEntities entities)
+        public HandleEstablishmentByGuid(IQueryEntities entities)
         {
             _entities = entities;
         }
 
-        public Establishment Handle(GetEstablishmentByGuidQuery query)
+        public Establishment Handle(EstablishmentByGuid query)
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            return _entities.Get<Establishment>()
+            return _entities.Read<Establishment>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ById(query.Guid)
             ;

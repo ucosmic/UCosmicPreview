@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -51,8 +52,7 @@ namespace UCosmic.Domain.Identity
 
                 handler.Handle(command);
 
-                scenarioOptions.QueryProcessor.Verify(m => m.
-                    Execute(It.Is(PersonQueryBasedOn(command))),
+                scenarioOptions.Entities.Verify(m => m.Get2<Person>(),
                     Times.Once());
             }
 
@@ -71,9 +71,7 @@ namespace UCosmic.Domain.Identity
 
                 handler.Handle(command);
 
-                scenarioOptions.QueryProcessor.Verify(m => m.
-                    Execute(It.Is(GenerateSecretQuery(12))),
-                    Times.Once());
+                scenarioOptions.OutConfirmation.SecretCode.Length.ShouldEqual(12);
             }
 
             [TestMethod]
@@ -86,10 +84,7 @@ namespace UCosmic.Domain.Identity
                     Intent = EmailConfirmationIntent.CreatePassword,
                     SendFromUrl = "test",
                 };
-                var scenarioOptions = new ScenarioOptions(command)
-                {
-                    SecretCode = "its a secret",
-                };
+                var scenarioOptions = new ScenarioOptions(command);
                 var handler = CreateHandler(scenarioOptions);
 
                 handler.Handle(command);
@@ -99,7 +94,6 @@ namespace UCosmic.Domain.Identity
                     Times.Once());
                 scenarioOptions.OutConfirmation.EmailAddress.ShouldEqual(scenarioOptions.Person.GetEmail(emailAddress));
                 scenarioOptions.OutConfirmation.Intent.ShouldEqual(command.Intent);
-                scenarioOptions.OutConfirmation.SecretCode.ShouldEqual(scenarioOptions.SecretCode);
             }
 
             [TestMethod]
@@ -112,10 +106,7 @@ namespace UCosmic.Domain.Identity
                     Intent = EmailConfirmationIntent.CreatePassword,
                     SendFromUrl = "test",
                 };
-                var scenarioOptions = new ScenarioOptions(command)
-                {
-                    SecretCode = "its a secret",
-                };
+                var scenarioOptions = new ScenarioOptions(command);
                 var handler = CreateHandler(scenarioOptions);
 
                 handler.Handle(command);
@@ -193,10 +184,7 @@ namespace UCosmic.Domain.Identity
                     Intent = EmailConfirmationIntent.CreatePassword,
                     SendFromUrl = "test",
                 };
-                var scenarioOptions = new ScenarioOptions(command)
-                {
-                    SecretCode = "its a secret",
-                };
+                var scenarioOptions = new ScenarioOptions(command);
                 var handler = CreateHandler(scenarioOptions);
 
                 handler.Handle(command);
@@ -216,10 +204,7 @@ namespace UCosmic.Domain.Identity
                     Intent = EmailConfirmationIntent.ResetPassword,
                     SendFromUrl = "test",
                 };
-                var scenarioOptions = new ScenarioOptions(command)
-                {
-                    SecretCode = "its a secret",
-                };
+                var scenarioOptions = new ScenarioOptions(command);
                 var handler = CreateHandler(scenarioOptions);
 
                 handler.Handle(command);
@@ -257,7 +242,6 @@ namespace UCosmic.Domain.Identity
             internal Person Person { get; private set; }
             internal EmailTemplate EmailTemplate { get; private set; }
             internal EmailMessage EmailMessage { get; private set; }
-            internal string SecretCode { get; set; }
             internal EmailConfirmation OutConfirmation { get; set; }
             internal Mock<IProcessQueries> QueryProcessor { get; set; }
             internal Mock<ICommandEntities> Entities { get; set; }
@@ -269,9 +253,6 @@ namespace UCosmic.Domain.Identity
             var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
             scenarioOptions.QueryProcessor = queryProcessor;
             queryProcessor.Setup(m => m
-                .Execute(It.Is(PersonQueryBasedOn(scenarioOptions.Command))))
-                .Returns(scenarioOptions.Person);
-            queryProcessor.Setup(m => m
                 .Execute(It.Is(EmailTemplateQueryBasedOn(scenarioOptions.Command))))
                 .Returns(scenarioOptions.EmailTemplate);
             queryProcessor.Setup(m => m
@@ -280,12 +261,10 @@ namespace UCosmic.Domain.Identity
             queryProcessor.Setup(m => m
                 .Execute(It.Is(CompositionQueryBasedOn(scenarioOptions))))
                 .Returns(scenarioOptions.EmailMessage);
-            queryProcessor.Setup(m => m
-                .Execute(It.Is(GenerateSecretQuery(12))))
-                .Returns(scenarioOptions.SecretCode);
 
-            var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+            var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
             scenarioOptions.Entities = entities;
+            entities.Setup(m => m.Get2<Person>()).Returns(new[] { scenarioOptions.Person }.AsQueryable);
             entities.Setup(m => m.Create(It.Is(ConfirmationEntityBasedOn(scenarioOptions))))
                 .Callback((Entity entity) => scenarioOptions.OutConfirmation = (EmailConfirmation)entity);
             entities.Setup(m => m.Create(It.Is(MessageEntityBasedOn(scenarioOptions))));
@@ -297,16 +276,6 @@ namespace UCosmic.Domain.Identity
             return new SendConfirmEmailMessageHandler(queryProcessor.Object, entities.Object, nestedHandler.Object);
         }
 
-        private static Expression<Func<GetPersonByEmailQuery, bool>> PersonQueryBasedOn(SendConfirmEmailMessageCommand command)
-        {
-            return q => q.Email == command.EmailAddress;
-        }
-
-        private static Expression<Func<GenerateRandomSecretQuery, bool>> GenerateSecretQuery(int length)
-        {
-            return q => q.MinimumLength == length && q.MaximumLength == length;
-        }
-
         private static Expression<Func<GetEmailTemplateByNameQuery, bool>> EmailTemplateQueryBasedOn(SendConfirmEmailMessageCommand command)
         {
             return q => q.Name == command.TemplateName.AsSentenceFragment();
@@ -315,7 +284,6 @@ namespace UCosmic.Domain.Identity
         private static Expression<Func<GetConfirmEmailFormattersQuery, bool>> FormattersQueryBasedOn(ScenarioOptions scenarioOptions)
         {
             return e =>
-                e.Confirmation.SecretCode == scenarioOptions.SecretCode &&
                 e.Confirmation.EmailAddress == scenarioOptions.Person.GetEmail(scenarioOptions.Command.EmailAddress) &&
                 e.Confirmation.Intent == scenarioOptions.Command.Intent
             ;
@@ -332,7 +300,6 @@ namespace UCosmic.Domain.Identity
         private static Expression<Func<EmailConfirmation, bool>> ConfirmationEntityBasedOn(ScenarioOptions scenarioOptions)
         {
             return e =>
-                e.SecretCode == scenarioOptions.SecretCode &&
                 e.EmailAddress == scenarioOptions.Person.GetEmail(scenarioOptions.Command.EmailAddress) &&
                 e.Intent == scenarioOptions.Command.Intent
             ;
@@ -345,8 +312,8 @@ namespace UCosmic.Domain.Identity
 
         private static Expression<Func<SendEmailMessageCommand, bool>> NestedCommandBasedOn(ScenarioOptions scenarioOptions)
         {
-            return c => 
-                c.PersonId == scenarioOptions.EmailMessage.ToPerson.RevisionId && 
+            return c =>
+                c.PersonId == scenarioOptions.EmailMessage.ToPerson.RevisionId &&
                 c.MessageNumber == scenarioOptions.EmailMessage.Number
             ;
         }

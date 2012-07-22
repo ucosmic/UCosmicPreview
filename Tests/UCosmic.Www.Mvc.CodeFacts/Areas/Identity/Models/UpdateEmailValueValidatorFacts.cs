@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq;
 using System.Web;
 using FluentValidation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
+using UCosmic.Domain;
+using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 using UCosmic.Impl;
 
@@ -104,11 +104,19 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void IsInvalidWhen_Value_DoesNotMatchPreviousSpelling_CaseInsensitively()
             {
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.IsAny<GetMyEmailAddressByNumberQuery>()))
-                    .Returns(new EmailAddress { Value = "user@domain.tld" });
-                var validator = new UpdateEmailValueValidator(queryProcessor.Object);
-                var model = new UpdateEmailValueForm { Value = "user2@domain.tld", PersonUserName = string.Empty };
+                var model = new UpdateEmailValueForm
+                {
+                    Value = "user2@domain.tld",
+                    PersonUserName = string.Empty
+                };
+                var emailAddress = new EmailAddress
+                {
+                    Value = "user@domain.tld",
+                    Person = new Person { User = new User { Name = model.PersonUserName }, }
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                var validator = new UpdateEmailValueValidator(entities.Object);
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -126,14 +134,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 const string emailValue = "user1@domain.tld";
                 var form = new UpdateEmailValueForm
                 {
-                    PersonUserName = null,
+                    PersonUserName = emailValue,
                     Number = 13,
                     Value = emailValue.ToUpper(),
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(form))))
-                    .Returns(null as EmailAddress);
-                var validator = new UpdateEmailValueValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
+                var validator = new UpdateEmailValueValidator(entities.Object);
                 var results = validator.Validate(form);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -157,10 +164,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Number = 13,
                     Value = emailValue.ToUpper(),
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(form))))
-                    .Returns(null as EmailAddress);
-                var validator = new UpdateEmailValueValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
+                var validator = new UpdateEmailValueValidator(entities.Object);
                 var results = validator.Validate(form);
                 results.IsValid.ShouldBeFalse();
                 results.Errors.Count.ShouldBeInRange(1, int.MaxValue);
@@ -184,10 +190,15 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Number = 13,
                     Value = emailValue.ToUpper(),
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(form))))
-                    .Returns(new EmailAddress { Value = emailValue.ToLower() });
-                var validator = new UpdateEmailValueValidator(queryProcessor.Object);
+                var emailAddress = new EmailAddress
+                {
+                    Value = emailValue.ToLower(),
+                    Number = form.Number,
+                    Person = new Person { User = new User { Name = form.PersonUserName, } }
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                var validator = new UpdateEmailValueValidator(entities.Object);
                 var results = validator.Validate(form);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldBeNull();
@@ -196,29 +207,23 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void IsValidWhen_Value_MatchesPreviousSpelling_CaseInsensitively()
             {
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.IsAny<GetMyEmailAddressByNumberQuery>()))
-                    .Returns(new EmailAddress { Value = "user@domain.tld" });
-                var validator = new UpdateEmailValueValidator(queryProcessor.Object);
-                var model = new UpdateEmailValueForm { Value = "User@Domain.Tld", PersonUserName = string.Empty };
+                var model = new UpdateEmailValueForm
+                {
+                    Value = "User@Domain.Tld",
+                    PersonUserName = string.Empty
+                };
+                var emailAddress = new EmailAddress
+                {
+                    Value = "user@domain.tld",
+                    Person = new Person { User = new User { Name = model.PersonUserName } },
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                var validator = new UpdateEmailValueValidator(entities.Object);
                 var results = validator.Validate(model);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldBeNull();
             }
-        }
-
-        private static Expression<Func<GetMyEmailAddressByNumberQuery, bool>> EmailQueryBasedOn(UpdateEmailValueForm form)
-        {
-            Expression<Func<GetMyEmailAddressByNumberQuery, bool>> queryBasedOn = q =>
-                q.Principal == null &&
-                q.Number == form.Number
-            ;
-            if (form.PersonUserName != null)
-                queryBasedOn = q =>
-                    q.Principal.Identity.Name == form.PersonUserName &&
-                    q.Number == form.Number
-                ;
-            return queryBasedOn;
         }
     }
 }

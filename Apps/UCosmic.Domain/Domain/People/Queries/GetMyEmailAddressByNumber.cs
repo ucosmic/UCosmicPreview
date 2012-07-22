@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq.Expressions;
 using System.Security.Principal;
-using UCosmic.Domain.Identity;
 
 namespace UCosmic.Domain.People
 {
@@ -13,33 +11,19 @@ namespace UCosmic.Domain.People
 
     public class GetMyEmailAddressByNumberHandler : IHandleQueries<GetMyEmailAddressByNumberQuery, EmailAddress>
     {
-        private readonly IProcessQueries _queryProcessor;
+        private readonly IQueryEntities _entities;
 
-        public GetMyEmailAddressByNumberHandler(IProcessQueries queryProcessor)
+        public GetMyEmailAddressByNumberHandler(IQueryEntities entities)
         {
-            _queryProcessor = queryProcessor;
+            _entities = entities;
         }
 
         public EmailAddress Handle(GetMyEmailAddressByNumberQuery query)
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var user = _queryProcessor.Execute(
-                new GetUserByNameQuery
-                {
-                    Name = query.Principal.Identity.Name,
-                    EagerLoad = new Expression<Func<User, object>>[]
-                    {
-                        u => u.Person.Emails,
-                    },
-                }
-            );
-
-            if (user == null) return null;
-
-            var email = user.Person.GetEmail(query.Number);
-
-            return email;
+            return _entities.Read<EmailAddress>()
+                .ByUserNameAndNumber(query.Principal.Identity.Name, query.Number);
         }
     }
 }

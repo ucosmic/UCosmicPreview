@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -18,7 +19,7 @@ namespace UCosmic.Domain.People
             public void ThrowsArgumentNullException_WhenCommandArgIsNull()
             {
                 ArgumentNullException exception = null;
-                var handler = new UpdateMyNameHandler(null, null);
+                var handler = new UpdateMyNameHandler(null);
                 try
                 {
                     handler.Handle(null);
@@ -43,72 +44,18 @@ namespace UCosmic.Domain.People
                 {
                     Principal = principal,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(null as User);
-                var handler = new UpdateMyNameHandler(queryProcessor.Object, null);
-                NullReferenceException exception = null;
-
-                try
+                var user = new User
                 {
-                    handler.Handle(command);
-                }
-                catch (NullReferenceException ex)
-                {
-                    exception = ex;
-                }
-
-                queryProcessor.Verify(m => m.Execute(It.Is(UserQueryBasedOn(command))),
-                    Times.Once());
-                exception.ShouldNotBeNull();
-            }
-
-            [TestMethod]
-            public void ExecutesQuery_ToGenerateDisplayName_WhenDisplayNameIsDerived()
-            {
-                const string generatedDisplayName = "Generated Displayname";
-                const string principalIdentityName = "user@domain.tld";
-                var principal = principalIdentityName.AsPrincipal();
-                var command = new UpdateMyNameCommand
-                {
-                    Principal = principal,
-                    IsDisplayNameDerived = true,
+                    Name = principalIdentityName,
+                    Person = new Person(),
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(new User { Person = new Person() });
-                queryProcessor.Setup(m => m.Execute(It.Is(GenerateDisplayNameQueryBasedOn(command))))
-                    .Returns(generatedDisplayName);
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
-                entities.Setup(m => m.Update(It.IsAny<Person>()));
-                var handler = new UpdateMyNameHandler(queryProcessor.Object, entities.Object);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
+                var handler = new UpdateMyNameHandler(entities.Object);
 
                 handler.Handle(command);
 
-                queryProcessor.Verify(m => m.Execute(It.Is(GenerateDisplayNameQueryBasedOn(command))), 
-                    Times.Once());
-            }
-
-            [TestMethod]
-            public void DoesNotExecuteQuery_ToGenerateDisplayName_WhenDisplayNameIsNotDerived()
-            {
-                const string principalIdentityName = "user@domain.tld";
-                var principal = principalIdentityName.AsPrincipal();
-                var command = new UpdateMyNameCommand
-                {
-                    Principal = principal,
-                    IsDisplayNameDerived = false,
-                };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(new User { Person = new Person() });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
-                entities.Setup(m => m.Update(It.IsAny<Person>()));
-                var handler = new UpdateMyNameHandler(queryProcessor.Object, entities.Object);
-
-                handler.Handle(command);
-
-                queryProcessor.Verify(m => m.Execute(It.IsAny<GenerateDisplayNameQuery>()), Times.Never());
+                entities.Verify(m => m.Get2<User>(), Times.Once());
             }
 
             [TestMethod]
@@ -116,6 +63,11 @@ namespace UCosmic.Domain.People
             {
                 const string principalIdentityName = "user@domain.tld";
                 var principal = principalIdentityName.AsPrincipal();
+                var user = new User
+                {
+                    Name = principalIdentityName,
+                    Person = new Person(),
+                };
                 var command = new UpdateMyNameCommand
                 {
                     Principal = principal,
@@ -123,15 +75,10 @@ namespace UCosmic.Domain.People
                     FirstName = "Display",
                     LastName = "Name",
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(new User
-                    {
-                        Person = new Person()
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))));
-                var handler = new UpdateMyNameHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyNameHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -143,27 +90,28 @@ namespace UCosmic.Domain.People
             {
                 const string principalIdentityName = "user@domain.tld";
                 var principal = principalIdentityName.AsPrincipal();
+                var user = new User
+                {
+                    Name = principalIdentityName,
+                    Person = new Person
+                    {
+                        DisplayName = "Display Name",
+                        FirstName = "Display",
+                        LastName = "Name",
+                    }
+                };
                 var command = new UpdateMyNameCommand
                 {
                     Principal = principal,
-                    DisplayName = "Display Name",
-                    FirstName = "Display",
-                    LastName = "Name",
+                    DisplayName = user.Person.DisplayName,
+                    FirstName = user.Person.FirstName,
+                    LastName = user.Person.LastName,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(new User
-                    {
-                        Person = new Person
-                        {
-                            DisplayName = "Display Name",
-                            FirstName = "Display",
-                            LastName = "Name",
-                        }
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(x => x.Get2<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))));
-                var handler = new UpdateMyNameHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyNameHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -176,24 +124,24 @@ namespace UCosmic.Domain.People
                 Person outPerson = null;
                 const string principalIdentityName = "user@domain.tld";
                 var principal = principalIdentityName.AsPrincipal();
+                var user = new User
+                {
+                    Name = principalIdentityName,
+                    Person = new Person
+                    {
+                        IsDisplayNameDerived = true,
+                    }
+                };
                 var command = new UpdateMyNameCommand
                 {
                     Principal = principal,
                     IsDisplayNameDerived = false,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(new User
-                    {
-                        Person = new Person
-                        {
-                            IsDisplayNameDerived = true,
-                        },
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))))
                     .Callback((Entity entity) => outPerson = (Person)entity);
-                var handler = new UpdateMyNameHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyNameHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -208,24 +156,21 @@ namespace UCosmic.Domain.People
                 Person outPerson = null;
                 const string principalIdentityName = "user@domain.tld";
                 var principal = principalIdentityName.AsPrincipal();
+                var user = new User
+                {
+                    Name = principalIdentityName,
+                    Person = new Person(),
+                };
                 var command = new UpdateMyNameCommand
                 {
                     Principal = principal,
                     DisplayName = "Display Name",
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(new User
-                    {
-                        Person = new Person
-                        {
-                            DisplayName = "Old Name"
-                        },
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))))
                     .Callback((Entity entity) => outPerson = (Person)entity);
-                var handler = new UpdateMyNameHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyNameHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -239,24 +184,24 @@ namespace UCosmic.Domain.People
                 Person outPerson = null;
                 const string principalIdentityName = "user@domain.tld";
                 var principal = principalIdentityName.AsPrincipal();
+                var user = new User
+                {
+                    Name = principalIdentityName,
+                    Person = new Person
+                    {
+                        Salutation = "Dr.",
+                    },
+                };
                 var command = new UpdateMyNameCommand
                 {
                     Principal = principal,
                     Salutation = "Dr",
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(new User
-                    {
-                        Person = new Person
-                        {
-                            Salutation = "Dr.",
-                        },
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))))
                     .Callback((Entity entity) => outPerson = (Person)entity);
-                var handler = new UpdateMyNameHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyNameHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -270,24 +215,24 @@ namespace UCosmic.Domain.People
                 Person outPerson = null;
                 const string principalIdentityName = "user@domain.tld";
                 var principal = principalIdentityName.AsPrincipal();
+                var user = new User
+                {
+                    Name = principalIdentityName,
+                    Person = new Person
+                    {
+                        FirstName = "Adam",
+                    },
+                };
                 var command = new UpdateMyNameCommand
                 {
                     Principal = principal,
                     FirstName = "Adam ",
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(new User
-                    {
-                        Person = new Person
-                        {
-                            FirstName = "Adam",
-                        },
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))))
                     .Callback((Entity entity) => outPerson = (Person)entity);
-                var handler = new UpdateMyNameHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyNameHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -301,24 +246,24 @@ namespace UCosmic.Domain.People
                 Person outPerson = null;
                 const string principalIdentityName = "user@domain.tld";
                 var principal = principalIdentityName.AsPrincipal();
+                var user = new User
+                {
+                    Name = principalIdentityName,
+                    Person = new Person
+                    {
+                        MiddleName = "B.",
+                    },
+                };
                 var command = new UpdateMyNameCommand
                 {
                     Principal = principal,
                     MiddleName = "B",
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(new User
-                    {
-                        Person = new Person
-                        {
-                            MiddleName = "B.",
-                        },
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))))
                     .Callback((Entity entity) => outPerson = (Person)entity);
-                var handler = new UpdateMyNameHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyNameHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -332,24 +277,24 @@ namespace UCosmic.Domain.People
                 Person outPerson = null;
                 const string principalIdentityName = "user@domain.tld";
                 var principal = principalIdentityName.AsPrincipal();
+                var user = new User
+                {
+                    Name = principalIdentityName,
+                    Person = new Person
+                    {
+                        LastName = "West",
+                    },
+                };
                 var command = new UpdateMyNameCommand
                 {
                     Principal = principal,
                     LastName = " West",
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(new User
-                    {
-                        Person = new Person
-                        {
-                            LastName = "West",
-                        },
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))))
                     .Callback((Entity entity) => outPerson = (Person)entity);
-                var handler = new UpdateMyNameHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyNameHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -363,47 +308,29 @@ namespace UCosmic.Domain.People
                 Person outPerson = null;
                 const string principalIdentityName = "user@domain.tld";
                 var principal = principalIdentityName.AsPrincipal();
+                var user = new User
+                {
+                    Name = principalIdentityName,
+                    Person = new Person
+                    {
+                        Suffix = "Jr",
+                    },
+                };
                 var command = new UpdateMyNameCommand
                 {
                     Principal = principal,
                     Suffix = "Jr.",
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(new User
-                    {
-                        Person = new Person
-                        {
-                            Suffix = "Jr",
-                        },
-                    });
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))))
                     .Callback((Entity entity) => outPerson = (Person)entity);
-                var handler = new UpdateMyNameHandler(queryProcessor.Object, entities.Object);
+                var handler = new UpdateMyNameHandler(entities.Object);
 
                 handler.Handle(command);
 
                 command.ChangeCount.ShouldEqual(1);
                 outPerson.Suffix.ShouldEqual(command.Suffix);
-            }
-
-            private static Expression<Func<GetUserByNameQuery, bool>> UserQueryBasedOn(UpdateMyNameCommand command)
-            {
-                Expression<Func<GetUserByNameQuery, bool>> userByPrincipalIdentityName =
-                    q => q.Name == command.Principal.Identity.Name;
-                return userByPrincipalIdentityName;
-            }
-
-            private static Expression<Func<GenerateDisplayNameQuery, bool>> GenerateDisplayNameQueryBasedOn(UpdateMyNameCommand command)
-            {
-                Expression<Func<GenerateDisplayNameQuery, bool>> generateDisplayName = q =>
-                    q.Salutation == command.Salutation &&
-                    q.FirstName == command.FirstName &&
-                    q.MiddleName == command.MiddleName &&
-                    q.LastName == command.LastName &&
-                    q.Suffix == command.Suffix;
-                return generateDisplayName;
             }
 
             private static Expression<Func<Person, bool>> PersonBasedOn(UpdateMyNameCommand command)

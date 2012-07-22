@@ -14,16 +14,13 @@ namespace UCosmic.Domain.Identity
 
     public class ResetPasswordHandler : IHandleCommands<ResetPasswordCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
         private readonly IStorePasswords _passwords;
 
-        public ResetPasswordHandler(IProcessQueries queryProcessor
-            , ICommandEntities entities
+        public ResetPasswordHandler(ICommandEntities entities
             , IStorePasswords passwords
         )
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
             _passwords = passwords;
         }
@@ -33,9 +30,8 @@ namespace UCosmic.Domain.Identity
             if (command == null) throw new ArgumentNullException("command");
 
             // get the confirmation
-            var confirmation = _queryProcessor.Execute(
-                new GetEmailConfirmationQuery(command.Token)
-            );
+            var confirmation = _entities.Get2<EmailConfirmation>()
+                .ByToken(command.Token);
 
             _passwords.Reset(confirmation.EmailAddress.Person.User.Name, command.Password);
             confirmation.RetiredOnUtc = DateTime.UtcNow;
@@ -47,7 +43,7 @@ namespace UCosmic.Domain.Identity
 
     public class ResetPasswordValidator : AbstractValidator<ResetPasswordCommand>
     {
-        public ResetPasswordValidator(IProcessQueries queryProcessor, IStorePasswords passwords)
+        public ResetPasswordValidator(IQueryEntities entities, IStorePasswords passwords)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -59,7 +55,7 @@ namespace UCosmic.Domain.Identity
                     .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenWasEmpty,
                         p => p.Token)
                 // token must match a confirmation
-                .Must(p => ValidateEmailConfirmation.TokenMatchesEntity(p, queryProcessor, out confirmation))
+                .Must(p => ValidateEmailConfirmation.TokenMatchesEntity(p, entities, out confirmation))
                     .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenMatchedNoEntity,
                         p => p.Token)
             ;

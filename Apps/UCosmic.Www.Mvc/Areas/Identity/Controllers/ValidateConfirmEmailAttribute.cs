@@ -16,7 +16,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             ParamName = paramName;
         }
 
-        public IProcessQueries QueryProcessor { get; set; }
+        public IQueryEntities Entities { get; set; }
 
         protected EmailConfirmation EmailConfirmation { get; private set; }
 
@@ -68,7 +68,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             // get the confirmation
             EmailConfirmation catchEntity;
             var found = ValidateEmailConfirmation.TokenMatchesEntity
-                (token, QueryProcessor, out catchEntity);
+                (token, Entities, out catchEntity);
             EmailConfirmation = catchEntity;
 
             // valid when matches an entity

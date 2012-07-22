@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Web.Mvc;
+using AutoMapper;
+using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
@@ -149,5 +152,36 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
         public IList<InstitutionalAgreementFileForm> Files { get; set; }
 
         #endregion
+    }
+
+    public static class InstitutionalAgreementProfiler
+    {
+        public static void RegisterProfiles()
+        {
+            RootModelProfiler.RegisterProfiles(typeof(InstitutionalAgreementProfiler));
+        }
+
+        internal class ModelToCommandProfile : Profile
+        {
+            protected override void Configure()
+            {
+                CreateMap<InstitutionalAgreementForm, CreateOrUpdateInstitutionalAgreementCommand>()
+                    .ForMember(d => d.Principal, o => o.Ignore())
+                    .ForMember(d => d.ChangeCount, o => o.Ignore())
+                    .ForMember(d => d.RemoveParticipantEstablishmentEntityIds, o => o
+                        .ResolveUsing(s => s.Participants.Where(m => m.IsDeleted).Select(m => m.EstablishmentEntityId)))
+                    .ForMember(d => d.AddParticipantEstablishmentEntityIds, o => o
+                        .ResolveUsing(s => s.Participants.Where(m => !m.IsDeleted).Select(m => m.EstablishmentEntityId)))
+                    .ForMember(d => d.RemoveContactEntityIds, o => o
+                        .ResolveUsing(s => s.Contacts.Where(m => m.IsDeleted).Select(m => m.EntityId)))
+                    .ForMember(d => d.AddContactCommands, o => o
+                        .ResolveUsing(s => Mapper.Map<AddContactToAgreementCommand[]>(s.Contacts.Where(m => !m.IsDeleted).ToArray())))
+                    .ForMember(d => d.DetachFileEntityIds, o => o
+                        .ResolveUsing(s => s.Files.Where(m => m.IsDeleted).Select(m => m.EntityId)))
+                    .ForMember(d => d.AttachFileEntityIds, o => o
+                        .ResolveUsing(s => s.Files.Where(m => !m.IsDeleted).Select(m => m.EntityId)))
+                ;
+            }
+        }
     }
 }

@@ -80,5 +80,17 @@ namespace UCosmic.Domain.Establishments
             // ReSharper restore ConvertClosureToMethodGroup
             return queryable.AsExpandable().Where(establishments.Expand());
         }
+
+        internal static IQueryable<Establishment> WithNameOrUrl(this IQueryable<Establishment> queryable, string term, StringMatchStrategy matchStrategy)
+        {
+            var names = QueryEstablishmentNames.SearchTermMatches(term, matchStrategy);
+            var urls = QueryEstablishmentUrls.SearchTermMatches(term, matchStrategy);
+            // ReSharper disable ConvertClosureToMethodGroup
+            Expression<Func<Establishment, bool>> establishments = establishment => 
+                establishment.Names.Any(name => names.Invoke(name)) ||
+                establishment.Urls.Any(url => urls.Invoke(url));
+            // ReSharper restore ConvertClosureToMethodGroup
+            return queryable.AsExpandable().Where(establishments.Expand());
+        }
     }
 }

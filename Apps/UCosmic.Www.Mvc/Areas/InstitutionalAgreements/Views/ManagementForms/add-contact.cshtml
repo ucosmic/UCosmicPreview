@@ -25,6 +25,7 @@
             <div class="is-deleted">
                 @Html.EditorFor(m => m.IsDeleted)
             </div>
+            @Html.EditorFor(m => m.AgreementEntityId)
             @Html.HiddenFor(m => m.Person.DefaultEmail)
             @Html.HiddenFor(m => m.Person.DisplayName)
             @Html.HiddenFor(m => m.Person.EntityId)

@@ -24,12 +24,10 @@ namespace UCosmic.Domain.People
 
     public class UpdateMyAffiliationHandler : IHandleCommands<UpdateMyAffiliationCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
 
-        public UpdateMyAffiliationHandler(IProcessQueries queryProcessor, ICommandEntities entities)
+        public UpdateMyAffiliationHandler(ICommandEntities entities)
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
         }
 
@@ -38,13 +36,8 @@ namespace UCosmic.Domain.People
             if (command == null) throw new ArgumentNullException("command");
 
             // get the affiliation
-            var affiliation = _queryProcessor.Execute(
-                new GetMyAffiliationByEstablishmentIdQuery
-                {
-                    Principal = command.Principal,
-                    EstablishmentId = command.EstablishmentId,
-                }
-            );
+            var affiliation = _entities.Get2<Affiliation>().ByUserNameAndEstablishmentId(
+                command.Principal.Identity.Name, command.EstablishmentId);
 
             // update fields
             if (!affiliation.IsAcknowledged) command.ChangeCount++;
@@ -78,7 +71,7 @@ namespace UCosmic.Domain.People
 
     public class UpdateMyAffiliationValidator : AbstractValidator<UpdateMyAffiliationCommand>
     {
-        public UpdateMyAffiliationValidator(IProcessQueries queryProcessor)
+        public UpdateMyAffiliationValidator(IQueryEntities entities)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -95,14 +88,14 @@ namespace UCosmic.Domain.People
                 .Must(ValidatePrincipal.IdentityNameIsNotEmpty)
                     .WithMessage(ValidatePrincipal.FailedBecauseIdentityNameWasEmpty)
                 // principal.identity.name must match User.Name entity property
-                .Must(p => ValidatePrincipal.IdentityNameMatchesUser(p, queryProcessor))
+                .Must(p => ValidatePrincipal.IdentityNameMatchesUser(p, entities))
                     .WithMessage(ValidatePrincipal.FailedBecauseIdentityNameMatchedNoUser,
                         p => p.Principal.Identity.Name)
             ;
 
             RuleFor(p => p.EstablishmentId)
                 // establishment id must exist in database
-                .Must(p => ValidateEstablishment.IdMatchesEntity(p, queryProcessor, eagerLoad))
+                .Must(p => ValidateEstablishment.IdMatchesEntity(p, entities, eagerLoad))
                     .WithMessage(ValidateEstablishment.FailedBecauseIdMatchedNoEntity,
                         p => p.EstablishmentId)
             ;

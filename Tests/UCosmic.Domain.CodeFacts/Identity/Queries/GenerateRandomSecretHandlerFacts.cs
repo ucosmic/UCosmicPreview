@@ -14,11 +14,10 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void ThrowsArgumentNullException_WhenQueryArgIsNull()
             {
-                var handler = new GenerateRandomSecretHandler();
                 ArgumentNullException exception = null;
                 try
                 {
-                    handler.Handle(null);
+                    GenerateRandomSecretHandler.Handle(null);
                 }
                 catch (ArgumentNullException ex)
                 {
@@ -36,9 +35,8 @@ namespace UCosmic.Domain.Identity
             {
                 const int length = 12;
                 var query = new GenerateRandomSecretQuery(length);
-                var handler = new GenerateRandomSecretHandler();
 
-                var result = handler.Handle(query);
+                var result = GenerateRandomSecretHandler.Handle(query);
 
                 result.ShouldNotBeNull();
                 result.Length.ShouldEqual(length);
@@ -50,9 +48,8 @@ namespace UCosmic.Domain.Identity
                 const int minLength = 44;
                 const int maxLength = 792;
                 var query = new GenerateRandomSecretQuery(minLength, maxLength);
-                var handler = new GenerateRandomSecretHandler();
 
-                var result = handler.Handle(query);
+                var result = GenerateRandomSecretHandler.Handle(query);
 
                 result.ShouldNotBeNull();
                 result.Length.ShouldBeInRange(minLength, maxLength);

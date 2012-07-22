@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using FluentValidation;
 using UCosmic.Domain.People;
 
@@ -14,16 +15,13 @@ namespace UCosmic.Domain.Identity
 
     public class CreatePasswordHandler : IHandleCommands<CreatePasswordCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
         private readonly IStorePasswords _passwords;
 
-        public CreatePasswordHandler(IProcessQueries queryProcessor
-            , ICommandEntities entities
+        public CreatePasswordHandler(ICommandEntities entities
             , IStorePasswords passwords
         )
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
             _passwords = passwords;
         }
@@ -33,9 +31,13 @@ namespace UCosmic.Domain.Identity
             if (command == null) throw new ArgumentNullException("command");
 
             // get the confirmation
-            var confirmation = _queryProcessor.Execute(
-                new GetEmailConfirmationQuery(command.Token)
-            );
+            var confirmation = _entities.Get2<EmailConfirmation>()
+                .EagerLoad(new Expression<Func<EmailConfirmation, object>>[]
+                {
+                    c => c.EmailAddress.Person.User.EduPersonScopedAffiliations,
+                    c => c.EmailAddress.Person.User.SubjectNameIdentifiers,
+                }, _entities)
+                .ByToken(command.Token);
 
             // set up user accounts
             var person = confirmation.EmailAddress.Person;
@@ -57,7 +59,7 @@ namespace UCosmic.Domain.Identity
 
     public class CreatePasswordValidator : AbstractValidator<CreatePasswordCommand>
     {
-        public CreatePasswordValidator(IProcessQueries queryProcessor, IStorePasswords passwords)
+        public CreatePasswordValidator(IQueryEntities entities, IStorePasswords passwords)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -69,7 +71,7 @@ namespace UCosmic.Domain.Identity
                     .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenWasEmpty,
                         p => p.Token)
                 // token must match a confirmation
-                .Must(p => ValidateEmailConfirmation.TokenMatchesEntity(p, queryProcessor, out confirmation))
+                .Must(p => ValidateEmailConfirmation.TokenMatchesEntity(p, entities, out confirmation))
                     .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenMatchedNoEntity,
                         p => p.Token)
             ;

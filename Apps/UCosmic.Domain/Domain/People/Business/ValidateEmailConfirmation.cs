@@ -17,8 +17,8 @@ namespace UCosmic.Domain.People
         public const string FailedBecauseTokenMatchedNoEntity =
             "Email confirmation '{0}' could not be found.";
 
-        public static bool TokenMatchesEntity(Guid token, IProcessQueries queryProcessor,
-            IEnumerable<Expression<Func<Person, object>>> eagerLoad, out EmailConfirmation entity)
+        public static bool TokenMatchesEntity(Guid token, IQueryEntities entities,
+            IEnumerable<Expression<Func<EmailConfirmation, object>>> eagerLoad, out EmailConfirmation entity)
         {
             if (token == Guid.Empty)
             {
@@ -26,27 +26,22 @@ namespace UCosmic.Domain.People
                 return false;
             }
 
-            entity = queryProcessor.Execute(
-                new GetEmailConfirmationQuery(token)
-                {
-                    EagerLoad = eagerLoad,
-                }
-            );
+            entity = entities.Read<EmailConfirmation>().EagerLoad(eagerLoad, entities).ByToken(token);
 
             // return true (valid) if there is an entity
             return entity != null;
         }
 
-        public static bool TokenMatchesEntity(Guid token, IProcessQueries queryProcessor,
-            IEnumerable<Expression<Func<Person, object>>> eagerLoad = null)
+        public static bool TokenMatchesEntity(Guid token, IQueryEntities entities,
+            IEnumerable<Expression<Func<EmailConfirmation, object>>> eagerLoad = null)
         {
             EmailConfirmation entity;
-            return TokenMatchesEntity(token, queryProcessor, eagerLoad, out entity);
+            return TokenMatchesEntity(token, entities, eagerLoad, out entity);
         }
 
-        public static bool TokenMatchesEntity(Guid token, IProcessQueries queryProcessor, out EmailConfirmation entity)
+        public static bool TokenMatchesEntity(Guid token, IQueryEntities entities, out EmailConfirmation entity)
         {
-            return TokenMatchesEntity(token, queryProcessor, null, out entity);
+            return TokenMatchesEntity(token, entities, null, out entity);
         }
 
         #endregion

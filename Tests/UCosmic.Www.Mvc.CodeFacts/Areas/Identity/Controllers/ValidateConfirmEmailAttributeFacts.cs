@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq.Expressions;
+using System.Linq;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
+using UCosmic.Domain;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 
@@ -50,7 +51,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         }
 
         [TestClass]
-        public class TheQueryProcessorProperty
+        public class TheEntitiesProperty
         {
             [TestMethod]
             public void CanBeSet_ByIocContainer()
@@ -58,9 +59,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const string paramName = "test";
                 var attribute = new ValidateConfirmEmailAttribute(paramName)
                 {
-                    QueryProcessor = null
+                    Entities = null
                 };
-                attribute.QueryProcessor.ShouldBeNull();
+                attribute.Entities.ShouldBeNull();
             }
         }
 
@@ -149,13 +150,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void SetsResult_To404_WhenToken_IsEmptyGuid()
             {
                 const string paramName = "some value";
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(Guid.Empty))))
-                    .Returns(new EmailConfirmation(EmailConfirmationIntent.ResetPassword));
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>())
+                    .Returns(new[] { new EmailConfirmation(EmailConfirmationIntent.ResetPassword) }.AsQueryable);
                 var attribute = new ValidateConfirmEmailAttribute(paramName)
                 {
-                    QueryProcessor = queryProcessor.Object,
+                    Entities = entities.Object,
                 };
                 var filterContext = CreateFilterContext(paramName, Guid.Empty);
 
@@ -170,13 +170,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 const string paramName = "some value";
                 var tokenValue = Guid.NewGuid();
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(tokenValue))))
-                    .Returns(null as EmailConfirmation);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>())
+                    .Returns(new EmailConfirmation[] { }.AsQueryable);
                 var attribute = new ValidateConfirmEmailAttribute(paramName)
                 {
-                    QueryProcessor = queryProcessor.Object,
+                    Entities = entities.Object,
                 };
                 var filterContext = CreateFilterContext(paramName, tokenValue);
 
@@ -184,9 +183,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 filterContext.Result.ShouldNotBeNull();
                 filterContext.Result.ShouldBeType<HttpNotFoundResult>();
-                queryProcessor.Verify(m => m.
-                    Execute(It.Is(ConfirmationQueryBasedOn(tokenValue))), 
-                    Times.Once());
+                entities.Verify(m => m.Read<EmailConfirmation>(), Times.Once());
             }
 
             [TestMethod]
@@ -197,13 +194,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddSeconds(-5),
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
-                    .Returns(confirmation);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>())
+                    .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateConfirmEmailAttribute(paramName)
                 {
-                    QueryProcessor = queryProcessor.Object,
+                    Entities = entities.Object,
                 };
                 var filterContext = CreateFilterContext(paramName, confirmation.Token);
 
@@ -229,13 +225,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
                     RetiredOnUtc = DateTime.UtcNow.AddSeconds(-5),
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
-                    .Returns(confirmation);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>())
+                    .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateConfirmEmailAttribute(paramName)
                 {
-                    QueryProcessor = queryProcessor.Object,
+                    Entities = entities.Object,
                 };
                 var filterContext = CreateFilterContext(paramName, confirmation.Token);
 
@@ -260,13 +255,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
-                    .Returns(confirmation);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>())
+                    .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateConfirmEmailAttribute(paramName)
                 {
-                    QueryProcessor = queryProcessor.Object,
+                    Entities = entities.Object,
                 };
                 var filterContext = CreateFilterContext(paramName, confirmation.Token);
 
@@ -296,11 +290,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             var filterContext = new Mock<ActionExecutingContext>(MockBehavior.Strict);
             filterContext.Setup(p => p.ActionParameters).Returns(parameters);
             return filterContext.Object;
-        }
-
-        private static Expression<Func<GetEmailConfirmationQuery, bool>> ConfirmationQueryBasedOn(Guid tokenValue)
-        {
-            return q => q.Token == tokenValue;
         }
     }
 }

@@ -31,16 +31,13 @@ namespace UCosmic.Domain.InstitutionalAgreements
     {
         private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
-        //private readonly IUnitOfWork _unitOfWork;
 
         public CreateOrUpdateConfigurationHandler(IProcessQueries queryProcessor
             , ICommandEntities entities
-            //, IUnitOfWork unitOfWork
         )
         {
             _queryProcessor = queryProcessor;
             _entities = entities;
-            //_unitOfWork = unitOfWork;
         }
 
         public void Handle(CreateOrUpdateConfigurationCommand command)
@@ -57,6 +54,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 ? _queryProcessor.Execute(
                     new GetMyInstitutionalAgreementConfigurationQuery(command.Principal)
                     {
+                        IsWritable = true,
                         EagerLoad = new Expression<Func<InstitutionalAgreementConfiguration, object>>[]
                         {
                             c => c.AllowedTypeValues,
@@ -66,13 +64,13 @@ namespace UCosmic.Domain.InstitutionalAgreements
                     })
                 : new InstitutionalAgreementConfiguration
                     {
-                        ForEstablishment = _queryProcessor.Execute(new GetMyPersonQuery(command.Principal)
-                        {
-                            EagerLoad = new Expression<Func<Person, object>>[]
+                        ForEstablishment = _entities.Get2<Person>()
+                            .EagerLoad(new Expression<Func<Person, object>>[]
                             {
-                                p => p.Affiliations.Select(a => a.Establishment),
-                            },
-                        }).DefaultAffiliation.Establishment,
+                                x => x.Affiliations.Select(y => y.Establishment)
+                            }, _entities)
+                            .ByUserName(command.Principal.Identity.Name)
+                            .DefaultAffiliation.Establishment,
                     };
 
             if (configuration.RevisionId != command.Id)

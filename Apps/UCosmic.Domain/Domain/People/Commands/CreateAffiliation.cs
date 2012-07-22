@@ -16,12 +16,10 @@ namespace UCosmic.Domain.People
 
     public class CreateAffiliationHandler : IHandleCommands<CreateAffiliationCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
 
-        public CreateAffiliationHandler(IProcessQueries queryProcessor, ICommandEntities entities)
+        public CreateAffiliationHandler(ICommandEntities entities)
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
         }
 
@@ -30,16 +28,12 @@ namespace UCosmic.Domain.People
             if (command == null) throw new ArgumentNullException("command");
 
             // get the person
-            var person = _queryProcessor.Execute(
-                new GetPersonByIdQuery
+            var person = _entities.Get2<Person>()
+                .EagerLoad(new Expression<Func<Person, object>>[]
                 {
-                    Id = command.PersonId,
-                    EagerLoad = new Expression<Func<Person, object>>[]
-                    {
-                        p => p.Affiliations,
-                    },
-                }
-            );
+                    p => p.Affiliations,
+                }, _entities)
+                .By(command.PersonId);
 
             // construct the affiliation
             var affiliation = new Affiliation
@@ -58,7 +52,7 @@ namespace UCosmic.Domain.People
 
     public class CreateAffiliationValidator : AbstractValidator<CreateAffiliationCommand>
     {
-        public CreateAffiliationValidator(IProcessQueries queryProcessor)
+        public CreateAffiliationValidator(IQueryEntities entities)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -76,7 +70,7 @@ namespace UCosmic.Domain.People
 
             RuleFor(p => p.EstablishmentId)
                 // establishment id must exist in database
-                .Must(p => ValidateEstablishment.IdMatchesEntity(p, queryProcessor, establishmentLoad, out establishment))
+                .Must(p => ValidateEstablishment.IdMatchesEntity(p, entities, establishmentLoad, out establishment))
                     .WithMessage(ValidateEstablishment.FailedBecauseIdMatchedNoEntity,
                         p => p.EstablishmentId)
             ;
@@ -91,7 +85,7 @@ namespace UCosmic.Domain.People
 
             RuleFor(p => p.PersonId)
                 // person id must exist in database
-                .Must(p => ValidatePerson.IdMatchesEntity(p, queryProcessor, personLoad, out person))
+                .Must(p => ValidatePerson.IdMatchesEntity(p, entities, personLoad, out person))
                     .WithMessage(ValidatePerson.FailedBecauseIdMatchedNoEntity,
                         p => p.PersonId)
                 // cannot create a duplicate affiliation

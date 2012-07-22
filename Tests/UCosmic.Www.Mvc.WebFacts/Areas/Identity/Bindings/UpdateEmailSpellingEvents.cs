@@ -14,7 +14,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
             UpdatePasswordEvents.ResetExamplePasswords();
-            var person = db.Queries.Get<Person>()
+            var person = db.Commands.Get2<Person>()
                 .Single(p => UpdateNameEvents.Any1AtUsilDotEduDotPe.Equals(p.User.Name));
             person.DefaultEmail.Value = UpdateNameEvents.Any1AtUsilDotEduDotPe.ToLower();
             db.UnitOfWork.SaveChanges();

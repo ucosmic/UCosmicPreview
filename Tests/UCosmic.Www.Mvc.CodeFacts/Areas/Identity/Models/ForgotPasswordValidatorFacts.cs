@@ -6,6 +6,7 @@ using FluentValidation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
+using UCosmic.Domain;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
 using UCosmic.Impl;
@@ -126,11 +127,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     EmailAddress = "user@domain.tld",
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
-                    .Returns(null as Establishment);
-                var validator = new ForgotPasswordValidator(queryProcessor.Object, null);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                var validator = new ForgotPasswordValidator(entities.Object, null);
 
                 var results = validator.Validate(validated);
 
@@ -140,7 +139,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    ForgotPasswordValidator.FailedBecauseUserNameMatchedNoLocalMember, 
+                    ForgotPasswordValidator.FailedBecauseUserNameMatchedNoLocalMember,
                         validated.EmailAddress));
                 // ReSharper restore PossibleNullReferenceException
             }
@@ -153,11 +152,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     EmailAddress = "user@domain.tld",
                 };
                 var establishment = new Establishment();
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
-                    .Returns(establishment);
-                var validator = new ForgotPasswordValidator(queryProcessor.Object, null);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                var validator = new ForgotPasswordValidator(entities.Object, null);
 
                 var results = validator.Validate(validated);
 
@@ -183,12 +180,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     IsMember = true,
                     SamlSignOn = new EstablishmentSamlSignOn(),
+                    EmailDomains = new[] { new EstablishmentEmailDomain { Value = "@domain.tld" }, },
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
-                    .Returns(establishment);
-                var validator = new ForgotPasswordValidator(queryProcessor.Object, null);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                var validator = new ForgotPasswordValidator(entities.Object, null);
 
                 var results = validator.Validate(validated);
 
@@ -214,14 +210,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     IsMember = true,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
-                    .Returns(establishment);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(PersonQueryBasedOn(validated))))
-                    .Returns(null as Person);
-                var validator = new ForgotPasswordValidator(queryProcessor.Object, null);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                var validator = new ForgotPasswordValidator(entities.Object, null);
 
                 var results = validator.Validate(validated);
 
@@ -247,14 +239,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     IsMember = true,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
-                    .Returns(establishment);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(PersonQueryBasedOn(validated))))
-                    .Returns(new Person());
-                var validator = new ForgotPasswordValidator(queryProcessor.Object, null);
+                var person = new Person();
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Read<Person>()).Returns(new[] { person }.AsQueryable);
+                var validator = new ForgotPasswordValidator(entities.Object, null);
 
                 var results = validator.Validate(validated);
 
@@ -282,19 +271,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     {
                         EduPersonTargetedId = "something",
                     },
+                    Emails = new[] { new EmailAddress { Value = validated.EmailAddress, }, },
                 };
                 var establishment = new Establishment
                 {
                     IsMember = true,
+                    EmailDomains = new[] { new EstablishmentEmailDomain { Value = "@domain.tld" }, },
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
-                    .Returns(establishment);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(PersonQueryBasedOn(validated))))
-                    .Returns(person);
-                var validator = new ForgotPasswordValidator(queryProcessor.Object, null);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Read<Person>()).Returns(new[] { person }.AsQueryable);
+                var validator = new ForgotPasswordValidator(entities.Object, null);
 
                 var results = validator.Validate(validated);
 
@@ -304,7 +291,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 error.ShouldNotBeNull();
                 // ReSharper disable PossibleNullReferenceException
                 error.ErrorMessage.ShouldEqual(string.Format(
-                    ForgotPasswordValidator.FailedBecauseEduPersonTargetedIdWasNotEmpty, 
+                    ForgotPasswordValidator.FailedBecauseEduPersonTargetedIdWasNotEmpty,
                         validated.EmailAddress.GetEmailDomain()));
                 // ReSharper restore PossibleNullReferenceException
             }
@@ -327,18 +314,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     IsMember = true,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
-                    .Returns(establishment);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(PersonQueryBasedOn(validated))))
-                    .Returns(person);
                 var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
                 passwords.Setup(m => m
                     .Exists(It.Is(IsSignedUpBasedOn(person))))
                     .Returns(false);
-                var validator = new ForgotPasswordValidator(queryProcessor.Object, passwords.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Read<Person>()).Returns(new[] { person }.AsQueryable);
+                var validator = new ForgotPasswordValidator(entities.Object, passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -377,19 +360,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var establishment = new Establishment
                 {
                     IsMember = true,
+                    EmailDomains = new[] { new EstablishmentEmailDomain { Value = "@domain.tld" }, },
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
-                    .Returns(establishment);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(PersonQueryBasedOn(validated))))
-                    .Returns(person);
                 var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
                 passwords.Setup(m => m
                     .Exists(It.Is(IsSignedUpBasedOn(person))))
                     .Returns(true);
-                var validator = new ForgotPasswordValidator(queryProcessor.Object, passwords.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Read<Person>()).Returns(new[] { person }.AsQueryable);
+                var validator = new ForgotPasswordValidator(entities.Object, passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -429,35 +409,22 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var establishment = new Establishment
                 {
                     IsMember = true,
+                    EmailDomains = new[] { new EstablishmentEmailDomain { Value = "@domain.tld" }, },
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(EstablishmentQueryBasedOn(validated))))
-                    .Returns(establishment);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(PersonQueryBasedOn(validated))))
-                    .Returns(person);
                 var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
                 passwords.Setup(m => m
                     .Exists(It.Is(IsSignedUpBasedOn(person))))
                     .Returns(true);
-                var validator = new ForgotPasswordValidator(queryProcessor.Object, passwords.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Read<Person>()).Returns(new[] { person }.AsQueryable);
+                var validator = new ForgotPasswordValidator(entities.Object, passwords.Object);
 
                 var results = validator.Validate(validated);
 
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldBeNull();
             }
-        }
-
-        private static Expression<Func<GetPersonByEmailQuery, bool>> PersonQueryBasedOn(ForgotPasswordForm validated)
-        {
-            return q => q.Email == validated.EmailAddress;
-        }
-
-        private static Expression<Func<GetEstablishmentByEmailQuery, bool>> EstablishmentQueryBasedOn(ForgotPasswordForm validated)
-        {
-            return q => q.Email == validated.EmailAddress;
         }
 
         private static Expression<Func<string, bool>> IsSignedUpBasedOn(Person person)

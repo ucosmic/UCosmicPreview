@@ -20,7 +20,7 @@ namespace UCosmic.Domain.Establishments
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var results = _entities.Get<Establishment>()
+            var results = _entities.Read<Establishment>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .OrderBy(query.OrderBy);
 

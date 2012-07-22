@@ -2,9 +2,17 @@
 
 namespace UCosmic.Domain.Places
 {
-    public class GetPlaceByGeoNameIdQuery : BaseEntityQuery<Place>, IDefineQuery<Place>
+    public abstract class GetPlaceByGeoNameIdQuery : BaseEntityQuery<Place>, IDefineQuery<Place>
     {
-        public int GeoNameId { get; set; }
+        public int GeoNameId { get; protected set; }
+    }
+
+    internal class GetPlaceByGeoNameIdInternal : GetPlaceByGeoNameIdQuery
+    {
+        public GetPlaceByGeoNameIdInternal(int geoNameId)
+        {
+            GeoNameId = geoNameId;
+        }
     }
 
     public class GetPlaceByGeoNameIdHandler : IHandleQueries<GetPlaceByGeoNameIdQuery, Place>
@@ -28,7 +36,7 @@ namespace UCosmic.Domain.Places
             if (query == null) throw new ArgumentNullException("query");
 
             // first look in the db
-            var place = _entities.Get<Place>()
+            var place = _entities.Get2<Place>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByGeoNameId(query.GeoNameId)
             ;
@@ -45,10 +53,7 @@ namespace UCosmic.Domain.Places
             if (toponym.Parent != null)
             {
                 place.Parent = Handle(
-                    new GetPlaceByGeoNameIdQuery
-                    {
-                        GeoNameId = toponym.Parent.GeoNameId,
-                    });
+                    new GetPlaceByGeoNameIdInternal(toponym.Parent.GeoNameId));
             }
 
             // try to match to geoplanet

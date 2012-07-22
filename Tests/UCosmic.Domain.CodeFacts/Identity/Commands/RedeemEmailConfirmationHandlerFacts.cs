@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -17,7 +18,7 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void ThrowsArgumentNullException_WhenCommandArgIsNull()
             {
-                var handler = new RedeemEmailConfirmationHandler(null, null);
+                var handler = new RedeemEmailConfirmationHandler(null);
                 ArgumentNullException exception = null;
                 try
                 {
@@ -41,10 +42,10 @@ namespace UCosmic.Domain.Identity
                 {
                     Token = Guid.NewGuid(),
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(null as EmailConfirmation);
-                var handler = new RedeemEmailConfirmationHandler(queryProcessor.Object, null);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailConfirmation>())
+                    .Returns(Enumerable.Empty<EmailConfirmation>().AsQueryable);
+                var handler = new RedeemEmailConfirmationHandler(entities.Object);
                 NullReferenceException exception = null;
                 try
                 {
@@ -55,8 +56,7 @@ namespace UCosmic.Domain.Identity
                     exception = ex;
                 }
 
-                queryProcessor.Verify(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))),
-                    Times.Once());
+                entities.Verify(m => m.Get2<EmailConfirmation>(), Times.Once());
                 exception.ShouldNotBeNull();
             }
 
@@ -72,14 +72,12 @@ namespace UCosmic.Domain.Identity
                     Token = confirmation.Token,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
                 queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
                     .Returns(null as string);
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(ConfirmationEntity(confirmation))));
-                var handler = new RedeemEmailConfirmationHandler(
-                    queryProcessor.Object, entities.Object);
+                var handler = new RedeemEmailConfirmationHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -100,14 +98,12 @@ namespace UCosmic.Domain.Identity
                     Token = confirmation.Token,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
                 queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
                     .Returns(null as string);
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(ConfirmationEntity(confirmation))));
-                var handler = new RedeemEmailConfirmationHandler(
-                    queryProcessor.Object, entities.Object);
+                var handler = new RedeemEmailConfirmationHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -127,14 +123,12 @@ namespace UCosmic.Domain.Identity
                     Token = confirmation.Token,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(ConfirmationEntity(confirmation))));
                 queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
                     .Returns(null as string);
-                var handler = new RedeemEmailConfirmationHandler(
-                    queryProcessor.Object, entities.Object);
+                var handler = new RedeemEmailConfirmationHandler(entities.Object);
 
                 confirmation.EmailAddress.IsConfirmed.ShouldBeFalse();
                 handler.Handle(command);
@@ -155,12 +149,12 @@ namespace UCosmic.Domain.Identity
                     Token = confirmation.Token,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
                 queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
                     .Returns(null as string);
-                var handler = new RedeemEmailConfirmationHandler(
-                    queryProcessor.Object, null);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailConfirmation>())
+                    .Returns(new[] { confirmation }.AsQueryable);
+                var handler = new RedeemEmailConfirmationHandler(entities.Object);
 
                 confirmation.EmailAddress.IsConfirmed.ShouldBeFalse();
                 handler.Handle(command);
@@ -180,14 +174,12 @@ namespace UCosmic.Domain.Identity
                     Token = confirmation.Token,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(ConfirmationEntity(confirmation))));
                 queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
                     .Returns(null as string);
-                var handler = new RedeemEmailConfirmationHandler(
-                    queryProcessor.Object, entities.Object);
+                var handler = new RedeemEmailConfirmationHandler(entities.Object);
 
                 confirmation.RedeemedOnUtc.HasValue.ShouldBeFalse();
                 handler.Handle(command);
@@ -213,12 +205,11 @@ namespace UCosmic.Domain.Identity
                     Token = confirmation.Token,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
                 queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
                     .Returns(null as string);
-                var handler = new RedeemEmailConfirmationHandler(
-                    queryProcessor.Object, null);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
+                var handler = new RedeemEmailConfirmationHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -240,20 +231,17 @@ namespace UCosmic.Domain.Identity
                     Token = confirmation.Token,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
                 queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
                     .Returns(TwoFiftySixLengthString2);
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(ConfirmationEntity(confirmation))));
-                var handler = new RedeemEmailConfirmationHandler(
-                    queryProcessor.Object, entities.Object);
+                var handler = new RedeemEmailConfirmationHandler(entities.Object);
 
                 confirmation.Ticket.ShouldBeNull();
                 handler.Handle(command);
 
                 confirmation.Ticket.ShouldNotBeNull();
-                confirmation.Ticket.ShouldEqual(TwoFiftySixLengthString2);
                 confirmation.Ticket.Length.ShouldEqual(256);
             }
 
@@ -271,12 +259,11 @@ namespace UCosmic.Domain.Identity
                     Token = confirmation.Token,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
                 queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
                     .Returns(TwoFiftySixLengthString2);
-                var handler = new RedeemEmailConfirmationHandler(
-                    queryProcessor.Object, null);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
+                var handler = new RedeemEmailConfirmationHandler(entities.Object);
 
                 confirmation.Ticket.ShouldEqual(TwoFiftySixLengthString1);
                 handler.Handle(command);
@@ -298,14 +285,12 @@ namespace UCosmic.Domain.Identity
                     Token = confirmation.Token,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
                 queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
                     .Returns(TwoFiftySixLengthString1);
-                var entities = new Mock<ICommandEntities>(MockBehavior.Strict);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(ConfirmationEntity(confirmation))));
-                var handler = new RedeemEmailConfirmationHandler(
-                    queryProcessor.Object, entities.Object);
+                var handler = new RedeemEmailConfirmationHandler(entities.Object);
 
                 command.Ticket.ShouldBeNull();
                 handler.Handle(command);
@@ -313,7 +298,7 @@ namespace UCosmic.Domain.Identity
                 command.Ticket.ShouldNotBeNull();
                 command.Ticket.Length.ShouldEqual(256);
                 command.Ticket.ShouldEqual(confirmation.Ticket);
-                command.Ticket.ShouldEqual(TwoFiftySixLengthString1);
+                command.Ticket.Length.ShouldEqual(256);
             }
 
             [TestMethod]
@@ -330,12 +315,11 @@ namespace UCosmic.Domain.Identity
                     Token = confirmation.Token,
                 };
                 var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(ConfirmationQueryBasedOn(command))))
-                    .Returns(confirmation);
                 queryProcessor.Setup(m => m.Execute(It.Is(RandomSecretGeneration(256))))
                     .Returns(TwoFiftySixLengthString1);
-                var handler = new RedeemEmailConfirmationHandler(
-                    queryProcessor.Object, null);
+                var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Get2<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
+                var handler = new RedeemEmailConfirmationHandler(entities.Object);
 
                 handler.Handle(command);
 
@@ -344,14 +328,6 @@ namespace UCosmic.Domain.Identity
                 command.Ticket.ShouldEqual(confirmation.Ticket);
                 command.Ticket.ShouldEqual(TwoFiftySixLengthString2);
             }
-        }
-
-        private static Expression<Func<GetEmailConfirmationQuery, bool>> ConfirmationQueryBasedOn(RedeemEmailConfirmationCommand command)
-        {
-            Expression<Func<GetEmailConfirmationQuery, bool>> queryBasedOn = q =>
-                q.Token == command.Token
-            ;
-            return queryBasedOn;
         }
 
         private static Expression<Func<EmailConfirmation, bool>> ConfirmationEntity(EmailConfirmation entity)

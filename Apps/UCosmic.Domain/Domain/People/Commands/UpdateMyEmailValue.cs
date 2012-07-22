@@ -15,12 +15,10 @@ namespace UCosmic.Domain.People
 
     public class UpdateMyEmailValueHandler : IHandleCommands<UpdateMyEmailValueCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
 
-        public UpdateMyEmailValueHandler(IProcessQueries queryProcessor, ICommandEntities entities)
+        public UpdateMyEmailValueHandler(ICommandEntities entities)
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
         }
 
@@ -31,13 +29,8 @@ namespace UCosmic.Domain.People
             command.ChangedState = false;
 
             // get the email address
-            var email = _queryProcessor.Execute(
-                new GetMyEmailAddressByNumberQuery
-                {
-                    Principal = command.Principal,
-                    Number = command.Number,
-                }
-            );
+            var email = _entities.Get2<EmailAddress>()
+                .ByUserNameAndNumber(command.Principal.Identity.Name, command.Number);
 
             // only process matching email
             if (email == null) return;
@@ -53,7 +46,7 @@ namespace UCosmic.Domain.People
 
     public class UpdateMyEmailValueValidator : AbstractValidator<UpdateMyEmailValueCommand>
     {
-        public UpdateMyEmailValueValidator(IProcessQueries queryProcessor)
+        public UpdateMyEmailValueValidator(IQueryEntities entities)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -67,14 +60,14 @@ namespace UCosmic.Domain.People
                 .Must(ValidatePrincipal.IdentityNameIsNotEmpty)
                     .WithMessage(ValidatePrincipal.FailedBecauseIdentityNameWasEmpty)
                 // principal identity name must match User.Name entity property
-                .Must(p => ValidatePrincipal.IdentityNameMatchesUser(p, queryProcessor))
+                .Must(p => ValidatePrincipal.IdentityNameMatchesUser(p, entities))
                     .WithMessage(ValidatePrincipal.FailedBecauseIdentityNameMatchedNoUser,
                         p => p.Principal.Identity.Name)
             ;
 
             RuleFor(p => p.Number)
                 // number must match email for user
-                .Must((o, p) => ValidateEmailAddress.NumberAndPrincipalMatchesEntity(p, o.Principal, queryProcessor, out email))
+                .Must((o, p) => ValidateEmailAddress.NumberAndPrincipalMatchesEntity(p, o.Principal, entities, out email))
                     .When(p => p.Principal != null && p.Principal.Identity.Name != null)
                     .WithMessage(ValidateEmailAddress.FailedBecauseNumberAndPrincipalMatchedNoEntity,
                         p => p.Number, p => p.Principal.Identity.Name)

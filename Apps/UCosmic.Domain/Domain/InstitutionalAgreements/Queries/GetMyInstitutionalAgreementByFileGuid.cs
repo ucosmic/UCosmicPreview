@@ -30,7 +30,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            return _entities.Get<InstitutionalAgreement>()
+            return _entities.Read<InstitutionalAgreement>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ForTenantUser(query.Principal)
                 .ByFileGuid(query.Guid)

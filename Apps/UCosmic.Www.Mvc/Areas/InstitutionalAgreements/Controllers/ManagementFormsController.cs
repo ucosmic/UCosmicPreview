@@ -22,29 +22,17 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         #region Construction & DI
 
         private readonly IProcessQueries _queryProcessor;
-        //private readonly InstitutionalAgreementFinder _agreements;
-        //private readonly InstitutionalAgreementChanger _agreementChanger;
-        //private readonly PersonFinder _people;
-        //private readonly EstablishmentFinder _establishments;
-        //private readonly FileFactory _fileFactory;
         private readonly IHandleCommands<CreateOrUpdateInstitutionalAgreementCommand> _commandHandler;
         private readonly IHandleCommands<CreateLooseFileCommand> _createFileHandler;
         private readonly IHandleCommands<PurgeLooseFileCommand> _purgeFileHandler;
 
         public ManagementFormsController(IProcessQueries queryProcessor
-            //, IQueryEntities entityQueries
-            //, ICommandObjects objectCommander
             , IHandleCommands<CreateOrUpdateInstitutionalAgreementCommand> commandHandler
             , IHandleCommands<CreateLooseFileCommand> createFileHandler
             , IHandleCommands<PurgeLooseFileCommand> purgeFileHandler
         )
         {
             _queryProcessor = queryProcessor;
-            //_agreements = new InstitutionalAgreementFinder(entityQueries);
-            //_agreementChanger = new InstitutionalAgreementChanger(objectCommander, entityQueries);
-            //_people = new PersonFinder(entityQueries);
-            //_establishments = new EstablishmentFinder(entityQueries);
-            //_fileFactory = new FileFactory(objectCommander, entityQueries);
             _commandHandler = commandHandler;
             _createFileHandler = createFileHandler;
             _purgeFileHandler = purgeFileHandler;
@@ -57,10 +45,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         [ActionName("browse")]
         public virtual ActionResult Browse()
         {
-            //var agreementEntities = _agreements.FindMany(
-            //    InstitutionalAgreementsWith.PrincipalContext(User)
-            //        .OrderBy(e => e.Title)
-            //);
             var agreementEntities = _queryProcessor.Execute(
                 new FindMyInstitutionalAgreementsQuery(User)
                 {
@@ -175,41 +159,9 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    //var scalars = Mapper.Map<InstitutionalAgreement>(model);
-                    //var changes = _agreementChanger.CreateOrModify(User, scalars, model.Umbrella.EntityId,
-                    //    model.Participants.Where(m => m.IsDeleted).Select(m => m.EstablishmentEntityId),
-                    //    model.Participants.Where(m => !m.IsDeleted).Select(m => m.EstablishmentEntityId),
-                    //    model.Contacts.Where(m => m.IsDeleted).Select(m => m.EntityId),
-                    //    Mapper.Map<IEnumerable<InstitutionalAgreementContact>>(model.Contacts.Where(m => !m.IsDeleted)),
-                    //    model.Files.Where(m => m.IsDeleted).Select(m => m.EntityId),
-                    //    model.Files.Where(m => !m.IsDeleted).Select(m => m.EntityId)
-                    //);
-                    // todo -- use automapper for this
-                    var command = new CreateOrUpdateInstitutionalAgreementCommand(User)
-                    {
-                        RevisionId = model.RevisionId,
-                        Title = model.Title,
-                        IsTitleDerived = model.IsTitleDerived,
-                        Type = model.Type,
-                        Status = model.Status,
-                        Description = model.Description,
-                        IsAutoRenew = model.IsAutoRenew,
-                        StartsOn = model.StartsOnValue,
-                        ExpiresOn = model.ExpiresOnValue,
-                        IsExpirationEstimated = model.IsExpirationEstimated,
-                        //Visibility = model.Visibility,
-                        UmbrellaEntityId = model.Umbrella.EntityId,
-                        RemoveParticipantEstablishmentEntityIds = model.Participants.Where(m => m.IsDeleted).Select(m => m.EstablishmentEntityId),
-                        AddParticipantEstablishmentEntityIds = model.Participants.Where(m => !m.IsDeleted).Select(m => m.EstablishmentEntityId),
-                        RemoveContactEntityIds = model.Contacts.Where(m => m.IsDeleted).Select(m => m.EntityId),
-                        AddContacts = Mapper.Map<IEnumerable<InstitutionalAgreementContact>>(model.Contacts.Where(m => !m.IsDeleted)),
-                        RemoveFileEntityIds = model.Files.Where(m => m.IsDeleted).Select(m => m.EntityId),
-                        AddFileEntityIds = model.Files.Where(m => !m.IsDeleted).Select(m => m.EntityId),
-                    };
+                    var command = new CreateOrUpdateInstitutionalAgreementCommand(User);
+                    Mapper.Map(model, command);
                     _commandHandler.Handle(command);
-                    //SetFeedbackMessage(changes > 0
-                    //    ? "Institutional agreement was saved successfully."
-                    //    : "No changes were saved.");
                     SetFeedbackMessage(command.ChangeCount > 0
                         ? "Institutional agreement was saved successfully."
                         : "No changes were saved.");
@@ -271,7 +223,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             //        .EagerLoad(e => e.Ancestors.Select(h => h.Ancestor.Affiliates.Select(a => a.Person.User)))
             //        .EagerLoad(e => e.Names.Select(n => n.TranslationToLanguage))
             //    );
-            var establishment = _queryProcessor.Execute(new GetEstablishmentByGuidQuery(establishmentId)
+            var establishment = _queryProcessor.Execute(new EstablishmentByGuid(establishmentId)
             {
                 EagerLoad = new Expression<Func<Establishment, object>>[]
                 {

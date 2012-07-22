@@ -38,7 +38,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public const string FailedBecausePasswordConfirmationWasEmpty = "Password confirmation is required.";
         public const string FailedBecausePasswordConfirmationDidNotEqualPassword = "The password and confirmation password do not match.";
 
-        public CreatePasswordValidator(IProcessQueries queryProcessor, IStorePasswords passwords)
+        public CreatePasswordValidator(IQueryEntities entities, IStorePasswords passwords)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -48,7 +48,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenWasEmpty,
                         p => p.Token)
                 // matches email confirmation entity
-                .Must(p => ValidateEmailConfirmation.TokenMatchesEntity(p, queryProcessor))
+                .Must(p => ValidateEmailConfirmation.TokenMatchesEntity(p, entities))
                     .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenMatchedNoEntity,
                         p => p.Token)
             ;

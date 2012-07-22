@@ -128,7 +128,7 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
         {
             //var user = _services.Users.Get(userEntityId);
             var user = _services.QueryProcessor.Execute(
-                new GetUserByEntityIdQuery
+                new UserByEntityId
                 {
                     EntityId = userEntityId,
                 }

@@ -55,7 +55,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                 //    .FindOne(By<Establishment>.EntityId(establishmentId)
                 //        .EagerLoad(e => e.Location)
                 //    );
-                var establishment = _queryProcessor.Execute(new GetEstablishmentByGuidQuery(establishmentId)
+                var establishment = _queryProcessor.Execute(new EstablishmentByGuid(establishmentId)
                 {
                     EagerLoad = new Expression<Func<Establishment, object>>[]
                     {
@@ -82,7 +82,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                 //    .EagerLoad(e => e.Location)
                 //    .ForInsertOrUpdate()
                 //);
-                var establishment = _queryProcessor.Execute(new GetEstablishmentByGuidQuery(model.EntityId)
+                var establishment = _queryProcessor.Execute(new EstablishmentByGuid(model.EntityId)
                 {
                     EagerLoad = new Expression<Func<Establishment, object>>[]
                     {

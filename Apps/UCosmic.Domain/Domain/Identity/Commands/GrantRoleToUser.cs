@@ -41,7 +41,7 @@ namespace UCosmic.Domain.Identity
             if (command == null) throw new ArgumentNullException("command");
 
             var role = command.Role ??
-                _entities.Get<Role>()
+                _entities.Get2<Role>()
                 .EagerLoad(new Expression<Func<Role, object>>[]
                 {
                     r => r.Grants,
@@ -51,7 +51,7 @@ namespace UCosmic.Domain.Identity
             var grant = role.Grants.ByUser(command.UserGuid);
             if (grant != null) return;
 
-            var user = _entities.Get<User>().By(command.UserGuid);
+            var user = _entities.Get2<User>().By(command.UserGuid);
             grant = new RoleGrant
             {
                 Role = role,

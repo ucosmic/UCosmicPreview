@@ -24,37 +24,31 @@ namespace UCosmic.Domain.People
         public const string FailedBecauseValueMatchedNoPerson =
             "No person was found for the email address '{0}'.";
 
-        public static bool ValueMatchesPerson(string value, IProcessQueries queryProcessor,
+        public static bool ValueMatchesPerson(string value, IQueryEntities entities,
             IEnumerable<Expression<Func<Person, object>>> eagerLoad, out Person person)
         {
-            if (queryProcessor == null)
+            if (entities == null)
             {
                 person = null;
                 return false;
             }
 
-            person = queryProcessor.Execute(
-                new GetPersonByEmailQuery
-                {
-                    Email = value,
-                    EagerLoad = eagerLoad,
-                }
-            );
+            person = entities.Read<Person>().EagerLoad(eagerLoad, entities).ByEmail(value);
 
             // return true (valid) if there is an entity
             return person != null;
         }
 
-        public static bool ValueMatchesPerson(string value, IProcessQueries queryProcessor,
+        public static bool ValueMatchesPerson(string value, IQueryEntities entities,
             IEnumerable<Expression<Func<Person, object>>> eagerLoad = null)
         {
             Person person;
-            return ValueMatchesPerson(value, queryProcessor, eagerLoad, out person);
+            return ValueMatchesPerson(value, entities, eagerLoad, out person);
         }
 
-        public static bool ValueMatchesPerson(string value, IProcessQueries queryProcessor, out Person person)
+        public static bool ValueMatchesPerson(string value, IQueryEntities entities, out Person person)
         {
-            return ValueMatchesPerson(value, queryProcessor, null, out person);
+            return ValueMatchesPerson(value, entities, null, out person);
         }
 
         #endregion
@@ -75,22 +69,16 @@ namespace UCosmic.Domain.People
         public const string FailedBecauseNumberAndPrincipalMatchedNoEntity =
             "Email with number '{0}' could not be found for user {1}.";
 
-        public static bool NumberAndPrincipalMatchesEntity(int number, IPrincipal principal, IProcessQueries queryProcessor,
+        public static bool NumberAndPrincipalMatchesEntity(int number, IPrincipal principal, IQueryEntities entities,
             out EmailAddress entity)
         {
-            if (queryProcessor == null)
+            if (entities == null)
             {
                 entity = null;
                 return false;
             }
 
-            entity = queryProcessor.Execute(
-                new GetMyEmailAddressByNumberQuery
-                {
-                    Principal = principal,
-                    Number = number,
-                }
-            );
+            entity = entities.Read<EmailAddress>().ByUserNameAndNumber(principal.Identity.Name, number);
 
             // return true (valid) if there is an entity
             return entity != null;

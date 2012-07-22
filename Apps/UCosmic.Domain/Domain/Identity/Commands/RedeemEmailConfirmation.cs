@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using FluentValidation;
 using UCosmic.Domain.People;
 
@@ -14,14 +15,10 @@ namespace UCosmic.Domain.Identity
 
     public class RedeemEmailConfirmationHandler : IHandleCommands<RedeemEmailConfirmationCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
 
-        public RedeemEmailConfirmationHandler(IProcessQueries queryProcessor
-            , ICommandEntities entities
-        )
+        public RedeemEmailConfirmationHandler(ICommandEntities entities)
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
         }
 
@@ -30,16 +27,19 @@ namespace UCosmic.Domain.Identity
             if (command == null) throw new ArgumentNullException("command");
 
             // get the confirmation
-            var confirmation = _queryProcessor.Execute(
-                new GetEmailConfirmationQuery(command.Token)
-            );
+            var confirmation = _entities.Get2<EmailConfirmation>()
+                .EagerLoad(new Expression<Func<EmailConfirmation, object>>[]
+                {
+                    c => c.EmailAddress
+                }, _entities)
+                .ByToken(command.Token);
 
             // redeem
             if (!confirmation.RedeemedOnUtc.HasValue)
             {
                 confirmation.EmailAddress.IsConfirmed = true;
                 confirmation.RedeemedOnUtc = DateTime.UtcNow;
-                confirmation.Ticket = _queryProcessor.Execute(
+                confirmation.Ticket = GenerateRandomSecretHandler.Handle(
                     new GenerateRandomSecretQuery(256));
                 _entities.Update(confirmation);
             }
@@ -50,7 +50,7 @@ namespace UCosmic.Domain.Identity
 
     public class RedeemEmailConfirmationValidator : AbstractValidator<RedeemEmailConfirmationCommand>
     {
-        public RedeemEmailConfirmationValidator(IProcessQueries queryProcessor)
+        public RedeemEmailConfirmationValidator(IQueryEntities entities)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -62,7 +62,7 @@ namespace UCosmic.Domain.Identity
                     .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenWasEmpty,
                         p => p.Token)
                 // token must match a confirmation
-                .Must(p => ValidateEmailConfirmation.TokenMatchesEntity(p, queryProcessor, out confirmation))
+                .Must(p => ValidateEmailConfirmation.TokenMatchesEntity(p, entities, out confirmation))
                     .WithMessage(ValidateEmailConfirmation.FailedBecauseTokenMatchedNoEntity,
                         p => p.Token)
             ;

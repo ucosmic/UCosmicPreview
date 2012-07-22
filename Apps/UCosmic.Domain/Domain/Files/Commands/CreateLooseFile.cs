@@ -12,13 +12,11 @@ namespace UCosmic.Domain.Files
 
     public class CreateLooseFileHandler : IHandleCommands<CreateLooseFileCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
         private readonly IUnitOfWork _unitOfWork;
 
-        public CreateLooseFileHandler(IProcessQueries queryProcessor, ICommandEntities entities, IUnitOfWork unitOfWork)
+        public CreateLooseFileHandler(ICommandEntities entities, IUnitOfWork unitOfWork)
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
             _unitOfWork = unitOfWork;
         }
@@ -37,8 +35,8 @@ namespace UCosmic.Domain.Files
 
             _entities.Create(entity);
             _unitOfWork.SaveChanges();
-            command.CreatedLooseFile = _queryProcessor.Execute(
-                new GetLooseFileByGuidQuery(entity.EntityId));
+            command.CreatedLooseFile = _entities.Read<LooseFile>()
+                .By(entity.EntityId);
         }
     }
 }

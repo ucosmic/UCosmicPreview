@@ -65,7 +65,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
             {
                 // only check the db when the entity id is present
                 //var establishment = _establishments.FindOne(By<Establishment>.EntityId(entityId.Value));
-                var establishment = _queryProcessor.Execute(new GetEstablishmentByGuidQuery(entityId.Value));
+                var establishment = _queryProcessor.Execute(new EstablishmentByGuid(entityId.Value));
                 if (establishment == null) return HttpNotFound();
                 model = Mapper.Map<EstablishmentForm>(establishment);
             }

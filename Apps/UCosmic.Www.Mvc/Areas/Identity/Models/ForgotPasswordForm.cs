@@ -32,7 +32,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public const string FailedBecauseUserNameMatchedNoLocalMember = "A user account for the email address '{0}' could not be found.";
         public const string FailedBecauseEduPersonTargetedIdWasNotEmpty = "Your password cannot be reset because you have a Single Sign On account {0}.";
 
-        public ForgotPasswordValidator(IProcessQueries queryProcessor, IStorePasswords passwords)
+        public ForgotPasswordValidator(IQueryEntities entities, IStorePasswords passwords)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -60,7 +60,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     .WithMessage(FailedBecauseEmailAddressWasNotValidEmailAddress)
 
                 // must match an establishment
-                .Must(p => ValidateEstablishment.EmailMatchesEntity(p, queryProcessor, loadEstablishment, out establishment))
+                .Must(p => ValidateEstablishment.EmailMatchesEntity(p, entities, loadEstablishment, out establishment))
                     .WithMessage(FailedBecauseUserNameMatchedNoLocalMember,
                         p => p.EmailAddress)
 
@@ -75,7 +75,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                         p => p.EmailAddress.GetEmailDomain())
 
                 // must match a person
-                .Must(p => ValidateEmailAddress.ValueMatchesPerson(p, queryProcessor, loadPerson, out person))
+                .Must(p => ValidateEmailAddress.ValueMatchesPerson(p, entities, loadPerson, out person))
                     .WithMessage(FailedBecauseUserNameMatchedNoLocalMember,
                         p => p.EmailAddress)
 

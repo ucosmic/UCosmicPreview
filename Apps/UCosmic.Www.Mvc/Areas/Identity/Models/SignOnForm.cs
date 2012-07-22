@@ -42,7 +42,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public const string FailedBecauseEmailAddressIsNotValidEmailAddress = "Please enter a valid email address.";
         public const string FailedBecauseEstablishmentIsNotEligible = "Sorry, but the email address \"{0}\" is not eligible at this time.";
 
-        public SignOnValidator(IProcessQueries queryProcessor)
+        public SignOnValidator(IQueryEntities entities)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
@@ -55,7 +55,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 .EmailAddress()
                     .WithMessage(FailedBecauseEmailAddressIsNotValidEmailAddress)
                 // establishment must exist
-                .Must(p => ValidateEstablishment.EmailMatchesEntity(p, queryProcessor, out establishment))
+                .Must(p => ValidateEstablishment.EmailMatchesEntity(p, entities, out establishment))
                     .WithMessage(FailedBecauseEstablishmentIsNotEligible,
                         p => p.EmailAddress)
                 // establishment must be a member

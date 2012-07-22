@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
@@ -40,11 +39,12 @@ namespace UCosmic.Domain.Identity
             {
                 var command = new RedeemEmailConfirmationCommand
                 {
-                    Token = Guid.NewGuid()
+                    Token = Guid.NewGuid(),
+                    
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
-                    Command = command,
+                    EmailConfirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword),
                 };
                 var validator = CreateValidator(scenarioOptions);
 
@@ -74,7 +74,6 @@ namespace UCosmic.Domain.Identity
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
-                    Command = command, 
                     EmailConfirmation = confirmation,
                 };
                 var validator = CreateValidator(scenarioOptions);
@@ -106,7 +105,6 @@ namespace UCosmic.Domain.Identity
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
-                    Command = command,
                     EmailConfirmation = confirmation,
                 };
                 var validator = CreateValidator(scenarioOptions);
@@ -137,7 +135,6 @@ namespace UCosmic.Domain.Identity
                 };
                 var scenarioOptions = new ScenarioOptions
                 {
-                    Command = command,
                     EmailConfirmation = confirmation,
                 };
                 var validator = CreateValidator(scenarioOptions);
@@ -225,7 +222,6 @@ namespace UCosmic.Domain.Identity
                 var scenarioOptions = new ScenarioOptions
                 {
                     EmailConfirmation = confirmation,
-                    Command = command,
                 };
                 var validator = CreateValidator(scenarioOptions);
 
@@ -258,7 +254,6 @@ namespace UCosmic.Domain.Identity
                 var scenarioOptions = new ScenarioOptions
                 {
                     EmailConfirmation = confirmation,
-                    Command = command,
                 };
                 var validator = CreateValidator(scenarioOptions);
 
@@ -300,7 +295,6 @@ namespace UCosmic.Domain.Identity
                 var scenarioOptions = new ScenarioOptions
                 {
                     EmailConfirmation = confirmation,
-                    Command = command,
                 };
                 var validator = CreateValidator(scenarioOptions);
 
@@ -333,7 +327,6 @@ namespace UCosmic.Domain.Identity
                 var scenarioOptions = new ScenarioOptions
                 {
                     EmailConfirmation = confirmation,
-                    Command = command,
                 };
                 var validator = CreateValidator(scenarioOptions);
 
@@ -359,24 +352,16 @@ namespace UCosmic.Domain.Identity
 
         private class ScenarioOptions
         {
-            internal RedeemEmailConfirmationCommand Command { get; set; }
             internal EmailConfirmation EmailConfirmation { get; set; }
         }
 
         private static RedeemEmailConfirmationValidator CreateValidator(ScenarioOptions scenarioOptions = null)
         {
             scenarioOptions = scenarioOptions ?? new ScenarioOptions();
-            var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-            queryProcessor.Setup(m => m
-                .Execute(It.Is(ConfirmationQueryBasedOn(scenarioOptions.Command))))
-                .Returns(scenarioOptions.EmailConfirmation);
-            return new RedeemEmailConfirmationValidator(queryProcessor.Object);
-        }
-
-        private static Expression<Func<GetEmailConfirmationQuery, bool>> ConfirmationQueryBasedOn(RedeemEmailConfirmationCommand command)
-        {
-            Expression<Func<GetEmailConfirmationQuery, bool>> confirmationQueryBasedOn = q => q.Token == command.Token;
-            return confirmationQueryBasedOn;
+            var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
+            entities.Setup(m => m.Read<EmailConfirmation>())
+                .Returns(new[] { scenarioOptions.EmailConfirmation }.AsQueryable);
+            return new RedeemEmailConfirmationValidator(entities.Object);
         }
     }
 }

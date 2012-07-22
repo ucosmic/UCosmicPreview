@@ -89,9 +89,12 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 Links.content.kml.establishment_import_tsv)));
             //var placeFactory = new PlaceFactory(_entityQueries, _objectCommander, _geoPlanet, _geoNames, _config);
             //var en = new LanguageFinder(_entityQueries).FindOne(LanguageBy.IsoCode("en"));
-            var en = _queryProcessor.Execute(new GetLanguageByIsoCodeQuery { IsoCode = "en" });
+            //var en = _queryProcessor.Execute(new GetLanguageByIsoCodeQuery { IsoCode = "en" });
+            var en = _entities.Get2<Language>().SingleOrDefault(x => x.TwoLetterIsoCode.Equals("en", StringComparison.OrdinalIgnoreCase));
             //var university = new EstablishmentTypeFinder(_entityQueries).FindOne(EstablishmentTypeBy.EnglishName("University"));
-            var university = _queryProcessor.Execute(new GetEstablishmentTypeByEnglishNameQuery("University"));
+            //university = _queryProcessor.Execute(new GetEstablishmentTypeByEnglishNameQuery("University"));
+            var university = _entities.Get2<EstablishmentType>().SingleOrDefault(x => 
+                x.EnglishName.Equals("University", StringComparison.OrdinalIgnoreCase));
 
             foreach (var placeMark in placeMarks)
             {

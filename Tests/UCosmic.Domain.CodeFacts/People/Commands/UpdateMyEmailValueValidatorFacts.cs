@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
@@ -95,10 +93,10 @@ namespace UCosmic.Domain.People
                 const string principalIdentityName = "user@domain.";
                 var principal = principalIdentityName.AsPrincipal();
                 var command = new UpdateMyEmailValueCommand { Principal = principal };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command)))).Returns(null as User);
-                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command)))).Returns(null as EmailAddress);
-                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<User>()).Returns(new User[] { }.AsQueryable);
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
+                var validator = new UpdateMyEmailValueValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -119,10 +117,11 @@ namespace UCosmic.Domain.People
                 const string principalIdentityName = "user@domain.tld";
                 var principal = principalIdentityName.AsPrincipal();
                 var command = new UpdateMyEmailValueCommand { Principal = principal };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command)))).Returns(new User());
-                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command)))).Returns(null as EmailAddress);
-                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
+                var user = new User { Name = principal.Identity.Name };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<User>()).Returns(new[] { user }.AsQueryable);
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
+                var validator = new UpdateMyEmailValueValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -146,12 +145,10 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                     Number = 11,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(null as User);
-                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command))))
-                    .Returns(null as EmailAddress);
-                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<User>()).Returns(new User[] { }.AsQueryable);
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
+                var validator = new UpdateMyEmailValueValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -177,17 +174,22 @@ namespace UCosmic.Domain.People
                     Number = 1,
                     NewValue = principalIdentityName.ToUpper(),
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(null as User);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(EmailQueryBasedOn(command))))
-                    .Returns(new EmailAddress
+                var emailAddress = new EmailAddress
+                {
+                    Number = command.Number,
+                    Value = command.NewValue,
+                    Person = new Person
                     {
-                        Value = command.NewValue,
-                    });
-                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
+                        User = new User
+                        {
+                            Name = principal.Identity.Name,
+                        },
+                    },
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                entities.Setup(m => m.Read<User>()).Returns(new User[] { }.AsQueryable);
+                var validator = new UpdateMyEmailValueValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -204,14 +206,10 @@ namespace UCosmic.Domain.People
                     Number = 1,
                     NewValue = principalIdentityName.ToUpper(),
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(null as User);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(EmailQueryBasedOn(command))))
-                    .Returns(null as EmailAddress);
-                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<User>()).Returns(new User[] { }.AsQueryable);
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
+                var validator = new UpdateMyEmailValueValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -278,10 +276,9 @@ namespace UCosmic.Domain.People
             public void IsInvalidWhen_FailsEmailAddressRegex()
             {
                 var command = new UpdateMyEmailValueCommand { NewValue = "user@domain.", };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command))))
-                    .Returns(null as EmailAddress);
-                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
+                var validator = new UpdateMyEmailValueValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -306,14 +303,21 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                     NewValue = "user@domain.tld",
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(UserQueryBasedOn(command))))
-                    .Returns(null as User);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(EmailQueryBasedOn(command))))
-                    .Returns(new EmailAddress { Value = "user@domain2.tld" });
-                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
+                var emailAddress = new EmailAddress
+                {
+                    Value = "user@domain2.tld",
+                    Person = new Person
+                    {
+                        User = new User
+                        {
+                            Name = principal.Identity.Name,
+                        },
+                    },
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<User>()).Returns(new User[] { }.AsQueryable);
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                var validator = new UpdateMyEmailValueValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -332,10 +336,10 @@ namespace UCosmic.Domain.People
             public void IsValidWhen_MatchesPreviousSpelling_CaseInsensitively()
             {
                 var command = new UpdateMyEmailValueCommand { NewValue = "User@Domain.Tld", };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command))))
-                    .Returns(new EmailAddress { Value = "user@domain.tld" });
-                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
+                var emailAddress = new EmailAddress { Value = "user@domain.tld" };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                var validator = new UpdateMyEmailValueValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -349,33 +353,15 @@ namespace UCosmic.Domain.People
             public void IsValidWhen_EmailAddressWasNull()
             {
                 var command = new UpdateMyEmailValueCommand { NewValue = "User@Domain.Tld", };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(EmailQueryBasedOn(command))))
-                    .Returns(null as EmailAddress);
-                var validator = new UpdateMyEmailValueValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
+                var validator = new UpdateMyEmailValueValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "NewValue");
                 error.ShouldBeNull();
             }
-        }
-
-        private static Expression<Func<GetUserByNameQuery, bool>> UserQueryBasedOn(UpdateMyEmailValueCommand command)
-        {
-            Expression<Func<GetUserByNameQuery, bool>> userByPrincipalIdentityName = q =>
-                q.Name == command.Principal.Identity.Name
-            ;
-            return userByPrincipalIdentityName;
-        }
-
-        private static Expression<Func<GetMyEmailAddressByNumberQuery, bool>> EmailQueryBasedOn(UpdateMyEmailValueCommand command)
-        {
-            Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailQueryBasedOn = q =>
-                q.Principal == command.Principal &&
-                q.Number == command.Number
-            ;
-            return emailQueryBasedOn;
         }
     }
 }

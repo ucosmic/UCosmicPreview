@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Web;
 using FluentValidation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
+using UCosmic.Domain;
 using UCosmic.Domain.People;
 using UCosmic.Impl;
 
@@ -68,13 +68,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     Token = Guid.NewGuid(),
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(null as EmailConfirmation);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>()).Returns(new EmailConfirmation[] { }.AsQueryable);
                 var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
                 passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(queryProcessor.Object, passwords.Object);
+                var validator = CreateValidator(entities.Object, passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -92,17 +90,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void IsValidWhen_MatchesEntity()
             {
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword);
                 var validated = new ResetPasswordForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = confirmation.Token,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(new EmailConfirmation(EmailConfirmationIntent.ResetPassword));
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
                 var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
                 passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(queryProcessor.Object, passwords.Object);
+                var validator = CreateValidator(entities.Object, passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -213,13 +210,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 {
                     Password = "123456",
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(new EmailConfirmation(EmailConfirmationIntent.ResetPassword));
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
                 var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
                 passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
-                var validator = CreateValidator(queryProcessor.Object, passwords.Object);
+                var validator = CreateValidator(entities.Object, passwords.Object);
 
                 var results = validator.Validate(validated);
 
@@ -395,9 +391,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             }
         }
 
-        private static ResetPasswordValidator CreateValidator(IProcessQueries queryProcessor = null, IStorePasswords passwords = null)
+        private static ResetPasswordValidator CreateValidator(IQueryEntities entities = null, IStorePasswords passwords = null)
         {
-            return new ResetPasswordValidator(queryProcessor, passwords);
+            return new ResetPasswordValidator(entities, passwords);
         }
 
         private static ResetPasswordValidator CreateValidator(IStorePasswords passwords)
@@ -405,9 +401,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             return new ResetPasswordValidator(null, passwords);
         }
 
-        private static Expression<Func<GetEmailConfirmationQuery, bool>> ConfirmationQueryBasedOn(ResetPasswordForm validated)
-        {
-            return q => q.Token == validated.Token;
-        }
+        //private static Expression<Func<GetEmailConfirmationQuery, bool>> ConfirmationQueryBasedOn(ResetPasswordForm validated)
+        //{
+        //    return q => q.Token == validated.Token;
+        //}
     }
 }

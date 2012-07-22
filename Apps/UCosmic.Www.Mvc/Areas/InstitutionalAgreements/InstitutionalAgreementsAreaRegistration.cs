@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers;
+using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 {
@@ -14,6 +15,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
         {
             ManagementFormsRouteMapper.RegisterRoutes(context);
             ManagementFormsModelMapper.RegisterProfiles();
+            InstitutionalAgreementProfiler.RegisterProfiles();
+            InstitutionalAgreementContactProfiler.RegisterProfiles();
 
             ConfigurationFormsRouteMapper.RegisterRoutes(context);
             ConfigurationFormsModelMapper.RegisterProfiles();

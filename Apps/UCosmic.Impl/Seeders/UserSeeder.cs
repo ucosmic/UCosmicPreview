@@ -38,9 +38,10 @@ namespace UCosmic.Impl.Seeders
                 };
                 EnsureUser("Daniel.Ludwig@uc.edu;ludwigd@ucmail.uc.edu;ludwigd@uc.edu;Daniel.Ludwig@ucmail.uc.edu", "Dan", "Ludwig", "www.uc.edu",
                             developerRoles);
-                var queryProcessor = ServiceProviderLocator.Current.GetService<IProcessQueries>();
-                var findByEmailQuery = new GetPersonByEmailQuery { Email = "Daniel.Ludwig@ucmail.uc.edu" };
-                queryProcessor.Execute(findByEmailQuery).GetEmail("Daniel.Ludwig@ucmail.uc.edu").IsConfirmed = false;
+                var entities = ServiceProviderLocator.Current.GetService<ICommandEntities>();
+                //var findByEmailQuery = new GetPersonByEmailQuery { Email = "Daniel.Ludwig@ucmail.uc.edu" };
+                //queryProcessor.Execute(findByEmailQuery).GetEmail("Daniel.Ludwig@ucmail.uc.edu").IsConfirmed = false;
+                entities.Get2<EmailAddress>().Single(e => e.Value.Equals("Daniel.Ludwig@ucmail.uc.edu")).IsConfirmed = false;
                 Context.SaveChanges(); // make 1 of ludwigd's email addresses unconfirmed
 
                 EnsureUser("sodhiha1@uc.edu", "Haritma", "Sodhi", "www.uc.edu", developerRoles);

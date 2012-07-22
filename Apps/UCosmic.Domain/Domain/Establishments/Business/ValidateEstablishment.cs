@@ -11,7 +11,7 @@ namespace UCosmic.Domain.Establishments
         public const string FailedBecauseIdMatchedNoEntity =
             "Establishment with id '{0}' could not be found.";
 
-        public static bool IdMatchesEntity(int id, IProcessQueries queryProcessor,
+        public static bool IdMatchesEntity(int id, IQueryEntities entities,
             IEnumerable<Expression<Func<Establishment, object>>> eagerLoad, out Establishment entity)
         {
             if (id < 0)
@@ -20,27 +20,23 @@ namespace UCosmic.Domain.Establishments
                 return false;
             }
 
-            entity = queryProcessor.Execute(
-                new GetEstablishmentByIdQuery(id)
-                {
-                    EagerLoad = eagerLoad,
-                }
-            );
+            entity = entities.Read<Establishment>()
+                .EagerLoad(eagerLoad, entities).By(id);
 
             // return true (valid) if there is an entity
             return entity != null;
         }
 
-        public static bool IdMatchesEntity(int id, IProcessQueries queryProcessor,
+        public static bool IdMatchesEntity(int id, IQueryEntities entities,
             IEnumerable<Expression<Func<Establishment, object>>> eagerLoad = null)
         {
             Establishment entity;
-            return IdMatchesEntity(id, queryProcessor, eagerLoad, out entity);
+            return IdMatchesEntity(id, entities, eagerLoad, out entity);
         }
 
-        public static bool IdMatchesEntity(int id, IProcessQueries queryProcessor, out Establishment entity)
+        public static bool IdMatchesEntity(int id, IQueryEntities entities, out Establishment entity)
         {
-            return IdMatchesEntity(id, queryProcessor, null, out entity);
+            return IdMatchesEntity(id, entities, null, out entity);
         }
 
         #endregion
@@ -49,30 +45,25 @@ namespace UCosmic.Domain.Establishments
         public const string FailedBecauseEmailMatchedNoEntity =
             "Establishment for email '{0}' could not be found.";
 
-        public static bool EmailMatchesEntity(string email, IProcessQueries queryProcessor,
+        public static bool EmailMatchesEntity(string email, IQueryEntities entities,
             IEnumerable<Expression<Func<Establishment, object>>> eagerLoad, out Establishment entity)
         {
-            entity = queryProcessor.Execute(
-                new GetEstablishmentByEmailQuery(email)
-                {
-                    EagerLoad = eagerLoad,
-                }
-            );
+            entity = entities.Read<Establishment>().EagerLoad(eagerLoad, entities).ByEmail(email);
 
             // return true (valid) if there is an entity
             return entity != null;
         }
 
-        public static bool EmailMatchesEntity(string email, IProcessQueries queryProcessor,
+        public static bool EmailMatchesEntity(string email, IQueryEntities entities,
             IEnumerable<Expression<Func<Establishment, object>>> eagerLoad = null)
         {
             Establishment entity;
-            return EmailMatchesEntity(email, queryProcessor, eagerLoad, out entity);
+            return EmailMatchesEntity(email, entities, eagerLoad, out entity);
         }
 
-        public static bool EmailMatchesEntity(string email, IProcessQueries queryProcessor, out Establishment entity)
+        public static bool EmailMatchesEntity(string email, IQueryEntities entities, out Establishment entity)
         {
-            return EmailMatchesEntity(email, queryProcessor, null, out entity);
+            return EmailMatchesEntity(email, entities, null, out entity);
         }
 
         #endregion

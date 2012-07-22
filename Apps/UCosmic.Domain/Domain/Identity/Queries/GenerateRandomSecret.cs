@@ -3,9 +3,9 @@ using System.Security.Cryptography;
 
 namespace UCosmic.Domain.Identity
 {
-    public class GenerateRandomSecretQuery : IDefineQuery<string>
+    internal class GenerateRandomSecretQuery : IDefineQuery<string>
     {
-        public GenerateRandomSecretQuery(int minimumLength, int maximumLength)
+        internal GenerateRandomSecretQuery(int minimumLength, int maximumLength)
         {
             if (minimumLength < 1)
                 throw new ArgumentException(
@@ -18,7 +18,7 @@ namespace UCosmic.Domain.Identity
             MaximumLength = maximumLength;
         }
 
-        public GenerateRandomSecretQuery(int exactLength)
+        internal GenerateRandomSecretQuery(int exactLength)
             : this(exactLength, exactLength)
         {
         }
@@ -27,9 +27,9 @@ namespace UCosmic.Domain.Identity
         internal int MaximumLength { get; private set; }
     }
 
-    public class GenerateRandomSecretHandler : IHandleQueries<GenerateRandomSecretQuery, string>
+    internal class GenerateRandomSecretHandler
     {
-        public string Handle(GenerateRandomSecretQuery query)
+        internal static string Handle(GenerateRandomSecretQuery query)
         {
             if (query == null) throw new ArgumentNullException("query");
 

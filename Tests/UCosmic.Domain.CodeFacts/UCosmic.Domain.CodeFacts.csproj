@@ -79,7 +79,7 @@
     <Compile Include="Identity\Commands\SendConfirmEmailMessageHandlerFacts.cs" />
     <Compile Include="Identity\Commands\SendConfirmEmailMessageValidatorFacts.cs" />
     <Compile Include="Establishments\Queries\GetEstablishmentByIdHandlerFacts.cs" />
-    <Compile Include="_Deprecated\_InterfaceQueryEntitiesExtensions.cs" />
+    <Compile Include="Etc\EagerLoadingTestExtensions.cs" />
     <Compile Include="_Deprecated\_RevisableEntityFinderFacts.cs" />
     <Compile Include="_Deprecated\_RevisableEntityQueryCriteriaFacts.cs" />
     <Compile Include="_Deprecated\_EntityFinderFacts.cs" />
@@ -128,7 +128,6 @@
     <Compile Include="People\Entities\EmailConfirmationFacts.cs" />
     <Compile Include="People\Entities\EmailMessageFacts.cs" />
     <Compile Include="People\Entities\PersonFacts.cs" />
-    <Compile Include="People\Queries\GetPersonByIdHandlerFacts.cs" />
     <Compile Include="People\Queries\GetMyAffiliationByEstablishmentIdHandlerFacts.cs" />
     <Compile Include="People\Queries\GetMyEmailAddressByNumberHandlerFacts.cs" />
     <Compile Include="People\Queries\GetPersonByEmailHandlerFacts.cs" />

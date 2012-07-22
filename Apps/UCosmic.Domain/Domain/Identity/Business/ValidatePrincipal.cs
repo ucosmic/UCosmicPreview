@@ -29,35 +29,31 @@ namespace UCosmic.Domain.Identity
         public const string FailedBecauseIdentityNameMatchedNoUser =
             "The principal identity name '{0}' does not have a user account.";
 
-        public static bool IdentityNameMatchesUser(IPrincipal principal, IProcessQueries queryProcessor, IEnumerable<Expression<Func<User, object>>> eagerLoad, out User entity)
+        public static bool IdentityNameMatchesUser(IPrincipal principal, IQueryEntities entities, IEnumerable<Expression<Func<User, object>>> eagerLoad, out User entity)
         {
-            if (queryProcessor == null)
+            if (entities == null)
             {
                 entity = null;
                 return false;
             }
 
-            entity = queryProcessor.Execute(
-                new GetUserByNameQuery
-                {
-                    Name = principal.Identity.Name,
-                    EagerLoad = eagerLoad,
-                }
-            );
+            entity = entities.Read<User>()
+                .EagerLoad(eagerLoad, entities)
+                .ByName(principal.Identity.Name);
 
             // return true (valid) if there is an entity
             return entity != null;
         }
 
-        public static bool IdentityNameMatchesUser(IPrincipal principal, IProcessQueries queryProcessor, IEnumerable<Expression<Func<User, object>>> eagerLoad = null)
+        public static bool IdentityNameMatchesUser(IPrincipal principal, IQueryEntities entities, IEnumerable<Expression<Func<User, object>>> eagerLoad = null)
         {
             User entity;
-            return IdentityNameMatchesUser(principal, queryProcessor, eagerLoad, out entity);
+            return IdentityNameMatchesUser(principal, entities, eagerLoad, out entity);
         }
 
-        public static bool IdentityNameMatchesUser(IPrincipal principal, IProcessQueries queryProcessor, out User entity)
+        public static bool IdentityNameMatchesUser(IPrincipal principal, IQueryEntities entities, out User entity)
         {
-            return IdentityNameMatchesUser(principal, queryProcessor, null, out entity);
+            return IdentityNameMatchesUser(principal, entities, null, out entity);
         }
 
         #endregion

@@ -33,7 +33,7 @@ namespace UCosmic.Www.Mvc.Areas.Roles
         {
             var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
-            var role = db.Queries.Get<Role>().SingleOrDefault(r => TestRoleName.Equals(r.Name));
+            var role = db.Commands.Get2<Role>().SingleOrDefault(r => TestRoleName.Equals(r.Name));
             if (role == null) return;
             db.Commands.Purge(role);
             db.UnitOfWork.SaveChanges();

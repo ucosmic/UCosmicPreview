@@ -81,7 +81,6 @@
     <Compile Include="Domain\Activities\Queries\FindTenantActivitiesByKeyword.cs" />
     <Compile Include="Domain\Activities\Queries\FindMyActivities.cs" />
     <Compile Include="Domain\Activities\Queries\GetMyActivityByNumber.cs" />
-    <Compile Include="Domain\Activities\Queries\FindActivitiesWithPersonId.cs" />
     <Compile Include="Api\CaseInsensitiveStringComparer.cs" />
     <Compile Include="Api\ExtensionMethods.cs" />
     <Compile Include="Api\IAmNumbered.cs" />
@@ -113,19 +112,18 @@
     <Compile Include="Api\SamlAttributeNameString.cs" />
     <Compile Include="Api\StringMatchStrategy.cs" />
     <Compile Include="Api\UnicodeToAsciiConverter.cs" />
+    <Compile Include="Domain\Establishments\Business\QueryEstablishmentUrls.cs" />
     <Compile Include="Domain\Establishments\Business\QueryEstablishmentNames.cs" />
     <Compile Include="Domain\Establishments\Commands\UpdateEstablishmentHierarchy.cs" />
     <Compile Include="Domain\Establishments\Entities\EmailTemplateName.cs" />
-    <Compile Include="Domain\Establishments\Queries\GetEstablishmentTypeByEnglishName.cs" />
     <Compile Include="Domain\Establishments\Queries\FindAllEstablishmentTypes.cs" />
     <Compile Include="Domain\Establishments\Queries\FindEstablishmentsWithGuids.cs" />
     <Compile Include="Domain\Establishments\Queries\FindAllEstablishments.cs" />
-    <Compile Include="Domain\Establishments\Queries\GetEstablishmentByGuid.cs" />
+    <Compile Include="Domain\Establishments\Queries\EstablishmentByGuid.cs" />
     <Compile Include="Domain\Establishments\Queries\GetEstablishmentByUrl.cs" />
     <Compile Include="Domain\Establishments\Queries\FindEstablishmentsWithName.cs" />
     <Compile Include="Domain\Files\Commands\PurgeLooseFile.cs" />
     <Compile Include="Domain\Files\Commands\CreateLooseFile.cs" />
-    <Compile Include="Domain\Files\Queries\GetLooseFileByGuid.cs" />
     <Compile Include="Domain\Identity\Business\QuerySubjectNameIdentifiers.cs" />
     <Compile Include="Domain\Identity\Business\QueryEduPersonScopedAffiliations.cs" />
     <Compile Include="Domain\Identity\Commands\GrantRoleToUser.cs" />
@@ -135,10 +133,15 @@
     <Compile Include="Domain\Identity\Commands\ReceiveSamlAuthnResponse.cs" />
     <Compile Include="Domain\Identity\Commands\RedeemEmailConfirmation.cs" />
     <Compile Include="Domain\Identity\Commands\SendEmailMessage.cs" />
-    <Compile Include="Domain\Identity\Queries\GetRoleByGuid.cs" />
     <Compile Include="Domain\Identity\Queries\GetRoleBySlug.cs" />
     <Compile Include="Domain\Identity\Queries\FindAllRoles.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Business\QueryInstitutionalAgreements.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Commands\AddParticipantToAgreement.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Commands\AddContactToAgreement.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Commands\AttachFileToAgreement.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Commands\DetachFileFromAgreement.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Commands\RemoveContactFromAgreement.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Commands\RemoveParticipantFromAgreement.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Commands\UpdateInstitutionalAgreementConfiguration.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Commands\UpdateInstitutionalAgreementHierarchy.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\GetInstitutionalAgreementConfigurationByGuid.cs" />
@@ -151,13 +154,10 @@
     <Compile Include="Domain\InstitutionalAgreements\Queries\FindMyInstitutionalAgreements.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\GetInstitutionalAgreementByGuid.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Commands\CreateOrUpdateInstitutionalAgreement.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\Queries\GetInstitutionalAgreementById.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Commands\UpdateInstitutionalAgreementHierarchies.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Entities\InstitutionalAgreementVisibility.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\Queries\FindRootInstitutionalAgreementsWithChildren.cs" />
     <Compile Include="Domain\Languages\Business\QueryLanguages.cs" />
     <Compile Include="Domain\Languages\Queries\FindAllLanguages.cs" />
-    <Compile Include="Domain\Languages\Queries\GetLanguageByIsoCode.cs" />
     <Compile Include="Domain\People\Business\ValidateEmailConfirmation.cs" />
     <Compile Include="Domain\People\Entities\EmailConfirmationIntent.cs" />
     <Compile Include="Domain\People\Queries\GetMyPerson.cs" />
@@ -166,7 +166,6 @@
     <Compile Include="Domain\Establishments\Business\QueryEmailTemplates.cs" />
     <Compile Include="Domain\Establishments\Queries\GetEmailTemplateByName.cs" />
     <Compile Include="Domain\People\Queries\ComposeEmailMessage.cs" />
-    <Compile Include="Domain\People\Queries\GetEmailMessageByNumber.cs" />
     <Compile Include="Domain\Establishments\Business\ValidateEstablishment.cs" />
     <Compile Include="Domain\Identity\Commands\SendSignUpMessage.cs" />
     <Compile Include="Domain\Establishments\Queries\GetEstablishmentById.cs" />
@@ -190,7 +189,6 @@
     <Compile Include="_Deprecated\_RevisableEntityQueryCriteria.cs" />
     <Compile Include="Domain\Establishments\Commands\UpdateEstablishmentHierarchies.cs" />
     <Compile Include="Domain\Establishments\Entities\InstitutionInfo.cs" />
-    <Compile Include="Domain\Establishments\Queries\FindRootEstablishmentsWithChildren.cs" />
     <Compile Include="Domain\Establishments\Queries\FindSamlIntegratedEstablishments.cs" />
     <Compile Include="Domain\Establishments\Commands\UpdateSamlSignOnInfo.cs" />
     <Compile Include="Domain\Establishments\Business\QueryEstablishments.cs" />
@@ -200,7 +198,7 @@
     <Compile Include="_Deprecated\_EstablishmentFinder.cs" />
     <Compile Include="Domain\Establishments\Queries\GetEstablishmentByEmail.cs" />
     <Compile Include="Domain\Establishments\Commands\UpdateSamlSignOnMetadata.cs" />
-    <Compile Include="Domain\Establishments\Queries\GetEstablishmentBySamlEntityId.cs" />
+    <Compile Include="Domain\Establishments\Queries\EstablishmentBySamlEntityId.cs" />
     <Compile Include="Domain\Establishments\Queries\ReceiveSaml2Response.cs" />
     <Compile Include="_Deprecated\_FileFactory.cs" />
     <Compile Include="Domain\Files\Entities\LooseFile.cs" />
@@ -210,8 +208,7 @@
     <Compile Include="Domain\Identity\Queries\AutoCompleteUsersByName.cs" />
     <Compile Include="Domain\Identity\Queries\FindRolesGrantedToUserName.cs" />
     <Compile Include="Domain\Identity\Queries\GenerateRandomSecret.cs" />
-    <Compile Include="Domain\Identity\Queries\GetUserByEduPersonTargetedId.cs" />
-    <Compile Include="Domain\Identity\Queries\GetUserByEntityId.cs" />
+    <Compile Include="Domain\Identity\Queries\UserByEntityId.cs" />
     <Compile Include="Domain\Identity\Queries\GetUserByName.cs" />
     <Compile Include="Domain\Identity\Business\QueryUsers.cs" />
     <Compile Include="Domain\Identity\Business\QueryRoleGrants.cs" />
@@ -240,7 +237,6 @@
     <Compile Include="Domain\People\Queries\FindPeopleWithFirstName.cs" />
     <Compile Include="Domain\People\Queries\FindPeopleWithEmail.cs" />
     <Compile Include="Domain\People\Queries\GetPersonByGuid.cs" />
-    <Compile Include="Domain\People\Queries\GetPersonById.cs" />
     <Compile Include="Domain\People\Queries\GetMyAffiliationByEstablishmentId.cs" />
     <Compile Include="Domain\People\Queries\FindDistinctSuffixes.cs" />
     <Compile Include="Domain\People\Queries\FindDistinctSalutations.cs" />
@@ -341,7 +337,9 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Domain\Files\Queries\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

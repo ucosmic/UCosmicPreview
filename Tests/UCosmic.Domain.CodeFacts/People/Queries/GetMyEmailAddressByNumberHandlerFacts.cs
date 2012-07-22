@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq.Expressions;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
@@ -43,16 +43,17 @@ namespace UCosmic.Domain.People
                 {
                     Principal = principal,
                 };
-                Expression<Func<GetUserByNameQuery, bool>> userByNameQuery = q =>
-                    q.Name == query.Principal.Identity.Name;
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(p => p.Execute(It.Is(userByNameQuery)))
-                    .Returns(null as User);
-                var handler = new GetMyEmailAddressByNumberHandler(queryProcessor.Object);
+                var emailAddress = new EmailAddress
+                {
+                    Person = new Person { User = new User { Name = principal.Identity.Name, }, },
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                var handler = new GetMyEmailAddressByNumberHandler(entities.Object);
 
                 handler.Handle(query);
 
-                queryProcessor.Verify(m => m.Execute(It.Is(userByNameQuery)), Times.Once());
+                entities.Verify(m => m.Read<EmailAddress>(), Times.Once());
             }
 
             [TestMethod]
@@ -62,12 +63,13 @@ namespace UCosmic.Domain.People
                 {
                     Principal = null,
                 };
-                Expression<Func<GetUserByNameQuery, bool>> userByNameQuery = q =>
-                    q.Name == query.Principal.Identity.Name;
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(p => p.Execute(It.Is(userByNameQuery)))
-                    .Returns(null as User);
-                var handler = new GetMyEmailAddressByNumberHandler(queryProcessor.Object);
+                var emailAddress = new EmailAddress
+                {
+                    Person = new Person { User = new User { Name = "", }, },
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                var handler = new GetMyEmailAddressByNumberHandler(entities.Object);
                 NullReferenceException exception = null;
 
                 try
@@ -79,7 +81,6 @@ namespace UCosmic.Domain.People
                     exception = ex;
                 }
 
-                queryProcessor.Verify(m => m.Execute(It.Is(userByNameQuery)), Times.Never());
                 exception.ShouldNotBeNull();
             }
 
@@ -92,12 +93,13 @@ namespace UCosmic.Domain.People
                 {
                     Principal = principal,
                 };
-                Expression<Func<GetUserByNameQuery, bool>> userByNameQuery = q =>
-                    q.Name == query.Principal.Identity.Name;
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(p => p.Execute(It.Is(userByNameQuery)))
-                    .Returns(null as User);
-                var handler = new GetMyEmailAddressByNumberHandler(queryProcessor.Object);
+                var emailAddress = new EmailAddress
+                {
+                    Person = new Person { User = new User { Name = "someone else", }, },
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                var handler = new GetMyEmailAddressByNumberHandler(entities.Object);
 
                 var result = handler.Handle(query);
 
@@ -114,23 +116,27 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                     Number = 1,
                 };
-                Expression<Func<GetUserByNameQuery, bool>> userByNameQuery = q =>
-                    q.Name == query.Principal.Identity.Name;
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(p => p.Execute(It.Is(userByNameQuery)))
-                    .Returns(new User
+                var emailAddresses = new[]
+                {
+                    new EmailAddress
                     {
-                        Person = new Person
-                        {
-                            Emails = new[]
-                            {
-                                new EmailAddress { Number = 2 },
-                                new EmailAddress { Number = 3 },
-                                new EmailAddress { Number = 4 },
-                            }
-                        }
-                    });
-                var handler = new GetMyEmailAddressByNumberHandler(queryProcessor.Object);
+                        Number = 2,
+                        Person = new Person { User = new User { Name = principal.Identity.Name, }, },
+                    },
+                    new EmailAddress
+                    {
+                        Number = 3,
+                        Person = new Person { User = new User { Name = principal.Identity.Name, }, },
+                    },
+                    new EmailAddress
+                    {
+                        Number = 4,
+                        Person = new Person { User = new User { Name = principal.Identity.Name, }, },
+                    },
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(emailAddresses.AsQueryable);
+                var handler = new GetMyEmailAddressByNumberHandler(entities.Object);
 
                 var result = handler.Handle(query);
 
@@ -147,23 +153,27 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                     Number = 1,
                 };
-                Expression<Func<GetUserByNameQuery, bool>> userByNameQuery = q =>
-                    q.Name == query.Principal.Identity.Name;
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(p => p.Execute(It.Is(userByNameQuery)))
-                    .Returns(new User
+                var emailAddresses = new[]
+                {
+                    new EmailAddress
                     {
-                        Person = new Person
-                        {
-                            Emails = new[]
-                            {
-                                new EmailAddress { Number = 1 },
-                                new EmailAddress { Number = 3 },
-                                new EmailAddress { Number = 4 },
-                            }
-                        }
-                    });
-                var handler = new GetMyEmailAddressByNumberHandler(queryProcessor.Object);
+                        Number = 1,
+                        Person = new Person { User = new User { Name = principal.Identity.Name, }, },
+                    },
+                    new EmailAddress
+                    {
+                        Number = 3,
+                        Person = new Person { User = new User { Name = principal.Identity.Name, }, },
+                    },
+                    new EmailAddress
+                    {
+                        Number = 4,
+                        Person = new Person { User = new User { Name = principal.Identity.Name, }, },
+                    },
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailAddress>()).Returns(emailAddresses.AsQueryable);
+                var handler = new GetMyEmailAddressByNumberHandler(entities.Object);
 
                 var result = handler.Handle(query);
 

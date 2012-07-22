@@ -12,12 +12,10 @@ namespace UCosmic.Domain.Activities
 
     public class CreateMyNewActivityHandler : IHandleCommands<CreateMyNewActivityCommand>
     {
-        private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
 
-        public CreateMyNewActivityHandler(IProcessQueries queryProcessor, ICommandEntities entities)
+        public CreateMyNewActivityHandler(ICommandEntities entities)
         {
-            _queryProcessor = queryProcessor;
             _entities = entities;
         }
 
@@ -25,15 +23,14 @@ namespace UCosmic.Domain.Activities
         {
             if (command == null) throw new ArgumentNullException("command");
 
-            var person = _queryProcessor.Execute(
-                new GetMyPersonQuery(command.Principal));
+            //var person = _queryProcessor.Execute(
+            //    new GetMyPersonQuery(command.Principal));
+            var person = _entities.Get2<Person>()
+                .ByUserName(command.Principal.Identity.Name);
 
-            var otherActivities = _queryProcessor.Execute(
-                new FindActivitiesWithPersonIdQuery
-                {
-                    PersonId = person.RevisionId,
-                }
-            );
+            var otherActivities = _entities.Read<Activity>()
+                .WithPersonId(person.RevisionId)
+            ;
 
             var activity = new Activity
             {

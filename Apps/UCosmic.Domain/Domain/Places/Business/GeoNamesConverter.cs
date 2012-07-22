@@ -159,7 +159,7 @@ namespace UCosmic.Domain.Places
         //    return placeName;
         //}
 
-        internal static PlaceName ToEntity(this GeoNamesAlternateName geoNamesAlternateName, IProcessQueries queryProcessor)
+        internal static PlaceName ToEntity(this GeoNamesAlternateName geoNamesAlternateName, ICommandEntities entities)
         {
             if (geoNamesAlternateName == null) return null;
 
@@ -167,12 +167,13 @@ namespace UCosmic.Domain.Places
 
             if (!string.IsNullOrWhiteSpace(placeName.TranslationToHint))
             {
-                placeName.TranslationToLanguage = queryProcessor.Execute(
-                    new GetLanguageByIsoCodeQuery
-                    {
-                        IsoCode = placeName.TranslationToHint,
-                    }
-                );
+                //placeName.TranslationToLanguage = queryProcessor.Execute(
+                //    new GetLanguageByIsoCodeQuery
+                //    {
+                //        IsoCode = placeName.TranslationToHint,
+                //    }
+                //);
+                placeName.TranslationToLanguage = entities.Get2<Language>().ByIsoCode(placeName.TranslationToHint);
             }
 
             return placeName;
@@ -188,12 +189,12 @@ namespace UCosmic.Domain.Places
         //    return placeNames;
         //}
 
-        internal static ICollection<PlaceName> ToEntities(this IEnumerable<GeoNamesAlternateName> geoNamesAlternateNames, IProcessQueries queryProcessor)
+        internal static ICollection<PlaceName> ToEntities(this IEnumerable<GeoNamesAlternateName> geoNamesAlternateNames, ICommandEntities entities)
         {
             if (geoNamesAlternateNames == null) return null;
 
             var placeNames = new List<PlaceName>();
-            geoNamesAlternateNames.ToList().ForEach(n => placeNames.Add(n.ToEntity(queryProcessor)));
+            geoNamesAlternateNames.ToList().ForEach(n => placeNames.Add(n.ToEntity(entities)));
 
             return placeNames;
         }

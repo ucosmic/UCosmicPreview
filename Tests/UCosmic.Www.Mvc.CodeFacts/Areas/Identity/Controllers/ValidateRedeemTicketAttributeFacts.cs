@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
+using System.Linq;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
+using UCosmic.Domain;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 
@@ -66,13 +67,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 const string paramName = "some value";
                 const EmailConfirmationIntent intent = EmailConfirmationIntent.ResetPassword;
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(Guid.Empty))))
-                    .Returns(new EmailConfirmation(EmailConfirmationIntent.CreatePassword));
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>())
+                    .Returns(new[] { new EmailConfirmation(EmailConfirmationIntent.CreatePassword) }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
-                    QueryProcessor = queryProcessor.Object,
+                    Entities = entities.Object,
                 };
                 var filterContext = CreateFilterContext(paramName, Guid.Empty);
 
@@ -88,13 +88,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const string paramName = "some value";
                 const EmailConfirmationIntent intent = EmailConfirmationIntent.CreatePassword;
                 var tokenValue = Guid.NewGuid();
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(tokenValue))))
-                    .Returns(null as EmailConfirmation);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>())
+                    .Returns(new EmailConfirmation[] { }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
-                    QueryProcessor = queryProcessor.Object,
+                    Entities = entities.Object,
                 };
                 var filterContext = CreateFilterContext(paramName, tokenValue);
 
@@ -102,9 +101,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 filterContext.Result.ShouldNotBeNull();
                 filterContext.Result.ShouldBeType<HttpNotFoundResult>();
-                queryProcessor.Verify(m => m.
-                    Execute(It.Is(ConfirmationQueryBasedOn(tokenValue))),
-                    Times.Once());
+                entities.Verify(m => m.Read<EmailConfirmation>(), Times.Once());
             }
 
             [TestMethod]
@@ -116,13 +113,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddSeconds(-5),
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
-                    .Returns(confirmation);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>())
+                    .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
-                    QueryProcessor = queryProcessor.Object,
+                    Entities = entities.Object,
                 };
                 var filterContext = CreateFilterContext(paramName, confirmation.Token);
 
@@ -149,13 +145,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
                     RetiredOnUtc = DateTime.UtcNow.AddSeconds(-5),
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
-                    .Returns(confirmation);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>())
+                    .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
-                    QueryProcessor = queryProcessor.Object,
+                    Entities = entities.Object,
                 };
                 var filterContext = CreateFilterContext(paramName, confirmation.Token);
 
@@ -184,13 +179,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),
                     Ticket = ticket,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
-                    .Returns(confirmation);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>())
+                    .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
-                    QueryProcessor = queryProcessor.Object,
+                    Entities = entities.Object,
                 };
                 var controller = new ConfirmEmailController(null);
                 controller.TempData.EmailConfirmationTicket(ticket);
@@ -218,13 +212,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
-                    .Returns(confirmation);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>())
+                    .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
-                    QueryProcessor = queryProcessor.Object,
+                    Entities = entities.Object,
                 };
                 var controller = new ConfirmEmailController(null);
                 var filterContext = CreateFilterContext(paramName, confirmation.Token, controller);
@@ -253,13 +246,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),
                     Ticket = ticket,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
-                    .Returns(confirmation);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>())
+                    .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
-                    QueryProcessor = queryProcessor.Object,
+                    Entities = entities.Object,
                 };
                 var controller = new ConfirmEmailController(null);
                 controller.TempData.EmailConfirmationTicket("a different ticket value");
@@ -289,13 +281,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     RedeemedOnUtc = DateTime.UtcNow.AddSeconds(-5),
                     Ticket = ticket,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(confirmation.Token))))
-                    .Returns(confirmation);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>())
+                    .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
-                    QueryProcessor = queryProcessor.Object,
+                    Entities = entities.Object,
                 };
                 var controller = new ConfirmEmailController(null);
                 controller.TempData.EmailConfirmationTicket(ticket);
@@ -331,11 +322,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 filterContext.Setup(p => p.Controller).Returns(forController);
 
             return filterContext.Object;
-        }
-
-        private static Expression<Func<GetEmailConfirmationQuery, bool>> ConfirmationQueryBasedOn(Guid tokenValue)
-        {
-            return q => q.Token == tokenValue;
         }
     }
 }

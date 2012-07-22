@@ -57,7 +57,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             // redirect after sign on
             var establishment = _services.QueryProcessor.Execute(
-                new GetEstablishmentBySamlEntityIdQuery
+                new EstablishmentBySamlEntityId
                 {
                     SamlEntityId = samlResponse.IssuerNameIdentifier,
                 }

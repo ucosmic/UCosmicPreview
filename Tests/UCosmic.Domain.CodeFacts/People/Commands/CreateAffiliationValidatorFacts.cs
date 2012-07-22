@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
@@ -20,12 +18,10 @@ namespace UCosmic.Domain.People
             {
                 const int establishmentId = 6;
                 var command = new CreateAffiliationCommand { EstablishmentId = establishmentId };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(EstablishmentQueryBasedOn(command))))
-                    .Returns(null as Establishment);
-                queryProcessor.Setup(m => m.Execute(It.Is(PersonQueryBasedOn(command))))
-                    .Returns(null as Person);
-                var validator = new CreateAffiliationValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -45,22 +41,21 @@ namespace UCosmic.Domain.People
             {
                 const int establishmentId = 6;
                 var command = new CreateAffiliationCommand { EstablishmentId = establishmentId };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(EstablishmentQueryBasedOn(command))))
-                    .Returns(new Establishment
+                var establishment = new Establishment
+                {
+                    RevisionId = command.EstablishmentId,
+                    Type = new EstablishmentType
                     {
-                        RevisionId = command.EstablishmentId,
-                        Type = new EstablishmentType
+                        Category = new EstablishmentCategory
                         {
-                            Category = new EstablishmentCategory
-                            {
-                                Code = EstablishmentCategoryCode.Govt,
-                            },
+                            Code = EstablishmentCategoryCode.Govt,
                         },
-                    });
-                queryProcessor.Setup(m => m.Execute(It.Is(PersonQueryBasedOn(command))))
-                    .Returns(null as Person);
-                var validator = new CreateAffiliationValidator(queryProcessor.Object);
+                    },
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -76,25 +71,24 @@ namespace UCosmic.Domain.People
             public void IsInvalidWhen_IsTrue_ButEstablishmentIsNotInstitution()
             {
                 const bool isClaimingStudent = true;
+                var establishment = new Establishment
+                {
+                    Type = new EstablishmentType
+                    {
+                        Category = new EstablishmentCategory
+                        {
+                            Code = "not an institution",
+                        },
+                    },
+                };
                 var command = new CreateAffiliationCommand
                 {
                     IsClaimingStudent = isClaimingStudent
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(EstablishmentQueryBasedOn(command))))
-                    .Returns(new Establishment
-                    {
-                        Type = new EstablishmentType
-                        {
-                            Category = new EstablishmentCategory
-                            {
-                                Code = "not an institution",
-                            },
-                        },
-                    });
-                queryProcessor.Setup(m => m.Execute(It.Is(PersonQueryBasedOn(command))))
-                    .Returns(null as Person);
-                var validator = new CreateAffiliationValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -117,21 +111,20 @@ namespace UCosmic.Domain.People
                 {
                     IsClaimingStudent = isClaimingStudent
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(EstablishmentQueryBasedOn(command))))
-                    .Returns(new Establishment
+                var establishment = new Establishment
+                {
+                    Type = new EstablishmentType
                     {
-                        Type = new EstablishmentType
+                        Category = new EstablishmentCategory
                         {
-                            Category = new EstablishmentCategory
-                            {
-                                Code = EstablishmentCategoryCode.Inst,
-                            },
+                            Code = EstablishmentCategoryCode.Inst,
                         },
-                    });
-                queryProcessor.Setup(m => m.Execute(It.Is(PersonQueryBasedOn(command))))
-                    .Returns(null as Person);
-                var validator = new CreateAffiliationValidator(queryProcessor.Object);
+                    },
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -147,12 +140,10 @@ namespace UCosmic.Domain.People
                 {
                     IsClaimingStudent = isClaimingStudent
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(EstablishmentQueryBasedOn(command))))
-                    .Returns(null as Establishment);
-                queryProcessor.Setup(m => m.Execute(It.Is(PersonQueryBasedOn(command))))
-                    .Returns(null as Person);
-                var validator = new CreateAffiliationValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -169,12 +160,10 @@ namespace UCosmic.Domain.People
             {
                 const int personId = 3;
                 var command = new CreateAffiliationCommand { PersonId = personId };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(PersonQueryBasedOn(command))))
-                    .Returns(null as Person);
-                queryProcessor.Setup(m => m.Execute(It.Is(EstablishmentQueryBasedOn(command))))
-                    .Returns(null as Establishment);
-                var validator = new CreateAffiliationValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -199,18 +188,18 @@ namespace UCosmic.Domain.People
                     PersonId = personId,
                     EstablishmentId = establishmentId,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(PersonQueryBasedOn(command))))
-                    .Returns(new Person
+                var person = new Person
+                {
+                    RevisionId = personId,
+                    Affiliations = new[]
                     {
-                        Affiliations = new[]
-                        {
-                            new Affiliation { EstablishmentId = command.EstablishmentId }
-                        }
-                    });
-                queryProcessor.Setup(m => m.Execute(It.Is(EstablishmentQueryBasedOn(command))))
-                    .Returns(null as Establishment);
-                var validator = new CreateAffiliationValidator(queryProcessor.Object);
+                        new Affiliation { EstablishmentId = command.EstablishmentId }
+                    }
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Read<Person>()).Returns(new[] { person }.AsQueryable);
+                var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
@@ -235,39 +224,24 @@ namespace UCosmic.Domain.People
                     PersonId = personId,
                     EstablishmentId = establishmentId,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m.Execute(It.Is(PersonQueryBasedOn(command))))
-                    .Returns(new Person
+                var person = new Person
+                {
+                    RevisionId = personId,
+                    Affiliations = new[]
                     {
-                        Affiliations = new[]
-                        {
-                            new Affiliation { EstablishmentId = 1 }
-                        }
-                    });
-                queryProcessor.Setup(m => m.Execute(It.Is(EstablishmentQueryBasedOn(command))))
-                    .Returns(null as Establishment);
-                var validator = new CreateAffiliationValidator(queryProcessor.Object);
+                        new Affiliation { EstablishmentId = 1 }
+                    }
+                };
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Read<Person>()).Returns(new[] { person }.AsQueryable);
+                var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
 
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "PersonId");
                 error.ShouldBeNull();
             }
-        }
-
-        private static Expression<Func<GetEstablishmentByIdQuery, bool>> EstablishmentQueryBasedOn(CreateAffiliationCommand command)
-        {
-            Expression<Func<GetEstablishmentByIdQuery, bool>> establishmentQueryBasedOn = q =>
-                q.Id == command.EstablishmentId;
-            return establishmentQueryBasedOn;
-        }
-
-        private static Expression<Func<GetPersonByIdQuery, bool>> PersonQueryBasedOn(CreateAffiliationCommand command)
-        {
-            Expression<Func<GetPersonByIdQuery, bool>> personQueryBasedOn = q =>
-                q.Id == command.PersonId
-            ;
-            return personQueryBasedOn;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Threading;
 using UCosmic.Domain.People;
 
@@ -39,13 +40,13 @@ namespace UCosmic.Domain.Identity
             {
                 if (_retryCount > 1) Thread.Sleep(300);
 
-                emailMessage = _queryProcessor.Execute(
-                    new GetEmailMessageByNumberQuery
+                var person = _entities.Get2<Person>()
+                    .EagerLoad(new Expression<Func<Person, object>>[]
                     {
-                        PersonId = command.PersonId,
-                        Number = command.MessageNumber,
-                    }
-                );
+                        p => p.Messages,
+                    }, _entities)
+                    .By(command.PersonId);
+                emailMessage = person != null ? person.GetMessage(command.MessageNumber) : null;
             }
             if (emailMessage == null)
             {

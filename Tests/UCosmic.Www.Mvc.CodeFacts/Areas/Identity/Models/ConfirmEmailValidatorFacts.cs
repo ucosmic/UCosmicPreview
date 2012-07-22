@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
+using UCosmic.Domain;
 using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
@@ -85,11 +85,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Token = Guid.NewGuid(),
                     SecretCode = "secret",
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(null as EmailConfirmation);
-                var validator = new ConfirmEmailValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>()).Returns(new EmailConfirmation[] { }.AsQueryable);
+                var validator = new ConfirmEmailValidator(entities.Object);
 
                 var results = validator.Validate(validated);
 
@@ -112,11 +110,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     SecretCode = "secret",
                     Intent = EmailConfirmationIntent.CreatePassword,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(new EmailConfirmation(EmailConfirmationIntent.ResetPassword));
-                var validator = new ConfirmEmailValidator(queryProcessor.Object);
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
+                var validator = new ConfirmEmailValidator(entities.Object);
 
                 var results = validator.Validate(validated);
 
@@ -133,20 +130,19 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void IsInvalidWhen_IsIncorrect()
             {
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
+                {
+                    SecretCode = "secret2",
+                };
                 var validated = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = confirmation.Token,
                     SecretCode = "secret1",
                     Intent = EmailConfirmationIntent.ResetPassword,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(new EmailConfirmation(EmailConfirmationIntent.ResetPassword)
-                    {
-                        SecretCode = "secret2",
-                    });
-                var validator = new ConfirmEmailValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
+                var validator = new ConfirmEmailValidator(entities.Object);
 
                 var results = validator.Validate(validated);
 
@@ -163,31 +159,25 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void IsValidWhen_IsCorrect_AndConfirmationIsNotRedeemed()
             {
+                var confirmation = new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
+                {
+                    SecretCode = "secret1",
+                };
                 var validated = new ConfirmEmailForm
                 {
-                    Token = Guid.NewGuid(),
+                    Token = confirmation.Token,
                     SecretCode = "secret1",
                     Intent = EmailConfirmationIntent.CreatePassword,
                 };
-                var queryProcessor = new Mock<IProcessQueries>(MockBehavior.Strict);
-                queryProcessor.Setup(m => m
-                    .Execute(It.Is(ConfirmationQueryBasedOn(validated))))
-                    .Returns(new EmailConfirmation(EmailConfirmationIntent.CreatePassword)
-                    {
-                        SecretCode = "secret1",
-                    });
-                var validator = new ConfirmEmailValidator(queryProcessor.Object);
+                var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
+                entities.Setup(m => m.Read<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
+                var validator = new ConfirmEmailValidator(entities.Object);
 
                 var results = validator.Validate(validated);
 
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
                 error.ShouldBeNull();
             }
-        }
-
-        private static Expression<Func<GetEmailConfirmationQuery, bool>> ConfirmationQueryBasedOn(ConfirmEmailForm validated)
-        {
-            return q => q.Token == validated.Token;
         }
     }
 }
