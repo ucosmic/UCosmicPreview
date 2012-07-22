@@ -185,7 +185,7 @@
     <Compile Include="Api\IUnitOfWork.cs" />
     <Compile Include="_Deprecated\_EntityQueryCriteria.cs" />
     <Compile Include="_Deprecated\_RevisableEntityFinder.cs" />
-    <Compile Include="Api\RevisableEntityQueries.cs" />
+    <Compile Include="_Deprecated\_RevisableEntityQueries.cs" />
     <Compile Include="_Deprecated\_RevisableEntityQueryCriteria.cs" />
     <Compile Include="Domain\Establishments\Commands\UpdateEstablishmentHierarchies.cs" />
     <Compile Include="Domain\Establishments\Entities\InstitutionInfo.cs" />
