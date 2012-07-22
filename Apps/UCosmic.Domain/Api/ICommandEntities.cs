@@ -5,7 +5,7 @@ namespace UCosmic
 {
     public interface ICommandEntities : IQueryEntities
     {
-        IQueryable<TEntity> Get2<TEntity>() where TEntity : Entity;
+        IQueryable<TEntity> Get<TEntity>() where TEntity : Entity;
         void Create<TEntity>(TEntity entity) where TEntity : Entity;
         void Update<TEntity>(TEntity entity) where TEntity : Entity;
         void Purge<TEntity>(TEntity entity) where TEntity : Entity;

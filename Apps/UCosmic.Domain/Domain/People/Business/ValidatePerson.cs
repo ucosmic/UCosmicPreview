@@ -26,7 +26,7 @@ namespace UCosmic.Domain.People
                 return false;
             }
 
-            entity = entities.Read<Person>()
+            entity = entities.Query<Person>()
                 .EagerLoad(eagerLoad, entities).By(id);
 
             // return true (valid) if there is an entity

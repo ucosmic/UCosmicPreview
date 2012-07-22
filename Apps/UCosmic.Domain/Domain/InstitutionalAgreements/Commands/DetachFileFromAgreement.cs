@@ -38,7 +38,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             if (command == null) throw new ArgumentNullException("command");
 
             // todo: this should be FindByPrimaryKey
-            var entity = _entities.Get2<InstitutionalAgreementFile>()
+            var entity = _entities.Get<InstitutionalAgreementFile>()
                 .SingleOrDefault(x =>
                     x.EntityId == command.FileGuid &&
                     x.Agreement.EntityId == command.AgreementGuid

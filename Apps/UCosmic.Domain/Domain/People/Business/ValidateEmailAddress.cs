@@ -33,7 +33,7 @@ namespace UCosmic.Domain.People
                 return false;
             }
 
-            person = entities.Read<Person>().EagerLoad(eagerLoad, entities).ByEmail(value);
+            person = entities.Query<Person>().EagerLoad(eagerLoad, entities).ByEmail(value);
 
             // return true (valid) if there is an entity
             return person != null;
@@ -78,7 +78,7 @@ namespace UCosmic.Domain.People
                 return false;
             }
 
-            entity = entities.Read<EmailAddress>().ByUserNameAndNumber(principal.Identity.Name, number);
+            entity = entities.Query<EmailAddress>().ByUserNameAndNumber(principal.Identity.Name, number);
 
             // return true (valid) if there is an entity
             return entity != null;

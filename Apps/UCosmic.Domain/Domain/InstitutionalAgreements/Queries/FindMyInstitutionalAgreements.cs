@@ -28,7 +28,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var queryable = _entities.Read<InstitutionalAgreement>()
+            var queryable = _entities.Query<InstitutionalAgreement>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ForTenantUser(query.Principal)
                 .OrderBy(query.OrderBy);

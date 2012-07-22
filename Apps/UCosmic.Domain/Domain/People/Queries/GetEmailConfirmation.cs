@@ -26,7 +26,7 @@ namespace UCosmic.Domain.People
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            return _entities.Read<EmailConfirmation>()
+            return _entities.Query<EmailConfirmation>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByToken(query.Token);
         }

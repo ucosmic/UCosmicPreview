@@ -29,7 +29,7 @@ namespace UCosmic.Domain.People
             command.ChangedState = false;
 
             // get the email address
-            var email = _entities.Get2<EmailAddress>()
+            var email = _entities.Get<EmailAddress>()
                 .ByUserNameAndNumber(command.Principal.Identity.Name, command.Number);
 
             // only process matching email

@@ -16,7 +16,7 @@ namespace UCosmic.Impl.Seeders
 
             var emailsExploded = emails.Explode(";").ToArray();
             var defaultEmail = emailsExploded.First();
-            var emailAddress = entities.Get2<EmailAddress>()
+            var emailAddress = entities.Get<EmailAddress>()
                 .SingleOrDefault(e => e.Value.Equals(defaultEmail, StringComparison.OrdinalIgnoreCase));
             var person = (emailAddress != null) ? emailAddress.Person : null;
             //var person = queryProcessor.Execute(

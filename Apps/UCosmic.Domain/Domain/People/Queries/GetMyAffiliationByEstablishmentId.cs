@@ -23,7 +23,7 @@ namespace UCosmic.Domain.People
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            return _entities.Read<Affiliation>()
+            return _entities.Query<Affiliation>()
                 .EagerLoad(new Expression<Func<Affiliation, object>>[]
                 {
                     a => a.Person,

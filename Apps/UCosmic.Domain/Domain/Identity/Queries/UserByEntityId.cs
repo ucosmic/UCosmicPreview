@@ -18,7 +18,7 @@ namespace UCosmic.Domain.Identity
 
         public User Handle(UserByEntityId query)
         {
-            return _entities.Read<User>()
+            return _entities.Query<User>()
                 .By(query.EntityId)
             ;
         }

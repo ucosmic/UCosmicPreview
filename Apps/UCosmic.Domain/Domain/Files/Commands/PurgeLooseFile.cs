@@ -28,7 +28,7 @@ namespace UCosmic.Domain.Files
         {
             if (command == null) throw new ArgumentNullException("command");
 
-            var entity = _entities.Get2<LooseFile>()
+            var entity = _entities.Get<LooseFile>()
                 .ById(command.Guid);
 
             if (entity == null) return;

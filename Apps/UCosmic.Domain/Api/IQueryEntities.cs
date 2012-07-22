@@ -9,7 +9,7 @@ namespace UCosmic
     {
         //IQueryable<TEntity> Get1<TEntity>() where TEntity : Entity;
 
-        IQueryable<TEntity> Read<TEntity>() where TEntity : Entity;
+        IQueryable<TEntity> Query<TEntity>() where TEntity : Entity;
 
         TEntity FindByPrimaryKey<TEntity>(params object[] primaryKeyValues)
             where TEntity : Entity;

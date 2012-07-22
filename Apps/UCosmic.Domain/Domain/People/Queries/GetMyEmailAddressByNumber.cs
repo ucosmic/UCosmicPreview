@@ -22,7 +22,7 @@ namespace UCosmic.Domain.People
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            return _entities.Read<EmailAddress>()
+            return _entities.Query<EmailAddress>()
                 .ByUserNameAndNumber(query.Principal.Identity.Name, query.Number);
         }
     }

@@ -36,7 +36,7 @@ namespace UCosmic.Domain.Places
             if (query == null) throw new ArgumentNullException("query");
 
             // first look in the db
-            var place = _entities.Get2<Place>()
+            var place = _entities.Get<Place>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByGeoNameId(query.GeoNameId)
             ;

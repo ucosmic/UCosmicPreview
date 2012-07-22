@@ -27,7 +27,7 @@ namespace UCosmic.Domain.Establishments
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            return _entities.Read<Establishment>()
+            return _entities.Query<Establishment>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByUrl(query.Url)
             ;

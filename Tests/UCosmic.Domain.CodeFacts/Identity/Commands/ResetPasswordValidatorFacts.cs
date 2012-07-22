@@ -770,7 +770,7 @@ namespace UCosmic.Domain.Identity
             scenarioOptions = scenarioOptions ?? new ScenarioOptions();
             var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
             if (scenarioOptions.Command != null)
-                entities.Setup(m => m.Read<EmailConfirmation>())
+                entities.Setup(m => m.Query<EmailConfirmation>())
                     .Returns(new[] { scenarioOptions.EmailConfirmation }.AsQueryable);
             var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
             passwords.Setup(p => p.MinimumPasswordLength).Returns(scenarioOptions.MinimumPasswordLength);

@@ -173,7 +173,7 @@ namespace UCosmic.Domain.Places
                 //        IsoCode = placeName.TranslationToHint,
                 //    }
                 //);
-                placeName.TranslationToLanguage = entities.Get2<Language>().ByIsoCode(placeName.TranslationToHint);
+                placeName.TranslationToLanguage = entities.Get<Language>().ByIsoCode(placeName.TranslationToHint);
             }
 
             return placeName;

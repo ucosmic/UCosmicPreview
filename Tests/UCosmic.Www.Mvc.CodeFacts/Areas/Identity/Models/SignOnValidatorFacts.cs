@@ -105,7 +105,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             {
                 const string emailAddress = "email@domain.tld";
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
                 var validator = new SignOnValidator(entities.Object);
                 var model = new SignOnForm { EmailAddress = emailAddress };
                 var results = validator.Validate(model);
@@ -129,7 +129,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     EmailDomains = new[] { new EstablishmentEmailDomain { Value = "@domain.tld", } }
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new[] { establishment }.AsQueryable);
                 var validator = new SignOnValidator(entities.Object);
                 var model = new SignOnForm { EmailAddress = emailAddress };
                 var results = validator.Validate(model);
@@ -152,7 +152,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     EmailDomains = new[] { new EstablishmentEmailDomain { Value = "@domain.tld", } }
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new[] { establishment }.AsQueryable);
                 var validator = new SignOnValidator(entities.Object);
                 var model = new SignOnForm { EmailAddress = "email@domain.tld" };
                 var results = validator.Validate(model);

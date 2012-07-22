@@ -15,7 +15,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity
 
             var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
-            var person = db.Commands.Get2<Person>()
+            var person = db.Commands.Get<Person>()
                 .Single(p => UpdateNameEvents.Any1AtUsilDotEduDotPe.Equals(p.User.Name));
             person.DefaultAffiliation.IsAcknowledged = false;
             person.DefaultAffiliation.JobTitles = "Dir. Co. XPR-4";

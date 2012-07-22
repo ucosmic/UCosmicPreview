@@ -34,7 +34,7 @@ namespace UCosmic.Domain.People
             if (command == null) throw new ArgumentNullException("command");
 
             // get the person for the principal
-            var user = _entities.Get2<User>()
+            var user = _entities.Get<User>()
                 .EagerLoad(new Expression<Func<User, object>>[]
                 {
                     u => u.Person,

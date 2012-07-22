@@ -31,7 +31,7 @@ namespace UCosmic.Domain.Identity
         {
             if (command == null) throw new ArgumentNullException("command");
 
-            var grant = _entities.Get2<RoleGrant>().SingleOrDefault(g =>
+            var grant = _entities.Get<RoleGrant>().SingleOrDefault(g =>
                 g.Role.EntityId == command.RoleGuid &&
                 g.User.EntityId == command.UserGuid);
 

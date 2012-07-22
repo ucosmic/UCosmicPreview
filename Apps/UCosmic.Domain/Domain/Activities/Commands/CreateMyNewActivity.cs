@@ -25,10 +25,10 @@ namespace UCosmic.Domain.Activities
 
             //var person = _queryProcessor.Execute(
             //    new GetMyPersonQuery(command.Principal));
-            var person = _entities.Get2<Person>()
+            var person = _entities.Get<Person>()
                 .ByUserName(command.Principal.Identity.Name);
 
-            var otherActivities = _entities.Read<Activity>()
+            var otherActivities = _entities.Query<Activity>()
                 .WithPersonId(person.RevisionId)
             ;
 

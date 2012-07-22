@@ -53,7 +53,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             if (command == null) throw new ArgumentNullException("command");
 
             var agreement = command.Agreement ??
-                _entities.Get2<InstitutionalAgreement>()
+                _entities.Get<InstitutionalAgreement>()
                 .EagerLoad(new Expression<Func<InstitutionalAgreement, object>>[]
                 {
                     r => r.Files,
@@ -63,7 +63,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             var file = agreement.Files.SingleOrDefault(g => g.EntityId == command.FileGuid);
             if (file != null) return;
 
-            var looseFile = _entities.Get2<LooseFile>().By(command.FileGuid);
+            var looseFile = _entities.Get<LooseFile>().By(command.FileGuid);
             if (looseFile == null) return;
 
 

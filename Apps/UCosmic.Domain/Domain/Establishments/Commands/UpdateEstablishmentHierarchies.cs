@@ -22,7 +22,7 @@ namespace UCosmic.Domain.Establishments
             if (command == null) throw new ArgumentNullException("command");
 
             // get all root-level establishments with children
-            var establishments = _entities.Get2<Establishment>()
+            var establishments = _entities.Get<Establishment>()
                 .EagerLoad(new Expression<Func<Establishment, object>>[]
                 {
                     e => e.Offspring.Select(o => o.Ancestor.Parent),

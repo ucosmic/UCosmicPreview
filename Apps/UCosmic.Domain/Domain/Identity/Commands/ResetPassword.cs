@@ -30,7 +30,7 @@ namespace UCosmic.Domain.Identity
             if (command == null) throw new ArgumentNullException("command");
 
             // get the confirmation
-            var confirmation = _entities.Get2<EmailConfirmation>()
+            var confirmation = _entities.Get<EmailConfirmation>()
                 .ByToken(command.Token);
 
             _passwords.Reset(confirmation.EmailAddress.Person.User.Name, command.Password);

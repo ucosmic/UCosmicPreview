@@ -48,12 +48,12 @@ namespace UCosmic.Domain.People
                     Person = new Person { User = new User { Name = principal.Identity.Name } }
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
+                entities.Setup(m => m.Query<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 var handler = new GetMyAffiliationByEstablishmentIdHandler(entities.Object);
 
                 handler.Handle(query);
 
-                entities.Verify(m => m.Read<Affiliation>(), Times.Once());
+                entities.Verify(m => m.Query<Affiliation>(), Times.Once());
             }
 
             [TestMethod]
@@ -70,7 +70,7 @@ namespace UCosmic.Domain.People
                     Person = new Person { User = new User { Name = "something else" } },
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
+                entities.Setup(m => m.Query<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 var handler = new GetMyAffiliationByEstablishmentIdHandler(entities.Object);
 
                 var result = handler.Handle(query);
@@ -107,7 +107,7 @@ namespace UCosmic.Domain.People
                     },
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Affiliation>()).Returns(affiliations.AsQueryable);
+                entities.Setup(m => m.Query<Affiliation>()).Returns(affiliations.AsQueryable);
                 var handler = new GetMyAffiliationByEstablishmentIdHandler(entities.Object);
 
                 var result = handler.Handle(query);
@@ -144,7 +144,7 @@ namespace UCosmic.Domain.People
                     },
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Affiliation>()).Returns(affiliations.AsQueryable);
+                entities.Setup(m => m.Query<Affiliation>()).Returns(affiliations.AsQueryable);
                 var handler = new GetMyAffiliationByEstablishmentIdHandler(entities.Object);
 
                 var result = handler.Handle(query);

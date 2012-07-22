@@ -21,7 +21,7 @@ namespace UCosmic.Domain.People
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var results = _entities.Read<Person>()
+            var results = _entities.Query<Person>()
                 .WithNonEmptySalutation()
                 .SelectSalutations()
                 .Distinct()

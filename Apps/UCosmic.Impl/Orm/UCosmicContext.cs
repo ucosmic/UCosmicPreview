@@ -63,12 +63,12 @@ namespace UCosmic.Impl.Orm
         //    return Set<TEntity>();
         //}
 
-        public IQueryable<TEntity> Get2<TEntity>() where TEntity : Entity
+        public IQueryable<TEntity> Get<TEntity>() where TEntity : Entity
         {
             return Set<TEntity>();
         }
 
-        public IQueryable<TEntity> Read<TEntity>() where TEntity : Entity
+        public IQueryable<TEntity> Query<TEntity>() where TEntity : Entity
         {
             return Set<TEntity>().AsNoTracking();
         }

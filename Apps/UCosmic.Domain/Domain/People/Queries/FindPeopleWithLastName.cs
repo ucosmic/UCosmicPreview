@@ -30,7 +30,7 @@ namespace UCosmic.Domain.People
                     new ValidationFailure("Term", "Term cannot be null or white space string", query.Term),
                 });
 
-            var results = _entities.Read<Person>()
+            var results = _entities.Query<Person>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .WithLastName(query.Term, query.TermMatchStrategy)
                 .OrderBy(query.OrderBy)

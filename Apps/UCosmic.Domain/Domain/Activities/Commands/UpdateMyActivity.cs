@@ -22,7 +22,7 @@ namespace UCosmic.Domain.Activities
         {
             if (command == null) throw new ArgumentNullException("command");
 
-            var activity = _entities.Get2<Activity>()
+            var activity = _entities.Get<Activity>()
                 .EagerLoad(new Expression<Func<Activity, object>>[]
                 {
                     t => t.Tags,

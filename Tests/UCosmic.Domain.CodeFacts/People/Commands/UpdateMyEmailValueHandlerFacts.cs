@@ -40,13 +40,13 @@ namespace UCosmic.Domain.People
                 var princial = "".AsPrincipal();
                 var command = new UpdateMyEmailValueCommand { Principal = princial, };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
+                entities.Setup(m => m.Get<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
                 var handler = new UpdateMyEmailValueHandler(entities.Object);
 
                 handler.Handle(command);
 
                 //queryProcessor.Verify(m => m.Execute(It.Is(emailAddressQueryFromCommand)), Times.Once());
-                entities.Verify(m => m.Get2<EmailAddress>(), Times.Once());
+                entities.Verify(m => m.Get<EmailAddress>(), Times.Once());
             }
 
             [TestMethod]
@@ -55,7 +55,7 @@ namespace UCosmic.Domain.People
                 var princial = "".AsPrincipal();
                 var command = new UpdateMyEmailValueCommand { Principal = princial, };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
+                entities.Setup(m => m.Get<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
                 entities.Setup(m => m.Update(It.IsAny<EmailAddress>()));
                 var handler = new UpdateMyEmailValueHandler(entities.Object);
 
@@ -77,7 +77,7 @@ namespace UCosmic.Domain.People
                     Person = new Person { User = new User { Name = princial.Identity.Name } },
                 };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                entities.Setup(m => m.Get<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
                 entities.Setup(m => m.Update(It.IsAny<EmailAddress>()));
                 var handler = new UpdateMyEmailValueHandler(entities.Object);
 
@@ -101,7 +101,7 @@ namespace UCosmic.Domain.People
                 EmailAddress updatedEntity = null;
                 var command = new UpdateMyEmailValueCommand { NewValue = newValue, Principal = princial, };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                entities.Setup(m => m.Get<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is<EmailAddress>(a => a.Value == newValue)))
                     .Callback((Entity entity) => updatedEntity = (EmailAddress)entity);
                 var handler = new UpdateMyEmailValueHandler(entities.Object);

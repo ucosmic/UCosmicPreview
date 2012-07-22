@@ -73,7 +73,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             if (command == null) throw new ArgumentNullException("command");
 
             // start with an agreement entity
-            var entity = _entities.Get2<InstitutionalAgreement>()
+            var entity = _entities.Get<InstitutionalAgreement>()
                 .EagerLoad(new Expression<Func<InstitutionalAgreement, object>>[]
                 {
                     a => a.Umbrella,
@@ -100,7 +100,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             if (command.UmbrellaEntityId.HasValue &&
                 (previousUmbrella == null || previousUmbrella.EntityId != command.UmbrellaEntityId.Value))
             {
-                entity.Umbrella = _entities.Get2<InstitutionalAgreement>().By(command.UmbrellaEntityId.Value);
+                entity.Umbrella = _entities.Get<InstitutionalAgreement>().By(command.UmbrellaEntityId.Value);
                 ++command.ChangeCount;
             }
             else if (previousUmbrella != null && !command.UmbrellaEntityId.HasValue)

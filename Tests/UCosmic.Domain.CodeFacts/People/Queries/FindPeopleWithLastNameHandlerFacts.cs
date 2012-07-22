@@ -131,14 +131,14 @@ namespace UCosmic.Domain.People
                 };
                 var fakes = FakePeople();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.Read<Person>()).Returns(fakes);
+                entities.Setup(p => p.Query<Person>()).Returns(fakes);
                 entities.Setup(m => m.EagerLoad(fakes,
                     It.IsAny<Expression<Func<Person, object>>>())).Returns(fakes);
                 var handler = new FindPeopleWithLastNameHandler(entities.Object);
 
                 handler.Handle(query);
 
-                entities.Verify(p => p.Read<Person>(), Times.Once());
+                entities.Verify(p => p.Query<Person>(), Times.Once());
                 entities.Verify(m => m.EagerLoad(fakes,
                     It.IsAny<Expression<Func<Person, object>>>()),
                         Times.Exactly(query.EagerLoad.Count()));
@@ -159,7 +159,7 @@ namespace UCosmic.Domain.People
                 };
                 var fakes = FakePeople();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.Read<Person>()).Returns(fakes);
+                entities.Setup(p => p.Query<Person>()).Returns(fakes);
                 entities.Setup(m => m.EagerLoad(fakes,
                     It.IsAny<Expression<Func<Person, object>>>())).Returns(fakes);
                 var handler = new FindPeopleWithLastNameHandler(entities.Object);
@@ -184,7 +184,7 @@ namespace UCosmic.Domain.People
                 };
                 var fakes = FakePeople();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.Read<Person>()).Returns(fakes);
+                entities.Setup(p => p.Query<Person>()).Returns(fakes);
                 entities.Setup(m => m.EagerLoad(fakes,
                     It.IsAny<Expression<Func<Person, object>>>())).Returns(fakes);
                 var handler = new FindPeopleWithLastNameHandler(entities.Object);
@@ -206,7 +206,7 @@ namespace UCosmic.Domain.People
                 };
                 var fakes = FakePeople();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.Read<Person>()).Returns(fakes);
+                entities.Setup(p => p.Query<Person>()).Returns(fakes);
                 entities.Setup(m => m.EagerLoad(fakes,
                     It.IsAny<Expression<Func<Person, object>>>())).Returns(fakes);
                 var handler = new FindPeopleWithLastNameHandler(entities.Object);
@@ -232,7 +232,7 @@ namespace UCosmic.Domain.People
                 };
                 var fakes = FakePeople();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.Read<Person>()).Returns(fakes);
+                entities.Setup(p => p.Query<Person>()).Returns(fakes);
                 entities.Setup(m => m.EagerLoad(fakes,
                     It.IsAny<Expression<Func<Person, object>>>())).Returns(fakes);
                 var handler = new FindPeopleWithLastNameHandler(entities.Object);
@@ -254,7 +254,7 @@ namespace UCosmic.Domain.People
                 };
                 var fakes = FakePeople();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.Read<Person>()).Returns(fakes);
+                entities.Setup(p => p.Query<Person>()).Returns(fakes);
                 entities.Setup(m => m.EagerLoad(fakes,
                     It.IsAny<Expression<Func<Person, object>>>())).Returns(fakes);
                 var handler = new FindPeopleWithLastNameHandler(entities.Object);

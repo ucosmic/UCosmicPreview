@@ -31,7 +31,7 @@ namespace UCosmic.Domain.Identity
             if (command == null) throw new ArgumentNullException("command");
 
             // get the confirmation
-            var confirmation = _entities.Get2<EmailConfirmation>()
+            var confirmation = _entities.Get<EmailConfirmation>()
                 .EagerLoad(new Expression<Func<EmailConfirmation, object>>[]
                 {
                     c => c.EmailAddress.Person.User.EduPersonScopedAffiliations,

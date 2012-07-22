@@ -54,7 +54,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             if (command == null) throw new ArgumentNullException("command");
 
             var agreement = command.Agreement ??
-                _entities.Get2<InstitutionalAgreement>()
+                _entities.Get<InstitutionalAgreement>()
                 .EagerLoad(new Expression<Func<InstitutionalAgreement, object>>[]
                 {
                     r => r.Participants,
@@ -65,7 +65,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 x => x.Establishment.EntityId == command.EstablishmentGuid);
             if (participant != null) return;
 
-            var establishment = _entities.Get2<Establishment>()
+            var establishment = _entities.Get<Establishment>()
                 .EagerLoad(new Expression<Func<Establishment, object>>[]
                 {
                     e => e.Affiliates.Select(a => a.Person.User),

@@ -20,7 +20,7 @@ namespace UCosmic.Domain.Places
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var result = _entities.Read<Place>()
+            var result = _entities.Query<Place>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ById(query.Id)
             ;

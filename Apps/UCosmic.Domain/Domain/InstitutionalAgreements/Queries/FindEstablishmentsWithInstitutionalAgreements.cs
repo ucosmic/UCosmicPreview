@@ -29,7 +29,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var queryable = _entities.Read<InstitutionalAgreementParticipant>()
+            var queryable = _entities.Query<InstitutionalAgreementParticipant>()
                 .Where(p => p.IsOwner)
                 .Select(p => p.Establishment)
                 .Distinct()

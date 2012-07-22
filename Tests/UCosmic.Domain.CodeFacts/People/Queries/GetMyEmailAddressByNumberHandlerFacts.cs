@@ -48,12 +48,12 @@ namespace UCosmic.Domain.People
                     Person = new Person { User = new User { Name = principal.Identity.Name, }, },
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                entities.Setup(m => m.Query<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
                 var handler = new GetMyEmailAddressByNumberHandler(entities.Object);
 
                 handler.Handle(query);
 
-                entities.Verify(m => m.Read<EmailAddress>(), Times.Once());
+                entities.Verify(m => m.Query<EmailAddress>(), Times.Once());
             }
 
             [TestMethod]
@@ -68,7 +68,7 @@ namespace UCosmic.Domain.People
                     Person = new Person { User = new User { Name = "", }, },
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                entities.Setup(m => m.Query<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
                 var handler = new GetMyEmailAddressByNumberHandler(entities.Object);
                 NullReferenceException exception = null;
 
@@ -98,7 +98,7 @@ namespace UCosmic.Domain.People
                     Person = new Person { User = new User { Name = "someone else", }, },
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                entities.Setup(m => m.Query<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
                 var handler = new GetMyEmailAddressByNumberHandler(entities.Object);
 
                 var result = handler.Handle(query);
@@ -135,7 +135,7 @@ namespace UCosmic.Domain.People
                     },
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailAddress>()).Returns(emailAddresses.AsQueryable);
+                entities.Setup(m => m.Query<EmailAddress>()).Returns(emailAddresses.AsQueryable);
                 var handler = new GetMyEmailAddressByNumberHandler(entities.Object);
 
                 var result = handler.Handle(query);
@@ -172,7 +172,7 @@ namespace UCosmic.Domain.People
                     },
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailAddress>()).Returns(emailAddresses.AsQueryable);
+                entities.Setup(m => m.Query<EmailAddress>()).Returns(emailAddresses.AsQueryable);
                 var handler = new GetMyEmailAddressByNumberHandler(entities.Object);
 
                 var result = handler.Handle(query);

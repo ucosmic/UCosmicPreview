@@ -19,8 +19,8 @@ namespace UCosmic.Domain.People
                 const int establishmentId = 6;
                 var command = new CreateAffiliationCommand { EstablishmentId = establishmentId };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
-                entities.Setup(m => m.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new Person[] { }.AsQueryable);
                 var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
@@ -53,8 +53,8 @@ namespace UCosmic.Domain.People
                     },
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
-                entities.Setup(m => m.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new Person[] { }.AsQueryable);
                 var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
@@ -86,8 +86,8 @@ namespace UCosmic.Domain.People
                     IsClaimingStudent = isClaimingStudent
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
-                entities.Setup(m => m.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new Person[] { }.AsQueryable);
                 var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
@@ -122,8 +122,8 @@ namespace UCosmic.Domain.People
                     },
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
-                entities.Setup(m => m.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new Person[] { }.AsQueryable);
                 var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
@@ -141,8 +141,8 @@ namespace UCosmic.Domain.People
                     IsClaimingStudent = isClaimingStudent
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
-                entities.Setup(m => m.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new Person[] { }.AsQueryable);
                 var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
@@ -161,8 +161,8 @@ namespace UCosmic.Domain.People
                 const int personId = 3;
                 var command = new CreateAffiliationCommand { PersonId = personId };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
-                entities.Setup(m => m.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new Person[] { }.AsQueryable);
                 var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
@@ -197,8 +197,8 @@ namespace UCosmic.Domain.People
                     }
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
-                entities.Setup(m => m.Read<Person>()).Returns(new[] { person }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new[] { person }.AsQueryable);
                 var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);
@@ -233,8 +233,8 @@ namespace UCosmic.Domain.People
                     }
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
-                entities.Setup(m => m.Read<Person>()).Returns(new[] { person }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new[] { person }.AsQueryable);
                 var validator = new CreateAffiliationValidator(entities.Object);
 
                 var results = validator.Validate(command);

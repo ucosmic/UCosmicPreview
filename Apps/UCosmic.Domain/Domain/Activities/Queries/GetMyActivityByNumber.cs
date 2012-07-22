@@ -22,7 +22,7 @@ namespace UCosmic.Domain.Activities
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var result = _entities.Read<Activity>()
+            var result = _entities.Query<Activity>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByUserNameAndNumber(query.Principal.Identity.Name, query.Number)
             ;

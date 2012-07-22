@@ -30,7 +30,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
         {
             var db = ServiceProviderLocator.Current.GetService<IWrapDataConcerns>();
 
-            var config = db.Commands.Get2<InstitutionalAgreementConfiguration>().SingleOrDefault(c =>
+            var config = db.Commands.Get<InstitutionalAgreementConfiguration>().SingleOrDefault(c =>
                 url.Equals(c.ForEstablishment.WebsiteUrl));
             if (config == null) return;
             db.Commands.Purge(config);

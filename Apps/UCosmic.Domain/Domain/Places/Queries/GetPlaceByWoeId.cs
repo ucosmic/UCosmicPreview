@@ -34,7 +34,7 @@ namespace UCosmic.Domain.Places
             {
                 // first look in the db
                 //var place = _places.FindOne(PlaceBy.WoeId(woeId).ForInsertOrUpdate());
-                var place = _entities.Get2<Place>()
+                var place = _entities.Get<Place>()
                     .EagerLoad(query.EagerLoad, _entities)
                     .ByWoeId(query.WoeId)
                 ;

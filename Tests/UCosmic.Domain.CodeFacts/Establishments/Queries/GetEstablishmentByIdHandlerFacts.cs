@@ -40,7 +40,7 @@ namespace UCosmic.Domain.Establishments
                 var query = new GetEstablishmentByIdQuery(id);
                 var establishments = new Establishment[] {}.AsQueryable();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.Read<Establishment>()).Returns(establishments);
+                entities.Setup(p => p.Query<Establishment>()).Returns(establishments);
                 var handler = new GetEstablishmentByIdHandler(entities.Object);
 
                 var result = handler.Handle(query);
@@ -62,7 +62,7 @@ namespace UCosmic.Domain.Establishments
                     establishment,
                 }.AsQueryable();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.Read<Establishment>()).Returns(establishments);
+                entities.Setup(p => p.Query<Establishment>()).Returns(establishments);
                 var handler = new GetEstablishmentByIdHandler(entities.Object);
 
                 var result = handler.Handle(query);

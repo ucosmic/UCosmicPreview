@@ -50,12 +50,12 @@ namespace UCosmic.Domain.People
                     Person = new Person(),
                 };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
+                entities.Setup(m => m.Get<User>()).Returns(new[] { user }.AsQueryable);
                 var handler = new UpdateMyNameHandler(entities.Object);
 
                 handler.Handle(command);
 
-                entities.Verify(m => m.Get2<User>(), Times.Once());
+                entities.Verify(m => m.Get<User>(), Times.Once());
             }
 
             [TestMethod]
@@ -76,7 +76,7 @@ namespace UCosmic.Domain.People
                     LastName = "Name",
                 };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
+                entities.Setup(m => m.Get<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))));
                 var handler = new UpdateMyNameHandler(entities.Object);
 
@@ -109,7 +109,7 @@ namespace UCosmic.Domain.People
                 };
 
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(x => x.Get2<User>()).Returns(new[] { user }.AsQueryable);
+                entities.Setup(x => x.Get<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))));
                 var handler = new UpdateMyNameHandler(entities.Object);
 
@@ -138,7 +138,7 @@ namespace UCosmic.Domain.People
                     IsDisplayNameDerived = false,
                 };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
+                entities.Setup(m => m.Get<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))))
                     .Callback((Entity entity) => outPerson = (Person)entity);
                 var handler = new UpdateMyNameHandler(entities.Object);
@@ -167,7 +167,7 @@ namespace UCosmic.Domain.People
                     DisplayName = "Display Name",
                 };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
+                entities.Setup(m => m.Get<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))))
                     .Callback((Entity entity) => outPerson = (Person)entity);
                 var handler = new UpdateMyNameHandler(entities.Object);
@@ -198,7 +198,7 @@ namespace UCosmic.Domain.People
                     Salutation = "Dr",
                 };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
+                entities.Setup(m => m.Get<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))))
                     .Callback((Entity entity) => outPerson = (Person)entity);
                 var handler = new UpdateMyNameHandler(entities.Object);
@@ -229,7 +229,7 @@ namespace UCosmic.Domain.People
                     FirstName = "Adam ",
                 };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
+                entities.Setup(m => m.Get<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))))
                     .Callback((Entity entity) => outPerson = (Person)entity);
                 var handler = new UpdateMyNameHandler(entities.Object);
@@ -260,7 +260,7 @@ namespace UCosmic.Domain.People
                     MiddleName = "B",
                 };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
+                entities.Setup(m => m.Get<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))))
                     .Callback((Entity entity) => outPerson = (Person)entity);
                 var handler = new UpdateMyNameHandler(entities.Object);
@@ -291,7 +291,7 @@ namespace UCosmic.Domain.People
                     LastName = " West",
                 };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
+                entities.Setup(m => m.Get<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))))
                     .Callback((Entity entity) => outPerson = (Person)entity);
                 var handler = new UpdateMyNameHandler(entities.Object);
@@ -322,7 +322,7 @@ namespace UCosmic.Domain.People
                     Suffix = "Jr.",
                 };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<User>()).Returns(new[] { user }.AsQueryable);
+                entities.Setup(m => m.Get<User>()).Returns(new[] { user }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(PersonBasedOn(command))))
                     .Callback((Entity entity) => outPerson = (Person)entity);
                 var handler = new UpdateMyNameHandler(entities.Object);

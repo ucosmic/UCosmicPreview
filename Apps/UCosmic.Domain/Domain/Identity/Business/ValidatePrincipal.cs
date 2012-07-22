@@ -37,7 +37,7 @@ namespace UCosmic.Domain.Identity
                 return false;
             }
 
-            entity = entities.Read<User>()
+            entity = entities.Query<User>()
                 .EagerLoad(eagerLoad, entities)
                 .ByName(principal.Identity.Name);
 

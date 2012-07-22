@@ -510,8 +510,8 @@ namespace UCosmic.Domain.Identity
             var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
             if (scenarioOptions.Command != null)
             {
-                entities.Setup(m => m.Read<Person>()).Returns(new[] { scenarioOptions.Person }.AsQueryable);
-                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { scenarioOptions.Establishment }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new[] { scenarioOptions.Person }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new[] { scenarioOptions.Establishment }.AsQueryable);
             }
             var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
             if (scenarioOptions.Person != null &&

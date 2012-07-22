@@ -34,7 +34,7 @@ namespace UCosmic.Domain.Identity
             if (command == null) throw new ArgumentNullException("command");
 
             // get the establishment
-            var establishment = _entities.Get2<Establishment>()
+            var establishment = _entities.Get<Establishment>()
                 .EagerLoad(new Expression<Func<Establishment, object>>[]
                 {
                     e => e.Type.Category,
@@ -42,7 +42,7 @@ namespace UCosmic.Domain.Identity
                 .ByEmail(command.EmailAddress);
 
             // get the person
-            var person = _entities.Get2<Person>()
+            var person = _entities.Get<Person>()
                 .EagerLoad(new Expression<Func<Person, object>>[]
                 {
                     p => p.Emails,

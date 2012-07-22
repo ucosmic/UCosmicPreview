@@ -39,7 +39,7 @@ namespace UCosmic.Domain.People
                 var guid = Guid.NewGuid();
                 var query = new GetPersonByGuidQuery(guid);
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                entities.Setup(p => p.Query<Person>()).Returns(new Person[] { }.AsQueryable);
                 var handler = new GetPersonByGuidHandler(entities.Object);
 
                 var result = handler.Handle(query);
@@ -53,7 +53,7 @@ namespace UCosmic.Domain.People
                 var guid = Guid.NewGuid();
                 var query = new GetPersonByGuidQuery(guid);
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-                entities.Setup(p => p.Read<Person>()).Returns(new[]
+                entities.Setup(p => p.Query<Person>()).Returns(new[]
                 {
                     new Person
                     {

@@ -35,7 +35,7 @@ namespace UCosmic.Domain.Files
 
             _entities.Create(entity);
             _unitOfWork.SaveChanges();
-            command.CreatedLooseFile = _entities.Read<LooseFile>()
+            command.CreatedLooseFile = _entities.Query<LooseFile>()
                 .By(entity.EntityId);
         }
     }

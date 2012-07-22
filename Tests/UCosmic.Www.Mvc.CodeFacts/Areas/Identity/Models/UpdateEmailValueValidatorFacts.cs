@@ -115,7 +115,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Person = new Person { User = new User { Name = model.PersonUserName }, }
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                entities.Setup(m => m.Query<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
                 var validator = new UpdateEmailValueValidator(entities.Object);
                 var results = validator.Validate(model);
                 results.IsValid.ShouldBeFalse();
@@ -139,7 +139,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Value = emailValue.ToUpper(),
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
+                entities.Setup(m => m.Query<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
                 var validator = new UpdateEmailValueValidator(entities.Object);
                 var results = validator.Validate(form);
                 results.IsValid.ShouldBeFalse();
@@ -165,7 +165,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Value = emailValue.ToUpper(),
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
+                entities.Setup(m => m.Query<EmailAddress>()).Returns(new EmailAddress[] { }.AsQueryable);
                 var validator = new UpdateEmailValueValidator(entities.Object);
                 var results = validator.Validate(form);
                 results.IsValid.ShouldBeFalse();
@@ -197,7 +197,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Person = new Person { User = new User { Name = form.PersonUserName, } }
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                entities.Setup(m => m.Query<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
                 var validator = new UpdateEmailValueValidator(entities.Object);
                 var results = validator.Validate(form);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);
@@ -218,7 +218,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Person = new Person { User = new User { Name = model.PersonUserName } },
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
+                entities.Setup(m => m.Query<EmailAddress>()).Returns(new[] { emailAddress }.AsQueryable);
                 var validator = new UpdateEmailValueValidator(entities.Object);
                 var results = validator.Validate(model);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == PropertyName);

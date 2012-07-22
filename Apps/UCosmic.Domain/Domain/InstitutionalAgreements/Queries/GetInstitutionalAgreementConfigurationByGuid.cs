@@ -30,7 +30,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            return _entities.Read<InstitutionalAgreementConfiguration>()
+            return _entities.Query<InstitutionalAgreementConfiguration>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .By(query.Guid)
             ;

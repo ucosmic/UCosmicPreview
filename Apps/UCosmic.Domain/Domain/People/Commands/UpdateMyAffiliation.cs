@@ -36,7 +36,7 @@ namespace UCosmic.Domain.People
             if (command == null) throw new ArgumentNullException("command");
 
             // get the affiliation
-            var affiliation = _entities.Get2<Affiliation>().ByUserNameAndEstablishmentId(
+            var affiliation = _entities.Get<Affiliation>().ByUserNameAndEstablishmentId(
                 command.Principal.Identity.Name, command.EstablishmentId);
 
             // update fields

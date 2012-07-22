@@ -86,7 +86,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     SecretCode = "secret",
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>()).Returns(new EmailConfirmation[] { }.AsQueryable);
+                entities.Setup(m => m.Query<EmailConfirmation>()).Returns(new EmailConfirmation[] { }.AsQueryable);
                 var validator = new ConfirmEmailValidator(entities.Object);
 
                 var results = validator.Validate(validated);
@@ -112,7 +112,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 };
                 var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword);
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
+                entities.Setup(m => m.Query<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
                 var validator = new ConfirmEmailValidator(entities.Object);
 
                 var results = validator.Validate(validated);
@@ -141,7 +141,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Intent = EmailConfirmationIntent.ResetPassword,
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
+                entities.Setup(m => m.Query<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
                 var validator = new ConfirmEmailValidator(entities.Object);
 
                 var results = validator.Validate(validated);
@@ -170,7 +170,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Intent = EmailConfirmationIntent.CreatePassword,
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
+                entities.Setup(m => m.Query<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
                 var validator = new ConfirmEmailValidator(entities.Object);
 
                 var results = validator.Validate(validated);

@@ -128,7 +128,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     EmailAddress = "user@domain.tld",
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
                 var validator = new ForgotPasswordValidator(entities.Object, null);
 
                 var results = validator.Validate(validated);
@@ -153,7 +153,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 };
                 var establishment = new Establishment();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new[] { establishment }.AsQueryable);
                 var validator = new ForgotPasswordValidator(entities.Object, null);
 
                 var results = validator.Validate(validated);
@@ -183,7 +183,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     EmailDomains = new[] { new EstablishmentEmailDomain { Value = "@domain.tld" }, },
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new[] { establishment }.AsQueryable);
                 var validator = new ForgotPasswordValidator(entities.Object, null);
 
                 var results = validator.Validate(validated);
@@ -211,8 +211,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     IsMember = true,
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
-                entities.Setup(m => m.Read<Person>()).Returns(new Person[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new Person[] { }.AsQueryable);
                 var validator = new ForgotPasswordValidator(entities.Object, null);
 
                 var results = validator.Validate(validated);
@@ -241,8 +241,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 };
                 var person = new Person();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
-                entities.Setup(m => m.Read<Person>()).Returns(new[] { person }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new[] { person }.AsQueryable);
                 var validator = new ForgotPasswordValidator(entities.Object, null);
 
                 var results = validator.Validate(validated);
@@ -279,8 +279,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     EmailDomains = new[] { new EstablishmentEmailDomain { Value = "@domain.tld" }, },
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
-                entities.Setup(m => m.Read<Person>()).Returns(new[] { person }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new[] { person }.AsQueryable);
                 var validator = new ForgotPasswordValidator(entities.Object, null);
 
                 var results = validator.Validate(validated);
@@ -319,8 +319,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     .Exists(It.Is(IsSignedUpBasedOn(person))))
                     .Returns(false);
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
-                entities.Setup(m => m.Read<Person>()).Returns(new[] { person }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new[] { person }.AsQueryable);
                 var validator = new ForgotPasswordValidator(entities.Object, passwords.Object);
 
                 var results = validator.Validate(validated);
@@ -367,8 +367,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     .Exists(It.Is(IsSignedUpBasedOn(person))))
                     .Returns(true);
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
-                entities.Setup(m => m.Read<Person>()).Returns(new[] { person }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new[] { person }.AsQueryable);
                 var validator = new ForgotPasswordValidator(entities.Object, passwords.Object);
 
                 var results = validator.Validate(validated);
@@ -416,8 +416,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     .Exists(It.Is(IsSignedUpBasedOn(person))))
                     .Returns(true);
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new[] { establishment }.AsQueryable);
-                entities.Setup(m => m.Read<Person>()).Returns(new[] { person }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new[] { establishment }.AsQueryable);
+                entities.Setup(m => m.Query<Person>()).Returns(new[] { person }.AsQueryable);
                 var validator = new ForgotPasswordValidator(entities.Object, passwords.Object);
 
                 var results = validator.Validate(validated);

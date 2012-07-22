@@ -50,7 +50,7 @@ namespace UCosmic.Domain.People
                     Person = new Person { User = new User { Name = principal.Identity.Name } },
                 };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
+                entities.Setup(m => m.Get<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 var handler = new UpdateMyAffiliationHandler(entities.Object);
                 NullReferenceException exception = null;
 
@@ -63,7 +63,7 @@ namespace UCosmic.Domain.People
                     exception = ex;
                 }
 
-                entities.Verify(m => m.Get2<Affiliation>(), Times.Once());
+                entities.Verify(m => m.Get<Affiliation>(), Times.Once());
                 exception.ShouldNotBeNull();
             }
 
@@ -83,7 +83,7 @@ namespace UCosmic.Domain.People
                     Person = new Person { User = new User { Name = principal.Identity.Name } },
                 };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
+                entities.Setup(m => m.Get<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(AffiliationBasedOn(command))));
                 var handler = new UpdateMyAffiliationHandler(entities.Object);
 
@@ -109,7 +109,7 @@ namespace UCosmic.Domain.People
                     Person = new Person { User = new User { Name = principal.Identity.Name } },
                 };
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
+                entities.Setup(m => m.Get<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(AffiliationBasedOn(command))));
                 var handler = new UpdateMyAffiliationHandler(entities.Object);
 
@@ -136,7 +136,7 @@ namespace UCosmic.Domain.People
                 };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
+                entities.Setup(m => m.Get<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
                 var handler = new UpdateMyAffiliationHandler(entities.Object);
@@ -168,7 +168,7 @@ namespace UCosmic.Domain.People
                 };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
+                entities.Setup(m => m.Get<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
                 var handler = new UpdateMyAffiliationHandler(entities.Object);
@@ -200,7 +200,7 @@ namespace UCosmic.Domain.People
                 };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
+                entities.Setup(m => m.Get<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
                 var handler = new UpdateMyAffiliationHandler(entities.Object);
@@ -232,7 +232,7 @@ namespace UCosmic.Domain.People
                 };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
+                entities.Setup(m => m.Get<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
                 var handler = new UpdateMyAffiliationHandler(entities.Object);
@@ -264,7 +264,7 @@ namespace UCosmic.Domain.People
                 };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
+                entities.Setup(m => m.Get<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
                 var handler = new UpdateMyAffiliationHandler(entities.Object);
@@ -296,7 +296,7 @@ namespace UCosmic.Domain.People
                 };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
+                entities.Setup(m => m.Get<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
                 var handler = new UpdateMyAffiliationHandler(entities.Object);
@@ -328,7 +328,7 @@ namespace UCosmic.Domain.People
                 };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
+                entities.Setup(m => m.Get<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
                 var handler = new UpdateMyAffiliationHandler(entities.Object);
@@ -360,7 +360,7 @@ namespace UCosmic.Domain.People
                 };
                 var affiliationBasedOnCommand = AffiliationBasedOn(command);
                 var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Get2<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
+                entities.Setup(m => m.Get<Affiliation>()).Returns(new[] { affiliation }.AsQueryable);
                 entities.Setup(m => m.Update(It.Is(affiliationBasedOnCommand)))
                     .Callback((Entity entity) => outAffiliation = (Affiliation)entity);
                 var handler = new UpdateMyAffiliationHandler(entities.Object);

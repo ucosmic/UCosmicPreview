@@ -32,7 +32,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
         {
             if (command == null) throw new ArgumentNullException("command");
 
-            var agreements = _entities.Get2<InstitutionalAgreement>()
+            var agreements = _entities.Get<InstitutionalAgreement>()
                 .EagerLoad(new Expression<Func<InstitutionalAgreement, object>>[]
                 {
                     e => e.Offspring.Select(o => o.Ancestor.Umbrella),

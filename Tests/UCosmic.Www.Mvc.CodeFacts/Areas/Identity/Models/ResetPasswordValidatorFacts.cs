@@ -69,7 +69,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Token = Guid.NewGuid(),
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>()).Returns(new EmailConfirmation[] { }.AsQueryable);
+                entities.Setup(m => m.Query<EmailConfirmation>()).Returns(new EmailConfirmation[] { }.AsQueryable);
                 var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
                 passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
                 var validator = CreateValidator(entities.Object, passwords.Object);
@@ -96,7 +96,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                     Token = confirmation.Token,
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
+                entities.Setup(m => m.Query<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
                 var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
                 passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
                 var validator = CreateValidator(entities.Object, passwords.Object);
@@ -212,7 +212,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 };
                 var confirmation = new EmailConfirmation(EmailConfirmationIntent.ResetPassword);
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
+                entities.Setup(m => m.Query<EmailConfirmation>()).Returns(new[] { confirmation }.AsQueryable);
                 var passwords = new Mock<IStorePasswords>(MockBehavior.Strict);
                 passwords.Setup(p => p.MinimumPasswordLength).Returns(6);
                 var validator = CreateValidator(entities.Object, passwords.Object);

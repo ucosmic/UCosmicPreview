@@ -52,7 +52,7 @@ namespace UCosmic.Domain.Identity
 
                 handler.Handle(command);
 
-                scenarioOptions.Entities.Verify(m => m.Get2<Person>(),
+                scenarioOptions.Entities.Verify(m => m.Get<Person>(),
                     Times.Once());
             }
 
@@ -264,7 +264,7 @@ namespace UCosmic.Domain.Identity
 
             var entities = new Mock<ICommandEntities>(MockBehavior.Strict).Initialize();
             scenarioOptions.Entities = entities;
-            entities.Setup(m => m.Get2<Person>()).Returns(new[] { scenarioOptions.Person }.AsQueryable);
+            entities.Setup(m => m.Get<Person>()).Returns(new[] { scenarioOptions.Person }.AsQueryable);
             entities.Setup(m => m.Create(It.Is(ConfirmationEntityBasedOn(scenarioOptions))))
                 .Callback((Entity entity) => scenarioOptions.OutConfirmation = (EmailConfirmation)entity);
             entities.Setup(m => m.Create(It.Is(MessageEntityBasedOn(scenarioOptions))));

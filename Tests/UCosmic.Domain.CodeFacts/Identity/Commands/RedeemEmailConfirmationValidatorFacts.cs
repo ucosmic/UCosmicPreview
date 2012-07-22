@@ -359,7 +359,7 @@ namespace UCosmic.Domain.Identity
         {
             scenarioOptions = scenarioOptions ?? new ScenarioOptions();
             var entities = new Mock<IQueryEntities>(MockBehavior.Strict);
-            entities.Setup(m => m.Read<EmailConfirmation>())
+            entities.Setup(m => m.Query<EmailConfirmation>())
                 .Returns(new[] { scenarioOptions.EmailConfirmation }.AsQueryable);
             return new RedeemEmailConfirmationValidator(entities.Object);
         }

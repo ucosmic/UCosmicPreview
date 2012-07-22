@@ -68,7 +68,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const string paramName = "some value";
                 const EmailConfirmationIntent intent = EmailConfirmationIntent.ResetPassword;
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>())
+                entities.Setup(m => m.Query<EmailConfirmation>())
                     .Returns(new[] { new EmailConfirmation(EmailConfirmationIntent.CreatePassword) }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
@@ -89,7 +89,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const EmailConfirmationIntent intent = EmailConfirmationIntent.CreatePassword;
                 var tokenValue = Guid.NewGuid();
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>())
+                entities.Setup(m => m.Query<EmailConfirmation>())
                     .Returns(new EmailConfirmation[] { }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
@@ -101,7 +101,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 filterContext.Result.ShouldNotBeNull();
                 filterContext.Result.ShouldBeType<HttpNotFoundResult>();
-                entities.Verify(m => m.Read<EmailConfirmation>(), Times.Once());
+                entities.Verify(m => m.Query<EmailConfirmation>(), Times.Once());
             }
 
             [TestMethod]
@@ -114,7 +114,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     ExpiresOnUtc = DateTime.UtcNow.AddSeconds(-5),
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>())
+                entities.Setup(m => m.Query<EmailConfirmation>())
                     .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
@@ -146,7 +146,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     RetiredOnUtc = DateTime.UtcNow.AddSeconds(-5),
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>())
+                entities.Setup(m => m.Query<EmailConfirmation>())
                     .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
@@ -180,7 +180,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Ticket = ticket,
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>())
+                entities.Setup(m => m.Query<EmailConfirmation>())
                     .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
@@ -213,7 +213,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     ExpiresOnUtc = DateTime.UtcNow.AddHours(1),
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>())
+                entities.Setup(m => m.Query<EmailConfirmation>())
                     .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
@@ -247,7 +247,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Ticket = ticket,
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>())
+                entities.Setup(m => m.Query<EmailConfirmation>())
                     .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {
@@ -282,7 +282,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     Ticket = ticket,
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<EmailConfirmation>())
+                entities.Setup(m => m.Query<EmailConfirmation>())
                     .Returns(new[] { confirmation }.AsQueryable);
                 var attribute = new ValidateRedeemTicketAttribute(paramName, intent)
                 {

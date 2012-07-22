@@ -21,7 +21,7 @@ namespace UCosmic.Domain.Identity
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            return _entities.Read<Role>()
+            return _entities.Query<Role>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .OrderBy(query.OrderBy)
                 .ToArray()

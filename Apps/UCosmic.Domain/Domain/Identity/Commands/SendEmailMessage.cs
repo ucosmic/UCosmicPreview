@@ -40,7 +40,7 @@ namespace UCosmic.Domain.Identity
             {
                 if (_retryCount > 1) Thread.Sleep(300);
 
-                var person = _entities.Get2<Person>()
+                var person = _entities.Get<Person>()
                     .EagerLoad(new Expression<Func<Person, object>>[]
                     {
                         p => p.Messages,

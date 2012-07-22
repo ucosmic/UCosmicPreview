@@ -22,7 +22,7 @@ namespace UCosmic.Domain.People
                     Principal = null,
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
                 var validator = new UpdateMyAffiliationValidator(entities.Object);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
@@ -46,7 +46,7 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
                 var validator = new UpdateMyAffiliationValidator(entities.Object);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
@@ -68,7 +68,7 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
                 var validator = new UpdateMyAffiliationValidator(entities.Object);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
@@ -90,7 +90,7 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
                 var validator = new UpdateMyAffiliationValidator(entities.Object);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
@@ -112,8 +112,8 @@ namespace UCosmic.Domain.People
                     Principal = principal,
                 };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<User>()).Returns(new User[] { }.AsQueryable);
-                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Query<User>()).Returns(new User[] { }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
                 var validator = new UpdateMyAffiliationValidator(entities.Object);
                 var results = validator.Validate(command);
                 results.IsValid.ShouldBeFalse();
@@ -138,8 +138,8 @@ namespace UCosmic.Domain.People
                 };
                 var user = new User { Name = principal.Identity.Name };
                 var entities = new Mock<IQueryEntities>(MockBehavior.Strict).Initialize();
-                entities.Setup(m => m.Read<User>()).Returns(new[] { user }.AsQueryable);
-                entities.Setup(m => m.Read<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
+                entities.Setup(m => m.Query<User>()).Returns(new[] { user }.AsQueryable);
+                entities.Setup(m => m.Query<Establishment>()).Returns(new Establishment[] { }.AsQueryable);
                 var validator = new UpdateMyAffiliationValidator(entities.Object);
                 var results = validator.Validate(command);
                 var error = results.Errors.SingleOrDefault(e => e.PropertyName == "Principal");

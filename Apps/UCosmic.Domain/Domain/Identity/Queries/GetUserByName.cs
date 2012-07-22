@@ -16,7 +16,7 @@
 
         public User Handle(GetUserByNameQuery query)
         {
-            return _entities.Read<User>()
+            return _entities.Query<User>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .ByName(query.Name)
             ;

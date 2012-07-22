@@ -26,7 +26,7 @@ namespace UCosmic.Domain.People
                 return false;
             }
 
-            entity = entities.Read<EmailConfirmation>().EagerLoad(eagerLoad, entities).ByToken(token);
+            entity = entities.Query<EmailConfirmation>().EagerLoad(eagerLoad, entities).ByToken(token);
 
             // return true (valid) if there is an entity
             return entity != null;

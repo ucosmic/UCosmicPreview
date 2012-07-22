@@ -26,7 +26,7 @@ namespace UCosmic.Domain.Identity
 
         public Role Handle(GetRoleBySlugQuery query)
         {
-            return _entities.Read<Role>()
+            return _entities.Query<Role>()
                 .EagerLoad(query.EagerLoad, _entities)
                 .By(query.RoleName)
             ;

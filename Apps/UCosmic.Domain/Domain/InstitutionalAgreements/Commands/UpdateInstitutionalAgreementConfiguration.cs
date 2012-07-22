@@ -64,7 +64,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
                     })
                 : new InstitutionalAgreementConfiguration
                     {
-                        ForEstablishment = _entities.Get2<Person>()
+                        ForEstablishment = _entities.Get<Person>()
                             .EagerLoad(new Expression<Func<Person, object>>[]
                             {
                                 x => x.Affiliations.Select(y => y.Establishment)

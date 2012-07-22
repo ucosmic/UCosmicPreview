@@ -48,7 +48,7 @@ namespace UCosmic.Domain.Identity
                     "User '{0}' does not have privileges to invoke this function.",
                         command.Principal.Identity.Name));
 
-            var entity = _entities.Get2<Role>()
+            var entity = _entities.Get<Role>()
                 .EagerLoad(new Expression<Func<Role, object>>[]
                 {
                     r => r.Grants.Select(g => g.User)
