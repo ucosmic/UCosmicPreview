@@ -80,20 +80,15 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         }
 
         [ActionName("run-establishment-import")]
-        [Authorize(Users = "Daniel.Ludwig@uc.edu")]
+        [Authorize(Users = "Daniel.Ludwig@uc.edu,ludwigd@uc.edu")]
         public virtual ActionResult RunEstablishmentImport()
         {
             var placeMarks = new KmlPlaceMarks(Server.MapPath(string.Format("~{0}",
                 Links.content.kml.establishment_import_kml)));
             var establishmentRows = new EstablishmentRows(Server.MapPath(string.Format("~{0}",
                 Links.content.kml.establishment_import_tsv)));
-            //var placeFactory = new PlaceFactory(_entityQueries, _objectCommander, _geoPlanet, _geoNames, _config);
-            //var en = new LanguageFinder(_entityQueries).FindOne(LanguageBy.IsoCode("en"));
-            //var en = _queryProcessor.Execute(new GetLanguageByIsoCodeQuery { IsoCode = "en" });
             var en = _entities.Get<Language>().SingleOrDefault(x => x.TwoLetterIsoCode.Equals("en", StringComparison.OrdinalIgnoreCase));
-            //var university = new EstablishmentTypeFinder(_entityQueries).FindOne(EstablishmentTypeBy.EnglishName("University"));
-            //university = _queryProcessor.Execute(new GetEstablishmentTypeByEnglishNameQuery("University"));
-            var university = _entities.Get<EstablishmentType>().SingleOrDefault(x => 
+            var university = _entities.Get<EstablishmentType>().SingleOrDefault(x =>
                 x.EnglishName.Equals("University", StringComparison.OrdinalIgnoreCase));
 
             foreach (var placeMark in placeMarks)
@@ -156,27 +151,13 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 }
 
                 // lookup the establishment in the database by URL
-                //var establishments = context.Establishments.Where(e => establishmentRow.WebsiteUrl
-                //    .Equals(e.WebsiteUrl, StringComparison.OrdinalIgnoreCase)
-                //    || e.Urls.Any(u => u.Value.Equals(establishmentRow.WebsiteUrl, StringComparison.OrdinalIgnoreCase))).ToList();
-                //var establishmentFinder = new EstablishmentFinder(_entityQueries);
-                //var establishments = establishmentFinder.FindMany(EstablishmentBy.WebsiteUrl(establishmentRow.WebsiteUrl)
-                //    .ForInsertOrUpdate());
-                var establishments = new[] { _queryProcessor.Execute(new GetEstablishmentByUrlQuery(establishmentRow.WebsiteUrl)) };
-                Establishment establishment;
-
-                // skip when the database contains more than 1 matching institution (needs correction)
-                if (establishments.Length > 1)
-                {
-                    ConsoleLog(string.Format("Skipping, found multiple seeded establishments with website URL '{0}' -- NEEDS CORRECTED.", establishmentRow.WebsiteUrl), false, true);
-                    continue;
-                }
+                var establishment = _queryProcessor.Execute(new GetEstablishmentByUrlQuery(establishmentRow.WebsiteUrl));
 
                 // when exactly 1 establishment exists in the db, check its geography
-                if (establishments.Length == 1)
+                if (establishment != null)
                 {
                     ConsoleLog(string.Format("Establishment with website URL '{0}' is already seeded", establishmentRow.WebsiteUrl));
-                    establishment = establishments.Single();
+                    //establishment = establishments.Single();
 
                     // check geography
                     if (!establishment.Location.Center.HasValue)
@@ -202,8 +183,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                         establishment.Location.Center = new Coordinates { Latitude = placeMark.Latitude, Longitude = placeMark.Longitude };
                         establishment.Location.Places = places;
                         establishment.Location.BoundingBox = (places.Count > 0) ? places.Last().BoundingBox : new BoundingBox();
-                        //context.SaveChanges();
-                        //_objectCommander.SaveChanges();
                         _unitOfWork.SaveChanges();
                         ConsoleLog(string.Format("Updated location of seeded establishment with website URL '{0}'.", establishmentRow.WebsiteUrl), true, true);
                         continue;
@@ -221,7 +200,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                     }
                     else
                     {
-                        //var place2 = placeFactory.FromWoeId(result.WoeId.Value);
                         var place = _queryProcessor.Execute(
                             new GetPlaceByWoeIdQuery
                             {
@@ -285,35 +263,75 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                         }
                     }
 
-                    //context.Establishments.Add(establishment);
-                    //context.SaveChanges();
-                    //_objectCommander.Insert(establishment, true);
                     _entities.Create(establishment);
                     _unitOfWork.SaveChanges();
                     ConsoleLog(string.Format("Establishment with website URL '{0}' has been seeded.", establishmentRow.WebsiteUrl), true, true);
                 }
             }
 
-            //// set up USF
-            //var usf = new EstablishmentFinder(_entityQueries).FindOne(EstablishmentBy.WebsiteUrl("www.usf.edu"));
-            //if (!usf.IsMember)
+            //// set up new member(s)
+            //var hpu = _entities.Get<Establishment>().SingleOrDefault(
+            //    e => e.Urls.Any(u => u.Value.Equals("www.hpu.edu", StringComparison.OrdinalIgnoreCase)));
+            //if (hpu != null)
             //{
-            //    usf.IsMember = true;
-            //    usf.EmailDomains.Add(new EstablishmentEmailDomain
+            //    if (!hpu.IsMember)
             //    {
-            //        Value = "@usf.edu",
-            //    });
-            //    _objectCommander.Update(usf, true);
+            //        hpu.IsMember = true;
+            //        hpu.EmailDomains.Add(new EstablishmentEmailDomain
+            //        {
+            //            Value = "@hpu.edu",
+            //        });
+
+            //        var lindseyCreator = new CreatePersonHandler(_entities);
+            //        var createLindsey = new CreatePersonCommand
+            //        {
+            //            DisplayName = "Lindsey Garbenis",
+            //            UserName = "lgarbenis@hpu.edu",
+            //            UserIsRegistered = false,
+            //            FirstName = "Lindsey",
+            //            LastName = "Garbenis",
+            //        };
+            //        lindseyCreator.Handle(createLindsey);
+            //        createLindsey.CreatedPerson.Emails
+            //            .Add(new EmailAddress { IsDefault = true, Value = createLindsey.UserName });
+
+            //        _entities.Update(hpu);
+            //        _unitOfWork.SaveChanges();
+            //    }
+            //}
+            //var uwm = _entities.Get<Establishment>().SingleOrDefault(
+            //    e => e.Urls.Any(u => u.Value.Equals("www.uwm.edu", StringComparison.OrdinalIgnoreCase)));
+            //if (uwm != null)
+            //{
+            //    if (!uwm.IsMember)
+            //    {
+            //        uwm.IsMember = true;
+            //        uwm.EmailDomains.Add(new EstablishmentEmailDomain
+            //                                 {
+            //                                     Value = "@uwm.edu",
+            //                                 });
+            //        _entities.Update(uwm);
+            //        _unitOfWork.SaveChanges();
+            //    }
             //}
 
-            //// add former name for rotterdam dance academy
-            //const string rdaName = "Rotterdam Dance Academy";
-            //var codarts = new EstablishmentFinder(_entityQueries).FindOne(EstablishmentBy.WebsiteUrl("www.codarts.nl").ForInsertOrUpdate());
-            //var rda = codarts.Names.SingleOrDefault(n => n.Text == "Rotterdam Dance Academy");
-            //if (rda == null)
+            //// add former name(s)
+            //const string upvName = "Universidad Privada del Valle";
+            //var univalle = _entities.Get<Establishment>().SingleOrDefault(e => e.WebsiteUrl == "www.univalle.edu");
+            //var upv = univalle.Names.SingleOrDefault(n => n.Text == upvName);
+            //if (upv == null)
             //{
-            //    codarts.Names.Add(new EstablishmentName { Text = rdaName, IsFormerName = true, TranslationToLanguage = en });
-            //    _objectCommander.Update(codarts, true);
+            //    univalle.Names.Add(new EstablishmentName { Text = upvName, IsFormerName = true });
+            //    _entities.Update(univalle);
+            //}
+
+            //// fix name
+            //var uniatlantico = _entities.Get<Establishment>().Single(e => e.WebsiteUrl == "www.uniatlantico.edu.co");
+            //var engName = uniatlantico.Names.SingleOrDefault(n => n.Text == "Atlantic University, Atlantico");
+            //if (engName != null)
+            //{
+            //    engName.Text = "Atlantic University";
+            //    _unitOfWork.SaveChanges();
             //}
 
             ViewBag.Console = _consoleLog.ToString();
@@ -521,23 +539,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 }
             }
 
-            //public bool IsSeeded
-            //{
-            //    get
-            //    {
-            //        if (!string.IsNullOrWhiteSpace(_columns[6]) && _columns[6].Length > 1)
-            //        {
-            //            var raw = _columns[6].Trim().Substring(0, 2);
-            //            if (!string.IsNullOrWhiteSpace(raw)
-            //                && raw.Equals("ye", StringComparison.OrdinalIgnoreCase))
-            //            {
-            //                return true;
-            //            }
-            //        }
-            //        return false;
-            //    }
-            //}
-
             public string OfficialName
             {
                 get
@@ -594,6 +595,5 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 
         //    return View();
         //}
-
     }
 }
