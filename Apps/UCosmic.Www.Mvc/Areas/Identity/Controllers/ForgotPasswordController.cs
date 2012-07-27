@@ -37,7 +37,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         {
             var model = new ForgotPasswordForm
             {
-                EmailAddress = HttpContext.SigningEmailAddressCookie() ?? 
+                EmailAddress = HttpContext.SigningEmailAddressCookie() ??
                                TempData.SigningEmailAddress(),
             };
             return View(model);

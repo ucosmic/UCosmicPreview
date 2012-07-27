@@ -115,7 +115,7 @@ namespace UCosmic.Impl
             // there must be an idp sso descriptor to contain the service endpoint
             var idpSsoDescriptor = entityDescriptor.IDPSSODescriptors.FirstOrDefault();
 
-            // only return the 
+            // only return the first service when the descriptor is not null
             return (idpSsoDescriptor != null)
                 ? idpSsoDescriptor.SingleSignOnServices.FirstOrDefault(d => d.Location == location)
                 : null;

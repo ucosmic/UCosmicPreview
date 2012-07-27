@@ -51,8 +51,8 @@
                 <div class="u-map-markers no-display">
                     @foreach (var partner in Model.Partners)
                     {
-                        <div data-ucosmic-map="marker" 
-                             data-ucosmic-map-center="@partner.Location.CenterLatitude,@partner.Location.CenterLongitude" 
+                        <div data-ucosmic-map="marker"
+                             data-ucosmic-map-center="@partner.Location.CenterLatitude,@partner.Location.CenterLongitude"
                              data-ucosmic-map-title="@partner.TranslatedName">
                         </div>
                     }

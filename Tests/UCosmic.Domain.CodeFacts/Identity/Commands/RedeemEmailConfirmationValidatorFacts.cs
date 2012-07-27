@@ -40,7 +40,7 @@ namespace UCosmic.Domain.Identity
                 var command = new RedeemEmailConfirmationCommand
                 {
                     Token = Guid.NewGuid(),
-                    
+
                 };
                 var scenarioOptions = new ScenarioOptions
                 {

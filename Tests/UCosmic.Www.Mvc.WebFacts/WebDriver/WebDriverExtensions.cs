@@ -151,8 +151,8 @@ namespace UCosmic.Www.Mvc
         {
             failMessage = failMessage ?? "No specific message was given for this failure.";
 
-            var timeoutSecondsInt = (timeoutSeconds.HasValue) 
-                ? timeoutSeconds.Value 
+            var timeoutSecondsInt = (timeoutSeconds.HasValue)
+                ? timeoutSeconds.Value
                 : AppConfig.DefaultWebDriverWaitSeconds;
 
             // helper for inserting browser name in failure messages

@@ -47,7 +47,7 @@
                 <div class="emptybox">
                     <div class="text-box input" data-ucosmic-watermark="true" data-ucosmic-watermark-text="Type a country, city, or institution name"
                          data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
-                         data-ucosmic-trim-input="true" data-ucosmic-autocomplete="true" 
+                         data-ucosmic-trim-input="true" data-ucosmic-autocomplete="true"
                          data-ucosmic-autocomplete-url="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.AutoCompleteKeyword(Model.ContextEstablishment.WebsiteUrl, null))">
                         @Html.EditorFor(m => m.Keyword)
                         <div class="autocomplete-menu">
@@ -68,9 +68,17 @@
 }
 <div id="institutional_agreement_mapper">
     @{
-        var zoomLevel = (Model.Establishments.Length == 1) ? Model.Establishments[0].Location.GoogleMapZoomLevel.ToInvariantString() : string.Empty;
-        var center = (Model.Establishments.Length == 1) ? string.Format("{0},{1}", Model.Establishments[0].Location.CenterLatitude, @Model.Establishments[0].Location.CenterLongitude) : string.Empty;
-        if ((Model.MapBoundingBox.Northeast.Latitude == 90 && Model.MapBoundingBox.Northeast.Longitude == 180 && Model.MapBoundingBox.Southwest.Latitude == -90 && Model.MapBoundingBox.Southwest.Longitude == -180) || string.IsNullOrWhiteSpace(Model.Keyword))
+        var zoomLevel = (Model.Establishments.Length == 1)
+            ? Model.Establishments[0].Location.GoogleMapZoomLevel.ToInvariantString()
+            : string.Empty;
+        var center = (Model.Establishments.Length == 1)
+            ? string.Format("{0},{1}", Model.Establishments[0].Location.CenterLatitude, @Model.Establishments[0].Location.CenterLongitude)
+            : string.Empty;
+        if ((Model.MapBoundingBox.Northeast.Latitude == 90 &&
+            Model.MapBoundingBox.Northeast.Longitude == 180 &&
+            Model.MapBoundingBox.Southwest.Latitude == -90 &&
+            Model.MapBoundingBox.Southwest.Longitude == -180)
+            || string.IsNullOrWhiteSpace(Model.Keyword))
         {
             zoomLevel = "2";
             center = "25.8,11.9";
@@ -87,11 +95,11 @@
         <div class="u-map-markers no-display">
             @foreach (var marker in Model.Establishments)
             {
-                <div data-ucosmic-map="marker" 
-                     data-ucosmic-map-center="@marker.Location.CenterLatitude,@marker.Location.CenterLongitude" 
+                <div data-ucosmic-map="marker"
+                     data-ucosmic-map-center="@marker.Location.CenterLatitude,@marker.Location.CenterLongitude"
                      data-ucosmic-map-title="@marker.OfficialThenTranslatedName">
                     @*<div data-ucosmic-map="info-window" data-ucosmic-size-width="400" style="padding-right: 20px;">
-                    <strong>@marker.ForEstablishmentTranslatedName</strong> 
+                    <strong>@marker.ForEstablishmentTranslatedName</strong>
                     @if (!marker.ForEstablishmentTranslatedName.Equals(marker.ForEstablishmentOfficialName))
                     {
                         <span>(@marker.ForEstablishmentOfficialName)</span>
@@ -177,7 +185,7 @@
                         <br />
                         <br />
                         <a href="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.Edit())">Configure
-                            module</a> 
+                            module</a>
                     }
                 </div>
             }

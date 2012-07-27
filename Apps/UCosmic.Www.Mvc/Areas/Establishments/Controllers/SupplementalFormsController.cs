@@ -153,7 +153,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                         .Select(n => n.Ancestor).ToList();
                     places.Add(place);
                     var models = Mapper.Map<Collection<EstablishmentForm.LocationForm.EstablishmentPlaceForm>>(places);
-                    return PartialView(GetEditorTemplateViewName(Area, SharedName, 
+                    return PartialView(GetEditorTemplateViewName(Area, SharedName,
                         MVC.Establishments.Shared.Views.EditorTemplates.EstablishmentPlacesForm), models);
                 }
             }

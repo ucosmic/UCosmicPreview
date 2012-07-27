@@ -64,7 +64,6 @@ namespace T4MVC {
         public UCosmic.Www.Mvc.Areas.Common.Controllers.NavigationController Navigation = new UCosmic.Www.Mvc.Areas.Common.Controllers.T4MVC_NavigationController();
         public UCosmic.Www.Mvc.Areas.Common.Controllers.QaController Qa = new UCosmic.Www.Mvc.Areas.Common.Controllers.T4MVC_QaController();
         public UCosmic.Www.Mvc.Areas.Common.Controllers.SkinsController Skins = new UCosmic.Www.Mvc.Areas.Common.Controllers.T4MVC_SkinsController();
-        public T4MVC.Common.SharedController Shared = new T4MVC.Common.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class EstablishmentsClass {

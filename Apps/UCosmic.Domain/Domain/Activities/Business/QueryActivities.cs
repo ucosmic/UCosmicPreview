@@ -14,8 +14,8 @@ namespace UCosmic.Domain.Activities
         internal static IQueryable<Activity> WithUserName(this IQueryable<Activity> queryable, string userName)
         {
             return queryable.Where(
-                a => 
-                a.Person.User != null && 
+                a =>
+                a.Person.User != null &&
                 a.Person.User.Name.Equals(userName, StringComparison.OrdinalIgnoreCase)
             );
         }

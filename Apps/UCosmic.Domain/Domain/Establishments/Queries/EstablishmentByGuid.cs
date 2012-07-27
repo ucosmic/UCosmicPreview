@@ -6,7 +6,7 @@ namespace UCosmic.Domain.Establishments
     {
         public EstablishmentByGuid(Guid guid)
         {
-            if (guid == Guid.Empty) 
+            if (guid == Guid.Empty)
                 throw new ArgumentException("Cannot be empty", "guid");
             Guid = guid;
         }

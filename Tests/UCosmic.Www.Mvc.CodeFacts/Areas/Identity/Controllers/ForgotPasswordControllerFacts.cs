@@ -227,7 +227,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var message = controller.TempData.FeedbackMessage();
                 message.ShouldNotBeNull();
                 message.ShouldEqual(string.Format(
-                    ForgotPasswordController.SuccessMessageFormat, 
+                    ForgotPasswordController.SuccessMessageFormat,
                         form.EmailAddress));
             }
 

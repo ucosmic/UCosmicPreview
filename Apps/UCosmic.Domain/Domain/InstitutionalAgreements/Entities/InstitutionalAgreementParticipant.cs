@@ -37,8 +37,8 @@ namespace UCosmic.Domain.InstitutionalAgreements
         //        affiliation => affiliation.IsDefault && affiliation.Person.User != null &&
         //                       affiliation.Person.User.Name.Equals(principal.Identity.Name,
         //                                                               StringComparison.OrdinalIgnoreCase);
-        //    IsOwner = 
-        //        Establishment.Affiliates.AsQueryable().Any(principalDefaultAffiliation) 
+        //    IsOwner =
+        //        Establishment.Affiliates.AsQueryable().Any(principalDefaultAffiliation)
         //        ||
         //        Establishment.Ancestors.Any(n => n.Ancestor.Affiliates.AsQueryable().Any(principalDefaultAffiliation));
         //}

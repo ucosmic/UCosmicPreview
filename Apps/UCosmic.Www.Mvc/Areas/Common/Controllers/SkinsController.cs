@@ -27,8 +27,8 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             // skin context is expected to be member url
             if (!string.IsNullOrWhiteSpace(skinContext))
             {
-                if (!skinContext.Equals("default", StringComparison.OrdinalIgnoreCase) && 
-                    !skinContext.Equals("ucosmic", StringComparison.OrdinalIgnoreCase) && 
+                if (!skinContext.Equals("default", StringComparison.OrdinalIgnoreCase) &&
+                    !skinContext.Equals("ucosmic", StringComparison.OrdinalIgnoreCase) &&
                     !skinContext.Equals("remove", StringComparison.OrdinalIgnoreCase))
                 {
                     //var establishment = _establishments.FindOne(EstablishmentBy.WebsiteUrl(skinContext));

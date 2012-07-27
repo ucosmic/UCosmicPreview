@@ -226,7 +226,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const string principalIdentityName = "user@domain.tld";
                 const int establishmentId = 8;
                 const string jobTitles = "job titles";
-                const EmployeeOrStudentAffiliate employeeOrStudentAffiliation 
+                const EmployeeOrStudentAffiliate employeeOrStudentAffiliation
                     = EmployeeOrStudentAffiliate.StudentOnly;
                 const string returnUrl = "http://www.site.tld";
                 var scenarioOptions = new ScenarioOptions
@@ -389,8 +389,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         private static Expression<Func<GetMyAffiliationByEstablishmentIdQuery, bool>> AffiliationQueryBasedOn(string userName, int establishmentId)
         {
-            Expression<Func<GetMyAffiliationByEstablishmentIdQuery, bool>> affiliationQueryBasedOn = q => 
-                q.Principal.Identity.Name == userName && 
+            Expression<Func<GetMyAffiliationByEstablishmentIdQuery, bool>> affiliationQueryBasedOn = q =>
+                q.Principal.Identity.Name == userName &&
                 q.EstablishmentId == establishmentId
             ;
             return affiliationQueryBasedOn;

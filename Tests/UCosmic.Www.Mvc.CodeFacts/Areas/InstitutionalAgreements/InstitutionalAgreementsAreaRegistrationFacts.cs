@@ -28,7 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
             public void RegistersNoDefaultRoute()
             {
                 RouteTable.Routes.Where(r => r is Route).Cast<Route>()
-                    .SingleOrDefault(r => r.Url.Equals("InstitutionalAgreements/{controller}/{action}/{id}", 
+                    .SingleOrDefault(r => r.Url.Equals("InstitutionalAgreements/{controller}/{action}/{id}",
                         StringComparison.OrdinalIgnoreCase))
                     .ShouldBeNull();
                 RouteTable.Routes["InstitutionalAgreements_default"].ShouldBeNull();

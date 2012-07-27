@@ -490,8 +490,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
         private static Expression<Func<GetMyEmailAddressByNumberQuery, bool>> EmailQueryBasedOn(int number, string userName)
         {
-            Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailQueryBasedOn = q => 
-                q.Principal.Identity.Name == userName && 
+            Expression<Func<GetMyEmailAddressByNumberQuery, bool>> emailQueryBasedOn = q =>
+                q.Principal.Identity.Name == userName &&
                 q.Number == number
             ;
             return emailQueryBasedOn;

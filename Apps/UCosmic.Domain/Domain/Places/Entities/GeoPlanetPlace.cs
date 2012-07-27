@@ -39,7 +39,7 @@ namespace UCosmic.Domain.Places
         public BoundingBox BoundingBox { get; set; }
 
         public int AreaRank { get; set; }
-        
+
         public int PopulationRank { get; set; }
 
         public string Postal { get; set; }

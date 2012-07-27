@@ -26,9 +26,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             {
                 { CurrentPasswordLabel, "input#CurrentPassword" },
                 { CurrentPasswordLabel.ErrorKey(), ".field-validation-error[data-valmsg-for=CurrentPassword]" },
-                { CurrentPasswordLabel.ErrorTextKey("Required"), 
+                { CurrentPasswordLabel.ErrorTextKey("Required"),
                     UpdatePasswordValidator.FailedBecauseOldPasswordWasEmpty },
-                { CurrentPasswordLabel.ErrorTextKey("Invalid"), 
+                { CurrentPasswordLabel.ErrorTextKey("Invalid"),
                     UpdatePasswordValidator.FailedBecauseCurrentPasswordWasIncorrect
                         .FormatWith(4, 's') },
 

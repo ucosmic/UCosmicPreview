@@ -55,9 +55,9 @@ namespace UCosmic.Domain.Activities
                 foreach (var tagToDelete in command.Tags.Where(t => t.IsDeleted)
                     .Select(deletedTag => activity.DraftedTags
                         .Where(
-                            draftedTag => 
-                            draftedTag.Text == deletedTag.Text && 
-                            draftedTag.DomainType == deletedTag.DomainType && 
+                            draftedTag =>
+                            draftedTag.Text == deletedTag.Text &&
+                            draftedTag.DomainType == deletedTag.DomainType &&
                             draftedTag.DomainKey == deletedTag.DomainKey
                         ).ToArray()
                     )
@@ -68,16 +68,16 @@ namespace UCosmic.Domain.Activities
                 }
 
                 // add new tags
-                foreach (var tagToAddOrKeep in 
-                    from tagToAddOrKeep in command.Tags.Where(t => !t.IsDeleted) 
+                foreach (var tagToAddOrKeep in
+                    from tagToAddOrKeep in command.Tags.Where(t => !t.IsDeleted)
                     let draftedTag = activity.DraftedTags
                         .Where(
-                            t => 
-                            t.Text == tagToAddOrKeep.Text && 
-                            t.DomainType == tagToAddOrKeep.DomainType && 
+                            t =>
+                            t.Text == tagToAddOrKeep.Text &&
+                            t.DomainType == tagToAddOrKeep.DomainType &&
                             t.DomainKey == tagToAddOrKeep.DomainKey
                         ).ToArray()
-                    where !draftedTag.Any() 
+                    where !draftedTag.Any()
                     select tagToAddOrKeep)
                 {
                     activity.DraftedTags.Add(new DraftedTag

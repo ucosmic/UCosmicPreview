@@ -28,7 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             public void RegistersNoDefaultRoute()
             {
                 RouteTable.Routes.Where(r => r is Route).Cast<Route>()
-                    .SingleOrDefault(r => r.Url.Equals("Identity/{controller}/{action}/{id}", 
+                    .SingleOrDefault(r => r.Url.Equals("Identity/{controller}/{action}/{id}",
                         StringComparison.OrdinalIgnoreCase))
                     .ShouldBeNull();
                 RouteTable.Routes["Identity_default"].ShouldBeNull();

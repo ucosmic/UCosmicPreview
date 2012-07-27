@@ -28,7 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.RecruitmentAgencies
             public void RegistersNoDefaultRoute()
             {
                 RouteTable.Routes.Where(r => r is Route).Cast<Route>()
-                    .SingleOrDefault(r => r.Url.Equals("RecruitmentAgencies/{controller}/{action}/{id}", 
+                    .SingleOrDefault(r => r.Url.Equals("RecruitmentAgencies/{controller}/{action}/{id}",
                         StringComparison.OrdinalIgnoreCase))
                     .ShouldBeNull();
                 RouteTable.Routes["RecruitmentAgencies_default"].ShouldBeNull();

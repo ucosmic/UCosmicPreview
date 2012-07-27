@@ -122,7 +122,7 @@
                     <td class="left">
                         <br />
                         <ul id="alternate_names_list" class="listbox" data-value-type="@typeof(EstablishmentForm.EstablishmentNameForm)"
-                            data-new-value-url="@Url.Action(MVC.Establishments.ManagementForms.NewName())" 
+                            data-new-value-url="@Url.Action(MVC.Establishments.ManagementForms.NewName())"
                             @* data-validate-duplicate-url="@Url.Action(MVC.Establishments.ManagementForms.ValidateDuplicateOption())"*@>
                             @if (Model.Names != null)
                             {
@@ -157,7 +157,7 @@
             <tbody>
                 <tr>
                     <td class="left">
-                        <div id="est_loc_map" class="u-map-google" style="height: 320px;" 
+                        <div id="est_loc_map" class="u-map-google" style="height: 320px;"
                              data-ucosmic-map="google" data-ucosmic-map-type-id="roadmap"
                              data-ucosmic-map-center="@(Model.Location.CenterLatitude ?? 25.8),@(Model.Location.CenterLongitude ?? 11.9)"
                              data-ucosmic-map-zoom="@Model.Location.GoogleMapZoomLevel"
@@ -178,11 +178,11 @@
                             <div class="u-map-controls no-display" style="margin-top: 7px;" data-ucosmic-map-position="top_left">
                                 <div data-ucosmic-map-control="marker" data-ucosmic-map-center="@Model.Location.CenterLatitude,@Model.Location.CenterLongitude">
                                     <img src="@Links.content.icons.maps.drop_marker_norm_31_png" alt="Add a placemark"
-                                         title="Add a placemark" class="unselectable" data-ucosmic-map-control="create-marker" 
-                                         data-ucosmic-img-src="@Links.content.icons.maps.new_raised_marker_png" 
+                                         title="Add a placemark" class="unselectable" data-ucosmic-map-control="create-marker"
+                                         data-ucosmic-img-src="@Links.content.icons.maps.new_raised_marker_png"
                                          data-ucosmic-size-width="52" data-ucosmic-size-height="61"
                                          data-ucosmic-map-origin-x="0" data-ucosmic-map-origin-y="0"
-                                         data-ucosmic-map-anchor-x="10" data-ucosmic-map-anchor-y="10" 
+                                         data-ucosmic-map-anchor-x="10" data-ucosmic-map-anchor-y="10"
                                          data-ucosmic-map-offset-y="43" data-ucosmic-map-href="@Url.Action(MVC.Establishments.SupplementalForms.FindPlaces())" />
                                     <img src="@Links.content.icons.maps.drop_marker_hot_31_png" alt="Remove placemark"
                                          title="Remove placemark" class="unselectable" data-ucosmic-map-control="destroy-marker"
@@ -346,7 +346,7 @@
                 $(this).hide();
             });
 
-            // show the requested view 
+            // show the requested view
             $('#est_loc_views .' + which).show();
 
             // empty the places view if not showing
@@ -610,7 +610,7 @@
             for (var i = 0; i < lis.length; i++)
                 ul.append(ul.find('li[data-current-text="' + vals[i] + '"]').get());
       }
-     
+
     // click to cancel editor
     $('#establishment_editor ul.listbox li.appender .editor .actions .cancel a').live('click', function () {
         var items = getAppenderItems($(this));

@@ -3,7 +3,7 @@ using UCosmic.Domain;
 
 namespace UCosmic.Impl.Orm
 {
-    internal abstract class RevisableEntityTypeConfiguration<TRevisableEntity> 
+    internal abstract class RevisableEntityTypeConfiguration<TRevisableEntity>
         : EntityTypeConfiguration<TRevisableEntity> where TRevisableEntity : RevisableEntity
     {
         internal RevisableEntityTypeConfiguration()

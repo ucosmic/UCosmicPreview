@@ -270,13 +270,13 @@ namespace UCosmic.Domain.InstitutionalAgreements
                         // contact display name matches the keyword,
                     contact.Person.DisplayName.Contains(keyword)
                     ||
-                        // or contact first name matches the keyword, 
+                        // or contact first name matches the keyword,
                     (
                         contact.Person.FirstName != null
                         &&
                         contact.Person.FirstName.Contains(keyword)
                     )
-                        // or contact last name matches the keyword, 
+                        // or contact last name matches the keyword,
                     ||
                     (
                         contact.Person.LastName != null

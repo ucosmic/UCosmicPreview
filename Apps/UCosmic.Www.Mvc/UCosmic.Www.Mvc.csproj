@@ -327,9 +327,6 @@
     <Compile Include="Common.QaController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Common.SharedController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Common.SkinsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1431,7 +1428,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\mail\" />
-    <Folder Include="Areas\Common\Views\Shared\" />
     <Folder Include="Areas\RecruitmentAgencies\Controllers\" />
     <Folder Include="Areas\RecruitmentAgencies\Models\" />
     <Folder Include="Areas\RecruitmentAgencies\Views\Shared\" />

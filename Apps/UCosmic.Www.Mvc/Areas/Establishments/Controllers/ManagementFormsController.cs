@@ -149,7 +149,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                 //    .ToArray()
                 _languageOptions = _queryProcessor
                     .Execute(new FindAllLanguagesQuery())
-                    .Select(l => 
+                    .Select(l =>
                         new SelectListItem
                         {
                             Text = l.TranslatedName.Text,
@@ -170,7 +170,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         public virtual PartialViewResult NewName()
         {
             var model = new EstablishmentForm.EstablishmentNameForm(GetLanguageOptions());
-            return PartialView(GetEditorTemplateViewName(Area, Name, 
+            return PartialView(GetEditorTemplateViewName(Area, Name,
                 Views.EditorTemplates.EstablishmentNameForm), model);
         }
 

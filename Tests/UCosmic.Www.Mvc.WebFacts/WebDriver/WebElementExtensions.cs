@@ -177,7 +177,7 @@ namespace UCosmic.Www.Mvc
                     exceptionCaught = false;
                     try
                     {
-                        // IE requires multiple clicks before 
+                        // IE requires multiple clicks before
                         // autocomplete dropdown item disappears
                         autoCompleteItem.Click();
                     }
@@ -280,7 +280,7 @@ namespace UCosmic.Www.Mvc
             // ReSharper disable EmptyGeneralCatchClause
             catch
             // ReSharper restore EmptyGeneralCatchClause
-            { //swallow all exceptions here 
+            { //swallow all exceptions here
             }
         }
 

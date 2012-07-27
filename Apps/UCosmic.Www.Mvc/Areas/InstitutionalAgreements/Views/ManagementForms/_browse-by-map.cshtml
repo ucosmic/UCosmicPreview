@@ -20,16 +20,16 @@
         zoom: 2,
         center: stockholm,
         mapTypeId: google.maps.MapTypeId.ROADMAP
-    }; 
-    
+    };
+
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-    
+
     @foreach (var item in Model)
     {
-    <text>  
+    <text>
           var latLng = new google.maps.LatLng('@(item.Latitude)', '@(item.Longitude)');
-          var title = '@(item.Title)';  
-         
+          var title = '@(item.Title)';
+
           var contentString = '<a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Edit(item.EntityId, Request.RawUrl))">' + title + '</a>' ;
           var marker = new google.maps.Marker({
              position: latLng,
@@ -39,7 +39,7 @@
           bindInfoW(marker, contentString, infoWindow);
 
           var infoWindow = new google.maps.InfoWindow();
-          
+
           function bindInfoW(marker, contentString, infowindow)
             {
              google.maps.event.addListener(marker, 'click', function () {
@@ -47,7 +47,7 @@
                 infoWindow.open(map, marker);
                 });
             }
-   
+
     </text>
     }
 </script>

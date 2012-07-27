@@ -299,7 +299,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        private static ActionExecutingContext CreateFilterContext(string tokenKey, object tokenValue, 
+        private static ActionExecutingContext CreateFilterContext(string tokenKey, object tokenValue,
             Controller forController = null)
         {
             var parameters = new Dictionary<string, object>();

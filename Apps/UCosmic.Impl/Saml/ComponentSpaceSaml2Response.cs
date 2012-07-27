@@ -157,8 +157,8 @@ namespace UCosmic.Impl
         {
             get
             {
-                return _eduPersonScopedAffiliations 
-                    ?? (_eduPersonScopedAffiliations = 
+                return _eduPersonScopedAffiliations
+                    ?? (_eduPersonScopedAffiliations =
                         GetAttributeValuesByFriendlyName(SamlAttributeFriendlyName.EduPersonScopedAffiliation)
                     );
             }
@@ -212,8 +212,8 @@ namespace UCosmic.Impl
         {
             get
             {
-                return _mails 
-                    ?? (_mails = 
+                return _mails
+                    ?? (_mails =
                         GetAttributeValuesByFriendlyName(SamlAttributeFriendlyName.Mail)
                     );
             }

@@ -27,7 +27,7 @@ namespace UCosmic.Www.Mvc
 
             // for IE driver to start, make sure "Enable Protected Mode" is checked for all zones:
             // go to Internet Options, and click the Security tab
-            // ensure "Enable Protected Mode" is checked for Internet, Local intranet, 
+            // ensure "Enable Protected Mode" is checked for Internet, Local intranet,
             // Trusted sites, and Restricted sites.
 
             // inject browser dependencies from unity into static Browsers list property

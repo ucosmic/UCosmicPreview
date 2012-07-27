@@ -49,7 +49,7 @@
         {
             <div data-ucosmic-map="marker" data-ucosmic-map-center="@marker.CenterLatitude,@marker.CenterLongitude" data-ucosmic-map-title="@marker.EstablishmentTranslatedThenOfficialName">
                 <div data-ucosmic-map="info-window" data-ucosmic-size-width="400" style="padding-right: 20px;">
-                    <strong>@marker.ForEstablishmentTranslatedName</strong> 
+                    <strong>@marker.ForEstablishmentTranslatedName</strong>
                     @if (!marker.ForEstablishmentTranslatedName.Equals(marker.ForEstablishmentOfficialName))
                     {
                         <span>(@marker.ForEstablishmentOfficialName)</span>
@@ -115,7 +115,7 @@
                         {
                             foreach (var file in item.Files)
                             {
-                            <a href="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.DisplayFile(file.EntityId, file.Name))" 
+                            <a href="@Url.Action(MVC.InstitutionalAgreements.PublicSearch.DisplayFile(file.EntityId, file.Name))"
                                 target="_blank">@file.Name</a>
                             <br />
                             }

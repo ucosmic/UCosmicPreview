@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace UCosmic.Domain.InstitutionalAgreements
 {
-    public class FindInstitutionalAgreementsOwnedByEstablishmentQuery 
+    public class FindInstitutionalAgreementsOwnedByEstablishmentQuery
         : BaseEntitiesQuery<InstitutionalAgreement>, IDefineQuery<InstitutionalAgreement[]>
     {
         public FindInstitutionalAgreementsOwnedByEstablishmentQuery(int establishmentIdKey)
@@ -13,14 +13,14 @@ namespace UCosmic.Domain.InstitutionalAgreements
 
         public FindInstitutionalAgreementsOwnedByEstablishmentQuery(Guid establishmentGuidKey)
         {
-            if (establishmentGuidKey == Guid.Empty) 
+            if (establishmentGuidKey == Guid.Empty)
                 throw new ArgumentException("Cannot be empty.", "establishmentGuidKey");
             EstablishmentKey = establishmentGuidKey;
         }
 
         public FindInstitutionalAgreementsOwnedByEstablishmentQuery(string establishmentUrlKey)
         {
-            if (string.IsNullOrWhiteSpace(establishmentUrlKey)) 
+            if (string.IsNullOrWhiteSpace(establishmentUrlKey))
                 throw new ArgumentException("Cannot be null or white space.", "establishmentUrlKey");
             EstablishmentKey = establishmentUrlKey;
         }
@@ -28,7 +28,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
         public object EstablishmentKey { get; private set; }
     }
 
-    public class FindInstitutionalAgreementsOwnedByEstablishmentHandler 
+    public class FindInstitutionalAgreementsOwnedByEstablishmentHandler
         : IHandleQueries<FindInstitutionalAgreementsOwnedByEstablishmentQuery, InstitutionalAgreement[]>
     {
         private readonly IQueryEntities _entities;

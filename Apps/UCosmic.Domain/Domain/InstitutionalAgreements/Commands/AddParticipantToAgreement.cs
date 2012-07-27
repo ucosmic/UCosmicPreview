@@ -83,8 +83,8 @@ namespace UCosmic.Domain.InstitutionalAgreements
             };
 
             // derive ownership (todo, this should be a separate query)
-            Expression<Func<Affiliation, bool>> principalDefaultAffiliation = affiliation => 
-                affiliation.IsDefault && 
+            Expression<Func<Affiliation, bool>> principalDefaultAffiliation = affiliation =>
+                affiliation.IsDefault &&
                 affiliation.Person.User != null &&
                 affiliation.Person.User.Name.Equals(command.Principal.Identity.Name, StringComparison.OrdinalIgnoreCase);
             participant.IsOwner = establishment.Affiliates.AsQueryable().Any(principalDefaultAffiliation) ||

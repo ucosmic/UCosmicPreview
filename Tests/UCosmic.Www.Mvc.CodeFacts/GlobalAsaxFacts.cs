@@ -91,10 +91,10 @@ namespace UCosmic.Www.Mvc
                 new System.Web.Mvc.AreaRegistration[]
                 {
                     new ActivitiesAreaRegistration(),
-                    new CommonAreaRegistration(), 
-                    new EstablishmentsAreaRegistration(), 
-                    new IdentityAreaRegistration(), 
-                    new InstitutionalAgreementsAreaRegistration(), 
+                    new CommonAreaRegistration(),
+                    new EstablishmentsAreaRegistration(),
+                    new IdentityAreaRegistration(),
+                    new InstitutionalAgreementsAreaRegistration(),
                     new PeopleAreaRegistration(),
                     new RecruitmentAgenciesAreaRegistration(),
                     new RolesAreaRegistration(),

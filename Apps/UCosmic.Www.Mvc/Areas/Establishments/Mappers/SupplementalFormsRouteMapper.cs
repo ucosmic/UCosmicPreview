@@ -31,7 +31,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
         {
             public static readonly string[] RoutesForGet = new[]
             {
-                "establishments/{establishmentId}/locate/then-return-to/{*returnUrl}", 
+                "establishments/{establishmentId}/locate/then-return-to/{*returnUrl}",
                 "establishments/{establishmentId}/locate"
             };
 

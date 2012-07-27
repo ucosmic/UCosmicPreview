@@ -12,7 +12,7 @@ namespace UCosmic.Www.Mvc
             var idsToReuse = GetIdsToReuse(html.ViewContext.HttpContext, collectionName);
             var itemIndex = idsToReuse.Count > 0 ? idsToReuse.Dequeue() : Guid.NewGuid().ToString();
 
-            // autocomplete="off" is needed to work around a very annoying Chrome behaviour whereby it reuses 
+            // autocomplete="off" is needed to work around a very annoying Chrome behaviour whereby it reuses
             // old values after the user clicks "Back", which causes the xyz.index and xyz[...] values to get out of sync.
             html.ViewContext.Writer.WriteLine(string.Format(
                 "<input type=\"hidden\" name=\"{0}.index\" autocomplete=\"off\" value=\"{1}\" />",
@@ -28,7 +28,7 @@ namespace UCosmic.Www.Mvc
 
         private static Queue<string> GetIdsToReuse(HttpContextBase httpContext, string collectionName)
         {
-            // We need to use the same sequence of IDs following a server-side validation failure,  
+            // We need to use the same sequence of IDs following a server-side validation failure,
             // otherwise the framework won't render the validation error messages next to each item.
             var key = "__htmlPrefixScopeExtensions_IdsToReuse_" + collectionName;
             var queue = (Queue<string>)httpContext.Items[key];

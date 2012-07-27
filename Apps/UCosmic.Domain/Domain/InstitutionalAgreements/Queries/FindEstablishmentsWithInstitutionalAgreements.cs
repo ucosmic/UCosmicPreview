@@ -40,8 +40,8 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 queryable = queryable
                     .Where
                     (
-                        e => 
-                        e.Parent != null && 
+                        e =>
+                        e.Parent != null &&
                         e.Parent.EntityId == query.ParentEstablishmentGuid
                     )
                 ;

@@ -7,7 +7,7 @@
     }
 }
 <li class="allowed-type appender">
-    @using (Html.BeginCollectionItem("AllowedTypeValues")) 
+    @using (Html.BeginCollectionItem("AllowedTypeValues"))
     {
         var addingDisplay = (!Model.IsAdded) ? "display:none;" : string.Empty;
         var editingDisplay = (Model.IsAdded) ? "display:none;" : string.Empty;

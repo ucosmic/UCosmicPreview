@@ -8,7 +8,7 @@
     Browse institutional agreements
 </h2>
 <p>
-    <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Post(null as Guid?))">Add a new agreement</a> 
+    <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Post(null as Guid?))">Add a new agreement</a>
     @if (Roles.GetRolesForUser().Contains(RoleName.InstitutionalAgreementSupervisor))
     {
         <span>|</span>
@@ -58,10 +58,10 @@
                         {
                             foreach (var file in item.Files)
                             {
-                            <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.DisplayFile(file.EntityId, file.Name))" 
+                            <a href="@Url.Action(MVC.InstitutionalAgreements.ManagementForms.DisplayFile(file.EntityId, file.Name))"
                                     target="_blank">@file.Name</a>
                             <br />
-                            }                            
+                            }
                         }
                         else
                         {

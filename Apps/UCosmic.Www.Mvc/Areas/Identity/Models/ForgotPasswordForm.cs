@@ -86,7 +86,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
                 // the user must not have a SAML account
                 .Must(p => ValidateUser.EduPersonTargetedIdIsEmpty(person.User))
-                    .WithMessage(FailedBecauseEduPersonTargetedIdWasNotEmpty, 
+                    .WithMessage(FailedBecauseEduPersonTargetedIdWasNotEmpty,
                         p => p.EmailAddress.GetEmailDomain())
 
                 // the email address' person's user's name must match a local member account

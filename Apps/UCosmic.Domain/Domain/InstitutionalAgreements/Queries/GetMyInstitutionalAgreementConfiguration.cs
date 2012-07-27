@@ -55,8 +55,8 @@ namespace UCosmic.Domain.InstitutionalAgreements
             });
 
             // from person's default affiliation, determine establishment
-            var configurations = (query.IsWritable) 
-                ? _entities.Get<InstitutionalAgreementConfiguration>() 
+            var configurations = (query.IsWritable)
+                ? _entities.Get<InstitutionalAgreementConfiguration>()
                 : _entities.Query<InstitutionalAgreementConfiguration>();
             configurations = configurations.EagerLoad(query.EagerLoad, _entities)
                 .Where(c =>

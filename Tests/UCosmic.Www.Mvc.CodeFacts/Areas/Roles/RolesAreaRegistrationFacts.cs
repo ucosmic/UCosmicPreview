@@ -28,7 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.Roles
             public void RegistersNoDefaultRoute()
             {
                 RouteTable.Routes.Where(r => r is Route).Cast<Route>()
-                    .SingleOrDefault(r => r.Url.Equals("Roles/{controller}/{action}/{id}", 
+                    .SingleOrDefault(r => r.Url.Equals("Roles/{controller}/{action}/{id}",
                         StringComparison.OrdinalIgnoreCase))
                     .ShouldBeNull();
                 RouteTable.Routes["Roles_default"].ShouldBeNull();

@@ -27,7 +27,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
 
         public static class Edit
         {
-            public static readonly string[] Routes = 
+            public static readonly string[] Routes =
             {
                 "my/institutional-agreements/configure",
                 "my/institutional-agreements/configure.html",

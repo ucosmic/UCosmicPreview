@@ -50,8 +50,8 @@ namespace UCosmic.Domain.Places
 
         public static List<string> GetCodes(this IEnumerable<GeoNamesFeatureEnum> featureEnums)
         {
-            return featureEnums == null 
-                ? null 
+            return featureEnums == null
+                ? null
                 : featureEnums.Select(featureEnum => featureEnum.GetCode()).ToList();
         }
     }

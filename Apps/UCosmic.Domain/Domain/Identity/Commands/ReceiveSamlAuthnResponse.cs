@@ -66,7 +66,7 @@ namespace UCosmic.Domain.Identity
             var oldScopedAffiliations = user.EduPersonScopedAffiliations.ToArray();
             var newScopedAffiliations = samlResponse.EduPersonScopedAffiliations ?? new string[] {};
             newScopedAffiliations = newScopedAffiliations.Where(s => !string.IsNullOrWhiteSpace(s)).ToArray();
-            foreach (var oldScopedAffiliation in oldScopedAffiliations) 
+            foreach (var oldScopedAffiliation in oldScopedAffiliations)
                 if (!newScopedAffiliations.Contains(oldScopedAffiliation.Value))
                     user.EduPersonScopedAffiliations.Remove(oldScopedAffiliation);
             foreach (var newScopedAffiliation in newScopedAffiliations)

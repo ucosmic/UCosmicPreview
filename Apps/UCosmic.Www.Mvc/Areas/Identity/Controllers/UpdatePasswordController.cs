@@ -46,7 +46,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             );
 
             // only local members can change passwords
-            if (user.EduPersonTargetedId != null || 
+            if (user.EduPersonTargetedId != null ||
                 !_services.Passwords.Exists(User.Identity.Name))
                 return RedirectToAction(MVC.Identity.MyHome.Get());
 

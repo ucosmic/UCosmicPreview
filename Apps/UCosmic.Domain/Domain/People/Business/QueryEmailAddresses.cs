@@ -18,10 +18,10 @@ namespace UCosmic.Domain.People
 
         internal static EmailAddress ByUserNameAndNumber(this IQueryable<EmailAddress> queryable, string userName, int number)
         {
-            return queryable.SingleOrDefault(email => 
-                email.Person.User != null && 
+            return queryable.SingleOrDefault(email =>
+                email.Person.User != null &&
                 email.Person.User.Name != null &&
-                email.Person.User.Name.Equals(userName, StringComparison.OrdinalIgnoreCase) && 
+                email.Person.User.Name.Equals(userName, StringComparison.OrdinalIgnoreCase) &&
                 email.Number == number);
         }
 

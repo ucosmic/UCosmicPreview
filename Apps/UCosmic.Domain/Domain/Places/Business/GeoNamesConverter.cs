@@ -50,8 +50,8 @@ namespace UCosmic.Domain.Places
 
             #endregion
             #region GeoNamesTimeZone to TimeZone Entity
-            
-            Mapper.CreateMap<NGeo.GeoNames.TimeZone, GeoNamesTimeZone>(); 
+
+            Mapper.CreateMap<NGeo.GeoNames.TimeZone, GeoNamesTimeZone>();
 
             #endregion
             #region GeoNamesCountry to Country Entity
@@ -65,7 +65,7 @@ namespace UCosmic.Domain.Places
                     .ForMember(target => target.Code, opt => opt.ResolveUsing(source => source.CountryCode))
                     .ForMember(target => target.Name, opt => opt.ResolveUsing(source => source.CountryName))
                     .ForMember(target => target.AsToponym, opt => opt.Ignore())
-                ; 
+                ;
 
             #endregion
             #region Toponym Entity to Place
@@ -75,15 +75,15 @@ namespace UCosmic.Domain.Places
                 .ForMember(target => target.Names, opt => opt.ResolveUsing(source => source.AlternateNames))
                 .ForMember(target => target.IsEarth, opt => opt.ResolveUsing(source =>
                     source.GeoNameId == GeoNamesToponym.EarthGeoNameId))
-                .ForMember(target => target.IsContinent, opt => opt.ResolveUsing(source => 
-                    source.FeatureCode == GeoNamesFeatureEnum.Continent.GetCode() 
+                .ForMember(target => target.IsContinent, opt => opt.ResolveUsing(source =>
+                    source.FeatureCode == GeoNamesFeatureEnum.Continent.GetCode()
                         && source.Feature.ClassCode == GeoNamesFeatureClassEnum.Area.GetCode()))
                 .ForMember(target => target.IsCountry, opt => opt.ResolveUsing(source =>
                     source.AsCountry != null))
                 .ForMember(target => target.BoundingBox, opt => opt.ResolveUsing(source =>
                     (source.AsCountry != null) ? source.AsCountry.BoundingBox : new BoundingBox()))
                 .ForMember(target => target.IsAdmin1, opt => opt.ResolveUsing(source =>
-                    source.FeatureCode == GeoNamesFeatureEnum.AdministrativeDivisionLevel1.GetCode() 
+                    source.FeatureCode == GeoNamesFeatureEnum.AdministrativeDivisionLevel1.GetCode()
                         && source.Feature.ClassCode == GeoNamesFeatureClassEnum.AdministrativeBoundary.GetCode()))
                 .ForMember(target => target.IsAdmin2, opt => opt.ResolveUsing(source =>
                     source.FeatureCode == GeoNamesFeatureEnum.AdministrativeDivisionLevel2.GetCode()

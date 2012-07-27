@@ -3,9 +3,9 @@
     public class GeoPlanetPlaceType : Entity
     {
         public int Code { get; set; }
-        
+
         public string Uri { get; set; }
-        
+
         public string EnglishName { get; set; }
 
         public string EnglishDescription { get; set; }

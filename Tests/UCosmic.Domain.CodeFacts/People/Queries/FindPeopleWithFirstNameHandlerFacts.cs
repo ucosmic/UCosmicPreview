@@ -217,7 +217,7 @@ namespace UCosmic.Domain.People
                 results.Count().ShouldEqual(2);
                 results.ToList().ForEach(i => new[]
                 {
-                    fakes.First().FirstName, 
+                    fakes.First().FirstName,
                     fakes.Last().FirstName
                 }.ShouldContain(i.FirstName));
             }
@@ -243,7 +243,7 @@ namespace UCosmic.Domain.People
                 results.Count().ShouldEqual(2);
                 results.ToList().ForEach(i => new[]
                 {
-                    fakes.First().FirstName, 
+                    fakes.First().FirstName,
                     fakes.Last().FirstName
                 }.ShouldNotContain(i.FirstName));
 }
@@ -269,7 +269,7 @@ namespace UCosmic.Domain.People
                 results.Count().ShouldEqual(2);
                 results.ToList().ForEach(i => new[]
                 {
-                    fakes.ToArray()[1].FirstName, 
+                    fakes.ToArray()[1].FirstName,
                     fakes.ToArray()[2].FirstName
                 }.ShouldNotContain(i.FirstName));
             }

@@ -53,7 +53,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             else
                 throw new InvalidOperationException(String.Format(
-                    "The action method parameter '{0}' must either be a Guid " + 
+                    "The action method parameter '{0}' must either be a Guid " +
                     "or implement the '{1}' interface.",
                         ParamName, typeof(IModelConfirmAndRedeem).FullName));
 

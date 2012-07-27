@@ -43,7 +43,7 @@ namespace UCosmic.Www.Mvc.Models
                 foreach (var iHaveText in from iHaveText in iHaveTexts // check each list item for duplicates
                                           // query the list for all items matching current value
                                           let matches = iHaveTexts.Where(t => string.Compare(t.Text, iHaveText.Text, IgnoreCase) == 0)
-                                          where matches.Count() > 1 // if there is more than 1 match, there is a duplicate 
+                                          where matches.Count() > 1 // if there is more than 1 match, there is a duplicate
                                           select iHaveText) // select the duplicate into variable
                 {
                     _duplicateValue = iHaveText.Text; // this text value was duplicated

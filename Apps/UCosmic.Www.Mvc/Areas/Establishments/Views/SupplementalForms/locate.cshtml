@@ -43,11 +43,11 @@
 </p>
 }
 <br />
-<div id="est_loc_map" class="u-map-google" 
-    data-ucosmic-map-zoom="@(Model.Location.GoogleMapZoomLevel ?? 2)" 
+<div id="est_loc_map" class="u-map-google"
+    data-ucosmic-map-zoom="@(Model.Location.GoogleMapZoomLevel ?? 2)"
     data-ucosmic-map-bounds-fit="if-low-zoom"
     data-ucosmic-map-zoom-scroll-wheel="false"
-    data-ucosmic-map-center="@(Model.Location.CenterLatitude ?? 25.8),@(Model.Location.CenterLongitude ?? 11.9)" 
+    data-ucosmic-map-center="@(Model.Location.CenterLatitude ?? 25.8),@(Model.Location.CenterLongitude ?? 11.9)"
     data-ucosmic-map-bounds-north-east="@Model.Location.BoundingBoxNortheastLatitude,@Model.Location.BoundingBoxNortheastLongitude"
     data-ucosmic-map-bounds-south-west="@Model.Location.BoundingBoxSouthwestLatitude,@Model.Location.BoundingBoxSouthwestLongitude"
     data-ucosmic-map-zoom-input="@Html.IdFor(m => m.Location.GoogleMapZoomLevel)"
@@ -64,11 +64,11 @@
         <div class="u-map-controls no-display" style="margin-top: 7px;" data-ucosmic-map-position="top_left">
             <div data-ucosmic-map-control="marker" data-ucosmic-map-center="@Model.Location.CenterLatitude,@Model.Location.CenterLongitude">
                 <img src="@Links.content.icons.maps.drop_marker_norm_31_png" alt="Add a placemark"
-				    title="Add a placemark" class="unselectable" data-ucosmic-map-control="create-marker" 
-                    data-ucosmic-img-src="@Links.content.icons.maps.new_raised_marker_png" 
+				    title="Add a placemark" class="unselectable" data-ucosmic-map-control="create-marker"
+                    data-ucosmic-img-src="@Links.content.icons.maps.new_raised_marker_png"
                     data-ucosmic-size-width="52" data-ucosmic-size-height="61"
                     data-ucosmic-map-origin-x="0" data-ucosmic-map-origin-y="0"
-                    data-ucosmic-map-anchor-x="10" data-ucosmic-map-anchor-y="10" 
+                    data-ucosmic-map-anchor-x="10" data-ucosmic-map-anchor-y="10"
                     data-ucosmic-map-offset-y="43" data-ucosmic-map-href="@Url.Action(MVC.Establishments.SupplementalForms.FindPlaces())" />
                 <img src="@Links.content.icons.maps.drop_marker_hot_31_png" alt="Remove placemark"
 				    title="Remove placemark" class="unselectable" data-ucosmic-map-control="destroy-marker"
@@ -93,7 +93,7 @@
                         MVC.Establishments.SupplementalForms.Name,
                         new { area = MVC.Establishments.Name, httpMethod = "POST" }, FormMethod.Post))
                     {
-                        <input type="submit" value="Yes, save location" /> 
+                        <input type="submit" value="Yes, save location" />
                         <span data-ucosmic-form-submitting="hide"><em>If not, keep dragging the marker.</em></span>
                         <span class="no-display" data-ucosmic-form-submitting="show">
                             <img alt="spinning wait icon" src="@Url.Content(Links.content.icons.loaders.win7_wait_16_gif)" />
@@ -120,7 +120,7 @@
     else
     {
         <div class="u-map-markers no-display">
-            <div data-ucosmic-map="marker" data-ucosmic-map-center="@Model.Location.CenterLatitude,@Model.Location.CenterLongitude" 
+            <div data-ucosmic-map="marker" data-ucosmic-map-center="@Model.Location.CenterLatitude,@Model.Location.CenterLongitude"
                 data-ucosmic-map-title="@Model.OfficialThenTranslatedName">
                 <div data-ucosmic-map="info-window" data-ucosmic-size-width="400" style="padding-right: 20px;">
                     <strong>@Model.TranslatedName</strong>

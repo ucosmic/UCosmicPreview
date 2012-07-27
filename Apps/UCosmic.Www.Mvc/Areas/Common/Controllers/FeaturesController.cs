@@ -17,7 +17,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             {
                 { "preview-1",                   "UCosmic Preview 1 Feature Summary"},
                 { "preview-2",                   "UCosmic Preview 2 Feature Summary" },
-                { "preview-3",                   "UCosmic Preview 3 Feature Summary" }, 
+                { "preview-3",                   "UCosmic Preview 3 Feature Summary" },
                 { "preview-4",                   "UCosmic Preview 4 Feature Summary" },
                 { "december-2011-preview-1",     "December 2011 Preview 1 Feature Summary" },
                 { "december-2011-preview-2",     "December 2011 Preview 2 Feature Summary" },

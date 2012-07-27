@@ -27,7 +27,7 @@ namespace UCosmic.Domain.Places
         public virtual ICollection<GeoNamesToponym> Children { get; set; }
 
         public virtual ICollection<GeoNamesToponymNode> Ancestors { get; set; }
-        public virtual ICollection<GeoNamesToponymNode> Offspring { get; set; } 
+        public virtual ICollection<GeoNamesToponymNode> Offspring { get; set; }
 
         public Coordinates Center { get; set; }
 

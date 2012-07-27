@@ -85,8 +85,8 @@ namespace UCosmic.Impl
                 var parameters =
                     from parameter in ctor.GetParameters()
                     let type = parameter.ParameterType
-                    select type == serviceType 
-                        ? e.Expression 
+                    select type == serviceType
+                        ? e.Expression
                         : Container.GetRegistration(type, true).BuildExpression();
 
                 var expression = Expression.New(ctor, parameters);

@@ -84,7 +84,7 @@ namespace UCosmic.Domain.Identity
             RuleFor(p => p.PasswordConfirmation)
                 // must match password unless password is invalid or password confirmation is empty
                 .Equal(p => p.Password)
-                    .Unless(p => 
+                    .Unless(p =>
                         string.IsNullOrWhiteSpace(p.PasswordConfirmation) ||
                         string.IsNullOrWhiteSpace(p.Password) ||
                         p.Password.Length < passwords.MinimumPasswordLength)

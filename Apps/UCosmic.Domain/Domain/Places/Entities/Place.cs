@@ -17,7 +17,7 @@ namespace UCosmic.Domain.Places
 
         public virtual ICollection<PlaceNode> Ancestors { get; set; }
         public virtual ICollection<PlaceNode> Offspring { get; set; }
-        
+
         public virtual GeoNamesToponym GeoNamesToponym { get; set; }
         public virtual GeoPlanetPlace GeoPlanetPlace { get; set; }
 

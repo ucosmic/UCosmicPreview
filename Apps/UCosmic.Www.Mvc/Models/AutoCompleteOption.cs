@@ -1,5 +1,4 @@
-﻿
-namespace UCosmic.Www.Mvc.Models
+﻿ namespace UCosmic.Www.Mvc.Models
 {
     public class AutoCompleteOption
     {

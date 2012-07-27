@@ -7,8 +7,8 @@ namespace UCosmic.Www.Mvc
 {
     public static class ReuseMock
     {
-        private static readonly IDictionary<ControllerCustomization, TestControllerBuilder> TestControllerBuilders 
-            = new Dictionary<ControllerCustomization, TestControllerBuilder>(); 
+        private static readonly IDictionary<ControllerCustomization, TestControllerBuilder> TestControllerBuilders
+            = new Dictionary<ControllerCustomization, TestControllerBuilder>();
 
         public static TestControllerBuilder TestControllerBuilder(ControllerCustomization customization = ControllerCustomization.None)
         {

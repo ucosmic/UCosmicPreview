@@ -33,7 +33,7 @@ namespace UCosmic.Www.Mvc
         [Then(@"I should not see an (.*) section")]
         public void DoNotSeeContentSection(string sectionName)
         {
-            Browsers.ForEach(browser => browser.WaitUntil(b => 
+            Browsers.ForEach(browser => browser.WaitUntil(b =>
                 b.GetPage().GetField(sectionName, true).IsNull() ||
                 !b.GetPage().GetField(sectionName).Displayed,
                 "@Browser unexpectedly displayed the '{0}' section.".FormatWith(sectionName)));

@@ -115,7 +115,7 @@ Scenario Outline: Add member to Grants list persists after saving changes
     Then I should see the Role Edit page
     And I should not see an item for "any1@suny.edu" in the Members list
 
-Examples: 
+Examples:
     | Browser |
     | Chrome  |
     | Firefox |

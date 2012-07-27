@@ -136,7 +136,7 @@ namespace UCosmic.Domain.Identity
                         p => p.EmailAddress)
                 // must match an establishment
                 .Must(p => ValidateEstablishment.EmailMatchesEntity(p, entities, loadEstablishment, out establishment))
-                    .WithMessage(ValidateEstablishment.FailedBecauseEmailMatchedNoEntity, 
+                    .WithMessage(ValidateEstablishment.FailedBecauseEmailMatchedNoEntity,
                         p => p.EmailAddress)
                 // establishment must be a member
                 .Must(p => establishment.IsMember)

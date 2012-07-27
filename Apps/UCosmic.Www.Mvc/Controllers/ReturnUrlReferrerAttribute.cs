@@ -23,12 +23,12 @@ namespace UCosmic.Www.Mvc.Controllers
             var model = filterContext.Controller.ViewData.Model as IReturnUrl;
             if (model == null) return;
 
-            var returnUrl = filterContext.HttpContext.Request.UrlReferrer != null 
-                ? filterContext.HttpContext.Request.UrlReferrer.ToString() 
+            var returnUrl = filterContext.HttpContext.Request.UrlReferrer != null
+                ? filterContext.HttpContext.Request.UrlReferrer.ToString()
                 : Fallback;
-            
-            if (!returnUrl.StartsWith("/") 
-                && !returnUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase) 
+
+            if (!returnUrl.StartsWith("/")
+                && !returnUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
                 && !returnUrl.StartsWith("https://"))
                 returnUrl = string.Format("/{0}", returnUrl);
 

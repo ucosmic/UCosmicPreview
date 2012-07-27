@@ -20,8 +20,8 @@ namespace UCosmic.Www.Mvc.Models
 
         // We are no longer putting mapping configurations here.
         // Instead, put your mapping configurations in the appropriate
-        // ModelMapper.cs file.  For example, mappings for the ManagementForms 
-        // controller in the Establishments area will go in the 
+        // ModelMapper.cs file.  For example, mappings for the ManagementForms
+        // controller in the Establishments area will go in the
         // ~/Areas/Establishments/Mappers/ManagementFormsModelMapper.cs file.
         public static void RegisterAllProfiles()
         {

@@ -217,8 +217,8 @@ namespace UCosmic.Domain.People
                 results.Count().ShouldEqual(2);
                 results.ToList().ForEach(i => new[]
                 {
-                    fakes.ToArray()[2].LastName, 
-                    fakes.ToArray()[3].LastName, 
+                    fakes.ToArray()[2].LastName,
+                    fakes.ToArray()[3].LastName,
                 }.ShouldContain(i.LastName));
             }
 

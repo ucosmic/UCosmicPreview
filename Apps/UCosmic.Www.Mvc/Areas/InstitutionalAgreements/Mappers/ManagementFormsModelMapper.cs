@@ -69,8 +69,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                     //.ForMember(d => d.Files, o => o.ResolveUsing<InstitutionalAgreementToFormFilesResolver>())
                     //.ForMember(d => d.Contacts, o => o.ResolveUsing<InstitutionalAgreementToFormContactsResolver>())
                     .ForMember(d => d.Umbrella, o => o
-                        .ResolveUsing(s => s.Umbrella != null 
-                            ? Mapper.Map<InstitutionalAgreementForm.UmbrellaForm>(s.Umbrella) 
+                        .ResolveUsing(s => s.Umbrella != null
+                            ? Mapper.Map<InstitutionalAgreementForm.UmbrellaForm>(s.Umbrella)
                             : new InstitutionalAgreementForm.UmbrellaForm()))
                 ;
                 CreateMap<InstitutionalAgreement, InstitutionalAgreementForm.UmbrellaForm>()

@@ -23,7 +23,7 @@
     @ViewBag.Title
 </h2>
 @if (Model.RevisionId == 0)
-{   
+{
     <p>
         The Institutional Agreement Module Configuration for <strong>@Model.ForEstablishmentOfficialName</strong>
         has not yet been set up. <a href="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.Add())">

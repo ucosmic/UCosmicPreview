@@ -28,7 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.People
             public void RegistersNoDefaultRoute()
             {
                 RouteTable.Routes.Where(r => r is Route).Cast<Route>()
-                    .SingleOrDefault(r => r.Url.Equals("People/{controller}/{action}/{id}", 
+                    .SingleOrDefault(r => r.Url.Equals("People/{controller}/{action}/{id}",
                         StringComparison.OrdinalIgnoreCase))
                     .ShouldBeNull();
                 RouteTable.Routes["People_default"].ShouldBeNull();

@@ -16,7 +16,7 @@
     @ViewBag.Title
 </h2>
 @using (Html.BeginForm(
-    MVC.InstitutionalAgreements.ManagementForms.ActionNames.Post, 
+    MVC.InstitutionalAgreements.ManagementForms.ActionNames.Post,
     MVC.InstitutionalAgreements.ManagementForms.Name,
     new
     {
@@ -25,7 +25,7 @@
     FormMethod.Post,
     new
     {
-        enctype = "multipart/form-data", 
+        enctype = "multipart/form-data",
         @class = "institutional-agreement"
     }
 ))

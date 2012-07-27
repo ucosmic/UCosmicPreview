@@ -404,7 +404,7 @@ namespace UCosmic.Impl.Seeders
             {
                 IsOfficialName = true,
                 Text = establishment.OfficialName,
-                                            
+
             });
         }
     }

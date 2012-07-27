@@ -16,7 +16,7 @@
 //    public static class SimpleInjectorMVC3Extensions
 //    {
 //        /// <summary>Registers the Simple Injector container as Dependency Resolver.</summary>
-//        /// <param name="container">The container.</param>    
+//        /// <param name="container">The container.</param>
 //        public static void RegisterAsMvcDependencyResolver(this Container container)
 //        {
 //            if (container == null)

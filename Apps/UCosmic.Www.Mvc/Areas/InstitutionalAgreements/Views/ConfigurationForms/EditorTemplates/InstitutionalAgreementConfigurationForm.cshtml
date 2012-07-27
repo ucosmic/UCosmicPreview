@@ -20,7 +20,7 @@
                             @Html.ValidationMessageFor(m => m.EntityId)
                         </div>
                         <ul id="allowed_types_list" class="listbox" data-value-type="@typeof(InstitutionalAgreementTypeValueForm)"
-                            data-new-value-url="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.NewAgreementType(Model.EntityId))" 
+                            data-new-value-url="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.NewAgreementType(Model.EntityId))"
                             data-validate-duplicate-url="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.ValidateDuplicateOption())">
                             @foreach (var allowedTypeValue in Model.AllowedTypeValues)
                             {
@@ -83,7 +83,7 @@
                             @Html.ValidationMessageFor(m => m.AllowedStatusValues)
                         </div>
                         <ul id="allowed_status_list" class="listbox" data-value-type="@typeof(InstitutionalAgreementStatusValueForm)"
-                            data-new-value-url="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.NewAgreementStatus(Model.EntityId))" 
+                            data-new-value-url="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.NewAgreementStatus(Model.EntityId))"
                             data-validate-duplicate-url="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.ValidateDuplicateOption())">
                             @foreach (var allowedStatusValue in Model.AllowedStatusValues)
                             {
@@ -146,7 +146,7 @@
                             @Html.ValidationMessageFor(m => m.AllowedContactTypeValues)
                         </div>
                         <ul id="allowed_contacttype_list" class="listbox" data-value-type="@typeof(InstitutionalAgreementContactTypeValueForm)"
-                            data-new-value-url="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.NewAgreementContactType(Model.EntityId))" 
+                            data-new-value-url="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.NewAgreementContactType(Model.EntityId))"
                             data-validate-duplicate-url="@Url.Action(MVC.InstitutionalAgreements.ConfigurationForms.ValidateDuplicateOption())">
                             @foreach (var allowedContactTypeValue in Model.AllowedContactTypeValues)
                             {

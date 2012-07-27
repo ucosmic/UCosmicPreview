@@ -14,7 +14,7 @@ namespace UCosmic.Www.Mvc.Models
             get
             {
                 return string.Format(
-                    "JQuery ajax method encountered an error:\r\nReadyState={0}\r\nStatus={1}\r\nUrl={2}\r\nErrorThrown={3}", 
+                    "JQuery ajax method encountered an error:\r\nReadyState={0}\r\nStatus={1}\r\nUrl={2}\r\nErrorThrown={3}",
                         ReadyState, Status, Url, ErrorThrown);
             }
         }

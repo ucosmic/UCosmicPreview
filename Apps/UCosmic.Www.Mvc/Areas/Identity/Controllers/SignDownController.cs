@@ -13,7 +13,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             HttpContext.SigningEmailAddressCookie(null);
             TempData.SigningEmailAddress(null);
 
-            if (Request.UrlReferrer != null && 
+            if (Request.UrlReferrer != null &&
                 Request.UrlReferrer.AbsolutePath == Url.Action(MVC.Identity.SignOut.Get(null)))
                 return Redirect(Request.UrlReferrer.PathAndQuery);
 

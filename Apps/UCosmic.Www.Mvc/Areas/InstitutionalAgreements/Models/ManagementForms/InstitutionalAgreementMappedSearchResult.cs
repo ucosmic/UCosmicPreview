@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 {
-    public class InstitutionalAgreementMappedSearchResult 
+    public class InstitutionalAgreementMappedSearchResult
     {
         public InstitutionalAgreementMappedSearchResult()
         {
@@ -21,6 +21,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
         public virtual double Latitude { get; set; }
 
         public virtual double Longitude { get; set; }
-     
+
     }
 }

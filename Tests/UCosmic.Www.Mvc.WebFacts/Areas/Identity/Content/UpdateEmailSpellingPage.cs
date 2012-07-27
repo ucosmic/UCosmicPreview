@@ -25,7 +25,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             {
                 { NewSpellingLabel, "input#Value" },
                 { NewSpellingLabel.ErrorKey(), ".field-validation-error[data-valmsg-for=Value]" },
-                { NewSpellingLabel.ErrorTextKey("Invalid"), 
+                { NewSpellingLabel.ErrorTextKey("Invalid"),
                     UpdateEmailValueValidator.FailedBecausePreviousSpellingDoesNotMatchValueCaseInsensitively },
             };
 

@@ -3,7 +3,7 @@
     As a consortium member
     I want to sign up and create a password
 
-Background: 
+Background:
     Given I am starting from the Sign On page
 
 @GeneratesEmail @UsingFreshExampleUnregisteredEmailAddresses

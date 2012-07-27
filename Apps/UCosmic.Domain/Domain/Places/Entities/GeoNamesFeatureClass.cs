@@ -7,7 +7,7 @@ namespace UCosmic.Domain.Places
     public class GeoNamesFeatureClass : Entity
     {
         public string Code { get; set; }
-        
+
         public string Name { get; set; }
 
         public override string ToString()
@@ -53,8 +53,8 @@ namespace UCosmic.Domain.Places
 
         public static List<string> GetCodes(this IEnumerable<GeoNamesFeatureClassEnum> featureClassEnums)
         {
-            return featureClassEnums == null 
-                ? null 
+            return featureClassEnums == null
+                ? null
                 : featureClassEnums.Select(featureClassEnum => featureClassEnum.GetCode()).ToList();
         }
     }

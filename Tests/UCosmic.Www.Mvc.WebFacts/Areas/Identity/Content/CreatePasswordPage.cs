@@ -28,17 +28,17 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             {
                 { PasswordLabel, "input#Password" },
                 { PasswordLabel.ErrorKey(), ".field-validation-error[data-valmsg-for=Password]" },
-                { PasswordLabel.ErrorTextKey("Required"), 
+                { PasswordLabel.ErrorTextKey("Required"),
                     CreatePasswordValidator.FailedBecausePasswordWasEmpty },
-                { PasswordLabel.ErrorTextKey("'Too Short'"), 
+                { PasswordLabel.ErrorTextKey("'Too Short'"),
                     CreatePasswordValidator.FailedBecausePasswordWasTooShort
                         .FormatWith(Membership.MinRequiredPasswordLength) },
 
                 { PasswordConfirmationLabel, "input#PasswordConfirmation" },
                 { PasswordConfirmationLabel.ErrorKey(), ".field-validation-error[data-valmsg-for=PasswordConfirmation]" },
-                { PasswordConfirmationLabel.ErrorTextKey("Required"), 
+                { PasswordConfirmationLabel.ErrorTextKey("Required"),
                     CreatePasswordValidator.FailedBecausePasswordConfirmationWasEmpty },
-                { PasswordConfirmationLabel.ErrorTextKey("'No Match'"), 
+                { PasswordConfirmationLabel.ErrorTextKey("'No Match'"),
                     CreatePasswordValidator.FailedBecausePasswordConfirmationDidNotEqualPassword },
             };
 

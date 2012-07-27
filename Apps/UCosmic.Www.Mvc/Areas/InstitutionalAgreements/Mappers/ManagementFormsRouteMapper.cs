@@ -29,7 +29,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
 
         //public static class New
         //{
-        //    //public static readonly string[] Routes = 
+        //    //public static readonly string[] Routes =
         //    //{
         //    //    "my/institutional-agreements/v1/new/then-return-to/{*returnUrl}",
         //    //    "my/institutional-agreements/v1/new",
@@ -41,7 +41,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
         //        var constraintsWithReturnUrl = new
         //        {
         //            returnUrl = new RawUrlCatchallConstraint(),
-        //            httpMethod = new HttpMethodConstraint("GET"), 
+        //            httpMethod = new HttpMethodConstraint("GET"),
         //        };
         //        var constraintsWithoutReturnUrl = new { httpMethod = new HttpMethodConstraint("GET") };
         //        context.MapRoute(null, Routes[0], defaults, constraintsWithReturnUrl);
@@ -51,7 +51,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
 
         //public static class Edit
         //{
-        //    public static readonly string[] Routes = 
+        //    public static readonly string[] Routes =
         //    {
         //        "my/institutional-agreements/v1/{entityId}/edit/then-return-to/{*returnUrl}",
         //        "my/institutional-agreements/v1/{entityId}/edit",
@@ -79,7 +79,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
         public static class Post
         {
             public const string RouteForPost = "my/institutional-agreements";
-            public static readonly string[] RoutesForGet = 
+            public static readonly string[] RoutesForGet =
             {
                 "my/institutional-agreements/v1/{entityId}/edit",
                 "my/institutional-agreements/v1/new",

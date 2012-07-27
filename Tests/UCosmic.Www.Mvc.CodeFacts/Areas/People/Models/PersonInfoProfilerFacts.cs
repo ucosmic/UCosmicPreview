@@ -109,9 +109,9 @@ namespace UCosmic.Www.Mvc.Areas.People.Models
                 {
                     Emails = new[]
                     {
-                        new EmailAddress(), 
-                        new EmailAddress(), 
-                        new EmailAddress(), 
+                        new EmailAddress(),
+                        new EmailAddress(),
+                        new EmailAddress(),
                     }
                 };
 
@@ -129,13 +129,13 @@ namespace UCosmic.Www.Mvc.Areas.People.Models
                 {
                     Emails = new[]
                     {
-                        new EmailAddress(), 
+                        new EmailAddress(),
                         new EmailAddress
                         {
-                            IsDefault = true, 
+                            IsDefault = true,
                             Value = value,
-                        }, 
-                        new EmailAddress(), 
+                        },
+                        new EmailAddress(),
                     }
                 };
 

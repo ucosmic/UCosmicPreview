@@ -11,12 +11,12 @@ namespace UCosmic.Domain.People
             return enumerable.SingleOrDefault(affiliation => affiliation.EstablishmentId == establishmentId);
         }
 
-        internal static Affiliation ByUserNameAndEstablishmentId(this IQueryable<Affiliation> queryable, 
+        internal static Affiliation ByUserNameAndEstablishmentId(this IQueryable<Affiliation> queryable,
             string userName, int establishmentId)
         {
             return queryable.SingleOrDefault(a =>
                 a.EstablishmentId == establishmentId &&
-                a.Person.User != null && a.Person.User.Name.Equals(userName, 
+                a.Person.User != null && a.Person.User.Name.Equals(userName,
                     StringComparison.OrdinalIgnoreCase));
         }
     }

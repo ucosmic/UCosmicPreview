@@ -174,7 +174,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             private const string Route = ConfirmEmailRouter.Post.Route;
             private const string TokenParam = "{token}";
-            private static readonly Expression<Func<ConfirmEmailController, ActionResult>> 
+            private static readonly Expression<Func<ConfirmEmailController, ActionResult>>
                 Action = controller => controller.Post(null);
 
             private static string FormatRoute(Guid? token)
@@ -218,7 +218,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     .WithMethod(HttpVerbs.Get).AppRelativeUrl().ShouldBeNull();
             }
 
-            private static readonly Expression<Func<ConfirmEmailController, ActionResult>> 
+            private static readonly Expression<Func<ConfirmEmailController, ActionResult>>
                 Action = controller => controller.ValidateSecretCode(null);
 
             private static readonly string Url =

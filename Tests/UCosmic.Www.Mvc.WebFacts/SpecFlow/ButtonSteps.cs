@@ -12,7 +12,7 @@ namespace UCosmic.Www.Mvc
         {
             var cssSelector = LabeledButtonCssFormat.FormatWith(label);
 
-            Browsers.ForEach(browser => browser.WaitUntil(b => 
+            Browsers.ForEach(browser => browser.WaitUntil(b =>
                 b.TryFindElement(By.CssSelector(cssSelector)).IsNotNull(),
                 "Button labeled '{0}' was not found by @Browser (using CSS selector {1})"
                     .FormatWith(label, cssSelector)));
@@ -54,7 +54,7 @@ namespace UCosmic.Www.Mvc
         {
             var cssSelector = LabeledSubmitButtonCssFormat.FormatWith(label);
 
-            Browsers.ForEach(browser => browser.WaitUntil(b => 
+            Browsers.ForEach(browser => browser.WaitUntil(b =>
                 b.TryFindElement(By.CssSelector(cssSelector)).IsNotNull(),
                 "Submit button labeled '{0}' was not found by @Browser (using CSS selector {1})"
                     .FormatWith(label, cssSelector)));
@@ -130,7 +130,7 @@ namespace UCosmic.Www.Mvc
 
         public void FindUnlabeledSubmitButton()
         {
-            Browsers.ForEach(browser => browser.WaitUntil(b => 
+            Browsers.ForEach(browser => browser.WaitUntil(b =>
                 b.TryFindElement(By.CssSelector(UnlabeledSubmitButtonCss)).IsNotNull(),
                 "Submit button was not found by @Browser (using CSS selector {0})."
                     .FormatWith(UnlabeledSubmitButtonCss)));

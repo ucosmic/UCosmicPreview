@@ -140,12 +140,12 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                         {
                             Northeast = new Coordinates
                             {
-                                Latitude = source.BoundingBoxNortheastLatitude, 
+                                Latitude = source.BoundingBoxNortheastLatitude,
                                 Longitude = source.BoundingBoxNortheastLongitude,
                             },
                             Southwest = new Coordinates
                             {
-                                Latitude = source.BoundingBoxSouthwestLatitude, 
+                                Latitude = source.BoundingBoxSouthwestLatitude,
                                 Longitude = source.BoundingBoxSouthwestLongitude,
                             },
                         }))

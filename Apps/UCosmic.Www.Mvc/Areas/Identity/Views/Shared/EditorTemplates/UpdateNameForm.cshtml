@@ -7,14 +7,14 @@
         <span class="label" data-ucosmic-focused-class="focused">
             @Html.LabelFor(m => m.DisplayName)
         </span>
-        <div class="input" 
-             data-ucosmic-person-derive-display-name="true" 
+        <div class="input"
+             data-ucosmic-person-derive-display-name="true"
              data-ucosmic-person-derive-display-name-checkbox="@Html.IdFor(m => m.IsDisplayNameDerived)"
              data-ucosmic-person-derive-display-name-textbox="@Html.IdFor(m => m.DisplayName)"
              data-ucosmic-person-derive-display-name-url="@Url.Action(MVC.People.PersonName.GenerateDisplayName())"
         >
-            <div class="text-box input" 
-                 data-ucosmic-watermark="true" 
+            <div class="text-box input"
+                 data-ucosmic-watermark="true"
                  data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.DisplayName, ViewData).Watermark)"
                  data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
                  data-ucosmic-trim-input="true"
@@ -44,9 +44,9 @@
             @Html.LabelFor(m => m.Salutation)
         </span>
         <div class="input">
-            <div class="combobox" data-ucosmic-autocomplete="true" 
+            <div class="combobox" data-ucosmic-autocomplete="true"
                 data-ucosmic-autocomplete-url="@Url.Action(MVC.People.PersonName.AutoCompleteSalutations())">
-                <div class="text-box input" data-ucosmic-watermark="true" 
+                <div class="text-box input" data-ucosmic-watermark="true"
                  data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.Salutation, ViewData).NullDisplayText)"
                  data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
                  data-ucosmic-trim-input="true">
@@ -67,7 +67,7 @@
             @Html.LabelFor(m => m.FirstName)
         </span>
         <div class="input">
-            <div class="text-box input" data-ucosmic-watermark="true" 
+            <div class="text-box input" data-ucosmic-watermark="true"
                  data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.FirstName, ViewData).NullDisplayText)"
                  data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
                  data-ucosmic-trim-input="true">
@@ -80,7 +80,7 @@
             @Html.LabelFor(m => m.MiddleName)
         </span>
         <div class="input">
-            <div class="text-box input" data-ucosmic-watermark="true" 
+            <div class="text-box input" data-ucosmic-watermark="true"
                  data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.MiddleName, ViewData).NullDisplayText)"
                  data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
                  data-ucosmic-trim-input="true">
@@ -93,7 +93,7 @@
             @Html.LabelFor(m => m.LastName)
         </span>
         <div class="input">
-            <div class="text-box input" data-ucosmic-watermark="true" 
+            <div class="text-box input" data-ucosmic-watermark="true"
                  data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.LastName, ViewData).NullDisplayText)"
                  data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
                  data-ucosmic-trim-input="true">
@@ -106,9 +106,9 @@
             @Html.LabelFor(m => m.Suffix)
         </span>
         <div class="input">
-            <div class="combobox" data-ucosmic-autocomplete="true" 
+            <div class="combobox" data-ucosmic-autocomplete="true"
                 data-ucosmic-autocomplete-url="@Url.Action(MVC.People.PersonName.AutoCompleteSuffixes())">
-                <div class="text-box input" data-ucosmic-watermark="true" 
+                <div class="text-box input" data-ucosmic-watermark="true"
                  data-ucosmic-watermark-text="@(ModelMetadata.FromLambdaExpression(m => Model.Suffix, ViewData).NullDisplayText)"
                  data-ucosmic-watermark-class="watermark" data-ucosmic-watermark-focused-class="focused"
                  data-ucosmic-trim-input="true">

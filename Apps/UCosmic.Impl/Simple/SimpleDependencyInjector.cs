@@ -36,7 +36,7 @@ namespace UCosmic.Impl
 
             /**
              * Entity Framework Dependency Injection:
-             * 
+             *
              * There are 2 main dependencies: database initialization, and database seeding.
              * Whenever the domain entity model changes, the SQL db will be out of sync.
              * The DropOnModelChangeInitializer only drops and recreates the database when the entity model changes.
@@ -46,9 +46,9 @@ namespace UCosmic.Impl
              * To populate with new data, use the CompositeDbSeeder.
              * It uses a combination of DbContext and raw SQL to populate the database.
              * When the BrownfieldDbSeeder is injected, no data will be seeded.
-             * 
+             *
              * 2012.02.22: There is now a DevelopmentDataSqlSeeder, which is much faster than the CompositeDbSeeder.
-             * 
+             *
              * When checking in this file, the DropOnModelChangeInitializer and DevelopmentDataSqlSeeder
              * should be active. All other seeders and initializers should be commented out.
              */

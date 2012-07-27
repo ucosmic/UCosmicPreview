@@ -117,10 +117,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 if (!_isPersonLocalMember.HasValue)
                 {
                     _isPersonLocalMember =
-                        !IsPersonSamlUser && 
-                        Person != null && 
+                        !IsPersonSamlUser &&
+                        Person != null &&
                         Person.User != null &&
-                        Person.User.IsRegistered && 
+                        Person.User.IsRegistered &&
                         Passwords.Exists(Person.User.Name);
                 }
                 return _isPersonLocalMember.Value;
@@ -133,8 +133,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             get
             {
                 if (!_isPersonSamlMember.HasValue)
-                    _isPersonSamlMember = 
-                        Establishment != null && 
+                    _isPersonSamlMember =
+                        Establishment != null &&
                         Establishment.HasSamlSignOn();
                 return _isPersonSamlMember.Value;
             }
@@ -326,7 +326,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             // to sign up, cannot be a saml user or existing member
             if (Establishment != null &&
                 Establishment.IsMember &&
-                !IsPersonSamlUser && 
+                !IsPersonSamlUser &&
                 !IsPersonLocalMember) return true;
 
             // determine which url to redirect to

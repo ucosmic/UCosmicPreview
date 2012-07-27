@@ -6,7 +6,7 @@
     </div>
     <div>
         <label class="institution-radio">
-            @Html.RadioButton(string.Empty, EmployeeOrStudentAffiliate.EmployeeOnly, Model == EmployeeOrStudentAffiliate.EmployeeOnly, 
+            @Html.RadioButton(string.Empty, EmployeeOrStudentAffiliate.EmployeeOnly, Model == EmployeeOrStudentAffiliate.EmployeeOnly,
                 new { id = string.Format("{0}_{1}", Html.IdFor(m => m), EmployeeOrStudentAffiliate.EmployeeOnly) })
             I am an employee.
         </label>

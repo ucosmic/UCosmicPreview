@@ -15,8 +15,8 @@
         <div class="u-map-markers no-display">
             @foreach (var placeMark in Model.PlaceMarks)
             {
-                <div data-ucosmic-map="marker" 
-                             data-ucosmic-map-center="@placeMark.CenterLatitude,@placeMark.CenterLongitude" 
+                <div data-ucosmic-map="marker"
+                             data-ucosmic-map-center="@placeMark.CenterLatitude,@placeMark.CenterLongitude"
                              data-ucosmic-map-title="@placeMark.Title">
                 </div>
             }
