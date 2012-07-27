@@ -215,7 +215,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                 CreateMap<InstitutionalAgreementContactForm.PersonForm, Person>()
                     .ForMember(target => target.IsDisplayNameDerived, opt => opt.UseValue(true))
                     .ForMember(target => target.Emails, opt => opt
-                        .ResolveUsing(source => new[]
+                        .ResolveUsing(source => source.DefaultEmail == null ? null :
+                            new[]
                             {
                                 new EmailAddress
                                 {
