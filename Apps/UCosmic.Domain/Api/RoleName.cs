@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Security.Principal;
+
 namespace UCosmic
 {
     public static class RoleName
