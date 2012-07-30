@@ -5,7 +5,7 @@ using Should;
 namespace UCosmic.Domain.Saml
 {
     // ReSharper disable UnusedMember.Global
-    public class SamlAttributeFriendlyNameStringFacts
+    public static class SamlAttributeFriendlyNameStringFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]

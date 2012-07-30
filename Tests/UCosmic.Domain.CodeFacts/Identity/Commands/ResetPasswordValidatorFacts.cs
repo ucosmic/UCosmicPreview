@@ -7,9 +7,7 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Identity
 {
-    // ReSharper disable UnusedMember.Global
-    public class ResetPasswordValidatorFacts
-    // ReSharper restore UnusedMember.Global
+    public static class ResetPasswordValidatorFacts
     {
         [TestClass]
         public class TheTokenProperty

@@ -4,9 +4,7 @@ using Should;
 
 namespace UCosmic.Domain.People
 {
-    // ReSharper disable UnusedMember.Global
-    public class GenerateDisplayNameHandlerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class GenerateDisplayNameHandlerFacts
     {
         [TestClass]
         public class TheHandleMethod

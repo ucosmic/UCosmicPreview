@@ -3,9 +3,7 @@ using Should;
 
 namespace UCosmic.Domain.Establishments
 {
-    // ReSharper disable UnusedMember.Global
-    public class EstablishmentTypeFacts
-    // ReSharper restore UnusedMember.Global
+    public static class EstablishmentTypeFacts
     {
         [TestClass]
         public class CategoryIdProperty

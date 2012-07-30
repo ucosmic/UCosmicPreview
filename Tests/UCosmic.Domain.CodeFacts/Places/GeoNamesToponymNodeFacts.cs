@@ -3,9 +3,7 @@ using Should;
 
 namespace UCosmic.Domain.Places
 {
-    // ReSharper disable UnusedMember.Global
-    public class GeoNamesToponymNodeFacts
-    // ReSharper restore UnusedMember.Global
+    public static class GeoNamesToponymNodeFacts
     {
         [TestClass]
         public class AncestorIdProperty

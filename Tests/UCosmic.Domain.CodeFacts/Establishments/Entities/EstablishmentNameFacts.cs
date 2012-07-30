@@ -4,9 +4,7 @@ using UCosmic.Domain.Languages;
 
 namespace UCosmic.Domain.Establishments
 {
-    // ReSharper disable UnusedMember.Global
-    public class EstablishmentNameFacts
-    // ReSharper restore UnusedMember.Global
+    public static class EstablishmentNameFacts
     {
         [TestClass]
         public class ForEstablishmentProperty

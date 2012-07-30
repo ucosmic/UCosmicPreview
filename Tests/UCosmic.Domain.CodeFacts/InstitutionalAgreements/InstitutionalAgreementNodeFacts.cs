@@ -3,9 +3,7 @@ using Should;
 
 namespace UCosmic.Domain.InstitutionalAgreements
 {
-    // ReSharper disable UnusedMember.Global
-    public class InstitutionalAgreementNodeFacts
-    // ReSharper restore UnusedMember.Global
+    public static class InstitutionalAgreementNodeFacts
     {
         [TestClass]
         public class AncestorIdProperty

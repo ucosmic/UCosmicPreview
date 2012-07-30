@@ -6,9 +6,7 @@ using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Domain.People
 {
-    // ReSharper disable UnusedMember.Global
-    public class CreateAffiliationValidatorFacts
-    // ReSharper restore UnusedMember.Global
+    public static class CreateAffiliationValidatorFacts
     {
         [TestClass]
         public class TheEstablishmentIdProperty

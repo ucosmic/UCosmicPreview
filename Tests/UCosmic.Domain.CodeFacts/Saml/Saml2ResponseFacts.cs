@@ -5,7 +5,7 @@ using Should;
 namespace UCosmic.Domain.Saml
 {
     // ReSharper disable UnusedMember.Global
-    public class Saml2ResponseFacts
+    public static class Saml2ResponseFacts
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]

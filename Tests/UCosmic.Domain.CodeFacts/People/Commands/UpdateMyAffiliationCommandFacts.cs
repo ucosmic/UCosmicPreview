@@ -3,9 +3,7 @@ using Should;
 
 namespace UCosmic.Domain.People
 {
-    // ReSharper disable UnusedMember.Global
-    public class UpdateMyAffiliationCommandFacts
-    // ReSharper restore UnusedMember.Global
+    public static class UpdateMyAffiliationCommandFacts
     {
         [TestClass]
         public class TheChangedStateProperty

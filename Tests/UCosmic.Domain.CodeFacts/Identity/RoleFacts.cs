@@ -4,9 +4,7 @@ using Should;
 
 namespace UCosmic.Domain.Identity
 {
-    // ReSharper disable UnusedMember.Global
-    public class RoleFacts
-    // ReSharper restore UnusedMember.Global
+    public static class RoleFacts
     {
         [TestClass]
         public class GrantsProperty

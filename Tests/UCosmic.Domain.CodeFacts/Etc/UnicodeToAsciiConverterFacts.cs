@@ -3,12 +3,10 @@ using Should;
 
 namespace UCosmic.Domain
 {
-    // ReSharper disable UnusedMember.Global
-    public class UnicodeToAsciiConverterFacts
-    // ReSharper restore UnusedMember.Global
+    public static class UnicodeToAsciiConverterFacts
     {
         [TestClass]
-        public class ConvertToAscii_ExtensionMethod
+        public class ConvertToAsciiExtensionMethod
         {
             [TestMethod]
             public void Converts_Kɔngɔ́_WithoutQuestionMark()

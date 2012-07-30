@@ -3,9 +3,7 @@ using Should;
 
 namespace UCosmic.Domain.Places
 {
-    // ReSharper disable UnusedMember.Global
-    public class GeoPlanetPlaceBelongToFacts
-    // ReSharper restore UnusedMember.Global
+    public static class GeoPlanetPlaceBelongToFacts
     {
         [TestClass]
         public class PlaceWoeIdProperty

@@ -4,9 +4,7 @@ using Should;
 
 namespace UCosmic.Domain.Identity
 {
-    // ReSharper disable UnusedMember.Global
-    public class GenerateRandomSecretHandlerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class GenerateRandomSecretHandlerFacts
     {
         [TestClass]
         public class TheHandleMethod

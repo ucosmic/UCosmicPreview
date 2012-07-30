@@ -3,9 +3,7 @@ using Should;
 
 namespace UCosmic.Domain.Establishments
 {
-    // ReSharper disable UnusedMember.Global
-    public class InstitutionInfoFacts
-    // ReSharper restore UnusedMember.Global
+    public static class InstitutionInfoFacts
     {
         [TestClass]
         public class CollegeBoardDesignatedIndicatorProperty

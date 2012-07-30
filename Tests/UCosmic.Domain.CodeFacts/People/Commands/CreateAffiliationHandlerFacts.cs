@@ -8,9 +8,7 @@ using Should;
 
 namespace UCosmic.Domain.People
 {
-    // ReSharper disable UnusedMember.Global
-    public class CreateAffiliationHandlerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class CreateAffiliationHandlerFacts
     {
         [TestClass]
         public class TheHandleMethod

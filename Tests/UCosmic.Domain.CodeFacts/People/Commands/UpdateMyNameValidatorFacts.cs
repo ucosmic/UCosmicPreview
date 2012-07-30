@@ -6,9 +6,7 @@ using UCosmic.Domain.Identity;
 
 namespace UCosmic.Domain.People
 {
-    // ReSharper disable UnusedMember.Global
-    public class UpdateMyNameValidatorFacts
-    // ReSharper restore UnusedMember.Global
+    public static class UpdateMyNameValidatorFacts
     {
         [TestClass]
         public class TheDisplayNameProperty

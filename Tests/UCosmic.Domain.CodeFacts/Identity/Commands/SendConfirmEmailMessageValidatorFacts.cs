@@ -8,9 +8,7 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Identity
 {
-    // ReSharper disable UnusedMember.Global
-    public class SendConfirmEmailMessageValidatorFacts
-    // ReSharper restore UnusedMember.Global
+    public static class SendConfirmEmailMessageValidatorFacts
     {
         [TestClass]
         public class TheEmailAddressProperty

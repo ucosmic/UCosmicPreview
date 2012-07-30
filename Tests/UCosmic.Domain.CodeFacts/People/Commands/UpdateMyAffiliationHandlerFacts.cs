@@ -8,9 +8,7 @@ using UCosmic.Domain.Identity;
 
 namespace UCosmic.Domain.People
 {
-    // ReSharper disable UnusedMember.Global
-    public class UpdateMyAffiliationHandlerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class UpdateMyAffiliationHandlerFacts
     {
         [TestClass]
         public class TheHandleMethod

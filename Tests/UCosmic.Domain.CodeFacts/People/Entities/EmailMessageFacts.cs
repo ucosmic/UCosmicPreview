@@ -4,9 +4,7 @@ using Should;
 
 namespace UCosmic.Domain.People
 {
-    // ReSharper disable UnusedMember.Global
-    public class EmailMessageFacts
-    // ReSharper restore UnusedMember.Global
+    public static class EmailMessageFacts
     {
         [TestClass]
         public class ReplyToDisplayNameProperty

@@ -6,9 +6,7 @@ using Moq;
 
 namespace UCosmic.Domain.People
 {
-    // ReSharper disable UnusedMember.Global
-    public class FindDistinctSalutationsHandlerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class FindDistinctSalutationsHandlerFacts
     {
         [TestClass]
         public class TheHandleMethod

@@ -6,9 +6,7 @@ using Moq;
 
 namespace UCosmic.Domain.Establishments
 {
-    // ReSharper disable UnusedMember.Global
-    public class GetEstablishmentByIdHandlerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class GetEstablishmentByIdHandlerFacts
     {
         [TestClass]
         public class TheHandleMethod

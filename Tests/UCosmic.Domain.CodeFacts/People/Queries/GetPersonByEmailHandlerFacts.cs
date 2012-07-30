@@ -6,9 +6,7 @@ using Moq;
 
 namespace UCosmic.Domain.People
 {
-    // ReSharper disable UnusedMember.Global
-    public class GetPersonByEmailHandlerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class GetPersonByEmailHandlerFacts
     {
         [TestClass]
         public class TheHandleMethod

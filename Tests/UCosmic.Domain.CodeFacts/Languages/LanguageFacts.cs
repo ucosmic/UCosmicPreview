@@ -4,9 +4,7 @@ using Should;
 
 namespace UCosmic.Domain.Languages
 {
-    // ReSharper disable UnusedMember.Global
-    public class LanguageFacts
-    // ReSharper restore UnusedMember.Global
+    public static class LanguageFacts
     {
         [TestClass]
         public class TranslateNameToMethod

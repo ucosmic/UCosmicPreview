@@ -5,9 +5,7 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Identity
 {
-    // ReSharper disable UnusedMember.Global
-    public class SendConfirmEmailMessageCommandFacts
-    // ReSharper restore UnusedMember.Global
+    public static class SendConfirmEmailMessageCommandFacts
     {
         [TestClass]
         public class TheEmailTemplateNameProperty

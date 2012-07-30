@@ -4,9 +4,7 @@ using UCosmic.Domain.Languages;
 
 namespace UCosmic.Domain.Places
 {
-    // ReSharper disable UnusedMember.Global
-    public class PlaceNameFacts
-    // ReSharper restore UnusedMember.Global
+    public static class PlaceNameFacts
     {
         [TestClass]
         public class IsPreferredTranslationProperty

@@ -3,9 +3,7 @@ using Should;
 
 namespace UCosmic.Domain.Places
 {
-    // ReSharper disable UnusedMember.Global
-    public class BoundingBoxFacts
-    // ReSharper restore UnusedMember.Global
+    public static class BoundingBoxFacts
     {
         [TestClass]
         public class HasValueProperty

@@ -4,9 +4,7 @@ using Should;
 
 namespace UCosmic.Domain.Places
 {
-    // ReSharper disable UnusedMember.Global
-    public class PlaceFacts
-    // ReSharper restore UnusedMember.Global
+    public static class PlaceFacts
     {
         [TestClass]
         public class IsEarthProperty

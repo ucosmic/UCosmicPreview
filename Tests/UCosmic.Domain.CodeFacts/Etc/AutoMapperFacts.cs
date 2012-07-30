@@ -3,9 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UCosmic.Domain
 {
-    // ReSharper disable UnusedMember.Global
-    public class AutoMapperFacts
-    // ReSharper restore UnusedMember.Global
+    public static class AutoMapperFacts
     {
         [TestClass]
         public class GeoNamesConverter

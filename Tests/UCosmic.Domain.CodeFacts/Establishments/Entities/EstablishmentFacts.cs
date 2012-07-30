@@ -5,9 +5,7 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Establishments
 {
-    // ReSharper disable UnusedMember.Global
-    public class EstablishmentFacts
-    // ReSharper restore UnusedMember.Global
+    public static class EstablishmentFacts
     {
         [TestClass]
         public class TranslateNameToMethod

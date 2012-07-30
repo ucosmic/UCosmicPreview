@@ -4,9 +4,7 @@ using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Domain.Identity
 {
-    // ReSharper disable UnusedMember.Global
-    public class RoleGrantFacts
-    // ReSharper restore UnusedMember.Global
+    public static class RoleGrantFacts
     {
         [TestClass]
         public class UserProperty

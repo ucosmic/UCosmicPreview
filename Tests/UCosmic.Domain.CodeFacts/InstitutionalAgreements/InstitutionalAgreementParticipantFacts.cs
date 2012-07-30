@@ -4,9 +4,7 @@ using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Domain.InstitutionalAgreements
 {
-    // ReSharper disable UnusedMember.Global
-    public class InstitutionalAgreementParticipantFacts
-    // ReSharper restore UnusedMember.Global
+    public static class InstitutionalAgreementParticipantFacts
     {
         [TestClass]
         public class IdProperty
