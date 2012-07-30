@@ -57,7 +57,7 @@
     }
     @if (Request.IsAjaxRequest())
     {
-        <a href="@Url.Action(MVC.Activities.ActivityInfo.Get(Model.EntityId))" class="button-sized" target="_blank">
+        <a href="@Url.Action(MVC.Activities.ActivityInfo.Get(Model.EntityId))" class="button-sized" style="padding-left: 0; border-left: 0;" target="_blank">
             View in separate window</a>
     }
 </div>
