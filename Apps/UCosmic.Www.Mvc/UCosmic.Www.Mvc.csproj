@@ -436,7 +436,7 @@
     <Compile Include="Areas\Common\Models\Navigation\HorizontalTabsInfo.cs" />
     <Compile Include="Areas\Common\Models\Skins\ApplySkinInfo.cs" />
     <Compile Include="Areas\Common\Models\Skins\LogoInfo.cs" />
-    <Compile Include="Areas\Common\Mappers\NavigationRouteMapper.cs" />
+    <Compile Include="Areas\Common\Mappers\_NavigationRouteMapper.cs" />
     <Compile Include="Areas\Common\Mappers\_ErrorsRouteMapper.cs" />
     <Compile Include="Areas\Common\Mappers\_FeaturesRouteMapper.cs" />
     <Compile Include="Areas\Common\Mappers\_HealthRouteMapper.cs" />

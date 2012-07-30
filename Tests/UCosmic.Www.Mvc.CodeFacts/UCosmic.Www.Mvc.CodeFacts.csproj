@@ -119,8 +119,8 @@
     <Compile Include="Areas\Activities\Controllers\UpdateAffiliationRouterFacts.cs" />
     <Compile Include="Areas\Common\Mappers\QaRouteMapperFacts.cs" />
     <Compile Include="Areas\Common\Mappers\SkinsRouteMapperFacts.cs" />
-    <Compile Include="Areas\Common\Mappers\NavigationRouteMapperFacts.cs" />
-    <Compile Include="Areas\Common\Mappers\HealthRouteMapperFacts.cs" />
+    <Compile Include="Areas\Common\Controllers\NavigationRouterFacts.cs" />
+    <Compile Include="Areas\Common\Controllers\HealthRouterFacts.cs" />
     <Compile Include="Areas\Common\Controllers\ErrorsRouterFacts.cs" />
     <Compile Include="Areas\Common\Controllers\FeaturesRouterFacts.cs" />
     <Compile Include="Areas\Roles\RolesAreaRegistrationFacts.cs" />

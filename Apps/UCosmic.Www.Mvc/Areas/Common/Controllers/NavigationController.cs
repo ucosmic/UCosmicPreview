@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.Routing;
 using UCosmic.Www.Mvc.Areas.Common.Models.Navigation;
 
 namespace UCosmic.Www.Mvc.Areas.Common.Controllers
@@ -15,6 +16,30 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 DisplayProfileTab = Request.IsAuthenticated,
             };
             return PartialView(model);
+        }
+    }
+
+    public static class NavigationRouter
+    {
+        private static readonly string Area = MVC.Common.Name;
+        private static readonly string Controller = MVC.Common.Navigation.Name;
+
+        public class HorizontalTabsRoute : Route
+        {
+            public HorizontalTabsRoute()
+                : base("navigation/horizontal-tabs.partial.html", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Navigation.ActionNames.HorizontalTabs,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
         }
     }
 }
