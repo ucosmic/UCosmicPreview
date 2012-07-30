@@ -50,9 +50,7 @@ namespace UCosmic.Www.Mvc
             return defaultValue;
         }
 
-        // ReSharper disable UnusedMember.Global
         public static bool ParseIntoBool(this string stringValue, bool defaultValue = default(bool))
-        // ReSharper restore UnusedMember.Global
         {
             if (!string.IsNullOrWhiteSpace(stringValue))
             {

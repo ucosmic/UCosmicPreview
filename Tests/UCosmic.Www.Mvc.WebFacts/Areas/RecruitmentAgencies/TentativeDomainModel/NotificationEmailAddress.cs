@@ -1,7 +1,6 @@
 ﻿using UCosmic.Domain;
 
 // ReSharper disable ClassNeverInstantiated.Global
-// ReSharper disable UnusedMember.Global
 namespace UCosmic.Www.Mvc.Areas.RecruitmentAgencies.TentativeDomainModel
 {
     public class NotificationEmailAddress : RevisableEntity
@@ -12,4 +11,3 @@ namespace UCosmic.Www.Mvc.Areas.RecruitmentAgencies.TentativeDomainModel
     }
 }
 // ReSharper restore ClassNeverInstantiated.Global
-// ReSharper restore UnusedMember.Global

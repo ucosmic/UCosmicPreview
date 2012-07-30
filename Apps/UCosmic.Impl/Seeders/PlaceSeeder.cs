@@ -44,9 +44,7 @@ namespace UCosmic.Impl.Seeders
 
     // high-level place data has already been seeded in production.
 
-    //// ReSharper disable UnusedMember.Global
     //public class PlaceProductionSqlSeeder : NonContentFileSqlDbSeeder
-    //// ReSharper restore UnusedMember.Global
     //{
     //    protected override IEnumerable<string> SqlScripts
     //    {
@@ -100,9 +98,7 @@ namespace UCosmic.Impl.Seeders
 
     //}
 
-    // ReSharper disable UnusedMember.Global
     public class PlaceByGeoPlanetEntitySeeder : UCosmicDbSeeder
-    // ReSharper restore UnusedMember.Global
     {
         public override void Seed(UCosmicContext context)
         {

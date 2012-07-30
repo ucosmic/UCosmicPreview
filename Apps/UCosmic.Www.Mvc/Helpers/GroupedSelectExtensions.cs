@@ -11,7 +11,6 @@ using System.Web.Mvc;
 
 namespace UCosmic.Www.Mvc
 {
-    // ReSharper disable UnusedMember.Global
     // ReSharper disable MemberCanBePrivate.Global
     // ReSharper disable IntroduceOptionalParameters.Global
     public static class GroupedSelectExtensions
@@ -344,6 +343,5 @@ namespace UCosmic.Www.Mvc
         }
     }
     // ReSharper restore IntroduceOptionalParameters.Global
-    // ReSharper restore UnusedMember.Global
     // ReSharper restore MemberCanBePrivate.Global
 }

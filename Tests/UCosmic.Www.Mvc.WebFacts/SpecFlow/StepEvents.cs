@@ -5,16 +5,12 @@ using TechTalk.SpecFlow;
 namespace UCosmic.Www.Mvc
 {
     [Binding]
-    // ReSharper disable UnusedMember.Global
     public class StepEvents : TestRunEvents
-    // ReSharper restore UnusedMember.Global
     {
         [AfterScenario]
         //[BeforeStep]
         //[DebuggerStepThrough]
-        // ReSharper disable UnusedMember.Global
         public void DismissJavascriptAlertDialog()
-        // ReSharper restore UnusedMember.Global
         {
             Browsers.ForEach(browser =>
             {

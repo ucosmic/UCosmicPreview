@@ -103,7 +103,6 @@ namespace UCosmic.Www.Mvc
             }
         }
 
-        // ReSharper disable UnusedMember.Global
         public static void CheckCheckBox(this IWebElement checkBox)
         {
             checkBox.CheckOrUncheckCheckBox(true);
@@ -113,7 +112,6 @@ namespace UCosmic.Www.Mvc
         {
             checkBox.CheckOrUncheckCheckBox(false);
         }
-        // ReSharper restore UnusedMember.Global
 
         public static void CheckOrUncheckCheckBox(this IWebElement checkBox, bool shouldCheck)
         {

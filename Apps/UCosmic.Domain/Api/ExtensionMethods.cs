@@ -228,10 +228,7 @@ namespace UCosmic
             return bytes;
         }
 
-        // ReSharper disable UnusedMember.Global
-
         public static string ToHexString(this byte[] bytes)
-        // ReSharper restore UnusedMember.Global
         {
             if (bytes == null || bytes.Length < 1) return null;
 

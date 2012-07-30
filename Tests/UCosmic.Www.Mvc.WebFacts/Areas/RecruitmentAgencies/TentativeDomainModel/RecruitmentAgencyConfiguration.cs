@@ -2,7 +2,6 @@
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 
-// ReSharper disable UnusedMember.Global
 namespace UCosmic.Www.Mvc.Areas.RecruitmentAgencies.TentativeDomainModel
 {
     public class RecruitmentAgencyConfiguration : RevisableEntity
@@ -19,4 +18,3 @@ namespace UCosmic.Www.Mvc.Areas.RecruitmentAgencies.TentativeDomainModel
         public ICollection<NotificationEmailAddress> NotificationEmails { get; set; }
     }
 }
-// ReSharper restore UnusedMember.Global

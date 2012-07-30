@@ -20,9 +20,7 @@ namespace UCosmic.Www.Mvc
         protected static readonly List<IWebDriver> InactiveBrowsers = new List<IWebDriver>();
 
         [BeforeTestRun]
-        // ReSharper disable UnusedMember.Global
         public static void BeforeTestRun()
-        // ReSharper restore UnusedMember.Global
         {
             // warm up the browsers
             WarmUpBrowserBeforeTestRun();

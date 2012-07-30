@@ -8,9 +8,7 @@ using Microsoft.WindowsAzure.ServiceRuntime;
 
 namespace UCosmic.Www.Mvc
 {
-    // ReSharper disable UnusedMember.Global
     public class WebRole : RoleEntryPoint
-    // ReSharper restore UnusedMember.Global
     {
         public override bool OnStart()
         {

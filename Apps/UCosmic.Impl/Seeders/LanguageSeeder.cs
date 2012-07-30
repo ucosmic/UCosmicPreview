@@ -33,9 +33,7 @@ namespace UCosmic.Impl.Seeders
 
     // languages currently are imported from a sql script
 
-    //// ReSharper disable UnusedMember.Global
     //public class LanguageEntityDbSeeder : UCosmicDbSeeder
-    //// ReSharper restore UnusedMember.Global
     //{
     //    public override void Seed(UCosmicContext context)
     //    {
