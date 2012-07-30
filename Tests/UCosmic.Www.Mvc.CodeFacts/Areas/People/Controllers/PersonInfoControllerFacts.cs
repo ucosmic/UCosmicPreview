@@ -10,9 +10,7 @@ using UCosmic.Www.Mvc.Areas.People.Models;
 
 namespace UCosmic.Www.Mvc.Areas.People.Controllers
 {
-    // ReSharper disable UnusedMember.Global
-    public class PersonInfoControllerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class PersonInfoControllerFacts
     {
         [TestClass]
         public class TheClass

@@ -8,9 +8,7 @@ using UCosmic.Www.Mvc.Areas.Roles.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
 {
-    // ReSharper disable UnusedMember.Global
-    public class RolesRouterFacts
-    // ReSharper restore UnusedMember.Global
+    public static class RolesRouterFacts
     {
         private static readonly string Area = MVC.Roles.Name;
 

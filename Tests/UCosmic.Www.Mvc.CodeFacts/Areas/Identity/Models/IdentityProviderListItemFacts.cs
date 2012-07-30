@@ -2,9 +2,7 @@
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class IdentityProviderListItemFacts
-    // ReSharper restore UnusedMember.Global
+    public static class IdentityProviderListItemFacts
     {
         [TestClass]
         public class TheOfficialNameProperty
@@ -32,9 +30,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             }
         }
 
-        // ReSharper disable UnusedMember.Global
-        public class TheEmailDomainInfoClass
-        // ReSharper restore UnusedMember.Global
+        public static class TheEmailDomainInfoClass
         {
             [TestClass]
             public class TheValueProperty

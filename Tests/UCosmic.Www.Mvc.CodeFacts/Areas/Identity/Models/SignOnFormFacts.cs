@@ -8,9 +8,7 @@ using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class SignOnFormFacts
-    // ReSharper restore UnusedMember.Global
+    public static class SignOnFormFacts
     {
         [TestClass]
         public class TheClass

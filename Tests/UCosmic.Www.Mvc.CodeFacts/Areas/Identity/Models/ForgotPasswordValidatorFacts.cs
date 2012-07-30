@@ -14,9 +14,7 @@ using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class ForgotPasswordValidatorFacts
-    // ReSharper restore UnusedMember.Global
+    public static class ForgotPasswordValidatorFacts
     {
         [TestClass]
         public class TheClass

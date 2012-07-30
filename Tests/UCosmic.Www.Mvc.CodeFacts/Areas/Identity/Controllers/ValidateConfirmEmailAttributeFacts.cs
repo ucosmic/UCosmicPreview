@@ -12,9 +12,7 @@ using UCosmic.Www.Mvc.Areas.Identity.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
-    // ReSharper disable UnusedMember.Global
-    public class ValidateConfirmEmailAttributeFacts
-    // ReSharper restore UnusedMember.Global
+    public static class ValidateConfirmEmailAttributeFacts
     {
         [TestClass]
         public class TheConstructor

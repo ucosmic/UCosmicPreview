@@ -11,9 +11,7 @@ using UCosmic.Impl;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class UpdateEmailValueValidatorFacts
-    // ReSharper restore UnusedMember.Global
+    public static class UpdateEmailValueValidatorFacts
     {
         [TestClass]
         public class TheClass

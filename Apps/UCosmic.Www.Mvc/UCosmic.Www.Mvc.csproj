@@ -426,8 +426,6 @@
     <Compile Include="Controllers\NullLayoutOnAjaxRequestAttribute.cs" />
     <Compile Include="Controllers\OpenTopTabAttribute.cs" />
     <Compile Include="Areas\Common\Controllers\QaController.cs" />
-    <Compile Include="Areas\Common\_Deprecated\_QaRouteMapper.cs" />
-    <Compile Include="Areas\Common\_Deprecated\_SkinsRouteMapper.cs" />
     <Compile Include="Areas\Establishments\Mappers\ManagementFormsModelMapper.cs" />
     <Compile Include="Areas\Establishments\Mappers\ManagementFormsRouteMapper.cs" />
     <Compile Include="Controllers\RedirectToRawUrlAttribute.cs" />
@@ -436,10 +434,6 @@
     <Compile Include="Areas\Common\Models\Navigation\HorizontalTabsInfo.cs" />
     <Compile Include="Areas\Common\Models\Skins\ApplySkinInfo.cs" />
     <Compile Include="Areas\Common\Models\Skins\LogoInfo.cs" />
-    <Compile Include="Areas\Common\_Deprecated\_NavigationRouteMapper.cs" />
-    <Compile Include="Areas\Common\_Deprecated\_ErrorsRouteMapper.cs" />
-    <Compile Include="Areas\Common\_Deprecated\_FeaturesRouteMapper.cs" />
-    <Compile Include="Areas\Common\_Deprecated\_HealthRouteMapper.cs" />
     <Compile Include="Areas\Establishments\Controllers\ManagementFormsController.cs" />
     <Compile Include="Areas\Establishments\Controllers\SupplementalFormsController.cs" />
     <Compile Include="Areas\Establishments\EstablishmentsAreaRegistration.cs" />

@@ -7,9 +7,7 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class ForgotPasswordProfilerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class ForgotPasswordProfilerFacts
     {
         [TestClass]
         public class TheModelToCommandProfile

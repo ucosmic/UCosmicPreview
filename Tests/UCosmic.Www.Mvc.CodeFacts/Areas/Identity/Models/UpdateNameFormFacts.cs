@@ -6,9 +6,7 @@ using Should;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class UpdateNameFormFacts
-    // ReSharper restore UnusedMember.Global
+    public static class UpdateNameFormFacts
     {
         [TestClass]
         public class TheDisplayNameProperty

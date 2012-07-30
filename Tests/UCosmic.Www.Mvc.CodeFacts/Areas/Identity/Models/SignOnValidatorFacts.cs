@@ -10,9 +10,7 @@ using UCosmic.Impl;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class SignOnValidatorFacts
-    // ReSharper restore UnusedMember.Global
+    public static class SignOnValidatorFacts
     {
         [TestClass]
         public class TheClass

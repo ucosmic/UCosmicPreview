@@ -8,9 +8,7 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class ConfirmEmailFormFacts
-    // ReSharper restore UnusedMember.Global
+    public static class ConfirmEmailFormFacts
     {
         [TestClass]
         public class TheTokenProperty

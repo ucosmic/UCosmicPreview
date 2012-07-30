@@ -11,9 +11,7 @@ using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
-    // ReSharper disable UnusedMember.Global
-    public class ResetPasswordControllerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class ResetPasswordControllerFacts
     {
         [TestClass]
         public class TheClass

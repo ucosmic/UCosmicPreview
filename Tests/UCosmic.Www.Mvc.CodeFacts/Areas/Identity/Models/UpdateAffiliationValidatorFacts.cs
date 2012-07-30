@@ -7,9 +7,7 @@ using UCosmic.Impl;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class UpdateAffiliationValidatorFacts
-    // ReSharper restore UnusedMember.Global
+    public static class UpdateAffiliationValidatorFacts
     {
         [TestClass]
         public class TheClass

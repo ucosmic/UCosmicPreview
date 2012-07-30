@@ -8,9 +8,7 @@ using Should;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
-    // ReSharper disable UnusedMember.Global
-    public class ConfirmEmailRouterFacts
-    // ReSharper restore UnusedMember.Global
+    public static class ConfirmEmailRouterFacts
     {
         private static readonly string AreaName = MVC.Identity.Name;
 

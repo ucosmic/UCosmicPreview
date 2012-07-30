@@ -10,9 +10,7 @@ using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
-    // ReSharper disable UnusedMember.Global
-    public class UpdateAffiliationControllerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class UpdateAffiliationControllerFacts
     {
         [TestClass]
         public class TheClass

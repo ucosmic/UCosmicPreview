@@ -5,9 +5,7 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.People.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class GenerateDisplayNameProfilerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class GenerateDisplayNameProfilerFacts
     {
         [TestClass]
         public class TheModelToQueryProfile

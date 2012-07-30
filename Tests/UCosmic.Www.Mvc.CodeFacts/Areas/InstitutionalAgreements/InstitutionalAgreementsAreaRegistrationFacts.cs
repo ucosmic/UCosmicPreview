@@ -6,9 +6,7 @@ using Should;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 {
-    // ReSharper disable UnusedMember.Global
-    public class InstitutionalAgreementsAreaRegistrationFacts
-    // ReSharper restore UnusedMember.Global
+    public static class InstitutionalAgreementsAreaRegistrationFacts
     {
         [TestClass]
         public class TheAreaNameProperty

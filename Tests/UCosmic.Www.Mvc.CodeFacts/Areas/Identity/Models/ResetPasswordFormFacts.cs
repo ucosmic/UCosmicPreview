@@ -7,9 +7,7 @@ using Should;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class ResetPasswordFormFacts
-    // ReSharper restore UnusedMember.Global
+    public static class ResetPasswordFormFacts
     {
         [TestClass]
         public class TheTokenProperty

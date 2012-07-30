@@ -12,9 +12,7 @@ using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
 {
-    // ReSharper disable UnusedMember.Global
-    public class RolesControllerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class RolesControllerFacts
     {
         [TestClass]
         public class TheClass

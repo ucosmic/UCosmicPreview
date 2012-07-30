@@ -12,9 +12,7 @@ using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
-    // ReSharper disable UnusedMember.Global
-    public class UpdateEmailValueControllerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class UpdateEmailValueControllerFacts
     {
         [TestClass]
         public class TheClass

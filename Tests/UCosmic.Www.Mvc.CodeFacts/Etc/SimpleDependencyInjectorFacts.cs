@@ -5,9 +5,7 @@ using UCosmic.Impl;
 
 namespace UCosmic.Www.Mvc
 {
-    // ReSharper disable UnusedMember.Global
-    public class SimpleDependencyInjectorFacts
-    // ReSharper restore UnusedMember.Global
+    public static class SimpleDependencyInjectorFacts
     {
         [TestClass]
         public class TheBootstrapMethod

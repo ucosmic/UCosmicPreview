@@ -8,9 +8,7 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class ConfirmEmailValidatorFacts
-    // ReSharper restore UnusedMember.Global
+    public static class ConfirmEmailValidatorFacts
     {
         [TestClass]
         public class TheSecretCodeProperty

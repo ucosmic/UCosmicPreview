@@ -6,9 +6,7 @@ using Should;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class MyHomeInfoFacts
-    // ReSharper restore UnusedMember.Global
+    public static class MyHomeInfoFacts
     {
         [TestClass]
         public class TheCanChangePasswordProperty

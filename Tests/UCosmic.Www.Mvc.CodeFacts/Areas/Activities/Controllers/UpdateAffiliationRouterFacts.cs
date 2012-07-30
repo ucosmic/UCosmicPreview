@@ -6,9 +6,7 @@ using Should;
 
 namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
 {
-    // ReSharper disable UnusedMember.Global
     public static class ActivityListRouterFacts
-    // ReSharper restore UnusedMember.Global
     {
         private static readonly string AreaName = MVC.Activities.Name;
         private static readonly string ControllerName = MVC.Activities.ActivityList.Name;

@@ -11,9 +11,7 @@ using UCosmic.Www.Mvc.Areas.Identity.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
-    // ReSharper disable UnusedMember.Global
-    public class ValidateRedeemTicketAttributeFacts
-    // ReSharper restore UnusedMember.Global
+    public static class ValidateRedeemTicketAttributeFacts
     {
         [TestClass]
         public class TheConstructor

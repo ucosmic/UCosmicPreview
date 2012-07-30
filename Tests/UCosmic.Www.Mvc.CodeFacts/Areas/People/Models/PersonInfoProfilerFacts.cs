@@ -6,9 +6,7 @@ using UCosmic.Domain.People;
 
 namespace UCosmic.Www.Mvc.Areas.People.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class PersonInfoProfilerFacts
-    // ReSharper restore UnusedMember.Global
+    public static class PersonInfoProfilerFacts
     {
         [TestClass]
         public class TheEntityToModelProfile

@@ -8,9 +8,7 @@ using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
-    // ReSharper disable UnusedMember.Global
-    public class ForgotPasswordFormFacts
-    // ReSharper restore UnusedMember.Global
+    public static class ForgotPasswordFormFacts
     {
         [TestClass]
         public class TheClass

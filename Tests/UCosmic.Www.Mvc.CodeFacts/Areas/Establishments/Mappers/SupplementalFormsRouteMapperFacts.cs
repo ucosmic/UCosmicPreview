@@ -8,9 +8,7 @@ using UCosmic.Www.Mvc.Areas.Establishments.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
 {
-    // ReSharper disable UnusedMember.Global
-    public class SupplementalFormsRouteMapperFacts
-    // ReSharper restore UnusedMember.Global
+    public static class SupplementalFormsRouteMapperFacts
     {
         private static readonly string Area = MVC.Establishments.Name;
 
