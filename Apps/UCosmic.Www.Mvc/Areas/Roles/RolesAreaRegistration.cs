@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using UCosmic.Www.Mvc.Areas.Roles.Controllers;
-using UCosmic.Www.Mvc.Areas.Roles.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Roles
 {
@@ -14,8 +13,6 @@ namespace UCosmic.Www.Mvc.Areas.Roles
         public override void RegisterArea(AreaRegistrationContext context)
         {
             RolesRouter.RegisterRoutes(context);
-            RoleFormProfiler.RegisterProfiles();
-            RoleSearchResultProfiler.RegisterProfiles();
 
             //context.MapRoute(
             //    "Roles_default",

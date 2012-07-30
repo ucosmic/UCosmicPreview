@@ -43,12 +43,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
 
     public static class ActivityResultsProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(ActivityResultsProfiler));
-        }
-
-        private class EntitiesToModelsProfile : Profile
+        public class EntitiesToModelsProfile : Profile
         {
             protected override void Configure()
             {
@@ -75,7 +70,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
             }
         }
 
-        private class EstablishmentToModelProfile : Profile
+        public class EstablishmentToModelProfile : Profile
         {
             protected override void Configure()
             {

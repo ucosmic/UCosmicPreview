@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
-using UCosmic.Domain.InstitutionalAgreements;
-using UCosmic.Www.Mvc.Models;
 using AutoMapper;
+using UCosmic.Domain.InstitutionalAgreements;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 {
@@ -28,12 +27,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 
     public static class InstitutionalAgreementParticipantFormProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(InstitutionalAgreementParticipantFormProfiler));
-        }
-
-        internal class EntityToModelProfile : Profile
+        public class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {

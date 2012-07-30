@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using AutoMapper;
 using UCosmic.Domain.InstitutionalAgreements;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 {
@@ -42,12 +41,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 
     public static class InstitutionalAgreementSearchResultProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(InstitutionalAgreementSearchResultProfiler));
-        }
-
-        internal class EntityToModelProfile : Profile
+        public class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {

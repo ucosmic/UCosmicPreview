@@ -4,7 +4,6 @@ using AutoMapper;
 using UCosmic.Domain.Activities;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Places;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Activities.Models
 {
@@ -21,12 +20,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
 
     public static class TagMenuItemProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(TagMenuItemProfiler));
-        }
-
-        private class PlaceToModelProfile : Profile
+        public class PlaceToModelProfile : Profile
         {
             protected override void Configure()
             {
@@ -51,7 +45,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
             }
         }
 
-        private class EstablishmentToModelProfile : Profile
+        public class EstablishmentToModelProfile : Profile
         {
             protected override void Configure()
             {

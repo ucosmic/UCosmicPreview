@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using UCosmic.Domain.Establishments;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
@@ -16,14 +15,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
     public static class IdentityProviderListItemModelProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(IdentityProviderListItemModelProfiler));
-        }
-
-        // ReSharper disable UnusedMember.Local
-
-        private class EntityToViewModelProfile : Profile
+        public class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {
@@ -32,7 +24,5 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 CreateMap<EstablishmentEmailDomain, IdentityProviderListItem.EmailDomain>();
             }
         }
-
-        // ReSharper restore UnusedMember.Local
     }
 }

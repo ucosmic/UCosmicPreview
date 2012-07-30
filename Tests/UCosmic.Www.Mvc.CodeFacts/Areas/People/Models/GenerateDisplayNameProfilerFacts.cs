@@ -10,7 +10,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Models
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
-        public class TheViewModelToQueryProfile
+        public class TheModelToQueryProfile
         {
             [TestMethod]
             public void MapsSalutation()

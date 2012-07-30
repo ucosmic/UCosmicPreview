@@ -3,20 +3,12 @@ using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Languages;
 using UCosmic.Domain.Places;
 using UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
 {
     public static class ManagementFormsModelMapper
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(ManagementFormsModelMapper));
-        }
-
-        // ReSharper disable UnusedMember.Local
-
-        private class EntityToEstablishmentFormProfile : Profile
+        public class EntityToEstablishmentFormProfile : Profile
         {
             protected override void Configure()
             {
@@ -64,7 +56,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             }
         }
 
-        private class EntityFromEstablishmentFormProfile : Profile
+        public class EntityFromEstablishmentFormProfile : Profile
         {
             protected override void Configure()
             {
@@ -192,7 +184,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             }
         }
 
-        private class EstablishmentSearchResultProfile : Profile
+        public class EstablishmentSearchResultProfile : Profile
         {
             protected override void Configure()
             {
@@ -200,7 +192,5 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 CreateMap<Establishment, EstablishmentSearchResult>();
             }
         }
-
-        // ReSharper restore UnusedMember.Local
     }
 }

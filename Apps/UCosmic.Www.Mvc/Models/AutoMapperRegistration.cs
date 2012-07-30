@@ -1,36 +1,68 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using AutoMapper;
 
 namespace UCosmic.Www.Mvc.Models
 {
     public static class AutoMapperRegistration
     {
-        private static readonly ICollection<Profile> ProfilesToRegister;
-
-        static AutoMapperRegistration()
+        public static void RegisterProfiles(params Assembly[] assemblies)
         {
-            ProfilesToRegister = new List<Profile>();
+            RegisterProfiles(assemblies.Length < 1 ? null : assemblies.AsEnumerable());
         }
 
-        public static void AddProfiles(IEnumerable<Profile> profiles)
+        public static void RegisterProfiles(IEnumerable<Assembly> assemblies)
         {
-            foreach (var profile in profiles)
-                ProfilesToRegister.Add(profile);
+            Mapper.Initialize(configuration => GetConfiguration(Mapper.Configuration, assemblies));
         }
 
-        // We are no longer putting mapping configurations here.
-        // Instead, put your mapping configurations in the appropriate
-        // ModelMapper.cs file.  For example, mappings for the ManagementForms
-        // controller in the Establishments area will go in the
-        // ~/Areas/Establishments/Mappers/ManagementFormsModelMapper.cs file.
-        public static void RegisterAllProfiles()
+        private static void GetConfiguration(IConfiguration configuration, IEnumerable<Assembly> assemblies)
         {
-            RootModelProfiler.RegisterProfiles();
-            Mapper.Initialize(configuration =>
+            assemblies = assemblies
+                //?? AppDomain.CurrentDomain.GetAssemblies()
+                ?? new[] { Assembly.GetExecutingAssembly() }
+            ;
+            foreach (var assembly in assemblies)
             {
-                foreach (var profile in ProfilesToRegister)
-                    configuration.AddProfile(profile);
-            });
+                var profiles = assembly.GetTypes()
+                    .Where(a => a != typeof(Profile) && typeof(Profile).IsAssignableFrom(a))
+                    .ToArray()
+                ;
+                foreach (var profile in profiles)
+                {
+                    configuration.AddProfile((Profile)Activator.CreateInstance(profile));
+                }
+            }
         }
+
+        //private static readonly ICollection<Profile> ProfilesToRegister;
+
+        //static AutoMapperRegistration()
+        //{
+        //    ProfilesToRegister = new List<Profile>();
+        //}
+
+        //public static void AddProfiles(IEnumerable<Profile> profiles)
+        //{
+        //    foreach (var profile in profiles)
+        //        ProfilesToRegister.Add(profile);
+        //}
+
+        //// We are no longer putting mapping configurations here.
+        //// Instead, put your mapping configurations in the appropriate
+        //// ModelMapper.cs file.  For example, mappings for the ManagementForms
+        //// controller in the Establishments area will go in the
+        //// ~/Areas/Establishments/Mappers/ManagementFormsModelMapper.cs file.
+        //public static void RegisterAllProfiles()
+        //{
+        //    RootModelProfiler.RegisterProfiles();
+        //    Mapper.Initialize(configuration =>
+        //    {
+        //        foreach (var profile in ProfilesToRegister)
+        //            configuration.AddProfile(profile);
+        //    });
+        //}
     }
 }

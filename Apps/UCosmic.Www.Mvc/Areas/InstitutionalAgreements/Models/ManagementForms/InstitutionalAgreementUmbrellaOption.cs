@@ -2,7 +2,6 @@
 using System.Text;
 using AutoMapper;
 using UCosmic.Domain.InstitutionalAgreements;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 {
@@ -42,12 +41,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 
     public static class InstitutionalAgreementUmbrellaOptionProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(InstitutionalAgreementUmbrellaOptionProfiler));
-        }
-
-        internal class EntityToModelProfile : Profile
+        public class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {

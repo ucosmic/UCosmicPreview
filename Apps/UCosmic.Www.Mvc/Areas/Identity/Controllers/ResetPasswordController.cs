@@ -100,7 +100,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
             RootActionRouter.RegisterRoutes(typeof(ResetPasswordRouter), context, Area, Controller);
-            ResetPasswordProfiler.RegisterProfiles();
         }
 
         // ReSharper disable UnusedMember.Global

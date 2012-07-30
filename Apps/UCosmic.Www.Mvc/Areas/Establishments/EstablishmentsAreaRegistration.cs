@@ -13,7 +13,6 @@ namespace UCosmic.Www.Mvc.Areas.Establishments
         public override void RegisterArea(AreaRegistrationContext context)
         {
             ManagementFormsRouteMapper.RegisterRoutes(context);
-            ManagementFormsModelMapper.RegisterProfiles();
 
             SupplementalFormsRouteMapper.RegisterRoutes(context);
 

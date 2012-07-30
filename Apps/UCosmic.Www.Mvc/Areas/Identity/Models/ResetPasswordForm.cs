@@ -5,7 +5,6 @@ using AutoMapper;
 using FluentValidation;
 using UCosmic.Domain.Identity;
 using UCosmic.Domain.People;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
@@ -83,14 +82,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
     public static class ResetPasswordProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(ResetPasswordProfiler));
-        }
-
-        // ReSharper disable UnusedMember.Local
-
-        private class EntityToViewModelProfile : Profile
+        public class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {
@@ -101,7 +93,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             }
         }
 
-        private class ViewModelToCommandProfile : Profile
+        public class ModelToCommandProfile : Profile
         {
             protected override void Configure()
             {
@@ -110,7 +102,5 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 ;
             }
         }
-
-        // ReSharper restore UnusedMember.Local
     }
 }

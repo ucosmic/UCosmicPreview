@@ -26,12 +26,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
 
     public static class ActivitiesPageProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(ActivitiesPageProfiler));
-        }
-
-        private class EntitiesToModelsProfile : Profile
+        public class EntitiesToModelsProfile : Profile
         {
             protected override void Configure()
             {

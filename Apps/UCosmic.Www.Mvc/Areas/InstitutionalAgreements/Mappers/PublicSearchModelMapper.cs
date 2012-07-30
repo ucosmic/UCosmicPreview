@@ -5,20 +5,12 @@ using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Domain.People;
 using UCosmic.Domain.Places;
 using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
 {
     public static class PublicSearchModelMapper
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(PublicSearchModelMapper));
-        }
-
-        // ReSharper disable UnusedMember.Local
-
-        private class EntitiesToSearchResultsProfile : Profile
+        public class EntitiesToSearchResultsProfile : Profile
         {
             protected override void Configure()
             {
@@ -31,7 +23,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             }
         }
 
-        private class EntityToAgreementInfoProfile : Profile
+        public class EntityToAgreementInfoProfile : Profile
         {
             protected override void Configure()
             {
@@ -61,14 +53,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             }
         }
 
-        private class EntitiesToEstablishmentInfoProfile : Profile
+        public class EntitiesToEstablishmentInfoProfile : Profile
         {
             protected override void Configure()
             {
                 CreateMap<Establishment, EstablishmentInfo>();
             }
         }
-
-        // ReSharper restore UnusedMember.Local
     }
 }

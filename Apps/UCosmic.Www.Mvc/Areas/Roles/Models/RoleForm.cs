@@ -54,14 +54,7 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Models
 
     public static class RoleFormProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(RoleFormProfiler));
-        }
-
-        // ReSharper disable UnusedMember.Local
-
-        private class EntityToViewModelProfile : Profile
+        public class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {
@@ -87,7 +80,5 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Models
                 ;
             }
         }
-
-        // ReSharper restore UnusedMember.Local
     }
 }

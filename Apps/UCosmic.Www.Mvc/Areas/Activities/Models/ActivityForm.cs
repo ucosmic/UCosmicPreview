@@ -85,12 +85,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
 
     public static class ActivityProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(ActivityProfiler));
-        }
-
-        private class EntityToModelProfile : Profile
+        public class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {
@@ -111,7 +106,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
             }
         }
 
-        private class ModelToDraftCommandProfile : Profile
+        public class ModelToDraftCommandProfile : Profile
         {
             protected override void Configure()
             {
@@ -120,12 +115,12 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                     .ForMember(d => d.Number, o => o.Ignore())
                 ;
 
-                CreateMap<ActivityForm.Tag, DraftMyActivityCommand.Tag>()
+                CreateMap<ActivityForm.Tag, ActivityCommandTag>()
                 ;
             }
         }
 
-        private class ModelToUpdateCommandProfile : Profile
+        public class ModelToUpdateCommandProfile : Profile
         {
             protected override void Configure()
             {
@@ -134,7 +129,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                     .ForMember(d => d.Number, o => o.Ignore())
                 ;
 
-                CreateMap<ActivityForm.Tag, UpdateMyActivityCommand.Tag>()
+                CreateMap<ActivityForm.Tag, ActivityCommandTag>()
                 ;
             }
         }

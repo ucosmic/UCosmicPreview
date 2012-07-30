@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using UCosmic.Domain.People;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.People.Models
 {
@@ -15,21 +14,12 @@ namespace UCosmic.Www.Mvc.Areas.People.Models
 
     public static class GenerateDisplayNameProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(GenerateDisplayNameProfiler));
-        }
-
-        // ReSharper disable UnusedMember.Local
-
-        private class ViewModelToQueryProfile : Profile
+        public class ModelToQueryProfile : Profile
         {
             protected override void Configure()
             {
                 CreateMap<GenerateDisplayNameForm, GenerateDisplayNameQuery>();
             }
         }
-
-        // ReSharper restore UnusedMember.Local
     }
 }

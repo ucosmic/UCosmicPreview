@@ -12,7 +12,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
-        public class TheViewModelToCommandProfile
+        public class TheModelToCommandProfile
         {
             [TestMethod]
             public void IgnoresConfirmationToken()

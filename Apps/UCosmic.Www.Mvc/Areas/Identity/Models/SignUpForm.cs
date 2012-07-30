@@ -3,7 +3,6 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using UCosmic.Domain.Identity;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
@@ -34,14 +33,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
     public static class SignUpProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(SignUpProfiler));
-        }
-
-        // ReSharper disable UnusedMember.Local
-
-        private class ViewModelToCommandProfile : Profile
+        public class ModelToCommandProfile : Profile
         {
             protected override void Configure()
             {
@@ -51,7 +43,5 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 ;
             }
         }
-
-        // ReSharper restore UnusedMember.Local
     }
 }

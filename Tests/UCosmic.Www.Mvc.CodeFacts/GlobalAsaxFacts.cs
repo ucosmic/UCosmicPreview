@@ -28,7 +28,7 @@ namespace UCosmic.Www.Mvc
             RouteTable.Routes.Clear();
             AreaRegistration.RegisterAllAreas();
             MvcApplication.RegisterRoutes(RouteTable.Routes);
-            AutoMapperRegistration.RegisterAllProfiles();
+            AutoMapperRegistration.RegisterProfiles();
         }
 
         [TestClass]

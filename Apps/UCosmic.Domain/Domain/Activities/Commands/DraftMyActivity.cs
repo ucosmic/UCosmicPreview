@@ -13,14 +13,15 @@ namespace UCosmic.Domain.Activities
         public string Content { get; set; }
         public DateTime? StartsOn { get; set; }
         public DateTime? EndsOn { get; set; }
-        public Tag[] Tags { get; set; }
-        public class Tag
-        {
-            public string Text { get; set; }
-            public ActivityTagDomainType DomainType { get; set; }
-            public int? DomainKey { get; set; }
-            public bool IsDeleted { get; set; }
-        }
+        public ActivityCommandTag[] Tags { get; set; }
+    }
+
+    public class ActivityCommandTag
+    {
+        public string Text { get; set; }
+        public ActivityTagDomainType DomainType { get; set; }
+        public int? DomainKey { get; set; }
+        public bool IsDeleted { get; set; }
     }
 
     public class DraftMyActivityHandler : IHandleCommands<DraftMyActivityCommand>

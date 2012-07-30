@@ -1,7 +1,6 @@
 ﻿using System;
 using AutoMapper;
 using UCosmic.Domain.Identity;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Roles.Models
 {
@@ -16,14 +15,7 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Models
 
     public static class RoleSearchResultProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(RoleSearchResultProfiler));
-        }
-
-        // ReSharper disable UnusedMember.Local
-
-        private class EntityToViewModelProfile : Profile
+        public class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {
@@ -32,7 +24,5 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Models
                 ;
             }
         }
-
-        // ReSharper restore UnusedMember.Local
     }
 }

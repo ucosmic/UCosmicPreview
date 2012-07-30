@@ -12,7 +12,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
-        public class TheEntityToViewModelProfile
+        public class TheEntityToModelProfile
         {
             [TestMethod]
             public void MapsEmails_OrderingDefaultAtTop()

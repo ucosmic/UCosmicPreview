@@ -4,7 +4,6 @@ using System.Linq;
 using AutoMapper;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
@@ -53,14 +52,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
     public static class MyHomeProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(MyHomeProfiler));
-        }
-
-        // ReSharper disable UnusedMember.Local
-
-        private class EntityToViewModelProfile : Profile
+        public class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {
@@ -81,7 +73,5 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 CreateMap<Establishment, MyHomeInfo.MyAffiliation.EstablishmentModel>();
             }
         }
-
-        // ReSharper restore UnusedMember.Local
     }
 }

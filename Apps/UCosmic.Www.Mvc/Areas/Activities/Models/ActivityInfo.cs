@@ -10,7 +10,6 @@ using UCosmic.Domain.Activities;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
 using UCosmic.Domain.Places;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Activities.Models
 {
@@ -88,12 +87,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
 
     public static class ActivityInfoProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(ActivityInfoProfiler));
-        }
-
-        private class EntityToModelProfile : Profile
+        public class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {

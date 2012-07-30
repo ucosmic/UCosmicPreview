@@ -156,12 +156,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 
     public static class InstitutionalAgreementProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(InstitutionalAgreementProfiler));
-        }
-
-        internal class EntityToModelProfile : Profile
+        public class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {
@@ -179,7 +174,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
             }
         }
 
-        internal class ModelToCommandProfile : Profile
+        public class ModelToCommandProfile : Profile
         {
             protected override void Configure()
             {

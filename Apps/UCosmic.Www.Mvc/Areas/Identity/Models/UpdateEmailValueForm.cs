@@ -61,14 +61,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
     public static class UpdateEmailValueProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(UpdateEmailValueProfiler));
-        }
-
-        // ReSharper disable UnusedMember.Local
-
-        private class EntityToViewModelProfile : Profile
+        public class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {
@@ -79,7 +72,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             }
         }
 
-        private class ViewModelToCommandProfile : Profile
+        public class ModelToCommandProfile : Profile
         {
             protected override void Configure()
             {
@@ -90,7 +83,5 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 ;
             }
         }
-
-        // ReSharper restore UnusedMember.Local
     }
 }

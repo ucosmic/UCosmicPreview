@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using UCosmic.Www.Mvc.Areas.People.Controllers;
-using UCosmic.Www.Mvc.Areas.People.Models;
 
 namespace UCosmic.Www.Mvc.Areas.People
 {
@@ -14,10 +13,8 @@ namespace UCosmic.Www.Mvc.Areas.People
         public override void RegisterArea(AreaRegistrationContext context)
         {
             PersonNameRouter.RegisterRoutes(context);
-            GenerateDisplayNameProfiler.RegisterProfiles();
 
             PersonInfoRouter.RegisterRoutes(context);
-            PersonInfoProfiler.RegisterProfiles();
 
             //context.MapRoute(
             //    "People_default",

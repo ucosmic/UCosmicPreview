@@ -1,21 +1,13 @@
-﻿using AutoMapper;
-using System.Linq;
+﻿using System.Linq;
+using AutoMapper;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ConfigurationForms;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
 {
     public static class ConfigurationFormsModelMapper
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(ConfigurationFormsModelMapper));
-        }
-
-        // ReSharper disable UnusedMember.Local
-
-        private class EntityToInstitutionalAgreementConfigurationFormProfile : Profile
+        public class EntityToInstitutionalAgreementConfigurationFormProfile : Profile
         {
             protected override void Configure()
             {
@@ -36,7 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             }
         }
 
-        private class EntityFromInstitutionalAgreementConfigurationFormProfile : Profile
+        public class EntityFromInstitutionalAgreementConfigurationFormProfile : Profile
         {
             protected override void Configure()
             {
@@ -68,7 +60,5 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                 ;
             }
         }
-
-        // ReSharper restore UnusedMember.Local
     }
 }

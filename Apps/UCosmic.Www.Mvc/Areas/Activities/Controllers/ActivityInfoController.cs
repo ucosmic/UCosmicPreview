@@ -58,7 +58,6 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
             RootActionRouter.RegisterRoutes(typeof(ActivityInfoRouter), context, Area, Controller);
-            ActivityInfoProfiler.RegisterProfiles();
         }
 
         // ReSharper disable UnusedMember.Global

@@ -11,7 +11,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Models
     // ReSharper restore UnusedMember.Global
     {
         [TestClass]
-        public class TheEntityToViewModelProfile
+        public class TheEntityToModelProfile
         {
             [TestMethod]
             public void MapsSalutation()

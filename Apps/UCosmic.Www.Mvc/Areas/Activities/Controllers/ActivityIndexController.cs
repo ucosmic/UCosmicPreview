@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using UCosmic.Domain.Establishments;
-using UCosmic.Www.Mvc.Areas.Activities.Models;
 using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
@@ -59,7 +58,6 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
             RootActionRouter.RegisterRoutes(typeof(ActivityIndexRouter), context, Area, Controller);
-            ActivityResultsProfiler.RegisterProfiles();
         }
 
         // ReSharper disable UnusedMember.Global

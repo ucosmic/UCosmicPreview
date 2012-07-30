@@ -49,7 +49,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public static void RegisterRoutes(AreaRegistrationContext context)
         {
             RootActionRouter.RegisterRoutes(typeof(ListIdentityProvidersRouter), context, Area, Controller);
-            IdentityProviderListItemModelProfiler.RegisterProfiles();
         }
 
         // ReSharper disable UnusedMember.Global

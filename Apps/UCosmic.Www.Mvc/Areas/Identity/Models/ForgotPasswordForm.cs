@@ -104,14 +104,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
     public static class ForgotPasswordProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(ForgotPasswordProfiler));
-        }
-
-        // ReSharper disable UnusedMember.Local
-
-        private class ViewModelToCommandProfile : Profile
+        public class ModelToCommandProfile : Profile
         {
             protected override void Configure()
             {
@@ -122,7 +115,5 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 ;
             }
         }
-
-        // ReSharper restore UnusedMember.Local
     }
 }

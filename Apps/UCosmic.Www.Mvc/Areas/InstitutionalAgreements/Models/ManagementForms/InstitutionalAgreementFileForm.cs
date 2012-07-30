@@ -32,7 +32,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
             AllowedExtensions = AllowedExtensions)]
         public HttpPostedFileBase PostedFile { get; set; }
 
-        // TODO: should this be a validation attribute?
+        // TODO: validate this using fluent validation
         public bool IsValidPostedFile
         {
             get
@@ -55,12 +55,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 
     public static class InstitutionalAgreementFileFormProfiler
     {
-        public static void RegisterProfiles()
-        {
-            RootModelProfiler.RegisterProfiles(typeof(InstitutionalAgreementFileFormProfiler));
-        }
-
-        internal class EntityToModelProfile : Profile
+        public class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {
