@@ -329,49 +329,47 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         [ActionName("derive-title")]
         public virtual ActionResult DeriveTitle(InstitutionalAgreementDeriveTitleInput model)
         {
-            var agreement = Mapper.Map<InstitutionalAgreement>(model);
-            if (model.ParticipantEstablishmentIds != null)
-            {
-                //var person = _people.FindOne(PersonBy.Principal(User));
-                var person = _queryProcessor.Execute(new GetMyPersonQuery(User));
-                //var establishments = _establishments.FindMany(
-                //    With<Establishment>.EntityIds(model.ParticipantEstablishmentIds)
-                //        .EagerLoad(e => e.Affiliates.Select(a => a.Person))
-                //        .EagerLoad(e => e.Ancestors)
-                //);
-                var establishments = _queryProcessor.Execute(
-                    new FindEstablishmentsWithGuidsQuery(model.ParticipantEstablishmentIds)
-                    {
-                        EagerLoad = new Expression<Func<Establishment, object>>[]
-                        {
-                            e => e.Affiliates.Select(a => a.Person),
-                            e => e.Ancestors,
-                        },
-                    });
-                foreach (var establishment in establishments)
-                {
-                    agreement.Participants.Add(new InstitutionalAgreementParticipant
-                    {
-                        Establishment = establishment,
-                        IsOwner = person.IsAffiliatedWith(establishment), // used to order the participant names
-                    });
-                }
-            }
-            model.Title = agreement.DeriveTitle();
+            var query = new GenerateTitleQuery(User);
+            Mapper.Map(model, query);
+            model.Title = _queryProcessor.Execute(query);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
+
+        //[HttpGet]
+        //[ActionName("derive-title")]
+        //public virtual ActionResult DeriveTitle0(InstitutionalAgreementDeriveTitleInput model)
+        //{
+        //    var agreement = Mapper.Map<InstitutionalAgreement>(model);
+        //    if (model.ParticipantEstablishmentIds != null)
+        //    {
+        //        var person = _queryProcessor.Execute(new GetMyPersonQuery(User));
+        //        var establishments = _queryProcessor.Execute(
+        //            new FindEstablishmentsWithGuidsQuery(model.ParticipantEstablishmentIds)
+        //            {
+        //                EagerLoad = new Expression<Func<Establishment, object>>[]
+        //                {
+        //                    e => e.Affiliates.Select(a => a.Person),
+        //                    e => e.Ancestors,
+        //                },
+        //            });
+        //        foreach (var establishment in establishments)
+        //        {
+        //            agreement.Participants.Add(new InstitutionalAgreementParticipant
+        //            {
+        //                Establishment = establishment,
+        //                IsOwner = person.IsAffiliatedWith(establishment), // used to order the participant names
+        //            });
+        //        }
+        //    }
+        //    model.Title = agreement.DeriveTitle();
+        //    return Json(model, JsonRequestBehavior.AllowGet);
+        //}
 
         [ValidateInput(false)]
         [ActionName("autocomplete-establishment-names")]
         public virtual ActionResult AutoCompleteEstablishmentNames(string term, List<Guid> excludeEstablishmentIds)
         {
             // get matching official establishment names and their children
-            //var data = _establishments
-            //    .FindMany(
-            //        EstablishmentsWith.AutoCompleteTerm(term, excludeEstablishmentIds, 50)
-            //            .OrderBy(e => new { e.Ancestors.Count })
-            //            .OrderBy(e => e.OfficialName)
-            //    );
             var data = _queryProcessor.Execute(new FindEstablishmentsWithNameQuery
             {
                 Term = term,

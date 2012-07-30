@@ -14,9 +14,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
         public override void RegisterArea(AreaRegistrationContext context)
         {
             ManagementFormsRouteMapper.RegisterRoutes(context);
+
             ManagementFormsModelMapper.RegisterProfiles();
             InstitutionalAgreementProfiler.RegisterProfiles();
             InstitutionalAgreementContactProfiler.RegisterProfiles();
+            InstitutionalAgreementFileProfiler.RegisterProfiles();
+            InstitutionalAgreementDeriveTitleProfiler.RegisterProfiles();
 
             ConfigurationFormsRouteMapper.RegisterRoutes(context);
             ConfigurationFormsModelMapper.RegisterProfiles();

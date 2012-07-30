@@ -28,18 +28,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
                     //.ForMember(dto => dto.Files, o => o.ResolveUsing<InstitutionalAgreementToSearchResultFilesResolver>())
                 ;
             }
-
-            //private class InstitutionalAgreementToSearchResultFilesResolver : ValueResolver<InstitutionalAgreement, IList<InstitutionalAgreementFileInfo>>
-            //{
-            //    protected override IList<InstitutionalAgreementFileInfo> ResolveCore(InstitutionalAgreement source)
-            //    {
-            //        if (source.Files == null) return null;
-
-            //        var currentFiles = source.Files.Current();
-            //        var currentFileInfos = Mapper.Map<IList<InstitutionalAgreementFileInfo>>(currentFiles);
-            //        return currentFileInfos;
-            //    }
-            //}
         }
 
         private class EntityToInstitutionalAgreementMapSearchResultProfile : Profile
@@ -103,30 +91,30 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             //}
         }
 
-        private class EntityFromInstitutionalAgreementFormProfile : Profile
-        {
-            protected override void Configure()
-            {
-                CreateMap<InstitutionalAgreementForm, InstitutionalAgreement>()
-                    .ForMember(e => e.Umbrella, o => o.Ignore())
-                    .ForMember(e => e.Ancestors, o => o.Ignore())
-                    .ForMember(e => e.Children, o => o.Ignore())
-                    .ForMember(e => e.Offspring, o => o.Ignore())
-                    .ForMember(e => e.Contacts, o => o.Ignore())
-                    .ForMember(e => e.Participants, o => o.Ignore())
-                    .ForMember(e => e.Files, o => o.Ignore())
-                    .ForMember(e => e.CreatedOnUtc, o => o.Ignore())
-                    .ForMember(e => e.CreatedByPrincipal, o => o.Ignore())
-                    .ForMember(e => e.UpdatedOnUtc, o => o.Ignore())
-                    .ForMember(e => e.UpdatedByPrincipal, o => o.Ignore())
-                    .ForMember(e => e.Version, o => o.Ignore())
-                    .ForMember(e => e.IsCurrent, o => o.Ignore())
-                    .ForMember(e => e.IsArchived, o => o.Ignore())
-                    .ForMember(e => e.IsDeleted, o => o.Ignore())
-                    .ForMember(e => e.VisibilityText, o => o.Ignore())
-                ;
-            }
-        }
+        //private class EntityFromInstitutionalAgreementFormProfile : Profile
+        //{
+        //    protected override void Configure()
+        //    {
+        //        CreateMap<InstitutionalAgreementForm, InstitutionalAgreement>()
+        //            .ForMember(e => e.Umbrella, o => o.Ignore())
+        //            .ForMember(e => e.Ancestors, o => o.Ignore())
+        //            .ForMember(e => e.Children, o => o.Ignore())
+        //            .ForMember(e => e.Offspring, o => o.Ignore())
+        //            .ForMember(e => e.Contacts, o => o.Ignore())
+        //            .ForMember(e => e.Participants, o => o.Ignore())
+        //            .ForMember(e => e.Files, o => o.Ignore())
+        //            .ForMember(e => e.CreatedOnUtc, o => o.Ignore())
+        //            .ForMember(e => e.CreatedByPrincipal, o => o.Ignore())
+        //            .ForMember(e => e.UpdatedOnUtc, o => o.Ignore())
+        //            .ForMember(e => e.UpdatedByPrincipal, o => o.Ignore())
+        //            .ForMember(e => e.Version, o => o.Ignore())
+        //            .ForMember(e => e.IsCurrent, o => o.Ignore())
+        //            .ForMember(e => e.IsArchived, o => o.Ignore())
+        //            .ForMember(e => e.IsDeleted, o => o.Ignore())
+        //            .ForMember(e => e.VisibilityText, o => o.Ignore())
+        //        ;
+        //    }
+        //}
 
         private class EntityToInstitutionalAgreementUmbrellaOptionProfile : Profile
         {
@@ -136,38 +124,38 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             }
         }
 
-        private class EntityFromInstitutionalAgreementDeriveTitleInputProfile : Profile
-        {
-            protected override void Configure()
-            {
-                CreateMap<InstitutionalAgreementDeriveTitleInput, InstitutionalAgreement>()
-                    .ForMember(e => e.Umbrella, o => o.Ignore())
-                    .ForMember(e => e.Ancestors, o => o.Ignore())
-                    .ForMember(e => e.Children, o => o.Ignore())
-                    .ForMember(e => e.Offspring, o => o.Ignore())
-                    .ForMember(e => e.StartsOn, o => o.Ignore())
-                    .ForMember(e => e.ExpiresOn, o => o.Ignore())
-                    .ForMember(e => e.IsExpirationEstimated, o => o.Ignore())
-                    .ForMember(e => e.Description, o => o.Ignore())
-                    .ForMember(e => e.IsAutoRenew, o => o.Ignore())
-                    .ForMember(e => e.Participants, o => o.Ignore())
-                    .ForMember(e => e.Contacts, o => o.Ignore())
-                    .ForMember(e => e.Files, o => o.Ignore())
-                    .ForMember(e => e.RevisionId, o => o.Ignore())
-                    .ForMember(e => e.EntityId, o => o.Ignore())
-                    .ForMember(e => e.CreatedOnUtc, o => o.Ignore())
-                    .ForMember(e => e.CreatedByPrincipal, o => o.Ignore())
-                    .ForMember(e => e.UpdatedOnUtc, o => o.Ignore())
-                    .ForMember(e => e.UpdatedByPrincipal, o => o.Ignore())
-                    .ForMember(e => e.Version, o => o.Ignore())
-                    .ForMember(e => e.IsCurrent, o => o.Ignore())
-                    .ForMember(e => e.IsArchived, o => o.Ignore())
-                    .ForMember(e => e.IsDeleted, o => o.Ignore())
-                    .ForMember(e => e.Visibility, o => o.Ignore())
-                    .ForMember(e => e.VisibilityText, o => o.Ignore())
-                ;
-            }
-        }
+        //private class EntityFromInstitutionalAgreementDeriveTitleInputProfile : Profile
+        //{
+        //    protected override void Configure()
+        //    {
+        //        CreateMap<InstitutionalAgreementDeriveTitleInput, InstitutionalAgreement>()
+        //            .ForMember(e => e.Umbrella, o => o.Ignore())
+        //            .ForMember(e => e.Ancestors, o => o.Ignore())
+        //            .ForMember(e => e.Children, o => o.Ignore())
+        //            .ForMember(e => e.Offspring, o => o.Ignore())
+        //            .ForMember(e => e.StartsOn, o => o.Ignore())
+        //            .ForMember(e => e.ExpiresOn, o => o.Ignore())
+        //            .ForMember(e => e.IsExpirationEstimated, o => o.Ignore())
+        //            .ForMember(e => e.Description, o => o.Ignore())
+        //            .ForMember(e => e.IsAutoRenew, o => o.Ignore())
+        //            .ForMember(e => e.Participants, o => o.Ignore())
+        //            .ForMember(e => e.Contacts, o => o.Ignore())
+        //            .ForMember(e => e.Files, o => o.Ignore())
+        //            .ForMember(e => e.RevisionId, o => o.Ignore())
+        //            .ForMember(e => e.EntityId, o => o.Ignore())
+        //            .ForMember(e => e.CreatedOnUtc, o => o.Ignore())
+        //            .ForMember(e => e.CreatedByPrincipal, o => o.Ignore())
+        //            .ForMember(e => e.UpdatedOnUtc, o => o.Ignore())
+        //            .ForMember(e => e.UpdatedByPrincipal, o => o.Ignore())
+        //            .ForMember(e => e.Version, o => o.Ignore())
+        //            .ForMember(e => e.IsCurrent, o => o.Ignore())
+        //            .ForMember(e => e.IsArchived, o => o.Ignore())
+        //            .ForMember(e => e.IsDeleted, o => o.Ignore())
+        //            .ForMember(e => e.Visibility, o => o.Ignore())
+        //            .ForMember(e => e.VisibilityText, o => o.Ignore())
+        //        ;
+        //    }
+        //}
 
         private class EntityToInstitutionalAgreementParticipantFormProfile : Profile
         {
@@ -259,13 +247,13 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
             }
         }
 
-        private class EntityToInstitutionalAgreementFileInfoProfile : Profile
-        {
-            protected override void Configure()
-            {
-                CreateMap<InstitutionalAgreementFile, InstitutionalAgreementFileInfo>();
-            }
-        }
+        //private class EntityToInstitutionalAgreementFileInfoProfile : Profile
+        //{
+        //    protected override void Configure()
+        //    {
+        //        CreateMap<InstitutionalAgreementFile, InstitutionalAgreementFileInfo>();
+        //    }
+        //}
 
         // ReSharper restore UnusedMember.Local
         // ReSharper restore ClassNeverInstantiated.Local
