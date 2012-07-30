@@ -116,6 +116,7 @@
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Areas\Activities\Controllers\UpdateAffiliationRouterFacts.cs" />
     <Compile Include="Areas\Common\Mappers\QaRouteMapperFacts.cs" />
     <Compile Include="Areas\Common\Mappers\SkinsRouteMapperFacts.cs" />
     <Compile Include="Areas\Common\Mappers\NavigationRouteMapperFacts.cs" />

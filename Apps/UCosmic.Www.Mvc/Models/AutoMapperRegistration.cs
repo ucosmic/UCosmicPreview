@@ -26,13 +26,13 @@ namespace UCosmic.Www.Mvc.Models
             ;
             foreach (var assembly in assemblies)
             {
-                var profiles = assembly.GetTypes()
-                    .Where(a => a != typeof(Profile) && typeof(Profile).IsAssignableFrom(a))
+                var profileClasses = assembly.GetTypes()
+                    .Where(t => t != typeof(Profile) && typeof(Profile).IsAssignableFrom(t))
                     .ToArray()
                 ;
-                foreach (var profile in profiles)
+                foreach (var profileClass in profileClasses)
                 {
-                    configuration.AddProfile((Profile)Activator.CreateInstance(profile));
+                    configuration.AddProfile((Profile)Activator.CreateInstance(profileClass));
                 }
             }
         }

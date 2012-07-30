@@ -13,8 +13,6 @@ namespace UCosmic.Www.Mvc.Areas.Activities
         public override void RegisterArea(AreaRegistrationContext context)
         {
             ActivityIndexRouter.RegisterRoutes(context);
-            ActivityListRouter.RegisterRoutes(context);
-            ActivityFormRouter.RegisterRoutes(context);
             ActivityInfoRouter.RegisterRoutes(context);
             ActivitySearchRouter.RegisterRoutes(context);
             TagMenuRouter.RegisterRoutes(context);

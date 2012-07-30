@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace UCosmic.Www.Mvc.Controllers
 {
@@ -15,6 +17,25 @@ namespace UCosmic.Www.Mvc.Controllers
                 if (method == null) continue;
                 mapper.InvokeMember("MapRoutes", BindingFlags.Public | BindingFlags.Static | BindingFlags.InvokeMethod,
                     null, routeMapper, new object[] { context, area, controller });
+            }
+        }
+    }
+
+    public static class RouteRegistration
+    {
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            var assemblies = new[] { Assembly.GetExecutingAssembly() };
+            foreach (var assembly in assemblies)
+            {
+                var routeClasses = assembly.GetTypes()
+                    .Where(t => t != typeof(Route) && typeof(Route).IsAssignableFrom(t))
+                    .ToArray()
+                ;
+                foreach (var routeClass in routeClasses)
+                {
+                    routes.Add((Route)Activator.CreateInstance(routeClass));
+                }
             }
         }
     }

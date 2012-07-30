@@ -155,105 +155,117 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         private static readonly string Area = MVC.Activities.Name;
         private static readonly string Controller = MVC.Activities.ActivityForm.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class NewRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(ActivityFormRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class New
-        {
-            public const string Route = "my/activities/new";
-            private static readonly string Action = MVC.Activities.ActivityForm.ActionNames.New;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public NewRoute()
+                : base("my/activities/new", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET"), };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Activities.ActivityForm.ActionNames.New,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
             }
         }
 
-        public static class Get
+        public class GetRoute : Route
         {
-            public const string Route = "my/activities/{number}/edit";
-            private static readonly string Action = MVC.Activities.ActivityForm.ActionNames.Get;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public GetRoute()
+                : base("my/activities/{number}/edit", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Activities.ActivityForm.ActionNames.Get,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
                     number = new PositiveIntegerRouteConstraint(),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
 
-        public static class Put
+        public class PutRoute : Route
         {
-            public const string Route = "my/activities/{number}";
-            private static readonly string Action = MVC.Activities.ActivityForm.ActionNames.Put;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public PutRoute()
+                : base("my/activities/{number}", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
                 {
-                    httpMethod = new HttpMethodOverrideConstraint("POST", "PUT" ),
-                    number = new PositiveIntegerRouteConstraint(),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
-            }
-        }
-
-        public static class Draft
-        {
-            public const string Route = "my/activities/{number}/draft";
-            private static readonly string Action = MVC.Activities.ActivityForm.ActionNames.Draft;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new
+                    controller = Controller,
+                    action = MVC.Activities.ActivityForm.ActionNames.Put,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
-                    httpMethod = new HttpMethodConstraint("POST", "PUT"),
+                    httpMethod = new HttpMethodOverrideConstraint("POST", "PUT"),
                     number = new PositiveIntegerRouteConstraint(),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
 
-        public static class Delete
+        public class DraftRoute : Route
         {
-            public const string Route = "my/activities/{number}/delete";
-            private static readonly string Action = MVC.Activities.ActivityForm.ActionNames.Delete;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public DraftRoute()
+                : base("my/activities/{number}/draft", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Activities.ActivityForm.ActionNames.Draft,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodOverrideConstraint("POST", "PUT"),
+                    number = new PositiveIntegerRouteConstraint(),
+                });
+            }
+        }
+
+        public class DeleteRoute : Route
+        {
+            public DeleteRoute()
+                : base("my/activities/{number}/delete", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Activities.ActivityForm.ActionNames.Delete,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
                     number = new PositiveIntegerRouteConstraint(),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
 
-        public static class Destroy
+        public class DestroyRoute : Route
         {
-            public const string Route = "my/activities/{number}";
-            private static readonly string Action = MVC.Activities.ActivityForm.ActionNames.Destroy;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public DestroyRoute()
+                : base("my/activities/{number}", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Activities.ActivityForm.ActionNames.Destroy,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodOverrideConstraint("POST", "DELETE"),
                     number = new PositiveIntegerRouteConstraint(),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
-
-        // ReSharper restore UnusedMember.Global
     }
 }

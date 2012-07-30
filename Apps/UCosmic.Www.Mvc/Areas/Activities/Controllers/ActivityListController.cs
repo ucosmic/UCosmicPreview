@@ -93,41 +93,49 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         private static readonly string Area = MVC.Activities.Name;
         private static readonly string Controller = MVC.Activities.ActivityList.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class ShortListRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(ActivityListRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class ShortList
-        {
-            public const string Route = "my/activities/short-list";
-            private static readonly string Action = MVC.Activities.ActivityList.ActionNames.ShortList;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public ShortListRoute()
+                : base("my/activities/short-list", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET"), };
-                context.MapRoute(null, Route, defaults, constraints);
-            }
-        }
-
-        public static class Page
-        {
-            public static readonly string[] Routes = new[] { "my/activities", "my/activities/page-{pageNumber}" };
-            private static readonly string Action = MVC.Activities.ActivityList.ActionNames.Page;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
                 {
-                    area, controller, action = Action,
-                    pageNumber = UrlParameter.Optional,
-                };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET"), };
-                context.MapRoutes(null, Routes, defaults, constraints);
+                    controller = Controller,
+                    action = MVC.Activities.ActivityList.ActionNames.ShortList,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
             }
         }
 
-        // ReSharper restore UnusedMember.Global
+        public class PageRoute : Route
+        {
+            public PageRoute()
+                : base("my/activities", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Activities.ActivityList.ActionNames.Page,
+                    pageNumber = UrlParameter.Optional,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        public class PageRouteWithPageNumber : PageRoute
+        {
+            public PageRouteWithPageNumber()
+            {
+                Url = "my/activities/page-{pageNumber}";
+            }
+        }
     }
 }

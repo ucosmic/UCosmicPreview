@@ -22,6 +22,9 @@ namespace UCosmic.Www.Mvc
     {
         protected void Application_Start()
         {
+            // detect routes to register
+            RouteRegistration.RegisterRoutes(RouteTable.Routes);
+
             // default MVC application start tasks
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
