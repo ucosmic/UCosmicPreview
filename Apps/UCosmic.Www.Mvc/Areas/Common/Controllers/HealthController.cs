@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Xml;
 using NGeo.Yahoo.PlaceFinder;
 using UCosmic.Domain.Establishments;
@@ -595,5 +596,65 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 
         //    return View();
         //}
+    }
+
+    public static class HealthRouter
+    {
+        private static readonly string Area = MVC.Common.Name;
+        private static readonly string Controller = MVC.Common.Health.Name;
+
+        public class RunEstablishmentHierarchyRoute : Route
+        {
+            public RunEstablishmentHierarchyRoute()
+                : base("health/run-establishment-hierarchy", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Health.ActionNames.RunEstablishmentHierarchy,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        public class RunInstitutionalAgreementHierarchyRoute : Route
+        {
+            public RunInstitutionalAgreementHierarchyRoute()
+                : base("health/run-institutional-agreement-hierarchy", new MvcRouteHandler())
+             {
+                 DataTokens = new RouteValueDictionary(new { area = Area });
+                 Defaults = new RouteValueDictionary(new
+                 {
+                     controller = Controller,
+                     action = MVC.Common.Health.ActionNames.RunInstitutionalAgreementHierarchy,
+                 });
+                 Constraints = new RouteValueDictionary(new
+                 {
+                     httpMethod = new HttpMethodConstraint("GET"),
+                 });
+             }
+        }
+
+        public class RunEstablishmentImportRoute : Route
+        {
+            public RunEstablishmentImportRoute()
+                : base("health/run-establishment-import", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Health.ActionNames.RunEstablishmentImport,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
     }
 }

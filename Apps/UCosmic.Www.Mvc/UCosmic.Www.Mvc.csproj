@@ -439,7 +439,7 @@
     <Compile Include="Areas\Common\Mappers\NavigationRouteMapper.cs" />
     <Compile Include="Areas\Common\Mappers\_ErrorsRouteMapper.cs" />
     <Compile Include="Areas\Common\Mappers\_FeaturesRouteMapper.cs" />
-    <Compile Include="Areas\Common\Mappers\HealthRouteMapper.cs" />
+    <Compile Include="Areas\Common\Mappers\_HealthRouteMapper.cs" />
     <Compile Include="Areas\Establishments\Controllers\ManagementFormsController.cs" />
     <Compile Include="Areas\Establishments\Controllers\SupplementalFormsController.cs" />
     <Compile Include="Areas\Establishments\EstablishmentsAreaRegistration.cs" />
