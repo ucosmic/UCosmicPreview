@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using UCosmic.Www.Mvc.Areas.Common.Mappers;
+using System.Web.Routing;
 using UCosmic.Www.Mvc.Areas.Common.Models.Features;
 using UCosmic.Www.Mvc.Controllers;
 
@@ -11,7 +11,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
     {
         [ActionName("releases")]
         [OpenTopTab(TopTabName.Home)]
-        public virtual ActionResult Releases(string version = FeaturesRouteMapper.Releases.CurrentVersion)
+        public virtual ActionResult Releases(string version = FeaturesRouter.ReleasesRoute.CurrentVersion)
         {
             var allowedVersions = new Dictionary<string, string>
             {
@@ -40,7 +40,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         [ActionName("releases-nav")]
         public virtual PartialViewResult ReleasesNav()
         {
-            var currentVersion = FeaturesRouteMapper.Releases.CurrentVersion;
+            var currentVersion = FeaturesRouter.ReleasesRoute.CurrentVersion;
             var routeValues = RouteData.Values;
             const string routeKey = "version";
 
@@ -148,5 +148,77 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             return HttpNotFound();
         }
 
+    }
+
+    public static class FeaturesRouter
+    {
+        private static readonly string Area = MVC.Common.Name;
+        private static readonly string Controller = MVC.Common.Features.Name;
+
+        public class ReleasesNavRoute : Route
+        {
+            public ReleasesNavRoute()
+                : base("releases/nav", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Features.ActionNames.ReleasesNav,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        public class ReleasesRoute : Route
+        {
+            public const string CurrentVersion = "july-2012-preview-1";
+
+            public ReleasesRoute()
+                : base(string.Empty, new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Features.ActionNames.Releases,
+                    version = CurrentVersion
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        public class ReleasesRouteWithVersion : ReleasesRoute
+        {
+            public ReleasesRouteWithVersion()
+            {
+                Url = "releases/{version}";
+            }
+        }
+
+        public class RequirementsRoute : Route
+        {
+            public RequirementsRoute()
+                : base("features/{module}", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Features.ActionNames.Requirements,
+                    module = UrlParameter.Optional
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
     }
 }

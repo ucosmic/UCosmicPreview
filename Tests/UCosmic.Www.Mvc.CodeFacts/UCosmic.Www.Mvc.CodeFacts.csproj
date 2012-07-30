@@ -122,7 +122,7 @@
     <Compile Include="Areas\Common\Mappers\NavigationRouteMapperFacts.cs" />
     <Compile Include="Areas\Common\Mappers\HealthRouteMapperFacts.cs" />
     <Compile Include="Areas\Common\Mappers\ErrorsRouteMapperFacts.cs" />
-    <Compile Include="Areas\Common\Mappers\FeaturesRouteMapperFacts.cs" />
+    <Compile Include="Areas\Common\Controllers\FeaturesRouterFacts.cs" />
     <Compile Include="Areas\Roles\RolesAreaRegistrationFacts.cs" />
     <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapperFacts.cs" />
     <Compile Include="Areas\Establishments\Mappers\ManagementFormsRouteMapperFacts.cs" />

@@ -438,7 +438,7 @@
     <Compile Include="Areas\Common\Models\Skins\LogoInfo.cs" />
     <Compile Include="Areas\Common\Mappers\NavigationRouteMapper.cs" />
     <Compile Include="Areas\Common\Mappers\ErrorsRouteMapper.cs" />
-    <Compile Include="Areas\Common\Mappers\FeaturesRouteMapper.cs" />
+    <Compile Include="Areas\Common\Mappers\_FeaturesRouteMapper.cs" />
     <Compile Include="Areas\Common\Mappers\HealthRouteMapper.cs" />
     <Compile Include="Areas\Establishments\Controllers\ManagementFormsController.cs" />
     <Compile Include="Areas\Establishments\Controllers\SupplementalFormsController.cs" />

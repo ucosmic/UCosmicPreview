@@ -26,6 +26,7 @@ namespace UCosmic.Www.Mvc
         {
             // register routes once when the test suite begins
             RouteTable.Routes.Clear();
+            RouteRegistration.RegisterRoutes(RouteTable.Routes);
             AreaRegistration.RegisterAllAreas();
             MvcApplication.RegisterRoutes(RouteTable.Routes);
             AutoMapperRegistration.RegisterProfiles();
