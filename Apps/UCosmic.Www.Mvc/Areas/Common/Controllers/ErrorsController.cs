@@ -170,9 +170,9 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             }
         }
 
-        public class NotAuthorizedRoute403 : NotAuthorizedRoute
+        public class NotAuthorized403Route : NotAuthorizedRoute
         {
-            public NotAuthorizedRoute403()
+            public NotAuthorized403Route()
             {
                 Url = "errors/403";
             }

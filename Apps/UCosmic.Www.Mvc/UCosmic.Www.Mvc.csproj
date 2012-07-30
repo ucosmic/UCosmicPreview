@@ -427,7 +427,7 @@
     <Compile Include="Controllers\OpenTopTabAttribute.cs" />
     <Compile Include="Areas\Common\Controllers\QaController.cs" />
     <Compile Include="Areas\Common\Mappers\QaRouteMapper.cs" />
-    <Compile Include="Areas\Common\Mappers\SkinsRouteMapper.cs" />
+    <Compile Include="Areas\Common\Mappers\_SkinsRouteMapper.cs" />
     <Compile Include="Areas\Establishments\Mappers\ManagementFormsModelMapper.cs" />
     <Compile Include="Areas\Establishments\Mappers\ManagementFormsRouteMapper.cs" />
     <Compile Include="Controllers\RedirectToRawUrlAttribute.cs" />

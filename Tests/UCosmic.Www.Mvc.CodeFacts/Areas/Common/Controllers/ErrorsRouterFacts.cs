@@ -64,7 +64,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             public void Maps2Urls_FirstWithCatchall_ThenWithout()
             {
                 new ErrorsRouter.NotAuthorizedRoute();
-                new ErrorsRouter.NotAuthorizedRoute403();
+                new ErrorsRouter.NotAuthorized403Route();
             }
 
             [TestMethod]
@@ -72,7 +72,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                    controller => controller.NotAuthorized(null);
-                var url = new ErrorsRouter.NotAuthorizedRoute403().Url.ToAppRelativeUrl();
+                var url = new ErrorsRouter.NotAuthorized403Route().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -92,7 +92,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                    controller => controller.NotAuthorized(null);
-                var url = new ErrorsRouter.NotAuthorizedRoute403().Url.ToAppRelativeUrl();
+                var url = new ErrorsRouter.NotAuthorized403Route().Url.ToAppRelativeUrl();
                 url.WithAnyMethod().ShouldMapTo(action);
             }
 

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using UCosmic.Domain.Establishments;
 using UCosmic.Www.Mvc.Areas.Common.Models.Skins;
 using UCosmic.Www.Mvc.Controllers;
@@ -11,13 +12,9 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
     public partial class SkinsController : BaseController
     {
         private readonly IProcessQueries _queryProcessor;
-        //private readonly EstablishmentFinder _establishments;
 
-        public SkinsController(IProcessQueries queryProcessor
-            //, IQueryEntities entityQueries
-        )
+        public SkinsController(IProcessQueries queryProcessor)
         {
-            //_establishments = new EstablishmentFinder(entityQueries);
             _queryProcessor = queryProcessor;
         }
 
@@ -123,6 +120,94 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 ViewBag.Title = "Skinning Test for input form";
 
             return View();
+        }
+    }
+
+    public static class SkinsRouter
+    {
+        private static readonly string Area = MVC.Common.Name;
+        private static readonly string Controller = MVC.Common.Skins.Name;
+
+        public class ChangeRoute : Route
+        {
+            public ChangeRoute()
+                : base("as/{skinContext}", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Skins.ActionNames.Change,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        public class ApplyRoute : Route
+        {
+            public ApplyRoute()
+                : base("skins/apply/{skinFile}", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Skins.ActionNames.Apply,
+                    skinFile = string.Empty,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        public class LogoRoute : Route
+        {
+            public LogoRoute()
+                : base("skins/logo", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Skins.ActionNames.Logo,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        public class SampleRoute : Route
+        {
+            public SampleRoute()
+                : base("skins/sample/{content}", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Skins.ActionNames.Sample,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                    content = new RequiredIfPresentRouteConstraint(),
+                });
+            }
+        }
+
+        public class SampleSkinsDefaultRoute : SampleRoute
+        {
+            public SampleSkinsDefaultRoute()
+            {
+                Url = "skins";
+            }
         }
     }
 }

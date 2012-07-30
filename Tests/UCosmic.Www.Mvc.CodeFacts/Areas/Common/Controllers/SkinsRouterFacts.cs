@@ -4,12 +4,11 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcContrib.TestHelper;
 using Should;
-using UCosmic.Www.Mvc.Areas.Common.Controllers;
 
-namespace UCosmic.Www.Mvc.Areas.Common.Mappers
+namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 {
     // ReSharper disable UnusedMember.Global
-    public class SkinsRouteMapperFacts
+    public class SkinsRouterFacts
     // ReSharper restore UnusedMember.Global
     {
         private static readonly string Area = MVC.Common.Name;
@@ -23,7 +22,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 const string skinContext = "skin-context";
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Change(skinContext, null);
-                var url = SkinsRouteMapper.Change.Route.ToAppRelativeUrl()
+                var url = new SkinsRouter.ChangeRoute().Url.ToAppRelativeUrl()
                     .Replace("{skinContext}", skinContext);
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
@@ -34,7 +33,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 const string skinContext = "skin-context";
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Change(skinContext, null);
-                var url = SkinsRouteMapper.Change.Route.ToAppRelativeUrl()
+                var url = new SkinsRouter.ChangeRoute().Url.ToAppRelativeUrl()
                     .Replace("{skinContext}", skinContext);
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
@@ -43,7 +42,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             public void InBoundUrl_WithNonGetMethodIsNotRouted()
             {
                 const string skinContext = "skin-context";
-                var url = SkinsRouteMapper.Change.Route.ToAppRelativeUrl()
+                var url = new SkinsRouter.ChangeRoute().Url.ToAppRelativeUrl()
                     .Replace("{skinContext}", skinContext);
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
@@ -55,10 +54,8 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             [TestMethod]
             public void Maps2Urls_FirstWithParam_ThenWithout()
             {
-                SkinsRouteMapper.Sample.Routes.ShouldNotBeNull();
-                SkinsRouteMapper.Sample.Routes.Length.ShouldEqual(2);
-                SkinsRouteMapper.Sample.Routes[0].ShouldContain("/{");
-                SkinsRouteMapper.Sample.Routes[1].ShouldNotContain("/{");
+                new SkinsRouter.SampleRoute();
+                new SkinsRouter.SampleSkinsDefaultRoute();
             }
 
             [TestMethod]
@@ -66,7 +63,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Sample(null);
-                var url = SkinsRouteMapper.Sample.Routes[1].ToAppRelativeUrl();
+                var url = new SkinsRouter.SampleSkinsDefaultRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -75,7 +72,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Sample(string.Empty);
-                var url = SkinsRouteMapper.Sample.Routes[1].ToAppRelativeUrl();
+                var url = new SkinsRouter.SampleSkinsDefaultRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -85,7 +82,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 const string content = "sample-content";
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Sample(content);
-                var url = SkinsRouteMapper.Sample.Routes[0].ToAppRelativeUrl()
+                var url = new SkinsRouter.SampleRoute().Url.ToAppRelativeUrl()
                     .Replace("{content}", content);
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
@@ -95,14 +92,14 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Sample(null);
-                var url = SkinsRouteMapper.Sample.Routes[1].ToAppRelativeUrl();
+                var url = new SkinsRouter.SampleSkinsDefaultRoute().Url.ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
 
             [TestMethod]
             public void InBoundUrl_WithNonGetMethod_AndNoParam_IsNotRouted()
             {
-                var url = SkinsRouteMapper.Sample.Routes[1].ToAppRelativeUrl();
+                var url = new SkinsRouter.SampleSkinsDefaultRoute().Url.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
 
@@ -112,7 +109,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 const string content = "sample-content";
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Sample(content);
-                var url = SkinsRouteMapper.Sample.Routes[0].ToAppRelativeUrl()
+                var url = new SkinsRouter.SampleRoute().Url.ToAppRelativeUrl()
                     .Replace("{content}", content);
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
@@ -121,7 +118,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             public void InBoundUrl_WithNonGetMethod_AndNonEmptyParam_IsNotRouted()
             {
                 const string content = "sample-content";
-                var url = SkinsRouteMapper.Sample.Routes[0].ToAppRelativeUrl()
+                var url = new SkinsRouter.SampleRoute().Url.ToAppRelativeUrl()
                     .Replace("{content}", content);
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
@@ -135,7 +132,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Apply(null);
-                var url = SkinsRouteMapper.Apply.Route.ToAppRelativeUrl()
+                var url = new SkinsRouter.ApplyRoute().Url.ToAppRelativeUrl()
                     .Replace("/{skinFile}", string.Empty);
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
@@ -146,7 +143,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 const string skinFile = "skin-file";
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Apply(skinFile);
-                var url = SkinsRouteMapper.Apply.Route.ToAppRelativeUrl()
+                var url = new SkinsRouter.ApplyRoute().Url.ToAppRelativeUrl()
                     .Replace("{skinFile}", skinFile);
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
@@ -156,7 +153,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Apply(string.Empty);
-                var url = SkinsRouteMapper.Apply.Route.ToAppRelativeUrl()
+                var url = new SkinsRouter.ApplyRoute().Url.ToAppRelativeUrl()
                     .Replace("/{skinFile}", string.Empty);
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
@@ -164,7 +161,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             [TestMethod]
             public void InBoundUrl_WithNonGetMethod_AndNonNullArg_IsNotRouted()
             {
-                var url = SkinsRouteMapper.Apply.Route.ToAppRelativeUrl()
+                var url = new SkinsRouter.ApplyRoute().Url.ToAppRelativeUrl()
                     .Replace("/{skinFile}", string.Empty);
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
@@ -178,7 +175,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Logo();
-                var url = SkinsRouteMapper.Logo.Route.ToAppRelativeUrl();
+                var url = new SkinsRouter.LogoRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -187,14 +184,14 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Logo();
-                var url = SkinsRouteMapper.Logo.Route.ToAppRelativeUrl();
+                var url = new SkinsRouter.LogoRoute().Url.ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
 
             [TestMethod]
             public void InBoundUrl_WithNonGetMethod_IsNotRouted()
             {
-                var url = SkinsRouteMapper.Logo.Route.ToAppRelativeUrl();
+                var url = new SkinsRouter.LogoRoute().Url.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
         }

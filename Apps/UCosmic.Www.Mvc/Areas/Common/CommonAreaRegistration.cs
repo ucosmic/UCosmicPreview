@@ -12,7 +12,6 @@ namespace UCosmic.Www.Mvc.Areas.Common
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            SkinsRouteMapper.RegisterRoutes(context);
             QaRouteMapper.RegisterRoutes(context);
 
             //context.MapRoute(
