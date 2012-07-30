@@ -1,16 +1,13 @@
-﻿using System;
+using System;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcContrib.TestHelper;
 using Should;
-using UCosmic.Www.Mvc.Areas.Common.Controllers;
 
-namespace UCosmic.Www.Mvc.Areas.Common.Mappers
+namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 {
-    // ReSharper disable UnusedMember.Global
-    public class QaRouteMapperFacts
-    // ReSharper restore UnusedMember.Global
+    public static class QaRouterFacts
     {
         private static readonly string Area = MVC.Common.Name;
 
@@ -22,7 +19,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<QaController, ActionResult>> action =
                    controller => controller.DeliverQaMail();
-                var url = QaRouteMapper.DeliverQaMail.Route.ToAppRelativeUrl();
+                var url = new QaRouter.DeliverQaMailRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -31,14 +28,14 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<QaController, ActionResult>> action =
                    controller => controller.DeliverQaMail();
-                var url = QaRouteMapper.DeliverQaMail.Route.ToAppRelativeUrl();
+                var url = new QaRouter.DeliverQaMailRoute().Url.ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
 
             [TestMethod]
             public void InBoundUrl_WithNonGetMethodIsNotRouted()
             {
-                var url = QaRouteMapper.DeliverQaMail.Route.ToAppRelativeUrl();
+                var url = new QaRouter.DeliverQaMailRoute().Url.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
         }
@@ -51,7 +48,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<QaController, ActionResult>> action =
                    controller => controller.ResetQaMail();
-                var url = QaRouteMapper.ResetQaMail.Route.ToAppRelativeUrl();
+                var url = new QaRouter.ResetQaMailRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -60,14 +57,14 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<QaController, ActionResult>> action =
                    controller => controller.ResetQaMail();
-                var url = QaRouteMapper.ResetQaMail.Route.ToAppRelativeUrl();
+                var url = new QaRouter.ResetQaMailRoute().Url.ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
 
             [TestMethod]
             public void InBoundUrl_WithNonGetMethodIsNotRouted()
             {
-                var url = QaRouteMapper.ResetQaMail.Route.ToAppRelativeUrl();
+                var url = new QaRouter.ResetQaMailRoute().Url.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
         }

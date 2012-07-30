@@ -117,7 +117,6 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Areas\Activities\Controllers\UpdateAffiliationRouterFacts.cs" />
-    <Compile Include="Areas\Common\Mappers\QaRouteMapperFacts.cs" />
     <Compile Include="Areas\Common\Controllers\SkinsRouterFacts.cs" />
     <Compile Include="Areas\Common\Controllers\NavigationRouterFacts.cs" />
     <Compile Include="Areas\Common\Controllers\HealthRouterFacts.cs" />
@@ -178,6 +177,7 @@
     <Compile Include="Areas\People\Models\GenerateDisplayNameProfilerFacts.cs" />
     <Compile Include="Areas\People\PeopleAreaRegistrationFacts.cs" />
     <Compile Include="Areas\RecruitmentAgencies\RecruitmentAgenciesAreaRegistrationFacts.cs" />
+    <Compile Include="Areas\Common\Controllers\QaRouterFacts.cs" />
     <Compile Include="Etc\ReuseMock.cs" />
     <Compile Include="Etc\SimpleDependencyInjectorFacts.cs" />
     <Compile Include="Models\AutoMapperConfigFacts.cs" />
@@ -218,6 +218,7 @@
       <Name>UCosmic.Domain.CodeFacts</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

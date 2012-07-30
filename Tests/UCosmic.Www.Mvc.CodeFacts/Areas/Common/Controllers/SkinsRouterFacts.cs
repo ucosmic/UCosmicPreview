@@ -7,9 +7,7 @@ using Should;
 
 namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 {
-    // ReSharper disable UnusedMember.Global
-    public class SkinsRouterFacts
-    // ReSharper restore UnusedMember.Global
+    public static class SkinsRouterFacts
     {
         private static readonly string Area = MVC.Common.Name;
 

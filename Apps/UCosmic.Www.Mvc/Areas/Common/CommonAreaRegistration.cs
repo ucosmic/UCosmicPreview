@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using UCosmic.Www.Mvc.Areas.Common.Mappers;
 
 namespace UCosmic.Www.Mvc.Areas.Common
 {
@@ -12,8 +11,6 @@ namespace UCosmic.Www.Mvc.Areas.Common
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            QaRouteMapper.RegisterRoutes(context);
-
             //context.MapRoute(
             //    "Common_default",
             //    "Common/{controller}/{action}/{id}",

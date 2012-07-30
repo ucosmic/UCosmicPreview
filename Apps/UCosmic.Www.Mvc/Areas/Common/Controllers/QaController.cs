@@ -2,6 +2,7 @@
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 {
@@ -47,6 +48,50 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             }
             return View(MVC.Common.Qa.Views.mail_files_names, model);
         }
+    }
 
+    public static class QaRouter
+    {
+        private static readonly string Area = MVC.Common.Name;
+        private static readonly string Controller = MVC.Common.Qa.Name;
+
+        public class DeliverQaMailRoute : Route
+        {
+            public DeliverQaMailRoute()
+                : base("qa/deliver-mail",
+                WebConfig.IsDeployedToCloud ? new StopRoutingHandler() as IRouteHandler : new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Qa.ActionNames.DeliverQaMail,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        public class ResetQaMailRoute : Route
+        {
+            public ResetQaMailRoute()
+                : base("qa/reset-mail",
+                WebConfig.IsDeployedToCloud ? new StopRoutingHandler() as IRouteHandler : new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Qa.ActionNames.ResetQaMail,
+                    keyword = UrlParameter.Optional,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
     }
 }
