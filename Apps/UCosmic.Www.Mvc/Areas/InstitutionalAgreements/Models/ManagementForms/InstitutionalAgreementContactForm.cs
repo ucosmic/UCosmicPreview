@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using UCosmic.Domain.InstitutionalAgreements;
+using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Models;
 using System.Web;
 
@@ -83,6 +85,21 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
         public static void RegisterProfiles()
         {
             RootModelProfiler.RegisterProfiles(typeof(InstitutionalAgreementContactProfiler));
+        }
+
+        internal class EntityToModelProfile : Profile
+        {
+            protected override void Configure()
+            {
+                CreateMap<InstitutionalAgreementContact, InstitutionalAgreementContactForm>()
+                    .ForMember(d => d.ContactType, o => o.MapFrom(s => s.Type))
+                ;
+
+                CreateMap<Person, InstitutionalAgreementContactForm.PersonForm>()
+                    .ForMember(target => target.DefaultEmail, o => o
+                        .ResolveUsing(source => source.Emails.SingleOrDefault(e => e.IsDefault)))
+                ;
+            }
         }
 
         internal class ModelToCommandProfile : Profile

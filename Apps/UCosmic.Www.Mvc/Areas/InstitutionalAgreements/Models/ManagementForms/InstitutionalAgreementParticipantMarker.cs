@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using UCosmic.Domain.Establishments;
+using UCosmic.Www.Mvc.Models;
+using AutoMapper;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 {
@@ -23,5 +26,23 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
         public double? CenterLatitude { get; set; }
         public double? CenterLongitude { get; set; }
         public ICollection<InstitutionalAgreementMapSearchResult> Agreements { get; set; }
+    }
+
+    public static class InstitutionalAgreementParticipantMarkerProfiler
+    {
+        public static void RegisterProfiles()
+        {
+            RootModelProfiler.RegisterProfiles(typeof(InstitutionalAgreementParticipantMarkerProfiler));
+        }
+
+        internal class EntityToModelProfile : Profile
+        {
+            protected override void Configure()
+            {
+                CreateMap<EstablishmentLocation, InstitutionalAgreementParticipantMarker>()
+                    .ForMember(t => t.Agreements, o => o.Ignore())
+                ;
+            }
+        }
     }
 }

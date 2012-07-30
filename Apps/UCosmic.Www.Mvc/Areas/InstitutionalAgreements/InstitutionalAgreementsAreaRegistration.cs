@@ -15,11 +15,17 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
         {
             ManagementFormsRouteMapper.RegisterRoutes(context);
 
-            ManagementFormsModelMapper.RegisterProfiles();
+            //ManagementFormsModelMapper.RegisterProfiles();
             InstitutionalAgreementProfiler.RegisterProfiles();
             InstitutionalAgreementContactProfiler.RegisterProfiles();
             InstitutionalAgreementFileProfiler.RegisterProfiles();
             InstitutionalAgreementDeriveTitleProfiler.RegisterProfiles();
+            InstitutionalAgreementSearchResultProfiler.RegisterProfiles();
+            InstitutionalAgreementMapSearchResultProfiler.RegisterProfiles();
+            InstitutionalAgreementParticipantMarkerProfiler.RegisterProfiles();
+            InstitutionalAgreementUmbrellaOptionProfiler.RegisterProfiles();
+            InstitutionalAgreementParticipantFormProfiler.RegisterProfiles();
+            InstitutionalAgreementFileFormProfiler.RegisterProfiles();
 
             ConfigurationFormsRouteMapper.RegisterRoutes(context);
             ConfigurationFormsModelMapper.RegisterProfiles();

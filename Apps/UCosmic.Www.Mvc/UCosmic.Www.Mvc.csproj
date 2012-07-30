@@ -303,7 +303,7 @@
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsModelMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\PublicSearchModelMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\PublicSearchRouteMapper.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\Mappers\ManagementFormsModelMapper.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\_Deprecated\_ManagementFormsModelMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ManagementFormsRouteMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\AllowedContactTypeAttribute.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\AllowedStatusAttribute.cs" />

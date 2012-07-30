@@ -161,6 +161,24 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
             RootModelProfiler.RegisterProfiles(typeof(InstitutionalAgreementProfiler));
         }
 
+        internal class EntityToModelProfile : Profile
+        {
+            protected override void Configure()
+            {
+                CreateMap<InstitutionalAgreement, InstitutionalAgreementForm>()
+                    .ForMember(d => d.ReturnUrl, o => o.Ignore())
+                    .ForMember(d => d.Umbrella, o => o
+                        .ResolveUsing(s => s.Umbrella != null
+                            ? Mapper.Map<InstitutionalAgreementForm.UmbrellaForm>(s.Umbrella)
+                            : new InstitutionalAgreementForm.UmbrellaForm()))
+                ;
+
+                CreateMap<InstitutionalAgreement, InstitutionalAgreementForm.UmbrellaForm>()
+                    .ForMember(target => target.Options, o => o.Ignore())
+                ;
+            }
+        }
+
         internal class ModelToCommandProfile : Profile
         {
             protected override void Configure()

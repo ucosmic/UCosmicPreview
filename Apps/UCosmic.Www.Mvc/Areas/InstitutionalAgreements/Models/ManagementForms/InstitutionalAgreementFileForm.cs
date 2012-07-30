@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Www.Mvc.Models;
+using UCosmic.Domain.Files;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 {
@@ -19,9 +22,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 
         [HiddenInput(DisplayValue = false)]
         public Guid EntityId { get; set; }
-
-        //[HiddenInput(DisplayValue = false)]
-        //public int? AgreementId { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public string Name { get; set; }
@@ -53,4 +53,25 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
         }
     }
 
+    public static class InstitutionalAgreementFileFormProfiler
+    {
+        public static void RegisterProfiles()
+        {
+            RootModelProfiler.RegisterProfiles(typeof(InstitutionalAgreementFileFormProfiler));
+        }
+
+        internal class EntityToModelProfile : Profile
+        {
+            protected override void Configure()
+            {
+                CreateMap<InstitutionalAgreementFile, InstitutionalAgreementFileForm>()
+                    .ForMember(m => m.PostedFile, o => o.Ignore())
+                ;
+
+                CreateMap<LooseFile, InstitutionalAgreementFileForm>()
+                    .ForMember(target => target.PostedFile, o => o.UseValue(null))
+                ;
+            }
+        }
+    }
 }

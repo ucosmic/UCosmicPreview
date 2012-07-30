@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Text;
+using AutoMapper;
+using UCosmic.Domain.InstitutionalAgreements;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
 {
@@ -33,6 +36,22 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms
                 sb.Append(Title.Substring(endOfBetween, Title.IndexOf(" - Status is", StringComparison.Ordinal) - endOfBetween));
                 sb.Append(string.Format(" ({0})", Status));
                 return sb.ToString();
+            }
+        }
+    }
+
+    public static class InstitutionalAgreementUmbrellaOptionProfiler
+    {
+        public static void RegisterProfiles()
+        {
+            RootModelProfiler.RegisterProfiles(typeof(InstitutionalAgreementUmbrellaOptionProfiler));
+        }
+
+        internal class EntityToModelProfile : Profile
+        {
+            protected override void Configure()
+            {
+                CreateMap<InstitutionalAgreement, InstitutionalAgreementUmbrellaOption>();
             }
         }
     }
