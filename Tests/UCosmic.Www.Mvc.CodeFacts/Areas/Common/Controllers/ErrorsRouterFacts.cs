@@ -4,12 +4,11 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcContrib.TestHelper;
 using Should;
-using UCosmic.Www.Mvc.Areas.Common.Controllers;
 
-namespace UCosmic.Www.Mvc.Areas.Common.Mappers
+namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 {
     // ReSharper disable UnusedMember.Global
-    public class ErrorsRouteMapperFacts
+    public class ErrorsRouterFacts
     // ReSharper restore UnusedMember.Global
     {
         private static readonly string Area = MVC.Common.Name;
@@ -22,7 +21,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.NotFound();
-                var url = ErrorsRouteMapper.NotFound.Route.ToAppRelativeUrl();
+                var url = new ErrorsRouter.NotFoundRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -31,7 +30,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.NotFound();
-                var url = ErrorsRouteMapper.NotFound.Route.ToAppRelativeUrl();
+                var url = new ErrorsRouter.NotFoundRoute().Url.ToAppRelativeUrl();
                 url.WithAnyMethod().ShouldMapTo(action);
             }
         }
@@ -44,7 +43,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.FileUploadTooLarge(null);
-                var url = ErrorsRouteMapper.FileUploadTooLarge.Route.ToAppRelativeUrl();
+                var url = new ErrorsRouter.FileUploadTooLargeRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -53,7 +52,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.FileUploadTooLarge(null);
-                var url = ErrorsRouteMapper.FileUploadTooLarge.Route.ToAppRelativeUrl();
+                var url = new ErrorsRouter.FileUploadTooLargeRoute().Url.ToAppRelativeUrl();
                 url.WithAnyMethod().ShouldMapTo(action);
             }
         }
@@ -64,10 +63,8 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             [TestMethod]
             public void Maps2Urls_FirstWithCatchall_ThenWithout()
             {
-                ErrorsRouteMapper.NotAuthorized.Routes.ShouldNotBeNull();
-                ErrorsRouteMapper.NotAuthorized.Routes.Length.ShouldEqual(2);
-                ErrorsRouteMapper.NotAuthorized.Routes[0].ShouldContain("{*");
-                ErrorsRouteMapper.NotAuthorized.Routes[1].ShouldNotContain("{*");
+                new ErrorsRouter.NotAuthorizedRoute();
+                new ErrorsRouter.NotAuthorizedRoute403();
             }
 
             [TestMethod]
@@ -75,7 +72,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                    controller => controller.NotAuthorized(null);
-                var url = ErrorsRouteMapper.NotAuthorized.Routes[1].ToAppRelativeUrl();
+                var url = new ErrorsRouter.NotAuthorizedRoute403().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -85,7 +82,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 const string attemptedUrl = "path/to/action";
                 Expression<Func<ErrorsController, ActionResult>> action =
                    controller => controller.NotAuthorized(attemptedUrl);
-                var url = ErrorsRouteMapper.NotAuthorized.Routes[0].ToAppRelativeUrl()
+                var url = new ErrorsRouter.NotAuthorizedRoute().Url.ToAppRelativeUrl()
                     .Replace("{*url}", attemptedUrl);
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
@@ -95,7 +92,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                    controller => controller.NotAuthorized(null);
-                var url = ErrorsRouteMapper.NotAuthorized.Routes[1].ToAppRelativeUrl();
+                var url = new ErrorsRouter.NotAuthorizedRoute403().Url.ToAppRelativeUrl();
                 url.WithAnyMethod().ShouldMapTo(action);
             }
 
@@ -105,7 +102,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
                 const string attemptedUrl = "path/to/action";
                 Expression<Func<ErrorsController, ActionResult>> action =
                    controller => controller.NotAuthorized(attemptedUrl);
-                var url = ErrorsRouteMapper.NotAuthorized.Routes[0].ToAppRelativeUrl()
+                var url = new ErrorsRouter.NotAuthorizedRoute().Url.ToAppRelativeUrl()
                     .Replace("{*url}", attemptedUrl);
                 url.WithAnyMethod().ShouldMapTo(action);
             }
@@ -119,7 +116,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.BadRequest();
-                var url = ErrorsRouteMapper.BadRequest.Route.ToAppRelativeUrl();
+                var url = new ErrorsRouter.BadRequestRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -128,7 +125,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.BadRequest();
-                var url = ErrorsRouteMapper.BadRequest.Route.ToAppRelativeUrl();
+                var url = new ErrorsRouter.BadRequestRoute().Url.ToAppRelativeUrl();
                 url.WithAnyMethod().ShouldMapTo(action);
             }
         }
@@ -141,7 +138,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.Unexpected();
-                var url = ErrorsRouteMapper.Unexpected.Route.ToAppRelativeUrl();
+                var url = new ErrorsRouter.UnexpectedRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -150,7 +147,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.Unexpected();
-                var url = ErrorsRouteMapper.Unexpected.Route.ToAppRelativeUrl();
+                var url = new ErrorsRouter.UnexpectedRoute().Url.ToAppRelativeUrl();
                 url.WithAnyMethod().ShouldMapTo(action);
             }
         }
@@ -163,7 +160,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.Throw();
-                var url = ErrorsRouteMapper.Throw.Route.ToAppRelativeUrl();
+                var url = new ErrorsRouter.ThrowRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -172,14 +169,14 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.Throw();
-                var url = ErrorsRouteMapper.Throw.Route.ToAppRelativeUrl();
+                var url = new ErrorsRouter.ThrowRoute().Url.ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
 
             [TestMethod]
             public void InBoundUrl_WithNonGetMethod_IsNotRouted()
             {
-                var url = ErrorsRouteMapper.Throw.Route.ToAppRelativeUrl();
+                var url = new ErrorsRouter.ThrowRoute().Url.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
         }
@@ -192,7 +189,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.LogAjaxError(null);
-                var url = ErrorsRouteMapper.LogAjaxError.Route.ToAppRelativeUrl();
+                var url = new ErrorsRouter.LogAjaxErrorRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -201,14 +198,14 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.LogAjaxError(null);
-                var url = ErrorsRouteMapper.LogAjaxError.Route.ToAppRelativeUrl();
+                var url = new ErrorsRouter.LogAjaxErrorRoute().Url.ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
 
             [TestMethod]
             public void InBoundUrl_WithNonGetMethod_IsNotRouted()
             {
-                var url = ErrorsRouteMapper.LogAjaxError.Route.ToAppRelativeUrl();
+                var url = new ErrorsRouter.LogAjaxErrorRoute().Url.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
         }
@@ -221,7 +218,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Mappers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.NotFound();
-                var routeUrls = ErrorsRouteMapper.NotFoundByHackerSniff.Routes;
+                var routeUrls = ErrorsRouter.NotFoundByHackerSniffRoute.OtherUrls;
 
                 const string catchallParam = "*catchall";
                 const string catchallValue = "any";

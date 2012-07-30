@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
+using System.Web.Routing;
+using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Common.Controllers
@@ -80,6 +83,163 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             _exceptionLogger.LogException(model);
             return Json(null, JsonRequestBehavior.AllowGet);
         }
+    }
 
+    public static class ErrorsRouter
+    {
+        private static readonly string Area = MVC.Common.Name;
+        private static readonly string Controller = MVC.Common.Errors.Name;
+
+        public class NotFoundRoute : Route
+        {
+            public NotFoundRoute()
+                : base("errors/404.html", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Errors.ActionNames.NotFound,
+                });
+            }
+        }
+
+        public class NotFoundByHackerSniffRoute : NotFoundRoute
+        {
+            // Since UCosmic uses ELMAH, hacker sniffing requests which generate 404's cause
+            // emails to be sent out to administrators. By setting up inbound URL routes to
+            // some common and frequent URL attack patterns, we can bypass the 404 exception
+            // and route users to the 404 page without triggering mail from ELMAH.
+
+            public static readonly string[] OtherUrls = new[]
+            {
+                "admin/{*catchall}",
+                "mysql/{*catchall}",
+                "phpMyAdmin/{*catchall}",
+                "scripts/setup.php",
+                "{prefix}/scripts/setup.php",
+                "user/soapCaller.bs",
+                "cgi-bin/{*catchall}",
+                "jmx-console/{*catchall}",
+                "cn/{*catchall}",
+                "pp/{*catchall}",
+                "appserv/{*catchall}",
+                "manager/{*catchall}",
+                "crossdomain.xml",
+            };
+
+            public NotFoundByHackerSniffRoute()
+            {
+                Url = OtherUrls.Last();
+                foreach (var otherUrl in OtherUrls.Take(OtherUrls.Length - 1))
+                {
+                    RouteTable.Routes.Add(new NotFoundRoute { Url = otherUrl });
+                }
+            }
+        }
+
+        public class FileUploadTooLargeRoute : Route
+        {
+            public FileUploadTooLargeRoute()
+                : base("errors/file-upload-too-large.html", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Errors.ActionNames.FileUploadTooLarge,
+                });
+            }
+        }
+
+        public class NotAuthorizedRoute : Route
+        {
+            public NotAuthorizedRoute()
+                : base("errors/not-authorized-for/{*url}", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Errors.ActionNames.NotAuthorized,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    url = new RequiredIfPresentRouteConstraint(),
+                });
+            }
+        }
+
+        public class NotAuthorizedRoute403 : NotAuthorizedRoute
+        {
+            public NotAuthorizedRoute403()
+            {
+                Url = "errors/403";
+            }
+        }
+
+        public class BadRequestRoute : Route
+        {
+            public BadRequestRoute()
+                : base("errors/400.html", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Errors.ActionNames.BadRequest,
+                });
+            }
+        }
+
+        public class UnexpectedRoute:Route
+        {
+            public UnexpectedRoute()
+                : base("errors/unexpected.html", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Errors.ActionNames.Unexpected,
+                });
+            }
+        }
+
+        public class ThrowRoute:Route
+        {
+            public ThrowRoute()
+                : base("errors/throw.html", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Errors.ActionNames.Throw,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        public class LogAjaxErrorRoute : Route
+        {
+            public LogAjaxErrorRoute()
+                : base("errors/log-ajax-error.json", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Errors.ActionNames.LogAjaxError,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"), // todo: this should be POST
+                });
+            }
+        }
     }
 }

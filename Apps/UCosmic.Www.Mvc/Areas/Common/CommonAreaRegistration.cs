@@ -12,7 +12,6 @@ namespace UCosmic.Www.Mvc.Areas.Common
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            ErrorsRouteMapper.RegisterRoutes(context);
             HealthRouteMapper.RegisterRoutes(context);
             NavigationRouteMapper.RegisterRoutes(context);
             SkinsRouteMapper.RegisterRoutes(context);
