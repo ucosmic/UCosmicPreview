@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using UCosmic.Www.Mvc.Areas.Activities.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Activities
 {
@@ -12,12 +11,6 @@ namespace UCosmic.Www.Mvc.Areas.Activities
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            ActivityIndexRouter.RegisterRoutes(context);
-            ActivityInfoRouter.RegisterRoutes(context);
-            ActivitySearchRouter.RegisterRoutes(context);
-            TagMenuRouter.RegisterRoutes(context);
-            TagListRouter.RegisterRoutes(context);
-
             //context.MapRoute(
             //    "Activities_default",
             //    "Activities/{controller}/{action}/{id}",

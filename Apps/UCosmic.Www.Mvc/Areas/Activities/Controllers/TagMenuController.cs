@@ -122,25 +122,22 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         private static readonly string Area = MVC.Activities.Name;
         private static readonly string Controller = MVC.Activities.TagMenu.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class PostRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(TagMenuRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class Post
-        {
-            public const string Route = "activities/tags/menu";
-            private static readonly string Action = MVC.Activities.TagMenu.ActionNames.Post;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public PostRoute()
+                : base("activities/tags/menu", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST"), };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Activities.TagMenu.ActionNames.Post,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
             }
         }
-
-        // ReSharper restore UnusedMember.Global
     }
 }

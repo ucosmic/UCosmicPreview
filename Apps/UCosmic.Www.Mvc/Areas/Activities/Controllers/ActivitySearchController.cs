@@ -115,47 +115,41 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         private static readonly string Area = MVC.Activities.Name;
         private static readonly string Controller = MVC.Activities.ActivitySearch.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class GetRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(ActivitySearchRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class Get
-        {
-            public const string Route = "{establishment}/activities/search/{keyword}";
-            private static readonly string Action = MVC.Activities.ActivitySearch.ActionNames.Get;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public GetRoute()
+                : base("{establishment}/activities/search/{keyword}", new MvcRouteHandler())
             {
-                var defaults = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
                 {
-                    area, controller, action = Action,
-                    //pageNumber = 1,
+                    controller = Controller,
+                    action = MVC.Activities.ActivitySearch.ActionNames.Get,
                     keyword = UrlParameter.Optional,
-                };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET"), };
-                context.MapRoute(null, Route, defaults, constraints);
-            }
-        }
-
-        public static class AutoCompleteKeyword
-        {
-            public const string Route = "{establishment}/activities/keywords";
-            private static readonly string Action = MVC.Activities.ActivitySearch.ActionNames.AutoCompleteKeyword;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new
+                });
+                Constraints = new RouteValueDictionary(new
                 {
-                    area,
-                    controller,
-                    action = Action,
-                };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST"), };
-                context.MapRoute(null, Route, defaults, constraints);
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
             }
         }
 
-        // ReSharper restore UnusedMember.Global
+        public class AutoCompleteKeywordRoute : Route
+        {
+            public AutoCompleteKeywordRoute()
+                : base("{establishment}/activities/keywords", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Activities.ActivitySearch.ActionNames.AutoCompleteKeyword,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
+            }
+        }
     }
 }

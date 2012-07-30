@@ -55,28 +55,22 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         private static readonly string Area = MVC.Activities.Name;
         private static readonly string Controller = MVC.Activities.ActivityIndex.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class GetRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(ActivityIndexRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class Get
-        {
-            public const string Route = "faculty-staff";
-            private static readonly string Action = MVC.Activities.ActivityIndex.ActionNames.Get;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public GetRoute()
+                : base("faculty-staff", new MvcRouteHandler())
             {
-                var defaults = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
                 {
-                    area, controller, action = Action,
-                };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET"), };
-                context.MapRoute(null, Route, defaults, constraints);
+                    controller = Controller,
+                    action = MVC.Activities.ActivityIndex.ActionNames.Get,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
             }
         }
-
-        // ReSharper restore UnusedMember.Global
     }
 }
