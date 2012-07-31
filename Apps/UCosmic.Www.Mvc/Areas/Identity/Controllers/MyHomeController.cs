@@ -59,26 +59,32 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.MyHome.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class GetRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(MyHomeRouter), context, Area, Controller);
+            public GetRoute()
+                : base(MyHomeUrl, new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.MyHome.ActionNames.Get,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+
+            public const string MyHomeUrl = "my/home";
         }
 
-        // ReSharper disable UnusedMember.Global
-
-        public static class Get
+        public class GetMyRoute : GetRoute
         {
-            public const string Route = "my/home";
-            private static readonly string Action = MVC.Identity.MyHome.ActionNames.Get;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public GetMyRoute()
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET"), };
-                context.MapRoute(null, Route, defaults, constraints);
-                context.MapRoute(null, "my", defaults, constraints);
+                Url = "my";
             }
         }
-
-        // ReSharper restore UnusedMember.Global
     }
 }

@@ -8,7 +8,7 @@ using Should;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
-    public static class ConfirmEmailRouterFacts
+    public static class CreatePasswordRouterFacts
     {
         private static readonly string AreaName = MVC.Identity.Name;
 
@@ -31,7 +31,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void Inbound_WithGet_AndGuidToken_AndNullSecretCode_MapsToAction()
+            public void Inbound_WithGet_AndGuidToken_MapsToAction()
             {
                 var token = Guid.NewGuid();
                 FormatRoute(token).WithMethod(HttpVerbs.Get)
@@ -39,7 +39,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
 
             [TestMethod]
-            public void Outbound_WithGet_AndGuidToken_AndNullSecretCode_MapsToUrl()
+            public void Outbound_WithGet_AndGuidToken_MapsToUrl()
             {
                 var token = Guid.NewGuid();
                 OutBoundRoute.Of(Action(token)).InArea(AreaName)
@@ -47,63 +47,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     .ShouldEqual(FormatRoute(token));
             }
 
-            [TestMethod]
-            public void Inbound_WithGet_AndGuidToken_AndNonNullSecretCode_MapsToAction()
-            {
-                var token = Guid.NewGuid();
-                const string secretCode = "secret";
-                FormatRoute(token, secretCode).WithMethod(HttpVerbs.Get)
-                    .ShouldMapTo(Action(token, secretCode));
-            }
-
-            [TestMethod]
-            public void Outbound_WithGet_AndGuidToken_AndNonNullSecretCode_MapsToUrl()
-            {
-                var token = Guid.NewGuid();
-                const string secretCode = "secret";
-                OutBoundRoute.Of(Action(token, secretCode)).InArea(AreaName)
-                    .WithMethod(HttpVerbs.Get).AppRelativeUrl()
-                    .ShouldEqual(FormatRoute(token, secretCode));
-            }
-
-            [TestMethod]
-            public void Inbound_WithNonGet_AndGuidToken_AndNonNullSecretCode_MapsToNothing()
-            {
-                var token = Guid.NewGuid();
-                const string secretCode = "secret";
-                FormatRoute(token, secretCode).WithMethodsExcept(HttpVerbs.Get)
-                    .ShouldMapToNothing();
-            }
-
-            [TestMethod]
-            public void Outbound_WithPost_AndGuidToken_AndNonNullSecretCode_MapsToNothing()
-            {
-                var token = Guid.NewGuid();
-                const string secretCode = "secret";
-                OutBoundRoute.Of(Action(token, secretCode)).InArea(AreaName)
-                    .WithMethod(HttpVerbs.Post).AppRelativeUrl()
-                    .ShouldBeNull();
-            }
-
-            [TestMethod]
-            public void Outbound_WithPut_AndGuidToken_AndNonNullSecretCode_MapsToNothing()
-            {
-                var token = Guid.NewGuid();
-                const string secretCode = "secret";
-                OutBoundRoute.Of(Action(token, secretCode))
-                    .InArea(AreaName).WithMethod(HttpVerbs.Put)
-                    .AppRelativeUrl()
-                    .ShouldBeNull();
-            }
-
-            private static readonly string Route = new ConfirmEmailRouter.GetRoute().Url;
+            private static readonly string Route = new CreatePasswordRouter.GetRoute().Url;
             private const string TokenParam = "{token}";
             private const string SecretCodeParam = "{secretCode}";
 
-            private static Expression<Func<ConfirmEmailController, ActionResult>> Action(Guid token, string secretCode = null)
+            private static Expression<Func<CreatePasswordController, ActionResult>> Action(Guid token)
             {
-                Expression<Func<ConfirmEmailController, ActionResult>> action =
-                    controller => controller.Get(token, secretCode);
+                Expression<Func<CreatePasswordController, ActionResult>> action =
+                    controller => controller.Get(token);
                 return action;
             }
 
@@ -170,9 +121,9 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     .AppRelativeUrl().ShouldBeNull();
             }
 
-            private static readonly string Route = new ConfirmEmailRouter.PostRoute().Url;
+            private static readonly string Route = new CreatePasswordRouter.PostRoute().Url;
             private const string TokenParam = "{token}";
-            private static readonly Expression<Func<ConfirmEmailController, ActionResult>>
+            private static readonly Expression<Func<CreatePasswordController, ActionResult>>
                 Action = controller => controller.Post(null);
 
             private static string FormatRoute(Guid? token)
@@ -188,7 +139,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         }
 
         [TestClass]
-        public class TheValidateSecretCodeRoute
+        public class TheValidatePasswordConfirmationRoute
         {
             [TestMethod]
             public void Inbound_WithPost_MapsToAction()
@@ -216,11 +167,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     .WithMethod(HttpVerbs.Get).AppRelativeUrl().ShouldBeNull();
             }
 
-            private static readonly Expression<Func<ConfirmEmailController, ActionResult>>
-                Action = controller => controller.ValidateSecretCode(null);
+            private static readonly Expression<Func<CreatePasswordController, ActionResult>>
+                Action = controller => controller.ValidatePasswordConfirmation(null);
 
             private static readonly string Url =
-                new ConfirmEmailRouter.ValidateSecretCodeRoute().Url.ToAppRelativeUrl();
+                new CreatePasswordRouter.ValidatePasswordConfirmationRoute().Url.ToAppRelativeUrl();
         }
     }
 }

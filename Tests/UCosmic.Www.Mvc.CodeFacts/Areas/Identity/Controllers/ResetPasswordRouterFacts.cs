@@ -64,7 +64,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     .ShouldBeNull();
             }
 
-            private const string Route = ResetPasswordRouter.Get.Route;
+            private static readonly string Route = new ResetPasswordRouter.GetRoute().Url;
             private const string TokenParam = "{token}";
 
             private static Expression<Func<ResetPasswordController, ActionResult>> Action(Guid token)
@@ -136,7 +136,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     .AppRelativeUrl().ShouldBeNull();
             }
 
-            private const string Route = ResetPasswordRouter.Post.Route;
+            private static readonly string Route = new ResetPasswordRouter.PostRoute().Url;
             private const string TokenParam = "{token}";
             private static readonly Expression<Func<ResetPasswordController, ActionResult>>
                 Action = controller => controller.Post(null);
@@ -186,7 +186,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 Action = controller => controller.ValidatePasswordConfirmation(null);
 
             private static readonly string Url =
-                ResetPasswordRouter.ValidatePasswordConfirmation.Route.ToAppRelativeUrl();
+                new ResetPasswordRouter.ValidatePasswordConfirmationRoute().Url.ToAppRelativeUrl();
         }
     }
 }

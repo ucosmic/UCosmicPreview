@@ -26,25 +26,22 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.SignDown.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class GetRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(SignDownRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class Get
-        {
-            public const string Route = "sign-down";
-            private static readonly string Action = MVC.Identity.SignDown.ActionNames.Get;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public GetRoute()
+                : base("sign-down", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.SignDown.ActionNames.Get,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
             }
         }
-
-        // ReSharper restore UnusedMember.Global
     }
 }

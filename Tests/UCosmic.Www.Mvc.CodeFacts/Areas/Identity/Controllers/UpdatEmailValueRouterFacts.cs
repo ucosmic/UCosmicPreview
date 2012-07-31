@@ -18,7 +18,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Inbound_WithGet_AndNumber0_MapsToNothing()
             {
                 const int number = 0;
-                const string routeUrl = UpdateEmailValueRouter.Get.Route;
+                var routeUrl = new UpdateEmailValueRouter.GetRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
@@ -32,7 +32,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const int number = 1;
                 Expression<Func<UpdateEmailValueController, ActionResult>> action =
                     controller => controller.Get(number);
-                const string routeUrl = UpdateEmailValueRouter.Get.Route;
+                var routeUrl = new UpdateEmailValueRouter.GetRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
@@ -44,7 +44,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Inbound_WithNonGetPostOrPut_AndNumber0_MapsToNothing()
             {
                 const int number = 0;
-                const string routeUrl = UpdateEmailValueRouter.Get.Route;
+                var routeUrl = new UpdateEmailValueRouter.GetRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
@@ -56,7 +56,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Inbound_WithNonGetPostOrPut_AndPositiveNumber_MapsToNothing()
             {
                 const int number = 4;
-                const string routeUrl = UpdateEmailValueRouter.Get.Route;
+                var routeUrl = new UpdateEmailValueRouter.GetRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
@@ -80,7 +80,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const int number = 5;
                 Expression<Func<UpdateEmailValueController, ActionResult>> action =
                     controller => controller.Get(number);
-                const string routeUrl = UpdateEmailValueRouter.Get.Route;
+                var routeUrl = new UpdateEmailValueRouter.GetRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
@@ -96,7 +96,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Inbound_WithPut_AndNumber0_MapsToNothing()
             {
                 const int number = 0;
-                const string routeUrl = UpdateEmailValueRouter.Put.Route;
+                var routeUrl = new UpdateEmailValueRouter.PutRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
@@ -110,7 +110,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const int number = 2;
                 Expression<Func<UpdateEmailValueController, ActionResult>> action =
                     controller => controller.Put(null);
-                const string routeUrl = UpdateEmailValueRouter.Put.Route;
+                var routeUrl = new UpdateEmailValueRouter.PutRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
@@ -122,7 +122,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Inbound_WithPost_AndNumber0_MapsToNothing()
             {
                 const int number = 0;
-                const string routeUrl = UpdateEmailValueRouter.Put.Route;
+                var routeUrl = new UpdateEmailValueRouter.PutRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
@@ -136,7 +136,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const int number = 3;
                 Expression<Func<UpdateEmailValueController, ActionResult>> action =
                     controller => controller.Put(null);
-                const string routeUrl = UpdateEmailValueRouter.Put.Route;
+                var routeUrl = new UpdateEmailValueRouter.PutRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
@@ -162,7 +162,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const int number = 6;
                 Expression<Func<UpdateEmailValueController, ActionResult>> action =
                     controller => controller.Put(null);
-                const string routeUrl = UpdateEmailValueRouter.Put.Route;
+                var routeUrl = new UpdateEmailValueRouter.PutRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
@@ -179,7 +179,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Inbound_WithPost_AndNumber0_MapsToNothing()
             {
                 const int number = 0;
-                const string routeUrl = UpdateEmailValueRouter.ValidateValue.Route;
+                var routeUrl = new UpdateEmailValueRouter.ValidateValueRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
@@ -193,7 +193,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const int number = 3;
                 Expression<Func<UpdateEmailValueController, ActionResult>> action =
                     controller => controller.ValidateValue(null);
-                const string routeUrl = UpdateEmailValueRouter.ValidateValue.Route;
+                var routeUrl = new UpdateEmailValueRouter.ValidateValueRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
@@ -205,7 +205,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Inbound_WithNonPost_AndNumber0_MapsToNothing()
             {
                 const int number = 0;
-                const string routeUrl = UpdateEmailValueRouter.ValidateValue.Route;
+                var routeUrl = new UpdateEmailValueRouter.ValidateValueRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
@@ -217,7 +217,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Inbound_WithNonPost_AndPositiveNumber_MapsToNothing()
             {
                 const int number = 4;
-                const string routeUrl = UpdateEmailValueRouter.ValidateValue.Route;
+                var routeUrl = new UpdateEmailValueRouter.ValidateValueRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();
@@ -243,7 +243,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const int number = 6;
                 Expression<Func<UpdateEmailValueController, ActionResult>> action =
                     controller => controller.ValidateValue(null);
-                const string routeUrl = UpdateEmailValueRouter.ValidateValue.Route;
+                var routeUrl = new UpdateEmailValueRouter.ValidateValueRoute().Url;
                 const string numberParam = "number";
                 var urlFormat = routeUrl.Replace(numberParam, "0");
                 var url = string.Format(urlFormat, number).ToAppRelativeUrl();

@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using UCosmic.Impl;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
-using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -73,38 +72,40 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.ServiceProviderMetadata.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class RealRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(ServiceProviderMetadataRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class Real
-        {
-            public const string Route = "sign-on/saml/2/metadata";
-            private static readonly string Action = MVC.Identity.ServiceProviderMetadata.ActionNames.Real;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public RealRoute()
+                : base("sign-on/saml/2/metadata", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.ServiceProviderMetadata.ActionNames.Real,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
             }
         }
 
-        public static class Test
+        public class TestRoute : Route
         {
-            public const string Route = "sign-on/saml/2/metadata/develop";
-            private static readonly string Action = MVC.Identity.ServiceProviderMetadata.ActionNames.Test;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public TestRoute()
+                : base("sign-on/saml/2/metadata/develop", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.ServiceProviderMetadata.ActionNames.Test,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
             }
         }
-
-        // ReSharper restore UnusedMember.Global
-
     }
 }

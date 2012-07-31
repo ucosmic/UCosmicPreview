@@ -19,7 +19,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 Expression<Func<UpdateNameController, ActionResult>> action =
                     controller => controller.Get();
-                var url = UpdateNameRouter.Get.Route.ToAppRelativeUrl();
+                var url = new UpdateNameRouter.GetRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
@@ -27,7 +27,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void Inbound_WithNonGet_MapsToNothing()
             {
-                var url = UpdateNameRouter.Get.Route.ToAppRelativeUrl();
+                var url = new UpdateNameRouter.GetRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
@@ -37,7 +37,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 Expression<Func<UpdateNameController, ActionResult>> action =
                     controller => controller.Get();
-                var url = UpdateNameRouter.Get.Route.ToAppRelativeUrl();
+                var url = new UpdateNameRouter.GetRoute().Url.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Get).AppRelativeUrl().ShouldEqual(url);
             }
@@ -51,7 +51,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 Expression<Func<UpdateNameController, ActionResult>> action =
                     controller => controller.Put(null);
-                var url = UpdateNameRouter.Put.Route.ToAppRelativeUrl();
+                var url = new UpdateNameRouter.PutRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Put).ShouldMapTo(action);
             }
@@ -61,7 +61,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 Expression<Func<UpdateNameController, ActionResult>> action =
                     controller => controller.Put(null);
-                var url = UpdateNameRouter.Put.Route.ToAppRelativeUrl();
+                var url = new UpdateNameRouter.PutRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
             }
@@ -69,7 +69,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void Inbound_WithNonPutOrPost_MapsToNothing()
             {
-                var url = UpdateNameRouter.Put.Route.ToAppRelativeUrl();
+                var url = new UpdateNameRouter.PutRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethodsExcept(HttpVerbs.Put, HttpVerbs.Post).ShouldMapToNothing();
             }
@@ -79,7 +79,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 Expression<Func<UpdateNameController, ActionResult>> action =
                     controller => controller.Put(null);
-                var url = UpdateNameRouter.Put.Route.ToAppRelativeUrl();
+                var url = new UpdateNameRouter.PutRoute().Url.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Put)
                     .AppRelativeUrl().ShouldEqual(url);
@@ -90,7 +90,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 Expression<Func<UpdateNameController, ActionResult>> action =
                     controller => controller.Put(null);
-                var url = UpdateNameRouter.Put.Route.ToAppRelativeUrl();
+                var url = new UpdateNameRouter.PutRoute().Url.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);

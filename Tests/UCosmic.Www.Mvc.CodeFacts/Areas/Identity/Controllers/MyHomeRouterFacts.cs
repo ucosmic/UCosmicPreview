@@ -15,11 +15,20 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         public class TheGetRoute
         {
             [TestMethod]
+            public void Defines_Fallback_Url()
+            {
+                var route1 = new MyHomeRouter.GetRoute();
+                var route2 = new MyHomeRouter.GetMyRoute();
+                route1.Url.ShouldEqual("my/home");
+                route2.Url.ShouldEqual("my");
+            }
+
+            [TestMethod]
             public void Inbound_WithGet_MapsToGetAction()
             {
                 Expression<Func<MyHomeController, ActionResult>> action =
                     controller => controller.Get();
-                var url = MyHomeRouter.Get.Route.ToAppRelativeUrl();
+                var url = MyHomeRouter.GetRoute.MyHomeUrl.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
@@ -27,7 +36,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void Inbound_WithNonGet_MapsToNothing()
             {
-                var url = MyHomeRouter.Get.Route.ToAppRelativeUrl();
+                var url = MyHomeRouter.GetRoute.MyHomeUrl.ToAppRelativeUrl();
 
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
@@ -37,7 +46,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 Expression<Func<MyHomeController, ActionResult>> action =
                     controller => controller.Get();
-                var url = MyHomeRouter.Get.Route.ToAppRelativeUrl();
+                var url = MyHomeRouter.GetRoute.MyHomeUrl.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Get).AppRelativeUrl().ShouldEqual(url);
             }

@@ -53,7 +53,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
 
         public static string ReturnUrl
         {
-            get { return string.Format("~/{0}", MyHomeRouter.Get.Route); }
+            get { return string.Format("~/{0}", MyHomeRouter.GetRoute.MyHomeUrl); }
         }
     }
 

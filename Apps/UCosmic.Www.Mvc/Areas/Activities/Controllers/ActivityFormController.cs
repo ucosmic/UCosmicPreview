@@ -59,7 +59,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         [HttpNotFoundOnNullModel]
         [ActionName("activity-form")]
         [OpenTopTab(TopTabName.FacultyStaff)]
-        [ReturnUrlReferrer(MyHomeRouter.Get.Route)]
+        [ReturnUrlReferrer(MyHomeRouter.GetRoute.MyHomeUrl)]
         public virtual ActionResult Get(int number)
         {
             var activity = _services.QueryProcessor.Execute(

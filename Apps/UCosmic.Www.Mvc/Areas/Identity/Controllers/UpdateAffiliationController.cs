@@ -35,7 +35,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("update-affiliation")]
-        [ReturnUrlReferrer(MyHomeRouter.Get.Route)]
+        [ReturnUrlReferrer(MyHomeRouter.GetRoute.MyHomeUrl)]
         public virtual ActionResult Get(int establishmentId)
         {
             // get the affiliation
@@ -83,45 +83,42 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.UpdateAffiliation.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class GetRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(UpdateAffiliationRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class Get
-        {
-            public const string Route = "my/affiliations/{establishmentId}/edit";
-            private static readonly string Action = MVC.Identity.UpdateAffiliation.ActionNames.Get;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public GetRoute()
+                : base("my/affiliations/{establishmentId}/edit", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.UpdateAffiliation.ActionNames.Get,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
                     establishmentId = new PositiveIntegerRouteConstraint(),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
 
-        public static class Put
+        public class PutRoute : Route
         {
-            public const string Route = "my/affiliations/{establishmentId}";
-            private static readonly string Action = MVC.Identity.UpdateAffiliation.ActionNames.Put;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public PutRoute()
+                : base("my/affiliations/{establishmentId}", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.UpdateAffiliation.ActionNames.Put,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("POST", "PUT"),
                     establishmentId = new PositiveIntegerRouteConstraint(),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
-
-        // ReSharper restore UnusedMember.Global
     }
 }

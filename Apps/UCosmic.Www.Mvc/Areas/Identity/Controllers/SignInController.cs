@@ -104,49 +104,58 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.SignIn.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class GetRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(SignInRouter), context, Area, Controller);
+            public GetRoute()
+                : base("sign-in", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.SignIn.ActionNames.Get,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+
+            public const string SignInUrl = "sign-in";
         }
 
-        // ReSharper disable UnusedMember.Global
-
-        public static class Get
+        public class PostRoute : GetRoute
         {
-            public const string Route = "sign-in";
-            private static readonly string Action = MVC.Identity.SignIn.ActionNames.Get;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public PostRoute()
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, Route, defaults, constraints);
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.SignIn.ActionNames.Post,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
             }
         }
 
-        public static class Post
+        public class ValidatePasswordRoute : Route
         {
-            public const string Route = Get.Route;
-            private static readonly string Action = MVC.Identity.SignIn.ActionNames.Post;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public ValidatePasswordRoute()
+                : base("sign-in/validate", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.SignIn.ActionNames.ValidatePassword,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
             }
         }
-
-        public static class ValidatePassword
-        {
-            public const string Route = "sign-in/validate";
-            private static readonly string Action = MVC.Identity.SignIn.ActionNames.ValidatePassword;
-            public static void MapRoutes(AreaRegistrationContext routes, string area, string controller)
-            {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
-                routes.MapRoute(null, Route, defaults, constraints);
-            }
-        }
-
-        // ReSharper restore UnusedMember.Global
     }
 }

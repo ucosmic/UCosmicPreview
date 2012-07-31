@@ -46,25 +46,22 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.ListIdentityProviders.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class GetRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(ListIdentityProvidersRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class Get
-        {
-            public const string Route = "sign-on/saml/2/providers";
-            private static readonly string Action = MVC.Identity.ListIdentityProviders.ActionNames.Get;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public GetRoute()
+                : base("sign-on/saml/2/providers", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.ListIdentityProviders.ActionNames.Get,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
             }
         }
-
-        // ReSharper restore UnusedMember.Global
     }
 }

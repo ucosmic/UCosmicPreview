@@ -96,61 +96,74 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.SignOver.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class GetRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(SignOverRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class Get
-        {
-            public const string Route = "sign-over";
-            private static readonly string Action = MVC.Identity.SignOver.ActionNames.Get;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public GetRoute()
+                : base("sign-over", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.SignOver.ActionNames.Get,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
             }
         }
 
-        public static class Post
+        public class PostRoute : GetRoute
         {
-            public const string Route = Get.Route;
-            private static readonly string Action = MVC.Identity.SignOver.ActionNames.Post;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public PostRoute()
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
-                context.MapRoute(null, Route, defaults, constraints);
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.SignOver.ActionNames.Post,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
             }
         }
 
-        public static class ValidateEmailAddress
+        public class ValidateEmailAddressRoute : Route
         {
-            public const string Route = "sign-over/validate";
-            private static readonly string Action = MVC.Identity.SignOver.ActionNames.ValidateEmailAddress;
-            public static void MapRoutes(AreaRegistrationContext routes, string area, string controller)
+            public ValidateEmailAddressRoute()
+                : base("sign-over/validate", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
-                routes.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.SignOver.ActionNames.ValidateEmailAddress,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
             }
         }
 
-        public static class Undo
+        public class UndoRoute : Route
         {
-            public const string Route = "sign-over/undo";
-            private static readonly string Action = MVC.Identity.SignOver.ActionNames.Undo;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public UndoRoute()
+                : base("sign-over/undo", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.SignOver.ActionNames.Undo,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
             }
         }
-
-        // ReSharper restore UnusedMember.Global
     }
 }

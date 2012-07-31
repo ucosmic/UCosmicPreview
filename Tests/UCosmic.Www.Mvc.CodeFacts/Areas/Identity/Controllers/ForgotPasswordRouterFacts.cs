@@ -35,7 +35,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     .ShouldEqual(Url);
             }
 
-            private static readonly string Url = ForgotPasswordRouter.Get.Route.ToAppRelativeUrl();
+            private static readonly string Url = new ForgotPasswordRouter.GetRoute().Url.ToAppRelativeUrl();
 
             private static readonly Expression<Func<ForgotPasswordController, ActionResult>>
                 Action = controller => controller.Get();
@@ -58,7 +58,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     .ShouldEqual(Url);
             }
 
-            private static readonly string Url = ForgotPasswordRouter.Post.Route.ToAppRelativeUrl();
+            private static readonly string Url = new ForgotPasswordRouter.PostRoute().Url.ToAppRelativeUrl();
 
             private static readonly Expression<Func<ForgotPasswordController, ActionResult>>
                 Action = controller => controller.Post(null);
@@ -88,7 +88,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     .ShouldEqual(Url);
             }
 
-            private static readonly string Url = ForgotPasswordRouter.ValidateEmailAddress.Route
+            private static readonly string Url = new ForgotPasswordRouter.ValidateEmailAddressRoute().Url
                 .ToAppRelativeUrl();
 
             private static readonly Expression<Func<ForgotPasswordController, ActionResult>>

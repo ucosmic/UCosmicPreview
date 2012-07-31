@@ -129,71 +129,61 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.ConfirmEmail.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class GetRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(ConfirmEmailRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class Get
-        {
-            public const string Route = "confirm-email/{token}/{secretCode}";
-            private static readonly string Action = MVC.Identity.ConfirmEmail.ActionNames.Get;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public GetRoute()
+                : base("confirm-email/{token}/{secretCode}", new MvcRouteHandler())
             {
-                var defaults = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
                 {
-                    area,
-                    controller,
-                    action = Action,
+                    controller = Controller,
+                    action = MVC.Identity.ConfirmEmail.ActionNames.Get,
                     secretCode = UrlParameter.Optional,
-                };
-                var constraints = new
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
                     token = new NonEmptyGuidRouteConstraint(),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
 
-        public static class Post
+        public class PostRoute : Route
         {
-            public const string Route = "confirm-email/{token}";
-            private static readonly string Action = MVC.Identity.ConfirmEmail.ActionNames.Post;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public PostRoute()
+                : base("confirm-email/{token}", new MvcRouteHandler())
             {
-                var defaults = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
                 {
-                    area,
-                    controller,
-                    action = Action,
-                };
-                var constraints = new
+                    controller = Controller,
+                    action = MVC.Identity.ConfirmEmail.ActionNames.Post,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("POST"),
                     token = new NonEmptyGuidRouteConstraint(),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
 
-        public static class ValidateSecretCode
+        public class ValidateSecretCodeRoute : Route
         {
-            public const string Route = "confirm-email/validate";
-            private static readonly string Action = MVC.Identity.ConfirmEmail.ActionNames.ValidateSecretCode;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public ValidateSecretCodeRoute()
+                : base("confirm-email/validate", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.ConfirmEmail.ActionNames.ValidateSecretCode,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("POST"),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
-
-        // ReSharper restore UnusedMember.Global
     }
 }

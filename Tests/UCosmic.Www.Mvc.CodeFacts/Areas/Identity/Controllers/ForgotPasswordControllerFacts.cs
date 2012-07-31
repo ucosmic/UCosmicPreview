@@ -71,7 +71,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 attributes.ShouldNotBeNull();
                 attributes.Length.ShouldEqual(1);
                 attributes[0].ShouldNotBeNull();
-                attributes[0].Fallback.ShouldEqual(SignInRouter.Get.Route);
+                attributes[0].Fallback.ShouldEqual(SignInRouter.GetRoute.SignInUrl);
             }
 
             [TestMethod]

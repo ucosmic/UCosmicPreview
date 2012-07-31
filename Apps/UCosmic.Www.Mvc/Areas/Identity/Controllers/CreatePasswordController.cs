@@ -102,58 +102,58 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.CreatePassword.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class GetRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(CreatePasswordRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class Get
-        {
-            public const string Route = "create-password/{token}";
-            private static readonly string Action = MVC.Identity.CreatePassword.ActionNames.Get;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public GetRoute()
+                : base("create-password/{token}", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.CreatePassword.ActionNames.Get,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
                     token = new NonEmptyGuidRouteConstraint(),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
 
-        public static class Post
+        public class PostRoute : GetRoute
         {
-            public const string Route = Get.Route;
-            private static readonly string Action = MVC.Identity.CreatePassword.ActionNames.Post;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public PostRoute()
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.CreatePassword.ActionNames.Post,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("POST"),
                     token = new NonEmptyGuidRouteConstraint(),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
 
-        public static class ValidatePasswordConfirmation
+        public class ValidatePasswordConfirmationRoute : Route
         {
-            public const string Route = "create-password/validate";
-            private static readonly string Action = MVC.Identity.ResetPassword.ActionNames.ValidatePasswordConfirmation;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public ValidatePasswordConfirmationRoute()
+                : base("create-password/validate", new MvcRouteHandler())
             {
-
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST"), };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.CreatePassword.ActionNames.ValidatePasswordConfirmation,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
             }
         }
-
-        // ReSharper restore UnusedMember.Global
     }
 }

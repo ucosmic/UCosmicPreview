@@ -122,6 +122,12 @@
     <Compile Include="Areas\Common\Controllers\HealthRouterFacts.cs" />
     <Compile Include="Areas\Common\Controllers\ErrorsRouterFacts.cs" />
     <Compile Include="Areas\Common\Controllers\FeaturesRouterFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\UpdatePasswordRouterFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignUpRouterFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignOverRouterFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignOnRouterFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\SignInRouterFacts.cs" />
+    <Compile Include="Areas\Identity\Controllers\CreatePasswordRouterFacts.cs" />
     <Compile Include="Areas\Roles\RolesAreaRegistrationFacts.cs" />
     <Compile Include="Areas\Establishments\Controllers\SupplementalFormsRouterFacts.cs" />
     <Compile Include="Areas\Establishments\Controllers\ManagementFormsRouterFacts.cs" />

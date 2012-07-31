@@ -18,7 +18,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Inbound_WithGet_AndEstablishmentId0_MapsToNothing()
             {
                 const int establishmentId = 0;
-                const string routeUrl = UpdateAffiliationRouter.Get.Route;
+                var routeUrl = new UpdateAffiliationRouter.GetRoute().Url;
                 const string establishmentIdParam = "establishmentId";
                 var urlFormat = routeUrl.Replace(establishmentIdParam, "0");
                 var url = string.Format(urlFormat, establishmentId).ToAppRelativeUrl();
@@ -32,7 +32,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const int establishmentId = 1;
                 Expression<Func<UpdateAffiliationController, ActionResult>> action =
                     controller => controller.Get(establishmentId);
-                const string routeUrl = UpdateAffiliationRouter.Get.Route;
+                var routeUrl = new UpdateAffiliationRouter.GetRoute().Url;
                 const string establishmentIdParam = "establishmentId";
                 var urlFormat = routeUrl.Replace(establishmentIdParam, "0");
                 var url = string.Format(urlFormat, establishmentId).ToAppRelativeUrl();
@@ -44,7 +44,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Inbound_WithNonGetPostOrPut_AndEstablishmentId0_MapsToNothing()
             {
                 const int establishmentId = 0;
-                const string routeUrl = UpdateAffiliationRouter.Get.Route;
+                var routeUrl = new UpdateAffiliationRouter.GetRoute().Url;
                 const string establishmentIdParam = "establishmentId";
                 var urlFormat = routeUrl.Replace(establishmentIdParam, "0");
                 var url = string.Format(urlFormat, establishmentId).ToAppRelativeUrl();
@@ -56,7 +56,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Inbound_WithNonGetPostOrPut_AndPositiveEstablishmentId_MapsToNothing()
             {
                 const int establishmentId = 4;
-                const string routeUrl = UpdateAffiliationRouter.Get.Route;
+                var routeUrl = new UpdateAffiliationRouter.GetRoute().Url;
                 const string establishmentIdParam = "establishmentId";
                 var urlFormat = routeUrl.Replace(establishmentIdParam, "0");
                 var url = string.Format(urlFormat, establishmentId).ToAppRelativeUrl();
@@ -80,7 +80,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const int establishmentId = 5;
                 Expression<Func<UpdateAffiliationController, ActionResult>> action =
                     controller => controller.Get(establishmentId);
-                const string routeUrl = UpdateAffiliationRouter.Get.Route;
+                var routeUrl = new UpdateAffiliationRouter.GetRoute().Url;
                 const string establishmentIdParam = "establishmentId";
                 var urlFormat = routeUrl.Replace(establishmentIdParam, "0");
                 var url = string.Format(urlFormat, establishmentId).ToAppRelativeUrl();
@@ -96,7 +96,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Inbound_WithPut_AndEstablishmentId0_MapsToNothing()
             {
                 const int establishmentId = 0;
-                const string routeUrl = UpdateAffiliationRouter.Put.Route;
+                var routeUrl = new UpdateAffiliationRouter.PutRoute().Url;
                 const string establishmentIdParam = "establishmentId";
                 var urlFormat = routeUrl.Replace(establishmentIdParam, "0");
                 var url = string.Format(urlFormat, establishmentId).ToAppRelativeUrl();
@@ -110,7 +110,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const int establishmentId = 2;
                 Expression<Func<UpdateAffiliationController, ActionResult>> action =
                     controller => controller.Put(null);
-                const string routeUrl = UpdateAffiliationRouter.Put.Route;
+                var routeUrl = new UpdateAffiliationRouter.PutRoute().Url;
                 const string establishmentIdParam = "establishmentId";
                 var urlFormat = routeUrl.Replace(establishmentIdParam, "0");
                 var url = string.Format(urlFormat, establishmentId).ToAppRelativeUrl();
@@ -122,7 +122,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public void Inbound_WithPost_AndEstablishmentId0_MapsToNothing()
             {
                 const int establishmentId = 0;
-                const string routeUrl = UpdateAffiliationRouter.Put.Route;
+                var routeUrl = new UpdateAffiliationRouter.PutRoute().Url;
                 const string establishmentIdParam = "establishmentId";
                 var urlFormat = routeUrl.Replace(establishmentIdParam, "0");
                 var url = string.Format(urlFormat, establishmentId).ToAppRelativeUrl();
@@ -136,7 +136,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const int establishmentId = 3;
                 Expression<Func<UpdateAffiliationController, ActionResult>> action =
                     controller => controller.Put(null);
-                const string routeUrl = UpdateAffiliationRouter.Put.Route;
+                var routeUrl = new UpdateAffiliationRouter.PutRoute().Url;
                 const string establishmentIdParam = "establishmentId";
                 var urlFormat = routeUrl.Replace(establishmentIdParam, "0");
                 var url = string.Format(urlFormat, establishmentId).ToAppRelativeUrl();
@@ -162,7 +162,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 const int establishmentId = 6;
                 Expression<Func<UpdateAffiliationController, ActionResult>> action =
                     controller => controller.Put(null);
-                const string routeUrl = UpdateAffiliationRouter.Put.Route;
+                var routeUrl = new UpdateAffiliationRouter.PutRoute().Url;
                 const string establishmentIdParam = "establishmentId";
                 var urlFormat = routeUrl.Replace(establishmentIdParam, "0");
                 var url = string.Format(urlFormat, establishmentId).ToAppRelativeUrl();

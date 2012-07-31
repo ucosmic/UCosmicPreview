@@ -37,7 +37,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("update-email-value")]
-        [ReturnUrlReferrer(MyHomeRouter.Get.Route)]
+        [ReturnUrlReferrer(MyHomeRouter.GetRoute.MyHomeUrl)]
         public virtual ActionResult Get(int number)
         {
             // get the email address
@@ -94,61 +94,61 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.UpdateEmailValue.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class GetRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(UpdateEmailValueRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class Get
-        {
-            public const string Route = "my/emails/{number}/change-spelling";
-            private static readonly string Action = MVC.Identity.UpdateEmailValue.ActionNames.Get;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public GetRoute()
+                : base("my/emails/{number}/change-spelling", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.UpdateEmailValue.ActionNames.Get,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
                     number = new PositiveIntegerRouteConstraint(),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
 
-        public static class Put
+        public class PutRoute : Route
         {
-            public const string Route = "my/emails/{number}";
-            private static readonly string Action = MVC.Identity.UpdateEmailValue.ActionNames.Put;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public PutRoute()
+                : base("my/emails/{number}", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.UpdateEmailValue.ActionNames.Get,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("POST", "PUT"),
                     number = new PositiveIntegerRouteConstraint(),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
 
-        public static class ValidateValue
+        public class ValidateValueRoute : Route
         {
-            public const string Route = "my/emails/{number}/change-spelling/validate";
-            private static readonly string Action = MVC.Identity.UpdateEmailValue.ActionNames.ValidateValue;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public ValidateValueRoute()
+                : base("my/emails/{number}/change-spelling/validate", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.UpdateEmailValue.ActionNames.ValidateValue,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("POST"),
                     number = new PositiveIntegerRouteConstraint(),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
-
-        // ReSharper restore UnusedMember.Global
     }
 }
