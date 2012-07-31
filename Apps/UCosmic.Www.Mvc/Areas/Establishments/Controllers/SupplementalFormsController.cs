@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Web.Mvc;
+using System.Web.Routing;
 using AutoMapper;
 using NGeo.Yahoo.PlaceFinder;
 using ServiceLocatorPattern;
@@ -240,6 +241,81 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                 {
                     Build(++retryCount);
                 }
+            }
+        }
+    }
+
+    public static class SupplementalFormsRouter
+    {
+        private static readonly string Area = MVC.Establishments.Name;
+        private static readonly string Controller = MVC.Establishments.SupplementalForms.Name;
+
+        public class FindPlacesRoute : Route
+        {
+            public FindPlacesRoute()
+                : base("establishments/new/location/places", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Establishments.SupplementalForms.ActionNames.FindPlaces,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        public class LocateGetRoute : Route
+        {
+            public LocateGetRoute()
+                : base("establishments/{establishmentId}/locate/then-return-to/{*returnUrl}", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Establishments.SupplementalForms.ActionNames.Locate,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    establishmentId = new NonEmptyGuidRouteConstraint(),
+                    returnUrl = new RequiredIfPresentRouteConstraint(),
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        public class LocateGetWithoutReturnUrlRoute : LocateGetRoute
+        {
+            public LocateGetWithoutReturnUrlRoute()
+            {
+                Url = "establishments/{establishmentId}/locate";
+                Constraints = new RouteValueDictionary(new
+                {
+                    establishmentId = new NonEmptyGuidRouteConstraint(),
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        public class LocatePostRoute : Route
+        {
+            public LocatePostRoute()
+                : base("establishments/locate", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Establishments.SupplementalForms.ActionNames.Locate,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST")
+                });
             }
         }
     }

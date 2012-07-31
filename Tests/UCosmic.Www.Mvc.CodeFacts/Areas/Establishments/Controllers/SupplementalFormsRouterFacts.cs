@@ -4,11 +4,10 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcContrib.TestHelper;
 using Should;
-using UCosmic.Www.Mvc.Areas.Establishments.Controllers;
 
-namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
+namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
 {
-    public static class SupplementalFormsRouteMapperFacts
+    public static class SupplementalFormsRouterFacts
     {
         private static readonly string Area = MVC.Establishments.Name;
 
@@ -22,7 +21,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 const double longitude = -1.1;
                 Expression<Func<SupplementalFormsController, ActionResult>> action =
                    controller => controller.FindPlaces(latitude, longitude);
-                var url = SupplementalFormsRouteMapper.FindPlaces.Route.ToAppRelativeUrl()
+                var url = new SupplementalFormsRouter.FindPlacesRoute().Url.ToAppRelativeUrl()
                     .AddQueryString("?latitude={0}&longitude={1}", latitude, longitude);
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
@@ -34,7 +33,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 const double longitude = -1.1;
                 Expression<Func<SupplementalFormsController, ActionResult>> action =
                    controller => controller.FindPlaces(latitude, longitude);
-                var url = SupplementalFormsRouteMapper.FindPlaces.Route.ToAppRelativeUrl();
+                var url = new SupplementalFormsRouter.FindPlacesRoute().Url.ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Get).AndMethodArg("latitude", latitude)
                     .AndMethodArg("longitude", longitude).ShouldMapTo(action);
             }
@@ -42,21 +41,19 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             [TestMethod]
             public void InBoundUrl_WithNonGetMethod_IsNotRouted()
             {
-                var url = SupplementalFormsRouteMapper.FindPlaces.Route.ToAppRelativeUrl();
+                var url = new SupplementalFormsRouter.FindPlacesRoute().Url.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
         }
 
         [TestClass]
-        public class Locate_Get
+        public class LocateGet
         {
             [TestMethod]
             public void Maps2Urls_FirstWithReturnUrl_ThenWithout()
             {
-                SupplementalFormsRouteMapper.Locate.RoutesForGet.ShouldNotBeNull();
-                SupplementalFormsRouteMapper.Locate.RoutesForGet.Length.ShouldEqual(2);
-                SupplementalFormsRouteMapper.Locate.RoutesForGet[0].ShouldContain("{*");
-                SupplementalFormsRouteMapper.Locate.RoutesForGet[1].ShouldNotContain("{*");
+                new SupplementalFormsRouter.LocateGetRoute();
+                new SupplementalFormsRouter.LocateGetWithoutReturnUrlRoute();
             }
 
             [TestMethod]
@@ -65,7 +62,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 var establishmentId = Guid.NewGuid();
                 Expression<Func<SupplementalFormsController, ActionResult>> action =
                    controller => controller.Locate(establishmentId, null);
-                var url = SupplementalFormsRouteMapper.Locate.RoutesForGet[1].ToAppRelativeUrl()
+                var url = new SupplementalFormsRouter.LocateGetWithoutReturnUrlRoute().Url.ToAppRelativeUrl()
                     .Replace("{establishmentId}", establishmentId.ToString());
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
@@ -77,7 +74,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 const string attemptedUrl = "path/to/action";
                 Expression<Func<SupplementalFormsController, ActionResult>> action =
                    controller => controller.Locate(establishmentId, attemptedUrl);
-                var url = SupplementalFormsRouteMapper.Locate.RoutesForGet[0].ToAppRelativeUrl()
+                var url = new SupplementalFormsRouter.LocateGetRoute().Url.ToAppRelativeUrl()
                     .Replace("{*returnUrl}", attemptedUrl)
                     .Replace("{establishmentId}", establishmentId.ToString());
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
@@ -89,7 +86,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 var establishmentId = Guid.NewGuid();
                 Expression<Func<SupplementalFormsController, ActionResult>> action =
                    controller => controller.Locate(establishmentId, null);
-                var url = SupplementalFormsRouteMapper.Locate.RoutesForGet[1].ToAppRelativeUrl()
+                var url = new SupplementalFormsRouter.LocateGetWithoutReturnUrlRoute().Url.ToAppRelativeUrl()
                     .Replace("{establishmentId}", establishmentId.ToString());
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
@@ -97,7 +94,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             [TestMethod]
             public void InBoundUrl_WithNonGetMethod_AndNoCatchall_IsNotRouted()
             {
-                var url = SupplementalFormsRouteMapper.Locate.RoutesForGet[1].ToAppRelativeUrl();
+                var url = new SupplementalFormsRouter.LocateGetWithoutReturnUrlRoute().Url.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
 
@@ -108,7 +105,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 const string attemptedUrl = "path/to/action";
                 Expression<Func<SupplementalFormsController, ActionResult>> action =
                    controller => controller.Locate(establishmentId, attemptedUrl);
-                var url = SupplementalFormsRouteMapper.Locate.RoutesForGet[0].ToAppRelativeUrl()
+                var url = new SupplementalFormsRouter.LocateGetRoute().Url.ToAppRelativeUrl()
                     .Replace("{*returnUrl}", attemptedUrl)
                     .Replace("{establishmentId}", establishmentId.ToString());
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
@@ -119,7 +116,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             {
                 var establishmentId = Guid.NewGuid();
                 const string attemptedUrl = "path/to/action";
-                var url = SupplementalFormsRouteMapper.Locate.RoutesForGet[0].ToAppRelativeUrl()
+                var url = new SupplementalFormsRouter.LocateGetRoute().Url.ToAppRelativeUrl()
                     .Replace("{*returnUrl}", attemptedUrl)
                     .Replace("{establishmentId}", establishmentId.ToString());
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
@@ -127,14 +124,14 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
         }
 
         [TestClass]
-        public class Locate_Post
+        public class LocatePost
         {
             [TestMethod]
             public void OutBoundUrl_IsRouted()
             {
                 Expression<Func<SupplementalFormsController, ActionResult>> action =
                    controller => controller.Locate(null);
-                var url = SupplementalFormsRouteMapper.Locate.RouteForPost.ToAppRelativeUrl();
+                var url = new SupplementalFormsRouter.LocatePostRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -143,14 +140,14 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             {
                 Expression<Func<SupplementalFormsController, ActionResult>> action =
                    controller => controller.Locate(null);
-                var url = SupplementalFormsRouteMapper.Locate.RouteForPost.ToAppRelativeUrl();
+                var url = new SupplementalFormsRouter.LocatePostRoute().Url.ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
             }
 
             [TestMethod]
             public void InBoundUrl_WithNonPostMethod_IsNotRouted()
             {
-                var url = SupplementalFormsRouteMapper.Locate.RouteForPost.ToAppRelativeUrl();
+                var url = new SupplementalFormsRouter.LocatePostRoute().Url.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
             }
         }

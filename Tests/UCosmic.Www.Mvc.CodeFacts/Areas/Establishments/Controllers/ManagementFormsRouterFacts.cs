@@ -4,12 +4,11 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcContrib.TestHelper;
 using Should;
-using UCosmic.Www.Mvc.Areas.Establishments.Controllers;
 using UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms;
 
-namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
+namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
 {
-    public static class ManagementFormsRouteMapperFacts
+    public static class ManagementFormsRouterFacts
     {
         private static readonly string Area = MVC.Establishments.Name;
 
@@ -19,9 +18,10 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             [TestMethod]
             public void Maps4Urls_FirstIsRestful()
             {
-                ManagementFormsRouteMapper.Browse.Routes.ShouldNotBeNull();
-                ManagementFormsRouteMapper.Browse.Routes.Length.ShouldEqual(4);
-                ManagementFormsRouteMapper.Browse.Routes[0].ShouldEqual("establishments");
+                new ManagementFormsRouter.BrowseRoute();
+                new ManagementFormsRouter.BrowseManageRoute();
+                new ManagementFormsRouter.BrowseManageBrowseRoute();
+                new ManagementFormsRouter.BrowseManageBrowseDotHtmlRoute();
             }
 
             [TestMethod]
@@ -29,7 +29,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             {
                 Expression<Func<ManagementFormsController, ActionResult>> action =
                    controller => controller.Browse();
-                var url = ManagementFormsRouteMapper.Browse.Routes[0].ToAppRelativeUrl();
+                var url = new ManagementFormsRouter.BrowseRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -38,21 +38,21 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             {
                 Expression<Func<ManagementFormsController, ActionResult>> action =
                    controller => controller.Browse();
-                var url = ManagementFormsRouteMapper.Browse.Routes[0].ToAppRelativeUrl();
+                var url = new ManagementFormsRouter.BrowseRoute().Url.ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
 
             [TestMethod]
             public void InBoundUrl_Restful_WithDeleteMethod_IsNotRouted()
             {
-                var url = ManagementFormsRouteMapper.Browse.Routes[0].ToAppRelativeUrl();
+                var url = new ManagementFormsRouter.BrowseRoute().Url.ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Delete).ShouldMapToNothing();
             }
 
             [TestMethod]
             public void InBoundUrl_Restful_WithHeadMethod_IsNotRouted()
             {
-                var url = ManagementFormsRouteMapper.Browse.Routes[0].ToAppRelativeUrl();
+                var url = new ManagementFormsRouter.BrowseRoute().Url.ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Head).ShouldMapToNothing();
             }
         }
@@ -65,7 +65,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             {
                 Expression<Func<ManagementFormsController, ActionResult>> action =
                     controller => controller.Form(null);
-                var url = ManagementFormsRouteMapper.Form.RouteForAdd.ToAppRelativeUrl();
+                var url = new ManagementFormsRouter.FormAddRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -74,14 +74,14 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             {
                 Expression<Func<ManagementFormsController, ActionResult>> action =
                     controller => controller.Form(null);
-                var url = ManagementFormsRouteMapper.Form.RouteForAdd.ToAppRelativeUrl();
+                var url = new ManagementFormsRouter.FormAddRoute().Url.ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
 
             [TestMethod]
             public void InBoundUrl_ForAdd_WithNonGetMethod_IsNotRouted()
             {
-                var url = ManagementFormsRouteMapper.Form.RouteForAdd.ToAppRelativeUrl();
+                var url = new ManagementFormsRouter.FormAddRoute().Url.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
 
@@ -91,7 +91,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 var entityId = Guid.NewGuid();
                 Expression<Func<ManagementFormsController, ActionResult>> action =
                     controller => controller.Form(entityId);
-                var url = ManagementFormsRouteMapper.Form.RouteForEdit.ToAppRelativeUrl()
+                var url = new ManagementFormsRouter.FormEditRoute().Url.ToAppRelativeUrl()
                     .Replace("{entityId}", entityId.ToString());
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
@@ -102,7 +102,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 var entityId = Guid.NewGuid();
                 Expression<Func<ManagementFormsController, ActionResult>> action =
                     controller => controller.Form(entityId);
-                var url = ManagementFormsRouteMapper.Form.RouteForEdit.ToAppRelativeUrl()
+                var url = new ManagementFormsRouter.FormEditRoute().Url.ToAppRelativeUrl()
                     .Replace("{entityId}", entityId.ToString());
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
@@ -111,7 +111,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             public void InBoundUrl_FoEdit_WithNonGetMethod_IsNotRouted()
             {
                 var entityId = Guid.NewGuid();
-                var url = ManagementFormsRouteMapper.Form.RouteForEdit.ToAppRelativeUrl()
+                var url = new ManagementFormsRouter.FormEditRoute().Url.ToAppRelativeUrl()
                     .Replace("{entityId}", entityId.ToString());
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
@@ -126,7 +126,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 var model = new EstablishmentForm { EntityId = Guid.NewGuid() };
                 Expression<Func<ManagementFormsController, ActionResult>> action =
                     controller => controller.Put(model);
-                var url = ManagementFormsRouteMapper.Put.Route.ToAppRelativeUrl()
+                var url = new ManagementFormsRouter.PutRoute().Url.ToAppRelativeUrl()
                     .Replace("{entityId}", model.EntityId.ToString());
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldNotEqual(url);
             }
@@ -137,7 +137,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
                 var model = new EstablishmentForm { EntityId = Guid.NewGuid() };
                 Expression<Func<ManagementFormsController, ActionResult>> action =
                     controller => controller.Put(model);
-                var url = ManagementFormsRouteMapper.Put.Route.ToAppRelativeUrl()
+                var url = new ManagementFormsRouter.PutRoute().Url.ToAppRelativeUrl()
                     .Replace("{entityId}", model.EntityId.ToString());
                 url.WithMethod(HttpVerbs.Put).AndMethodArg("model", model).ShouldMapTo(action);
                 url.WithMethod(HttpVerbs.Post).AndMethodArg("model", model).ShouldMapTo(action);
@@ -147,7 +147,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             public void InBoundUrl_WithNonPutAndPostMethods_IsNotRouted()
             {
                 var model = new EstablishmentForm { EntityId = Guid.NewGuid() };
-                var url = ManagementFormsRouteMapper.Put.Route.ToAppRelativeUrl()
+                var url = new ManagementFormsRouter.PutRoute().Url.ToAppRelativeUrl()
                     .Replace("{entityId}", model.EntityId.ToString());
                 url.WithMethodsExcept(HttpVerbs.Put, HttpVerbs.Post).ShouldMapToNothing();
             }
@@ -161,7 +161,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             {
                 Expression<Func<ManagementFormsController, ActionResult>> action =
                     controller => controller.NewName();
-                var url = ManagementFormsRouteMapper.NewName.Route.ToAppRelativeUrl();
+                var url = new ManagementFormsRouter.NewNameRoute().Url.ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -170,14 +170,14 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Mappers
             {
                 Expression<Func<ManagementFormsController, ActionResult>> action =
                     controller => controller.NewName();
-                var url = ManagementFormsRouteMapper.NewName.Route.ToAppRelativeUrl();
+                var url = new ManagementFormsRouter.NewNameRoute().Url.ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
 
             [TestMethod]
             public void InBoundUrl_WithNonGetMethod_IsNotRouted()
             {
-                var url = ManagementFormsRouteMapper.NewName.Route.ToAppRelativeUrl();
+                var url = new ManagementFormsRouter.NewNameRoute().Url.ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
         }

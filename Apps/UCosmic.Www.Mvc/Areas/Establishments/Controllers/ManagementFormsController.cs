@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using System.Web.Routing;
 using AutoMapper;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Languages;
@@ -112,22 +113,21 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                 //        .OrderBy(p => p.EnglishName)
                 //    )
                 _typeOptions = _queryProcessor.Execute(new FindAllEstablishmentTypesQuery
-                                                           {
-                        OrderBy = new Dictionary<Expression<Func<EstablishmentType, object>>, OrderByDirection>
-                        {
-                            { t => t.Category.EnglishName, OrderByDirection.Ascending },
-                            { t => t.EnglishName, OrderByDirection.Ascending },
-                        },
-                    })
-                    .Select(e => new GroupedSelectListItem
-                        {
-                            GroupKey = e.Category.RevisionId.ToInvariantString(),
-                            GroupName = e.Category.EnglishName,
-                            Text = e.EnglishName,
-                            Value = e.RevisionId.ToInvariantString(),
-                        }
-                    )
-                    .ToArray()
+                {
+                    OrderBy = new Dictionary<Expression<Func<EstablishmentType, object>>, OrderByDirection>
+                    {
+                        { t => t.Category.EnglishName, OrderByDirection.Ascending },
+                        { t => t.EnglishName, OrderByDirection.Ascending },
+                    },
+                })
+                .Select(e => new GroupedSelectListItem
+                {
+                    GroupKey = e.Category.RevisionId.ToInvariantString(),
+                    GroupName = e.Category.EnglishName,
+                    Text = e.EnglishName,
+                    Value = e.RevisionId.ToInvariantString(),
+                })
+                .ToArray()
             );
         }
         private GroupedSelectListItem[] _typeOptions;
@@ -201,5 +201,137 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         }
 
         #endregion
+    }
+
+    public static class ManagementFormsRouter
+    {
+        private static readonly string Area = MVC.Establishments.Name;
+        private static readonly string Controller = MVC.Establishments.ManagementForms.Name;
+
+        private static IRouteHandler GetRouteHandler()
+        {
+            if (WebConfig.IsDeployedToCloud) return new StopRoutingHandler();
+            return new MvcRouteHandler();
+        }
+
+        private static RouteValueDictionary GetDataTokens()
+        {
+            return new RouteValueDictionary(new
+            {
+                Namespaces = string.Format("{0}.*", typeof(EstablishmentsAreaRegistration).Namespace),
+                area = Area,
+                UseNamespaceFallback = true,
+            });
+        }
+
+        public class BrowseRoute : Route
+        {
+            public BrowseRoute()
+                : base("establishments", GetRouteHandler())
+            {
+                DataTokens = GetDataTokens();
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Establishments.ManagementForms.ActionNames.Browse,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        public class BrowseManageRoute : BrowseRoute
+        {
+            public BrowseManageRoute()
+            {
+                Url = "establishments/manage";
+            }
+        }
+
+        public class BrowseManageBrowseRoute : BrowseRoute
+        {
+            public BrowseManageBrowseRoute()
+            {
+                Url = "establishments/manage/browse";
+            }
+        }
+
+        public class BrowseManageBrowseDotHtmlRoute : BrowseRoute
+        {
+            public BrowseManageBrowseDotHtmlRoute()
+            {
+                Url = "establishments/manage/browse.html";
+            }
+        }
+
+        public class FormEditRoute :Route
+        {
+            public FormEditRoute()
+                : base("establishments/{entityId}/edit", GetRouteHandler())
+            {
+                DataTokens = GetDataTokens();
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Establishments.ManagementForms.ActionNames.Form,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                    entityId = new NonEmptyGuidRouteConstraint(),
+                });
+            }
+        }
+
+        public class FormAddRoute : FormEditRoute
+        {
+            public FormAddRoute()
+            {
+                Url = "establishments/new";
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        public class PutRoute : Route
+        {
+            public PutRoute()
+                : base("establishments/{entityId}", GetRouteHandler())
+            {
+                DataTokens = GetDataTokens();
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Establishments.ManagementForms.ActionNames.Put,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("PUT", "POST"),
+                    entityId = new NonEmptyGuidRouteConstraint(),
+                });
+            }
+        }
+
+        public class NewNameRoute : Route
+        {
+            public NewNameRoute()
+                : base("establishments/new/name", GetRouteHandler())
+            {
+                DataTokens = GetDataTokens();
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Establishments.ManagementForms.ActionNames.NewName,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
     }
 }

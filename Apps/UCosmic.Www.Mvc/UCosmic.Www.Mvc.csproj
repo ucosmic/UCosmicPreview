@@ -292,7 +292,7 @@
     <Compile Include="Areas\Common\Controllers\FeaturesController.cs" />
     <Compile Include="Areas\Common\Controllers\HealthController.cs" />
     <Compile Include="Areas\Common\Controllers\NavigationController.cs" />
-    <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapper.cs" />
+    <Compile Include="Areas\Establishments\Mappers\_SupplementalFormsRouteMapper.cs" />
     <Compile Include="Areas\Identity\Controllers\ServiceProviderMetadataController.cs" />
     <Compile Include="Areas\Identity\Models\ServiceProviderEntityDescriptor.cs" />
     <Compile Include="Areas\Identity\Models\IdentityProviderListItem.cs" />
@@ -427,7 +427,7 @@
     <Compile Include="Controllers\OpenTopTabAttribute.cs" />
     <Compile Include="Areas\Common\Controllers\QaController.cs" />
     <Compile Include="Areas\Establishments\Mappers\ManagementFormsModelMapper.cs" />
-    <Compile Include="Areas\Establishments\Mappers\ManagementFormsRouteMapper.cs" />
+    <Compile Include="Areas\Establishments\Mappers\_ManagementFormsRouteMapper.cs" />
     <Compile Include="Controllers\RedirectToRawUrlAttribute.cs" />
     <Compile Include="Areas\Common\Controllers\SkinsController.cs" />
     <Compile Include="Areas\Common\Models\Features\FeaturePreview.cs" />

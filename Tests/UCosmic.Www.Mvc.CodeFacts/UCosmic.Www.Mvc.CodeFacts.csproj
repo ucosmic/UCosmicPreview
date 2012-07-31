@@ -123,8 +123,8 @@
     <Compile Include="Areas\Common\Controllers\ErrorsRouterFacts.cs" />
     <Compile Include="Areas\Common\Controllers\FeaturesRouterFacts.cs" />
     <Compile Include="Areas\Roles\RolesAreaRegistrationFacts.cs" />
-    <Compile Include="Areas\Establishments\Mappers\SupplementalFormsRouteMapperFacts.cs" />
-    <Compile Include="Areas\Establishments\Mappers\ManagementFormsRouteMapperFacts.cs" />
+    <Compile Include="Areas\Establishments\Controllers\SupplementalFormsRouterFacts.cs" />
+    <Compile Include="Areas\Establishments\Controllers\ManagementFormsRouterFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailControllerFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailRouterFacts.cs" />
     <Compile Include="Areas\Identity\Controllers\ValidateRedeemTicketAttributeFacts.cs" />

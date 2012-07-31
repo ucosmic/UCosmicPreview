@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using UCosmic.Www.Mvc.Areas.Establishments.Mappers;
 
 namespace UCosmic.Www.Mvc.Areas.Establishments
 {
@@ -12,10 +11,6 @@ namespace UCosmic.Www.Mvc.Areas.Establishments
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            ManagementFormsRouteMapper.RegisterRoutes(context);
-
-            SupplementalFormsRouteMapper.RegisterRoutes(context);
-
             //context.MapRoute(
             //    "Establishments_default",
             //    "Establishments/{controller}/{action}/{id}",
