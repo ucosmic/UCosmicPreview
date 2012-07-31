@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using AutoMapper;
+using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms
 {
@@ -24,6 +26,17 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms
         [Display(Name = "WebsiteUrl")]
         [DataType(DataType.Text)]
         public string WebsiteUrl { get; set; }
+    }
 
+    public static class EstablishmentSearchResultProfiler
+    {
+        public class EntityToModelProfile : Profile
+        {
+            protected override void Configure()
+            {
+                // convert entity to model
+                CreateMap<Establishment, EstablishmentSearchResult>();
+            }
+        }
     }
 }
