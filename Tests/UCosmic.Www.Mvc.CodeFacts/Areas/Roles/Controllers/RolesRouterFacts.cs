@@ -21,7 +21,7 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
                 var model = new RoleForm { EntityId = Guid.NewGuid() };
                 Expression<Func<RolesController, ActionResult>> action =
                     controller => controller.Put(model);
-                var url = RolesRouter.Put.Route.ToAppRelativeUrl()
+                var url = new RolesRouter.PutRoute().Url.ToAppRelativeUrl()
                     .Replace("{entityId}", model.EntityId.ToString());
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldNotEqual(url);
             }
@@ -32,7 +32,7 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
                 var model = new RoleForm { EntityId = Guid.NewGuid() };
                 Expression<Func<RolesController, ActionResult>> action =
                     controller => controller.Put(model);
-                var url = RolesRouter.Put.Route.ToAppRelativeUrl()
+                var url = new RolesRouter.PutRoute().Url.ToAppRelativeUrl()
                     .Replace("{entityId}", model.EntityId.ToString());
                 url.WithMethod(HttpVerbs.Put).AndMethodArg("model", model).ShouldMapTo(action);
                 url.WithMethod(HttpVerbs.Post).AndMethodArg("model", model).ShouldMapTo(action);
@@ -42,7 +42,7 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
             public void InBoundUrl_WithNonPutAndPostMethods_IsNotRouted()
             {
                 var model = new RoleForm { EntityId = Guid.NewGuid() };
-                var url = RolesRouter.Put.Route.ToAppRelativeUrl()
+                var url = new RolesRouter.PutRoute().Url.ToAppRelativeUrl()
                     .Replace("{entityId}", model.EntityId.ToString());
                 url.WithMethodsExcept(HttpVerbs.Put, HttpVerbs.Post).ShouldMapToNothing();
             }

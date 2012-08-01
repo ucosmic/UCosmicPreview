@@ -51,7 +51,7 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
 
         [HttpGet]
         [ActionName("form")]
-        [ReturnUrlReferrer(RolesRouter.Browse.Route)]
+        [ReturnUrlReferrer(RolesRouter.BrowseRoute.BrowseUrl)]
         public virtual ActionResult Form(string slug)
         {
             if (!string.IsNullOrWhiteSpace(slug))
@@ -151,84 +151,96 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
         private static readonly string Area = MVC.Roles.Name;
         private static readonly string Controller = MVC.Roles.Roles.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class BrowseRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(RolesRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class Browse
-        {
-            public const string Route = "roles";
-            private static readonly string Action = MVC.Roles.Roles.ActionNames.Browse;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public BrowseRoute()
+                : base(BrowseUrl, new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, Route, defaults, constraints);
-            }
-        }
-
-        public static class Form
-        {
-            public const string Route = "roles/{slug}/edit";
-            private static readonly string Action = MVC.Roles.Roles.ActionNames.Form;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-            {
-                var defaults = new
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
                 {
-                    area,
-                    controller,
-                    action = Action,
-                };
-                var constraints = new
+                    controller = Controller,
+                    action = MVC.Roles.Roles.ActionNames.Browse,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
+            }
+
+            public const string BrowseUrl = "roles";
+        }
+
+        public class FormRoute : Route
+        {
+            public FormRoute()
+                : base("roles/{slug}/edit", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Roles.Roles.ActionNames.Form,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
             }
         }
 
-        public static class Put
+        public class PutRoute : Route
         {
-            public const string Route = "roles/{slug}";
-            private static readonly string Action = MVC.Roles.Roles.ActionNames.Put;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public PutRoute()
+                : base("roles/{slug}", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action };
-                var constraints = new
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Roles.Roles.ActionNames.Put,
+                });
+                Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("POST", "PUT"),
-                };
-                context.MapRoute(null, Route, defaults, constraints);
+                });
             }
         }
 
-        public static class AutoCompleteUserName
+        public class AutoCompleteUserNameRoute : Route
         {
-            public const string Route = "roles/manage/autocomplete-username.json";
-            private static readonly string Action = MVC.Roles.Roles.ActionNames.AutoCompleteUserName;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public AutoCompleteUserNameRoute()
+                : base("roles/manage/autocomplete-username.json", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST") };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Roles.Roles.ActionNames.AutoCompleteUserName,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
             }
         }
 
-        public static class AddUserName
+        public class AddUserNameRoute : Route
         {
-            public const string Route = "roles/manage/add-role-member.partial.html";
-            private static readonly string Action = MVC.Roles.Roles.ActionNames.AddUserName;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public AddUserNameRoute()
+                : base("roles/manage/add-role-member.partial.html", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Roles.Roles.ActionNames.AddUserName,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
             }
         }
-
-        // ReSharper restore UnusedMember.Global
     }
 }
