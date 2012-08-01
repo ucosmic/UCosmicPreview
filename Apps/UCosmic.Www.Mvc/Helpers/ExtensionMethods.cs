@@ -362,14 +362,5 @@ namespace UCosmic.Www.Mvc
         //}
 
         #endregion
-        #region Routing multiple URL's
-
-        public static void MapRoutes(this AreaRegistrationContext context,
-            string name, IEnumerable<string> urls, object defaults, object constraints = null)
-        {
-            foreach (var url in urls) context.MapRoute(name, url, defaults, constraints);
-        }
-
-        #endregion
     }
 }
