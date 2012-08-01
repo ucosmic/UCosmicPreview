@@ -19,7 +19,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonInfoController, ActionResult>> action =
                     controller => controller.ByEmail(null);
-                var url = PersonInfoRouter.ByEmail.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.ByEmailRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
             }
@@ -27,7 +27,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             [TestMethod]
             public void Inbound_WithNonPost_MapsToNothing()
             {
-                var url = PersonInfoRouter.ByEmail.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.ByEmailRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
             }
@@ -37,7 +37,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonInfoController, ActionResult>> action =
                     controller => controller.ByEmail(null);
-                var url = PersonInfoRouter.ByEmail.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.ByEmailRoute().Url.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);
@@ -52,7 +52,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonInfoController, ActionResult>> action =
                     controller => controller.ByGuid();
-                var url = PersonInfoRouter.ByGuid.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.ByGuidRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
             }
@@ -60,7 +60,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             [TestMethod]
             public void Inbound_WithNonPost_MapsToNothing()
             {
-                var url = PersonInfoRouter.ByGuid.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.ByGuidRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
             }
@@ -70,7 +70,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonInfoController, ActionResult>> action =
                     controller => controller.ByGuid();
-                var url = PersonInfoRouter.ByGuid.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.ByGuidRoute().Url.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);
@@ -85,7 +85,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonInfoController, ActionResult>> action =
                     controller => controller.WithEmail();
-                var url = PersonInfoRouter.WithEmail.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.WithEmailRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
             }
@@ -93,7 +93,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             [TestMethod]
             public void Inbound_WithNonPost_MapsToNothing()
             {
-                var url = PersonInfoRouter.WithEmail.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.WithEmailRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
             }
@@ -103,7 +103,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonInfoController, ActionResult>> action =
                     controller => controller.WithEmail();
-                var url = PersonInfoRouter.WithEmail.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.WithEmailRoute().Url.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);
@@ -118,7 +118,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonInfoController, ActionResult>> action =
                     controller => controller.WithFirstName();
-                var url = PersonInfoRouter.WithFirstName.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.WithFirstNameRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
             }
@@ -126,7 +126,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             [TestMethod]
             public void Inbound_WithNonPost_MapsToNothing()
             {
-                var url = PersonInfoRouter.WithFirstName.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.WithFirstNameRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
             }
@@ -136,7 +136,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonInfoController, ActionResult>> action =
                     controller => controller.WithFirstName();
-                var url = PersonInfoRouter.WithFirstName.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.WithFirstNameRoute().Url.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);
@@ -151,7 +151,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonInfoController, ActionResult>> action =
                     controller => controller.WithLastName();
-                var url = PersonInfoRouter.WithLastName.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.WithLastNameRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
             }
@@ -159,7 +159,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             [TestMethod]
             public void Inbound_WithNonPost_MapsToNothing()
             {
-                var url = PersonInfoRouter.WithLastName.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.WithLastNameRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
             }
@@ -169,7 +169,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonInfoController, ActionResult>> action =
                     controller => controller.WithLastName();
-                var url = PersonInfoRouter.WithLastName.Route.ToAppRelativeUrl();
+                var url = new PersonInfoRouter.WithLastNameRoute().Url.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);

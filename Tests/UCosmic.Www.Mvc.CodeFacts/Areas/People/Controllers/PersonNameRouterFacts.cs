@@ -19,7 +19,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonNameController, ActionResult>> action =
                     controller => controller.GenerateDisplayName(null);
-                var url = PersonNameRouter.GenerateDisplayName.Route.ToAppRelativeUrl();
+                var url = new PersonNameRouter.GenerateDisplayNameRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Post).ShouldMapTo(action);
             }
@@ -27,7 +27,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             [TestMethod]
             public void Inbound_WithNonPost_MapsToNothing()
             {
-                var url = PersonNameRouter.GenerateDisplayName.Route.ToAppRelativeUrl();
+                var url = new PersonNameRouter.GenerateDisplayNameRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethodsExcept(HttpVerbs.Post).ShouldMapToNothing();
             }
@@ -37,7 +37,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonNameController, ActionResult>> action =
                     controller => controller.GenerateDisplayName(null);
-                var url = PersonNameRouter.GenerateDisplayName.Route.ToAppRelativeUrl();
+                var url = new PersonNameRouter.GenerateDisplayNameRoute().Url.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Post)
                     .AppRelativeUrl().ShouldEqual(url);
@@ -52,7 +52,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonNameController, ActionResult>> action =
                     controller => controller.AutoCompleteSalutations(null);
-                var url = PersonNameRouter.AutoCompleteSalutations.Route.ToAppRelativeUrl();
+                var url = new PersonNameRouter.AutoCompleteSalutationsRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
@@ -60,7 +60,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             [TestMethod]
             public void Inbound_WithNonGet_MapsToNothing()
             {
-                var url = PersonNameRouter.AutoCompleteSalutations.Route.ToAppRelativeUrl();
+                var url = new PersonNameRouter.AutoCompleteSalutationsRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
@@ -70,7 +70,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonNameController, ActionResult>> action =
                     controller => controller.AutoCompleteSalutations(null);
-                var url = PersonNameRouter.AutoCompleteSalutations.Route.ToAppRelativeUrl();
+                var url = new PersonNameRouter.AutoCompleteSalutationsRoute().Url.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Get)
                     .AppRelativeUrl().ShouldEqual(url);
@@ -85,7 +85,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonNameController, ActionResult>> action =
                     controller => controller.AutoCompleteSuffixes(null);
-                var url = PersonNameRouter.AutoCompleteSuffixes.Route.ToAppRelativeUrl();
+                var url = new PersonNameRouter.AutoCompleteSuffixesRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
@@ -93,7 +93,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             [TestMethod]
             public void Inbound_WithNonGet_MapsToNothing()
             {
-                var url = PersonNameRouter.AutoCompleteSuffixes.Route.ToAppRelativeUrl();
+                var url = new PersonNameRouter.AutoCompleteSuffixesRoute().Url.ToAppRelativeUrl();
 
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
@@ -103,7 +103,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             {
                 Expression<Func<PersonNameController, ActionResult>> action =
                     controller => controller.AutoCompleteSuffixes(null);
-                var url = PersonNameRouter.AutoCompleteSuffixes.Route.ToAppRelativeUrl();
+                var url = new PersonNameRouter.AutoCompleteSuffixesRoute().Url.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Get)
                     .AppRelativeUrl().ShouldEqual(url);

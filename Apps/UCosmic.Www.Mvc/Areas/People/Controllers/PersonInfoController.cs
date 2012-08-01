@@ -154,73 +154,94 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         private static readonly string Area = MVC.People.Name;
         private static readonly string Controller = MVC.People.PersonInfo.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class ByEmailRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(PersonInfoRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class ByEmail
-        {
-            public const string Route = "people/by-email";
-            private static readonly string Action = MVC.People.PersonInfo.ActionNames.ByEmail;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public ByEmailRoute()
+                : base("people/by-email", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST"), };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.People.PersonInfo.ActionNames.ByEmail,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
             }
         }
 
-        public static class ByGuid
+        public class ByGuidRoute : Route
         {
-            public const string Route = "people/by-guid";
-            private static readonly string Action = MVC.People.PersonInfo.ActionNames.ByGuid;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public ByGuidRoute()
+                : base("people/by-guid", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST"), };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.People.PersonInfo.ActionNames.ByGuid,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
             }
         }
 
-        public static class WithEmail
+        public class WithEmailRoute : Route
         {
-            public const string Route = "people/with-email";
-            private static readonly string Action = MVC.People.PersonInfo.ActionNames.WithEmail;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public WithEmailRoute()
+                : base("people/with-email", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST"), };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.People.PersonInfo.ActionNames.WithEmail,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
             }
         }
 
-        public static class WithFirstName
+        public class WithFirstNameRoute : Route
         {
-            public const string Route = "people/with-first-name";
-            private static readonly string Action = MVC.People.PersonInfo.ActionNames.WithFirstName;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public WithFirstNameRoute()
+                : base("people/with-first-name", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST"), };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.People.PersonInfo.ActionNames.WithFirstName,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
             }
         }
 
-        public static class WithLastName
+        public class WithLastNameRoute : Route
         {
-            public const string Route = "people/with-last-name";
-            private static readonly string Action = MVC.People.PersonInfo.ActionNames.WithLastName;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public WithLastNameRoute()
+                : base("people/with-last-name", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST"), };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.People.PersonInfo.ActionNames.WithLastName,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
             }
         }
-
-        // ReSharper restore UnusedMember.Global
     }
 }

@@ -125,49 +125,58 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         private static readonly string Area = MVC.People.Name;
         private static readonly string Controller = MVC.People.PersonName.Name;
 
-        public static void RegisterRoutes(AreaRegistrationContext context)
+        public class GenerateDisplayNameRoute : Route
         {
-            RootActionRouter.RegisterRoutes(typeof(PersonNameRouter), context, Area, Controller);
-        }
-
-        // ReSharper disable UnusedMember.Global
-
-        public static class GenerateDisplayName
-        {
-            public const string Route = "people/generate-display-name";
-            private static readonly string Action = MVC.People.PersonName.ActionNames.GenerateDisplayName;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public GenerateDisplayNameRoute()
+                : base("people/generate-display-name", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("POST"), };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.People.PersonName.ActionNames.GenerateDisplayName,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
             }
         }
 
-        public static class AutoCompleteSalutations
+        public class AutoCompleteSalutationsRoute : Route
         {
-            public const string Route = "people/salutations";
-            private static readonly string Action = MVC.People.PersonName.ActionNames.AutoCompleteSalutations;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public AutoCompleteSalutationsRoute()
+                : base("people/salutations", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET"), };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.People.PersonName.ActionNames.AutoCompleteSalutations,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
             }
         }
 
-        public static class AutoCompleteSuffixes
+        public class AutoCompleteSuffixesRoute : Route
         {
-            public const string Route = "people/suffixes";
-            private static readonly string Action = MVC.People.PersonName.ActionNames.AutoCompleteSuffixes;
-            public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+            public AutoCompleteSuffixesRoute()
+                : base("people/suffixes", new MvcRouteHandler())
             {
-                var defaults = new { area, controller, action = Action, };
-                var constraints = new { httpMethod = new HttpMethodConstraint("GET"), };
-                context.MapRoute(null, Route, defaults, constraints);
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.People.PersonName.ActionNames.AutoCompleteSuffixes,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
             }
         }
-
-        // ReSharper restore UnusedMember.Global
     }
 }
