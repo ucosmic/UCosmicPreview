@@ -2,6 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
+using AutoMapper;
+using UCosmic.Domain.Establishments;
+using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Domain.Places;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
@@ -95,6 +98,22 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
             public DateTime StartsOn { get; set; }
 
             public EstablishmentInfo[] Partners { get; set; }
+        }
+    }
+
+    public static class SearchResultsProfiler
+    {
+        public class EntitiesToModelsProfile : Profile
+        {
+            protected override void Configure()
+            {
+                CreateMap<Establishment, SearchResults.EstablishmentInfo>();
+                CreateMap<EstablishmentLocation, SearchResults.EstablishmentInfo.LocationInfo>();
+                CreateMap<InstitutionalAgreement, SearchResults.AgreementInfo>()
+                    .ForMember(target => target.Partners, opt => opt
+                        .ResolveUsing(source => source.Participants.Where(p => !p.IsOwner).Select(p => p.Establishment)))
+                ;
+            }
         }
     }
 }

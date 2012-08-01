@@ -299,8 +299,8 @@
     <Compile Include="Areas\Roles\Models\NoDuplicateGrantsAttribute.cs" />
     <Compile Include="Areas\Identity\Models\SignOnForm.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\_ConfigurationFormsRouteMapper.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsModelMapper.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\Mappers\PublicSearchModelMapper.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Mappers\_ConfigurationFormsModelMapper.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Mappers\_PublicSearchModelMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\_PublicSearchRouteMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\_Deprecated\_ManagementFormsModelMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\_ManagementFormsRouteMapper.cs" />
