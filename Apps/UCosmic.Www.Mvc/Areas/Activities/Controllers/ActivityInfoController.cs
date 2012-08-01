@@ -55,11 +55,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         private static readonly string Area = MVC.Activities.Name;
         private static readonly string Controller = MVC.Activities.ActivityInfo.Name;
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
             public GetRoute()
-                : base("{establishment}/activities/{entityId}", new MvcRouteHandler())
             {
+                Url = "{establishment}/activities/{entityId}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

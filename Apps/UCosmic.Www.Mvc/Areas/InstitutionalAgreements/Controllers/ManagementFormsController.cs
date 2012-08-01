@@ -83,7 +83,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 
         [HttpGet]
         [ActionName("post")]
-        [ReturnUrlReferrer(ManagementFormsRouter.BrowseRoute.BrowseUrl)]
+        [ReturnUrlReferrer(ManagementFormsRouter.BrowseRoute.UrlConstant)]
         public virtual ActionResult Post(Guid? entityId)
         {
             // do not process empty Guid
@@ -93,7 +93,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             if (!entityId.HasValue)
             {
                 // find person's default affiliation
-                //var person = _people.FindOne(PersonBy.Principal(User));
                 var person = _queryProcessor.Execute(new GetMyPersonQuery(User));
                 if (person == null || person.DefaultAffiliation == null) return HttpNotFound();
 
@@ -111,9 +110,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             else
             {
                 // find agreement
-                //var agreement = _agreements
-                //    .FindOne(By<InstitutionalAgreement>.EntityId(entityId.Value))
-                //    .OwnedBy(User);
                 var agreement = _queryProcessor.Execute(
                     new GetMyInstitutionalAgreementByGuidQuery(User, entityId.Value)
                 );
@@ -139,9 +135,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 if (model.RevisionId != 0)
                 {
                     // find agreement
-                    //var agreement = _agreements
-                    //    .FindOne(By<InstitutionalAgreement>.EntityId(model.EntityId)
-                    //).OwnedBy(User);
                     var agreement = _queryProcessor.Execute(
                         new GetMyInstitutionalAgreementByGuidQuery(User, model.EntityId));
                     if (agreement == null) return HttpNotFound();
@@ -149,7 +142,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 else
                 {
                     // find person's default affiliation
-                    //var person = _people.FindOne(PersonBy.Principal(User));
                     var person = _queryProcessor.Execute(new GetMyPersonQuery(User));
                     if (person == null || person.DefaultAffiliation == null) return HttpNotFound();
                 }
@@ -183,20 +175,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             {
                 if (formFile.IsDeleted && formFile.EntityId != Guid.Empty && formFile.RevisionId == 0)
                 {
-                    //_fileFactory.Purge(formFile.EntityId, true);
                     _purgeFileHandler.Handle(new PurgeLooseFileCommand(formFile.EntityId));
                     formFile.EntityId = Guid.Empty;
                 }
                 else if (!formFile.IsDeleted && formFile.PostedFile != null && formFile.IsValidPostedFile)
                 {
-                    //var looseFile = Mapper.Map<LooseFile>(formFile.PostedFile);
-                    //looseFile = _fileFactory.Create(looseFile.Content, looseFile.MimeType, looseFile.Name);
-                    //command = new CreateLooseFileCommand
-                    //{
-                    //    Content = looseFile.Content,
-                    //    MimeType = looseFile.MimeType,
-                    //    Name = looseFile.Name,
-                    //};
                     var command = Mapper.Map<CreateLooseFileCommand>(formFile.PostedFile);
                     _createFileHandler.Handle(command);
                     var looseFile = command.CreatedLooseFile;
@@ -217,12 +200,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         [ActionName("add-participant")]
         public virtual ActionResult AddParticipant(int agreementId, Guid establishmentId)
         {
-            //var establishment = _establishments
-            //    .FindOne(By<Establishment>.EntityId(establishmentId)
-            //        .EagerLoad(e => e.Affiliates.Select(a => a.Person.User))
-            //        .EagerLoad(e => e.Ancestors.Select(h => h.Ancestor.Affiliates.Select(a => a.Person.User)))
-            //        .EagerLoad(e => e.Names.Select(n => n.TranslationToLanguage))
-            //    );
             var establishment = _queryProcessor.Execute(new EstablishmentByGuid(establishmentId)
             {
                 EagerLoad = new Expression<Func<Establishment, object>>[]
@@ -282,10 +259,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 if (ModelState.IsValid)
                 {
                     model.Person.DisplayName = model.Person.EntityId.HasValue
-                        //? _people.FindOne(By<Person>.EntityId(model.Person.EntityId.Value)).DisplayName
                         ? _queryProcessor.Execute(new GetPersonByGuidQuery(model.Person.EntityId.Value)).DisplayName
-                        //: PersonFactory.DeriveDisplayName(model.Person.LastName, model.Person.FirstName,
-                        //    model.Person.MiddleName, model.Person.Salutation, model.Person.Suffix);
                         : _queryProcessor.Execute(
                             new GenerateDisplayNameQuery
                             {
@@ -308,7 +282,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         [NonAction]
         private IEnumerable<SelectListItem> GetUmbrellaOptions(int agreementId)
         {
-            //var entities = _agreements.GetUmbrellaOptions(agreementId, User).OrderBy(e => e.Title);
             var entities = _queryProcessor.Execute(
                 new FindInstitutionalAgreementUmbrellaCandidatesQuery(User)
                 {
@@ -334,36 +307,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             model.Title = _queryProcessor.Execute(query);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
-
-        //[HttpGet]
-        //[ActionName("derive-title")]
-        //public virtual ActionResult DeriveTitle0(InstitutionalAgreementDeriveTitleInput model)
-        //{
-        //    var agreement = Mapper.Map<InstitutionalAgreement>(model);
-        //    if (model.ParticipantEstablishmentIds != null)
-        //    {
-        //        var person = _queryProcessor.Execute(new GetMyPersonQuery(User));
-        //        var establishments = _queryProcessor.Execute(
-        //            new FindEstablishmentsWithGuidsQuery(model.ParticipantEstablishmentIds)
-        //            {
-        //                EagerLoad = new Expression<Func<Establishment, object>>[]
-        //                {
-        //                    e => e.Affiliates.Select(a => a.Person),
-        //                    e => e.Ancestors,
-        //                },
-        //            });
-        //        foreach (var establishment in establishments)
-        //        {
-        //            agreement.Participants.Add(new InstitutionalAgreementParticipant
-        //            {
-        //                Establishment = establishment,
-        //                IsOwner = person.IsAffiliatedWith(establishment), // used to order the participant names
-        //            });
-        //        }
-        //    }
-        //    model.Title = agreement.DeriveTitle();
-        //    return Json(model, JsonRequestBehavior.AllowGet);
-        //}
 
         [ValidateInput(false)]
         [ActionName("autocomplete-establishment-names")]
@@ -400,27 +343,14 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         private static readonly string Area = MVC.InstitutionalAgreements.Name;
         private static readonly string Controller = MVC.InstitutionalAgreements.ManagementForms.Name;
 
-        private static RouteValueDictionary GetDataTokens()
+        public class BrowseRoute : MvcRoute
         {
-            return new RouteValueDictionary(new
-            {
-                Namespaces = new[] { string.Format("{0}.*", typeof(InstitutionalAgreementsAreaRegistration).Namespace) },
-                area = Area,
-                UseNamespaceFallback = true,
-            });
-        }
+            public const string UrlConstant = "my/institutional-agreements/v1";
 
-        //public static void RegisterRoutes(AreaRegistrationContext context)
-        //{
-        //    RootActionRouter.RegisterRoutes(typeof(ManagementFormsRouteMapper), context, Area, Controller);
-        //}
-
-        public class BrowseRoute : Route
-        {
             public BrowseRoute()
-                : base(BrowseUrl, new MvcRouteHandler())
             {
-                DataTokens = GetDataTokens();
+                Url = UrlConstant;
+                DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
@@ -431,28 +361,14 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                     httpMethod = new HttpMethodConstraint("GET"),
                 });
             }
-
-            public const string BrowseUrl = "my/institutional-agreements/v1";
         }
 
-        //public static class Browse
-        //{
-        //    public const string Route = "my/institutional-agreements/v1";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ManagementForms.ActionNames.Browse;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-        //        context.MapRoute(null, Route, defaults, constraints);
-        //    }
-        //}
-
-        public class GetEditRoute : Route
+        public class GetEditRoute : MvcRoute
         {
             public GetEditRoute()
-                : base("my/institutional-agreements/v1/{entityId}/edit", new MvcRouteHandler())
             {
-                DataTokens = GetDataTokens();
+                Url = "my/institutional-agreements/v1/{entityId}/edit";
+                DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
@@ -466,12 +382,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        public class GetNewRoute : Route
+        public class GetNewRoute : MvcRoute
         {
             public GetNewRoute()
-                : base("my/institutional-agreements/v1/new", new MvcRouteHandler())
             {
-                DataTokens = GetDataTokens();
+                Url = "my/institutional-agreements/v1/new";
+                DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
@@ -484,12 +400,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        public class PostRoute : Route
+        public class PostRoute : MvcRoute
         {
             public PostRoute()
-                : base("my/institutional-agreements", new MvcRouteHandler())
             {
-                DataTokens = GetDataTokens();
+                Url = "my/institutional-agreements";
+                DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
@@ -502,42 +418,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class Post
-        //{
-        //    public const string RouteForPost = "my/institutional-agreements";
-        //    //public static readonly string[] RoutesForGet =
-        //    //{
-        //    //    "my/institutional-agreements/v1/{entityId}/edit",
-        //    //    "my/institutional-agreements/v1/new",
-        //    //};
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ManagementForms.ActionNames.Post;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        //var constraintsForEdit = new
-        //        //{
-        //        //    entityId = new NonEmptyGuidRouteConstraint(),
-        //        //    httpMethod = new HttpMethodConstraint("GET"),
-        //        //};
-        //        //context.MapRoute(null, RoutesForGet[0], defaults, constraintsForEdit);
-
-        //        //var constraintsForNew = new
-        //        //{
-        //        //    httpMethod = new HttpMethodConstraint("GET")
-        //        //};
-        //        //context.MapRoute(null, RoutesForGet[1], defaults, constraintsForNew);
-
-        //        var constraintsForPost = new { httpMethod = new HttpMethodConstraint("POST") };
-        //        context.MapRoute(null, RouteForPost, defaults, constraintsForPost);
-        //    }
-        //}
-
-        public class AddParticipantRoute : Route
+        public class AddParticipantRoute : MvcRoute
         {
             public AddParticipantRoute()
-                : base("my/institutional-agreements/manage/add-participant.partial.html", new MvcRouteHandler())
             {
-                DataTokens = GetDataTokens();
+                Url = "my/institutional-agreements/manage/add-participant.partial.html";
+                DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
@@ -550,27 +436,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class AddParticipant
-        //{
-        //    public const string Route = "my/institutional-agreements/manage/add-participant.partial.html";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ManagementForms.ActionNames.AddParticipant;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        var constraints = new
-        //        {
-        //            httpMethod = new HttpMethodConstraint("GET"),
-        //        };
-        //        context.MapRoute(null, Route, defaults, constraints);
-        //    }
-        //}
-
-        public class AttachFileRoute : Route
+        public class AttachFileRoute : MvcRoute
         {
             public AttachFileRoute()
-                : base("my/institutional-agreements/manage/attach-file.partial.html", new MvcRouteHandler())
             {
-                DataTokens = GetDataTokens();
+                Url = "my/institutional-agreements/manage/attach-file.partial.html";
+                DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
@@ -583,27 +454,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class AttachFile
-        //{
-        //    public const string Route = "my/institutional-agreements/manage/attach-file.partial.html";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ManagementForms.ActionNames.AttachFile;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        var constraints = new
-        //        {
-        //            httpMethod = new HttpMethodConstraint("GET"),
-        //        };
-        //        context.MapRoute(null, Route, defaults, constraints);
-        //    }
-        //}
-
-        public class AddContactRoute : Route
+        public class AddContactRoute : MvcRoute
         {
             public AddContactRoute()
-                : base("my/institutional-agreements/manage/add-contact-form.partial.html", new MvcRouteHandler())
             {
-                DataTokens = GetDataTokens();
+                Url = "my/institutional-agreements/manage/add-contact-form.partial.html";
+                DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
@@ -616,28 +472,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class AddContact
-        //{
-        //    public const string Route = "my/institutional-agreements/manage/add-contact-form.partial.html";
-        //    //public const string RouteForPost = "my/institutional-agreements/manage/add-contact-item.partial.html";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ManagementForms.ActionNames.AddContact;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        var constraints = new
-        //        {
-        //            httpMethod = new HttpMethodConstraint("GET", "POST"),
-        //        };
-        //        context.MapRoute(null, Route, defaults, constraints);
-        //    }
-        //}
-
-        public class DeriveTitleRoute : Route
+        public class DeriveTitleRoute : MvcRoute
         {
             public DeriveTitleRoute()
-                : base("my/institutional-agreements/derive-title.json", new MvcRouteHandler())
             {
-                DataTokens = GetDataTokens();
+                Url = "my/institutional-agreements/derive-title.json";
+                DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
@@ -650,27 +490,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class DeriveTitle
-        //{
-        //    public const string Route = "my/institutional-agreements/derive-title.json";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ManagementForms.ActionNames.DeriveTitle;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        var constraints = new
-        //        {
-        //            httpMethod = new HttpMethodConstraint("GET"),
-        //        };
-        //        context.MapRoute(null, Route, defaults, constraints);
-        //    }
-        //}
-
-        public class AutoCompleteEstablishmentNamesRoute : Route
+        public class AutoCompleteEstablishmentNamesRoute : MvcRoute
         {
             public AutoCompleteEstablishmentNamesRoute()
-                : base("institutional-agreements/autocomplete/official-name.json", new MvcRouteHandler())
             {
-                DataTokens = GetDataTokens();
+                Url = "institutional-agreements/autocomplete/official-name.json";
+                DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
@@ -682,20 +507,5 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 });
             }
         }
-
-        //public static class AutoCompleteEstablishmentNames
-        //{
-        //    public const string Route = "institutional-agreements/autocomplete/official-name.json";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ManagementForms.ActionNames.AutoCompleteEstablishmentNames;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        var constraints = new
-        //        {
-        //            httpMethod = new HttpMethodConstraint("GET"),
-        //        };
-        //        context.MapRoute(null, Route, defaults, constraints);
-        //    }
-        //}
     }
 }

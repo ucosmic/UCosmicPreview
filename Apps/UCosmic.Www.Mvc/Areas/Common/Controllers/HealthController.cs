@@ -603,11 +603,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         private static readonly string Area = MVC.Common.Name;
         private static readonly string Controller = MVC.Common.Health.Name;
 
-        public class RunEstablishmentHierarchyRoute : Route
+        public class RunEstablishmentHierarchyRoute : MvcRoute
         {
             public RunEstablishmentHierarchyRoute()
-                : base("health/run-establishment-hierarchy", new MvcRouteHandler())
             {
+                Url = "health/run-establishment-hierarchy";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -621,29 +621,29 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             }
         }
 
-        public class RunInstitutionalAgreementHierarchyRoute : Route
+        public class RunInstitutionalAgreementHierarchyRoute : MvcRoute
         {
             public RunInstitutionalAgreementHierarchyRoute()
-                : base("health/run-institutional-agreement-hierarchy", new MvcRouteHandler())
-             {
-                 DataTokens = new RouteValueDictionary(new { area = Area });
-                 Defaults = new RouteValueDictionary(new
-                 {
-                     controller = Controller,
-                     action = MVC.Common.Health.ActionNames.RunInstitutionalAgreementHierarchy,
-                 });
-                 Constraints = new RouteValueDictionary(new
-                 {
-                     httpMethod = new HttpMethodConstraint("GET"),
-                 });
+            {
+                Url = "health/run-institutional-agreement-hierarchy";
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Common.Health.ActionNames.RunInstitutionalAgreementHierarchy,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
              }
         }
 
-        public class RunEstablishmentImportRoute : Route
+        public class RunEstablishmentImportRoute : MvcRoute
         {
             public RunEstablishmentImportRoute()
-                : base("health/run-establishment-import", new MvcRouteHandler())
             {
+                Url = "health/run-establishment-import";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

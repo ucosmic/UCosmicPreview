@@ -35,7 +35,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("update-affiliation")]
-        [ReturnUrlReferrer(MyHomeRouter.GetRoute.MyHomeUrl)]
+        [ReturnUrlReferrer(MyHomeRouter.GetRoute.UrlConstant)]
         public virtual ActionResult Get(int establishmentId)
         {
             // get the affiliation
@@ -83,11 +83,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.UpdateAffiliation.Name;
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
             public GetRoute()
-                : base("my/affiliations/{establishmentId}/edit", new MvcRouteHandler())
             {
+                Url = "my/affiliations/{establishmentId}/edit";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -102,11 +102,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class PutRoute : Route
+        public class PutRoute : MvcRoute
         {
             public PutRoute()
-                : base("my/affiliations/{establishmentId}", new MvcRouteHandler())
             {
+                Url = "my/affiliations/{establishmentId}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

@@ -41,7 +41,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             var model = new InstitutionalAgreementConfigurationForm();
 
             // find the configuration for the currently signed in user's default affiliation
-            //var configuration = _entities.ForCurrentUserDefaultAffiliation();
             var configuration = _queryProcessor.Execute(new GetMyInstitutionalAgreementConfigurationQuery(User));
 
             // if configuration exists, cannot add
@@ -85,7 +84,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 if (ModelState.IsValid)
                 {
                     // make sure configuration does not already exist
-                    //var configuration = _entities.ForCurrentUserDefaultAffiliation();
                     var configuration = _queryProcessor.Execute(new GetMyInstitutionalAgreementConfigurationQuery(User));
                     if (configuration != null)
                     {
@@ -94,13 +92,10 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                     }
 
                     // configuration must have a ForEstablishmentId, and all items should be added
-                    //var person = context.People.ForThreadPrincipal();
                     var person = _queryProcessor.Execute(new GetMyPersonQuery(User));
                     var establishment = person.DefaultAffiliation.Establishment;
                     model.ForEstablishmentId = establishment.RevisionId;
 
-                    //var entity = Mapper.Map<InstitutionalAgreementConfiguration>(model);
-                    //_entities.Create(entity);
                     var command = new CreateOrUpdateConfigurationCommand(User)
                     {
                         IsCustomTypeAllowed = model.IsCustomTypeAllowed,
@@ -111,7 +106,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                         AllowedContactTypeValues = model.AllowedContactTypeValues.Select(x => x.Text),
                     };
                     _commandHandler.Handle(command);
-                    //_unitOfWork.SaveChanges();
 
                     SetFeedbackMessage("Module configuration was set up successfully.");
                     return RedirectToAction(MVC.InstitutionalAgreements.ManagementForms.Browse());
@@ -134,9 +128,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             // even if there is no configuration, return default affiliation establishment info to view
             var model = new InstitutionalAgreementConfigurationForm();
 
-            // connect to database
             // find a configuration for the currently signed in user's default affiliation establishment
-            //var configuration = _entities.ForCurrentUserDefaultAffiliation();
             var configuration = _queryProcessor.Execute(new GetMyInstitutionalAgreementConfigurationQuery(User));
 
             // when configuration exists, return corresponding viewmodel
@@ -167,10 +159,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             if (model != null)
             {
                 // look for current entity
-                //var existingEntity = _entities.Get<InstitutionalAgreementConfiguration>()
-                //    .Include(c => c.ForEstablishment.Affiliates.Select(a => a.Person.User))
-                //    .Include(c => c.AllowedTypeValues).Include(c => c.AllowedStatusValues).Include(c => c.AllowedContactTypeValues)
-                //    .SingleOrDefault(c => c.EntityId == model.EntityId);
                 var existingEntity = _queryProcessor.Execute(
                     new GetInstitutionalAgreementConfigurationByGuidQuery(model.EntityId)
                         {
@@ -187,8 +175,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                     return HttpNotFound();
 
                 var compareConfiguration =
-                    //_entities.ForCurrentUserDefaultAffiliation();
-                    //context.ForCurrentUserDefaultAffiliation();
                     _queryProcessor.Execute(new GetMyInstitutionalAgreementConfigurationQuery(User));
 
                 if (existingEntity.RevisionId != compareConfiguration.RevisionId || existingEntity.EntityId != compareConfiguration.EntityId)
@@ -217,166 +203,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             return HttpNotFound();
         }
 
-        //[HttpPost]
-        //[ActionName("edit2")]
-        //[Authorize(Roles = RoleName.InstitutionalAgreementSupervisor)]
-        //public virtual ActionResult Edit2(InstitutionalAgreementConfigurationForm model)
-        //{
-        //    if (model != null)
-        //    {
-        //        var dep = true;
-        //        using (var context = new UCosmicContext(null))
-        //        {
-        //            // look for current entity
-        //            var existingEntity = context.InstitutionalAgreementConfigurations.Current()
-        //                //var existingEntity = _entities.Get<InstitutionalAgreementConfiguration>()
-        //                .Include(c => c.ForEstablishment.Affiliates.Select(a => a.Person.User))
-        //                .Include(c => c.AllowedTypeValues).Include(c => c.AllowedStatusValues).Include(c => c.AllowedContactTypeValues)
-        //                .SingleOrDefault(c => c.EntityId == model.EntityId);
-
-        //            if (existingEntity == null)
-        //                return HttpNotFound();
-
-        //            var compareConfiguration =
-        //                //_entities.ForCurrentUserDefaultAffiliation();
-        //                //context.ForCurrentUserDefaultAffiliation();
-        //                _queryProcessor.Execute(new GetMyInstitutionalAgreementConfigurationQuery(User));
-
-        //            if (existingEntity.RevisionId != compareConfiguration.RevisionId || existingEntity.EntityId != compareConfiguration.EntityId)
-        //                ModelState.AddModelError(string.Empty, string.Format(
-        //                    "You are not authorized to configure the Institutional Agreements module for {0}.", existingEntity.ForEstablishment.OfficialName));
-
-        //            if (ModelState.IsValid)
-        //            {
-        //                model.ForEstablishmentId = existingEntity.ForEstablishmentId;
-        //                var revisedEntity = Mapper.Map<InstitutionalAgreementConfiguration>(model);
-        //                var existingEntry = context.Entry(existingEntity);
-        //                existingEntry.CurrentValues.SetValues(revisedEntity);
-        //                existingEntity.CreatedOnUtc = DateTime.UtcNow;
-        //                existingEntity.CreatedByPrincipal = User.Identity.Name;
-        //                var originalEntity = existingEntry.OriginalValues.ToObject() as InstitutionalAgreementConfiguration;
-        //                if (originalEntity != null)
-        //                {
-        //                    if (originalEntity.IsCustomTypeAllowed != revisedEntity.IsCustomTypeAllowed
-        //                        || originalEntity.IsCustomStatusAllowed != revisedEntity.IsCustomStatusAllowed
-        //                        || originalEntity.IsCustomContactTypeAllowed != revisedEntity.IsCustomContactTypeAllowed)
-        //                    {
-        //                        originalEntity.IsCurrent = false;
-        //                        context.InstitutionalAgreementConfigurations.Add(originalEntity);
-        //                    }
-        //                }
-        //                // agreement types
-        //                if (revisedEntity.AllowedTypeValues != null)
-        //                {
-        //                    var newItems = revisedEntity.AllowedTypeValues.ToList();
-        //                    var oldItems = existingEntity.AllowedTypeValues.ToList();
-        //                    foreach (var oldItem in
-        //                        from oldItem in oldItems
-        //                        let matchedItem = newItems.SingleOrDefault(
-        //                            p => p.Id == oldItem.Id)
-        //                        where matchedItem == null
-        //                        select oldItem)
-        //                    {
-        //                        context.Entry(oldItem).State = EntityState.Deleted;
-        //                    }
-        //                    foreach (var newItem in
-        //                        from newItem in newItems
-        //                        let matchedItem = oldItems.SingleOrDefault(
-        //                            p => p.Id == newItem.Id)
-        //                        where matchedItem == null
-        //                        select newItem)
-        //                    {
-        //                        existingEntity.AllowedTypeValues.Add(newItem);
-        //                    }
-        //                    foreach (var oldItem in oldItems)
-        //                    {
-        //                        var matchedItem = newItems.SingleOrDefault(i => i.Id == oldItem.Id);
-        //                        if (matchedItem != null)
-        //                        {
-        //                            context.Entry(oldItem).CurrentValues.SetValues(matchedItem);
-        //                        }
-        //                    }
-        //                }
-
-        //                //agreement status
-        //                if (revisedEntity.AllowedStatusValues != null)
-        //                {
-        //                    var newStatusItems = revisedEntity.AllowedStatusValues.ToList();
-        //                    var oldStatusItems = existingEntity.AllowedStatusValues.ToList();
-        //                    foreach (var oldItem in
-        //                        from oldItem in oldStatusItems
-        //                        let matchedItem = newStatusItems.SingleOrDefault(
-        //                            p => p.Id == oldItem.Id)
-        //                        where matchedItem == null
-        //                        select oldItem)
-        //                    {
-        //                        context.Entry(oldItem).State = EntityState.Deleted;
-        //                    }
-        //                    foreach (var newItem in
-        //                        from newItem in newStatusItems
-        //                        let matchedItem = oldStatusItems.SingleOrDefault(
-        //                            p => p.Id == newItem.Id)
-        //                        where matchedItem == null
-        //                        select newItem)
-        //                    {
-        //                        existingEntity.AllowedStatusValues.Add(newItem);
-        //                    }
-        //                    foreach (var oldItem in oldStatusItems)
-        //                    {
-        //                        var matchedItem = newStatusItems.SingleOrDefault(i => i.Id == oldItem.Id);
-        //                        if (matchedItem != null)
-        //                        {
-        //                            context.Entry(oldItem).CurrentValues.SetValues(matchedItem);
-        //                        }
-        //                    }
-        //                }
-        //                //agreement contact type
-        //                if (revisedEntity.AllowedContactTypeValues != null)
-        //                {
-        //                    var newContactTypeItems = revisedEntity.AllowedContactTypeValues.ToList();
-        //                    var oldContactTypeItems = existingEntity.AllowedContactTypeValues.ToList();
-        //                    foreach (var oldItem in
-        //                        from oldItem in oldContactTypeItems
-        //                        let matchedItem = newContactTypeItems.SingleOrDefault(
-        //                            p => p.Id == oldItem.Id)
-        //                        where matchedItem == null
-        //                        select oldItem)
-        //                    {
-        //                        context.Entry(oldItem).State = EntityState.Deleted;
-        //                    }
-        //                    foreach (var newItem in
-        //                        from newItem in newContactTypeItems
-        //                        let matchedItem = oldContactTypeItems.SingleOrDefault(
-        //                            p => p.Id == newItem.Id)
-        //                        where matchedItem == null
-        //                        select newItem)
-        //                    {
-        //                        existingEntity.AllowedContactTypeValues.Add(newItem);
-        //                    }
-        //                    foreach (var oldItem in oldContactTypeItems)
-        //                    {
-        //                        var matchedItem = newContactTypeItems.SingleOrDefault(i => i.Id == oldItem.Id);
-        //                        if (matchedItem != null)
-        //                        {
-        //                            context.Entry(oldItem).CurrentValues.SetValues(matchedItem);
-        //                        }
-        //                    }
-        //                }
-
-        //                existingEntry.State = EntityState.Modified;
-
-        //                context.SaveChanges();
-        //                SetFeedbackMessage("Module configuration was saved successfully.");
-        //                return RedirectToAction(MVC.InstitutionalAgreements.ConfigurationForms.Edit());
-        //            }
-
-        //            AddEmptyAllowedOptions(model);
-        //            return View(Views.edit, model);
-        //        }
-        //    }
-        //    return HttpNotFound();
-        //}
-
         #endregion
         #region Partials
 
@@ -385,8 +211,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         public virtual PartialViewResult NewAgreementType(Guid configurationId)
         {
             var configurationRevisionId = 0;
-            //var configuration = _entities2.Read<InstitutionalAgreementConfiguration>()
-            //    .SingleOrDefault(x => x.EntityId == configurationId);
             var configuration = _queryProcessor.Execute(
                 new GetInstitutionalAgreementConfigurationByGuidQuery(configurationId));
             if (configuration != null)
@@ -404,8 +228,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         public virtual PartialViewResult NewAgreementStatus(Guid configurationId)
         {
             var configurationRevisionId = 0;
-            //var configuration = _entities2.Read<InstitutionalAgreementConfiguration>()
-            //    .SingleOrDefault(x => x.EntityId == configurationId);
             var configuration = _queryProcessor.Execute(
                 new GetInstitutionalAgreementConfigurationByGuidQuery(configurationId));
             if (configuration != null)
@@ -423,8 +245,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         public virtual PartialViewResult NewAgreementContactType(Guid configurationId)
         {
             var configurationRevisionId = 0;
-            //var configuration = _entities2.Read<InstitutionalAgreementConfiguration>()
-            //    .SingleOrDefault(x => x.EntityId == configurationId);
             var configuration = _queryProcessor.Execute(
                 new GetInstitutionalAgreementConfigurationByGuidQuery(configurationId));
             if (configuration != null)
@@ -485,7 +305,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 buttonTitle = "Show examples",
                 source = DefaultTypes.Select(text => new AutoCompleteOption { label = text, value = text, }),
             };
-            //var configuration = _entities.ForCurrentUserDefaultAffiliation(true);
             var configuration = _queryProcessor.Execute(new GetMyInstitutionalAgreementConfigurationQuery(User));
             if (configuration != null)
             {
@@ -509,7 +328,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 source = DefaultStatuses.Select(text => new AutoCompleteOption { label = text, value = text, }),
             };
             var configuration = _queryProcessor.Execute(new GetMyInstitutionalAgreementConfigurationQuery(User));
-            //var configuration = _entities.ForCurrentUserDefaultAffiliation(true);
             if (configuration != null)
             {
                 comboBox.source = configuration.AllowedStatusValues.OrderBy(o => o.Text).Select(o => o.Text)
@@ -532,7 +350,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 source = DefaultContactTypes.Select(text => new AutoCompleteOption { label = text, value = text, }),
             };
             var configuration = _queryProcessor.Execute(new GetMyInstitutionalAgreementConfigurationQuery(User));
-            //var configuration = _entities.ForCurrentUserDefaultAffiliation(true);
             if (configuration != null)
             {
                 comboBox.source = configuration.AllowedContactTypeValues.OrderBy(o => o.Text).Select(o => o.Text)
@@ -564,10 +381,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 
         private static readonly List<string> DefaultContactTypes = new List<string>
         {
-            //"Foreign Principal",
-            //"Foreign Secondary",
-            //"Local Principal",
-            //"Local Secondary",
             "Home Principal",
             "Home Secondary",
             "Partner Principal",
@@ -584,10 +397,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 
         private Person GetConfigurationSupervisor()
         {
-            //var person = context.People
-            //    //.Including(p => p.User)
-            //    //.Including(p => p.Affiliations.Select(a => a.Establishment.Parent))
-            //    .ForThreadPrincipal();
             var person = _queryProcessor.Execute(new GetMyPersonQuery(User));
 
             // do not show anything to null users, unaffiliated users, non-member affiliations, or member-by-parent affiliations
@@ -607,16 +416,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         private static readonly string Area = MVC.InstitutionalAgreements.Name;
         private static readonly string Controller = MVC.InstitutionalAgreements.ConfigurationForms.Name;
 
-        //public static void RegisterRoutes(AreaRegistrationContext context)
-        //{
-        //    RootActionRouter.RegisterRoutes(typeof(ConfigurationFormsRouteMapper), context, Area, Controller);
-        //}
-
-        public class AddRoute : Route
+        public class AddRoute : MvcRoute
         {
             public AddRoute()
-                : base("my/institutional-agreements/configure/set-up.html", new MvcRouteHandler())
             {
+                Url = "my/institutional-agreements/configure/set-up.html";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -626,22 +430,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class Add
-        //{
-        //    public const string Route = "my/institutional-agreements/configure/set-up.html";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.Add;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        context.MapRoute(null, Route, defaults);
-        //    }
-        //}
-
-        public class EditRoute : Route
+        public class EditRoute : MvcRoute
         {
             public EditRoute()
-                : base("my/institutional-agreements/configure", new MvcRouteHandler())
             {
+                Url = "my/institutional-agreements/configure";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -659,26 +452,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class Edit
-        //{
-        //    public static readonly string[] Routes =
-        //    {
-        //        "my/institutional-agreements/configure",
-        //        "my/institutional-agreements/configure.html",
-        //    };
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.Edit;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        context.MapRoutes(null, Routes, defaults);
-        //    }
-        //}
-
-        public class NewAgreementTypeRoute : Route
+        public class NewAgreementTypeRoute : MvcRoute
         {
             public NewAgreementTypeRoute()
-                : base("my/institutional-agreements/configure/{configurationId}/new-type-option.partial.html", new MvcRouteHandler())
             {
+                Url = "my/institutional-agreements/configure/{configurationId}/new-type-option.partial.html";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -688,22 +466,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class NewAgreementType
-        //{
-        //    public const string Route = "my/institutional-agreements/configure/{configurationId}/new-type-option.partial.html";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.NewAgreementType;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        context.MapRoute(null, Route, defaults);
-        //    }
-        //}
-
-        public class NewAgreementStatusRoute : Route
+        public class NewAgreementStatusRoute : MvcRoute
         {
             public NewAgreementStatusRoute()
-                : base("my/institutional-agreements/configure/{configurationId}/new-status-option.partial.html", new MvcRouteHandler())
             {
+                Url = "my/institutional-agreements/configure/{configurationId}/new-status-option.partial.html";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -713,22 +480,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class NewAgreementStatus
-        //{
-        //    public const string Route = "my/institutional-agreements/configure/{configurationId}/new-status-option.partial.html";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.NewAgreementStatus;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        context.MapRoute(null, Route, defaults);
-        //    }
-        //}
-
-        public class NewAgreementContactTypeRoute : Route
+        public class NewAgreementContactTypeRoute : MvcRoute
         {
             public NewAgreementContactTypeRoute()
-                : base("my/institutional-agreements/configure/{configurationId}/new-contact-type-option.partial.html", new MvcRouteHandler())
             {
+                Url = "my/institutional-agreements/configure/{configurationId}/new-contact-type-option.partial.html";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -738,22 +494,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class NewAgreementContactType
-        //{
-        //    public const string Route = "my/institutional-agreements/configure/{configurationId}/new-contact-type-option.partial.html";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.NewAgreementContactType;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        context.MapRoute(null, Route, defaults);
-        //    }
-        //}
-
-        public class AgreementTypeOptionsRoute : Route
+        public class AgreementTypeOptionsRoute : MvcRoute
         {
             public AgreementTypeOptionsRoute()
-                : base("my/institutional-agreements/configure/get-type-options.json", new MvcRouteHandler())
             {
+                Url = "my/institutional-agreements/configure/get-type-options.json";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -763,22 +508,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class AgreementTypeOptions
-        //{
-        //    public const string Route = "my/institutional-agreements/configure/get-type-options.json";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.AgreementTypeOptions;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        context.MapRoute(null, Route, defaults);
-        //    }
-        //}
-
-        public class AgreementStatusOptionsRoute : Route
+        public class AgreementStatusOptionsRoute : MvcRoute
         {
             public AgreementStatusOptionsRoute()
-                : base("my/institutional-agreements/configure/get-status-options.json", new MvcRouteHandler())
             {
+                Url = "my/institutional-agreements/configure/get-status-options.json";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -788,22 +522,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class AgreementStatusOptions
-        //{
-        //    public const string Route = "my/institutional-agreements/configure/get-status-options.json";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.AgreementStatusOptions;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        context.MapRoute(null, Route, defaults);
-        //    }
-        //}
-
-        public class AgreementContactTypeOptionsRoute : Route
+        public class AgreementContactTypeOptionsRoute : MvcRoute
         {
             public AgreementContactTypeOptionsRoute()
-                : base("my/institutional-agreements/configure/get-contact-type-options.json", new MvcRouteHandler())
             {
+                Url = "my/institutional-agreements/configure/get-contact-type-options.json";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -813,22 +536,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class AgreementContactTypeOptions
-        //{
-        //    public const string Route = "my/institutional-agreements/configure/get-contact-type-options.json";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.AgreementContactTypeOptions;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        context.MapRoute(null, Route, defaults);
-        //    }
-        //}
-
-        public class ValidateDuplicateOptionRoute : Route
+        public class ValidateDuplicateOptionRoute : MvcRoute
         {
             public ValidateDuplicateOptionRoute()
-                : base("my/institutional-agreements/configure/validate-duplicate-option.json", new MvcRouteHandler())
             {
+                Url = "my/institutional-agreements/configure/validate-duplicate-option.json";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -837,16 +549,5 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 });
             }
         }
-
-        //public static class ValidateDuplicateOption
-        //{
-        //    public const string Route = "my/institutional-agreements/configure/validate-duplicate-option.json";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.ValidateDuplicateOption;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        context.MapRoute(null, Route, defaults);
-        //    }
-        //}
     }
 }

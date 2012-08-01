@@ -90,11 +90,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         private static readonly string Area = MVC.Common.Name;
         private static readonly string Controller = MVC.Common.Errors.Name;
 
-        public class NotFoundRoute : Route
+        public class NotFoundRoute : MvcRoute
         {
             public NotFoundRoute()
-                : base("errors/404.html", new MvcRouteHandler())
             {
+                Url = "errors/404.html";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -138,11 +138,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             }
         }
 
-        public class FileUploadTooLargeRoute : Route
+        public class FileUploadTooLargeRoute : MvcRoute
         {
             public FileUploadTooLargeRoute()
-                : base("errors/file-upload-too-large.html", new MvcRouteHandler())
             {
+                Url = "errors/file-upload-too-large.html";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -152,11 +152,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             }
         }
 
-        public class NotAuthorizedRoute : Route
+        public class NotAuthorizedRoute : MvcRoute
         {
             public NotAuthorizedRoute()
-                : base("errors/not-authorized-for/{*url}", new MvcRouteHandler())
             {
+                Url = "errors/not-authorized-for/{*url}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -178,11 +178,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             }
         }
 
-        public class BadRequestRoute : Route
+        public class BadRequestRoute : MvcRoute
         {
             public BadRequestRoute()
-                : base("errors/400.html", new MvcRouteHandler())
             {
+                Url = "errors/400.html";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -224,11 +224,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             }
         }
 
-        public class LogAjaxErrorRoute : Route
+        public class LogAjaxErrorRoute : MvcRoute
         {
             public LogAjaxErrorRoute()
-                : base("errors/log-ajax-error.json", new MvcRouteHandler())
             {
+                Url = "errors/log-ajax-error.json";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

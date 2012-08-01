@@ -46,11 +46,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.ListIdentityProviders.Name;
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
             public GetRoute()
-                : base("sign-on/saml/2/providers", new MvcRouteHandler())
             {
+                Url = "sign-on/saml/2/providers";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

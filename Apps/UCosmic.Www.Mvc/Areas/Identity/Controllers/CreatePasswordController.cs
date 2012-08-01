@@ -102,11 +102,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.CreatePassword.Name;
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
             public GetRoute()
-                : base("create-password/{token}", new MvcRouteHandler())
             {
+                Url = "create-password/{token}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -138,11 +138,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class ValidatePasswordConfirmationRoute : Route
+        public class ValidatePasswordConfirmationRoute : MvcRoute
         {
             public ValidatePasswordConfirmationRoute()
-                : base("create-password/validate", new MvcRouteHandler())
             {
+                Url = "create-password/validate";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

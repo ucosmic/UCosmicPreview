@@ -208,28 +208,13 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         private static readonly string Area = MVC.Establishments.Name;
         private static readonly string Controller = MVC.Establishments.ManagementForms.Name;
 
-        private static IRouteHandler GetRouteHandler()
-        {
-            if (WebConfig.IsDeployedToCloud) return new StopRoutingHandler();
-            return new MvcRouteHandler();
-        }
-
-        private static RouteValueDictionary GetDataTokens()
-        {
-            return new RouteValueDictionary(new
-            {
-                Namespaces = new[] { string.Format("{0}.*", typeof(EstablishmentsAreaRegistration).Namespace) },
-                area = Area,
-                UseNamespaceFallback = true,
-            });
-        }
-
-        public class BrowseRoute : Route
+        public class BrowseRoute : MvcRoute
         {
             public BrowseRoute()
-                : base("establishments", GetRouteHandler())
+                : base(RouteRegistration.CreateRouteHandler(WebConfig.IsDeployedToCloud))
             {
-                DataTokens = GetDataTokens();
+                Url = "establishments";
+                DataTokens = RouteRegistration.CreateDataTokens(Area, typeof (EstablishmentsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
@@ -266,12 +251,13 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
             }
         }
 
-        public class FormEditRoute :Route
+        public class FormEditRoute : MvcRoute
         {
             public FormEditRoute()
-                : base("establishments/{entityId}/edit", GetRouteHandler())
+                : base(RouteRegistration.CreateRouteHandler(WebConfig.IsDeployedToCloud))
             {
-                DataTokens = GetDataTokens();
+                Url = "establishments/{entityId}/edit";
+                DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(EstablishmentsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
@@ -297,12 +283,13 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
             }
         }
 
-        public class PutRoute : Route
+        public class PutRoute : MvcRoute
         {
             public PutRoute()
-                : base("establishments/{entityId}", GetRouteHandler())
+                : base(RouteRegistration.CreateRouteHandler(WebConfig.IsDeployedToCloud))
             {
-                DataTokens = GetDataTokens();
+                Url = "establishments/{entityId}";
+                DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(EstablishmentsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
@@ -316,12 +303,13 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
             }
         }
 
-        public class NewNameRoute : Route
+        public class NewNameRoute : MvcRoute
         {
             public NewNameRoute()
-                : base("establishments/new/name", GetRouteHandler())
+                : base(RouteRegistration.CreateRouteHandler(WebConfig.IsDeployedToCloud))
             {
-                DataTokens = GetDataTokens();
+                Url = "establishments/new/name";
+                DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(EstablishmentsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,

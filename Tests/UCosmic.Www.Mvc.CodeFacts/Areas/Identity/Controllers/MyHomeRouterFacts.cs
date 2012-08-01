@@ -28,7 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 Expression<Func<MyHomeController, ActionResult>> action =
                     controller => controller.Get();
-                var url = MyHomeRouter.GetRoute.MyHomeUrl.ToAppRelativeUrl();
+                var url = MyHomeRouter.GetRoute.UrlConstant.ToAppRelativeUrl();
 
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
@@ -36,7 +36,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void Inbound_WithNonGet_MapsToNothing()
             {
-                var url = MyHomeRouter.GetRoute.MyHomeUrl.ToAppRelativeUrl();
+                var url = MyHomeRouter.GetRoute.UrlConstant.ToAppRelativeUrl();
 
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
@@ -46,7 +46,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 Expression<Func<MyHomeController, ActionResult>> action =
                     controller => controller.Get();
-                var url = MyHomeRouter.GetRoute.MyHomeUrl.ToAppRelativeUrl();
+                var url = MyHomeRouter.GetRoute.UrlConstant.ToAppRelativeUrl();
 
                 OutBoundRoute.Of(action).InArea(AreaName).WithMethod(HttpVerbs.Get).AppRelativeUrl().ShouldEqual(url);
             }

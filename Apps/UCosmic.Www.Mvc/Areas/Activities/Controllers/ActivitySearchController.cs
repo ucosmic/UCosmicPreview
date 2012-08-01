@@ -115,11 +115,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         private static readonly string Area = MVC.Activities.Name;
         private static readonly string Controller = MVC.Activities.ActivitySearch.Name;
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
             public GetRoute()
-                : base("{establishment}/activities/search/{keyword}", new MvcRouteHandler())
             {
+                Url = "{establishment}/activities/search/{keyword}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -134,11 +134,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             }
         }
 
-        public class AutoCompleteKeywordRoute : Route
+        public class AutoCompleteKeywordRoute : MvcRoute
         {
             public AutoCompleteKeywordRoute()
-                : base("{establishment}/activities/keywords", new MvcRouteHandler())
             {
+                Url = "{establishment}/activities/keywords";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

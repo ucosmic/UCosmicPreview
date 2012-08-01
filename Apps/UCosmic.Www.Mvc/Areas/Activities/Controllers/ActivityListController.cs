@@ -93,11 +93,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         private static readonly string Area = MVC.Activities.Name;
         private static readonly string Controller = MVC.Activities.ActivityList.Name;
 
-        public class ShortListRoute : Route
+        public class ShortListRoute : MvcRoute
         {
             public ShortListRoute()
-                : base("my/activities/short-list", new MvcRouteHandler())
             {
+                Url = "my/activities/short-list";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -111,11 +111,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             }
         }
 
-        public class PageRoute : Route
+        public class PageRoute : MvcRoute
         {
             public PageRoute()
-                : base("my/activities", new MvcRouteHandler())
             {
+                Url = "my/activities";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {

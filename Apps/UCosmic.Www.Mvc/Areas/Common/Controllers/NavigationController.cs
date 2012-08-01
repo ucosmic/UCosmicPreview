@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using UCosmic.Www.Mvc.Areas.Common.Models.Navigation;
+using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 {
@@ -24,11 +25,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         private static readonly string Area = MVC.Common.Name;
         private static readonly string Controller = MVC.Common.Navigation.Name;
 
-        public class HorizontalTabsRoute : Route
+        public class HorizontalTabsRoute : MvcRoute
         {
             public HorizontalTabsRoute()
-                : base("navigation/horizontal-tabs.partial.html", new MvcRouteHandler())
             {
+                Url = "navigation/horizontal-tabs.partial.html";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

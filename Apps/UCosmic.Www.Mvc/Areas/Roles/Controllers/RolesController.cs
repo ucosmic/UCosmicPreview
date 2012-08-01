@@ -15,17 +15,14 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
     public class RolesServices
     {
         public RolesServices(IProcessQueries queryProcessor
-            //, RoleFacade roles
             , IHandleCommands<UpdateRoleCommand> updateHandler
         )
         {
-            //Roles = roles;
             QueryProcessor = queryProcessor;
             UpdateHandler = updateHandler;
         }
 
         public IProcessQueries QueryProcessor { get; private set; }
-        //public RoleFacade Roles { get; private set; }
         public IHandleCommands<UpdateRoleCommand> UpdateHandler { get; private set; }
     }
 
@@ -43,7 +40,6 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
         [ActionName("browse")]
         public virtual ActionResult Browse()
         {
-            //var entities = _services.Roles.Get();
             var entities = _services.QueryProcessor.Execute(new FindAllRolesQuery());
             var models = Mapper.Map<RoleSearchResult[]>(entities);
             return View(models);
@@ -51,12 +47,11 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
 
         [HttpGet]
         [ActionName("form")]
-        [ReturnUrlReferrer(RolesRouter.BrowseRoute.BrowseUrl)]
+        [ReturnUrlReferrer(RolesRouter.BrowseRoute.UrlConstant)]
         public virtual ActionResult Form(string slug)
         {
             if (!string.IsNullOrWhiteSpace(slug))
             {
-                //var entity = _services.Roles.GetBySlug(slug);
                 var entity = _services.QueryProcessor.Execute(new GetRoleBySlugQuery(slug));
                 if (entity != null)
                 {
@@ -83,14 +78,7 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
                         RevokedUserEntityIds = model.Grants.Where(g => g.IsDeleted).Select(g => g.User.EntityId),
                         GrantedUserEntityIds = model.Grants.Where(g => !g.IsDeleted).Select(g => g.User.EntityId),
                     };
-                    //var changes = _services.Roles.Update(User, model.EntityId, model.Description,
-                    //    model.Grants.Where(g => g.IsDeleted).Select(g => g.User.EntityId),
-                    //    model.Grants.Where(g => !g.IsDeleted).Select(g => g.User.EntityId)
-                    //);
                     _services.UpdateHandler.Handle(command);
-                    //SetFeedbackMessage(changes > 0
-                    //    ? "Role has been successfully saved."
-                    //    : "No changes were made.");
                     SetFeedbackMessage(command.ChangeCount > 0
                         ? "Role has been successfully saved."
                         : "No changes were made.");
@@ -126,7 +114,6 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
         [ActionName("add-username")]
         public virtual ActionResult AddUserName(Guid userEntityId)
         {
-            //var user = _services.Users.Get(userEntityId);
             var user = _services.QueryProcessor.Execute(
                 new UserByEntityId
                 {
@@ -151,11 +138,13 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
         private static readonly string Area = MVC.Roles.Name;
         private static readonly string Controller = MVC.Roles.Roles.Name;
 
-        public class BrowseRoute : Route
+        public class BrowseRoute : MvcRoute
         {
+            public const string UrlConstant = "roles";
+
             public BrowseRoute()
-                : base(BrowseUrl, new MvcRouteHandler())
             {
+                Url = UrlConstant;
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -167,15 +156,13 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
                     httpMethod = new HttpMethodConstraint("GET"),
                 });
             }
-
-            public const string BrowseUrl = "roles";
         }
 
-        public class FormRoute : Route
+        public class FormRoute : MvcRoute
         {
             public FormRoute()
-                : base("roles/{slug}/edit", new MvcRouteHandler())
             {
+                Url = "roles/{slug}/edit";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -189,11 +176,11 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
             }
         }
 
-        public class PutRoute : Route
+        public class PutRoute : MvcRoute
         {
             public PutRoute()
-                : base("roles/{slug}", new MvcRouteHandler())
             {
+                Url = "roles/{slug}";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -207,11 +194,11 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
             }
         }
 
-        public class AutoCompleteUserNameRoute : Route
+        public class AutoCompleteUserNameRoute : MvcRoute
         {
             public AutoCompleteUserNameRoute()
-                : base("roles/manage/autocomplete-username.json", new MvcRouteHandler())
             {
+                Url = "roles/manage/autocomplete-username.json";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -225,11 +212,11 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
             }
         }
 
-        public class AddUserNameRoute : Route
+        public class AddUserNameRoute : MvcRoute
         {
             public AddUserNameRoute()
-                : base("roles/manage/add-role-member.partial.html", new MvcRouteHandler())
             {
+                Url = "roles/manage/add-role-member.partial.html";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {

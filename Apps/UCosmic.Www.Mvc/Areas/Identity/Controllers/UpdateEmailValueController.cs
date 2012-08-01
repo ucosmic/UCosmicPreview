@@ -37,7 +37,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("update-email-value")]
-        [ReturnUrlReferrer(MyHomeRouter.GetRoute.MyHomeUrl)]
+        [ReturnUrlReferrer(MyHomeRouter.GetRoute.UrlConstant)]
         public virtual ActionResult Get(int number)
         {
             // get the email address
@@ -94,11 +94,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.UpdateEmailValue.Name;
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
             public GetRoute()
-                : base("my/emails/{number}/change-spelling", new MvcRouteHandler())
             {
+                Url = "my/emails/{number}/change-spelling";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -113,11 +113,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class PutRoute : Route
+        public class PutRoute : MvcRoute
         {
             public PutRoute()
-                : base("my/emails/{number}", new MvcRouteHandler())
             {
+                Url = "my/emails/{number}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -132,11 +132,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class ValidateValueRoute : Route
+        public class ValidateValueRoute : MvcRoute
         {
             public ValidateValueRoute()
-                : base("my/emails/{number}/change-spelling/validate", new MvcRouteHandler())
             {
+                Url = "my/emails/{number}/change-spelling/validate";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

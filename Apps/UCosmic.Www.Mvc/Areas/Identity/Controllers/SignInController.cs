@@ -104,11 +104,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.SignIn.Name;
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
             public GetRoute()
-                : base("sign-in", new MvcRouteHandler())
             {
+                Url = "sign-in";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -140,11 +140,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class ValidatePasswordRoute : Route
+        public class ValidatePasswordRoute : MvcRoute
         {
             public ValidatePasswordRoute()
-                : base("sign-in/validate", new MvcRouteHandler())
             {
+                Url = "sign-in/validate";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

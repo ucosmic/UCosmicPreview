@@ -125,11 +125,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         private static readonly string Area = MVC.People.Name;
         private static readonly string Controller = MVC.People.PersonName.Name;
 
-        public class GenerateDisplayNameRoute : Route
+        public class GenerateDisplayNameRoute : MvcRoute
         {
             public GenerateDisplayNameRoute()
-                : base("people/generate-display-name", new MvcRouteHandler())
             {
+                Url = "people/generate-display-name";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -143,11 +143,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             }
         }
 
-        public class AutoCompleteSalutationsRoute : Route
+        public class AutoCompleteSalutationsRoute : MvcRoute
         {
             public AutoCompleteSalutationsRoute()
-                : base("people/salutations", new MvcRouteHandler())
             {
+                Url = "people/salutations";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -161,11 +161,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             }
         }
 
-        public class AutoCompleteSuffixesRoute : Route
+        public class AutoCompleteSuffixesRoute : MvcRoute
         {
             public AutoCompleteSuffixesRoute()
-                : base("people/suffixes", new MvcRouteHandler())
             {
+                Url = "people/suffixes";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

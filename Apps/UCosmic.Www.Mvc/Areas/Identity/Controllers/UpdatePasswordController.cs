@@ -34,7 +34,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [HttpGet]
         [OpenTopTab(TopTabName.Home)]
         [ActionName("update-password")]
-        [ReturnUrlReferrer(MyHomeRouter.GetRoute.MyHomeUrl)]
+        [ReturnUrlReferrer(MyHomeRouter.GetRoute.UrlConstant)]
         public virtual ActionResult Get()
         {
             // get the user
@@ -116,11 +116,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.UpdatePassword.Name;
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
             public GetRoute()
-                : base("my/password", new MvcRouteHandler())
             {
+                Url = "my/password";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -150,11 +150,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class ValidateCurrentPasswordRoute : Route
+        public class ValidateCurrentPasswordRoute : MvcRoute
         {
             public ValidateCurrentPasswordRoute()
-                : base("my/password/validate", new MvcRouteHandler())
             {
+                Url = "my/password/validate";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -168,11 +168,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class ValidateNewPasswordConfirmationRoute : Route
+        public class ValidateNewPasswordConfirmationRoute : MvcRoute
         {
             public ValidateNewPasswordConfirmationRoute()
-                : base("my/password/validate/new", new MvcRouteHandler())
             {
+                Url = "my/password/validate/new";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

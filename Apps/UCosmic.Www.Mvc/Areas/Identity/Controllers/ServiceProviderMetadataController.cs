@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using UCosmic.Impl;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
+using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 {
@@ -72,11 +73,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.ServiceProviderMetadata.Name;
 
-        public class RealRoute : Route
+        public class RealRoute : MvcRoute
         {
             public RealRoute()
-                : base("sign-on/saml/2/metadata", new MvcRouteHandler())
             {
+                Url = "sign-on/saml/2/metadata";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -90,11 +91,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class TestRoute : Route
+        public class TestRoute : MvcRoute
         {
             public TestRoute()
-                : base("sign-on/saml/2/metadata/develop", new MvcRouteHandler())
             {
+                Url = "sign-on/saml/2/metadata/develop";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

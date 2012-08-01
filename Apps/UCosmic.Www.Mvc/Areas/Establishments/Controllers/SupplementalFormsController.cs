@@ -250,11 +250,11 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         private static readonly string Area = MVC.Establishments.Name;
         private static readonly string Controller = MVC.Establishments.SupplementalForms.Name;
 
-        public class FindPlacesRoute : Route
+        public class FindPlacesRoute : MvcRoute
         {
             public FindPlacesRoute()
-                : base("establishments/new/location/places", new MvcRouteHandler())
             {
+                Url = "establishments/new/location/places";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -268,11 +268,11 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
             }
         }
 
-        public class LocateGetRoute : Route
+        public class LocateGetRoute : MvcRoute
         {
             public LocateGetRoute()
-                : base("establishments/{establishmentId}/locate/then-return-to/{*returnUrl}", new MvcRouteHandler())
             {
+                Url = "establishments/{establishmentId}/locate/then-return-to/{*returnUrl}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -301,11 +301,11 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
             }
         }
 
-        public class LocatePostRoute : Route
+        public class LocatePostRoute : MvcRoute
         {
             public LocatePostRoute()
-                : base("establishments/locate", new MvcRouteHandler())
             {
+                Url = "establishments/locate";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

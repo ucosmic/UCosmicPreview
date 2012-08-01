@@ -96,11 +96,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.SignOver.Name;
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
             public GetRoute()
-                : base("sign-over", new MvcRouteHandler())
             {
+                Url = "sign-over";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -130,11 +130,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class ValidateEmailAddressRoute : Route
+        public class ValidateEmailAddressRoute : MvcRoute
         {
             public ValidateEmailAddressRoute()
-                : base("sign-over/validate", new MvcRouteHandler())
             {
+                Url = "sign-over/validate";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -148,11 +148,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class UndoRoute : Route
+        public class UndoRoute : MvcRoute
         {
             public UndoRoute()
-                : base("sign-over/undo", new MvcRouteHandler())
             {
+                Url = "sign-over/undo";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

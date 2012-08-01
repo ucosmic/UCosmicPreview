@@ -18,17 +18,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 {
     public partial class PublicSearchController : BaseController
     {
-        //private readonly InstitutionalAgreementFinder _agreements;
-        //private readonly EstablishmentFinder _establishments;
-        //private readonly PlaceFinder _places;
         private readonly IProcessQueries _queryProcessor;
 
         public PublicSearchController(IProcessQueries queryProcessor)
         {
             _queryProcessor = queryProcessor;
-            //_agreements = new InstitutionalAgreementFinder(entityQueries);
-            //_establishments = new EstablishmentFinder(entityQueries);
-            //_places = new PlaceFinder(entityQueries);
         }
 
 
@@ -39,7 +33,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             {
                 if (Request.IsAuthenticated)
                 {
-                    //var establishment = _establishments.FindOne(EstablishmentBy.EmailDomain(User.Identity.Name));
                     var establishment = _queryProcessor.Execute(new GetEstablishmentByEmailQuery(User.Identity.Name));
                     if (establishment != null)
                         establishmentUrl = establishment.WebsiteUrl;
@@ -57,20 +50,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         [NonAction]
         private IEnumerable<SelectListItem> GetHierarchySelectList(Establishment establishment)
         {
-            //var rootEstablishment = _establishments.FindOne(EstablishmentBy.WebsiteUrl(contextEstablishmentUrl)
-            //);
             var rootEstablishment = establishment.Parent == null
                 ? establishment
                 : establishment.Ancestors.Single(e => e.Ancestor.Parent == null).Ancestor;
-            //while (rootEstablishment.Parent != null)
-            //    rootEstablishment = rootEstablishment.Parent;
 
             var childEstablishments =
-                //_agreements2.FindMany(With<InstitutionalAgreement>.DefaultCriteria()
-                //    .EagerLoad(a => a.Participants.Select(p => p.Establishment.Ancestors)))
-                //.Where(a => a.Participants.Any(p => p.IsOwner &&
-                //    (p.Establishment.EntityId == rootEstablishment.EntityId ||
-                //    p.Establishment.Ancestors.Any(h => h.Ancestor.EntityId == rootEstablishment.EntityId))))
                 _queryProcessor.Execute(
                     new FindInstitutionalAgreementsOwnedByEstablishmentQuery(rootEstablishment.EntityId)
                     {
@@ -130,24 +114,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                         }
                     }
                 );
-                //var owners = _agreements.FindMany(With<InstitutionalAgreement>.DefaultCriteria())
-                //    .SelectMany(a => a.Participants)
-                //    .Where(p => p.IsOwner)
-                //    .Select(p => p.Establishment)
-                //    .Where(e => !e.Ancestors.Any() && !string.IsNullOrWhiteSpace(e.WebsiteUrl))
-                //    .Distinct()
-                //    //.Cast<Establishment>()
-                //    .OrderBy(e => e.OfficialName);
                 var ownerModels = Mapper.Map<IEnumerable<EstablishmentInfo>>(owners);
                 return View(Views.no_context, ownerModels);
             }
 
             // load the establishment by url as the context for the results
-            //var context = _establishments.FindOne(EstablishmentBy.WebsiteUrl(establishmentUrl)
-            //    .EagerLoad(e => e.Names.Select(n => n.TranslationToLanguage))
-            //    .EagerLoad(e => e.Location)
-            //    .EagerLoad(e => e.Ancestors)
-            //);
             var context = _queryProcessor.Execute(new GetEstablishmentByUrlQuery(establishmentUrl)
             {
                 EagerLoad = new Expression<Func<Establishment, object>>[]
@@ -182,138 +153,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 }
             ).ToList();
 
-            #region old code
-
-            //// load up all agreements owned by this establishment
-            //var agreements = _agreements.FindMany(
-            //    InstitutionalAgreementsWith.OwnedByEstablishmentUrl(establishmentUrl)
-            //    //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places.Select(l => l.Names))) this takes WAY too long, don't even think about it
-            //    .EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places))
-            //    .EagerLoad(a => a.Participants.Select(p => p.Establishment.Names.Select(n => n.TranslationToLanguage)))
-            //    .EagerLoad(a => a.Contacts)
-            //);
-
-            //// apply keyword to search
-            //if (!string.IsNullOrWhiteSpace(keyword))
-            //{
-            //    var isOwner = PredicateBuilder.True<InstitutionalAgreement>()
-            //        .And(a => a.Participants.Any(p => p.IsOwner));
-            //    var establishmentUrlMatches = PredicateBuilder.False<InstitutionalAgreement>()
-            //        .Or(a => a.Participants.Any(p => establishmentUrl.Equals(p.Establishment.WebsiteUrl, StringComparison.OrdinalIgnoreCase)));
-            //    establishmentUrlMatches = establishmentUrlMatches
-            //        .Or(a => a.Participants.Any(p => p.Establishment.Ancestors.Any(h => establishmentUrl.Equals(h.Ancestor.WebsiteUrl, StringComparison.OrdinalIgnoreCase))));
-
-            //    var ownedByEstablishmentUrl = PredicateBuilder.True<InstitutionalAgreement>()
-            //        .And(a => a.Participants.Any(p => p.IsOwner && (establishmentUrl.Equals(p.Establishment.WebsiteUrl, StringComparison.OrdinalIgnoreCase)) ||
-            //        p.Establishment.Ancestors.Any(h => establishmentUrl.Equals(h.Ancestor.WebsiteUrl, StringComparison.OrdinalIgnoreCase))));
-
-            //    //var ownedByEstablishmentUrl = isOwner.And(establishmentUrlMatches.Expand());
-
-            //    var placeNameMatchesKeyword = PredicateBuilder.False<InstitutionalAgreement>()
-            //        .Or(a => a.Participants.Any(p => p.Establishment.Location.Places.Any(
-            //            l => l.OfficialName.Contains(keyword)
-            //    )));
-            //    placeNameMatchesKeyword = placeNameMatchesKeyword.Or(a => a.Participants.Any(p => p.Establishment.Location.Places.Any(
-            //        l => l.Names.Any(
-            //            n =>
-            //                n.Text.Contains(keyword) &&
-            //                n.TranslationToLanguage != null &&
-            //                n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
-            //            )
-            //    )));
-            //    placeNameMatchesKeyword = placeNameMatchesKeyword.Or(a => a.Participants.Any(p => p.Establishment.Location.Places.Any(
-            //        l => l.Names.Any(
-            //            n =>
-            //                n.AsciiEquivalent != null &&
-            //                n.AsciiEquivalent.Contains(keyword) &&
-            //                n.TranslationToLanguage != null &&
-            //                n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
-            //            )
-            //    )));
-
-            //    //var notOwnerAndPlaceNameMatchesKeyword = PredicateBuilder.True<InstitutionalAgreement>()
-            //    //    .And(a => a.Participants.Any(p => !p.IsOwner)).And(placeNameMatchesKeyword.Expand());
-
-            //    //ownedByEstablishmentUrl = ownedByEstablishmentUrl.And(notOwnerAndPlaceNameMatchesKeyword.Expand());
-
-            //    ownedByEstablishmentUrl = ownedByEstablishmentUrl.And(a => a.Participants.Any(p => !p.IsOwner)).And(placeNameMatchesKeyword.Expand());
-
-            //    using (var dbContext = new UCosmicContext(null))
-            //    {
-            //        //var byCountry2 = dbContext.InstitutionalAgreements.AsExpandable().Where(ownedByEstablishmentUrl.Expand());
-            //        //var byCountry2List = byCountry2.ToList();
-
-            //        var agreements2 = dbContext.InstitutionalAgreements
-            //            .Include(a => a.Participants.Select(p => p.Establishment))
-            //            .OwnedBy(1)
-            //            .MatchingPlaceParticipantOrContact(keyword)
-            //            .OrderByDescending(a => a.StartsOn);
-            //        var agreements2List = agreements2.ToList();
-            //    }
-
-
-            //    var byCountry = agreements.Where(a =>
-            //        a.Participants.Any(p =>
-            //            !p.IsOwner &&
-            //            (
-            //                p.Establishment.Location.Places.Any(l =>
-            //                    l.OfficialName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
-            //                ||
-            //                p.Establishment.Location.Places.Any(l =>
-            //                    l.Names.Any(n =>
-            //                        n.Text.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 &&
-            //                        n.TranslationToLanguage != null &&
-            //                        n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
-            //                    )
-            //                ||
-            //                p.Establishment.Location.Places.Any(l =>
-            //                    l.Names.Any(n =>
-            //                        n.AsciiEquivalent != null &&
-            //                        n.AsciiEquivalent.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 &&
-            //                        n.TranslationToLanguage != null &&
-            //                        n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
-            //                    )
-            //            )
-            //        )
-            //    );
-            //    var byPartner = agreements.Where(a =>
-            //        a.Participants.Any(p =>
-            //            (
-            //                p.Establishment.OfficialName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0
-            //                ||
-            //                p.Establishment.Names.Any(n =>
-            //                    n.Text.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 &&
-            //                    n.TranslationToLanguage != null &&
-            //                    n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
-            //                )
-            //                ||
-            //                p.Establishment.Names.Any(n =>
-            //                    n.AsciiEquivalent != null &&
-            //                    n.AsciiEquivalent.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0 &&
-            //                    n.TranslationToLanguage != null &&
-            //                    n.TranslationToLanguage.TwoLetterIsoCode == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
-            //                )
-            //            )
-            //        )
-            //    );
-            //    var byContact = agreements.Where(a =>
-            //        a.Contacts.Any(c =>
-            //            (c.Person.FirstName != null && c.Person.FirstName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
-            //            ||
-            //            (c.Person.LastName != null && c.Person.LastName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
-            //            ||
-            //            (c.Person.DisplayName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
-            //        )
-            //    );
-
-            //    agreements = byCountry.Union(byPartner).Union(byContact)
-            //        .Distinct(new RevisableEntityEqualityComparer())
-            //        .Cast<InstitutionalAgreement>().ToList();
-            //}
-            //agreements = agreements.OrderByDescending(a => a.StartsOn).ToList();
-
-            #endregion
-
             foreach (var agreement in agreements.ToArray())
             {
                 // remove agreements that are not visible
@@ -326,8 +165,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             var partners = agreements.SelectMany(a => a.Participants).Where(a => !a.IsOwner)
                 .Select(p => p.Establishment).Distinct(new RevisableEntityEqualityComparer())
                 .Cast<Establishment>();
-            //var countryCount = partners.SelectMany(e => e.Location.Places).Where(l => l.IsCountry)
-            //    .Distinct(new RevisableEntityEqualityComparer()).Count(); // degrades performance
 
             var model = new SearchResults
             {
@@ -339,13 +176,9 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 IsSupervisor = isSupervisor,
                 Keyword = keyword,
             };
-            //foreach (var agreement in model.Agreements)
-            //    agreement.IsOwnedByPrincipal = agreements.Single(a => a.EntityId == agreement.EntityId).IsOwnedBy(User) &&
-            //        (isSupervisor || isManager);
 
             if (!string.IsNullOrWhiteSpace(keyword))
             {
-                //var places = _places.FindMany(PlacesWith.AutoCompleteTerm(keyword));
                 var places = _queryProcessor.Execute(
                     new FindPlacesWithNameQuery
                     {
@@ -368,16 +201,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             if (agreementId == Guid.Empty) return HttpNotFound();
 
-            var agreement = _queryProcessor.Execute(new GetInstitutionalAgreementByGuidQuery(agreementId)
-                //var agreement = _agreements2.FindOne(By<InstitutionalAgreement>.EntityId(agreementId)
-                //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Affiliates.Select(f => f.Person.User)))
-                //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places.Select(l => l.GeoPlanetPlace.Type)))
-                //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Location.Places.Select(l => l.Ancestors)))
-                //.EagerLoad(a => a.Participants.Select(p => p.Establishment.Names.Select(n => n.TranslationToLanguage)))
-                //.EagerLoad(a => a.Participants.Select(p => p.Establishment.EmailDomains))
-                //.EagerLoad(a => a.Contacts.Select(c => c.Person))
-                //.EagerLoad(a => a.Files)
-            );
+            var agreement = _queryProcessor.Execute(new GetInstitutionalAgreementByGuidQuery(agreementId));
             if (agreement == null) return HttpNotFound();
 
             var owners = agreement.Participants.Where(p => p.IsOwner).Select(p => p.Establishment).ToList();
@@ -417,16 +241,10 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             if (fileId != Guid.Empty)
             {
                 // find agreement
-                //var agreement = _agreements2.FindOne(InstitutionalAgreementBy.FileEntityId(fileId));
                 var agreement = _queryProcessor.Execute(new GetMyInstitutionalAgreementByFileGuidQuery(User, fileId));
 
                 // make sure user owns this agreement
-                //var person = _people.FindOne(PersonBy.Principal(User));
-                //if (agreement != null && agreement.Files != null && agreement.Files.Count > 0
-                //    && agreement.Participants.Where(p => p.IsOwner).Any(p => person.IsAffiliatedWith(p.Establishment)))
-                if (agreement != null && agreement.Files != null && agreement.Files.Count > 0
-                    //&& agreement.IsOwnedBy(User)
-                )
+                if (agreement != null && agreement.Files != null && agreement.Files.Count > 0)
                 {
                     if (agreement.Visibility == InstitutionalAgreementVisibility.Private &&
                         !User.IsInRole(RoleName.InstitutionalAgreementManager) &&
@@ -452,16 +270,10 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             if (fileId != Guid.Empty)
             {
                 // find agreement
-                //var agreement = _agreements2.FindOne(InstitutionalAgreementBy.FileEntityId(fileId));
                 var agreement = _queryProcessor.Execute(new GetMyInstitutionalAgreementByFileGuidQuery(User, fileId));
 
                 // make sure user owns this agreement
-                //var person = _people.FindOne(PersonBy.Principal(User));
-                //if (agreement != null && agreement.Files != null && agreement.Files.Count > 0
-                //    && agreement.Participants.Where(p => p.IsOwner).Any(p => person.IsAffiliatedWith(p.Establishment)))
-                if (agreement != null && agreement.Files != null && agreement.Files.Count > 0
-                    //&& agreement.IsOwnedBy(User)
-                )
+                if (agreement != null && agreement.Files != null && agreement.Files.Count > 0)
                 {
                     if (agreement.Visibility == InstitutionalAgreementVisibility.Private &&
                         !User.IsInRole(RoleName.InstitutionalAgreementManager) &&
@@ -486,8 +298,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         public virtual JsonResult AutoCompleteKeyword(string establishmentUrl, string term)
         {
             const int maxResults = 15;
-            //var places = _places.FindMany(PlacesWith.AutoCompleteTerm(term, maxResults)
-            //    .EagerLoad(p => p.Names.Select(n => n.TranslationToLanguage)));
             var places = _queryProcessor.Execute(
                 new FindPlacesWithNameQuery
                     {
@@ -505,7 +315,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                         CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, StringComparison.OrdinalIgnoreCase)).Text
             ).OrderBy(s => s);
 
-            //var establishments = _establishments.FindMany(EstablishmentsWith.AutoCompleteTerm(term, maxResults).OrderBy(e => e.OfficialName));
             var establishments = _queryProcessor.Execute(new FindEstablishmentsWithNameQuery
             {
                 Term = term,
@@ -519,7 +328,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             var establishmentNames = establishments.Select(e => e.OfficialName);
 
             // todo: should be able to select contacts from encapsulated operation
-            //var contacts = _agreements.FindMany(InstitutionalAgreementsWith.OwnedByEstablishmentUrl(establishmentUrl))
             var contacts = _queryProcessor.Execute(new FindInstitutionalAgreementsOwnedByEstablishmentQuery(establishmentUrl))
                 .SelectMany(a => a.Contacts).Where(c =>
                     (c.Person.FirstName != null && c.Person.FirstName.StartsWith(term, StringComparison.OrdinalIgnoreCase)) ||
@@ -541,15 +349,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         [ChildActionOnly]
         public virtual ActionResult GetChildEstablishmentsWithAgreements(Guid parentId)
         {
-            //var owners = _agreements.FindMany(With<InstitutionalAgreement>.DefaultCriteria())
-            //    .SelectMany(a => a.Participants)
-            //    .Where(p => p.IsOwner)
-            //    .Select(p => p.Establishment)
-            //    .Where(e => e.Parent != null && e.Parent.EntityId == parentId && !string.IsNullOrWhiteSpace(e.WebsiteUrl))
-            //    //.Distinct(new RevisableEntityEqualityComparer())
-            //    .Distinct()
-            //    //.Cast<Establishment>()
-            //    .OrderBy(e => e.OfficialName);
             var owners = _queryProcessor.Execute(
                 new FindEstablishmentsWithInstitutionalAgreementsQuery(parentId)
                 {
@@ -569,16 +368,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         private static readonly string Area = MVC.InstitutionalAgreements.Name;
         private static readonly string Controller = MVC.InstitutionalAgreements.PublicSearch.Name;
 
-        //public static void RegisterRoutes(AreaRegistrationContext context)
-        //{
-        //    RootActionRouter.RegisterRoutes(typeof(PublicSearchRouteMapper), context, Area, Controller);
-        //}
-
-        public class IndexRoute : Route
+        public class IndexRoute : OrderedMvcRoute
         {
             public IndexRoute()
-                : base("{establishmentUrl}/institutional-agreements/search/{keyword}", new MvcRouteHandler())
             {
+                Order = 1; // otherwise this conflicts with institutional-agreements/configure
+                Url = "{establishmentUrl}/institutional-agreements/{keyword}";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -594,30 +389,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class Index
-        //{
-        //    public const string Route = "{establishmentUrl}/institutional-agreements/{keyword}";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.Index;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new
-        //        {
-        //            area,
-        //            controller,
-        //            action = Action,
-        //            establishmentUrl = "my",
-        //            keyword = UrlParameter.Optional,
-        //        };
-        //        var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
-        //        context.MapRoute(null, Route, defaults, constraints);
-        //    }
-        //}
-
-        public class GetChildEstablishmentsWithAgreementsRoute : Route
+        public class GetChildEstablishmentsWithAgreementsRoute : MvcRoute
         {
             public GetChildEstablishmentsWithAgreementsRoute()
-                : base("{establishmentUrl}/institutional-agreements/under-parent/{parentId}", new MvcRouteHandler())
             {
+                Url = "{establishmentUrl}/institutional-agreements/under-parent/{parentId}";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -633,33 +409,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class GetChildEstablishmentsWithAgreements
-        //{
-        //    public const string Route = "{establishmentUrl}/institutional-agreements/under-parent/{parentId}";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.GetChildEstablishmentsWithAgreements;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new
-        //        {
-        //            area,
-        //            controller,
-        //            action = Action,
-        //            establishmentUrl = "my",
-        //        };
-        //        var constraints = new
-        //        {
-        //            httpMethod = new HttpMethodConstraint("GET"),
-        //            parentId = new NonEmptyGuidRouteConstraint(),
-        //        };
-        //        context.MapRoute(null, Route, defaults, constraints);
-        //    }
-        //}
-
-        public class ChangeOwnerRoute : Route
+        public class ChangeOwnerRoute : MvcRoute
         {
             public ChangeOwnerRoute()
-                : base("institutional-agreements/change-owner", new MvcRouteHandler())
             {
+                Url = "institutional-agreements/change-owner";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -673,31 +427,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class ChangeOwner
-        //{
-        //    public const string Route = "institutional-agreements/change-owner";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.ChangeOwner;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new
-        //        {
-        //            area,
-        //            controller,
-        //            action = Action,
-        //        };
-        //        var constraints = new
-        //        {
-        //            httpMethod = new HttpMethodConstraint("GET"),
-        //        };
-        //        context.MapRoute(null, Route, defaults, constraints);
-        //    }
-        //}
-
-        public class InfoRoute : Route
+        public class InfoRoute : MvcRoute
         {
             public InfoRoute()
-                : base("institutional-agreements/{agreementId}", new MvcRouteHandler())
             {
+                Url = "institutional-agreements/{agreementId}";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -713,33 +447,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class Info
-        //{
-        //    public const string Route = "institutional-agreements/{agreementId}";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.Info;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new
-        //        {
-        //            area,
-        //            controller,
-        //            action = Action,
-        //            establishmentUrl = "my",
-        //        };
-        //        var constraints = new
-        //        {
-        //            httpMethod = new HttpMethodConstraint("GET"),
-        //            agreementId = new NonEmptyGuidRouteConstraint(),
-        //        };
-        //        context.MapRoute(null, Route, defaults, constraints);
-        //    }
-        //}
-
-        public class DisplayFileRoute : Route
+        public class DisplayFileRoute : MvcRoute
         {
             public DisplayFileRoute()
-                : base("institutional-agreements/files/{fileId}/display/{fileName}", new MvcRouteHandler())
             {
+                Url = "institutional-agreements/files/{fileId}/display/{fileName}";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -753,26 +465,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class DisplayFile
-        //{
-        //    public const string Route = "institutional-agreements/files/{fileId}/display/{fileName}";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.DisplayFile;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        var constraints = new
-        //        {
-        //            httpMethod = new HttpMethodConstraint("GET"),
-        //        };
-        //        context.MapRoute(null, Route, defaults, constraints);
-        //    }
-        //}
-
-        public class DownloadFileRoute : Route
+        public class DownloadFileRoute : MvcRoute
         {
             public DownloadFileRoute()
-                : base("institutional-agreements/files/{fileId}/download/{fileName}", new MvcRouteHandler())
             {
+                Url = "institutional-agreements/files/{fileId}/download/{fileName}";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -786,26 +483,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
         }
 
-        //public static class DownloadFile
-        //{
-        //    public const string Route = "institutional-agreements/files/{fileId}/download/{fileName}";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.DownloadFile;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        var constraints = new
-        //        {
-        //            httpMethod = new HttpMethodConstraint("GET"),
-        //        };
-        //        context.MapRoute(null, Route, defaults, constraints);
-        //    }
-        //}
-
-        public class AutoCompleteKeywordRoute : Route
+        public class AutoCompleteKeywordRoute : MvcRoute
         {
             public AutoCompleteKeywordRoute()
-                : base("institutional-agreements/autocomplete/search/keyword/{establishmentUrl}", new MvcRouteHandler())
             {
+                Url = "institutional-agreements/autocomplete/search/keyword/{establishmentUrl}";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -818,21 +500,5 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 });
             }
         }
-
-        //public static class AutoCompleteKeyword
-        //{
-        //    public const string Route = "institutional-agreements/autocomplete/search/keyword/{establishmentUrl}";
-        //    private static readonly string Action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.AutoCompleteKeyword;
-        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
-        //    {
-        //        var defaults = new { area, controller, action = Action, };
-        //        var constraints = new
-        //        {
-        //            httpMethod = new HttpMethodConstraint("POST"),
-        //        };
-        //        context.MapRoute(null, Route, defaults, constraints);
-        //    }
-        //}
-
     }
 }

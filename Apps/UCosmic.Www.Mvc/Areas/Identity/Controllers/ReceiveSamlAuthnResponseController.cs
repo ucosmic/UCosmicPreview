@@ -75,11 +75,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.ReceiveSamlAuthnResponse.Name;
 
-        public class PostRoute : Route
+        public class PostRoute : MvcRoute
         {
             public PostRoute()
-                : base("sign-on/saml/2/post", new MvcRouteHandler())
             {
+                Url = "sign-on/saml/2/post";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

@@ -59,7 +59,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         [HttpNotFoundOnNullModel]
         [ActionName("activity-form")]
         [OpenTopTab(TopTabName.FacultyStaff)]
-        [ReturnUrlReferrer(MyHomeRouter.GetRoute.MyHomeUrl)]
+        [ReturnUrlReferrer(MyHomeRouter.GetRoute.UrlConstant)]
         public virtual ActionResult Get(int number)
         {
             var activity = _services.QueryProcessor.Execute(
@@ -155,11 +155,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         private static readonly string Area = MVC.Activities.Name;
         private static readonly string Controller = MVC.Activities.ActivityForm.Name;
 
-        public class NewRoute : Route
+        public class NewRoute : MvcRoute
         {
             public NewRoute()
-                : base("my/activities/new", new MvcRouteHandler())
             {
+                Url = "my/activities/new";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -173,11 +173,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             }
         }
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
             public GetRoute()
-                : base("my/activities/{number}/edit", new MvcRouteHandler())
             {
+                Url = "my/activities/{number}/edit";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -192,11 +192,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             }
         }
 
-        public class PutRoute : Route
+        public class PutRoute : MvcRoute
         {
             public PutRoute()
-                : base("my/activities/{number}", new MvcRouteHandler())
             {
+                Url = "my/activities/{number}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -211,11 +211,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             }
         }
 
-        public class DraftRoute : Route
+        public class DraftRoute : MvcRoute
         {
             public DraftRoute()
-                : base("my/activities/{number}/draft", new MvcRouteHandler())
             {
+                Url = "my/activities/{number}/draft";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -230,11 +230,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             }
         }
 
-        public class DeleteRoute : Route
+        public class DeleteRoute : MvcRoute
         {
             public DeleteRoute()
-                : base("my/activities/{number}/delete", new MvcRouteHandler())
             {
+                Url = "my/activities/{number}/delete";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -249,11 +249,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             }
         }
 
-        public class DestroyRoute : Route
+        public class DestroyRoute : MvcRoute
         {
             public DestroyRoute()
-                : base("my/activities/{number}", new MvcRouteHandler())
             {
+                Url = "my/activities/{number}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

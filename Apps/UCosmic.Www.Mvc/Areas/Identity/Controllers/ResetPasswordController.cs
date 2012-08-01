@@ -97,11 +97,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.ResetPassword.Name;
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
             public GetRoute()
-                : base("reset-password/{token}", new MvcRouteHandler())
             {
+                Url = "reset-password/{token}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -133,11 +133,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class ValidatePasswordConfirmationRoute : Route
+        public class ValidatePasswordConfirmationRoute : MvcRoute
         {
             public ValidatePasswordConfirmationRoute()
-                : base("reset-password/validate", new MvcRouteHandler())
             {
+                Url = "reset-password/validate";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

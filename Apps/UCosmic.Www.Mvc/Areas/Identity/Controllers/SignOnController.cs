@@ -113,11 +113,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.SignOn.Name;
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
             public GetRoute()
-                : base("sign-on", new MvcRouteHandler())
             {
+                Url = "sign-on";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -147,11 +147,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class ValidateEmailAddressRoute : Route
+        public class ValidateEmailAddressRoute : MvcRoute
         {
             public ValidateEmailAddressRoute()
-                : base("sign-on/validate", new MvcRouteHandler())
             {
+                Url = "sign-on/validate";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

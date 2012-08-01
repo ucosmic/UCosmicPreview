@@ -129,11 +129,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.ConfirmEmail.Name;
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
             public GetRoute()
-                : base("confirm-email/{token}/{secretCode}", new MvcRouteHandler())
             {
+                Url = "confirm-email/{token}/{secretCode}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -149,11 +149,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class PostRoute : Route
+        public class PostRoute : MvcRoute
         {
             public PostRoute()
-                : base("confirm-email/{token}", new MvcRouteHandler())
             {
+                Url = "confirm-email/{token}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -168,11 +168,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class ValidateSecretCodeRoute : Route
+        public class ValidateSecretCodeRoute : MvcRoute
         {
             public ValidateSecretCodeRoute()
-                : base("confirm-email/validate", new MvcRouteHandler())
             {
+                Url = "confirm-email/validate";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

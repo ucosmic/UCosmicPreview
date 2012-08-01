@@ -128,11 +128,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         private static readonly string Area = MVC.Common.Name;
         private static readonly string Controller = MVC.Common.Skins.Name;
 
-        public class ChangeRoute : Route
+        public class ChangeRoute : MvcRoute
         {
             public ChangeRoute()
-                : base("as/{skinContext}", new MvcRouteHandler())
             {
+                Url = "as/{skinContext}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -146,11 +146,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             }
         }
 
-        public class ApplyRoute : Route
+        public class ApplyRoute : MvcRoute
         {
             public ApplyRoute()
-                : base("skins/apply/{skinFile}", new MvcRouteHandler())
             {
+                Url = "skins/apply/{skinFile}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -165,11 +165,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             }
         }
 
-        public class LogoRoute : Route
+        public class LogoRoute : MvcRoute
         {
             public LogoRoute()
-                : base("skins/logo", new MvcRouteHandler())
             {
+                Url = "skins/logo";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -183,11 +183,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             }
         }
 
-        public class SampleRoute : Route
+        public class SampleRoute : MvcRoute
         {
             public SampleRoute()
-                : base("skins/sample/{content}", new MvcRouteHandler())
             {
+                Url = "skins/sample/{content}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

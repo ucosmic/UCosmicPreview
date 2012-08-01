@@ -88,11 +88,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.ForgotPassword.Name;
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
             public GetRoute()
-                : base("forgot-password", new MvcRouteHandler())
             {
+                Url = "forgot-password";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -122,11 +122,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             }
         }
 
-        public class ValidateEmailAddressRoute : Route
+        public class ValidateEmailAddressRoute : MvcRoute
         {
             public ValidateEmailAddressRoute()
-                : base("forgot-password/validate", new MvcRouteHandler())
             {
+                Url = "forgot-password/validate";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

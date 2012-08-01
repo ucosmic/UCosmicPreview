@@ -6,19 +6,8 @@ using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
 {
-    public class TagListServices
-    {
-    }
-
     public partial class TagListController : BaseController
     {
-        private readonly TagListServices _services;
-
-        public TagListController(TagListServices services)
-        {
-            _services = services;
-        }
-
         [HttpPost]
         public virtual PartialViewResult Add(ActivityTagDomainType domainType, int? domainKey, string text)
         {
@@ -41,10 +30,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         private static readonly string Area = MVC.Activities.Name;
         private static readonly string Controller = MVC.Activities.TagList.Name;
 
-        public class AddRoute : Route
+        public class AddRoute : MvcRoute
         {
-            public AddRoute():base("activities/tags/add", new MvcRouteHandler())
+            public AddRoute()
             {
+                Url = "activities/tags/add";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

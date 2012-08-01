@@ -122,11 +122,11 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
         private static readonly string Area = MVC.Activities.Name;
         private static readonly string Controller = MVC.Activities.TagMenu.Name;
 
-        public class PostRoute : Route
+        public class PostRoute : MvcRoute
         {
             public PostRoute()
-                : base("activities/tags/menu", new MvcRouteHandler())
             {
+                Url = "activities/tags/menu";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

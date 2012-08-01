@@ -155,11 +155,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         private static readonly string Area = MVC.Common.Name;
         private static readonly string Controller = MVC.Common.Features.Name;
 
-        public class ReleasesNavRoute : Route
+        public class ReleasesNavRoute : MvcRoute
         {
             public ReleasesNavRoute()
-                : base("releases/nav", new MvcRouteHandler())
             {
+                Url = "releases/nav";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -173,13 +173,13 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             }
         }
 
-        public class ReleasesRoute : Route
+        public class ReleasesRoute : MvcRoute
         {
             public const string CurrentVersion = "july-2012-preview-1";
 
             public ReleasesRoute()
-                : base(string.Empty, new MvcRouteHandler())
             {
+                Url = string.Empty;
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -202,11 +202,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             }
         }
 
-        public class RequirementsRoute : Route
+        public class RequirementsRoute : MvcRoute
         {
             public RequirementsRoute()
-                : base("features/{module}", new MvcRouteHandler())
             {
+                Url = "features/{module}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

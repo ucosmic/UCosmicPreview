@@ -59,11 +59,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         private static readonly string Area = MVC.Identity.Name;
         private static readonly string Controller = MVC.Identity.MyHome.Name;
 
-        public class GetRoute : Route
+        public class GetRoute : MvcRoute
         {
+            public const string UrlConstant = "my/home";
+
             public GetRoute()
-                : base(MyHomeUrl, new MvcRouteHandler())
             {
+                Url = UrlConstant;
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -75,8 +77,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                     httpMethod = new HttpMethodConstraint("GET"),
                 });
             }
-
-            public const string MyHomeUrl = "my/home";
         }
 
         public class GetMyRoute : GetRoute

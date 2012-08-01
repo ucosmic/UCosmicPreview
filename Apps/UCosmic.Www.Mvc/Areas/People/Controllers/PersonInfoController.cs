@@ -154,11 +154,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
         private static readonly string Area = MVC.People.Name;
         private static readonly string Controller = MVC.People.PersonInfo.Name;
 
-        public class ByEmailRoute : Route
+        public class ByEmailRoute : MvcRoute
         {
             public ByEmailRoute()
-                : base("people/by-email", new MvcRouteHandler())
             {
+                Url = "people/by-email";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -172,11 +172,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             }
         }
 
-        public class ByGuidRoute : Route
+        public class ByGuidRoute : MvcRoute
         {
             public ByGuidRoute()
-                : base("people/by-guid", new MvcRouteHandler())
             {
+                Url = "people/by-guid";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -190,11 +190,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             }
         }
 
-        public class WithEmailRoute : Route
+        public class WithEmailRoute : MvcRoute
         {
             public WithEmailRoute()
-                : base("people/with-email", new MvcRouteHandler())
             {
+                Url = "people/with-email";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -208,11 +208,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             }
         }
 
-        public class WithFirstNameRoute : Route
+        public class WithFirstNameRoute : MvcRoute
         {
             public WithFirstNameRoute()
-                : base("people/with-first-name", new MvcRouteHandler())
             {
+                Url = "people/with-first-name";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -226,11 +226,11 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers
             }
         }
 
-        public class WithLastNameRoute : Route
+        public class WithLastNameRoute : MvcRoute
         {
             public WithLastNameRoute()
-                : base("people/with-last-name", new MvcRouteHandler())
             {
+                Url = "people/with-last-name";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
