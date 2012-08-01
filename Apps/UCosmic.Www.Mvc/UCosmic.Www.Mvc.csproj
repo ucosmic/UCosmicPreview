@@ -298,12 +298,12 @@
     <Compile Include="Areas\Identity\Controllers\SignOnController.cs" />
     <Compile Include="Areas\Roles\Models\NoDuplicateGrantsAttribute.cs" />
     <Compile Include="Areas\Identity\Models\SignOnForm.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsRouteMapper.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Mappers\_ConfigurationFormsRouteMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\ConfigurationFormsModelMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Mappers\PublicSearchModelMapper.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\Mappers\PublicSearchRouteMapper.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Mappers\_PublicSearchRouteMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\_Deprecated\_ManagementFormsModelMapper.cs" />
-    <Compile Include="Areas\InstitutionalAgreements\Mappers\ManagementFormsRouteMapper.cs" />
+    <Compile Include="Areas\InstitutionalAgreements\Mappers\_ManagementFormsRouteMapper.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\AllowedContactTypeAttribute.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\AllowedStatusAttribute.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\AllowedTypeAttribute.cs" />

@@ -218,7 +218,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         {
             return new RouteValueDictionary(new
             {
-                Namespaces = string.Format("{0}.*", typeof(EstablishmentsAreaRegistration).Namespace),
+                Namespaces = new[] { string.Format("{0}.*", typeof(EstablishmentsAreaRegistration).Namespace) },
                 area = Area,
                 UseNamespaceFallback = true,
             });

@@ -11,6 +11,7 @@ using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ConfigurationForms;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Models;
+using System.Web.Routing;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 {
@@ -601,135 +602,251 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 
     }
 
-    //public static class InstitutionalAgreementConfigurationExtensions
-    //{
-    //    public static InstitutionalAgreementConfiguration ForCurrentUserDefaultAffiliation2(this IQueryEntities entities, bool checkAncestors = false)
-    //    {
-    //        // set up common predicate expressions
-    //        Expression<Func<Affiliation, bool>> currentUserDefaultAffiliation = affiliation =>
-    //            affiliation.Establishment.IsMember && affiliation.IsDefault && affiliation.Person.User != null
-    //                && affiliation.Person.User.Name.Equals(Thread.CurrentPrincipal.Identity.Name);
+    public static class ConfigurationFormsRouter
+    {
+        private static readonly string Area = MVC.InstitutionalAgreements.Name;
+        private static readonly string Controller = MVC.InstitutionalAgreements.ConfigurationForms.Name;
 
-    //        //var query = context.InstitutionalAgreementConfigurations.AsNoTracking().Current()
-    //        var query = entities.Read<InstitutionalAgreementConfiguration>()
-    //            //.Including(c => c.ForEstablishment.Affiliates.Select(a => a.Person.User))
-    //            //.Including(c => c.AllowedTypeValues)
-    //            //.Including(c => c.AllowedStatusValues)
-    //            //.Including(c => c.AllowedContactTypeValues)
-    //            .Where(c => c.ForEstablishment != null && c.ForEstablishment.IsMember);
+        //public static void RegisterRoutes(AreaRegistrationContext context)
+        //{
+        //    RootActionRouter.RegisterRoutes(typeof(ConfigurationFormsRouteMapper), context, Area, Controller);
+        //}
 
-    //        InstitutionalAgreementConfiguration configuration;
-    //        if (!checkAncestors)
-    //        {
-    //            configuration = query.SingleOrDefault(c => c.ForEstablishment.Affiliates.AsQueryable().Any(currentUserDefaultAffiliation)
-    //                || c.ForEstablishment.Offspring.Any(offspring => offspring.Offspring.Affiliates.AsQueryable().Any(currentUserDefaultAffiliation)));
-    //        }
-    //        else
-    //        {
-    //            configuration = query.SingleOrDefault(c => c.ForEstablishment.Affiliates.AsQueryable().Any(currentUserDefaultAffiliation));
-    //        }
+        public class AddRoute : Route
+        {
+            public AddRoute()
+                : base("my/institutional-agreements/configure/set-up.html", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.Add,
+                });
+            }
+        }
 
-    //        if (configuration != null)
-    //        {
-    //            configuration.AllowedTypeValues = configuration.AllowedTypeValues.OrderBy(o => o.Text).ToList();
-    //            configuration.AllowedStatusValues = configuration.AllowedStatusValues.OrderBy(o => o.Text).ToList();
-    //            configuration.AllowedContactTypeValues = configuration.AllowedContactTypeValues.OrderBy(o => o.Text).ToList();
-    //        }
+        //public static class Add
+        //{
+        //    public const string Route = "my/institutional-agreements/configure/set-up.html";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.Add;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        context.MapRoute(null, Route, defaults);
+        //    }
+        //}
 
-    //        return configuration;
-    //    }
+        public class EditRoute : Route
+        {
+            public EditRoute()
+                : base("my/institutional-agreements/configure", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.Edit,
+                });
+            }
+        }
 
-    //    //public static InstitutionalAgreementConfiguration ForCurrentUserDefaultAffiliation(this UCosmicContext context, bool checkAncestors = false)
-    //    //{
-    //    //    // set up common predicate expressions
-    //    //    Expression<Func<Affiliation, bool>> currentUserDefaultAffiliation = affiliation =>
-    //    //        affiliation.Establishment.IsMember && affiliation.IsDefault && affiliation.Person.User != null
-    //    //            && affiliation.Person.User.Name.Equals(Thread.CurrentPrincipal.Identity.Name);
+        public class EditHtmlRoute : EditRoute
+        {
+            public EditHtmlRoute()
+            {
+                Url = "my/institutional-agreements/configure.html";
+            }
+        }
 
-    //    //    var query = context.InstitutionalAgreementConfigurations.AsNoTracking().Current()
-    //    //        //.Including(c => c.ForEstablishment.Affiliates.Select(a => a.Person.User))
-    //    //        //.Including(c => c.AllowedTypeValues)
-    //    //        //.Including(c => c.AllowedStatusValues)
-    //    //        //.Including(c => c.AllowedContactTypeValues)
-    //    //        .Where(c => c.ForEstablishment != null && c.ForEstablishment.IsMember);
+        //public static class Edit
+        //{
+        //    public static readonly string[] Routes =
+        //    {
+        //        "my/institutional-agreements/configure",
+        //        "my/institutional-agreements/configure.html",
+        //    };
+        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.Edit;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        context.MapRoutes(null, Routes, defaults);
+        //    }
+        //}
 
-    //    //    InstitutionalAgreementConfiguration configuration;
-    //    //    if (!checkAncestors)
-    //    //    {
-    //    //        configuration = query.SingleOrDefault(c => c.ForEstablishment.Affiliates.AsQueryable().Any(currentUserDefaultAffiliation)
-    //    //            || c.ForEstablishment.Offspring.Any(offspring => offspring.Offspring.Affiliates.AsQueryable().Any(currentUserDefaultAffiliation)));
-    //    //    }
-    //    //    else
-    //    //    {
-    //    //        configuration = query.SingleOrDefault(c => c.ForEstablishment.Affiliates.AsQueryable().Any(currentUserDefaultAffiliation));
-    //    //    }
+        public class NewAgreementTypeRoute : Route
+        {
+            public NewAgreementTypeRoute()
+                : base("my/institutional-agreements/configure/{configurationId}/new-type-option.partial.html", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.NewAgreementType,
+                });
+            }
+        }
 
-    //    //    if (configuration != null)
-    //    //    {
-    //    //        configuration.AllowedTypeValues = configuration.AllowedTypeValues.OrderBy(o => o.Text).ToList();
-    //    //        configuration.AllowedStatusValues = configuration.AllowedStatusValues.OrderBy(o => o.Text).ToList();
-    //    //        configuration.AllowedContactTypeValues = configuration.AllowedContactTypeValues.OrderBy(o => o.Text).ToList();
-    //    //    }
+        //public static class NewAgreementType
+        //{
+        //    public const string Route = "my/institutional-agreements/configure/{configurationId}/new-type-option.partial.html";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.NewAgreementType;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        context.MapRoute(null, Route, defaults);
+        //    }
+        //}
 
-    //    //    return configuration;
-    //    //}
+        public class NewAgreementStatusRoute : Route
+        {
+            public NewAgreementStatusRoute()
+                : base("my/institutional-agreements/configure/{configurationId}/new-status-option.partial.html", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.NewAgreementStatus,
+                });
+            }
+        }
 
-    //    //public static InstitutionalAgreementConfiguration ForCurrentUserDefaultAffiliationV1(this UCosmicContext context, bool checkAncestors = false)
-    //    //{
-    //    //    // set up common predicate expressions
-    //    //    Expression<Func<Affiliation, bool>> currentUserDefaultAffiliation = a =>
-    //    //        a.Establishment.IsMember && a.IsDefault && a.Person.User != null
-    //    //        && a.Person.User.UserName.Equals(Thread.CurrentPrincipal.Identity.Name);
-    //    //    //Expression<Func<Establishment, bool>> currentUserDefaultEstablishment = e =>
-    //    //    //    e.Affiliates.AsQueryable().Any(currentUserDefaultAffiliation);
+        //public static class NewAgreementStatus
+        //{
+        //    public const string Route = "my/institutional-agreements/configure/{configurationId}/new-status-option.partial.html";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.NewAgreementStatus;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        context.MapRoute(null, Route, defaults);
+        //    }
+        //}
 
-    //    //    var query = context.InstitutionalAgreementConfigurations.AsNoTracking().Current()
-    //    //        .Including(c => c.ForEstablishment.Affiliates.Select(a => a.Person.User))
-    //    //        .Including(c => c.AllowedTypeValues)
-    //    //        .Including(c => c.AllowedStatusValues)
-    //    //        .Including(c => c.AllowedContactTypeValues)
-    //    //        .Where(c => c.ForEstablishment != null && c.ForEstablishment.IsMember);
+        public class NewAgreementContactTypeRoute : Route
+        {
+            public NewAgreementContactTypeRoute()
+                : base("my/institutional-agreements/configure/{configurationId}/new-contact-type-option.partial.html", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.NewAgreementContactType,
+                });
+            }
+        }
 
-    //    //    var configuration = query.SingleOrDefault(c => c.ForEstablishment.Affiliates.AsQueryable().Any(currentUserDefaultAffiliation));
-    //    //    if (configuration == null && checkAncestors)
-    //    //    {
-    //    //        // nested offspring collection is too slow
-    //    //        //configuration = query.SingleOrDefault(c => c.ForEstablishment.Affiliates.AsQueryable().Any(currentUserDefaultAffiliation)
-    //    //        //    || (c.ForEstablishment.Children.AsQueryable().Any(currentUserDefaultEstablishment))
-    //    //        //    || (c.ForEstablishment.Children.Any(o2 => o2.Children
-    //    //        //        .AsQueryable().Any(currentUserDefaultEstablishment)))
-    //    //        //    || (c.ForEstablishment.Children.Any(o2 => o2.Children.Any(o3 => o3.Children
-    //    //        //        .AsQueryable().Any(currentUserDefaultEstablishment))))
-    //    //        //    || (c.ForEstablishment.Children.Any(o2 => o2.Children.Any(o3 => o3.Children.Any(o4 => o4.Children
-    //    //        //        .AsQueryable().Any(currentUserDefaultEstablishment)))))
-    //    //        //    || (c.ForEstablishment.Children.Any(o2 => o2.Children.Any(o3 => o3.Children.Any(o4 => o4.Children.Any(o5 =>
-    //    //        //        o5.Children.AsQueryable().Any(currentUserDefaultEstablishment)))))));
+        //public static class NewAgreementContactType
+        //{
+        //    public const string Route = "my/institutional-agreements/configure/{configurationId}/new-contact-type-option.partial.html";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.NewAgreementContactType;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        context.MapRoute(null, Route, defaults);
+        //    }
+        //}
 
-    //    //        var person =
-    //    //            context.People.AsNoTracking().Current().Including(p => p.User).Include(
-    //    //                p => p.Affiliations.Select(a => a.Establishment.Parent.Parent.Parent.Parent.Parent))
-    //    //                .SingleOrDefault(p => p.User != null && p.User.UserName.Equals(Thread.CurrentPrincipal.Identity.Name));
-    //    //        if (person != null)
-    //    //        {
-    //    //            var establishment = person.DefaultAffiliation.Establishment.Parent;
-    //    //            while (configuration == null && establishment != null && establishment.IsMember)
-    //    //            {
-    //    //                var revisionId = establishment.RevisionId;
-    //    //                configuration = query.SingleOrDefault(c => c.ForEstablishmentId == revisionId);
-    //    //                establishment = establishment.Parent;
-    //    //            }
-    //    //        }
-    //    //    }
+        public class AgreementTypeOptionsRoute : Route
+        {
+            public AgreementTypeOptionsRoute()
+                : base("my/institutional-agreements/configure/get-type-options.json", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.AgreementTypeOptions,
+                });
+            }
+        }
 
-    //    //    if (configuration != null)
-    //    //    {
-    //    //        configuration.AllowedTypeValues = configuration.AllowedTypeValues.OrderBy(o => o.Text).ToList();
-    //    //        configuration.AllowedStatusValues = configuration.AllowedStatusValues.OrderBy(o => o.Text).ToList();
-    //    //        configuration.AllowedContactTypeValues = configuration.AllowedContactTypeValues.OrderBy(o => o.Text).ToList();
-    //    //    }
+        //public static class AgreementTypeOptions
+        //{
+        //    public const string Route = "my/institutional-agreements/configure/get-type-options.json";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.AgreementTypeOptions;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        context.MapRoute(null, Route, defaults);
+        //    }
+        //}
 
-    //    //    return configuration;
-    //    //}
+        public class AgreementStatusOptionsRoute : Route
+        {
+            public AgreementStatusOptionsRoute()
+                : base("my/institutional-agreements/configure/get-status-options.json", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.AgreementStatusOptions,
+                });
+            }
+        }
 
-    //}
+        //public static class AgreementStatusOptions
+        //{
+        //    public const string Route = "my/institutional-agreements/configure/get-status-options.json";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.AgreementStatusOptions;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        context.MapRoute(null, Route, defaults);
+        //    }
+        //}
+
+        public class AgreementContactTypeOptionsRoute : Route
+        {
+            public AgreementContactTypeOptionsRoute()
+                : base("my/institutional-agreements/configure/get-contact-type-options.json", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.AgreementContactTypeOptions,
+                });
+            }
+        }
+
+        //public static class AgreementContactTypeOptions
+        //{
+        //    public const string Route = "my/institutional-agreements/configure/get-contact-type-options.json";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.AgreementContactTypeOptions;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        context.MapRoute(null, Route, defaults);
+        //    }
+        //}
+
+        public class ValidateDuplicateOptionRoute : Route
+        {
+            public ValidateDuplicateOptionRoute()
+                : base("my/institutional-agreements/configure/validate-duplicate-option.json", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.ValidateDuplicateOption,
+                });
+            }
+        }
+
+        //public static class ValidateDuplicateOption
+        //{
+        //    public const string Route = "my/institutional-agreements/configure/validate-duplicate-option.json";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.ValidateDuplicateOption;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        context.MapRoute(null, Route, defaults);
+        //    }
+        //}
+    }
 }

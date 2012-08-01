@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 {
@@ -12,12 +11,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            ManagementFormsRouteMapper.RegisterRoutes(context);
-
-            ConfigurationFormsRouteMapper.RegisterRoutes(context);
-
-            PublicSearchRouteMapper.RegisterRoutes(context);
-
             //context.MapRoute(
             //    "InstitutionalAgreements_default",
             //    "InstitutionalAgreements/{controller}/{action}/{id}",

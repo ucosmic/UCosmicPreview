@@ -1,0 +1,8 @@
+﻿//using System.Web.Mvc;
+//using UCosmic.Www.Mvc.Controllers;
+
+//namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Mappers
+//{
+//    // ReSharper disable UnusedMember.Global
+//    // ReSharper restore UnusedMember.Global
+//}

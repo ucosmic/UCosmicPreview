@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using System.Web.Routing;
 using AutoMapper;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
@@ -29,6 +30,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             //_establishments = new EstablishmentFinder(entityQueries);
             //_places = new PlaceFinder(entityQueries);
         }
+
 
         [NonAction]
         private string ConvertEstablishmentUrlFromMy(string establishmentUrl)
@@ -560,5 +562,277 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             var ownerModels = Mapper.Map<IEnumerable<EstablishmentInfo>>(owners);
             return PartialView(Views._no_context, ownerModels);
         }
+    }
+
+    public static class PublicSearchRouter
+    {
+        private static readonly string Area = MVC.InstitutionalAgreements.Name;
+        private static readonly string Controller = MVC.InstitutionalAgreements.PublicSearch.Name;
+
+        //public static void RegisterRoutes(AreaRegistrationContext context)
+        //{
+        //    RootActionRouter.RegisterRoutes(typeof(PublicSearchRouteMapper), context, Area, Controller);
+        //}
+
+        public class IndexRoute : Route
+        {
+            public IndexRoute()
+                : base("{establishmentUrl}/institutional-agreements/search/{keyword}", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.Index,
+                    establishmentUrl = "my",
+                    keyword = UrlParameter.Optional,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        //public static class Index
+        //{
+        //    public const string Route = "{establishmentUrl}/institutional-agreements/{keyword}";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.Index;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new
+        //        {
+        //            area,
+        //            controller,
+        //            action = Action,
+        //            establishmentUrl = "my",
+        //            keyword = UrlParameter.Optional,
+        //        };
+        //        var constraints = new { httpMethod = new HttpMethodConstraint("GET") };
+        //        context.MapRoute(null, Route, defaults, constraints);
+        //    }
+        //}
+
+        public class GetChildEstablishmentsWithAgreementsRoute : Route
+        {
+            public GetChildEstablishmentsWithAgreementsRoute()
+                : base("{establishmentUrl}/institutional-agreements/under-parent/{parentId}", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.GetChildEstablishmentsWithAgreements,
+                    establishmentUrl = "my",
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                    parentId = new NonEmptyGuidRouteConstraint(),
+                });
+            }
+        }
+
+        //public static class GetChildEstablishmentsWithAgreements
+        //{
+        //    public const string Route = "{establishmentUrl}/institutional-agreements/under-parent/{parentId}";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.GetChildEstablishmentsWithAgreements;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new
+        //        {
+        //            area,
+        //            controller,
+        //            action = Action,
+        //            establishmentUrl = "my",
+        //        };
+        //        var constraints = new
+        //        {
+        //            httpMethod = new HttpMethodConstraint("GET"),
+        //            parentId = new NonEmptyGuidRouteConstraint(),
+        //        };
+        //        context.MapRoute(null, Route, defaults, constraints);
+        //    }
+        //}
+
+        public class ChangeOwnerRoute : Route
+        {
+            public ChangeOwnerRoute()
+                : base("institutional-agreements/change-owner", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.ChangeOwner,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        //public static class ChangeOwner
+        //{
+        //    public const string Route = "institutional-agreements/change-owner";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.ChangeOwner;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new
+        //        {
+        //            area,
+        //            controller,
+        //            action = Action,
+        //        };
+        //        var constraints = new
+        //        {
+        //            httpMethod = new HttpMethodConstraint("GET"),
+        //        };
+        //        context.MapRoute(null, Route, defaults, constraints);
+        //    }
+        //}
+
+        public class InfoRoute : Route
+        {
+            public InfoRoute()
+                : base("institutional-agreements/{agreementId}", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.Info,
+                    establishmentUrl = "my",
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                    agreementId = new NonEmptyGuidRouteConstraint(),
+                });
+            }
+        }
+
+        //public static class Info
+        //{
+        //    public const string Route = "institutional-agreements/{agreementId}";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.Info;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new
+        //        {
+        //            area,
+        //            controller,
+        //            action = Action,
+        //            establishmentUrl = "my",
+        //        };
+        //        var constraints = new
+        //        {
+        //            httpMethod = new HttpMethodConstraint("GET"),
+        //            agreementId = new NonEmptyGuidRouteConstraint(),
+        //        };
+        //        context.MapRoute(null, Route, defaults, constraints);
+        //    }
+        //}
+
+        public class DisplayFileRoute : Route
+        {
+            public DisplayFileRoute()
+                : base("institutional-agreements/files/{fileId}/display/{fileName}", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.DisplayFile,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        //public static class DisplayFile
+        //{
+        //    public const string Route = "institutional-agreements/files/{fileId}/display/{fileName}";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.DisplayFile;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        var constraints = new
+        //        {
+        //            httpMethod = new HttpMethodConstraint("GET"),
+        //        };
+        //        context.MapRoute(null, Route, defaults, constraints);
+        //    }
+        //}
+
+        public class DownloadFileRoute : Route
+        {
+            public DownloadFileRoute()
+                : base("institutional-agreements/files/{fileId}/download/{fileName}", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.DownloadFile,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
+                });
+            }
+        }
+
+        //public static class DownloadFile
+        //{
+        //    public const string Route = "institutional-agreements/files/{fileId}/download/{fileName}";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.DownloadFile;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        var constraints = new
+        //        {
+        //            httpMethod = new HttpMethodConstraint("GET"),
+        //        };
+        //        context.MapRoute(null, Route, defaults, constraints);
+        //    }
+        //}
+
+        public class AutoCompleteKeywordRoute : Route
+        {
+            public AutoCompleteKeywordRoute()
+                : base("institutional-agreements/autocomplete/search/keyword/{establishmentUrl}", new MvcRouteHandler())
+            {
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.AutoCompleteKeyword,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("POST"),
+                });
+            }
+        }
+
+        //public static class AutoCompleteKeyword
+        //{
+        //    public const string Route = "institutional-agreements/autocomplete/search/keyword/{establishmentUrl}";
+        //    private static readonly string Action = MVC.InstitutionalAgreements.PublicSearch.ActionNames.AutoCompleteKeyword;
+        //    public static void MapRoutes(AreaRegistrationContext context, string area, string controller)
+        //    {
+        //        var defaults = new { area, controller, action = Action, };
+        //        var constraints = new
+        //        {
+        //            httpMethod = new HttpMethodConstraint("POST"),
+        //        };
+        //        context.MapRoute(null, Route, defaults, constraints);
+        //    }
+        //}
+
     }
 }
