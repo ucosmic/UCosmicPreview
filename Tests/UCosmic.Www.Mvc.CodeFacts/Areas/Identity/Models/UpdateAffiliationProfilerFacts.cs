@@ -160,7 +160,19 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void IgnoresReturnUrl()
             {
-                var entity = new Affiliation();
+                var entity = new Affiliation
+                {
+                    Establishment = new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Inst,
+                            }
+                        }
+                    }
+                };
 
                 var model = Mapper.Map<UpdateAffiliationForm>(entity);
 
@@ -174,6 +186,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var entity = new Affiliation
                 {
                     JobTitles = "test",
+                    Establishment = new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Inst,
+                            }
+                        }
+                    }
                 };
 
                 var model = Mapper.Map<UpdateAffiliationForm>(entity);
@@ -184,9 +206,21 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void MapsEstablishmentId()
             {
+                const int establishmentId = 92;
                 var entity = new Affiliation
                 {
-                    EstablishmentId = 92,
+                    EstablishmentId = establishmentId,
+                    Establishment = new Establishment
+                    {
+                        RevisionId = establishmentId,
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Inst,
+                            }
+                        }
+                    }
                 };
 
                 var model = Mapper.Map<UpdateAffiliationForm>(entity);
@@ -245,6 +279,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var entity = new Affiliation
                 {
                     IsAcknowledged = true,
+                    Establishment = new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Inst,
+                            },
+                        },
+                    },
                 };
 
                 var model = Mapper.Map<UpdateAffiliationForm>(entity);
@@ -258,6 +302,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var entity = new Affiliation
                 {
                     IsClaimingInternationalOffice = true,
+                    Establishment = new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Inst,
+                            },
+                        },
+                    },
                 };
 
                 var model = Mapper.Map<UpdateAffiliationForm>(entity);
@@ -271,6 +325,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var entity = new Affiliation
                 {
                     IsClaimingAdministrator = true,
+                    Establishment = new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Inst,
+                            },
+                        },
+                    },
                 };
 
                 var model = Mapper.Map<UpdateAffiliationForm>(entity);
@@ -284,6 +348,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var entity = new Affiliation
                 {
                     IsClaimingFaculty = true,
+                    Establishment = new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Inst,
+                            },
+                        },
+                    },
                 };
 
                 var model = Mapper.Map<UpdateAffiliationForm>(entity);
@@ -297,6 +371,16 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 var entity = new Affiliation
                 {
                     IsClaimingStaff = true,
+                    Establishment = new Establishment
+                    {
+                        Type = new EstablishmentType
+                        {
+                            Category = new EstablishmentCategory
+                            {
+                                Code = EstablishmentCategoryCode.Inst,
+                            },
+                        },
+                    },
                 };
 
                 var model = Mapper.Map<UpdateAffiliationForm>(entity);
