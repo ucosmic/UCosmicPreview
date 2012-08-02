@@ -19,33 +19,6 @@ namespace UCosmic.Domain.Establishments
         }
 
         [TestClass]
-        public class EstablishmentProperty
-        {
-            [TestMethod]
-            public void HasGetSet()
-            {
-                var value = new Establishment();
-                var entity = new EmailTemplate { Establishment = value };
-                entity.ShouldNotBeNull();
-                entity.Establishment.ShouldEqual(value);
-            }
-
-            [TestMethod]
-            public void IsVirtual()
-            {
-                new EmailTemplateRuntimeEntity();
-            }
-            private class EmailTemplateRuntimeEntity : EmailTemplate
-            {
-                public override Establishment Establishment
-                {
-                    get { return null; }
-                    set { }
-                }
-            }
-        }
-
-        [TestClass]
         public class FromAddressProperty
         {
             [TestMethod]
