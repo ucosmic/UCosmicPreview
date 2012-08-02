@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Should;
+using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;
@@ -128,7 +129,19 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 var controller = CreateController(scenarioOptions);
                 scenarioOptions.MockQueryProcessor.Setup(m => m.Execute(
                     It.Is(AffiliationQueryBasedOn(userName, establishmentId))))
-                        .Returns(new Affiliation());
+                        .Returns(new Affiliation
+                        {
+                            Establishment = new Establishment
+                            {
+                                Type = new EstablishmentType
+                                {
+                                    Category = new EstablishmentCategory
+                                    {
+                                        Code = EstablishmentCategoryCode.Inst
+                                    }
+                                }
+                            }
+                        });
 
                 var result = controller.Get(establishmentId);
 
