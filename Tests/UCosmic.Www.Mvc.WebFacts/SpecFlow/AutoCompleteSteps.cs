@@ -17,13 +17,13 @@ namespace UCosmic.Www.Mvc
             {
                 var page = browser.GetPage();
 
-                browser.WaitUntil(b => page.GetAutoCompleteMenu(fieldLabel).IsNotNull() &&
+                browser.WaitUntil(b => page.GetAutoCompleteMenu(fieldLabel) != null &&
                     page.GetAutoCompleteMenu(fieldLabel).Displayed &&
-                    page.GetAutoCompleteMenu(fieldLabel).FindElements(ByTagNameLi).Any(ElementTextEquals(expectedText)),
+                    page.GetAutoCompleteMenu(fieldLabel).GetElements(ByTagNameLi).Any(ElementTextEquals(expectedText)),
                     failMessage);
 
-                var menu = page.GetAutoCompleteMenu(fieldLabel);
-                var item = menu.FindElements(ByTagNameLi).First(ElementTextEquals(expectedText));
+                var menu = page.GetAutoCompleteMenu(fieldLabel, false);
+                var item = menu.GetElements(ByTagNameLi).First(ElementTextEquals(expectedText));
                 browser.WaitUntil(b => item.Displayed,
                     failMessage);
             });
@@ -60,7 +60,7 @@ namespace UCosmic.Www.Mvc
                 var page = browser.GetPage();
                 var menu = page.GetAutoCompleteMenu(fieldLabel);
                 var item = menu.FindElements(ByTagNameLi).First(ElementTextEquals(expectedText));
-                item.Click();
+                item.ClickIt();
             });
         }
 

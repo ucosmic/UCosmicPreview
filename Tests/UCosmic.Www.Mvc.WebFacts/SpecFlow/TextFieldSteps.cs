@@ -43,8 +43,7 @@ namespace UCosmic.Www.Mvc
             {
                 var page = browser.GetPage();
                 var textField = page.GetField(fieldLabel);
-                textField.Clear();
-                textField.SendKeys(textToType);
+                textField.ClearAndSendKeys(textToType);
             });
         }
 

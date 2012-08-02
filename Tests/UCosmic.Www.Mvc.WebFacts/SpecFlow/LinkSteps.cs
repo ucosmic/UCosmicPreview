@@ -17,7 +17,7 @@ namespace UCosmic.Www.Mvc
                 browser.WaitUntil(b => b.TryFindElement(By.LinkText(linkText)) != null,
                     "Link with text '{0}' could not be found by @Browser."
                         .FormatWith(linkText));
-                var link = browser.FindElement(By.LinkText(linkText));
+                var link = browser.WaitUntil(b => b.GetElement(By.LinkText(linkText)), null);
                 browser.WaitUntil(b => link.Displayed,
                     string.Format("Link with text '{0}' was found but is not displayed by @Browser.",
                         linkText));
@@ -29,10 +29,10 @@ namespace UCosmic.Www.Mvc
         {
             Browsers.ForEach(browser =>
             {
-                var link = browser.WaitUntil(b => b.FindElement(By.LinkText(linkText)),
+                var link = browser.WaitUntil(b => b.GetElement(By.LinkText(linkText)),
                     string.Format("Link with text '{0}' could not be found by @Browser.",
                         linkText));
-                link.Click();
+                link.ClickIt();
             });
         }
 

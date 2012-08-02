@@ -67,7 +67,7 @@ namespace UCosmic.Www.Mvc
             var cssSelector = LabeledSubmitButtonCssFormat.FormatWith(label);
 
             Browsers.ForEach(browser => browser.WaitUntil(b =>
-                b.FindElement(By.CssSelector(cssSelector)).Displayed,
+                b.GetElement(By.CssSelector(cssSelector)).Displayed,
                 "Submit button labeled '{0}' was not displayed by @Browser (using CSS selector {1})"
                     .FormatWith(label, cssSelector)));
         }
@@ -81,7 +81,7 @@ namespace UCosmic.Www.Mvc
 
             Browsers.ForEach(browser =>
             {
-                var button = browser.FindElement(By.CssSelector(cssSelector));
+                var button = browser.WaitUntil(b => b.GetElement(By.CssSelector(cssSelector)), null);
                 button.ClickButton();
             });
         }
@@ -117,7 +117,7 @@ namespace UCosmic.Www.Mvc
             Browsers.ForEach(browser =>
             {
                 var button = browser.FindElement(By.CssSelector(cssSelector));
-                browser.WaitUntil(b => "false".Equals(button.GetAttribute("disabled")),
+                browser.WaitUntil(b => "false".Equals(button.GetAttribute("disabled")) || button.GetAttribute("disabled") == null,
                     "Submit button labeled '{0}' was unexpectedly disabled in @Browser."
                         .FormatWith(label));
             });

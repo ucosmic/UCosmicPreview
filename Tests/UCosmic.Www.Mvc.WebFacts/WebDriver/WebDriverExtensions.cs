@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
@@ -139,7 +140,20 @@ namespace UCosmic.Www.Mvc
 
         public static object ExecuteScript(this IWebDriver browser, string script)
         {
-            return ((IJavaScriptExecutor)browser).ExecuteScript(script);
+            return browser.ExecuteScript(script, 0);
+        }
+
+        private static object ExecuteScript(this IWebDriver browser, string script, int retry)
+        {
+            try
+            {
+                return ((IJavaScriptExecutor)browser).ExecuteScript(script);
+            }
+            catch (Exception)
+            {
+                if (retry < WebDriverRetryLimit) return browser.ExecuteScript(script, ++retry);
+                throw;
+            }
         }
 
         #endregion
@@ -166,7 +180,7 @@ namespace UCosmic.Www.Mvc
             catch (Exception ex)
             {
                 // if an exception was thrown, fail the test and return
-                Assert.Fail(string.Format("{0} ({1})", failMessage, ex.Message));
+                Assert.Fail("{0} ({1})", failMessage, ex.Message);
             }
             // ReSharper disable HeuristicUnreachableCode
             return default(T); // need return value to compile
@@ -181,7 +195,7 @@ namespace UCosmic.Www.Mvc
 
         public static IWebElement TryFindElement(this IWebDriver browser, By by)
         {
-            try { return browser.FindElement(by); }
+            try { return browser.GetElement(by); }
             catch { return null; }
         }
 
@@ -192,7 +206,102 @@ namespace UCosmic.Www.Mvc
         }
 
         #endregion
+        #region Server Retries
 
+        private const int WebDriverRetryLimit = 15;
+
+        public static void ClearAndSendKeys(this IWebElement webElement, string text)
+        {
+            webElement.ClearAndSendKeys(text, 0);
+        }
+
+        private static void ClearAndSendKeys(this IWebElement webElement, string text, int retry)
+        {
+            try
+            {
+                webElement.Clear();
+                webElement.SendKeys(text);
+            }
+            catch (WebDriverException)
+            {
+                if (retry < WebDriverRetryLimit) webElement.ClearAndSendKeys(text, ++retry);
+                else throw;
+            }
+        }
+
+        public static void ClickIt(this IWebElement webElement)
+        {
+            webElement.ClickIt(0);
+        }
+
+        private static void ClickIt(this IWebElement webElement, int retry)
+        {
+            try
+            {
+                webElement.Click();
+            }
+            catch (WebDriverException)
+            {
+                if (retry < WebDriverRetryLimit) webElement.ClickIt(++retry);
+                else throw;
+            }
+        }
+
+        public static IWebElement GetElement(this IWebDriver webDriver, By by)
+        {
+            return webDriver.GetElement(by, 0);
+        }
+
+        private static IWebElement GetElement(this IWebDriver webDriver, By by, int retry)
+        {
+            try
+            {
+                return webDriver.FindElement(by);
+            }
+            catch (WebDriverException)
+            {
+                if (retry < WebDriverRetryLimit) return webDriver.GetElement(by, ++retry);
+                throw;
+            }
+        }
+
+        public static ReadOnlyCollection<IWebElement> GetElements(this IWebDriver webDriver, By by)
+        {
+            return webDriver.GetElements(by, 0);
+        }
+
+        private static ReadOnlyCollection<IWebElement> GetElements(this IWebDriver webDriver, By by, int retry)
+        {
+            try
+            {
+                return webDriver.FindElements(by);
+            }
+            catch (WebDriverException)
+            {
+                if (retry < WebDriverRetryLimit) return webDriver.GetElements(by, ++retry);
+                throw;
+            }
+        }
+
+        public static IEnumerable<IWebElement> GetElements(this IWebElement webElement, By by)
+        {
+            return webElement.GetElements(by, 0);
+        }
+
+        private static ReadOnlyCollection<IWebElement> GetElements(this IWebElement webElement, By by, int retry)
+        {
+            try
+            {
+                return webElement.FindElements(by);
+            }
+            catch (WebDriverException)
+            {
+                if (retry < WebDriverRetryLimit) return webElement.GetElements(by, ++retry);
+                throw;
+            }
+        }
+
+        #endregion
     }
 
     public static class BrowserName

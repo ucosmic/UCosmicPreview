@@ -42,7 +42,7 @@ namespace UCosmic.Www.Mvc
             var cssSelector = Fields[fieldLabel];
 
             if (!allowNull)
-                return Browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
+                return Browser.WaitUntil(b => b.GetElement(By.CssSelector(cssSelector)),
                     "The '{0}' field could not be found by @Browser (CSS selector was '{1}')."
                         .FormatWith(fieldLabel, cssSelector));
 
@@ -107,7 +107,7 @@ namespace UCosmic.Www.Mvc
             var cssSelector = Fields[key];
 
             if (!allowNull)
-                return Browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
+                return Browser.WaitUntil(b => b.GetElement(By.CssSelector(cssSelector)),
                     "An autocomplete menu for the '{0}' field was not found by @Browser (CSS selector was '{1}')."
                         .FormatWith(fieldLabel, cssSelector));
 
@@ -153,7 +153,7 @@ namespace UCosmic.Www.Mvc
             var cssSelector = Fields[key];
 
             if (!allowNull)
-                return Browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
+                return Browser.WaitUntil(b => b.GetElement(By.CssSelector(cssSelector)),
                     "An error message for the '{0}' field was not found by @Browser (CSS selector was '{1}')."
                         .FormatWith(fieldLabel, cssSelector));
 
