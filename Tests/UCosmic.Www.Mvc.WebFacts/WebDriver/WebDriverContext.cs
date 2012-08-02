@@ -19,7 +19,7 @@ namespace UCosmic.Www.Mvc
             GlobalAsaxFacts.RegisterAllRoutes(testContext);
 
             // use unity for dependency injection
-            ServiceProviderLocator.SetProvider(new UnityServiceProvider());
+            ServiceProviderLocator.SetProvider(new SimpleServiceProvider());
 
             // for the Chrome driver to start, chromedriver.exe should automatically copy from
             // the test project to /bin/Debug during build.

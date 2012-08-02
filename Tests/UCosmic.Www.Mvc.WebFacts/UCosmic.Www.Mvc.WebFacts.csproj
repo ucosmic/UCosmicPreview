@@ -80,6 +80,14 @@
     <Reference Include="Should">
       <HintPath>..\..\packages\Should.1.1.12.0\lib\Should.dll</HintPath>
     </Reference>
+    <Reference Include="SimpleInjector, Version=1.5.0.12199, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\SimpleInjector.1.5.0.12199\lib\net35\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Extensions, Version=1.5.0.12199, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\SimpleInjector.Extensions.1.5.0.12199\lib\net35\SimpleInjector.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -185,6 +193,7 @@
     <Compile Include="SpecFlow\IWrapDataConcerns.cs" />
     <Compile Include="SpecFlow\RadioButtonSteps.cs" />
     <Compile Include="WebDriver\Content.cs" />
+    <Compile Include="WebDriver\SimpleServiceProvider.cs" />
     <Compile Include="WebDriver\UrlMatchingExtensions.cs" />
     <Compile Include="Areas\Common\NavigateByHyperLink.feature.cs">
       <AutoGen>True</AutoGen>
@@ -449,6 +458,9 @@
     <Content Include="FileUploads\JavaScriptFile1.js" />
     <Content Include="FileUploads\VbScriptFile1.vb" />
     <Content Include="FileUploads\_ReadMe.txt" />
+    <None Include="chromedriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
