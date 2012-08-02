@@ -9,10 +9,8 @@ using System.Net.Mail;
 using System.Text;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
-using UCosmic.Domain.Identity;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Domain.People;
-using UCosmic.Domain.Places;
 
 namespace UCosmic.Impl.Orm
 {
@@ -28,11 +26,11 @@ namespace UCosmic.Impl.Orm
         }
 
         //public IDbSet<Language> Languages { get; set; }
-        public IDbSet<Place> Places { get; set; }
-        public IDbSet<User> Users { get; set; }
-        public IDbSet<Role> Roles { get; set; }
+        //public IDbSet<Place> Places { get; set; }
+        //public IDbSet<User> Users { get; set; }
+        //public IDbSet<Role> Roles { get; set; }
         public IDbSet<Establishment> Establishments { get; set; }
-        public IDbSet<EmailTemplate> EmailTemplates { get; set; }
+        //public IDbSet<EmailTemplate> EmailTemplates { get; set; }
         public IDbSet<Person> People { get; set; }
         public IDbSet<InstitutionalAgreement> InstitutionalAgreements { get; set; }
         public IDbSet<InstitutionalAgreementConfiguration> InstitutionalAgreementConfigurations { get; set; }
@@ -56,11 +54,6 @@ namespace UCosmic.Impl.Orm
 
             ActivitiesRelationalMapper.AddConfigurations(modelBuilder);
         }
-
-        //public IQueryable<TEntity> Get1<TEntity>() where TEntity : Entity
-        //{
-        //    return Set<TEntity>();
-        //}
 
         public IQueryable<TEntity> Get<TEntity>() where TEntity : Entity
         {
