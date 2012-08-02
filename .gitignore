@@ -54,5 +54,8 @@ UCosmic.Www.Mvc.Publish.xml
 #Allow chromedriver.exe
 !chromedriver.exe
 
+#Allow IEDriverServer.exe
+!IEDriverServer.exe
+
 #Ignore private folder
 /Private/
