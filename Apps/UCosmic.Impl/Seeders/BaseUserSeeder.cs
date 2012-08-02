@@ -14,7 +14,7 @@ namespace UCosmic.Impl.Seeders
             string affiliationUrl, IEnumerable<string> roleNames = null)
         {
             // get affiliated establishment
-            var establishment = Context.Establishments.ByWebsiteUrl(affiliationUrl);
+            var establishment = Context.Set<Establishment>().ByWebsiteUrl(affiliationUrl);
             if (establishment == null)
                 throw new InvalidOperationException(string.Format("There is no establishment for URL '{0}'.", affiliationUrl));
 

@@ -8,9 +8,6 @@ using System.Linq.Expressions;
 using System.Net.Mail;
 using System.Text;
 using UCosmic.Domain;
-using UCosmic.Domain.Establishments;
-using UCosmic.Domain.InstitutionalAgreements;
-using UCosmic.Domain.People;
 
 namespace UCosmic.Impl.Orm
 {
@@ -24,16 +21,6 @@ namespace UCosmic.Impl.Orm
             if (initializer != null)
                 Database.SetInitializer(initializer);
         }
-
-        //public IDbSet<Language> Languages { get; set; }
-        //public IDbSet<Place> Places { get; set; }
-        //public IDbSet<User> Users { get; set; }
-        //public IDbSet<Role> Roles { get; set; }
-        public IDbSet<Establishment> Establishments { get; set; }
-        //public IDbSet<EmailTemplate> EmailTemplates { get; set; }
-        public IDbSet<Person> People { get; set; }
-        public IDbSet<InstitutionalAgreement> InstitutionalAgreements { get; set; }
-        public IDbSet<InstitutionalAgreementConfiguration> InstitutionalAgreementConfigurations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

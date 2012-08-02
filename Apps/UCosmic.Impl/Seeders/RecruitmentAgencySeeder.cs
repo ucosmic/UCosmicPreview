@@ -36,7 +36,7 @@ namespace UCosmic.Impl.Seeders
 
             #region EduGlobal headquarters and branches
 
-            var eduGlobalHeaqdquarters = Context.Establishments.SingleOrDefault(a =>
+            var eduGlobalHeaqdquarters = Context.Set<Establishment>().SingleOrDefault(a =>
                 a.WebsiteUrl == "www.eduglobalchina.com" && a.Parent == null
                 && a.Type.EnglishName == "Recruitment Agency");
             if (eduGlobalHeaqdquarters == null)
@@ -86,7 +86,7 @@ namespace UCosmic.Impl.Seeders
                     },
                 };
                 EnsureOfficialName(eduGlobalHeaqdquarters);
-                Context.Establishments.Add(eduGlobalHeaqdquarters);
+                Context.Set<Establishment>().Add(eduGlobalHeaqdquarters);
                 Context.SaveChanges();
 
                 #endregion
@@ -135,7 +135,7 @@ namespace UCosmic.Impl.Seeders
                     },
                 };
                 EnsureOfficialName(eduGlobalChangchun);
-                Context.Establishments.Add(eduGlobalChangchun);
+                Context.Set<Establishment>().Add(eduGlobalChangchun);
 
                 #endregion
 
@@ -145,7 +145,7 @@ namespace UCosmic.Impl.Seeders
             #endregion
             #region EIC headquarters and branches
 
-            var eicHeaqdquarters = Context.Establishments.SingleOrDefault(a =>
+            var eicHeaqdquarters = Context.Set<Establishment>().SingleOrDefault(a =>
                 a.WebsiteUrl == "www.eic.org.cn" && a.Parent == null
                 && a.Type.EnglishName == "Recruitment Agency");
             if (eicHeaqdquarters == null)
@@ -195,7 +195,7 @@ namespace UCosmic.Impl.Seeders
                     },
                 };
                 EnsureOfficialName(eicHeaqdquarters);
-                Context.Establishments.Add(eicHeaqdquarters);
+                Context.Set<Establishment>().Add(eicHeaqdquarters);
 
                 #endregion
                 #region EIC Changsha (Branch)
@@ -243,7 +243,7 @@ namespace UCosmic.Impl.Seeders
                     },
                 };
                 EnsureOfficialName(eicChangsha);
-                Context.Establishments.Add(eicChangsha);
+                Context.Set<Establishment>().Add(eicChangsha);
 
                 #endregion
 
@@ -253,7 +253,7 @@ namespace UCosmic.Impl.Seeders
             #endregion
             #region Can-Achieve headquarters and branches
 
-            var canAchieveHeadquarters = Context.Establishments.SingleOrDefault(a =>
+            var canAchieveHeadquarters = Context.Set<Establishment>().SingleOrDefault(a =>
                 a.WebsiteUrl == "www.can-achieve.com.cn" && a.Parent == null
                 && a.Type.EnglishName == "Recruitment Agency");
             if (canAchieveHeadquarters == null)
@@ -300,7 +300,7 @@ namespace UCosmic.Impl.Seeders
 
                 };
                 EnsureOfficialName(canAchieveHeadquarters);
-                Context.Establishments.Add(canAchieveHeadquarters);
+                Context.Set<Establishment>().Add(canAchieveHeadquarters);
 
                 #endregion
                 #region Can-Achieve Nanjing (Branch)
@@ -343,7 +343,7 @@ namespace UCosmic.Impl.Seeders
                     },
                 };
                 EnsureOfficialName(canAchieveNanjing);
-                Context.Establishments.Add(canAchieveNanjing);
+                Context.Set<Establishment>().Add(canAchieveNanjing);
 
                 #endregion
                 #region Can-Achieve Guangzhou (Branch)
@@ -386,7 +386,7 @@ namespace UCosmic.Impl.Seeders
                     },
                 };
                 EnsureOfficialName(canAchieveGuangzhou);
-                Context.Establishments.Add(canAchieveGuangzhou);
+                Context.Set<Establishment>().Add(canAchieveGuangzhou);
 
                 #endregion
             }

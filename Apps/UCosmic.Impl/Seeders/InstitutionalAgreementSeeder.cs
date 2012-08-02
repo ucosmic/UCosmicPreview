@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
+using UCosmic.Domain.People;
 using UCosmic.Impl.Orm;
 
 namespace UCosmic.Impl.Seeders
@@ -24,19 +26,19 @@ namespace UCosmic.Impl.Seeders
 
                 Context = context;
 
-                var uc = Context.Establishments.Single(e => e.EmailDomains.Any(d => d.Value.Equals("@uc.edu", StringComparison.OrdinalIgnoreCase)));
+                var uc = Context.Set<Establishment>().Single(e => e.EmailDomains.Any(d => d.Value.Equals("@uc.edu", StringComparison.OrdinalIgnoreCase)));
 
-                Context.InstitutionalAgreements.ToList().ForEach(a =>
+                Context.Set<InstitutionalAgreement>().ToList().ForEach(a =>
                 {
-                    Context.InstitutionalAgreements.ToList().ForEach(agreement =>
+                    Context.Set<InstitutionalAgreement>().ToList().ForEach(agreement =>
                         agreement.Offspring.ToList().ForEach(offspring =>
                             Context.Entry(offspring).State = EntityState.Deleted
                         )
                     );
-                    Context.InstitutionalAgreements.Remove(a);
+                    Context.Set<InstitutionalAgreement>().Remove(a);
                     Context.SaveChanges();
                 });
-                Context.InstitutionalAgreements.Add(new InstitutionalAgreement
+                Context.Set<InstitutionalAgreement>().Add(new InstitutionalAgreement
                 {
                     Type = "Institutional Agreement",
                     Title = "1 Agreement Test",
@@ -55,11 +57,11 @@ namespace UCosmic.Impl.Seeders
                         new InstitutionalAgreementContact
                         {
                             Type = "Seeded Contact",
-                            Person = Context.People.Single(c => c.Emails.Any(e => "ludwigd@uc.edu".Equals(e.Value, StringComparison.OrdinalIgnoreCase))),
+                            Person = Context.Set<Person>().Single(c => c.Emails.Any(e => "ludwigd@uc.edu".Equals(e.Value, StringComparison.OrdinalIgnoreCase))),
                         }
                     }
                 });
-                Context.InstitutionalAgreements.Add(new InstitutionalAgreement
+                Context.Set<InstitutionalAgreement>().Add(new InstitutionalAgreement
                 {
                     EntityId = new Guid("2977e71f-91d9-4b23-9b30-b4286d918098"),
                     Type = "Institutional Collaboration Agreement",
@@ -73,7 +75,7 @@ namespace UCosmic.Impl.Seeders
                     Participants = new List<InstitutionalAgreementParticipant>
                     {
                          new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
-                         new InstitutionalAgreementParticipant{ Establishment = Context.Establishments.Single(e => e.WebsiteUrl == "www.jnu.edu.cn"), },
+                         new InstitutionalAgreementParticipant{ Establishment = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.jnu.edu.cn"), },
                     },
                     Files = new List<InstitutionalAgreementFile>
                     {
@@ -92,11 +94,11 @@ namespace UCosmic.Impl.Seeders
                         new InstitutionalAgreementContact
                         {
                             Type = "Seeded Contact",
-                            Person = Context.People.Single(c => c.Emails.Any(e => "ludwigd@uc.edu".Equals(e.Value, StringComparison.OrdinalIgnoreCase))),
+                            Person = Context.Set<Person>().Single(c => c.Emails.Any(e => "ludwigd@uc.edu".Equals(e.Value, StringComparison.OrdinalIgnoreCase))),
                         }
                     }
                 });
-                Context.InstitutionalAgreements.Add(new InstitutionalAgreement
+                Context.Set<InstitutionalAgreement>().Add(new InstitutionalAgreement
                 {
                     EntityId = new Guid("e3fb5d85-b5c5-4e1c-9c3f-56dbca58f2d1"),
                     Type = "Institutional Collaboration Agreement",
@@ -110,10 +112,10 @@ namespace UCosmic.Impl.Seeders
                     Participants = new List<InstitutionalAgreementParticipant>
                     {
                          new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
-                         new InstitutionalAgreementParticipant{ Establishment = Context.Establishments.Single(e => e.WebsiteUrl == "www.swinburne.edu.au"), },
+                         new InstitutionalAgreementParticipant{ Establishment = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.swinburne.edu.au"), },
                     },
                 });
-                Context.InstitutionalAgreements.Add(new InstitutionalAgreement
+                Context.Set<InstitutionalAgreement>().Add(new InstitutionalAgreement
                 {
                     EntityId = new Guid("cdff01d0-882e-4c4b-8e3a-01d380c1f9bc"),
                     Type = "Institutional Collaboration Agreement",
@@ -127,10 +129,10 @@ namespace UCosmic.Impl.Seeders
                     Participants = new List<InstitutionalAgreementParticipant>
                     {
                          new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
-                         new InstitutionalAgreementParticipant{ Establishment = Context.Establishments.Single(e => e.WebsiteUrl == "www.fhnw.ch"), },
+                         new InstitutionalAgreementParticipant{ Establishment = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.fhnw.ch"), },
                     },
                 });
-                Context.InstitutionalAgreements.Add(new InstitutionalAgreement
+                Context.Set<InstitutionalAgreement>().Add(new InstitutionalAgreement
                 {
                     EntityId = new Guid("95bd55fd-f66d-4917-977c-b34f2c6bf1dd"),
                     Type = "Institutional Collaboration Agreement",
@@ -144,10 +146,10 @@ namespace UCosmic.Impl.Seeders
                     Participants = new List<InstitutionalAgreementParticipant>
                     {
                          new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
-                         new InstitutionalAgreementParticipant{ Establishment = Context.Establishments.Single(e => e.WebsiteUrl == "www.jku.at"), },
+                         new InstitutionalAgreementParticipant{ Establishment = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.jku.at"), },
                     },
                 });
-                Context.InstitutionalAgreements.Add(new InstitutionalAgreement
+                Context.Set<InstitutionalAgreement>().Add(new InstitutionalAgreement
                 {
                     EntityId = new Guid("a481fda8-85f6-4e9b-9192-594c1cc73f01"),
                     Type = "Institutional Collaboration Agreement",
@@ -161,7 +163,7 @@ namespace UCosmic.Impl.Seeders
                     Participants = new List<InstitutionalAgreementParticipant>
                     {
                          new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
-                         new InstitutionalAgreementParticipant{ Establishment = Context.Establishments.Single(e => e.WebsiteUrl == "www.uclouvain.be"), },
+                         new InstitutionalAgreementParticipant{ Establishment = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.uclouvain.be"), },
                     },
                 });
                 var umbrellaAgreement1 = new InstitutionalAgreement
@@ -178,13 +180,13 @@ namespace UCosmic.Impl.Seeders
                     Participants = new List<InstitutionalAgreementParticipant>
                     {
                          new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
-                         new InstitutionalAgreementParticipant{ Establishment = Context.Establishments.Single(e => e.WebsiteUrl == "www.ufl.edu"), },
-                         new InstitutionalAgreementParticipant{ Establishment = Context.Establishments.Single(e => e.WebsiteUrl == "www.ufrj.br"), },
-                         new InstitutionalAgreementParticipant{ Establishment = Context.Establishments.Single(e => e.WebsiteUrl == "www.ufpr.br"), },
+                         new InstitutionalAgreementParticipant{ Establishment = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.ufl.edu"), },
+                         new InstitutionalAgreementParticipant{ Establishment = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.ufrj.br"), },
+                         new InstitutionalAgreementParticipant{ Establishment = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.ufpr.br"), },
                     },
                 };
-                Context.InstitutionalAgreements.Add(umbrellaAgreement1);
-                Context.InstitutionalAgreements.Add(new InstitutionalAgreement
+                Context.Set<InstitutionalAgreement>().Add(umbrellaAgreement1);
+                Context.Set<InstitutionalAgreement>().Add(new InstitutionalAgreement
                 {
                     EntityId = new Guid("e22153f5-3f10-4d89-8510-d72a024092db"),
                     Umbrella = umbrellaAgreement1,
@@ -199,10 +201,10 @@ namespace UCosmic.Impl.Seeders
                     Participants = new List<InstitutionalAgreementParticipant>
                     {
                          new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
-                         new InstitutionalAgreementParticipant{ Establishment = Context.Establishments.Single(e => e.WebsiteUrl == "www.ufpr.br"), },
+                         new InstitutionalAgreementParticipant{ Establishment = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.ufpr.br"), },
                     },
                 });
-                Context.InstitutionalAgreements.Add(new InstitutionalAgreement
+                Context.Set<InstitutionalAgreement>().Add(new InstitutionalAgreement
                 {
                     EntityId = new Guid("b240e6c0-85c2-4e27-a113-9998a663239b"),
                     Type = "Institutional Collaboration Agreement",
@@ -216,10 +218,10 @@ namespace UCosmic.Impl.Seeders
                     Participants = new List<InstitutionalAgreementParticipant>
                     {
                          new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
-                         new InstitutionalAgreementParticipant{ Establishment = Context.Establishments.Single(e => e.WebsiteUrl == "www.ippuc.org.br"), },
+                         new InstitutionalAgreementParticipant{ Establishment = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.ippuc.org.br"), },
                     },
                 });
-                Context.InstitutionalAgreements.Add(new InstitutionalAgreement
+                Context.Set<InstitutionalAgreement>().Add(new InstitutionalAgreement
                 {
                     EntityId = new Guid("9c2eed1c-4ca8-4d9a-a424-a4e4457fe8d1"),
                     Type = "Institutional Collaboration Agreement",
@@ -233,10 +235,10 @@ namespace UCosmic.Impl.Seeders
                     Participants = new List<InstitutionalAgreementParticipant>
                     {
                          new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
-                         new InstitutionalAgreementParticipant{ Establishment = Context.Establishments.Single(e => e.WebsiteUrl == "www.up.com.br"), },
+                         new InstitutionalAgreementParticipant{ Establishment = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.up.com.br"), },
                     },
                 });
-                Context.InstitutionalAgreements.Add(new InstitutionalAgreement
+                Context.Set<InstitutionalAgreement>().Add(new InstitutionalAgreement
                 {
                     EntityId = new Guid("99b9db1f-61c3-4dfe-8dc9-50562efd19a0"),
                     Type = "Institutional Collaboration Agreement",
@@ -249,11 +251,11 @@ namespace UCosmic.Impl.Seeders
                     Description = "To promote academic cooperation for exchange of teaching staff, joint research projects, exchange of students, shared courses and subjects, etc.",
                     Participants = new List<InstitutionalAgreementParticipant>
                     {
-                         new InstitutionalAgreementParticipant{ Establishment = Context.Establishments.Single(e => e.WebsiteUrl == "www.med.uc.edu"), IsOwner = true, },
-                         new InstitutionalAgreementParticipant{ Establishment = Context.Establishments.Single(e => e.WebsiteUrl == "www.usp.br"), },
+                         new InstitutionalAgreementParticipant{ Establishment = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.med.uc.edu"), IsOwner = true, },
+                         new InstitutionalAgreementParticipant{ Establishment = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.usp.br"), },
                     },
                 });
-                Context.InstitutionalAgreements.Add(new InstitutionalAgreement
+                Context.Set<InstitutionalAgreement>().Add(new InstitutionalAgreement
                 {
                     EntityId = new Guid("2ba7bc49-98cb-4e05-b8ac-df473e413a8b"),
                     Type = "Institutional Collaboration Agreement",
@@ -267,7 +269,7 @@ namespace UCosmic.Impl.Seeders
                     Participants = new List<InstitutionalAgreementParticipant>
                     {
                          new InstitutionalAgreementParticipant{ Establishment = uc, IsOwner = true, },
-                         new InstitutionalAgreementParticipant{ Establishment = Context.Establishments.Single(e => e.WebsiteUrl == "www.udd.cl"), },
+                         new InstitutionalAgreementParticipant{ Establishment = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.udd.cl"), },
                     },
                 });
                 Context.SaveChanges();

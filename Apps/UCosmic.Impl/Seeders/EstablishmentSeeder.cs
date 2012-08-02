@@ -36,7 +36,7 @@ namespace UCosmic.Impl.Seeders
                 Context = context;
 
                 const string usfUrl = "www.usf.edu";
-                var usf = context.Establishments.SingleOrDefault(e => e.WebsiteUrl == usfUrl);
+                var usf = Context.Set<Establishment>().SingleOrDefault(e => e.WebsiteUrl == usfUrl);
                 if (usf == null)
                 {
                     //var configurationManager = new DotNetConfigurationManager();
@@ -78,7 +78,7 @@ namespace UCosmic.Impl.Seeders
 
                 Context = context;
 
-                var uc = context.Establishments.Single(e => e.WebsiteUrl == "www.uc.edu");
+                var uc = Context.Set<Establishment>().Single(e => e.WebsiteUrl == "www.uc.edu");
                 var samlHandler = ServiceProviderLocator.Current.GetService<IHandleCommands<UpdateSamlSignOnInfoCommand>>();
                 samlHandler.Handle(
                     new UpdateSamlSignOnInfoCommand
@@ -100,7 +100,7 @@ namespace UCosmic.Impl.Seeders
 
                 Context = context;
 
-                var testshib = context.Establishments.SingleOrDefault(e => e.WebsiteUrl == "www.testshib.org");
+                var testshib = Context.Set<Establishment>().SingleOrDefault(e => e.WebsiteUrl == "www.testshib.org");
                 if (testshib == null)
                 {
                     testshib = new Establishment
@@ -119,7 +119,7 @@ namespace UCosmic.Impl.Seeders
                             new EstablishmentEmailDomain { Value = "@testshib.org", }
                         },
                     };
-                    context.Establishments.Add(testshib);
+                    Context.Set<Establishment>().Add(testshib);
                     context.SaveChanges();
 
                     // this won't seed if the testshib metadata url cannot be reached
@@ -173,7 +173,7 @@ namespace UCosmic.Impl.Seeders
 
             private void Seed(string url, double latitude, double longitude)
             {
-                var est = Context.Establishments.Single(e => e.WebsiteUrl == url);
+                var est = Context.Set<Establishment>().Single(e => e.WebsiteUrl == url);
                 if (est.Location.Center.HasValue) return;
 
                 est.Location.Center = new Coordinates { Latitude = latitude, Longitude = longitude };
@@ -206,7 +206,7 @@ namespace UCosmic.Impl.Seeders
                 Context = context;
 
                 // create locations for all establishments
-                var establishmentsWithoutLocations = Context.Establishments.Where(e => e.Location == null).ToList();
+                var establishmentsWithoutLocations = Context.Set<Establishment>().Where(e => e.Location == null).ToList();
                 establishmentsWithoutLocations.ForEach(e => e.Location = e.Location ??
                     new EstablishmentLocation
                     {
@@ -216,7 +216,7 @@ namespace UCosmic.Impl.Seeders
                 Context.SaveChanges();
 
                 // constitute official names
-                var establishmentsWithoutOfficialNames = Context.Establishments.Where(e => !e.Names.Any(n => n.IsOfficialName)).ToList();
+                var establishmentsWithoutOfficialNames = Context.Set<Establishment>().Where(e => !e.Names.Any(n => n.IsOfficialName)).ToList();
                 establishmentsWithoutOfficialNames.ForEach(e => e.Names.Add(new EstablishmentName
                 {
                     Text = e.OfficialName,
@@ -226,12 +226,12 @@ namespace UCosmic.Impl.Seeders
                 Context.SaveChanges();
 
                 // delete x-ascii names
-                var asciiEstablishmentNames = Context.Establishments.SelectMany(e => e.Names.Where(n => n.TranslationToHint == "x-ascii")).ToList();
+                var asciiEstablishmentNames = Context.Set<Establishment>().SelectMany(e => e.Names.Where(n => n.TranslationToHint == "x-ascii")).ToList();
                 asciiEstablishmentNames.ForEach(n => Context.Entry(n).State = EntityState.Deleted);
                 Context.SaveChanges();
 
                 // constitute official URL's
-                var establishmentsWithoutOfficialUrls = Context.Establishments.Where(e => !string.IsNullOrEmpty(e.WebsiteUrl)
+                var establishmentsWithoutOfficialUrls = Context.Set<Establishment>().Where(e => !string.IsNullOrEmpty(e.WebsiteUrl)
                     && !e.Urls.Any(n => n.IsOfficialUrl)).ToList();
                 establishmentsWithoutOfficialUrls.ForEach(e => e.Urls.Add(new EstablishmentUrl
                 {
@@ -242,7 +242,7 @@ namespace UCosmic.Impl.Seeders
                 Context.SaveChanges();
 
                 // convert URL names
-                var urlEstablishmentNames = Context.Establishments.SelectMany(e => e.Names.Where(n => n.TranslationToHint == "x-url")).ToList();
+                var urlEstablishmentNames = Context.Set<Establishment>().SelectMany(e => e.Names.Where(n => n.TranslationToHint == "x-url")).ToList();
                 urlEstablishmentNames.ForEach(n =>
                 {
                     n.ForEstablishment.Urls = n.ForEstablishment.Urls ?? new List<EstablishmentUrl>();
@@ -256,7 +256,7 @@ namespace UCosmic.Impl.Seeders
                 Context.SaveChanges();
 
                 // translate hinted names
-                var hintedEstablishmentNames = Context.Establishments.SelectMany(e => e.Names.Where(n => n.TranslationToHint != null)).ToList();
+                var hintedEstablishmentNames = Context.Set<Establishment>().SelectMany(e => e.Names.Where(n => n.TranslationToHint != null)).ToList();
                 hintedEstablishmentNames.ForEach(n =>
                 {
                     n.TranslationToLanguage = Context.Set<Language>().SingleOrDefault(l => l.TwoLetterIsoCode == n.TranslationToHint);
@@ -265,7 +265,7 @@ namespace UCosmic.Impl.Seeders
                 Context.SaveChanges();
 
                 // correct www.udd.cl
-                var universidadDeDesarrollo = Context.Establishments.SingleOrDefault(e => e.WebsiteUrl == "www.udd.cl");
+                var universidadDeDesarrollo = Context.Set<Establishment>().SingleOrDefault(e => e.WebsiteUrl == "www.udd.cl");
                 if (universidadDeDesarrollo != null)
                 {
                     universidadDeDesarrollo.OfficialName = "Universidad del Desarrollo";
@@ -273,7 +273,7 @@ namespace UCosmic.Impl.Seeders
                 }
 
                 // correct audencia
-                var audencia = Context.Establishments.SingleOrDefault(e => e.WebsiteUrl == "www.audencua.com");
+                var audencia = Context.Set<Establishment>().SingleOrDefault(e => e.WebsiteUrl == "www.audencua.com");
                 if (audencia != null)
                 {
                     audencia.WebsiteUrl = "www.audencia.com";
@@ -292,7 +292,7 @@ namespace UCosmic.Impl.Seeders
 
                 #region UMN Colleges
 
-                var umn = Context.Establishments.ByOfficialName("University of Minnesota");
+                var umn = Context.Set<Establishment>().ByOfficialName("University of Minnesota");
                 if (umn == null)
                     throw new InvalidOperationException("University of Minnesota does not exist.");
 
@@ -358,7 +358,7 @@ namespace UCosmic.Impl.Seeders
 
                 var officialName = "State University of New York (SUNY)";
                 EnsureEstablishment(officialName, true, null, GetUniversitySystem(), "www.suny.edu", "@suny.edu");
-                var suny = Context.Establishments.ByOfficialName(officialName);
+                var suny = Context.Set<Establishment>().ByOfficialName(officialName);
 
                 EnsureEstablishment("SUNY Adirondack", true, suny, GetCommunityCollege(), "www.sunyacc.edu", "@sunyacc.edu");
                 EnsureEstablishment("University at Albany (SUNY)", true, suny, GetUniversity(), "www.albany.edu", "@albany.edu");
@@ -430,7 +430,7 @@ namespace UCosmic.Impl.Seeders
 
                 officialName = "University of Cincinnati";
                 EnsureEstablishment(officialName, true, null, GetUniversity(), "www.uc.edu", "@uc.edu;@ucmail.uc.edu");
-                var uc = Context.Establishments.ByOfficialName(officialName);
+                var uc = Context.Set<Establishment>().ByOfficialName(officialName);
                 EnsureEstablishment("College of Allied Health Sciences, University of Cincinnati", true, uc, GetCollege(), "www.cahs.uc.edu", null);
                 EnsureEstablishment("McMicken College of Arts & Sciences, University of Cincinnati", true, uc, GetCollege(), "www.artsci.uc.edu", null);
                 EnsureEstablishment("College of Business, University of Cincinnati", true, uc, GetCollege(), "www.business.uc.edu", null);
@@ -453,7 +453,7 @@ namespace UCosmic.Impl.Seeders
 
                 officialName = "Lehigh University";
                 EnsureEstablishment(officialName, true, null, GetUniversity(), "www.lehigh.edu", "@lehigh.edu");
-                var lehigh = Context.Establishments.ByOfficialName(officialName);
+                var lehigh = Context.Set<Establishment>().ByOfficialName(officialName);
                 EnsureEstablishment("Lehigh University College of Arts and Sciences", true, lehigh, GetCollege(), "cas.lehigh.edu", null);
                 EnsureEstablishment("Lehigh University College of Business and Economics", true, lehigh, GetCollege(), "www.lehigh.edu/business", null);
                 EnsureEstablishment("Lehigh University College of Education", true, lehigh, GetCollege(), "www.lehigh.edu/education", null);
@@ -464,7 +464,7 @@ namespace UCosmic.Impl.Seeders
 
                 officialName = "Manipal Education";
                 EnsureEstablishment(officialName, true, null, GetUniversitySystem(), "www.manipalglobal.com", null);
-                var manipalGlobal = Context.Establishments.ByOfficialName(officialName);
+                var manipalGlobal = Context.Set<Establishment>().ByOfficialName(officialName);
 
                 var manipalEdu = EnsureEstablishment("Manipal University", true, manipalGlobal, GetUniversity(), "www.manipal.edu", "@manipal.edu");
                 var melaka = EnsureEstablishment("Melaka Manipal Medical College", true, manipalEdu, GetCollege(), "www.manipal.edu/Institutions/Medicine/MMMCMelaka", null);
@@ -538,14 +538,14 @@ namespace UCosmic.Impl.Seeders
 
                 officialName = "The College Board";
                 EnsureEstablishment(officialName, true, null, GetGenericBusiness(), "www.collegeboard.org", "@collegeboard.org");
-                Context.Establishments.ByOfficialName(officialName);
+                Context.Set<Establishment>().ByOfficialName(officialName);
 
                 officialName = "Institute of International Education (IIE)";
                 EnsureEstablishment(officialName, true, null, GetAssociation(), "www.iie.org", "@iie.org");
 
                 officialName = "Terra Dotta, LLC";
                 EnsureEstablishment(officialName, true, null, GetGenericBusiness(), "www.terradotta.com", "@terradotta.com");
-                Context.Establishments.ByOfficialName(officialName);
+                Context.Set<Establishment>().ByOfficialName(officialName);
 
                 #endregion
                 #region Agreement Institutions

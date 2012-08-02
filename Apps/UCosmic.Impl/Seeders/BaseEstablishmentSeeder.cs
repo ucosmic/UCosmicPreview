@@ -11,11 +11,11 @@ namespace UCosmic.Impl.Seeders
             Establishment parent, EstablishmentType type, string websiteUrl, string emailDomains,
             IEnumerable<EstablishmentName> alternateNames = null)
         {
-            var establishment = Context.Establishments.Include(e => e.Location).ByOfficialName(officialName);
+            var establishment = Context.Set<Establishment>().Include(e => e.Location).ByOfficialName(officialName);
             if (!string.IsNullOrWhiteSpace(websiteUrl))
             {
                 establishment =
-                    Context.Establishments.SingleOrDefault(e => e.WebsiteUrl != null && e.WebsiteUrl.Equals(websiteUrl));
+                    Context.Set<Establishment>().SingleOrDefault(e => e.WebsiteUrl != null && e.WebsiteUrl.Equals(websiteUrl));
             }
             if (establishment != null) return establishment;
 
@@ -48,7 +48,7 @@ namespace UCosmic.Impl.Seeders
                 }
             }
             establishment.Urls = establishment.Urls ?? new List<EstablishmentUrl>();
-            Context.Establishments.Add(establishment);
+            Context.Set<Establishment>().Add(establishment);
             Context.SaveChanges();
             return establishment;
         }
@@ -58,7 +58,7 @@ namespace UCosmic.Impl.Seeders
         private EstablishmentType GetEstablishmentType(string englishName,
             string englishPluralName, string categoryCode)
         {
-            var type = Context.Establishments.Select(e => e.Type).Distinct()
+            var type = Context.Set<Establishment>().Select(e => e.Type).Distinct()
                            .ByEnglishNameAndCategoryCode(englishName, categoryCode)
                        ?? new EstablishmentType
                           {
@@ -71,7 +71,7 @@ namespace UCosmic.Impl.Seeders
 
         private EstablishmentCategory GetEstablishmentCategory(string code)
         {
-            var category = Context.Establishments.Select(e => e.Type.Category).Distinct().ByCode(code);
+            var category = Context.Set<Establishment>().Select(e => e.Type.Category).Distinct().ByCode(code);
             if (category == null)
             {
                 category = new EstablishmentCategory { Code = code.ToUpper() };

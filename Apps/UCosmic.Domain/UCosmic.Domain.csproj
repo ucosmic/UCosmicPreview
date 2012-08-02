@@ -144,7 +144,7 @@
     <Compile Include="Domain\InstitutionalAgreements\Commands\DetachFileFromAgreement.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Commands\RemoveContactFromAgreement.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Commands\RemoveParticipantFromAgreement.cs" />
-    <Compile Include="Domain\InstitutionalAgreements\Commands\UpdateInstitutionalAgreementConfiguration.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Commands\CreateOrUpdateConfiguration.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Commands\UpdateInstitutionalAgreementHierarchy.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\GetInstitutionalAgreementConfigurationByGuid.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\GetMyInstitutionalAgreementConfiguration.cs" />

@@ -23,9 +23,9 @@ namespace UCosmic.Impl.Seeders
 
                 Context = context;
 
-                Context.InstitutionalAgreementConfigurations.ToList().ForEach(c =>
+                Context.Set<InstitutionalAgreementConfiguration>().ToList().ForEach(c =>
                 {
-                    Context.InstitutionalAgreementConfigurations.Remove(c);
+                    Context.Set<InstitutionalAgreementConfiguration>().Remove(c);
                     Context.SaveChanges();
                 });
 
@@ -61,10 +61,10 @@ namespace UCosmic.Impl.Seeders
 
                 establishmentsToSeed.ToList().ForEach(w =>
                 {
-                    Context.InstitutionalAgreementConfigurations
+                    Context.Set<InstitutionalAgreementConfiguration>()
                         .Add(new InstitutionalAgreementConfiguration
                         {
-                            ForEstablishment = Context.Establishments.ByWebsiteUrl(w),
+                            ForEstablishment = Context.Set<Establishment>().ByWebsiteUrl(w),
                             AllowedTypeValues = defaultTypes.ToList(),
                             AllowedStatusValues = defaultStatuses.ToList(),
                             AllowedContactTypeValues = defaultContactTypes.ToList(),
