@@ -33,7 +33,7 @@ namespace UCosmic.Www.Mvc
 
             // register browsers
             container.RegisterSingle(() => new ChromeDriver());
-            container.RegisterSingle(() => new InternetExplorerDriver());
+            //container.RegisterSingle(() => new InternetExplorerDriver());
             //container.RegisterSingle(() => new FirefoxDriver());
             var browsers = AllBrowsers(container);
             container.RegisterAll(browsers);

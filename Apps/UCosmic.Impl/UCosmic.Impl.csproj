@@ -60,15 +60,6 @@
       <HintPath>..\..\packages\FluentValidation.3.3.1.0\lib\Net40\FluentValidation.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-    </Reference>
     <Reference Include="NGeo, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\NGeo.1.7\lib\net40\NGeo.dll</HintPath>
@@ -119,7 +110,6 @@
     <Compile Include="Simple\SimpleQueryProcessor.cs" />
     <Compile Include="Simple\SimpleDependencyInjector.cs" />
     <Compile Include="Simple\SimpleHttpContextLifestyleExtensions.cs" />
-    <Compile Include="Unity\UnityValidatorFactory.cs" />
     <Compile Include="Orm\CreateInitializer.cs" />
     <Compile Include="Orm\DropAlwaysInitializer.cs" />
     <Compile Include="Orm\DropOnModelChangeInitializer.cs" />
@@ -141,8 +131,6 @@
     <Compile Include="Saml\TestSamlCertificateStorage.cs" />
     <Compile Include="Web\WebRequestHttpConsumer.cs" />
     <Compile Include="Orm\BrownfieldInitializer.cs" />
-    <Compile Include="Unity\UnityHttpContextLifetimeManager.cs" />
-    <Compile Include="Unity\UnityServiceProvider.cs" />
     <Compile Include="Web\ElmahExceptionLogger.cs" />
     <Compile Include="Web\MvcDependencyResolver.cs" />
     <Compile Include="Saml\ComponentSpaceSaml2MetadataParser.cs" />

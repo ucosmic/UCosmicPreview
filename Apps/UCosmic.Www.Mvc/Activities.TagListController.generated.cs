@@ -23,6 +23,9 @@ using T4MVC;
 namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
     public partial class TagListController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public TagListController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected TagListController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

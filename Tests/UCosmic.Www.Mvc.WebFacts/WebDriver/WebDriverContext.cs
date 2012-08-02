@@ -18,7 +18,7 @@ namespace UCosmic.Www.Mvc
             // register routes for UrlHelper
             GlobalAsaxFacts.RegisterAllRoutes(testContext);
 
-            // use unity for dependency injection
+            // use simple injector for dependency injection
             ServiceProviderLocator.SetProvider(new SimpleServiceProvider());
 
             // for the Chrome driver to start, chromedriver.exe should automatically copy from
@@ -30,7 +30,7 @@ namespace UCosmic.Www.Mvc
             // ensure "Enable Protected Mode" is checked for Internet, Local intranet,
             // Trusted sites, and Restricted sites.
 
-            // inject browser dependencies from unity into static Browsers list property
+            // inject browser dependencies from IoC into static Browsers list property
             Browsers = new List<IWebDriver>(ServiceProviderLocator.Current.GetServices<IWebDriver>());
         }
 
