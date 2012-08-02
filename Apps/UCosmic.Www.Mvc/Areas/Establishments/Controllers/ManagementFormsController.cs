@@ -214,6 +214,12 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                 : base(RouteRegistration.CreateRouteHandler(WebConfig.IsDeployedToCloud))
             {
                 Url = "establishments";
+                AlternateUrls = new[]
+                { // todo lose these
+                    "establishments/manage",
+                    "establishments/manage/browse",
+                    "establishments/manage/browse.html",
+                };
                 DataTokens = RouteRegistration.CreateDataTokens(Area, typeof (EstablishmentsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
@@ -224,30 +230,6 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
                 });
-            }
-        }
-
-        public class BrowseManageRoute : BrowseRoute
-        {
-            public BrowseManageRoute()
-            {
-                Url = "establishments/manage";
-            }
-        }
-
-        public class BrowseManageBrowseRoute : BrowseRoute
-        {
-            public BrowseManageBrowseRoute()
-            {
-                Url = "establishments/manage/browse";
-            }
-        }
-
-        public class BrowseManageBrowseDotHtmlRoute : BrowseRoute
-        {
-            public BrowseManageBrowseDotHtmlRoute()
-            {
-                Url = "establishments/manage/browse.html";
             }
         }
 

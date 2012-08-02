@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -10,5 +11,8 @@ namespace UCosmic.Www.Mvc.Controllers
         {
             RouteHandler = routeHandler ?? new MvcRouteHandler();
         }
+
+        public int Order { get; set; }
+        public IEnumerable<string> AlternateUrls { get; set; }
     }
 }

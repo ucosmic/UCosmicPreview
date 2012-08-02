@@ -78,11 +78,19 @@ namespace UCosmic.Www.Mvc.Controllers
         private static void Add(this IDictionary<int, ICollection<Route>> dictionary, Route route)
         {
             var key = 0;
-            var orderedRoute = route as OrderedMvcRoute;
-            if (orderedRoute != null) key = orderedRoute.Order;
+            var mvcRoute = route as MvcRoute;
+            if (mvcRoute != null) key = mvcRoute.Order;
             var routesValue = dictionary.ContainsKey(key)
                 ? dictionary[key] : dictionary[key] = new List<Route>();
             routesValue.Add(route);
+            if (mvcRoute != null && mvcRoute.AlternateUrls != null && mvcRoute.AlternateUrls.Any())
+                foreach (var alternateUrl in mvcRoute.AlternateUrls)
+                    routesValue.Add(new Route(alternateUrl, new MvcRouteHandler())
+                    {
+                        DataTokens = mvcRoute.DataTokens,
+                        Defaults = mvcRoute.Defaults,
+                        Constraints = mvcRoute.Constraints,
+                    });
         }
     }
 }

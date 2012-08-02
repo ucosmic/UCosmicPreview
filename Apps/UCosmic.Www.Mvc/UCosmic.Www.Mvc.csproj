@@ -244,7 +244,6 @@
     <Compile Include="Controllers\HttpMethodOverrideConstraint.cs" />
     <Compile Include="Controllers\HttpNotFoundOnNullModelAttribute.cs" />
     <Compile Include="Controllers\MvcRoute.cs" />
-    <Compile Include="Controllers\OrderedMvcRoute.cs" />
     <Compile Include="Helpers\FormsAuthenticationConfig.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailController.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOverController.cs" />

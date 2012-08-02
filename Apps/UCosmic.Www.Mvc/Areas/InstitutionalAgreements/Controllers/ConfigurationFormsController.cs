@@ -435,20 +435,13 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             public EditRoute()
             {
                 Url = "my/institutional-agreements/configure";
+                AlternateUrls = new[] { "my/institutional-agreements/configure.html" }; // todo: lose this
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
                     action = MVC.InstitutionalAgreements.ConfigurationForms.ActionNames.Edit,
                 });
-            }
-        }
-
-        public class EditHtmlRoute : EditRoute
-        {
-            public EditHtmlRoute()
-            {
-                Url = "my/institutional-agreements/configure.html";
             }
         }
 

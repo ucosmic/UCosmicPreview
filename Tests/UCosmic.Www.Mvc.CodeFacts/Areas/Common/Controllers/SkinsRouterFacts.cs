@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -52,8 +53,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             [TestMethod]
             public void Maps2Urls_FirstWithParam_ThenWithout()
             {
-                new SkinsRouter.SampleRoute();
-                new SkinsRouter.SampleSkinsDefaultRoute();
+                var route = new SkinsRouter.SampleRoute();
+                route.Url.ShouldEqual("skins/sample/{content}");
+                route.AlternateUrls.ShouldNotBeNull();
+                route.AlternateUrls.Count().ShouldEqual(1);
+                route.AlternateUrls.Single().ShouldEqual("skins");
             }
 
             [TestMethod]
@@ -61,7 +65,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             {
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Sample(null);
-                var url = new SkinsRouter.SampleSkinsDefaultRoute().Url.ToAppRelativeUrl();
+                var url = new SkinsRouter.SampleRoute().AlternateUrls.Single().ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -70,7 +74,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             {
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Sample(string.Empty);
-                var url = new SkinsRouter.SampleSkinsDefaultRoute().Url.ToAppRelativeUrl();
+                var url = new SkinsRouter.SampleRoute().AlternateUrls.Single().ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -90,14 +94,14 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             {
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Sample(null);
-                var url = new SkinsRouter.SampleSkinsDefaultRoute().Url.ToAppRelativeUrl();
+                var url = new SkinsRouter.SampleRoute().AlternateUrls.Single().ToAppRelativeUrl();
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
 
             [TestMethod]
             public void InBoundUrl_WithNonGetMethod_AndNoParam_IsNotRouted()
             {
-                var url = new SkinsRouter.SampleSkinsDefaultRoute().Url.ToAppRelativeUrl();
+                var url = new SkinsRouter.SampleRoute().AlternateUrls.Single().ToAppRelativeUrl();
                 url.WithMethodsExcept(HttpVerbs.Get).ShouldMapToNothing();
             }
 

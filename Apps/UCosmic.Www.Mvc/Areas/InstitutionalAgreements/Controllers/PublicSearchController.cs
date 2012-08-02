@@ -368,7 +368,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         private static readonly string Area = MVC.InstitutionalAgreements.Name;
         private static readonly string Controller = MVC.InstitutionalAgreements.PublicSearch.Name;
 
-        public class IndexRoute : OrderedMvcRoute
+        public class IndexRoute : MvcRoute
         {
             public IndexRoute()
             {

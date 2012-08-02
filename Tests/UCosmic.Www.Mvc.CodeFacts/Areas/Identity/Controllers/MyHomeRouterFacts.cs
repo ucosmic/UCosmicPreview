@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -17,10 +18,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             [TestMethod]
             public void Defines_Fallback_Url()
             {
-                var route1 = new MyHomeRouter.GetRoute();
-                var route2 = new MyHomeRouter.GetMyRoute();
-                route1.Url.ShouldEqual("my/home");
-                route2.Url.ShouldEqual("my");
+                var route = new MyHomeRouter.GetRoute();
+                route.Url.ShouldEqual("my/home");
+                route.AlternateUrls.ShouldNotBeNull();
+                route.AlternateUrls.Count().ShouldEqual(1);
+                route.AlternateUrls.Single().ShouldEqual("my");
             }
 
             [TestMethod]

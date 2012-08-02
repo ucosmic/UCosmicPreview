@@ -188,6 +188,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             public SampleRoute()
             {
                 Url = "skins/sample/{content}";
+                AlternateUrls = new[] { "skins" };
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -199,14 +200,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                     httpMethod = new HttpMethodConstraint("GET"),
                     content = new RequiredIfPresentRouteConstraint(),
                 });
-            }
-        }
-
-        public class SampleSkinsDefaultRoute : SampleRoute
-        {
-            public SampleSkinsDefaultRoute()
-            {
-                Url = "skins";
             }
         }
     }

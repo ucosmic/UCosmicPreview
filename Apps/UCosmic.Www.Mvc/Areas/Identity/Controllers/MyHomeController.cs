@@ -66,6 +66,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             public GetRoute()
             {
                 Url = UrlConstant;
+                AlternateUrls = new[] {"my"};
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -76,14 +77,6 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
                 });
-            }
-        }
-
-        public class GetMyRoute : GetRoute
-        {
-            public GetMyRoute()
-            {
-                Url = "my";
             }
         }
     }

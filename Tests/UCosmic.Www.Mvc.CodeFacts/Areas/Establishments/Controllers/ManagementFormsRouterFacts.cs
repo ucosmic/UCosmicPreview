@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -18,10 +19,13 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
             [TestMethod]
             public void Maps4Urls_FirstIsRestful()
             {
-                new ManagementFormsRouter.BrowseRoute();
-                new ManagementFormsRouter.BrowseManageRoute();
-                new ManagementFormsRouter.BrowseManageBrowseRoute();
-                new ManagementFormsRouter.BrowseManageBrowseDotHtmlRoute();
+                var route = new ManagementFormsRouter.BrowseRoute();
+                route.Url.ShouldEqual("establishments");
+                route.AlternateUrls.ShouldNotBeNull();
+                route.AlternateUrls.Count().ShouldEqual(3);
+                route.AlternateUrls.First().ShouldEqual("establishments/manage");
+                route.AlternateUrls.Skip(1).First().ShouldEqual("establishments/manage/browse");
+                route.AlternateUrls.Last().ShouldEqual("establishments/manage/browse.html");
             }
 
             [TestMethod]

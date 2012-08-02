@@ -130,11 +130,8 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 
             public NotFoundByHackerSniffRoute()
             {
-                Url = OtherUrls.Last();
-                foreach (var otherUrl in OtherUrls.Take(OtherUrls.Length - 1))
-                {
-                    RouteTable.Routes.Add(new NotFoundRoute { Url = otherUrl });
-                }
+                Url = OtherUrls.First();
+                AlternateUrls = OtherUrls.Skip(1);
             }
         }
 

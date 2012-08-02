@@ -212,7 +212,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         public class NotFoundByHackerSniff
         {
             [TestMethod]
-            public void InBoundUrls_AreRoutedTo_NotFoud()
+            public void InBoundUrls_AreRoutedTo_NotFound()
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.NotFound();
