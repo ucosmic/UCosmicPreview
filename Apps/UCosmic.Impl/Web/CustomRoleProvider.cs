@@ -8,31 +8,40 @@ namespace UCosmic.Impl
 {
     public class CustomRoleProvider : RoleProvider
     {
-        private readonly IQueryEntities _entities;
+        //private readonly IQueryEntities _entities;
 
-        public CustomRoleProvider()
+        //public CustomRoleProvider()
+        //{
+        //    // asp.net role provider behaves as a singleton, so we can't inject the PerWebRequest
+        //    // instances of DbContext, because those are disposed of at the end of a web request.
+        //    // instead take a hard dependency on the DbContext to hold an undisposed instance.
+        //    //_entities = new UCosmicContext(null);
+        //}
+
+        private static UCosmicContext GetEntities()
         {
-            // asp.net role provider behaves as a singleton, so we can't inject the PerWebRequest
-            // instances of DbContext, because those are disposed of at the end of a web request.
-            // instead take a hard dependency on the DbContext to hold an undisposed instance.
-            _entities = new UCosmicContext(null);
+            // new up context to avoid ArgumentExceptions on Set<Role>().AsNoTracking()
+            return new UCosmicContext(null);
         }
 
         public override string[] GetRolesForUser(string userName)
         {
-            // create a new handler
-            var handler = new FindRolesGrantedToUserNameHandler(_entities);
+            using (var entities = GetEntities())
+            {
+                // create a new handler
+                var handler = new FindRolesGrantedToUserNameHandler(entities);
 
-            // find roles granted to this user
-            var roles = handler.Handle(
-                new FindRolesGrantedToUserNameQuery { UserName = userName }
-            );
+                // find roles granted to this user
+                var roles = handler.Handle(
+                    new FindRolesGrantedToUserNameQuery {UserName = userName}
+                );
 
-            // return the role names
-            var roleNames = roles.Select(role => role.Name)
-                .Distinct()
-                .ToArray();
-            return roleNames;
+                // return the role names
+                var roleNames = roles.Select(role => role.Name)
+                    .Distinct()
+                    .ToArray();
+                return roleNames;
+            }
         }
 
         public override bool IsUserInRole(string username, string roleName)
