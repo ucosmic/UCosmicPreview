@@ -19,6 +19,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity
                 .Single(p => UpdateNameEvents.Any1AtUsilDotEduDotPe.Equals(p.User.Name));
             person.DefaultAffiliation.IsAcknowledged = false;
             person.DefaultAffiliation.JobTitles = "Dir. Co. XPR-4";
+            person.DefaultAffiliation.IsClaimingInternationalOffice = false;
+            person.DefaultAffiliation.IsClaimingAdministrator = false;
+            person.DefaultAffiliation.IsClaimingFaculty = false;
+            person.DefaultAffiliation.IsClaimingStaff = false;
             db.UnitOfWork.SaveChanges();
         }
     }
