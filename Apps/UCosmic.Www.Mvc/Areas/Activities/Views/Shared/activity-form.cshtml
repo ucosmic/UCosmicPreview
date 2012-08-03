@@ -530,6 +530,8 @@
                 tinyMCE.triggerSave();
             });
 
+            // polyfill the date picker (avoided until placeholder is worked out)
+            //if (!Modernizr.inputtypes.date) {
             $('.ends-on-field input').datepicker({
                 beforeShow: function (inp, inst) {
                     var widget = $(inst).datepicker('widget');
@@ -543,6 +545,7 @@
                     widget.css('margin-left', 0);
                 }
             });
+            //}
 
             // post form using ajax
             $('form.activity').submit(function (e) {

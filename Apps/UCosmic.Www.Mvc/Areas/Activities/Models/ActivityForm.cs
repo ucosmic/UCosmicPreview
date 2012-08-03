@@ -43,11 +43,13 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
             public bool IsDeleted { get; set; }
         }
 
+        [UIHint("Text")]
         [DataType(DataType.Date)]
         [Display(Prompt = "[Start Date]")]
         [RequiredIfClient("Mode", ComparisonType.IsNotEqualTo, ActivityMode.Draft, ErrorMessage = ActivityValidator.FailedBecauseStartsOnWasEmpty)]
         public DateTime? StartsOn { get; set; }
 
+        [UIHint("Text")]
         [DataType(DataType.Date)]
         [Display(Prompt = "[End Date]")]
         public DateTime? EndsOn { get; set; }

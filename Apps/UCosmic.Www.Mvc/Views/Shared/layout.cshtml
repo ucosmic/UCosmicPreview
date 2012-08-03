@@ -8,6 +8,7 @@
     {
         @RenderSection("Styles")
     }
+    <script type="text/javascript" src="@Url.Content(Links.scripts.modernizr_2_5_3_js)"></script>
 </head>
 <body data-ucosmic-sign-on-url="@Url.Action(MVC.Identity.SignOn.Get(Request.RawUrl))"
     data-ucosmic-ajax-error-log-url="@Url.Action(MVC.Common.Errors.LogAjaxError())"
