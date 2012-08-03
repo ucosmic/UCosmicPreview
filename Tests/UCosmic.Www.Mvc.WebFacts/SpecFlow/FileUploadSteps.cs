@@ -1,4 +1,7 @@
-﻿using TechTalk.SpecFlow;
+﻿using System;
+using System.Linq;
+using TechTalk.SpecFlow;
+using System.IO;
 
 namespace UCosmic.Www.Mvc
 {
@@ -27,8 +30,25 @@ namespace UCosmic.Www.Mvc
             {
                 var page = browser.GetPage();
                 var fileUpload = page.GetField(fieldLabel);
-                fileUpload.ChooseFile(filePath);
+                fileUpload.ChooseFile(ResolveRelativeFilePath(filePath));
             });
+        }
+
+        private static string ResolveRelativeFilePath(string filePath)
+        {
+            if (filePath == null || !filePath.StartsWith("~/")) return filePath;
+
+            var relativePath = filePath.Substring(2);
+            var directoryName = relativePath.Substring(0, relativePath.IndexOf("/", StringComparison.Ordinal));
+            var directory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+            while(directory != null && !directory.GetDirectories(directoryName).Any())
+            {
+                directory = directory.Parent;
+            }
+            var resolvedPath = directory != null
+                ? Path.Combine(directory.FullName, relativePath) : relativePath;
+            resolvedPath = resolvedPath.Replace("/", "\\");
+            return resolvedPath;
         }
     }
 }

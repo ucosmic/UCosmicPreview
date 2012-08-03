@@ -155,11 +155,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\JavaScriptFile1.js")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/JavaScriptFile1.js")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "JavaScriptFile1.js")]
         public virtual void FailToAddFileAttachmentWhenFileTypeIsInvalid_Variant0()
         {
-            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\JavaScriptFile1.js", "JavaScriptFile1.js", ((string[])(null)));
+            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Add", "Add a new agreement", "~/FileUploads/JavaScriptFile1.js", "JavaScriptFile1.js", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -169,11 +169,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\VbScriptFile1.vb")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/VbScriptFile1.vb")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "VbScriptFile1.vb")]
         public virtual void FailToAddFileAttachmentWhenFileTypeIsInvalid_Variant1()
         {
-            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\VbScriptFile1.vb", "VbScriptFile1.vb", ((string[])(null)));
+            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Add", "Add a new agreement", "~/FileUploads/VbScriptFile1.vb", "VbScriptFile1.vb", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -183,11 +183,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\ExtensionlessFile1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/ExtensionlessFile1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "ExtensionlessFile1")]
         public virtual void FailToAddFileAttachmentWhenFileTypeIsInvalid_Variant2()
         {
-            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\ExtensionlessFile1", "ExtensionlessFile1", ((string[])(null)));
+            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Add", "Add a new agreement", "~/FileUploads/ExtensionlessFile1", "ExtensionlessFile1", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -197,11 +197,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\JavaScriptFile1.js")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/JavaScriptFile1.js")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "JavaScriptFile1.js")]
         public virtual void FailToAddFileAttachmentWhenFileTypeIsInvalid_Variant3()
         {
-            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\JavaScriptFile1.js", "JavaScriptFile1.js", ((string[])(null)));
+            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Edit", "Agreement, UC 01 test", "~/FileUploads/JavaScriptFile1.js", "JavaScriptFile1.js", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -211,11 +211,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\VbScriptFile1.vb")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/VbScriptFile1.vb")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "VbScriptFile1.vb")]
         public virtual void FailToAddFileAttachmentWhenFileTypeIsInvalid_Variant4()
         {
-            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\VbScriptFile1.vb", "VbScriptFile1.vb", ((string[])(null)));
+            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Edit", "Agreement, UC 01 test", "~/FileUploads/VbScriptFile1.vb", "VbScriptFile1.vb", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -225,11 +225,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\ExtensionlessFile1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/ExtensionlessFile1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "ExtensionlessFile1")]
         public virtual void FailToAddFileAttachmentWhenFileTypeIsInvalid_Variant5()
         {
-            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\ExtensionlessFile1", "ExtensionlessFile1", ((string[])(null)));
+            this.FailToAddFileAttachmentWhenFileTypeIsInvalid("Edit", "Agreement, UC 01 test", "~/FileUploads/ExtensionlessFile1", "ExtensionlessFile1", ((string[])(null)));
         }
         
         public virtual void AddFileAttachmentWithValidExtensionToList(string addOrEdit, string linkText, string filePath, string fileName, string[] exampleTags)
@@ -268,11 +268,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/SpecFlow Guide.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "SpecFlow Guide.pdf")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant0()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "~/FileUploads/SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -282,11 +282,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.doc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/WordDocument1.doc")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.doc")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant1()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "~/FileUploads/WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -296,11 +296,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.docx")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/WordDocument1.docx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.docx")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant2()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "~/FileUploads/WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -310,11 +310,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\OpenDocument1.odt")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/OpenDocument1.odt")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "OpenDocument1.odt")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant3()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\OpenDocument1.odt", "OpenDocument1.odt", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "~/FileUploads/OpenDocument1.odt", "OpenDocument1.odt", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -324,11 +324,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xls")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/ExcelWorkbook1.xls")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "ExcelWorkbook1.xls")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant4()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xls", "ExcelWorkbook1.xls", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "~/FileUploads/ExcelWorkbook1.xls", "ExcelWorkbook1.xls", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -338,11 +338,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/ExcelWorkbook1.xlsx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "ExcelWorkbook1.xlsx")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant5()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx", "ExcelWorkbook1.xlsx", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "~/FileUploads/ExcelWorkbook1.xlsx", "ExcelWorkbook1.xlsx", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -352,11 +352,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 6")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/OpenSpreadsheet1.ods")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "OpenSpreadsheet1.ods")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant6()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods", "OpenSpreadsheet1.ods", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "~/FileUploads/OpenSpreadsheet1.ods", "OpenSpreadsheet1.ods", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -366,11 +366,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 7")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\PowerPoint1.ppt")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/PowerPoint1.ppt")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "PowerPoint1.ppt")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant7()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\PowerPoint1.ppt", "PowerPoint1.ppt", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "~/FileUploads/PowerPoint1.ppt", "PowerPoint1.ppt", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -380,11 +380,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 8")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\PowerPoint1.pptx")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/PowerPoint1.pptx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "PowerPoint1.pptx")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant8()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\PowerPoint1.pptx", "PowerPoint1.pptx", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Add", "Add a new agreement", "~/FileUploads/PowerPoint1.pptx", "PowerPoint1.pptx", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -394,11 +394,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 9")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/SpecFlow Guide.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "SpecFlow Guide.pdf")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant9()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "~/FileUploads/SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -408,11 +408,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 10")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.doc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/WordDocument1.doc")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.doc")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant10()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "~/FileUploads/WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -422,11 +422,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 11")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.docx")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/WordDocument1.docx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.docx")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant11()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "~/FileUploads/WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -436,11 +436,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 12")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\OpenDocument1.odt")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/OpenDocument1.odt")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "OpenDocument1.odt")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant12()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\OpenDocument1.odt", "OpenDocument1.odt", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "~/FileUploads/OpenDocument1.odt", "OpenDocument1.odt", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -450,11 +450,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 13")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xls")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/ExcelWorkbook1.xls")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "ExcelWorkbook1.xls")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant13()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xls", "ExcelWorkbook1.xls", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "~/FileUploads/ExcelWorkbook1.xls", "ExcelWorkbook1.xls", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -464,11 +464,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 14")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/ExcelWorkbook1.xlsx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "ExcelWorkbook1.xlsx")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant14()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx", "ExcelWorkbook1.xlsx", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "~/FileUploads/ExcelWorkbook1.xlsx", "ExcelWorkbook1.xlsx", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -478,11 +478,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 15")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/OpenSpreadsheet1.ods")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "OpenSpreadsheet1.ods")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant15()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods", "OpenSpreadsheet1.ods", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "~/FileUploads/OpenSpreadsheet1.ods", "OpenSpreadsheet1.ods", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -492,11 +492,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 16")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\PowerPoint1.ppt")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/PowerPoint1.ppt")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "PowerPoint1.ppt")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant16()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\PowerPoint1.ppt", "PowerPoint1.ppt", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "~/FileUploads/PowerPoint1.ppt", "PowerPoint1.ppt", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -506,11 +506,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 17")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\PowerPoint1.pptx")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/PowerPoint1.pptx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "PowerPoint1.pptx")]
         public virtual void AddFileAttachmentWithValidExtensionToList_Variant17()
         {
-            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\PowerPoint1.pptx", "PowerPoint1.pptx", ((string[])(null)));
+            this.AddFileAttachmentWithValidExtensionToList("Edit", "Agreement, UC 01 test", "~/FileUploads/PowerPoint1.pptx", "PowerPoint1.pptx", ((string[])(null)));
         }
         
         public virtual void RemoveFileAttachmentFromList(string addOrEdit, string linkText, string filePath, string fileName, string[] exampleTags)
@@ -553,11 +553,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Add")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Add a new agreement")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/LargePdf33.8.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "LargePdf33.8.pdf")]
         public virtual void RemoveFileAttachmentFromList_Add()
         {
-            this.RemoveFileAttachmentFromList("Add", "Add a new agreement", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf", "LargePdf33.8.pdf", ((string[])(null)));
+            this.RemoveFileAttachmentFromList("Add", "Add a new agreement", "~/FileUploads/LargePdf33.8.pdf", "LargePdf33.8.pdf", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -567,11 +567,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AddOrEdit", "Edit")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LinkText", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/LargePdf33.8.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "LargePdf33.8.pdf")]
         public virtual void RemoveFileAttachmentFromList_Edit()
         {
-            this.RemoveFileAttachmentFromList("Edit", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf", "LargePdf33.8.pdf", ((string[])(null)));
+            this.RemoveFileAttachmentFromList("Edit", "Agreement, UC 01 test", "~/FileUploads/LargePdf33.8.pdf", "LargePdf33.8.pdf", ((string[])(null)));
         }
         
         public virtual void UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage(string browser, string agreementLink, string filePath, string fileName, string[] exampleTags)
@@ -618,11 +618,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/SpecFlow Guide.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "SpecFlow Guide.pdf")]
         public virtual void UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage_Variant0()
         {
-            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "~/FileUploads/SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -632,11 +632,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.doc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/WordDocument1.doc")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.doc")]
         public virtual void UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage_Variant1()
         {
-            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "~/FileUploads/WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -646,11 +646,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "Firefox")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 01 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.docx")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/WordDocument1.docx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.docx")]
         public virtual void UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage_Variant2()
         {
-            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("Firefox", "Agreement, UC 01 test", "~/FileUploads/WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -660,11 +660,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 02 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/SpecFlow Guide.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "SpecFlow Guide.pdf")]
         public virtual void UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage_Variant3()
         {
-            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "~/FileUploads/SpecFlow Guide.pdf", "SpecFlow Guide.pdf", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -674,11 +674,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 02 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.doc")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/WordDocument1.doc")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.doc")]
         public virtual void UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage_Variant4()
         {
-            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "~/FileUploads/WordDocument1.doc", "WordDocument1.doc", ((string[])(null)));
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
@@ -688,11 +688,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "MSIE")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AgreementLink", "Agreement, UC 02 test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\WordDocument1.docx")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/WordDocument1.docx")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "WordDocument1.docx")]
         public virtual void UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage_Variant5()
         {
-            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "C:\\WebDriverFileUploads\\WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
+            this.UploadFileAttachmentAndDisplayLinkToItOnPublicDetailPage("MSIE", "Agreement, UC 02 test", "~/FileUploads/WordDocument1.docx", "WordDocument1.docx", ((string[])(null)));
         }
         
         public virtual void FailToUploadFileAttachmentOver25MegabytesInSize(string filePath, string fileName, string[] exampleTags)
@@ -730,12 +730,12 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Fail to upload File attachment over 25 megabytes in size")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Manage File Attachments")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NotInChrome")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "C:\\WebDriverFileUploads\\LargePdf33.8.pdf")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "~/FileUploads/LargePdf33.8.pdf")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FilePath", "~/FileUploads/LargePdf33.8.pdf")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:FileName", "LargePdf33.8.pdf")]
-        public virtual void FailToUploadFileAttachmentOver25MegabytesInSize_CWebDriverFileUploadsLargePdf33_8_Pdf()
+        public virtual void FailToUploadFileAttachmentOver25MegabytesInSize_FileUploadsLargePdf33_8_Pdf()
         {
-            this.FailToUploadFileAttachmentOver25MegabytesInSize("C:\\WebDriverFileUploads\\LargePdf33.8.pdf", "LargePdf33.8.pdf", ((string[])(null)));
+            this.FailToUploadFileAttachmentOver25MegabytesInSize("~/FileUploads/LargePdf33.8.pdf", "LargePdf33.8.pdf", ((string[])(null)));
         }
     }
 }

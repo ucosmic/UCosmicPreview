@@ -31,13 +31,13 @@ Scenario Outline: Fail to add File Attachment when file type is invalid
     And I should see the Invalid error message for the File Attachments upload field
 
 Examples:
-    | AddOrEdit | LinkText              | FilePath                                     | FileName           |
-    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\JavaScriptFile1.js | JavaScriptFile1.js |
-    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\VbScriptFile1.vb   | VbScriptFile1.vb   |
-    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\ExtensionlessFile1 | ExtensionlessFile1 |
-    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\JavaScriptFile1.js | JavaScriptFile1.js |
-    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\VbScriptFile1.vb   | VbScriptFile1.vb   |
-    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\ExtensionlessFile1 | ExtensionlessFile1 |
+    | AddOrEdit | LinkText              | FilePath                         | FileName           |
+    | Add       | Add a new agreement   | ~/FileUploads/JavaScriptFile1.js | JavaScriptFile1.js |
+    | Add       | Add a new agreement   | ~/FileUploads/VbScriptFile1.vb   | VbScriptFile1.vb   |
+    | Add       | Add a new agreement   | ~/FileUploads/ExtensionlessFile1 | ExtensionlessFile1 |
+    | Edit      | Agreement, UC 01 test | ~/FileUploads/JavaScriptFile1.js | JavaScriptFile1.js |
+    | Edit      | Agreement, UC 01 test | ~/FileUploads/VbScriptFile1.vb   | VbScriptFile1.vb   |
+    | Edit      | Agreement, UC 01 test | ~/FileUploads/ExtensionlessFile1 | ExtensionlessFile1 |
 
 @NotInChrome
 Scenario Outline: Add File Attachment with valid extension to list
@@ -51,25 +51,25 @@ Scenario Outline: Add File Attachment with valid extension to list
     And I should not see the Invalid error message for the File Attachments upload field
 
 Examples:
-    | AddOrEdit | LinkText              | FilePath                                       | FileName             |
-    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf   | SpecFlow Guide.pdf   |
-    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\WordDocument1.doc    | WordDocument1.doc    |
-    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\WordDocument1.docx   | WordDocument1.docx   |
-    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\OpenDocument1.odt    | OpenDocument1.odt    |
-    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\ExcelWorkbook1.xls   | ExcelWorkbook1.xls   |
-    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx  | ExcelWorkbook1.xlsx  |
-    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods | OpenSpreadsheet1.ods |
-    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\PowerPoint1.ppt      | PowerPoint1.ppt      |
-    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\PowerPoint1.pptx     | PowerPoint1.pptx     |
-    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf   | SpecFlow Guide.pdf   |
-    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\WordDocument1.doc    | WordDocument1.doc    |
-    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\WordDocument1.docx   | WordDocument1.docx   |
-    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\OpenDocument1.odt    | OpenDocument1.odt    |
-    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\ExcelWorkbook1.xls   | ExcelWorkbook1.xls   |
-    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\ExcelWorkbook1.xlsx  | ExcelWorkbook1.xlsx  |
-    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\OpenSpreadsheet1.ods | OpenSpreadsheet1.ods |
-    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\PowerPoint1.ppt      | PowerPoint1.ppt      |
-    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\PowerPoint1.pptx     | PowerPoint1.pptx     |
+    | AddOrEdit | LinkText              | FilePath                           | FileName             |
+    | Add       | Add a new agreement   | ~/FileUploads/SpecFlow Guide.pdf   | SpecFlow Guide.pdf   |
+    | Add       | Add a new agreement   | ~/FileUploads/WordDocument1.doc    | WordDocument1.doc    |
+    | Add       | Add a new agreement   | ~/FileUploads/WordDocument1.docx   | WordDocument1.docx   |
+    | Add       | Add a new agreement   | ~/FileUploads/OpenDocument1.odt    | OpenDocument1.odt    |
+    | Add       | Add a new agreement   | ~/FileUploads/ExcelWorkbook1.xls   | ExcelWorkbook1.xls   |
+    | Add       | Add a new agreement   | ~/FileUploads/ExcelWorkbook1.xlsx  | ExcelWorkbook1.xlsx  |
+    | Add       | Add a new agreement   | ~/FileUploads/OpenSpreadsheet1.ods | OpenSpreadsheet1.ods |
+    | Add       | Add a new agreement   | ~/FileUploads/PowerPoint1.ppt      | PowerPoint1.ppt      |
+    | Add       | Add a new agreement   | ~/FileUploads/PowerPoint1.pptx     | PowerPoint1.pptx     |
+    | Edit      | Agreement, UC 01 test | ~/FileUploads/SpecFlow Guide.pdf   | SpecFlow Guide.pdf   |
+    | Edit      | Agreement, UC 01 test | ~/FileUploads/WordDocument1.doc    | WordDocument1.doc    |
+    | Edit      | Agreement, UC 01 test | ~/FileUploads/WordDocument1.docx   | WordDocument1.docx   |
+    | Edit      | Agreement, UC 01 test | ~/FileUploads/OpenDocument1.odt    | OpenDocument1.odt    |
+    | Edit      | Agreement, UC 01 test | ~/FileUploads/ExcelWorkbook1.xls   | ExcelWorkbook1.xls   |
+    | Edit      | Agreement, UC 01 test | ~/FileUploads/ExcelWorkbook1.xlsx  | ExcelWorkbook1.xlsx  |
+    | Edit      | Agreement, UC 01 test | ~/FileUploads/OpenSpreadsheet1.ods | OpenSpreadsheet1.ods |
+    | Edit      | Agreement, UC 01 test | ~/FileUploads/PowerPoint1.ppt      | PowerPoint1.ppt      |
+    | Edit      | Agreement, UC 01 test | ~/FileUploads/PowerPoint1.pptx     | PowerPoint1.pptx     |
 
 @NotInChrome
 Scenario Outline: Remove File Attachment from list
@@ -86,9 +86,9 @@ Scenario Outline: Remove File Attachment from list
     Then I should not see an item for "<FileName>" in the File Attachments list
 
 Examples:
-    | AddOrEdit | LinkText              | FilePath                                   | FileName         |
-    | Add       | Add a new agreement   | C:\\WebDriverFileUploads\\LargePdf33.8.pdf | LargePdf33.8.pdf |
-    | Edit      | Agreement, UC 01 test | C:\\WebDriverFileUploads\\LargePdf33.8.pdf | LargePdf33.8.pdf |
+    | AddOrEdit | LinkText              | FilePath                       | FileName         |
+    | Add       | Add a new agreement   | ~/FileUploads/LargePdf33.8.pdf | LargePdf33.8.pdf |
+    | Edit      | Agreement, UC 01 test | ~/FileUploads/LargePdf33.8.pdf | LargePdf33.8.pdf |
 
 @UsingFreshExampleUcInstitutionalAgreementData
 Scenario Outline: Upload File Attachment and display link to it on Public Detail page
@@ -108,13 +108,13 @@ Scenario Outline: Upload File Attachment and display link to it on Public Detail
     And I should see a "<FileName>" link
 
 Examples:
-    | Browser | AgreementLink         | FilePath                                     | FileName           |
-    | Firefox | Agreement, UC 01 test | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf | SpecFlow Guide.pdf |
-    | Firefox | Agreement, UC 01 test | C:\\WebDriverFileUploads\\WordDocument1.doc  | WordDocument1.doc  |
-    | Firefox | Agreement, UC 01 test | C:\\WebDriverFileUploads\\WordDocument1.docx | WordDocument1.docx |
-    | MSIE    | Agreement, UC 02 test | C:\\WebDriverFileUploads\\SpecFlow Guide.pdf | SpecFlow Guide.pdf |
-    | MSIE    | Agreement, UC 02 test | C:\\WebDriverFileUploads\\WordDocument1.doc  | WordDocument1.doc  |
-    | MSIE    | Agreement, UC 02 test | C:\\WebDriverFileUploads\\WordDocument1.docx | WordDocument1.docx |
+    | Browser | AgreementLink         | FilePath                         | FileName           |
+    | Firefox | Agreement, UC 01 test | ~/FileUploads/SpecFlow Guide.pdf | SpecFlow Guide.pdf |
+    | Firefox | Agreement, UC 01 test | ~/FileUploads/WordDocument1.doc  | WordDocument1.doc  |
+    | Firefox | Agreement, UC 01 test | ~/FileUploads/WordDocument1.docx | WordDocument1.docx |
+    | MSIE    | Agreement, UC 02 test | ~/FileUploads/SpecFlow Guide.pdf | SpecFlow Guide.pdf |
+    | MSIE    | Agreement, UC 02 test | ~/FileUploads/WordDocument1.doc  | WordDocument1.doc  |
+    | MSIE    | Agreement, UC 02 test | ~/FileUploads/WordDocument1.docx | WordDocument1.docx |
 
 @NotInChrome
 Scenario Outline: Fail to upload File attachment over 25 megabytes in size
@@ -130,6 +130,6 @@ Scenario Outline: Fail to upload File attachment over 25 megabytes in size
     Then I should see the File Upload Too Large page within 60 seconds
 
 Examples:
-    | FilePath                                   | FileName         |
-    | C:\\WebDriverFileUploads\\LargePdf33.8.pdf | LargePdf33.8.pdf |
+    | FilePath                       | FileName         |
+    | ~/FileUploads/LargePdf33.8.pdf | LargePdf33.8.pdf |
 
