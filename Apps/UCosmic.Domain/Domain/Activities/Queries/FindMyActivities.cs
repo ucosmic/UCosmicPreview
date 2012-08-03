@@ -23,7 +23,7 @@ namespace UCosmic.Domain.Activities
             if (query == null) throw new ArgumentNullException("query");
 
             var results = _entities.Query<Activity>()
-                .EagerLoad(query.EagerLoad, _entities)
+                .EagerLoad(_entities, query.EagerLoad)
                 .WithUserName(query.Principal.Identity.Name)
                 .OrderBy(query.OrderBy)
             ;

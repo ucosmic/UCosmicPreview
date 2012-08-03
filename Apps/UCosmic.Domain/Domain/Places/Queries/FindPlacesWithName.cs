@@ -38,7 +38,7 @@ namespace UCosmic.Domain.Places
                 });
 
             var results = _entities.Query<Place>()
-                .EagerLoad(query.EagerLoad, _entities)
+                .EagerLoad(_entities, query.EagerLoad)
                 .WithName(query.Term, query.TermMatchStrategy)
                 .OrderBy(query.OrderBy);
 

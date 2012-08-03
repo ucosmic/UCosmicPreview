@@ -58,7 +58,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             var configurations = (query.IsWritable)
                 ? _entities.Get<InstitutionalAgreementConfiguration>()
                 : _entities.Query<InstitutionalAgreementConfiguration>();
-            configurations = configurations.EagerLoad(query.EagerLoad, _entities)
+            configurations = configurations.EagerLoad(_entities, query.EagerLoad)
                 .Where(c =>
                     c.ForEstablishment != null &&
                     c.ForEstablishment.IsMember &&

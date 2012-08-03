@@ -31,7 +31,7 @@ namespace UCosmic.Domain.People
                 });
 
             var results = _entities.Query<Person>()
-                .EagerLoad(query.EagerLoad, _entities)
+                .EagerLoad(_entities, query.EagerLoad)
                 .WithFirstName(query.Term, query.TermMatchStrategy)
                 .OrderBy(query.OrderBy)
             ;

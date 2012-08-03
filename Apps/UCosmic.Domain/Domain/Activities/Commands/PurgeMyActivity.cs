@@ -24,11 +24,11 @@ namespace UCosmic.Domain.Activities
             if (command == null) throw new ArgumentNullException("command");
 
             var activity = _entities.Get<Activity>()
-                .EagerLoad(new Expression<Func<Activity, object>>[]
+                .EagerLoad(_entities, new Expression<Func<Activity, object>>[]
                 {
                     t => t.Tags,
                     t => t.DraftedTags,
-                }, _entities)
+                })
                 .ByUserNameAndNumber(command.Principal.Identity.Name, command.Number);
 
             _entities.Purge(activity);

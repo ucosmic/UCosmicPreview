@@ -17,7 +17,7 @@
         public Establishment Handle(EstablishmentBySamlEntityId query)
         {
             return _entities.Query<Establishment>()
-                .EagerLoad(query.EagerLoad, _entities)
+                .EagerLoad(_entities, query.EagerLoad)
                 .BySamlEntityId(query.SamlEntityId)
             ;
         }

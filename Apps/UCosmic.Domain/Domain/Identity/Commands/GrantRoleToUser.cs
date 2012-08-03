@@ -42,10 +42,10 @@ namespace UCosmic.Domain.Identity
 
             var role = command.Role ??
                 _entities.Get<Role>()
-                .EagerLoad(new Expression<Func<Role, object>>[]
+                .EagerLoad(_entities, new Expression<Func<Role, object>>[]
                 {
                     r => r.Grants,
-                }, _entities)
+                })
                 .By(command.RoleGuid);
 
             var grant = role.Grants.ByUser(command.UserGuid);

@@ -54,10 +54,10 @@ namespace UCosmic.Domain.InstitutionalAgreements
 
             var agreement = command.Agreement ??
                 _entities.Get<InstitutionalAgreement>()
-                .EagerLoad(new Expression<Func<InstitutionalAgreement, object>>[]
+                .EagerLoad(_entities, new Expression<Func<InstitutionalAgreement, object>>[]
                 {
                     r => r.Files,
-                }, _entities)
+                })
                 .By(command.AgreementGuid);
 
             var file = agreement.Files.SingleOrDefault(g => g.EntityId == command.FileGuid);

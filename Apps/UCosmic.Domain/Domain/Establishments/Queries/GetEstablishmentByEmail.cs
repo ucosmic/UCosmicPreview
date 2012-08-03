@@ -28,7 +28,7 @@ namespace UCosmic.Domain.Establishments
                 return null;
 
             return _entities.Query<Establishment>()
-                .EagerLoad(query.EagerLoad, _entities)
+                .EagerLoad(_entities, query.EagerLoad)
                 .ByEmail(query.Email)
             ;
         }

@@ -37,7 +37,7 @@ namespace UCosmic.Domain.Places
 
             // first look in the db
             var place = _entities.Get<Place>()
-                .EagerLoad(query.EagerLoad, _entities)
+                .EagerLoad(_entities, query.EagerLoad)
                 .ByGeoNameId(query.GeoNameId)
             ;
             if (place != null) return place;

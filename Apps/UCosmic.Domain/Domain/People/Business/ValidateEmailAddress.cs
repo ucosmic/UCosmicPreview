@@ -33,7 +33,7 @@ namespace UCosmic.Domain.People
                 return false;
             }
 
-            person = entities.Query<Person>().EagerLoad(eagerLoad, entities).ByEmail(value);
+            person = entities.Query<Person>().EagerLoad(entities, eagerLoad).ByEmail(value);
 
             // return true (valid) if there is an entity
             return person != null;

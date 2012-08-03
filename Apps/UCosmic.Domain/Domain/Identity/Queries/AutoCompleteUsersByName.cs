@@ -22,7 +22,7 @@ namespace UCosmic.Domain.Identity
         public User[] Handle(AutoCompleteUsersByNameQuery query)
         {
             return _entities.Query<User>()
-                .EagerLoad(query.EagerLoad, _entities)
+                .EagerLoad(_entities, query.EagerLoad)
                 .Exclude(query.ExcludeEntityIds)
                 .AutoComplete(query.Term)
                 .OrderBy(query.OrderBy)

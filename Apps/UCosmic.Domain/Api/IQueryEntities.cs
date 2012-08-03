@@ -7,8 +7,6 @@ namespace UCosmic
 {
     public interface IQueryEntities
     {
-        //IQueryable<TEntity> Get1<TEntity>() where TEntity : Entity;
-
         IQueryable<TEntity> Query<TEntity>() where TEntity : Entity;
 
         TEntity FindByPrimaryKey<TEntity>(params object[] primaryKeyValues)

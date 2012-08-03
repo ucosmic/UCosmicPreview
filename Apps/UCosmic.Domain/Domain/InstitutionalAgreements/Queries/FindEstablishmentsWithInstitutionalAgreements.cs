@@ -33,7 +33,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 .Where(p => p.IsOwner)
                 .Select(p => p.Establishment)
                 .Distinct()
-                .EagerLoad(query.EagerLoad, _entities)
+                .EagerLoad(_entities, query.EagerLoad)
             ;
             if (query.ParentEstablishmentGuid.HasValue)
             {

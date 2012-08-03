@@ -55,10 +55,10 @@ namespace UCosmic.Domain.InstitutionalAgreements
 
             var agreement = command.Agreement ??
                 _entities.Get<InstitutionalAgreement>()
-                .EagerLoad(new Expression<Func<InstitutionalAgreement, object>>[]
+                .EagerLoad(_entities, new Expression<Func<InstitutionalAgreement, object>>[]
                 {
                     r => r.Participants,
-                }, _entities)
+                })
                 .By(command.AgreementGuid);
 
             var participant = agreement.Participants.SingleOrDefault(
@@ -66,13 +66,13 @@ namespace UCosmic.Domain.InstitutionalAgreements
             if (participant != null) return;
 
             var establishment = _entities.Get<Establishment>()
-                .EagerLoad(new Expression<Func<Establishment, object>>[]
+                .EagerLoad(_entities, new Expression<Func<Establishment, object>>[]
                 {
                     e => e.Affiliates.Select(a => a.Person.User),
                     e => e.Names.Select(n => n.TranslationToLanguage),
                     e => e.Ancestors.Select(h => h.Ancestor.Affiliates.Select(a => a.Person.User)),
                     e => e.Ancestors.Select(h => h.Ancestor.Names.Select(n => n.TranslationToLanguage))
-                }, _entities)
+                })
                 .By(command.EstablishmentGuid);
 
 

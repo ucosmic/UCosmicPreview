@@ -50,10 +50,10 @@ namespace UCosmic.Domain.InstitutionalAgreements
 
             var agreement = command.Agreement ??
                 _entities.Get<InstitutionalAgreement>()
-                .EagerLoad(new Expression<Func<InstitutionalAgreement, object>>[]
+                .EagerLoad(_entities, new Expression<Func<InstitutionalAgreement, object>>[]
                 {
                     r => r.Contacts.Select(c => c.Person),
-                }, _entities)
+                })
                 .By(command.AgreementEntityId);
 
             if (command.EntityId != Guid.Empty)

@@ -23,8 +23,8 @@ namespace UCosmic.Domain
         }
 
         internal static IQueryable<TEntity> EagerLoad<TEntity>(this IQueryable<TEntity> queryable,
-            IEnumerable<Expression<Func<TEntity, object>>> expressions,
-            IQueryEntities entities)
+            IQueryEntities entities,
+            IEnumerable<Expression<Func<TEntity, object>>> expressions)
             where TEntity : Entity
         {
             if (expressions != null)

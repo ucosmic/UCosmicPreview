@@ -21,7 +21,7 @@ namespace UCosmic.Domain.Languages
             if (query == null) throw new ArgumentNullException("query");
 
             var result = _entities.Query<Language>()
-                .EagerLoad(query.EagerLoad, _entities)
+                .EagerLoad(_entities, query.EagerLoad)
                 .OrderBy(query.OrderBy)
             ;
 

@@ -54,10 +54,10 @@ namespace UCosmic.Domain.Identity
 
             // get the person
             var person = _entities.Get<Person>()
-                .EagerLoad(new Expression<Func<Person, object>>[]
+                .EagerLoad(_entities, new Expression<Func<Person, object>>[]
                 {
                     p => p.Emails,
-                }, _entities)
+                })
                 .ByEmail(command.EmailAddress);
 
             // get the email

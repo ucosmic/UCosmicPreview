@@ -38,7 +38,7 @@ namespace UCosmic.Domain.Establishments
                 });
 
             var results = _entities.Query<Establishment>()
-                .EagerLoad(query.EagerLoad, _entities)
+                .EagerLoad(_entities, query.EagerLoad)
                 .WithNameOrUrl(query.Term, query.TermMatchStrategy)
                 .OrderBy(query.OrderBy);
 

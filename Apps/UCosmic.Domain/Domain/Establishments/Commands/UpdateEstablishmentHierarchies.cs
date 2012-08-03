@@ -23,7 +23,7 @@ namespace UCosmic.Domain.Establishments
 
             // get all root-level establishments with children
             var establishments = _entities.Get<Establishment>()
-                .EagerLoad(new Expression<Func<Establishment, object>>[]
+                .EagerLoad(_entities, new Expression<Func<Establishment, object>>[]
                 {
                     e => e.Offspring.Select(o => o.Ancestor.Parent),
                     e => e.Offspring.Select(o => o.Offspring.Parent),
@@ -31,7 +31,7 @@ namespace UCosmic.Domain.Establishments
                     e => e.Offspring.Select(o => o.Offspring.Children),
                     e => e.Children.Select(c => c.Children.Select(g => g.Children)),
                     e => e.Children.Select(c => c.Ancestors.Select(a => a.Ancestor))
-                }, _entities)
+                })
                 .IsRoot()
                 .WithAnyChildren()
                 .ToArray()

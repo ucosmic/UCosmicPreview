@@ -29,7 +29,7 @@ namespace UCosmic.Domain.Establishments
             if (query == null) throw new ArgumentNullException("query");
 
             var results = _entities.Query<Establishment>()
-                .EagerLoad(query.EagerLoad, _entities)
+                .EagerLoad(_entities, query.EagerLoad)
                 .Where(x => query.Guids.Contains(x.EntityId))
                 .OrderBy(query.OrderBy);
 

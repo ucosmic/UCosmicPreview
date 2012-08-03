@@ -35,10 +35,10 @@ namespace UCosmic.Domain.People
 
             // get the person for the principal
             var user = _entities.Get<User>()
-                .EagerLoad(new Expression<Func<User, object>>[]
+                .EagerLoad(_entities, new Expression<Func<User, object>>[]
                 {
                     u => u.Person,
-                }, _entities)
+                })
                 .ByName(command.Principal.Identity.Name);
 
             // update fields

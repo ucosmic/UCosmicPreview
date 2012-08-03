@@ -139,10 +139,10 @@ namespace UCosmic.Domain.Identity
             var issuerNameIdentifier = samlResponse.IssuerNameIdentifier;
 
             var establishment = _entities.Get<Establishment>()
-                .EagerLoad(new Expression<Func<Establishment, object>>[]
-                    {
-                        e => e.SamlSignOn,
-                    }, _entities)
+                .EagerLoad(_entities, new Expression<Func<Establishment, object>>[]
+                {
+                    e => e.SamlSignOn,
+                })
                 .BySamlEntityId(issuerNameIdentifier);
 
             // when getting by the saml entity id, establishment is immediately trusted if found
@@ -166,7 +166,7 @@ namespace UCosmic.Domain.Identity
         private User GetUserByEduPersonTargetedId(Saml2Response samlResponse)
         {
             var user = _entities.Get<User>()
-                .EagerLoad(_loadUser, _entities)
+                .EagerLoad(_entities, _loadUser)
                 .ByEduPersonTargetedId(samlResponse.EduPersonTargetedId);
             return user;
         }
@@ -174,7 +174,7 @@ namespace UCosmic.Domain.Identity
         private User GetUserByName(Saml2Response samlResponse)
         {
             var user = _entities.Get<User>()
-                .EagerLoad(_loadUser, _entities)
+                .EagerLoad(_entities, _loadUser)
                 .ByName(samlResponse.EduPersonPrincipalName);
             return user;
         }
@@ -224,7 +224,7 @@ namespace UCosmic.Domain.Identity
         private Person GetPersonByEmail(string email)
         {
             var person = _entities.Get<Person>()
-                .EagerLoad(_loadPerson, _entities)
+                .EagerLoad(_entities, _loadPerson)
                 .ByEmail(email);
             return person;
         }

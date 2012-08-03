@@ -29,10 +29,10 @@ namespace UCosmic.Domain.People
 
             // get the person
             var person = _entities.Get<Person>()
-                .EagerLoad(new Expression<Func<Person, object>>[]
+                .EagerLoad(_entities, new Expression<Func<Person, object>>[]
                 {
                     p => p.Affiliations,
-                }, _entities)
+                })
                 .By(command.PersonId);
 
             // construct the affiliation

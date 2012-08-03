@@ -65,10 +65,10 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 : new InstitutionalAgreementConfiguration
                     {
                         ForEstablishment = _entities.Get<Person>()
-                            .EagerLoad(new Expression<Func<Person, object>>[]
+                            .EagerLoad(_entities, new Expression<Func<Person, object>>[]
                             {
                                 x => x.Affiliations.Select(y => y.Establishment)
-                            }, _entities)
+                            })
                             .ByUserName(command.Principal.Identity.Name)
                             .DefaultAffiliation.Establishment,
                     };

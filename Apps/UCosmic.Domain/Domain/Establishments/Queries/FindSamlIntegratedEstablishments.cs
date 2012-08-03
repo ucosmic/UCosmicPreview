@@ -18,7 +18,7 @@ namespace UCosmic.Domain.Establishments
         public Establishment[] Handle(FindSamlIntegratedEstablishmentsQuery query)
         {
             return _entities.Query<Establishment>()
-                .EagerLoad(query.EagerLoad, _entities)
+                .EagerLoad(_entities, query.EagerLoad)
                 .SamlIntegrated()
                 .OrderBy(query.OrderBy)
                 .ToArray()

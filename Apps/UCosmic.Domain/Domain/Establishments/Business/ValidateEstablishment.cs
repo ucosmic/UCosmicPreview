@@ -21,7 +21,7 @@ namespace UCosmic.Domain.Establishments
             }
 
             entity = entities.Query<Establishment>()
-                .EagerLoad(eagerLoad, entities).By(id);
+                .EagerLoad(entities, eagerLoad).By(id);
 
             // return true (valid) if there is an entity
             return entity != null;
@@ -48,7 +48,7 @@ namespace UCosmic.Domain.Establishments
         public static bool EmailMatchesEntity(string email, IQueryEntities entities,
             IEnumerable<Expression<Func<Establishment, object>>> eagerLoad, out Establishment entity)
         {
-            entity = entities.Query<Establishment>().EagerLoad(eagerLoad, entities).ByEmail(email);
+            entity = entities.Query<Establishment>().EagerLoad(entities, eagerLoad).ByEmail(email);
 
             // return true (valid) if there is an entity
             return entity != null;

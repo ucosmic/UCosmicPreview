@@ -41,10 +41,10 @@ namespace UCosmic.Domain.Identity
                 if (_retryCount > 1) Thread.Sleep(300);
 
                 var person = _entities.Get<Person>()
-                    .EagerLoad(new Expression<Func<Person, object>>[]
+                    .EagerLoad(_entities, new Expression<Func<Person, object>>[]
                     {
                         p => p.Messages,
-                    }, _entities)
+                    })
                     .By(command.PersonId);
                 emailMessage = person != null ? person.GetMessage(command.MessageNumber) : null;
             }

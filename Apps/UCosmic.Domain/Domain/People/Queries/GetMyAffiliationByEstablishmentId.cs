@@ -24,11 +24,11 @@ namespace UCosmic.Domain.People
             if (query == null) throw new ArgumentNullException("query");
 
             return _entities.Query<Affiliation>()
-                .EagerLoad(new Expression<Func<Affiliation, object>>[]
+                .EagerLoad(_entities, new Expression<Func<Affiliation, object>>[]
                 {
                     a => a.Person,
                     a => a.Establishment,
-                }, _entities)
+                })
                 .ByUserNameAndEstablishmentId(query.Principal.Identity.Name, query.EstablishmentId);
         }
     }

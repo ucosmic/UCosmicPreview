@@ -74,10 +74,10 @@ namespace UCosmic.Domain.InstitutionalAgreements
 
             // start with an agreement entity
             var entity = _entities.Get<InstitutionalAgreement>()
-                .EagerLoad(new Expression<Func<InstitutionalAgreement, object>>[]
+                .EagerLoad(_entities, new Expression<Func<InstitutionalAgreement, object>>[]
                 {
                     a => a.Umbrella,
-                }, _entities)
+                })
                 .By(command.RevisionId);
             if (entity == null && command.RevisionId == 0)
                 entity = new InstitutionalAgreement

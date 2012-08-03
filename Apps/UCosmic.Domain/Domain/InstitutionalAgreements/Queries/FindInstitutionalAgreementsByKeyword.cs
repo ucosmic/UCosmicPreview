@@ -23,7 +23,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             if (query == null) throw new ArgumentNullException("query");
 
             var queryable = _entities.Query<InstitutionalAgreement>()
-                .EagerLoad(query.EagerLoad, _entities)
+                .EagerLoad(_entities, query.EagerLoad)
                 .OwnedByEstablishment(query.EstablishmentId)
                 .MatchingPlaceParticipantOrContact(query.Keyword)
                 .OrderBy(query.OrderBy);

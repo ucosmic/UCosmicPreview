@@ -38,7 +38,7 @@ namespace UCosmic.Domain.Identity
             }
 
             entity = entities.Query<User>()
-                .EagerLoad(eagerLoad, entities)
+                .EagerLoad(entities, eagerLoad)
                 .ByName(principal.Identity.Name);
 
             // return true (valid) if there is an entity

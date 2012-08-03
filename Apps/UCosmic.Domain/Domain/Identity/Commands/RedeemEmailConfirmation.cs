@@ -28,10 +28,10 @@ namespace UCosmic.Domain.Identity
 
             // get the confirmation
             var confirmation = _entities.Get<EmailConfirmation>()
-                .EagerLoad(new Expression<Func<EmailConfirmation, object>>[]
+                .EagerLoad(_entities, new Expression<Func<EmailConfirmation, object>>[]
                 {
                     c => c.EmailAddress
-                }, _entities)
+                })
                 .ByToken(command.Token);
 
             // redeem

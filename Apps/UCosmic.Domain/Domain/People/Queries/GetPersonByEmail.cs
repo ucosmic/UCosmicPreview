@@ -23,7 +23,7 @@ namespace UCosmic.Domain.People
             if (string.IsNullOrWhiteSpace(query.Email)) return null;
 
             return _entities.Query<Person>()
-                .EagerLoad(query.EagerLoad, _entities)
+                .EagerLoad(_entities, query.EagerLoad)
                 .ByEmail(query.Email)
             ;
         }

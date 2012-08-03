@@ -35,19 +35,19 @@ namespace UCosmic.Domain.Identity
 
             // get the establishment
             var establishment = _entities.Get<Establishment>()
-                .EagerLoad(new Expression<Func<Establishment, object>>[]
+                .EagerLoad(_entities, new Expression<Func<Establishment, object>>[]
                 {
                     e => e.Type.Category,
-                }, _entities)
+                })
                 .ByEmail(command.EmailAddress);
 
             // get the person
             var person = _entities.Get<Person>()
-                .EagerLoad(new Expression<Func<Person, object>>[]
+                .EagerLoad(_entities, new Expression<Func<Person, object>>[]
                 {
                     p => p.Emails,
                     p => p.Affiliations,
-                }, _entities)
+                })
                 .ByEmail(command.EmailAddress);
 
             // create the person if they don't yet exist

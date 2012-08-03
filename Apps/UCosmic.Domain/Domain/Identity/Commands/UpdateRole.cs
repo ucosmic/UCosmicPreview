@@ -49,10 +49,10 @@ namespace UCosmic.Domain.Identity
                         command.Principal.Identity.Name));
 
             var entity = _entities.Get<Role>()
-                .EagerLoad(new Expression<Func<Role, object>>[]
+                .EagerLoad(_entities, new Expression<Func<Role, object>>[]
                 {
                     r => r.Grants.Select(g => g.User)
-                }, _entities)
+                })
                 .By(command.EntityId);
 
             if (entity == null) throw new InvalidOperationException(string.Format(
