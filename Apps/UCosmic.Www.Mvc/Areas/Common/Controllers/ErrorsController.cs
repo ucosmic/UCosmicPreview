@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 using UCosmic.Www.Mvc.Controllers;
@@ -101,37 +100,27 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                     controller = Controller,
                     action = MVC.Common.Errors.ActionNames.NotFound,
                 });
-            }
-        }
 
-        public class NotFoundByHackerSniffRoute : NotFoundRoute
-        {
-            // Since UCosmic uses ELMAH, hacker sniffing requests which generate 404's cause
-            // emails to be sent out to administrators. By setting up inbound URL routes to
-            // some common and frequent URL attack patterns, we can bypass the 404 exception
-            // and route users to the 404 page without triggering mail from ELMAH.
-
-            public static readonly string[] OtherUrls = new[]
-            {
-                "admin/{*catchall}",
-                "mysql/{*catchall}",
-                "phpMyAdmin/{*catchall}",
-                "scripts/setup.php",
-                "{prefix}/scripts/setup.php",
-                "user/soapCaller.bs",
-                "cgi-bin/{*catchall}",
-                "jmx-console/{*catchall}",
-                "cn/{*catchall}",
-                "pp/{*catchall}",
-                "appserv/{*catchall}",
-                "manager/{*catchall}",
-                "crossdomain.xml",
-            };
-
-            public NotFoundByHackerSniffRoute()
-            {
-                Url = OtherUrls.First();
-                AlternateUrls = OtherUrls.Skip(1);
+                // Since UCosmic uses ELMAH, hacker sniffing requests which generate 404's cause
+                // emails to be sent out to administrators. By setting up inbound URL routes to
+                // some common and frequent URL attack patterns, we can bypass the 404 exception
+                // and route users to the 404 page without triggering mail from ELMAH.
+                AlternateUrls = new[]
+                {
+                    "admin/{*catchall}",
+                    "mysql/{*catchall}",
+                    "phpMyAdmin/{*catchall}",
+                    "scripts/setup.php",
+                    "{prefix}/scripts/setup.php",
+                    "user/soapCaller.bs",
+                    "cgi-bin/{*catchall}",
+                    "jmx-console/{*catchall}",
+                    "cn/{*catchall}",
+                    "pp/{*catchall}",
+                    "appserv/{*catchall}",
+                    "manager/{*catchall}",
+                    "crossdomain.xml",
+                };
             }
         }
 
@@ -154,6 +143,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             public NotAuthorizedRoute()
             {
                 Url = "errors/not-authorized-for/{*url}";
+                AlternateUrls = new[] { "errors/403" };
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -164,14 +154,6 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 {
                     url = new RequiredIfPresentRouteConstraint(),
                 });
-            }
-        }
-
-        public class NotAuthorized403Route : NotAuthorizedRoute
-        {
-            public NotAuthorized403Route()
-            {
-                Url = "errors/403";
             }
         }
 
@@ -189,11 +171,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             }
         }
 
-        public class UnexpectedRoute:Route
+        public class UnexpectedRoute : MvcRoute
         {
             public UnexpectedRoute()
-                : base("errors/unexpected.html", new MvcRouteHandler())
             {
+                Url = "errors/unexpected.html";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -203,11 +185,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             }
         }
 
-        public class ThrowRoute:Route
+        public class ThrowRoute : MvcRoute
         {
             public ThrowRoute()
-                : base("errors/throw.html", new MvcRouteHandler())
             {
+                Url = "errors/throw.html";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

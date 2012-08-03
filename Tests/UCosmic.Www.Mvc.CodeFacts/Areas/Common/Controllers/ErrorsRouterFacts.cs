@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -61,8 +62,11 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             [TestMethod]
             public void Maps2Urls_FirstWithCatchall_ThenWithout()
             {
-                new ErrorsRouter.NotAuthorizedRoute();
-                new ErrorsRouter.NotAuthorized403Route();
+                var route = new ErrorsRouter.NotAuthorizedRoute();
+                route.Url.ShouldEqual("errors/not-authorized-for/{*url}");
+                route.AlternateUrls.ShouldNotBeNull();
+                route.AlternateUrls.Count().ShouldEqual(1);
+                route.AlternateUrls.Single().ShouldEqual("errors/403");
             }
 
             [TestMethod]
@@ -70,7 +74,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                    controller => controller.NotAuthorized(null);
-                var url = new ErrorsRouter.NotAuthorized403Route().Url.ToAppRelativeUrl();
+                var url = new ErrorsRouter.NotAuthorizedRoute().AlternateUrls.Single().ToAppRelativeUrl();
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -90,7 +94,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                    controller => controller.NotAuthorized(null);
-                var url = new ErrorsRouter.NotAuthorized403Route().Url.ToAppRelativeUrl();
+                var url = new ErrorsRouter.NotAuthorizedRoute().AlternateUrls.Single().ToAppRelativeUrl();
                 url.WithAnyMethod().ShouldMapTo(action);
             }
 
@@ -216,7 +220,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             {
                 Expression<Func<ErrorsController, ActionResult>> action =
                     controller => controller.NotFound();
-                var routeUrls = ErrorsRouter.NotFoundByHackerSniffRoute.OtherUrls;
+                var routeUrls = new ErrorsRouter.NotFoundRoute().AlternateUrls;
 
                 const string catchallParam = "*catchall";
                 const string catchallValue = "any";
