@@ -18,7 +18,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
                 {
                     browser.WaitUntil(b => b.TryFindElement(By.CssSelector(cssSelector)) != null,
                         "The Add Institutional Agreement Contact modal dialog was not found by @Browser.");
-                    var element = browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
+                    var element = browser.WaitUntil(b => b.GetElement(By.CssSelector(cssSelector)),
                         "The Add Institutional Agreement Contact modal dialog was not found by @Browser.");
 
                     browser.WaitUntil(b => element.Displayed,

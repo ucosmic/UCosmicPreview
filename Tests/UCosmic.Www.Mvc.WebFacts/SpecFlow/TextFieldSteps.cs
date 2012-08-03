@@ -104,7 +104,8 @@ namespace UCosmic.Www.Mvc
             {
                 var page = browser.GetPage();
                 var textBox = page.GetField(fieldLabel);
-                browser.WaitUntil(b => textBox.GetAttribute("readonly").Equals("false"),
+                browser.WaitUntil(b => textBox.GetAttribute("readonly") == null
+                        || textBox.GetAttribute("readonly").Equals("false"),
                     string.Format("The '{0}' text field is unexpectedly in read-only mode on @Browser.",
                         fieldLabel));
             });
