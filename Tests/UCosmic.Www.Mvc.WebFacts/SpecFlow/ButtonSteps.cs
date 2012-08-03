@@ -117,7 +117,10 @@ namespace UCosmic.Www.Mvc
             Browsers.ForEach(browser =>
             {
                 var button = browser.FindElement(By.CssSelector(cssSelector));
-                browser.WaitUntil(b => "false".Equals(button.GetAttribute("disabled")) || button.GetAttribute("disabled") == null,
+
+                browser.WaitUntil(b => "false".Equals(button.GetAttribute("disabled"))
+                        || button.GetAttribute("disabled") == null
+                        || browser.ExecuteScript(string.Format(@"return $(""{0}"").attr('disabled');", cssSelector)) == null, // hack for IE server
                     "Submit button labeled '{0}' was unexpectedly disabled in @Browser."
                         .FormatWith(label));
             });
