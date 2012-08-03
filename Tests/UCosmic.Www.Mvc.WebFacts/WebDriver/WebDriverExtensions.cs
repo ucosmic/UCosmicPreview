@@ -265,6 +265,24 @@ namespace UCosmic.Www.Mvc
             }
         }
 
+        public static IWebElement GetElement(this IWebElement webElement, By by)
+        {
+            return webElement.GetElement(by, 0);
+        }
+
+        private static IWebElement GetElement(this IWebElement webElement, By by, int retry)
+        {
+            try
+            {
+                return webElement.FindElement(by);
+            }
+            catch (WebDriverException)
+            {
+                if (retry < WebDriverRetryLimit) return webElement.GetElement(by, ++retry);
+                throw;
+            }
+        }
+
         public static ReadOnlyCollection<IWebElement> GetElements(this IWebDriver webDriver, By by)
         {
             return webDriver.GetElements(by, 0);

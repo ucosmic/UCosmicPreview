@@ -86,7 +86,7 @@ namespace UCosmic.Www.Mvc
                     "@Browser did not find item #{1} in the '{0}' list."
                         .FormatWith(fieldLabel, itemNumber));
                 if (item == null) throw new NotSupportedException();
-                var link = browser.WaitUntil(b => item.FindElement(By.LinkText(linkText)),
+                var link = browser.WaitUntil(b => item.GetElement(By.LinkText(linkText)),
                     "@Browser did not find a '{2}' link for item #{1} in the '{0}' list."
                         .FormatWith(fieldLabel, itemNumber, linkText));
                 browser.WaitUntil(b => link.Displayed,
@@ -130,7 +130,7 @@ namespace UCosmic.Www.Mvc
                     "@Browser did not find item #{1} in the '{0}' list."
                         .FormatWith(collectionLabel, itemNumber));
                 if (item == null) throw new NotSupportedException();
-                var textField = browser.WaitUntil(b => item.FindElement(By.CssSelector(page.Fields[textLabel])),
+                var textField = browser.WaitUntil(b => item.GetElement(By.CssSelector(page.Fields[textLabel])),
                     "@Browser could not find a '{0}' text field for item #{1} in the '{2}' list."
                         .FormatWith(textLabel, itemNumber, collectionLabel));
                 browser.WaitUntil(b => textField.Displayed,
@@ -150,9 +150,8 @@ namespace UCosmic.Www.Mvc
                 var items = page.GetCollectionItems(collectionLabel, Content.CollectionItemToken);
                 var item = items.Skip(itemNumber - 1).Take(1).SingleOrDefault();
                 if (item == null) throw new NotSupportedException();
-                var textField = item.FindElement(By.CssSelector(page.Fields[textLabel]));
-                textField.Clear();
-                textField.SendKeys(textToType);
+                var textField = item.GetElement(By.CssSelector(page.Fields[textLabel]));
+                textField.ClearAndSendKeys(textToType);
             });
         }
     }
