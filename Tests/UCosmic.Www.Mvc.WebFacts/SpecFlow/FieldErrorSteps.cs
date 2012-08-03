@@ -79,8 +79,8 @@ namespace UCosmic.Www.Mvc
                 var messageText = page.GetErrorText(fieldLabel, errorType);
 
                 browser.WaitUntil(b =>
-                        page.GetErrorSummaries().IsNotNull() &&
-                        page.GetErrorSummaries().Any(s => s.FindElements(ByTagNameLi).Any(ElementTextEquals(messageText))),
+                        page.GetErrorSummaries() != null &&
+                        page.GetErrorSummaries().Any(s => s.GetElements(ByTagNameLi).Any(ElementTextEquals(messageText))),
                     "@Browser did not find any error summaries with the '{0}' field's '{1}' error message."
                         .FormatWith(fieldLabel, errorType));
 

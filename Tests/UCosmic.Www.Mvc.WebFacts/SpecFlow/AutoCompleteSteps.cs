@@ -87,7 +87,7 @@ namespace UCosmic.Www.Mvc
                 browser.WaitUntil(b => button.Displayed, string.Format(
                     "Down arrow button for the '{0}' field was not displayed by @Browser", fieldLabel));
 
-                button.Click();
+                button.ClickIt();
             });
         }
 

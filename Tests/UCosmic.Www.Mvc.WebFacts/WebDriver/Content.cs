@@ -193,7 +193,7 @@ namespace UCosmic.Www.Mvc
             var cssSelector = Fields[key];
 
             if (!allowNull)
-                return Browser.WaitUntil(b => b.FindElements(By.CssSelector(cssSelector)),
+                return Browser.WaitUntil(b => b.GetElements(By.CssSelector(cssSelector)),
                     "No error summaries were found by @Browser (CSS selector was '{0}')."
                         .FormatWith(cssSelector));
 
