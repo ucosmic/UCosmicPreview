@@ -29,7 +29,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         {
             public HorizontalTabsRoute()
             {
-                Url = "navigation/horizontal-tabs.partial.html";
+                Url = "navigation/horizontal-tabs";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

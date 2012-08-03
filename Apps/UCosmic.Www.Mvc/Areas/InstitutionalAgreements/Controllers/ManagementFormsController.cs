@@ -422,7 +422,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             public AddParticipantRoute()
             {
-                Url = "my/institutional-agreements/manage/add-participant.partial.html";
+                Url = "my/institutional-agreements/manage/add-participant";
                 DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
@@ -440,7 +440,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             public AttachFileRoute()
             {
-                Url = "my/institutional-agreements/manage/attach-file.partial.html";
+                Url = "my/institutional-agreements/manage/attach-file";
                 DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
@@ -458,7 +458,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             public AddContactRoute()
             {
-                Url = "my/institutional-agreements/manage/add-contact-form.partial.html";
+                Url = "my/institutional-agreements/manage/add-contact-form";
                 DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
@@ -476,7 +476,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             public DeriveTitleRoute()
             {
-                Url = "my/institutional-agreements/derive-title.json";
+                Url = "my/institutional-agreements/derive-title";
                 DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {
@@ -494,7 +494,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             public AutoCompleteEstablishmentNamesRoute()
             {
-                Url = "institutional-agreements/autocomplete/official-name.json";
+                Url = "institutional-agreements/autocomplete/official-name";
                 DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {

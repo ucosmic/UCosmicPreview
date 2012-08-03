@@ -93,7 +93,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         {
             public NotFoundRoute()
             {
-                Url = "errors/404.html";
+                Url = "errors/404";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -128,7 +128,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         {
             public FileUploadTooLargeRoute()
             {
-                Url = "errors/file-upload-too-large.html";
+                Url = "errors/file-upload-too-large";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -161,7 +161,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         {
             public BadRequestRoute()
             {
-                Url = "errors/400.html";
+                Url = "errors/400";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -175,7 +175,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         {
             public UnexpectedRoute()
             {
-                Url = "errors/unexpected.html";
+                Url = "errors/unexpected";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -189,7 +189,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         {
             public ThrowRoute()
             {
-                Url = "errors/throw.html";
+                Url = "errors/throw";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -207,7 +207,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         {
             public LogAjaxErrorRoute()
             {
-                Url = "errors/log-ajax-error.json";
+                Url = "errors/log-ajax-error";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {

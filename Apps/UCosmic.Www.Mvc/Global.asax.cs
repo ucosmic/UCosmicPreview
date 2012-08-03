@@ -59,7 +59,7 @@ namespace UCosmic.Www.Mvc
                 || string.Compare(ex.Message, "Maximum request length exceeded.", false, CultureInfo.GetCultureInfo("en")) != 0)
                 return;
             Server.ClearError();
-            Response.Redirect(string.Format("~/errors/file-upload-too-large.html?path={0}",
+            Response.Redirect(string.Format("~/errors/file-upload-too-large?path={0}",
                 Server.UrlEncode(Request.CurrentExecutionFilePath)));
         }
 

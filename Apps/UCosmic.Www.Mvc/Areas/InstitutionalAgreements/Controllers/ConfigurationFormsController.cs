@@ -420,7 +420,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             public AddRoute()
             {
-                Url = "my/institutional-agreements/configure/set-up.html";
+                Url = "my/institutional-agreements/configure/set-up";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -435,7 +435,6 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             public EditRoute()
             {
                 Url = "my/institutional-agreements/configure";
-                AlternateUrls = new[] { "my/institutional-agreements/configure.html" }; // todo: lose this
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -449,7 +448,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             public NewAgreementTypeRoute()
             {
-                Url = "my/institutional-agreements/configure/{configurationId}/new-type-option.partial.html";
+                Url = "my/institutional-agreements/configure/{configurationId}/new-type-option";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -463,7 +462,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             public NewAgreementStatusRoute()
             {
-                Url = "my/institutional-agreements/configure/{configurationId}/new-status-option.partial.html";
+                Url = "my/institutional-agreements/configure/{configurationId}/new-status-option";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -477,7 +476,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             public NewAgreementContactTypeRoute()
             {
-                Url = "my/institutional-agreements/configure/{configurationId}/new-contact-type-option.partial.html";
+                Url = "my/institutional-agreements/configure/{configurationId}/new-contact-type-option";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -491,7 +490,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             public AgreementTypeOptionsRoute()
             {
-                Url = "my/institutional-agreements/configure/get-type-options.json";
+                Url = "my/institutional-agreements/configure/get-type-options";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -505,7 +504,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             public AgreementStatusOptionsRoute()
             {
-                Url = "my/institutional-agreements/configure/get-status-options.json";
+                Url = "my/institutional-agreements/configure/get-status-options";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -519,7 +518,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             public AgreementContactTypeOptionsRoute()
             {
-                Url = "my/institutional-agreements/configure/get-contact-type-options.json";
+                Url = "my/institutional-agreements/configure/get-contact-type-options";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -533,7 +532,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             public ValidateDuplicateOptionRoute()
             {
-                Url = "my/institutional-agreements/configure/validate-duplicate-option.json";
+                Url = "my/institutional-agreements/configure/validate-duplicate-option";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {

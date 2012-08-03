@@ -17,18 +17,6 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         public class Browse
         {
             [TestMethod]
-            public void Maps4Urls_FirstIsRestful()
-            {
-                var route = new ManagementFormsRouter.BrowseRoute();
-                route.Url.ShouldEqual("establishments");
-                route.AlternateUrls.ShouldNotBeNull();
-                route.AlternateUrls.Count().ShouldEqual(3);
-                route.AlternateUrls.First().ShouldEqual("establishments/manage");
-                route.AlternateUrls.Skip(1).First().ShouldEqual("establishments/manage/browse");
-                route.AlternateUrls.Last().ShouldEqual("establishments/manage/browse.html");
-            }
-
-            [TestMethod]
             public void OutBoundUrl_IsRouted()
             {
                 Expression<Func<ManagementFormsController, ActionResult>> action =

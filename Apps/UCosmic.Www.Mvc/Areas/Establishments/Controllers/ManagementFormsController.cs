@@ -214,12 +214,6 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                 : base(RouteRegistration.CreateRouteHandler(WebConfig.IsDeployedToCloud))
             {
                 Url = "establishments";
-                AlternateUrls = new[]
-                { // todo lose these
-                    "establishments/manage",
-                    "establishments/manage/browse",
-                    "establishments/manage/browse.html",
-                };
                 DataTokens = RouteRegistration.CreateDataTokens(Area, typeof (EstablishmentsAreaRegistration));
                 Defaults = new RouteValueDictionary(new
                 {

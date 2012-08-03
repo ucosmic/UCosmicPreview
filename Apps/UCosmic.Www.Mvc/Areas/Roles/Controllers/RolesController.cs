@@ -198,7 +198,7 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
         {
             public AutoCompleteUserNameRoute()
             {
-                Url = "roles/manage/autocomplete-username.json";
+                Url = "roles/manage/autocomplete-username";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
@@ -216,7 +216,7 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers
         {
             public AddUserNameRoute()
             {
-                Url = "roles/manage/add-role-member.partial.html";
+                Url = "roles/manage/add-role-member";
                 DataTokens = new RouteValueDictionary(new { area = Area, });
                 Defaults = new RouteValueDictionary(new
                 {
