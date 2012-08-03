@@ -96,7 +96,7 @@ namespace UCosmic.Www.Mvc
             Browsers.ForEach(browser =>
             {
                 // ensure that the element was located
-                var validationElement = browser.WaitUntil(b => b.FindElement(By.Id("feedback_flash")),
+                var validationElement = browser.WaitUntil(b => b.GetElement(By.Id("feedback_flash")),
                     string.Format("Flash feedback message element does not exist using @Browser."));
 
                 // ensure the element is displayed
