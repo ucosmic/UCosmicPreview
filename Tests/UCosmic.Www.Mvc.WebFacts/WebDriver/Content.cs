@@ -130,7 +130,7 @@ namespace UCosmic.Www.Mvc
             var cssSelector = Fields[key];
 
             if (!allowNull)
-                return Browser.WaitUntil(b => b.FindElement(By.CssSelector(cssSelector)),
+                return Browser.WaitUntil(b => b.GetElement(By.CssSelector(cssSelector)),
                     "A dropdown arrow button for the '{0}' field was not found by @Browser (CSS selector was '{1}')."
                         .FormatWith(fieldLabel, cssSelector));
 

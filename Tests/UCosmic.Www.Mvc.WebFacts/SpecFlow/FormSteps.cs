@@ -149,8 +149,7 @@ namespace UCosmic.Www.Mvc
                 var page = browser.GetPage();
                 var mailExcerpt = page.GetMailExcerpt(message);
                 var textBox = page.GetField(fieldLabel);
-                textBox.Clear();
-                textBox.SendKeys(mailExcerpt);
+                textBox.ClearAndSendKeys(mailExcerpt);
             });
         }
 
