@@ -106,7 +106,7 @@ namespace UCosmic.Www.Mvc
                 var page = browser.GetPage();
                 var items = page.GetCollectionItems(fieldLabel, Content.CollectionItemToken);
                 var item = items.Skip(itemNumber - 1).Take(1).Single();
-                var link = item.FindElement(By.LinkText(linkText));
+                var link = item.GetElement(By.LinkText(linkText));
                 link.ClickLink();
             });
         }

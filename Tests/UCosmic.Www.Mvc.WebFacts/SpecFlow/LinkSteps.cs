@@ -61,7 +61,7 @@ namespace UCosmic.Www.Mvc
             Browsers.ForEach(browser =>
             {
                 var link = browser.FindElement(By.CssSelector(cssSelector));
-                link.Click();
+                link.ClickIt();
             });
         }
     }

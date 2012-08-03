@@ -44,7 +44,7 @@ namespace UCosmic.Www.Mvc
 
                 browser.WaitUntil(b => page.GetAutoCompleteMenu(fieldLabel).IsNull() ||
                     !page.GetAutoCompleteMenu(fieldLabel).Displayed ||
-                    !page.GetAutoCompleteMenu(fieldLabel).FindElements(ByTagNameLi).Any(ElementTextEquals(expectedText)),
+                    !page.GetAutoCompleteMenu(fieldLabel).GetElements(ByTagNameLi).Any(ElementTextEquals(expectedText)),
                     failMessage);
             });
         }

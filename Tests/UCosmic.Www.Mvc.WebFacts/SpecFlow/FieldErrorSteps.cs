@@ -98,7 +98,7 @@ namespace UCosmic.Www.Mvc
                         "At least one expected error summary including the '{0}' message for the '{1}' field was not displayed by @Browser."
                             .FormatWith(errorType, fieldLabel));
 
-                    var item = summary.FindElements(ByTagNameLi).FirstOrDefault(ElementTextEquals(messageText));
+                    var item = summary.GetElements(ByTagNameLi).FirstOrDefault(ElementTextEquals(messageText));
                     browser.WaitUntil(b => item != null && item.Displayed,
                         "Error summary item '{0}' for the '{1}' field was not displayed by @Browser."
                             .FormatWith(errorType, fieldLabel));
