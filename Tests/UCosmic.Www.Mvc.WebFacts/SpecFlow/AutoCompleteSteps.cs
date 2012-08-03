@@ -59,7 +59,7 @@ namespace UCosmic.Www.Mvc
             {
                 var page = browser.GetPage();
                 var menu = page.GetAutoCompleteMenu(fieldLabel);
-                var item = menu.FindElements(ByTagNameLi).First(ElementTextEquals(expectedText));
+                var item = menu.GetElements(ByTagNameLi).First(ElementTextEquals(expectedText));
                 item.ClickIt();
             });
         }

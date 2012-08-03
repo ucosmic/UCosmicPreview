@@ -220,7 +220,7 @@ namespace UCosmic.Www.Mvc
 
             var cssSelector = Fields[key];
 
-            return Browser.WaitUntil(b => b.FindElements(By.CssSelector(cssSelector)),
+            return Browser.WaitUntil(b => b.GetElements(By.CssSelector(cssSelector)),
                 "No '{1}' items were found for the '{0}' collection by @Browser (CSS selector was '{2}')."
                     .FormatWith(fieldLabel, itemDetail, cssSelector));
         }
