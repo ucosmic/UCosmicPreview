@@ -448,9 +448,6 @@
     <Content Include="FileUploads\JavaScriptFile1.js" />
     <Content Include="FileUploads\VbScriptFile1.vb" />
     <Content Include="FileUploads\_ReadMe.txt" />
-    <None Include="chromedriver.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

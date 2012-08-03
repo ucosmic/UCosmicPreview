@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Linq;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
@@ -9,6 +10,7 @@ using UCosmic.Impl.Seeders;
 using UCosmic.Impl;
 using OpenQA.Selenium;
 using System.Collections.Generic;
+using System.IO;
 
 namespace UCosmic.Www.Mvc
 {
@@ -32,7 +34,7 @@ namespace UCosmic.Www.Mvc
             container.Register<IWrapDataConcerns, DataConcernsWrapper>();
 
             // register browsers
-            container.RegisterSingle(() => new ChromeDriver());
+            container.RegisterSingle(() => new ChromeDriver(GetChromeDriverDirectory()));
             container.RegisterSingle(() => new InternetExplorerDriver());
             container.RegisterSingle(() => new FirefoxDriver());
             var browsers = AllBrowsers(container);
@@ -53,6 +55,14 @@ namespace UCosmic.Www.Mvc
                 yield return container.GetInstance<InternetExplorerDriver>();
             if (container.GetRegistration(typeof(FirefoxDriver)) != null)
                 yield return container.GetInstance<FirefoxDriver>();
+        }
+
+        private static string GetChromeDriverDirectory()
+        {
+            var directory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+            while (directory != null && !directory.GetFiles("chromedriver.exe").Any())
+                directory = directory.Parent;
+            return directory != null ? directory.FullName : null;
         }
 
         public object GetService(Type serviceType)
