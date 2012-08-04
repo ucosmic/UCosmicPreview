@@ -7,7 +7,7 @@ namespace UCosmic.Domain
     /// <summary>
     /// Provides text conversion from unicode to ASCII equivalents.
     /// </summary>
-    public static class UnicodeToAsciiConverter
+    internal static class UnicodeToAsciiConverter
     {
         #region Mappings
 
@@ -196,7 +196,7 @@ namespace UCosmic.Domain
         /// <returns>
         /// The ASCII equivalent of the this text value.
         /// </returns>
-        public static string ConvertToAscii(this string unicodeText)
+        internal static string ConvertToAscii(this string unicodeText)
         {
             return Convert(unicodeText);
         }
@@ -211,7 +211,7 @@ namespace UCosmic.Domain
         /// <code>True</code> if this string of text contains only question marks and whitespace
         /// characters, otherwise <code>false</code>.
         /// </returns>
-        public static bool ContainsOnlyQuestionMarksAndWhiteSpace(this string text)
+        internal static bool ContainsOnlyQuestionMarksAndWhiteSpace(this string text)
         {
             return text.All(character => character == '?' || character == ' ' || character == '\''
                                          || character == '-' || character == '_' || character == '(' || character == ')'
@@ -220,6 +220,5 @@ namespace UCosmic.Domain
         }
 
         #endregion
-
     }
 }

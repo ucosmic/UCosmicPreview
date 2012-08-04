@@ -80,10 +80,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 })
                 .By(command.RevisionId);
             if (entity == null && command.RevisionId == 0)
-                entity = new InstitutionalAgreement
-                {
-                    EntityId = Guid.NewGuid(),
-                };
+                entity = new InstitutionalAgreement();
             if (entity == null)
                 throw new InvalidOperationException(string.Format(
                     "Agreement with id '{0}' does not exist", command.RevisionId));

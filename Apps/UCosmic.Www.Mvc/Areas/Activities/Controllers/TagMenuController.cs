@@ -61,8 +61,9 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             var placeTags = Mapper.Map<TagMenuItem[]>(places);
             foreach (var placeTag in placeTags.Where(t => !t.Text.Contains(term, caseInsensitive)))
             {
-                var matchingName = places.By(placeTag.DomainKey).Names.AsQueryable().FirstOrDefault
-                    (QueryPlaceNames.SearchTermMatches(term, contains, caseInsensitive));
+                var matchingName = places.Single(p => p.RevisionId == placeTag.DomainKey)
+                    .Names.AsQueryable().FirstOrDefault
+                        (QueryPlaceNames.SearchTermMatches(term, contains, caseInsensitive));
                 placeTag.MatchingText = matchingName != null ? matchingName.Text : null;
             }
 
@@ -87,7 +88,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers
             var establishmentTags = Mapper.Map<TagMenuItem[]>(establishments);
             foreach (var establishmentTag in establishmentTags.Where(t => !t.Text.Contains(term, caseInsensitive)))
             {
-                var establishment = establishments.By(establishmentTag.DomainKey);
+                var establishment = establishments.Single(e => e.RevisionId == establishmentTag.DomainKey);
                 var matchingName = establishment.Names.AsQueryable().FirstOrDefault
                     (QueryEstablishmentNames.SearchTermMatches(term, contains, caseInsensitive));
                 establishmentTag.MatchingText = matchingName != null ? matchingName.Text : null;

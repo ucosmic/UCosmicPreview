@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace UCosmic.Domain
 {
-    public static class EntityExtensions
+    internal static class EntityExtensions
     {
         internal static int NextNumber(this IEnumerable<IAmNumbered> enumerable)
         {
@@ -118,13 +118,13 @@ namespace UCosmic.Domain
             return queryable;
         }
 
-        public static TRevisableEntity By<TRevisableEntity>(this IEnumerable<TRevisableEntity> enumerable, Guid entityId)
+        internal static TRevisableEntity By<TRevisableEntity>(this IEnumerable<TRevisableEntity> enumerable, Guid entityId)
             where TRevisableEntity : RevisableEntity
         {
             return enumerable.AsQueryable().By(entityId);
         }
 
-        public static TRevisableEntity By<TRevisableEntity>(this IEnumerable<TRevisableEntity> enumerable, int revisionId)
+        internal static TRevisableEntity By<TRevisableEntity>(this IEnumerable<TRevisableEntity> enumerable, int revisionId)
             where TRevisableEntity : RevisableEntity
         {
             return enumerable.AsQueryable().By(revisionId);

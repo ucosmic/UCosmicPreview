@@ -15,9 +15,9 @@ namespace UCosmic.Domain.InstitutionalAgreements
             Principal = principal;
         }
 
-        public AddContactToAgreementCommand()
-        {
-        }
+        //public AddContactToAgreementCommand()
+        //{
+        //}
 
         public IPrincipal Principal { get; private set; }
         public Guid EntityId { get; set; }

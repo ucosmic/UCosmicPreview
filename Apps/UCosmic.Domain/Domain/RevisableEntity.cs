@@ -15,7 +15,7 @@ namespace UCosmic.Domain
 
         public int RevisionId { get; protected internal set; }
 
-        public Guid EntityId { get; set; }
+        public Guid EntityId { get; protected internal set; }
 
         public DateTime CreatedOnUtc { get; protected internal set; }
 
