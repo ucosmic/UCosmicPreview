@@ -1,4 +1,4 @@
-﻿namespace UCosmic.Impl.Seeders2
+﻿namespace UCosmic.Impl.Seeders
 {
     public interface ISeedData
     {

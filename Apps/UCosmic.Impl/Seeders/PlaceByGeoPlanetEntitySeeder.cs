@@ -4,7 +4,7 @@ using NGeo.Yahoo.GeoPlanet;
 using UCosmic.Domain.Places;
 using Place = UCosmic.Domain.Places.Place;
 
-namespace UCosmic.Impl.Seeders2
+namespace UCosmic.Impl.Seeders
 {
     public class PlaceByGeoPlanetEntitySeeder : BaseDataSeeder
     {

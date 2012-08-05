@@ -3,7 +3,7 @@ using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Languages;
 using UCosmic.Domain.Places;
 
-namespace UCosmic.Impl.Seeders2
+namespace UCosmic.Impl.Seeders
 {
     public class EstablishmentEntitySeeder : BaseDataSeeder
     {

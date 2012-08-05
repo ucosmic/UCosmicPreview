@@ -1,7 +1,7 @@
 ﻿using System.Security.Principal;
 using UCosmic.Domain.Identity;
 
-namespace UCosmic.Impl.Seeders2
+namespace UCosmic.Impl.Seeders
 {
     public class RoleEntitySeeder : BaseRoleSeeder
     {

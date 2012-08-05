@@ -9,7 +9,7 @@ using FluentValidation.Mvc;
 using ServiceLocatorPattern;
 using UCosmic.Impl;
 using UCosmic.Impl.Orm;
-using UCosmic.Impl.Seeders2;
+using UCosmic.Impl.Seeders;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Models;
 

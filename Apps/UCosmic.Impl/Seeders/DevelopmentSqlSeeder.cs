@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace UCosmic.Impl.Seeders2
+namespace UCosmic.Impl.Seeders
 {
     public class DevelopmentSqlSeeder : CoreSqlSeeder
     {

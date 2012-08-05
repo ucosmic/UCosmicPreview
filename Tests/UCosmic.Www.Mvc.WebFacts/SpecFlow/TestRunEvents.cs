@@ -6,7 +6,7 @@ using OpenQA.Selenium;
 using ServiceLocatorPattern;
 using TechTalk.SpecFlow;
 using UCosmic.Impl.Orm;
-using UCosmic.Impl.Seeders2;
+using UCosmic.Impl.Seeders;
 using UCosmic.Www.Mvc.Areas.Identity;
 
 namespace UCosmic.Www.Mvc

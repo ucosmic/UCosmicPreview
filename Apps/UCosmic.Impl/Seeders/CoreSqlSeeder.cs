@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using UCosmic.Domain.Languages;
 
-namespace UCosmic.Impl.Seeders2
+namespace UCosmic.Impl.Seeders
 {
     public class CoreSqlSeeder : SqlSeeder
     {

@@ -2,7 +2,7 @@
 using System.Web.Security;
 using UCosmic.Domain.Identity;
 
-namespace UCosmic.Impl.Seeders2
+namespace UCosmic.Impl.Seeders
 {
     public class MemberEntitySeeder : BaseDataSeeder
     {

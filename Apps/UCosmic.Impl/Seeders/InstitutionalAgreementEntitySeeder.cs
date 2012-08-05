@@ -6,7 +6,7 @@ using UCosmic.Domain.InstitutionalAgreements;
 using System.Security.Principal;
 using UCosmic.Domain.People;
 
-namespace UCosmic.Impl.Seeders2
+namespace UCosmic.Impl.Seeders
 {
     public class InstitutionalAgreementEntitySeeder : BaseDataSeeder
     {

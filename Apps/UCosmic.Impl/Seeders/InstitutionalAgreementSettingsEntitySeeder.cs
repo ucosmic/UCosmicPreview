@@ -3,7 +3,7 @@ using System.Linq;
 using System.Security.Principal;
 using UCosmic.Domain.InstitutionalAgreements;
 
-namespace UCosmic.Impl.Seeders2
+namespace UCosmic.Impl.Seeders
 {
     public class InstitutionalAgreementSettingsEntitySeeder : BaseDataSeeder
     {

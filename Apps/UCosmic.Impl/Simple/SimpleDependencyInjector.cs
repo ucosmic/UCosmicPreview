@@ -10,7 +10,7 @@ using SimpleInjector;
 using SimpleInjector.Extensions;
 using UCosmic.Domain.Identity;
 using UCosmic.Impl.Orm;
-using UCosmic.Impl.Seeders2;
+using UCosmic.Impl.Seeders;
 
 namespace UCosmic.Impl
 {
