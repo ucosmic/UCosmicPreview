@@ -15,6 +15,7 @@ namespace UCosmic.Domain.Activities
             Values = new ActivityValues();
             CreatedOn = DateTime.UtcNow;
             UpdatedOn = DateTime.UtcNow;
+
             // ReSharper disable DoNotCallOverridableMethodsInConstructor
             DraftedTags = new Collection<DraftedTag>();
             Tags = new Collection<ActivityTag>();
@@ -40,9 +41,9 @@ namespace UCosmic.Domain.Activities
 
         public ActivityValues DraftedValues { get; private set; }
 
-        public virtual ICollection<ActivityTag> Tags { get; set; }
+        public virtual ICollection<ActivityTag> Tags { get; protected set; }
 
-        public virtual ICollection<DraftedTag> DraftedTags { get; set; }
+        public virtual ICollection<DraftedTag> DraftedTags { get; protected set; }
 
         public DateTime CreatedOn { get; protected internal set; }
 
