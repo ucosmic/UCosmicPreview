@@ -43,7 +43,7 @@ namespace UCosmic.Www.Mvc
             AutoMapperRegistration.RegisterProfiles();
 
             // seed the database
-            SeedDb();
+            SeedData();
         }
 
         protected void Application_Error()
@@ -113,19 +113,11 @@ namespace UCosmic.Www.Mvc
             );
         }
 
-        private static void SeedDb()
+        private static void SeedData()
         {
             // check DI for database seeder
-            var seeder2 = ServiceProviderLocator.Current.GetService<ISeedData>();
-            if (seeder2 != null) seeder2.Seed();
-
-            //// check DI for database seeder
-            //var seeder = ServiceProviderLocator.Current.GetService<ISeedDb>();
-            //if (seeder == null) return;
-            //using (var context = ServiceProviderLocator.Current.GetService<IUnitOfWork>())
-            //{
-            //    seeder.Seed(context as UCosmicContext);
-            //}
+            var seeder = ServiceProviderLocator.Current.GetService<ISeedData>();
+            if (seeder != null) seeder.Seed();
         }
 
         public override string GetVaryByCustomString(HttpContext context, string custom)

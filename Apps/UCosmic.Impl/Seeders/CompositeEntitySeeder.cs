@@ -55,7 +55,6 @@
             _personEntitySeeder.Seed();
             _userEntitySeeder.Seed();
             _memberEntitySeeder.Seed();
-            _unitOfWork.SaveChanges();
             _institutionalAgreementEntitySeeder.Seed();
             _institutionalAgreementSettingsEntitySeeder.Seed();
 

@@ -116,6 +116,8 @@
     <Compile Include="Orm\ActivitiesRelationalMapper.cs" />
     <Compile Include="Seeders\BaseDataSeeder.cs" />
     <Compile Include="Seeders\CompositeEntitySeeder.cs" />
+    <Compile Include="Seeders\CompositeSqlSeeder.cs" />
+    <Compile Include="Seeders\BrownfieldSeeder.cs" />
     <Compile Include="Seeders\InstitutionalAgreementSettingsEntitySeeder.cs" />
     <Compile Include="Seeders\InstitutionalAgreementEntitySeeder.cs" />
     <Compile Include="Seeders\MemberEntitySeeder.cs" />
