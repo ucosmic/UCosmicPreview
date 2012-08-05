@@ -21,7 +21,7 @@ namespace UCosmic.Impl
         private static UCosmicContext GetEntities()
         {
             // new up context to avoid ArgumentExceptions on Set<Role>().AsNoTracking()
-            return new UCosmicContext(null);
+            return new UCosmicContext();
         }
 
         public override string[] GetRolesForUser(string userName)

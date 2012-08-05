@@ -59,8 +59,8 @@ namespace UCosmic.Impl
             }
             else
             {
-                container.Register<IDatabaseInitializer<UCosmicContext>, DropOnModelChangeInitializer>();
-                //container.Register<IDatabaseInitializer<UCosmicContext>, DropAlwaysInitializer>();
+                //container.Register<IDatabaseInitializer<UCosmicContext>, DropOnModelChangeInitializer>();
+                container.Register<IDatabaseInitializer<UCosmicContext>, DropAlwaysInitializer>();
                 //container.Register<IDatabaseInitializer<UCosmicContext>, BrownfieldInitializer>();
 
                 //container.Register<ISeedData, CompositeEntitySeeder>();
@@ -73,6 +73,7 @@ namespace UCosmic.Impl
             container.Register<IUnitOfWork>(container.GetInstance<UCosmicContext>);
             container.Register<IQueryEntities>(container.GetInstance<UCosmicContext>);
             container.Register<ICommandEntities>(container.GetInstance<UCosmicContext>);
+            container.RegisterInitializer<UCosmicContext>(container.InjectProperties);
 
             // other interfaces related to DbContext
             //container.Register<ICommandObjects, ObjectCommander>();
