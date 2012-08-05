@@ -80,9 +80,6 @@ namespace UCosmic.Domain.Places
 
         private void DeriveNodes(GeoNamesToponym toponym)
         {
-            toponym.Ancestors = toponym.Ancestors ?? new Collection<GeoNamesToponymNode>();
-            toponym.Offspring = toponym.Offspring ?? new Collection<GeoNamesToponymNode>();
-
             toponym.Ancestors.ToList().ForEach(node =>
                 _entities.Purge(node));
 

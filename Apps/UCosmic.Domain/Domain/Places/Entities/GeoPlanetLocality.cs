@@ -2,9 +2,8 @@
 {
     public class GeoPlanetLocality
     {
-        public string TypeName { get; set; }
-
-        public string Name { get; set; }
+        public string TypeName { get; protected internal set; }
+        public string Name { get; protected internal set; }
 
         public override string ToString()
         {

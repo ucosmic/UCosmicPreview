@@ -47,14 +47,15 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void IsVirtual()
             {
-                new PlaceNameRuntimeEntity();
+                var entity = new PlaceNameRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class PlaceNameRuntimeEntity : PlaceName
             {
                 public override Place NameFor
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -65,14 +66,15 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void IsVirtual()
             {
-                new PlaceNameRuntimeEntity();
+                var entity = new PlaceNameRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class PlaceNameRuntimeEntity : PlaceName
             {
                 public override Language TranslationToLanguage
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

@@ -2,44 +2,35 @@
 {
     public class GeoNamesCountry : Entity
     {
-        public GeoNamesCountry()
+        protected internal GeoNamesCountry()
         {
             BoundingBox = new BoundingBox();
         }
 
-        public int GeoNameId { get; set; }
-        public virtual GeoNamesToponym AsToponym { get; set; }
+        public int GeoNameId { get; protected internal set; }
+        public virtual GeoNamesToponym AsToponym { get; protected internal set; }
 
-        public BoundingBox BoundingBox { get; set; }
+        public BoundingBox BoundingBox { get; protected internal set; }
 
-        public string Code { get; set; }
+        public string Code { get; protected internal set; }
+        public string Name { get; protected internal set; }
 
-        public string Name { get; set; }
+        public string ContinentCode { get; protected internal set; }
+        public string ContinentName { get; protected internal set; }
 
-        public string ContinentCode { get; set; }
+        public int IsoNumericCode { get; protected internal set; }
+        public string IsoAlpha3Code { get; protected internal set; }
+        public string FipsCode { get; protected internal set; }
 
-        public string ContinentName { get; set; }
-
-        public int IsoNumericCode { get; set; }
-
-        public string IsoAlpha3Code { get; set; }
-
-        public string FipsCode { get; set; }
-
-        public string CapitalCityName { get; set; }
-
-        public string AreaInSqKm { get; set; }
-
-        public string CurrencyCode { get; set; }
-
-        public string Languages { get; set; }
-
-        public long Population { get; set; }
+        public string CapitalCityName { get; protected internal set; }
+        public string AreaInSqKm { get; protected internal set; }
+        public string CurrencyCode { get; protected internal set; }
+        public string Languages { get; protected internal set; }
+        public long Population { get; protected internal set; }
 
         public override string ToString()
         {
             return Name;
         }
-
     }
 }

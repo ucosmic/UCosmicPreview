@@ -139,9 +139,6 @@ namespace UCosmic.Domain.Places
 
         private void DeriveNodes(Place entity)
         {
-            entity.Ancestors = entity.Ancestors ?? new Collection<PlaceNode>();
-            entity.Offspring = entity.Offspring ?? new Collection<PlaceNode>();
-
             entity.Ancestors.ToList().ForEach(node =>
                 _entities.Purge(node));
 

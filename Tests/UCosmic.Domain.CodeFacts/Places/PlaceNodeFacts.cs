@@ -33,14 +33,15 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void IsVirtual()
             {
-                new PlaceNodeRuntimeEntity();
+                var entity = new PlaceNodeRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class PlaceNodeRuntimeEntity : PlaceNode
             {
                 public override Place Ancestor
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -73,14 +74,15 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void IsVirtual()
             {
-                new PlaceNodeRuntimeEntity();
+                var entity = new PlaceNodeRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class PlaceNodeRuntimeEntity : PlaceNode
             {
                 public override Place Offspring
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

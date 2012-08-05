@@ -116,14 +116,15 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void IsVirtual()
             {
-                new PlaceRuntimeEntity();
+                var entity = new PlaceRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class PlaceRuntimeEntity : Place
             {
                 public override Place Parent
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -143,14 +144,15 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void IsVirtual()
             {
-                new PlaceRuntimeEntity();
+                var entity = new PlaceRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class PlaceRuntimeEntity : Place
             {
                 public override ICollection<Place> Children
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -161,14 +163,15 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void IsVirtual()
             {
-                new PlaceRuntimeEntity();
+                var entity = new PlaceRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class PlaceRuntimeEntity : Place
             {
                 public override ICollection<PlaceNode> Ancestors
                 {
                     get { return null; }
-                    set { }
+                    protected set { }
                 }
             }
         }
@@ -179,14 +182,15 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void IsVirtual()
             {
-                new PlaceRuntimeEntity();
+                var entity = new PlaceRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class PlaceRuntimeEntity : Place
             {
                 public override ICollection<PlaceNode> Offspring
                 {
                     get { return null; }
-                    set { }
+                    protected set { }
                 }
             }
         }
@@ -197,14 +201,15 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void IsVirtual()
             {
-                new PlaceRuntimeEntity();
+                var entity = new PlaceRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class PlaceRuntimeEntity : Place
             {
                 public override GeoNamesToponym GeoNamesToponym
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -215,14 +220,15 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void IsVirtual()
             {
-                new PlaceRuntimeEntity();
+                var entity = new PlaceRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class PlaceRuntimeEntity : Place
             {
                 public override GeoPlanetPlace GeoPlanetPlace
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -242,14 +248,15 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void IsVirtual()
             {
-                new PlaceRuntimeEntity();
+                var entity = new PlaceRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class PlaceRuntimeEntity : Place
             {
                 public override ICollection<PlaceName> Names
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

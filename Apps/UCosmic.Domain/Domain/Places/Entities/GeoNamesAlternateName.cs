@@ -2,15 +2,11 @@
 {
     public class GeoNamesAlternateName : Entity
     {
-        public long AlternateNameId { get; set; }
-
-        public int GeoNameId { get; set; }
-
-        public string Language { get; set; }
-
-        public string Name { get; set; }
-
-        public virtual GeoNamesToponym Toponym { get; set; }
+        public long AlternateNameId { get; protected internal set; }
+        public int GeoNameId { get; protected internal set; }
+        public string Language { get; protected internal set; }
+        public string Name { get; protected internal set; }
+        public virtual GeoNamesToponym Toponym { get; protected internal set; }
 
         public override string ToString()
         {

@@ -143,6 +143,11 @@
     <Compile Include="Domain\Languages\Commands\CreateLanguageName.cs" />
     <Compile Include="Domain\Languages\Commands\CreateLanguage.cs" />
     <Compile Include="Domain\Languages\Queries\LanguageByIsoCode.cs" />
+    <Compile Include="Domain\Places\Entities\GeoNamesFeatureClassEnum.cs" />
+    <Compile Include="Domain\Places\Entities\GeoNamesFeatureClassEnumExtensions.cs" />
+    <Compile Include="Domain\Places\Entities\GeoNamesFeatureEnum.cs" />
+    <Compile Include="Domain\Places\Entities\GeoNamesFeatureEnumExtensions.cs" />
+    <Compile Include="Domain\Places\Entities\GeoPlanetPlaceTypeEnum.cs" />
     <Compile Include="Domain\Places\Queries\WoeIdByCoordinates.cs" />
     <Compile Include="Domain\UnicodeToAsciiConverter.cs" />
     <Compile Include="Domain\Establishments\Business\QueryEstablishmentUrls.cs" />

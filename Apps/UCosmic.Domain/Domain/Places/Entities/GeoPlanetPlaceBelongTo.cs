@@ -2,13 +2,13 @@
 {
     public class GeoPlanetPlaceBelongTo : Entity
     {
-        public int PlaceWoeId { get; set; }
-        public virtual GeoPlanetPlace GeoPlanetPlace { get; set; }
+        public int PlaceWoeId { get; protected internal set; }
+        public virtual GeoPlanetPlace GeoPlanetPlace { get; protected internal set; }
 
-        public int Rank { get; set; }
+        public int Rank { get; protected internal set; }
 
-        public int BelongToWoeId { get; set; }
-        public virtual GeoPlanetPlace BelongsTo { get; set; }
+        public int BelongToWoeId { get; protected internal set; }
+        public virtual GeoPlanetPlace BelongsTo { get; protected internal set; }
 
         public override string ToString()
         {

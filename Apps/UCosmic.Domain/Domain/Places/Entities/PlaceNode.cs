@@ -2,13 +2,13 @@
 {
     public class PlaceNode : Entity
     {
-        public int AncestorId { get; set; }
-        public virtual Place Ancestor { get; set; }
+        public int AncestorId { get; protected internal set; }
+        public virtual Place Ancestor { get; protected internal set; }
 
-        public int OffspringId { get; set; }
-        public virtual Place Offspring { get; set; }
+        public int OffspringId { get; protected internal set; }
+        public virtual Place Offspring { get; protected internal set; }
 
-        public int Separation { get; set; }
+        public int Separation { get; protected internal set; }
 
         public override string ToString()
         {

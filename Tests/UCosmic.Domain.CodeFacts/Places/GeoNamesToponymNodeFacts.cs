@@ -33,14 +33,15 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void IsVirtual()
             {
-                new GeoNamesToponymNodeRuntimeEntity();
+                var entity = new GeoNamesToponymNodeRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class GeoNamesToponymNodeRuntimeEntity : GeoNamesToponymNode
             {
                 public override GeoNamesToponym Ancestor
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -73,14 +74,15 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void IsVirtual()
             {
-                new GeoNamesToponymNodeRuntimeEntity();
+                var entity = new GeoNamesToponymNodeRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class GeoNamesToponymNodeRuntimeEntity : GeoNamesToponymNode
             {
                 public override GeoNamesToponym Offspring
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

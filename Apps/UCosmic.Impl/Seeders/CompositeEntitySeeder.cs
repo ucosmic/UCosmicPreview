@@ -4,8 +4,8 @@
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly CoreSqlSeeder _coreSqlSeeder;
-        //private readonly LanguageSqlSeeder _languageSqlSeeder;
-        //private readonly PlaceByGeoPlanetEntitySeeder _placeByGeoPlanetEntitySeeder;
+        private readonly LanguageSqlSeeder _languageSqlSeeder;
+        private readonly PlaceByGeoPlanetEntitySeeder _placeByGeoPlanetEntitySeeder;
         private readonly RoleEntitySeeder _roleEntitySeeder;
         private readonly EstablishmentEntitySeeder _establishmentEntitySeeder;
         private readonly EmailTemplateEntitySeeder _emailTemplateEntitySeeder;
@@ -17,8 +17,8 @@
 
         public CompositeEntitySeeder(IUnitOfWork unitOfWork
             , CoreSqlSeeder coreSqlSeeder
-            //, LanguageSqlSeeder languageSqlSeeder
-            //, PlaceByGeoPlanetEntitySeeder placeByGeoPlanetEntitySeeder
+            , LanguageSqlSeeder languageSqlSeeder
+            , PlaceByGeoPlanetEntitySeeder placeByGeoPlanetEntitySeeder
             , RoleEntitySeeder roleEntitySeeder
             , EstablishmentEntitySeeder establishmentEntitySeeder
             , EmailTemplateEntitySeeder emailTemplateEntitySeeder
@@ -31,8 +31,8 @@
         {
             _unitOfWork = unitOfWork;
             _coreSqlSeeder = coreSqlSeeder;
-            //_languageSqlSeeder = languageSqlSeeder;
-            //_placeByGeoPlanetEntitySeeder = placeByGeoPlanetEntitySeeder;
+            _languageSqlSeeder = languageSqlSeeder;
+            _placeByGeoPlanetEntitySeeder = placeByGeoPlanetEntitySeeder;
             _roleEntitySeeder = roleEntitySeeder;
             _establishmentEntitySeeder = establishmentEntitySeeder;
             _emailTemplateEntitySeeder = emailTemplateEntitySeeder;

@@ -2,11 +2,9 @@
 {
     public class GeoPlanetAdmin
     {
-        public string Code { get; set; }
-
-        public string TypeName { get; set; }
-
-        public string Name { get; set; }
+        public string Code { get; protected internal set; }
+        public string TypeName { get; protected internal set; }
+        public string Name { get; protected internal set; }
 
         public override string ToString()
         {

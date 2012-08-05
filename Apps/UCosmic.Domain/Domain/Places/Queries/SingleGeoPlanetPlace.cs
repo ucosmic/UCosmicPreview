@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using NGeo.Yahoo.GeoPlanet;
 
@@ -80,9 +79,6 @@ namespace UCosmic.Domain.Places
 
         private void DeriveNodes(GeoPlanetPlace place)
         {
-            place.Ancestors = place.Ancestors ?? new Collection<GeoPlanetPlaceNode>();
-            place.Offspring = place.Offspring ?? new Collection<GeoPlanetPlaceNode>();
-
             place.Ancestors.ToList().ForEach(node =>
                 _entities.Purge(node));
 
