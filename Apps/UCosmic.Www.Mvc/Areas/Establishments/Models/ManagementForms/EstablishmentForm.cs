@@ -344,7 +344,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms
                     .ForMember(target => target.IsDeleted, opt => opt.Ignore())
                     .ForMember(target => target.EnglishName, opt => opt.Ignore())
                     .ForMember(target => target.EnglishPluralName, opt => opt.Ignore())
-                    .ForMember(target => target.CategoryId, opt => opt.Ignore())
+                    .ForMember(target => target.CategoryCode, opt => opt.Ignore())
                     .ForMember(target => target.Category, opt => opt.Ignore())
                 ;
             }

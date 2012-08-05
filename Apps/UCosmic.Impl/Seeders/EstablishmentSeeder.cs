@@ -27,7 +27,7 @@ namespace UCosmic.Impl.Seeders
             //new EstablishmentUcSamlIntegrationSeeder().Seed(context);
         }
 
-        private class EstablishmentUsfSeeder : BaseEstablishmentSeeder
+        public class EstablishmentUsfSeeder : BaseEstablishmentSeeder
         {
             public override void Seed(UCosmicContext context)
             {
@@ -39,11 +39,6 @@ namespace UCosmic.Impl.Seeders
                 var usf = Context.Set<Establishment>().SingleOrDefault(e => e.WebsiteUrl == usfUrl);
                 if (usf == null)
                 {
-                    //var configurationManager = new DotNetConfigurationManager();
-                    //var objectCommander = new ObjectCommander(context);
-                    //var geoNames = new GeoNamesClient();
-                    //var geoPlanet = new GeoPlanetClient();
-                    //var placeFactory = new PlaceFactory(context, objectCommander, geoPlanet, geoNames, configurationManager);
                     var placeFinderClient = ServiceProviderLocator.Current.GetService<IConsumePlaceFinder>();
                     const string officialName = "University of South Florida";
                     usf = EnsureEstablishment(officialName, true, null, GetUniversity(), usfUrl, "@usf.edu;@iac.usf.edu;@mail.usf.edu");
@@ -70,7 +65,7 @@ namespace UCosmic.Impl.Seeders
             }
         }
 
-        private class EstablishmentUcSamlIntegrationSeeder : UCosmicDbSeeder
+        public class EstablishmentUcSamlIntegrationSeeder : UCosmicDbSeeder
         {
             public override void Seed(UCosmicContext context)
             {
@@ -92,7 +87,7 @@ namespace UCosmic.Impl.Seeders
             }
         }
 
-        private class EstablishmentJanuary2011Preview1Seeder : BaseEstablishmentSeeder
+        public class EstablishmentJanuary2011Preview1Seeder : BaseEstablishmentSeeder
         {
             public override void Seed(UCosmicContext context)
             {
@@ -137,9 +132,7 @@ namespace UCosmic.Impl.Seeders
             }
         }
 
-        // ReSharper disable MemberCanBePrivate.Global
         public class EstablishmentDecember2011Preview2Seeder : BaseEstablishmentSeeder
-        // ReSharper restore MemberCanBePrivate.Global
         {
             //private PlaceFactory _placeFactory;
             private IConsumePlaceFinder _placeFinderClient;
@@ -197,7 +190,7 @@ namespace UCosmic.Impl.Seeders
             }
         }
 
-        private class EstablishmentPreview5Seeder : BaseEstablishmentSeeder
+        public class EstablishmentPreview5Seeder : BaseEstablishmentSeeder
         {
             public override void Seed(UCosmicContext context)
             {
@@ -282,7 +275,7 @@ namespace UCosmic.Impl.Seeders
             }
         }
 
-        private class EstablishmentPreview3Seeder : BaseEstablishmentSeeder
+        public class EstablishmentPreview3Seeder : BaseEstablishmentSeeder
         {
             public override void Seed(UCosmicContext context)
             {
@@ -292,7 +285,8 @@ namespace UCosmic.Impl.Seeders
 
                 #region UMN Colleges
 
-                var umn = Context.Set<Establishment>().ByOfficialName("University of Minnesota");
+                var umn = Context.Set<Establishment>()
+                    .SingleOrDefault(e => e.OfficialName.Equals("University of Minnesota", StringComparison.OrdinalIgnoreCase));
                 if (umn == null)
                     throw new InvalidOperationException("University of Minnesota does not exist.");
 
@@ -346,7 +340,7 @@ namespace UCosmic.Impl.Seeders
             }
         }
 
-        private class EstablishmentPreview1Seeder : BaseEstablishmentSeeder
+        public class EstablishmentPreview1Seeder : BaseEstablishmentSeeder
         {
             public override void Seed(UCosmicContext context)
             {
@@ -358,7 +352,8 @@ namespace UCosmic.Impl.Seeders
 
                 var officialName = "State University of New York (SUNY)";
                 EnsureEstablishment(officialName, true, null, GetUniversitySystem(), "www.suny.edu", "@suny.edu");
-                var suny = Context.Set<Establishment>().ByOfficialName(officialName);
+                var suny = Context.Set<Establishment>()
+                    .SingleOrDefault(e => e.OfficialName.Equals(officialName, StringComparison.OrdinalIgnoreCase));
 
                 EnsureEstablishment("SUNY Adirondack", true, suny, GetCommunityCollege(), "www.sunyacc.edu", "@sunyacc.edu");
                 EnsureEstablishment("University at Albany (SUNY)", true, suny, GetUniversity(), "www.albany.edu", "@albany.edu");
@@ -430,7 +425,8 @@ namespace UCosmic.Impl.Seeders
 
                 officialName = "University of Cincinnati";
                 EnsureEstablishment(officialName, true, null, GetUniversity(), "www.uc.edu", "@uc.edu;@ucmail.uc.edu");
-                var uc = Context.Set<Establishment>().ByOfficialName(officialName);
+                var uc = Context.Set<Establishment>()
+                    .SingleOrDefault(e => e.OfficialName.Equals(officialName, StringComparison.OrdinalIgnoreCase));
                 EnsureEstablishment("College of Allied Health Sciences, University of Cincinnati", true, uc, GetCollege(), "www.cahs.uc.edu", null);
                 EnsureEstablishment("McMicken College of Arts & Sciences, University of Cincinnati", true, uc, GetCollege(), "www.artsci.uc.edu", null);
                 EnsureEstablishment("College of Business, University of Cincinnati", true, uc, GetCollege(), "www.business.uc.edu", null);
@@ -453,7 +449,7 @@ namespace UCosmic.Impl.Seeders
 
                 officialName = "Lehigh University";
                 EnsureEstablishment(officialName, true, null, GetUniversity(), "www.lehigh.edu", "@lehigh.edu");
-                var lehigh = Context.Set<Establishment>().ByOfficialName(officialName);
+                var lehigh = Context.Set<Establishment>().SingleOrDefault(e => e.OfficialName.Equals(officialName, StringComparison.OrdinalIgnoreCase));
                 EnsureEstablishment("Lehigh University College of Arts and Sciences", true, lehigh, GetCollege(), "cas.lehigh.edu", null);
                 EnsureEstablishment("Lehigh University College of Business and Economics", true, lehigh, GetCollege(), "www.lehigh.edu/business", null);
                 EnsureEstablishment("Lehigh University College of Education", true, lehigh, GetCollege(), "www.lehigh.edu/education", null);
@@ -464,7 +460,7 @@ namespace UCosmic.Impl.Seeders
 
                 officialName = "Manipal Education";
                 EnsureEstablishment(officialName, true, null, GetUniversitySystem(), "www.manipalglobal.com", null);
-                var manipalGlobal = Context.Set<Establishment>().ByOfficialName(officialName);
+                var manipalGlobal = Context.Set<Establishment>().SingleOrDefault(e => e.OfficialName.Equals(officialName, StringComparison.OrdinalIgnoreCase));
 
                 var manipalEdu = EnsureEstablishment("Manipal University", true, manipalGlobal, GetUniversity(), "www.manipal.edu", "@manipal.edu");
                 var melaka = EnsureEstablishment("Melaka Manipal Medical College", true, manipalEdu, GetCollege(), "www.manipal.edu/Institutions/Medicine/MMMCMelaka", null);
@@ -538,14 +534,12 @@ namespace UCosmic.Impl.Seeders
 
                 officialName = "The College Board";
                 EnsureEstablishment(officialName, true, null, GetGenericBusiness(), "www.collegeboard.org", "@collegeboard.org");
-                Context.Set<Establishment>().ByOfficialName(officialName);
 
                 officialName = "Institute of International Education (IIE)";
                 EnsureEstablishment(officialName, true, null, GetAssociation(), "www.iie.org", "@iie.org");
 
                 officialName = "Terra Dotta, LLC";
                 EnsureEstablishment(officialName, true, null, GetGenericBusiness(), "www.terradotta.com", "@terradotta.com");
-                Context.Set<Establishment>().ByOfficialName(officialName);
 
                 #endregion
                 #region Agreement Institutions

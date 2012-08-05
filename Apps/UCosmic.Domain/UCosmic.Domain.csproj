@@ -72,6 +72,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\NGeo.1.7\lib\net40\NGeo.dll</HintPath>
     </Reference>
+    <Reference Include="Pluralize">
+      <HintPath>..\..\packages\Pluralizer.0.3.0.1\lib\net40\Pluralize.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -128,8 +131,19 @@
     <Compile Include="Api\SamlAttributeName.cs" />
     <Compile Include="Api\SamlAttributeNameString.cs" />
     <Compile Include="Api\StringMatchStrategy.cs" />
+    <Compile Include="Domain\Establishments\Commands\CreateEstablishmentCategory.cs" />
+    <Compile Include="Domain\Establishments\Commands\CreateEstablishmentType.cs" />
+    <Compile Include="Domain\Establishments\Commands\CreateEstablishment.cs" />
     <Compile Include="Domain\Establishments\Commands\CreateEmailTemplate.cs" />
+    <Compile Include="Domain\Establishments\Entities\KnownEstablishmentType.cs" />
+    <Compile Include="Domain\Establishments\Queries\EstablishmentByOfficialName.cs" />
+    <Compile Include="Domain\Establishments\Queries\EstablishmentCategoryByCode.cs" />
+    <Compile Include="Domain\Establishments\Queries\EstablishmentTypeByEnglishName.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\GenerateTitle.cs" />
+    <Compile Include="Domain\Languages\Commands\CreateLanguageName.cs" />
+    <Compile Include="Domain\Languages\Commands\CreateLanguage.cs" />
+    <Compile Include="Domain\Languages\Queries\LanguageByIsoCode.cs" />
+    <Compile Include="Domain\Places\Queries\WoeIdByCoordinates.cs" />
     <Compile Include="Domain\UnicodeToAsciiConverter.cs" />
     <Compile Include="Domain\Establishments\Business\QueryEstablishmentUrls.cs" />
     <Compile Include="Domain\Establishments\Business\QueryEstablishmentNames.cs" />

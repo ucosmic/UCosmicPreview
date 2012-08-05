@@ -14,7 +14,8 @@ namespace UCosmic.Impl.Seeders
             string affiliationUrl, IEnumerable<string> roleNames = null)
         {
             // get affiliated establishment
-            var establishment = Context.Set<Establishment>().ByWebsiteUrl(affiliationUrl);
+            var establishment = Context.Set<Establishment>()
+                .SingleOrDefault(e => e.WebsiteUrl != null && e.WebsiteUrl.Equals(affiliationUrl, StringComparison.OrdinalIgnoreCase));
             if (establishment == null)
                 throw new InvalidOperationException(string.Format("There is no establishment for URL '{0}'.", affiliationUrl));
 
@@ -37,23 +38,6 @@ namespace UCosmic.Impl.Seeders
             // add grants to user
             if (roleNames != null)
             {
-                //var roles = new RoleFacade(Context);
-                ////foreach (var roleName in roleNames)
-                ////{
-                ////    if (person.User.Grants.Select(g => g.Role.Name).Contains(roleName)) continue;
-
-                ////    var role = roles.Get(roleName);
-                ////    role.GrantUser(person.User.EntityId, userFinder);
-                ////    Context.Entry(role).State = role.RevisionId == 0 ? EntityState.Added : EntityState.Modified;
-                ////}
-                //foreach (var role in from roleName in roleNames
-                //    where !person.User.Grants.Select(g => g.Role.Name).Contains(roleName)
-                //    select roles.Get(roleName))
-                //{
-                //    role.GrantUser(person.User.EntityId, Context);
-                //    Context.Entry(role).State = role.RevisionId == 0 ? EntityState.Added : EntityState.Modified;
-                //}
-
                 var queryProcessor = ServiceProviderLocator.Current.GetService<IProcessQueries>();
                 var grantHandler = ServiceProviderLocator.Current.GetService<IHandleCommands<GrantRoleToUserCommand>>();
                 foreach (var roleName in roleNames)

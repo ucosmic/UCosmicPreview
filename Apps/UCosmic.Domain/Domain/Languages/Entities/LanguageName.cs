@@ -2,9 +2,9 @@
 {
     public class LanguageName : RevisableEntity
     {
-        public virtual Language NameForLanguage { get; set; }
+        public virtual Language NameForLanguage { get; protected internal set; }
 
-        public virtual Language TranslationToLanguage { get; set; }
+        public virtual Language TranslationToLanguage { get; protected internal set; }
 
         public string Text
         {

@@ -179,7 +179,7 @@ namespace UCosmic.Impl.Orm
                 // has one category
                 HasRequired(d => d.Category)
                     .WithMany()
-                    .HasForeignKey(d => d.CategoryId)
+                    .HasForeignKey(d => d.CategoryCode)
                     .WillCascadeOnDelete(false); // do not delete type if category is deleted
 
                 Property(p => p.EnglishName).IsRequired().HasMaxLength(150);
@@ -187,11 +187,13 @@ namespace UCosmic.Impl.Orm
             }
         }
 
-        private class EstablishmentCategoryOrm : RevisableEntityTypeConfiguration<EstablishmentCategory>
+        private class EstablishmentCategoryOrm : EntityTypeConfiguration<EstablishmentCategory>
         {
             internal EstablishmentCategoryOrm()
             {
                 ToTable(typeof(EstablishmentCategory).Name, DbSchemaName.Establishments);
+
+                HasKey(e => e.Code);
 
                 Property(c => c.EnglishName).IsRequired().HasMaxLength(150);
                 Property(c => c.EnglishPluralName).HasMaxLength(150);

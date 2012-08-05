@@ -20,14 +20,15 @@ namespace UCosmic.Domain.Languages
             [TestMethod]
             public void IsVirtual()
             {
-                new LanguageNameRuntimeEntity();
+                var entity = new LanguageNameRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class LanguageNameRuntimeEntity : LanguageName
             {
                 public override Language NameForLanguage
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -47,14 +48,15 @@ namespace UCosmic.Domain.Languages
             [TestMethod]
             public void IsVirtual()
             {
-                new LanguageNameRuntimeEntity();
+                var entity = new LanguageNameRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class LanguageNameRuntimeEntity : LanguageName
             {
                 public override Language TranslationToLanguage
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

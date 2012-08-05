@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 
@@ -7,13 +8,20 @@ namespace UCosmic.Domain.Languages
 {
     public class Language : RevisableEntity
     {
-        public string TwoLetterIsoCode { get; set; }
+        public Language()
+        {
+            // ReSharper disable DoNotCallOverridableMethodsInConstructor
+            Names = new Collection<LanguageName>();
+            // ReSharper restore DoNotCallOverridableMethodsInConstructor
+        }
 
-        public string ThreeLetterIsoCode { get; set; }
+        public string TwoLetterIsoCode { get; protected internal set; }
 
-        public string ThreeLetterIsoBibliographicCode { get; set; }
+        public string ThreeLetterIsoCode { get; protected internal set; }
 
-        public virtual ICollection<LanguageName> Names { get; set; }
+        public string ThreeLetterIsoBibliographicCode { get; protected internal set; }
+
+        public virtual ICollection<LanguageName> Names { get; protected set; }
 
         public LanguageName TranslateNameTo(string languageIsoCode)
         {

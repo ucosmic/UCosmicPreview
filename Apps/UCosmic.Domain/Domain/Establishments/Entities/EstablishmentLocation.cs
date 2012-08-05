@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using UCosmic.Domain.Places;
 using System.Globalization;
@@ -12,6 +13,10 @@ namespace UCosmic.Domain.Establishments
         {
             Center = new Coordinates();
             BoundingBox = new BoundingBox();
+            // ReSharper disable DoNotCallOverridableMethodsInConstructor
+            Addresses = new Collection<EstablishmentAddress>();
+            Places = new Collection<Place>();
+            // ReSharper restore DoNotCallOverridableMethodsInConstructor
         }
 
         public virtual Establishment ForEstablishment { get; set; }

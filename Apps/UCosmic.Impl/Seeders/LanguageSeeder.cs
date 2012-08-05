@@ -31,7 +31,7 @@ namespace UCosmic.Impl.Seeders
 
     }
 
-    // languages currently are imported from a sql script
+    //// languages currently are imported from a sql script
 
     //public class LanguageEntityDbSeeder : UCosmicDbSeeder
     //{

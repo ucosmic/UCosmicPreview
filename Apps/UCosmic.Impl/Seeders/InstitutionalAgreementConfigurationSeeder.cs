@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UCosmic.Domain.Establishments;
@@ -64,7 +65,8 @@ namespace UCosmic.Impl.Seeders
                     Context.Set<InstitutionalAgreementConfiguration>()
                         .Add(new InstitutionalAgreementConfiguration
                         {
-                            ForEstablishment = Context.Set<Establishment>().ByWebsiteUrl(w),
+                            ForEstablishment = Context.Set<Establishment>()
+                            .SingleOrDefault(e => e.WebsiteUrl != null && e.WebsiteUrl.Equals(w, StringComparison.OrdinalIgnoreCase)),
                             AllowedTypeValues = defaultTypes.ToList(),
                             AllowedStatusValues = defaultStatuses.ToList(),
                             AllowedContactTypeValues = defaultContactTypes.ToList(),

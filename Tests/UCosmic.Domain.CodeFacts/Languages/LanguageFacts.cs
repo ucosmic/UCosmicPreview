@@ -12,7 +12,7 @@ namespace UCosmic.Domain.Languages
             [TestMethod]
             public void ReturnsNull_WhenNoNamesExist()
             {
-                var language = new Language { Names = new List<LanguageName>() };
+                var language = new Language();
                 var translatedName = language.TranslateNameTo("en");
                 translatedName.ShouldBeNull();
             }
@@ -24,7 +24,7 @@ namespace UCosmic.Domain.Languages
             [TestMethod]
             public void ReturnsNull_WhenNoNamesExist()
             {
-                var language = new Language { Names = new List<LanguageName>() };
+                var language = new Language();
                 var translatedName = language.NativeName;
                 translatedName.ShouldBeNull();
             }
@@ -36,14 +36,15 @@ namespace UCosmic.Domain.Languages
             [TestMethod]
             public void IsVirtual()
             {
-                new LanguageRuntimeEntity();
+                var entity = new LanguageRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class LanguageRuntimeEntity : Language
             {
                 public override ICollection<LanguageName> Names
                 {
                     get { return null; }
-                    set { }
+                    protected set { }
                 }
             }
         }

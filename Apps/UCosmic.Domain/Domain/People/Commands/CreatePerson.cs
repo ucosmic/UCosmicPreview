@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using FluentValidation;
 using UCosmic.Domain.Identity;
 
@@ -11,7 +12,15 @@ namespace UCosmic.Domain.People
         public string LastName { get; set; }
         public string UserName { get; set; }
         public bool UserIsRegistered { get; set; }
+        public EmailAddress[] EmailAddresses { get; set; }
         public Person CreatedPerson { get; internal set; }
+
+        public class EmailAddress
+        {
+            public string Value { get; set; }
+            public bool IsConfirmed { get; set; }
+            public bool IsDefault { get; set; }
+        }
     }
 
     public class CreatePersonHandler : IHandleCommands<CreatePersonCommand>
@@ -34,6 +43,16 @@ namespace UCosmic.Domain.People
                 LastName = command.LastName,
                 DisplayName = command.DisplayName,
             };
+
+            // attach email addresses
+            if (command.EmailAddresses != null && command.EmailAddresses.Any())
+            {
+                foreach (var emailAddress in command.EmailAddresses
+                    .OrderBy(e => e.IsDefault).ThenBy(e => e.IsConfirmed).ThenBy(e => e.Value))
+                {
+                    person.AddEmail(emailAddress.Value);
+                }
+            }
 
             // attach a user if commanded
             if (!string.IsNullOrWhiteSpace(command.UserName))

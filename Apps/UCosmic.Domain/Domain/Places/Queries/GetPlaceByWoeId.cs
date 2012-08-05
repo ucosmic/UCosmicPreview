@@ -95,7 +95,7 @@ namespace UCosmic.Domain.Places
                         {
                             //place.Parent = FromGeoNameId(geoNamesContinent.GeoNameId);
                             place.Parent = _queryProcessor.Execute(
-                                new GetPlaceByGeoNameIdInternal(geoNamesContinent.GeoNameId));
+                                new GetPlaceByGeoNameIdQuery(geoNamesContinent.GeoNameId));
                         }
                     }
                     else

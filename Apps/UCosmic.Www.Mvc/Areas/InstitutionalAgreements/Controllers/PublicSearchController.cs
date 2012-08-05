@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Principal;
 using System.Web.Mvc;
 using System.Web.Routing;
 using AutoMapper;
 using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
+using UCosmic.Domain.People;
 using UCosmic.Domain.Places;
 using UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch;
 using UCosmic.Www.Mvc.Controllers;
@@ -130,7 +132,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             });
 
             // determine whether or not the current user is an affiliate of the establishment
-            var isAffiliate = context.HasDefaultAffiliate(User);
+            var isAffiliate = HasDefaultAffiliate(context, User);
 
             // determine whether or not the current user is an agreement supervisor or manager
             var isSupervisor = isAffiliate && User.IsInRole(RoleName.InstitutionalAgreementSupervisor);
@@ -194,6 +196,19 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             return View(model);
         }
 
+        [NonAction]
+        private static bool HasDefaultAffiliate(Establishment establishment, IPrincipal principal)
+        {
+            if (establishment == null) throw new ArgumentNullException("establishment");
+            if (principal == null) throw new ArgumentNullException("principal");
+
+            Func<Affiliation, bool> defaultAffiliation = a =>
+                a.IsDefault && a.Person.User != null
+                && a.Person.User.Name.Equals(principal.Identity.Name, StringComparison.OrdinalIgnoreCase);
+            return establishment.Affiliates.Any(defaultAffiliation)
+                || establishment.Ancestors.Any(n => n.Ancestor.Affiliates.Any(defaultAffiliation));
+        }
+
         [NullLayoutOnAjaxRequest]
         [OpenTopTab(TopTabName.InstitutionalAgreements)]
         [ReturnUrlReferrer("my/institutional-agreements")]
@@ -205,7 +220,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             if (agreement == null) return HttpNotFound();
 
             var owners = agreement.Participants.Where(p => p.IsOwner).Select(p => p.Establishment).ToList();
-            var isAffiliate = owners.Aggregate(false, (current, owner) => current || owner.HasDefaultAffiliate(User));
+            var isAffiliate = owners.Aggregate(false, (current, owner) => current || HasDefaultAffiliate(owner, User));
             var isManager = isAffiliate && User.IsInAnyRoles(RoleName.InstitutionalAgreementManagers);
 
             // hide from the public

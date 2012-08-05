@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using System.Security.Principal;
 using UCosmic.Domain.People;
 
 namespace UCosmic.Domain.Establishments
@@ -112,35 +111,35 @@ namespace UCosmic.Domain.Establishments
         }
     }
 
-    public static class EstablishmentExtensions
-    {
-        public static Establishment ByOfficialName(this IEnumerable<Establishment> query, string officialName)
-        {
-            return (query != null)
-                ? query.SingleOrDefault(t =>
-                    t.OfficialName.Equals(officialName, StringComparison.OrdinalIgnoreCase))
-                : null;
-        }
+    //public static class EstablishmentExtensions
+    //{
+    //    //public static Establishment ByOfficialName(this IEnumerable<Establishment> query, string officialName)
+    //    //{
+    //    //    return (query != null)
+    //    //        ? query.SingleOrDefault(t =>
+    //    //            t.OfficialName.Equals(officialName, StringComparison.OrdinalIgnoreCase))
+    //    //        : null;
+    //    //}
 
-        public static Establishment ByWebsiteUrl(this IEnumerable<Establishment> query, string websiteUrl)
-        {
-            return (query != null)
-                ? query.SingleOrDefault(t =>
-                    string.Compare(t.WebsiteUrl, websiteUrl, StringComparison.OrdinalIgnoreCase) == 0)
-                : null;
-        }
+    //    //public static Establishment ByWebsiteUrl(this IEnumerable<Establishment> query, string websiteUrl)
+    //    //{
+    //    //    return (query != null)
+    //    //        ? query.SingleOrDefault(t =>
+    //    //            string.Compare(t.WebsiteUrl, websiteUrl, StringComparison.OrdinalIgnoreCase) == 0)
+    //    //        : null;
+    //    //}
 
-        public static bool HasDefaultAffiliate(this Establishment establishment, IPrincipal principal)
-        {
-            if (establishment == null) throw new ArgumentNullException("establishment");
-            if (principal == null) throw new ArgumentNullException("principal");
+    //    //public static bool HasDefaultAffiliate(this Establishment establishment, IPrincipal principal)
+    //    //{
+    //    //    if (establishment == null) throw new ArgumentNullException("establishment");
+    //    //    if (principal == null) throw new ArgumentNullException("principal");
 
-            Func<Affiliation, bool> defaultAffiliation = a =>
-                a.IsDefault && a.Person.User != null
-                && a.Person.User.Name.Equals(principal.Identity.Name, StringComparison.OrdinalIgnoreCase);
-            return establishment.Affiliates.Any(defaultAffiliation)
-                || establishment.Ancestors.Any(n => n.Ancestor.Affiliates.Any(defaultAffiliation));
-        }
+    //    //    Func<Affiliation, bool> defaultAffiliation = a =>
+    //    //        a.IsDefault && a.Person.User != null
+    //    //        && a.Person.User.Name.Equals(principal.Identity.Name, StringComparison.OrdinalIgnoreCase);
+    //    //    return establishment.Affiliates.Any(defaultAffiliation)
+    //    //        || establishment.Ancestors.Any(n => n.Ancestor.Affiliates.Any(defaultAffiliation));
+    //    //}
 
-    }
+    //}
 }

@@ -6,15 +6,15 @@ namespace UCosmic.Domain.Establishments
     public static class EstablishmentTypeFacts
     {
         [TestClass]
-        public class CategoryIdProperty
+        public class CategoryCodeProperty
         {
             [TestMethod]
             public void HasGetSet()
             {
-                const int value = 4;
-                var entity = new EstablishmentType { CategoryId = value };
+                const string value = EstablishmentCategoryCode.Govt;
+                var entity = new EstablishmentType { CategoryCode = value };
                 entity.ShouldNotBeNull();
-                entity.CategoryId.ShouldEqual(value);
+                entity.CategoryCode.ShouldEqual(value);
             }
         }
 
@@ -24,7 +24,8 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentTypeRuntimeEntity();
+                var entity = new EstablishmentTypeRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentTypeRuntimeEntity : EstablishmentType
             {

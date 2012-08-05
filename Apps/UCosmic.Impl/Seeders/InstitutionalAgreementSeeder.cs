@@ -53,25 +53,25 @@ namespace UCosmic.Impl.Seeders
                 var principal = new GenericPrincipal(identity, new[] { RoleName.InstitutionalAgreementSupervisor });
 
                 var command = new CreateOrUpdateInstitutionalAgreementCommand(principal)
+                {
+                    Type = "Institutional Agreement",
+                    Title = "1 Agreement Test",
+                    StartsOn = new DateTime(2011, 8, 8),
+                    ExpiresOn = new DateTime(2011, 12, 31),
+                    Status = "Active",
+                    IsTitleDerived = false,
+                    IsAutoRenew = true,
+                    Description = "This agreement is used to test scenarios for automatically generating a summary description.",
+                    AddParticipantEstablishmentEntityIds = new[] { uc.EntityId },
+                    AddContactCommands = new[]
                     {
-                        Type = "Institutional Agreement",
-                        Title = "1 Agreement Test",
-                        StartsOn = new DateTime(2011, 8, 8),
-                        ExpiresOn = new DateTime(2011, 12, 31),
-                        Status = "Active",
-                        IsTitleDerived = false,
-                        IsAutoRenew = true,
-                        Description = "This agreement is used to test scenarios for automatically generating a summary description.",
-                        AddParticipantEstablishmentEntityIds = new[] { uc.EntityId },
-                        AddContactCommands = new[]
+                        new AddContactToAgreementCommand(principal)
                         {
-                            new AddContactToAgreementCommand(principal)
-                            {
-                                ContactType = "Seeded Contact",
-                                PersonEntityId = queries.Execute(new GetPersonByEmailQuery { Email = "ludwigd@uc.edu" }).EntityId,
-                            },
+                            ContactType = "Seeded Contact",
+                            PersonEntityId = queries.Execute(new GetPersonByEmailQuery { Email = "ludwigd@uc.edu" }).EntityId,
                         },
-                    };
+                    },
+                };
                 agreementHandler.Handle(command);
                 unitOfWork.SaveChanges();
 

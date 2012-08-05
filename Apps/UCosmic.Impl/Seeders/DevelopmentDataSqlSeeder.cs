@@ -5,11 +5,8 @@ using UCosmic.Domain.Languages;
 
 namespace UCosmic.Impl.Seeders
 {
-    // ReSharper disable ClassNeverInstantiated.Global
     public class DevelopmentDataSqlSeeder : CoreDataSqlSeeder
-    // ReSharper restore ClassNeverInstantiated.Global
     {
-
         protected override IEnumerable<string> SqlScripts
         {
             get

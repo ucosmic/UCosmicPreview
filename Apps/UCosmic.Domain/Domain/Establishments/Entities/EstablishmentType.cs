@@ -6,7 +6,7 @@ namespace UCosmic.Domain.Establishments
 {
     public class EstablishmentType : RevisableEntity
     {
-        public int CategoryId { get; set; }
+        public string CategoryCode { get; set; }
         public virtual EstablishmentCategory Category { get; set; }
 
         public string EnglishName { get; set; }

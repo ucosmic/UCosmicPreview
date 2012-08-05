@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace UCosmic.Impl.Seeders
             Establishment parent, EstablishmentType type, string websiteUrl, string emailDomains,
             IEnumerable<EstablishmentName> alternateNames = null)
         {
-            var establishment = Context.Set<Establishment>().Include(e => e.Location).ByOfficialName(officialName);
+            var establishment = Context.Set<Establishment>().Include(e => e.Location)
+                .SingleOrDefault(e => e.OfficialName.Equals(officialName, StringComparison.OrdinalIgnoreCase));
             if (!string.IsNullOrWhiteSpace(websiteUrl))
             {
                 establishment =
@@ -71,7 +73,8 @@ namespace UCosmic.Impl.Seeders
 
         private EstablishmentCategory GetEstablishmentCategory(string code)
         {
-            var category = Context.Set<Establishment>().Select(e => e.Type.Category).Distinct().ByCode(code);
+            var category = Context.Set<Establishment>().Select(e => e.Type.Category).Distinct()
+                .SingleOrDefault(x => x.Code.Equals(code));
             if (category == null)
             {
                 category = new EstablishmentCategory { Code = code.ToUpper() };

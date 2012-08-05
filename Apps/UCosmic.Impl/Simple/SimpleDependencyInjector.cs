@@ -11,6 +11,7 @@ using SimpleInjector.Extensions;
 using UCosmic.Domain.Identity;
 using UCosmic.Impl.Orm;
 using UCosmic.Impl.Seeders;
+using UCosmic.Impl.Seeders2;
 
 namespace UCosmic.Impl
 {
@@ -55,17 +56,19 @@ namespace UCosmic.Impl
             if (configuration.IsDeployedToCloud)
             {
                 container.Register<IDatabaseInitializer<UCosmicContext>, BrownfieldInitializer>();
-                container.Register<ISeedDb, BrownfieldDbSeeder>();
+                //container.Register<ISeedDb, BrownfieldDbSeeder>();
             }
             else
             {
-                container.Register<IDatabaseInitializer<UCosmicContext>, DropOnModelChangeInitializer>();
-                //container.Register<IDatabaseInitializer<UCosmicContext>, DropAlwaysInitializer>();
+                //container.Register<IDatabaseInitializer<UCosmicContext>, DropOnModelChangeInitializer>();
+                container.Register<IDatabaseInitializer<UCosmicContext>, DropAlwaysInitializer>();
                 //container.Register<IDatabaseInitializer<UCosmicContext>, BrownfieldInitializer>();
 
-                container.Register<ISeedDb, DevelopmentDataSqlSeeder>();
+                //container.Register<ISeedDb, DevelopmentDataSqlSeeder>();
                 //container.Register<ISeedDb, CompositeDbSeeder>();
                 //container.Register<ISeedDb, BrownfieldDbSeeder>();
+
+                container.Register<ISeedData, CompositeEntitySeeder>();
             }
 
             // register 1 DbContext for all implemented interfaces

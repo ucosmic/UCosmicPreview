@@ -122,7 +122,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                 })
                 .Select(e => new GroupedSelectListItem
                 {
-                    GroupKey = e.Category.RevisionId.ToInvariantString(),
+                    GroupKey = e.Category.Code,
                     GroupName = e.Category.EnglishName,
                     Text = e.EnglishName,
                     Value = e.RevisionId.ToInvariantString(),

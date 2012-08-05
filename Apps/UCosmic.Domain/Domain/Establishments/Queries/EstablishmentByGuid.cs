@@ -2,7 +2,7 @@
 
 namespace UCosmic.Domain.Establishments
 {
-    public class EstablishmentByGuid : BaseEntitiesQuery<Establishment>, IDefineQuery<Establishment>
+    public class EstablishmentByGuid : BaseEntityQuery<Establishment>, IDefineQuery<Establishment>
     {
         public EstablishmentByGuid(Guid guid)
         {

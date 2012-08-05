@@ -19,21 +19,8 @@ namespace UCosmic.Impl.Seeders
             var emailAddress = entities.Get<EmailAddress>()
                 .SingleOrDefault(e => e.Value.Equals(defaultEmail, StringComparison.OrdinalIgnoreCase));
             var person = (emailAddress != null) ? emailAddress.Person : null;
-            //var person = queryProcessor.Execute(
-            //    new GetPersonByEmailQuery
-            //    {
-            //        Email = defaultEmail
-            //    }
-            //);
             if (person != null) return person;
-            //person = new Person
-            //{
-            //    FirstName = firstName,
-            //    LastName = lastName,
-            //    DisplayName = string.Format("{0} {1}", firstName, lastName),
-            //    User = UserFactory.Create(defaultEmail, registerUser),
-            //};
-            //Context.People.Add(person);
+
             var command = new CreatePersonCommand
             {
                 FirstName = firstName,
@@ -51,19 +38,11 @@ namespace UCosmic.Impl.Seeders
                 emailAddress = person.AddEmail(email);
                 emailAddress.IsConfirmed = true;
                 emailAddress.IsDefault = email == defaultEmail;
-                //person.Emails.Add(new EmailAddress { Value = email, IsDefault = (email == defaultEmail), IsConfirmed = true, });
             }
             Context.SaveChanges();
 
             if (employedBy != null)
             {
-                //person.Affiliations.Add(new Affiliation
-                //{
-                //    Establishment = employedBy,
-                //    IsClaimingEmployee = true,
-                //    IsClaimingStudent = false,
-                //    IsDefault = true,
-                //});
                 createAffiliationHandler.Handle(
                     new CreateAffiliationCommand
                     {

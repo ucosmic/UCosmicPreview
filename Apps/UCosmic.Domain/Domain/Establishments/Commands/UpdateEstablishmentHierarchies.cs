@@ -11,10 +11,14 @@ namespace UCosmic.Domain.Establishments
     public class UpdateEstablishmentHierarchiesHandler : IHandleCommands<UpdateEstablishmentHierarchiesCommand>
     {
         private readonly ICommandEntities _entities;
+        private readonly IHandleCommands<UpdateEstablishmentHierarchyCommand> _hierarchyHandler;
 
-        public UpdateEstablishmentHierarchiesHandler(ICommandEntities entities)
+        public UpdateEstablishmentHierarchiesHandler(ICommandEntities entities
+            , IHandleCommands<UpdateEstablishmentHierarchyCommand> hierarchyHandler
+        )
         {
             _entities = entities;
+            _hierarchyHandler = hierarchyHandler;
         }
 
         public void Handle(UpdateEstablishmentHierarchiesCommand command)
@@ -39,8 +43,7 @@ namespace UCosmic.Domain.Establishments
 
             // derive nodes for each parent
             foreach (var parent in establishments)
-                new UpdateEstablishmentHierarchyHandler(_entities)
-                    .Handle(new UpdateEstablishmentHierarchyCommand(parent));
+                _hierarchyHandler.Handle(new UpdateEstablishmentHierarchyCommand(parent));
         }
     }
 }
