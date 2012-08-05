@@ -114,6 +114,7 @@
     <Compile Include="Decorators\RunAsyncCommandHandlerProxy.cs" />
     <Compile Include="Decorators\SaveChangesAndDisposeDecorator.cs" />
     <Compile Include="Orm\ActivitiesRelationalMapper.cs" />
+    <Compile Include="Orm\UCosmicContext.Views.cs" />
     <Compile Include="Seeders\BaseDataSeeder.cs" />
     <Compile Include="Seeders\CompositeEntitySeeder.cs" />
     <Compile Include="Seeders\CompositeSqlSeeder.cs" />
@@ -162,7 +163,6 @@
     <Compile Include="Orm\LanguagesRelationalMapper.cs" />
     <Compile Include="Orm\RevisableEntityTypeConfiguration.cs" />
     <Compile Include="Orm\SqlInitializer.cs" />
-    <Compile Include="Orm\UCosmicContext.Views.cs" />
     <Compile Include="Saml\ComponentSpaceSaml2Response.cs" />
     <Compile Include="Saml\TestSamlCertificateStorage.cs" />
     <Compile Include="Web\WebRequestHttpConsumer.cs" />

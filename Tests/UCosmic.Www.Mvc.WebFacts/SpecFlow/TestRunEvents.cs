@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.ServiceProcess;
 using OpenQA.Selenium;
@@ -69,15 +68,13 @@ namespace UCosmic.Www.Mvc
         {
             if (!AppConfig.InitializeAndSeedDbBeforeTestRun) return;
 
-            var initializer = ServiceProviderLocator.Current.GetService<IDatabaseInitializer<UCosmicContext>>();
-            var seeder = ServiceProviderLocator.Current.GetService<ISeedData>();
-
-            var context = (UCosmicContext)ServiceProviderLocator.Current.GetService<IUnitOfWork>();
-            if (initializer != null)
+            var context = ServiceProviderLocator.Current.GetService<UCosmicContext>();
+            if (context.Initializer != null)
             {
-                Database.SetInitializer(initializer);
                 context.Database.Initialize(true);
             }
+
+            var seeder = ServiceProviderLocator.Current.GetService<ISeedData>();
             if (seeder != null) seeder.Seed();
         }
 

@@ -15,15 +15,6 @@ namespace UCosmic.Impl.Orm
     {
         private IDatabaseInitializer<UCosmicContext> _initializer;
 
-        public UCosmicContext(
-            //IDatabaseInitializer<UCosmicContext> initializer
-        )
-        {
-            //// inject initializer if passed
-            //if (initializer != null)
-            //    Database.SetInitializer(initializer);
-        }
-
         public IDatabaseInitializer<UCosmicContext> Initializer
         {
             get { return _initializer; }

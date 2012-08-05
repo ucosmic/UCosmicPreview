@@ -8,16 +8,6 @@ namespace UCosmic.Impl
 {
     public class CustomRoleProvider : RoleProvider
     {
-        //private readonly IQueryEntities _entities;
-
-        //public CustomRoleProvider()
-        //{
-        //    // asp.net role provider behaves as a singleton, so we can't inject the PerWebRequest
-        //    // instances of DbContext, because those are disposed of at the end of a web request.
-        //    // instead take a hard dependency on the DbContext to hold an undisposed instance.
-        //    //_entities = new UCosmicContext(null);
-        //}
-
         private static UCosmicContext GetEntities()
         {
             // new up context to avoid ArgumentExceptions on Set<Role>().AsNoTracking()

@@ -10,6 +10,7 @@ using OpenQA.Selenium.IE;
 using SimpleInjector;
 using UCosmic.Impl;
 using UCosmic.Impl.Orm;
+using UCosmic.Impl.Seeders;
 
 namespace UCosmic.Www.Mvc
 {
@@ -28,9 +29,10 @@ namespace UCosmic.Www.Mvc
 
             // register database types
             container.Register<IDatabaseInitializer<UCosmicContext>, BrownfieldInitializer>();
-            //container.Register<ISeedData, BrownfieldSeeder>();
+            container.Register<ISeedData, BrownfieldSeeder>();
             container.Register<UCosmicContext>();
             container.Register<IWrapDataConcerns, DataConcernsWrapper>();
+            container.RegisterInitializer<UCosmicContext>(container.InjectProperties);
 
             // register browsers
             container.RegisterSingle(() => new ChromeDriver(GetChromeDriverDirectory()));
