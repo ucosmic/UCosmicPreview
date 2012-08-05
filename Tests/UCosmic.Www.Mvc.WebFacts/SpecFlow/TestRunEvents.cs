@@ -6,7 +6,7 @@ using OpenQA.Selenium;
 using ServiceLocatorPattern;
 using TechTalk.SpecFlow;
 using UCosmic.Impl.Orm;
-using UCosmic.Impl.Seeders;
+using UCosmic.Impl.Seeders2;
 using UCosmic.Www.Mvc.Areas.Identity;
 
 namespace UCosmic.Www.Mvc
@@ -70,7 +70,7 @@ namespace UCosmic.Www.Mvc
             if (!AppConfig.InitializeAndSeedDbBeforeTestRun) return;
 
             var initializer = ServiceProviderLocator.Current.GetService<IDatabaseInitializer<UCosmicContext>>();
-            var seeder = ServiceProviderLocator.Current.GetService<ISeedDb>();
+            var seeder = ServiceProviderLocator.Current.GetService<ISeedData>();
 
             var context = (UCosmicContext)ServiceProviderLocator.Current.GetService<IUnitOfWork>();
             if (initializer != null)
@@ -78,8 +78,7 @@ namespace UCosmic.Www.Mvc
                 Database.SetInitializer(initializer);
                 context.Database.Initialize(true);
             }
-            if (seeder != null)
-                seeder.Seed(context);
+            if (seeder != null) seeder.Seed();
         }
 
         private static void ClearTransportLevelErrorsBeforeTestRun()

@@ -1,16 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using SimpleInjector;
-using UCosmic.Impl.Orm;
-using UCosmic.Impl.Seeders;
 using UCosmic.Impl;
-using OpenQA.Selenium;
-using System.Collections.Generic;
-using System.IO;
+using UCosmic.Impl.Orm;
 
 namespace UCosmic.Www.Mvc
 {
@@ -29,7 +28,7 @@ namespace UCosmic.Www.Mvc
 
             // register database types
             container.Register<IDatabaseInitializer<UCosmicContext>, BrownfieldInitializer>();
-            container.Register<ISeedDb, BrownfieldDbSeeder>();
+            //container.Register<ISeedData, BrownfieldSeeder>();
             container.Register<UCosmicContext>();
             container.Register<IWrapDataConcerns, DataConcernsWrapper>();
 

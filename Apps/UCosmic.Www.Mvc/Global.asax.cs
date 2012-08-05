@@ -9,7 +9,6 @@ using FluentValidation.Mvc;
 using ServiceLocatorPattern;
 using UCosmic.Impl;
 using UCosmic.Impl.Orm;
-using UCosmic.Impl.Seeders;
 using UCosmic.Impl.Seeders2;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Www.Mvc.Models;
@@ -120,13 +119,13 @@ namespace UCosmic.Www.Mvc
             var seeder2 = ServiceProviderLocator.Current.GetService<ISeedData>();
             if (seeder2 != null) seeder2.Seed();
 
-            // check DI for database seeder
-            var seeder = ServiceProviderLocator.Current.GetService<ISeedDb>();
-            if (seeder == null) return;
-            using (var context = ServiceProviderLocator.Current.GetService<IUnitOfWork>())
-            {
-                seeder.Seed(context as UCosmicContext);
-            }
+            //// check DI for database seeder
+            //var seeder = ServiceProviderLocator.Current.GetService<ISeedDb>();
+            //if (seeder == null) return;
+            //using (var context = ServiceProviderLocator.Current.GetService<IUnitOfWork>())
+            //{
+            //    seeder.Seed(context as UCosmicContext);
+            //}
         }
 
         public override string GetVaryByCustomString(HttpContext context, string custom)
