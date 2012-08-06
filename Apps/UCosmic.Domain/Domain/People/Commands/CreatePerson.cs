@@ -48,7 +48,10 @@ namespace UCosmic.Domain.People
             if (command.EmailAddresses != null && command.EmailAddresses.Any())
             {
                 foreach (var emailAddress in command.EmailAddresses
-                    .OrderBy(e => e.IsDefault).ThenBy(e => e.IsConfirmed).ThenBy(e => e.Value))
+                    .OrderByDescending(e => e.IsDefault)
+                    .ThenByDescending(e => e.IsConfirmed)
+                    .ThenBy(e => e.Value)
+                )
                 {
                     person.AddEmail(emailAddress.Value);
                 }
