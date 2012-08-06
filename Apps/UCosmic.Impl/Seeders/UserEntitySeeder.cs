@@ -57,7 +57,7 @@ namespace UCosmic.Impl.Seeders
                 { "www.umn.edu",          "@umn.edu"            },
                 { "www.lehigh.edu",       "@lehigh.edu"         },
                 { "www.usil.edu.pe",      "@usil.edu.pe"        },
-                { "www.bjtu.edu.cn",      "@bjti.edu.cn"        },
+                { "www.bjtu.edu.cn",      "@bjtu.edu.cn"        },
                 { "www.napier.ac.uk",     "@napier.ac.uk"       },
                 { "www.fue.edu.eg",       "@fue.edu.eg"         },
                 { "www.griffith.edu.au",  "@griffith.edu.au"    },
