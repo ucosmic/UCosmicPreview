@@ -33,14 +33,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentEmailDomainRuntimeEntity();
+                var entity = new EstablishmentEmailDomainRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentEmailDomainRuntimeEntity : EstablishmentEmailDomain
             {
                 public override Establishment Establishment
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

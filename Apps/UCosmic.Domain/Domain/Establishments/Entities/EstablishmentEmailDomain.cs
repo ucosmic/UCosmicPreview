@@ -2,10 +2,14 @@
 {
     public class EstablishmentEmailDomain : RevisableEntity
     {
-        public string Value { get; set; }
+        protected internal EstablishmentEmailDomain()
+        {
+        }
 
-        public int EstablishmentId { get; set; }
-        public virtual Establishment Establishment { get; set; }
+        public string Value { get; protected internal set; }
+
+        public int EstablishmentId { get; protected internal set; }
+        public virtual Establishment Establishment { get; protected internal set; }
     }
 
 }

@@ -34,14 +34,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentRuntimeEntity();
+                var entity = new EstablishmentRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentRuntimeEntity : Establishment
             {
                 public override ICollection<Affiliation> Affiliates
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -65,14 +66,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentRuntimeEntity();
+                var entity = new EstablishmentRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentRuntimeEntity : Establishment
             {
                 public override ICollection<EstablishmentName> Names
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -83,14 +85,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentRuntimeEntity();
+                var entity = new EstablishmentRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentRuntimeEntity : Establishment
             {
                 public override ICollection<EstablishmentUrl> Urls
                 {
                     get { return null; }
-                    set { }
+                    protected set { }
                 }
             }
         }
@@ -101,14 +104,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentRuntimeEntity();
+                var entity = new EstablishmentRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentRuntimeEntity : Establishment
             {
                 public override Establishment Parent
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -119,14 +123,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentRuntimeEntity();
+                var entity = new EstablishmentRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentRuntimeEntity : Establishment
             {
                 public override ICollection<Establishment> Children
                 {
                     get { return null; }
-                    set { }
+                    protected set { }
                 }
             }
         }
@@ -137,14 +142,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentRuntimeEntity();
+                var entity = new EstablishmentRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentRuntimeEntity : Establishment
             {
                 public override ICollection<EstablishmentNode> Ancestors
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -155,14 +161,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentRuntimeEntity();
+                var entity = new EstablishmentRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentRuntimeEntity : Establishment
             {
                 public override ICollection<EstablishmentNode> Offspring
                 {
                     get { return null; }
-                    set { }
+                    protected set { }
                 }
             }
         }
@@ -173,14 +180,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentRuntimeEntity();
+                var entity = new EstablishmentRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentRuntimeEntity : Establishment
             {
                 public override EstablishmentLocation Location
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -191,7 +199,8 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentRuntimeEntity();
+                var entity = new EstablishmentRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentRuntimeEntity : Establishment
             {
@@ -209,14 +218,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentRuntimeEntity();
+                var entity = new EstablishmentRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentRuntimeEntity : Establishment
             {
                 public override EstablishmentType Type
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -227,14 +237,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentRuntimeEntity();
+                var entity = new EstablishmentRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentRuntimeEntity : Establishment
             {
                 public override ICollection<EstablishmentEmailDomain> EmailDomains
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

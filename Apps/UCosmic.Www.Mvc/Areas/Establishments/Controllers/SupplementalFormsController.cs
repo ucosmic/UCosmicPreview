@@ -12,7 +12,6 @@ using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Places;
 using UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms;
 using UCosmic.Www.Mvc.Controllers;
-using BoundingBox = UCosmic.Domain.Places.BoundingBox;
 
 namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
 {
@@ -20,30 +19,19 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
     {
         private readonly IProcessQueries _queryProcessor;
         private readonly IConsumePlaceFinder _placeFinder;
-        //private readonly PlaceFactory _placeFactory;
-        //private readonly EstablishmentFinder _establishmentFinder;
-        //private readonly ICommandObjects _objectCommander2;
-        private readonly ICommandEntities _entities;
+        private readonly IHandleCommands<UpdateEstablishment> _updateEstablishment;
         private readonly IUnitOfWork _unitOfWork;
 
         public SupplementalFormsController(IProcessQueries queryProcessor
             , IConsumePlaceFinder placeFinder
-            //, IConsumeGeoNames geoNames
-            //, IConsumeGeoPlanet geoPlanet
-            //, IQueryEntities entityQueries
-            //, ICommandObjects objectCommander
-            , ICommandEntities entities
+            , IHandleCommands<UpdateEstablishment> updateEstablishment
             , IUnitOfWork unitOfWork
-            //, IManageConfigurations config
         )
         {
             _queryProcessor = queryProcessor;
-            //_establishmentFinder = new EstablishmentFinder(entityQueries);
-            //_objectCommander = objectCommander;
-            _entities = entities;
-            _unitOfWork = unitOfWork;
             _placeFinder = placeFinder;
-            //_placeFactory = new PlaceFactory(entityQueries, objectCommander, geoPlanet, geoNames, config);
+            _updateEstablishment = updateEstablishment;
+            _unitOfWork = unitOfWork;
         }
 
         [ActionName("locate")]
@@ -51,11 +39,6 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         {
             if (establishmentId != Guid.Empty)
             {
-                //var dep = true;
-                //var establishment = _establishmentFinder
-                //    .FindOne(By<Establishment>.EntityId(establishmentId)
-                //        .EagerLoad(e => e.Location)
-                //    );
                 var establishment = _queryProcessor.Execute(new EstablishmentByGuid(establishmentId)
                 {
                     EagerLoad = new Expression<Func<Establishment, object>>[]
@@ -79,10 +62,6 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         {
             if (model != null)
             {
-                //var establishment = _establishmentFinder.FindOne(By<Establishment>.EntityId(model.EntityId)
-                //    .EagerLoad(e => e.Location)
-                //    .ForInsertOrUpdate()
-                //);
                 var establishment = _queryProcessor.Execute(new EstablishmentByGuid(model.EntityId)
                 {
                     EagerLoad = new Expression<Func<Establishment, object>>[]
@@ -92,35 +71,45 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                 });
                 if (establishment != null)
                 {
+                    var command = new UpdateEstablishment
+                    {
+                        Id = establishment.RevisionId,
+                        GoogleMapZoomLevel = model.Location.GoogleMapZoomLevel,
+                        CenterLatitude = model.Location.CenterLatitude,
+                        CenterLongitude = model.Location.CenterLongitude,
+                        NorthLatitude = model.Location.BoundingBoxNortheastLatitude,
+                        EastLongitude = model.Location.BoundingBoxNortheastLongitude,
+                        SouthLatitude = model.Location.BoundingBoxSouthwestLatitude,
+                        WestLongitude = model.Location.BoundingBoxSouthwestLongitude,
+                    };
                     var oldCenter = establishment.Location.Center;
-                    establishment.Location.GoogleMapZoomLevel = model.Location.GoogleMapZoomLevel;
-                    establishment.Location.Center = new Coordinates
-                    {
-                        Latitude = model.Location.CenterLatitude,
-                        Longitude = model.Location.CenterLongitude
-                    };
-                    establishment.Location.BoundingBox = new BoundingBox
-                    {
-                        Northeast = new Coordinates
-                        {
-                            Latitude = model.Location.BoundingBoxNortheastLatitude,
-                            Longitude = model.Location.BoundingBoxNortheastLongitude,
-                        },
-                        Southwest = new Coordinates
-                        {
-                            Latitude = model.Location.BoundingBoxSouthwestLatitude,
-                            Longitude = model.Location.BoundingBoxSouthwestLongitude,
-                        },
-                    };
+                    //establishment.Location.GoogleMapZoomLevel = model.Location.GoogleMapZoomLevel;
+                    //establishment.Location.Center = new Coordinates
+                    //{
+                    //    Latitude = model.Location.CenterLatitude,
+                    //    Longitude = model.Location.CenterLongitude
+                    //};
+                    //establishment.Location.BoundingBox = new BoundingBox
+                    //{
+                    //    Northeast = new Coordinates
+                    //    {
+                    //        Latitude = model.Location.BoundingBoxNortheastLatitude,
+                    //        Longitude = model.Location.BoundingBoxNortheastLongitude,
+                    //    },
+                    //    Southwest = new Coordinates
+                    //    {
+                    //        Latitude = model.Location.BoundingBoxSouthwestLatitude,
+                    //        Longitude = model.Location.BoundingBoxSouthwestLongitude,
+                    //    },
+                    //};
                     //_establishments.UnitOfWork.SaveChanges();
                     //_objectCommander.Update(establishment, true);
-                    _entities.Update(establishment);
+                    //_entities.Update(establishment);
+                    _updateEstablishment.Handle(command);
                     _unitOfWork.SaveChanges();
                     if (!oldCenter.HasValue)
                     {
-                        var builder = new SupplementalLocationPlacesBuilder(
-                            //establishment, _queryProcessor, _placeFinder, _objectCommander2);
-                            establishment, _queryProcessor, _placeFinder, _entities, _unitOfWork);
+                        var builder = new SupplementalLocationPlacesBuilder(establishment.RevisionId);
                         var thread = new Thread(builder.Build);
                         thread.Start();
                     }
@@ -165,30 +154,15 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
 
     public class SupplementalLocationPlacesBuilder
     {
-        private readonly Establishment _establishment;
-        private readonly IProcessQueries _queryProcessor;
-        //private readonly ICommandObjects _objectCommander;
-        private readonly ICommandEntities _entities;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IConsumePlaceFinder _placeFinder;
-        //private readonly PlaceFactory _placeFactory;
+        private readonly int _establishmentId;
+        private IProcessQueries _queryProcessor;
+        private IHandleCommands<UpdateEstablishment> _updateEstablishment;
+        private IUnitOfWork _unitOfWork;
+        private IConsumePlaceFinder _placeFinder;
 
-        public SupplementalLocationPlacesBuilder(Establishment establishment
-            , IProcessQueries queryProcessor
-            , IConsumePlaceFinder placeFinder
-            //, PlaceFactory placeFactory
-            //, ICommandObjects objectCommander
-            , ICommandEntities entities
-            , IUnitOfWork unitOfWork
-        )
+        public SupplementalLocationPlacesBuilder(int establishmentId)
         {
-            _establishment = establishment;
-            _queryProcessor = queryProcessor;
-            //_objectCommander = objectCommander;
-            _entities = entities;
-            _unitOfWork = unitOfWork;
-            _placeFinder = placeFinder;
-            //_placeFactory = placeFactory;
+            _establishmentId = establishmentId;
         }
 
         public void Build()
@@ -198,12 +172,17 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
 
         private void Build(int retryCount)
         {
+            _queryProcessor = ServiceProviderLocator.Current.GetService<IProcessQueries>();
+            _updateEstablishment = ServiceProviderLocator.Current.GetService<IHandleCommands<UpdateEstablishment>>();
+            _unitOfWork = ServiceProviderLocator.Current.GetService<IUnitOfWork>();
+            _placeFinder = ServiceProviderLocator.Current.GetService<IConsumePlaceFinder>();
             try
             {
-                if (!_establishment.Location.Center.HasValue) return;
+                var establishment = _queryProcessor.Execute(new GetEstablishmentByIdQuery(_establishmentId));
+                if (!establishment.Location.Center.HasValue) return;
 
-                var latitude = _establishment.Location.Center.Latitude;
-                var longitude = _establishment.Location.Center.Longitude;
+                var latitude = establishment.Location.Center.Latitude;
+                var longitude = establishment.Location.Center.Longitude;
                 if (!latitude.HasValue || !longitude.HasValue) return;
 
                 var result = _placeFinder.Find(new PlaceByCoordinates(latitude.Value, longitude.Value)).SingleOrDefault();
@@ -221,10 +200,16 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                     });
                 var places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
                 places.Add(place);
-                _establishment.Location.Places.Clear();
-                _establishment.Location.Places = places;
+                var command = new UpdateEstablishment
+                {
+                    Id = establishment.RevisionId,
+                    PlaceIds = places.Select(p => p.RevisionId).ToArray(),
+                };
+                _updateEstablishment.Handle(command);
+                //_establishment.Location.Places.Clear();
+                //_establishment.Location.Places = places;
                 //_objectCommander.Update(_establishment, true);
-                _entities.Update(_establishment);
+                //_entities.Update(_establishment);
                 _unitOfWork.SaveChanges();
             }
             catch (Exception ex)

@@ -2,6 +2,10 @@
 {
     public class GeoPlanetLocality
     {
+        protected internal GeoPlanetLocality()
+        {
+        }
+
         public string TypeName { get; protected internal set; }
         public string Name { get; protected internal set; }
 

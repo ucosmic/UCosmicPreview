@@ -11,11 +11,7 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void ReturnsFalse_WhenNortheast_IsNull()
             {
-                var entity = new BoundingBox
-                {
-                    Northeast = null,
-                    Southwest = new Coordinates{Latitude = 1, Longitude = 1 }
-                };
+                var entity = new BoundingBox(null, null, 1, 1);
                 var result = entity.HasValue;
                 result.ShouldBeFalse();
             }
@@ -23,11 +19,7 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void ReturnsFalse_WhenSouthwest_IsNull()
             {
-                var entity = new BoundingBox
-                {
-                    Northeast = new Coordinates { Latitude = 1, Longitude = 1 },
-                    Southwest = null,
-                };
+                var entity = new BoundingBox(1, 1, null, null);
                 var result = entity.HasValue;
                 result.ShouldBeFalse();
             }
@@ -35,11 +27,7 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void ReturnsFalse_WhenNortheast_HasValue_IsFalse()
             {
-                var entity = new BoundingBox
-                {
-                    Northeast = new Coordinates { Latitude = null, Longitude = 1 },
-                    Southwest = new Coordinates { Latitude = 1, Longitude = 1 }
-                };
+                var entity = new BoundingBox(null, 1, 1, 1);
                 var result = entity.HasValue;
                 result.ShouldBeFalse();
             }
@@ -47,11 +35,7 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void ReturnsFalse_WhenSouthwest_HasValue_IsFalse()
             {
-                var entity = new BoundingBox
-                {
-                    Northeast = new Coordinates { Latitude = 1, Longitude = 1 },
-                    Southwest = new Coordinates { Latitude = 1, Longitude = null }
-                };
+                var entity = new BoundingBox(1, 1, 1, null);
                 var result = entity.HasValue;
                 result.ShouldBeFalse();
             }

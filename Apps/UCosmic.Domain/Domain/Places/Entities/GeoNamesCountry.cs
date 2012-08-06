@@ -4,7 +4,7 @@
     {
         protected internal GeoNamesCountry()
         {
-            BoundingBox = new BoundingBox();
+            BoundingBox = new BoundingBox(null, null, null, null);
         }
 
         public int GeoNameId { get; protected internal set; }

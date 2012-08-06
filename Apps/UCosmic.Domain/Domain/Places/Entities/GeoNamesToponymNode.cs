@@ -2,6 +2,10 @@
 {
     public class GeoNamesToponymNode : Entity
     {
+        protected internal GeoNamesToponymNode()
+        {
+        }
+
         public int AncestorId { get; protected internal set; }
         public virtual GeoNamesToponym Ancestor { get; protected internal set; }
 

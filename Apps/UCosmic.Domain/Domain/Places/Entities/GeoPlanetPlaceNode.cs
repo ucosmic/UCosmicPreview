@@ -2,6 +2,10 @@
 {
     public class GeoPlanetPlaceNode : Entity
     {
+        protected internal GeoPlanetPlaceNode()
+        {
+        }
+
         public int AncestorId { get; protected internal set; }
         public virtual GeoPlanetPlace Ancestor { get; protected internal set; }
 

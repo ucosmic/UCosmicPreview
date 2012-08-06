@@ -2,13 +2,15 @@
 {
     public class EstablishmentUrl : RevisableEntity
     {
-        public virtual Establishment ForEstablishment { get; set; }
+        protected internal EstablishmentUrl()
+        {
+        }
 
-        public string Value { get; set; }
+        public virtual Establishment ForEstablishment { get; protected internal set; }
+        public string Value { get; protected internal set; }
 
-        public bool IsOfficialUrl { get; set; }
-
-        public bool IsFormerUrl { get; set; }
+        public bool IsOfficialUrl { get; protected internal set; }
+        public bool IsFormerUrl { get; protected internal set; }
 
         public override string ToString()
         {

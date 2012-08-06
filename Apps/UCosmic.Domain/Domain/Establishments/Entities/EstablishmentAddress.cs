@@ -4,8 +4,11 @@ namespace UCosmic.Domain.Establishments
 {
     public class EstablishmentAddress : RevisableEntity
     {
-        public virtual Language TranslationToLanguage { get; set; }
+        protected internal EstablishmentAddress()
+        {
+        }
 
-        public string Text { get; set; }
+        public virtual Language TranslationToLanguage { get; protected internal set; }
+        public string Text { get; protected internal set; }
     }
 }

@@ -7,7 +7,7 @@ namespace UCosmic.Domain.Places
     {
         protected internal GeoNamesToponym()
         {
-            Center = new Coordinates();
+            Center = new Coordinates(null, null);
 
             // ReSharper disable DoNotCallOverridableMethodsInConstructor
             Children = new Collection<GeoNamesToponym>();

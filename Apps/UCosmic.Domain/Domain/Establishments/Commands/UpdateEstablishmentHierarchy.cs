@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace UCosmic.Domain.Establishments
@@ -38,10 +37,6 @@ namespace UCosmic.Domain.Establishments
 
         private void ClearNodesRecursive(Establishment parent)
         {
-            // ensure that the offspring and children properties are not null
-            parent.Offspring = parent.Offspring ?? new List<EstablishmentNode>();
-            parent.Children = parent.Children ?? new List<Establishment>();
-
             // delete all of this parent's offspring nodes
             while (parent.Offspring.FirstOrDefault() != null)
                 _entities.Purge(parent.Offspring.First());
@@ -49,9 +44,6 @@ namespace UCosmic.Domain.Establishments
             // operate recursively over children
             foreach (var child in parent.Children)
             {
-                // ensure that the child's ancestor nodes are not null
-                child.Ancestors = child.Ancestors ?? new List<EstablishmentNode>();
-
                 // delete each of the child's ancestor nodes
                 while (child.Ancestors.FirstOrDefault() != null)
                     _entities.Purge(child.Ancestors.First());
@@ -74,9 +66,6 @@ namespace UCosmic.Domain.Establishments
                     Separation = 1,
                 };
                 child.Ancestors.Add(node);
-
-                // ensure the parent's ancestors nodes are not null
-                parent.Ancestors = parent.Ancestors ?? new List<EstablishmentNode>();
 
                 // loop over the parent's ancestors
                 foreach (var ancestor in parent.Ancestors)

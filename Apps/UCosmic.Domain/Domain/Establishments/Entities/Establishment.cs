@@ -9,9 +9,8 @@ namespace UCosmic.Domain.Establishments
 {
     public class Establishment : RevisableEntity
     {
-        public Establishment()
+        protected internal Establishment()
         {
-            InstitutionInfo = new InstitutionInfo();
             PublicContactInfo = new EstablishmentContactInfo();
             PartnerContactInfo = new EstablishmentContactInfo();
 
@@ -26,9 +25,8 @@ namespace UCosmic.Domain.Establishments
             // ReSharper restore DoNotCallOverridableMethodsInConstructor
         }
 
-        public string OfficialName { get; set; }
-
-        public virtual ICollection<EstablishmentName> Names { get; set; }
+        public string OfficialName { get; protected internal set; }
+        public virtual ICollection<EstablishmentName> Names { get; protected internal set; }
 
         public EstablishmentName TranslateNameTo(string languageIsoCode)
         {
@@ -50,26 +48,19 @@ namespace UCosmic.Domain.Establishments
             }
         }
 
-        public string WebsiteUrl { get; set; }
+        public string WebsiteUrl { get; protected internal set; }
+        public virtual ICollection<EstablishmentUrl> Urls { get; protected set; }
 
-        public virtual ICollection<EstablishmentUrl> Urls { get; set; }
+        public virtual Establishment Parent { get; protected internal set; }
+        public virtual ICollection<EstablishmentNode> Ancestors { get; protected internal set; }
+        public virtual ICollection<Establishment> Children { get; protected set; }
+        public virtual ICollection<EstablishmentNode> Offspring { get; protected set; }
 
-        public virtual Establishment Parent { get; set; }
-
-        public virtual ICollection<EstablishmentNode> Ancestors { get; set; }
-
-        public virtual ICollection<Establishment> Children { get; set; }
-
-        public virtual ICollection<EstablishmentNode> Offspring { get; set; }
-
-        public virtual EstablishmentLocation Location { get; set; }
-
+        public virtual EstablishmentLocation Location { get; protected internal set; }
         public virtual EstablishmentSamlSignOn SamlSignOn { get; protected internal set; }
+        public bool HasSamlSignOn() { return SamlSignOn != null && IsMember; }
 
-        public virtual EstablishmentType Type { get; set; }
-
-        public bool IsMember { get; set; }
-
+        public bool IsMember { get; protected internal set; }
         public bool IsAncestorMember
         {
             get
@@ -87,59 +78,24 @@ namespace UCosmic.Domain.Establishments
             }
         }
 
-        public virtual ICollection<EstablishmentEmailDomain> EmailDomains { get; set; }
+        public virtual ICollection<EstablishmentEmailDomain> EmailDomains { get; protected internal set; }
+        public virtual ICollection<Affiliation> Affiliates { get; protected internal set; }
 
-        public virtual ICollection<Affiliation> Affiliates { get; set; }
-
+        public virtual EstablishmentType Type { get; protected internal set; }
         public bool IsInstitution
         {
             get { return Type.Category.Code == EstablishmentCategoryCode.Inst; }
         }
 
-        public InstitutionInfo InstitutionInfo { get; set; }
-        public EstablishmentContactInfo PublicContactInfo { get; set; }
-        public EstablishmentContactInfo PartnerContactInfo { get; set; }
+        //public InstitutionInfo InstitutionInfo { get; protected internal set; }
+        public string CollegeBoardDesignatedIndicator { get; protected internal set; }
+        public string UCosmicCode { get; protected internal set; }
+        public EstablishmentContactInfo PublicContactInfo { get; protected internal set; }
+        public EstablishmentContactInfo PartnerContactInfo { get; protected internal set; }
 
         public override string ToString()
         {
             return OfficialName;
         }
-
-        public bool HasSamlSignOn()
-        {
-            return SamlSignOn != null && IsMember;
-        }
     }
-
-    //public static class EstablishmentExtensions
-    //{
-    //    //public static Establishment ByOfficialName(this IEnumerable<Establishment> query, string officialName)
-    //    //{
-    //    //    return (query != null)
-    //    //        ? query.SingleOrDefault(t =>
-    //    //            t.OfficialName.Equals(officialName, StringComparison.OrdinalIgnoreCase))
-    //    //        : null;
-    //    //}
-
-    //    //public static Establishment ByWebsiteUrl(this IEnumerable<Establishment> query, string websiteUrl)
-    //    //{
-    //    //    return (query != null)
-    //    //        ? query.SingleOrDefault(t =>
-    //    //            string.Compare(t.WebsiteUrl, websiteUrl, StringComparison.OrdinalIgnoreCase) == 0)
-    //    //        : null;
-    //    //}
-
-    //    //public static bool HasDefaultAffiliate(this Establishment establishment, IPrincipal principal)
-    //    //{
-    //    //    if (establishment == null) throw new ArgumentNullException("establishment");
-    //    //    if (principal == null) throw new ArgumentNullException("principal");
-
-    //    //    Func<Affiliation, bool> defaultAffiliation = a =>
-    //    //        a.IsDefault && a.Person.User != null
-    //    //        && a.Person.User.Name.Equals(principal.Identity.Name, StringComparison.OrdinalIgnoreCase);
-    //    //    return establishment.Affiliates.Any(defaultAffiliation)
-    //    //        || establishment.Ancestors.Any(n => n.Ancestor.Affiliates.Any(defaultAffiliation));
-    //    //}
-
-    //}
 }

@@ -90,7 +90,7 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void HasGetSet()
             {
-                var value = new BoundingBox();
+                var value = new BoundingBox(null, null, null, null);
                 var entity = new Place { BoundingBox = value };
                 entity.ShouldNotBeNull();
                 entity.BoundingBox.ShouldEqual(value);
@@ -103,7 +103,7 @@ namespace UCosmic.Domain.Places
             [TestMethod]
             public void HasGetSet()
             {
-                var value = new Coordinates();
+                var value = new Coordinates(null, null);
                 var entity = new Place { Center = value };
                 entity.ShouldNotBeNull();
                 entity.Center.ShouldEqual(value);

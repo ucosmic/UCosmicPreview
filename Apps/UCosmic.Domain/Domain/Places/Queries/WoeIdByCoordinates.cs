@@ -8,7 +8,7 @@ namespace UCosmic.Domain.Places
     {
         public WoeIdByCoordinates(double latitude, double longitude)
         {
-            Coordinates = new Coordinates { Latitude = latitude, Longitude = longitude, };
+            Coordinates = new Coordinates(latitude, longitude);
         }
 
         public Coordinates Coordinates { get; private set; }

@@ -131,10 +131,12 @@
     <Compile Include="Api\SamlAttributeName.cs" />
     <Compile Include="Api\SamlAttributeNameString.cs" />
     <Compile Include="Api\StringMatchStrategy.cs" />
+    <Compile Include="Domain\Establishments\Commands\UpdateEstablishment.cs" />
     <Compile Include="Domain\Establishments\Commands\CreateEstablishmentCategory.cs" />
     <Compile Include="Domain\Establishments\Commands\CreateEstablishmentType.cs" />
     <Compile Include="Domain\Establishments\Commands\CreateEstablishment.cs" />
     <Compile Include="Domain\Establishments\Commands\CreateEmailTemplate.cs" />
+    <Compile Include="Domain\Establishments\Entities\EstablishmentCategoryCode.cs" />
     <Compile Include="Domain\Establishments\Entities\KnownEstablishmentType.cs" />
     <Compile Include="Domain\Establishments\Queries\EstablishmentByOfficialName.cs" />
     <Compile Include="Domain\Establishments\Queries\EstablishmentCategoryByCode.cs" />
@@ -219,7 +221,6 @@
     <Compile Include="Api\ICommandEntities.cs" />
     <Compile Include="Api\IUnitOfWork.cs" />
     <Compile Include="Domain\Establishments\Commands\UpdateEstablishmentHierarchies.cs" />
-    <Compile Include="Domain\Establishments\Entities\InstitutionInfo.cs" />
     <Compile Include="Domain\Establishments\Queries\FindSamlIntegratedEstablishments.cs" />
     <Compile Include="Domain\Establishments\Commands\UpdateSamlSignOnInfo.cs" />
     <Compile Include="Domain\Establishments\Business\QueryEstablishments.cs" />

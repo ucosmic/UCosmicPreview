@@ -17,11 +17,7 @@ namespace UCosmic.Domain.Places
             #region GeoNamesToponym to Toponym Entity
 
             Mapper.CreateMap<NGeo.GeoNames.Toponym, GeoNamesToponym>()
-                .ForMember(target => target.Center, opt => opt.ResolveUsing(source => new Coordinates
-                {
-                    Latitude = source.Latitude,
-                    Longitude = source.Longitude
-                }))
+                .ForMember(target => target.Center, opt => opt.ResolveUsing(source => new Coordinates(source.Latitude, source.Longitude)))
                 .ForMember(target => target.FeatureCode, opt => opt.ResolveUsing(source =>
                     source.FeatureCode))
                 .ForMember(target => target.Feature, opt => opt.ResolveUsing(source => new GeoNamesFeature
@@ -57,15 +53,12 @@ namespace UCosmic.Domain.Places
             #region GeoNamesCountry to Country Entity
 
             Mapper.CreateMap<NGeo.GeoNames.Country, GeoNamesCountry>()
-                    .ForMember(target => target.BoundingBox, opt => opt.ResolveUsing(source => new BoundingBox
-                    {
-                        Northeast = new Coordinates { Latitude = source.BoundingBoxNorth, Longitude = source.BoundingBoxEast, },
-                        Southwest = new Coordinates { Latitude = source.BoundingBoxSouth, Longitude = source.BoundingBoxWest, },
-                    }))
-                    .ForMember(target => target.Code, opt => opt.ResolveUsing(source => source.CountryCode))
-                    .ForMember(target => target.Name, opt => opt.ResolveUsing(source => source.CountryName))
-                    .ForMember(target => target.AsToponym, opt => opt.Ignore())
-                ;
+                .ForMember(target => target.BoundingBox, opt => opt.ResolveUsing(source =>
+                    new BoundingBox(source.BoundingBoxNorth, source.BoundingBoxEast, source.BoundingBoxSouth, source.BoundingBoxWest)))
+                .ForMember(target => target.Code, opt => opt.ResolveUsing(source => source.CountryCode))
+                .ForMember(target => target.Name, opt => opt.ResolveUsing(source => source.CountryName))
+                .ForMember(target => target.AsToponym, opt => opt.Ignore())
+            ;
 
             #endregion
             #region Toponym Entity to Place
@@ -81,7 +74,7 @@ namespace UCosmic.Domain.Places
                 .ForMember(target => target.IsCountry, opt => opt.ResolveUsing(source =>
                     source.AsCountry != null))
                 .ForMember(target => target.BoundingBox, opt => opt.ResolveUsing(source =>
-                    (source.AsCountry != null) ? source.AsCountry.BoundingBox : new BoundingBox()))
+                    (source.AsCountry != null) ? source.AsCountry.BoundingBox : new BoundingBox(null, null, null, null)))
                 .ForMember(target => target.IsAdmin1, opt => opt.ResolveUsing(source =>
                     source.FeatureCode == GeoNamesFeatureEnum.AdministrativeDivisionLevel1.GetCode()
                         && source.Feature.ClassCode == GeoNamesFeatureClassEnum.AdministrativeBoundary.GetCode()))

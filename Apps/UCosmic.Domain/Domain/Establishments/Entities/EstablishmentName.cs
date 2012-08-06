@@ -1,25 +1,23 @@
-﻿using System.Linq;
-using UCosmic.Domain.Languages;
-using System.Collections.Generic;
+﻿using UCosmic.Domain.Languages;
 
 namespace UCosmic.Domain.Establishments
 {
     public class EstablishmentName : RevisableEntity
     {
-        public virtual Establishment ForEstablishment { get; set; }
+        protected internal EstablishmentName()
+        {
+        }
 
-        public string TranslationToHint { get; set; }
+        public virtual Establishment ForEstablishment { get; protected internal set; }
+        public virtual Language TranslationToLanguage { get; protected internal set; }
 
-        public virtual Language TranslationToLanguage { get; set; }
-
-        public bool IsFormerName { get; set; }
-
-        public bool IsOfficialName { get; set; }
+        public bool IsFormerName { get; protected internal set; }
+        public bool IsOfficialName { get; protected internal set; }
 
         public string Text
         {
             get { return _text; }
-            set
+            protected internal set
             {
                 _text = (!string.IsNullOrWhiteSpace(value)) ? value : null;
 
@@ -44,13 +42,5 @@ namespace UCosmic.Domain.Establishments
             return Text;
         }
 
-    }
-
-    public static class EstablishmentNameExtensions
-    {
-        public static IEnumerable<EstablishmentName> WhereIsNotOfficialName(this IEnumerable<EstablishmentName> enumerable)
-        {
-            return enumerable.Where(x => !x.IsOfficialName);
-        }
     }
 }

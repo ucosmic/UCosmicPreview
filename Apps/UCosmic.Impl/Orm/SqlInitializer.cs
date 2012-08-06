@@ -54,7 +54,6 @@ INCLUDE ( [Text],
 	[TranslationToLanguageId] ASC
 )
 INCLUDE ( [RevisionId],
-[TranslationToHint],
 [IsFormerName],
 [AsciiEquivalent],
 [EntityId],

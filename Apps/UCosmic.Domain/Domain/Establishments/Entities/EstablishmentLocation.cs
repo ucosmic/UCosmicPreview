@@ -9,19 +9,20 @@ namespace UCosmic.Domain.Establishments
 {
     public class EstablishmentLocation : RevisableEntity
     {
-        public EstablishmentLocation()
+        protected internal EstablishmentLocation()
         {
-            Center = new Coordinates();
-            BoundingBox = new BoundingBox();
+            Center = new Coordinates(null, null);
+            BoundingBox = new BoundingBox(null, null, null, null);
+
             // ReSharper disable DoNotCallOverridableMethodsInConstructor
             Addresses = new Collection<EstablishmentAddress>();
             Places = new Collection<Place>();
             // ReSharper restore DoNotCallOverridableMethodsInConstructor
         }
 
-        public virtual Establishment ForEstablishment { get; set; }
+        public virtual Establishment ForEstablishment { get; protected internal set; }
 
-        public virtual ICollection<EstablishmentAddress> Addresses { get; set; }
+        public virtual ICollection<EstablishmentAddress> Addresses { get; protected set; }
 
         public EstablishmentAddress TranslateAddressTo(string languageIsoCode)
         {
@@ -47,10 +48,10 @@ namespace UCosmic.Domain.Establishments
             }
         }
 
-        public Coordinates Center { get; set; }
-        public BoundingBox BoundingBox { get; set; }
-        public int? GoogleMapZoomLevel { get; set; }
+        public Coordinates Center { get; protected internal set; }
+        public BoundingBox BoundingBox { get; protected internal set; }
+        public int? GoogleMapZoomLevel { get; protected internal set; }
 
-        public virtual ICollection<Place> Places { get; set; }
+        public virtual ICollection<Place> Places { get; protected internal set; }
     }
 }

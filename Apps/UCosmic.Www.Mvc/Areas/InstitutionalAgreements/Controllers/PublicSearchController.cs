@@ -188,7 +188,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                         TermMatchStrategy = StringMatchStrategy.StartsWith,
                     });
                 if (places.Length == 1)
-                    model.MapBoundingBox = places.Single().BoundingBox;
+                    model.MapBoundingBox = Mapper.Map<BoundingBoxModel>(places.Single().BoundingBox);
             }
 
             model.HierarchySelectList = GetHierarchySelectList(context).ToArray();

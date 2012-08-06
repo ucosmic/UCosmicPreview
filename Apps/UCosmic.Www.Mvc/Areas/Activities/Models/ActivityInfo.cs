@@ -10,6 +10,7 @@ using UCosmic.Domain.Activities;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.People;
 using UCosmic.Domain.Places;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Activities.Models
 {
@@ -45,12 +46,12 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
         {
             public double CenterLatitude { get; set; }
             public double CenterLongitude { get; set; }
-            public BoundingBox BoundingBox { get; set; }
+            public BoundingBoxModel BoundingBox { get; set; }
             public string Title { get; set; }
         }
 
-        private BoundingBox _boundingBox;
-        public BoundingBox MapBoundingBox
+        private BoundingBoxModel _boundingBox;
+        public BoundingBoxModel MapBoundingBox
         {
             get
             {
@@ -76,10 +77,10 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                     }
                 }
 
-                return _boundingBox ?? (_boundingBox = new BoundingBox
+                return _boundingBox ?? (_boundingBox = new BoundingBoxModel
                 {
-                    Northeast = new Coordinates { Latitude = 90, Longitude = 180 },
-                    Southwest = new Coordinates { Latitude = -90, Longitude = -180 },
+                    Northeast = new CoordinatesModel { Latitude = 90, Longitude = 180 },
+                    Southwest = new CoordinatesModel { Latitude = -90, Longitude = -180 },
                 });
             }
         }
@@ -118,7 +119,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                                         CenterLatitude = place.Center.Latitude.Value,
                                         CenterLongitude = place.Center.Longitude.Value,
                                         // ReSharper restore PossibleInvalidOperationException
-                                        BoundingBox = place.BoundingBox,
+                                        BoundingBox = Mapper.Map<BoundingBoxModel>(place.BoundingBox),
                                         Title = place.OfficialName,
                                     };
                                     placeMarks.Add(placeMark);
@@ -143,7 +144,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                                         CenterLatitude = establishment.Location.Center.Latitude.Value,
                                         CenterLongitude = establishment.Location.Center.Longitude.Value,
                                         // ReSharper restore PossibleInvalidOperationException
-                                        BoundingBox = establishment.Location.BoundingBox,
+                                        BoundingBox = Mapper.Map<BoundingBoxModel>(establishment.Location.BoundingBox),
                                         Title = establishment.TranslatedName.Text,
                                     };
                                     placeMarks.Add(placeMark);

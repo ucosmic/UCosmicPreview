@@ -6,6 +6,7 @@ using AutoMapper;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Domain.Places;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
 {
@@ -23,8 +24,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
             set { EstablishmentUrl = value; }
         }
 
-        private BoundingBox _boundingBox;
-        public BoundingBox MapBoundingBox
+        private BoundingBoxModel _boundingBox;
+        public BoundingBoxModel MapBoundingBox
         {
             get
             {
@@ -34,7 +35,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
                     {
                         if (_boundingBox == null)
                         {
-                            _boundingBox = partner.Location.BoundingBox;
+                            _boundingBox = Mapper.Map<BoundingBoxModel>(partner.Location.BoundingBox);
                             continue;
                         }
                         // ReSharper disable PossibleInvalidOperationException
@@ -50,10 +51,10 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
                     }
                 }
 
-                return _boundingBox ?? (_boundingBox = new BoundingBox
+                return _boundingBox ?? (_boundingBox = new BoundingBoxModel
                 {
-                    Northeast = new Coordinates { Latitude = 90, Longitude = 180 },
-                    Southwest = new Coordinates { Latitude = -90, Longitude = -180 },
+                    Northeast = new CoordinatesModel { Latitude = 90, Longitude = 180 },
+                    Southwest = new CoordinatesModel { Latitude = -90, Longitude = -180 },
                 });
             }
             set { _boundingBox = value; }

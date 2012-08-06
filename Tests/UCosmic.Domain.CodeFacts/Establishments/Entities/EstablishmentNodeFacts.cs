@@ -33,14 +33,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentNodeRuntimeEntity();
+                var entity = new EstablishmentNodeRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentNodeRuntimeEntity : EstablishmentNode
             {
                 public override Establishment Ancestor
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -73,14 +74,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentNodeRuntimeEntity();
+                var entity = new EstablishmentNodeRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentNodeRuntimeEntity : EstablishmentNode
             {
                 public override Establishment Offspring
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

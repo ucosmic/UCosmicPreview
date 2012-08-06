@@ -21,14 +21,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentNameRuntimeEntity();
+                var entity = new EstablishmentNameRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentNameRuntimeEntity : EstablishmentName
             {
                 public override Establishment ForEstablishment
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -48,14 +49,15 @@ namespace UCosmic.Domain.Establishments
             [TestMethod]
             public void IsVirtual()
             {
-                new EstablishmentNameRuntimeEntity();
+                var entity = new EstablishmentNameRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EstablishmentNameRuntimeEntity : EstablishmentName
             {
                 public override Language TranslationToLanguage
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

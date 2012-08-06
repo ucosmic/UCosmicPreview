@@ -98,7 +98,6 @@
     <Compile Include="Establishments\Queries\GetEstablishmentByIdHandlerFacts.cs" />
     <Compile Include="Etc\EagerLoadingTestExtensions.cs" />
     <Compile Include="Establishments\Entities\EmailTemplateFacts.cs" />
-    <Compile Include="Establishments\Entities\InstitutionInfoFacts.cs" />
     <Compile Include="Establishments\Entities\EstablishmentEmailDomainFacts.cs" />
     <Compile Include="Establishments\Entities\EstablishmentNameFacts.cs" />
     <Compile Include="Establishments\Entities\EstablishmentNodeFacts.cs" />

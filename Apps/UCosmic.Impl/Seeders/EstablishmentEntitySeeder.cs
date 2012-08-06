@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Languages;
-using UCosmic.Domain.Places;
 
 namespace UCosmic.Impl.Seeders
 {
@@ -748,7 +747,8 @@ namespace UCosmic.Impl.Seeders
                 OfficialWebsiteUrl = "www.uc.edu",
                 EmailDomains = new[] { "@uc.edu", "@ucmail.uc.edu" },
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = 39.132084, Longitude = -84.516479, },
+                CenterLatitude = 39.132084,
+                CenterLongitude = -84.516479,
             });
             Seed(new CreateEstablishment
             {
@@ -1119,7 +1119,8 @@ namespace UCosmic.Impl.Seeders
                 OfficialWebsiteUrl = "www.usf.edu",
                 EmailDomains = new[] { "@usf.edu", "@iac.usf.edu", "@mail.usf.edu" },
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = 28.061680, Longitude = -82.414803 },
+                CenterLatitude = 28.061680,
+                CenterLongitude = -82.414803,
             });
         }
     }
@@ -1574,7 +1575,8 @@ namespace UCosmic.Impl.Seeders
                     KnownEstablishmentType.University.AsSentenceFragment())).RevisionId,
                 OfficialWebsiteUrl = "www.jnu.edu.cn",
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = 23.128067, Longitude = 113.347710, },
+                CenterLatitude = 23.128067,
+                CenterLongitude = 113.347710,
             });
 
             Seed(new CreateEstablishment
@@ -1592,7 +1594,8 @@ namespace UCosmic.Impl.Seeders
                     },
                 },
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = -37.851940, Longitude = 144.991974, },
+                CenterLatitude = -37.851940,
+                CenterLongitude = 144.991974,
             });
 
             Seed(new CreateEstablishment
@@ -1625,7 +1628,8 @@ namespace UCosmic.Impl.Seeders
                     },
                 },
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = 47.484417, Longitude = 8.207265, },
+                CenterLatitude = 47.484417,
+                CenterLongitude = 8.207265,
             });
 
             Seed(new CreateEstablishment
@@ -1644,7 +1648,8 @@ namespace UCosmic.Impl.Seeders
                     },
                 },
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = 48.337395, Longitude = 14.317374, },
+                CenterLatitude = 48.337395,
+                CenterLongitude = 14.317374,
             });
 
             Seed(new CreateEstablishment
@@ -1663,7 +1668,8 @@ namespace UCosmic.Impl.Seeders
                     },
                 },
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = 50.673618, Longitude = 4.604945, },
+                CenterLatitude = 50.673618,
+                CenterLongitude = 4.604945,
             });
 
             Seed(new CreateEstablishment
@@ -1682,7 +1688,8 @@ namespace UCosmic.Impl.Seeders
                     },
                 },
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = -25.434137, Longitude = -49.267353, },
+                CenterLatitude = -25.434137,
+                CenterLongitude = -49.267353,
             });
 
             Seed(new CreateEstablishment
@@ -1701,7 +1708,8 @@ namespace UCosmic.Impl.Seeders
                     },
                 },
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = -22.862494, Longitude = -43.223907, },
+                CenterLatitude = -22.862494,
+                CenterLongitude = -43.223907,
             });
 
             Seed(new CreateEstablishment
@@ -1712,7 +1720,8 @@ namespace UCosmic.Impl.Seeders
                     KnownEstablishmentType.University.AsSentenceFragment())).RevisionId,
                 OfficialWebsiteUrl = "www.ufl.edu",
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = 29.643528, Longitude = -82.350685, },
+                CenterLatitude = 29.643528,
+                CenterLongitude = -82.350685,
             });
 
             Seed(new CreateEstablishment
@@ -1731,7 +1740,8 @@ namespace UCosmic.Impl.Seeders
                     },
                 },
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = -25.414003, Longitude = -49.252010, },
+                CenterLatitude = -25.414003,
+                CenterLongitude = -49.252010,
             });
 
             Seed(new CreateEstablishment
@@ -1750,7 +1760,8 @@ namespace UCosmic.Impl.Seeders
                     },
                 },
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = -25.448196, Longitude = -49.355865, },
+                CenterLatitude = -25.448196,
+                CenterLongitude = -49.355865,
             });
 
             Seed(new CreateEstablishment
@@ -1769,7 +1780,8 @@ namespace UCosmic.Impl.Seeders
                     },
                 },
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = -23.559305, Longitude = -46.715672, },
+                CenterLatitude = -23.559305,
+                CenterLongitude = -46.715672,
             });
 
             Seed(new CreateEstablishment
@@ -1788,7 +1800,8 @@ namespace UCosmic.Impl.Seeders
                     },
                 },
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = -36.823036, Longitude = -73.036003, },
+                CenterLatitude = -36.823036,
+                CenterLongitude = -73.036003,
             });
 
             Seed(new CreateEstablishment
@@ -2362,7 +2375,8 @@ namespace UCosmic.Impl.Seeders
                     KnownEstablishmentType.RecruitmentAgency.AsSentenceFragment())).RevisionId,
                 OfficialWebsiteUrl = "www.eduglobalchina.com",
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = 39.89871600001, Longitude = 116.4178770000002, },
+                CenterLatitude = 39.89871600001,
+                CenterLongitude = 116.4178770000002,
                 Addresses = new[]
                 {
                     new CreateEstablishment.Address
@@ -2376,7 +2390,7 @@ namespace UCosmic.Impl.Seeders
                         Text = "中国北京崇文区崇文门外大街3号B\r\n北京新世界中心写字楼B座7层\r\n邮编：100062",
                     },
                 },
-                PublicContactInfo = new EstablishmentContactInfo
+                PublicContactInfo = new CreateEstablishment.ContactInfo
                 {
                     Phone = "+86 (10) 6708 0808",
                     Fax = "+86 (10) 6708 2541",
@@ -2390,7 +2404,8 @@ namespace UCosmic.Impl.Seeders
                 TypeId = _queryProcessor.Execute(new EstablishmentTypeByEnglishName(
                     KnownEstablishmentType.RecruitmentAgency.AsSentenceFragment())).RevisionId,
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = 43.8911290000001, Longitude = 125.310471, },
+                CenterLatitude = 43.8911290000001,
+                CenterLongitude = 125.310471,
                 Addresses = new[]
                 {
                     new CreateEstablishment.Address
@@ -2404,7 +2419,7 @@ namespace UCosmic.Impl.Seeders
                         Text = "吉林省长春市前进大街758号松花江大学\r\n邮编：130000",
                     },
                 },
-                PublicContactInfo = new EstablishmentContactInfo
+                PublicContactInfo = new CreateEstablishment.ContactInfo
                 {
                     Phone = "+86 431 85111566",
                     Fax = "+86 431-85111566",
@@ -2422,7 +2437,8 @@ namespace UCosmic.Impl.Seeders
                     KnownEstablishmentType.RecruitmentAgency.AsSentenceFragment())).RevisionId,
                 OfficialWebsiteUrl = "www.eic.org.cn",
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = 39.9059830001, Longitude = 116.4593730001, },
+                CenterLatitude = 39.9059830001,
+                CenterLongitude = 116.4593730001,
                 Addresses = new[]
                 {
                     new CreateEstablishment.Address
@@ -2436,7 +2452,7 @@ namespace UCosmic.Impl.Seeders
                         Text = "北京市朝阳区东三环中路39号建外SOHO A座\r\n12,15层国贸办公区",
                     },
                 },
-                PublicContactInfo = new EstablishmentContactInfo
+                PublicContactInfo = new CreateEstablishment.ContactInfo
                 {
                     Phone = "+86 (10) 5878 1616",
                     Fax = "+86 (10) 5869 4393",
@@ -2450,7 +2466,8 @@ namespace UCosmic.Impl.Seeders
                 TypeId = _queryProcessor.Execute(new EstablishmentTypeByEnglishName(
                     KnownEstablishmentType.RecruitmentAgency.AsSentenceFragment())).RevisionId,
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = 28.194132, Longitude = 112.976715, },
+                CenterLatitude = 28.194132,
+                CenterLongitude = 112.976715,
                 Addresses = new[]
                 {
                     new CreateEstablishment.Address
@@ -2464,7 +2481,7 @@ namespace UCosmic.Impl.Seeders
                         Text = "长沙市黄兴中路88号平和堂商务楼24楼启德教育\r\n中心",
                     },
                 },
-                PublicContactInfo = new EstablishmentContactInfo
+                PublicContactInfo = new CreateEstablishment.ContactInfo
                 {
                     Phone = "+86 (731) 8448 8495",
                     Fax = "+86 (731) 8448 3835",
@@ -2482,7 +2499,8 @@ namespace UCosmic.Impl.Seeders
                     KnownEstablishmentType.RecruitmentAgency.AsSentenceFragment())).RevisionId,
                 OfficialWebsiteUrl = "www.can-achieve.com.cn",
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = 39.905605, Longitude = 116.459831, },
+                CenterLatitude = 39.905605,
+                CenterLongitude = 116.459831,
                 Addresses = new[]
                 {
                     new CreateEstablishment.Address
@@ -2491,7 +2509,7 @@ namespace UCosmic.Impl.Seeders
                         Text = "802, Tower B, JianWai SOHO, Office Building\r\nChaoyang District\r\nBeijing China, 100022",
                     },
                 },
-                PublicContactInfo = new EstablishmentContactInfo
+                PublicContactInfo = new CreateEstablishment.ContactInfo
                 {
                     Phone = "+86 (10) 5869 9445",
                     Fax = "+86 (10) 5869 4171",
@@ -2504,7 +2522,8 @@ namespace UCosmic.Impl.Seeders
                 TypeId = _queryProcessor.Execute(new EstablishmentTypeByEnglishName(
                     KnownEstablishmentType.RecruitmentAgency.AsSentenceFragment())).RevisionId,
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = 32.044769, Longitude = 118.789917, },
+                CenterLatitude = 32.044769,
+                CenterLongitude = 118.789917,
                 Addresses = new[]
                 {
                     new CreateEstablishment.Address
@@ -2513,7 +2532,7 @@ namespace UCosmic.Impl.Seeders
                         Text = "A 12F Deji Mansion, No. 188 Changjiang Road\r\nNanjing, Jiangsu Province\r\nChina, 210018",
                     },
                 },
-                PublicContactInfo = new EstablishmentContactInfo
+                PublicContactInfo = new CreateEstablishment.ContactInfo
                 {
                     Phone = "+86 (25) 8681 6111",
                 },
@@ -2525,7 +2544,8 @@ namespace UCosmic.Impl.Seeders
                 TypeId = _queryProcessor.Execute(new EstablishmentTypeByEnglishName(
                     KnownEstablishmentType.RecruitmentAgency.AsSentenceFragment())).RevisionId,
                 FindPlacesByCoordinates = true,
-                Coordinates = new Coordinates { Latitude = 23.13893700002, Longitude = 113.32875100002, },
+                CenterLatitude = 23.13893700002,
+                CenterLongitude = 113.32875100002,
                 Addresses = new[]
                 {
                     new CreateEstablishment.Address
@@ -2534,7 +2554,7 @@ namespace UCosmic.Impl.Seeders
                         Text = "Room 511, Nanfang Securities Building\r\nNo.140-148, Tiyu Dong Road",
                     },
                 },
-                PublicContactInfo = new EstablishmentContactInfo
+                PublicContactInfo = new CreateEstablishment.ContactInfo
                 {
                     Phone = "+86 (20) 2222 0066",
                 },

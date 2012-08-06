@@ -7,8 +7,8 @@ namespace UCosmic.Domain.Places
     {
         protected internal Place()
         {
-            Center = new Coordinates();
-            BoundingBox = new BoundingBox();
+            Center = new Coordinates(null, null);
+            BoundingBox = new BoundingBox(null, null, null, null);
 
             // ReSharper disable DoNotCallOverridableMethodsInConstructor
             Names = new Collection<PlaceName>();

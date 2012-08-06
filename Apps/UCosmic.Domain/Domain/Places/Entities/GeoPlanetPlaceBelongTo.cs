@@ -2,6 +2,10 @@
 {
     public class GeoPlanetPlaceBelongTo : Entity
     {
+        protected internal GeoPlanetPlaceBelongTo()
+        {
+        }
+
         public int PlaceWoeId { get; protected internal set; }
         public virtual GeoPlanetPlace GeoPlanetPlace { get; protected internal set; }
 

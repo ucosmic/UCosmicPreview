@@ -4,6 +4,10 @@ namespace UCosmic.Domain.Places
 {
     public class PlaceName : RevisableEntity
     {
+        protected internal PlaceName()
+        {
+        }
+
         public virtual Place NameFor { get; protected internal set; }
         public virtual Language TranslationToLanguage { get; protected internal set; }
 

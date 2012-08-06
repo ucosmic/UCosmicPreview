@@ -13,7 +13,6 @@ using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Domain.Languages;
 using UCosmic.Domain.Places;
 using UCosmic.Www.Mvc.Controllers;
-using BoundingBox = UCosmic.Domain.Places.BoundingBox;
 using Place = UCosmic.Domain.Places.Place;
 
 namespace UCosmic.Www.Mvc.Areas.Common.Controllers
@@ -21,41 +20,32 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
     public partial class HealthController : Controller
     {
         private readonly IProcessQueries _queryProcessor;
-        //private readonly IQueryEntities _entityQueries;
-        //private readonly ICommandObjects _objectCommander2;
         private readonly ICommandEntities _entities;
         private readonly IUnitOfWork _unitOfWork;
-        //private readonly IConsumeGeoPlanet _geoPlanet;
-        //private readonly IConsumeGeoNames _geoNames;
         private readonly IConsumePlaceFinder _placeFinder;
-        //private readonly IManageConfigurations _config;
         private readonly IHandleCommands<UpdateEstablishmentHierarchiesCommand> _updateEstablishmentHierarchy;
         private readonly IHandleCommands<UpdateInstitutionalAgreementHierarchiesCommand> _updateInstitutionalAgreementHierarchy;
+        private readonly IHandleCommands<CreateEstablishment> _createEstablishment;
+        private readonly IHandleCommands<UpdateEstablishment> _updateEstablishment;
 
         public HealthController(IProcessQueries queryProcessor
-            //, IQueryEntities entityQueries
-            //, ICommandObjects objectCommander
             , ICommandEntities entities
             , IUnitOfWork unitOfWork
-            //, IConsumeGeoNames geoNames
-            //, IConsumeGeoPlanet geoPlanet
             , IConsumePlaceFinder placeFinder
-            //, IManageConfigurations config
             , IHandleCommands<UpdateEstablishmentHierarchiesCommand> updateEstablishmentHierarchy
             , IHandleCommands<UpdateInstitutionalAgreementHierarchiesCommand> updateInstitutionalAgreementHierarchy
+            , IHandleCommands<CreateEstablishment> createEstablishment
+            , IHandleCommands<UpdateEstablishment> updateEstablishment
         )
         {
             _queryProcessor = queryProcessor;
-            //_entityQueries = entityQueries;
-            //_objectCommander2 = objectCommander;
             _entities = entities;
             _unitOfWork = unitOfWork;
-            //_geoNames = geoNames;
-            //_geoPlanet = geoPlanet;
             _placeFinder = placeFinder;
-            //_config = config;
             _updateEstablishmentHierarchy = updateEstablishmentHierarchy;
             _updateInstitutionalAgreementHierarchy = updateInstitutionalAgreementHierarchy;
+            _createEstablishment = createEstablishment;
+            _updateEstablishment = updateEstablishment;
         }
 
         [UnitOfWork]
@@ -89,8 +79,10 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             var establishmentRows = new EstablishmentRows(Server.MapPath(string.Format("~{0}",
                 Links.content.kml.establishment_import_tsv)));
             var en = _entities.Get<Language>().SingleOrDefault(x => x.TwoLetterIsoCode.Equals("en", StringComparison.OrdinalIgnoreCase));
+            if (en == null) throw new InvalidOperationException("Could not find entity for 'English' language");
             var university = _entities.Get<EstablishmentType>().SingleOrDefault(x =>
                 x.EnglishName.Equals("University", StringComparison.OrdinalIgnoreCase));
+            if (university == null) throw new InvalidOperationException("Could not find entity for 'University' establishment type");
 
             foreach (var placeMark in placeMarks)
             {
@@ -181,10 +173,25 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                             places.Add(place);
                         }
 
-                        establishment.Location.Center = new Coordinates { Latitude = placeMark.Latitude, Longitude = placeMark.Longitude };
-                        establishment.Location.Places = places;
-                        establishment.Location.BoundingBox = (places.Count > 0) ? places.Last().BoundingBox : new BoundingBox();
+                        var placesCount = places.Count();
+                        var lastPlace = places.Last();
+                        var command = new UpdateEstablishment
+                        {
+                            Id = establishment.RevisionId,
+                            CenterLatitude = placeMark.Latitude,
+                            CenterLongitude = placeMark.Longitude,
+                            NorthLatitude = placesCount > 0 ? lastPlace.BoundingBox.Northeast.Latitude : null,
+                            EastLongitude = placesCount > 0 ? lastPlace.BoundingBox.Northeast.Longitude : null,
+                            SouthLatitude = placesCount > 0 ? lastPlace.BoundingBox.Southwest.Latitude : null,
+                            WestLongitude = placesCount > 0 ? lastPlace.BoundingBox.Southwest.Longitude : null,
+                            PlaceIds = places.Select(p => p.RevisionId),
+                        };
+                        _updateEstablishment.Handle(command);
                         _unitOfWork.SaveChanges();
+                        //establishment.Location.Center = new Coordinates { Latitude = placeMark.Latitude, Longitude = placeMark.Longitude };
+                        //establishment.Location.Places = places;
+                        //establishment.Location.BoundingBox = (places.Count > 0) ? places.Last().BoundingBox : new BoundingBox();
+                        //_unitOfWork.SaveChanges();
                         ConsoleLog(string.Format("Updated location of seeded establishment with website URL '{0}'.", establishmentRow.WebsiteUrl), true, true);
                         continue;
                     }
@@ -193,76 +200,58 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 else
                 {
                     ConsoleLog(string.Format("Seeding establishment with website URL '{0}'...", establishmentRow.WebsiteUrl));
-                    var result = _placeFinder.Find(new PlaceByCoordinates(placeMark.Latitude, placeMark.Longitude)).Single();
-                    var places = new List<Place>();
-                    if (!result.WoeId.HasValue)
+                    //var result = _placeFinder.Find(new PlaceByCoordinates(placeMark.Latitude, placeMark.Longitude)).Single();
+                    //var places = new List<Place>();
+                    //if (!result.WoeId.HasValue)
+                    //{
+                    //    ConsoleLog(string.Format("Unable to determine WOE ID for establishment with website URL '{0}'.", establishmentRow.WebsiteUrl), null, true);
+                    //}
+                    //else
+                    //{
+                    //    var place = _queryProcessor.Execute(
+                    //        new GetPlaceByWoeIdQuery
+                    //        {
+                    //            WoeId = result.WoeId.Value,
+                    //        });
+                    //    places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
+                    //    places.Add(place);
+                    //}
+
+                    var command = new CreateEstablishment
                     {
-                        ConsoleLog(string.Format("Unable to determine WOE ID for establishment with website URL '{0}'.", establishmentRow.WebsiteUrl), null, true);
-                    }
-                    else
-                    {
-                        var place = _queryProcessor.Execute(
-                            new GetPlaceByWoeIdQuery
-                            {
-                                WoeId = result.WoeId.Value,
-                            });
-                        places = place.Ancestors.OrderByDescending(n => n.Separation).Select(a => a.Ancestor).ToList();
-                        places.Add(place);
-                    }
-                    establishment = new Establishment
-                    {
-                        Type = university,
+                        TypeId = university.RevisionId,
                         OfficialName = establishmentRow.OfficialName,
-                        WebsiteUrl = establishmentRow.WebsiteUrl,
-                        Location = new EstablishmentLocation
-                        {
-                            Center = new Coordinates
-                            {
-                                Latitude = placeMark.Latitude,
-                                Longitude = placeMark.Longitude,
-                            },
-                            Places = places,
-                            BoundingBox = (places.Count > 0) ? places.Last().BoundingBox : new BoundingBox(),
-                        },
-                        InstitutionInfo = new InstitutionInfo
-                        {
-                            UCosmicCode = establishmentRow.CeebCode,
-                        },
-                        Names = new Collection<EstablishmentName>
-                        {
-                            new EstablishmentName
-                            {
-                                Text = establishmentRow.OfficialName,
-                                IsOfficialName = true,
-                            },
-                        },
-                        Urls = new Collection<EstablishmentUrl>
-                        {
-                            new EstablishmentUrl
-                            {
-                                Value = establishmentRow.WebsiteUrl,
-                                IsOfficialUrl = true,
-                            },
-                        },
+                        OfficialWebsiteUrl = establishmentRow.WebsiteUrl,
+                        FindPlacesByCoordinates = true,
+                        CenterLatitude = placeMark.Latitude,
+                        CenterLongitude = placeMark.Longitude,
+                        UCosmicCode = establishmentRow.CeebCode,
                     };
+
+                    var nonOfficialNames = new List<CreateEstablishment.NonOfficialName>();
                     if (!establishmentRow.OfficialName.Equals(establishmentRow.EnglishName, StringComparison.OrdinalIgnoreCase))
                     {
-                        establishment.Names.Add(new EstablishmentName
+                        nonOfficialNames.Add(new CreateEstablishment.NonOfficialName
                         {
                             Text = establishmentRow.EnglishName,
-                            TranslationToLanguage = en,
+                            TranslationToLanguageId = en.RevisionId,
                         });
                     }
+                    command.NonOfficialNames = nonOfficialNames.ToArray();
+
+                    var nonOfficialUrls = new List<CreateEstablishment.NonOfficialUrl>();
                     if (establishmentRow.OtherUrls != null && establishmentRow.OtherUrls.Length > 0)
                     {
-                        foreach (var otherUrl in establishmentRow.OtherUrls)
-                        {
-                            establishment.Urls.Add(new EstablishmentUrl
+                        nonOfficialUrls.AddRange(establishmentRow.OtherUrls.Select(u =>
+                            new CreateEstablishment.NonOfficialUrl
                             {
-                                Value = otherUrl,
-                            });
-                        }
+                                Value = u,
+                            })
+                        );
                     }
+                    command.NonOfficialUrls = nonOfficialUrls.ToArray();
+                    _createEstablishment.Handle(command);
+                    establishment = command.CreatedEstablishment;
 
                     _entities.Create(establishment);
                     _unitOfWork.SaveChanges();
@@ -636,7 +625,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 {
                     httpMethod = new HttpMethodConstraint("GET"),
                 });
-             }
+            }
         }
 
         public class RunEstablishmentImportRoute : MvcRoute

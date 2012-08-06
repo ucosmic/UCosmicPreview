@@ -2,6 +2,10 @@
 {
     public class GeoNamesTimeZone : Entity
     {
+        protected internal GeoNamesTimeZone()
+        {
+        }
+
         public string Id { get; protected internal set; }
 
         public double DstOffset { get; protected internal set; }

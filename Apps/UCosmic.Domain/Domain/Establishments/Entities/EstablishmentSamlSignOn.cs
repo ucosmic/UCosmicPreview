@@ -10,11 +10,9 @@ namespace UCosmic.Domain.Establishments
         }
 
         public int Id { get; protected set; }
-
         public string EntityId { get; protected internal set; }
 
         public string MetadataUrl { get; protected internal set; }
-
         public string MetadataXml { get; protected internal set; }
 
         public string SsoLocation { get; protected internal set; }

@@ -2,6 +2,10 @@
 {
     public class GeoNamesAlternateName : Entity
     {
+        protected internal GeoNamesAlternateName()
+        {
+        }
+
         public long AlternateNameId { get; protected internal set; }
         public int GeoNameId { get; protected internal set; }
         public string Language { get; protected internal set; }

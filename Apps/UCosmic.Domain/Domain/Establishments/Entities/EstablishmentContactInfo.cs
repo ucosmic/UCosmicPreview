@@ -2,20 +2,12 @@
 {
     public class EstablishmentContactInfo
     {
-        public string Phone { get; set; }
-
-        public string Fax { get; set; }
-
-        public string Email { get; set; }
-
-        public bool HasValue
+        protected internal EstablishmentContactInfo()
         {
-            get
-            {
-                return !string.IsNullOrWhiteSpace(Phone)
-                    || !string.IsNullOrWhiteSpace(Fax)
-                    || !string.IsNullOrWhiteSpace(Email);
-            }
         }
+
+        public string Phone { get; protected internal set; }
+        public string Fax { get; protected internal set; }
+        public string Email { get; protected internal set; }
     }
 }

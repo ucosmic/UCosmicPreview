@@ -19,8 +19,8 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
 
         public IEnumerable<string> DistinctEmailDomains { get; set; }
 
-        private BoundingBox _boundingBox;
-        public BoundingBox MapBoundingBox
+        private BoundingBoxModel _boundingBox;
+        public BoundingBoxModel MapBoundingBox
         {
             get
             {
@@ -30,7 +30,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
                     {
                         if (_boundingBox == null)
                         {
-                            _boundingBox = partner.Location.BoundingBox;
+                            _boundingBox = Mapper.Map<BoundingBoxModel>(partner.Location.BoundingBox);
                             continue;
                         }
                         // ReSharper disable PossibleInvalidOperationException
@@ -46,10 +46,10 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.PublicSearch
                     }
                 }
 
-                return _boundingBox ?? (_boundingBox = new BoundingBox
+                return _boundingBox ?? (_boundingBox = new BoundingBoxModel
                 {
-                    Northeast = new Coordinates { Latitude = 90, Longitude = 180 },
-                    Southwest = new Coordinates { Latitude = -90, Longitude = -180 },
+                    Northeast = new CoordinatesModel { Latitude = 90, Longitude = 180 },
+                    Southwest = new CoordinatesModel { Latitude = -90, Longitude = -180 },
                 });
             }
         }

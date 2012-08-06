@@ -2,7 +2,6 @@
 using System.Linq;
 using UCosmic.Domain.Languages;
 using UCosmic.Domain.Places;
-using NGeo.Yahoo.PlaceFinder;
 
 namespace UCosmic.Domain.Establishments
 {
@@ -12,14 +11,16 @@ namespace UCosmic.Domain.Establishments
         public bool IsMember { get; set; }
         public int? ParentId { get; set; }
         public int TypeId { get; set; }
+        public string UCosmicCode { get; set; }
         public string OfficialWebsiteUrl { get; set; }
         public string[] EmailDomains { get; set; }
-        public Coordinates Coordinates { get; set; }
+        public double? CenterLatitude { get; set; }
+        public double? CenterLongitude { get; set; }
         public bool FindPlacesByCoordinates { get; set; }
         public NonOfficialName[] NonOfficialNames { get; set; }
         public NonOfficialUrl[] NonOfficialUrls { get; set; }
         public Address[] Addresses { get; set; }
-        public EstablishmentContactInfo PublicContactInfo { get; set; }
+        public ContactInfo PublicContactInfo { get; set; }
         public Establishment CreatedEstablishment { get; internal set; }
 
         public class NonOfficialName
@@ -40,23 +41,27 @@ namespace UCosmic.Domain.Establishments
             public string Value { get; set; }
             public bool IsDefunct { get; set; }
         }
+
+        public class ContactInfo
+        {
+            public string Phone { get; set; }
+            public string Fax { get; set; }
+            public string Email { get; set; }
+        }
     }
 
     public class HandleCreateEstablishmentCommand : IHandleCommands<CreateEstablishment>
     {
         private readonly IProcessQueries _queryProcessor;
-        private readonly IConsumePlaceFinder _placeFinder;
         private readonly ICommandEntities _entities;
         private readonly IHandleCommands<UpdateEstablishmentHierarchyCommand> _hierarchy;
 
         public HandleCreateEstablishmentCommand(IProcessQueries queryProcessor
-            , IConsumePlaceFinder placeFinder
             , ICommandEntities entities
             , IHandleCommands<UpdateEstablishmentHierarchyCommand> hierarchy
         )
         {
             _queryProcessor = queryProcessor;
-            _placeFinder = placeFinder;
             _entities = entities;
             _hierarchy = hierarchy;
         }
@@ -127,18 +132,16 @@ namespace UCosmic.Domain.Establishments
 
             // apply coordinates
             if (command.FindPlacesByCoordinates &&
-                command.Coordinates != null && command.Coordinates.HasValue)
+                command.CenterLatitude.HasValue && command.CenterLongitude.HasValue)
             {
-                // ReSharper disable PossibleInvalidOperationException
                 var woeId = _queryProcessor.Execute(new WoeIdByCoordinates(
-                        command.Coordinates.Latitude.Value, command.Coordinates.Longitude.Value));
-                // ReSharper restore PossibleInvalidOperationException
+                        command.CenterLatitude.Value, command.CenterLongitude.Value));
                 var place = _queryProcessor.Execute(
                     new GetPlaceByWoeIdQuery { WoeId = woeId });
                 var places = place.Ancestors.OrderByDescending(n => n.Separation)
                     .Select(a => a.Ancestor).ToList();
                 places.Add(place);
-                entity.Location.Center = command.Coordinates;
+                entity.Location.Center = new Coordinates(command.CenterLatitude, command.CenterLongitude);
                 entity.Location.BoundingBox = place.BoundingBox;
                 entity.Location.Places = places;
             }
@@ -159,8 +162,17 @@ namespace UCosmic.Domain.Establishments
             // apply contact info
             if (command.PublicContactInfo != null)
             {
-                entity.PublicContactInfo = command.PublicContactInfo;
+                entity.PublicContactInfo = new EstablishmentContactInfo
+                {
+                    Email = command.PublicContactInfo.Email,
+                    Phone = command.PublicContactInfo.Phone,
+                    Fax = command.PublicContactInfo.Fax,
+                };
             }
+
+            // apply CEEB / UCosmic code
+            if (!string.IsNullOrWhiteSpace(command.UCosmicCode))
+                entity.UCosmicCode = command.UCosmicCode;
 
             _entities.Create(entity);
             _hierarchy.Handle(new UpdateEstablishmentHierarchyCommand(entity));

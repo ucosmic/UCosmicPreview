@@ -2,6 +2,10 @@
 {
     public class GeoNamesFeature : Entity
     {
+        protected internal GeoNamesFeature()
+        {
+        }
+
         public string ClassCode { get; protected internal set; }
         public virtual GeoNamesFeatureClass Class { get; protected internal set; }
 

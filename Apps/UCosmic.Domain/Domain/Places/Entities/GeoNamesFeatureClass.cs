@@ -2,6 +2,10 @@
 {
     public class GeoNamesFeatureClass : Entity
     {
+        protected internal GeoNamesFeatureClass()
+        {
+        }
+
         public string Code { get; protected internal set; }
         public string Name { get; protected internal set; }
 

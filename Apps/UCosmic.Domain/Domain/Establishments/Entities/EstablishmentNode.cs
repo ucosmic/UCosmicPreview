@@ -2,12 +2,16 @@
 {
     public class EstablishmentNode : Entity
     {
-        public int AncestorId { get; set; }
-        public virtual Establishment Ancestor { get; set; }
+        protected internal EstablishmentNode()
+        {
+        }
 
-        public int OffspringId { get; set; }
-        public virtual Establishment Offspring { get; set; }
+        public int AncestorId { get; protected internal set; }
+        public virtual Establishment Ancestor { get; protected internal set; }
 
-        public int Separation { get; set; }
+        public int OffspringId { get; protected internal set; }
+        public virtual Establishment Offspring { get; protected internal set; }
+
+        public int Separation { get; protected internal set; }
     }
 }

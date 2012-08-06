@@ -7,8 +7,8 @@ namespace UCosmic.Domain.Places
     {
         protected internal GeoPlanetPlace()
         {
-            Center = new Coordinates();
-            BoundingBox = new BoundingBox();
+            Center = new Coordinates(null, null);
+            BoundingBox = new BoundingBox(null, null, null, null);
             Country = new GeoPlanetAdmin();
             Admin1 = new GeoPlanetAdmin();
             Admin2 = new GeoPlanetAdmin();

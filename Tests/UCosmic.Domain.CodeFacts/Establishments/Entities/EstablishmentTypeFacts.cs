@@ -32,7 +32,7 @@ namespace UCosmic.Domain.Establishments
                 public override EstablishmentCategory Category
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

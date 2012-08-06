@@ -2,6 +2,10 @@
 {
     public class PlaceNode : Entity
     {
+        protected internal PlaceNode()
+        {
+        }
+
         public int AncestorId { get; protected internal set; }
         public virtual Place Ancestor { get; protected internal set; }
 

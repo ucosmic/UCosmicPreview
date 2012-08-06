@@ -95,10 +95,8 @@ namespace UCosmic.Impl.Orm
                 Property(p => p.PartnerContactInfo.Fax).HasMaxLength(50).HasColumnName("PartnerFax");
                 Property(p => p.PartnerContactInfo.Email).HasMaxLength(256).HasColumnName("PartnerEmail");
 
-                Property(p => p.InstitutionInfo.UCosmicCode).HasColumnName("UCosmicCode")
-                    .IsFixedLength().HasMaxLength(6).IsUnicode(false);
-                Property(p => p.InstitutionInfo.CollegeBoardDesignatedIndicator)
-                    .HasColumnName("CollegeBoardDesignatedIndicator").IsFixedLength().HasMaxLength(6).IsUnicode(false);
+                Property(p => p.UCosmicCode).IsFixedLength().HasMaxLength(6).IsUnicode(false);
+                Property(p => p.CollegeBoardDesignatedIndicator).IsFixedLength().HasMaxLength(6).IsUnicode(false);
             }
         }
 
@@ -221,7 +219,6 @@ namespace UCosmic.Impl.Orm
                     .WithMany()
                     .Map(d => d.MapKey("TranslationToLanguageId"));
 
-                Property(p => p.TranslationToHint).HasMaxLength(15);
                 Property(p => p.Text).IsRequired().HasMaxLength(400);
                 Property(p => p.AsciiEquivalent).HasMaxLength(400);
             }

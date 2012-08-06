@@ -2,14 +2,20 @@
 {
     public class BoundingBox
     {
-        public BoundingBox()
+        protected BoundingBox()
+            :this(null, null, null, null)
         {
-            Northeast = new Coordinates();
-            Southwest = new Coordinates();
         }
 
-        public Coordinates Northeast { get; set; }
-        public Coordinates Southwest { get; set; }
+        protected internal BoundingBox(double? northLatitude, double? eastLongitude,
+            double? southLatitude, double? westLongitude)
+        {
+            Northeast = new Coordinates(northLatitude, eastLongitude);
+            Southwest = new Coordinates(southLatitude, westLongitude);
+        }
+
+        public Coordinates Northeast { get; protected set; }
+        public Coordinates Southwest { get; protected set; }
 
         public bool HasValue
         {
@@ -19,6 +25,5 @@
                     && Northeast.HasValue && Southwest.HasValue;
             }
         }
-
     }
 }
