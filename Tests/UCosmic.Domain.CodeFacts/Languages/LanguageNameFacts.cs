@@ -6,34 +6,6 @@ namespace UCosmic.Domain.Languages
     public static class LanguageNameFacts
     {
         [TestClass]
-        public class NameForLanguageProperty
-        {
-            [TestMethod]
-            public void HasGetSet()
-            {
-                var value = new Language();
-                var entity = new LanguageName { NameForLanguage = value };
-                entity.ShouldNotBeNull();
-                entity.NameForLanguage.ShouldEqual(value);
-            }
-
-            [TestMethod]
-            public void IsVirtual()
-            {
-                var entity = new LanguageNameRuntimeEntity();
-                entity.ShouldNotBeNull();
-            }
-            private class LanguageNameRuntimeEntity : LanguageName
-            {
-                public override Language NameForLanguage
-                {
-                    get { return null; }
-                    protected internal set { }
-                }
-            }
-        }
-
-        [TestClass]
         public class TranslationToLanguageProperty
         {
             [TestMethod]

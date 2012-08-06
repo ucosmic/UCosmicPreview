@@ -4,6 +4,7 @@
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly CoreSqlSeeder _coreSqlSeeder;
+        //private readonly LanguageEntitySeeder _languageEntitySeeder;
         private readonly LanguageSqlSeeder _languageSqlSeeder;
         private readonly PlaceByGeoPlanetEntitySeeder _placeByGeoPlanetEntitySeeder;
         private readonly RoleEntitySeeder _roleEntitySeeder;
@@ -17,6 +18,7 @@
 
         public CompositeEntitySeeder(IUnitOfWork unitOfWork
             , CoreSqlSeeder coreSqlSeeder
+            //, LanguageEntitySeeder languageEntitySeeder
             , LanguageSqlSeeder languageSqlSeeder
             , PlaceByGeoPlanetEntitySeeder placeByGeoPlanetEntitySeeder
             , RoleEntitySeeder roleEntitySeeder
@@ -32,6 +34,7 @@
             _unitOfWork = unitOfWork;
             _coreSqlSeeder = coreSqlSeeder;
             _languageSqlSeeder = languageSqlSeeder;
+            //_languageEntitySeeder = languageEntitySeeder;
             _placeByGeoPlanetEntitySeeder = placeByGeoPlanetEntitySeeder;
             _roleEntitySeeder = roleEntitySeeder;
             _establishmentEntitySeeder = establishmentEntitySeeder;
@@ -45,6 +48,7 @@
 
         public override void Seed()
         {
+            //_languageEntitySeeder.Seed();
             //_languageSqlSeeder.Seed();
             //_placeByGeoPlanetEntitySeeder.Seed();
             _coreSqlSeeder.Seed();

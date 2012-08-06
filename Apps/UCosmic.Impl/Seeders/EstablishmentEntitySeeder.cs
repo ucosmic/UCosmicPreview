@@ -1481,7 +1481,7 @@ namespace UCosmic.Impl.Seeders
                         Text = "Northern Jiaotong University",
                         IsDefunct = true,
                         TranslationToLanguageId = _queryProcessor.Execute(
-                            new LanguageByIsoCode { IsoCode = "en" }).RevisionId,
+                            new LanguageByIsoCode { IsoCode = "en" }).Id,
                     }
                 },
             });
@@ -1610,12 +1610,12 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "University of Applied Sciences Northwestern Switzerland",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Fachhochschule Beider Basel",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                         IsDefunct = true,
                     },
                 },
@@ -1644,7 +1644,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Johannes Kepler University Linz",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
                 FindPlacesByCoordinates = true,
@@ -1664,7 +1664,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Catholic University of Louvain",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
                 FindPlacesByCoordinates = true,
@@ -1684,7 +1684,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Federal University of Parana",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
                 FindPlacesByCoordinates = true,
@@ -1704,7 +1704,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Federal University of Rio de Janeiro",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
                 FindPlacesByCoordinates = true,
@@ -1736,7 +1736,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Institute for Research and Urban Planning Curtiba",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
                 FindPlacesByCoordinates = true,
@@ -1756,7 +1756,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Positive University",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
                 FindPlacesByCoordinates = true,
@@ -1776,7 +1776,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "University of Sao Paulo",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
                 FindPlacesByCoordinates = true,
@@ -1796,7 +1796,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "University of Development",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
                 FindPlacesByCoordinates = true,
@@ -1816,7 +1816,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Northeast National University",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
             });
@@ -1833,7 +1833,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "University of Flores",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
                 NonOfficialUrls = new[]
@@ -1858,7 +1858,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Federal University of Goias",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
             });
@@ -1875,7 +1875,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Getulio Vargas Foundation",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
                 NonOfficialUrls = new[]
@@ -1899,7 +1899,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Ceara State University",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
             });
@@ -1916,7 +1916,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Paulista State University",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
             });
@@ -1933,7 +1933,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "University of Quebec at Montreal",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
             });
@@ -1950,7 +1950,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "University of Arts, Sciences, and Communication",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
             });
@@ -1967,7 +1967,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "University of Santiago Chile",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
             });
@@ -2002,7 +2002,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "China Conservatory of Music",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                         IsDefunct = true,
                     },
                 },
@@ -2226,7 +2226,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Technology University of Bolivar",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
             });
@@ -2243,7 +2243,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Atlantic University",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
             });
@@ -2260,7 +2260,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Valle University",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
             });
@@ -2286,7 +2286,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Swedish Institute of Technology",
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                     },
                 },
             });
@@ -2303,7 +2303,7 @@ namespace UCosmic.Impl.Seeders
                     new CreateEstablishment.NonOfficialName
                     {
                         Text = "Ecole Supérieure de Commerce de Nantes",
-                        TranslationToLanguageId = fr.RevisionId,
+                        TranslationToLanguageId = fr.Id,
                     },
                 },
             });
@@ -2381,12 +2381,12 @@ namespace UCosmic.Impl.Seeders
                 {
                     new CreateEstablishment.Address
                     {
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                         Text = "7F North Office Tower, Beijing New World Centre\r\n3B Chongwenmenwai St\r\n100062 Beijing\r\nPR China",
                     },
                     new CreateEstablishment.Address
                     {
-                        TranslationToLanguageId = zh.RevisionId,
+                        TranslationToLanguageId = zh.Id,
                         Text = "中国北京崇文区崇文门外大街3号B\r\n北京新世界中心写字楼B座7层\r\n邮编：100062",
                     },
                 },
@@ -2410,12 +2410,12 @@ namespace UCosmic.Impl.Seeders
                 {
                     new CreateEstablishment.Address
                     {
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                         Text = "Songhuajiang University,\r\nNo.758 Qianjin Street, Changchun City,\r\nJilin Province\r\n130000, P.R.China",
                     },
                     new CreateEstablishment.Address
                     {
-                        TranslationToLanguageId = zh.RevisionId,
+                        TranslationToLanguageId = zh.Id,
                         Text = "吉林省长春市前进大街758号松花江大学\r\n邮编：130000",
                     },
                 },
@@ -2443,12 +2443,12 @@ namespace UCosmic.Impl.Seeders
                 {
                     new CreateEstablishment.Address
                     {
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                         Text = "Room 1203, Block A, Jianwai SOHO\r\n39 East 3rd Ring Road\r\nChaoyang District, Beijing\r\nChina  100022",
                     },
                     new CreateEstablishment.Address
                     {
-                        TranslationToLanguageId = zh.RevisionId,
+                        TranslationToLanguageId = zh.Id,
                         Text = "北京市朝阳区东三环中路39号建外SOHO A座\r\n12,15层国贸办公区",
                     },
                 },
@@ -2472,12 +2472,12 @@ namespace UCosmic.Impl.Seeders
                 {
                     new CreateEstablishment.Address
                     {
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                         Text = "Floor 24, Pinghetang Business Mansion\r\nNo. 88 Huangxing Middle Road\r\nChangsha City, Hunan Province\r\nChina",
                     },
                     new CreateEstablishment.Address
                     {
-                        TranslationToLanguageId = zh.RevisionId,
+                        TranslationToLanguageId = zh.Id,
                         Text = "长沙市黄兴中路88号平和堂商务楼24楼启德教育\r\n中心",
                     },
                 },
@@ -2505,7 +2505,7 @@ namespace UCosmic.Impl.Seeders
                 {
                     new CreateEstablishment.Address
                     {
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                         Text = "802, Tower B, JianWai SOHO, Office Building\r\nChaoyang District\r\nBeijing China, 100022",
                     },
                 },
@@ -2528,7 +2528,7 @@ namespace UCosmic.Impl.Seeders
                 {
                     new CreateEstablishment.Address
                     {
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                         Text = "A 12F Deji Mansion, No. 188 Changjiang Road\r\nNanjing, Jiangsu Province\r\nChina, 210018",
                     },
                 },
@@ -2550,7 +2550,7 @@ namespace UCosmic.Impl.Seeders
                 {
                     new CreateEstablishment.Address
                     {
-                        TranslationToLanguageId = en.RevisionId,
+                        TranslationToLanguageId = en.Id,
                         Text = "Room 511, Nanfang Securities Building\r\nNo.140-148, Tiyu Dong Road",
                     },
                 },

@@ -11,9 +11,9 @@
 
         public string Name { get; protected internal set; }
 
-        public string Instructions { get; protected internal set; }
         public string SubjectFormat { get; protected internal set; }
         public string BodyFormat { get; protected internal set; }
+        public string Instructions { get; protected internal set; }
 
         public string FromAddress { get; protected internal set; }
         public string FromDisplayName { get; protected internal set; }

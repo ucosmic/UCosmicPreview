@@ -1,12 +1,15 @@
 ﻿namespace UCosmic.Domain.Languages
 {
-    public class LanguageName : RevisableEntity
+    public class LanguageName : Entity, IAmNumbered
     {
         protected internal LanguageName()
         {
         }
 
-        public virtual Language NameForLanguage { get; protected internal set; }
+        public int LanguageId { get; protected internal set; }
+        public int Number { get; protected internal set; }
+
+        public int TranslationToLanguageId { get; protected internal set; }
         public virtual Language TranslationToLanguage { get; protected internal set; }
 
         public string Text

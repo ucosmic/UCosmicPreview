@@ -153,7 +153,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                         new SelectListItem
                         {
                             Text = l.TranslatedName.Text,
-                            Value = l.RevisionId.ToInvariantString(),
+                            Value = l.Id.ToInvariantString(),
                         })
                     .OrderBy(s => s.Text)
                     .ToArray()

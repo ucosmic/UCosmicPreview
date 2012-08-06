@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace UCosmic.Domain.Languages
 {
-    public class Language : RevisableEntity
+    public class Language : Entity
     {
         protected internal Language()
         {
@@ -14,6 +14,8 @@ namespace UCosmic.Domain.Languages
             Names = new Collection<LanguageName>();
             // ReSharper restore DoNotCallOverridableMethodsInConstructor
         }
+
+        public int Id { get; protected internal set; }
 
         public string TwoLetterIsoCode { get; protected internal set; }
         public string ThreeLetterIsoCode { get; protected internal set; }

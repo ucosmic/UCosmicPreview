@@ -234,7 +234,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                         nonOfficialNames.Add(new CreateEstablishment.NonOfficialName
                         {
                             Text = establishmentRow.EnglishName,
-                            TranslationToLanguageId = en.RevisionId,
+                            TranslationToLanguageId = en.Id,
                         });
                     }
                     command.NonOfficialNames = nonOfficialNames.ToArray();

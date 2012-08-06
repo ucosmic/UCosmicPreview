@@ -22,13 +22,13 @@ namespace UCosmic.Domain.Languages
         {
             if (command == null) throw new ArgumentNullException("command");
 
-            var language = _entities.Get<Language>().By(command.LanguageId);
-            var translationTo = _entities.Get<Language>().By(command.TranslationToLanguageId);
+            var language = _entities.FindByPrimaryKey<Language>(command.LanguageId);
 
             language.Names.Add(new LanguageName
             {
+                Number = language.Names.NextNumber(),
                 Text = command.Text,
-                TranslationToLanguage = translationTo,
+                TranslationToLanguageId = command.TranslationToLanguageId,
             });
 
             _entities.Update(language);
