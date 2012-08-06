@@ -80,12 +80,12 @@ namespace UCosmic.Www.Mvc
 
                 browser.WaitUntil(b =>
                         page.GetErrorSummaries() != null &&
-                        page.GetErrorSummaries().Any(s => s.GetElements(ByTagNameLi).Any(ElementTextEquals(messageText))),
+                        page.GetErrorSummaries(false).Any(s => s.GetElements(ByTagNameLi).Any(ElementTextEquals(messageText))),
                     "@Browser did not find any error summaries with the '{0}' field's '{1}' error message."
                         .FormatWith(fieldLabel, errorType));
 
                 // ensure that there are the required number of validation summaries (perhaps 1 at top, 1 at bottom)
-                var errorSummaries = page.GetErrorSummaries().ToArray();
+                var errorSummaries = page.GetErrorSummaries(false).ToArray();
                 errorSummaries.Length.ShouldEqual(expectedSummaryCount,
                     "@Browser did not display {0} error summar{1} for the '{2}' field's '{3}' error message (actual summary count was {4})."
                         .FormatWith(expectedSummaryCount, expectedSummaryCount == 1 ? "y" : "ies", fieldLabel, errorType, errorSummaries.Length));
@@ -119,8 +119,8 @@ namespace UCosmic.Www.Mvc
                 var messageText = page.GetErrorText(fieldLabel, errorType);
 
                 browser.WaitUntil(b =>
-                        page.GetErrorSummaries().IsNull() ||
-                        !page.GetErrorSummaries().Any(s => s.FindElements(ByTagNameLi).Any(
+                        page.GetErrorSummaries() == null ||
+                        !page.GetErrorSummaries().Any(s => s.GetElements(ByTagNameLi).Any(
                             li => li.Text.Equals(messageText) && li.Displayed)),
                     "@Browser unexpectedly found at least one error summary with the '{0}' field's '{1}' error message."
                         .FormatWith(fieldLabel, errorType));

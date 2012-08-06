@@ -60,7 +60,7 @@ namespace UCosmic.Www.Mvc
             var cssSelector = string.Format("a[title='{0}']", linkTitle);
             Browsers.ForEach(browser =>
             {
-                var link = browser.FindElement(By.CssSelector(cssSelector));
+                var link = browser.GetElement(By.CssSelector(cssSelector));
                 link.ClickIt();
             });
         }

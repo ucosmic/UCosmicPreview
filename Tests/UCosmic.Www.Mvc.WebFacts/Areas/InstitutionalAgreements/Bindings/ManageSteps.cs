@@ -44,7 +44,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements
                 browser.WaitUntil(b => link.Displayed,
                     "The Add Institutional Agreement Contact modal dialog close icon was not displayed using @Browser.");
 
-                link.Click();
+                link.ClickIt();
             });
         }
 

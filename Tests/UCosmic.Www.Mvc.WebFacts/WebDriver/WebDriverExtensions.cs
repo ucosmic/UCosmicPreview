@@ -319,6 +319,24 @@ namespace UCosmic.Www.Mvc
             }
         }
 
+        public static string GetUrl(this IWebDriver webDriver)
+        {
+            return webDriver.GetUrl(0);
+        }
+
+        private static string GetUrl(this IWebDriver webDriver, int retry)
+        {
+            try
+            {
+                return webDriver.Url;
+            }
+            catch (WebDriverException)
+            {
+                if (retry < WebDriverRetryLimit) return webDriver.GetUrl(++retry);
+                throw;
+            }
+        }
+
         #endregion
     }
 

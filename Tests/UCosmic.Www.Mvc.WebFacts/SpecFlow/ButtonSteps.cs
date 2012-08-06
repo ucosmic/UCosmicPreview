@@ -145,8 +145,8 @@ namespace UCosmic.Www.Mvc
             FindUnlabeledSubmitButton();
 
             Browsers.ForEach(browser => browser.WaitUntil(b =>
-                b.TryFindElement(By.CssSelector(UnlabeledSubmitButtonCss)).IsNotNull() &&
-                b.FindElement(By.CssSelector(UnlabeledSubmitButtonCss)).Displayed,
+                b.TryFindElement(By.CssSelector(UnlabeledSubmitButtonCss)) != null &&
+                b.GetElement(By.CssSelector(UnlabeledSubmitButtonCss)).Displayed,
                 "Submit button was not displayed by @Browser (using CSS selector {0})."
                     .FormatWith(UnlabeledSubmitButtonCss)));
         }
@@ -158,7 +158,7 @@ namespace UCosmic.Www.Mvc
 
             Browsers.ForEach(browser =>
             {
-                var button = browser.FindElement(By.CssSelector(UnlabeledSubmitButtonCss));
+                var button = browser.GetElement(By.CssSelector(UnlabeledSubmitButtonCss));
                 button.ClickButton();
             });
         }
