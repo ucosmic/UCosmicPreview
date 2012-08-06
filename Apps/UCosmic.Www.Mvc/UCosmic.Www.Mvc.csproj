@@ -1394,9 +1394,6 @@
     <Content Include="Areas\Common\Views\Features\july-2012-preview-1.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
-    <None Include="startup\sql\PlacesData.sql" />
-    <None Include="startup\sql\PlaceNamesDataA.sql" />
-    <None Include="startup\sql\PlacesGeoAltNamesDataA.sql" />
     <None Include="startup\sql\LanguagesData.sql" />
     <Content Include="scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
