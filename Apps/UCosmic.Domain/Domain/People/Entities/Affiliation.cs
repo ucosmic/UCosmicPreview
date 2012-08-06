@@ -4,6 +4,10 @@ namespace UCosmic.Domain.People
 {
     public class Affiliation : Entity
     {
+        protected internal Affiliation()
+        {
+        }
+
         public int PersonId { get; protected internal set; }
         public virtual Person Person { get; protected internal set; }
 

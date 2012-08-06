@@ -25,7 +25,8 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsVirtual()
             {
-                new EmailAddressRuntimeEntity();
+                var entity = new EmailAddressRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EmailAddressRuntimeEntity : EmailAddress
             {
@@ -43,14 +44,15 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsVirtual()
             {
-                new EmailAddressRuntimeEntity();
+                var entity = new EmailAddressRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class EmailAddressRuntimeEntity : EmailAddress
             {
                 public override ICollection<EmailConfirmation> Confirmations
                 {
                     get { return null; }
-                    protected internal set { }
+                    protected set { }
                 }
             }
         }

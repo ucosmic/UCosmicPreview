@@ -15,25 +15,21 @@ namespace UCosmic.Domain.People
         public virtual Person ToPerson { get; protected internal set; }
         public int Number { get; protected internal set; }
 
-        public string ToAddress { get; set; }
-        public string FromEmailTemplate { get; set; }
+        public string ToAddress { get; protected internal set; }
+        public string FromEmailTemplate { get; protected internal set; }
 
-        public string Subject { get; set; }
+        public string Subject { get; protected internal set; }
+        public string Body { get; protected internal set; }
 
-        public string FromAddress { get; set; }
+        public string FromAddress { get; protected internal set; }
+        public string FromDisplayName { get; protected internal set; }
 
-        public string FromDisplayName { get; set; }
+        public string ReplyToAddress { get; protected internal set; }
+        public string ReplyToDisplayName { get; protected internal set; }
 
-        public string ReplyToAddress { get; set; }
-
-        public string ReplyToDisplayName { get; set; }
-
-        public string Body { get; set; }
-
-        public string ComposedByPrincipal { get; set; }
-
-        public DateTime ComposedOnUtc { get; set; }
-        public DateTime? SentOnUtc { get; set; }
+        public string ComposedByPrincipal { get; protected internal set; }
+        public DateTime ComposedOnUtc { get; protected internal set; }
+        public DateTime? SentOnUtc { get; protected internal set; }
     }
 
 }

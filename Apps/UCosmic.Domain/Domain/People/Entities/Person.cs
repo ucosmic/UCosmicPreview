@@ -7,8 +7,6 @@ namespace UCosmic.Domain.People
 {
     public class Person : RevisableEntity
     {
-        #region Construction
-
         protected internal Person()
         {
             // ReSharper disable DoNotCallOverridableMethodsInConstructor
@@ -18,40 +16,18 @@ namespace UCosmic.Domain.People
             // ReSharper restore DoNotCallOverridableMethodsInConstructor
         }
 
-        #endregion
-        #region Name
-
         public bool IsDisplayNameDerived { get; protected internal set; }
-
         public string DisplayName { get; protected internal set; }
-
         public string Salutation { get; protected internal set; }
-
         public string FirstName { get; protected internal set; }
-
         public string MiddleName { get; protected internal set; }
-
         public string LastName { get; protected internal set; }
-
         public string Suffix { get; protected internal set; }
-
-        #endregion
-        #region User
 
         public virtual User User { get; protected internal set; }
 
-        #endregion
-        #region EmailAddresses
-
         public virtual ICollection<EmailAddress> Emails { get; protected internal set; }
-
         public EmailAddress DefaultEmail { get { return Emails.Default(); } }
-
-        public EmailAddress GetEmail(int number)
-        {
-            if (Emails == null || !Emails.Any()) return null;
-            return Emails.ByNumber(number);
-        }
 
         public EmailAddress GetEmail(string value)
         {
@@ -81,14 +57,7 @@ namespace UCosmic.Domain.People
             return email;
         }
 
-        #endregion
-        #region Messages
-
         public virtual ICollection<EmailMessage> Messages { get; protected internal set; }
-
-        #endregion
-        #region Affiliations
-
         public virtual ICollection<Affiliation> Affiliations { get; protected internal set; }
 
         public Affiliation AffiliateWith(Establishment establishment)
@@ -156,13 +125,9 @@ namespace UCosmic.Domain.People
             return false;
         }
 
-        #endregion
-
         public override string ToString()
         {
             return DisplayName;
         }
     }
-
-    // TODO: get rid of this class (hooked to institutional agreement module)
 }
