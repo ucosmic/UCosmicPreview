@@ -53,7 +53,8 @@ namespace UCosmic.Domain.People
                     .ThenBy(e => e.Value)
                 )
                 {
-                    person.AddEmail(emailAddress.Value);
+                    var emailEntity = person.AddEmail(emailAddress.Value);
+                    emailEntity.IsConfirmed = emailAddress.IsConfirmed;
                 }
             }
 
