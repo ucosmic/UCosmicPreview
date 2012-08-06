@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace UCosmic.Domain.InstitutionalAgreements
 {
     public class InstitutionalAgreement : RevisableEntity
     {
-        public InstitutionalAgreement()
+        protected internal InstitutionalAgreement()
         {
             // ReSharper disable DoNotCallOverridableMethodsInConstructor
             Participants = new List<InstitutionalAgreementParticipant>();
@@ -16,41 +15,30 @@ namespace UCosmic.Domain.InstitutionalAgreements
             Ancestors = new List<InstitutionalAgreementNode>();
             Offspring = new List<InstitutionalAgreementNode>();
             // ReSharper restore DoNotCallOverridableMethodsInConstructor
+
             Visibility = InstitutionalAgreementVisibility.Public;
         }
 
-        public bool IsTitleDerived { get; set; }
+        public string Title { get; protected internal set; }
+        public bool IsTitleDerived { get; protected internal set; }
+        public string Description { get; protected internal set; }
 
-        public virtual InstitutionalAgreement Umbrella { get; set; }
+        public virtual InstitutionalAgreement Umbrella { get; protected internal set; }
+        public virtual ICollection<InstitutionalAgreementNode> Ancestors { get; protected internal set; }
+        public virtual ICollection<InstitutionalAgreement> Children { get; protected internal set; }
+        public virtual ICollection<InstitutionalAgreementNode> Offspring { get; protected internal set; }
 
-        public virtual ICollection<InstitutionalAgreementNode> Ancestors { get; set; }
+        public string Type { get; protected internal set; }
+        public bool? IsAutoRenew { get; protected internal set; }
+        public string Status { get; protected internal set; }
 
-        public virtual ICollection<InstitutionalAgreement> Children { get; set; }
+        public DateTime StartsOn { get; protected internal set; }
+        public DateTime ExpiresOn { get; protected internal set; }
+        public bool IsExpirationEstimated { get; protected internal set; }
 
-        public virtual ICollection<InstitutionalAgreementNode> Offspring { get; set; }
-
-        public string Title { get; set; }
-
-        public string Type { get; set; }
-
-        public DateTime StartsOn { get; set; }
-
-        public DateTime ExpiresOn { get; set; }
-
-        [DefaultValue(false)]
-        public bool IsExpirationEstimated { get; set; }
-
-        public string Description { get; set; }
-
-        public bool? IsAutoRenew { get; set; }
-
-        public string Status { get; set; }
-
-        public virtual ICollection<InstitutionalAgreementParticipant> Participants { get; set; }
-
-        public virtual ICollection<InstitutionalAgreementContact> Contacts { get; set; }
-
-        public virtual ICollection<InstitutionalAgreementFile> Files { get; set; }
+        public virtual ICollection<InstitutionalAgreementParticipant> Participants { get; protected internal set; }
+        public virtual ICollection<InstitutionalAgreementContact> Contacts { get; protected internal set; }
+        public virtual ICollection<InstitutionalAgreementFile> Files { get; protected internal set; }
 
         public string VisibilityText { get; protected set; }
         public InstitutionalAgreementVisibility Visibility

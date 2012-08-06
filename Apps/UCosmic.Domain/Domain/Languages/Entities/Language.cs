@@ -8,7 +8,7 @@ namespace UCosmic.Domain.Languages
 {
     public class Language : RevisableEntity
     {
-        public Language()
+        protected internal Language()
         {
             // ReSharper disable DoNotCallOverridableMethodsInConstructor
             Names = new Collection<LanguageName>();
@@ -16,9 +16,7 @@ namespace UCosmic.Domain.Languages
         }
 
         public string TwoLetterIsoCode { get; protected internal set; }
-
         public string ThreeLetterIsoCode { get; protected internal set; }
-
         public string ThreeLetterIsoBibliographicCode { get; protected internal set; }
 
         public virtual ICollection<LanguageName> Names { get; protected set; }
@@ -56,6 +54,5 @@ namespace UCosmic.Domain.Languages
                 return currentUiName ?? TranslateNameTo("en") ?? NativeName;
             }
         }
-
     }
 }

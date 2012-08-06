@@ -4,13 +4,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
 {
     public class InstitutionalAgreementParticipant : Entity
     {
-        public int Id { get; set; }
+        protected internal InstitutionalAgreementParticipant()
+        {
+        }
 
-        public virtual InstitutionalAgreement Agreement { get; set; }
+        public int Id { get; protected internal set; }
+        public bool IsOwner { get; protected internal set; }
 
-        public virtual Establishment Establishment { get; set; }
-
-        public bool IsOwner { get; set; }
+        public virtual InstitutionalAgreement Agreement { get; protected internal set; }
+        public virtual Establishment Establishment { get; protected internal set; }
 
         public override string ToString()
         {
@@ -18,30 +20,5 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 IsOwner ? "Owner: " : "Non-Owner: ",
                 Establishment.OfficialName);
         }
-
-        //internal int Remove(ICommandEntities entities)
-        //{
-        //    entities.Purge(this);
-        //    return 1;
-        //}
-
-        //internal int Remove(ICommandObjects commander)
-        //{
-        //    commander.Delete(this);
-        //    return 1;
-        //}
-
-        //internal void DeriveIsOwner(IPrincipal principal)
-        //{
-        //    Expression<Func<Affiliation, bool>> principalDefaultAffiliation =
-        //        affiliation => affiliation.IsDefault && affiliation.Person.User != null &&
-        //                       affiliation.Person.User.Name.Equals(principal.Identity.Name,
-        //                                                               StringComparison.OrdinalIgnoreCase);
-        //    IsOwner =
-        //        Establishment.Affiliates.AsQueryable().Any(principalDefaultAffiliation)
-        //        ||
-        //        Establishment.Ancestors.Any(n => n.Ancestor.Affiliates.AsQueryable().Any(principalDefaultAffiliation));
-        //}
-
     }
 }

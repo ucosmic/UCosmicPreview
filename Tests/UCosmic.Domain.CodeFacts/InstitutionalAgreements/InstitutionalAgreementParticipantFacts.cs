@@ -34,14 +34,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementParticipantRuntimeEntity();
+                var entity = new InstitutionalAgreementParticipantRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementParticipantRuntimeEntity : InstitutionalAgreementParticipant
             {
                 public override InstitutionalAgreement Agreement
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -61,53 +62,17 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementParticipantRuntimeEntity();
+                var entity = new InstitutionalAgreementParticipantRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementParticipantRuntimeEntity : InstitutionalAgreementParticipant
             {
                 public override Establishment Establishment
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
-
-        //[TestMethod]
-        //public void Entity_InstitutionalAgreementParticipant_ShouldBeConstructible()
-        //{
-        //    var entity = new InstitutionalAgreementParticipant
-        //    {
-        //        Id = 1,
-        //        AgreementId = 1,
-        //        Agreement = null,
-        //    };
-
-        //    entity.ShouldNotBeNull();
-        //    entity.Id.ShouldEqual(1);
-        //}
-
-        //[TestMethod]
-        //public void Entity_InstitutionalAgreementParticipant_ShouldBeNavigable()
-        //{
-        //    var entity = new InstitutionalAgreementParticipantRuntimeEntity();
-
-        //    entity.ShouldNotBeNull();
-        //}
     }
-
-    //internal class InstitutionalAgreementParticipantRuntimeEntity : InstitutionalAgreementParticipant
-    //{
-    //    public override InstitutionalAgreement Agreement
-    //    {
-    //        get { return null; }
-    //        set { }
-    //    }
-
-    //    public override Establishment Establishment
-    //    {
-    //        get { return null; }
-    //        set { }
-    //    }
-    //}
 }

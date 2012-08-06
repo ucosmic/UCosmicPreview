@@ -401,7 +401,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 
             // do not show anything to null users, unaffiliated users, non-member affiliations, or member-by-parent affiliations
             if (person == null || person.DefaultAffiliation == null || !person.DefaultAffiliation.Establishment.IsMember
-                || person.DefaultAffiliation.Establishment.IsAncestorMember)
+                || person.DefaultAffiliation.Establishment.Ancestors.Any(h => h.Ancestor.IsMember))
                 return null;
 
             return person;

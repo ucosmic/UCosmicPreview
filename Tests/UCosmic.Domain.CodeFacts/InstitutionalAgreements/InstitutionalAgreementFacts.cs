@@ -51,14 +51,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementRuntimeEntity();
+                var entity = new InstitutionalAgreementRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementRuntimeEntity : InstitutionalAgreement
             {
                 public override InstitutionalAgreement Umbrella
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -78,14 +79,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementRuntimeEntity();
+                var entity = new InstitutionalAgreementRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementRuntimeEntity : InstitutionalAgreement
             {
                 public override ICollection<InstitutionalAgreement> Children
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -96,14 +98,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementRuntimeEntity();
+                var entity = new InstitutionalAgreementRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementRuntimeEntity : InstitutionalAgreement
             {
                 public override ICollection<InstitutionalAgreementNode> Ancestors
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -123,14 +126,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementRuntimeEntity();
+                var entity = new InstitutionalAgreementRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementRuntimeEntity : InstitutionalAgreement
             {
                 public override ICollection<InstitutionalAgreementNode> Offspring
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -150,14 +154,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementRuntimeEntity();
+                var entity = new InstitutionalAgreementRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementRuntimeEntity : InstitutionalAgreement
             {
                 public override ICollection<InstitutionalAgreementParticipant> Participants
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -177,14 +182,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementRuntimeEntity();
+                var entity = new InstitutionalAgreementRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementRuntimeEntity : InstitutionalAgreement
             {
                 public override ICollection<InstitutionalAgreementContact> Contacts
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -204,14 +210,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementRuntimeEntity();
+                var entity = new InstitutionalAgreementRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementRuntimeEntity : InstitutionalAgreement
             {
                 public override ICollection<InstitutionalAgreementFile> Files
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

@@ -2,14 +2,17 @@
 {
     public class LanguageName : RevisableEntity
     {
-        public virtual Language NameForLanguage { get; protected internal set; }
+        protected internal LanguageName()
+        {
+        }
 
+        public virtual Language NameForLanguage { get; protected internal set; }
         public virtual Language TranslationToLanguage { get; protected internal set; }
 
         public string Text
         {
             get { return _text; }
-            set
+            protected internal set
             {
                 _text = value;
                 if (string.IsNullOrWhiteSpace(_text))

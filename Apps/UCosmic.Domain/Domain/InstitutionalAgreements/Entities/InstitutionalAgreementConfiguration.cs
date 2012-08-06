@@ -6,7 +6,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
 {
     public class InstitutionalAgreementConfiguration : RevisableEntity
     {
-        public InstitutionalAgreementConfiguration()
+        protected internal InstitutionalAgreementConfiguration()
         {
             // ReSharper disable DoNotCallOverridableMethodsInConstructor
             AllowedTypeValues = new Collection<InstitutionalAgreementTypeValue>();
@@ -15,16 +15,16 @@ namespace UCosmic.Domain.InstitutionalAgreements
             // ReSharper restore DoNotCallOverridableMethodsInConstructor
         }
 
-        public int? ForEstablishmentId { get; set; }
-        public virtual Establishment ForEstablishment { get; set; }
+        public int? ForEstablishmentId { get; protected internal set; }
+        public virtual Establishment ForEstablishment { get; protected internal set; }
 
-        public bool IsCustomTypeAllowed { get; set; }
-        public bool IsCustomStatusAllowed { get; set; }
-        public bool IsCustomContactTypeAllowed { get; set; }
+        public bool IsCustomTypeAllowed { get; protected internal set; }
+        public bool IsCustomStatusAllowed { get; protected internal set; }
+        public bool IsCustomContactTypeAllowed { get; protected internal set; }
 
-        public virtual ICollection<InstitutionalAgreementTypeValue> AllowedTypeValues { get; set; }
-        public virtual ICollection<InstitutionalAgreementStatusValue> AllowedStatusValues { get; set; }
-        public virtual ICollection<InstitutionalAgreementContactTypeValue> AllowedContactTypeValues { get; set; }
+        public virtual ICollection<InstitutionalAgreementTypeValue> AllowedTypeValues { get; protected set; }
+        public virtual ICollection<InstitutionalAgreementStatusValue> AllowedStatusValues { get; protected set; }
+        public virtual ICollection<InstitutionalAgreementContactTypeValue> AllowedContactTypeValues { get; protected set; }
 
     }
 

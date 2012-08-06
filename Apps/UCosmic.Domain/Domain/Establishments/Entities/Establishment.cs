@@ -52,7 +52,7 @@ namespace UCosmic.Domain.Establishments
         public virtual ICollection<EstablishmentUrl> Urls { get; protected set; }
 
         public virtual Establishment Parent { get; protected internal set; }
-        public virtual ICollection<EstablishmentNode> Ancestors { get; protected internal set; }
+        public virtual ICollection<EstablishmentNode> Ancestors { get; protected set; }
         public virtual ICollection<Establishment> Children { get; protected set; }
         public virtual ICollection<EstablishmentNode> Offspring { get; protected set; }
 
@@ -61,22 +61,6 @@ namespace UCosmic.Domain.Establishments
         public bool HasSamlSignOn() { return SamlSignOn != null && IsMember; }
 
         public bool IsMember { get; protected internal set; }
-        public bool IsAncestorMember
-        {
-            get
-            {
-                var currentParent = Parent;
-                while (currentParent != null)
-                {
-                    if (currentParent.IsMember)
-                    {
-                        return true;
-                    }
-                    currentParent = currentParent.Parent;
-                }
-                return false;
-            }
-        }
 
         public virtual ICollection<EstablishmentEmailDomain> EmailDomains { get; protected internal set; }
         public virtual ICollection<Affiliation> Affiliates { get; protected internal set; }
@@ -87,7 +71,6 @@ namespace UCosmic.Domain.Establishments
             get { return Type.Category.Code == EstablishmentCategoryCode.Inst; }
         }
 
-        //public InstitutionInfo InstitutionInfo { get; protected internal set; }
         public string CollegeBoardDesignatedIndicator { get; protected internal set; }
         public string UCosmicCode { get; protected internal set; }
         public EstablishmentContactInfo PublicContactInfo { get; protected internal set; }

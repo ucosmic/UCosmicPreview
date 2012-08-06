@@ -46,14 +46,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementFieldValueRuntimeEntity();
+                var entity = new InstitutionalAgreementFieldValueRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementFieldValueRuntimeEntity : InstitutionalAgreementFieldValue
             {
                 public override InstitutionalAgreementConfiguration Configuration
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

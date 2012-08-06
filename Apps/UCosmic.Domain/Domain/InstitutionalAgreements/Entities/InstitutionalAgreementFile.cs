@@ -2,23 +2,15 @@
 {
     public class InstitutionalAgreementFile : RevisableEntity
     {
-        public virtual InstitutionalAgreement Agreement { get; set; }
-
-        public byte[] Content { get; set; }
-        public int Length { get; set; }
-        public string MimeType { get; set; }
-        public string Name { get; set; }
-
-        //internal int Remove(ICommandObjects commander)
-        //{
-        //    commander.Delete(this);
-        //    return 1;
-        //}
-
-        internal int Remove(ICommandEntities entities)
+        protected internal InstitutionalAgreementFile()
         {
-            entities.Purge(this);
-            return 1;
         }
+
+        public virtual InstitutionalAgreement Agreement { get; protected internal set; }
+
+        public byte[] Content { get; protected internal set; }
+        public int Length { get; protected internal set; }
+        public string MimeType { get; protected internal set; }
+        public string Name { get; protected internal set; }
     }
 }

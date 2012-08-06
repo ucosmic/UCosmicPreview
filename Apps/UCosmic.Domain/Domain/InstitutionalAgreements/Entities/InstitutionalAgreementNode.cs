@@ -2,12 +2,16 @@
 {
     public class InstitutionalAgreementNode : Entity
     {
-        public int AncestorId { get; set; }
-        public virtual InstitutionalAgreement Ancestor { get; set; }
+        protected internal InstitutionalAgreementNode()
+        {
+        }
 
-        public int OffspringId { get; set; }
-        public virtual InstitutionalAgreement Offspring { get; set; }
+        public int AncestorId { get; protected internal set; }
+        public virtual InstitutionalAgreement Ancestor { get; protected internal set; }
 
-        public int Separation { get; set; }
+        public int OffspringId { get; protected internal set; }
+        public virtual InstitutionalAgreement Offspring { get; protected internal set; }
+
+        public int Separation { get; protected internal set; }
     }
 }

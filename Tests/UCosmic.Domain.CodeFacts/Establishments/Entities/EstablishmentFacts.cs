@@ -150,7 +150,7 @@ namespace UCosmic.Domain.Establishments
                 public override ICollection<EstablishmentNode> Ancestors
                 {
                     get { return null; }
-                    protected internal set { }
+                    protected set { }
                 }
             }
         }

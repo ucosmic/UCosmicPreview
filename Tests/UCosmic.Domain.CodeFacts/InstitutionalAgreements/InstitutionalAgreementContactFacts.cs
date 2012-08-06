@@ -34,14 +34,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementContactRuntimeEntity();
+                var entity = new InstitutionalAgreementContactRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementContactRuntimeEntity : InstitutionalAgreementContact
             {
                 public override InstitutionalAgreement Agreement
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -61,14 +62,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementContactRuntimeEntity();
+                var entity = new InstitutionalAgreementContactRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementContactRuntimeEntity : InstitutionalAgreementContact
             {
                 public override Person Person
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }

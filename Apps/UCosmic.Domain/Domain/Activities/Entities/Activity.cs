@@ -23,9 +23,7 @@ namespace UCosmic.Domain.Activities
         }
 
         public int PersonId { get; protected internal set; }
-
         public virtual Person Person { get; protected internal set; }
-
         public int Number { get; protected internal set; }
 
         public Guid EntityId { get; private set; }
@@ -38,15 +36,12 @@ namespace UCosmic.Domain.Activities
         }
 
         public ActivityValues Values { get; private set; }
-
         public ActivityValues DraftedValues { get; private set; }
 
         public virtual ICollection<ActivityTag> Tags { get; protected set; }
-
         public virtual ICollection<DraftedTag> DraftedTags { get; protected set; }
 
         public DateTime CreatedOn { get; protected internal set; }
-
         public DateTime UpdatedOn { get; protected internal set; }
     }
 }

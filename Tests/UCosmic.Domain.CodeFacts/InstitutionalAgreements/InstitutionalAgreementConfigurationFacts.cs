@@ -26,14 +26,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementConfigurationRuntimeEntity();
+                var entity = new InstitutionalAgreementConfigurationRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementConfigurationRuntimeEntity : InstitutionalAgreementConfiguration
             {
                 public override Establishment ForEstablishment
                 {
                     get { return null; }
-                    set { }
+                    protected internal set { }
                 }
             }
         }
@@ -83,14 +84,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementConfigurationRuntimeEntity();
+                var entity = new InstitutionalAgreementConfigurationRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementConfigurationRuntimeEntity : InstitutionalAgreementConfiguration
             {
                 public override ICollection<InstitutionalAgreementTypeValue> AllowedTypeValues
                 {
                     get { return null; }
-                    set { }
+                    protected set { }
                 }
             }
         }
@@ -101,14 +103,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementConfigurationRuntimeEntity();
+                var entity = new InstitutionalAgreementConfigurationRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementConfigurationRuntimeEntity : InstitutionalAgreementConfiguration
             {
                 public override ICollection<InstitutionalAgreementStatusValue> AllowedStatusValues
                 {
                     get { return null; }
-                    set { }
+                    protected set { }
                 }
             }
         }
@@ -119,14 +122,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             [TestMethod]
             public void IsVirtual()
             {
-                new InstitutionalAgreementConfigurationRuntimeEntity();
+                var entity = new InstitutionalAgreementConfigurationRuntimeEntity();
+                entity.ShouldNotBeNull();
             }
             private class InstitutionalAgreementConfigurationRuntimeEntity : InstitutionalAgreementConfiguration
             {
                 public override ICollection<InstitutionalAgreementContactTypeValue> AllowedContactTypeValues
                 {
                     get { return null; }
-                    set { }
+                    protected set { }
                 }
             }
         }
