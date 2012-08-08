@@ -41,7 +41,7 @@ namespace UCosmic.Domain.Languages
                     return Names.Single();
 
                 var nativeName = Names.SingleOrDefault(languageName =>
-                    languageName.TranslationToLanguage == this);
+                    languageName.TranslationToLanguageId == Id);
 
                 return nativeName;
             }

@@ -4,14 +4,19 @@ namespace UCosmic.Domain.Languages
 {
     public class LanguageByIsoCode : BaseEntityQuery<Language>, IDefineQuery<Language>
     {
-        public string IsoCode { get; set; }
+        public LanguageByIsoCode(string isoCode)
+        {
+            IsoCode = isoCode;
+        }
+
+        public string IsoCode { get; private set; }
     }
 
     public class HandleLanguageByIsoCodeQuery : IHandleQueries<LanguageByIsoCode, Language>
     {
-        private readonly IQueryEntities _entities;
+        private readonly ICommandEntities _entities;
 
-        public HandleLanguageByIsoCodeQuery(IQueryEntities entities)
+        public HandleLanguageByIsoCodeQuery(ICommandEntities entities)
         {
             _entities = entities;
         }
@@ -20,7 +25,7 @@ namespace UCosmic.Domain.Languages
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var result = _entities.Query<Language>()
+            var result = _entities.Get<Language>()
                 .EagerLoad(_entities, query.EagerLoad)
                 .ByIsoCode(query.IsoCode)
             ;

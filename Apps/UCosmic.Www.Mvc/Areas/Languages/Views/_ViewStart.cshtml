@@ -1,0 +1,7 @@
+﻿@{
+	if (Request.Headers["X-PJAX"] != null) {
+		Layout = "~/Views/Shared/_PjaxLayout.cshtml";
+	} else {
+		Layout = "~/Views/Shared/layout.cshtml";
+	}
+}

@@ -1,0 +1,23 @@
+﻿@model UCosmic.Www.Mvc.Areas.Languages.Models.LanguageNameTableRow
+@{
+    var hilite = (Model.IsUserTranslation || Model.IsNativeTranslation)
+        ? "hilite" : null;
+}
+<tr class="@hilite">
+    <td>
+        @Html.DisplayFor(m => m.TranslationToLanguageTranslatedNameText)
+    </td>
+    <td>
+        @Html.DisplayFor(m => m.Text)
+    </td>
+    <td>
+        @if (Model.IsUserTranslation)
+        {
+            <span>My translation of this language</span>
+        }
+        else if (Model.IsNativeTranslation)
+        {
+            <span>Native translation of this language</span>
+        }
+    </td>
+</tr>

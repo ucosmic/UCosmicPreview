@@ -29,7 +29,7 @@ namespace UCosmic.Impl.Orm
 
                 // Language (1) <-----> (0..*) LanguageName
                 HasMany(p => p.Names)
-                    .WithRequired()
+                    .WithRequired(d => d.Owner)
                     .HasForeignKey(d => d.LanguageId)
                     .WillCascadeOnDelete(true)
                 ;
@@ -44,7 +44,7 @@ namespace UCosmic.Impl.Orm
                 HasKey(x => new { x.LanguageId, x.Number });
 
                 Property(p => p.Text).IsRequired().HasMaxLength(150);
-                Property(p => p.AsciiEquivalent).IsUnicode(false).HasMaxLength(150);
+                Property(p => p.AsciiEquivalent).IsRequired().IsUnicode(false).HasMaxLength(150);
 
                 // LanguageName (0..*) <-----> (1) Language (name is a translation to a different language)
                 HasRequired(d => d.TranslationToLanguage)

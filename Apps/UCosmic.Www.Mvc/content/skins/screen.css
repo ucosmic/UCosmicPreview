@@ -278,8 +278,7 @@ img {
 /* standard text box wrappers */
 .ucosmic .text-box.input {
     border: solid 1px;
-    border-color: #999 #ccc #ccc #999;
-    /* padding: 2px 0 3px 5px; */
+    border-color: #999 #ccc #ccc #999; /* padding: 2px 0 3px 5px; */
     padding: 0 0 0 5px;
     background: transparent;
     border-radius: 5px;
@@ -324,8 +323,7 @@ img {
     position: absolute;
     left: 0;
     right: 20px;
-    border-right-color: transparent;
-    /* border-right-width: 0; */
+    border-right-color: transparent; /* border-right-width: 0; */
     border-radius: 5px 0 0 5px;
     -moz-border-radius: 5px 0 0 5px;
 }
@@ -566,12 +564,12 @@ img {
     vertical-align: top;
 }
 .ucosmic > .shadow {
-    position:absolute;
+    position: absolute;
     background: url('default/head-row-shadow.png') top left repeat-x transparent;
-    top:110px;
-    z-index:100;
-    width:100%;
-    opacity:.7;
+    top: 110px;
+    z-index: 100;
+    width: 100%;
+    opacity: .7;
     height: 8px;
 }
 
@@ -937,3 +935,42 @@ img {
 }
 
 
+.ucosmic table.data-table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+.ucosmic table.data-table th, .ucosmic table.data-table td {
+    border: solid 1px #222;
+    padding: 10px;
+    vertical-align: text-top;
+}
+.ucosmic table.data-table th {
+    font-size: 16px;
+    font-weight: bold;
+    background: #444;
+    color: #eee;
+    text-align: left;
+}
+.ucosmic table.data-table td {
+    font-size: 14px;
+}
+.ucosmic table.data-table tr:nth-child(even) td {
+    background: #ddd;
+}
+.ucosmic table.data-table tr.hilite td {
+    background: #ffa;
+}
+.ucosmic table.data-table th.null {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    background: transparent;
+}
+
+.ucosmic .head.row .center.col h1 .brackets {
+    display: inline-block;
+    font-size: 9px;
+    vertical-align: middle;
+}
+.ucosmic .head.row .center.col h1 a {
+    text-decoration: none;
+}

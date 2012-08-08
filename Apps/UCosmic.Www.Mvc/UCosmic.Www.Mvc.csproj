@@ -251,6 +251,14 @@
     <Compile Include="Areas\Activities\Models\TagMenuItem.cs" />
     <Compile Include="Areas\Activities\Models\ActivityForm.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementVisibilityOption.cs" />
+    <Compile Include="Areas\Languages\Controllers\LanguageController.cs" />
+    <Compile Include="Areas\Languages\Controllers\LanguagesController.cs" />
+    <Compile Include="Areas\Languages\LanguagesAreaRegistration.cs" />
+    <Compile Include="Areas\Languages\Models\LanguageNameTable.cs" />
+    <Compile Include="Areas\Languages\Models\LanguageNameTableRow.cs" />
+    <Compile Include="Areas\Languages\Models\LanguageForm.cs" />
+    <Compile Include="Areas\Languages\Models\LanguageTable.cs" />
+    <Compile Include="Areas\Languages\Models\LanguageTableRow.cs" />
     <Compile Include="Controllers\HttpMethodOverrideConstraint.cs" />
     <Compile Include="Controllers\HttpNotFoundOnNullModelAttribute.cs" />
     <Compile Include="Controllers\MvcRoute.cs" />
@@ -410,6 +418,15 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="InstitutionalAgreements.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Languages.LanguageController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Languages.LanguagesController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Languages.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BoundingBoxModel.cs" />
@@ -1055,6 +1072,7 @@
     <Content Include="scripts\jquery-ui-1.8.17.js" />
     <Content Include="scripts\jquery-ui-1.8.17.min.js" />
     <Content Include="scripts\jquery.bubblepopup.v2.3.1.min.js" />
+    <Content Include="scripts\jquery.pjax.js" />
     <Content Include="scripts\jquery.pwdMeter.js" />
     <Content Include="scripts\jquery.pwdMeter.min.js" />
     <Content Include="scripts\jquery.simplemodal-1.4.1.js" />
@@ -1392,6 +1410,13 @@
     <Content Include="Areas\Activities\Views\Shared\_activity-info.cshtml" />
     <Content Include="Areas\Common\Views\Features\june-2012-preview-2.cshtml" />
     <Content Include="Areas\Common\Views\Features\july-2012-preview-1.cshtml" />
+    <Content Include="Areas\Languages\Views\Web.config" />
+    <Content Include="Areas\Languages\Views\Shared\languages.cshtml" />
+    <Content Include="Areas\Languages\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Languages\Views\Shared\DisplayTemplates\LanguageTableRow.cshtml" />
+    <Content Include="Areas\Languages\Views\Shared\language.cshtml" />
+    <Content Include="Areas\Languages\Views\Shared\DisplayTemplates\LanguageNameTableRow.cshtml" />
+    <Content Include="Areas\Languages\Views\Shared\_languages-table.cshtml" />
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\LanguagesData.sql" />
@@ -1421,6 +1446,8 @@
     <None Include="T4MVC.tt.settings.t4" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_full_compressed.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_full.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\String.cshtml" />
+    <Content Include="Views\Shared\_PjaxLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\mail\" />

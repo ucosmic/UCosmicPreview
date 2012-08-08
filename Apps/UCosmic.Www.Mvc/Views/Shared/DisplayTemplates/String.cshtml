@@ -1,0 +1,18 @@
+﻿@{
+    var metadata = ModelMetadata.FromLambdaExpression(m => m, ViewData);
+    var isDisplayingNull = metadata.SimpleDisplayText == metadata.NullDisplayText;
+    var formattedModelValue = ViewData.TemplateInfo.FormattedModelValue;
+}
+@if (isDisplayingNull)
+{
+    <span class="null-display-text">@formattedModelValue</span>
+}
+else
+{
+    @formattedModelValue
+}
+@*
+    original template
+@Html.Encode(ViewData.TemplateInfo.FormattedModelValue)
+
+*@

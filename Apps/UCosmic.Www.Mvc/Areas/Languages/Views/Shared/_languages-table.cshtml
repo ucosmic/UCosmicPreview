@@ -1,0 +1,31 @@
+﻿@model IEnumerable<UCosmic.Www.Mvc.Areas.Languages.Models.LanguageTableRow>
+<table class="data-table">
+    <colgroup>
+        <col style="width: 200px;"/>
+        <col style="width: 150px;"/>
+        <col style="width: 150px;"/>
+        <col style="width: 150px;"/>
+    </colgroup>
+    <thead>
+        <tr>
+            <th>
+                Language
+            </th>
+            <th>
+                Native Name
+            </th>
+            <th>
+                Translations
+            </th>
+            <th>
+                ISO Codes
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model)
+        {
+            @Html.DisplayFor(m => row)
+        }
+    </tbody>
+</table>

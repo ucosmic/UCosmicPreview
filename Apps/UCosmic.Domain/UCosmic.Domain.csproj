@@ -144,6 +144,8 @@
     <Compile Include="Domain\InstitutionalAgreements\Queries\GenerateTitle.cs" />
     <Compile Include="Domain\Languages\Commands\CreateLanguageName.cs" />
     <Compile Include="Domain\Languages\Commands\CreateLanguage.cs" />
+    <Compile Include="Domain\Languages\Queries\LanguagesByKeyword.cs" />
+    <Compile Include="Domain\Languages\Queries\LanguageById.cs" />
     <Compile Include="Domain\Languages\Queries\LanguageByIsoCode.cs" />
     <Compile Include="Domain\Places\Entities\GeoNamesFeatureClassEnum.cs" />
     <Compile Include="Domain\Places\Entities\GeoNamesFeatureClassEnumExtensions.cs" />
@@ -197,7 +199,7 @@
     <Compile Include="Domain\InstitutionalAgreements\Commands\UpdateInstitutionalAgreementHierarchies.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Entities\InstitutionalAgreementVisibility.cs" />
     <Compile Include="Domain\Languages\Business\QueryLanguages.cs" />
-    <Compile Include="Domain\Languages\Queries\FindAllLanguages.cs" />
+    <Compile Include="Domain\Languages\Queries\LanguagesUnfiltered.cs" />
     <Compile Include="Domain\People\Business\ValidateEmailConfirmation.cs" />
     <Compile Include="Domain\People\Entities\EmailConfirmationIntent.cs" />
     <Compile Include="Domain\People\Queries\GetMyPerson.cs" />

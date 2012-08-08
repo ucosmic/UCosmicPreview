@@ -148,7 +148,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                 //    .OrderBy(s => s.Text)
                 //    .ToArray()
                 _languageOptions = _queryProcessor
-                    .Execute(new FindAllLanguagesQuery())
+                    .Execute(new LanguagesUnfiltered())
                     .Select(l =>
                         new SelectListItem
                         {

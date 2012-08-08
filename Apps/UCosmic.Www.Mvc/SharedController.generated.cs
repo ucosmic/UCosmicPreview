@@ -39,6 +39,11 @@ namespace T4MVC {
             public readonly string return_url_cancel_link = "~/Views/Shared/return-url-cancel-link.cshtml";
             public readonly string uservoice_link = "~/Views/Shared/uservoice-link.cshtml";
             public readonly string uservoice_widget_script = "~/Views/Shared/uservoice-widget-script.cshtml";
+            static readonly _DisplayTemplates s_DisplayTemplates = new _DisplayTemplates();
+            public _DisplayTemplates DisplayTemplates { get { return s_DisplayTemplates; } }
+            public partial class _DisplayTemplates{
+                public readonly string String = "String";
+            }
             static readonly _EditorTemplates s_EditorTemplates = new _EditorTemplates();
             public _EditorTemplates EditorTemplates { get { return s_EditorTemplates; } }
             public partial class _EditorTemplates{

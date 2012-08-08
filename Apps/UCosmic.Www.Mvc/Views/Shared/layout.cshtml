@@ -8,7 +8,9 @@
     {
         @RenderSection("Styles")
     }
+
     <script type="text/javascript" src="@Url.Content(Links.scripts.modernizr_2_5_3_js)"></script>
+
 </head>
 <body data-ucosmic-sign-on-url="@Url.Action(MVC.Identity.SignOn.Get(Request.RawUrl))"
     data-ucosmic-ajax-error-log-url="@Url.Action(MVC.Common.Errors.LogAjaxError())"
@@ -242,6 +244,8 @@ If this continues, please notify info@ucosmic.org.">
 <script src="@Links.scripts.jquery_validate_js" type="text/javascript"></script>
 
 <script src="@Links.scripts.jquery_validate_unobtrusive_js" type="text/javascript"></script>
+
+<script src="@Links.scripts.jquery_pjax_js" type="text/javascript"></script>
 
 @Html.Partial(MVC.Shared.Views.google_maps_api_script)
 

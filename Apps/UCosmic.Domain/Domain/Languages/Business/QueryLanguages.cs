@@ -5,6 +5,11 @@ namespace UCosmic.Domain.Languages
 {
     internal static class QueryLanguages
     {
+        internal static Language ById(this IQueryable<Language> queryable, int id)
+        {
+            return queryable.SingleOrDefault(l => l.Id == id);
+        }
+
         internal static Language ByIsoCode(this IQueryable<Language> queryable, string isoCode)
         {
             if (string.IsNullOrWhiteSpace(isoCode))

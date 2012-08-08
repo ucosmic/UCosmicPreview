@@ -33,6 +33,8 @@ public static class MVC {
     public static IdentityClass Identity { get { return s_Identity; } }
     static readonly InstitutionalAgreementsClass s_InstitutionalAgreements = new InstitutionalAgreementsClass();
     public static InstitutionalAgreementsClass InstitutionalAgreements { get { return s_InstitutionalAgreements; } }
+    static readonly LanguagesClass s_Languages = new LanguagesClass();
+    public static LanguagesClass Languages { get { return s_Languages; } }
     static readonly PeopleClass s_People = new PeopleClass();
     public static PeopleClass People { get { return s_People; } }
     static readonly RecruitmentAgenciesClass s_RecruitmentAgencies = new RecruitmentAgenciesClass();
@@ -102,6 +104,13 @@ namespace T4MVC {
         public UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers.ManagementFormsController ManagementForms = new UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers.T4MVC_ManagementFormsController();
         public UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers.PublicSearchController PublicSearch = new UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers.T4MVC_PublicSearchController();
         public T4MVC.InstitutionalAgreements.SharedController Shared = new T4MVC.InstitutionalAgreements.SharedController();
+    }
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class LanguagesClass {
+        public readonly string Name = "Languages";
+        public UCosmic.Www.Mvc.Areas.Languages.Controllers.LanguageController Language = new UCosmic.Www.Mvc.Areas.Languages.Controllers.T4MVC_LanguageController();
+        public UCosmic.Www.Mvc.Areas.Languages.Controllers.LanguagesController Languages = new UCosmic.Www.Mvc.Areas.Languages.Controllers.T4MVC_LanguagesController();
+        public T4MVC.Languages.SharedController Shared = new T4MVC.Languages.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class PeopleClass {
@@ -487,6 +496,8 @@ namespace Links {
                       
         public static readonly string jquery_ui_1_8_17_min_js = Url("jquery-ui-1.8.17.min.js");
         public static readonly string jquery_bubblepopup_v2_3_1_min_js = Url("jquery.bubblepopup.v2.3.1.min.js");
+        public static readonly string jquery_pjax_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.pjax.min.js") ? Url("jquery.pjax.min.js") : Url("jquery.pjax.js");
+                      
         public static readonly string jquery_pwdMeter_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.pwdMeter.min.js") ? Url("jquery.pwdMeter.min.js") : Url("jquery.pwdMeter.js");
                       
         public static readonly string jquery_pwdMeter_min_js = Url("jquery.pwdMeter.min.js");

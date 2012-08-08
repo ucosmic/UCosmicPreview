@@ -1,0 +1,49 @@
+﻿@model UCosmic.Www.Mvc.Areas.Languages.Models.LanguageForm
+@{
+    ViewBag.Title = "Language Details";
+}
+@section HeadCenter
+{
+    <h1>
+        <a href="@Url.Action(MVC.Languages.Languages.Get())"><span>Languages</span></a>
+        <span class="brackets">&gt;&gt;</span>
+        @ViewBag.Title
+    </h1>
+}
+<div id="pjax">
+    <div class="wrap-960">
+        <h2 style="font-size: 35px;">
+            @Html.DisplayFor(m => m.TranslatedNameText)
+            @if (!string.IsNullOrWhiteSpace(Model.NativeNameText))
+            {
+                <span>(@Html.DisplayFor(m => m.NativeNameText))</span>
+            }
+        </h2>
+        <br />
+        <div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>
+                            Language
+                        </th>
+                        <th>
+                            Translation
+                        </th>
+                        <th class="null">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var row in Model.Names)
+                    {
+                        @Html.DisplayFor(m => row)
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+}

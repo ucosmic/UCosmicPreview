@@ -8,6 +8,7 @@
 
         public int LanguageId { get; protected internal set; }
         public int Number { get; protected internal set; }
+        public virtual Language Owner { get; set; }
 
         public int TranslationToLanguageId { get; protected internal set; }
         public virtual Language TranslationToLanguage { get; protected internal set; }
@@ -21,7 +22,7 @@
                 if (string.IsNullOrWhiteSpace(_text))
                     _text = null;
 
-                AsciiEquivalent = null;
+                AsciiEquivalent = string.Empty;
                 if (string.IsNullOrWhiteSpace(Text)) return;
 
                 var asciiEquivalent = Text.ConvertToAscii();
@@ -37,5 +38,9 @@
 
         public string AsciiEquivalent { get; private set; }
 
+        public override string ToString()
+        {
+            return Text;
+        }
     }
 }

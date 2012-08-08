@@ -1481,7 +1481,7 @@ namespace UCosmic.Impl.Seeders
                         Text = "Northern Jiaotong University",
                         IsDefunct = true,
                         TranslationToLanguageId = _queryProcessor.Execute(
-                            new LanguageByIsoCode { IsoCode = "en" }).Id,
+                            new LanguageByIsoCode("en")).Id,
                     }
                 },
             });
@@ -1565,8 +1565,8 @@ namespace UCosmic.Impl.Seeders
 
         public override void Seed()
         {
-            var en = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "en" });
-            var fr = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "fr" });
+            var en = _queryProcessor.Execute(new LanguageByIsoCode("en"));
+            var fr = _queryProcessor.Execute(new LanguageByIsoCode("fr"));
             Seed(new CreateEstablishment
             {
                 OfficialName = "Jinan University",
@@ -2363,8 +2363,8 @@ namespace UCosmic.Impl.Seeders
 
         public override void Seed()
         {
-            var en = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "en" });
-            var zh = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "zh" });
+            var en = _queryProcessor.Execute(new LanguageByIsoCode("en"));
+            var zh = _queryProcessor.Execute(new LanguageByIsoCode("zh"));
 
             #region EduGlobal
 

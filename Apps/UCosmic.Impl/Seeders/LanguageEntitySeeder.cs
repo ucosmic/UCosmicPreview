@@ -26,11 +26,11 @@
 
 //        public override void Seed()
 //        {
-//            if (_queryProcessor.Execute(new FindAllLanguagesQuery()).Any()) return;
+//            if (_queryProcessor.Execute(new LanguagesUnfiltered()).Any()) return;
 
 //            #region SIL Languages
 
-//            var en = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "en" });
+//            var en = _queryProcessor.Execute(new LanguageByIsoCode("en"));
 //            if (en == null)
 //            {
 //                var enCreate = new CreateLanguage { TwoLetterIsoCode = "en", ThreeLetterIsoCode = "eng", ThreeLetterIsoBibliographicCode = "eng", };
@@ -38,7 +38,7 @@
 //                en = enCreate.CreatedLanguage;
 //            }
 
-//            var es = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "es" });
+//            var es = _queryProcessor.Execute(new LanguageByIsoCode("es"));
 //            if (es == null)
 //            {
 //                var esCreate = new CreateLanguage { TwoLetterIsoCode = "es", ThreeLetterIsoCode = "spa", ThreeLetterIsoBibliographicCode = "spa", };
@@ -46,7 +46,7 @@
 //                es = esCreate.CreatedLanguage;
 //            }
 
-//            var de = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "de" });
+//            var de = _queryProcessor.Execute(new LanguageByIsoCode("de"));
 //            if (de == null)
 //            {
 //                var deCreate = new CreateLanguage { TwoLetterIsoCode = "de", ThreeLetterIsoCode = "deu", ThreeLetterIsoBibliographicCode = "ger", };
@@ -54,7 +54,7 @@
 //                de = deCreate.CreatedLanguage;
 //            }
 
-//            var ar = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ar" });
+//            var ar = _queryProcessor.Execute(new LanguageByIsoCode("ar"));
 //            if (ar == null)
 //            {
 //                var arCreate = new CreateLanguage { TwoLetterIsoCode = "ar", ThreeLetterIsoCode = "ara", ThreeLetterIsoBibliographicCode = "ara", };
@@ -62,7 +62,7 @@
 //                ar = arCreate.CreatedLanguage;
 //            }
 
-//            var aa = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "aa" });
+//            var aa = _queryProcessor.Execute(new LanguageByIsoCode("aa"));
 //            if (aa == null)
 //            {
 //                var aaCreate = new CreateLanguage { TwoLetterIsoCode = "aa", ThreeLetterIsoCode = "aar", ThreeLetterIsoBibliographicCode = "aar", };
@@ -70,7 +70,7 @@
 //                aa = aaCreate.CreatedLanguage;
 //            }
 
-//            var ab = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ab" });
+//            var ab = _queryProcessor.Execute(new LanguageByIsoCode("ab"));
 //            if (ab == null)
 //            {
 //                var abCreate = new CreateLanguage { TwoLetterIsoCode = "ab", ThreeLetterIsoCode = "abk", ThreeLetterIsoBibliographicCode = "abk", };
@@ -78,7 +78,7 @@
 //                ab = abCreate.CreatedLanguage;
 //            }
 
-//            var af = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "af" });
+//            var af = _queryProcessor.Execute(new LanguageByIsoCode("af"));
 //            if (af == null)
 //            {
 //                var afCreate = new CreateLanguage { TwoLetterIsoCode = "af", ThreeLetterIsoCode = "afr", ThreeLetterIsoBibliographicCode = "afr", };
@@ -86,7 +86,7 @@
 //                af = afCreate.CreatedLanguage;
 //            }
 
-//            var ak = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ak" });
+//            var ak = _queryProcessor.Execute(new LanguageByIsoCode("ak"));
 //            if (ak == null)
 //            {
 //                var akCreate = new CreateLanguage { TwoLetterIsoCode = "ak", ThreeLetterIsoCode = "aka", ThreeLetterIsoBibliographicCode = "aka", };
@@ -94,7 +94,7 @@
 //                ak = akCreate.CreatedLanguage;
 //            }
 
-//            var am = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "am" });
+//            var am = _queryProcessor.Execute(new LanguageByIsoCode("am"));
 //            if (am == null)
 //            {
 //                var amCreate = new CreateLanguage { TwoLetterIsoCode = "am", ThreeLetterIsoCode = "amh", ThreeLetterIsoBibliographicCode = "amh", };
@@ -102,7 +102,7 @@
 //                am = amCreate.CreatedLanguage;
 //            }
 
-//            var an = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "an" });
+//            var an = _queryProcessor.Execute(new LanguageByIsoCode("an"));
 //            if (an == null)
 //            {
 //                var anCreate = new CreateLanguage { TwoLetterIsoCode = "an", ThreeLetterIsoCode = "arg", ThreeLetterIsoBibliographicCode = "arg", };
@@ -110,7 +110,7 @@
 //                an = anCreate.CreatedLanguage;
 //            }
 
-//            var asLanguage = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "as" });
+//            var asLanguage = _queryProcessor.Execute(new LanguageByIsoCode("as"));
 //            if (asLanguage == null)
 //            {
 //                var asLanguageCreate = new CreateLanguage { TwoLetterIsoCode = "as", ThreeLetterIsoCode = "asm", ThreeLetterIsoBibliographicCode = "asm", };
@@ -118,7 +118,7 @@
 //                asLanguage = asLanguageCreate.CreatedLanguage;
 //            }
 
-//            var av = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "av" });
+//            var av = _queryProcessor.Execute(new LanguageByIsoCode("av"));
 //            if (av == null)
 //            {
 //                var avCreate = new CreateLanguage { TwoLetterIsoCode = "av", ThreeLetterIsoCode = "ava", ThreeLetterIsoBibliographicCode = "ava", };
@@ -126,7 +126,7 @@
 //                av = avCreate.CreatedLanguage;
 //            }
 
-//            var ay = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ay" });
+//            var ay = _queryProcessor.Execute(new LanguageByIsoCode("ay"));
 //            if (ay == null)
 //            {
 //                var ayCreate = new CreateLanguage { TwoLetterIsoCode = "ay", ThreeLetterIsoCode = "aym", ThreeLetterIsoBibliographicCode = "aym", };
@@ -134,7 +134,7 @@
 //                ay = ayCreate.CreatedLanguage;
 //            }
 
-//            var az = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "az" });
+//            var az = _queryProcessor.Execute(new LanguageByIsoCode("az"));
 //            if (az == null)
 //            {
 //                var azCreate = new CreateLanguage { TwoLetterIsoCode = "az", ThreeLetterIsoCode = "aze", ThreeLetterIsoBibliographicCode = "aze", };
@@ -142,7 +142,7 @@
 //                az = azCreate.CreatedLanguage;
 //            }
 
-//            var ba = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ba" });
+//            var ba = _queryProcessor.Execute(new LanguageByIsoCode("ba"));
 //            if (ba == null)
 //            {
 //                var baCreate = new CreateLanguage { TwoLetterIsoCode = "ba", ThreeLetterIsoCode = "bak", ThreeLetterIsoBibliographicCode = "bak", };
@@ -150,7 +150,7 @@
 //                ba = baCreate.CreatedLanguage;
 //            }
 
-//            var be = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "be" });
+//            var be = _queryProcessor.Execute(new LanguageByIsoCode("be"));
 //            if (be == null)
 //            {
 //                var beCreate = new CreateLanguage { TwoLetterIsoCode = "be", ThreeLetterIsoCode = "bel", ThreeLetterIsoBibliographicCode = "bel", };
@@ -158,7 +158,7 @@
 //                be = beCreate.CreatedLanguage;
 //            }
 
-//            var bg = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "bg" });
+//            var bg = _queryProcessor.Execute(new LanguageByIsoCode("bg"));
 //            if (bg == null)
 //            {
 //                var bgCreate = new CreateLanguage { TwoLetterIsoCode = "bg", ThreeLetterIsoCode = "bul", ThreeLetterIsoBibliographicCode = "bul", };
@@ -166,7 +166,7 @@
 //                bg = bgCreate.CreatedLanguage;
 //            }
 
-//            var bh = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "bh" });
+//            var bh = _queryProcessor.Execute(new LanguageByIsoCode("bh"));
 //            if (bh == null)
 //            {
 //                var bhCreate = new CreateLanguage { TwoLetterIsoCode = "bh", ThreeLetterIsoCode = "bih", ThreeLetterIsoBibliographicCode = "bih", };
@@ -174,7 +174,7 @@
 //                bh = bhCreate.CreatedLanguage;
 //            }
 
-//            var bi = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "bi" });
+//            var bi = _queryProcessor.Execute(new LanguageByIsoCode("bi"));
 //            if (bi == null)
 //            {
 //                var biCreate = new CreateLanguage { TwoLetterIsoCode = "bi", ThreeLetterIsoCode = "bis", ThreeLetterIsoBibliographicCode = "bis", };
@@ -182,7 +182,7 @@
 //                bi = biCreate.CreatedLanguage;
 //            }
 
-//            var bm = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "bm" });
+//            var bm = _queryProcessor.Execute(new LanguageByIsoCode("bm"));
 //            if (bm == null)
 //            {
 //                var bmCreate = new CreateLanguage { TwoLetterIsoCode = "bm", ThreeLetterIsoCode = "bam", ThreeLetterIsoBibliographicCode = "bam", };
@@ -190,7 +190,7 @@
 //                bm = bmCreate.CreatedLanguage;
 //            }
 
-//            var bn = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "bn" });
+//            var bn = _queryProcessor.Execute(new LanguageByIsoCode("bn"));
 //            if (bn == null)
 //            {
 //                var bnCreate = new CreateLanguage { TwoLetterIsoCode = "bn", ThreeLetterIsoCode = "ben", ThreeLetterIsoBibliographicCode = "ben", };
@@ -198,7 +198,7 @@
 //                bn = bnCreate.CreatedLanguage;
 //            }
 
-//            var bo = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "bo" });
+//            var bo = _queryProcessor.Execute(new LanguageByIsoCode("bo"));
 //            if (bo == null)
 //            {
 //                var boCreate = new CreateLanguage { TwoLetterIsoCode = "bo", ThreeLetterIsoCode = "bod", ThreeLetterIsoBibliographicCode = "tib", };
@@ -206,7 +206,7 @@
 //                bo = boCreate.CreatedLanguage;
 //            }
 
-//            var br = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "br" });
+//            var br = _queryProcessor.Execute(new LanguageByIsoCode("br"));
 //            if (br == null)
 //            {
 //                var brCreate = new CreateLanguage { TwoLetterIsoCode = "br", ThreeLetterIsoCode = "bre", ThreeLetterIsoBibliographicCode = "bre", };
@@ -214,7 +214,7 @@
 //                br = brCreate.CreatedLanguage;
 //            }
 
-//            var bs = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "bs" });
+//            var bs = _queryProcessor.Execute(new LanguageByIsoCode("bs"));
 //            if (bs == null)
 //            {
 //                var bsCreate = new CreateLanguage { TwoLetterIsoCode = "bs", ThreeLetterIsoCode = "bos", ThreeLetterIsoBibliographicCode = "bos", };
@@ -222,7 +222,7 @@
 //                bs = bsCreate.CreatedLanguage;
 //            }
 
-//            var ca = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ca" });
+//            var ca = _queryProcessor.Execute(new LanguageByIsoCode("ca"));
 //            if (ca == null)
 //            {
 //                var caCreate = new CreateLanguage { TwoLetterIsoCode = "ca", ThreeLetterIsoCode = "cat", ThreeLetterIsoBibliographicCode = "cat", };
@@ -230,7 +230,7 @@
 //                ca = caCreate.CreatedLanguage;
 //            }
 
-//            var ce = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ce" });
+//            var ce = _queryProcessor.Execute(new LanguageByIsoCode("ce"));
 //            if (ce == null)
 //            {
 //                var ceCreate = new CreateLanguage { TwoLetterIsoCode = "ce", ThreeLetterIsoCode = "che", ThreeLetterIsoBibliographicCode = "che", };
@@ -238,7 +238,7 @@
 //                ce = ceCreate.CreatedLanguage;
 //            }
 
-//            var ch = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ch" });
+//            var ch = _queryProcessor.Execute(new LanguageByIsoCode("ch"));
 //            if (ch == null)
 //            {
 //                var chCreate = new CreateLanguage { TwoLetterIsoCode = "ch", ThreeLetterIsoCode = "cha", ThreeLetterIsoBibliographicCode = "cha", };
@@ -246,7 +246,7 @@
 //                ch = chCreate.CreatedLanguage;
 //            }
 
-//            var co = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "co" });
+//            var co = _queryProcessor.Execute(new LanguageByIsoCode("co"));
 //            if (co == null)
 //            {
 //                var coCreate = new CreateLanguage { TwoLetterIsoCode = "co", ThreeLetterIsoCode = "cos", ThreeLetterIsoBibliographicCode = "cos", };
@@ -254,7 +254,7 @@
 //                co = coCreate.CreatedLanguage;
 //            }
 
-//            var cr = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "cr" });
+//            var cr = _queryProcessor.Execute(new LanguageByIsoCode("cr"));
 //            if (cr == null)
 //            {
 //                var crCreate = new CreateLanguage { TwoLetterIsoCode = "cr", ThreeLetterIsoCode = "cre", ThreeLetterIsoBibliographicCode = "cre", };
@@ -262,7 +262,7 @@
 //                cr = crCreate.CreatedLanguage;
 //            }
 
-//            var cs = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "cs" });
+//            var cs = _queryProcessor.Execute(new LanguageByIsoCode("cs"));
 //            if (cs == null)
 //            {
 //                var csCreate = new CreateLanguage { TwoLetterIsoCode = "cs", ThreeLetterIsoCode = "ces", ThreeLetterIsoBibliographicCode = "cze", };
@@ -270,7 +270,7 @@
 //                cs = csCreate.CreatedLanguage;
 //            }
 
-//            var cu = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "cu" });
+//            var cu = _queryProcessor.Execute(new LanguageByIsoCode("cu"));
 //            if (cu == null)
 //            {
 //                var cuCreate = new CreateLanguage { TwoLetterIsoCode = "cu", ThreeLetterIsoCode = "chu", ThreeLetterIsoBibliographicCode = "chu", };
@@ -278,7 +278,7 @@
 //                cu = cuCreate.CreatedLanguage;
 //            }
 
-//            var cv = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "cv" });
+//            var cv = _queryProcessor.Execute(new LanguageByIsoCode("cv"));
 //            if (cv == null)
 //            {
 //                var cvCreate = new CreateLanguage { TwoLetterIsoCode = "cv", ThreeLetterIsoCode = "chv", ThreeLetterIsoBibliographicCode = "chv", };
@@ -286,7 +286,7 @@
 //                cv = cvCreate.CreatedLanguage;
 //            }
 
-//            var cy = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "cy" });
+//            var cy = _queryProcessor.Execute(new LanguageByIsoCode("cy"));
 //            if (cy == null)
 //            {
 //                var cyCreate = new CreateLanguage { TwoLetterIsoCode = "cy", ThreeLetterIsoCode = "cym", ThreeLetterIsoBibliographicCode = "wel", };
@@ -294,7 +294,7 @@
 //                cy = cyCreate.CreatedLanguage;
 //            }
 
-//            var da = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "da" });
+//            var da = _queryProcessor.Execute(new LanguageByIsoCode("da"));
 //            if (da == null)
 //            {
 //                var daCreate = new CreateLanguage { TwoLetterIsoCode = "da", ThreeLetterIsoCode = "dan", ThreeLetterIsoBibliographicCode = "dan", };
@@ -302,7 +302,7 @@
 //                da = daCreate.CreatedLanguage;
 //            }
 
-//            var dv = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "dv" });
+//            var dv = _queryProcessor.Execute(new LanguageByIsoCode("dv"));
 //            if (dv == null)
 //            {
 //                var dvCreate = new CreateLanguage { TwoLetterIsoCode = "dv", ThreeLetterIsoCode = "div", ThreeLetterIsoBibliographicCode = "div", };
@@ -310,7 +310,7 @@
 //                dv = dvCreate.CreatedLanguage;
 //            }
 
-//            var dz = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "dz" });
+//            var dz = _queryProcessor.Execute(new LanguageByIsoCode("dz"));
 //            if (dz == null)
 //            {
 //                var dzCreate = new CreateLanguage { TwoLetterIsoCode = "dz", ThreeLetterIsoCode = "dzo", ThreeLetterIsoBibliographicCode = "dzo", };
@@ -318,7 +318,7 @@
 //                dz = dzCreate.CreatedLanguage;
 //            }
 
-//            var ee = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ee" });
+//            var ee = _queryProcessor.Execute(new LanguageByIsoCode("ee"));
 //            if (ee == null)
 //            {
 //                var eeCreate = new CreateLanguage { TwoLetterIsoCode = "ee", ThreeLetterIsoCode = "ewe", ThreeLetterIsoBibliographicCode = "ewe", };
@@ -326,7 +326,7 @@
 //                ee = eeCreate.CreatedLanguage;
 //            }
 
-//            var el = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "el" });
+//            var el = _queryProcessor.Execute(new LanguageByIsoCode("el"));
 //            if (el == null)
 //            {
 //                var elCreate = new CreateLanguage { TwoLetterIsoCode = "el", ThreeLetterIsoCode = "ell", ThreeLetterIsoBibliographicCode = "ell", };
@@ -334,7 +334,7 @@
 //                el = elCreate.CreatedLanguage;
 //            }
 
-//            var eo = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "eo" });
+//            var eo = _queryProcessor.Execute(new LanguageByIsoCode("eo"));
 //            if (eo == null)
 //            {
 //                var eoCreate = new CreateLanguage { TwoLetterIsoCode = "eo", ThreeLetterIsoCode = "epo", ThreeLetterIsoBibliographicCode = "epo", };
@@ -342,7 +342,7 @@
 //                eo = eoCreate.CreatedLanguage;
 //            }
 
-//            var et = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "et" });
+//            var et = _queryProcessor.Execute(new LanguageByIsoCode("et"));
 //            if (et == null)
 //            {
 //                var etCreate = new CreateLanguage { TwoLetterIsoCode = "et", ThreeLetterIsoCode = "est", ThreeLetterIsoBibliographicCode = "est", };
@@ -350,7 +350,7 @@
 //                et = etCreate.CreatedLanguage;
 //            }
 
-//            var eu = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "eu" });
+//            var eu = _queryProcessor.Execute(new LanguageByIsoCode("eu"));
 //            if (eu == null)
 //            {
 //                var euCreate = new CreateLanguage { TwoLetterIsoCode = "eu", ThreeLetterIsoCode = "eus", ThreeLetterIsoBibliographicCode = "baq", };
@@ -358,7 +358,7 @@
 //                eu = euCreate.CreatedLanguage;
 //            }
 
-//            var fa = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "fa" });
+//            var fa = _queryProcessor.Execute(new LanguageByIsoCode("fa"));
 //            if (fa == null)
 //            {
 //                var faCreate = new CreateLanguage { TwoLetterIsoCode = "fa", ThreeLetterIsoCode = "fas", ThreeLetterIsoBibliographicCode = "per", };
@@ -366,7 +366,7 @@
 //                fa = faCreate.CreatedLanguage;
 //            }
 
-//            var ff = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ff" });
+//            var ff = _queryProcessor.Execute(new LanguageByIsoCode("ff"));
 //            if (ff == null)
 //            {
 //                var ffCreate = new CreateLanguage { TwoLetterIsoCode = "ff", ThreeLetterIsoCode = "ful", ThreeLetterIsoBibliographicCode = "ful", };
@@ -374,7 +374,7 @@
 //                ff = ffCreate.CreatedLanguage;
 //            }
 
-//            var fj = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "fj" });
+//            var fj = _queryProcessor.Execute(new LanguageByIsoCode("fj"));
 //            if (fj == null)
 //            {
 //                var fjCreate = new CreateLanguage { TwoLetterIsoCode = "fj", ThreeLetterIsoCode = "fij", ThreeLetterIsoBibliographicCode = "fij", };
@@ -382,7 +382,7 @@
 //                fj = fjCreate.CreatedLanguage;
 //            }
 
-//            var fo = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "fo" });
+//            var fo = _queryProcessor.Execute(new LanguageByIsoCode("fo"));
 //            if (fo == null)
 //            {
 //                var foCreate = new CreateLanguage { TwoLetterIsoCode = "fo", ThreeLetterIsoCode = "fao", ThreeLetterIsoBibliographicCode = "fao", };
@@ -390,7 +390,7 @@
 //                fo = foCreate.CreatedLanguage;
 //            }
 
-//            var fy = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "fy" });
+//            var fy = _queryProcessor.Execute(new LanguageByIsoCode("fy"));
 //            if (fy == null)
 //            {
 //                var fyCreate = new CreateLanguage { TwoLetterIsoCode = "fy", ThreeLetterIsoCode = "fry", ThreeLetterIsoBibliographicCode = "fry", };
@@ -398,7 +398,7 @@
 //                fy = fyCreate.CreatedLanguage;
 //            }
 
-//            var gd = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "gd" });
+//            var gd = _queryProcessor.Execute(new LanguageByIsoCode("gd"));
 //            if (gd == null)
 //            {
 //                var gdCreate = new CreateLanguage { TwoLetterIsoCode = "gd", ThreeLetterIsoCode = "gla", ThreeLetterIsoBibliographicCode = "gla", };
@@ -406,7 +406,7 @@
 //                gd = gdCreate.CreatedLanguage;
 //            }
 
-//            var fi = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "fi" });
+//            var fi = _queryProcessor.Execute(new LanguageByIsoCode("fi"));
 //            if (fi == null)
 //            {
 //                var fiCreate = new CreateLanguage { TwoLetterIsoCode = "fi", ThreeLetterIsoCode = "fin", ThreeLetterIsoBibliographicCode = "fin", };
@@ -414,7 +414,7 @@
 //                fi = fiCreate.CreatedLanguage;
 //            }
 
-//            var fr = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "fr" });
+//            var fr = _queryProcessor.Execute(new LanguageByIsoCode("fr"));
 //            if (fr == null)
 //            {
 //                var frCreate = new CreateLanguage { TwoLetterIsoCode = "fr", ThreeLetterIsoCode = "fra", ThreeLetterIsoBibliographicCode = "fre", };
@@ -422,7 +422,7 @@
 //                fr = frCreate.CreatedLanguage;
 //            }
 
-//            var ga = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ga" });
+//            var ga = _queryProcessor.Execute(new LanguageByIsoCode("ga"));
 //            if (ga == null)
 //            {
 //                var gaCreate = new CreateLanguage { TwoLetterIsoCode = "ga", ThreeLetterIsoCode = "gle", ThreeLetterIsoBibliographicCode = "gle", };
@@ -430,7 +430,7 @@
 //                ga = gaCreate.CreatedLanguage;
 //            }
 
-//            var gl = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "gl" });
+//            var gl = _queryProcessor.Execute(new LanguageByIsoCode("gl"));
 //            if (gl == null)
 //            {
 //                var glCreate = new CreateLanguage { TwoLetterIsoCode = "gl", ThreeLetterIsoCode = "glg", ThreeLetterIsoBibliographicCode = "glg", };
@@ -438,7 +438,7 @@
 //                gl = glCreate.CreatedLanguage;
 //            }
 
-//            var gn = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "gn" });
+//            var gn = _queryProcessor.Execute(new LanguageByIsoCode("gn"));
 //            if (gn == null)
 //            {
 //                var gnCreate = new CreateLanguage { TwoLetterIsoCode = "gn", ThreeLetterIsoCode = "grn", ThreeLetterIsoBibliographicCode = "grn", };
@@ -446,7 +446,7 @@
 //                gn = gnCreate.CreatedLanguage;
 //            }
 
-//            var gu = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "gu" });
+//            var gu = _queryProcessor.Execute(new LanguageByIsoCode("gu"));
 //            if (gu == null)
 //            {
 //                var guCreate = new CreateLanguage { TwoLetterIsoCode = "gu", ThreeLetterIsoCode = "guj", ThreeLetterIsoBibliographicCode = "guj", };
@@ -454,7 +454,7 @@
 //                gu = guCreate.CreatedLanguage;
 //            }
 
-//            var gv = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "gv" });
+//            var gv = _queryProcessor.Execute(new LanguageByIsoCode("gv"));
 //            if (gv == null)
 //            {
 //                var gvCreate = new CreateLanguage { TwoLetterIsoCode = "gv", ThreeLetterIsoCode = "glv", ThreeLetterIsoBibliographicCode = "glv", };
@@ -462,7 +462,7 @@
 //                gv = gvCreate.CreatedLanguage;
 //            }
 
-//            var ha = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ha" });
+//            var ha = _queryProcessor.Execute(new LanguageByIsoCode("ha"));
 //            if (ha == null)
 //            {
 //                var haCreate = new CreateLanguage { TwoLetterIsoCode = "ha", ThreeLetterIsoCode = "hau", ThreeLetterIsoBibliographicCode = "hau", };
@@ -470,7 +470,7 @@
 //                ha = haCreate.CreatedLanguage;
 //            }
 
-//            var he = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "he" });
+//            var he = _queryProcessor.Execute(new LanguageByIsoCode("he"));
 //            if (he == null)
 //            {
 //                var heCreate = new CreateLanguage { TwoLetterIsoCode = "he", ThreeLetterIsoCode = "heb", ThreeLetterIsoBibliographicCode = "heb", };
@@ -478,7 +478,7 @@
 //                he = heCreate.CreatedLanguage;
 //            }
 
-//            var hi = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "hi" });
+//            var hi = _queryProcessor.Execute(new LanguageByIsoCode("hi"));
 //            if (hi == null)
 //            {
 //                var hiCreate = new CreateLanguage { TwoLetterIsoCode = "hi", ThreeLetterIsoCode = "hin", ThreeLetterIsoBibliographicCode = "hin", };
@@ -486,7 +486,7 @@
 //                hi = hiCreate.CreatedLanguage;
 //            }
 
-//            var ho = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ho" });
+//            var ho = _queryProcessor.Execute(new LanguageByIsoCode("ho"));
 //            if (ho == null)
 //            {
 //                var hoCreate = new CreateLanguage { TwoLetterIsoCode = "ho", ThreeLetterIsoCode = "hmo", ThreeLetterIsoBibliographicCode = "hmo", };
@@ -494,7 +494,7 @@
 //                ho = hoCreate.CreatedLanguage;
 //            }
 
-//            var hr = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "hr" });
+//            var hr = _queryProcessor.Execute(new LanguageByIsoCode("hr"));
 //            if (hr == null)
 //            {
 //                var hrCreate = new CreateLanguage { TwoLetterIsoCode = "hr", ThreeLetterIsoCode = "hrv", ThreeLetterIsoBibliographicCode = "hrv", };
@@ -502,7 +502,7 @@
 //                hr = hrCreate.CreatedLanguage;
 //            }
 
-//            var ht = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ht" });
+//            var ht = _queryProcessor.Execute(new LanguageByIsoCode("ht"));
 //            if (ht == null)
 //            {
 //                var htCreate = new CreateLanguage { TwoLetterIsoCode = "ht", ThreeLetterIsoCode = "hat", ThreeLetterIsoBibliographicCode = "hat", };
@@ -510,7 +510,7 @@
 //                ht = htCreate.CreatedLanguage;
 //            }
 
-//            var hu = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "hu" });
+//            var hu = _queryProcessor.Execute(new LanguageByIsoCode("hu"));
 //            if (hu == null)
 //            {
 //                var huCreate = new CreateLanguage { TwoLetterIsoCode = "hu", ThreeLetterIsoCode = "hun", ThreeLetterIsoBibliographicCode = "hun", };
@@ -518,7 +518,7 @@
 //                hu = huCreate.CreatedLanguage;
 //            }
 
-//            var hy = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "hy" });
+//            var hy = _queryProcessor.Execute(new LanguageByIsoCode("hy"));
 //            if (hy == null)
 //            {
 //                var hyCreate = new CreateLanguage { TwoLetterIsoCode = "hy", ThreeLetterIsoCode = "hye", ThreeLetterIsoBibliographicCode = "arm", };
@@ -526,7 +526,7 @@
 //                hy = hyCreate.CreatedLanguage;
 //            }
 
-//            var hz = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "hz" });
+//            var hz = _queryProcessor.Execute(new LanguageByIsoCode("hz"));
 //            if (hz == null)
 //            {
 //                var hzCreate = new CreateLanguage { TwoLetterIsoCode = "hz", ThreeLetterIsoCode = "her", ThreeLetterIsoBibliographicCode = "her", };
@@ -534,7 +534,7 @@
 //                hz = hzCreate.CreatedLanguage;
 //            }
 
-//            var ia = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ia" });
+//            var ia = _queryProcessor.Execute(new LanguageByIsoCode("ia"));
 //            if (ia == null)
 //            {
 //                var iaCreate = new CreateLanguage { TwoLetterIsoCode = "ia", ThreeLetterIsoCode = "ina", ThreeLetterIsoBibliographicCode = "ina", };
@@ -542,7 +542,7 @@
 //                ia = iaCreate.CreatedLanguage;
 //            }
 
-//            var id = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "id" });
+//            var id = _queryProcessor.Execute(new LanguageByIsoCode("id"));
 //            if (id == null)
 //            {
 //                var idCreate = new CreateLanguage { TwoLetterIsoCode = "id", ThreeLetterIsoCode = "ind", ThreeLetterIsoBibliographicCode = "ind", };
@@ -550,7 +550,7 @@
 //                id = idCreate.CreatedLanguage;
 //            }
 
-//            var ie = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ie" });
+//            var ie = _queryProcessor.Execute(new LanguageByIsoCode("ie"));
 //            if (ie == null)
 //            {
 //                var ieCreate = new CreateLanguage { TwoLetterIsoCode = "ie", ThreeLetterIsoCode = "ile", ThreeLetterIsoBibliographicCode = "ile", };
@@ -558,7 +558,7 @@
 //                ie = ieCreate.CreatedLanguage;
 //            }
 
-//            var ig = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ig" });
+//            var ig = _queryProcessor.Execute(new LanguageByIsoCode("ig"));
 //            if (ig == null)
 //            {
 //                var igCreate = new CreateLanguage { TwoLetterIsoCode = "ig", ThreeLetterIsoCode = "ibo", ThreeLetterIsoBibliographicCode = "ibo", };
@@ -566,7 +566,7 @@
 //                ig = igCreate.CreatedLanguage;
 //            }
 
-//            var ii = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ii" });
+//            var ii = _queryProcessor.Execute(new LanguageByIsoCode("ii"));
 //            if (ii == null)
 //            {
 //                var iiCreate = new CreateLanguage { TwoLetterIsoCode = "ii", ThreeLetterIsoCode = "iii", ThreeLetterIsoBibliographicCode = "iii", };
@@ -574,7 +574,7 @@
 //                ii = iiCreate.CreatedLanguage;
 //            }
 
-//            var io = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "io" });
+//            var io = _queryProcessor.Execute(new LanguageByIsoCode("io"));
 //            if (io == null)
 //            {
 //                var ioCreate = new CreateLanguage { TwoLetterIsoCode = "io", ThreeLetterIsoCode = "ido", ThreeLetterIsoBibliographicCode = "ido", };
@@ -582,7 +582,7 @@
 //                io = ioCreate.CreatedLanguage;
 //            }
 
-//            var isLanguage = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "is" });
+//            var isLanguage = _queryProcessor.Execute(new LanguageByIsoCode("is"));
 //            if (isLanguage == null)
 //            {
 //                var isLanguageCreate = new CreateLanguage { TwoLetterIsoCode = "is", ThreeLetterIsoCode = "isl", ThreeLetterIsoBibliographicCode = "ice", };
@@ -590,7 +590,7 @@
 //                isLanguage = isLanguageCreate.CreatedLanguage;
 //            }
 
-//            var it = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "it" });
+//            var it = _queryProcessor.Execute(new LanguageByIsoCode("it"));
 //            if (it == null)
 //            {
 //                var itCreate = new CreateLanguage { TwoLetterIsoCode = "it", ThreeLetterIsoCode = "ita", ThreeLetterIsoBibliographicCode = "ita", };
@@ -598,7 +598,7 @@
 //                it = itCreate.CreatedLanguage;
 //            }
 
-//            var iu = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "iu" });
+//            var iu = _queryProcessor.Execute(new LanguageByIsoCode("iu"));
 //            if (iu == null)
 //            {
 //                var iuCreate = new CreateLanguage { TwoLetterIsoCode = "iu", ThreeLetterIsoCode = "iku", ThreeLetterIsoBibliographicCode = "iku", };
@@ -606,7 +606,7 @@
 //                iu = iuCreate.CreatedLanguage;
 //            }
 
-//            var ja = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ja" });
+//            var ja = _queryProcessor.Execute(new LanguageByIsoCode("ja"));
 //            if (ja == null)
 //            {
 //                var jaCreate = new CreateLanguage { TwoLetterIsoCode = "ja", ThreeLetterIsoCode = "jpn", ThreeLetterIsoBibliographicCode = "jpn", };
@@ -615,7 +615,7 @@
 //            }
 
 
-//            var jv = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "jv" });
+//            var jv = _queryProcessor.Execute(new LanguageByIsoCode("jv"));
 //            if (jv == null)
 //            {
 //                var jvCreate = new CreateLanguage { TwoLetterIsoCode = "jv", ThreeLetterIsoCode = "jav", ThreeLetterIsoBibliographicCode = "jav", };
@@ -623,7 +623,7 @@
 //                jv = jvCreate.CreatedLanguage;
 //            }
 
-//            var ka = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ka" });
+//            var ka = _queryProcessor.Execute(new LanguageByIsoCode("ka"));
 //            if (ka == null)
 //            {
 //                var kaCreate = new CreateLanguage { TwoLetterIsoCode = "ka", ThreeLetterIsoCode = "kat", ThreeLetterIsoBibliographicCode = "geo", };
@@ -631,7 +631,7 @@
 //                ka = kaCreate.CreatedLanguage;
 //            }
 
-//            var kg = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "kg" });
+//            var kg = _queryProcessor.Execute(new LanguageByIsoCode("kg"));
 //            if (kg == null)
 //            {
 //                var kgCreate = new CreateLanguage { TwoLetterIsoCode = "kg", ThreeLetterIsoCode = "kon", ThreeLetterIsoBibliographicCode = "kon", };
@@ -639,7 +639,7 @@
 //                kg = kgCreate.CreatedLanguage;
 //            }
 
-//            var ki = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ki" });
+//            var ki = _queryProcessor.Execute(new LanguageByIsoCode("ki"));
 //            if (ki == null)
 //            {
 //                var kiCreate = new CreateLanguage { TwoLetterIsoCode = "ki", ThreeLetterIsoCode = "kik", ThreeLetterIsoBibliographicCode = "kik", };
@@ -647,7 +647,7 @@
 //                ki = kiCreate.CreatedLanguage;
 //            }
 
-//            var kj = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "kj" });
+//            var kj = _queryProcessor.Execute(new LanguageByIsoCode("kj"));
 //            if (kj == null)
 //            {
 //                var kjCreate = new CreateLanguage { TwoLetterIsoCode = "kj", ThreeLetterIsoCode = "kua", ThreeLetterIsoBibliographicCode = "kua", };
@@ -655,7 +655,7 @@
 //                kj = kjCreate.CreatedLanguage;
 //            }
 
-//            var kk = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "kk" });
+//            var kk = _queryProcessor.Execute(new LanguageByIsoCode("kk"));
 //            if (kk == null)
 //            {
 //                var kkCreate = new CreateLanguage { TwoLetterIsoCode = "kk", ThreeLetterIsoCode = "kaz", ThreeLetterIsoBibliographicCode = "kaz", };
@@ -663,7 +663,7 @@
 //                kk = kkCreate.CreatedLanguage;
 //            }
 
-//            var kl = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "kl" });
+//            var kl = _queryProcessor.Execute(new LanguageByIsoCode("kl"));
 //            if (kl == null)
 //            {
 //                var klCreate = new CreateLanguage { TwoLetterIsoCode = "kl", ThreeLetterIsoCode = "kal", ThreeLetterIsoBibliographicCode = "kal", };
@@ -671,7 +671,7 @@
 //                kl = klCreate.CreatedLanguage;
 //            }
 
-//            var km = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "km" });
+//            var km = _queryProcessor.Execute(new LanguageByIsoCode("km"));
 //            if (km == null)
 //            {
 //                var kmCreate = new CreateLanguage { TwoLetterIsoCode = "km", ThreeLetterIsoCode = "khm", ThreeLetterIsoBibliographicCode = "khm", };
@@ -679,7 +679,7 @@
 //                km = kmCreate.CreatedLanguage;
 //            }
 
-//            var kn = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "kn" });
+//            var kn = _queryProcessor.Execute(new LanguageByIsoCode("kn"));
 //            if (kn == null)
 //            {
 //                var knCreate = new CreateLanguage { TwoLetterIsoCode = "kn", ThreeLetterIsoCode = "kan", ThreeLetterIsoBibliographicCode = "kan", };
@@ -687,7 +687,7 @@
 //                kn = knCreate.CreatedLanguage;
 //            }
 
-//            var ko = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ko" });
+//            var ko = _queryProcessor.Execute(new LanguageByIsoCode("ko"));
 //            if (ko == null)
 //            {
 //                var koCreate = new CreateLanguage { TwoLetterIsoCode = "ko", ThreeLetterIsoCode = "kor", ThreeLetterIsoBibliographicCode = "kor", };
@@ -695,7 +695,7 @@
 //                ko = koCreate.CreatedLanguage;
 //            }
 
-//            var ks = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ks" });
+//            var ks = _queryProcessor.Execute(new LanguageByIsoCode("ks"));
 //            if (ks == null)
 //            {
 //                var ksCreate = new CreateLanguage { TwoLetterIsoCode = "ks", ThreeLetterIsoCode = "kas", ThreeLetterIsoBibliographicCode = "kas", };
@@ -703,7 +703,7 @@
 //                ks = ksCreate.CreatedLanguage;
 //            }
 
-//            var ku = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ku" });
+//            var ku = _queryProcessor.Execute(new LanguageByIsoCode("ku"));
 //            if (ku == null)
 //            {
 //                var kuCreate = new CreateLanguage { TwoLetterIsoCode = "ku", ThreeLetterIsoCode = "kur", ThreeLetterIsoBibliographicCode = "kur", };
@@ -711,7 +711,7 @@
 //                ku = kuCreate.CreatedLanguage;
 //            }
 
-//            var kv = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "kv" });
+//            var kv = _queryProcessor.Execute(new LanguageByIsoCode("kv"));
 //            if (kv == null)
 //            {
 //                var kvCreate = new CreateLanguage { TwoLetterIsoCode = "kv", ThreeLetterIsoCode = "kom", ThreeLetterIsoBibliographicCode = "kom", };
@@ -719,7 +719,7 @@
 //                kv = kvCreate.CreatedLanguage;
 //            }
 
-//            var kw = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "kw" });
+//            var kw = _queryProcessor.Execute(new LanguageByIsoCode("kw"));
 //            if (kw == null)
 //            {
 //                var kwCreate = new CreateLanguage { TwoLetterIsoCode = "kw", ThreeLetterIsoCode = "cor", ThreeLetterIsoBibliographicCode = "cor", };
@@ -727,7 +727,7 @@
 //                kw = kwCreate.CreatedLanguage;
 //            }
 
-//            var ky = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ky" });
+//            var ky = _queryProcessor.Execute(new LanguageByIsoCode("ky"));
 //            if (ky == null)
 //            {
 //                var kyCreate = new CreateLanguage { TwoLetterIsoCode = "ky", ThreeLetterIsoCode = "kir", ThreeLetterIsoBibliographicCode = "kir", };
@@ -735,7 +735,7 @@
 //                ky = kyCreate.CreatedLanguage;
 //            }
 
-//            var la = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "la" });
+//            var la = _queryProcessor.Execute(new LanguageByIsoCode("la"));
 //            if (la == null)
 //            {
 //                var laCreate = new CreateLanguage { TwoLetterIsoCode = "la", ThreeLetterIsoCode = "lat", ThreeLetterIsoBibliographicCode = "lat", };
@@ -743,7 +743,7 @@
 //                la = laCreate.CreatedLanguage;
 //            }
 
-//            var lb = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "lb" });
+//            var lb = _queryProcessor.Execute(new LanguageByIsoCode("lb"));
 //            if (lb == null)
 //            {
 //                var lbCreate = new CreateLanguage { TwoLetterIsoCode = "lb", ThreeLetterIsoCode = "ltz", ThreeLetterIsoBibliographicCode = "ltz", };
@@ -751,7 +751,7 @@
 //                lb = lbCreate.CreatedLanguage;
 //            }
 
-//            var lg = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "lg" });
+//            var lg = _queryProcessor.Execute(new LanguageByIsoCode("lg"));
 //            if (lg == null)
 //            {
 //                var lgCreate = new CreateLanguage { TwoLetterIsoCode = "lg", ThreeLetterIsoCode = "lug", ThreeLetterIsoBibliographicCode = "lug", };
@@ -759,7 +759,7 @@
 //                lg = lgCreate.CreatedLanguage;
 //            }
 
-//            var li = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "li" });
+//            var li = _queryProcessor.Execute(new LanguageByIsoCode("li"));
 //            if (li == null)
 //            {
 //                var liCreate = new CreateLanguage { TwoLetterIsoCode = "li", ThreeLetterIsoCode = "lim", ThreeLetterIsoBibliographicCode = "lim", };
@@ -767,7 +767,7 @@
 //                li = liCreate.CreatedLanguage;
 //            }
 
-//            var ln = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ln" });
+//            var ln = _queryProcessor.Execute(new LanguageByIsoCode("ln"));
 //            if (ln == null)
 //            {
 //                var lnCreate = new CreateLanguage { TwoLetterIsoCode = "ln", ThreeLetterIsoCode = "lin", ThreeLetterIsoBibliographicCode = "lin", };
@@ -775,7 +775,7 @@
 //                ln = lnCreate.CreatedLanguage;
 //            }
 
-//            var lo = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "lo" });
+//            var lo = _queryProcessor.Execute(new LanguageByIsoCode("lo"));
 //            if (lo == null)
 //            {
 //                var loCreate = new CreateLanguage { TwoLetterIsoCode = "lo", ThreeLetterIsoCode = "lao", ThreeLetterIsoBibliographicCode = "lao", };
@@ -783,7 +783,7 @@
 //                lo = loCreate.CreatedLanguage;
 //            }
 
-//            var lt = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "lt" });
+//            var lt = _queryProcessor.Execute(new LanguageByIsoCode("lt"));
 //            if (lt == null)
 //            {
 //                var ltCreate = new CreateLanguage { TwoLetterIsoCode = "lt", ThreeLetterIsoCode = "lit", ThreeLetterIsoBibliographicCode = "lit", };
@@ -791,7 +791,7 @@
 //                lt = ltCreate.CreatedLanguage;
 //            }
 
-//            var lv = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "lv" });
+//            var lv = _queryProcessor.Execute(new LanguageByIsoCode("lv"));
 //            if (lv == null)
 //            {
 //                var lvCreate = new CreateLanguage { TwoLetterIsoCode = "lv", ThreeLetterIsoCode = "lav", ThreeLetterIsoBibliographicCode = "lav", };
@@ -799,7 +799,7 @@
 //                lv = lvCreate.CreatedLanguage;
 //            }
 
-//            var mg = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "mg" });
+//            var mg = _queryProcessor.Execute(new LanguageByIsoCode("mg"));
 //            if (mg == null)
 //            {
 //                var mgCreate = new CreateLanguage { TwoLetterIsoCode = "mg", ThreeLetterIsoCode = "mlg", ThreeLetterIsoBibliographicCode = "mlg", };
@@ -807,7 +807,7 @@
 //                mg = mgCreate.CreatedLanguage;
 //            }
 
-//            var mh = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "mh" });
+//            var mh = _queryProcessor.Execute(new LanguageByIsoCode("mh"));
 //            if (mh == null)
 //            {
 //                var mhCreate = new CreateLanguage { TwoLetterIsoCode = "mh", ThreeLetterIsoCode = "mah", ThreeLetterIsoBibliographicCode = "mah", };
@@ -815,7 +815,7 @@
 //                mh = mhCreate.CreatedLanguage;
 //            }
 
-//            var mi = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "mi" });
+//            var mi = _queryProcessor.Execute(new LanguageByIsoCode("mi"));
 //            if (mi == null)
 //            {
 //                var miCreate = new CreateLanguage { TwoLetterIsoCode = "mi", ThreeLetterIsoCode = "mri", ThreeLetterIsoBibliographicCode = "mao", };
@@ -823,7 +823,7 @@
 //                mi = miCreate.CreatedLanguage;
 //            }
 
-//            var mk = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "mk" });
+//            var mk = _queryProcessor.Execute(new LanguageByIsoCode("mk"));
 //            if (mk == null)
 //            {
 //                var mkCreate = new CreateLanguage { TwoLetterIsoCode = "mk", ThreeLetterIsoCode = "mkd", ThreeLetterIsoBibliographicCode = "mac", };
@@ -831,7 +831,7 @@
 //                mk = mkCreate.CreatedLanguage;
 //            }
 
-//            var ml = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ml" });
+//            var ml = _queryProcessor.Execute(new LanguageByIsoCode("ml"));
 //            if (ml == null)
 //            {
 //                var mlCreate = new CreateLanguage { TwoLetterIsoCode = "ml", ThreeLetterIsoCode = "mal", ThreeLetterIsoBibliographicCode = "mal", };
@@ -839,7 +839,7 @@
 //                ml = mlCreate.CreatedLanguage;
 //            }
 
-//            var mn = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "mn" });
+//            var mn = _queryProcessor.Execute(new LanguageByIsoCode("mn"));
 //            if (mn == null)
 //            {
 //                var mnCreate = new CreateLanguage { TwoLetterIsoCode = "mn", ThreeLetterIsoCode = "mon", ThreeLetterIsoBibliographicCode = "mon", };
@@ -847,7 +847,7 @@
 //                mn = mnCreate.CreatedLanguage;
 //            }
 
-//            var mr = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "mr" });
+//            var mr = _queryProcessor.Execute(new LanguageByIsoCode("mr"));
 //            if (mr == null)
 //            {
 //                var mrCreate = new CreateLanguage { TwoLetterIsoCode = "mr", ThreeLetterIsoCode = "mar", ThreeLetterIsoBibliographicCode = "mar", };
@@ -855,7 +855,7 @@
 //                mr = mrCreate.CreatedLanguage;
 //            }
 
-//            var ms = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ms" });
+//            var ms = _queryProcessor.Execute(new LanguageByIsoCode("ms"));
 //            if (ms == null)
 //            {
 //                var msCreate = new CreateLanguage { TwoLetterIsoCode = "ms", ThreeLetterIsoCode = "msa", ThreeLetterIsoBibliographicCode = "may", };
@@ -863,7 +863,7 @@
 //                ms = msCreate.CreatedLanguage;
 //            }
 
-//            var mt = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "mt" });
+//            var mt = _queryProcessor.Execute(new LanguageByIsoCode("mt"));
 //            if (mt == null)
 //            {
 //                var mtCreate = new CreateLanguage { TwoLetterIsoCode = "mt", ThreeLetterIsoCode = "mlt", ThreeLetterIsoBibliographicCode = "mlt", };
@@ -871,7 +871,7 @@
 //                mt = mtCreate.CreatedLanguage;
 //            }
 
-//            var my = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "my" });
+//            var my = _queryProcessor.Execute(new LanguageByIsoCode("my"));
 //            if (my == null)
 //            {
 //                var myCreate = new CreateLanguage { TwoLetterIsoCode = "my", ThreeLetterIsoCode = "mya", ThreeLetterIsoBibliographicCode = "bur", };
@@ -879,7 +879,7 @@
 //                my = myCreate.CreatedLanguage;
 //            }
 
-//            var na = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "na" });
+//            var na = _queryProcessor.Execute(new LanguageByIsoCode("na"));
 //            if (na == null)
 //            {
 //                var naCreate = new CreateLanguage { TwoLetterIsoCode = "na", ThreeLetterIsoCode = "nau", ThreeLetterIsoBibliographicCode = "nau", };
@@ -887,7 +887,7 @@
 //                na = naCreate.CreatedLanguage;
 //            }
 
-//            var nb = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "nb" });
+//            var nb = _queryProcessor.Execute(new LanguageByIsoCode("nb"));
 //            if (nb == null)
 //            {
 //                var nbCreate = new CreateLanguage { TwoLetterIsoCode = "nb", ThreeLetterIsoCode = "nob", ThreeLetterIsoBibliographicCode = "nob", };
@@ -895,7 +895,7 @@
 //                nb = nbCreate.CreatedLanguage;
 //            }
 
-//            var ne = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ne" });
+//            var ne = _queryProcessor.Execute(new LanguageByIsoCode("ne"));
 //            if (ne == null)
 //            {
 //                var neCreate = new CreateLanguage { TwoLetterIsoCode = "ne", ThreeLetterIsoCode = "nep", ThreeLetterIsoBibliographicCode = "nep", };
@@ -903,7 +903,7 @@
 //                ne = neCreate.CreatedLanguage;
 //            }
 
-//            var ng = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ng" });
+//            var ng = _queryProcessor.Execute(new LanguageByIsoCode("ng"));
 //            if (ng == null)
 //            {
 //                var ngCreate = new CreateLanguage { TwoLetterIsoCode = "ng", ThreeLetterIsoCode = "ndo", ThreeLetterIsoBibliographicCode = "ndo", };
@@ -911,7 +911,7 @@
 //                ng = ngCreate.CreatedLanguage;
 //            }
 
-//            var nl = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "nl" });
+//            var nl = _queryProcessor.Execute(new LanguageByIsoCode("nl"));
 //            if (nl == null)
 //            {
 //                var nlCreate = new CreateLanguage { TwoLetterIsoCode = "nl", ThreeLetterIsoCode = "nld", ThreeLetterIsoBibliographicCode = "dut", };
@@ -919,7 +919,7 @@
 //                nl = nlCreate.CreatedLanguage;
 //            }
 
-//            var nn = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "nn" });
+//            var nn = _queryProcessor.Execute(new LanguageByIsoCode("nn"));
 //            if (nn == null)
 //            {
 //                var nnCreate = new CreateLanguage { TwoLetterIsoCode = "nn", ThreeLetterIsoCode = "nno", ThreeLetterIsoBibliographicCode = "nno", };
@@ -927,7 +927,7 @@
 //                nn = nnCreate.CreatedLanguage;
 //            }
 
-//            var no = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "no" });
+//            var no = _queryProcessor.Execute(new LanguageByIsoCode("no"));
 //            if (no == null)
 //            {
 //                var noCreate = new CreateLanguage { TwoLetterIsoCode = "no", ThreeLetterIsoCode = "nor", ThreeLetterIsoBibliographicCode = "nor", };
@@ -935,7 +935,7 @@
 //                no = noCreate.CreatedLanguage;
 //            }
 
-//            var nv = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "nv" });
+//            var nv = _queryProcessor.Execute(new LanguageByIsoCode("nv"));
 //            if (nv == null)
 //            {
 //                var nvCreate = new CreateLanguage { TwoLetterIsoCode = "nv", ThreeLetterIsoCode = "nav", ThreeLetterIsoBibliographicCode = "nav", };
@@ -943,7 +943,7 @@
 //                nv = nvCreate.CreatedLanguage;
 //            }
 
-//            var ny = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ny" });
+//            var ny = _queryProcessor.Execute(new LanguageByIsoCode("ny"));
 //            if (ny == null)
 //            {
 //                var nyCreate = new CreateLanguage { TwoLetterIsoCode = "ny", ThreeLetterIsoCode = "nya", ThreeLetterIsoBibliographicCode = "nya", };
@@ -951,7 +951,7 @@
 //                ny = nyCreate.CreatedLanguage;
 //            }
 
-//            var oc = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "oc" });
+//            var oc = _queryProcessor.Execute(new LanguageByIsoCode("oc"));
 //            if (oc == null)
 //            {
 //                var ocCreate = new CreateLanguage { TwoLetterIsoCode = "oc", ThreeLetterIsoCode = "oci", ThreeLetterIsoBibliographicCode = "oci", };
@@ -959,7 +959,7 @@
 //                oc = ocCreate.CreatedLanguage;
 //            }
 
-//            var om = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "om" });
+//            var om = _queryProcessor.Execute(new LanguageByIsoCode("om"));
 //            if (om == null)
 //            {
 //                var omCreate = new CreateLanguage { TwoLetterIsoCode = "om", ThreeLetterIsoCode = "orm", ThreeLetterIsoBibliographicCode = "orm", };
@@ -967,7 +967,7 @@
 //                om = omCreate.CreatedLanguage;
 //            }
 
-//            var or = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "or" });
+//            var or = _queryProcessor.Execute(new LanguageByIsoCode("or"));
 //            if (or == null)
 //            {
 //                var orCreate = new CreateLanguage { TwoLetterIsoCode = "or", ThreeLetterIsoCode = "ori", ThreeLetterIsoBibliographicCode = "ori", };
@@ -975,7 +975,7 @@
 //                or = orCreate.CreatedLanguage;
 //            }
 
-//            var os = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "os" });
+//            var os = _queryProcessor.Execute(new LanguageByIsoCode("os"));
 //            if (os == null)
 //            {
 //                var osCreate = new CreateLanguage { TwoLetterIsoCode = "os", ThreeLetterIsoCode = "oss", ThreeLetterIsoBibliographicCode = "oss", };
@@ -983,7 +983,7 @@
 //                os = osCreate.CreatedLanguage;
 //            }
 
-//            var pa = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "pa" });
+//            var pa = _queryProcessor.Execute(new LanguageByIsoCode("pa"));
 //            if (pa == null)
 //            {
 //                var paCreate = new CreateLanguage { TwoLetterIsoCode = "pa", ThreeLetterIsoCode = "pan", ThreeLetterIsoBibliographicCode = "pan", };
@@ -991,7 +991,7 @@
 //                pa = paCreate.CreatedLanguage;
 //            }
 
-//            var pi = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "pi" });
+//            var pi = _queryProcessor.Execute(new LanguageByIsoCode("pi"));
 //            if (pi == null)
 //            {
 //                var piCreate = new CreateLanguage { TwoLetterIsoCode = "pi", ThreeLetterIsoCode = "pli", ThreeLetterIsoBibliographicCode = "pli", };
@@ -999,7 +999,7 @@
 //                pi = piCreate.CreatedLanguage;
 //            }
 
-//            var pl = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "pl" });
+//            var pl = _queryProcessor.Execute(new LanguageByIsoCode("pl"));
 //            if (pl == null)
 //            {
 //                var plCreate = new CreateLanguage { TwoLetterIsoCode = "pl", ThreeLetterIsoCode = "pol", ThreeLetterIsoBibliographicCode = "pol", };
@@ -1007,7 +1007,7 @@
 //                pl = plCreate.CreatedLanguage;
 //            }
 
-//            var ps = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ps" });
+//            var ps = _queryProcessor.Execute(new LanguageByIsoCode("ps"));
 //            if (ps == null)
 //            {
 //                var psCreate = new CreateLanguage { TwoLetterIsoCode = "ps", ThreeLetterIsoCode = "pus", ThreeLetterIsoBibliographicCode = "pus", };
@@ -1015,7 +1015,7 @@
 //                ps = psCreate.CreatedLanguage;
 //            }
 
-//            var pt = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "pt" });
+//            var pt = _queryProcessor.Execute(new LanguageByIsoCode("pt"));
 //            if (pt == null)
 //            {
 //                var ptCreate = new CreateLanguage { TwoLetterIsoCode = "pt", ThreeLetterIsoCode = "por", ThreeLetterIsoBibliographicCode = "por", };
@@ -1023,7 +1023,7 @@
 //                pt = ptCreate.CreatedLanguage;
 //            }
 
-//            var qu = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "qu" });
+//            var qu = _queryProcessor.Execute(new LanguageByIsoCode("qu"));
 //            if (qu == null)
 //            {
 //                var quCreate = new CreateLanguage { TwoLetterIsoCode = "qu", ThreeLetterIsoCode = "que", ThreeLetterIsoBibliographicCode = "que", };
@@ -1031,7 +1031,7 @@
 //                qu = quCreate.CreatedLanguage;
 //            }
 
-//            var rm = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "rm" });
+//            var rm = _queryProcessor.Execute(new LanguageByIsoCode("rm"));
 //            if (rm == null)
 //            {
 //                var rmCreate = new CreateLanguage { TwoLetterIsoCode = "rm", ThreeLetterIsoCode = "roh", ThreeLetterIsoBibliographicCode = "roh", };
@@ -1039,7 +1039,7 @@
 //                rm = rmCreate.CreatedLanguage;
 //            }
 
-//            var rn = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "rn" });
+//            var rn = _queryProcessor.Execute(new LanguageByIsoCode("rn"));
 //            if (rn == null)
 //            {
 //                var rnCreate = new CreateLanguage { TwoLetterIsoCode = "rn", ThreeLetterIsoCode = "run", ThreeLetterIsoBibliographicCode = "run", };
@@ -1047,7 +1047,7 @@
 //                rn = rnCreate.CreatedLanguage;
 //            }
 
-//            var ro = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ro" });
+//            var ro = _queryProcessor.Execute(new LanguageByIsoCode("ro"));
 //            if (ro == null)
 //            {
 //                var roCreate = new CreateLanguage { TwoLetterIsoCode = "ro", ThreeLetterIsoCode = "ron", ThreeLetterIsoBibliographicCode = "rum", };
@@ -1055,7 +1055,7 @@
 //                ro = roCreate.CreatedLanguage;
 //            }
 
-//            var ru = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ru" });
+//            var ru = _queryProcessor.Execute(new LanguageByIsoCode("ru"));
 //            if (ru == null)
 //            {
 //                var ruCreate = new CreateLanguage { TwoLetterIsoCode = "ru", ThreeLetterIsoCode = "rus", ThreeLetterIsoBibliographicCode = "rus", };
@@ -1063,7 +1063,7 @@
 //                ru = ruCreate.CreatedLanguage;
 //            }
 
-//            var rw = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "rw" });
+//            var rw = _queryProcessor.Execute(new LanguageByIsoCode("rw"));
 //            if (rw == null)
 //            {
 //                var rwCreate = new CreateLanguage { TwoLetterIsoCode = "rw", ThreeLetterIsoCode = "kin", ThreeLetterIsoBibliographicCode = "kin", };
@@ -1071,7 +1071,7 @@
 //                rw = rwCreate.CreatedLanguage;
 //            }
 
-//            var sa = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "sa" });
+//            var sa = _queryProcessor.Execute(new LanguageByIsoCode("sa"));
 //            if (sa == null)
 //            {
 //                var saCreate = new CreateLanguage { TwoLetterIsoCode = "sa", ThreeLetterIsoCode = "san", ThreeLetterIsoBibliographicCode = "san", };
@@ -1079,7 +1079,7 @@
 //                sa = saCreate.CreatedLanguage;
 //            }
 
-//            var sc = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "sc" });
+//            var sc = _queryProcessor.Execute(new LanguageByIsoCode("sc"));
 //            if (sc == null)
 //            {
 //                var scCreate = new CreateLanguage { TwoLetterIsoCode = "sc", ThreeLetterIsoCode = "srd", ThreeLetterIsoBibliographicCode = "srd", };
@@ -1087,7 +1087,7 @@
 //                sc = scCreate.CreatedLanguage;
 //            }
 
-//            var sd = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "sd" });
+//            var sd = _queryProcessor.Execute(new LanguageByIsoCode("sd"));
 //            if (sd == null)
 //            {
 //                var sdCreate = new CreateLanguage { TwoLetterIsoCode = "sd", ThreeLetterIsoCode = "snd", ThreeLetterIsoBibliographicCode = "snd", };
@@ -1095,7 +1095,7 @@
 //                sd = sdCreate.CreatedLanguage;
 //            }
 
-//            var se = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "se" });
+//            var se = _queryProcessor.Execute(new LanguageByIsoCode("se"));
 //            if (se == null)
 //            {
 //                var seCreate = new CreateLanguage { TwoLetterIsoCode = "se", ThreeLetterIsoCode = "sme", ThreeLetterIsoBibliographicCode = "sme", };
@@ -1103,7 +1103,7 @@
 //                se = seCreate.CreatedLanguage;
 //            }
 
-//            var sg = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "sg" });
+//            var sg = _queryProcessor.Execute(new LanguageByIsoCode("sg"));
 //            if (sg == null)
 //            {
 //                var sgCreate = new CreateLanguage { TwoLetterIsoCode = "sg", ThreeLetterIsoCode = "sag", ThreeLetterIsoBibliographicCode = "sag", };
@@ -1111,7 +1111,7 @@
 //                sg = sgCreate.CreatedLanguage;
 //            }
 
-//            var sh = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "sh" });
+//            var sh = _queryProcessor.Execute(new LanguageByIsoCode("sh"));
 //            if (sh == null)
 //            {
 //                var shCreate = new CreateLanguage { TwoLetterIsoCode = "sh", ThreeLetterIsoCode = "hbs", ThreeLetterIsoBibliographicCode = "hbs", };
@@ -1119,7 +1119,7 @@
 //                sh = shCreate.CreatedLanguage;
 //            }
 
-//            var si = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "si" });
+//            var si = _queryProcessor.Execute(new LanguageByIsoCode("si"));
 //            if (si == null)
 //            {
 //                var siCreate = new CreateLanguage { TwoLetterIsoCode = "si", ThreeLetterIsoCode = "sin", ThreeLetterIsoBibliographicCode = "sin", };
@@ -1127,7 +1127,7 @@
 //                si = siCreate.CreatedLanguage;
 //            }
 
-//            var sk = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "sk" });
+//            var sk = _queryProcessor.Execute(new LanguageByIsoCode("sk"));
 //            if (sk == null)
 //            {
 //                var skCreate = new CreateLanguage { TwoLetterIsoCode = "sk", ThreeLetterIsoCode = "slk", ThreeLetterIsoBibliographicCode = "slo", };
@@ -1135,7 +1135,7 @@
 //                sk = skCreate.CreatedLanguage;
 //            }
 
-//            var sl = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "sl" });
+//            var sl = _queryProcessor.Execute(new LanguageByIsoCode("sl"));
 //            if (sl == null)
 //            {
 //                var slCreate = new CreateLanguage { TwoLetterIsoCode = "sl", ThreeLetterIsoCode = "slv", ThreeLetterIsoBibliographicCode = "slv", };
@@ -1143,7 +1143,7 @@
 //                sl = slCreate.CreatedLanguage;
 //            }
 
-//            var sm = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "sm" });
+//            var sm = _queryProcessor.Execute(new LanguageByIsoCode("sm"));
 //            if (sm == null)
 //            {
 //                var smCreate = new CreateLanguage { TwoLetterIsoCode = "sm", ThreeLetterIsoCode = "smo", ThreeLetterIsoBibliographicCode = "smo", };
@@ -1151,7 +1151,7 @@
 //                sm = smCreate.CreatedLanguage;
 //            }
 
-//            var sn = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "sn" });
+//            var sn = _queryProcessor.Execute(new LanguageByIsoCode("sn"));
 //            if (sn == null)
 //            {
 //                var snCreate = new CreateLanguage { TwoLetterIsoCode = "sn", ThreeLetterIsoCode = "sna", ThreeLetterIsoBibliographicCode = "sna", };
@@ -1159,7 +1159,7 @@
 //                sn = snCreate.CreatedLanguage;
 //            }
 
-//            var so = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "so" });
+//            var so = _queryProcessor.Execute(new LanguageByIsoCode("so"));
 //            if (so == null)
 //            {
 //                var soCreate = new CreateLanguage { TwoLetterIsoCode = "so", ThreeLetterIsoCode = "som", ThreeLetterIsoBibliographicCode = "som", };
@@ -1167,7 +1167,7 @@
 //                so = soCreate.CreatedLanguage;
 //            }
 
-//            var sq = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "sq" });
+//            var sq = _queryProcessor.Execute(new LanguageByIsoCode("sq"));
 //            if (sq == null)
 //            {
 //                var sqCreate = new CreateLanguage { TwoLetterIsoCode = "sq", ThreeLetterIsoCode = "sqi", ThreeLetterIsoBibliographicCode = "alb", };
@@ -1175,7 +1175,7 @@
 //                sq = sqCreate.CreatedLanguage;
 //            }
 
-//            var sr = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "sr" });
+//            var sr = _queryProcessor.Execute(new LanguageByIsoCode("sr"));
 //            if (sr == null)
 //            {
 //                var srCreate = new CreateLanguage { TwoLetterIsoCode = "sr", ThreeLetterIsoCode = "srp", ThreeLetterIsoBibliographicCode = "srp", };
@@ -1183,7 +1183,7 @@
 //                sr = srCreate.CreatedLanguage;
 //            }
 
-//            var ss = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ss" });
+//            var ss = _queryProcessor.Execute(new LanguageByIsoCode("ss"));
 //            if (ss == null)
 //            {
 //                var ssCreate = new CreateLanguage { TwoLetterIsoCode = "ss", ThreeLetterIsoCode = "ssw", ThreeLetterIsoBibliographicCode = "ssw", };
@@ -1191,7 +1191,7 @@
 //                ss = ssCreate.CreatedLanguage;
 //            }
 
-//            var st = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "st" });
+//            var st = _queryProcessor.Execute(new LanguageByIsoCode("st"));
 //            if (st == null)
 //            {
 //                var stCreate = new CreateLanguage { TwoLetterIsoCode = "st", ThreeLetterIsoCode = "sot", ThreeLetterIsoBibliographicCode = "sot", };
@@ -1199,7 +1199,7 @@
 //                st = stCreate.CreatedLanguage;
 //            }
 
-//            var su = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "su" });
+//            var su = _queryProcessor.Execute(new LanguageByIsoCode("su"));
 //            if (su == null)
 //            {
 //                var suCreate = new CreateLanguage { TwoLetterIsoCode = "su", ThreeLetterIsoCode = "sun", ThreeLetterIsoBibliographicCode = "sun", };
@@ -1207,7 +1207,7 @@
 //                su = suCreate.CreatedLanguage;
 //            }
 
-//            var sv = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "sv" });
+//            var sv = _queryProcessor.Execute(new LanguageByIsoCode("sv"));
 //            if (sv == null)
 //            {
 //                var svCreate = new CreateLanguage { TwoLetterIsoCode = "sv", ThreeLetterIsoCode = "swe", ThreeLetterIsoBibliographicCode = "swe", };
@@ -1215,7 +1215,7 @@
 //                sv = svCreate.CreatedLanguage;
 //            }
 
-//            var sw = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "sw" });
+//            var sw = _queryProcessor.Execute(new LanguageByIsoCode("sw"));
 //            if (sw == null)
 //            {
 //                var swCreate = new CreateLanguage { TwoLetterIsoCode = "sw", ThreeLetterIsoCode = "swa", ThreeLetterIsoBibliographicCode = "swa", };
@@ -1223,7 +1223,7 @@
 //                sw = swCreate.CreatedLanguage;
 //            }
 
-//            var ta = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ta" });
+//            var ta = _queryProcessor.Execute(new LanguageByIsoCode("ta"));
 //            if (ta == null)
 //            {
 //                var taCreate = new CreateLanguage { TwoLetterIsoCode = "ta", ThreeLetterIsoCode = "tam", ThreeLetterIsoBibliographicCode = "tam", };
@@ -1231,7 +1231,7 @@
 //                ta = taCreate.CreatedLanguage;
 //            }
 
-//            var te = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "te" });
+//            var te = _queryProcessor.Execute(new LanguageByIsoCode("te"));
 //            if (te == null)
 //            {
 //                var teCreate = new CreateLanguage { TwoLetterIsoCode = "te", ThreeLetterIsoCode = "tel", ThreeLetterIsoBibliographicCode = "tel", };
@@ -1239,7 +1239,7 @@
 //                te = teCreate.CreatedLanguage;
 //            }
 
-//            var tg = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "tg" });
+//            var tg = _queryProcessor.Execute(new LanguageByIsoCode("tg"));
 //            if (tg == null)
 //            {
 //                var tgCreate = new CreateLanguage { TwoLetterIsoCode = "tg", ThreeLetterIsoCode = "tgk", ThreeLetterIsoBibliographicCode = "tgk", };
@@ -1247,7 +1247,7 @@
 //                tg = tgCreate.CreatedLanguage;
 //            }
 
-//            var th = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "th" });
+//            var th = _queryProcessor.Execute(new LanguageByIsoCode("th"));
 //            if (th == null)
 //            {
 //                var thCreate = new CreateLanguage { TwoLetterIsoCode = "th", ThreeLetterIsoCode = "tha", ThreeLetterIsoBibliographicCode = "tha", };
@@ -1255,7 +1255,7 @@
 //                th = thCreate.CreatedLanguage;
 //            }
 
-//            var ti = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ti" });
+//            var ti = _queryProcessor.Execute(new LanguageByIsoCode("ti"));
 //            if (ti == null)
 //            {
 //                var tiCreate = new CreateLanguage { TwoLetterIsoCode = "ti", ThreeLetterIsoCode = "tir", ThreeLetterIsoBibliographicCode = "tir", };
@@ -1263,7 +1263,7 @@
 //                ti = tiCreate.CreatedLanguage;
 //            }
 
-//            var tk = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "tk" });
+//            var tk = _queryProcessor.Execute(new LanguageByIsoCode("tk"));
 //            if (tk == null)
 //            {
 //                var tkCreate = new CreateLanguage { TwoLetterIsoCode = "tk", ThreeLetterIsoCode = "tuk", ThreeLetterIsoBibliographicCode = "tuk", };
@@ -1271,7 +1271,7 @@
 //                tk = tkCreate.CreatedLanguage;
 //            }
 
-//            var tl = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "tl" });
+//            var tl = _queryProcessor.Execute(new LanguageByIsoCode("tl"));
 //            if (tl == null)
 //            {
 //                var tlCreate = new CreateLanguage { TwoLetterIsoCode = "tl", ThreeLetterIsoCode = "tgl", ThreeLetterIsoBibliographicCode = "tgl", };
@@ -1279,7 +1279,7 @@
 //                tl = tlCreate.CreatedLanguage;
 //            }
 
-//            var tn = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "tn" });
+//            var tn = _queryProcessor.Execute(new LanguageByIsoCode("tn"));
 //            if (tn == null)
 //            {
 //                var tnCreate = new CreateLanguage { TwoLetterIsoCode = "tn", ThreeLetterIsoCode = "tsn", ThreeLetterIsoBibliographicCode = "tsn", };
@@ -1287,7 +1287,7 @@
 //                tn = tnCreate.CreatedLanguage;
 //            }
 
-//            var to = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "to" });
+//            var to = _queryProcessor.Execute(new LanguageByIsoCode("to"));
 //            if (to == null)
 //            {
 //                var toCreate = new CreateLanguage { TwoLetterIsoCode = "to", ThreeLetterIsoCode = "ton", ThreeLetterIsoBibliographicCode = "ton", };
@@ -1295,7 +1295,7 @@
 //                to = toCreate.CreatedLanguage;
 //            }
 
-//            var tr = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "tr" });
+//            var tr = _queryProcessor.Execute(new LanguageByIsoCode("tr"));
 //            if (tr == null)
 //            {
 //                var trCreate = new CreateLanguage { TwoLetterIsoCode = "tr", ThreeLetterIsoCode = "tur", ThreeLetterIsoBibliographicCode = "tur", };
@@ -1303,7 +1303,7 @@
 //                tr = trCreate.CreatedLanguage;
 //            }
 
-//            var ts = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ts" });
+//            var ts = _queryProcessor.Execute(new LanguageByIsoCode("ts"));
 //            if (ts == null)
 //            {
 //                var tsCreate = new CreateLanguage { TwoLetterIsoCode = "ts", ThreeLetterIsoCode = "tso", ThreeLetterIsoBibliographicCode = "tso", };
@@ -1311,7 +1311,7 @@
 //                ts = tsCreate.CreatedLanguage;
 //            }
 
-//            var tt = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "tt" });
+//            var tt = _queryProcessor.Execute(new LanguageByIsoCode("tt"));
 //            if (tt == null)
 //            {
 //                var ttCreate = new CreateLanguage { TwoLetterIsoCode = "tt", ThreeLetterIsoCode = "tat", ThreeLetterIsoBibliographicCode = "tat", };
@@ -1319,7 +1319,7 @@
 //                tt = ttCreate.CreatedLanguage;
 //            }
 
-//            var tw = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "tw" });
+//            var tw = _queryProcessor.Execute(new LanguageByIsoCode("tw"));
 //            if (tw == null)
 //            {
 //                var twCreate = new CreateLanguage { TwoLetterIsoCode = "tw", ThreeLetterIsoCode = "twi", ThreeLetterIsoBibliographicCode = "twi", };
@@ -1327,7 +1327,7 @@
 //                tw = twCreate.CreatedLanguage;
 //            }
 
-//            var ty = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ty" });
+//            var ty = _queryProcessor.Execute(new LanguageByIsoCode("ty"));
 //            if (ty == null)
 //            {
 //                var tyCreate = new CreateLanguage { TwoLetterIsoCode = "ty", ThreeLetterIsoCode = "tah", ThreeLetterIsoBibliographicCode = "tah", };
@@ -1335,7 +1335,7 @@
 //                ty = tyCreate.CreatedLanguage;
 //            }
 
-//            var ug = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ug" });
+//            var ug = _queryProcessor.Execute(new LanguageByIsoCode("ug"));
 //            if (ug == null)
 //            {
 //                var ugCreate = new CreateLanguage { TwoLetterIsoCode = "ug", ThreeLetterIsoCode = "uig", ThreeLetterIsoBibliographicCode = "uig", };
@@ -1343,7 +1343,7 @@
 //                ug = ugCreate.CreatedLanguage;
 //            }
 
-//            var uk = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "uk" });
+//            var uk = _queryProcessor.Execute(new LanguageByIsoCode("uk"));
 //            if (uk == null)
 //            {
 //                var ukCreate = new CreateLanguage { TwoLetterIsoCode = "uk", ThreeLetterIsoCode = "ukr", ThreeLetterIsoBibliographicCode = "ukr", };
@@ -1351,7 +1351,7 @@
 //                uk = ukCreate.CreatedLanguage;
 //            }
 
-//            var ur = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ur" });
+//            var ur = _queryProcessor.Execute(new LanguageByIsoCode("ur"));
 //            if (ur == null)
 //            {
 //                var urCreate = new CreateLanguage { TwoLetterIsoCode = "ur", ThreeLetterIsoCode = "urd", ThreeLetterIsoBibliographicCode = "urd", };
@@ -1359,7 +1359,7 @@
 //                ur = urCreate.CreatedLanguage;
 //            }
 
-//            var uz = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "uz" });
+//            var uz = _queryProcessor.Execute(new LanguageByIsoCode("uz"));
 //            if (uz == null)
 //            {
 //                var uzCreate = new CreateLanguage { TwoLetterIsoCode = "uz", ThreeLetterIsoCode = "uzb", ThreeLetterIsoBibliographicCode = "uzb", };
@@ -1367,7 +1367,7 @@
 //                uz = uzCreate.CreatedLanguage;
 //            }
 
-//            var ve = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "ve" });
+//            var ve = _queryProcessor.Execute(new LanguageByIsoCode("ve"));
 //            if (ve == null)
 //            {
 //                var veCreate = new CreateLanguage { TwoLetterIsoCode = "ve", ThreeLetterIsoCode = "ven", ThreeLetterIsoBibliographicCode = "ven", };
@@ -1375,7 +1375,7 @@
 //                ve = veCreate.CreatedLanguage;
 //            }
 
-//            var vi = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "vi" });
+//            var vi = _queryProcessor.Execute(new LanguageByIsoCode("vi"));
 //            if (vi == null)
 //            {
 //                var viCreate = new CreateLanguage { TwoLetterIsoCode = "vi", ThreeLetterIsoCode = "vie", ThreeLetterIsoBibliographicCode = "vie", };
@@ -1383,7 +1383,7 @@
 //                vi = viCreate.CreatedLanguage;
 //            }
 
-//            var vo = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "vo" });
+//            var vo = _queryProcessor.Execute(new LanguageByIsoCode("vo"));
 //            if (vo == null)
 //            {
 //                var voCreate = new CreateLanguage { TwoLetterIsoCode = "vo", ThreeLetterIsoCode = "vol", ThreeLetterIsoBibliographicCode = "vol", };
@@ -1391,7 +1391,7 @@
 //                vo = voCreate.CreatedLanguage;
 //            }
 
-//            var wa = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "wa" });
+//            var wa = _queryProcessor.Execute(new LanguageByIsoCode("wa"));
 //            if (wa == null)
 //            {
 //                var waCreate = new CreateLanguage { TwoLetterIsoCode = "wa", ThreeLetterIsoCode = "wln", ThreeLetterIsoBibliographicCode = "wln", };
@@ -1399,7 +1399,7 @@
 //                wa = waCreate.CreatedLanguage;
 //            }
 
-//            var wo = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "wo" });
+//            var wo = _queryProcessor.Execute(new LanguageByIsoCode("wo"));
 //            if (wo == null)
 //            {
 //                var woCreate = new CreateLanguage { TwoLetterIsoCode = "wo", ThreeLetterIsoCode = "wol", ThreeLetterIsoBibliographicCode = "wol", };
@@ -1407,7 +1407,7 @@
 //                wo = woCreate.CreatedLanguage;
 //            }
 
-//            var xh = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "xh" });
+//            var xh = _queryProcessor.Execute(new LanguageByIsoCode("xh"));
 //            if (xh == null)
 //            {
 //                var xhCreate = new CreateLanguage { TwoLetterIsoCode = "xh", ThreeLetterIsoCode = "xho", ThreeLetterIsoBibliographicCode = "xho", };
@@ -1415,7 +1415,7 @@
 //                xh = xhCreate.CreatedLanguage;
 //            }
 
-//            var yi = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "yi" });
+//            var yi = _queryProcessor.Execute(new LanguageByIsoCode("yi"));
 //            if (yi == null)
 //            {
 //                var yiCreate = new CreateLanguage { TwoLetterIsoCode = "yi", ThreeLetterIsoCode = "yid", ThreeLetterIsoBibliographicCode = "yid", };
@@ -1423,7 +1423,7 @@
 //                yi = yiCreate.CreatedLanguage;
 //            }
 
-//            var yo = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "yo" });
+//            var yo = _queryProcessor.Execute(new LanguageByIsoCode("yo"));
 //            if (yo == null)
 //            {
 //                var yoCreate = new CreateLanguage { TwoLetterIsoCode = "yo", ThreeLetterIsoCode = "yor", ThreeLetterIsoBibliographicCode = "yor", };
@@ -1431,7 +1431,7 @@
 //                yo = yoCreate.CreatedLanguage;
 //            }
 
-//            var za = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "za" });
+//            var za = _queryProcessor.Execute(new LanguageByIsoCode("za"));
 //            if (za == null)
 //            {
 //                var zaCreate = new CreateLanguage { TwoLetterIsoCode = "za", ThreeLetterIsoCode = "zha", ThreeLetterIsoBibliographicCode = "zha", };
@@ -1439,7 +1439,7 @@
 //                za = zaCreate.CreatedLanguage;
 //            }
 
-//            var zh = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "zh" });
+//            var zh = _queryProcessor.Execute(new LanguageByIsoCode("zh"));
 //            if (zh == null)
 //            {
 //                var zhCreate = new CreateLanguage { TwoLetterIsoCode = "zh", ThreeLetterIsoCode = "zho", ThreeLetterIsoBibliographicCode = "chi", };
@@ -1447,7 +1447,7 @@
 //                zh = zhCreate.CreatedLanguage;
 //            }
 
-//            var zu = _queryProcessor.Execute(new LanguageByIsoCode { IsoCode = "zu" });
+//            var zu = _queryProcessor.Execute(new LanguageByIsoCode("zu"));
 //            if (zu == null)
 //            {
 //                var zuCreate = new CreateLanguage { TwoLetterIsoCode = "zu", ThreeLetterIsoCode = "zul", ThreeLetterIsoBibliographicCode = "zul", };
