@@ -130,7 +130,6 @@ namespace T4MVC {
     }
 }
 
-   
 namespace System.Web.Mvc {
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public static class T4Extensions {
@@ -336,13 +335,12 @@ namespace System.Web.Mvc {
             routeValues.Add(name, value);
             return result;
         }
-        
+
         public static void InitMVCT4Result(this IT4MVCActionResult result, string area, string controller, string action) {
             result.Controller = controller;
             result.Action = action;
             result.RouteValueDictionary = new RouteValueDictionary();
-            result.RouteValueDictionary.Add("Area", area ?? ""); 
-            result.RouteValueDictionary.Add("Controller", controller);
+            result.RouteValueDictionary.Add("Area", area ?? "");            result.RouteValueDictionary.Add("Controller", controller);
             result.RouteValueDictionary.Add("Action", action);
         }
 
@@ -356,7 +354,7 @@ namespace System.Web.Mvc {
         public static string TimestampString(string virtualPath) {
             if (!HostingEnvironment.IsHosted) return string.Empty;
             string filePath = HostingEnvironment.MapPath(virtualPath);
-            return Convert.ToString((System.IO.File.GetLastWriteTimeUtc(filePath).Ticks-CenturyBegin.Ticks)/1000000000,16);            
+            return Convert.ToString((System.IO.File.GetLastWriteTimeUtc(filePath).Ticks-CenturyBegin.Ticks)/1000000000,16);
         }
     }
 }
@@ -372,24 +370,20 @@ namespace T4MVC {
 }
 
 
-  
 
-   
-[GeneratedCode("T4MVC", "2.0")]   
-public interface IT4MVCActionResult {   
-    string Action { get; set; }   
-    string Controller { get; set; }   
-    RouteValueDictionary RouteValueDictionary { get; set; }   
-}   
-  
+[GeneratedCode("T4MVC", "2.0")]
+public interface IT4MVCActionResult {
+    string Action { get; set; }
+    string Controller { get; set; }
+    RouteValueDictionary RouteValueDictionary { get; set; }
+}
 
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 public class T4MVC_ActionResult : System.Web.Mvc.ActionResult, IT4MVCActionResult {
     public T4MVC_ActionResult(string area, string controller, string action): base()  {
         this.InitMVCT4Result(area, controller, action);
     }
-     
-    public override void ExecuteResult(System.Web.Mvc.ControllerContext context) { }
+        public override void ExecuteResult(System.Web.Mvc.ControllerContext context) { }
     
     public string Controller { get; set; }
     public string Action { get; set; }
@@ -460,8 +454,7 @@ namespace Links {
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             public static readonly string releases_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/releases.min.js") ? Url("releases.min.js") : Url("releases.js");
-                          
-        }
+                    }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class identity {
@@ -469,12 +462,9 @@ namespace Links {
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             public static readonly string person_form_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/person-form.min.js") ? Url("person-form.min.js") : Url("person-form.js");
-                          
-            public static readonly string roles_form_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/roles-form.min.js") ? Url("roles-form.min.js") : Url("roles-form.js");
-                          
-            public static readonly string sign_up_send_email_form_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/sign-up-send-email-form.min.js") ? Url("sign-up-send-email-form.min.js") : Url("sign-up-send-email-form.js");
-                          
-        }
+                    public static readonly string roles_form_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/roles-form.min.js") ? Url("roles-form.min.js") : Url("roles-form.js");
+                    public static readonly string sign_up_send_email_form_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/sign-up-send-email-form.min.js") ? Url("sign-up-send-email-form.min.js") : Url("sign-up-send-email-form.js");
+                    }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class institutional_agreements {
@@ -482,58 +472,52 @@ namespace Links {
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             public static readonly string configuration_form_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/configuration-form.min.js") ? Url("configuration-form.min.js") : Url("configuration-form.js");
-                          
-            public static readonly string public_search_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/public-search.min.js") ? Url("public-search.min.js") : Url("public-search.js");
-                          
-        }
+                    public static readonly string public_search_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/public-search.min.js") ? Url("public-search.min.js") : Url("public-search.js");
+                    }
     
         public static readonly string jquery_1_7_2_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.7.2-vsdoc.min.js") ? Url("jquery-1.7.2-vsdoc.min.js") : Url("jquery-1.7.2-vsdoc.js");
-                      
-        public static readonly string jquery_1_7_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.7.2.min.js") ? Url("jquery-1.7.2.min.js") : Url("jquery-1.7.2.js");
-                      
-        public static readonly string jquery_1_7_2_min_js = Url("jquery-1.7.2.min.js");
+                public static readonly string jquery_1_7_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.7.2.min.js") ? Url("jquery-1.7.2.min.js") : Url("jquery-1.7.2.js");
+                public static readonly string jquery_1_7_2_min_js = Url("jquery-1.7.2.min.js");
         public static readonly string jquery_ui_1_8_17_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-ui-1.8.17.min.js") ? Url("jquery-ui-1.8.17.min.js") : Url("jquery-ui-1.8.17.js");
-                      
-        public static readonly string jquery_ui_1_8_17_min_js = Url("jquery-ui-1.8.17.min.js");
+                public static readonly string jquery_ui_1_8_17_min_js = Url("jquery-ui-1.8.17.min.js");
         public static readonly string jquery_bubblepopup_v2_3_1_min_js = Url("jquery.bubblepopup.v2.3.1.min.js");
         public static readonly string jquery_pjax_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.pjax.min.js") ? Url("jquery.pjax.min.js") : Url("jquery.pjax.js");
-                      
-        public static readonly string jquery_pwdMeter_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.pwdMeter.min.js") ? Url("jquery.pwdMeter.min.js") : Url("jquery.pwdMeter.js");
-                      
-        public static readonly string jquery_pwdMeter_min_js = Url("jquery.pwdMeter.min.js");
+                public static readonly string jquery_pwdMeter_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.pwdMeter.min.js") ? Url("jquery.pwdMeter.min.js") : Url("jquery.pwdMeter.js");
+                public static readonly string jquery_pwdMeter_min_js = Url("jquery.pwdMeter.min.js");
         public static readonly string jquery_simplemodal_1_4_1_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.simplemodal-1.4.1.min.js") ? Url("jquery.simplemodal-1.4.1.min.js") : Url("jquery.simplemodal-1.4.1.js");
-                      
-        public static readonly string jquery_simplemodal_1_4_1_min_js = Url("jquery.simplemodal.1.4.1.min.js");
+                public static readonly string jquery_simplemodal_1_4_1_min_js = Url("jquery.simplemodal.1.4.1.min.js");
         public static readonly string jquery_tinywatermark_3_1_0_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.tinywatermark-3.1.0.min.js") ? Url("jquery.tinywatermark-3.1.0.min.js") : Url("jquery.tinywatermark-3.1.0.js");
-                      
-        public static readonly string jquery_tinywatermark_3_1_0_min_js = Url("jquery.tinywatermark-3.1.0.min.js");
+                public static readonly string jquery_tinywatermark_3_1_0_min_js = Url("jquery.tinywatermark-3.1.0.min.js");
         public static readonly string jquery_unobtrusive_ajax_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.unobtrusive-ajax.min.js") ? Url("jquery.unobtrusive-ajax.min.js") : Url("jquery.unobtrusive-ajax.js");
-                      
-        public static readonly string jquery_unobtrusive_ajax_min_js = Url("jquery.unobtrusive-ajax.min.js");
+                public static readonly string jquery_unobtrusive_ajax_min_js = Url("jquery.unobtrusive-ajax.min.js");
         public static readonly string jquery_unobtrusive_app_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.unobtrusive-app.min.js") ? Url("jquery.unobtrusive-app.min.js") : Url("jquery.unobtrusive-app.js");
-                      
-        public static readonly string jquery_validate_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate-vsdoc.min.js") ? Url("jquery.validate-vsdoc.min.js") : Url("jquery.validate-vsdoc.js");
-                      
-        public static readonly string jquery_validate_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.min.js") ? Url("jquery.validate.min.js") : Url("jquery.validate.js");
-                      
-        public static readonly string jquery_validate_min_js = Url("jquery.validate.min.js");
+                public static readonly string jquery_validate_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate-vsdoc.min.js") ? Url("jquery.validate-vsdoc.min.js") : Url("jquery.validate-vsdoc.js");
+                public static readonly string jquery_validate_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.min.js") ? Url("jquery.validate.min.js") : Url("jquery.validate.js");
+                public static readonly string jquery_validate_min_js = Url("jquery.validate.min.js");
         public static readonly string jquery_validate_unobtrusive_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.unobtrusive.min.js") ? Url("jquery.validate.unobtrusive.min.js") : Url("jquery.validate.unobtrusive.js");
-                      
-        public static readonly string jquery_validate_unobtrusive_min_js = Url("jquery.validate.unobtrusive.min.js");
-        public static readonly string MicrosoftAjax_debug_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/MicrosoftAjax.debug.min.js") ? Url("MicrosoftAjax.debug.min.js") : Url("MicrosoftAjax.debug.js");
-                      
-        public static readonly string MicrosoftAjax_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/MicrosoftAjax.min.js") ? Url("MicrosoftAjax.min.js") : Url("MicrosoftAjax.js");
-                      
-        public static readonly string MicrosoftMvcAjax_debug_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/MicrosoftMvcAjax.debug.min.js") ? Url("MicrosoftMvcAjax.debug.min.js") : Url("MicrosoftMvcAjax.debug.js");
-                      
-        public static readonly string MicrosoftMvcAjax_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/MicrosoftMvcAjax.min.js") ? Url("MicrosoftMvcAjax.min.js") : Url("MicrosoftMvcAjax.js");
-                      
-        public static readonly string MicrosoftMvcValidation_debug_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/MicrosoftMvcValidation.debug.min.js") ? Url("MicrosoftMvcValidation.debug.min.js") : Url("MicrosoftMvcValidation.debug.js");
-                      
-        public static readonly string MicrosoftMvcValidation_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/MicrosoftMvcValidation.min.js") ? Url("MicrosoftMvcValidation.min.js") : Url("MicrosoftMvcValidation.js");
-                      
-        public static readonly string modernizr_2_5_3_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.5.3.min.js") ? Url("modernizr-2.5.3.min.js") : Url("modernizr-2.5.3.js");
-                      
+                public static readonly string jquery_validate_unobtrusive_min_js = Url("jquery.validate.unobtrusive.min.js");
+        public static readonly string knockout_debug_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout.debug.min.js") ? Url("knockout.debug.min.js") : Url("knockout.debug.js");
+                public static readonly string knockout_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout.min.js") ? Url("knockout.min.js") : Url("knockout.js");
+                public static readonly string knockout_mapping_latest_debug_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout.mapping-latest.debug.min.js") ? Url("knockout.mapping-latest.debug.min.js") : Url("knockout.mapping-latest.debug.js");
+                public static readonly string knockout_mapping_latest_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/knockout.mapping-latest.min.js") ? Url("knockout.mapping-latest.min.js") : Url("knockout.mapping-latest.js");
+                public static readonly string MicrosoftAjax_debug_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/MicrosoftAjax.debug.min.js") ? Url("MicrosoftAjax.debug.min.js") : Url("MicrosoftAjax.debug.js");
+                public static readonly string MicrosoftAjax_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/MicrosoftAjax.min.js") ? Url("MicrosoftAjax.min.js") : Url("MicrosoftAjax.js");
+                public static readonly string MicrosoftMvcAjax_debug_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/MicrosoftMvcAjax.debug.min.js") ? Url("MicrosoftMvcAjax.debug.min.js") : Url("MicrosoftMvcAjax.debug.js");
+                public static readonly string MicrosoftMvcAjax_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/MicrosoftMvcAjax.min.js") ? Url("MicrosoftMvcAjax.min.js") : Url("MicrosoftMvcAjax.js");
+                public static readonly string MicrosoftMvcValidation_debug_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/MicrosoftMvcValidation.debug.min.js") ? Url("MicrosoftMvcValidation.debug.min.js") : Url("MicrosoftMvcValidation.debug.js");
+                public static readonly string MicrosoftMvcValidation_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/MicrosoftMvcValidation.min.js") ? Url("MicrosoftMvcValidation.min.js") : Url("MicrosoftMvcValidation.js");
+                public static readonly string modernizr_2_5_3_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.5.3.min.js") ? Url("modernizr-2.5.3.min.js") : Url("modernizr-2.5.3.js");
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class T4MvcJs {
+            private const string URLPATH = "~/scripts/T4MvcJs";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string T4MVC_source_t4 = Url("T4MVC.source.t4");
+            public static readonly string T4MVC_tt_settings_t4 = Url("T4MVC.tt.settings.t4");
+            public static readonly string T4MvcJs_tt = Url("T4MvcJs.tt");
+            public static readonly string T4MvcJs_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/T4MvcJs.min.js") ? Url("T4MvcJs.min.js") : Url("T4MvcJs.js");
+                    }
+    
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class tinymce {
             private const string URLPATH = "~/scripts/tinymce";
@@ -545,8 +529,7 @@ namespace Links {
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                 public static readonly string en_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en.min.js") ? Url("en.min.js") : Url("en.js");
-                              
-            }
+                        }
         
             public static readonly string license_txt = Url("license.txt");
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -568,17 +551,14 @@ namespace Links {
                     }
                 
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class js {
                         private const string URLPATH = "~/scripts/tinymce/plugins/advhr/js";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string rule_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/rule.min.js") ? Url("rule.min.js") : Url("rule.js");
-                                      
-                    }
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
@@ -586,8 +566,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
-                                      
-                    }
+                                }
                 
                     public static readonly string rule_htm = Url("rule.htm");
                 }
@@ -606,10 +585,8 @@ namespace Links {
                     }
                 
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    public static readonly string image_htm = Url("image.htm");
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            public static readonly string image_htm = Url("image.htm");
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class img {
                         private const string URLPATH = "~/scripts/tinymce/plugins/advimage/img";
@@ -624,8 +601,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string image_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/image.min.js") ? Url("image.min.js") : Url("image.js");
-                                      
-                    }
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
@@ -633,8 +609,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
-                                      
-                    }
+                                }
                 
                 }
             
@@ -652,17 +627,14 @@ namespace Links {
                     }
                 
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class js {
                         private const string URLPATH = "~/scripts/tinymce/plugins/advlink/js";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string advlink_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/advlink.min.js") ? Url("advlink.min.js") : Url("advlink.js");
-                                      
-                    }
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
@@ -670,8 +642,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
-                                      
-                    }
+                                }
                 
                     public static readonly string link_htm = Url("link.htm");
                 }
@@ -682,10 +653,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class autolink {
@@ -693,10 +662,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class autoresize {
@@ -704,10 +671,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class autosave {
@@ -715,17 +680,14 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
                         private const string URLPATH = "~/scripts/tinymce/plugins/autosave/langs";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en.min.js") ? Url("en.min.js") : Url("en.js");
-                                      
-                    }
+                                }
                 
                 }
             
@@ -735,10 +697,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class contextmenu {
@@ -746,10 +706,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class directionality {
@@ -757,10 +715,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class emotions {
@@ -768,10 +724,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    public static readonly string emotions_htm = Url("emotions.htm");
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            public static readonly string emotions_htm = Url("emotions.htm");
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class img {
                         private const string URLPATH = "~/scripts/tinymce/plugins/emotions/img";
@@ -801,8 +755,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string emotions_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/emotions.min.js") ? Url("emotions.min.js") : Url("emotions.js");
-                                      
-                    }
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
@@ -810,8 +763,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
-                                      
-                    }
+                                }
                 
                 }
             
@@ -822,10 +774,8 @@ namespace Links {
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string dialog_htm = Url("dialog.htm");
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class img {
                         private const string URLPATH = "~/scripts/tinymce/plugins/example/img";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
@@ -839,8 +789,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string dialog_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/dialog.min.js") ? Url("dialog.min.js") : Url("dialog.js");
-                                      
-                    }
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
@@ -848,10 +797,8 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en.min.js") ? Url("en.min.js") : Url("en.js");
-                                      
-                        public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
-                                      
-                    }
+                                public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
+                                }
                 
                 }
             
@@ -861,10 +808,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class fullpage {
@@ -880,18 +825,15 @@ namespace Links {
                     }
                 
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    public static readonly string fullpage_htm = Url("fullpage.htm");
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            public static readonly string fullpage_htm = Url("fullpage.htm");
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class js {
                         private const string URLPATH = "~/scripts/tinymce/plugins/fullpage/js";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string fullpage_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/fullpage.min.js") ? Url("fullpage.min.js") : Url("fullpage.js");
-                                      
-                    }
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
@@ -899,8 +841,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
-                                      
-                    }
+                                }
                 
                 }
             
@@ -910,10 +851,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    public static readonly string fullscreen_htm = Url("fullscreen.htm");
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            public static readonly string fullscreen_htm = Url("fullscreen.htm");
                 }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -922,10 +861,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class inlinepopups {
@@ -933,10 +870,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class skins {
                         private const string URLPATH = "~/scripts/tinymce/plugins/inlinepopups/skins";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
@@ -974,10 +909,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class layer {
@@ -985,10 +918,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class legacyoutput {
@@ -996,10 +927,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class lists {
@@ -1007,10 +936,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class media {
@@ -1026,19 +953,15 @@ namespace Links {
                     }
                 
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class js {
                         private const string URLPATH = "~/scripts/tinymce/plugins/media/js";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string embed_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/embed.min.js") ? Url("embed.min.js") : Url("embed.js");
-                                      
-                        public static readonly string media_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/media.min.js") ? Url("media.min.js") : Url("media.js");
-                                      
-                    }
+                                public static readonly string media_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/media.min.js") ? Url("media.min.js") : Url("media.js");
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
@@ -1046,8 +969,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
-                                      
-                    }
+                                }
                 
                     public static readonly string media_htm = Url("media.htm");
                     public static readonly string moxieplayer_swf = Url("moxieplayer.swf");
@@ -1059,10 +981,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class noneditable {
@@ -1070,10 +990,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class pagebreak {
@@ -1081,10 +999,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class paste {
@@ -1092,19 +1008,15 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class js {
                         private const string URLPATH = "~/scripts/tinymce/plugins/paste/js";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string pastetext_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/pastetext.min.js") ? Url("pastetext.min.js") : Url("pastetext.js");
-                                      
-                        public static readonly string pasteword_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/pasteword.min.js") ? Url("pasteword.min.js") : Url("pasteword.js");
-                                      
-                    }
+                                public static readonly string pasteword_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/pasteword.min.js") ? Url("pasteword.min.js") : Url("pasteword.js");
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
@@ -1112,8 +1024,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
-                                      
-                    }
+                                }
                 
                     public static readonly string pastetext_htm = Url("pastetext.htm");
                     public static readonly string pasteword_htm = Url("pasteword.htm");
@@ -1125,18 +1036,15 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    public static readonly string example_html = Url("example.html");
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            public static readonly string example_html = Url("example.html");
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class jscripts {
                         private const string URLPATH = "~/scripts/tinymce/plugins/preview/jscripts";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string embed_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/embed.min.js") ? Url("embed.min.js") : Url("embed.js");
-                                      
-                    }
+                                }
                 
                     public static readonly string preview_html = Url("preview.html");
                 }
@@ -1147,10 +1055,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class save {
@@ -1158,10 +1064,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class searchreplace {
@@ -1177,17 +1081,14 @@ namespace Links {
                     }
                 
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class js {
                         private const string URLPATH = "~/scripts/tinymce/plugins/searchreplace/js";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string searchreplace_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/searchreplace.min.js") ? Url("searchreplace.min.js") : Url("searchreplace.js");
-                                      
-                    }
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
@@ -1195,8 +1096,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
-                                      
-                    }
+                                }
                 
                     public static readonly string searchreplace_htm = Url("searchreplace.htm");
                 }
@@ -1215,10 +1115,8 @@ namespace Links {
                     }
                 
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class img {
                         private const string URLPATH = "~/scripts/tinymce/plugins/spellchecker/img";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
@@ -1242,17 +1140,14 @@ namespace Links {
                     }
                 
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class js {
                         private const string URLPATH = "~/scripts/tinymce/plugins/style/js";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string props_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/props.min.js") ? Url("props.min.js") : Url("props.js");
-                                      
-                    }
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
@@ -1260,8 +1155,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
-                                      
-                    }
+                                }
                 
                     public static readonly string props_htm = Url("props.htm");
                     public static readonly string readme_txt = Url("readme.txt");
@@ -1273,10 +1167,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class table {
@@ -1295,23 +1187,17 @@ namespace Links {
                     }
                 
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class js {
                         private const string URLPATH = "~/scripts/tinymce/plugins/table/js";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string cell_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/cell.min.js") ? Url("cell.min.js") : Url("cell.js");
-                                      
-                        public static readonly string merge_cells_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/merge_cells.min.js") ? Url("merge_cells.min.js") : Url("merge_cells.js");
-                                      
-                        public static readonly string row_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/row.min.js") ? Url("row.min.js") : Url("row.js");
-                                      
-                        public static readonly string table_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/table.min.js") ? Url("table.min.js") : Url("table.js");
-                                      
-                    }
+                                public static readonly string merge_cells_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/merge_cells.min.js") ? Url("merge_cells.min.js") : Url("merge_cells.js");
+                                public static readonly string row_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/row.min.js") ? Url("row.min.js") : Url("row.js");
+                                public static readonly string table_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/table.min.js") ? Url("table.min.js") : Url("table.js");
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
@@ -1319,8 +1205,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
-                                      
-                    }
+                                }
                 
                     public static readonly string merge_cells_htm = Url("merge_cells.htm");
                     public static readonly string row_htm = Url("row.htm");
@@ -1342,17 +1227,14 @@ namespace Links {
                     }
                 
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class js {
                         private const string URLPATH = "~/scripts/tinymce/plugins/template/js";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string template_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/template.min.js") ? Url("template.min.js") : Url("template.js");
-                                      
-                    }
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
@@ -1360,8 +1242,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
-                                      
-                    }
+                                }
                 
                     public static readonly string template_htm = Url("template.htm");
                 }
@@ -1380,10 +1261,8 @@ namespace Links {
                     }
                 
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class visualchars {
@@ -1391,10 +1270,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class wordcount {
@@ -1402,10 +1279,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                }
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class xhtmlxtras {
@@ -1427,30 +1302,21 @@ namespace Links {
                 
                     public static readonly string del_htm = Url("del.htm");
                     public static readonly string editor_plugin_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin.min.js") ? Url("editor_plugin.min.js") : Url("editor_plugin.js");
-                                  
-                    public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
-                                  
-                    public static readonly string ins_htm = Url("ins.htm");
+                            public static readonly string editor_plugin_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_plugin_src.min.js") ? Url("editor_plugin_src.min.js") : Url("editor_plugin_src.js");
+                            public static readonly string ins_htm = Url("ins.htm");
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class js {
                         private const string URLPATH = "~/scripts/tinymce/plugins/xhtmlxtras/js";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string abbr_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/abbr.min.js") ? Url("abbr.min.js") : Url("abbr.js");
-                                      
-                        public static readonly string acronym_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/acronym.min.js") ? Url("acronym.min.js") : Url("acronym.js");
-                                      
-                        public static readonly string attributes_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/attributes.min.js") ? Url("attributes.min.js") : Url("attributes.js");
-                                      
-                        public static readonly string cite_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/cite.min.js") ? Url("cite.min.js") : Url("cite.js");
-                                      
-                        public static readonly string del_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/del.min.js") ? Url("del.min.js") : Url("del.js");
-                                      
-                        public static readonly string element_common_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/element_common.min.js") ? Url("element_common.min.js") : Url("element_common.js");
-                                      
-                        public static readonly string ins_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ins.min.js") ? Url("ins.min.js") : Url("ins.js");
-                                      
-                    }
+                                public static readonly string acronym_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/acronym.min.js") ? Url("acronym.min.js") : Url("acronym.js");
+                                public static readonly string attributes_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/attributes.min.js") ? Url("attributes.min.js") : Url("attributes.js");
+                                public static readonly string cite_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/cite.min.js") ? Url("cite.min.js") : Url("cite.js");
+                                public static readonly string del_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/del.min.js") ? Url("del.min.js") : Url("del.js");
+                                public static readonly string element_common_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/element_common.min.js") ? Url("element_common.min.js") : Url("element_common.js");
+                                public static readonly string ins_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ins.min.js") ? Url("ins.min.js") : Url("ins.js");
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
@@ -1458,8 +1324,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
-                                      
-                    }
+                                }
                 
                 }
             
@@ -1480,10 +1345,8 @@ namespace Links {
                     public static readonly string charmap_htm = Url("charmap.htm");
                     public static readonly string color_picker_htm = Url("color_picker.htm");
                     public static readonly string editor_template_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_template.min.js") ? Url("editor_template.min.js") : Url("editor_template.js");
-                                  
-                    public static readonly string editor_template_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_template_src.min.js") ? Url("editor_template_src.min.js") : Url("editor_template_src.js");
-                                  
-                    public static readonly string image_htm = Url("image.htm");
+                            public static readonly string editor_template_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_template_src.min.js") ? Url("editor_template_src.min.js") : Url("editor_template_src.js");
+                            public static readonly string image_htm = Url("image.htm");
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class img {
                         private const string URLPATH = "~/scripts/tinymce/themes/advanced/img";
@@ -1508,20 +1371,13 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string about_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/about.min.js") ? Url("about.min.js") : Url("about.js");
-                                      
-                        public static readonly string anchor_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/anchor.min.js") ? Url("anchor.min.js") : Url("anchor.js");
-                                      
-                        public static readonly string charmap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/charmap.min.js") ? Url("charmap.min.js") : Url("charmap.js");
-                                      
-                        public static readonly string color_picker_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/color_picker.min.js") ? Url("color_picker.min.js") : Url("color_picker.js");
-                                      
-                        public static readonly string image_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/image.min.js") ? Url("image.min.js") : Url("image.js");
-                                      
-                        public static readonly string link_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/link.min.js") ? Url("link.min.js") : Url("link.js");
-                                      
-                        public static readonly string source_editor_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/source_editor.min.js") ? Url("source_editor.min.js") : Url("source_editor.js");
-                                      
-                    }
+                                public static readonly string anchor_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/anchor.min.js") ? Url("anchor.min.js") : Url("anchor.js");
+                                public static readonly string charmap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/charmap.min.js") ? Url("charmap.min.js") : Url("charmap.js");
+                                public static readonly string color_picker_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/color_picker.min.js") ? Url("color_picker.min.js") : Url("color_picker.js");
+                                public static readonly string image_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/image.min.js") ? Url("image.min.js") : Url("image.js");
+                                public static readonly string link_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/link.min.js") ? Url("link.min.js") : Url("link.js");
+                                public static readonly string source_editor_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/source_editor.min.js") ? Url("source_editor.min.js") : Url("source_editor.js");
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class langs {
@@ -1529,10 +1385,8 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en.min.js") ? Url("en.min.js") : Url("en.js");
-                                      
-                        public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
-                                      
-                    }
+                                public static readonly string en_dlg_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en_dlg.min.js") ? Url("en_dlg.min.js") : Url("en_dlg.js");
+                                }
                 
                     public static readonly string link_htm = Url("link.htm");
                     public static readonly string shortcuts_htm = Url("shortcuts.htm");
@@ -1607,10 +1461,8 @@ namespace Links {
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string editor_template_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_template.min.js") ? Url("editor_template.min.js") : Url("editor_template.js");
-                                  
-                    public static readonly string editor_template_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_template_src.min.js") ? Url("editor_template_src.min.js") : Url("editor_template_src.js");
-                                  
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                            public static readonly string editor_template_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editor_template_src.min.js") ? Url("editor_template_src.min.js") : Url("editor_template_src.js");
+                            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class img {
                         private const string URLPATH = "~/scripts/tinymce/themes/simple/img";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
@@ -1624,8 +1476,7 @@ namespace Links {
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                         public static readonly string en_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/en.min.js") ? Url("en.min.js") : Url("en.js");
-                                      
-                    }
+                                }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                     public static class skins {
@@ -1665,31 +1516,23 @@ namespace Links {
             }
         
             public static readonly string tiny_mce_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/tiny_mce.min.js") ? Url("tiny_mce.min.js") : Url("tiny_mce.js");
-                          
-            public static readonly string tiny_mce_popup_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/tiny_mce_popup.min.js") ? Url("tiny_mce_popup.min.js") : Url("tiny_mce_popup.js");
-                          
-            public static readonly string tiny_mce_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/tiny_mce_src.min.js") ? Url("tiny_mce_src.min.js") : Url("tiny_mce_src.js");
-                          
-            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static readonly string tiny_mce_popup_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/tiny_mce_popup.min.js") ? Url("tiny_mce_popup.min.js") : Url("tiny_mce_popup.js");
+                    public static readonly string tiny_mce_src_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/tiny_mce_src.min.js") ? Url("tiny_mce_src.min.js") : Url("tiny_mce_src.js");
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class utils {
                 private const string URLPATH = "~/scripts/tinymce/utils";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                 public static readonly string editable_selects_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/editable_selects.min.js") ? Url("editable_selects.min.js") : Url("editable_selects.js");
-                              
-                public static readonly string form_utils_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/form_utils.min.js") ? Url("form_utils.min.js") : Url("form_utils.js");
-                              
-                public static readonly string mctabs_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/mctabs.min.js") ? Url("mctabs.min.js") : Url("mctabs.js");
-                              
-                public static readonly string validate_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/validate.min.js") ? Url("validate.min.js") : Url("validate.js");
-                              
-            }
+                        public static readonly string form_utils_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/form_utils.min.js") ? Url("form_utils.min.js") : Url("form_utils.js");
+                        public static readonly string mctabs_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/mctabs.min.js") ? Url("mctabs.min.js") : Url("mctabs.js");
+                        public static readonly string validate_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/validate.min.js") ? Url("validate.min.js") : Url("validate.js");
+                        }
         
         }
     
         public static readonly string ucosmic_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ucosmic.min.js") ? Url("ucosmic.min.js") : Url("ucosmic.js");
-                      
-    }
+                }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public static class content {
@@ -2660,7 +2503,7 @@ public static class T4MVCHelpers {
     private static string ProcessVirtualPathDefault(string virtualPath) {
         // The path that comes in starts with ~/ and must first be made absolute
         string path = VirtualPathUtility.ToAbsolute(virtualPath);
-        
+
         // Add your own modifications here before returning the path
         return path;
     }
@@ -2670,8 +2513,8 @@ public static class T4MVCHelpers {
 
 
     // Logic to determine if the app is running in production or dev environment
-    public static bool IsProduction() { 
-        return (HttpContext.Current != null && !HttpContext.Current.IsDebuggingEnabled); 
+    public static bool IsProduction() {
+        return (HttpContext.Current != null && !HttpContext.Current.IsDebuggingEnabled);
     }
 }
 

@@ -1,4 +1,4 @@
-﻿@model UCosmic.Www.Mvc.Areas.Languages.Models.LanguageTableRow
+﻿@*@model UCosmic.Www.Mvc.Areas.Languages.Models.LanguageTableRow
 <tr>
     <td>
         <a href="@Url.Action(MVC.Languages.Language.Get(@Model.TwoLetterIsoCode))" data-pjax="#pjax">@Html.DisplayFor(m => m.TranslatedNameText)</a>
@@ -13,3 +13,4 @@
         @Html.DisplayFor(m => m.Iso639Codes)
     </td>
 </tr>
+*@

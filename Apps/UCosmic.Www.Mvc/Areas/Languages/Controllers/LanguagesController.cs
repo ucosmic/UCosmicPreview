@@ -20,17 +20,10 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
         }
 
         [HttpGet]
-        [ActionName("languages")]
+        //[OutputCache(VaryByParam = "*", Duration = 15)]
         public virtual ActionResult Get(string keyword = "")
         {
-            return View((object)keyword);
-        }
-
-        [HttpGet]
-        [ActionName("_languages-table")]
-        //[OutputCache(VaryByParam = "*", Duration = 1800)]
-        public virtual ActionResult GetTable(string keyword = "")
-        {
+            //Thread.Sleep(800);
             var entities = _queries.Execute(new LanguagesByKeyword(keyword)
             {
                 EagerLoad = new Expression<Func<Language, object>>[]
@@ -38,12 +31,20 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                     l => l.Names.Select(n => n.TranslationToLanguage)
                 },
             });
-            var models = Mapper.Map<LanguageTable>(entities)
+            var results = Mapper.Map<LanguageResult[]>(entities)
                 .OrderByDescending(l => l.IsUserLanguage)
                 .ThenByDescending(l => l.NamesCount)
                 .ThenBy(l => l.TranslatedNameText)
             ;
-            return PartialView(models);
+            if (Request.IsAjaxRequest())
+                return Json(results, JsonRequestBehavior.AllowGet);
+
+            var model = new LanguageFinder
+            {
+                Keyword = keyword,
+                Results = results,
+            };
+            return View(model);
         }
     }
 
@@ -62,37 +63,6 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                 {
                     controller = Controller,
                     action = MVC.Languages.Languages.ActionNames.Get,
-                });
-                Constraints = new RouteValueDictionary(new
-                {
-                    httpMethod = new HttpMethodConstraint("GET")
-                });
-            }
-        }
-
-        public class GetFilteredRoute : GetRoute
-        {
-            public GetFilteredRoute()
-            {
-                Url = "languages-by-keyword/{keyword}";
-                Constraints = new RouteValueDictionary(new
-                {
-                    httpMethod = new HttpMethodConstraint("GET"),
-                });
-            }
-        }
-
-        public class GetTableRoute : MvcRoute
-        {
-            public GetTableRoute()
-            {
-                Url = "languages-table/by-keyword/{keyword}";
-                DataTokens = new RouteValueDictionary(new { area = Area, });
-                Defaults = new RouteValueDictionary(new
-                {
-                    controller = Controller,
-                    action = MVC.Languages.Languages.ActionNames.GetTable,
-                    keyword = UrlParameter.Optional,
                 });
                 Constraints = new RouteValueDictionary(new
                 {

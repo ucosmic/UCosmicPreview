@@ -1,0 +1,147 @@
+﻿@using Newtonsoft.Json
+@model UCosmic.Www.Mvc.Areas.Languages.Models.LanguageFinder
+@{
+    ViewBag.Title = "Languages";
+}
+<div>
+    <div class="wrap-960">
+        <div>
+            <input type="search" name="@Html.NameFor(m => m.Keyword)" value="@Model.Keyword"
+                   data-bind="value: Keyword, valueUpdate: 'afterkeydown search'"
+                   placeholder="Find a language..." autofocus="autofocus"
+                   style="font-size: 15px; padding: 5px; width: 250px;" />
+        </div>
+        <p data-bind="visible: IsSpinnerVisible" style="display: none;">
+            <img src="@Url.Content(Links.content.icons.loaders.win7_wait_16_gif)" alt="" style="vertical-align:text-top;" />
+            <span style="font-size: 16px;">Loading...</span>
+        </p>
+        <div data-bind="visible: !HasResults()" style="display: none;">
+            <p>
+                There are no languages that match your search terms.
+            </p>
+        </div>
+        <div data-bind="visible: HasResults" style="display: none;">
+            <table class="data-table">
+                <colgroup>
+                    <col style="width: 250px;" />
+                    <col style="width: 150px;" />
+                    <col style="width: 150px;" />
+                    <col style="width: 150px;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>
+                            Language
+                        </th>
+                        <th>
+                            Native Name
+                        </th>
+                        <th>
+                            Translations
+                        </th>
+                        <th>
+                            ISO Codes
+                        </th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: Results">
+                    <tr>
+                        <td>
+                            <a data-bind="text: TranslatedNameText, attr: { href: Href }"></a>
+                        </td>
+                        <td>
+                            <span data-bind="text: FormattedNativeNameText"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: NamesCount"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: IsoCodes"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+
+    <script type="text/javascript">
+
+        function ViewModel(data) {
+            var self = this;
+
+            self.Keyword = ko.observable(data.Keyword); // observe what is typed into search field
+            self.LastKeyword = ko.observable(data.Keyword); // update this after each json success
+            self.ThrottledKeyword = ko.computed(self.Keyword) // only update this when user has stopped typing
+                .extend({ throttle: 400 });
+
+            function resultsViewModel(rawResults) { // add behaviors to the results
+                $(rawResults).each(function() {
+                    var result = this;
+                    $.extend(result, {
+                        Href: ko.computed(function() { // use t4mvcjs to generate link href
+                            return MvcJs.Languages.Language.Get(result.TwoLetterIsoCode);
+                        }),
+                        FormattedNativeNameText: ko.computed(function() { // display null value
+                            if (result.NativeNameText && result.NativeNameText !== result.TranslatedNameText) {
+                                return result.NativeNameText;
+                            }
+                            return '-';
+                        }),
+                        IsoCodes: ko.computed(function() {
+                            var isoCodes = result.TwoLetterIsoCode + ', ' + result.ThreeLetterIsoCode;
+                            if (result.ThreeLetterIsoCode !== result.ThreeLetterIsoBibliographicCode)
+                                isoCodes += ', ' + result.ThreeLetterIsoBibliographicCode + '*';
+                            return isoCodes;
+                        })
+                    });
+                });
+                return rawResults;
+            }
+            self.Results = ko.observableArray(resultsViewModel(data.Results)); // initialize the results
+            self.Results.subscribe(function(val) { // add behaviors to results whenever they change
+                resultsViewModel(val);
+            });
+            self.HasResults = ko.computed(function () { // useful for showing/hiding table/no-results message
+                return self.Results().length > 0;
+            });
+
+            self.IsLoadingResults = ko.observable(false); // true when in an ajax call
+            self.IsSpinnerVisible = ko.observable(false); // delay the showing of this
+
+            ko.computed(function() { // update the results by getting json from server (happens during first load)
+
+                // do not run on first execution
+                if(self.ThrottledKeyword() !== self.LastKeyword()) {
+                    self.IsLoadingResults(true); // we are entering an ajax call
+                    setTimeout(function() { // delay the showing of the spinner
+                        if (self.IsLoadingResults()) { // only show it when load is still being processed
+                            self.IsSpinnerVisible(true);
+                        }
+                    }, 400); // delay the spinner this long
+                    $.get(MvcJs.Languages.Languages.Get(), { // get json from server
+                        keyword: self.ThrottledKeyword() // use throttled keyword to trigger this event
+                    })
+                    .success(function (results) { // server returns array only
+                        self.Results(results); // update the ui
+                        self.IsLoadingResults(false); // loading is over
+                        self.IsSpinnerVisible(false); // hide the spinner
+                        self.LastKeyword(self.ThrottledKeyword());
+                    });
+                }
+
+            });
+        }
+
+        var data = {
+            Keyword: '@Html.Raw(Model.Keyword)',
+            Results: JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.Results))')
+        };
+        var viewModel = new ViewModel(data);
+        ko.applyBindings(viewModel);
+
+    </script>
+
+}

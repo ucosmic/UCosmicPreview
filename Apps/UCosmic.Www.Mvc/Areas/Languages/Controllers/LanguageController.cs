@@ -21,7 +21,6 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
         }
 
         [HttpGet]
-        [ActionName("language")]
         //[OutputCache(VaryByParam = "*", Duration = 1800)]
         public virtual ActionResult Get(object id)
         {
@@ -38,7 +37,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                     //{
                     //    return PartialView(model);
                     //}
-                    return View(model);
+                    return View(MVC.Languages.Shared.Views.language, model);
                 }
             }
             return HttpNotFound();

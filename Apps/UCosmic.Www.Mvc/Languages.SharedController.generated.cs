@@ -28,14 +28,11 @@ namespace T4MVC.Languages {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _languages_table = "~/Areas/Languages/Views/Shared/_languages-table.cshtml";
             public readonly string language = "~/Areas/Languages/Views/Shared/language.cshtml";
-            public readonly string languages = "~/Areas/Languages/Views/Shared/languages.cshtml";
             static readonly _DisplayTemplates s_DisplayTemplates = new _DisplayTemplates();
             public _DisplayTemplates DisplayTemplates { get { return s_DisplayTemplates; } }
             public partial class _DisplayTemplates{
                 public readonly string LanguageNameTableRow = "LanguageNameTableRow";
-                public readonly string LanguageTableRow = "LanguageTableRow";
             }
         }
     }

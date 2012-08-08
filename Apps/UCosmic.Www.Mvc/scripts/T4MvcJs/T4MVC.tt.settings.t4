@@ -1,21 +1,13 @@
 ﻿<#+
 /*
 
-This file contains settings used by T4MVC.tt. The main goal is to avoid the need for users
-to fork the 'official' template in order to achieve what they want.
+This file contains settings used by T4MVC.tt.
+T4MVCJS doesn't need most of them, but it's important to leave them to make syncing with T4MVC easier (just c&p)
+
+Important settings are moved to the top.
 
 */
 
-
-// The namespace used by some of T4MVC's generated code
-const string T4MVCNamespace = "T4MVC";
-
-// The prefix used for things like MVC.Dinners.Name and MVC.Dinners.Delete(Model.DinnerID)
-const string HelpersPrefix = "MVC";
-
-// Namespaces to be referenced by the generated code
-readonly string[] ReferencedNamespaces = new string[] {
-};
 
 // The folder under the project that contains the areas
 const string AreasFolder = "Areas";
@@ -30,6 +22,21 @@ readonly string[] PortableAreas = new string[] {
 // - When false use MVC.Blog.Post.etc...
 // - When true use MVC.Areas.Blog.Post.etc...
 static bool IncludeAreasToken = false;
+
+
+
+
+// The namespace used by some of T4MVC's generated code
+const string T4MVCNamespace = "T4MVC";
+
+// The prefix used for things like MVC.Dinners.Name and MVC.Dinners.Delete(Model.DinnerID)
+const string HelpersPrefix = "MVC";
+
+// Namespaces to be referenced by the generated code
+readonly string[] ReferencedNamespaces = new string[] {
+};
+
+
 
 // The folder under the project that contains the controllers
 const string ControllersFolder = "Controllers";
@@ -54,11 +61,11 @@ const string ActionResultInterfaceName = "IT4MVCActionResult";
 // This can be set to false to omit the generation of the System.Web.Mvc.T4Extensions class, which can be
 // useful if it is already defined in a referenced library
 // See http://stackoverflow.com/questions/5563163/t4mvc-use-extension-methods-in-control-library/5574227
-static bool GenerateMvcT4Extensions = true;
+//static bool GenerateMvcT4Extensions = true;
 
 // If true, the T4MVC action result interface will be generated
 // If false, the namespace of the interface must be referenced in the 'ReferencedNamespaces' setting
-static bool GenerateActionResultInterface = true;
+//static bool GenerateActionResultInterface = true;
 
 // If true, use lower case tokens in routes for the area, controller and action names
 static bool UseLowercaseRoutes = false;
@@ -90,21 +97,11 @@ readonly string[] ExcludedStaticFileExtensions = new string[] {
     ".cs"
 };
 
-//When creating links with T4MVC, it can force them to HTTPS if the action method you are linking to requires Http.
-const string AttributeIndicatingHttps = "System.Web.Mvc.RequireHttpsAttribute";
-const bool GenerateSecureLinksInDebugMode = false;
-
-// Set this to false to omit the generation of parameters for action methods.
-//static bool GenerateParamsForActionMethods = true;
-// The suffix added to action method names for the property containing the parameters, for example ImportParams
-// for the Import action method.
-const string ParamsPropertySuffix = "Params";
-
 //---------------------------------------------------------------------------
 //	Explicit HtmlHelpers
 //---------------------------------------------------------------------------
 //create explicit HtmlHelpers for rendering partials
-static bool ExplicitHtmlHelpersForPartials = false;
+//static bool ExplicitHtmlHelpersForPartials = false;
 const string ExplicitHtmlHelpersForPartialsFormat = "Render{0}";
 
 //---------------------------------------------------------------------------
@@ -116,11 +113,11 @@ const string ExplicitHtmlHelpersForPartialsFormat = "Render{0}";
 static bool AlwaysKeepTemplateDirty = false;
 
 // If true,the template output will be split into multiple files.
-static bool SplitIntoMultipleFiles = true;
+//static bool SplitIntoMultipleFiles = true;
 
 void RenderAdditionalCode() {
 #>
-public static class T4MVCHelpers {
+static class T4MVCHelpers {
     // You can change the ProcessVirtualPath method to modify the path that gets returned to the client.
     // e.g. you can prepend a domain, or append a query string:
     //      return "http://localhost" + path + "?foo=bar";

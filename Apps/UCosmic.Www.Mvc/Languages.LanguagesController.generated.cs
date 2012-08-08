@@ -46,14 +46,12 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Get = "languages";
-            public readonly string GetTable = "_languages-table";
+            public readonly string Get = "Get";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Get = "languages";
-            public const string GetTable = "_languages-table";
+            public const string Get = "Get";
         }
 
 
@@ -62,6 +60,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
+            public readonly string get = "~/Areas/Languages/Views/Languages/get.cshtml";
         }
     }
 
@@ -71,12 +70,6 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
 
         public override System.Web.Mvc.ActionResult Get(string keyword) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
-            callInfo.RouteValueDictionary.Add("keyword", keyword);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult GetTable(string keyword) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.GetTable);
             callInfo.RouteValueDictionary.Add("keyword", keyword);
             return callInfo;
         }
