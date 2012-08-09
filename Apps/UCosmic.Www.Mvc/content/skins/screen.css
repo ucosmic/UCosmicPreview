@@ -601,6 +601,14 @@ img {
     text-shadow: 0 0 1px #999;
     color: #004c93;
 }
+.ucosmic .head .center h1 .brackets {
+    display: inline-block;
+    font-size: 9px;
+    vertical-align: middle;
+}
+.ucosmic .head .center h1 a {
+    text-decoration: none;
+}
 .ucosmic > .head > .center .search.row {
     min-width: 610px;
     max-width: 800px;
@@ -966,11 +974,3 @@ img {
     background: transparent;
 }
 
-.ucosmic .head.row .center.col h1 .brackets {
-    display: inline-block;
-    font-size: 9px;
-    vertical-align: middle;
-}
-.ucosmic .head.row .center.col h1 a {
-    text-decoration: none;
-}

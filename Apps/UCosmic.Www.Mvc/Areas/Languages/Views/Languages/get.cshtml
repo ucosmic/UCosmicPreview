@@ -3,13 +3,104 @@
 @{
     ViewBag.Title = "Languages";
 }
+@section Styles
+{
+    <style type="text/css">
+        .ucosmic ul.results-formats {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .ucosmic ul.results-formats li {
+            font-size: 16px;
+            display: inline-block;
+            padding: 6px 24px;
+            cursor: pointer;
+            color: #444;
+            background: #ddd;
+        }
+        .ucosmic ul.results-formats li.selected {
+            background: #bbb;
+        }
+        .ucosmic table.data-table tbody tr:hover td {
+            background: #ff0;
+            cursor: pointer;
+        }
+
+        .ucosmic ul.data-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-bottom: solid 1px #ccc;
+        }
+        .ucosmic ul.data-list li {
+            font-size: 16px;
+            border-top: solid 1px #ccc;
+        }
+        .ucosmic ul.data-list li > a {
+            display: block;
+            color: #444;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 20px 0 20px 10px;
+        }
+        .ucosmic ul.data-list li .col {
+            display: inline-block;
+            width: 100px;
+            vertical-align: text-top;
+            padding-right: 10px;
+            position: static;
+            top: auto;
+            bottom: auto;
+        }
+        .ucosmic ul.data-list li:hover {
+            background: #ff0;
+        }
+        .ucosmic ul.data-grid {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            vertical-align: top;
+        }
+        .ucosmic ul.data-grid li {
+            margin-right: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border: solid 1px #ccc;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .ucosmic ul.data-grid li > a {
+            display: block;
+            cursor: pointer;
+            padding: 10px;
+            color: #444;
+            text-decoration: none;
+            width: 150px;
+            min-height: 100px;
+        }
+        .ucosmic ul.data-grid li:hover {
+            background: #ff0;
+        }
+    </style>
+}
 <div>
     <div class="wrap-960">
-        <div>
-            <input type="search" name="@Html.NameFor(m => m.Keyword)" value="@Model.Keyword"
-                   data-bind="value: Keyword, valueUpdate: 'afterkeydown search'"
-                   placeholder="Find a language..." autofocus="autofocus"
-                   style="font-size: 15px; padding: 5px; width: 250px;" />
+        <div style="margin-bottom: 1em;">
+            <div style="display: inline-block;">
+                <input type="search" name="@Html.NameFor(m => m.Keyword)" value="@Model.Keyword"
+                       data-bind="value: Keyword, valueUpdate: 'afterkeydown search'"
+                       placeholder="Find a language..." autofocus="autofocus" autocomplete="on"
+                       style="font-size: 15px; padding: 5px; width: 250px;" />
+                <input type="hidden" data-bind="value: ScrollTop" />
+                <input type="hidden" data-bind="value: SelectedViewText" />
+            </div>
+            <div style="display: inline-block;">
+                <ul class="results-formats" data-bind="foreach: ViewTemplates">
+                    <li class="selected" data-bind="text: Text, click: $root.SelectView, css: { 'selected': Text === $root.SelectedViewText() }">
+                    </li>
+                </ul>
+            </div>
         </div>
         <p data-bind="visible: IsSpinnerVisible" style="display: none;">
             <img src="@Url.Content(Links.content.icons.loaders.win7_wait_16_gif)" alt="" style="vertical-align:text-top;" />
@@ -20,13 +111,14 @@
                 There are no languages that match your search terms.
             </p>
         </div>
-        <div data-bind="visible: HasResults" style="display: none;">
-            <table class="data-table">
+        <div data-bind="with: ResultsWrapper, visible: SelectedViewText() === 'Table' && HasResults()"
+            style="display: none;">
+            <table class="data-table" style="width: 100%;">
                 <colgroup>
-                    <col style="width: 250px;" />
-                    <col style="width: 150px;" />
-                    <col style="width: 150px;" />
-                    <col style="width: 150px;" />
+                    <col style="width: 25%;" />
+                    <col style="width: 25%;" />
+                    <col style="width: 25%;" />
+                    <col style="width: 25%;" />
                 </colgroup>
                 <thead>
                     <tr>
@@ -37,30 +129,63 @@
                             Native Name
                         </th>
                         <th>
-                            Translations
+                            ISO Codes
                         </th>
                         <th>
-                            ISO Codes
+                            Translations
                         </th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: Results">
-                    <tr>
+                    <tr data-bind="click: GoToHref">
                         <td>
-                            <a data-bind="text: TranslatedNameText, attr: { href: Href }"></a>
+                            <a data-bind="text: TranslatedNameText, attr: { href: Href }" style="font-weight: bold;">
+                            </a>
                         </td>
                         <td>
                             <span data-bind="text: FormattedNativeNameText"></span>
                         </td>
                         <td>
-                            <span data-bind="text: NamesCount"></span>
+                            <span data-bind="text: IsoCodes"></span>
                         </td>
                         <td>
-                            <span data-bind="text: IsoCodes"></span>
+                            <span data-bind="text: NamesCount"></span>
                         </td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div data-bind="visible: SelectedViewText() === 'List' && HasResults()" style="display: none;">
+            <ul class="data-list" data-bind="foreach: Results">
+                <li><a data-bind="attr: { href: Href }">
+                    <div class="col" style="width: 350px;">
+                        <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: FormattedNativeNameText() !== '-'">
+                            &nbsp;(<span data-bind="text: FormattedNativeNameText"></span>) </span>
+                    </div>
+                    <div class="col" style="width: 200px;">
+                        <span data-bind="text: IsoCodes"></span>
+                    </div>
+                    <div class="col" style="width: 200px;">
+                        <span data-bind="text: NamesCountPluralizer"></span>
+                    </div>
+                </a></li>
+            </ul>
+        </div>
+        <div data-bind="visible: SelectedViewText() === 'Grid' && HasResults()" style="display: none;">
+            <ul class="data-grid" data-bind="foreach: Results">
+                <li><a data-bind="attr: { href: Href }">
+                    <div>
+                        <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: FormattedNativeNameText() !== '-'">
+                            &nbsp;(<span data-bind="text: FormattedNativeNameText"></span>) </span>
+                    </div>
+                    <div>
+                        <span data-bind="text: IsoCodes"></span>
+                    </div>
+                    <div>
+                        <span data-bind="text: NamesCountPluralizer"></span>
+                    </div>
+                </a></li>
+            </ul>
         </div>
     </div>
 </div>
@@ -69,40 +194,78 @@
 
     <script type="text/javascript">
 
-        function ViewModel(data) {
+        // preserve existing input when user clicks browser back button
+        var keyword = $('input[name="@Html.NameFor(m => m.Keyword)"]').val() || '@Html.Raw(Model.Keyword)';
+
+        // serialize results to json
+        var results = JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.Results))');
+
+        // track scrolling on overflow container
+        var stretchScrollSelector = '.ucosmic .torso.row .center.col .scroll-y';
+        var scrollTop = $('input[data-bind="value: ScrollTop"]').val();
+        $(stretchScrollSelector).attr('data-bind', 'event: { scroll: TrackScroll }');
+
+        // wrap up to initialize viewmodel
+        var data = {
+            Keyword: keyword,
+            LastKeyword: '@Html.Raw(Model.Keyword)',
+            ScrollTop: scrollTop,
+            SelectedViewText: $('input[data-bind="value: SelectedViewText"]').val(),
+            Results: results
+        };
+
+        // knock it out
+        var viewModel = new LanguagesViewModel(data);
+        ko.applyBindings(viewModel);
+
+        // restore scroll position on back button
+        $(stretchScrollSelector).scrollTop(scrollTop);
+
+        function LanguagesViewModel(data) {
             var self = this;
 
             self.Keyword = ko.observable(data.Keyword); // observe what is typed into search field
-            self.LastKeyword = ko.observable(data.Keyword); // update this after each json success
+            self.LastKeyword = ko.observable(data.LastKeyword); // update this after each json success
             self.ThrottledKeyword = ko.computed(self.Keyword) // only update this when user has stopped typing
                 .extend({ throttle: 400 });
 
             function resultsViewModel(rawResults) { // add behaviors to the results
-                $(rawResults).each(function() {
+                $(rawResults).each(function () {
                     var result = this;
                     $.extend(result, {
-                        Href: ko.computed(function() { // use t4mvcjs to generate link href
+                        Href: ko.computed(function () { // use t4mvcjs to generate link href
                             return MvcJs.Languages.Language.Get(result.TwoLetterIsoCode);
                         }),
-                        FormattedNativeNameText: ko.computed(function() { // display null value
+                        GoToHref: function (item) { // used for navigating by clicking table row link
+                            window.location.href = result.Href();
+                        },
+                        FormattedNativeNameText: ko.computed(function () { // display null value
                             if (result.NativeNameText && result.NativeNameText !== result.TranslatedNameText) {
                                 return result.NativeNameText;
                             }
                             return '-';
                         }),
-                        IsoCodes: ko.computed(function() {
+                        IsoCodes: ko.computed(function () {
                             var isoCodes = result.TwoLetterIsoCode + ', ' + result.ThreeLetterIsoCode;
                             if (result.ThreeLetterIsoCode !== result.ThreeLetterIsoBibliographicCode)
                                 isoCodes += ', ' + result.ThreeLetterIsoBibliographicCode + '*';
                             return isoCodes;
+                        }),
+                        NamesCountPluralizer: ko.computed(function () {
+                            var translationPluralizer = (result.NamesCount == 1) ? 'translation' : 'translations';
+                            return result.NamesCount + ' ' + translationPluralizer;
                         })
                     });
                 });
                 return rawResults;
             }
             self.Results = ko.observableArray(resultsViewModel(data.Results)); // initialize the results
-            self.Results.subscribe(function(val) { // add behaviors to results whenever they change
-                resultsViewModel(val);
+            self.ResultsWrapper = ko.observable({ Results: self.Results() });
+            self.Results.subscribe(function (val) { // add behaviors to results whenever they change
+                var results = resultsViewModel(val);
+                self.ResultsWrapper({
+                    Results: results
+                });
             });
             self.HasResults = ko.computed(function () { // useful for showing/hiding table/no-results message
                 return self.Results().length > 0;
@@ -111,12 +274,12 @@
             self.IsLoadingResults = ko.observable(false); // true when in an ajax call
             self.IsSpinnerVisible = ko.observable(false); // delay the showing of this
 
-            ko.computed(function() { // update the results by getting json from server (happens during first load)
+            ko.computed(function () { // update the results by getting json from server (happens during first load)
 
                 // do not run on first execution
-                if(self.ThrottledKeyword() !== self.LastKeyword()) {
+                if (self.ThrottledKeyword() !== self.LastKeyword()) {
                     self.IsLoadingResults(true); // we are entering an ajax call
-                    setTimeout(function() { // delay the showing of the spinner
+                    setTimeout(function () { // delay the showing of the spinner
                         if (self.IsLoadingResults()) { // only show it when load is still being processed
                             self.IsSpinnerVisible(true);
                         }
@@ -128,19 +291,28 @@
                         self.Results(results); // update the ui
                         self.IsLoadingResults(false); // loading is over
                         self.IsSpinnerVisible(false); // hide the spinner
-                        self.LastKeyword(self.ThrottledKeyword());
+                        self.LastKeyword(self.ThrottledKeyword()); // keyword is in sync
                     });
                 }
 
             });
+
+            self.ViewTemplates = ko.observableArray([
+                { Text: 'Table' },
+                { Text: 'List' },
+                { Text: 'Grid' }
+            ]);
+            self.SelectedViewText = ko.observable(data.SelectedViewText || self.ViewTemplates()[0].Text);
+            self.SelectView = function (item) {
+                self.SelectedViewText(item.Text);
+            };
+
+            self.ScrollTop = ko.observable(data.ScrollTop || 0);
+            self.TrackScroll = function (viewModel, e) {
+                self.ScrollTop(e.currentTarget.scrollTop);
+            };
         }
 
-        var data = {
-            Keyword: '@Html.Raw(Model.Keyword)',
-            Results: JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.Results))')
-        };
-        var viewModel = new ViewModel(data);
-        ko.applyBindings(viewModel);
 
     </script>
 
