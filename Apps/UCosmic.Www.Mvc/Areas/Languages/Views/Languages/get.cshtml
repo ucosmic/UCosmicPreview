@@ -101,6 +101,16 @@
                     </li>
                 </ul>
             </div>
+            <div style="display:inline-block">
+                <select style="font-size: 15px; padding: 5px;" data-bind="value: ResultsSize">
+                    <option value="10">Show 10 results</option>
+                    <option value="20">Show 20 results</option>
+                    <option value="50">Show 50 results</option>
+                    <option value="100">Show 100 results</option>
+                    <option value="@int.MaxValue">Show all results</option>
+                </select>
+                <span data-bind="text: ResultsSize"></span>
+            </div>
         </div>
         <p data-bind="visible: IsSpinnerVisible" style="display: none;">
             <img src="@Url.Content(Links.content.icons.loaders.win7_wait_16_gif)" alt="" style="vertical-align:text-top;" />
@@ -236,7 +246,7 @@
                         Href: ko.computed(function () { // use t4mvcjs to generate link href
                             return MvcJs.Languages.Language.Get(result.TwoLetterIsoCode);
                         }),
-                        GoToHref: function (item) { // used for navigating by clicking table row link
+                        GoToHref: function () { // used for navigating by clicking table row link
                             window.location.href = result.Href();
                         },
                         FormattedNativeNameText: ko.computed(function () { // display null value
@@ -271,13 +281,18 @@
                 return self.Results().length > 0;
             });
 
+            self.ResultsSize = ko.observable(data.ResultsSize || 10);
+
             self.IsLoadingResults = ko.observable(false); // true when in an ajax call
             self.IsSpinnerVisible = ko.observable(false); // delay the showing of this
 
             ko.computed(function () { // update the results by getting json from server (happens during first load)
 
-                // do not run on first execution
-                if (self.ThrottledKeyword() !== self.LastKeyword()) {
+                //var test = self.ResultsSize();
+                //alert(test);
+
+                //// do not run on first execution
+                //if (self.ThrottledKeyword() !== self.LastKeyword()) {
                     self.IsLoadingResults(true); // we are entering an ajax call
                     setTimeout(function () { // delay the showing of the spinner
                         if (self.IsLoadingResults()) { // only show it when load is still being processed
@@ -285,7 +300,8 @@
                         }
                     }, 400); // delay the spinner this long
                     $.get(MvcJs.Languages.Languages.Get(), { // get json from server
-                        keyword: self.ThrottledKeyword() // use throttled keyword to trigger this event
+                        keyword: self.ThrottledKeyword(), // use throttled keyword to trigger this event
+                        size: self.ResultsSize()
                     })
                     .success(function (results) { // server returns array only
                         self.Results(results); // update the ui
@@ -293,7 +309,7 @@
                         self.IsSpinnerVisible(false); // hide the spinner
                         self.LastKeyword(self.ThrottledKeyword()); // keyword is in sync
                     });
-                }
+                //}
 
             });
 

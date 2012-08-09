@@ -56,5 +56,10 @@ namespace UCosmic.Domain.Languages
                 return currentUiName ?? TranslateNameTo("en") ?? NativeName;
             }
         }
+
+        public override string ToString()
+        {
+            return TranslatedName.Text;
+        }
     }
 }

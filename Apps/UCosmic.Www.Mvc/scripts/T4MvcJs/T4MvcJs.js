@@ -633,13 +633,25 @@ var MvcJs = {
 			NameConst: "Language"
 		},
 		Languages: {
-			Get: function(keyword) {
-				var url = "/languages?keyword={keyword}";
+			Get: function(keyword, size, number) {
+				var url = "/languages?keyword={keyword}&size={size}&number={number}";
 				
 				if (keyword) {
 					url = url.replace("{keyword}", keyword);
 				} else {
 					url = url.replace("keyword={keyword}", "").replace("?&","?").replace("&&","&");
+				}
+				
+				if (size) {
+					url = url.replace("{size}", size);
+				} else {
+					url = url.replace("size={size}", "").replace("?&","?").replace("&&","&");
+				}
+				
+				if (number) {
+					url = url.replace("{number}", number);
+				} else {
+					url = url.replace("number={number}", "").replace("?&","?").replace("&&","&");
 				}
 
 				return url.replace(/([?&]+$)/g, "");

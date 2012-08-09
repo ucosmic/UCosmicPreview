@@ -68,9 +68,11 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
     public class T4MVC_LanguagesController: UCosmic.Www.Mvc.Areas.Languages.Controllers.LanguagesController {
         public T4MVC_LanguagesController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Get(string keyword) {
+        public override System.Web.Mvc.ActionResult Get(string keyword, int size, int number) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
             callInfo.RouteValueDictionary.Add("keyword", keyword);
+            callInfo.RouteValueDictionary.Add("size", size);
+            callInfo.RouteValueDictionary.Add("number", number);
             return callInfo;
         }
 

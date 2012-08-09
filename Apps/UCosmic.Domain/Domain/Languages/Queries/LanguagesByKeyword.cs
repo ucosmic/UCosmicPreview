@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace UCosmic.Domain.Languages
 {
-    public class LanguagesByKeyword : BaseEntitiesQuery<Language>, IDefineQuery<Language[]>
+    public class LanguagesByKeyword : BaseEntitiesQuery<Language>, IDefineQuery<PagedResult<Language>>
     {
         public LanguagesByKeyword(string keyword)
         {
@@ -11,9 +11,10 @@ namespace UCosmic.Domain.Languages
         }
 
         public string Keyword { get; private set; }
+        public PagerOptions PagerOptions { get; set; }
     }
 
-    public class HandleLanguagesByKeywordQuery : IHandleQueries<LanguagesByKeyword, Language[]>
+    public class HandleLanguagesByKeywordQuery : IHandleQueries<LanguagesByKeyword, PagedResult<Language>>
     {
         private readonly IQueryEntities _entities;
 
@@ -22,20 +23,18 @@ namespace UCosmic.Domain.Languages
             _entities = entities;
         }
 
-        public Language[] Handle(LanguagesByKeyword query)
+        public PagedResult<Language> Handle(LanguagesByKeyword query)
         {
             if (query == null) throw new ArgumentNullException("query");
+            if (query.Keyword == null) return null;
 
-            if (query.Keyword == null) return new Language[0];
-
-            var result = _entities.Query<Language>()
+            var results = _entities.Query<Language>()
                 .EagerLoad(_entities, query.EagerLoad)
-                .OrderBy(query.OrderBy)
             ;
 
             if (query.Keyword != "")
             {
-                result = result.Where(
+                results = results.Where(
                     l =>
                         l.TwoLetterIsoCode.Contains(query.Keyword) ||
                         l.ThreeLetterIsoCode.Contains(query.Keyword) ||
@@ -48,7 +47,11 @@ namespace UCosmic.Domain.Languages
                 );
             }
 
-            return result.ToArray();
+            results = results.OrderBy(query.OrderBy);
+
+            var pagedResults = new PagedResult<Language>(results, query.PagerOptions);
+
+            return pagedResults;
         }
     }
 }

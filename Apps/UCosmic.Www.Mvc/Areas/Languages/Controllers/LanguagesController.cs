@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
@@ -21,20 +23,40 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
 
         [HttpGet]
         //[OutputCache(VaryByParam = "*", Duration = 15)]
-        public virtual ActionResult Get(string keyword = "")
+        public virtual ActionResult Get(string keyword = "", int size = 10, int number = 1)
         {
             //Thread.Sleep(800);
+            Expression<Func<LanguageName, bool>> translatedName = n => n.TranslationToLanguage.TwoLetterIsoCode.Equals(
+                CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, StringComparison.OrdinalIgnoreCase);
             var entities = _queries.Execute(new LanguagesByKeyword(keyword)
             {
+                PagerOptions = new PagerOptions
+                {
+                    PageSize = size,
+                    PageNumber = number,
+                },
                 EagerLoad = new Expression<Func<Language, object>>[]
                 {
                     l => l.Names.Select(n => n.TranslationToLanguage)
                 },
+                OrderBy = new Dictionary<Expression<Func<Language, object>>, OrderByDirection>
+                {
+                    { l => l.TwoLetterIsoCode.Equals(
+                        CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, StringComparison.OrdinalIgnoreCase),
+                            OrderByDirection.Descending },
+                    { l => l.Names.Count,
+                            OrderByDirection.Descending },
+                    { l => l.Names.AsQueryable().FirstOrDefault(translatedName) != null
+                        ? l.Names.AsQueryable().FirstOrDefault(translatedName).Text : null,
+                            OrderByDirection.Descending },
+                }
             });
             var results = Mapper.Map<LanguageResult[]>(entities)
-                .OrderByDescending(l => l.IsUserLanguage)
-                .ThenByDescending(l => l.NamesCount)
-                .ThenBy(l => l.TranslatedNameText)
+                //.OrderByDescending(l => l.IsUserLanguage)
+                //.ThenByDescending(l => l.NamesCount)
+                //.ThenBy(l => l.TranslatedNameText)
+                //.Skip(size * (number - 1))
+                //.Take(size)
             ;
             if (Request.IsAjaxRequest())
                 return Json(results, JsonRequestBehavior.AllowGet);

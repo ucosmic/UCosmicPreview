@@ -2,15 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UCosmic.Domain;
 
-namespace UCosmic.Domain
+namespace UCosmic
 {
     public class PagedResult<TEntity> : IEnumerable<TEntity> where TEntity : Entity
     {
-        private PagedResult() { }
-
         public PagedResult(IQueryable<TEntity> queryable, PagerOptions options)
         {
+            options = options ?? PagerOptions.All;
             TotalResults = queryable.Count();
             PagerOptions = options;
 
@@ -20,7 +20,7 @@ namespace UCosmic.Domain
             if (PagerOptions.PageSize > 0)
                 queryable = queryable.Take(PagerOptions.PageSize);
 
-            ResultsCollection = queryable.ToList();
+            ResultsCollection = queryable.ToArray();
         }
 
         private PagerOptions PagerOptions { get; set; }

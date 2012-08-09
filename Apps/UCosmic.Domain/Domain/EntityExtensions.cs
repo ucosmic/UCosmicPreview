@@ -43,16 +43,18 @@ namespace UCosmic.Domain
                 foreach (var expression in expressions)
                 {
                     var unaryExpression = expression.Key.Body as UnaryExpression;
+                    var memberExpression = unaryExpression != null ? unaryExpression.Operand as MemberExpression : null;
+                    var methodExpression = unaryExpression != null ? unaryExpression.Operand as MethodCallExpression : null;
+                    var memberOrMethodExpression = memberExpression ?? methodExpression as Expression;
 
-                    if (unaryExpression != null)
+                    if (unaryExpression != null && memberOrMethodExpression != null)
                     {
-                        var propertyExpression = (MemberExpression)unaryExpression.Operand;
                         var parameters = expression.Key.Parameters;
-                        if (propertyExpression.Type == typeof(DateTime))
+                        if (memberOrMethodExpression.Type == typeof(DateTime))
                         {
                             #region DateTime
 
-                            var dateTimeExpression = Expression.Lambda<Func<TEntity, DateTime>>(propertyExpression, parameters);
+                            var dateTimeExpression = Expression.Lambda<Func<TEntity, DateTime>>(memberOrMethodExpression, parameters);
                             if (counter < 1)
                             {
                                 queryable = expression.Value == OrderByDirection.Ascending
@@ -68,11 +70,11 @@ namespace UCosmic.Domain
 
                             #endregion
                         }
-                        else if (propertyExpression.Type == typeof(int))
+                        else if (memberOrMethodExpression.Type == typeof(int))
                         {
                             #region int
 
-                            var intExpression = Expression.Lambda<Func<TEntity, int>>(propertyExpression, parameters);
+                            var intExpression = Expression.Lambda<Func<TEntity, int>>(memberOrMethodExpression, parameters);
                             if (counter < 1)
                             {
                                 queryable = expression.Value == OrderByDirection.Ascending
@@ -84,6 +86,26 @@ namespace UCosmic.Domain
                                 queryable = expression.Value == OrderByDirection.Ascending
                                     ? ((IOrderedQueryable<TEntity>)queryable).ThenBy(intExpression)
                                     : ((IOrderedQueryable<TEntity>)queryable).ThenByDescending(intExpression);
+                            }
+
+                            #endregion
+                        }
+                        else if (memberOrMethodExpression.Type == typeof(bool))
+                        {
+                            #region bool
+
+                            var boolExpression = Expression.Lambda<Func<TEntity, bool>>(memberOrMethodExpression, parameters);
+                            if (counter < 1)
+                            {
+                                queryable = expression.Value == OrderByDirection.Ascending
+                                    ? queryable.OrderBy(boolExpression)
+                                    : queryable.OrderByDescending(boolExpression);
+                            }
+                            else
+                            {
+                                queryable = expression.Value == OrderByDirection.Ascending
+                                    ? ((IOrderedQueryable<TEntity>)queryable).ThenBy(boolExpression)
+                                    : ((IOrderedQueryable<TEntity>)queryable).ThenByDescending(boolExpression);
                             }
 
                             #endregion
