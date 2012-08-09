@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
-using UCosmic.Domain;
 using UCosmic.Domain.Activities;
 using UCosmic.Www.Mvc.Models;
 

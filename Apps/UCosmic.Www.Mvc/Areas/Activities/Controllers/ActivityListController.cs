@@ -4,7 +4,6 @@ using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
 using AutoMapper;
-using UCosmic.Domain;
 using UCosmic.Domain.Activities;
 using UCosmic.Www.Mvc.Areas.Activities.Models;
 using UCosmic.Www.Mvc.Controllers;
