@@ -37,6 +37,9 @@
             font-size: 16px;
             border-top: solid 1px #ccc;
         }
+        .ucosmic ul.data-list li.hilite {
+            background: #ffa;
+        }
         .ucosmic ul.data-list li > a {
             display: block;
             color: #444;
@@ -70,6 +73,9 @@
             display: inline-block;
             vertical-align: top;
         }
+        .ucosmic ul.data-grid li.hilite {
+            background: #ffa;
+        }
         .ucosmic ul.data-grid li > a {
             display: block;
             cursor: pointer;
@@ -101,7 +107,7 @@
                     </li>
                 </ul>
             </div>
-            <div style="display:inline-block">
+            <div style="display: inline-block">
                 <select style="font-size: 15px; padding: 5px;" data-bind="value: ResultsSize">
                     <option value="10">Show 10 results</option>
                     <option value="20">Show 20 results</option>
@@ -109,7 +115,6 @@
                     <option value="100">Show 100 results</option>
                     <option value="@int.MaxValue">Show all results</option>
                 </select>
-                <span data-bind="text: ResultsSize"></span>
             </div>
         </div>
         <p data-bind="visible: IsSpinnerVisible" style="display: none;">
@@ -147,7 +152,7 @@
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: Results">
-                    <tr data-bind="click: GoToHref">
+                    <tr data-bind="click: GoToHref, css: { hilite: IsUserLanguage }">
                         <td>
                             <a data-bind="text: TranslatedNameText, attr: { href: Href }" style="font-weight: bold;">
                             </a>
@@ -167,7 +172,7 @@
         </div>
         <div data-bind="visible: SelectedViewText() === 'List' && HasResults()" style="display: none;">
             <ul class="data-list" data-bind="foreach: Results">
-                <li><a data-bind="attr: { href: Href }">
+                <li data-bind="css: { hilite: IsUserLanguage }"><a data-bind="attr: { href: Href }">
                     <div class="col" style="width: 350px;">
                         <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: FormattedNativeNameText() !== '-'">
                             &nbsp;(<span data-bind="text: FormattedNativeNameText"></span>) </span>
@@ -183,7 +188,7 @@
         </div>
         <div data-bind="visible: SelectedViewText() === 'Grid' && HasResults()" style="display: none;">
             <ul class="data-grid" data-bind="foreach: Results">
-                <li><a data-bind="attr: { href: Href }">
+                <li data-bind="css: { hilite: IsUserLanguage }"><a data-bind="attr: { href: Href }">
                     <div>
                         <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: FormattedNativeNameText() !== '-'">
                             &nbsp;(<span data-bind="text: FormattedNativeNameText"></span>) </span>
@@ -205,22 +210,23 @@
     <script type="text/javascript">
 
         // preserve existing input when user clicks browser back button
-        var keyword = $('input[name="@Html.NameFor(m => m.Keyword)"]').val() || '@Html.Raw(Model.Keyword)';
+        var keyword = $('input[data-bind*="value: Keyword"]').val() || '@Html.Raw(Model.Keyword)';
 
         // serialize results to json
         var results = JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.Results))');
 
         // track scrolling on overflow container
         var stretchScrollSelector = '.ucosmic .torso.row .center.col .scroll-y';
-        var scrollTop = $('input[data-bind="value: ScrollTop"]').val();
+        var scrollTop = $('input[data-bind*="value: ScrollTop"]').val();
         $(stretchScrollSelector).attr('data-bind', 'event: { scroll: TrackScroll }');
 
         // wrap up to initialize viewmodel
         var data = {
             Keyword: keyword,
-            LastKeyword: '@Html.Raw(Model.Keyword)',
             ScrollTop: scrollTop,
-            SelectedViewText: $('input[data-bind="value: SelectedViewText"]').val(),
+            ScrollTopSelector: stretchScrollSelector,
+            SelectedViewText: $('input[data-bind*="value: SelectedViewText"]').val(),
+            ResultsSize: $(':input[data-bind*="value: ResultsSize"]').val(),
             Results: results
         };
 
@@ -228,14 +234,10 @@
         var viewModel = new LanguagesViewModel(data);
         ko.applyBindings(viewModel);
 
-        // restore scroll position on back button
-        $(stretchScrollSelector).scrollTop(scrollTop);
-
         function LanguagesViewModel(data) {
             var self = this;
 
             self.Keyword = ko.observable(data.Keyword); // observe what is typed into search field
-            self.LastKeyword = ko.observable(data.LastKeyword); // update this after each json success
             self.ThrottledKeyword = ko.computed(self.Keyword) // only update this when user has stopped typing
                 .extend({ throttle: 400 });
 
@@ -287,30 +289,22 @@
             self.IsSpinnerVisible = ko.observable(false); // delay the showing of this
 
             ko.computed(function () { // update the results by getting json from server (happens during first load)
-
-                //var test = self.ResultsSize();
-                //alert(test);
-
-                //// do not run on first execution
-                //if (self.ThrottledKeyword() !== self.LastKeyword()) {
-                    self.IsLoadingResults(true); // we are entering an ajax call
-                    setTimeout(function () { // delay the showing of the spinner
-                        if (self.IsLoadingResults()) { // only show it when load is still being processed
-                            self.IsSpinnerVisible(true);
-                        }
-                    }, 400); // delay the spinner this long
-                    $.get(MvcJs.Languages.Languages.Get(), { // get json from server
-                        keyword: self.ThrottledKeyword(), // use throttled keyword to trigger this event
-                        size: self.ResultsSize()
-                    })
-                    .success(function (results) { // server returns array only
-                        self.Results(results); // update the ui
-                        self.IsLoadingResults(false); // loading is over
-                        self.IsSpinnerVisible(false); // hide the spinner
-                        self.LastKeyword(self.ThrottledKeyword()); // keyword is in sync
-                    });
-                //}
-
+                self.IsLoadingResults(true); // we are entering an ajax call
+                setTimeout(function () { // delay the showing of the spinner
+                    if (self.IsLoadingResults()) { // only show it when load is still being processed
+                        self.IsSpinnerVisible(true);
+                    }
+                }, 400); // delay the spinner this long
+                $.get(MvcJs.Languages.Languages.Get(), { // get json from server
+                    Keyword: self.ThrottledKeyword(), // use throttled keyword to trigger this event
+                    Size: self.ResultsSize()
+                })
+                .success(function (results) { // server returns array only
+                    self.Results(results); // update the ui
+                    self.IsLoadingResults(false); // loading is over
+                    self.IsSpinnerVisible(false); // hide the spinner
+                    self.RestoreScroll();
+                });
             });
 
             self.ViewTemplates = ko.observableArray([
@@ -326,6 +320,9 @@
             self.ScrollTop = ko.observable(data.ScrollTop || 0);
             self.TrackScroll = function (viewModel, e) {
                 self.ScrollTop(e.currentTarget.scrollTop);
+            };
+            self.RestoreScroll = function () {
+                $(data.ScrollTopSelector).scrollTop(self.ScrollTop());
             };
         }
 

@@ -31,6 +31,11 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult Get() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Get);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public LanguagesController Actions { get { return MVC.Languages.Languages; } }
@@ -68,11 +73,9 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
     public class T4MVC_LanguagesController: UCosmic.Www.Mvc.Areas.Languages.Controllers.LanguagesController {
         public T4MVC_LanguagesController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Get(string keyword, int size, int number) {
+        public override System.Web.Mvc.ActionResult Get(UCosmic.Www.Mvc.Areas.Languages.Models.LanguagesRequest inputs) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
-            callInfo.RouteValueDictionary.Add("keyword", keyword);
-            callInfo.RouteValueDictionary.Add("size", size);
-            callInfo.RouteValueDictionary.Add("number", number);
+            callInfo.RouteValueDictionary.Add("inputs", inputs);
             return callInfo;
         }
 

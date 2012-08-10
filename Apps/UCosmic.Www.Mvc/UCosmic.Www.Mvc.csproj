@@ -259,6 +259,7 @@
     <Compile Include="Areas\Languages\LanguagesAreaRegistration.cs" />
     <Compile Include="Areas\Languages\Models\LanguageResult.cs" />
     <Compile Include="Areas\Languages\Models\LanguageFinder.cs" />
+    <Compile Include="Areas\Languages\Models\LanguagesRequest.cs" />
     <Compile Include="Areas\Languages\_Deprecated\_LanguageResult.cs" />
     <Compile Include="Areas\Languages\Models\LanguageNameTable.cs" />
     <Compile Include="Areas\Languages\Models\LanguageNameTableRow.cs" />

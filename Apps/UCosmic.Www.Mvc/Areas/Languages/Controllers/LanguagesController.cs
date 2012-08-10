@@ -22,18 +22,19 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
         }
 
         [HttpGet]
-        //[OutputCache(VaryByParam = "*", Duration = 15)]
-        public virtual ActionResult Get(string keyword = "", int size = 10, int number = 1)
+        //[OutputCache(VaryByParam = "*", Duration = 5)]
+        public virtual ActionResult Get(LanguagesRequest inputs)
         {
             //Thread.Sleep(800);
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("es");
             Expression<Func<LanguageName, bool>> translatedName = n => n.TranslationToLanguage.TwoLetterIsoCode.Equals(
                 CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, StringComparison.OrdinalIgnoreCase);
-            var entities = _queries.Execute(new LanguagesByKeyword(keyword)
+            var entities = _queries.Execute(new LanguagesByKeyword(inputs.Keyword)
             {
                 PagerOptions = new PagerOptions
                 {
-                    PageSize = size,
-                    PageNumber = number,
+                    PageSize = inputs.Size,
+                    PageNumber = inputs.Number,
                 },
                 EagerLoad = new Expression<Func<Language, object>>[]
                 {
@@ -48,22 +49,16 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                             OrderByDirection.Descending },
                     { l => l.Names.AsQueryable().FirstOrDefault(translatedName) != null
                         ? l.Names.AsQueryable().FirstOrDefault(translatedName).Text : null,
-                            OrderByDirection.Descending },
-                }
+                            OrderByDirection.Ascending },
+                },
             });
-            var results = Mapper.Map<LanguageResult[]>(entities)
-                //.OrderByDescending(l => l.IsUserLanguage)
-                //.ThenByDescending(l => l.NamesCount)
-                //.ThenBy(l => l.TranslatedNameText)
-                //.Skip(size * (number - 1))
-                //.Take(size)
-            ;
+            var results = Mapper.Map<LanguageResult[]>(entities);
             if (Request.IsAjaxRequest())
                 return Json(results, JsonRequestBehavior.AllowGet);
 
             var model = new LanguageFinder
             {
-                Keyword = keyword,
+                Keyword = inputs.Keyword,
                 Results = results,
             };
             return View(model);
@@ -75,6 +70,21 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
         private static readonly string Area = MVC.Languages.Name;
         private static readonly string Controller = MVC.Languages.Languages.Name;
 
+        //public class ParameterizedGetRoute : GetRoute
+        //{
+        //    public ParameterizedGetRoute()
+        //    {
+        //        Defaults = new RouteValueDictionary(new
+        //        {
+        //            controller = Controller,
+        //            action = MVC.Languages.Languages.ActionNames.Get,
+        //            keyword = "",
+        //            size = 10,
+        //            number = 1,
+        //        });
+        //    }
+        //}
+
         public class GetRoute : MvcRoute
         {
             public GetRoute()
@@ -85,6 +95,9 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                 {
                     controller = Controller,
                     action = MVC.Languages.Languages.ActionNames.Get,
+                    //keyword = "",
+                    //size = 10,
+                    //number = 1,
                 });
                 Constraints = new RouteValueDictionary(new
                 {
