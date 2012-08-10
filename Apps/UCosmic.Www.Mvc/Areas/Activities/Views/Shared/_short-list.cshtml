@@ -2,7 +2,7 @@
 @model UCosmic.Www.Mvc.Areas.Activities.Models.ActivitiesPage
 <fieldset>
     <legend>My Recently Edited Activities</legend>
-    @if (!Model.Any())
+    @if (!Model.Results.Any())
     {
         <p class="pull-bottom">
             You have not yet added any activities.<br />
@@ -13,14 +13,14 @@
     else
     {
         <ol style="margin: 1em 0; padding: 0; list-style: none;">
-            @foreach (var item in Model)
+            @foreach (var item in Model.Results)
             {
                 <li>@item.Mode: <strong style="font-size: 1.2em;"><a href="@Url.Action(MVC.Activities.ActivityForm.Get(item.Number))">@item.Title</a></strong></li>
             }
         </ol>
         <div style="font-size: 1.1em;">
             <a href="@Url.Action(MVC.Activities.ActivityForm.New())">Create a new activity</a>
-            @if (Model.Count() == ActivityListController.ShortListLength && Model.TotalResults > ActivityListController.ShortListLength)
+            @if (Model.Results.Count() == ActivityListController.ShortListLength && Model.TotalResults > ActivityListController.ShortListLength)
             {
                 <span>|</span> <a href="@Url.Action(MVC.Activities.ActivityList.Page())">Show all (@(Model.TotalResults - ActivityListController.ShortListLength)
                     more)</a>

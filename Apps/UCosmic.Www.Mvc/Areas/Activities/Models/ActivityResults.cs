@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using AutoMapper;
 using UCosmic.Domain.Activities;
@@ -11,9 +10,6 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
 {
     public class ActivityResults : PageOf<ActivityResults.ActivityResult>
     {
-        public ActivityResults(IEnumerable<ActivityResult> items, int totalResults)
-            : base(items, totalResults) { }
-
         [Display(Prompt = "Type a country, institution, or topic")]
         public string Keyword { get; set; }
 
@@ -47,13 +43,6 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
             protected override void Configure()
             {
                 CreateMap<PagedResult<Activity>, ActivityResults>()
-                    .ConstructUsing(s =>
-                        new ActivityResults(
-                            Mapper.Map<ActivityResults.ActivityResult[]>(s.Results),
-                            s.TotalResults
-                        )
-                    )
-                    .ForMember(d => d.Items, o => o.Ignore())
                     .ForMember(d => d.Keyword, o => o.Ignore())
                     .ForMember(d => d.Establishment, o => o.Ignore())
                     .ForMember(d => d.TenantName, o => o.Ignore())
@@ -64,8 +53,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                     .ForMember(d => d.StartsOn, o => o.MapFrom(s => s.Values.StartsOn))
                 ;
 
-                CreateMap<Person, ActivityResults.ActivityResult.Owner>()
-                ;
+                CreateMap<Person, ActivityResults.ActivityResult.Owner>();
             }
         }
 
@@ -77,7 +65,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                     .ForMember(d => d.TenantName, o => o.MapFrom(s => s.OfficialName))
                     .ForMember(d => d.Keyword, o => o.Ignore())
                     .ForMember(d => d.Establishment, o => o.Ignore())
-                    .ForMember(d => d.Items, o => o.Ignore())
+                    .ForMember(d => d.Results, o => o.Ignore())
                     .ForMember(d => d.TotalResults, o => o.Ignore())
                 ;
             }

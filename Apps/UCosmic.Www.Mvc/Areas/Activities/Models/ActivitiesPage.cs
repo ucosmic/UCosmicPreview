@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using UCosmic.Domain.Activities;
 using UCosmic.Www.Mvc.Models;
 
@@ -7,9 +6,6 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
 {
     public class ActivitiesPage : PageOf<ActivitiesPage.Item>
     {
-        public ActivitiesPage(IEnumerable<Item> items, int totalResults)
-            : base(items, totalResults) { }
-
         public class Item
         {
             public int Number { get; set; }
@@ -29,15 +25,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
         {
             protected override void Configure()
             {
-                CreateMap<PagedResult<Activity>, ActivitiesPage>()
-                    .ConstructUsing(s =>
-                        new ActivitiesPage(
-                            Mapper.Map<ActivitiesPage.Item[]>(s.Results),
-                            s.TotalResults
-                        )
-                    )
-                    .ForMember(d => d.Items, o => o.Ignore())
-                ;
+                CreateMap<PagedResult<Activity>, ActivitiesPage>();
 
                 CreateMap<Activity, ActivitiesPage.Item>()
                     .ForMember(d => d.Title, o => o.ResolveUsing(s =>
@@ -47,8 +35,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                     ))
                 ;
 
-                CreateMap<ActivityTag, ActivitiesPage.Item.Tag>()
-                ;
+                CreateMap<ActivityTag, ActivitiesPage.Item.Tag>();
             }
         }
     }
