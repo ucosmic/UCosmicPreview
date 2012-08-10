@@ -586,9 +586,9 @@
     <Content Include="content\skins\www.usf.edu\head-logo.png" />
     <Content Include="content\skins\www.usf.edu\map-panes.css" />
     <Content Include="content\skins\www.usf.edu\screen.css" />
-    <Content Include="scripts\common\releases.js" />
-    <Content Include="scripts\identity\person-form.js" />
-    <Content Include="scripts\identity\roles-form.js" />
+    <Content Include="scripts\areas\common\releases.js" />
+    <Content Include="scripts\areas\identity\person-form.js" />
+    <Content Include="scripts\areas\roles\roles-form.js" />
     <Content Include="Areas\InstitutionalAgreements\Views\Shared\EditorTemplates\_ReadMe.txt" />
     <Content Include="content\icons\animated_globe\animated-globe-slow-48.gif" />
     <Content Include="content\icons\cancels\cancel-hot-12.png" />
@@ -1072,32 +1072,30 @@
     <Content Include="Global.asax" />
     <Content Include="content\Site.css" />
     <Content Include="robots.txt" />
-    <Content Include="scripts\identity\sign-up-send-email-form.js" />
-    <Content Include="scripts\institutional-agreements\configuration-form.js" />
-    <Content Include="scripts\institutional-agreements\public-search.js" />
-    <Content Include="scripts\jquery-1.7.2-vsdoc.js" />
-    <Content Include="scripts\jquery-1.7.2.js" />
-    <Content Include="scripts\jquery-1.7.2.min.js" />
-    <Content Include="scripts\jquery-ui-1.8.17.js" />
-    <Content Include="scripts\jquery-ui-1.8.17.min.js" />
-    <Content Include="scripts\jquery.bubblepopup.v2.3.1.min.js" />
-    <Content Include="scripts\jquery.pjax.js" />
-    <Content Include="scripts\jquery.pwdMeter.js" />
-    <Content Include="scripts\jquery.pwdMeter.min.js" />
-    <Content Include="scripts\jquery.simplemodal-1.4.1.js" />
-    <Content Include="scripts\jquery.simplemodal.1.4.1.min.js" />
-    <Content Include="scripts\jquery.tinywatermark-3.1.0.js" />
-    <Content Include="scripts\jquery.tinywatermark-3.1.0.min.js" />
-    <Content Include="scripts\jquery.unobtrusive-app.js" />
-    <Content Include="scripts\jquery.validate-vsdoc.js" />
-    <Content Include="scripts\jquery.validate.js" />
-    <Content Include="scripts\jquery.validate.min.js" />
-    <Content Include="scripts\knockout.debug.js" />
-    <Content Include="scripts\knockout.js" />
-    <Content Include="scripts\knockout.mapping-latest.debug.js" />
-    <Content Include="scripts\knockout.mapping-latest.js" />
-    <Content Include="scripts\languages\LanguageResultsViewModel.js" />
-    <Content Include="scripts\modernizr-2.5.3.js" />
+    <Content Include="scripts\areas\institutional-agreements\configuration-form.js" />
+    <Content Include="scripts\areas\institutional-agreements\public-search.js" />
+    <Content Include="scripts\jquery\jquery-1.7.2-vsdoc.js" />
+    <Content Include="scripts\jquery\jquery-1.7.2.js" />
+    <Content Include="scripts\jquery\jquery-1.7.2.min.js" />
+    <Content Include="scripts\jquery\jquery-ui-1.8.17.js" />
+    <Content Include="scripts\jquery\jquery-ui-1.8.17.min.js" />
+    <Content Include="scripts\other\jquery.bubblepopup.v2.3.1.min.js" />
+    <Content Include="scripts\other\jquery.pjax.js" />
+    <Content Include="scripts\other\jquery.pwdMeter.js" />
+    <Content Include="scripts\other\jquery.pwdMeter.min.js" />
+    <Content Include="scripts\other\jquery.simplemodal-1.4.1.js" />
+    <Content Include="scripts\other\jquery.simplemodal.1.4.1.min.js" />
+    <Content Include="scripts\other\jquery.tinywatermark-3.1.0.js" />
+    <Content Include="scripts\other\jquery.tinywatermark-3.1.0.min.js" />
+    <Content Include="scripts\jquery\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery\jquery.validate.js" />
+    <Content Include="scripts\jquery\jquery.validate.min.js" />
+    <Content Include="scripts\ko\knockout.debug.js" />
+    <Content Include="scripts\ko\knockout.js" />
+    <Content Include="scripts\ko\knockout.mapping-latest.debug.js" />
+    <Content Include="scripts\ko\knockout.mapping-latest.js" />
+    <Content Include="scripts\areas\languages\LanguageResultsViewModel.js" />
+    <Content Include="scripts\other\modernizr-2.5.3.js" />
     <Content Include="scripts\T4MvcJs\T4MvcJs.js">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1360,7 +1358,7 @@
     <Content Include="scripts\tinymce\utils\form_utils.js" />
     <Content Include="scripts\tinymce\utils\mctabs.js" />
     <Content Include="scripts\tinymce\utils\validate.js" />
-    <Content Include="scripts\ucosmic.js" />
+    <Content Include="scripts\other\ucosmic.js" />
     <Content Include="Areas\InstitutionalAgreements\Views\PublicSearch\_no-context.cshtml" />
     <Content Include="Areas\Common\Views\Features\february-2012-preview-2.cshtml" />
     <Content Include="Areas\Identity\Views\Shared\sign-on.cshtml" />
@@ -1446,16 +1444,16 @@
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\LanguagesData.sql" />
-    <Content Include="scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="scripts\MicrosoftAjax.js" />
-    <Content Include="scripts\MicrosoftAjax.debug.js" />
-    <Content Include="scripts\MicrosoftMvcAjax.js" />
-    <Content Include="scripts\MicrosoftMvcAjax.debug.js" />
-    <Content Include="scripts\MicrosoftMvcValidation.js" />
-    <Content Include="scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="scripts\jquery\jquery.unobtrusive-ajax.js" />
+    <Content Include="scripts\jquery\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="scripts\jquery\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\jquery\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\ms\MicrosoftAjax.js" />
+    <Content Include="scripts\ms\MicrosoftAjax.debug.js" />
+    <Content Include="scripts\ms\MicrosoftMvcAjax.js" />
+    <Content Include="scripts\ms\MicrosoftMvcAjax.debug.js" />
+    <Content Include="scripts\ms\MicrosoftMvcValidation.js" />
+    <Content Include="scripts\ms\MicrosoftMvcValidation.debug.js" />
     <None Include="startup\sql\CoreData.sql" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -1668,7 +1666,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

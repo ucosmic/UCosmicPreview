@@ -9,7 +9,7 @@
         @RenderSection("Styles")
     }
 
-    <script type="text/javascript" src="@Url.Content(Links.scripts.modernizr_2_5_3_js)"></script>
+    <script type="text/javascript" src="@Url.Content(Links.scripts.other.modernizr_2_5_3_js)"></script>
 
 </head>
 <body data-ucosmic-sign-on-url="@Url.Action(MVC.Identity.SignOn.Get(Request.RawUrl))"
@@ -237,23 +237,20 @@ If this continues, please notify info@ucosmic.org.">
 </body>
 </html>
 
-<script src="@Links.scripts.jquery_1_7_2_js" type="text/javascript"></script>
+<script src="@Links.scripts.jquery.jquery_1_7_2_js" type="text/javascript"></script>
+<script src="@Links.scripts.jquery.jquery_ui_1_8_17_js" type="text/javascript"></script>
+<script src="@Links.scripts.jquery.jquery_validate_js" type="text/javascript"></script>
+<script src="@Links.scripts.jquery.jquery_validate_unobtrusive_js" type="text/javascript"></script>
 
-<script src="@Links.scripts.jquery_ui_1_8_17_js" type="text/javascript"></script>
+<script src="@Links.scripts.ko.knockout_js" type="text/javascript"></script>
 
-<script src="@Links.scripts.jquery_validate_js" type="text/javascript"></script>
-
-<script src="@Links.scripts.jquery_validate_unobtrusive_js" type="text/javascript"></script>
-
-<script src="@Links.scripts.knockout_js" type="text/javascript"></script>
-
-<script src="@Links.scripts.knockout_mapping_latest_js" type="text/javascript"></script>
+<script src="@Links.scripts.ko.knockout_mapping_latest_js" type="text/javascript"></script>
 
 <script src="@Links.scripts.T4MvcJs.T4MvcJs_js" type="text/javascript"></script>
 
 @Html.Partial(MVC.Shared.Views.google_maps_api_script)
 
-<script src="@Links.scripts.ucosmic_js" type="text/javascript"></script>
+<script src="@Links.scripts.other.ucosmic_js" type="text/javascript"></script>
 
 @Html.Partial(MVC.Shared.Views.uservoice_widget_script)
 @Html.Partial(MVC.Shared.Views.google_analytics_script)
