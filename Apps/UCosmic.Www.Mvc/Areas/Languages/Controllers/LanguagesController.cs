@@ -25,7 +25,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
         //[OutputCache(VaryByParam = "*", Duration = 5)]
         public virtual ActionResult Get(LanguagesRequest inputs)
         {
-            //if (!Request.IsAjaxRequest()) return View(Views.get);
+            if (!Request.IsAjaxRequest()) return View(Views.get);
 
             //Thread.Sleep(800);
             //Thread.CurrentThread.CurrentUICulture = new CultureInfo("es");
@@ -55,7 +55,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                 },
             });
             var model = Mapper.Map<LanguageResults>(entities);
-            if (Request.IsAjaxRequest())
+            //if (Request.IsAjaxRequest())
                 return Json(model, JsonRequestBehavior.AllowGet);
 
             //var model = new LanguageResults
@@ -63,7 +63,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
             //    Keyword = inputs.Keyword,
             //    Results = results,
             //};
-            return View(model);
+            //return View(model);
         }
     }
 

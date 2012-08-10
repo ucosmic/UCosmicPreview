@@ -1,6 +1,4 @@
-﻿@using Newtonsoft.Json
-@model UCosmic.Www.Mvc.Areas.Languages.Models.LanguageResults
-@{
+﻿@{
     ViewBag.Title = "Languages";
 }
 @section Styles
@@ -94,10 +92,9 @@
     <div class="wrap-960">
         <div style="margin-bottom: 1em;">
             <div style="display: inline-block;">
-                <input type="search" name="@Html.NameFor(m => m.Keyword)" value="@Model.Keyword"
-                       data-bind="value: Keyword, valueUpdate: 'afterkeydown search'"
-                       placeholder="Find a language..." autofocus="autofocus" autocomplete="on"
-                       style="font-size: 15px; padding: 5px; width: 250px;" />
+                <input type="search" data-bind="value: Keyword, valueUpdate: 'afterkeydown search'"
+                    placeholder="Find a language..." autofocus="autofocus" autocomplete="on" style="font-size: 15px;
+                    padding: 5px; width: 250px;" />
                 <input type="hidden" data-bind="value: ScrollTop" />
                 <input type="hidden" data-bind="value: SelectedViewText" />
                 <input type="hidden" data-bind="value: PageNumber" />
@@ -109,7 +106,7 @@
                 </ul>
             </div>
             <div style="display: inline-block">
-                <select style="font-size: 15px; padding: 5px;" data-bind="value: ResultsSize">
+                <select style="font-size: 15px; padding: 5px;" data-bind="value: PageSize">
                     <option value="10">Show 10 results</option>
                     <option value="20">Show 20 results</option>
                     <option value="50">Show 50 results</option>
@@ -118,21 +115,24 @@
                 </select>
             </div>
             <div style="display: inline-block; font-size: 16px;">
-                <a href="#" data-bind="click: PrevPage">&lt;&lt; Previous Page</a> | <a href="#"
-                    data-bind="click: NextPage">Next Page &gt;&gt;</a>
+                <button data-bind="click: PrevPage, enable: PageNumber() > 1" style="font-size: 16px; padding: 6px 12px; margin: 0;
+                    border-width: 1;">
+                    &lt;&lt; Back</button>
+                <button data-bind="click: NextPage, enable: PageNumber() < PageCount()" style="font-size: 16px; padding: 6px 12px; margin: 0;
+                    border-width: 1;">
+                    Next &gt;&gt;</button>
             </div>
         </div>
         <p data-bind="visible: IsSpinnerVisible" style="display: none;">
             <img src="@Url.Content(Links.content.icons.loaders.win7_wait_16_gif)" alt="" style="vertical-align:text-top;" />
             <span style="font-size: 16px;">Loading...</span>
         </p>
-        <div data-bind="visible: !HasResults()" style="display: none;">
+        <div data-bind="visible: HasNoResults" style="display: none;">
             <p>
                 There are no languages that match your search terms.
             </p>
         </div>
-        <div data-bind="visible: SelectedViewText() === 'Table' && HasResults()"
-            style="display: none;">
+        <div data-bind="visible: SelectedViewText() === 'Table' && HasResults()" style="display: none;">
             <table class="data-table" style="width: 100%;">
                 <colgroup>
                     <col style="width: 25%;" />
@@ -217,25 +217,14 @@
     <script type="text/javascript">
 
         $(function () {
-            // preserve existing input when user clicks browser back button
-            var keyword = $('input[data-bind*="value: Keyword"]').val() || '@Html.Raw(Model.Keyword)';
-
-            // serialize results to json
-            var results = JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.Results))');
-
             // track scrolling on overflow container
             var stretchScrollSelector = '.ucosmic .torso.row .center.col .scroll-y';
-            var scrollTop = $('input[data-bind*="value: ScrollTop"]').val();
             $(stretchScrollSelector).attr('data-bind', 'event: { scroll: TrackScroll }');
 
             // wrap up to initialize viewmodel
             var data = {
-                Keyword: keyword,
-                ScrollTop: scrollTop,
                 ScrollTopSelector: stretchScrollSelector,
-                SelectedViewText: $('input[data-bind*="value: SelectedViewText"]').val(),
-                ResultsSize: $(':input[data-bind*="value: ResultsSize"]').val(),
-                Results: results
+                SelectedViewText: $('input[data-bind*="value: SelectedViewText"]').val()
             };
 
             // knock it out
