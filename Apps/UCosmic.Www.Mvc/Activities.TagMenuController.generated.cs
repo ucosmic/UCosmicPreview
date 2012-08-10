@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.PartialViewResult Post() {
@@ -60,6 +66,14 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
         }
 
 
+        static readonly ActionParamsClass_Post s_params_Post = new ActionParamsClass_Post();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Post PostParams { get { return s_params_Post; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Post {
+            public readonly string term = "term";
+            public readonly string excludes = "excludes";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -74,8 +88,8 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
 
         public override System.Web.Mvc.PartialViewResult Post(string term, string[] excludes) {
             var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.Post);
-            callInfo.RouteValueDictionary.Add("term", term);
-            callInfo.RouteValueDictionary.Add("excludes", excludes);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "term", term);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "excludes", excludes);
             return callInfo;
         }
 

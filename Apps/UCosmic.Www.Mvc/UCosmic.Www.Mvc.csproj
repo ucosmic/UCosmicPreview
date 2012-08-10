@@ -267,9 +267,36 @@
     <Compile Include="Areas\Languages\_Deprecated\_LanguagesDashboard.cs" />
     <Compile Include="Areas\Languages\_Deprecated\_LanguageTable.cs" />
     <Compile Include="Areas\Languages\_Deprecated\_LanguageTableRow.cs" />
+    <Compile Include="Common.ErrorsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common.FeaturesController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common.HealthController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common.NavigationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common.QaController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common.SkinsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\HttpMethodOverrideConstraint.cs" />
     <Compile Include="Controllers\HttpNotFoundOnNullModelAttribute.cs" />
     <Compile Include="Controllers\MvcRoute.cs" />
+    <Compile Include="Establishments.ManagementFormsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Establishments.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Establishments.SupplementalFormsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\FormsAuthenticationConfig.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailController.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOverController.cs" />
@@ -332,33 +359,6 @@
     <Compile Include="Areas\InstitutionalAgreements\Models\PublicSearch\AgreementInfo.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\PublicSearch\EstablishmentInfo.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\PublicSearch\SearchResults.cs" />
-    <Compile Include="Common.ErrorsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Common.FeaturesController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Common.HealthController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Common.NavigationController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Common.QaController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Common.SkinsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Establishments.ManagementFormsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Establishments.SharedController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Establishments.SupplementalFormsController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Identity.ConfirmEmailController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -531,6 +531,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="scripts\T4MvcJs\T4Proxy.cs" />
+    <Compile Include="Controllers\UnitOfWorkAttribute.cs" />
+    <Compile Include="Helpers\WebConfig.cs" />
+    <Compile Include="Helpers\WebRole.cs" />
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -539,9 +542,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\UnitOfWorkAttribute.cs" />
-    <Compile Include="Helpers\WebConfig.cs" />
-    <Compile Include="Helpers\WebRole.cs" />
+    <Compile Include="T4MVC.ModelUnbinder.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\saml\identity-providers\idp-test.shib.umn.edu.xml" />
@@ -1467,11 +1470,15 @@
       <DependentUpon>web.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
     </Content>
-    <None Include="T4MVC.tt.settings.t4" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_full_compressed.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_full.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\String.cshtml" />
     <Content Include="Views\Shared\_PjaxLayout.cshtml" />
+    <None Include="T4MVC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.cs</LastGenOutput>
+    </None>
+    <None Include="T4MVC.tt.settings.t4" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\mail\" />
@@ -1628,10 +1635,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="startup\installMvc3.cmd" />
-    <None Include="T4MVC.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>T4MVC.cs</LastGenOutput>
-    </None>
     <Content Include="Views\Shared\feedback-message.cshtml" />
     <Content Include="Views\Shared\google-analytics-script.cshtml" />
     <Content Include="Views\Shared\google-maps-api-script.cshtml" />

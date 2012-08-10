@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult Form() {
@@ -83,6 +89,35 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers {
         }
 
 
+        static readonly ActionParamsClass_Form s_params_Form = new ActionParamsClass_Form();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Form FormParams { get { return s_params_Form; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Form {
+            public readonly string slug = "slug";
+        }
+        static readonly ActionParamsClass_Put s_params_Put = new ActionParamsClass_Put();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Put PutParams { get { return s_params_Put; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Put {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_AutoCompleteUserName s_params_AutoCompleteUserName = new ActionParamsClass_AutoCompleteUserName();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AutoCompleteUserName AutoCompleteUserNameParams { get { return s_params_AutoCompleteUserName; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AutoCompleteUserName {
+            public readonly string term = "term";
+            public readonly string excludeUserEntityIds = "excludeUserEntityIds";
+        }
+        static readonly ActionParamsClass_AddUserName s_params_AddUserName = new ActionParamsClass_AddUserName();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AddUserName AddUserNameParams { get { return s_params_AddUserName; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AddUserName {
+            public readonly string userEntityId = "userEntityId";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -110,26 +145,26 @@ namespace UCosmic.Www.Mvc.Areas.Roles.Controllers {
 
         public override System.Web.Mvc.ActionResult Form(string slug) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Form);
-            callInfo.RouteValueDictionary.Add("slug", slug);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "slug", slug);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult Put(UCosmic.Www.Mvc.Areas.Roles.Models.RoleForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Put);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 
         public override System.Web.Mvc.JsonResult AutoCompleteUserName(string term, System.Collections.Generic.List<System.Guid> excludeUserEntityIds) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.AutoCompleteUserName);
-            callInfo.RouteValueDictionary.Add("term", term);
-            callInfo.RouteValueDictionary.Add("excludeUserEntityIds", excludeUserEntityIds);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "term", term);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "excludeUserEntityIds", excludeUserEntityIds);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult AddUserName(System.Guid userEntityId) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AddUserName);
-            callInfo.RouteValueDictionary.Add("userEntityId", userEntityId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "userEntityId", userEntityId);
             return callInfo;
         }
 

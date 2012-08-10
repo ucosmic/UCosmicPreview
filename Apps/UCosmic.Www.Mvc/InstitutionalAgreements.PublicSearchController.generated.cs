@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult ChangeOwner() {
@@ -102,6 +108,60 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
         }
 
 
+        static readonly ActionParamsClass_ChangeOwner s_params_ChangeOwner = new ActionParamsClass_ChangeOwner();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ChangeOwner ChangeOwnerParams { get { return s_params_ChangeOwner; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ChangeOwner {
+            public readonly string newEstablishmentUrl = "newEstablishmentUrl";
+            public readonly string keyword = "keyword";
+        }
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Index {
+            public readonly string establishmentUrl = "establishmentUrl";
+            public readonly string keyword = "keyword";
+        }
+        static readonly ActionParamsClass_Info s_params_Info = new ActionParamsClass_Info();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Info InfoParams { get { return s_params_Info; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Info {
+            public readonly string agreementId = "agreementId";
+        }
+        static readonly ActionParamsClass_DisplayFile s_params_DisplayFile = new ActionParamsClass_DisplayFile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DisplayFile DisplayFileParams { get { return s_params_DisplayFile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DisplayFile {
+            public readonly string fileId = "fileId";
+            public readonly string fileName = "fileName";
+        }
+        static readonly ActionParamsClass_DownloadFile s_params_DownloadFile = new ActionParamsClass_DownloadFile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DownloadFile DownloadFileParams { get { return s_params_DownloadFile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DownloadFile {
+            public readonly string fileId = "fileId";
+            public readonly string fileName = "fileName";
+        }
+        static readonly ActionParamsClass_AutoCompleteKeyword s_params_AutoCompleteKeyword = new ActionParamsClass_AutoCompleteKeyword();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AutoCompleteKeyword AutoCompleteKeywordParams { get { return s_params_AutoCompleteKeyword; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AutoCompleteKeyword {
+            public readonly string establishmentUrl = "establishmentUrl";
+            public readonly string term = "term";
+        }
+        static readonly ActionParamsClass_GetChildEstablishmentsWithAgreements s_params_GetChildEstablishmentsWithAgreements = new ActionParamsClass_GetChildEstablishmentsWithAgreements();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GetChildEstablishmentsWithAgreements GetChildEstablishmentsWithAgreementsParams { get { return s_params_GetChildEstablishmentsWithAgreements; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GetChildEstablishmentsWithAgreements {
+            public readonly string parentId = "parentId";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -121,48 +181,48 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
 
         public override System.Web.Mvc.ActionResult ChangeOwner(string newEstablishmentUrl, string keyword) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ChangeOwner);
-            callInfo.RouteValueDictionary.Add("newEstablishmentUrl", newEstablishmentUrl);
-            callInfo.RouteValueDictionary.Add("keyword", keyword);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "newEstablishmentUrl", newEstablishmentUrl);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "keyword", keyword);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult Index(string establishmentUrl, string keyword) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Index);
-            callInfo.RouteValueDictionary.Add("establishmentUrl", establishmentUrl);
-            callInfo.RouteValueDictionary.Add("keyword", keyword);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "establishmentUrl", establishmentUrl);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "keyword", keyword);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult Info(System.Guid agreementId) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Info);
-            callInfo.RouteValueDictionary.Add("agreementId", agreementId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "agreementId", agreementId);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult DisplayFile(System.Guid fileId, string fileName) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.DisplayFile);
-            callInfo.RouteValueDictionary.Add("fileId", fileId);
-            callInfo.RouteValueDictionary.Add("fileName", fileName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fileId", fileId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fileName", fileName);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult DownloadFile(System.Guid fileId, string fileName) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.DownloadFile);
-            callInfo.RouteValueDictionary.Add("fileId", fileId);
-            callInfo.RouteValueDictionary.Add("fileName", fileName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fileId", fileId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fileName", fileName);
             return callInfo;
         }
 
         public override System.Web.Mvc.JsonResult AutoCompleteKeyword(string establishmentUrl, string term) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.AutoCompleteKeyword);
-            callInfo.RouteValueDictionary.Add("establishmentUrl", establishmentUrl);
-            callInfo.RouteValueDictionary.Add("term", term);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "establishmentUrl", establishmentUrl);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "term", term);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult GetChildEstablishmentsWithAgreements(System.Guid parentId) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.GetChildEstablishmentsWithAgreements);
-            callInfo.RouteValueDictionary.Add("parentId", parentId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "parentId", parentId);
             return callInfo;
         }
 

@@ -34,6 +34,12 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public FeaturesController Actions { get { return MVC.Common.Features; } }
@@ -62,6 +68,20 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
         }
 
 
+        static readonly ActionParamsClass_Releases s_params_Releases = new ActionParamsClass_Releases();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Releases ReleasesParams { get { return s_params_Releases; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Releases {
+            public readonly string version = "version";
+        }
+        static readonly ActionParamsClass_Requirements s_params_Requirements = new ActionParamsClass_Requirements();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Requirements RequirementsParams { get { return s_params_Requirements; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Requirements {
+            public readonly string module = "module";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -100,7 +120,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
 
         public override System.Web.Mvc.ActionResult Releases(string version) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Releases);
-            callInfo.RouteValueDictionary.Add("version", version);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "version", version);
             return callInfo;
         }
 
@@ -111,7 +131,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
 
         public override System.Web.Mvc.ActionResult Requirements(string module) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Requirements);
-            callInfo.RouteValueDictionary.Add("module", module);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "module", module);
             return callInfo;
         }
 

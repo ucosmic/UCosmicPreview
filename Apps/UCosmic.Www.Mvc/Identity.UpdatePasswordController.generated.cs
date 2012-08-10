@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.JsonResult ValidateCurrentPassword() {
@@ -76,6 +82,27 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         }
 
 
+        static readonly ActionParamsClass_ValidateCurrentPassword s_params_ValidateCurrentPassword = new ActionParamsClass_ValidateCurrentPassword();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ValidateCurrentPassword ValidateCurrentPasswordParams { get { return s_params_ValidateCurrentPassword; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ValidateCurrentPassword {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_ValidateNewPasswordConfirmation s_params_ValidateNewPasswordConfirmation = new ActionParamsClass_ValidateNewPasswordConfirmation();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ValidateNewPasswordConfirmation ValidateNewPasswordConfirmationParams { get { return s_params_ValidateNewPasswordConfirmation; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ValidateNewPasswordConfirmation {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_Post s_params_Post = new ActionParamsClass_Post();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Post PostParams { get { return s_params_Post; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Post {
+            public readonly string model = "model";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -95,19 +122,19 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
 
         public override System.Web.Mvc.JsonResult ValidateCurrentPassword(UCosmic.Www.Mvc.Areas.Identity.Models.UpdatePasswordForm model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateCurrentPassword);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 
         public override System.Web.Mvc.JsonResult ValidateNewPasswordConfirmation(UCosmic.Www.Mvc.Areas.Identity.Models.UpdatePasswordForm model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateNewPasswordConfirmation);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult Post(UCosmic.Www.Mvc.Areas.Identity.Models.UpdatePasswordForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 

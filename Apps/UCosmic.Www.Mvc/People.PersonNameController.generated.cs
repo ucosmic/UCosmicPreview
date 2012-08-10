@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.JsonResult GenerateDisplayName() {
@@ -74,6 +80,27 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
         }
 
 
+        static readonly ActionParamsClass_GenerateDisplayName s_params_GenerateDisplayName = new ActionParamsClass_GenerateDisplayName();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GenerateDisplayName GenerateDisplayNameParams { get { return s_params_GenerateDisplayName; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GenerateDisplayName {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_AutoCompleteSalutations s_params_AutoCompleteSalutations = new ActionParamsClass_AutoCompleteSalutations();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AutoCompleteSalutations AutoCompleteSalutationsParams { get { return s_params_AutoCompleteSalutations; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AutoCompleteSalutations {
+            public readonly string term = "term";
+        }
+        static readonly ActionParamsClass_AutoCompleteSuffixes s_params_AutoCompleteSuffixes = new ActionParamsClass_AutoCompleteSuffixes();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AutoCompleteSuffixes AutoCompleteSuffixesParams { get { return s_params_AutoCompleteSuffixes; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AutoCompleteSuffixes {
+            public readonly string term = "term";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -88,19 +115,19 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
 
         public override System.Web.Mvc.JsonResult GenerateDisplayName(UCosmic.Www.Mvc.Areas.People.Models.GenerateDisplayNameForm model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.GenerateDisplayName);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 
         public override System.Web.Mvc.JsonResult AutoCompleteSalutations(string term) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.AutoCompleteSalutations);
-            callInfo.RouteValueDictionary.Add("term", term);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "term", term);
             return callInfo;
         }
 
         public override System.Web.Mvc.JsonResult AutoCompleteSuffixes(string term) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.AutoCompleteSuffixes);
-            callInfo.RouteValueDictionary.Add("term", term);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "term", term);
             return callInfo;
         }
 

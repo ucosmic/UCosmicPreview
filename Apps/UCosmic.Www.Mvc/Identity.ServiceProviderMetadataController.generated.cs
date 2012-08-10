@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ServiceProviderMetadataController Actions { get { return MVC.Identity.ServiceProviderMetadata; } }
@@ -57,6 +63,20 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         }
 
 
+        static readonly ActionParamsClass_Real s_params_Real = new ActionParamsClass_Real();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Real RealParams { get { return s_params_Real; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Real {
+            public readonly string contentType = "contentType";
+        }
+        static readonly ActionParamsClass_Test s_params_Test = new ActionParamsClass_Test();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Test TestParams { get { return s_params_Test; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Test {
+            public readonly string contentType = "contentType";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -71,13 +91,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
 
         public override System.Web.Mvc.PartialViewResult Real(string contentType) {
             var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.Real);
-            callInfo.RouteValueDictionary.Add("contentType", contentType);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "contentType", contentType);
             return callInfo;
         }
 
         public override System.Web.Mvc.PartialViewResult Test(string contentType) {
             var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.Test);
-            callInfo.RouteValueDictionary.Add("contentType", contentType);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "contentType", contentType);
             return callInfo;
         }
 

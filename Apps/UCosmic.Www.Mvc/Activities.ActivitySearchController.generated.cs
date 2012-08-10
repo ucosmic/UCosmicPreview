@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult Get() {
@@ -67,6 +73,22 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
         }
 
 
+        static readonly ActionParamsClass_Get s_params_Get = new ActionParamsClass_Get();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Get GetParams { get { return s_params_Get; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Get {
+            public readonly string establishment = "establishment";
+            public readonly string keyword = "keyword";
+        }
+        static readonly ActionParamsClass_AutoCompleteKeyword s_params_AutoCompleteKeyword = new ActionParamsClass_AutoCompleteKeyword();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AutoCompleteKeyword AutoCompleteKeywordParams { get { return s_params_AutoCompleteKeyword; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AutoCompleteKeyword {
+            public readonly string establishment = "establishment";
+            public readonly string term = "term";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -81,15 +103,15 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
 
         public override System.Web.Mvc.ActionResult Get(string establishment, string keyword) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
-            callInfo.RouteValueDictionary.Add("establishment", establishment);
-            callInfo.RouteValueDictionary.Add("keyword", keyword);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "establishment", establishment);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "keyword", keyword);
             return callInfo;
         }
 
         public override System.Web.Mvc.JsonResult AutoCompleteKeyword(string establishment, string term) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.AutoCompleteKeyword);
-            callInfo.RouteValueDictionary.Add("establishment", establishment);
-            callInfo.RouteValueDictionary.Add("term", term);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "establishment", establishment);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "term", term);
             return callInfo;
         }
 

@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActivityListController Actions { get { return MVC.Activities.ActivityList; } }
@@ -57,6 +63,13 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
         }
 
 
+        static readonly ActionParamsClass_Page s_params_Page = new ActionParamsClass_Page();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Page PageParams { get { return s_params_Page; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Page {
+            public readonly string pageNumber = "pageNumber";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -76,7 +89,7 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
 
         public override System.Web.Mvc.ActionResult Page(int pageNumber) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Page);
-            callInfo.RouteValueDictionary.Add("pageNumber", pageNumber);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "pageNumber", pageNumber);
             return callInfo;
         }
 

@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.PartialViewResult NewAgreementType() {
@@ -91,6 +97,35 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
         }
 
 
+        static readonly ActionParamsClass_NewAgreementType s_params_NewAgreementType = new ActionParamsClass_NewAgreementType();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_NewAgreementType NewAgreementTypeParams { get { return s_params_NewAgreementType; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_NewAgreementType {
+            public readonly string configurationId = "configurationId";
+        }
+        static readonly ActionParamsClass_NewAgreementStatus s_params_NewAgreementStatus = new ActionParamsClass_NewAgreementStatus();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_NewAgreementStatus NewAgreementStatusParams { get { return s_params_NewAgreementStatus; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_NewAgreementStatus {
+            public readonly string configurationId = "configurationId";
+        }
+        static readonly ActionParamsClass_NewAgreementContactType s_params_NewAgreementContactType = new ActionParamsClass_NewAgreementContactType();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_NewAgreementContactType NewAgreementContactTypeParams { get { return s_params_NewAgreementContactType; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_NewAgreementContactType {
+            public readonly string configurationId = "configurationId";
+        }
+        static readonly ActionParamsClass_ValidateDuplicateOption s_params_ValidateDuplicateOption = new ActionParamsClass_ValidateDuplicateOption();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ValidateDuplicateOption ValidateDuplicateOptionParams { get { return s_params_ValidateDuplicateOption; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ValidateDuplicateOption {
+            public readonly string type = "type";
+            public readonly string values = "values";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -120,7 +155,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
 
         public override System.Web.Mvc.ActionResult Add(UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ConfigurationForms.InstitutionalAgreementConfigurationForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Add);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 
@@ -131,32 +166,32 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
 
         public override System.Web.Mvc.ActionResult Edit(UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ConfigurationForms.InstitutionalAgreementConfigurationForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Edit);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 
         public override System.Web.Mvc.PartialViewResult NewAgreementType(System.Guid configurationId) {
             var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.NewAgreementType);
-            callInfo.RouteValueDictionary.Add("configurationId", configurationId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "configurationId", configurationId);
             return callInfo;
         }
 
         public override System.Web.Mvc.PartialViewResult NewAgreementStatus(System.Guid configurationId) {
             var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.NewAgreementStatus);
-            callInfo.RouteValueDictionary.Add("configurationId", configurationId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "configurationId", configurationId);
             return callInfo;
         }
 
         public override System.Web.Mvc.PartialViewResult NewAgreementContactType(System.Guid configurationId) {
             var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.NewAgreementContactType);
-            callInfo.RouteValueDictionary.Add("configurationId", configurationId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "configurationId", configurationId);
             return callInfo;
         }
 
         public override System.Web.Mvc.JsonResult ValidateDuplicateOption(string type, System.Collections.Generic.List<string> values) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateDuplicateOption);
-            callInfo.RouteValueDictionary.Add("type", type);
-            callInfo.RouteValueDictionary.Add("values", values);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "type", type);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "values", values);
             return callInfo;
         }
 

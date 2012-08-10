@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult Locate() {
@@ -67,6 +73,22 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers {
         }
 
 
+        static readonly ActionParamsClass_Locate s_params_Locate = new ActionParamsClass_Locate();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Locate LocateParams { get { return s_params_Locate; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Locate {
+            public readonly string establishmentId = "establishmentId";
+            public readonly string returnUrl = "returnUrl";
+        }
+        static readonly ActionParamsClass_FindPlaces s_params_FindPlaces = new ActionParamsClass_FindPlaces();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_FindPlaces FindPlacesParams { get { return s_params_FindPlaces; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_FindPlaces {
+            public readonly string latitude = "latitude";
+            public readonly string longitude = "longitude";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -82,21 +104,21 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers {
 
         public override System.Web.Mvc.ActionResult Locate(System.Guid establishmentId, string returnUrl) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Locate);
-            callInfo.RouteValueDictionary.Add("establishmentId", establishmentId);
-            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "establishmentId", establishmentId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult Locate(UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms.EstablishmentForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Locate);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 
         public override System.Web.Mvc.PartialViewResult FindPlaces(double latitude, double longitude) {
             var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.FindPlaces);
-            callInfo.RouteValueDictionary.Add("latitude", latitude);
-            callInfo.RouteValueDictionary.Add("longitude", longitude);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "latitude", latitude);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "longitude", longitude);
             return callInfo;
         }
 

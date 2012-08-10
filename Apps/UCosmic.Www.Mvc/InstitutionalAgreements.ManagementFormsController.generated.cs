@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult Post() {
@@ -97,6 +103,50 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
         }
 
 
+        static readonly ActionParamsClass_Post s_params_Post = new ActionParamsClass_Post();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Post PostParams { get { return s_params_Post; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Post {
+            public readonly string entityId = "entityId";
+        }
+        static readonly ActionParamsClass_AddParticipant s_params_AddParticipant = new ActionParamsClass_AddParticipant();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AddParticipant AddParticipantParams { get { return s_params_AddParticipant; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AddParticipant {
+            public readonly string agreementId = "agreementId";
+            public readonly string establishmentId = "establishmentId";
+        }
+        static readonly ActionParamsClass_AttachFile s_params_AttachFile = new ActionParamsClass_AttachFile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AttachFile AttachFileParams { get { return s_params_AttachFile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AttachFile {
+            public readonly string agreementId = "agreementId";
+        }
+        static readonly ActionParamsClass_AddContact s_params_AddContact = new ActionParamsClass_AddContact();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AddContact AddContactParams { get { return s_params_AddContact; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AddContact {
+            public readonly string agreementId = "agreementId";
+        }
+        static readonly ActionParamsClass_DeriveTitle s_params_DeriveTitle = new ActionParamsClass_DeriveTitle();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DeriveTitle DeriveTitleParams { get { return s_params_DeriveTitle; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DeriveTitle {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_AutoCompleteEstablishmentNames s_params_AutoCompleteEstablishmentNames = new ActionParamsClass_AutoCompleteEstablishmentNames();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AutoCompleteEstablishmentNames AutoCompleteEstablishmentNamesParams { get { return s_params_AutoCompleteEstablishmentNames; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AutoCompleteEstablishmentNames {
+            public readonly string term = "term";
+            public readonly string excludeEstablishmentIds = "excludeEstablishmentIds";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -132,51 +182,51 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
 
         public override System.Web.Mvc.ActionResult Post(System.Guid? entityId) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
-            callInfo.RouteValueDictionary.Add("entityId", entityId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entityId", entityId);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult Post(UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms.InstitutionalAgreementForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult AddParticipant(int agreementId, System.Guid establishmentId) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AddParticipant);
-            callInfo.RouteValueDictionary.Add("agreementId", agreementId);
-            callInfo.RouteValueDictionary.Add("establishmentId", establishmentId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "agreementId", agreementId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "establishmentId", establishmentId);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult AttachFile(int? agreementId) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AttachFile);
-            callInfo.RouteValueDictionary.Add("agreementId", agreementId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "agreementId", agreementId);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult AddContact(int? agreementId) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AddContact);
-            callInfo.RouteValueDictionary.Add("agreementId", agreementId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "agreementId", agreementId);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult AddContact(UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms.InstitutionalAgreementContactForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AddContact);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult DeriveTitle(UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms.InstitutionalAgreementDeriveTitleInput model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.DeriveTitle);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult AutoCompleteEstablishmentNames(string term, System.Collections.Generic.List<System.Guid> excludeEstablishmentIds) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AutoCompleteEstablishmentNames);
-            callInfo.RouteValueDictionary.Add("term", term);
-            callInfo.RouteValueDictionary.Add("excludeEstablishmentIds", excludeEstablishmentIds);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "term", term);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "excludeEstablishmentIds", excludeEstablishmentIds);
             return callInfo;
         }
 

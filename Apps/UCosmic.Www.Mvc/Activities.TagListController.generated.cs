@@ -34,6 +34,12 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.PartialViewResult Add() {
@@ -63,6 +69,15 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
         }
 
 
+        static readonly ActionParamsClass_Add s_params_Add = new ActionParamsClass_Add();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Add AddParams { get { return s_params_Add; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Add {
+            public readonly string domainType = "domainType";
+            public readonly string domainKey = "domainKey";
+            public readonly string text = "text";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -77,9 +92,9 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
 
         public override System.Web.Mvc.PartialViewResult Add(UCosmic.Domain.Activities.ActivityTagDomainType domainType, int? domainKey, string text) {
             var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.Add);
-            callInfo.RouteValueDictionary.Add("domainType", domainType);
-            callInfo.RouteValueDictionary.Add("domainKey", domainKey);
-            callInfo.RouteValueDictionary.Add("text", text);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "domainType", domainType);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "domainKey", domainKey);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "text", text);
             return callInfo;
         }
 

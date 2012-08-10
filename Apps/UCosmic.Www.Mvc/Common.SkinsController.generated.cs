@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.RedirectResult Change() {
@@ -71,6 +77,28 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
         }
 
 
+        static readonly ActionParamsClass_Change s_params_Change = new ActionParamsClass_Change();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Change ChangeParams { get { return s_params_Change; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Change {
+            public readonly string skinContext = "skinContext";
+            public readonly string returnUrl = "returnUrl";
+        }
+        static readonly ActionParamsClass_Apply s_params_Apply = new ActionParamsClass_Apply();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Apply ApplyParams { get { return s_params_Apply; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Apply {
+            public readonly string skinFile = "skinFile";
+        }
+        static readonly ActionParamsClass_Sample s_params_Sample = new ActionParamsClass_Sample();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Sample SampleParams { get { return s_params_Sample; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Sample {
+            public readonly string content = "content";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -90,14 +118,14 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
 
         public override System.Web.Mvc.RedirectResult Change(string skinContext, string returnUrl) {
             var callInfo = new T4MVC_RedirectResult(Area, Name, ActionNames.Change);
-            callInfo.RouteValueDictionary.Add("skinContext", skinContext);
-            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "skinContext", skinContext);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
             return callInfo;
         }
 
         public override System.Web.Mvc.PartialViewResult Apply(string skinFile) {
             var callInfo = new T4MVC_PartialViewResult(Area, Name, ActionNames.Apply);
-            callInfo.RouteValueDictionary.Add("skinFile", skinFile);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "skinFile", skinFile);
             return callInfo;
         }
 
@@ -108,7 +136,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
 
         public override System.Web.Mvc.ViewResult Sample(string content) {
             var callInfo = new T4MVC_ViewResult(Area, Name, ActionNames.Sample);
-            callInfo.RouteValueDictionary.Add("content", content);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "content", content);
             return callInfo;
         }
 

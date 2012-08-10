@@ -2,7 +2,7 @@
 <#@ output extension=".js" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="Microsoft.VisualStudio.Shell.Interop.8.0" #>
-<#@ assembly name="EnvDTE" #>
+<#@ assembly name="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" #>
 <#@ assembly name="EnvDTE80" #>
 <#@ assembly name="VSLangProj" #>
 <#@ assembly name="$(ProjectDir)$(OutDir)$(TargetFileName)" #>

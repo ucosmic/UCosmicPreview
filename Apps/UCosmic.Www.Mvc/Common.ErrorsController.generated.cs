@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult FileUploadTooLarge() {
@@ -77,6 +83,27 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
         }
 
 
+        static readonly ActionParamsClass_FileUploadTooLarge s_params_FileUploadTooLarge = new ActionParamsClass_FileUploadTooLarge();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_FileUploadTooLarge FileUploadTooLargeParams { get { return s_params_FileUploadTooLarge; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_FileUploadTooLarge {
+            public readonly string path = "path";
+        }
+        static readonly ActionParamsClass_NotAuthorized s_params_NotAuthorized = new ActionParamsClass_NotAuthorized();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_NotAuthorized NotAuthorizedParams { get { return s_params_NotAuthorized; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_NotAuthorized {
+            public readonly string url = "url";
+        }
+        static readonly ActionParamsClass_LogAjaxError s_params_LogAjaxError = new ActionParamsClass_LogAjaxError();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_LogAjaxError LogAjaxErrorParams { get { return s_params_LogAjaxError; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_LogAjaxError {
+            public readonly string model = "model";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -100,13 +127,13 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
 
         public override System.Web.Mvc.ActionResult FileUploadTooLarge(string path) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.FileUploadTooLarge);
-            callInfo.RouteValueDictionary.Add("path", path);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "path", path);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult NotAuthorized(string url) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.NotAuthorized);
-            callInfo.RouteValueDictionary.Add("url", url);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "url", url);
             return callInfo;
         }
 
@@ -127,7 +154,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
 
         public override System.Web.Mvc.JsonResult LogAjaxError(UCosmic.Www.Mvc.Models.JQueryAjaxException model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.LogAjaxError);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 

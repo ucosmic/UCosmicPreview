@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult Get() {
@@ -90,6 +96,45 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
         }
 
 
+        static readonly ActionParamsClass_Get s_params_Get = new ActionParamsClass_Get();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Get GetParams { get { return s_params_Get; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Get {
+            public readonly string number = "number";
+        }
+        static readonly ActionParamsClass_Put s_params_Put = new ActionParamsClass_Put();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Put PutParams { get { return s_params_Put; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Put {
+            public readonly string number = "number";
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_Draft s_params_Draft = new ActionParamsClass_Draft();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Draft DraftParams { get { return s_params_Draft; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Draft {
+            public readonly string number = "number";
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Delete DeleteParams { get { return s_params_Delete; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Delete {
+            public readonly string number = "number";
+            public readonly string returnUrl = "returnUrl";
+        }
+        static readonly ActionParamsClass_Destroy s_params_Destroy = new ActionParamsClass_Destroy();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Destroy DestroyParams { get { return s_params_Destroy; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Destroy {
+            public readonly string number = "number";
+            public readonly string returnUrl = "returnUrl";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -109,35 +154,35 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Controllers {
 
         public override System.Web.Mvc.ActionResult Get(int number) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
-            callInfo.RouteValueDictionary.Add("number", number);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "number", number);
             return callInfo;
         }
 
         public override System.Web.Mvc.JsonResult Put(int number, UCosmic.Www.Mvc.Areas.Activities.Models.ActivityForm model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.Put);
-            callInfo.RouteValueDictionary.Add("number", number);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "number", number);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 
         public override System.Web.Mvc.JsonResult Draft(int number, UCosmic.Www.Mvc.Areas.Activities.Models.ActivityForm model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.Draft);
-            callInfo.RouteValueDictionary.Add("number", number);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "number", number);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 
         public override System.Web.Mvc.ViewResult Delete(int number, string returnUrl) {
             var callInfo = new T4MVC_ViewResult(Area, Name, ActionNames.Delete);
-            callInfo.RouteValueDictionary.Add("number", number);
-            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "number", number);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult Destroy(int number, string returnUrl) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Destroy);
-            callInfo.RouteValueDictionary.Add("number", number);
-            callInfo.RouteValueDictionary.Add("returnUrl", returnUrl);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "number", number);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
             return callInfo;
         }
 

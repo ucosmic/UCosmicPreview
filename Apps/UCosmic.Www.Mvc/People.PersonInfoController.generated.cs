@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.JsonResult ByEmail() {
@@ -88,6 +94,44 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
         }
 
 
+        static readonly ActionParamsClass_ByEmail s_params_ByEmail = new ActionParamsClass_ByEmail();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ByEmail ByEmailParams { get { return s_params_ByEmail; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ByEmail {
+            public readonly string email = "email";
+        }
+        static readonly ActionParamsClass_ByGuid s_params_ByGuid = new ActionParamsClass_ByGuid();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ByGuid ByGuidParams { get { return s_params_ByGuid; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ByGuid {
+            public readonly string guid = "guid";
+        }
+        static readonly ActionParamsClass_WithEmail s_params_WithEmail = new ActionParamsClass_WithEmail();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_WithEmail WithEmailParams { get { return s_params_WithEmail; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_WithEmail {
+            public readonly string term = "term";
+            public readonly string matchStrategy = "matchStrategy";
+        }
+        static readonly ActionParamsClass_WithFirstName s_params_WithFirstName = new ActionParamsClass_WithFirstName();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_WithFirstName WithFirstNameParams { get { return s_params_WithFirstName; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_WithFirstName {
+            public readonly string term = "term";
+            public readonly string matchStrategy = "matchStrategy";
+        }
+        static readonly ActionParamsClass_WithLastName s_params_WithLastName = new ActionParamsClass_WithLastName();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_WithLastName WithLastNameParams { get { return s_params_WithLastName; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_WithLastName {
+            public readonly string term = "term";
+            public readonly string matchStrategy = "matchStrategy";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -102,34 +146,34 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
 
         public override System.Web.Mvc.JsonResult ByEmail(string email) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ByEmail);
-            callInfo.RouteValueDictionary.Add("email", email);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "email", email);
             return callInfo;
         }
 
         public override System.Web.Mvc.JsonResult ByGuid(System.Guid guid) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ByGuid);
-            callInfo.RouteValueDictionary.Add("guid", guid);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "guid", guid);
             return callInfo;
         }
 
         public override System.Web.Mvc.JsonResult WithEmail(string term, UCosmic.Domain.StringMatchStrategy matchStrategy) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.WithEmail);
-            callInfo.RouteValueDictionary.Add("term", term);
-            callInfo.RouteValueDictionary.Add("matchStrategy", matchStrategy);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "term", term);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "matchStrategy", matchStrategy);
             return callInfo;
         }
 
         public override System.Web.Mvc.JsonResult WithFirstName(string term, UCosmic.Domain.StringMatchStrategy matchStrategy) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.WithFirstName);
-            callInfo.RouteValueDictionary.Add("term", term);
-            callInfo.RouteValueDictionary.Add("matchStrategy", matchStrategy);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "term", term);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "matchStrategy", matchStrategy);
             return callInfo;
         }
 
         public override System.Web.Mvc.JsonResult WithLastName(string term, UCosmic.Domain.StringMatchStrategy matchStrategy) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.WithLastName);
-            callInfo.RouteValueDictionary.Add("term", term);
-            callInfo.RouteValueDictionary.Add("matchStrategy", matchStrategy);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "term", term);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "matchStrategy", matchStrategy);
             return callInfo;
         }
 

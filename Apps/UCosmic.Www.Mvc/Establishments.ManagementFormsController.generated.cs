@@ -31,6 +31,12 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers {
             return RedirectToRoute(callInfo.RouteValueDictionary);
         }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result) {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult Put() {
@@ -73,6 +79,28 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers {
         }
 
 
+        static readonly ActionParamsClass_Form s_params_Form = new ActionParamsClass_Form();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Form FormParams { get { return s_params_Form; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Form {
+            public readonly string entityId = "entityId";
+        }
+        static readonly ActionParamsClass_Put s_params_Put = new ActionParamsClass_Put();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Put PutParams { get { return s_params_Put; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Put {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_ValidateDuplicateOption s_params_ValidateDuplicateOption = new ActionParamsClass_ValidateDuplicateOption();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ValidateDuplicateOption ValidateDuplicateOptionParams { get { return s_params_ValidateDuplicateOption; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ValidateDuplicateOption {
+            public readonly string name = "name";
+            public readonly string values = "values";
+        }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
@@ -103,13 +131,13 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers {
 
         public override System.Web.Mvc.ActionResult Form(System.Guid? entityId) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Form);
-            callInfo.RouteValueDictionary.Add("entityId", entityId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entityId", entityId);
             return callInfo;
         }
 
         public override System.Web.Mvc.ActionResult Put(UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms.EstablishmentForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Put);
-            callInfo.RouteValueDictionary.Add("model", model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 
@@ -120,8 +148,8 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers {
 
         public override System.Web.Mvc.JsonResult ValidateDuplicateOption(string name, System.Collections.Generic.List<string> values) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.ValidateDuplicateOption);
-            callInfo.RouteValueDictionary.Add("name", name);
-            callInfo.RouteValueDictionary.Add("values", values);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "name", name);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "values", values);
             return callInfo;
         }
 
