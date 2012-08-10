@@ -31,9 +31,9 @@
                 <div>
                     <div>@Html.LabelFor(m => m.TranslationToLanguage)
                     </div>
-                    <div>@Html.DropDownListFor(m => m.TranslationToLanguage.RevisionId, Model.TranslationToLanguage.Options,
+                    <div>@Html.DropDownListFor(m => m.TranslationToLanguage.Id, Model.TranslationToLanguage.Options,
                         ModelMetadata.FromLambdaExpression(m => m.TranslationToLanguage, ViewData).NullDisplayText)
-                        @Html.ValidationMessageFor(m => m.TranslationToLanguage.RevisionId)
+                        @Html.ValidationMessageFor(m => m.TranslationToLanguage.Id)
                     </div>
                 </div>
                 <div style="height: 1em">

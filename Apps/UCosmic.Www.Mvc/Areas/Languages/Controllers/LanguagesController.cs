@@ -25,6 +25,8 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
         //[OutputCache(VaryByParam = "*", Duration = 5)]
         public virtual ActionResult Get(LanguagesRequest inputs)
         {
+            //if (!Request.IsAjaxRequest()) return View(Views.get);
+
             //Thread.Sleep(800);
             //Thread.CurrentThread.CurrentUICulture = new CultureInfo("es");
             Expression<Func<LanguageName, bool>> translatedName = n => n.TranslationToLanguage.TwoLetterIsoCode.Equals(
@@ -52,15 +54,15 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                             OrderByDirection.Ascending },
                 },
             });
-            var results = Mapper.Map<LanguageResult[]>(entities);
+            var model = Mapper.Map<LanguageResults>(entities);
             if (Request.IsAjaxRequest())
-                return Json(results, JsonRequestBehavior.AllowGet);
+                return Json(model, JsonRequestBehavior.AllowGet);
 
-            var model = new LanguageFinder
-            {
-                Keyword = inputs.Keyword,
-                Results = results,
-            };
+            //var model = new LanguageResults
+            //{
+            //    Keyword = inputs.Keyword,
+            //    Results = results,
+            //};
             return View(model);
         }
     }
@@ -69,21 +71,6 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
     {
         private static readonly string Area = MVC.Languages.Name;
         private static readonly string Controller = MVC.Languages.Languages.Name;
-
-        //public class ParameterizedGetRoute : GetRoute
-        //{
-        //    public ParameterizedGetRoute()
-        //    {
-        //        Defaults = new RouteValueDictionary(new
-        //        {
-        //            controller = Controller,
-        //            action = MVC.Languages.Languages.ActionNames.Get,
-        //            keyword = "",
-        //            size = 10,
-        //            number = 1,
-        //        });
-        //    }
-        //}
 
         public class GetRoute : MvcRoute
         {
@@ -95,9 +82,6 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                 {
                     controller = Controller,
                     action = MVC.Languages.Languages.ActionNames.Get,
-                    //keyword = "",
-                    //size = 10,
-                    //number = 1,
                 });
                 Constraints = new RouteValueDictionary(new
                 {

@@ -14,6 +14,9 @@ namespace UCosmic
             TotalResults = queryable.Count();
             PagerOptions = options;
 
+            // whenever the PageCount is greater than the PageNumber, reduce PageNumber, options are out of bounds
+            if (PageNumber > PageCount) PagerOptions.PageNumber = PageCount;
+
             if (PagerOptions.PageIndex > 0)
                 queryable = queryable.Skip(PagerOptions.PageIndex * PagerOptions.PageSize);
 

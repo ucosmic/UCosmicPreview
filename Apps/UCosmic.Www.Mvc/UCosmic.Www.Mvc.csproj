@@ -258,7 +258,7 @@
     <Compile Include="Areas\Languages\Controllers\LanguagesController.cs" />
     <Compile Include="Areas\Languages\LanguagesAreaRegistration.cs" />
     <Compile Include="Areas\Languages\Models\LanguageResult.cs" />
-    <Compile Include="Areas\Languages\Models\LanguageFinder.cs" />
+    <Compile Include="Areas\Languages\Models\LanguageResults.cs" />
     <Compile Include="Areas\Languages\Models\LanguagesRequest.cs" />
     <Compile Include="Areas\Languages\_Deprecated\_LanguageResult.cs" />
     <Compile Include="Areas\Languages\Models\LanguageNameTable.cs" />
@@ -1096,6 +1096,7 @@
     <Content Include="scripts\knockout.js" />
     <Content Include="scripts\knockout.mapping-latest.debug.js" />
     <Content Include="scripts\knockout.mapping-latest.js" />
+    <Content Include="scripts\languages\LanguageResultsViewModel.js" />
     <Content Include="scripts\modernizr-2.5.3.js" />
     <Content Include="scripts\T4MvcJs\T4MvcJs.js">
       <AutoGen>True</AutoGen>

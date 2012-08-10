@@ -164,7 +164,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Models.ManagementForms
             public LanguageForm TranslationToLanguage { get; set; }
             public class LanguageForm
             {
-                public int? RevisionId { get; set; }
+                public int? Id { get; set; }
                 public string TranslatedNameText { get; set; }
 
                 [ScaffoldColumn(false)]
