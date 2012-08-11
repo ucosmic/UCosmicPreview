@@ -7,7 +7,7 @@ namespace UCosmic.Www.Mvc.Models
     public abstract class PageOf<TModel>
     {
         public IEnumerable<TModel> Results { get; set; }
-        public int ResultCount { get { return Results.Count(); } }
+        //public int ResultCount { get { return Results.Count(); } }
         public int TotalResults { get; set; }
         public int PageNumber { get; set; }
         public int PageIndex { get; set; }
@@ -16,6 +16,6 @@ namespace UCosmic.Www.Mvc.Models
         public int FirstNumber { get { return FirstIndex + 1; } }
         public int FirstIndex { get { return PageIndex * PageSize; } }
         public int LastNumber { get { return LastIndex + 1; } }
-        public int LastIndex { get { return FirstIndex + ResultCount; } }
+        public int LastIndex { get { return FirstIndex + Results.Count(); } }
     }
 }

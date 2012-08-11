@@ -489,8 +489,7 @@ namespace Links {
                 private const string URLPATH = "~/scripts/areas/languages";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                public static readonly string LanguageResultsViewModel_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/LanguageResultsViewModel.min.js") ? Url("LanguageResultsViewModel.min.js") : Url("LanguageResultsViewModel.js");
-                        }
+            }
         
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class roles {
@@ -2542,6 +2541,716 @@ namespace Links {
                     public static readonly string top_right_png = Url("top-right.png");
                 }
             
+            }
+        
+        }
+    
+    }
+
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public static class Areas {
+        private const string URLPATH = "~/Areas";
+        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Activities {
+            private const string URLPATH = "~/Areas/Activities";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Controllers {
+                private const string URLPATH = "~/Areas/Activities/Controllers";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Models {
+                private const string URLPATH = "~/Areas/Activities/Models";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Views {
+                private const string URLPATH = "~/Areas/Activities/Views";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string _ViewStart_cshtml = Url("_ViewStart.cshtml");
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Shared {
+                    private const string URLPATH = "~/Areas/Activities/Views/Shared";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string _activity_info_cshtml = Url("_activity-info.cshtml");
+                    public static readonly string _short_list_cshtml = Url("_short-list.cshtml");
+                    public static readonly string _tag_list_cshtml = Url("_tag-list.cshtml");
+                    public static readonly string _tag_menu_cshtml = Url("_tag-menu.cshtml");
+                    public static readonly string activities_page_cshtml = Url("activities-page.cshtml");
+                    public static readonly string activity_delete_cshtml = Url("activity-delete.cshtml");
+                    public static readonly string activity_form_cshtml = Url("activity-form.cshtml");
+                    public static readonly string activity_info_cshtml = Url("activity-info.cshtml");
+                    public static readonly string activity_results_cshtml = Url("activity-results.cshtml");
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class EditorTemplates {
+                        private const string URLPATH = "~/Areas/Activities/Views/Shared/EditorTemplates";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string Tag_cshtml = Url("Tag.cshtml");
+                        public static readonly string TinyMceContent_cshtml = Url("TinyMceContent.cshtml");
+                    }
+                
+                }
+            
+                public static readonly string Web_config = Url("Web.config");
+            }
+        
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Common {
+            private const string URLPATH = "~/Areas/Common";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Controllers {
+                private const string URLPATH = "~/Areas/Common/Controllers";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Models {
+                private const string URLPATH = "~/Areas/Common/Models";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Features {
+                    private const string URLPATH = "~/Areas/Common/Models/Features";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Navigation {
+                    private const string URLPATH = "~/Areas/Common/Models/Navigation";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Skins {
+                    private const string URLPATH = "~/Areas/Common/Models/Skins";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                }
+            
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Views {
+                private const string URLPATH = "~/Areas/Common/Views";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string _ViewStart_cshtml = Url("_ViewStart.cshtml");
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Errors {
+                    private const string URLPATH = "~/Areas/Common/Views/Errors";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string bad_request_cshtml = Url("bad-request.cshtml");
+                    public static readonly string file_upload_too_large_cshtml = Url("file-upload-too-large.cshtml");
+                    public static readonly string not_authorized_cshtml = Url("not-authorized.cshtml");
+                    public static readonly string not_found_cshtml = Url("not-found.cshtml");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Features {
+                    private const string URLPATH = "~/Areas/Common/Views/Features";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string alumni_module_cshtml = Url("alumni-module.cshtml");
+                    public static readonly string corporate_engagement_module_cshtml = Url("corporate-engagement-module.cshtml");
+                    public static readonly string december_2011_preview_1_cshtml = Url("december-2011-preview-1.cshtml");
+                    public static readonly string december_2011_preview_2_cshtml = Url("december-2011-preview-2.cshtml");
+                    public static readonly string faculty_staff_module_cshtml = Url("faculty-staff-module.cshtml");
+                    public static readonly string february_2012_preview_1_cshtml = Url("february-2012-preview-1.cshtml");
+                    public static readonly string february_2012_preview_2_cshtml = Url("february-2012-preview-2.cshtml");
+                    public static readonly string gherkin_cshtml = Url("gherkin.cshtml");
+                    public static readonly string global_press_module_cshtml = Url("global-press-module.cshtml");
+                    public static readonly string july_2012_preview_1_cshtml = Url("july-2012-preview-1.cshtml");
+                    public static readonly string june_2012_preview_1_cshtml = Url("june-2012-preview-1.cshtml");
+                    public static readonly string june_2012_preview_2_cshtml = Url("june-2012-preview-2.cshtml");
+                    public static readonly string preview_1_cshtml = Url("preview-1.cshtml");
+                    public static readonly string preview_2_cshtml = Url("preview-2.cshtml");
+                    public static readonly string preview_3_cshtml = Url("preview-3.cshtml");
+                    public static readonly string preview_4_cshtml = Url("preview-4.cshtml");
+                    public static readonly string releases_css_cshtml = Url("releases-css.cshtml");
+                    public static readonly string releases_nav_cshtml = Url("releases-nav.cshtml");
+                    public static readonly string releases_cshtml = Url("releases.cshtml");
+                    public static readonly string representatives_module_cshtml = Url("representatives-module.cshtml");
+                    public static readonly string requirements_css_cshtml = Url("requirements-css.cshtml");
+                    public static readonly string requirements_cshtml = Url("requirements.cshtml");
+                    public static readonly string students_module_cshtml = Url("students-module.cshtml");
+                    public static readonly string travel_module_cshtml = Url("travel-module.cshtml");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Health {
+                    private const string URLPATH = "~/Areas/Common/Views/Health";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string run_db_seeder_cshtml = Url("run-db-seeder.cshtml");
+                    public static readonly string run_establishment_hierarchy_cshtml = Url("run-establishment-hierarchy.cshtml");
+                    public static readonly string run_establishment_import_cshtml = Url("run-establishment-import.cshtml");
+                    public static readonly string run_imager_cshtml = Url("run-imager.cshtml");
+                    public static readonly string run_institutional_agreement_hierarchy_cshtml = Url("run-institutional-agreement-hierarchy.cshtml");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Navigation {
+                    private const string URLPATH = "~/Areas/Common/Views/Navigation";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string consortium_footer_cshtml = Url("consortium-footer.cshtml");
+                    public static readonly string horizontal_tabs_cshtml = Url("horizontal-tabs.cshtml");
+                    public static readonly string not_implemented_dialog_cshtml = Url("not-implemented-dialog.cshtml");
+                    public static readonly string top_tabs_cshtml = Url("top-tabs.cshtml");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Qa {
+                    private const string URLPATH = "~/Areas/Common/Views/Qa";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string mail_files_names_cshtml = Url("mail-files-names.cshtml");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Skins {
+                    private const string URLPATH = "~/Areas/Common/Views/Skins";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string apply_cshtml = Url("apply.cshtml");
+                    public static readonly string logo_cshtml = Url("logo.cshtml");
+                    public static readonly string sample_nav_cshtml = Url("sample-nav.cshtml");
+                    public static readonly string sample_right_column_a_cshtml = Url("sample-right-column-a.cshtml");
+                    public static readonly string sample_cshtml = Url("sample.cshtml");
+                }
+            
+                public static readonly string Web_config = Url("Web.config");
+            }
+        
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Establishments {
+            private const string URLPATH = "~/Areas/Establishments";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Controllers {
+                private const string URLPATH = "~/Areas/Establishments/Controllers";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Models {
+                private const string URLPATH = "~/Areas/Establishments/Models";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class ManagementForms {
+                    private const string URLPATH = "~/Areas/Establishments/Models/ManagementForms";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                }
+            
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Views {
+                private const string URLPATH = "~/Areas/Establishments/Views";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string _ViewStart_cshtml = Url("_ViewStart.cshtml");
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class ManagementForms {
+                    private const string URLPATH = "~/Areas/Establishments/Views/ManagementForms";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string add_cshtml = Url("add.cshtml");
+                    public static readonly string browse_cshtml = Url("browse.cshtml");
+                    public static readonly string edit_cshtml = Url("edit.cshtml");
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class EditorTemplates {
+                        private const string URLPATH = "~/Areas/Establishments/Views/ManagementForms/EditorTemplates";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string EstablishmentForm_cshtml = Url("EstablishmentForm.cshtml");
+                        public static readonly string EstablishmentNameForm_cshtml = Url("EstablishmentNameForm.cshtml");
+                    }
+                
+                    public static readonly string form_cshtml = Url("form.cshtml");
+                    public static readonly string location_map_help_cshtml = Url("location-map-help.cshtml");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Shared {
+                    private const string URLPATH = "~/Areas/Establishments/Views/Shared";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class EditorTemplates {
+                        private const string URLPATH = "~/Areas/Establishments/Views/Shared/EditorTemplates";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string EstablishmentPlaceForm_cshtml = Url("EstablishmentPlaceForm.cshtml");
+                        public static readonly string EstablishmentPlacesForm_cshtml = Url("EstablishmentPlacesForm.cshtml");
+                    }
+                
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class SupplementalForms {
+                    private const string URLPATH = "~/Areas/Establishments/Views/SupplementalForms";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string locate_cshtml = Url("locate.cshtml");
+                }
+            
+                public static readonly string Web_config = Url("Web.config");
+            }
+        
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Identity {
+            private const string URLPATH = "~/Areas/Identity";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Controllers {
+                private const string URLPATH = "~/Areas/Identity/Controllers";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Models {
+                private const string URLPATH = "~/Areas/Identity/Models";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Views {
+                private const string URLPATH = "~/Areas/Identity/Views";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string _ViewStart_cshtml = Url("_ViewStart.cshtml");
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class ConfirmEmail {
+                    private const string URLPATH = "~/Areas/Identity/Views/ConfirmEmail";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string _denied_all_cshtml = Url("_denied-all.cshtml");
+                    public static readonly string _denied_crash_cshtml = Url("_denied-crash.cshtml");
+                    public static readonly string _form_instructions_cshtml = Url("_form-instructions.cshtml");
+                    public static readonly string _form_legend_text_cshtml = Url("_form-legend-text.cshtml");
+                    public static readonly string _right_cshtml = Url("_right.cshtml");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class CreatePassword {
+                    private const string URLPATH = "~/Areas/Identity/Views/CreatePassword";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string _denied_crash_cshtml = Url("_denied-crash.cshtml");
+                    public static readonly string _denied_expired_cshtml = Url("_denied-expired.cshtml");
+                    public static readonly string _denied_retired_cshtml = Url("_denied-retired.cshtml");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class ResetPassword {
+                    private const string URLPATH = "~/Areas/Identity/Views/ResetPassword";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string _denied_crash_cshtml = Url("_denied-crash.cshtml");
+                    public static readonly string _denied_expired_cshtml = Url("_denied-expired.cshtml");
+                    public static readonly string _denied_retired_cshtml = Url("_denied-retired.cshtml");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Shared {
+                    private const string URLPATH = "~/Areas/Identity/Views/Shared";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string _layout_identity_nav_cshtml = Url("_layout-identity-nav.cshtml");
+                    public static readonly string _layout_identity_v1_cshtml = Url("_layout_identity_v1.cshtml");
+                    public static readonly string _sign_in_form_cshtml = Url("_sign-in-form.cshtml");
+                    public static readonly string _sign_on_form_cshtml = Url("_sign-on-form.cshtml");
+                    public static readonly string confirm_email_cshtml = Url("confirm-email.cshtml");
+                    public static readonly string create_password_cshtml = Url("create-password.cshtml");
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class DisplayTemplates {
+                        private const string URLPATH = "~/Areas/Identity/Views/Shared/DisplayTemplates";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string EmailAddressField_cshtml = Url("EmailAddressField.cshtml");
+                        public static readonly string MyAffiliation_cshtml = Url("MyAffiliation.cshtml");
+                        public static readonly string MyEmailAddress_cshtml = Url("MyEmailAddress.cshtml");
+                    }
+                
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class EditorTemplates {
+                        private const string URLPATH = "~/Areas/Identity/Views/Shared/EditorTemplates";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string ConfirmEmailForm_cshtml = Url("ConfirmEmailForm.cshtml");
+                        public static readonly string CreatePasswordForm_cshtml = Url("CreatePasswordForm.cshtml");
+                        public static readonly string EmailAddressField_cshtml = Url("EmailAddressField.cshtml");
+                        public static readonly string EmployeeOrStudentAffiliation_cshtml = Url("EmployeeOrStudentAffiliation.cshtml");
+                        public static readonly string ForgotPasswordForm_cshtml = Url("ForgotPasswordForm.cshtml");
+                        public static readonly string PasswordField_cshtml = Url("PasswordField.cshtml");
+                        public static readonly string RememberMeField_cshtml = Url("RememberMeField.cshtml");
+                        public static readonly string ResetPasswordForm_cshtml = Url("ResetPasswordForm.cshtml");
+                        public static readonly string SignInForm_cshtml = Url("SignInForm.cshtml");
+                        public static readonly string SignOnForm_cshtml = Url("SignOnForm.cshtml");
+                        public static readonly string SignOverForm_cshtml = Url("SignOverForm.cshtml");
+                        public static readonly string SignUpForm_cshtml = Url("SignUpForm.cshtml");
+                        public static readonly string StrengthMeteredPassword_cshtml = Url("StrengthMeteredPassword.cshtml");
+                        public static readonly string UpdateAffiliationForm_cshtml = Url("UpdateAffiliationForm.cshtml");
+                        public static readonly string UpdateEmailValueForm_cshtml = Url("UpdateEmailValueForm.cshtml");
+                        public static readonly string UpdateNameForm_cshtml = Url("UpdateNameForm.cshtml");
+                        public static readonly string UpdatePasswordForm_cshtml = Url("UpdatePasswordForm.cshtml");
+                    }
+                
+                    public static readonly string forgot_password_cshtml = Url("forgot-password.cshtml");
+                    public static readonly string metadata_cshtml = Url("metadata.cshtml");
+                    public static readonly string my_home_cshtml = Url("my-home.cshtml");
+                    public static readonly string providers_cshtml = Url("providers.cshtml");
+                    public static readonly string reset_password_cshtml = Url("reset-password.cshtml");
+                    public static readonly string sign_in_cshtml = Url("sign-in.cshtml");
+                    public static readonly string sign_on_cshtml = Url("sign-on.cshtml");
+                    public static readonly string sign_out_cshtml = Url("sign-out.cshtml");
+                    public static readonly string sign_over_cshtml = Url("sign-over.cshtml");
+                    public static readonly string sign_up_cshtml = Url("sign-up.cshtml");
+                    public static readonly string update_affiliation_cshtml = Url("update-affiliation.cshtml");
+                    public static readonly string update_email_value_cshtml = Url("update-email-value.cshtml");
+                    public static readonly string update_name_cshtml = Url("update-name.cshtml");
+                    public static readonly string update_password_cshtml = Url("update-password.cshtml");
+                }
+            
+                public static readonly string Web_config = Url("Web.config");
+            }
+        
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class InstitutionalAgreements {
+            private const string URLPATH = "~/Areas/InstitutionalAgreements";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Controllers {
+                private const string URLPATH = "~/Areas/InstitutionalAgreements/Controllers";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Models {
+                private const string URLPATH = "~/Areas/InstitutionalAgreements/Models";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class ConfigurationForms {
+                    private const string URLPATH = "~/Areas/InstitutionalAgreements/Models/ConfigurationForms";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class ManagementForms {
+                    private const string URLPATH = "~/Areas/InstitutionalAgreements/Models/ManagementForms";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class PublicSearch {
+                    private const string URLPATH = "~/Areas/InstitutionalAgreements/Models/PublicSearch";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                }
+            
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Views {
+                private const string URLPATH = "~/Areas/InstitutionalAgreements/Views";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string _ViewStart_cshtml = Url("_ViewStart.cshtml");
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class ConfigurationForms {
+                    private const string URLPATH = "~/Areas/InstitutionalAgreements/Views/ConfigurationForms";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string add_cshtml = Url("add.cshtml");
+                    public static readonly string edit_cshtml = Url("edit.cshtml");
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class EditorTemplates {
+                        private const string URLPATH = "~/Areas/InstitutionalAgreements/Views/ConfigurationForms/EditorTemplates";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string InstitutionalAgreementConfigurationForm_cshtml = Url("InstitutionalAgreementConfigurationForm.cshtml");
+                        public static readonly string InstitutionalAgreementContactTypeValueForm_cshtml = Url("InstitutionalAgreementContactTypeValueForm.cshtml");
+                        public static readonly string InstitutionalAgreementStatusValueForm_cshtml = Url("InstitutionalAgreementStatusValueForm.cshtml");
+                        public static readonly string InstitutionalAgreementTypeValueForm_cshtml = Url("InstitutionalAgreementTypeValueForm.cshtml");
+                    }
+                
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class ManagementForms {
+                    private const string URLPATH = "~/Areas/InstitutionalAgreements/Views/ManagementForms";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string _browse_by_map_cshtml = Url("_browse-by-map.cshtml");
+                    public static readonly string _browse_cshtml = Url("_browse.cshtml");
+                    public static readonly string add_contact_cshtml = Url("add-contact.cshtml");
+                    public static readonly string browse_cshtml = Url("browse.cshtml");
+                    public static readonly string edit_cshtml = Url("edit.cshtml");
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class EditorTemplates {
+                        private const string URLPATH = "~/Areas/InstitutionalAgreements/Views/ManagementForms/EditorTemplates";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string InstitutionalAgreementContactForm_cshtml = Url("InstitutionalAgreementContactForm.cshtml");
+                        public static readonly string InstitutionalAgreementFileForm_cshtml = Url("InstitutionalAgreementFileForm.cshtml");
+                        public static readonly string InstitutionalAgreementForm_cshtml = Url("InstitutionalAgreementForm.cshtml");
+                        public static readonly string InstitutionalAgreementParticipantForm_cshtml = Url("InstitutionalAgreementParticipantForm.cshtml");
+                    }
+                
+                    public static readonly string expires_on_help_cshtml = Url("expires-on-help.cshtml");
+                    public static readonly string form_custom_css_cshtml = Url("form-custom-css.cshtml");
+                    public static readonly string post_cshtml = Url("post.cshtml");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class PublicSearch {
+                    private const string URLPATH = "~/Areas/InstitutionalAgreements/Views/PublicSearch";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string _no_context_cshtml = Url("_no-context.cshtml");
+                    public static readonly string css_cshtml = Url("css.cshtml");
+                    public static readonly string index_cshtml = Url("index.cshtml");
+                    public static readonly string info_cshtml = Url("info.cshtml");
+                    public static readonly string no_context_cshtml = Url("no-context.cshtml");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Shared {
+                    private const string URLPATH = "~/Areas/InstitutionalAgreements/Views/Shared";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class EditorTemplates {
+                        private const string URLPATH = "~/Areas/InstitutionalAgreements/Views/Shared/EditorTemplates";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string _ReadMe_txt = Url("_ReadMe.txt");
+                        public static readonly string ContactTypeComboBox_cshtml = Url("ContactTypeComboBox.cshtml");
+                        public static readonly string StatusComboBox_cshtml = Url("StatusComboBox.cshtml");
+                        public static readonly string TypeComboBox_cshtml = Url("TypeComboBox.cshtml");
+                    }
+                
+                }
+            
+                public static readonly string Web_config = Url("Web.config");
+            }
+        
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Languages {
+            private const string URLPATH = "~/Areas/Languages";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class _Deprecated {
+                private const string URLPATH = "~/Areas/Languages/_Deprecated";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string __languages_table_cshtml = Url("__languages-table.cshtml");
+                public static readonly string _languages_cshtml = Url("_languages.cshtml");
+                public static readonly string _LanguageTableRow_cshtml = Url("_LanguageTableRow.cshtml");
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Controllers {
+                private const string URLPATH = "~/Areas/Languages/Controllers";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Models {
+                private const string URLPATH = "~/Areas/Languages/Models";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string LanguageResults_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/LanguageResults.min.js") ? Url("LanguageResults.min.js") : Url("LanguageResults.js");
+                        }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Views {
+                private const string URLPATH = "~/Areas/Languages/Views";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string _ViewStart_cshtml = Url("_ViewStart.cshtml");
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Languages {
+                    private const string URLPATH = "~/Areas/Languages/Views/Languages";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string get_cshtml = Url("get.cshtml");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Shared {
+                    private const string URLPATH = "~/Areas/Languages/Views/Shared";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class DisplayTemplates {
+                        private const string URLPATH = "~/Areas/Languages/Views/Shared/DisplayTemplates";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string LanguageNameTableRow_cshtml = Url("LanguageNameTableRow.cshtml");
+                    }
+                
+                    public static readonly string language_cshtml = Url("language.cshtml");
+                }
+            
+                public static readonly string Web_config = Url("Web.config");
+            }
+        
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class People {
+            private const string URLPATH = "~/Areas/People";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Controllers {
+                private const string URLPATH = "~/Areas/People/Controllers";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Models {
+                private const string URLPATH = "~/Areas/People/Models";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Views {
+                private const string URLPATH = "~/Areas/People/Views";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string _ViewStart_cshtml = Url("_ViewStart.cshtml");
+                public static readonly string Web_config = Url("Web.config");
+            }
+        
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class RecruitmentAgencies {
+            private const string URLPATH = "~/Areas/RecruitmentAgencies";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Controllers {
+                private const string URLPATH = "~/Areas/RecruitmentAgencies/Controllers";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Models {
+                private const string URLPATH = "~/Areas/RecruitmentAgencies/Models";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Views {
+                private const string URLPATH = "~/Areas/RecruitmentAgencies/Views";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string _ViewStart_cshtml = Url("_ViewStart.cshtml");
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Shared {
+                    private const string URLPATH = "~/Areas/RecruitmentAgencies/Views/Shared";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                }
+            
+                public static readonly string Web_config = Url("Web.config");
+            }
+        
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Roles {
+            private const string URLPATH = "~/Areas/Roles";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Controllers {
+                private const string URLPATH = "~/Areas/Roles/Controllers";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Models {
+                private const string URLPATH = "~/Areas/Roles/Models";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Views {
+                private const string URLPATH = "~/Areas/Roles/Views";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string _ViewStart_cshtml = Url("_ViewStart.cshtml");
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Roles {
+                    private const string URLPATH = "~/Areas/Roles/Views/Roles";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string browse_cshtml = Url("browse.cshtml");
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class EditorTemplates {
+                        private const string URLPATH = "~/Areas/Roles/Views/Roles/EditorTemplates";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                        public static readonly string RoleForm_cshtml = Url("RoleForm.cshtml");
+                        public static readonly string RoleGrantForm_cshtml = Url("RoleGrantForm.cshtml");
+                    }
+                
+                    public static readonly string form_cshtml = Url("form.cshtml");
+                }
+            
+                public static readonly string Web_config = Url("Web.config");
             }
         
         }

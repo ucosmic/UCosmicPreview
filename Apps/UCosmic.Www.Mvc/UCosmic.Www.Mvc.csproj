@@ -1097,7 +1097,7 @@
     <Content Include="scripts\ko\knockout.js" />
     <Content Include="scripts\ko\knockout.mapping-latest.debug.js" />
     <Content Include="scripts\ko\knockout.mapping-latest.js" />
-    <Content Include="scripts\areas\languages\LanguageResultsViewModel.js" />
+    <Content Include="Areas\Languages\Models\LanguageResults.js" />
     <Content Include="scripts\other\modernizr-2.5.3.js" />
     <Content Include="scripts\T4MvcJs\T4MvcJs.js">
       <AutoGen>True</AutoGen>
@@ -1487,6 +1487,7 @@
     <Folder Include="Areas\RecruitmentAgencies\Views\Shared\" />
     <Folder Include="content\mail\" />
     <Folder Include="content\themes\api\consortium\" />
+    <Folder Include="scripts\areas\languages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

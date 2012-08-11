@@ -1,4 +1,8 @@
-﻿function LanguageResultsViewModel(data) {
+﻿function LanguageResultViewModel() {
+
+}
+
+function LanguageResultsViewModel(data) {
     data = data || {}; // make sure data is not undefined
     var self = this;
 
@@ -64,6 +68,10 @@
 
 
     self.IsSpinnerVisible = ko.observable(false); // delay the showing of this
+
+    var resultsMapping = {
+
+    };
 
     ko.computed(function () { // update the results by getting json from server (happens during first load)
         self.IsLoadingResults(true); // we are entering an ajax call
