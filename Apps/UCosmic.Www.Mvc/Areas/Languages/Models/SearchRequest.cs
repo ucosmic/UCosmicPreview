@@ -2,9 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
-using UCosmic.Domain.Identity;
-using UCosmic.Www.Mvc.Models;
 using AutoMapper;
+using UCosmic.Domain.Identity;
+using UCosmic.Www.Mvc.Areas.Preferences.Models;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Languages.Models
 {

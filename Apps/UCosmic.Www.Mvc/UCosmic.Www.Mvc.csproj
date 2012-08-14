@@ -264,6 +264,7 @@
     <Compile Include="Areas\Languages\Models\NameItem.cs" />
     <Compile Include="Areas\Languages\Models\Item.cs" />
     <Compile Include="Areas\Preferences\Controllers\ChangeController.cs" />
+    <Compile Include="Areas\Preferences\Models\MyPreference.cs" />
     <Compile Include="Areas\Preferences\PreferencesAreaRegistration.cs" />
     <Compile Include="Common.ErrorsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -444,8 +445,8 @@
     <Compile Include="Models\HttpPostedFileBaseProfiler.cs" />
     <Compile Include="Models\IHaveText.cs" />
     <Compile Include="Models\PageOf.cs" />
-    <Compile Include="Models\PreferenceCategory.cs" />
-    <Compile Include="Models\PreferenceKey.cs" />
+    <Compile Include="Areas\Preferences\Models\PreferenceCategory.cs" />
+    <Compile Include="Areas\Preferences\Models\PreferenceKey.cs" />
     <Compile Include="Models\RangeIfClientAttribute.cs" />
     <Compile Include="Controllers\PositiveIntegerRouteConstraint.cs" />
     <Compile Include="Models\IReturnUrl.cs" />
@@ -1489,7 +1490,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\mail\" />
-    <Folder Include="Areas\Preferences\Models\" />
     <Folder Include="Areas\Preferences\Views\Shared\" />
     <Folder Include="Areas\RecruitmentAgencies\Controllers\" />
     <Folder Include="Areas\RecruitmentAgencies\Models\" />

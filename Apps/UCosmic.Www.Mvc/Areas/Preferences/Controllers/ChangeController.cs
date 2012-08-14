@@ -1,8 +1,9 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using UCosmic.Domain.Identity;
+using UCosmic.Www.Mvc.Areas.Preferences.Models;
 using UCosmic.Www.Mvc.Controllers;
-using UCosmic.Www.Mvc.Models;
+using AutoMapper;
 
 namespace UCosmic.Www.Mvc.Areas.Preferences.Controllers
 {
@@ -18,20 +19,15 @@ namespace UCosmic.Www.Mvc.Areas.Preferences.Controllers
 
         [HttpPut]
         [UnitOfWork]
-        public virtual JsonResult Put(PreferenceCategory category, PreferenceKey key, string value)
+        public virtual JsonResult Put(MyPreference model)
         {
-            var isAuthenticated = User.Identity.IsAuthenticated;
-            if (isAuthenticated)
+            if (User.Identity.IsAuthenticated)
             {
-                var command = new UpdateMyPreference(User)
-                {
-                    Category = category,
-                    Key = key,
-                    Value = value,
-                };
+                var command = new UpdateMyPreference(User);
+                Mapper.Map(model, command);
                 _preferences.Handle(command);
             }
-            return Json(isAuthenticated);
+            return Json(User.Identity.IsAuthenticated);
         }
     }
 

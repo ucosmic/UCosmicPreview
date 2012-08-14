@@ -71,9 +71,7 @@ namespace UCosmic.Www.Mvc.Areas.Preferences.Controllers {
         public ActionParamsClass_Put PutParams { get { return s_params_Put; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Put {
-            public readonly string category = "category";
-            public readonly string key = "key";
-            public readonly string value = "value";
+            public readonly string model = "model";
         }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -87,11 +85,9 @@ namespace UCosmic.Www.Mvc.Areas.Preferences.Controllers {
     public class T4MVC_ChangeController: UCosmic.Www.Mvc.Areas.Preferences.Controllers.ChangeController {
         public T4MVC_ChangeController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.JsonResult Put(UCosmic.Www.Mvc.Models.PreferenceCategory category, UCosmic.Www.Mvc.Models.PreferenceKey key, string value) {
+        public override System.Web.Mvc.JsonResult Put(UCosmic.Www.Mvc.Areas.Preferences.Models.MyPreference model) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.Put);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "category", category);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "key", key);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "value", value);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 

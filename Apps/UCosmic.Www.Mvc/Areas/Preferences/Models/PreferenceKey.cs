@@ -1,4 +1,4 @@
-﻿namespace UCosmic.Www.Mvc.Models
+﻿namespace UCosmic.Www.Mvc.Areas.Preferences.Models
 {
     public enum PreferenceKey
     {

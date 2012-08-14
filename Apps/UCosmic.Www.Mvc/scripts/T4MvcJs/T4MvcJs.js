@@ -773,25 +773,13 @@ var MvcJs = {
 	Preferences: {
 
 		Change: {
-			Put: function(category, key, value) {
-				var url = "/my/preferences?category={category}&key={key}&value={value}";
+			Put: function(model) {
+				var url = "/my/preferences?model={model}";
 				
-				if (category) {
-					url = url.replace("{category}", category);
+				if (model) {
+					url = url.replace("{model}", model);
 				} else {
-					url = url.replace("category={category}", "").replace("?&","?").replace("&&","&");
-				}
-				
-				if (key) {
-					url = url.replace("{key}", key);
-				} else {
-					url = url.replace("key={key}", "").replace("?&","?").replace("&&","&");
-				}
-				
-				if (value) {
-					url = url.replace("{value}", value);
-				} else {
-					url = url.replace("value={value}", "").replace("?&","?").replace("&&","&");
+					url = url.replace("model={model}", "").replace("?&","?").replace("&&","&");
 				}
 
 				return url.replace(/([?&]+$)/g, "");

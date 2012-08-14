@@ -8,9 +8,9 @@ using System.Web.Routing;
 using AutoMapper;
 using UCosmic.Domain.Languages;
 using UCosmic.Www.Mvc.Areas.Languages.Models;
+using UCosmic.Www.Mvc.Areas.Preferences.Models;
 using UCosmic.Www.Mvc.Controllers;
 using UCosmic.Domain.Identity;
-using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
 {
