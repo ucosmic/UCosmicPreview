@@ -29,6 +29,7 @@
     self.isSpinning = ko.observable(true);
     self.showSpinner = ko.observable(false);
     self.spinnerDelay = ko.observable(400);
+    self.inTransition = ko.observable(false);
     self.startSpinning = function() {
         self.isSpinning(true); // we are entering an ajax call
         var currentSpinnerDelay = self.spinnerDelay();
@@ -37,12 +38,13 @@
 
         else
             setTimeout(function() { // delay the showing of the spinner
-                if (self.isSpinning()) { // only show it when load is still being processed
+                if (self.isSpinning() && !self.inTransition()) { // only show it when load is still being processed
                     self.showSpinner(true);
                 }
             }, currentSpinnerDelay); // delay the spinner this long
     };
-    self.stopSpinning = function() {
+    self.stopSpinning = function () {
+        self.inTransition(false);
         self.showSpinner(false);
         self.isSpinning(false);
     };

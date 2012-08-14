@@ -143,80 +143,82 @@
                 There are no languages that match your search terms.
             </p>
         </div>
-        <div data-bind="visible: showTableLens" style="display: none;">
-            <table class="data-table" style="width: 100%;">
-                <colgroup>
-                    <col style="width: 25%;" />
-                    <col style="width: 25%;" />
-                    <col style="width: 25%;" />
-                    <col style="width: 25%;" />
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th>
-                            Language
-                        </th>
-                        <th>
-                            Native Name
-                        </th>
-                        <th>
-                            ISO Codes
-                        </th>
-                        <th>
-                            Translations
-                        </th>
-                    </tr>
-                </thead>
-                <tbody data-bind="foreach: items">
-                    <tr data-bind="click: goToHref, css: { hilite: IsUserLanguage }">
-                        <td>
-                            <a data-bind="text: TranslatedNameText, attr: { href: href }" style="font-weight: bold;">
-                            </a>
-                        </td>
-                        <td>
-                            <span data-bind="text: formattedNativeNameText"></span>
-                        </td>
-                        <td>
+        <div class="data-items">
+            <div data-bind="visible: showTableLens" style="display: none;">
+                <table class="data-table" style="width: 100%;">
+                    <colgroup>
+                        <col style="width: 25%;" />
+                        <col style="width: 25%;" />
+                        <col style="width: 25%;" />
+                        <col style="width: 25%;" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>
+                                Language
+                            </th>
+                            <th>
+                                Native Name
+                            </th>
+                            <th>
+                                ISO Codes
+                            </th>
+                            <th>
+                                Translations
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: items">
+                        <tr data-bind="click: goToHref, css: { hilite: IsUserLanguage }">
+                            <td>
+                                <a data-bind="text: TranslatedNameText, attr: { href: href }" style="font-weight: bold;">
+                                </a>
+                            </td>
+                            <td>
+                                <span data-bind="text: formattedNativeNameText"></span>
+                            </td>
+                            <td>
+                                <span data-bind="text: isoCodes"></span>
+                            </td>
+                            <td>
+                                <span data-bind="text: NamesCount"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div data-bind="visible: showListLens" style="display: none;">
+                <ul class="data-list" data-bind="foreach: items">
+                    <li data-bind="css: { hilite: IsUserLanguage }"><a data-bind="attr: { href: href }">
+                        <div class="col" style="width: 350px;">
+                            <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: formattedNativeNameText() !== '-'">
+                                &nbsp;(<span data-bind="text: formattedNativeNameText"></span>) </span>
+                        </div>
+                        <div class="col" style="width: 200px;">
                             <span data-bind="text: isoCodes"></span>
-                        </td>
-                        <td>
-                            <span data-bind="text: NamesCount"></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div data-bind="visible: showListLens" style="display: none;">
-            <ul class="data-list" data-bind="foreach: items">
-                <li data-bind="css: { hilite: IsUserLanguage }"><a data-bind="attr: { href: href }">
-                    <div class="col" style="width: 350px;">
-                        <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: formattedNativeNameText() !== '-'">
-                            &nbsp;(<span data-bind="text: formattedNativeNameText"></span>) </span>
-                    </div>
-                    <div class="col" style="width: 200px;">
-                        <span data-bind="text: isoCodes"></span>
-                    </div>
-                    <div class="col" style="width: 200px;">
-                        <span data-bind="text: namesCountPluralizer"></span>
-                    </div>
-                </a></li>
-            </ul>
-        </div>
-        <div data-bind="visible: showGridLens" style="display: none;">
-            <ul class="data-grid" data-bind="foreach: items">
-                <li data-bind="css: { hilite: IsUserLanguage }"><a data-bind="attr: { href: href }">
-                    <div>
-                        <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: formattedNativeNameText() !== '-'">
-                            &nbsp;(<span data-bind="text: formattedNativeNameText"></span>) </span>
-                    </div>
-                    <div>
-                        <span data-bind="text: isoCodes"></span>
-                    </div>
-                    <div>
-                        <span data-bind="text: namesCountPluralizer"></span>
-                    </div>
-                </a></li>
-            </ul>
+                        </div>
+                        <div class="col" style="width: 200px;">
+                            <span data-bind="text: namesCountPluralizer"></span>
+                        </div>
+                    </a></li>
+                </ul>
+            </div>
+            <div data-bind="visible: showGridLens" style="display: none;">
+                <ul class="data-grid" data-bind="foreach: items">
+                    <li data-bind="css: { hilite: IsUserLanguage }"><a data-bind="attr: { href: href }">
+                        <div>
+                            <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: formattedNativeNameText() !== '-'">
+                                &nbsp;(<span data-bind="text: formattedNativeNameText"></span>) </span>
+                        </div>
+                        <div>
+                            <span data-bind="text: isoCodes"></span>
+                        </div>
+                        <div>
+                            <span data-bind="text: namesCountPluralizer"></span>
+                        </div>
+                    </a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

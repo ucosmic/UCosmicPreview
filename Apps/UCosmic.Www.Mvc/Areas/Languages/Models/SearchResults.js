@@ -57,14 +57,26 @@ function LanguageResultsViewModel() {
             pageNumber: self.pageNumber()
         })
         .success(function (response) {
-            self.update(response);
-            self.restoreScrollTop();
+            var animate = self.Items ? 'fast' : 0;
+            if (animate) {
+                self.inTransition(true);
+                $('.data-items').fadeToggle(animate, function () {
+                    self.update(response);
+                    $('.data-items').fadeToggle(animate, function () {
+                        self.restoreScrollTop();
+                    });
+                });
+            }
+            else {
+                self.update(response);
+                self.restoreScrollTop();
+            }
         });
     })
     .extend({ throttle: 1 });
 
     // ajax preference updates
-    var savePreference = function(input, value) {
+    var savePreference = function (input, value) {
         var category = $(input).data('preference-category');
         var key = $(input).data('preference-key');
         if (!category || !key) return;
