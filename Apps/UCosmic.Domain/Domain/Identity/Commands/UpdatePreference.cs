@@ -13,23 +13,17 @@ namespace UCosmic.Domain.Identity
         }
 
         public IPrincipal Principal { get; private set; }
-        public PreferenceCategory Category { get; set; }
+        public Enum Category { get; set; }
         public Enum Key { get; set; }
         public string Value { get; set; }
-        internal string KeyText
-        {
-            get { return Key.ToString(); }
-        }
     }
 
     public class HandleUpdateMyPreferenceCommand : IHandleCommands<UpdateMyPreference>
     {
-        private readonly IProcessQueries _queries;
         private readonly ICommandEntities _entities;
 
-        public HandleUpdateMyPreferenceCommand(IProcessQueries queries, ICommandEntities entities)
+        public HandleUpdateMyPreferenceCommand(ICommandEntities entities)
         {
-            _queries = queries;
             _entities = entities;
         }
 
@@ -37,21 +31,21 @@ namespace UCosmic.Domain.Identity
         {
             if (command == null) throw new ArgumentNullException("command");
 
-            var preferences = _queries.Execute(new MyPreferencesByCategory(command.Principal)
-            {
-                Category = command.Category,
-            });
+            var preference = _entities.Get<Preference>()
+                .ByPrincipal(command.Principal)
+                .ByCategory(command.Category)
+                .ByKey(command.Key)
+                .SingleOrDefault();
 
-            var preference = preferences.ByKey(command.Key).SingleOrDefault();
             if (preference == null)
             {
-                var user = _queries.Execute(new GetUserByNameQuery { Name = command.Principal.Identity.Name });
+                var user = _entities.Get<User>().ByPrincipal(command.Principal);
                 preference = new Preference
                 {
                     User = user,
                     UserId = user.RevisionId,
-                    Category = command.Category,
-                    Key = command.KeyText,
+                    Category = command.Category.ToString(),
+                    Key = command.Key.ToString(),
                     Value = command.Value,
                 };
                 _entities.Create(preference);

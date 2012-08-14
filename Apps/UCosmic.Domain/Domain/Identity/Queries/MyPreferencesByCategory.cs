@@ -13,7 +13,7 @@ namespace UCosmic.Domain.Identity
         }
 
         public IPrincipal Principal { get; private set; }
-        public PreferenceCategory Category { get; set; }
+        public Enum Category { get; set; }
     }
 
     public class HandleMyPreferenceByCategoryCommand : IHandleQueries<MyPreferencesByCategory, Preference[]>

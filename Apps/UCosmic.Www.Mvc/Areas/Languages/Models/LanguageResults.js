@@ -65,12 +65,14 @@ function LanguageResultsViewModel() {
 
     // ajax preference updates
     var savePreference = function(input, value) {
+        var category = $(input).data('preference-category');
         var key = $(input).data('preference-key');
-        if (!key) return;
+        if (!category || !key) return;
         $.ajax({
             url: MvcJs.Languages.Languages.PutPreference(),
             type: 'PUT',
             data: {
+                category: category,
                 key: key,
                 value: value
             }

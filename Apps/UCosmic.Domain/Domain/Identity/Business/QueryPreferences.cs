@@ -17,30 +17,21 @@ namespace UCosmic.Domain.Identity
             return queryable.ByUserName(principal.Identity.Name);
         }
 
-        internal static IQueryable<Preference> ByCategory(this IQueryable<Preference> queryable, PreferenceCategory category)
+        internal static IQueryable<Preference> ByCategory(this IQueryable<Preference> queryable, Enum category)
         {
-            var categoryText = category.AsSentenceFragment();
-            return queryable.Where(x => x.CategoryText.Equals(categoryText, StringComparison.OrdinalIgnoreCase));
+            var categoryText = category.ToString();
+            return queryable.Where(x => x.Category.Equals(categoryText, StringComparison.OrdinalIgnoreCase));
         }
 
-        public static IQueryable<Preference> ByKey(this IQueryable<Preference> queryable, Enum key)
+        internal static IQueryable<Preference> ByKey(this IQueryable<Preference> queryable, Enum key)
         {
-            return queryable.ByKey(key.ToString());
-        }
-
-        internal static IQueryable<Preference> ByKey(this IQueryable<Preference> queryable, string key)
-        {
-            return queryable.Where(x => x.Key.Equals(key, StringComparison.OrdinalIgnoreCase));
+            var keyText = key.ToString();
+            return queryable.Where(x => x.Key.Equals(keyText, StringComparison.OrdinalIgnoreCase));
         }
 
         public static IEnumerable<Preference> ByKey(this IEnumerable<Preference> enumerable, Enum key)
         {
-            return enumerable.ByKey(key.ToString());
-        }
-
-        internal static IEnumerable<Preference> ByKey(this IEnumerable<Preference> enumerable, string key)
-        {
-            return enumerable.Where(x => x.Key.Equals(key, StringComparison.OrdinalIgnoreCase));
+            return enumerable.AsQueryable().ByKey(key);
         }
     }
 }

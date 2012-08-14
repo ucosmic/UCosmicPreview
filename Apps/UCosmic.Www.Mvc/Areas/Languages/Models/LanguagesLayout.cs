@@ -43,12 +43,8 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Models
 
         public EnumeratedViewLayout SelectedLayout { get; set; }
 
-        public readonly string SelectedLayoutPreferenceKey = LanguagesPreferenceKey.EnumeratedViewLayout.ToString();
-
         public IEnumerable<SelectListItem> PageSizeOptions { get; private set; }
 
         public int SelectedPageSize { get; set; }
-
-        public readonly string SelectedPageSizePreferenceKey = LanguagesPreferenceKey.PageSize.ToString();
     }
 }

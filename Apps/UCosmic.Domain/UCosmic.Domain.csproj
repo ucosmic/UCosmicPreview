@@ -144,7 +144,6 @@
     <Compile Include="Domain\Identity\Business\QueryPreferences.cs" />
     <Compile Include="Domain\Identity\Commands\UpdatePreference.cs" />
     <Compile Include="Domain\Identity\Entities\Preference.cs" />
-    <Compile Include="Domain\Identity\Entities\PreferenceCategory.cs" />
     <Compile Include="Domain\Identity\Queries\MyPreferencesByCategory.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\GenerateTitle.cs" />
     <Compile Include="Domain\Languages\Commands\CreateLanguageName.cs" />

@@ -1,4 +1,5 @@
-﻿@model UCosmic.Www.Mvc.Areas.Languages.Models.LanguagesLayout
+﻿@using UCosmic.Www.Mvc.Models
+@model UCosmic.Www.Mvc.Areas.Languages.Models.LanguagesLayout
 @{
     ViewBag.Title = "Languages";
 }
@@ -110,7 +111,8 @@
                 @Html.DropDownListFor(m => m.SelectedLayout, Model.LayoutOptions, new
                 {
                     data_bind = "value: selectedLayout",
-                    data_preference_key = Model.SelectedLayoutPreferenceKey,
+                    data_preference_category = PreferenceCategory.Languages,
+                    data_preference_key = PreferenceKey.EnumeratedViewLayout,
                     style = "display: none;",
                 })
             </div>
@@ -118,7 +120,8 @@
                 @Html.DropDownListFor(m => m.SelectedPageSize, Model.PageSizeOptions, new
                 {
                     data_bind = "value: pageSize",
-                    data_preference_key = Model.SelectedPageSizePreferenceKey,
+                    data_preference_category = PreferenceCategory.Languages,
+                    data_preference_key = PreferenceKey.PageSize,
                     style = "font-size: 15px; padding: 5px;",
                 })
             </div>

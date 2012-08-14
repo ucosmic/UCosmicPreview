@@ -644,8 +644,14 @@ var MvcJs = {
 
 				return url.replace(/([?&]+$)/g, "");
 			},
-			PutPreference: function(key, value) {
-				var url = "/preferences/languages?key={key}&value={value}";
+			PutPreference: function(category, key, value) {
+				var url = "/preferences/languages?category={category}&key={key}&value={value}";
+				
+				if (category) {
+					url = url.replace("{category}", category);
+				} else {
+					url = url.replace("category={category}", "").replace("?&","?").replace("&&","&");
+				}
 				
 				if (key) {
 					url = url.replace("{key}", key);

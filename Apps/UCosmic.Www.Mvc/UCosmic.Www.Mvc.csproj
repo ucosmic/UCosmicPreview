@@ -260,7 +260,6 @@
     <Compile Include="Areas\Languages\Models\LanguageResult.cs" />
     <Compile Include="Areas\Languages\Models\LanguageResults.cs" />
     <Compile Include="Areas\Languages\Models\LanguagesLayout.cs" />
-    <Compile Include="Areas\Languages\Models\LanguagesPreferenceKey.cs" />
     <Compile Include="Areas\Languages\Models\LanguagesRequest.cs" />
     <Compile Include="Areas\Languages\_Deprecated\_LanguageResult.cs" />
     <Compile Include="Areas\Languages\Models\LanguageNameTable.cs" />
@@ -448,6 +447,8 @@
     <Compile Include="Models\HttpPostedFileBaseProfiler.cs" />
     <Compile Include="Models\IHaveText.cs" />
     <Compile Include="Models\PageOf.cs" />
+    <Compile Include="Models\PreferenceCategory.cs" />
+    <Compile Include="Models\PreferenceKey.cs" />
     <Compile Include="Models\RangeIfClientAttribute.cs" />
     <Compile Include="Controllers\PositiveIntegerRouteConstraint.cs" />
     <Compile Include="Models\IReturnUrl.cs" />

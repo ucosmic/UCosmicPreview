@@ -70,11 +70,10 @@ namespace UCosmic.Impl.Orm
             {
                 ToTable(typeof(Preference).Name, DbSchemaName.Identity);
 
-                HasKey(p => new { p.UserId, p.CategoryText, p.Key });
+                HasKey(p => new { p.UserId, p.Category, p.Key });
 
-                Property(p => p.CategoryText).HasColumnName("Category").IsRequired().HasMaxLength(100);
-                Property(p => p.Key).IsRequired().HasMaxLength(256);
-                Ignore(p => p.Category);
+                Property(p => p.Category).IsRequired().HasMaxLength(100);
+                Property(p => p.Key).IsRequired().HasMaxLength(100);
 
                 // has one user
                 HasRequired(d => d.User)
