@@ -29,12 +29,10 @@ namespace UCosmic.Domain.Identity
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            var categoryText = query.Category.AsSentenceFragment();
-
             return _entities.Get<Preference>()
                 .EagerLoad(_entities, query.EagerLoad)
-                .Where(p => p.User.Name.Equals(query.Principal.Identity.Name, StringComparison.OrdinalIgnoreCase)
-                    && p.CategoryText.Equals(categoryText, StringComparison.OrdinalIgnoreCase))
+                .ByPrincipal(query.Principal)
+                .ByCategory(query.Category)
                 .OrderBy(query.OrderBy)
                 .ToArray()
             ;

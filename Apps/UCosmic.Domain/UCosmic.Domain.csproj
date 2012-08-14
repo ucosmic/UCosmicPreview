@@ -141,6 +141,7 @@
     <Compile Include="Domain\Establishments\Queries\EstablishmentByOfficialName.cs" />
     <Compile Include="Domain\Establishments\Queries\EstablishmentCategoryByCode.cs" />
     <Compile Include="Domain\Establishments\Queries\EstablishmentTypeByEnglishName.cs" />
+    <Compile Include="Domain\Identity\Business\QueryPreferences.cs" />
     <Compile Include="Domain\Identity\Commands\UpdatePreference.cs" />
     <Compile Include="Domain\Identity\Entities\Preference.cs" />
     <Compile Include="Domain\Identity\Entities\PreferenceCategory.cs" />

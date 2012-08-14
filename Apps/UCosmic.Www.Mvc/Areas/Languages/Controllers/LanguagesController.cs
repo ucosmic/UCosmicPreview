@@ -35,8 +35,8 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
             if (!Request.IsAjaxRequest())
             {
                 var preferences = _queries.Execute(new MyPreferencesByCategory(User) { Category = PreferenceCategory.Languages });
-                var layout = preferences.SingleOrDefault(p => p.Key == LanguagesPreferenceKey.EnumeratedViewLayout.ToString());
-                var pageSize = preferences.SingleOrDefault(p => p.Key == LanguagesPreferenceKey.PageSize.ToString());
+                var layout = preferences.ByKey(LanguagesPreferenceKey.EnumeratedViewLayout).SingleOrDefault();
+                var pageSize = preferences.ByKey(LanguagesPreferenceKey.PageSize).SingleOrDefault();
                 return View(Views.get, new LanguagesLayout
                 {
                     SelectedLayout = layout != null ? layout.Value.AsEnum<EnumeratedViewLayout>() : EnumeratedViewLayout.Table,
@@ -85,7 +85,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                 var command = new UpdateMyPreference(User)
                 {
                     Category = PreferenceCategory.Languages,
-                    Key = key.ToString(),
+                    Key = key,
                     Value = value,
                 };
                 _preferences.Handle(command);

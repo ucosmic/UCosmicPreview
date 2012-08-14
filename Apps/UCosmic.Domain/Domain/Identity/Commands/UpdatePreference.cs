@@ -14,8 +14,12 @@ namespace UCosmic.Domain.Identity
 
         public IPrincipal Principal { get; private set; }
         public PreferenceCategory Category { get; set; }
-        public string Key { get; set; }
+        public Enum Key { get; set; }
         public string Value { get; set; }
+        internal string KeyText
+        {
+            get { return Key.ToString(); }
+        }
     }
 
     public class HandleUpdateMyPreferenceCommand : IHandleCommands<UpdateMyPreference>
@@ -37,16 +41,17 @@ namespace UCosmic.Domain.Identity
             {
                 Category = command.Category,
             });
-            var preference = preferences.SingleOrDefault(p => p.Key == command.Key);
+
+            var preference = preferences.ByKey(command.Key).SingleOrDefault();
             if (preference == null)
             {
-                var user = _queries.Execute(new GetUserByNameQuery {Name = command.Principal.Identity.Name});
+                var user = _queries.Execute(new GetUserByNameQuery { Name = command.Principal.Identity.Name });
                 preference = new Preference
                 {
                     User = user,
                     UserId = user.RevisionId,
                     Category = command.Category,
-                    Key = command.Key,
+                    Key = command.KeyText,
                     Value = command.Value,
                 };
                 _entities.Create(preference);
