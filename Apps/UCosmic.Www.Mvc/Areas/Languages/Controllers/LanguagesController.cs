@@ -18,14 +18,10 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
     public partial class LanguagesController : Controller
     {
         private readonly IProcessQueries _queries;
-        private readonly IHandleCommands<UpdateMyPreference> _preferences;
 
-        public LanguagesController(IProcessQueries queries
-            , IHandleCommands<UpdateMyPreference> preferences
-        )
+        public LanguagesController(IProcessQueries queries)
         {
             _queries = queries;
-            _preferences = preferences;
         }
 
         [HttpGet]
@@ -74,24 +70,6 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
             var model = Mapper.Map<LanguageResults>(entities);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
-
-        [HttpPut]
-        [UnitOfWork]
-        public virtual ActionResult PutPreference(PreferenceCategory category, PreferenceKey key, string value)
-        {
-            var isAuthenticated = User.Identity.IsAuthenticated;
-            if (isAuthenticated)
-            {
-                var command = new UpdateMyPreference(User)
-                {
-                    Category = PreferenceCategory.Languages,
-                    Key = key,
-                    Value = value,
-                };
-                _preferences.Handle(command);
-            }
-            return Json(isAuthenticated);
-        }
     }
 
     public static class LanguagesRouter
@@ -113,24 +91,6 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                 Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("GET")
-                });
-            }
-        }
-
-        public class PutPreferenceRoute : MvcRoute
-        {
-            public PutPreferenceRoute()
-            {
-                Url = "preferences/languages";
-                DataTokens = new RouteValueDictionary(new { area = Area, });
-                Defaults = new RouteValueDictionary(new
-                {
-                    controller = Controller,
-                    action = MVC.Languages.Languages.ActionNames.PutPreference,
-                });
-                Constraints = new RouteValueDictionary(new
-                {
-                    httpMethod = new HttpMethodConstraint("PUT")
                 });
             }
         }

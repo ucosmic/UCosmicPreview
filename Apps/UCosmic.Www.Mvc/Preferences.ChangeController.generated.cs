@@ -20,10 +20,10 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
-    public partial class LanguagesController {
+namespace UCosmic.Www.Mvc.Areas.Preferences.Controllers {
+    public partial class ChangeController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected LanguagesController(Dummy d) { }
+        protected ChangeController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -39,56 +39,59 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult Get() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.Get);
+        public System.Web.Mvc.JsonResult Put() {
+            return new T4MVC_JsonResult(Area, Name, ActionNames.Put);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public LanguagesController Actions { get { return MVC.Languages.Languages; } }
+        public ChangeController Actions { get { return MVC.Preferences.Change; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "Languages";
+        public readonly string Area = "Preferences";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Languages";
+        public readonly string Name = "Change";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Languages";
+        public const string NameConst = "Change";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string Get = "Get";
+            public readonly string Put = "Put";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string Get = "Get";
+            public const string Put = "Put";
         }
 
 
-        static readonly ActionParamsClass_Get s_params_Get = new ActionParamsClass_Get();
+        static readonly ActionParamsClass_Put s_params_Put = new ActionParamsClass_Put();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Get GetParams { get { return s_params_Get; } }
+        public ActionParamsClass_Put PutParams { get { return s_params_Put; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Get {
-            public readonly string inputs = "inputs";
+        public class ActionParamsClass_Put {
+            public readonly string category = "category";
+            public readonly string key = "key";
+            public readonly string value = "value";
         }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string get = "~/Areas/Languages/Views/Languages/get.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_LanguagesController: UCosmic.Www.Mvc.Areas.Languages.Controllers.LanguagesController {
-        public T4MVC_LanguagesController() : base(Dummy.Instance) { }
+    public class T4MVC_ChangeController: UCosmic.Www.Mvc.Areas.Preferences.Controllers.ChangeController {
+        public T4MVC_ChangeController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Get(UCosmic.Www.Mvc.Areas.Languages.Models.LanguagesRequest inputs) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "inputs", inputs);
+        public override System.Web.Mvc.JsonResult Put(UCosmic.Www.Mvc.Models.PreferenceCategory category, UCosmic.Www.Mvc.Models.PreferenceKey key, string value) {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.Put);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "category", category);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "key", key);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "value", value);
             return callInfo;
         }
 

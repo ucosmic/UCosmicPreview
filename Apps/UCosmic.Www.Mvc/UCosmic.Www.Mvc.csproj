@@ -268,6 +268,8 @@
     <Compile Include="Areas\Languages\_Deprecated\_LanguagesDashboard.cs" />
     <Compile Include="Areas\Languages\_Deprecated\_LanguageTable.cs" />
     <Compile Include="Areas\Languages\_Deprecated\_LanguageTableRow.cs" />
+    <Compile Include="Areas\Preferences\Controllers\ChangeController.cs" />
+    <Compile Include="Areas\Preferences\PreferencesAreaRegistration.cs" />
     <Compile Include="Common.ErrorsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -525,6 +527,12 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="People.PersonNameController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Preferences.ChangeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Preferences.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1444,6 +1452,7 @@
     <Content Include="Areas\Languages\Views\Shared\DisplayTemplates\LanguageNameTableRow.cshtml" />
     <Content Include="Areas\Languages\_Deprecated\__languages-table.cshtml" />
     <Content Include="Areas\Languages\Views\Languages\get.cshtml" />
+    <Content Include="Areas\Preferences\Views\Web.config" />
     <None Include="scripts\T4MvcJs\T4MVC.source.t4" />
     <None Include="scripts\T4MvcJs\T4MVC.tt.settings.t4" />
     <None Include="scripts\T4MvcJs\T4MvcJs.tt">
@@ -1488,6 +1497,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\mail\" />
+    <Folder Include="Areas\Preferences\Models\" />
+    <Folder Include="Areas\Preferences\Views\Shared\" />
     <Folder Include="Areas\RecruitmentAgencies\Controllers\" />
     <Folder Include="Areas\RecruitmentAgencies\Models\" />
     <Folder Include="Areas\RecruitmentAgencies\Views\Shared\" />

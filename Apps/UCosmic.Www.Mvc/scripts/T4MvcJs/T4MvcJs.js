@@ -644,29 +644,6 @@ var MvcJs = {
 
 				return url.replace(/([?&]+$)/g, "");
 			},
-			PutPreference: function(category, key, value) {
-				var url = "/preferences/languages?category={category}&key={key}&value={value}";
-				
-				if (category) {
-					url = url.replace("{category}", category);
-				} else {
-					url = url.replace("category={category}", "").replace("?&","?").replace("&&","&");
-				}
-				
-				if (key) {
-					url = url.replace("{key}", key);
-				} else {
-					url = url.replace("key={key}", "").replace("?&","?").replace("&&","&");
-				}
-				
-				if (value) {
-					url = url.replace("{value}", value);
-				} else {
-					url = url.replace("value={value}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			NameConst: "Languages"
 		},
 		Shared: {
@@ -789,6 +766,40 @@ var MvcJs = {
 			},
 			NameConst: "PersonName",
 			SalutationAndSuffixNullValueLabel: "[None]"
+		}
+	}
+,
+
+	Preferences: {
+
+		Change: {
+			Put: function(category, key, value) {
+				var url = "/my/preferences?category={category}&key={key}&value={value}";
+				
+				if (category) {
+					url = url.replace("{category}", category);
+				} else {
+					url = url.replace("category={category}", "").replace("?&","?").replace("&&","&");
+				}
+				
+				if (key) {
+					url = url.replace("{key}", key);
+				} else {
+					url = url.replace("key={key}", "").replace("?&","?").replace("&&","&");
+				}
+				
+				if (value) {
+					url = url.replace("{value}", value);
+				} else {
+					url = url.replace("value={value}", "").replace("?&","?").replace("&&","&");
+				}
+
+				return url.replace(/([?&]+$)/g, "");
+			},
+			NameConst: "Change"
+		},
+		Shared: {
+
 		}
 	}
 ,

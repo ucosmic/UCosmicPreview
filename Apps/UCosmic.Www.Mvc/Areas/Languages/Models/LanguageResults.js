@@ -69,7 +69,7 @@ function LanguageResultsViewModel() {
         var key = $(input).data('preference-key');
         if (!category || !key) return;
         $.ajax({
-            url: MvcJs.Languages.Languages.PutPreference(),
+            url: MvcJs.Preferences.Change.Put(),
             type: 'PUT',
             data: {
                 category: category,

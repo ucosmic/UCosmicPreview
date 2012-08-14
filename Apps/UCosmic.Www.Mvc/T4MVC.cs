@@ -37,6 +37,8 @@ public static class MVC {
     public static LanguagesClass Languages { get { return s_Languages; } }
     static readonly PeopleClass s_People = new PeopleClass();
     public static PeopleClass People { get { return s_People; } }
+    static readonly PreferencesClass s_Preferences = new PreferencesClass();
+    public static PreferencesClass Preferences { get { return s_Preferences; } }
     static readonly RecruitmentAgenciesClass s_RecruitmentAgencies = new RecruitmentAgenciesClass();
     public static RecruitmentAgenciesClass RecruitmentAgencies { get { return s_RecruitmentAgencies; } }
     static readonly RolesClass s_Roles = new RolesClass();
@@ -117,6 +119,12 @@ namespace T4MVC {
         public readonly string Name = "People";
         public UCosmic.Www.Mvc.Areas.People.Controllers.PersonInfoController PersonInfo = new UCosmic.Www.Mvc.Areas.People.Controllers.T4MVC_PersonInfoController();
         public UCosmic.Www.Mvc.Areas.People.Controllers.PersonNameController PersonName = new UCosmic.Www.Mvc.Areas.People.Controllers.T4MVC_PersonNameController();
+    }
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class PreferencesClass {
+        public readonly string Name = "Preferences";
+        public UCosmic.Www.Mvc.Areas.Preferences.Controllers.ChangeController Change = new UCosmic.Www.Mvc.Areas.Preferences.Controllers.T4MVC_ChangeController();
+        public T4MVC.Preferences.SharedController Shared = new T4MVC.Preferences.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class RecruitmentAgenciesClass {
@@ -3174,6 +3182,42 @@ namespace Links {
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                 public static readonly string _ViewStart_cshtml = Url("_ViewStart.cshtml");
+                public static readonly string Web_config = Url("Web.config");
+            }
+        
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Preferences {
+            private const string URLPATH = "~/Areas/Preferences";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Controllers {
+                private const string URLPATH = "~/Areas/Preferences/Controllers";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Models {
+                private const string URLPATH = "~/Areas/Preferences/Models";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Views {
+                private const string URLPATH = "~/Areas/Preferences/Views";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Shared {
+                    private const string URLPATH = "~/Areas/Preferences/Views/Shared";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                }
+            
                 public static readonly string Web_config = Url("Web.config");
             }
         
