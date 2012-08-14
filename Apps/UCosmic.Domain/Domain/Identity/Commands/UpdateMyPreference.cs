@@ -8,11 +8,19 @@ namespace UCosmic.Domain.Identity
     {
         public UpdateMyPreference(IPrincipal principal)
         {
-            if (principal == null) throw new ArgumentNullException("principal");
             Principal = principal;
         }
 
+        public UpdateMyPreference(IPrincipal principal, string anonymousId)
+            : this(principal)
+        {
+            AnonymousId = anonymousId;
+        }
+
         public IPrincipal Principal { get; private set; }
+        public string AnonymousId { get; private set; }
+        public bool HasPrincipal { get { return Principal != null && !string.IsNullOrWhiteSpace(Principal.Identity.Name); } }
+        public bool IsAnonymous { get { return !string.IsNullOrWhiteSpace(AnonymousId); } }
         public Enum Category { get; set; }
         public Enum Key { get; set; }
         public string Value { get; set; }
@@ -31,23 +39,31 @@ namespace UCosmic.Domain.Identity
         {
             if (command == null) throw new ArgumentNullException("command");
 
-            var preference = _entities.Get<Preference>()
-                .ByPrincipal(command.Principal)
+            var preferences = _entities.Get<Preference>();
+
+            if (command.HasPrincipal)
+                preferences = preferences.ByPrincipal(command.Principal);
+            else if (command.IsAnonymous)
+                preferences = preferences.ByAnonymousId(command.AnonymousId);
+
+            var preference = preferences
                 .ByCategory(command.Category)
                 .ByKey(command.Key)
                 .SingleOrDefault();
 
             if (preference == null)
             {
-                var user = _entities.Get<User>().ByPrincipal(command.Principal);
-                preference = new Preference
-                {
-                    User = user,
-                    UserId = user.RevisionId,
-                    Category = command.Category.ToString(),
-                    Key = command.Key.ToString(),
-                    Value = command.Value,
-                };
+                if (command.HasPrincipal)
+                    preference = new Preference(_entities.Get<User>().ByPrincipal(command.Principal));
+
+                else if (command.IsAnonymous)
+                    preference = new Preference(command.AnonymousId);
+
+                else return;
+
+                preference.Category = command.Category.ToString();
+                preference.Key = command.Key.ToString();
+                preference.Value = command.Value;
                 _entities.Create(preference);
             }
             else

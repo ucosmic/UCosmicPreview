@@ -41,7 +41,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Models
 
             PageSizeOptions = _pageSizeOptions.Select(o => new SelectListItem
             {
-                Value = o.Key.ToInvariantString(), Text = o.Value,
+                Value = o.Key.ToObjectString(), Text = o.Value,
             })
             .ToArray();
         }
@@ -56,8 +56,6 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Models
 
         public ItemsLens Lens { get; set; }
         public SelectListItem[] LensOptions { get; private set; }
-
-
     }
 
     public static class SearchRequestProfiler

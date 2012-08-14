@@ -9,12 +9,17 @@ namespace UCosmic.Domain.Identity
     {
         internal static IQueryable<Preference> ByUserName(this IQueryable<Preference> queryable, string userName)
         {
-            return queryable.Where(x => x.User.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
+            return queryable.Where(x => x.User != null && x.User.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
         }
 
         internal static IQueryable<Preference> ByPrincipal(this IQueryable<Preference> queryable, IPrincipal principal)
         {
             return queryable.ByUserName(principal.Identity.Name);
+        }
+
+        internal static IQueryable<Preference> ByAnonymousId(this IQueryable<Preference> queryable, string anonymousId)
+        {
+            return queryable.Where(x => anonymousId.Equals(x.AnonymousId, StringComparison.OrdinalIgnoreCase));
         }
 
         internal static IQueryable<Preference> ByCategory(this IQueryable<Preference> queryable, Enum category)

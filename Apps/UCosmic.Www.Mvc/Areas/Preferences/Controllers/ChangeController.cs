@@ -21,13 +21,10 @@ namespace UCosmic.Www.Mvc.Areas.Preferences.Controllers
         [UnitOfWork]
         public virtual JsonResult Put(MyPreference model)
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                var command = new UpdateMyPreference(User);
-                Mapper.Map(model, command);
-                _preferences.Handle(command);
-            }
-            return Json(User.Identity.IsAuthenticated);
+            var command = new UpdateMyPreference(User, Request.AnonymousID);
+            Mapper.Map(model, command);
+            _preferences.Handle(command);
+            return Json(null);
         }
     }
 

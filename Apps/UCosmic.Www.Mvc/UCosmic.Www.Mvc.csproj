@@ -505,7 +505,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\_RootModelProfiler.cs" />
     <Compile Include="Controllers\RouteRegistration.cs" />
     <Compile Include="Controllers\RawUrlCatchallRouteConstraint.cs" />
     <Compile Include="Models\AllowedFileExtensionsAttribute.cs" />

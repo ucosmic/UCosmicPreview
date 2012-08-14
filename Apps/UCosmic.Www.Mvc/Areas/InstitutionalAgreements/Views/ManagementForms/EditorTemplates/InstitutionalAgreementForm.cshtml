@@ -238,22 +238,22 @@
                     </th>
                     <td class="value">
                         <div>
-                            @Html.RadioButtonFor(m => m.IsAutoRenew, true.ToInvariantString(),
+                            @Html.RadioButtonFor(m => m.IsAutoRenew, true.ToObjectString(),
                                     new
                                     {
-                                        id = string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), true.ToInvariantString()),
+                                        id = string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), true.ToObjectString()),
                                     })
-                            <label for="@string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), true.ToInvariantString())">
+                            <label for="@string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), true.ToObjectString())">
                                 This agreement is auto-renewable.
                             </label>
                         </div>
                         <div>
-                            @Html.RadioButtonFor(m => m.IsAutoRenew, false.ToInvariantString(),
+                            @Html.RadioButtonFor(m => m.IsAutoRenew, false.ToObjectString(),
                                     new
                                     {
-                                        id = string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), false.ToInvariantString()),
+                                        id = string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), false.ToObjectString()),
                                     })
-                            <label for="@string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), false.ToInvariantString())">
+                            <label for="@string.Format("{0}_{1}", Html.IdFor(m => m.IsAutoRenew), false.ToObjectString())">
                                 This agreement is <b>not</b> auto-renewable.
                             </label>
                         </div>

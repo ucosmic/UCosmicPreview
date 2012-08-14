@@ -14,7 +14,6 @@ using UCosmic.Domain.Identity;
 
 namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
 {
-    [Authenticate]
     public partial class SearchController : Controller
     {
         private readonly IProcessQueries _queries;
@@ -30,7 +29,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
         {
             if (!Request.IsAjaxRequest())
             {
-                var preferences = _queries.Execute(new MyPreferencesByCategory(User)
+                var preferences = _queries.Execute(new MyPreferencesByCategory(User, Request.AnonymousID)
                 {
                     Category = PreferenceCategory.Languages
                 });

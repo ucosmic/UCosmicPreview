@@ -10,7 +10,6 @@ namespace UCosmic.Domain.Identity
         {
             // ReSharper disable DoNotCallOverridableMethodsInConstructor
             Grants = new Collection<RoleGrant>();
-            Preferences = new Collection<Preference>();
             SubjectNameIdentifiers = new Collection<SubjectNameIdentifier>();
             EduPersonScopedAffiliations = new Collection<EduPersonScopedAffiliation>();
             // ReSharper restore DoNotCallOverridableMethodsInConstructor
@@ -23,8 +22,6 @@ namespace UCosmic.Domain.Identity
         public string EduPersonTargetedId { get; protected internal set; }
         public virtual ICollection<EduPersonScopedAffiliation> EduPersonScopedAffiliations { get; protected set; }
         public virtual ICollection<SubjectNameIdentifier> SubjectNameIdentifiers { get; protected set; }
-
-        public virtual ICollection<Preference> Preferences { get; protected internal set; }
 
         public virtual ICollection<RoleGrant> Grants { get; protected internal set; }
         public bool IsInRole(string roleName)

@@ -70,14 +70,16 @@ namespace UCosmic.Impl.Orm
             {
                 ToTable(typeof(Preference).Name, DbSchemaName.Identity);
 
-                HasKey(p => new { p.UserId, p.Category, p.Key });
+                HasKey(p => new { p.Owner, p.Category, p.Key });
 
+                Property(p => p.Owner).IsRequired().HasMaxLength(100);
+                Property(p => p.AnonymousId).HasMaxLength(100);
                 Property(p => p.Category).IsRequired().HasMaxLength(100);
                 Property(p => p.Key).IsRequired().HasMaxLength(100);
 
                 // has one user
-                HasRequired(d => d.User)
-                    .WithMany(p => p.Preferences)
+                HasOptional(d => d.User)
+                    .WithMany()
                     .HasForeignKey(d => d.UserId)
                     .WillCascadeOnDelete(true);
             }

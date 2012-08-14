@@ -125,7 +125,7 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
                     GroupKey = e.Category.Code,
                     GroupName = e.Category.EnglishName,
                     Text = e.EnglishName,
-                    Value = e.RevisionId.ToInvariantString(),
+                    Value = e.RevisionId.ToObjectString(),
                 })
                 .ToArray()
             );
@@ -137,23 +137,13 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
         {
             return _languageOptions ??
             (
-                //_languageOptions = _languages
-                //    .FindMany(With<Language>.DefaultCriteria())
-                //    .Select(e => new SelectListItem
-                //        {
-                //            Text = e.TranslatedName.Text,
-                //            Value = e.RevisionId.ToInvariantString(),
-                //        }
-                //    )
-                //    .OrderBy(s => s.Text)
-                //    .ToArray()
                 _languageOptions = _queryProcessor
                     .Execute(new LanguagesUnfiltered())
                     .Select(l =>
                         new SelectListItem
                         {
                             Text = l.TranslatedName.Text,
-                            Value = l.Id.ToInvariantString(),
+                            Value = l.Id.ToObjectString(),
                         })
                     .OrderBy(s => s.Text)
                     .ToArray()

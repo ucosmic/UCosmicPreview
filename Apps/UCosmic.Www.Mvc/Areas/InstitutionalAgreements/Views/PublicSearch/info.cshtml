@@ -38,7 +38,7 @@
                     </div>
                 }
             </div>
-                var zoomLevel = (Model.Partners.Length == 1) ? Model.Partners[0].Location.GoogleMapZoomLevel.ToInvariantString() : string.Empty;
+                var zoomLevel = (Model.Partners.Length == 1) ? Model.Partners[0].Location.GoogleMapZoomLevel.ToObjectString() : string.Empty;
                 var center = (Model.Partners.Length == 1) ? string.Format("{0},{1}", Model.Partners[0].Location.CenterLatitude, @Model.Partners[0].Location.CenterLongitude) : string.Empty;
             <div class="u-map-google" data-ucosmic-map-zoom="@zoomLevel" data-ucosmic-map-zoom-scroll-wheel="false"
                  data-ucosmic-map-center="@center"

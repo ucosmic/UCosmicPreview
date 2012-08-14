@@ -69,7 +69,7 @@
 <div id="institutional_agreement_mapper">
     @{
         var zoomLevel = (Model.Establishments.Length == 1)
-            ? Model.Establishments[0].Location.GoogleMapZoomLevel.ToInvariantString()
+            ? Model.Establishments[0].Location.GoogleMapZoomLevel.ToObjectString()
             : string.Empty;
         var center = (Model.Establishments.Length == 1)
             ? string.Format("{0},{1}", Model.Establishments[0].Location.CenterLatitude, @Model.Establishments[0].Location.CenterLongitude)

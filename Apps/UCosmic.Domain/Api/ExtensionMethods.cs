@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Principal;
@@ -114,9 +115,9 @@ namespace UCosmic
 
                 // fragment
                 var fragmented = new StringBuilder();
-                var characters = enumValue.ToInvariantString().ToCharArray();
+                var characters = enumValue.ToObjectString().ToCharArray();
                 foreach (var character in characters)
-                    if (character.ToInvariantString() == character.ToInvariantString().ToUpper())
+                    if (character.ToObjectString() == character.ToObjectString().ToUpper())
                         fragmented.Append(" {0}".FormatWith(character));
                     else
                         fragmented.Append(character);
@@ -206,7 +207,7 @@ namespace UCosmic
         #endregion
         #region Globalization Shortcuts
 
-        public static string ToInvariantString(this object value)
+        public static string ToObjectString(this object value)
         {
             if (value == null) throw new ArgumentNullException("value");
             return value.ToString();

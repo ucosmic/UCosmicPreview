@@ -142,7 +142,7 @@
     <Compile Include="Domain\Establishments\Queries\EstablishmentCategoryByCode.cs" />
     <Compile Include="Domain\Establishments\Queries\EstablishmentTypeByEnglishName.cs" />
     <Compile Include="Domain\Identity\Business\QueryPreferences.cs" />
-    <Compile Include="Domain\Identity\Commands\UpdatePreference.cs" />
+    <Compile Include="Domain\Identity\Commands\UpdateMyPreference.cs" />
     <Compile Include="Domain\Identity\Entities\Preference.cs" />
     <Compile Include="Domain\Identity\Queries\MyPreferencesByCategory.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\GenerateTitle.cs" />

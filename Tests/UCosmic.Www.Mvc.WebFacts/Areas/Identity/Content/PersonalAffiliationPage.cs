@@ -13,7 +13,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity
             {
                 const int number = 1;
                 return MVC.Identity.UpdateAffiliation.Get(number).AsPath()
-                    .Replace(number.ToInvariantString(), UrlPathVariableToken);
+                    .Replace(number.ToObjectString(), UrlPathVariableToken);
             }
         }
 

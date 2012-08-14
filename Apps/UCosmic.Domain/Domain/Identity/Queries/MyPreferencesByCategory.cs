@@ -8,11 +8,19 @@ namespace UCosmic.Domain.Identity
     {
         public MyPreferencesByCategory(IPrincipal principal)
         {
-            if (principal == null) throw new ArgumentNullException("principal");
             Principal = principal;
         }
 
+        public MyPreferencesByCategory(IPrincipal principal, string anonymousId)
+            : this(principal)
+        {
+            AnonymousId = anonymousId;
+        }
+
         public IPrincipal Principal { get; private set; }
+        public string AnonymousId { get; private set; }
+        public bool HasPrincipal { get { return Principal != null && !string.IsNullOrWhiteSpace(Principal.Identity.Name); } }
+        public bool IsAnonymous { get { return !string.IsNullOrWhiteSpace(AnonymousId); } }
         public Enum Category { get; set; }
     }
 
@@ -29,13 +37,23 @@ namespace UCosmic.Domain.Identity
         {
             if (query == null) throw new ArgumentNullException("query");
 
-            return _entities.Get<Preference>()
+            if (!query.HasPrincipal && !query.IsAnonymous) return new Preference[0];
+
+            var results = _entities.Get<Preference>()
                 .EagerLoad(_entities, query.EagerLoad)
-                .ByPrincipal(query.Principal)
+            ;
+
+            if (query.HasPrincipal)
+                results = results.ByPrincipal(query.Principal);
+            else if (query.IsAnonymous)
+                results = results.ByAnonymousId(query.AnonymousId);
+
+            results = results
                 .ByCategory(query.Category)
                 .OrderBy(query.OrderBy)
-                .ToArray()
             ;
+
+            return results.ToArray();
         }
     }
 }
