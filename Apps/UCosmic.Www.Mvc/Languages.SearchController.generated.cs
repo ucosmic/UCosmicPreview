@@ -21,9 +21,9 @@ using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
 namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
-    public partial class LanguageController {
+    public partial class SearchController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected LanguageController(Dummy d) { }
+        protected SearchController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -44,13 +44,13 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public LanguageController Actions { get { return MVC.Languages.Language; } }
+        public SearchController Actions { get { return MVC.Languages.Search; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "Languages";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Language";
+        public readonly string Name = "Search";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Language";
+        public const string NameConst = "Search";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -71,7 +71,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
         public ActionParamsClass_Get GetParams { get { return s_params_Get; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Get {
-            public readonly string id = "id";
+            public readonly string request = "request";
         }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -82,12 +82,12 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_LanguageController: UCosmic.Www.Mvc.Areas.Languages.Controllers.LanguageController {
-        public T4MVC_LanguageController() : base(Dummy.Instance) { }
+    public class T4MVC_SearchController: UCosmic.Www.Mvc.Areas.Languages.Controllers.SearchController {
+        public T4MVC_SearchController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Get(object id) {
+        public override System.Web.Mvc.ActionResult Get(UCosmic.Www.Mvc.Areas.Languages.Models.SearchRequest request) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "request", request);
             return callInfo;
         }
 

@@ -1,11 +1,11 @@
-﻿@model UCosmic.Www.Mvc.Areas.Languages.Models.LanguageForm
+﻿@model UCosmic.Www.Mvc.Areas.Languages.Models.Item
 @{
     ViewBag.Title = "Language Details";
 }
 @section HeadCenter
 {
     <h1>
-        <a href="@Url.Action(MVC.Languages.Languages.Get(null))"><span>Languages</span></a>
+        <a href="@Url.Action(MVC.Languages.Search.Get(null))"><span>Languages</span></a>
         <span class="brackets">&gt;&gt;</span>
         @ViewBag.Title
     </h1>

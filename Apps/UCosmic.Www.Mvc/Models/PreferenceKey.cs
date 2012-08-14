@@ -2,7 +2,7 @@
 {
     public enum PreferenceKey
     {
-        EnumeratedViewLayout,
+        Lens,
         PageSize,
     }
 }

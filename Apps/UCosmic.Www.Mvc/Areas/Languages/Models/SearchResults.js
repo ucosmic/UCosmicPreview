@@ -3,7 +3,7 @@
     ko.mapping.fromJS(js, {}, self);
 
     self.href = ko.computed(function () { // use t4mvcjs to generate link href
-        return MvcJs.Languages.Language.Get(self.TwoLetterIsoCode());
+        return MvcJs.Languages.Item.Get(self.TwoLetterIsoCode());
     });
     self.goToHref = function () { // used for navigating by clicking table row link
         location.href = self.href();
@@ -51,7 +51,7 @@ function LanguageResultsViewModel() {
     // ajax results update
     ko.computed(function () { // update the results by getting json from server (happens during first load)
         self.startSpinning();
-        $.get(MvcJs.Languages.Languages.Get(), { // get json from server
+        $.get(MvcJs.Languages.Search.Get(), { // get json from server
             keyword: self.throttledKeyword(), // use throttled keyword to trigger this event
             pageSize: self.pageSize(),
             pageNumber: self.pageNumber()

@@ -29,10 +29,10 @@ namespace UCosmic
         private PagerOptions PagerOptions { get; set; }
         private ICollection<TEntity> ItemsCollection { get; set; }
         public IEnumerable<TEntity> Items { get { return ItemsCollection; } }
+        public int PageSize { get { return PagerOptions.PageSize; } }
         public int PageNumber { get { return PagerOptions.PageNumber; } }
         public int PageIndex { get { return PagerOptions.PageIndex; } }
         public int TotalItems { get; private set; }
-        public int PageSize { get { return PagerOptions.PageSize; } }
         public int PageCount { get { return (int)Math.Ceiling(TotalItems / (double)PageSize); } }
         public int FirstNumber { get { return FirstIndex + 1; } }
         public int FirstIndex { get { return PagerOptions.PageIndex * PageSize; } }

@@ -21,9 +21,9 @@ using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
 namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
-    public partial class LanguagesController {
+    public partial class ItemController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected LanguagesController(Dummy d) { }
+        protected ItemController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -44,13 +44,13 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public LanguagesController Actions { get { return MVC.Languages.Languages; } }
+        public ItemController Actions { get { return MVC.Languages.Item; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "Languages";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Languages";
+        public readonly string Name = "Item";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Languages";
+        public const string NameConst = "Item";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -71,24 +71,23 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
         public ActionParamsClass_Get GetParams { get { return s_params_Get; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Get {
-            public readonly string inputs = "inputs";
+            public readonly string id = "id";
         }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string get = "~/Areas/Languages/Views/Languages/get.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_LanguagesController: UCosmic.Www.Mvc.Areas.Languages.Controllers.LanguagesController {
-        public T4MVC_LanguagesController() : base(Dummy.Instance) { }
+    public class T4MVC_ItemController: UCosmic.Www.Mvc.Areas.Languages.Controllers.ItemController {
+        public T4MVC_ItemController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Get(UCosmic.Www.Mvc.Areas.Languages.Models.LanguagesRequest inputs) {
+        public override System.Web.Mvc.ActionResult Get(object id) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "inputs", inputs);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             return callInfo;
         }
 

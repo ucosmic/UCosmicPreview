@@ -254,16 +254,15 @@
     <Compile Include="Areas\Activities\Models\TagMenuItem.cs" />
     <Compile Include="Areas\Activities\Models\ActivityForm.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\ManagementForms\InstitutionalAgreementVisibilityOption.cs" />
-    <Compile Include="Areas\Languages\Controllers\LanguageController.cs" />
-    <Compile Include="Areas\Languages\Controllers\LanguagesController.cs" />
+    <Compile Include="Areas\Languages\Controllers\ItemController.cs" />
+    <Compile Include="Areas\Languages\Controllers\SearchController.cs" />
     <Compile Include="Areas\Languages\LanguagesAreaRegistration.cs" />
-    <Compile Include="Areas\Languages\Models\LanguageResult.cs" />
-    <Compile Include="Areas\Languages\Models\LanguageResults.cs" />
-    <Compile Include="Areas\Languages\Models\LanguagesLayout.cs" />
-    <Compile Include="Areas\Languages\Models\LanguagesRequest.cs" />
-    <Compile Include="Areas\Languages\Models\LanguageNameTable.cs" />
-    <Compile Include="Areas\Languages\Models\LanguageNameTableRow.cs" />
-    <Compile Include="Areas\Languages\Models\LanguageForm.cs" />
+    <Compile Include="Areas\Languages\Models\SearchResult.cs" />
+    <Compile Include="Areas\Languages\Models\SearchResults.cs" />
+    <Compile Include="Areas\Languages\Models\SearchRequest.cs" />
+    <Compile Include="Areas\Languages\Models\ItemNames.cs" />
+    <Compile Include="Areas\Languages\Models\NameItem.cs" />
+    <Compile Include="Areas\Languages\Models\Item.cs" />
     <Compile Include="Areas\Preferences\Controllers\ChangeController.cs" />
     <Compile Include="Areas\Preferences\PreferencesAreaRegistration.cs" />
     <Compile Include="Common.ErrorsController.generated.cs">
@@ -427,10 +426,10 @@
     <Compile Include="InstitutionalAgreements.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Languages.LanguageController.generated.cs">
+    <Compile Include="Languages.ItemController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Languages.LanguagesController.generated.cs">
+    <Compile Include="Languages.SearchController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Languages.SharedController.generated.cs">
@@ -1107,7 +1106,7 @@
     <Content Include="scripts\ko\knockout.js" />
     <Content Include="scripts\ko\knockout.mapping-latest.debug.js" />
     <Content Include="scripts\ko\knockout.mapping-latest.js" />
-    <Content Include="Areas\Languages\Models\LanguageResults.js" />
+    <Content Include="Areas\Languages\Models\SearchResults.js" />
     <Content Include="scripts\other\modernizr-2.5.3.js" />
     <Content Include="scripts\T4MvcJs\T4MvcJs.js">
       <AutoGen>True</AutoGen>
@@ -1442,9 +1441,9 @@
     <Content Include="Areas\Common\Views\Features\july-2012-preview-1.cshtml" />
     <Content Include="Areas\Languages\Views\Web.config" />
     <Content Include="Areas\Languages\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Languages\Views\Shared\language.cshtml" />
-    <Content Include="Areas\Languages\Views\Shared\DisplayTemplates\LanguageNameTableRow.cshtml" />
-    <Content Include="Areas\Languages\Views\Languages\get.cshtml" />
+    <Content Include="Areas\Languages\Views\Shared\item.cshtml" />
+    <Content Include="Areas\Languages\Views\Shared\DisplayTemplates\NameItem.cshtml" />
+    <Content Include="Areas\Languages\Views\Shared\search.cshtml" />
     <Content Include="Areas\Preferences\Views\Web.config" />
     <None Include="scripts\T4MvcJs\T4MVC.source.t4" />
     <None Include="scripts\T4MvcJs\T4MVC.tt.settings.t4" />

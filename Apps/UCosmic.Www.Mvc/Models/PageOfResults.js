@@ -48,9 +48,15 @@
     self.items = ko.observableArray([]);
     self.resultsMapping = { };
     self.update = function (js) {
-        ko.mapping.fromJS(js, self.resultsMapping, self);
-        self.items(self.Items());
-        self.pageCount(self.PageCount());
+        if (!js) {
+            self.items([]);
+            self.pageCount(0);
+        }
+        else {
+            ko.mapping.fromJS(js, self.resultsMapping, self);
+            self.items(self.Items());
+            self.pageCount(self.PageCount());
+        }
         self.stopSpinning();
     };
     self.hasItems = ko.computed(function () {

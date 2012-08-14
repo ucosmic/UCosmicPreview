@@ -15,41 +15,39 @@ using UCosmic.Www.Mvc.Models;
 namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
 {
     [Authenticate]
-    public partial class LanguagesController : Controller
+    public partial class SearchController : Controller
     {
         private readonly IProcessQueries _queries;
 
-        public LanguagesController(IProcessQueries queries)
+        public SearchController(IProcessQueries queries)
         {
             _queries = queries;
         }
 
         [HttpGet]
         //[OutputCache(VaryByParam = "*", Duration = 5)]
-        public virtual ActionResult Get(LanguagesRequest inputs)
+        public virtual ActionResult Get(SearchRequest request)
         {
             if (!Request.IsAjaxRequest())
             {
-                var preferences = _queries.Execute(new MyPreferencesByCategory(User) { Category = PreferenceCategory.Languages });
-                var lens = preferences.ByKey(PreferenceKey.EnumeratedViewLayout).SingleOrDefault();
-                var pageSize = preferences.ByKey(PreferenceKey.PageSize).SingleOrDefault();
-                return View(Views.get, new LanguagesLayout
+                var preferences = _queries.Execute(new MyPreferencesByCategory(User)
                 {
-                    Lens = lens != null ? lens.Value.AsEnum<ItemsLens>() : ItemsLens.Table,
-                    SelectedPageSize = pageSize != null ? pageSize.Value.ParseIntoInt(10) : 10,
+                    Category = PreferenceCategory.Languages
                 });
+                Mapper.Map(preferences, request);
+                return View(MVC.Languages.Shared.Views.search, request);
             }
 
             //Thread.Sleep(800);
             //Thread.CurrentThread.CurrentUICulture = new CultureInfo("es");
             Expression<Func<LanguageName, bool>> translatedName = n => n.TranslationToLanguage.TwoLetterIsoCode.Equals(
                 CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, StringComparison.OrdinalIgnoreCase);
-            var entities = _queries.Execute(new LanguagesByKeyword(inputs.Keyword)
+            var entities = _queries.Execute(new LanguagesByKeyword(request.Keyword)
             {
                 PagerOptions = new PagerOptions
                 {
-                    PageSize = inputs.PageSize,
-                    PageNumber = inputs.PageNumber,
+                    PageSize = request.PageSize,
+                    PageNumber = request.PageNumber,
                 },
                 EagerLoad = new Expression<Func<Language, object>>[]
                 {
@@ -67,15 +65,15 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                             OrderByDirection.Ascending },
                 },
             });
-            var model = Mapper.Map<LanguageResults>(entities);
+            var model = Mapper.Map<SearchResults>(entities);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
     }
 
-    public static class LanguagesRouter
+    public static class SearchRouter
     {
         private static readonly string Area = MVC.Languages.Name;
-        private static readonly string Controller = MVC.Languages.Languages.Name;
+        private static readonly string Controller = MVC.Languages.Search.Name;
 
         public class GetRoute : MvcRoute
         {
@@ -86,7 +84,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
-                    action = MVC.Languages.Languages.ActionNames.Get,
+                    action = MVC.Languages.Search.ActionNames.Get,
                 });
                 Constraints = new RouteValueDictionary(new
                 {

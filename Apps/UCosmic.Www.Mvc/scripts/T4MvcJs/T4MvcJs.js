@@ -618,7 +618,7 @@ var MvcJs = {
 
 	Languages: {
 
-		Language: {
+		Item: {
 			Get: function(id) {
 				var url = "/languages/{id}";
 				
@@ -630,21 +630,21 @@ var MvcJs = {
 
 				return url.replace(/([?&]+$)/g, "");
 			},
-			NameConst: "Language"
+			NameConst: "Item"
 		},
-		Languages: {
-			Get: function(inputs) {
-				var url = "/languages?inputs={inputs}";
+		Search: {
+			Get: function(request) {
+				var url = "/languages?request={request}";
 				
-				if (inputs) {
-					url = url.replace("{inputs}", inputs);
+				if (request) {
+					url = url.replace("{request}", request);
 				} else {
-					url = url.replace("inputs={inputs}", "").replace("?&","?").replace("&&","&");
+					url = url.replace("request={request}", "").replace("?&","?").replace("&&","&");
 				}
 
 				return url.replace(/([?&]+$)/g, "");
 			},
-			NameConst: "Languages"
+			NameConst: "Search"
 		},
 		Shared: {
 

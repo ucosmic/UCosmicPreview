@@ -67,6 +67,9 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                     .ForMember(d => d.Establishment, o => o.Ignore())
                     .ForMember(d => d.Items, o => o.Ignore())
                     .ForMember(d => d.TotalItems, o => o.Ignore())
+                    .ForMember(d => d.PageNumber, o => o.Ignore())
+                    .ForMember(d => d.PageSize, o => o.Ignore())
+                    .ForMember(d => d.PageIndex, o => o.Ignore())
                 ;
             }
         }

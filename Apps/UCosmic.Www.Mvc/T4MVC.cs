@@ -110,8 +110,8 @@ namespace T4MVC {
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class LanguagesClass {
         public readonly string Name = "Languages";
-        public UCosmic.Www.Mvc.Areas.Languages.Controllers.LanguageController Language = new UCosmic.Www.Mvc.Areas.Languages.Controllers.T4MVC_LanguageController();
-        public UCosmic.Www.Mvc.Areas.Languages.Controllers.LanguagesController Languages = new UCosmic.Www.Mvc.Areas.Languages.Controllers.T4MVC_LanguagesController();
+        public UCosmic.Www.Mvc.Areas.Languages.Controllers.ItemController Item = new UCosmic.Www.Mvc.Areas.Languages.Controllers.T4MVC_ItemController();
+        public UCosmic.Www.Mvc.Areas.Languages.Controllers.SearchController Search = new UCosmic.Www.Mvc.Areas.Languages.Controllers.T4MVC_SearchController();
         public T4MVC.Languages.SharedController Shared = new T4MVC.Languages.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -3098,16 +3098,6 @@ namespace Links {
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public static class _Deprecated {
-                private const string URLPATH = "~/Areas/Languages/_Deprecated";
-                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                public static readonly string __languages_table_cshtml = Url("__languages-table.cshtml");
-                public static readonly string _languages_cshtml = Url("_languages.cshtml");
-                public static readonly string _LanguageTableRow_cshtml = Url("_LanguageTableRow.cshtml");
-            }
-        
-            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class Controllers {
                 private const string URLPATH = "~/Areas/Languages/Controllers";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
@@ -3119,7 +3109,7 @@ namespace Links {
                 private const string URLPATH = "~/Areas/Languages/Models";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                public static readonly string LanguageResults_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/LanguageResults.min.js") ? Url("LanguageResults.min.js") : Url("LanguageResults.js");
+                public static readonly string SearchResults_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SearchResults.min.js") ? Url("SearchResults.min.js") : Url("SearchResults.js");
                         }
         
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -3128,14 +3118,6 @@ namespace Links {
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                 public static readonly string _ViewStart_cshtml = Url("_ViewStart.cshtml");
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class Languages {
-                    private const string URLPATH = "~/Areas/Languages/Views/Languages";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    public static readonly string get_cshtml = Url("get.cshtml");
-                }
-            
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class Shared {
                     private const string URLPATH = "~/Areas/Languages/Views/Shared";
@@ -3146,10 +3128,11 @@ namespace Links {
                         private const string URLPATH = "~/Areas/Languages/Views/Shared/DisplayTemplates";
                         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                        public static readonly string LanguageNameTableRow_cshtml = Url("LanguageNameTableRow.cshtml");
+                        public static readonly string NameItem_cshtml = Url("NameItem.cshtml");
                     }
                 
-                    public static readonly string language_cshtml = Url("language.cshtml");
+                    public static readonly string item_cshtml = Url("item.cshtml");
+                    public static readonly string search_cshtml = Url("search.cshtml");
                 }
             
                 public static readonly string Web_config = Url("Web.config");

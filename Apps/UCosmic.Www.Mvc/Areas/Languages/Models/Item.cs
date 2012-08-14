@@ -4,23 +4,23 @@ using UCosmic.Domain.Languages;
 
 namespace UCosmic.Www.Mvc.Areas.Languages.Models
 {
-    public class LanguageForm
+    public class Item
     {
         public string TranslatedNameText { get; set; }
         public string NativeNameText { get; set; }
         public string TwoLetterIsoCode { get; set; }
         public string ThreeLetterIsoCode { get; set; }
 
-        public LanguageNameTable Names { get; set; }
+        public ItemNames Names { get; set; }
     }
 
-    public static class LanguageFormProfiler
+    public static class ItemProfiler
     {
-        public class LanguageFormProfile : Profile
+        public class EntityToModelProfile : Profile
         {
             protected override void Configure()
             {
-                CreateMap<Language, LanguageForm>()
+                CreateMap<Language, Item>()
 
                     // do not display native name if if this the same as the translated name
                     .ForMember(d => d.NativeNameText, o => o.ResolveUsing(s =>
@@ -28,7 +28,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Models
 
                     .ForMember(d => d.Names, o => o.ResolveUsing(s =>
                     {
-                        var names = Mapper.Map<LanguageNameTable>(s.Names)
+                        var names = Mapper.Map<ItemNames>(s.Names)
                             .OrderByDescending(r => r.IsUserTranslation)
                             .ThenByDescending(r => r.IsNativeTranslation)
                             .ThenBy(r => r.TranslationToLanguageTranslatedNameText)

@@ -11,11 +11,11 @@ using UCosmic.Www.Mvc.Controllers;
 
 namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
 {
-    public partial class LanguageController : Controller
+    public partial class ItemController : Controller
     {
         private readonly IProcessQueries _queries;
 
-        public LanguageController(IProcessQueries queries)
+        public ItemController(IProcessQueries queries)
         {
             _queries = queries;
         }
@@ -32,12 +32,12 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                 if (entity != null)
                 {
                     //Thread.CurrentThread.CurrentUICulture = new CultureInfo("es");
-                    var model = Mapper.Map<LanguageForm>(entity);
+                    var model = Mapper.Map<Item>(entity);
                     //if (Request.Headers.Get("x-pjax") != null)
                     //{
                     //    return PartialView(model);
                     //}
-                    return View(MVC.Languages.Shared.Views.language, model);
+                    return View(MVC.Languages.Shared.Views.item, model);
                 }
             }
             return HttpNotFound();
@@ -65,10 +65,10 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
             };
     }
 
-    public static class LanguageRouter
+    public static class ItemRouter
     {
         private static readonly string Area = MVC.Languages.Name;
-        private static readonly string Controller = MVC.Languages.Language.Name;
+        private static readonly string Controller = MVC.Languages.Item.Name;
 
         public class GetRoute : MvcRoute
         {
@@ -80,7 +80,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                 Defaults = new RouteValueDictionary(new
                 {
                     controller = Controller,
-                    action = MVC.Languages.Language.ActionNames.Get,
+                    action = MVC.Languages.Item.ActionNames.Get,
                     id = UrlParameter.Optional,
                 });
                 Constraints = new RouteValueDictionary(new

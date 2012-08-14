@@ -1,5 +1,5 @@
 ﻿@using UCosmic.Www.Mvc.Models
-@model UCosmic.Www.Mvc.Areas.Languages.Models.LanguagesLayout
+@model UCosmic.Www.Mvc.Areas.Languages.Models.SearchRequest
 @{
     ViewBag.Title = "Languages";
 }
@@ -45,7 +45,7 @@
             color: #444;
             text-decoration: none;
             cursor: pointer;
-            padding: 20px 0 20px 10px;
+            padding: 10px 0 10px 10px;
         }
         .ucosmic ul.data-list li .col {
             display: inline-block;
@@ -112,12 +112,12 @@
                 {
                     data_bind = "value: lens",
                     data_preference_category = PreferenceCategory.Languages,
-                    data_preference_key = PreferenceKey.EnumeratedViewLayout,
+                    data_preference_key = PreferenceKey.Lens,
                     style = "display: none;",
                 })
             </div>
             <div style="display: inline-block">
-                @Html.DropDownListFor(m => m.SelectedPageSize, Model.PageSizeOptions, new
+                @Html.DropDownListFor(m => m.PageSize, Model.PageSizeOptions, new
                 {
                     data_bind = "value: pageSize",
                     data_preference_category = PreferenceCategory.Languages,
@@ -227,7 +227,7 @@
 
     <script type="text/javascript" src="@Url.Content(Links.Models.PageOfResults_js)"></script>
 
-    <script type="text/javascript" src="@Url.Content(Links.Areas.Languages.Models.LanguageResults_js)"></script>
+    <script type="text/javascript" src="@Url.Content(Links.Areas.Languages.Models.SearchResults_js)"></script>
 
     <script type="text/javascript">
 
