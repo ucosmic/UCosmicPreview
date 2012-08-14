@@ -18,7 +18,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Models
         public bool IsUserLanguage { get; set; }
     }
 
-    public static class LanguageTableRowProfiler
+    public static class LanguageResultProfiler
     {
         public class EntityToModelProfile : Profile
         {

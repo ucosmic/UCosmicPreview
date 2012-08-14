@@ -261,13 +261,9 @@
     <Compile Include="Areas\Languages\Models\LanguageResults.cs" />
     <Compile Include="Areas\Languages\Models\LanguagesLayout.cs" />
     <Compile Include="Areas\Languages\Models\LanguagesRequest.cs" />
-    <Compile Include="Areas\Languages\_Deprecated\_LanguageResult.cs" />
     <Compile Include="Areas\Languages\Models\LanguageNameTable.cs" />
     <Compile Include="Areas\Languages\Models\LanguageNameTableRow.cs" />
     <Compile Include="Areas\Languages\Models\LanguageForm.cs" />
-    <Compile Include="Areas\Languages\_Deprecated\_LanguagesDashboard.cs" />
-    <Compile Include="Areas\Languages\_Deprecated\_LanguageTable.cs" />
-    <Compile Include="Areas\Languages\_Deprecated\_LanguageTableRow.cs" />
     <Compile Include="Areas\Preferences\Controllers\ChangeController.cs" />
     <Compile Include="Areas\Preferences\PreferencesAreaRegistration.cs" />
     <Compile Include="Common.ErrorsController.generated.cs">
@@ -445,7 +441,7 @@
     <Compile Include="Areas\Identity\Models\IModelConfirmAndRedeem.cs" />
     <Compile Include="Models\ComparisonType.cs" />
     <Compile Include="Models\CoordinatesModel.cs" />
-    <Compile Include="Models\EnumeratedViewLayout.cs" />
+    <Compile Include="Models\ItemsLens.cs" />
     <Compile Include="Models\HttpPostedFileBaseProfiler.cs" />
     <Compile Include="Models\IHaveText.cs" />
     <Compile Include="Models\PageOf.cs" />
@@ -1445,12 +1441,9 @@
     <Content Include="Areas\Common\Views\Features\june-2012-preview-2.cshtml" />
     <Content Include="Areas\Common\Views\Features\july-2012-preview-1.cshtml" />
     <Content Include="Areas\Languages\Views\Web.config" />
-    <Content Include="Areas\Languages\_Deprecated\_languages.cshtml" />
     <Content Include="Areas\Languages\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Languages\_Deprecated\_LanguageTableRow.cshtml" />
     <Content Include="Areas\Languages\Views\Shared\language.cshtml" />
     <Content Include="Areas\Languages\Views\Shared\DisplayTemplates\LanguageNameTableRow.cshtml" />
-    <Content Include="Areas\Languages\_Deprecated\__languages-table.cshtml" />
     <Content Include="Areas\Languages\Views\Languages\get.cshtml" />
     <Content Include="Areas\Preferences\Views\Web.config" />
     <None Include="scripts\T4MvcJs\T4MVC.source.t4" />

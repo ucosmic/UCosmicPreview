@@ -31,11 +31,11 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
             if (!Request.IsAjaxRequest())
             {
                 var preferences = _queries.Execute(new MyPreferencesByCategory(User) { Category = PreferenceCategory.Languages });
-                var layout = preferences.ByKey(PreferenceKey.EnumeratedViewLayout).SingleOrDefault();
+                var lens = preferences.ByKey(PreferenceKey.EnumeratedViewLayout).SingleOrDefault();
                 var pageSize = preferences.ByKey(PreferenceKey.PageSize).SingleOrDefault();
                 return View(Views.get, new LanguagesLayout
                 {
-                    SelectedLayout = layout != null ? layout.Value.AsEnum<EnumeratedViewLayout>() : EnumeratedViewLayout.Table,
+                    Lens = lens != null ? lens.Value.AsEnum<ItemsLens>() : ItemsLens.Table,
                     SelectedPageSize = pageSize != null ? pageSize.Value.ParseIntoInt(10) : 10,
                 });
             }

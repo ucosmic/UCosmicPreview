@@ -102,15 +102,15 @@
             </div>
             <div style="display: inline-block;">
                 <ul class="results-formats">
-                    @foreach (var option in Model.LayoutOptions)
+                    @foreach (var option in Model.LensOptions)
                     {
-                        <li data-bind="click: selectLayout, css: { selected: selectedLayout() === '@option.Value' }"
+                        <li data-bind="click: changeLens, css: { selected: lens() === '@option.Value' }"
                             data-option-value="@option.Value">@option.Text</li>
                     }
                 </ul>
-                @Html.DropDownListFor(m => m.SelectedLayout, Model.LayoutOptions, new
+                @Html.DropDownListFor(m => m.Lens, Model.LensOptions, new
                 {
-                    data_bind = "value: selectedLayout",
+                    data_bind = "value: lens",
                     data_preference_category = PreferenceCategory.Languages,
                     data_preference_key = PreferenceKey.EnumeratedViewLayout,
                     style = "display: none;",
@@ -143,7 +143,7 @@
                 There are no languages that match your search terms.
             </p>
         </div>
-        <div data-bind="visible: showTableLayout" style="display: none;">
+        <div data-bind="visible: showTableLens" style="display: none;">
             <table class="data-table" style="width: 100%;">
                 <colgroup>
                     <col style="width: 25%;" />
@@ -167,7 +167,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody data-bind="foreach: Items">
+                <tbody data-bind="foreach: items">
                     <tr data-bind="click: goToHref, css: { hilite: IsUserLanguage }">
                         <td>
                             <a data-bind="text: TranslatedNameText, attr: { href: href }" style="font-weight: bold;">
@@ -186,8 +186,8 @@
                 </tbody>
             </table>
         </div>
-        <div data-bind="visible: showListLayout" style="display: none;">
-            <ul class="data-list" data-bind="foreach: Items">
+        <div data-bind="visible: showListLens" style="display: none;">
+            <ul class="data-list" data-bind="foreach: items">
                 <li data-bind="css: { hilite: IsUserLanguage }"><a data-bind="attr: { href: href }">
                     <div class="col" style="width: 350px;">
                         <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: formattedNativeNameText() !== '-'">
@@ -202,8 +202,8 @@
                 </a></li>
             </ul>
         </div>
-        <div data-bind="visible: showGridLayout" style="display: none;">
-            <ul class="data-grid" data-bind="foreach: Items">
+        <div data-bind="visible: showGridLens" style="display: none;">
+            <ul class="data-grid" data-bind="foreach: items">
                 <li data-bind="css: { hilite: IsUserLanguage }"><a data-bind="attr: { href: href }">
                     <div>
                         <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: formattedNativeNameText() !== '-'">

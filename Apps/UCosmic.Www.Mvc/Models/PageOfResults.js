@@ -44,37 +44,37 @@
         self.isSpinning(false);
     };
 
-    // result items
-    self.Items = ko.observableArray([]);
-    self.itemsMapping = { };
-    self.update = function(js) {
-        var mapped = ko.mapping.fromJS(js, self.itemsMapping);
-        self.Items(mapped.Items());
-        self.pageCount(mapped.PageCount());
+    // update results
+    self.items = ko.observableArray([]);
+    self.resultsMapping = { };
+    self.update = function (js) {
+        ko.mapping.fromJS(js, self.resultsMapping, self);
+        self.items(self.Items());
+        self.pageCount(self.PageCount());
         self.stopSpinning();
     };
     self.hasItems = ko.computed(function () {
-        return self.Items().length > 0;
+        return self.items().length > 0;
     });
     self.hasNoItems = ko.computed(function () { // useful for showing/hiding table/no-results message
         return !self.isSpinning() && !self.hasItems();
     });
 
-    // result layout
-    self.selectedLayout = ko.observable($(':input[data-bind*="value: selectedLayout"]').val() || 'Table');
-    self.selectLayout = function (vm, e) {
-        self.selectedLayout($(e.currentTarget).data('option-value'));
+    // result lens
+    self.lens = ko.observable($(':input[data-bind*="value: lens"]').val() || 'Table');
+    self.changeLens = function (vm, e) {
+        self.lens($(e.currentTarget).data('option-value'));
     };
-    self.showTableLayout = ko.computed(function () {
-        return self.selectedLayout() === 'Table' && self.hasItems();
+    self.showTableLens = ko.computed(function () {
+        return self.lens() === 'Table' && self.hasItems();
     });
-    self.showListLayout = ko.computed(function () {
-        return self.selectedLayout() === 'List' && self.hasItems();
+    self.showListLens = ko.computed(function () {
+        return self.lens() === 'List' && self.hasItems();
     });
-    self.showGridLayout = ko.computed(function () {
-        return self.selectedLayout() === 'Grid' && self.hasItems();
+    self.showGridLens = ko.computed(function () {
+        return self.lens() === 'Grid' && self.hasItems();
     });
-    self.showMapLayout = ko.computed(function () {
-        return self.selectedLayout() === 'Map' && self.hasItems();
+    self.showMapLens = ko.computed(function () {
+        return self.lens() === 'Map' && self.hasItems();
     });
 }

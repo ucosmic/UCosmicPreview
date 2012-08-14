@@ -37,7 +37,7 @@ function LanguageResultsViewModel() {
         .extend({ throttle: 400 }); // only update this when user has stopped typing
 
     // result items
-    self.itemsMapping = {
+    self.resultsMapping = {
         'Items': {
             key: function (item) {
                 return ko.utils.unwrapObservable(item.Id);
@@ -78,8 +78,8 @@ function LanguageResultsViewModel() {
             }
         });
     };
-    self.selectedLayout.subscribe(function (newValue) {
-        savePreference(':input[data-bind*="value: selectedLayout"]', newValue);
+    self.lens.subscribe(function (newValue) {
+        savePreference(':input[data-bind*="value: lens"]', newValue);
     });
     self.pageSize.subscribe(function (newValue) {
         savePreference(':input[data-bind*="value: pageSize"]', newValue);

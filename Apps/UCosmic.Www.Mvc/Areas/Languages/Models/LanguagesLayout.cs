@@ -7,11 +7,11 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Models
 {
     public class LanguagesLayout
     {
-        private readonly EnumeratedViewLayout[] _layoutOptions = new[]
+        private readonly ItemsLens[] _lensOptions = new[]
         {
-            EnumeratedViewLayout.Table,
-            EnumeratedViewLayout.List,
-            EnumeratedViewLayout.Grid,
+            ItemsLens.Table,
+            ItemsLens.List,
+            ItemsLens.Grid,
         };
 
         private readonly IEnumerable<KeyValuePair<int, string>> _pageSizeOptions = new Dictionary<int, string>
@@ -25,7 +25,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Models
 
         public LanguagesLayout()
         {
-            LayoutOptions = _layoutOptions.Select(layoutOption => new SelectListItem
+            LensOptions = _lensOptions.Select(layoutOption => new SelectListItem
             {
                 Text = layoutOption.ToString(),
                 Value = layoutOption.ToString(),
@@ -39,11 +39,11 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Models
             .ToArray();
         }
 
-        public IEnumerable<SelectListItem> LayoutOptions { get; private set; }
+        public SelectListItem[] LensOptions { get; private set; }
 
-        public EnumeratedViewLayout SelectedLayout { get; set; }
+        public ItemsLens Lens { get; set; }
 
-        public IEnumerable<SelectListItem> PageSizeOptions { get; private set; }
+        public SelectListItem[] PageSizeOptions { get; private set; }
 
         public int SelectedPageSize { get; set; }
     }
