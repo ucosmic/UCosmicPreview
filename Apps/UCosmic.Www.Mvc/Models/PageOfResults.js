@@ -4,7 +4,10 @@
     // pager
     self.pageNumber = ko.observable($(':input[data-bind*="value: pageNumber"]').val() || 1);
     self.pageSize = ko.observable($(':input[data-bind*="value: pageSize"]').val() || 10);
-    self.pageCount = ko.observable(1);
+    self.totalItems = ko.observable(0);
+    self.pageCount = ko.computed(function () {
+        return Math.ceil(self.totalItems() / self.pageSize());
+    });
     self.nextPage = function () {
         if (self.pageNumber() < self.pageCount()) {
             self.pageNumber(self.pageNumber() + 1);
@@ -50,12 +53,12 @@
     self.update = function (js) {
         if (!js) {
             self.items([]);
-            self.pageCount(0);
+            self.totalItems(0);
         }
         else {
             ko.mapping.fromJS(js, self.resultsMapping, self);
             self.items(self.Items());
-            self.pageCount(self.PageCount());
+            self.totalItems(self.TotalItems());
         }
         self.stopSpinning();
     };

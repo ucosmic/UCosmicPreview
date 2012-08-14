@@ -232,14 +232,7 @@
     <script type="text/javascript">
 
         $(function () {
-            // wrap up to initialize viewmodel
-            var data = {
-                SelectedViewText: $('input[data-bind*="value: SelectedViewText"]').val()
-            };
-
-            // knock it out
-            var viewModel = new LanguageResultsViewModel(data);
-            ko.applyBindings(viewModel);
+            ko.applyBindings(new LanguageResultsViewModel());
         });
 
     </script>
