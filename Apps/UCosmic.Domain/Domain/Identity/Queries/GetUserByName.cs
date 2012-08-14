@@ -7,16 +7,16 @@
 
     public class GetUserByNameHandler : IHandleQueries<GetUserByNameQuery, User>
     {
-        private readonly IQueryEntities _entities;
+        private readonly ICommandEntities _entities;
 
-        public GetUserByNameHandler(IQueryEntities entities)
+        public GetUserByNameHandler(ICommandEntities entities)
         {
             _entities = entities;
         }
 
         public User Handle(GetUserByNameQuery query)
         {
-            return _entities.Query<User>()
+            return _entities.Get<User>()
                 .EagerLoad(_entities, query.EagerLoad)
                 .ByName(query.Name)
             ;

@@ -1,115 +1,85 @@
-﻿function LanguageResultViewModel() {
+﻿function LanguageResultViewModel(js) { // expect input to be pojo
+    var self = this;
+    ko.mapping.fromJS(js, {}, self);
 
+    self.href = ko.computed(function () { // use t4mvcjs to generate link href
+        return MvcJs.Languages.Language.Get(self.TwoLetterIsoCode());
+    });
+    self.goToHref = function () { // used for navigating by clicking table row link
+        location.href = self.href();
+    };
+    self.formattedNativeNameText = ko.computed(function () { // display null value
+        if (self.NativeNameText() && self.NativeNameText() !== self.TranslatedNameText()) {
+            return self.NativeNameText();
+        }
+        return '-';
+    });
+    self.isoCodes = ko.computed(function () {
+        var isoCodes = self.TwoLetterIsoCode() + ', ' + self.ThreeLetterIsoCode();
+        if (self.ThreeLetterIsoCode() !== self.ThreeLetterIsoBibliographicCode())
+            isoCodes += ', ' + self.ThreeLetterIsoBibliographicCode() + '*';
+        return isoCodes;
+    });
+    self.namesCountPluralizer = ko.computed(function () {
+        var translationPluralizer = (self.NamesCount() == 1) ? 'translation' : 'translations';
+        return self.NamesCount() + ' ' + translationPluralizer;
+    });
 }
 
-function LanguageResultsViewModel(data) {
-    data = data || {}; // make sure data is not undefined
+function LanguageResultsViewModel() {
     var self = this;
+    PageOfResultsViewModel.call(self);
+    LayoutScrollViewModel.call(self);
 
-    self.Keyword = ko.observable(); // observe what is typed into search field
-    self.ThrottledKeyword = ko.computed(self.Keyword) // only update this when user has stopped typing
-                .extend({ throttle: 400 });
+    // search
+    self.keyword = ko.observable(); // observe what is typed into search field
+    self.throttledKeyword = ko.computed(self.keyword)
+        .extend({ throttle: 400 }); // only update this when user has stopped typing
 
-    function resultsViewModel(rawResults) { // add behaviors to the results
-        $(rawResults).each(function () {
-            var result = this;
-            $.extend(result, {
-                Href: ko.computed(function () { // use t4mvcjs to generate link href
-                    return MvcJs.Languages.Language.Get(result.TwoLetterIsoCode);
-                }),
-                GoToHref: function () { // used for navigating by clicking table row link
-                    window.location.href = result.Href();
-                },
-                FormattedNativeNameText: ko.computed(function () { // display null value
-                    if (result.NativeNameText && result.NativeNameText !== result.TranslatedNameText) {
-                        return result.NativeNameText;
-                    }
-                    return '-';
-                }),
-                IsoCodes: ko.computed(function () {
-                    var isoCodes = result.TwoLetterIsoCode + ', ' + result.ThreeLetterIsoCode;
-                    if (result.ThreeLetterIsoCode !== result.ThreeLetterIsoBibliographicCode)
-                        isoCodes += ', ' + result.ThreeLetterIsoBibliographicCode + '*';
-                    return isoCodes;
-                }),
-                NamesCountPluralizer: ko.computed(function () {
-                    var translationPluralizer = (result.NamesCount == 1) ? 'translation' : 'translations';
-                    return result.NamesCount + ' ' + translationPluralizer;
-                })
-            });
-        });
-        return rawResults;
-    }
-    self.IsLoadingResults = ko.observable(true); // true when in an ajax call
-    self.Results = ko.observableArray(); // initialize the results
-    self.Results.subscribe(function (val) { // add behaviors to results whenever they change
-        resultsViewModel(val);
-    });
-    self.HasResults = ko.computed(function () { // useful for showing/hiding table/no-results message
-        return self.Results().length > 0;
-    });
-    self.HasNoResults = ko.computed(function () { // useful for showing/hiding table/no-results message
-        return !self.IsLoadingResults() && !self.HasResults();
-    });
-
-    self.PageSize = ko.observable($(':input[data-bind*="value: PageSize"]').val() || 10);
-    self.PageNumber = ko.observable($(':input[data-bind*="value: PageNumber"]').val() || 1);
-    self.PageCount = ko.observable();
-    self.NextPage = function () {
-        if (self.PageNumber() < self.PageCount()) {
-            self.PageNumber(self.PageNumber() + 1);
-        }
-    };
-    self.PrevPage = function () {
-        if (self.PageNumber() >= 1) {
-            self.PageNumber(self.PageNumber() - 1);
-        }
-    };
-
-
-    self.IsSpinnerVisible = ko.observable(false); // delay the showing of this
-
-    var resultsMapping = {
-
-    };
-
-    ko.computed(function () { // update the results by getting json from server (happens during first load)
-        self.IsLoadingResults(true); // we are entering an ajax call
-        setTimeout(function () { // delay the showing of the spinner
-            if (self.IsLoadingResults()) { // only show it when load is still being processed
-                self.IsSpinnerVisible(true);
+    // result items
+    self.itemsMapping = {
+        'Items': {
+            key: function (item) {
+                return ko.utils.unwrapObservable(item.Id);
+            },
+            create: function (options) {
+                return new LanguageResultViewModel(options.data);
             }
-        }, 400); // delay the spinner this long
+        }
+    };
+
+    // ajax results update
+    ko.computed(function () { // update the results by getting json from server (happens during first load)
+        self.startSpinning();
         $.get(MvcJs.Languages.Languages.Get(), { // get json from server
-            Keyword: self.ThrottledKeyword(), // use throttled keyword to trigger this event
-            Size: self.PageSize(),
-            Number: self.PageNumber()
+            keyword: self.throttledKeyword(), // use throttled keyword to trigger this event
+            pageSize: self.pageSize(),
+            pageNumber: self.pageNumber()
         })
-        .success(function (response) { // server returns array only
-            self.Results(response.Results); // update the ui
-            self.PageNumber(response.PageNumber);
-            self.PageCount(response.PageCount);
-            self.IsLoadingResults(false); // loading is over
-            self.IsSpinnerVisible(false); // hide the spinner
-            self.RestoreScroll();
+        .success(function (response) {
+            self.update(response);
+            self.restoreScrollTop();
         });
+    })
+    .extend({ throttle: 1 });
+
+    // ajax preference updates
+    var savePreference = function(input, value) {
+        var key = $(input).data('preference-key');
+        if (!key) return;
+        $.ajax({
+            url: MvcJs.Languages.Languages.PutPreference(),
+            type: 'PUT',
+            data: {
+                key: key,
+                value: value
+            }
+        });
+    };
+    self.selectedLayout.subscribe(function (newValue) {
+        savePreference(':input[data-bind*="value: selectedLayout"]', newValue);
     });
-
-    self.ViewTemplates = ko.observableArray([
-        { Text: 'Table' },
-        { Text: 'List' },
-        { Text: 'Grid' }
-    ]);
-    self.SelectedViewText = ko.observable(data.SelectedViewText || self.ViewTemplates()[0].Text);
-    self.SelectView = function (item) {
-        self.SelectedViewText(item.Text);
-    };
-
-    self.ScrollTop = ko.observable($(':input[data-bind*="value: ScrollTop"]').val() || 0);
-    self.TrackScroll = function (viewModel, e) {
-        self.ScrollTop(e.currentTarget.scrollTop);
-    };
-    self.RestoreScroll = function () {
-        $(data.ScrollTopSelector).scrollTop(self.ScrollTop());
-    };
+    self.pageSize.subscribe(function (newValue) {
+        savePreference(':input[data-bind*="value: pageSize"]', newValue);
+    });
 }

@@ -65,8 +65,8 @@ namespace UCosmic.Www.Mvc.Areas.Activities.Models
                     .ForMember(d => d.TenantName, o => o.MapFrom(s => s.OfficialName))
                     .ForMember(d => d.Keyword, o => o.Ignore())
                     .ForMember(d => d.Establishment, o => o.Ignore())
-                    .ForMember(d => d.Results, o => o.Ignore())
-                    .ForMember(d => d.TotalResults, o => o.Ignore())
+                    .ForMember(d => d.Items, o => o.Ignore())
+                    .ForMember(d => d.TotalItems, o => o.Ignore())
                 ;
             }
         }

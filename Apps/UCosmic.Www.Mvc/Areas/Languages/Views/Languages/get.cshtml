@@ -1,4 +1,5 @@
-﻿@{
+﻿@model UCosmic.Www.Mvc.Areas.Languages.Models.LanguagesLayout
+@{
     ViewBag.Title = "Languages";
 }
 @section Styles
@@ -92,47 +93,54 @@
     <div class="wrap-960">
         <div style="margin-bottom: 1em;">
             <div style="display: inline-block;">
-                <input type="search" data-bind="value: Keyword, valueUpdate: 'afterkeydown search'"
+                <input type="search" data-bind="value: keyword, valueUpdate: 'afterkeydown search'"
                     placeholder="Find a language..." autofocus="autofocus" autocomplete="on" style="font-size: 15px;
                     padding: 5px; width: 250px;" />
-                <input type="hidden" data-bind="value: ScrollTop" />
-                <input type="hidden" data-bind="value: SelectedViewText" />
-                <input type="hidden" data-bind="value: PageNumber" />
+                <input type="hidden" data-bind="value: scrollTop" />
+                <input type="hidden" data-bind="value: pageNumber" />
             </div>
             <div style="display: inline-block;">
-                <ul class="results-formats" data-bind="foreach: ViewTemplates">
-                    <li class="selected" data-bind="text: Text, click: $root.SelectView, css: { 'selected': Text === $root.SelectedViewText() }">
-                    </li>
+                <ul class="results-formats">
+                    @foreach (var option in Model.LayoutOptions)
+                    {
+                        <li data-bind="click: selectLayout, css: { selected: selectedLayout() === '@option.Value' }"
+                            data-option-value="@option.Value">@option.Text</li>
+                    }
                 </ul>
+                @Html.DropDownListFor(m => m.SelectedLayout, Model.LayoutOptions, new
+                {
+                    data_bind = "value: selectedLayout",
+                    data_preference_key = Model.SelectedLayoutPreferenceKey,
+                    style = "display: none;",
+                })
             </div>
             <div style="display: inline-block">
-                <select style="font-size: 15px; padding: 5px;" data-bind="value: PageSize">
-                    <option value="10">Show 10 results</option>
-                    <option value="20">Show 20 results</option>
-                    <option value="50">Show 50 results</option>
-                    <option value="100">Show 100 results</option>
-                    <option value="@int.MaxValue">Show all results</option>
-                </select>
+                @Html.DropDownListFor(m => m.SelectedPageSize, Model.PageSizeOptions, new
+                {
+                    data_bind = "value: pageSize",
+                    data_preference_key = Model.SelectedPageSizePreferenceKey,
+                    style = "font-size: 15px; padding: 5px;",
+                })
             </div>
             <div style="display: inline-block; font-size: 16px;">
-                <button data-bind="click: PrevPage, enable: PageNumber() > 1" style="font-size: 16px; padding: 6px 12px; margin: 0;
-                    border-width: 1;">
+                <button data-bind="click: prevPage, enable: prevEnabled" style="font-size: 16px;
+                    padding: 6px 12px; margin: 0; border-width: 1;">
                     &lt;&lt; Back</button>
-                <button data-bind="click: NextPage, enable: PageNumber() < PageCount()" style="font-size: 16px; padding: 6px 12px; margin: 0;
-                    border-width: 1;">
+                <button data-bind="click: nextPage, enable: nextEnabled" style="font-size: 16px;
+                    padding: 6px 12px; margin: 0; border-width: 1;">
                     Next &gt;&gt;</button>
             </div>
         </div>
-        <p data-bind="visible: IsSpinnerVisible" style="display: none;">
+        <p data-bind="visible: showSpinner" style="display: none;">
             <img src="@Url.Content(Links.content.icons.loaders.win7_wait_16_gif)" alt="" style="vertical-align:text-top;" />
             <span style="font-size: 16px;">Loading...</span>
         </p>
-        <div data-bind="visible: HasNoResults" style="display: none;">
+        <div data-bind="visible: hasNoItems" style="display: none;">
             <p>
                 There are no languages that match your search terms.
             </p>
         </div>
-        <div data-bind="visible: SelectedViewText() === 'Table' && HasResults()" style="display: none;">
+        <div data-bind="visible: showTableLayout" style="display: none;">
             <table class="data-table" style="width: 100%;">
                 <colgroup>
                     <col style="width: 25%;" />
@@ -156,17 +164,17 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody data-bind="foreach: Results">
-                    <tr data-bind="click: GoToHref, css: { hilite: IsUserLanguage }">
+                <tbody data-bind="foreach: Items">
+                    <tr data-bind="click: goToHref, css: { hilite: IsUserLanguage }">
                         <td>
-                            <a data-bind="text: TranslatedNameText, attr: { href: Href }" style="font-weight: bold;">
+                            <a data-bind="text: TranslatedNameText, attr: { href: href }" style="font-weight: bold;">
                             </a>
                         </td>
                         <td>
-                            <span data-bind="text: FormattedNativeNameText"></span>
+                            <span data-bind="text: formattedNativeNameText"></span>
                         </td>
                         <td>
-                            <span data-bind="text: IsoCodes"></span>
+                            <span data-bind="text: isoCodes"></span>
                         </td>
                         <td>
                             <span data-bind="text: NamesCount"></span>
@@ -175,34 +183,34 @@
                 </tbody>
             </table>
         </div>
-        <div data-bind="visible: SelectedViewText() === 'List' && HasResults()" style="display: none;">
-            <ul class="data-list" data-bind="foreach: Results">
-                <li data-bind="css: { hilite: IsUserLanguage }"><a data-bind="attr: { href: Href }">
+        <div data-bind="visible: showListLayout" style="display: none;">
+            <ul class="data-list" data-bind="foreach: Items">
+                <li data-bind="css: { hilite: IsUserLanguage }"><a data-bind="attr: { href: href }">
                     <div class="col" style="width: 350px;">
-                        <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: FormattedNativeNameText() !== '-'">
-                            &nbsp;(<span data-bind="text: FormattedNativeNameText"></span>) </span>
+                        <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: formattedNativeNameText() !== '-'">
+                            &nbsp;(<span data-bind="text: formattedNativeNameText"></span>) </span>
                     </div>
                     <div class="col" style="width: 200px;">
-                        <span data-bind="text: IsoCodes"></span>
+                        <span data-bind="text: isoCodes"></span>
                     </div>
                     <div class="col" style="width: 200px;">
-                        <span data-bind="text: NamesCountPluralizer"></span>
+                        <span data-bind="text: namesCountPluralizer"></span>
                     </div>
                 </a></li>
             </ul>
         </div>
-        <div data-bind="visible: SelectedViewText() === 'Grid' && HasResults()" style="display: none;">
-            <ul class="data-grid" data-bind="foreach: Results">
-                <li data-bind="css: { hilite: IsUserLanguage }"><a data-bind="attr: { href: Href }">
+        <div data-bind="visible: showGridLayout" style="display: none;">
+            <ul class="data-grid" data-bind="foreach: Items">
+                <li data-bind="css: { hilite: IsUserLanguage }"><a data-bind="attr: { href: href }">
                     <div>
-                        <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: FormattedNativeNameText() !== '-'">
-                            &nbsp;(<span data-bind="text: FormattedNativeNameText"></span>) </span>
+                        <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: formattedNativeNameText() !== '-'">
+                            &nbsp;(<span data-bind="text: formattedNativeNameText"></span>) </span>
                     </div>
                     <div>
-                        <span data-bind="text: IsoCodes"></span>
+                        <span data-bind="text: isoCodes"></span>
                     </div>
                     <div>
-                        <span data-bind="text: NamesCountPluralizer"></span>
+                        <span data-bind="text: namesCountPluralizer"></span>
                     </div>
                 </a></li>
             </ul>
@@ -212,18 +220,17 @@
 @section Scripts
 {
 
+    <script type="text/javascript" src="@Url.Content(Links.Models.LayoutScroll_js)"></script>
+
+    <script type="text/javascript" src="@Url.Content(Links.Models.PageOfResults_js)"></script>
+
     <script type="text/javascript" src="@Url.Content(Links.Areas.Languages.Models.LanguageResults_js)"></script>
 
     <script type="text/javascript">
 
         $(function () {
-            // track scrolling on overflow container
-            var stretchScrollSelector = '.ucosmic .torso.row .center.col .scroll-y';
-            $(stretchScrollSelector).attr('data-bind', 'event: { scroll: TrackScroll }');
-
             // wrap up to initialize viewmodel
             var data = {
-                ScrollTopSelector: stretchScrollSelector,
                 SelectedViewText: $('input[data-bind*="value: SelectedViewText"]').val()
             };
 

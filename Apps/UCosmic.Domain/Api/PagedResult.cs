@@ -11,7 +11,7 @@ namespace UCosmic
         public PagedResult(IQueryable<TEntity> queryable, PagerOptions options)
         {
             options = options ?? PagerOptions.All;
-            TotalResults = queryable.Count();
+            TotalItems = queryable.Count();
             PagerOptions = options;
 
             // whenever the PageCount is greater than the PageNumber, reduce PageNumber, options are out of bounds
@@ -23,26 +23,25 @@ namespace UCosmic
             if (PagerOptions.PageSize > 0)
                 queryable = queryable.Take(PagerOptions.PageSize);
 
-            ResultsCollection = queryable.ToArray();
+            ItemsCollection = queryable.ToArray();
         }
 
         private PagerOptions PagerOptions { get; set; }
-        private ICollection<TEntity> ResultsCollection { get; set; }
-        public IEnumerable<TEntity> Results { get { return ResultsCollection; } }
-        public int ResultCount { get { return ResultsCollection.Count; } }
+        private ICollection<TEntity> ItemsCollection { get; set; }
+        public IEnumerable<TEntity> Items { get { return ItemsCollection; } }
         public int PageNumber { get { return PagerOptions.PageNumber; } }
         public int PageIndex { get { return PagerOptions.PageIndex; } }
-        public int TotalResults { get; private set; }
+        public int TotalItems { get; private set; }
         public int PageSize { get { return PagerOptions.PageSize; } }
-        public int PageCount { get { return (int)Math.Ceiling(TotalResults / (double)PageSize); } }
+        public int PageCount { get { return (int)Math.Ceiling(TotalItems / (double)PageSize); } }
         public int FirstNumber { get { return FirstIndex + 1; } }
         public int FirstIndex { get { return PagerOptions.PageIndex * PageSize; } }
         public int LastNumber { get { return LastIndex + 1; } }
-        public int LastIndex { get { return FirstIndex + ResultCount; } }
+        public int LastIndex { get { return FirstIndex + ItemsCollection.Count; } }
 
         public IEnumerator<TEntity> GetEnumerator()
         {
-            return Results.GetEnumerator();
+            return Items.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

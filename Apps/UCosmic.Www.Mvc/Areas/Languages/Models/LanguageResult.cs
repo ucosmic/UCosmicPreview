@@ -6,6 +6,7 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Models
 {
     public class LanguageResult
     {
+        public string Id { get; set; }
         public string TranslatedNameText { get; set; }
         public string NativeNameText { get; set; }
         public string TwoLetterIsoCode { get; set; }

@@ -2548,6 +2548,15 @@ namespace Links {
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public static class Models {
+        private const string URLPATH = "~/Models";
+        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        public static readonly string LayoutScroll_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/LayoutScroll.min.js") ? Url("LayoutScroll.min.js") : Url("LayoutScroll.js");
+                public static readonly string PageOfResults_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/PageOfResults.min.js") ? Url("PageOfResults.min.js") : Url("PageOfResults.js");
+                }
+
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public static class Areas {
         private const string URLPATH = "~/Areas";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }

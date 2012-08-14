@@ -43,7 +43,7 @@
     }
 }
 <div class="wrap-960">
-    @if (!Model.Results.Any())
+    @if (!Model.Items.Any())
     {
         <p>
             <strong>@Model.TenantName</strong> has no activities.
@@ -52,7 +52,7 @@
     else
     {
         <ol style="margin: 1em 0; padding: 0; list-style: none; border-bottom: solid 1px #ccc;">
-            @foreach (var item in Model.Results)
+            @foreach (var item in Model.Items)
             {
                 <li style="padding: 1em 0; border-top: solid 1px #ccc;">
                     <div>

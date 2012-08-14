@@ -3,7 +3,7 @@
     ViewBag.Title = "My International Activities";
 }
 <div class="wrap-960">
-    @if (!Model.Results.Any())
+    @if (!Model.Items.Any())
     {
         <p>
             You have not yet added any activities.<br />
@@ -17,7 +17,7 @@
             <a href="@Url.Action(MVC.Activities.ActivityForm.New())">Create a new activity</a>
         </div>
         <ol style="margin: 1em 0; padding: 0; list-style: none; border-bottom: solid 1px #ccc;">
-            @foreach (var item in Model.Results)
+            @foreach (var item in Model.Items)
             {
                 <li style="padding: 1em 0; border-top: solid 1px #ccc;">
                     <div>

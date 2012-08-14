@@ -42,6 +42,11 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
         public System.Web.Mvc.ActionResult Get() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.Get);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult PutPreference() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.PutPreference);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public LanguagesController Actions { get { return MVC.Languages.Languages; } }
@@ -58,11 +63,13 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string Get = "Get";
+            public readonly string PutPreference = "PutPreference";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Get = "Get";
+            public const string PutPreference = "PutPreference";
         }
 
 
@@ -72,6 +79,14 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Get {
             public readonly string inputs = "inputs";
+        }
+        static readonly ActionParamsClass_PutPreference s_params_PutPreference = new ActionParamsClass_PutPreference();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_PutPreference PutPreferenceParams { get { return s_params_PutPreference; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_PutPreference {
+            public readonly string key = "key";
+            public readonly string value = "value";
         }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -89,6 +104,13 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers {
         public override System.Web.Mvc.ActionResult Get(UCosmic.Www.Mvc.Areas.Languages.Models.LanguagesRequest inputs) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Get);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "inputs", inputs);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult PutPreference(UCosmic.Www.Mvc.Areas.Languages.Models.LanguagesPreferenceKey key, string value) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.PutPreference);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "key", key);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "value", value);
             return callInfo;
         }
 

@@ -644,6 +644,23 @@ var MvcJs = {
 
 				return url.replace(/([?&]+$)/g, "");
 			},
+			PutPreference: function(key, value) {
+				var url = "/preferences/languages?key={key}&value={value}";
+				
+				if (key) {
+					url = url.replace("{key}", key);
+				} else {
+					url = url.replace("key={key}", "").replace("?&","?").replace("&&","&");
+				}
+				
+				if (value) {
+					url = url.replace("{value}", value);
+				} else {
+					url = url.replace("value={value}", "").replace("?&","?").replace("&&","&");
+				}
+
+				return url.replace(/([?&]+$)/g, "");
+			},
 			NameConst: "Languages"
 		},
 		Shared: {

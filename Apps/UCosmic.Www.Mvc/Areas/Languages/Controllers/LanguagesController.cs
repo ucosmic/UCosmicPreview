@@ -9,23 +9,40 @@ using AutoMapper;
 using UCosmic.Domain.Languages;
 using UCosmic.Www.Mvc.Areas.Languages.Models;
 using UCosmic.Www.Mvc.Controllers;
+using UCosmic.Domain.Identity;
+using UCosmic.Www.Mvc.Models;
 
 namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
 {
+    [Authenticate]
     public partial class LanguagesController : Controller
     {
         private readonly IProcessQueries _queries;
+        private readonly IHandleCommands<UpdateMyPreference> _preferences;
 
-        public LanguagesController(IProcessQueries queries)
+        public LanguagesController(IProcessQueries queries
+            , IHandleCommands<UpdateMyPreference> preferences
+        )
         {
             _queries = queries;
+            _preferences = preferences;
         }
 
         [HttpGet]
         //[OutputCache(VaryByParam = "*", Duration = 5)]
         public virtual ActionResult Get(LanguagesRequest inputs)
         {
-            if (!Request.IsAjaxRequest()) return View(Views.get);
+            if (!Request.IsAjaxRequest())
+            {
+                var preferences = _queries.Execute(new MyPreferencesByCategory(User) { Category = PreferenceCategory.Languages });
+                var layout = preferences.SingleOrDefault(p => p.Key == LanguagesPreferenceKey.EnumeratedViewLayout.ToString());
+                var pageSize = preferences.SingleOrDefault(p => p.Key == LanguagesPreferenceKey.PageSize.ToString());
+                return View(Views.get, new LanguagesLayout
+                {
+                    SelectedLayout = layout != null ? layout.Value.AsEnum<EnumeratedViewLayout>() : EnumeratedViewLayout.Table,
+                    SelectedPageSize = pageSize != null ? pageSize.Value.ParseIntoInt(10) : 10,
+                });
+            }
 
             //Thread.Sleep(800);
             //Thread.CurrentThread.CurrentUICulture = new CultureInfo("es");
@@ -35,8 +52,8 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
             {
                 PagerOptions = new PagerOptions
                 {
-                    PageSize = inputs.Size,
-                    PageNumber = inputs.Number,
+                    PageSize = inputs.PageSize,
+                    PageNumber = inputs.PageNumber,
                 },
                 EagerLoad = new Expression<Func<Language, object>>[]
                 {
@@ -55,15 +72,25 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                 },
             });
             var model = Mapper.Map<LanguageResults>(entities);
-            //if (Request.IsAjaxRequest())
-                return Json(model, JsonRequestBehavior.AllowGet);
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
 
-            //var model = new LanguageResults
-            //{
-            //    Keyword = inputs.Keyword,
-            //    Results = results,
-            //};
-            //return View(model);
+        [HttpPut]
+        [UnitOfWork]
+        public virtual ActionResult PutPreference(LanguagesPreferenceKey key, string value)
+        {
+            var isAuthenticated = User.Identity.IsAuthenticated;
+            if (isAuthenticated)
+            {
+                var command = new UpdateMyPreference(User)
+                {
+                    Category = PreferenceCategory.Languages,
+                    Key = key.ToString(),
+                    Value = value,
+                };
+                _preferences.Handle(command);
+            }
+            return Json(isAuthenticated);
         }
     }
 
@@ -86,6 +113,24 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Controllers
                 Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("GET")
+                });
+            }
+        }
+
+        public class PutPreferenceRoute : MvcRoute
+        {
+            public PutPreferenceRoute()
+            {
+                Url = "preferences/languages";
+                DataTokens = new RouteValueDictionary(new { area = Area, });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Languages.Languages.ActionNames.PutPreference,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("PUT")
                 });
             }
         }

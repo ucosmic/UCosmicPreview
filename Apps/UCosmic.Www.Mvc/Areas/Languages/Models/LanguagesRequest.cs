@@ -7,14 +7,14 @@ namespace UCosmic.Www.Mvc.Areas.Languages.Models
         public LanguagesRequest()
         {
             Keyword = "";
-            Size = 10;
-            Number = 1;
+            PageSize = 10;
+            PageNumber = 1;
         }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Keyword { get; set; }
 
-        public int Size { get; set; }
-        public int Number { get; set; }
+        public int PageSize { get; set; }
+        public int PageNumber { get; set; }
     }
 }
