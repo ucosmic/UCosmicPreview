@@ -87,11 +87,13 @@
     <Reference Include="ServiceProviderLocator">
       <HintPath>..\..\packages\ServiceProviderLocator.1.0\lib\net40\ServiceProviderLocator.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleInjector">
-      <HintPath>..\..\packages\SimpleInjector.1.4.0.12049\lib\net35\SimpleInjector.dll</HintPath>
+    <Reference Include="SimpleInjector, Version=1.5.0.12199, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\SimpleInjector.1.5.0.12199\lib\net35\SimpleInjector.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleInjector.Extensions">
-      <HintPath>..\..\packages\SimpleInjector.Extensions.1.4.1.12070\lib\net35\SimpleInjector.Extensions.dll</HintPath>
+    <Reference Include="SimpleInjector.Extensions, Version=1.5.0.12199, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\SimpleInjector.Extensions.1.5.0.12199\lib\net35\SimpleInjector.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

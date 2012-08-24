@@ -116,8 +116,10 @@ namespace UCosmic.Impl
             container.RegisterRunAsyncCommandHandlerProxy<SendEmailMessageCommand>();
 
             // register fluent validators on commands
-            container.RegisterOpenGenericDecorator(typeof(IHandleCommands<>),
+            container.RegisterDecorator(typeof(IHandleCommands<>),
                 typeof(FluentValidationCommandDecorator<>));
+            //container.RegisterOpenGenericDecorator(typeof(IHandleCommands<>),
+            //    typeof(FluentValidationCommandDecorator<>));
 
             // query processing
             container.RegisterSingle<SimpleQueryProcessor>();
