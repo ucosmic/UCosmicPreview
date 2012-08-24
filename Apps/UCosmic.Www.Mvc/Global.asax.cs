@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Elmah.Contrib.Mvc;
 using FluentValidation.Mvc;
 using ServiceLocatorPattern;
 using UCosmic.Impl;

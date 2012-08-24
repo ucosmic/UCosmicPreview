@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Elmah.Contrib.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Should;
 using UCosmic.Www.Mvc.Areas.Activities;

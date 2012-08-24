@@ -73,9 +73,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
-    <Reference Include="Elmah.Contrib.Mvc">
-      <HintPath>..\..\packages\Elmah.Contrib.Mvc.1.0\lib\net40\Elmah.Contrib.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll</HintPath>
@@ -172,7 +169,6 @@
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Services.Client" />
-    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -305,6 +301,7 @@
     <Compile Include="Establishments.SupplementalFormsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ElmahHandleErrorAttribute.cs" />
     <Compile Include="Helpers\FormsAuthenticationConfig.cs" />
     <Compile Include="Areas\Identity\Controllers\ConfirmEmailController.cs" />
     <Compile Include="Areas\Identity\Controllers\SignOverController.cs" />
