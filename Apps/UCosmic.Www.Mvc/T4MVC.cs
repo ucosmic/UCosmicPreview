@@ -129,6 +129,7 @@ namespace T4MVC {
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class RecruitmentAgenciesClass {
         public readonly string Name = "RecruitmentAgencies";
+        public UCosmic.Www.Mvc.Areas.RecruitmentAgencies.Controllers.ConfigurationController Configuration = new UCosmic.Www.Mvc.Areas.RecruitmentAgencies.Controllers.T4MVC_ConfigurationController();
         public T4MVC.RecruitmentAgencies.SharedController Shared = new T4MVC.RecruitmentAgencies.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

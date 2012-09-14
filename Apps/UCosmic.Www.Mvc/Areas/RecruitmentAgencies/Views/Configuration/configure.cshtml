@@ -1,0 +1,34 @@
+﻿@using UCosmic.Www.Mvc.Areas.RecruitmentAgencies.Models.Configuration
+@model UCosmic.Www.Mvc.Areas.RecruitmentAgencies.Models.Configuration.ConfigurationForm
+
+
+@{
+    ViewBag.Title = "Recruitment Agency Configuration";
+    Layout = MVC.Shared.Views.layout;
+}
+
+<div class="wrap-960">
+    <!--<div class="left">-->
+        <h2>Application Settings</h2>
+        <br/>
+        <fieldset>
+            <legend>@Model.WelcomeMessage</legend>
+            <textarea>Configure custom content to be displayed before a recruitment agency applies to represent you</textarea>
+        </fieldset>
+        <fieldset>
+            <legend>@Model.Notifications</legend>
+            <textarea>Designate one or more email addresses to be notified when a new recruitment agency application is received</textarea>
+        </fieldset>
+        <hr/>
+        <h2>Other settings categories in later features</h2>
+    <!--</div>-->
+    <!--<div class="right">
+        Configure
+        <br/>
+        Application
+        <br />
+        Welcome Message
+        <br />
+        Notifications
+    </div>-->
+</div>

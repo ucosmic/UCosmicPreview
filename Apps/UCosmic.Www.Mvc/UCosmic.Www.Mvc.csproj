@@ -364,6 +364,10 @@
     <Compile Include="Areas\InstitutionalAgreements\Models\PublicSearch\AgreementInfo.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\PublicSearch\EstablishmentInfo.cs" />
     <Compile Include="Areas\InstitutionalAgreements\Models\PublicSearch\SearchResults.cs" />
+    <Compile Include="Areas\RecruitmentAgencies\Controllers\ConfigurationController.cs" />
+    <Compile Include="Areas\RecruitmentAgencies\Mappers\ConfigurationRouteMapper.cs" />
+    <Compile Include="Areas\RecruitmentAgencies\Models\Configuration\ConfigurationForm.cs" />
+    <Compile Include="Areas\RecruitmentAgencies\Models\Configuration\WelcomeMessage.cs" />
     <Compile Include="Identity.ConfirmEmailController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -537,6 +541,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecruitmentAgencies.ConfigurationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="RecruitmentAgencies.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1445,6 +1452,7 @@
     <Content Include="Areas\Activities\Views\Shared\_activity-info.cshtml" />
     <Content Include="Areas\Common\Views\Features\june-2012-preview-2.cshtml" />
     <Content Include="Areas\Common\Views\Features\july-2012-preview-1.cshtml" />
+    <Content Include="Areas\RecruitmentAgencies\Views\Configuration\configure.cshtml" />
     <Content Include="Areas\Languages\Views\Web.config" />
     <Content Include="Areas\Languages\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Languages\Views\Shared\item.cshtml" />
@@ -1496,8 +1504,6 @@
   <ItemGroup>
     <Folder Include="App_Data\mail\" />
     <Folder Include="Areas\Preferences\Views\Shared\" />
-    <Folder Include="Areas\RecruitmentAgencies\Controllers\" />
-    <Folder Include="Areas\RecruitmentAgencies\Models\" />
     <Folder Include="Areas\RecruitmentAgencies\Views\Shared\" />
     <Folder Include="content\mail\" />
     <Folder Include="content\themes\api\consortium\" />
