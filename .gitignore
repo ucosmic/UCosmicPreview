@@ -31,8 +31,8 @@ _ReSharper*/
 #Ignore email files delivered to specified pickup directory
 *.eml
 
-#Ignore PublishToPreview transform
-web.PublishToPreview.config
+#Ignore protected transforms
+#web.PublishToPreview.config
 
 #Ignore WebDeploy publish profile
 UCosmic.Www.Mvc.Publish.xml
