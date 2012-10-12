@@ -131,9 +131,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.4.5.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NGeo, Version=1.7.4.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="NGeo, Version=1.7.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\NGeo.1.7.4.0\lib\net40\NGeo.dll</HintPath>
+      <HintPath>..\..\packages\NGeo.1.7.5.0\lib\net40\NGeo.dll</HintPath>
     </Reference>
     <Reference Include="PKCS12ProtectedConfigurationProvider">
       <HintPath>..\..\Etc\PKCS12ProtectedConfigurationProvider.dll</HintPath>
