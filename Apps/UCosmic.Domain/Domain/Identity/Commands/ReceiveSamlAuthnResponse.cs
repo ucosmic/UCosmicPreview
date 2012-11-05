@@ -159,8 +159,8 @@ namespace UCosmic.Domain.Identity
         {
             if (!response.VerifySignature())
                 throw new InvalidOperationException(string.Format(
-                    "SAML 2 response response signature for '{0}' failed to verify.",
-                        response.IssuerNameIdentifier));
+                    "SAML 2 response signature for '{0}' failed to verify: Response was{1} signed.",
+                        response.IssuerNameIdentifier, response.IsSigned ? "" : " not"));
         }
 
         private User GetUserByEduPersonTargetedId(Saml2Response samlResponse)

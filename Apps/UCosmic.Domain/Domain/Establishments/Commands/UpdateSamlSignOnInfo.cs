@@ -43,7 +43,8 @@
             _samlMetadataHandler.Handle(
                 new UpdateSamlSignOnMetadataCommand
                 {
-                    SamlSignOn = command.Establishment.SamlSignOn
+                    EstablishmentId = command.Establishment.SamlSignOn.Id,
+                    NoCommit = true,
                 }
             );
         }
