@@ -10,10 +10,13 @@
     public class UpdateSamlSignOnInfoHandler : IHandleCommands<UpdateSamlSignOnInfoCommand>
     {
         private readonly IHandleCommands<UpdateSamlSignOnMetadataCommand> _samlMetadataHandler;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UpdateSamlSignOnInfoHandler(IHandleCommands<UpdateSamlSignOnMetadataCommand> samlMetadataHandler)
+        public UpdateSamlSignOnInfoHandler(IHandleCommands<UpdateSamlSignOnMetadataCommand> samlMetadataHandler
+            , IUnitOfWork unitOfWork)
         {
             _samlMetadataHandler = samlMetadataHandler;
+            _unitOfWork = unitOfWork;
         }
 
         public void Handle(UpdateSamlSignOnInfoCommand command)
@@ -39,12 +42,13 @@
                 command.Establishment.SamlSignOn.SsoBinding = null;
             }
 
+            _unitOfWork.SaveChanges();
+
             // finally, update the xml using metadata url
             _samlMetadataHandler.Handle(
                 new UpdateSamlSignOnMetadataCommand
                 {
-                    EstablishmentId = command.Establishment.SamlSignOn.Id,
-                    NoCommit = true,
+                    EstablishmentId = command.Establishment.RevisionId,
                 }
             );
         }

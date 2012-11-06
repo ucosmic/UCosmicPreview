@@ -85,7 +85,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             _services.CommandHandler.Handle(
                 new UpdateSamlSignOnMetadataCommand
                 {
-                    EstablishmentId = establishment.SamlSignOn.Id,
+                    EstablishmentId = establishment.RevisionId,
                 }
             );
 

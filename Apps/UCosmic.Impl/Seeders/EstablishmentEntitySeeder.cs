@@ -9,8 +9,9 @@ namespace UCosmic.Impl.Seeders
         private readonly EstablishmentTypeAndCategorySeeder _typeAndCategorySeeder;
         private readonly EstablishmentSunyEntitySeeder _sunySeeder;
         private readonly EstablishmentUcEntitySeeder _ucSeeder;
-        private readonly EstablishmentUsfEntitySeeder _usfSeeder;
         private readonly EstablishmentUmnEntitySeeder _umnSeeder;
+        private readonly EstablishmentUsfEntitySeeder _usfSeeder;
+        private readonly EstablishmentUwoEntitySeeder _uwoSeeder;
         private readonly EstablishmentFoundingMemberEntitySeeder _foundingMemberSeeder;
         private readonly EstablishmentSamplePartnerEntitySeeder _samplePartnerSeeder;
         private readonly EstablishmentTestShibEntitySeeder _testShibSeeder;
@@ -22,6 +23,7 @@ namespace UCosmic.Impl.Seeders
             , EstablishmentUcEntitySeeder ucSeeder
             , EstablishmentUmnEntitySeeder umnSeeder
             , EstablishmentUsfEntitySeeder usfSeeder
+            , EstablishmentUwoEntitySeeder uwoSeeder
             , EstablishmentFoundingMemberEntitySeeder foundingMemberSeeder
             , EstablishmentSamplePartnerEntitySeeder samplePartnerSeeder
             , EstablishmentTestShibEntitySeeder testShibSeeder
@@ -34,6 +36,7 @@ namespace UCosmic.Impl.Seeders
             _ucSeeder = ucSeeder;
             _umnSeeder = umnSeeder;
             _usfSeeder = usfSeeder;
+            _uwoSeeder = uwoSeeder;
             _foundingMemberSeeder = foundingMemberSeeder;
             _samplePartnerSeeder = samplePartnerSeeder;
             _testShibSeeder = testShibSeeder;
@@ -48,6 +51,7 @@ namespace UCosmic.Impl.Seeders
             _ucSeeder.Seed();
             _umnSeeder.Seed();
             _usfSeeder.Seed();
+            _uwoSeeder.Seed();
             _foundingMemberSeeder.Seed();
             _samplePartnerSeeder.Seed();
             _testShibSeeder.Seed();
@@ -1121,6 +1125,36 @@ namespace UCosmic.Impl.Seeders
                 FindPlacesByCoordinates = true,
                 CenterLatitude = 28.061680,
                 CenterLongitude = -82.414803,
+            });
+        }
+    }
+
+    public class EstablishmentUwoEntitySeeder : BaseEstablishmentEntitySeeder
+    {
+        private readonly IProcessQueries _queryProcessor;
+
+        public EstablishmentUwoEntitySeeder(IProcessQueries queryProcessor
+            , IHandleCommands<CreateEstablishment> createEstablishment
+            , IUnitOfWork unitOfWork
+        )
+            : base(queryProcessor, createEstablishment, unitOfWork)
+        {
+            _queryProcessor = queryProcessor;
+        }
+
+        public override void Seed()
+        {
+            Seed(new CreateEstablishment
+            {
+                OfficialName = "Western University",
+                IsMember = true,
+                TypeId = _queryProcessor.Execute(new EstablishmentTypeByEnglishName(
+                    KnownEstablishmentType.University.AsSentenceFragment())).RevisionId,
+                OfficialWebsiteUrl = "www.uwo.ca",
+                EmailDomains = new[] { "@uwo.ca" },
+                FindPlacesByCoordinates = true,
+                CenterLatitude = 43.008728,
+                CenterLongitude = -81.276215,
             });
         }
     }

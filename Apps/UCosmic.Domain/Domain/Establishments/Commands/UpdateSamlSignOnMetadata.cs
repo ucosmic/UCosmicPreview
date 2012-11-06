@@ -6,7 +6,6 @@ namespace UCosmic.Domain.Establishments
     public class UpdateSamlSignOnMetadataCommand
     {
         public int EstablishmentId { get; set; }
-        internal bool NoCommit { get; set; }
     }
 
     public class UpdateSamlSignOnMetadataHandler : IHandleCommands<UpdateSamlSignOnMetadataCommand>
@@ -32,7 +31,7 @@ namespace UCosmic.Domain.Establishments
             var samlSignOn = _entities.Get<EstablishmentSamlSignOn>()
                 .SingleOrDefault(x => x.Id == command.EstablishmentId);
             if (samlSignOn == null) throw new InvalidOperationException(string.Format(
-                "Unable to local SAML sign on information for establishment '{0}'.", command.EstablishmentId));
+                "Unable to locate SAML sign on information for establishment '{0}'.", command.EstablishmentId));
 
             if (
                 !string.IsNullOrWhiteSpace(samlSignOn.MetadataXml) &&       // if metadata has already been loaded, and
