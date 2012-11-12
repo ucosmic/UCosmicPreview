@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ServiceDefinition name="UCosmic.Cloud.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2012-05.1.7">
-  <WebRole name="UCosmic.Www.Mvc" vmsize="Small">
+  <WebRole name="UCosmic.Www.Mvc" vmsize="ExtraSmall">
     <Runtime executionContext="elevated" />
     <Startup>
       <Task commandLine="startup\disableTimeout.cmd" executionContext="elevated" taskType="simple" />
