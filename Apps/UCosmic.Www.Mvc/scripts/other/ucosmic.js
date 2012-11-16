@@ -650,6 +650,9 @@
                 }
                 return undefined;
             },
+            getHref: function () {
+                return this.jq.data(this.selectors.href) || undefined;
+            },
             getInfoWindowMaxWidth: function () {
                 var maxWidth = $(this.getInfoWindow()).data(this.selectors.sizeWidth);
                 if (typeof maxWidth === 'number') {
@@ -679,6 +682,7 @@
                     this.marker = new google.maps.Marker(options);
 
                     var infoWindow = this.unobtrusive.getInfoWindow();
+                    var href = this.unobtrusive.getHref();
                     if (infoWindow) {
                         this.infoWindow = new google.maps.InfoWindow({
                             content: infoWindow,
@@ -691,6 +695,14 @@
                                 }
                             }
                             googleMarker.infoWindow.open(googleMarker.map.map, googleMarker.marker); // TODO this smells bad
+                        });
+                    }
+                    else if (href) {
+                        var url = 'http://' + href;
+                        if (url.indexOf('http://http') == 0)
+                            url = href;
+                        google.maps.event.addListener(this.marker, 'click', function () {
+                            window.location.href = url;
                         });
                     }
                 }

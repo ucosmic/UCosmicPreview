@@ -97,7 +97,8 @@
             {
                 <div data-ucosmic-map="marker"
                      data-ucosmic-map-center="@marker.Location.CenterLatitude,@marker.Location.CenterLongitude"
-                     data-ucosmic-map-title="@marker.OfficialThenTranslatedName">
+                     data-ucosmic-map-title="@marker.OfficialThenTranslatedName"
+                     data-ucosmic-map-href="@marker.WebsiteUrl">
                     @*<div data-ucosmic-map="info-window" data-ucosmic-size-width="400" style="padding-right: 20px;">
                     <strong>@marker.ForEstablishmentTranslatedName</strong>
                     @if (!marker.ForEstablishmentTranslatedName.Equals(marker.ForEstablishmentOfficialName))
