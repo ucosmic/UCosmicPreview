@@ -9,22 +9,26 @@
         .ucosmic .data-items {
             width: 940px;
         }
+
         .ucosmic ul.results-formats {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-        .ucosmic ul.results-formats li {
-            font-size: 16px;
-            display: inline-block;
-            padding: 6px 24px;
-            cursor: pointer;
-            color: #444;
-            background: #ddd;
-        }
-        .ucosmic ul.results-formats li.selected {
-            background: #bbb;
-        }
+
+            .ucosmic ul.results-formats li {
+                font-size: 16px;
+                display: inline-block;
+                padding: 6px 24px;
+                cursor: pointer;
+                color: #444;
+                background: #ddd;
+            }
+
+                .ucosmic ul.results-formats li.selected {
+                    background: #bbb;
+                }
+
         .ucosmic table.data-table tbody tr:hover td {
             background: #ff0;
             cursor: pointer;
@@ -36,61 +40,71 @@
             margin: 0;
             border-bottom: solid 1px #ccc;
         }
-        .ucosmic ul.data-list li {
-            font-size: 16px;
-            border-top: solid 1px #ccc;
-        }
-        .ucosmic ul.data-list li.hilite {
-            background: #ffa;
-        }
-        .ucosmic ul.data-list li > a {
-            display: block;
-            color: #444;
-            text-decoration: none;
-            cursor: pointer;
-            padding: 10px 0 10px 10px;
-        }
-        .ucosmic ul.data-list li .col {
-            display: inline-block;
-            width: 100px;
-            vertical-align: text-top;
-            padding-right: 10px;
-            position: static;
-            top: auto;
-            bottom: auto;
-        }
-        .ucosmic ul.data-list li:hover {
-            background: #ff0;
-        }
+
+            .ucosmic ul.data-list li {
+                font-size: 16px;
+                border-top: solid 1px #ccc;
+            }
+
+                .ucosmic ul.data-list li.hilite {
+                    background: #ffa;
+                }
+
+                .ucosmic ul.data-list li > a {
+                    display: block;
+                    color: #444;
+                    text-decoration: none;
+                    cursor: pointer;
+                    padding: 10px 0 10px 10px;
+                }
+
+                .ucosmic ul.data-list li .col {
+                    display: inline-block;
+                    width: 100px;
+                    vertical-align: text-top;
+                    padding-right: 10px;
+                    position: static;
+                    top: auto;
+                    bottom: auto;
+                }
+
+                .ucosmic ul.data-list li:hover {
+                    background: #ff0;
+                }
+
         .ucosmic ul.data-grid {
             list-style: none;
             padding: 0;
             margin: 0;
             vertical-align: top;
         }
-        .ucosmic ul.data-grid li {
-            margin-right: 10px;
-            margin-bottom: 15px;
-            font-size: 16px;
-            border: solid 1px #ccc;
-            display: inline-block;
-            vertical-align: top;
-        }
-        .ucosmic ul.data-grid li.hilite {
-            background: #ffa;
-        }
-        .ucosmic ul.data-grid li > a {
-            display: block;
-            cursor: pointer;
-            padding: 10px;
-            color: #444;
-            text-decoration: none;
-            width: 150px;
-            min-height: 100px;
-        }
-        .ucosmic ul.data-grid li:hover {
-            background: #ff0;
-        }
+
+            .ucosmic ul.data-grid li {
+                margin-right: 10px;
+                margin-bottom: 15px;
+                font-size: 16px;
+                border: solid 1px #ccc;
+                display: inline-block;
+                vertical-align: top;
+            }
+
+                .ucosmic ul.data-grid li.hilite {
+                    background: #ffa;
+                }
+
+                .ucosmic ul.data-grid li > a {
+                    display: block;
+                    cursor: pointer;
+                    padding: 10px;
+                    color: #444;
+                    text-decoration: none;
+                    width: 150px;
+                    min-height: 100px;
+                }
+
+                .ucosmic ul.data-grid li:hover {
+                    background: #ff0;
+                }
     </style>
 }
 <div>
@@ -98,8 +112,7 @@
         <div style="margin-bottom: 1em;">
             <div style="display: inline-block;">
                 <input type="search" data-bind="value: keyword, valueUpdate: 'afterkeydown search'"
-                    placeholder="Find a language..." autofocus="autofocus" autocomplete="on" style="font-size: 15px;
-                                                                                                                                                                        padding: 5px; width: 250px;" />
+                    placeholder="Find a language..." autofocus="autofocus" autocomplete="on" style="font-size: 15px; padding: 5px; width: 250px;" />
                 <input type="hidden" data-bind="value: scrollTop" />
                 <input type="hidden" data-bind="value: pageNumber" />
             </div>
@@ -129,11 +142,9 @@
                 })
             </div>
             <div style="display: inline-block; font-size: 16px;">
-                <button data-bind="click: prevPage, enable: prevEnabled" style="font-size: 16px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            padding: 6px 12px; margin: 0; border-width: 1;">
+                <button data-bind="click: prevPage, enable: prevEnabled" style="font-size: 16px; padding: 6px 12px; margin: 0; border-width: 1px;">
                     &lt;&lt; Back</button>
-                <button data-bind="click: nextPage, enable: nextEnabled" style="font-size: 16px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   padding: 6px 12px; margin: 0; border-width: 1;">
+                <button data-bind="click: nextPage, enable: nextEnabled" style="font-size: 16px; padding: 6px 12px; margin: 0; border-width: 1px;">
                     Next &gt;&gt;</button>
             </div>
         </div>
@@ -174,8 +185,7 @@
                     <tbody data-bind="foreach: items">
                         <tr data-bind="click: goToHref, css: { hilite: IsUserLanguage }">
                             <td>
-                                <a data-bind="text: TranslatedNameText, attr: { href: href }" style="font-weight: bold;">
-                                </a>
+                                <a data-bind="text: TranslatedNameText, attr: { href: href }" style="font-weight: bold;"></a>
                             </td>
                             <td>
                                 <span data-bind="text: formattedNativeNameText"></span>
@@ -194,8 +204,7 @@
                 <ul class="data-list" data-bind="foreach: items">
                     <li data-bind="css: { hilite: IsUserLanguage }"><a data-bind="attr: { href: href }">
                         <div class="col" style="width: 350px;">
-                            <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: formattedNativeNameText() !== '-'">
-                                &nbsp;(<span data-bind="text: formattedNativeNameText"></span>) </span>
+                            <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: formattedNativeNameText() !== '-'">&nbsp;(<span data-bind="text: formattedNativeNameText"></span>) </span>
                         </div>
                         <div class="col" style="width: 200px;">
                             <span data-bind="text: isoCodes"></span>
@@ -210,8 +219,7 @@
                 <ul class="data-grid" data-bind="foreach: items">
                     <li data-bind="css: { hilite: IsUserLanguage }"><a data-bind="attr: { href: href }">
                         <div>
-                            <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: formattedNativeNameText() !== '-'">
-                                &nbsp;(<span data-bind="text: formattedNativeNameText"></span>) </span>
+                            <strong data-bind="text: TranslatedNameText"></strong><span data-bind="visible: formattedNativeNameText() !== '-'">&nbsp;(<span data-bind="text: formattedNativeNameText"></span>) </span>
                         </div>
                         <div>
                             <span data-bind="text: isoCodes"></span>

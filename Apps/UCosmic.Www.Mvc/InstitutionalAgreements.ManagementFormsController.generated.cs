@@ -44,6 +44,11 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult Delete() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.Delete);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult AddParticipant() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.AddParticipant);
         }
@@ -84,6 +89,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
         public class ActionNamesClass {
             public readonly string Browse = "browse";
             public readonly string Post = "post";
+            public readonly string Delete = "Delete";
             public readonly string AddParticipant = "add-participant";
             public readonly string AttachFile = "attach-file";
             public readonly string AddContact = "add-contact";
@@ -95,6 +101,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
         public class ActionNameConstants {
             public const string Browse = "browse";
             public const string Post = "post";
+            public const string Delete = "Delete";
             public const string AddParticipant = "add-participant";
             public const string AttachFile = "attach-file";
             public const string AddContact = "add-contact";
@@ -109,6 +116,13 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Post {
             public readonly string entityId = "entityId";
+        }
+        static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Delete DeleteParams { get { return s_params_Delete; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Delete {
+            public readonly string agreementId = "agreementId";
         }
         static readonly ActionParamsClass_AddParticipant s_params_AddParticipant = new ActionParamsClass_AddParticipant();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -189,6 +203,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers {
         public override System.Web.Mvc.ActionResult Post(UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Models.ManagementForms.InstitutionalAgreementForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Delete(System.Guid agreementId) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Delete);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "agreementId", agreementId);
             return callInfo;
         }
 

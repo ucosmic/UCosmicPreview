@@ -22,18 +22,21 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         #region Construction & DI
 
         private readonly IProcessQueries _queryProcessor;
-        private readonly IHandleCommands<CreateOrUpdateInstitutionalAgreementCommand> _commandHandler;
+        private readonly IHandleCommands<CreateOrUpdateInstitutionalAgreementCommand> _insertOrUpdateHandler;
+        private readonly IHandleCommands<PurgeInstitutionalAgreement> _purgeHandler;
         private readonly IHandleCommands<CreateLooseFileCommand> _createFileHandler;
         private readonly IHandleCommands<PurgeLooseFileCommand> _purgeFileHandler;
 
         public ManagementFormsController(IProcessQueries queryProcessor
-            , IHandleCommands<CreateOrUpdateInstitutionalAgreementCommand> commandHandler
+            , IHandleCommands<CreateOrUpdateInstitutionalAgreementCommand> insertOrUpdateHandler
+            , IHandleCommands<PurgeInstitutionalAgreement> purgeHandler
             , IHandleCommands<CreateLooseFileCommand> createFileHandler
             , IHandleCommands<PurgeLooseFileCommand> purgeFileHandler
         )
         {
             _queryProcessor = queryProcessor;
-            _commandHandler = commandHandler;
+            _insertOrUpdateHandler = insertOrUpdateHandler;
+            _purgeHandler = purgeHandler;
             _createFileHandler = createFileHandler;
             _purgeFileHandler = purgeFileHandler;
         }
@@ -153,7 +156,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 {
                     var command = new CreateOrUpdateInstitutionalAgreementCommand(User);
                     Mapper.Map(model, command);
-                    _commandHandler.Handle(command);
+                    _insertOrUpdateHandler.Handle(command);
                     SetFeedbackMessage(command.ChangeCount > 0
                         ? "Institutional agreement was saved successfully."
                         : "No changes were saved.");
@@ -188,6 +191,25 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             }
             var fileChooser = form.Files.SingleOrDefault(m => m.PostedFile == null && !m.IsDeleted && m.EntityId == Guid.Empty);
             if (fileChooser != null) form.Files.Remove(fileChooser);
+        }
+
+        #endregion
+        #region Delete
+
+        public virtual ActionResult Delete(Guid agreementId)
+        {
+            // find agreement
+            var agreement = _queryProcessor.Execute(
+                new GetMyInstitutionalAgreementByGuidQuery(User, agreementId));
+            if (agreement == null) return HttpNotFound();
+
+            // delete agreement
+            var command = new PurgeInstitutionalAgreement(User, agreementId);
+            _purgeHandler.Handle(command);
+
+            SetFeedbackMessage("Institutional agreement was successfully deleted.");
+
+            return Json(true);
         }
 
         #endregion
@@ -414,6 +436,25 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("POST"),
+                });
+            }
+        }
+
+        public class DeleteRoute : MvcRoute
+        {
+            public DeleteRoute()
+            {
+                Url = "my/institutional-agreements/{agreementId}";
+                DataTokens = RouteRegistration.CreateDataTokens(Area, typeof(InstitutionalAgreementsAreaRegistration));
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.InstitutionalAgreements.ManagementForms.ActionNames.Delete,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("DELETE"),
+                    agreementId = new NonEmptyGuidRouteConstraint(),
                 });
             }
         }

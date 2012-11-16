@@ -33,8 +33,8 @@ var MvcJs = {
 			NameConst: "ActivityInfo"
 		},
 		ActivityList: {
-			ShortListLength: "5",
-			NameConst: "ActivityList"
+			NameConst: "ActivityList",
+			ShortListLength: "5"
 		},
 		ActivitySearch: {
 			AutoCompleteKeyword: function(establishment, term) {
@@ -308,8 +308,8 @@ var MvcJs = {
 
 				return url.replace(/([?&]+$)/g, "");
 			},
-			NameConst: "ForgotPassword",
-			SuccessMessageFormat: "A password reset email has been sent to {0}."
+			SuccessMessageFormat: "A password reset email has been sent to {0}.",
+			NameConst: "ForgotPassword"
 		},
 		ListIdentityProviders: {
 			NameConst: "ListIdentityProviders"
@@ -337,8 +337,8 @@ var MvcJs = {
 
 				return url.replace(/([?&]+$)/g, "");
 			},
-			NameConst: "ResetPassword",
-			SuccessMessage: "You can now use your new password to sign on."
+			SuccessMessage: "You can now use your new password to sign on.",
+			NameConst: "ResetPassword"
 		},
 		ServiceProviderMetadata: {
 			Real: function(contentType) {
@@ -405,8 +405,8 @@ var MvcJs = {
 
 				return url.replace(/([?&]+$)/g, "");
 			},
-			NameConst: "SignOn",
-			SuccessMessageFormat: "You are now signed on to UCosmic as {0}."
+			SuccessMessageFormat: "You are now signed on to UCosmic as {0}.",
+			NameConst: "SignOn"
 		},
 		SignOut: {
 			SuccessMessage: "You have successfully been signed out of UCosmic.",
@@ -448,9 +448,9 @@ var MvcJs = {
 			NameConst: "UpdateAffiliation"
 		},
 		UpdateEmailValue: {
-			NameConst: "UpdateEmailValue",
 			SuccessMessageFormat: "Your email address was successfully changed to {0}.",
-			NoChangesMessage: "No changes were made."
+			NoChangesMessage: "No changes were made.",
+			NameConst: "UpdateEmailValue"
 		},
 		UpdateName: {
 			SuccessMessage: "Your info was successfully updated.",
@@ -764,8 +764,8 @@ var MvcJs = {
 
 				return url.replace(/([?&]+$)/g, "");
 			},
-			NameConst: "PersonName",
-			SalutationAndSuffixNullValueLabel: "[None]"
+			SalutationAndSuffixNullValueLabel: "[None]",
+			NameConst: "PersonName"
 		}
 	}
 ,

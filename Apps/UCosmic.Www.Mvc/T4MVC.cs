@@ -1831,6 +1831,16 @@ namespace Links {
                         public static readonly string screen_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/screen.min.css") ? Url("screen.min.css") : Url("screen.css");
                         }
         
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class www_uwo_ca {
+                private const string URLPATH = "~/content/skins/www.uwo.ca";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string head_logo_png = Url("head-logo.png");
+                public static readonly string map_panes_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/map-panes.min.css") ? Url("map-panes.min.css") : Url("map-panes.css");
+                        public static readonly string screen_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/screen.min.css") ? Url("screen.min.css") : Url("screen.css");
+                        }
+        
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

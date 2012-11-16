@@ -146,6 +146,7 @@
     <Compile Include="Domain\Identity\Commands\UpdateMyPreference.cs" />
     <Compile Include="Domain\Identity\Entities\Preference.cs" />
     <Compile Include="Domain\Identity\Queries\MyPreferencesByCategory.cs" />
+    <Compile Include="Domain\InstitutionalAgreements\Commands\PurgeInstitutionalAgreement.cs" />
     <Compile Include="Domain\InstitutionalAgreements\Queries\GenerateTitle.cs" />
     <Compile Include="Domain\Languages\Commands\CreateLanguageName.cs" />
     <Compile Include="Domain\Languages\Commands\CreateLanguage.cs" />

@@ -70,6 +70,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         }
 
         [ActionName("throw")]
+        [Authorize(Roles = "Elmah Viewer")]
         public virtual ActionResult Throw()
         {
             var ex = new Exception("This is a test exception thrown on purpose from the web server.");

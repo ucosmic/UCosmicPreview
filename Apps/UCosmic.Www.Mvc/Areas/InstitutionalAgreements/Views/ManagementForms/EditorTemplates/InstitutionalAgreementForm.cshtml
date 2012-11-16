@@ -50,8 +50,7 @@
                             When the correct match appears, click to add it as a participant in this agreement.
                         </p>
                         <p>
-                            If UCosmic can't find the participant you're looking for, please <a href="mailto:data@ucosmic.com?subject=Missing Agreement Participant(s)">
-                                let us know</a>.
+                            If UCosmic can't find the participant you're looking for, please <a href="mailto:data@ucosmic.com?subject=Missing Agreement Participant(s)">let us know</a>.
                         </p>
                         <p>
                             To remove a participant, click its red <i>remove participant</i> icon.
@@ -452,15 +451,23 @@
     @{
         var submitValue = (Model.IsNew) ? "Add Agreement" : "Save Changes";
     }
-    <input id="agreement_form_submit" type="submit" value="@submitValue" />
-    @if (!Request.IsAjaxRequest())
+    @if (!Model.IsNew)
     {
-        <a href="@Model.ReturnUrl">Cancel</a>
+        <div style="float: right;">
+            <input id="delete_button" type="button" value="Delete" style="background-color: #c00; color: #fff; border: solid 1px #c00; cursor: pointer;"  />
+        </div>
     }
-    else
-    {
-        <input type="reset" value="Cancel" />
-    }
+    <div>
+        <input id="agreement_form_submit" type="submit" value="@submitValue" />
+        @if (!Request.IsAjaxRequest())
+        {
+            <a href="@Model.ReturnUrl">Cancel</a>
+        }
+        else
+        {
+            <input type="reset" value="Cancel" />
+        }
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -472,6 +479,27 @@
         var statusId = '@Html.IdFor(m => m.Status)';
         var titleId = '@Html.IdFor(m => m.Title)';
         var isTitleDerivedId = '@Html.IdFor(m => m.IsTitleDerived)';
+
+        @{
+            var deleteReturnUrl = Model.ReturnUrl;
+            if (deleteReturnUrl.EndsWith(Url.Action(MVC.InstitutionalAgreements.PublicSearch.Info(Model.EntityId))))
+            {
+                deleteReturnUrl = Url.Action(MVC.InstitutionalAgreements.ManagementForms.Browse());
+            }
+        }
+
+        $('#delete_button').on('click', function() {
+            if (confirm('Are you sure you want to delete this agreement? This action cannot be undone.')) {
+                $.ajax({
+                    url: '@Url.Action(MVC.InstitutionalAgreements.ManagementForms.Delete(Model.EntityId))',
+                    type: 'DELETE',
+                })
+                .success(function(response) {
+                    if (response === true)
+                        location.href = '@deleteReturnUrl';
+                });
+            }
+        });
 
         var expiresOnBubbleOpts = {
             mouseOver: 'hide',      // Hide mouseOver event to stop Bubble Popup from showing on mouseOver on ExpirationDate
