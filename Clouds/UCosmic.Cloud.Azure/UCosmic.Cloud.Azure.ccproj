@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>1.7</ProductVersion>
-    <ProjectGuid>{18a27ff4-53bc-457e-b893-f2720f856cf3}</ProjectGuid>
+    <ProjectGuid>{fe467cdc-a5ab-4b3b-aa53-484ea80282d9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UCosmic.Cloud.Azure</RootNamespace>
