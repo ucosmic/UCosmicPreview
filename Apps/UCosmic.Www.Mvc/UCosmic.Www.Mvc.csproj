@@ -107,13 +107,11 @@
     <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.7.0.3\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Unpackaged\Microsoft.WindowsAzure.Diagnostics.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Microsoft SDKs\Windows Azure\.NET SDK\2012-06\ref\Microsoft.WindowsAzure.ServiceRuntime.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\WindowsAzure.Storage.1.7.0.0\lib\net35-full\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
@@ -135,9 +133,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\NGeo.1.7.5.0\lib\net40\NGeo.dll</HintPath>
     </Reference>
-    <Reference Include="PKCS12ProtectedConfigurationProvider">
-      <HintPath>..\..\Etc\PKCS12ProtectedConfigurationProvider.dll</HintPath>
+    <Reference Include="PKCS12ProtectedConfigurationProvider, Version=1.0.0.0, Culture=neutral, PublicKeyToken=34da007ac91f901d, processorArchitecture=MSIL">
       <Private>True</Private>
+      <HintPath>..\..\packages\Pkcs12ProtectedConfigurationProvider.1.0.1\lib\NET40\PKCS12ProtectedConfigurationProvider.dll</HintPath>
     </Reference>
     <Reference Include="Pluralize, Version=0.3.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -567,6 +565,9 @@
     <Content Include="App_Data\saml\identity-providers\idp.testshib.org.xml" />
     <Content Include="App_Data\saml\identity-providers\login.uc.edu.xml" />
     <Content Include="App_Data\saml\identity-providers\wif-saml2-sample.xml" />
+    <None Include="startup\disableTimeout.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="app_offline.html" />
     <Content Include="content\images\agreements-visibility-900.png" />
     <Content Include="content\images\facac-modal-1.png" />
@@ -1463,6 +1464,12 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MvcJs.js</LastGenOutput>
     </None>
+    <None Include="startup\setupGac.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="startup\gacutil.exe.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="startup\sql\DevelopmentData.sql" />
     <None Include="startup\sql\ElmahSqlSetup.sql" />
     <None Include="startup\sql\LanguagesData.sql" />
@@ -1477,6 +1484,9 @@
     <Content Include="scripts\ms\MicrosoftMvcValidation.js" />
     <Content Include="scripts\ms\MicrosoftMvcValidation.debug.js" />
     <None Include="startup\sql\CoreData.sql" />
+    <None Include="startup\gacutil.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -1656,10 +1666,6 @@
     <None Include="content\kml\establishment-import.kml" />
     <None Include="content\kml\establishment-import.tsv" />
     <None Include="elmah.axd" />
-    <None Include="startup\disableTimeout.cmd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="startup\installMvc3.cmd" />
     <Content Include="Views\Shared\feedback-message.cshtml" />
     <Content Include="Views\Shared\google-analytics-script.cshtml" />
     <Content Include="Views\Shared\google-maps-api-script.cshtml" />

@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceDefinition name="UCosmic.Cloud.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2012-05.1.7">
+<ServiceDefinition name="UCosmic.Cloud.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2012-10.1.8">
   <WebRole name="UCosmic.Www.Mvc" vmsize="ExtraSmall">
     <Runtime executionContext="elevated" />
     <Startup>
       <Task commandLine="startup\disableTimeout.cmd" executionContext="elevated" taskType="simple" />
-      <!--<Task commandLine="startup\installMvc3.cmd" executionContext="elevated" taskType="simple" />-->
+      <!--http://blogs.infosupport.com/adding-assemblies-to-the-gac-in-windows-azure/-->
+      <Task commandLine="startup\setupGac.cmd" executionContext="elevated" taskType="simple" />
     </Startup>
     <Sites>
       <Site name="Web">
