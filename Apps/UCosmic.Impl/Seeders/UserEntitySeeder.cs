@@ -32,6 +32,8 @@ namespace UCosmic.Impl.Seeders
             {
                 RoleName.AuthorizationAgent,
                 RoleName.EstablishmentLocationAgent,
+                RoleName.EstablishmentAdministrator,
+                RoleName.ElmahViewer,
                 RoleName.InstitutionalAgreementManager,
                 RoleName.InstitutionalAgreementSupervisor,
             };

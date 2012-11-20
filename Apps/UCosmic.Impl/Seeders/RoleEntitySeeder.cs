@@ -33,6 +33,12 @@ namespace UCosmic.Impl.Seeders
             Seed(RoleName.EstablishmentLocationAgent,
                 "Establishment Location Agents can modify location information for any establishment."
             );
+            Seed(RoleName.EstablishmentAdministrator,
+                "Establishment Administrators can add, edit, and otherwise manage shared establishment data."
+            );
+            Seed(RoleName.ElmahViewer,
+                "Elmah Viewers can view the ELMAH error logs."
+            );
         }
     }
 

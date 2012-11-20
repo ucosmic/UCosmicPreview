@@ -15,6 +15,9 @@ namespace UCosmic
 
         public const string EstablishmentLocationAgent = "Establishment Location Agent";
 
+        public const string ElmahViewer = "Elmah Viewer";
+        public const string EstablishmentAdministrator = "Establishment Administrator";
+
         public static bool IsInAnyRoles(this IPrincipal principal, string commaSeparatedRoles)
         {
             if (string.IsNullOrWhiteSpace(commaSeparatedRoles))
