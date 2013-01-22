@@ -41,9 +41,9 @@ namespace UCosmic.Impl.Seeders
             // seed developers
             Seed(new[]
                 {
+                    "ludwigd@uc.edu",
                     "Daniel.Ludwig@uc.edu",
                     "ludwigd@ucmail.uc.edu",
-                    "ludwigd@uc.edu",
                     "Daniel.Ludwig@ucmail.uc.edu",
                 },
                 "Dan", "Ludwig", "www.uc.edu", developerRoles);
