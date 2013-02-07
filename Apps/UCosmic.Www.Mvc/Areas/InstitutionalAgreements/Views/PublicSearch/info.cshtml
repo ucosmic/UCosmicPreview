@@ -195,7 +195,7 @@
             </ul>
         </div>
     }
-    @if (!Request.IsAuthenticated || !Model.IsAffiliate)
+    @*@if (!Request.IsAuthenticated || !Model.IsAffiliate)
     {
         <div class="agreement-public">
             If you have an email address at one of the following domains, please <a href="@Url.Action(MVC.Identity.SignOn.Get(Request.RawUrl))">
@@ -207,7 +207,7 @@
                 }
             </ul>
         </div>
-    }
+    }*@
     <div class="agreement-management">
         @if (Model.IsManager)
         {
