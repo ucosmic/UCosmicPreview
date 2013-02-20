@@ -45,29 +45,16 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                     if (establishment != null && !string.IsNullOrWhiteSpace(establishment.WebsiteUrl))
                     {
                         // give a cookie
-                        var cookie = new HttpCookie("skin", establishment.WebsiteUrl)
-                        {
-                            Expires = DateTime.UtcNow.AddDays(30),
-                            Path = "/"
-                        };
-                        Response.SetCookie(cookie);
+                        HttpContext.SkinCookie(establishment.WebsiteUrl);
                     }
                     else
                     {
-                        var cookie = new HttpCookie("skin", null)
-                        {
-                            Expires = DateTime.UtcNow.AddDays(-1),
-                        };
-                        Response.SetCookie(cookie);
+                        HttpContext.SkinCookie(null);
                     }
                 }
-                else if (Request.Cookies["skin"] != null)
+                else if (!string.IsNullOrWhiteSpace(HttpContext.SkinCookie()))
                 {
-                    var cookie = new HttpCookie("skin", null)
-                    {
-                        Expires = DateTime.UtcNow.AddDays(-1),
-                    };
-                    Response.SetCookie(cookie);
+                    HttpContext.SkinCookie(null);
                 }
             }
 
@@ -83,10 +70,10 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         public virtual PartialViewResult Apply(string skinFile)
         {
             var model = new ApplySkinInfo { SkinFile = skinFile };
-            var cookie = Request.Cookies["skin"];
-            if (cookie != null && !string.IsNullOrWhiteSpace(cookie.Value))
+            var skin = HttpContext.SkinCookie();
+            if (!string.IsNullOrWhiteSpace(skin))
             {
-                model.SkinName = cookie.Value;
+                model.SkinName = skin;
             }
             return PartialView(model);
         }
@@ -96,12 +83,12 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         public virtual PartialViewResult Logo()
         {
             var model = new LogoInfo();
-            var cookie = Request.Cookies["skin"];
-            if (cookie != null && !string.IsNullOrWhiteSpace(cookie.Value)
-                && Url.IsLocalUrl(string.Format("~/content/skins/{0}/head-logo.png", cookie.Value))
-                && System.IO.File.Exists(Server.MapPath(string.Format("~/content/skins/{0}/head-logo.png", cookie.Value))))
+            var skin = HttpContext.SkinCookie();
+            if (!string.IsNullOrWhiteSpace(skin)
+                && Url.IsLocalUrl(string.Format("~/content/skins/{0}/head-logo.png", skin))
+                && System.IO.File.Exists(Server.MapPath(string.Format("~/content/skins/{0}/head-logo.png", skin))))
             {
-                model.SkinName = cookie.Value;
+                model.SkinName = skin;
             }
             return PartialView(model);
         }

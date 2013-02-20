@@ -41,9 +41,9 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                 }
                 else
                 {
-                    var httpCookie = Request.Cookies["skin"];
-                    if (httpCookie != null && !string.IsNullOrWhiteSpace(httpCookie.Value))
-                        establishmentUrl = httpCookie.Value;
+                    var skin = HttpContext.SkinCookie();
+                    if (!string.IsNullOrWhiteSpace(skin))
+                        establishmentUrl = skin;
                 }
             }
             return establishmentUrl;

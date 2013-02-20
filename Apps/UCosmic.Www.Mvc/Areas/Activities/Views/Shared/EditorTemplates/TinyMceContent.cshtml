@@ -3,10 +3,10 @@
 @{
     //get the skin cookie
     var contentCss = Url.Content(Links.content.skins.tiny_mce_css);
-    var skin = Request.Cookies["skin"];
-    if (skin != null)
+    var skin = this.Context.SkinCookie();
+    if (!string.IsNullOrWhiteSpace(skin))
     {
-        var skinCss = Url.Content("~/content/skins/{0}/tinymce.css".FormatWith(skin.Value));
+        var skinCss = Url.Content("~/content/skins/{0}/tinymce.css".FormatWith(skin));
         contentCss = "{0},{1}".FormatWith(contentCss, skinCss);
     }
 }

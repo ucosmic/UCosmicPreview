@@ -45,6 +45,29 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
         [ValidateSigningReturnUrl]
         public virtual ActionResult Get(string returnUrl)
         {
+            // detect SAML SSO from skin cookie
+            var skin = HttpContext.SkinCookie();
+            if (!string.IsNullOrWhiteSpace(skin))
+            {
+                // get the establishment for this skin
+                var establishment = _services.QueryProcessor.Execute(
+                    new GetEstablishmentByUrlQuery(skin)
+                    {
+                        EagerLoad = new Expression<Func<Establishment, object>>[]
+                        {
+                            e => e.SamlSignOn,
+                        }
+                    }
+                );
+                if (establishment != null && establishment.HasSamlSignOn())
+                {
+                    PushToSamlSso(establishment, returnUrl);
+
+                    // wait for the authn response
+                    return new EmptyResult();
+                }
+            }
+
             var model = new SignOnForm(HttpContext, returnUrl);
             return View(model);
         }
@@ -81,6 +104,19 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 }
             );
 
+            PushToSamlSso(establishment, model.ReturnUrl);
+
+            // wait for the authn response
+            return new EmptyResult();
+        }
+
+        public const string SuccessMessageFormat = "You are now signed on to UCosmic as {0}.";
+
+        [NonAction]
+        private void PushToSamlSso(Establishment establishment, string returnUrl)
+        {
+            if (establishment == null) return;
+
             // update the provider metadata
             _services.CommandHandler.Handle(
                 new UpdateSamlSignOnMetadataCommand
@@ -97,15 +133,10 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 establishment.SamlSignOn.SsoLocation,
                 establishment.SamlSignOn.SsoBinding.AsSaml2SsoBinding(),
                 _services.ConfigurationManager.SamlRealServiceProviderEntityId,
-                model.ReturnUrl ?? Url.Action(MVC.Identity.MyHome.Get()),
+                returnUrl ?? Url.Action(MVC.Identity.MyHome.Get()),
                 HttpContext
             );
-
-            // wait for the authn response
-            return new EmptyResult();
         }
-
-        public const string SuccessMessageFormat = "You are now signed on to UCosmic as {0}.";
     }
 
     public static class SignOnRouter
