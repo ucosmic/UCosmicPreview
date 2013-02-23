@@ -7,6 +7,8 @@ namespace UCosmic.Domain.Activities
 {
     public class Activity : Entity, IAmNumbered
     {
+        private int _personId;
+
         protected internal Activity()
         {
             EntityId = Guid.NewGuid();
@@ -22,7 +24,14 @@ namespace UCosmic.Domain.Activities
             // ReSharper restore DoNotCallOverridableMethodsInConstructor
         }
 
-        public int PersonId { get; protected internal set; }
+        public int PersonId
+        {
+            get { return _personId; }
+            protected internal set { _personId = value;
+                UpdatedByPersonId = value;
+            }
+        }
+
         public virtual Person Person { get; protected internal set; }
         public int Number { get; protected internal set; }
 
@@ -43,5 +52,6 @@ namespace UCosmic.Domain.Activities
 
         public DateTime CreatedOn { get; protected internal set; }
         public DateTime UpdatedOn { get; protected internal set; }
+        public int UpdatedByPersonId { get; private set; }
     }
 }

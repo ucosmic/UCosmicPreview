@@ -4,6 +4,8 @@ namespace UCosmic.Domain.People
 {
     public class Affiliation : Entity
     {
+        private bool _isDefault;
+
         protected internal Affiliation()
         {
         }
@@ -16,7 +18,17 @@ namespace UCosmic.Domain.People
 
         public string JobTitles { get; protected internal set; }
 
-        public bool IsDefault { get; protected internal set; }
+        public bool IsDefault
+        {
+            get { return _isDefault; }
+            protected internal set
+            {
+                _isDefault = value;
+                IsPrimary = value;
+            }
+        }
+
+        public bool IsPrimary { get; private set; }
 
         public bool IsAcknowledged { get; protected internal set; }
         public bool IsClaimingStudent { get; protected internal set; }

@@ -14,6 +14,7 @@ namespace UCosmic.Domain.People
             Emails = new List<EmailAddress>();
             Messages = new List<EmailMessage>();
             // ReSharper restore DoNotCallOverridableMethodsInConstructor
+            IsActive = true;
         }
 
         public bool IsDisplayNameDerived { get; protected internal set; }
@@ -23,6 +24,8 @@ namespace UCosmic.Domain.People
         public string MiddleName { get; protected internal set; }
         public string LastName { get; protected internal set; }
         public string Suffix { get; protected internal set; }
+
+        public bool IsActive { get; private set; }
 
         public virtual User User { get; protected internal set; }
 
