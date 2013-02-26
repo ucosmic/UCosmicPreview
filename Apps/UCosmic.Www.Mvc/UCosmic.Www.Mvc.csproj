@@ -599,6 +599,9 @@
     <Content Include="content\images\agreements-public-search-900.jpg" />
     <Content Include="content\images\index-card.png" />
     <Content Include="content\images\ipad-photo.jpg" />
+    <Content Include="content\skins\www.napier.ac.uk\head-logo.png" />
+    <Content Include="content\skins\www.napier.ac.uk\map-panes.css" />
+    <Content Include="content\skins\www.napier.ac.uk\screen.css" />
     <Content Include="content\skins\www.uwo.ca\head-logo.png" />
     <Content Include="content\skins\www.uwo.ca\map-panes.css" />
     <Content Include="content\skins\www.uwo.ca\screen.css" />
