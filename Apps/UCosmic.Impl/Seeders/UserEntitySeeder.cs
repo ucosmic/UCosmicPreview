@@ -65,7 +65,7 @@ namespace UCosmic.Impl.Seeders
                 { "www.griffith.edu.au",  "@griffith.edu.au"    },
                 { "www.unsw.edu.au",      "@unsw.edu.au"        },
                 { "www.usf.edu",          "@usf.edu"            },
-                { "www.uwo.ca",           "@uwo.ca"             },
+                { "www.westernu.ca",      "@uwo.ca"             },
             };
             var managerRoles = new[] { RoleName.InstitutionalAgreementManager };
             var supervisorRoles = new[] { RoleName.InstitutionalAgreementSupervisor };

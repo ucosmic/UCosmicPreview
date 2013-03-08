@@ -1150,7 +1150,7 @@ namespace UCosmic.Impl.Seeders
                 IsMember = true,
                 TypeId = _queryProcessor.Execute(new EstablishmentTypeByEnglishName(
                     KnownEstablishmentType.University.AsSentenceFragment())).RevisionId,
-                OfficialWebsiteUrl = "www.uwo.ca",
+                OfficialWebsiteUrl = "www.westernu.ca",
                 EmailDomains = new[] { "@uwo.ca" },
                 FindPlacesByCoordinates = true,
                 CenterLatitude = 43.008728,

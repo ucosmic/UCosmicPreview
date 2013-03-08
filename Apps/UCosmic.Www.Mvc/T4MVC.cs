@@ -1842,8 +1842,8 @@ namespace Links {
                         }
         
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public static class www_uwo_ca {
-                private const string URLPATH = "~/content/skins/www.uwo.ca";
+            public static class www_westernu_ca {
+                private const string URLPATH = "~/content/skins/www.westernu.ca";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                 public static readonly string head_logo_png = Url("head-logo.png");

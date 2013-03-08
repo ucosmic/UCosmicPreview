@@ -607,9 +607,9 @@
     <Content Include="content\skins\www.napier.ac.uk\head-logo.png" />
     <Content Include="content\skins\www.napier.ac.uk\map-panes.css" />
     <Content Include="content\skins\www.napier.ac.uk\screen.css" />
-    <Content Include="content\skins\www.uwo.ca\head-logo.png" />
-    <Content Include="content\skins\www.uwo.ca\map-panes.css" />
-    <Content Include="content\skins\www.uwo.ca\screen.css" />
+    <Content Include="content\skins\www.westernu.ca\head-logo.png" />
+    <Content Include="content\skins\www.westernu.ca\map-panes.css" />
+    <Content Include="content\skins\www.westernu.ca\screen.css" />
     <Content Include="content\skins\default\head-row-shadow.png" />
     <Content Include="content\skins\screen-ie8.css" />
     <Content Include="content\skins\tiny-mce.css" />
