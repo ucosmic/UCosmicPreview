@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
 using UCosmic.Domain.Establishments;
+using UCosmic.Domain.Identity;
 using UCosmic.Www.Mvc.Areas.Identity.Models;
 using UCosmic.Www.Mvc.Controllers;
 
@@ -24,6 +26,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
     public partial class SignOutController : BaseController
     {
+        public const string HadSamlSignOnSessionKey = "HadSamlSignOn";
+
         private readonly SignOutServices _services;
 
         public SignOutController(SignOutServices services)
@@ -45,6 +49,24 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             {
                 // flash the success message
                 SetFeedbackMessage(SuccessMessage);
+
+                var user = _services.QueryProcessor.Execute(new GetUserByNameQuery
+                {
+                    Name = User.Identity.Name,
+                    EagerLoad = new Expression<Func<User, object>>[]
+                    {
+                        x => x.Person.Affiliations.Select(y => y.Establishment.SamlSignOn),
+                    }
+                });
+                Session.Remove(HadSamlSignOnSessionKey);
+                if (user != null)
+                {
+                    var defaultAffiliation = user.Person.DefaultAffiliation;
+                    if (defaultAffiliation != null && defaultAffiliation.Establishment.HasSamlSignOn())
+                    {
+                        Session[HadSamlSignOnSessionKey] = new object();
+                    }
+                }
 
                 // delete the authentication cookie and redirect
                 _services.UserSigner.SignOff();
