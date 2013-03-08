@@ -110,6 +110,39 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             return new EmptyResult();
         }
 
+        [HttpGet]
+        public virtual ActionResult AlphaProxy(int establishmentId, string returnUrl)
+        {
+            // check URL referrer
+            var referrer = Request.UrlReferrer;
+            if (referrer == null) return new HttpStatusCodeResult(400);
+
+            if (_services.ConfigurationManager.SamlRealServiceProviderEntityId.StartsWith("https://preview.ucosmic.com") &&
+                !referrer.AbsoluteUri.StartsWith("https://alpha.ucosmic.com"))
+                return new HttpStatusCodeResult(400);
+
+            if (_services.ConfigurationManager.SamlRealServiceProviderEntityId.StartsWith("https://develop.ucosmic.com") &&
+                !referrer.AbsoluteUri.StartsWith("https://spike.ucosmic.com") && !referrer.AbsoluteUri.StartsWith("http://spike.ucosmic.com"))
+                return new HttpStatusCodeResult(400);
+
+            var establishment = _services.QueryProcessor.Execute(
+                new GetEstablishmentByIdQuery(establishmentId)
+                {
+                    EagerLoad = new Expression<Func<Establishment, object>>[]
+                    {
+                        e => e.SamlSignOn,
+                    }
+                }
+            );
+
+            if (establishment != null)
+            {
+                PushToSamlSso(establishment, returnUrl);
+                return new EmptyResult();
+            }
+            return new HttpStatusCodeResult(400);
+        }
+
         public const string SuccessMessageFormat = "You are now signed on to UCosmic as {0}.";
 
         [NonAction]
@@ -174,6 +207,24 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                 Constraints = new RouteValueDictionary(new
                 {
                     httpMethod = new HttpMethodConstraint("POST"),
+                });
+            }
+        }
+
+        public class AlphaProxyRoute : MvcRoute
+        {
+            public AlphaProxyRoute()
+            {
+                Url = "sign-on/alpha-proxy/{establishmentId}";
+                DataTokens = new RouteValueDictionary(new { area = Area });
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = Controller,
+                    action = MVC.Identity.SignOn.ActionNames.AlphaProxy,
+                });
+                Constraints = new RouteValueDictionary(new
+                {
+                    httpMethod = new HttpMethodConstraint("GET"),
                 });
             }
         }

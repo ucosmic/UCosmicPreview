@@ -25,7 +25,6 @@
       <Import moduleName="RemoteForwarder" />
     </Imports>
     <ConfigurationSettings>
-      <Setting name="UCosmic.Www.Mvc.DeployedToEmulator" />
     </ConfigurationSettings>
     <Certificates>
       <Certificate name="star.ucosmic.com" storeLocation="LocalMachine" storeName="My" />

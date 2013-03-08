@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Diagnostics;
+using System.Web.Mvc;
 using System.Web.Routing;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Identity;
@@ -65,6 +66,25 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
             var returnUrl = samlResponse.RelayResourceUrl ??
                             _services.UserSigner.DefaultSignedOnUrl;
+
+            if (Request.Url != null)
+            {
+                if (Request.Url.Host == "preview.ucosmic.com" && returnUrl.StartsWith("https://alpha.ucosmic.com"))
+                {
+                    return
+                        Redirect(string.Format("https://alpha.ucosmic.com/sign-in/tenantize/?returnUrl={0}",
+                            Server.UrlEncode(returnUrl)));
+                }
+                if (Request.Url.Host == "develop.ucosmic.com" &&
+                         (returnUrl.StartsWith("https://spike.ucosmic.com") ||
+                          returnUrl.StartsWith("http://spike.ucosmic.com")))
+                {
+                    return
+                        Redirect(string.Format("https://spike.ucosmic.com/sign-in/tenantize/?returnUrl={0}",
+                            Server.UrlEncode(returnUrl)));
+                }
+            }
+
             var skinsUrl = Url.Action(MVC.Common.Skins.Change(establishment.WebsiteUrl, returnUrl));
             return Redirect(skinsUrl);
         }

@@ -52,6 +52,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public System.Web.Mvc.ActionResult Post() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.Post);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult AlphaProxy() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.AlphaProxy);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SignOnController Actions { get { return MVC.Identity.SignOn; } }
@@ -70,6 +75,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             public readonly string Get = "sign-on";
             public readonly string ValidateEmailAddress = "ValidateEmailAddress";
             public readonly string Post = "sign-on";
+            public readonly string AlphaProxy = "AlphaProxy";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -77,6 +83,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
             public const string Get = "sign-on";
             public const string ValidateEmailAddress = "ValidateEmailAddress";
             public const string Post = "sign-on";
+            public const string AlphaProxy = "AlphaProxy";
         }
 
 
@@ -100,6 +107,14 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Post {
             public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_AlphaProxy s_params_AlphaProxy = new ActionParamsClass_AlphaProxy();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AlphaProxy AlphaProxyParams { get { return s_params_AlphaProxy; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AlphaProxy {
+            public readonly string establishmentId = "establishmentId";
+            public readonly string returnUrl = "returnUrl";
         }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -128,6 +143,13 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers {
         public override System.Web.Mvc.ActionResult Post(UCosmic.Www.Mvc.Areas.Identity.Models.SignOnForm model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Post);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult AlphaProxy(int establishmentId, string returnUrl) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AlphaProxy);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "establishmentId", establishmentId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
             return callInfo;
         }
 

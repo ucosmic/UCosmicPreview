@@ -405,6 +405,23 @@ var MvcJs = {
 
 				return url.replace(/([?&]+$)/g, "");
 			},
+			AlphaProxy: function(establishmentId, returnUrl) {
+				var url = "/sign-on/alpha-proxy/{establishmentId}?returnUrl={returnUrl}";
+				
+				if (establishmentId) {
+					url = url.replace("{establishmentId}", establishmentId);
+				} else {
+					url = url.replace("establishmentId={establishmentId}", "").replace("?&","?").replace("&&","&");
+				}
+				
+				if (returnUrl) {
+					url = url.replace("{returnUrl}", returnUrl);
+				} else {
+					url = url.replace("returnUrl={returnUrl}", "").replace("?&","?").replace("&&","&");
+				}
+
+				return url.replace(/([?&]+$)/g, "");
+			},
 			SuccessMessageFormat: "You are now signed on to UCosmic as {0}.",
 			NameConst: "SignOn"
 		},

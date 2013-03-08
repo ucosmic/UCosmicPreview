@@ -4,7 +4,6 @@
     <Instances count="2" />
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
-      <Setting name="UCosmic.Www.Mvc.DeployedToEmulator" value="false" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="UCosmicBriarhill" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEEKcETAj6UihRRKiJpADWNEwDQYJKoZIhvcNAQEBBQAEggEAe8nbsnVK36nHMXjNSLa0qmw/2G9UmaJEpcKeCjEZ5Q/BVDwMBbX8Qq4a+8szKaFv71AABZUOuaSHdFYbTjOuHvPUx2e5iPLESj0XOUS7xa+LWP2p0ZL/eD4b9pWT9z2ENB7HtemQYm/EWd39dsFoTCmj3OEP9kuGzmhXjF2iYh9ICfjaU0Y9NF/2ht7gPFSblWJ5KUf0gySO3K1/PVH3Iu2ZjmtB/yR/sG1BT3fO15YLBy4+mwdaXPmaeHBRnUO+Xz1vdM0PGG/BJz2CR+t5YtrTdcMEdj/9aW2jgC0wyxHPudxI+XuT6aZ2CUuqyCdYEXti3DWx6bej/lPlU9cwqDAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECIy/X059EtNUgBCKEgMTtJpxwMFVARTwuHLk" />
