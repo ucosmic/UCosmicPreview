@@ -4,7 +4,7 @@
     {
         <li style="margin-bottom: 1em;"><a href="@Url.Action(MVC.Common.Skins.Change(
                 establishment.WebsiteUrl,
-                Url.Action(MVC.InstitutionalAgreements.PublicSearch.Index(establishment.WebsiteUrl))))">
+                Url.Action(MVC.InstitutionalAgreements.PublicSearch.Index(establishment.WebsiteUrl.Replace("/", "$")))))">
             @Html.DisplayFor(m => establishment.OfficialName)
         </a>
             @Html.Action(MVC.InstitutionalAgreements.PublicSearch.GetChildEstablishmentsWithAgreements(establishment.EntityId))

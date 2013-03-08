@@ -81,7 +81,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
 
         public virtual ActionResult ChangeOwner(string newEstablishmentUrl, string keyword)
         {
-            return RedirectToAction(MVC.InstitutionalAgreements.PublicSearch.Index(newEstablishmentUrl, keyword));
+            return RedirectToAction(MVC.InstitutionalAgreements.PublicSearch.Index(newEstablishmentUrl.Replace("/", "$"), keyword));
         }
 
         [OpenTopTab(TopTabName.InstitutionalAgreements)]
@@ -89,6 +89,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
         {
             // return 404 when there is no establishment url
             if (string.IsNullOrWhiteSpace(establishmentUrl)) return HttpNotFound();
+            establishmentUrl = establishmentUrl.Replace("$", "/");
 
             // redirect to canonical route when keyword is in the query string
             if (Request.QueryString.AllKeys.Contains("keyword", new CaseInsensitiveStringComparer()))

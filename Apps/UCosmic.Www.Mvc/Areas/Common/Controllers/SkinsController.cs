@@ -119,7 +119,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
         {
             public ChangeRoute()
             {
-                Url = "as/{skinContext}";
+                Url = "as/{*skinContext}";
                 DataTokens = new RouteValueDictionary(new { area = Area });
                 Defaults = new RouteValueDictionary(new
                 {
