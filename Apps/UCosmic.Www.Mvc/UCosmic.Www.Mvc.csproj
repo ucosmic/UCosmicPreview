@@ -604,6 +604,9 @@
     <Content Include="content\images\agreements-public-search-900.jpg" />
     <Content Include="content\images\index-card.png" />
     <Content Include="content\images\ipad-photo.jpg" />
+    <Content Include="content\skins\www.uwm.edu\head-logo.png" />
+    <Content Include="content\skins\www.uwm.edu\map-panes.css" />
+    <Content Include="content\skins\www.uwm.edu\screen.css" />
     <Content Include="content\skins\www.napier.ac.uk\head-logo.png" />
     <Content Include="content\skins\www.napier.ac.uk\map-panes.css" />
     <Content Include="content\skins\www.napier.ac.uk\screen.css" />
