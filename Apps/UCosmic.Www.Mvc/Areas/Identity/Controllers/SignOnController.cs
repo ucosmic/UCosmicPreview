@@ -118,7 +118,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
             if (referrer == null) return new HttpStatusCodeResult(400);
 
             if (_services.ConfigurationManager.SamlRealServiceProviderEntityId.StartsWith("https://preview.ucosmic.com") &&
-                !referrer.AbsoluteUri.StartsWith("https://alpha.ucosmic.com"))
+                !referrer.AbsoluteUri.StartsWith("https://alpha.ucosmic.com") && !referrer.AbsoluteUri.StartsWith("https://alpha-staging.ucosmic.com"))
                 return new HttpStatusCodeResult(400);
 
             if (_services.ConfigurationManager.SamlRealServiceProviderEntityId.StartsWith("https://develop.ucosmic.com") &&

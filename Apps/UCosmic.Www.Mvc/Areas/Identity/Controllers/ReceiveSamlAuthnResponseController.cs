@@ -75,6 +75,12 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
                         Redirect(string.Format("https://alpha.ucosmic.com/sign-in/tenantize/?returnUrl={0}",
                             Server.UrlEncode(returnUrl)));
                 }
+                if (Request.Url.Host == "preview.ucosmic.com" && returnUrl.StartsWith("https://alpha-staging.ucosmic.com"))
+                {
+                    return
+                        Redirect(string.Format("https://alpha-staging.ucosmic.com/sign-in/tenantize/?returnUrl={0}",
+                            Server.UrlEncode(returnUrl)));
+                }
                 if (Request.Url.Host == "develop.ucosmic.com" &&
                          (returnUrl.StartsWith("https://spike.ucosmic.com") ||
                           returnUrl.StartsWith("http://spike.ucosmic.com")))

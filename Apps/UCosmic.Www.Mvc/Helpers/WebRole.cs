@@ -270,7 +270,7 @@ namespace UCosmic.Www.Mvc
 
         private static string GetAppCmdBindings()
         {
-            var config = string.Format("preview.ucosmic.com;ucosmic-preview.cloudapp.net;{0}.cloudapp.net", RoleEnvironment.DeploymentId);
+            var config = string.Format("preview.ucosmic.com;preview-staging.ucosmic.com;ucosmic-preview.cloudapp.net;{0}.cloudapp.net", RoleEnvironment.DeploymentId);
             var domains = config.Split(';').ToList();
             while (domains.FirstOrDefault(string.IsNullOrWhiteSpace) != null)
                 domains.Remove(domains.FirstOrDefault(string.IsNullOrWhiteSpace));
