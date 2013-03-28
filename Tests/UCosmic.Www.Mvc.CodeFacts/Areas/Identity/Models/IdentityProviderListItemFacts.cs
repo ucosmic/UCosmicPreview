@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Should;
 
 namespace UCosmic.Www.Mvc.Areas.Identity.Models
 {
@@ -10,10 +11,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void HasPublicSetter()
             {
-                new IdentityProviderListItem
+                var obj = new IdentityProviderListItem
                 {
                     OfficialName = "official name"
                 };
+                obj.ShouldNotBeNull();
             }
         }
 
@@ -23,10 +25,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void HasPublicSetter()
             {
-                new IdentityProviderListItem
+                var obj = new IdentityProviderListItem
                 {
                     EmailDomains = null
                 };
+                obj.ShouldNotBeNull();
             }
         }
 
@@ -38,10 +41,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                 [TestMethod]
                 public void HasPublicSetter()
                 {
-                    new IdentityProviderListItem.EmailDomain
+                    var obj = new IdentityProviderListItem.EmailDomain
                     {
                         Value = "@domain.tld"
                     };
+                    obj.ShouldNotBeNull();
                 }
             }
         }

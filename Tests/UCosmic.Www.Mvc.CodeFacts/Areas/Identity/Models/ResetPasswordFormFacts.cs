@@ -27,7 +27,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
         public class ThePasswordProperty
         {
             [TestMethod]
-            public void IsDecoratedWith_UIHintUsing_StrengthMeteredPassword()
+            public void IsDecoratedWith_UiHintUsing_StrengthMeteredPassword()
             {
                 Expression<Func<ResetPasswordForm, string>> property = p => p.Password;
                 var attributes = property.GetAttributes<ResetPasswordForm, string, UIHintAttribute>();

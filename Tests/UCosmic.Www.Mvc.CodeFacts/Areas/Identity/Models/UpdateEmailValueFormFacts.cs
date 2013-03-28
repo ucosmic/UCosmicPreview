@@ -81,10 +81,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void HasPublicSetter()
             {
-                new UpdateEmailValueForm
+                var obj = new UpdateEmailValueForm
                 {
                     OldSpelling = "user@domain.tld"
                 };
+                obj.ShouldNotBeNull();
             }
         }
 

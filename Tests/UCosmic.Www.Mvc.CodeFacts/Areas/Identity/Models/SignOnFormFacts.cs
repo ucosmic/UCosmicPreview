@@ -35,7 +35,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             }
 
             [TestMethod]
-            public void IsDecoratedWith_UIHint_UsingEmailAddress()
+            public void IsDecoratedWith_UiHint_UsingEmailAddress()
             {
                 Expression<Func<SignOnForm, string>> property = p => p.EmailAddress;
                 var attributes = property.GetAttributes<SignOnForm, string, UIHintAttribute>();

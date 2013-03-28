@@ -24,7 +24,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 try
                 {
-                    new ValidateConfirmEmailAttribute(null);
+                    var obj = new ValidateConfirmEmailAttribute(null);
+                    obj.ShouldBeNull();
                 }
                 catch (ArgumentNullException ex)
                 {

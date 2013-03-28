@@ -11,8 +11,6 @@ body {
 .ucosmic {
     color: #333;
 }
-.single-line {
-}
 
 
 
@@ -252,7 +250,7 @@ img {
 .ucosmic .input span.watermark {
     position: absolute;
     font-size: 16px;
-    padding: 2px 0 0px 1px;
+    padding: 2px 0 0 1px;
     display: block;
     line-height: 20px;
     outline: none;
@@ -378,7 +376,7 @@ img {
     height: 31px;
     width: 25px;
     background-image: url('default/drop-arrow-button-sized.png');
-    background-position: 5px 0px;
+    background-position: 5px 0;
 }
 .ucosmic .button-sized.combobox a.down-arrow:hover, .ucosmic .button-sized .combobox a.down-arrow:hover {
     background-color: transparent;
@@ -443,7 +441,7 @@ img {
 }
 .ucosmic .top-tabs {
     height: 33px;
-    border-bottom: solid 0px #ccc;
+    border-bottom: solid 0 #ccc;
     background: #004c93;
 }
 .ucosmic .top-tabs > .left {
@@ -873,22 +871,6 @@ img {
 }
 
 
-
-/* debug styles */
-.ucosmic.debug > .head {
-}
-.ucosmic.debug > .torso {
-}
-.ucosmic.debug > .torso > .left {
-}
-.ucosmic.debug > .torso > .left ::-webkit-scrollbar-thumb {
-}
-.ucosmic.debug > .torso > .center {
-}
-.ucosmic.debug > .torso > .right {
-}
-.ucosmic.debug > .feet {
-}
 
 
 

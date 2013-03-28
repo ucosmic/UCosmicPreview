@@ -23,7 +23,8 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Controllers
 
                 try
                 {
-                    new ValidateRedeemTicketAttribute(null, EmailConfirmationIntent.ResetPassword);
+                    var obj = new ValidateRedeemTicketAttribute(null, EmailConfirmationIntent.ResetPassword);
+                    obj.ShouldBeNull();
                 }
                 catch (ArgumentNullException ex)
                 {

@@ -147,7 +147,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Models
             [TestMethod]
             public void AutoMapper_CanConstruct_AndSetProperties()
             {
-                new PersonInfoModel
+                var obj = new PersonInfoModel
                 {
                     EntityId = Guid.NewGuid(),
                     Salutation = null,
@@ -157,6 +157,7 @@ namespace UCosmic.Www.Mvc.Areas.People.Models
                     Suffix = null,
                     DefaultEmail = null,
                 };
+                obj.ShouldNotBeNull();
             }
         }
     }

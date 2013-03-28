@@ -60,7 +60,7 @@ ul.br li, ol.br li {
 }
 
 img {
-    border: 0px none;
+    border: 0 none;
     vertical-align: middle;
 }
 
@@ -111,7 +111,7 @@ page width. Or, you can specify an exact pixel width. */
 
 header, #header {
     position: relative;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     color: #000;
     padding: 0;
 }
@@ -299,9 +299,6 @@ table {
     border-collapse: collapse;
 }
 
-table td {
-}
-
 table thead th {
     padding: 2px 5px;
     text-align: left;
@@ -404,12 +401,6 @@ input[type="text"].watermarked, input[type="password"].watermarked, input[type="
     margin: 0.5em 0 0 0;
 }
 
-.text-box {
-}
-
-.text-box.multi-line {
-}
-
 .tri-state {
     width: 6em;
 }
@@ -487,8 +478,6 @@ table.form td.info {
     padding-bottom: 10px;
     width: 30%;
 }
-table.form td.value .model-validator {
-}
 table.form tr.two-fields th.label {
     width: 15%;
 }
@@ -545,7 +534,7 @@ table.list td {
     border-left-width: 0;
     width: 25px;
     background: #fff;
-    font-size: 0px;
+    font-size: 0;
 }
 .combobox button span {
     margin: 0 auto;

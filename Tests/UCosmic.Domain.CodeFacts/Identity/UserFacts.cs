@@ -21,7 +21,8 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsVirtual()
             {
-                new UserRuntimeEntity();
+                var obj = new UserRuntimeEntity();
+                obj.ShouldNotBeNull();
             }
             private class UserRuntimeEntity : User
             {

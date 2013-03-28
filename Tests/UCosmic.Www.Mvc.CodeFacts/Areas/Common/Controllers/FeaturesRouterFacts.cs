@@ -17,8 +17,10 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
             [TestMethod]
             public void Maps2Urls_SiteRoot_Features_OptionalVersion()
             {
-                new FeaturesRouter.ReleasesRoute();
-                new FeaturesRouter.ReleasesRouteWithVersion();
+                var obj1 = new FeaturesRouter.ReleasesRoute();
+                var obj2 = new FeaturesRouter.ReleasesRouteWithVersion();
+                obj1.ShouldNotBeNull();
+                obj2.ShouldNotBeNull();
             }
 
             [TestMethod]

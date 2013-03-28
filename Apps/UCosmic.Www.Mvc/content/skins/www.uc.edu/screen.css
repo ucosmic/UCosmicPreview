@@ -97,7 +97,7 @@
 }
 .ucosmic > .head > .center > .identity a {
     color: #fff;
-    text-shadow: 1px 1px 0px #000;
+    text-shadow: 1px 1px 0 #000;
 }
 .ucosmic > .head > .center > .identity .pipe {
     color: #e00122;

@@ -58,7 +58,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void HasPublicDefaultConstructor_WithSettableProperties()
             {
-                new MyHomeInfo
+                var obj = new MyHomeInfo
                 {
                     Emails = new[]
                     {
@@ -71,6 +71,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                         },
                     },
                 };
+                obj.ShouldNotBeNull();
             }
         }
 
@@ -80,7 +81,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void HasPublicDefaultConstructor_WithSettableProperties()
             {
-                new MyHomeInfo
+                var obj = new MyHomeInfo
                 {
                     Affiliations = new[]
                     {
@@ -99,6 +100,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                         },
                     },
                 };
+                obj.ShouldNotBeNull();
             }
 
             [TestMethod]

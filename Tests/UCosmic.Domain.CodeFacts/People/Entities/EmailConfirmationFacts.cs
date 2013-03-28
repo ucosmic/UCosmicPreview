@@ -70,7 +70,8 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsVirtual()
             {
-                new EmailConfirmationRuntimeEntity();
+                var obj = new EmailConfirmationRuntimeEntity();
+                obj.ShouldNotBeNull();
             }
             private class EmailConfirmationRuntimeEntity : EmailConfirmation
             {

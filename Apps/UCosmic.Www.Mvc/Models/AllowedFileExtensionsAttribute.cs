@@ -25,8 +25,8 @@ namespace UCosmic.Www.Mvc.Models
                 if (httpPostedFile.ContentLength < 1) return true;
 
                 _fileName = httpPostedFile.FileName.GetFileName();
-                if (_fileName.LastIndexOf(".") < 0) return true;
-                _fileExtension = httpPostedFile.FileName.Substring(httpPostedFile.FileName.LastIndexOf("."));
+                if (_fileName.LastIndexOf(".", StringComparison.Ordinal) < 0) return true;
+                _fileExtension = httpPostedFile.FileName.Substring(httpPostedFile.FileName.LastIndexOf(".", StringComparison.Ordinal));
                 return _fileName.HasValidFileExtension(AllowedExtensions);
 
             }

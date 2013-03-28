@@ -19,7 +19,7 @@ namespace UCosmic.Domain
             }
 
             [TestMethod]
-            public void Converts_MinţaqahBaḩralGhazāl_WithoutQuestionMark()
+            public void Converts_MinţaqahBaḩRalGhazāl_WithoutQuestionMark()
             {
                 const string text = "Minţaqah Baḩr al Ghazāl";
 
@@ -29,7 +29,7 @@ namespace UCosmic.Domain
             }
 
             [TestMethod]
-            public void Converts_MinţaqahAlBaţḩah_WithoutQuestionMark()
+            public void Converts_MinţaqahAlBaţḩAh_WithoutQuestionMark()
             {
                 const string text = "Minţaqah Al Baţḩah";
 
@@ -39,7 +39,7 @@ namespace UCosmic.Domain
             }
 
             [TestMethod]
-            public void Converts_MinţaqahAlBuḩayrah_WithoutQuestionMark()
+            public void Converts_MinţaqahAlBuḩAyrah_WithoutQuestionMark()
             {
                 const string text = "Minţaqah Al Buḩayrah";
 
@@ -49,7 +49,7 @@ namespace UCosmic.Domain
             }
 
             [TestMethod]
-            public void Converts_ShabīyatalJabalalAkhḑar_WithoutQuestionMark()
+            public void Converts_ShabīyatalJabalalAkhḑAr_WithoutQuestionMark()
             {
                 const string text = "Sha‘bīyat al Jabal al Akhḑar";
 
@@ -59,7 +59,7 @@ namespace UCosmic.Domain
             }
 
             [TestMethod]
-            public void Converts_S̲h̲arqBaḩralGhazal__WithoutQuestionMark()
+            public void Converts_S̲h̲ArqBaḩralGhazal_WithoutQuestionMark()
             {
                 const string text = "S̲h̲arq Baḩr al Ghazal";
 

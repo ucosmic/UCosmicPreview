@@ -10,7 +10,7 @@ namespace UCosmic.Www.Mvc.Controllers
         {
             if (values.ContainsKey(parameterName) && values[parameterName] != null)
             {
-                var integer = 0;
+                int integer;
                 int.TryParse(values[parameterName].ToString(), out integer);
                 return integer > 0;
             }

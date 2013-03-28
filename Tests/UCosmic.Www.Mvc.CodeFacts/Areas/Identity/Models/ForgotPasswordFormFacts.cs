@@ -91,10 +91,11 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
             [TestMethod]
             public void HasPublicSetter()
             {
-                new ForgotPasswordForm
+                var obj = new ForgotPasswordForm
                 {
                     ReturnUrl = "/path/to/resource"
                 };
+                obj.ShouldNotBeNull();
             }
         }
     }

@@ -12,18 +12,18 @@ namespace UCosmic.Www.Mvc
         public override void OnException(ExceptionContext context)
         {
             base.OnException(context);
-            Exception exception = context.Exception;
-            if (!context.ExceptionHandled || ElmahHandleErrorAttribute.RaiseErrorSignal(exception) || ElmahHandleErrorAttribute.IsFiltered(context))
+            var exception = context.Exception;
+            if (!context.ExceptionHandled || RaiseErrorSignal(exception) || IsFiltered(context))
                 return;
-            ElmahHandleErrorAttribute.LogException(exception);
+            LogException(exception);
         }
 
         private static bool RaiseErrorSignal(Exception e)
         {
-            HttpContext current = HttpContext.Current;
+            var current = HttpContext.Current;
             if (current == null)
                 return false;
-            ErrorSignal errorSignal = ErrorSignal.FromContext(current);
+            var errorSignal = ErrorSignal.FromContext(current);
             if (errorSignal == null)
                 return false;
             errorSignal.Raise(e, current);
@@ -32,17 +32,17 @@ namespace UCosmic.Www.Mvc
 
         private static bool IsFiltered(ExceptionContext context)
         {
-            ErrorFilterConfiguration filterConfiguration = context.HttpContext.GetSection("elmah/errorFilter") as ErrorFilterConfiguration;
+            var filterConfiguration = context.HttpContext.GetSection("elmah/errorFilter") as ErrorFilterConfiguration;
             if (filterConfiguration == null)
                 return false;
-            ErrorFilterModule.AssertionHelperContext assertionHelperContext = new ErrorFilterModule.AssertionHelperContext(context.Exception, (object)HttpContext.Current);
-            return filterConfiguration.Assertion.Test((object)assertionHelperContext);
+            var assertionHelperContext = new ErrorFilterModule.AssertionHelperContext(context.Exception, HttpContext.Current);
+            return filterConfiguration.Assertion.Test(assertionHelperContext);
         }
 
         private static void LogException(Exception e)
         {
-            HttpContext current = HttpContext.Current;
-            ErrorLog.GetDefault(current).Log(new Elmah.Error(e, current));
+            var current = HttpContext.Current;
+            ErrorLog.GetDefault(current).Log(new Error(e, current));
         }
     }
 }

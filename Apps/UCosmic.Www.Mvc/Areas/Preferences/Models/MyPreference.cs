@@ -16,7 +16,10 @@ namespace UCosmic.Www.Mvc.Areas.Preferences.Models
         {
             protected override void Configure()
             {
-                CreateMap<MyPreference, UpdateMyPreference>();
+                CreateMap<MyPreference, UpdateMyPreference>()
+                    .ForMember(d => d.Principal, o => o.Ignore())
+                    .ForMember(d => d.AnonymousId, o => o.Ignore())
+                ;
             }
         }
     }

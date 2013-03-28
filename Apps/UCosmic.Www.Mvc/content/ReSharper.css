@@ -1,2 +1,27 @@
 ﻿.email-add-new, .signed-in, .signed-out, .input, .three-rows, .member, .MemberSearch-field, .role-member, .remove-button, .is-deleted, .affiliation, .affiliation-type-info, .is-employee, .is-student, .is-neither, .validation, .email-details, .email-info, .email-action, .email-make-primary, .email-remove, .is-student, .email-confirm, .email-respell-editor, .simplemodal-close, .check-eligibility, .eligible, .wait, .institutional-agreement-member, .allowed-contact-type, .appender, .editor, .last, .validate, .add, .edit, .cancel, .reader, .is-added, .actions, .remove, .allowed-status, .allowed-type, .agreement-contact .ContactType-field, .contact-extra-field, .contact-step-0, .contact-step-1, .contact-step-2, .contact-add-reset, .contact-email-value, .contact-extra-hidden, .contact-extra-shown, .file-attachment, .file-chooser, .file-ext-invalid, .file-chosen, .file-chosen, .file-name, .participant, .ParticipantSearch-field, .expires-on-help, .add-contact, .institutional-agreement-participant, .close-help, .cancel-button, .canvas, .help, .places, .lat, .lng, .zoom, .north, .south, .east, .west, .box, .scroll-wheel, .markers, .marker, .add-marker, .new-marker, .remove-marker, .tools, .map-tools, .no-results, .pmark-norm, .pmark-drag, .est-loc-place, .not-deleted, .is-deleting, .remove-undo-button, .show, .hide, .dev, .u-map-google, .u-map-canvas, .u-map-controls, .u-map-markers, .entity-id, .cancel-form, .others, .sign-on, .sign-out, .sign-up, .type-and-name, .add-tag, .add-tag-disabled {
 }
+.text-box {
+}
+
+.text-box.multi-line {
+}
+table td {
+}
+table.form td.value .model-validator {
+}
+.single-line {
+}
+.ucosmic.debug > .head {
+}
+.ucosmic.debug > .torso {
+}
+.ucosmic.debug > .torso > .left {
+}
+.ucosmic.debug > .torso > .left ::-webkit-scrollbar-thumb {
+}
+.ucosmic.debug > .torso > .center {
+}
+.ucosmic.debug > .torso > .right {
+}
+.ucosmic.debug > .feet {
+}

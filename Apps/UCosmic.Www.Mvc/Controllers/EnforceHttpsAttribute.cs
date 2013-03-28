@@ -14,7 +14,6 @@ namespace UCosmic.Www.Mvc.Controllers
             // RequireHttps does not work in AppHarbor: http://stackoverflow.com/a/8977247/304832
             var xForwardedProtoHeader = filterContext.HttpContext.Request.Headers["X-Forwarded-Proto"];
             if (WebConfig.IsDeployedTo(DeployToTarget.Test) &&
-                filterContext.Result != null &&
                 filterContext.Result is RedirectResult &&
                 "https".Equals(xForwardedProtoHeader, StringComparison.InvariantCultureIgnoreCase))
                 filterContext.Result = null;

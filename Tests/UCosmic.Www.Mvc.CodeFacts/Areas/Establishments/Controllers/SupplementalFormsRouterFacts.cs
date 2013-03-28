@@ -52,8 +52,10 @@ namespace UCosmic.Www.Mvc.Areas.Establishments.Controllers
             [TestMethod]
             public void Maps2Urls_FirstWithReturnUrl_ThenWithout()
             {
-                new SupplementalFormsRouter.LocateGetRoute();
-                new SupplementalFormsRouter.LocateGetWithoutReturnUrlRoute();
+                var obj1 = new SupplementalFormsRouter.LocateGetRoute();
+                var obj2 = new SupplementalFormsRouter.LocateGetWithoutReturnUrlRoute();
+                obj1.ShouldNotBeNull();
+                obj2.ShouldNotBeNull();
             }
 
             [TestMethod]

@@ -16,7 +16,8 @@ namespace UCosmic.Domain.Identity
 
                 try
                 {
-                    new GenerateRandomSecretQuery(0, 5);
+                    var obj = new GenerateRandomSecretQuery(0, 5);
+                    obj.ShouldBeNull();
                 }
                 catch (ArgumentException ex)
                 {
@@ -36,7 +37,8 @@ namespace UCosmic.Domain.Identity
 
                 try
                 {
-                    new GenerateRandomSecretQuery(5, 4);
+                    var obj = new GenerateRandomSecretQuery(5, 4);
+                    obj.ShouldBeNull();
                 }
                 catch (ArgumentException ex)
                 {
@@ -72,7 +74,8 @@ namespace UCosmic.Domain.Identity
 
                 try
                 {
-                    new GenerateRandomSecretQuery(0);
+                    var obj = new GenerateRandomSecretQuery(0);
+                    obj.ShouldBeNull();
                 }
                 catch (ArgumentException ex)
                 {

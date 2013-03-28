@@ -77,7 +77,8 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsVirtual()
             {
-                new PersonRuntimeEntity();
+                var obj = new PersonRuntimeEntity();
+                obj.ShouldNotBeNull();
             }
             private class PersonRuntimeEntity : Person
             {
@@ -105,7 +106,8 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsVirtual()
             {
-                new PersonRuntimeEntity();
+                var obj = new PersonRuntimeEntity();
+                obj.ShouldNotBeNull();
             }
             private class PersonRuntimeEntity : Person
             {
@@ -133,7 +135,8 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsVirtual()
             {
-                new PersonRuntimeEntity();
+                var obj = new PersonRuntimeEntity();
+                obj.ShouldNotBeNull();
             }
             private class PersonRuntimeEntity : Person
             {
@@ -161,7 +164,8 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsVirtual()
             {
-                new PersonRuntimeEntity();
+                var obj = new PersonRuntimeEntity();
+                obj.ShouldNotBeNull();
             }
             private class PersonRuntimeEntity : Person
             {

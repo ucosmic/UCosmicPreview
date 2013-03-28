@@ -25,7 +25,8 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsVirtual()
             {
-                new AffiliationRuntimeEntity();
+                var obj = new AffiliationRuntimeEntity();
+                obj.ShouldNotBeNull();
             }
             private class AffiliationRuntimeEntity : Affiliation
             {
@@ -56,7 +57,8 @@ namespace UCosmic.Domain.People
             [TestMethod]
             public void IsVirtual()
             {
-                new AffiliationRuntimeEntity();
+                var obj = new AffiliationRuntimeEntity();
+                obj.ShouldNotBeNull();
             }
             private class AffiliationRuntimeEntity : Affiliation
             {

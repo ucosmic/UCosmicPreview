@@ -295,7 +295,7 @@ namespace UCosmic.Www.Mvc
                 {
                     session.Remove(FailedPasswordAttemptsKey);
                 }
-                if (value != null && value is int)
+                if (value is int)
                 {
                     return (int)value;
                 }
@@ -325,10 +325,10 @@ namespace UCosmic.Www.Mvc
 
         public static bool HasValidFileExtension(this string fileName, string allowedExtensions)
         {
-            var indexOfExtension = fileName.LastIndexOf(".");
+            var indexOfExtension = fileName.LastIndexOf(".", StringComparison.Ordinal);
             if (indexOfExtension > 0)
             {
-                var fileExtension = fileName.Substring(fileName.LastIndexOf("."));
+                var fileExtension = fileName.Substring(fileName.LastIndexOf(".", StringComparison.Ordinal));
                 var validExtensions = allowedExtensions.Split(',').Where(e => !string.IsNullOrWhiteSpace(e)).ToArray();
                 foreach (var validExtension in validExtensions.Select(validExtension => validExtension.Trim()))
                 {

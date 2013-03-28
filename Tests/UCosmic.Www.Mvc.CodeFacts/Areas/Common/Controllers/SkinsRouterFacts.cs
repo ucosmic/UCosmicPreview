@@ -22,7 +22,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Change(skinContext, null);
                 var url = new SkinsRouter.ChangeRoute().Url.ToAppRelativeUrl()
-                    .Replace("{skinContext}", skinContext);
+                    .Replace("{*skinContext}", skinContext);
                 OutBoundRoute.Of(action).InArea(Area).AppRelativeUrl().ShouldEqual(url);
             }
 
@@ -33,7 +33,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 Expression<Func<SkinsController, ActionResult>> action =
                    controller => controller.Change(skinContext, null);
                 var url = new SkinsRouter.ChangeRoute().Url.ToAppRelativeUrl()
-                    .Replace("{skinContext}", skinContext);
+                    .Replace("{*skinContext}", skinContext);
                 url.WithMethod(HttpVerbs.Get).ShouldMapTo(action);
             }
 

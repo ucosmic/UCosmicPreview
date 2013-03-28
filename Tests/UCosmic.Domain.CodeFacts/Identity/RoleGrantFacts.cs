@@ -21,7 +21,8 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsVirtual()
             {
-                new RoleGrantRuntimeEntity();
+                var obj = new RoleGrantRuntimeEntity();
+                obj.ShouldNotBeNull();
             }
             private class RoleGrantRuntimeEntity : RoleGrant
             {
@@ -48,7 +49,8 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsVirtual()
             {
-                new RoleGrantRuntimeEntity();
+                var obj = new RoleGrantRuntimeEntity();
+                obj.ShouldNotBeNull();
             }
             private class RoleGrantRuntimeEntity : RoleGrant
             {
@@ -75,7 +77,8 @@ namespace UCosmic.Domain.Identity
             [TestMethod]
             public void IsVirtual()
             {
-                new RoleGrantRuntimeEntity();
+                var obj = new RoleGrantRuntimeEntity();
+                obj.ShouldNotBeNull();
             }
             private class RoleGrantRuntimeEntity : RoleGrant
             {
