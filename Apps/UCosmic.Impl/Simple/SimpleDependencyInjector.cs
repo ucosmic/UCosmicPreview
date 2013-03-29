@@ -9,6 +9,7 @@ using NGeo.Yahoo.PlaceFinder;
 using SimpleInjector;
 using SimpleInjector.Extensions;
 using UCosmic.Domain.Identity;
+using UCosmic.Impl.BinaryData;
 using UCosmic.Impl.Orm;
 using UCosmic.Impl.Seeders;
 
@@ -125,6 +126,9 @@ namespace UCosmic.Impl
             container.RegisterSingle<SimpleQueryProcessor>();
             container.Register<IProcessQueries>(container.GetInstance<SimpleQueryProcessor>);
             container.RegisterManyForOpenGeneric(typeof(IHandleQueries<,>), assemblies);
+
+            // binary data storage
+            container.RegisterBinaryDataStorage(configuration);
 
             // verify container
             container.Verify();
