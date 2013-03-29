@@ -50,7 +50,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 .ToArray();
             foreach (var entity in entities)
             {
-                entity.CopyFiles(_binaryData, _unitOfWork);
+                entity.CompleteMoveFiles(_binaryData, _unitOfWork);
             }
 
             var queryable = _entities.Query<InstitutionalAgreement>()

@@ -276,9 +276,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                     if (file != null)
                     {
                         //Response.AddHeader("Content-Disposition", string.Format("inline; filename={0}", file.Name));
-                        return !string.IsNullOrWhiteSpace(file.Path)
-                            ? File(_binaryData.Get(file.Path), file.MimeType)
-                            : File(file.Content, file.MimeType);
+                        return File(_binaryData.Get(file.Path), file.MimeType);
                     }
                 }
             }
@@ -306,11 +304,7 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                     var file = agreement.Files.SingleOrDefault(f => f.EntityId.Equals(fileId));
                     if (file != null)
                     {
-                        if (!string.IsNullOrWhiteSpace(file.Path))
-                        {
-                            return File(_binaryData.Get(file.Path), file.MimeType, file.Name);
-                        }
-                        return File(file.Content, file.MimeType, file.Name);
+                        return File(_binaryData.Get(file.Path), file.MimeType, file.Name);
                     }
                 }
             }

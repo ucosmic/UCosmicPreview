@@ -77,7 +77,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
             file = new InstitutionalAgreementFile
             {
                 Agreement = agreement,
-                Content = looseFile.Content,
+                //Content = looseFile.Content,
                 Length = looseFile.Length,
                 MimeType = looseFile.MimeType,
                 Name = looseFile.Name,

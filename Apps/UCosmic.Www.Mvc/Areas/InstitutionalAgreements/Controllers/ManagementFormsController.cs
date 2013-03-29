@@ -51,6 +51,12 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
             var agreementEntities = _queryProcessor.Execute(
                 new FindMyInstitutionalAgreementsQuery(User)
                 {
+                    EagerLoad = new Expression<Func<InstitutionalAgreement, object>>[]
+                    {
+                        x => x.Files,
+                        x => x.Participants.Select(y => y.Establishment.Location.Places),
+                        x => x.Participants.Select(y => y.Establishment.Names.Select(z => z.TranslationToLanguage)),
+                    },
                     OrderBy = new Dictionary<Expression<Func<InstitutionalAgreement, object>>, OrderByDirection>
                     {
                         { e => e.Title, OrderByDirection.Ascending },
