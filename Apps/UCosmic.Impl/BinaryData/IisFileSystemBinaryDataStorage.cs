@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Web.Hosting;
-using UCosmic.BinaryData;
 
 namespace UCosmic.Impl.BinaryData
 {

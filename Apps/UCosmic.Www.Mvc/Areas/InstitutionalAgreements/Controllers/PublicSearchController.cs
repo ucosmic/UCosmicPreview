@@ -7,7 +7,6 @@ using System.Security.Principal;
 using System.Web.Mvc;
 using System.Web.Routing;
 using AutoMapper;
-using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.InstitutionalAgreements;
 using UCosmic.Domain.People;

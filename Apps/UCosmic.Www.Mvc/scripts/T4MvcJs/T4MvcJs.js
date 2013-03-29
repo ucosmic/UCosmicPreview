@@ -268,36 +268,8 @@ var MvcJs = {
 	Identity: {
 
 		ConfirmEmail: {
-			Get: function(token, secretCode) {
-				var url = "/Identity/ConfirmEmail/Get?token={token}&secretCode={secretCode}";
-				
-				if (token) {
-					url = url.replace("{token}", token);
-				} else {
-					url = url.replace("token={token}", "").replace("?&","?").replace("&&","&");
-				}
-				
-				if (secretCode) {
-					url = url.replace("{secretCode}", secretCode);
-				} else {
-					url = url.replace("secretCode={secretCode}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			ValidateSecretCode: function(model) {
 				var url = "/confirm-email/validate?model={model}";
-				
-				if (model) {
-					url = url.replace("{model}", model);
-				} else {
-					url = url.replace("model={model}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
-			Post: function(model) {
-				var url = "/Identity/ConfirmEmail/Post?model={model}";
 				
 				if (model) {
 					url = url.replace("{model}", model);
@@ -310,30 +282,8 @@ var MvcJs = {
 			NameConst: "ConfirmEmail"
 		},
 		CreatePassword: {
-			Get: function(token) {
-				var url = "/Identity/CreatePassword/Get?token={token}";
-				
-				if (token) {
-					url = url.replace("{token}", token);
-				} else {
-					url = url.replace("token={token}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			ValidatePasswordConfirmation: function(model) {
 				var url = "/create-password/validate?model={model}";
-				
-				if (model) {
-					url = url.replace("{model}", model);
-				} else {
-					url = url.replace("model={model}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
-			Post: function(model) {
-				var url = "/Identity/CreatePassword/Post?model={model}";
 				
 				if (model) {
 					url = url.replace("{model}", model);
@@ -347,24 +297,8 @@ var MvcJs = {
 			NameConst: "CreatePassword"
 		},
 		ForgotPassword: {
-			Get: function() {
-				var url = "/Identity/ForgotPassword/Get";
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			ValidateEmailAddress: function(model) {
 				var url = "/forgot-password/validate?model={model}";
-				
-				if (model) {
-					url = url.replace("{model}", model);
-				} else {
-					url = url.replace("model={model}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
-			Post: function(model) {
-				var url = "/Identity/ForgotPassword/Post?model={model}";
 				
 				if (model) {
 					url = url.replace("{model}", model);
@@ -378,19 +312,9 @@ var MvcJs = {
 			NameConst: "ForgotPassword"
 		},
 		ListIdentityProviders: {
-			Get: function() {
-				var url = "/Identity/ListIdentityProviders/Get";
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			NameConst: "ListIdentityProviders"
 		},
 		MyHome: {
-			Get: function() {
-				var url = "/Identity/MyHome/Get";
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			NameConst: "MyHome"
 		},
 		ReceiveSamlAuthnResponse: {
@@ -402,30 +326,8 @@ var MvcJs = {
 			NameConst: "ReceiveSamlAuthnResponse"
 		},
 		ResetPassword: {
-			Get: function(token) {
-				var url = "/Identity/ResetPassword/Get?token={token}";
-				
-				if (token) {
-					url = url.replace("{token}", token);
-				} else {
-					url = url.replace("token={token}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			ValidatePasswordConfirmation: function(model) {
 				var url = "/reset-password/validate?model={model}";
-				
-				if (model) {
-					url = url.replace("{model}", model);
-				} else {
-					url = url.replace("model={model}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
-			Post: function(model) {
-				var url = "/Identity/ResetPassword/Post?model={model}";
 				
 				if (model) {
 					url = url.replace("{model}", model);
@@ -478,30 +380,8 @@ var MvcJs = {
 			NameConst: "SignDown"
 		},
 		SignIn: {
-			Get: function(returnUrl) {
-				var url = "/Identity/SignIn/Get?returnUrl={returnUrl}";
-				
-				if (returnUrl) {
-					url = url.replace("{returnUrl}", returnUrl);
-				} else {
-					url = url.replace("returnUrl={returnUrl}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			ValidatePassword: function(model) {
 				var url = "/sign-in/validate?model={model}";
-				
-				if (model) {
-					url = url.replace("{model}", model);
-				} else {
-					url = url.replace("model={model}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
-			Post: function(model) {
-				var url = "/Identity/SignIn/Post?model={model}";
 				
 				if (model) {
 					url = url.replace("{model}", model);
@@ -514,30 +394,8 @@ var MvcJs = {
 			NameConst: "SignIn"
 		},
 		SignOn: {
-			Get: function(returnUrl) {
-				var url = "/Identity/SignOn/Get?returnUrl={returnUrl}";
-				
-				if (returnUrl) {
-					url = url.replace("{returnUrl}", returnUrl);
-				} else {
-					url = url.replace("returnUrl={returnUrl}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			ValidateEmailAddress: function(model) {
 				var url = "/sign-on/validate?model={model}";
-				
-				if (model) {
-					url = url.replace("{model}", model);
-				} else {
-					url = url.replace("model={model}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
-			Post: function(model) {
-				var url = "/Identity/SignOn/Post?model={model}";
 				
 				if (model) {
 					url = url.replace("{model}", model);
@@ -568,46 +426,13 @@ var MvcJs = {
 			NameConst: "SignOn"
 		},
 		SignOut: {
-			Get: function(returnUrl) {
-				var url = "/Identity/SignOut/Get?returnUrl={returnUrl}";
-				
-				if (returnUrl) {
-					url = url.replace("{returnUrl}", returnUrl);
-				} else {
-					url = url.replace("returnUrl={returnUrl}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			HadSamlSignOnSessionKey: "HadSamlSignOn",
 			SuccessMessage: "You have successfully been signed out of UCosmic.",
 			NameConst: "SignOut"
 		},
 		SignOver: {
-			Get: function(returnUrl) {
-				var url = "/Identity/SignOver/Get?returnUrl={returnUrl}";
-				
-				if (returnUrl) {
-					url = url.replace("{returnUrl}", returnUrl);
-				} else {
-					url = url.replace("returnUrl={returnUrl}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			ValidateEmailAddress: function(model) {
 				var url = "/sign-over/validate?model={model}";
-				
-				if (model) {
-					url = url.replace("{model}", model);
-				} else {
-					url = url.replace("model={model}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
-			Post: function(model) {
-				var url = "/Identity/SignOver/Post?model={model}";
 				
 				if (model) {
 					url = url.replace("{model}", model);
@@ -632,123 +457,25 @@ var MvcJs = {
 			NameConst: "SignOver"
 		},
 		SignUp: {
-			Get: function(returnUrl) {
-				var url = "/Identity/SignUp/Get?returnUrl={returnUrl}";
-				
-				if (returnUrl) {
-					url = url.replace("{returnUrl}", returnUrl);
-				} else {
-					url = url.replace("returnUrl={returnUrl}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
-			Post: function(model) {
-				var url = "/Identity/SignUp/Post?model={model}";
-				
-				if (model) {
-					url = url.replace("{model}", model);
-				} else {
-					url = url.replace("model={model}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			SuccessMessageFormat: "A sign up confirmation email has been sent to {0}.",
 			NameConst: "SignUp"
 		},
 		UpdateAffiliation: {
-			Get: function(establishmentId) {
-				var url = "/Identity/UpdateAffiliation/Get?establishmentId={establishmentId}";
-				
-				if (establishmentId) {
-					url = url.replace("{establishmentId}", establishmentId);
-				} else {
-					url = url.replace("establishmentId={establishmentId}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
-			Put: function(model) {
-				var url = "/Identity/UpdateAffiliation/Put?model={model}";
-				
-				if (model) {
-					url = url.replace("{model}", model);
-				} else {
-					url = url.replace("model={model}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			SuccessMessage: "Your affiliation info was successfully updated.",
 			NoChangesMessage: "No changes were made.",
 			NameConst: "UpdateAffiliation"
 		},
 		UpdateEmailValue: {
-			Get: function(number) {
-				var url = "/Identity/UpdateEmailValue/Get?number={number}";
-				
-				if (number) {
-					url = url.replace("{number}", number);
-				} else {
-					url = url.replace("number={number}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
-			Put: function(model) {
-				var url = "/Identity/UpdateEmailValue/Put?model={model}";
-				
-				if (model) {
-					url = url.replace("{model}", model);
-				} else {
-					url = url.replace("model={model}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
-			ValidateValue: function(model) {
-				var url = "/Identity/UpdateEmailValue/ValidateValue?model={model}";
-				
-				if (model) {
-					url = url.replace("{model}", model);
-				} else {
-					url = url.replace("model={model}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			SuccessMessageFormat: "Your email address was successfully changed to {0}.",
 			NoChangesMessage: "No changes were made.",
 			NameConst: "UpdateEmailValue"
 		},
 		UpdateName: {
-			Get: function() {
-				var url = "/Identity/UpdateName/Get";
-
-				return url.replace(/([?&]+$)/g, "");
-			},
-			Put: function(model) {
-				var url = "/Identity/UpdateName/Put?model={model}";
-				
-				if (model) {
-					url = url.replace("{model}", model);
-				} else {
-					url = url.replace("model={model}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			SuccessMessage: "Your info was successfully updated.",
 			NoChangesMessage: "No changes were made.",
 			NameConst: "UpdateName"
 		},
 		UpdatePassword: {
-			Get: function() {
-				var url = "/Identity/UpdatePassword/Get";
-
-				return url.replace(/([?&]+$)/g, "");
-			},
 			ValidateCurrentPassword: function(model) {
 				var url = "/my/password/validate?model={model}";
 				
@@ -762,17 +489,6 @@ var MvcJs = {
 			},
 			ValidateNewPasswordConfirmation: function(model) {
 				var url = "/my/password/validate/new?model={model}";
-				
-				if (model) {
-					url = url.replace("{model}", model);
-				} else {
-					url = url.replace("model={model}", "").replace("?&","?").replace("&&","&");
-				}
-
-				return url.replace(/([?&]+$)/g, "");
-			},
-			Post: function(model) {
-				var url = "/Identity/UpdatePassword/Post?model={model}";
 				
 				if (model) {
 					url = url.replace("{model}", model);

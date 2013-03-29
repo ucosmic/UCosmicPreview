@@ -156,21 +156,21 @@ namespace UCosmic.Www.Mvc.Areas.People.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.JsonResult WithEmail(string term, UCosmic.Domain.StringMatchStrategy matchStrategy) {
+        public override System.Web.Mvc.JsonResult WithEmail(string term, UCosmic.StringMatchStrategy matchStrategy) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.WithEmail);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "term", term);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "matchStrategy", matchStrategy);
             return callInfo;
         }
 
-        public override System.Web.Mvc.JsonResult WithFirstName(string term, UCosmic.Domain.StringMatchStrategy matchStrategy) {
+        public override System.Web.Mvc.JsonResult WithFirstName(string term, UCosmic.StringMatchStrategy matchStrategy) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.WithFirstName);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "term", term);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "matchStrategy", matchStrategy);
             return callInfo;
         }
 
-        public override System.Web.Mvc.JsonResult WithLastName(string term, UCosmic.Domain.StringMatchStrategy matchStrategy) {
+        public override System.Web.Mvc.JsonResult WithLastName(string term, UCosmic.StringMatchStrategy matchStrategy) {
             var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.WithLastName);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "term", term);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "matchStrategy", matchStrategy);

@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
 using AutoMapper;
-using UCosmic.Domain;
 using UCosmic.Domain.Establishments;
 using UCosmic.Domain.Files;
 using UCosmic.Domain.InstitutionalAgreements;

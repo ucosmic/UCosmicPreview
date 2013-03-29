@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using UCosmic.Domain;
 
-namespace UCosmic.Domain
+namespace UCosmic
 {
     public class RevisableEntityEqualityComparer : IEqualityComparer<RevisableEntity>
     {
