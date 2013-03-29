@@ -21,10 +21,14 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
     public partial class PublicSearchController : BaseController
     {
         private readonly IProcessQueries _queryProcessor;
+        private readonly IStoreBinaryData _binaryData;
 
-        public PublicSearchController(IProcessQueries queryProcessor)
+        public PublicSearchController(IProcessQueries queryProcessor
+            , IStoreBinaryData binaryData
+        )
         {
             _queryProcessor = queryProcessor;
+            _binaryData = binaryData;
         }
 
 
@@ -272,7 +276,9 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                     if (file != null)
                     {
                         //Response.AddHeader("Content-Disposition", string.Format("inline; filename={0}", file.Name));
-                        return File(file.Content, file.MimeType);
+                        return !string.IsNullOrWhiteSpace(file.Path)
+                            ? File(_binaryData.Get(file.Path), file.MimeType)
+                            : File(file.Content, file.MimeType);
                     }
                 }
             }
@@ -300,6 +306,10 @@ namespace UCosmic.Www.Mvc.Areas.InstitutionalAgreements.Controllers
                     var file = agreement.Files.SingleOrDefault(f => f.EntityId.Equals(fileId));
                     if (file != null)
                     {
+                        if (!string.IsNullOrWhiteSpace(file.Path))
+                        {
+                            return File(_binaryData.Get(file.Path), file.MimeType, file.Name);
+                        }
                         return File(file.Content, file.MimeType, file.Name);
                     }
                 }

@@ -27,10 +27,14 @@ namespace UCosmic.Domain.InstitutionalAgreements
     public class DetachFileFromAgreementHandler : IHandleCommands<DetachFileFromAgreementCommand>
     {
         private readonly ICommandEntities _entities;
+        private readonly IStoreBinaryData _binaryData;
 
-        public DetachFileFromAgreementHandler(ICommandEntities entities)
+        public DetachFileFromAgreementHandler(ICommandEntities entities
+            , IStoreBinaryData binaryData
+        )
         {
             _entities = entities;
+            _binaryData = binaryData;
         }
 
         public void Handle(DetachFileFromAgreementCommand command)
@@ -45,6 +49,10 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 );
 
             if (entity == null) return;
+
+            if (!string.IsNullOrWhiteSpace(entity.Path))
+                _binaryData.Delete(entity.Path);
+
             _entities.Purge(entity);
             command.IsNewlyDetached = true;
         }

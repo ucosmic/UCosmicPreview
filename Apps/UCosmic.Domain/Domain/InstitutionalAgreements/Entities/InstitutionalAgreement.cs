@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UCosmic.Domain.InstitutionalAgreements
 {
@@ -45,6 +46,19 @@ namespace UCosmic.Domain.InstitutionalAgreements
         {
             get { return VisibilityText.AsEnum<InstitutionalAgreementVisibility>(); }
             protected internal set { VisibilityText = value.AsSentenceFragment(); }
+        }
+
+        internal void CopyFiles(IStoreBinaryData binaryData, IUnitOfWork unitOfWork)
+        {
+            if (Files == null || !Files.Any(x => string.IsNullOrWhiteSpace(x.Path))) return;
+
+            foreach (var file in Files)
+            {
+                var path = string.Format(InstitutionalAgreementFile.PathFormat, RevisionId, Guid.NewGuid());
+                binaryData.Put(path, file.Content);
+                file.Path = path;
+                unitOfWork.SaveChanges();
+            }
         }
 
         public override string ToString()

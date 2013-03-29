@@ -22,15 +22,18 @@ namespace UCosmic.Domain.InstitutionalAgreements
     {
         private readonly IProcessQueries _queryProcessor;
         private readonly ICommandEntities _entities;
+        private readonly IStoreBinaryData _binaryData;
         private readonly IUnitOfWork _unitOfWork;
 
         public HandlePurgeInstitutionalAgreementCommand(IProcessQueries queryProcessor
             , ICommandEntities entities
+            , IStoreBinaryData binaryData
             , IUnitOfWork unitOfWork
         )
         {
             _queryProcessor = queryProcessor;
             _entities = entities;
+            _binaryData = binaryData;
             _unitOfWork = unitOfWork;
         }
 
@@ -44,6 +47,15 @@ namespace UCosmic.Domain.InstitutionalAgreements
             if (agreement == null) return;
 
             agreement = _entities.Get<InstitutionalAgreement>().Single(x => x.EntityId == command.AgreementId);
+
+            if (agreement.Files != null && agreement.Files.Any())
+            {
+                foreach (var file in agreement.Files.Where(x => !string.IsNullOrWhiteSpace(x.Path)))
+                {
+                    _binaryData.Delete(file.Path);
+                }
+            }
+
             _entities.Purge(agreement);
             _unitOfWork.SaveChanges();
         }

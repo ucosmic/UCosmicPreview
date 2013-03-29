@@ -42,10 +42,14 @@ namespace UCosmic.Domain.InstitutionalAgreements
     public class AttachFileToAgreementHandler : IHandleCommands<AttachFileToAgreementCommand>
     {
         private readonly ICommandEntities _entities;
+        private readonly IStoreBinaryData _binaryData;
 
-        public AttachFileToAgreementHandler(ICommandEntities entities)
+        public AttachFileToAgreementHandler(ICommandEntities entities
+            , IStoreBinaryData binaryData
+        )
         {
             _entities = entities;
+            _binaryData = binaryData;
         }
 
         public void Handle(AttachFileToAgreementCommand command)
@@ -66,6 +70,9 @@ namespace UCosmic.Domain.InstitutionalAgreements
             var looseFile = _entities.Get<LooseFile>().By(command.FileGuid);
             if (looseFile == null) return;
 
+            // also store in binary data
+            var path = string.Format(InstitutionalAgreementFile.PathFormat, agreement.RevisionId, Guid.NewGuid());
+            _binaryData.Put(path, looseFile.Content);
 
             file = new InstitutionalAgreementFile
             {
@@ -74,6 +81,7 @@ namespace UCosmic.Domain.InstitutionalAgreements
                 Length = looseFile.Length,
                 MimeType = looseFile.MimeType,
                 Name = looseFile.Name,
+                Path = path,
             };
 
             _entities.Create(file);
