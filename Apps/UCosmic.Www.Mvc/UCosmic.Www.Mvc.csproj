@@ -1538,6 +1538,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\binary-data\" />
     <Folder Include="App_Data\mail\" />
     <Folder Include="Areas\Preferences\Views\Shared\" />
     <Folder Include="Areas\RecruitmentAgencies\Controllers\" />
