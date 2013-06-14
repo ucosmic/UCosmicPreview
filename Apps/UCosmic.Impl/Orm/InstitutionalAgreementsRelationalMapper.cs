@@ -87,7 +87,7 @@ namespace UCosmic.Impl.Orm
             }
         }
 
-        private class InstitutionalAgreementOrm : EntityTypeConfiguration<InstitutionalAgreement>
+        private class InstitutionalAgreementOrm : RevisableEntityTypeConfiguration<InstitutionalAgreement>
         {
             internal InstitutionalAgreementOrm()
             {
@@ -96,14 +96,8 @@ namespace UCosmic.Impl.Orm
                 // offspring is no longer derived from children
                 //Ignore(p => p.Offspring);
 
-                HasKey(k => k.RevisionId);
                 Property(p => p.RevisionId).IsRequired().HasColumnName("Id");
                 Property(p => p.EntityId).IsRequired().HasColumnName("Guid");
-                Property(p => p.CreatedOnUtc).IsRequired().HasColumnType("datetime2");
-                Property(p => p.CreatedByPrincipal).HasMaxLength(256);
-                Property(p => p.UpdatedByPrincipal).HasMaxLength(256);
-                Property(p => p.UpdatedOnUtc).HasColumnType("datetime2");
-                Property(p => p.Version).IsConcurrencyToken(true).IsRowVersion();
                 Ignore(p => p.IsCurrent);
                 Ignore(p => p.IsArchived);
                 Ignore(p => p.IsDeleted);
@@ -146,8 +140,6 @@ namespace UCosmic.Impl.Orm
 
                 Property(p => p.Title).IsRequired().HasMaxLength(500);
                 Property(p => p.Type).IsRequired().HasMaxLength(150);
-                Property(p => p.StartsOn).HasColumnType("datetime2");
-                Property(p => p.ExpiresOn).HasColumnType("datetime2");
                 Property(p => p.Status).IsRequired().HasMaxLength(50);
                 Property(p => p.Description).IsMaxLength();
                 Property(p => p.VisibilityText).HasColumnName("Visibility").IsRequired().HasMaxLength(20);
@@ -186,14 +178,8 @@ namespace UCosmic.Impl.Orm
             {
                 ToTable(typeof(InstitutionalAgreementContact).Name, DbSchemaName.InstitutionalAgreements);
 
-                HasKey(k => k.RevisionId);
                 Property(p => p.RevisionId).IsRequired().HasColumnName("Id");
                 Property(p => p.EntityId).IsRequired().HasColumnName("Guid");
-                Property(p => p.CreatedOnUtc).IsRequired().HasColumnType("datetime2");
-                Property(p => p.CreatedByPrincipal).HasMaxLength(256);
-                Property(p => p.UpdatedByPrincipal).HasMaxLength(256);
-                Property(p => p.UpdatedOnUtc).HasColumnType("datetime2");
-                Property(p => p.Version).IsConcurrencyToken(true).IsRowVersion();
                 Ignore(p => p.IsCurrent);
                 Ignore(p => p.IsArchived);
                 Ignore(p => p.IsDeleted);
@@ -213,7 +199,12 @@ namespace UCosmic.Impl.Orm
             internal InstitutionalAgreementFileOrm()
             {
                 ToTable(typeof(InstitutionalAgreementFile).Name, DbSchemaName.InstitutionalAgreements);
-                HasKey(m => m.RevisionId);
+
+                Property(p => p.RevisionId).IsRequired().HasColumnName("Id");
+                Property(p => p.EntityId).IsRequired().HasColumnName("Guid");
+                Ignore(p => p.IsCurrent);
+                Ignore(p => p.IsArchived);
+                Ignore(p => p.IsDeleted);
             }
         }
     }

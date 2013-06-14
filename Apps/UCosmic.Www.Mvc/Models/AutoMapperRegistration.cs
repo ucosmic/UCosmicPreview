@@ -16,6 +16,7 @@ namespace UCosmic.Www.Mvc.Models
         public static void RegisterProfiles(IEnumerable<Assembly> assemblies)
         {
             Mapper.Initialize(configuration => GetConfiguration(Mapper.Configuration, assemblies));
+            Mapper.AssertConfigurationIsValid();
         }
 
         private static void GetConfiguration(IConfiguration configuration, IEnumerable<Assembly> assemblies)
