@@ -23,7 +23,7 @@ namespace UCosmic.Impl.Orm
         {
             internal InstitutionalAgreementConfigurationOrm()
             {
-                ToTable(typeof(InstitutionalAgreementConfiguration).Name, DbSchemaName.InstitutionalAgreements);
+                ToTable("AgreementSettings", DbSchemaName.Agreements);
 
                 // has one establishment
                 HasOptional(d => d.ForEstablishment)
@@ -37,7 +37,7 @@ namespace UCosmic.Impl.Orm
         {
             internal InstitutionalAgreementTypeValueOrm()
             {
-                ToTable(typeof(InstitutionalAgreementTypeValue).Name, DbSchemaName.InstitutionalAgreements);
+                ToTable("AgreementSettingsTypeValue", DbSchemaName.Agreements);
 
                 HasKey(p => p.Id);
 
@@ -55,7 +55,7 @@ namespace UCosmic.Impl.Orm
         {
             internal InstitutionalAgreementStatusValueOrm()
             {
-                ToTable(typeof(InstitutionalAgreementStatusValue).Name, DbSchemaName.InstitutionalAgreements);
+                ToTable("AgreementSettingsStatusValue", DbSchemaName.Agreements);
 
                 HasKey(p => p.Id);
 
@@ -73,7 +73,7 @@ namespace UCosmic.Impl.Orm
         {
             internal InstitutionalAgreementContactTypeValueOrm()
             {
-                ToTable(typeof(InstitutionalAgreementContactTypeValue).Name, DbSchemaName.InstitutionalAgreements);
+                ToTable("AgreementSettingsContactTypeValue", DbSchemaName.Agreements);
 
                 HasKey(p => p.Id);
 
@@ -91,7 +91,7 @@ namespace UCosmic.Impl.Orm
         {
             internal InstitutionalAgreementOrm()
             {
-                ToTable(typeof(InstitutionalAgreement).Name, DbSchemaName.InstitutionalAgreements);
+                ToTable("Agreement", DbSchemaName.Agreements);
 
                 // offspring is no longer derived from children
                 //Ignore(p => p.Offspring);
@@ -150,7 +150,7 @@ namespace UCosmic.Impl.Orm
         {
             internal InstitutionalAgreementNodeOrm()
             {
-                ToTable(typeof(InstitutionalAgreementNode).Name, DbSchemaName.InstitutionalAgreements);
+                ToTable("AgreementNode", DbSchemaName.Agreements);
 
                 HasKey(p => new { p.AncestorId, p.OffspringId });
             }
@@ -160,7 +160,7 @@ namespace UCosmic.Impl.Orm
         {
             internal InstitutionalAgreementParticipantOrm()
             {
-                ToTable(typeof(InstitutionalAgreementParticipant).Name, DbSchemaName.InstitutionalAgreements);
+                ToTable("AgreementParticipant", DbSchemaName.Agreements);
 
                 HasKey(k => k.Id);
 
@@ -176,7 +176,7 @@ namespace UCosmic.Impl.Orm
         {
             internal InstitutionalAgreementContactOrm()
             {
-                ToTable(typeof(InstitutionalAgreementContact).Name, DbSchemaName.InstitutionalAgreements);
+                ToTable("AgreementContact", DbSchemaName.Agreements);
 
                 Property(p => p.RevisionId).IsRequired().HasColumnName("Id");
                 Property(p => p.EntityId).IsRequired().HasColumnName("Guid");
@@ -198,7 +198,7 @@ namespace UCosmic.Impl.Orm
         {
             internal InstitutionalAgreementFileOrm()
             {
-                ToTable(typeof(InstitutionalAgreementFile).Name, DbSchemaName.InstitutionalAgreements);
+                ToTable("AgreementFile", DbSchemaName.Agreements);
 
                 Property(p => p.RevisionId).IsRequired().HasColumnName("Id");
                 Property(p => p.EntityId).IsRequired().HasColumnName("Guid");
