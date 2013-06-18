@@ -60,13 +60,13 @@ namespace UCosmic.Impl
             }
             else
             {
-                container.Register<IDatabaseInitializer<UCosmicContext>, DropOnModelChangeInitializer>();
+                //container.Register<IDatabaseInitializer<UCosmicContext>, DropOnModelChangeInitializer>();
                 //container.Register<IDatabaseInitializer<UCosmicContext>, DropAlwaysInitializer>();
-                //container.Register<IDatabaseInitializer<UCosmicContext>, BrownfieldInitializer>();
+                container.Register<IDatabaseInitializer<UCosmicContext>, BrownfieldInitializer>();
 
-                container.Register<ISeedData, CompositeSqlSeeder>();
+                //container.Register<ISeedData, CompositeSqlSeeder>();
                 //container.Register<ISeedData, CompositeEntitySeeder>();
-                //container.Register<ISeedData, BrownfieldSeeder>();
+                container.Register<ISeedData, BrownfieldSeeder>();
             }
 
             // register 1 DbContext for all implemented interfaces
