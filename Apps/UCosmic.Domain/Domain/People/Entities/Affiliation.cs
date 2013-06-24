@@ -1,4 +1,6 @@
-﻿using UCosmic.Domain.Establishments;
+﻿using System;
+using System.Threading;
+using UCosmic.Domain.Establishments;
 
 namespace UCosmic.Domain.People
 {
@@ -8,7 +10,14 @@ namespace UCosmic.Domain.People
 
         protected internal Affiliation()
         {
+            EntityId = Guid.NewGuid();
+            CreatedOnUtc = DateTime.UtcNow;
+            IsCurrent = true;
+            IsArchived = false;
+            IsDeleted = false;
         }
+
+        public int Id { get; protected set; }
 
         public int PersonId { get; protected internal set; }
         public virtual Person Person { get; protected internal set; }
@@ -38,6 +47,13 @@ namespace UCosmic.Domain.People
         public bool IsClaimingAdministrator { get; protected internal set; }
         public bool IsClaimingFaculty { get; protected internal set; }
         public bool IsClaimingStaff { get; protected internal set; }
+
+        public Guid EntityId { get; protected set; }
+        public DateTime CreatedOnUtc { get; protected set; }
+        public byte[] Version { get; protected set; }
+        public bool IsCurrent { get; protected set; }
+        public bool IsArchived { get; protected set; }
+        public bool IsDeleted { get; protected set; }
 
         public override string ToString()
         {

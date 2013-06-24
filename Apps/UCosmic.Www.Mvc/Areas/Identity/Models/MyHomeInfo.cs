@@ -64,6 +64,7 @@ namespace UCosmic.Www.Mvc.Areas.Identity.Models
                             .ThenBy(e => e.Value)
                         )
                     ))
+                    .ForMember(d => d.Affiliations, o => o.MapFrom(s => s.Affiliations.Where(x => x.IsDefault)))
                 ;
 
                 CreateMap<EmailAddress, MyHomeInfo.MyEmailAddress>();

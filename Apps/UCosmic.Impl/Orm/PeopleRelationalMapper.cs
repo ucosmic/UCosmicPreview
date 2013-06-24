@@ -116,8 +116,13 @@ namespace UCosmic.Impl.Orm
             {
                 ToTable(typeof(Affiliation).Name, DbSchemaName.People);
 
-                HasKey(p => new { p.PersonId, p.EstablishmentId });
+                //HasKey(p => new { p.PersonId, p.EstablishmentId });
+                HasKey(p => p.Id);
+                Property(p => p.EntityId).IsRequired();
+                Property(p => p.CreatedOnUtc).IsRequired();
+                Property(p => p.Version).IsConcurrencyToken(true).IsRowVersion();
 
+                Property(p => p.Id).HasColumnName("RevisionId");
                 Property(p => p.JobTitles).HasMaxLength(500);
             }
         }
