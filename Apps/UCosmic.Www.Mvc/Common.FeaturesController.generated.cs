@@ -92,6 +92,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers {
             public readonly string december_2011_preview_1 = "~/Areas/Common/Views/Features/december-2011-preview-1.cshtml";
             public readonly string december_2011_preview_2 = "~/Areas/Common/Views/Features/december-2011-preview-2.cshtml";
             public readonly string faculty_staff_module = "~/Areas/Common/Views/Features/faculty-staff-module.cshtml";
+            public readonly string fall_2013_preview = "~/Areas/Common/Views/Features/fall-2013-preview.cshtml";
             public readonly string february_2012_preview_1 = "~/Areas/Common/Views/Features/february-2012-preview-1.cshtml";
             public readonly string february_2012_preview_2 = "~/Areas/Common/Views/Features/february-2012-preview-2.cshtml";
             public readonly string gherkin = "~/Areas/Common/Views/Features/gherkin.cshtml";

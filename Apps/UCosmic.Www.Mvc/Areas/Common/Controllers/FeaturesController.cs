@@ -26,6 +26,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 { "june-2012-preview-1",         "June 2012 Preview 1 Feature Summary" },
                 { "june-2012-preview-2",         "June 2012 Preview 2 Feature Summary" },
                 { "july-2012-preview-1",         "July 2012 Preview 1 Feature Summary" },
+                { "fall-2013-preview",           "UCosmic Preview" },
             };
             if (allowedVersions.ContainsKey(version.ToLower()))
             {
@@ -115,6 +116,14 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
                 IsCurrentlyViewed = (version == currentVersion),
             });
 
+            version = "fall-2013-preview";
+            model.Add(new FeaturePreview
+            {
+                Name = "UCosmic Preview",
+                Version = version,
+                IsCurrentlyViewed = (version == currentVersion),
+            });
+
             model.Last().IsLatest = true;
             model.Reverse();
             return PartialView(model);
@@ -175,7 +184,7 @@ namespace UCosmic.Www.Mvc.Areas.Common.Controllers
 
         public class ReleasesRoute : MvcRoute
         {
-            public const string CurrentVersion = "july-2012-preview-1";
+            public const string CurrentVersion = "fall-2013-preview";
 
             public ReleasesRoute()
             {

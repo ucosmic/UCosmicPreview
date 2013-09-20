@@ -583,6 +583,7 @@
     <Content Include="App_Data\saml\identity-providers\idp.testshib.org.xml" />
     <Content Include="App_Data\saml\identity-providers\login.uc.edu.xml" />
     <Content Include="App_Data\saml\identity-providers\wif-saml2-sample.xml" />
+    <Content Include="Areas\Common\Views\Features\fall-2013-preview.cshtml" />
     <None Include="startup\disableTimeout.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
